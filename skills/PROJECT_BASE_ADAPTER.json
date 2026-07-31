@@ -1,0 +1,67 @@
+{
+  "artifact_role": "PROJECT_BASE_ADAPTER",
+  "base_release": {
+    "release_commit": "30ca6c7b5f93521f0eb0eed42d01437cd43c50ae",
+    "release_evidence_commit": "462a86db192d23d0f386281a1eb54b0a8cbad62e",
+    "repository": "alsdmlals4-eng/Base",
+    "version": "9.3.0"
+  },
+  "compatibility": {"cycle": "ONE_CYCLE", "legacy_inputs": {}, "views": []},
+  "gdd_sheet": {
+    "role": "USER_FACING_GDD_WORKSPACE",
+    "spreadsheet_id": "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo",
+    "url": "https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit",
+    "sync_status": "GITHUB_UPDATE_PENDING_SHEET"
+  },
+  "project": {
+    "engine": "Godot 4.7.1",
+    "repository": "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle",
+    "root": ".",
+    "platform": "Android",
+    "orientation": "landscape"
+  },
+  "protected_baseline": {
+    "authority_kind": "GIT_COMMIT",
+    "authority_ref": "refs/heads/main",
+    "commit": "f1b238bca4146ed66710405d07037e20963df836",
+    "policy_sha256": "204da76df84fb289d5f9d8445195532124788648d65698e8901463c58ec545a3",
+    "policy_source_path": "AGENTS.md",
+    "policy_source_type": "INITIAL_PROJECT_INSTALL",
+    "protected_paths_pointer": "/protected_paths"
+  },
+  "protected_paths": ["project.godot", "game/**", "assets/**", "기획서/**"],
+  "routing": {
+    "aliases": [],
+    "base_routes": [
+      "managing-project-intake-and-work-contract",
+      "managing-game-project-operating-system",
+      "managing-design-documents",
+      "analyzing-and-refining-game-concepts",
+      "designing-vertical-slices",
+      "auditing-and-refining-ui-art",
+      "reviewing-and-validating-project-changes",
+      "maintaining-project-context-and-handoff"
+    ],
+    "inactive_routes": [],
+    "precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
+    "project_routes": ["switchy-express-design"]
+  },
+  "schema_version": 1,
+  "shared_overrides": {},
+  "skill_registry": {
+    "base": {
+      "hash_definition": "RAW_FILE_BYTES_SHA256",
+      "path": "skills/SKILL_REGISTRY.json",
+      "sha256": "9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1"
+    },
+    "project": {
+      "hash_definition": "RAW_FILE_BYTES_SHA256",
+      "path": "skills/SKILL_REGISTRY.json",
+      "sha256": "2cecd924f040b85e06e9ba800e80f1137c7eb8c72023287e9d35361ed7932fa4"
+    }
+  },
+  "validators": [
+    "python tools/validate_project_contract.py",
+    "godot --headless --path . --script res://tests/run_tests.gd"
+  ]
+}

@@ -1,0 +1,16 @@
+# Documentation Map
+
+| 질문 | 책임 원본 |
+|---|---|
+| 지금 무엇을 만들고 있는가 | `START_HERE.md` |
+| 현재 상태와 다음 작업은 무엇인가 | `ACTIVE_CONTEXT.md` |
+| 승인된 결정은 무엇인가 | `CURRENT_CONFIRMED_DECISIONS.md` |
+| 핵심 플레이는 무엇인가 | `../../10_경험/CORE_GAMEPLAY.md` |
+| 화물·연료·속도·부스터 규칙은 무엇인가 | `../../20_시스템_콘텐츠/CORE_SYSTEMS.md` |
+| 화면과 그림체는 무엇인가 | `../../40_표현/VISUAL_DIRECTION.md` |
+| Vertical Slice 범위와 완료 기준은 무엇인가 | `../../50_제작_검증/VERTICAL_SLICE_CONTRACT.md` |
+| 플레이테스트는 어떻게 하는가 | `../../50_제작_검증/PLAYTEST_PLAN.md` |
+| 구현 순서는 무엇인가 | `../../../docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md` |
+| Base 기준은 무엇인가 | `../../../docs/BASE_RULES_VERSION.md` |
+| 문서 책임·상태는 어디에 있는가 | `DESIGN_DOCUMENT_REGISTRY.json` |
+| Skill 라우팅은 어디에 있는가 | `../../../skills/SKILL_REGISTRY.json`, `../../../skills/PROJECT_BASE_ADAPTER.json` |
