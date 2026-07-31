@@ -11,18 +11,18 @@
 - 엔진 기준: Godot `4.7.1-stable`
 - 목표 플랫폼: Android / Google Play
 - 화면: 가로형
-- 상세 상태: `[기획서]/00_프로젝트_허브/START_HERE.md`
+- 상세 상태: `기획서/00_프로젝트_허브/START_HERE.md`
 
 ## 최초 읽기 순서
 
 ```text
 AGENTS.md
-→ [기획서]/00_프로젝트_허브/START_HERE.md
-→ [기획서]/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md
-→ [기획서]/10_경험/CORE_GAMEPLAY.md
-→ [기획서]/20_시스템_콘텐츠/CORE_SYSTEMS.md
-→ [기획서]/40_표현/VISUAL_DIRECTION.md
-→ [기획서]/50_제작_검증/VERTICAL_SLICE_CONTRACT.md
+→ 기획서/00_프로젝트_허브/START_HERE.md
+→ 기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md
+→ 기획서/10_경험/CORE_GAMEPLAY.md
+→ 기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md
+→ 기획서/40_표현/VISUAL_DIRECTION.md
+→ 기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md
 → docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md
 ```
 
