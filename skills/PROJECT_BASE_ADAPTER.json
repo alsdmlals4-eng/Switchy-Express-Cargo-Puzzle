@@ -11,7 +11,9 @@
     "role": "USER_FACING_GDD_WORKSPACE",
     "spreadsheet_id": "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo",
     "url": "https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit",
-    "sync_status": "GITHUB_UPDATE_PENDING_SHEET"
+    "decision_commit": "dadb5ca0a3acc3ba6e730f7a9de438f0bd8ebe59",
+    "sync_status": "SYNCED",
+    "verified_at": "2026-08-01T05:43:00+09:00"
   },
   "project": {
     "engine": "Godot 4.7.1",
@@ -23,10 +25,10 @@
   "protected_baseline": {
     "authority_kind": "GIT_COMMIT",
     "authority_ref": "refs/heads/main",
-    "commit": "f1b238bca4146ed66710405d07037e20963df836",
+    "commit": "dadb5ca0a3acc3ba6e730f7a9de438f0bd8ebe59",
     "policy_sha256": "204da76df84fb289d5f9d8445195532124788648d65698e8901463c58ec545a3",
     "policy_source_path": "AGENTS.md",
-    "policy_source_type": "INITIAL_PROJECT_INSTALL",
+    "policy_source_type": "VERIFIED_PROJECT_INSTALL",
     "protected_paths_pointer": "/protected_paths"
   },
   "protected_paths": ["project.godot", "game/**", "assets/**", "기획서/**"],
@@ -61,7 +63,7 @@
     }
   },
   "validators": [
-    "python tools/validate_project_contract.py",
-    "godot --headless --path . --script res://tests/run_tests.gd"
+    {"command": "python tools/validate_project_contract.py", "status": "PASSED", "evidence_commit": "dadb5ca0a3acc3ba6e730f7a9de438f0bd8ebe59"},
+    {"command": "godot --headless --path . --script res://tests/run_tests.gd", "status": "NOT_RUN", "reason": "Godot Vertical Slice implementation has not started"}
   ]
 }
