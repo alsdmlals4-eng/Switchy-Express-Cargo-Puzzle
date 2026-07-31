@@ -1,0 +1,49 @@
+name: Project Contract
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate project operating contract
+        run: python tools/validate_project_contract.py
+      - name: Parse project JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for path in Path('.').rglob('*.json'):
+              if '.git' not in path.parts:
+                  json.loads(path.read_text(encoding='utf-8'))
+          print('JSON parse: PASS')
+          PY
+      - name: Reject stale bracketed planning paths
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          stale = []
+          for path in Path('.').rglob('*'):
+              if not path.is_file() or '.git' in path.parts:
+                  continue
+              try:
+                  text = path.read_text(encoding='utf-8')
+              except UnicodeDecodeError:
+                  continue
+              if '[기획서]' in text:
+                  stale.append(str(path))
+          if stale:
+              raise SystemExit(f'stale [기획서] references: {stale}')
+          print('canonical planning paths: PASS')
+          PY
