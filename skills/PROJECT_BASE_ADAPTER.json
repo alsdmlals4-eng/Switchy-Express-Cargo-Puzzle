@@ -24,12 +24,12 @@
     "authority_kind": "GIT_COMMIT",
     "authority_ref": "refs/heads/main",
     "commit": "f1b238bca4146ed66710405d07037e20963df836",
-    "policy_sha256": "8cec964b76d89bac46764ff0421ead20af71b9c27ca4dd57f46bf0a448fc7e28",
+    "policy_sha256": "8c1917614c8b1122c0bc975c553d277aa3d6fdfbe24f80940933716198a3aacc",
     "policy_source_path": "AGENTS.md",
     "policy_source_type": "INITIAL_PROJECT_INSTALL",
     "protected_paths_pointer": "/protected_paths"
   },
-  "protected_paths": ["project.godot", "game/**", "assets/**", "[기획서]/**"],
+  "protected_paths": ["project.godot", "game/**", "assets/**", "기획서/**"],
   "routing": {
     "aliases": [],
     "base_routes": [
@@ -57,7 +57,7 @@
     "project": {
       "hash_definition": "RAW_FILE_BYTES_SHA256",
       "path": "skills/SKILL_REGISTRY.json",
-      "sha256": "515b3a3e80e173595b0dead38ecab89e3fc638b551f4836b6c9af192f54e8731"
+      "sha256": "2cecd924f040b85e06e9ba800e80f1137c7eb8c72023287e9d35361ed7932fa4"
     }
   },
   "validators": [
