@@ -7,11 +7,11 @@ description: Use for Switchy Express project-specific gameplay, route, cargo-sta
 
 ## Read first
 
-1. `[기획서]/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
-2. `[기획서]/10_경험/CORE_GAMEPLAY.md`
-3. `[기획서]/20_시스템_콘텐츠/CORE_SYSTEMS.md`
-4. `[기획서]/40_표현/VISUAL_DIRECTION.md`
-5. `[기획서]/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
+1. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
+2. `기획서/10_경험/CORE_GAMEPLAY.md`
+3. `기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md`
+4. `기획서/40_표현/VISUAL_DIRECTION.md`
+5. `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
 
 ## Invariants
 
