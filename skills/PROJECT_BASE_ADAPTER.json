@@ -24,7 +24,7 @@
     "authority_kind": "GIT_COMMIT",
     "authority_ref": "refs/heads/main",
     "commit": "f1b238bca4146ed66710405d07037e20963df836",
-    "policy_sha256": "8c1917614c8b1122c0bc975c553d277aa3d6fdfbe24f80940933716198a3aacc",
+    "policy_sha256": "204da76df84fb289d5f9d8445195532124788648d65698e8901463c58ec545a3",
     "policy_source_path": "AGENTS.md",
     "policy_source_type": "INITIAL_PROJECT_INSTALL",
     "protected_paths_pointer": "/protected_paths"
