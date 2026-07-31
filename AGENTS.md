@@ -6,7 +6,7 @@
 
 1. 사용자의 최신 지시
 2. 이 `AGENTS.md`
-3. `[기획서]/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
+3. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
 4. 등록된 분야 책임 원본
 5. 실제 코드·데이터·Scene·Resource·자산·테스트
 6. 프로젝트에 고정된 Base v9.3 기준
@@ -45,11 +45,11 @@
 
 ## 정본
 
-- 현재 결정: `[기획서]/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
-- 핵심 경험: `[기획서]/10_경험/CORE_GAMEPLAY.md`
-- 시스템 규칙: `[기획서]/20_시스템_콘텐츠/CORE_SYSTEMS.md`
-- 아트·UI: `[기획서]/40_표현/VISUAL_DIRECTION.md`
-- Vertical Slice: `[기획서]/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
+- 현재 결정: `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
+- 핵심 경험: `기획서/10_경험/CORE_GAMEPLAY.md`
+- 시스템 규칙: `기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md`
+- 아트·UI: `기획서/40_표현/VISUAL_DIRECTION.md`
+- Vertical Slice: `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
 - 사용자 GDD: `https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit`
 
 ## 금지
