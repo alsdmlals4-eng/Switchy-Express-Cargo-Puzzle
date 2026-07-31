@@ -8,6 +8,8 @@
 - HTML POC는 규칙 탐색용으로 종료하며 Godot 제품 구현 증거로 사용하지 않음.
 - 승인 시각 방향: 부드럽고 둥근 프리미엄 캐주얼 3D 카툰, 토끼 기관사 마스코트, 선명한 선로·분기 상태.
 - 현재 Work Mode: `PLAN · CODEX_BUILD_READY`.
+- Vertical Slice Epic: GitHub Issue #3
+- 첫 실행 Issue: GitHub Issue #4
 
 ## 현재 차이
 
@@ -18,11 +20,13 @@
 
 ## 다음 작업
 
-`docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md`의 Task 1부터 Codex가 테스트 우선으로 실행한다.
+Codex가 아래 실행문을 사용해 Issue #4만 테스트 우선으로 구현한다.
+
+`기획서/00_프로젝트_허브/EXECUTABLE_PROMPTS/CODEX_GOAL_VS_01.md`
 
 첫 실행 Goal:
 
-> Godot 4.7.1 프로젝트, 1920×1080 가로형 main scene, 헤드리스 테스트 러너와 boot smoke test를 생성하고 실패→통과 증거를 남긴다.
+> Godot 4.7.1 프로젝트·헤드리스 테스트 러너, 결정론적 15×10 연결 RailGraph, 2단계·3단계 분기기와 5칸 경로 미리보기를 실패→통과 증거와 함께 구현한다.
 
 ## 주요 위험
 
