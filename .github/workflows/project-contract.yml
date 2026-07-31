@@ -33,6 +33,7 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          stale_token = chr(91) + '기획서' + chr(93)
           stale = []
           for path in Path('.').rglob('*'):
               if not path.is_file() or '.git' in path.parts:
@@ -41,9 +42,9 @@ jobs:
                   text = path.read_text(encoding='utf-8')
               except UnicodeDecodeError:
                   continue
-              if '[기획서]' in text:
+              if stale_token in text:
                   stale.append(str(path))
           if stale:
-              raise SystemExit(f'stale [기획서] references: {stale}')
+              raise SystemExit(f'stale bracketed planning references: {stale}')
           print('canonical planning paths: PASS')
           PY
