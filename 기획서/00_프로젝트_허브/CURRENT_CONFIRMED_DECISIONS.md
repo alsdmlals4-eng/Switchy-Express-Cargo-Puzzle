@@ -1,6 +1,7 @@
 # Current Confirmed Decisions
 
 Last updated: `2026-08-01`
+Decision-bearing main commit: `dadb5ca0a3acc3ba6e730f7a9de438f0bd8ebe59`
 
 | Decision ID | 분야 | 현재 결정 | 근거 | 상태 |
 |---|---|---|---|---|
@@ -19,9 +20,10 @@ Last updated: `2026-08-01`
 
 ## 동기화 상태
 
-- GitHub: 설치 PR 병합 후 main Commit을 기록한다.
+- GitHub main 결정 Commit: `dadb5ca0a3acc3ba6e730f7a9de438f0bd8ebe59`
 - Google Sheets: `https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit`
-- 초기 설치 중 상태: `GITHUB_UPDATE_PENDING_SHEET`
+- Sheet·GitHub 상태: `SYNCED`
+- 재조회: `2026-08-01`
 
 ## 대체 관계
 
