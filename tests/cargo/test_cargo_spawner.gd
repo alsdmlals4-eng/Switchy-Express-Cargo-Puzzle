@@ -89,6 +89,23 @@ func run() -> void:
 	assert_equal(recovery_spawner.count(red), 4, "recovered pending request must restore minimum population")
 	assert_false(recovery_spawner.pickup_cells().has(recovery_cell), "recovered respawn must still avoid the last cell")
 
+	var satisfied_pending_spawner: Variant = spawner_script.new()
+	satisfied_pending_spawner.configure(graph, stations, 321)
+	satisfied_pending_spawner.ensure_all_minimum(4, train_cells, forward_cells)
+	var satisfied_cell: Vector2i = _first_pickup_of_type(satisfied_pending_spawner, red)
+	satisfied_pending_spawner.collect(satisfied_cell, 30.0)
+	assert_equal(
+		satisfied_pending_spawner.ensure_minimum(red, 4, train_cells, forward_cells),
+		&"SPAWNED",
+		"an independent population check may restore the minimum before the pending request is due"
+	)
+	assert_equal(
+		satisfied_pending_spawner.process(31.0, train_cells, forward_cells),
+		&"SATISFIED",
+		"already-restored pending request must not report a new spawn"
+	)
+	assert_equal(satisfied_pending_spawner.count(red), 4, "satisfied pending request must not create surplus cargo")
+
 	var blocked_spawner: Variant = spawner_script.new()
 	blocked_spawner.configure(graph, stations, 99)
 	assert_equal(
