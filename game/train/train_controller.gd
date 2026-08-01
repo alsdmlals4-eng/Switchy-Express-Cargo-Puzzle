@@ -1,6 +1,8 @@
 class_name TrainController
 extends RefCounted
 
+signal cell_entered(cell: Vector2i)
+
 const TrainStateScript := preload("res://game/train/train_state.gd")
 
 var speed: float = 0.0
@@ -116,6 +118,7 @@ func _commit_next_cell() -> Vector2i:
 	if _graph.switch_cells().has(departing_cell):
 		_graph.commit_switch_passage(departing_cell)
 	_refresh_target()
+	cell_entered.emit(next)
 	return next
 
 
