@@ -33,6 +33,17 @@ func run() -> void:
 		return
 
 	var input_state: Variant = load(INPUT_PATH).new()
+	var timing_stack: Variant = load(STACK_PATH).new(8)
+	var timing_train: Variant = _new_train(graph, pickup_approach)
+	timing_train.set_speed(2.0)
+	var timing_loop: Variant = load(LOOP_PATH).new()
+	timing_loop.configure(timing_train, timing_stack, spawner, input_state, stations)
+	var timing_events: Array = timing_loop.advance_time(1.0)
+	assert_equal(timing_events.size(), 2, "speed two for one second must produce two cell-entry events")
+	assert_equal(timing_events[0].time, 0.5, "first crossed cell must use its exact half-second event time")
+	assert_equal(timing_events[1].time, 1.0, "second crossed cell must use the frame-end event time")
+	assert_equal(spawner.cargo_at(pickup_cell), pickup_type, "timing probe must not collect while LOAD is inactive")
+
 	var stack: Variant = load(STACK_PATH).new(8)
 	var first_train: Variant = _new_train(graph, pickup_approach)
 	var first_loop: Variant = load(LOOP_PATH).new()
@@ -80,6 +91,12 @@ func run() -> void:
 
 
 func _new_train(graph: Variant, approach: Dictionary) -> Variant:
+	if graph.switch_cells().has(approach.start):
+		graph.configure_switch_approach(approach.start, approach.incoming)
+		for _state: int in range(3):
+			if graph.next_cell(approach.start, approach.incoming) == approach.destination:
+				break
+			graph.cycle_switch(approach.start, approach.incoming)
 	var train: Variant = load(TRAIN_PATH).new()
 	train.configure(graph, approach.start, approach.incoming, 8)
 	train.set_speed(1.0)
@@ -95,8 +112,23 @@ func _find_approach(graph: Variant, destination: Vector2i) -> Dictionary:
 				graph.configure_switch_approach(start, incoming)
 				for _state: int in range(3):
 					if graph.next_cell(start, incoming) == destination:
-						return {"success": true, "start": start, "incoming": incoming}
+						return {
+							"success": true,
+							"start": start,
+							"incoming": incoming,
+							"destination": destination,
+						}
 					graph.cycle_switch(start, incoming)
 			elif graph.next_cell(start, incoming) == destination:
-				return {"success": true, "start": start, "incoming": incoming}
-	return {"success": false, "start": Vector2i.ZERO, "incoming": Vector2i.ZERO}
+				return {
+					"success": true,
+					"start": start,
+					"incoming": incoming,
+					"destination": destination,
+				}
+	return {
+		"success": false,
+		"start": Vector2i.ZERO,
+		"incoming": Vector2i.ZERO,
+		"destination": destination,
+	}
