@@ -95,14 +95,14 @@ func process(
 	forward_cells: Array = []
 ) -> StringName:
 	var retained: Array[Dictionary] = []
-	var had_due_request := false
 	var spawned_any := false
+	var satisfied_any := false
+	var deferred_any := false
 
 	for request: Dictionary in _pending_respawns:
 		if float(request.due_time) > current_time:
 			retained.append(request)
 			continue
-		had_due_request = true
 		var status := ensure_minimum(
 			request.cargo_type,
 			DEFAULT_MINIMUM_PER_TYPE,
@@ -110,16 +110,22 @@ func process(
 			forward_cells,
 			request.last_cell
 		)
-		if status == STATUS_DEFERRED:
-			retained.append(request)
-		else:
-			spawned_any = true
+		match status:
+			STATUS_DEFERRED:
+				retained.append(request)
+				deferred_any = true
+			STATUS_SPAWNED:
+				spawned_any = true
+			STATUS_SATISFIED:
+				satisfied_any = true
 
 	_pending_respawns = retained
+	if deferred_any:
+		return STATUS_DEFERRED
 	if spawned_any:
 		return STATUS_SPAWNED
-	if had_due_request:
-		return STATUS_DEFERRED
+	if satisfied_any:
+		return STATUS_SATISFIED
 	return STATUS_WAITING
 
 
