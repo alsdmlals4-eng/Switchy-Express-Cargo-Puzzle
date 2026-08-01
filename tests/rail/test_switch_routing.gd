@@ -17,7 +17,7 @@ func run() -> void:
 	var right := Vector2i(6, 5)
 	var down := Vector2i(5, 6)
 
-	var two_state: RefCounted = switch_script.new()
+	var two_state: Variant = switch_script.new()
 	two_state.configure(center, [left, up, right], left)
 	assert_equal(two_state.state_count(), 2, "degree-3 junction must expose two exits for one approach")
 	assert_equal(two_state.current_exit(), up, "two-state switch must start at route A")
@@ -26,7 +26,7 @@ func run() -> void:
 	two_state.cycle_state()
 	assert_equal(two_state.current_exit(), up, "two-state switch must cycle B to A")
 
-	var three_state: RefCounted = switch_script.new()
+	var three_state: Variant = switch_script.new()
 	three_state.configure(center, [left, up, right, down], left)
 	assert_equal(three_state.state_count(), 3, "degree-4 junction must expose three exits for one approach")
 	assert_equal(three_state.current_exit(), up, "three-state switch must start at route A")
@@ -47,7 +47,7 @@ func run() -> void:
 		return
 
 	var generator_script: Script = load(GENERATOR_PATH)
-	var graph: RefCounted = generator_script.new().generate(17)
+	var graph: Variant = generator_script.new().generate(17)
 	var junction: Vector2i = graph.switch_cells()[0]
 	var incoming: Vector2i = graph.neighbors(junction)[0]
 	graph.configure_switch_approach(junction, incoming)
