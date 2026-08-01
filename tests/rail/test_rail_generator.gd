@@ -15,7 +15,7 @@ func run() -> void:
 		var graph: Variant = generator.generate(seed)
 		assert_equal(graph.width, 15, "seed %d must use 15 columns" % seed)
 		assert_equal(graph.height, 10, "seed %d must use 10 rows" % seed)
-		assert_true(graph.is_connected(), "seed %d rail graph must be connected" % seed)
+		assert_true(graph.is_fully_connected(), "seed %d rail graph must be connected" % seed)
 		assert_equal(graph.dead_end_count(), 0, "seed %d must have no degree-1 endpoint" % seed)
 		assert_greater_equal(graph.cycle_rank(), 3, "seed %d must contain at least three independent cycles" % seed)
 		assert_greater_equal(graph.switch_cells().size(), 6, "seed %d must contain at least six switches" % seed)
@@ -27,6 +27,6 @@ func run() -> void:
 
 	var fallback_graph: Variant = generator.generate(7, 32, true)
 	assert_true(fallback_graph.used_fallback, "forced candidate failure must use deterministic safe fallback")
-	assert_true(fallback_graph.is_connected(), "safe fallback must be connected")
+	assert_true(fallback_graph.is_fully_connected(), "safe fallback must be connected")
 	assert_equal(fallback_graph.dead_end_count(), 0, "safe fallback must have no dead ends")
 	assert_greater_equal(fallback_graph.switch_cells().size(), 6, "safe fallback must keep required switches")
