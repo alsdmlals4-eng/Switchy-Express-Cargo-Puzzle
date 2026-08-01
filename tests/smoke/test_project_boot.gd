@@ -1,4 +1,4 @@
-extends TestCase
+extends "res://tests/test_case.gd"
 
 
 func run() -> void:
