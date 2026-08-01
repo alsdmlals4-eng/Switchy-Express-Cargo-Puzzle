@@ -6,8 +6,12 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/rail/test_switch_routing.gd"),
 ]
 
+const WATCHDOG_SECONDS := 10.0
+
 
 func _initialize() -> void:
+	var watchdog: SceneTreeTimer = create_timer(WATCHDOG_SECONDS)
+	watchdog.timeout.connect(_on_watchdog_timeout)
 	call_deferred("_run_all")
 
 
@@ -29,3 +33,8 @@ func _run_all() -> void:
 
 	print("TEST SUMMARY: cases=%d failed=%d assertions=%d" % [TEST_SCRIPTS.size(), failed_cases, assertion_total])
 	quit(1 if failed_cases > 0 else 0)
+
+
+func _on_watchdog_timeout() -> void:
+	printerr("TEST WATCHDOG TIMEOUT after %.1f seconds" % WATCHDOG_SECONDS)
+	quit(2)
