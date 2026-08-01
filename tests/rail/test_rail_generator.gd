@@ -19,6 +19,8 @@ func run() -> void:
 		assert_equal(graph.dead_end_count(), 0, "seed %d must have no degree-1 endpoint" % seed)
 		assert_greater_equal(graph.cycle_rank(), 3, "seed %d must contain at least three independent cycles" % seed)
 		assert_greater_equal(graph.switch_cells().size(), 6, "seed %d must contain at least six switches" % seed)
+		assert_greater_equal(graph.two_state_switch_count(), 4, "seed %d must contain at least four two-state switches" % seed)
+		assert_greater_equal(graph.three_state_switch_count(), 2, "seed %d must contain at least two three-state switches" % seed)
 		assert_greater_equal(graph.meaningful_switch_count(3), 6, "seed %d switches must create paths that differ for at least three cells" % seed)
 
 	var first_signature: String = generator.generate(42).signature()
@@ -30,3 +32,5 @@ func run() -> void:
 	assert_true(fallback_graph.is_fully_connected(), "safe fallback must be connected")
 	assert_equal(fallback_graph.dead_end_count(), 0, "safe fallback must have no dead ends")
 	assert_greater_equal(fallback_graph.switch_cells().size(), 6, "safe fallback must keep required switches")
+	assert_greater_equal(fallback_graph.two_state_switch_count(), 4, "safe fallback must keep two-state switches")
+	assert_greater_equal(fallback_graph.three_state_switch_count(), 2, "safe fallback must keep three-state switches")
