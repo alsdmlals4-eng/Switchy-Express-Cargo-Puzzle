@@ -9,6 +9,7 @@ var _cargo_spawner: Variant
 var _input_state: Variant
 var _stations_by_cell: Dictionary = {}
 var _elapsed_time: float = 0.0
+var _last_spawn_status: StringName = &"WAITING"
 var _current_events: Array[Dictionary] = []
 
 
@@ -33,6 +34,7 @@ func configure(
 		_stations_by_cell[station.cell] = station
 
 	_elapsed_time = 0.0
+	_last_spawn_status = &"WAITING"
 	_current_events.clear()
 	_train.cell_entered.connect(callback)
 
@@ -41,27 +43,18 @@ func advance_time(delta_seconds: float) -> Array[Dictionary]:
 	assert(_train != null, "DeliveryLoop must be configured before advancing")
 	_current_events.clear()
 	var remaining_time := maxf(delta_seconds, 0.0)
-	if remaining_time <= 0.0:
-		return []
-	if _train.speed <= 0.0:
-		_elapsed_time += remaining_time
-		return []
 
-	while remaining_time > TIME_EPSILON:
-		var distance_to_boundary := 1.0 - float(_train.movement_progress())
-		var time_to_boundary := distance_to_boundary / float(_train.speed)
-		if time_to_boundary <= remaining_time + TIME_EPSILON:
-			var step_time := minf(time_to_boundary, remaining_time)
-			_elapsed_time += step_time
-			var crossed_cells: int = _train.advance_time(step_time)
-			if crossed_cells == 0:
-				_train.advance_one_cell()
-			remaining_time = maxf(remaining_time - step_time, 0.0)
-		else:
+	if remaining_time > 0.0:
+		if _train.speed <= 0.0:
 			_elapsed_time += remaining_time
-			_train.advance_time(remaining_time)
-			remaining_time = 0.0
+		else:
+			_advance_train(remaining_time)
 
+	_last_spawn_status = _cargo_spawner.process(
+		_elapsed_time,
+		_train.train_cells(),
+		_train.forward_cells(2)
+	)
 	return _current_events.duplicate(true)
 
 
@@ -92,6 +85,28 @@ func handle_cell_entered(cell: Vector2i, event_time: float) -> Dictionary:
 
 func elapsed_time() -> float:
 	return _elapsed_time
+
+
+func last_spawn_status() -> StringName:
+	return _last_spawn_status
+
+
+func _advance_train(delta_seconds: float) -> void:
+	var remaining_time := delta_seconds
+	while remaining_time > TIME_EPSILON:
+		var distance_to_boundary := 1.0 - float(_train.movement_progress())
+		var time_to_boundary := distance_to_boundary / float(_train.speed)
+		if time_to_boundary <= remaining_time + TIME_EPSILON:
+			var step_time := minf(time_to_boundary, remaining_time)
+			_elapsed_time += step_time
+			var crossed_cells: int = _train.advance_time(step_time)
+			if crossed_cells == 0:
+				_train.advance_one_cell()
+			remaining_time = maxf(remaining_time - step_time, 0.0)
+		else:
+			_elapsed_time += remaining_time
+			_train.advance_time(remaining_time)
+			remaining_time = 0.0
 
 
 func _on_cell_entered(cell: Vector2i) -> void:
