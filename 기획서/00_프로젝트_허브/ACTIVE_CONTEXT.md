@@ -6,11 +6,13 @@
 - Base v9.3 프로젝트 운영체계가 설치되어 있음.
 - Vertical Slice Issue #4 / PR #9가 완료됨.
 - 구현 Commit: `801632949d28564528e38d83dac59cccc6f06fb2`.
+- 정본·감사 Commit: `7500ccea1cddd6c163965a44370b653bbc176f85`.
 - Godot 4.7.1 프로젝트·헤드리스 테스트 러너·15×10 RailGraph·2/3단계 분기 로직이 구현됨.
 - Godot 검증: `3 cases / 934 assertions / 0 failures`.
 - Project Contract: PASS.
 - Issue #4: CLOSED · COMPLETED.
-- Google Sheets는 `USER_FACING_GDD_WORKSPACE`이며 Post-VS01 상태 동기화 진행 중.
+- Google Sheets는 `USER_FACING_GDD_WORKSPACE`이며 `7500ccea1cddd6c163965a44370b653bbc176f85` 기준으로 재조회·동기화 완료.
+- Sheet 상태: `SYNCED`.
 - HTML POC는 규칙 탐색용으로 종료하며 Godot 제품 구현 증거로 사용하지 않음.
 - 승인 시각 방향: 부드럽고 둥근 프리미엄 캐주얼 3D 카툰, 토끼 기관사 마스코트, 선명한 선로·분기 상태.
 - 현재 Work Mode: `PLAN · CODEX_BUILD_READY`.
@@ -61,7 +63,8 @@ Codex가 아래 실행문을 사용해 Issue #5만 테스트 우선으로 구현
 - 부스터가 항상 정답이거나 사용 가치가 없을 수 있음.
 - 작은 가로형 맵에서 화물·역·분기 UI가 겹칠 수 있음.
 
-## 감사
+## 감사·동기화
 
 - 최신 적대적 감사: `기획서/50_제작_검증/POST_VS01_ADVERSARIAL_AUDIT.md`
-- Sheet 동기화 완료 뒤 `SYNCED` 상태와 canonical sync Commit을 다시 기록한다.
+- Google Sheets 12개 표준 GDD 탭 재조회: `PASS`
+- Decision `SX-DEC-001~013`, Evidence `EV-VS01-001`, Audit `SX-AUD-002`: `SYNCED`
