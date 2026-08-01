@@ -4,11 +4,12 @@ const GENERATOR_PATH := "res://game/rail/rail_generator.gd"
 
 
 func run() -> void:
-	var generator_script: Script = load(GENERATOR_PATH)
-	assert_not_null(generator_script, "RailGenerator script must exist")
-	if generator_script == null:
+	var script_exists := ResourceLoader.exists(GENERATOR_PATH, "Script")
+	assert_true(script_exists, "RailGenerator script must exist")
+	if not script_exists:
 		return
 
+	var generator_script: Script = load(GENERATOR_PATH)
 	var generator: RefCounted = generator_script.new()
 	for seed: int in range(1, 101):
 		var graph: RefCounted = generator.generate(seed)
