@@ -11,7 +11,20 @@ Related Decisions: `SX-DEC-004`, `SX-DEC-005`, `SX-DEC-012`, `SX-DEC-013`
 - `BUILD`: 승인된 기술 기본값과 정본·상태 동기화 수정
 - `REVIEW`: Project Contract·Godot 테스트·Sheet 재조회로 회귀 확인
 - 주 책임 Skill: `managing-game-project-operating-system: audit → verify`
-- 보조 Skill: `running-adversarial-review-and-refinement`, `reviewing-and-validating-project-changes`, `managing-design-documents`, `maintaining-project-context-and-handoff`
+- 보조 Skill: `running-adversarial-review-and-refinement`, `auditing-canonical-reference-freshness`, `synchronizing-local-and-github-state`, `reviewing-and-validating-project-changes`, `managing-design-documents`, `maintaining-project-context-and-handoff`
+
+## Base Snapshot
+
+| 항목 | 값 | 판정 |
+|---|---|---|
+| Base repository | `alsdmlals4-eng/Base` | 확인 |
+| 현재 Base line | `v9.3` | 프로젝트와 동일 major/minor |
+| Base main 확인 Commit | `a82976a3a42450ea413cdc5d4aebf701678110d8` | 프로젝트 핀 마감 후속 Commit |
+| 프로젝트 release pin | `30ca6c7b5f93521f0eb0eed42d01437cd43c50ae` | 유지 |
+| release evidence pin | `462a86db192d23d0f386281a1eb54b0a8cbad62e` | 유지 |
+| Base Skill Registry hash | `9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1` | Adapter와 일치 |
+
+Base main의 후속 Commit을 자동으로 프로젝트 release pin으로 승격하지 않는다. 프로젝트 Adapter 계약대로 별도 upgrade 감사·검증이 있을 때만 pin을 이동한다.
 
 ## 검토 범위
 
@@ -50,6 +63,8 @@ Base v9.3 책임 원본·Skill Registry
 | SX-FIND-007 | P1 | 시각 가독성 미검증 | 분기 상태 데이터만 있고 선로·레버·화살표 런타임 화면 없음 | VS-03 HUD·RailBoardView에서 실제 캡처와 터치 검증 |
 | SX-FIND-008 | P1 | Android 증거 없음 | headless Linux 테스트만 존재 | G4에서 Android export·실기 60 FPS·10분 soak 수행 |
 | SX-FIND-009 | P2 | `RailCell` 미사용 | 현재 RailGraph는 Dictionary adjacency를 사용 | Goal 필수 파일로 보존; 구조 확장 전 사용 또는 제거 판정 |
+| SX-FIND-010 | P1 | Project Skill routing 누락 | 적대적 검토·정본 감사·동기화·장기 작업 Skill이 프로젝트 Registry에 없었음 | Base 공유 route 4개 추가, Adapter hash 재고정 |
+| SX-FIND-011 | INFO | Base main과 project pin 차이 | Base main은 후속 Commit이나 프로젝트는 v9.3 release pin을 보유 | 자동 upgrade 금지, 현재 pin 유지 |
 
 ## SWOT → 행동
 
