@@ -5,11 +5,12 @@ const GENERATOR_PATH := "res://game/rail/rail_generator.gd"
 
 
 func run() -> void:
-	var switch_script: Script = load(SWITCH_PATH)
-	assert_not_null(switch_script, "RailSwitch script must exist")
-	if switch_script == null:
+	var switch_exists := ResourceLoader.exists(SWITCH_PATH, "Script")
+	assert_true(switch_exists, "RailSwitch script must exist")
+	if not switch_exists:
 		return
 
+	var switch_script: Script = load(SWITCH_PATH)
 	var center := Vector2i(5, 5)
 	var left := Vector2i(4, 5)
 	var up := Vector2i(5, 4)
@@ -40,11 +41,12 @@ func run() -> void:
 	three_state.reset_after_passage()
 	assert_equal(three_state.current_exit(), up, "switch must reset to its default route after passage")
 
-	var generator_script: Script = load(GENERATOR_PATH)
-	assert_not_null(generator_script, "RailGenerator script must exist for routing integration")
-	if generator_script == null:
+	var generator_exists := ResourceLoader.exists(GENERATOR_PATH, "Script")
+	assert_true(generator_exists, "RailGenerator script must exist for routing integration")
+	if not generator_exists:
 		return
 
+	var generator_script: Script = load(GENERATOR_PATH)
 	var graph: RefCounted = generator_script.new().generate(17)
 	var junction: Vector2i = graph.switch_cells()[0]
 	var incoming: Vector2i = graph.neighbors(junction)[0]
