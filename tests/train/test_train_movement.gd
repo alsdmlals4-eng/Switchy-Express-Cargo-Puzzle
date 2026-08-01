@@ -117,8 +117,17 @@ func _test_switch_passage(controller_script: Script, generator: Variant) -> void
 
 	var switch_controller: Variant = controller_script.new()
 	switch_controller.configure(switch_graph, junction, incoming, 3)
-	switch_controller.advance_one_cell()
-	assert_equal(switch_controller.current_cell(), selected_exit, "locomotive must use the selected switch route")
+	switch_controller.set_speed(1.0)
+	assert_equal(switch_controller.target_cell(), selected_exit, "selected switch exit must become the current segment target")
+	assert_equal(switch_controller.advance_time(0.25), 0, "partial switch traversal must stay within the segment")
+	switch_graph.cycle_switch(junction, incoming)
+	assert_equal(
+		switch_controller.target_cell(),
+		selected_exit,
+		"switch changes after departure must not redirect the in-flight segment"
+	)
+	assert_equal(switch_controller.advance_time(0.75), 1, "remaining switch traversal must cross the selected segment")
+	assert_equal(switch_controller.current_cell(), selected_exit, "locomotive must finish on the locked selected route")
 	assert_equal(switch_graph.next_cell(junction, incoming), default_exit, "switch must reset after locomotive passage")
 
 
