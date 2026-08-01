@@ -6,14 +6,18 @@
     "repository": "alsdmlals4-eng/Base",
     "version": "9.3.0"
   },
-  "compatibility": {"cycle": "ONE_CYCLE", "legacy_inputs": {}, "views": []},
+  "compatibility": {
+    "cycle": "ONE_CYCLE",
+    "legacy_inputs": {},
+    "views": []
+  },
   "gdd_sheet": {
     "role": "USER_FACING_GDD_WORKSPACE",
     "spreadsheet_id": "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo",
     "url": "https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit",
-    "decision_commit": "dadb5ca0a3acc3ba6e730f7a9de438f0bd8ebe59",
-    "sync_status": "SYNCED",
-    "verified_at": "2026-08-01T05:43:00+09:00"
+    "decision_commit": "801632949d28564528e38d83dac59cccc6f06fb2",
+    "sync_status": "GITHUB_UPDATE_PENDING_SHEET",
+    "verified_at": "2026-08-01T09:45:00+09:00"
   },
   "project": {
     "engine": "Godot 4.7.1",
@@ -25,13 +29,18 @@
   "protected_baseline": {
     "authority_kind": "GIT_COMMIT",
     "authority_ref": "refs/heads/main",
-    "commit": "dadb5ca0a3acc3ba6e730f7a9de438f0bd8ebe59",
+    "commit": "801632949d28564528e38d83dac59cccc6f06fb2",
     "policy_sha256": "204da76df84fb289d5f9d8445195532124788648d65698e8901463c58ec545a3",
     "policy_source_path": "AGENTS.md",
-    "policy_source_type": "VERIFIED_PROJECT_INSTALL",
+    "policy_source_type": "VERIFIED_PROJECT_MAIN",
     "protected_paths_pointer": "/protected_paths"
   },
-  "protected_paths": ["project.godot", "game/**", "assets/**", "기획서/**"],
+  "protected_paths": [
+    "project.godot",
+    "game/**",
+    "assets/**",
+    "기획서/**"
+  ],
   "routing": {
     "aliases": [],
     "base_routes": [
@@ -40,13 +49,19 @@
       "managing-design-documents",
       "analyzing-and-refining-game-concepts",
       "designing-vertical-slices",
+      "running-adversarial-review-and-refinement",
+      "auditing-canonical-reference-freshness",
+      "synchronizing-local-and-github-state",
+      "maintaining-long-running-task-continuity",
       "auditing-and-refining-ui-art",
       "reviewing-and-validating-project-changes",
       "maintaining-project-context-and-handoff"
     ],
     "inactive_routes": [],
     "precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
-    "project_routes": ["switchy-express-design"]
+    "project_routes": [
+      "switchy-express-design"
+    ]
   },
   "schema_version": 1,
   "shared_overrides": {},
@@ -59,11 +74,20 @@
     "project": {
       "hash_definition": "RAW_FILE_BYTES_SHA256",
       "path": "skills/SKILL_REGISTRY.json",
-      "sha256": "2cecd924f040b85e06e9ba800e80f1137c7eb8c72023287e9d35361ed7932fa4"
+      "sha256": "0180a86093743b88e8e78bdbbe38b8810edeba98b216399cde286ced000f7869"
     }
   },
   "validators": [
-    {"command": "python tools/validate_project_contract.py", "status": "PASSED", "evidence_commit": "dadb5ca0a3acc3ba6e730f7a9de438f0bd8ebe59"},
-    {"command": "godot --headless --path . --script res://tests/run_tests.gd", "status": "NOT_RUN", "reason": "Godot Vertical Slice implementation has not started"}
+    {
+      "command": "python tools/validate_project_contract.py",
+      "status": "PASSED",
+      "evidence_commit": "801632949d28564528e38d83dac59cccc6f06fb2"
+    },
+    {
+      "command": "godot --headless --path . --script res://tests/run_tests.gd",
+      "status": "PASSED",
+      "evidence_commit": "801632949d28564528e38d83dac59cccc6f06fb2",
+      "summary": "3 cases / 934 assertions / 0 failures"
+    }
   ]
 }
