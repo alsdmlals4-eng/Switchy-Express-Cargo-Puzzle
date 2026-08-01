@@ -75,5 +75,7 @@ func _is_valid(graph: Variant) -> bool:
 		and graph.dead_end_count() == 0
 		and graph.cycle_rank() >= 3
 		and graph.switch_cells().size() >= 6
+		and graph.two_state_switch_count() >= 4
+		and graph.three_state_switch_count() >= 2
 		and graph.meaningful_switch_count(3) >= 6
 	)
