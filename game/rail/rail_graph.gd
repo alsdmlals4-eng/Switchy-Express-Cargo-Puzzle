@@ -116,6 +116,27 @@ func is_fully_connected() -> bool:
 	return visited.size() == cells.size()
 
 
+func shortest_path_distance(start: Vector2i, goal: Vector2i) -> int:
+	if not has_cell(start) or not has_cell(goal):
+		return -1
+	if start == goal:
+		return 0
+
+	var distances: Dictionary = {start: 0}
+	var queue: Array[Vector2i] = [start]
+	while not queue.is_empty():
+		var current: Vector2i = queue.pop_front()
+		var next_distance: int = int(distances[current]) + 1
+		for neighbor: Vector2i in neighbors(current):
+			if distances.has(neighbor):
+				continue
+			if neighbor == goal:
+				return next_distance
+			distances[neighbor] = next_distance
+			queue.append(neighbor)
+	return -1
+
+
 func dead_end_count() -> int:
 	var count := 0
 	for cell: Vector2i in all_cells():

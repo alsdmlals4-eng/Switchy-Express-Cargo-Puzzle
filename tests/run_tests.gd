@@ -4,6 +4,12 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/smoke/test_project_boot.gd"),
 	preload("res://tests/rail/test_rail_generator.gd"),
 	preload("res://tests/rail/test_switch_routing.gd"),
+	preload("res://tests/train/test_train_movement.gd"),
+	preload("res://tests/cargo/test_cargo_stack.gd"),
+	preload("res://tests/station/test_station_placement.gd"),
+	preload("res://tests/cargo/test_cargo_spawner.gd"),
+	preload("res://tests/station/test_station_unloading.gd"),
+	preload("res://tests/integration/test_delivery_loop.gd"),
 ]
 
 const WATCHDOG_SECONDS := 10.0
