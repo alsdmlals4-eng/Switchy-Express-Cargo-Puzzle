@@ -1,0 +1,30 @@
+; Engine configuration file.
+; Edit through the Godot editor when possible.
+;
+; Format:
+;   [section]
+;   param=value
+
+config_version=5
+
+[application]
+
+config/name="Switchy Express: Cargo Puzzle"
+run/main_scene="res://game/main/main.tscn"
+
+[display]
+
+[display/window]
+
+size/viewport_width=1920
+size/viewport_height=1080
+size/window_width_override=1280
+size/window_height_override=720
+stretch/mode="canvas_items"
+handheld/orientation=0
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
