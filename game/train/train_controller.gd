@@ -58,6 +58,26 @@ func target_cell() -> Vector2i:
 	return _target_cell
 
 
+func forward_cells(step_count: int) -> Array[Vector2i]:
+	assert(_state != null, "TrainController must be configured before route lookup")
+	var result: Array[Vector2i] = []
+	if step_count <= 0:
+		return result
+
+	result.append(_target_cell)
+	if step_count == 1:
+		return result
+
+	result.append_array(
+		_graph.preview_route(
+			_target_cell,
+			_state.current_cell,
+			step_count - 1
+		)
+	)
+	return result
+
+
 func locomotive_position(cell_size: Vector2 = Vector2.ONE) -> Vector2:
 	var from_position := _scaled_cell(current_cell(), cell_size)
 	var to_position := _scaled_cell(target_cell(), cell_size)
