@@ -1,9 +1,6 @@
 name: Godot Tests
 
 on:
-  push:
-    branches:
-      - feature/vs-01-rail-foundation
   pull_request:
     branches:
       - main
@@ -14,7 +11,7 @@ permissions:
 jobs:
   headless-tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
 
@@ -29,7 +26,7 @@ jobs:
 
       - name: Run headless tests
         run: |
-          ./Godot_v4.7.1-stable_linux.x86_64 \
+          timeout 30s ./Godot_v4.7.1-stable_linux.x86_64 \
             --headless \
             --path . \
             --script res://tests/run_tests.gd
