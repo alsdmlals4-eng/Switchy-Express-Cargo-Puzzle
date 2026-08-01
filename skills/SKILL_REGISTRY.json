@@ -13,17 +13,95 @@
       "owner": "project",
       "path": "skills/switchy-express-design/SKILL.md",
       "status": "ACTIVE",
-      "positive_triggers": ["core gameplay", "cargo", "rail map", "switch", "station", "fuel", "boost", "score", "visual readability"],
-      "negative_triggers": ["unrelated repository administration"],
-      "outputs": ["project gameplay decision or review"]
+      "positive_triggers": [
+        "core gameplay",
+        "cargo",
+        "rail map",
+        "switch",
+        "station",
+        "fuel",
+        "boost",
+        "score",
+        "visual readability"
+      ],
+      "negative_triggers": [
+        "unrelated repository administration"
+      ],
+      "outputs": [
+        "project gameplay decision or review"
+      ]
     },
-    {"id": "managing-project-intake-and-work-contract", "owner": "base", "base_path": "skills/managing-project-intake-and-work-contract/SKILL.md", "status": "ACTIVE"},
-    {"id": "managing-game-project-operating-system", "owner": "base", "base_path": "skills/managing-game-project-operating-system/SKILL.md", "status": "ACTIVE"},
-    {"id": "managing-design-documents", "owner": "base", "base_path": "skills/managing-design-documents/SKILL.md", "status": "ACTIVE"},
-    {"id": "analyzing-and-refining-game-concepts", "owner": "base", "base_path": "skills/analyzing-and-refining-game-concepts/SKILL.md", "status": "ACTIVE"},
-    {"id": "designing-vertical-slices", "owner": "base", "base_path": "skills/designing-vertical-slices/SKILL.md", "status": "ACTIVE"},
-    {"id": "auditing-and-refining-ui-art", "owner": "base", "base_path": "skills/auditing-and-refining-ui-art/SKILL.md", "status": "ACTIVE"},
-    {"id": "reviewing-and-validating-project-changes", "owner": "base", "base_path": "skills/reviewing-and-validating-project-changes/SKILL.md", "status": "ACTIVE"},
-    {"id": "maintaining-project-context-and-handoff", "owner": "base", "base_path": "skills/maintaining-project-context-and-handoff/SKILL.md", "status": "ACTIVE"}
+    {
+      "id": "managing-project-intake-and-work-contract",
+      "owner": "base",
+      "base_path": "skills/managing-project-intake-and-work-contract/SKILL.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "managing-game-project-operating-system",
+      "owner": "base",
+      "base_path": "skills/managing-game-project-operating-system/SKILL.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "managing-design-documents",
+      "owner": "base",
+      "base_path": "skills/managing-design-documents/SKILL.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "analyzing-and-refining-game-concepts",
+      "owner": "base",
+      "base_path": "skills/analyzing-and-refining-game-concepts/SKILL.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "designing-vertical-slices",
+      "owner": "base",
+      "base_path": "skills/designing-vertical-slices/SKILL.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "running-adversarial-review-and-refinement",
+      "owner": "base",
+      "base_path": "skills/running-adversarial-review-and-refinement/SKILL.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "auditing-canonical-reference-freshness",
+      "owner": "base",
+      "base_path": "skills/auditing-canonical-reference-freshness/SKILL.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "synchronizing-local-and-github-state",
+      "owner": "base",
+      "base_path": "skills/synchronizing-local-and-github-state/SKILL.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "maintaining-long-running-task-continuity",
+      "owner": "base",
+      "base_path": "skills/maintaining-long-running-task-continuity/SKILL.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "auditing-and-refining-ui-art",
+      "owner": "base",
+      "base_path": "skills/auditing-and-refining-ui-art/SKILL.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "reviewing-and-validating-project-changes",
+      "owner": "base",
+      "base_path": "skills/reviewing-and-validating-project-changes/SKILL.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "maintaining-project-context-and-handoff",
+      "owner": "base",
+      "base_path": "skills/maintaining-project-context-and-handoff/SKILL.md",
+      "status": "ACTIVE"
+    }
   ]
 }
