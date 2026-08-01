@@ -14,7 +14,7 @@ func _run_all() -> void:
 	var assertion_total: int = 0
 
 	for test_script: Script in TEST_SCRIPTS:
-		var test_case: TestCase = test_script.new()
+		var test_case: RefCounted = test_script.new()
 		test_case.run()
 		assertion_total += test_case.assertion_count
 		if test_case.passed():
