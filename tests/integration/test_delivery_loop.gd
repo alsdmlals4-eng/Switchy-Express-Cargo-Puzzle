@@ -64,6 +64,17 @@ func run() -> void:
 	assert_equal(spawner.cargo_at(pickup_cell), &"", "loaded pickup must be removed from map")
 	assert_true(pickup_events[0].picked_up, "active LOAD event must report pickup")
 	assert_equal(pickup_events[0].pickup_type, pickup_type, "event pickup type must match stack")
+	assert_equal(spawner.count(pickup_type), 3, "pickup collection must temporarily lower map population")
+
+	input_state.set_load_requested(false)
+	loading_loop.advance_time(1.0)
+	assert_equal(spawner.count(pickup_type), 4, "delivery runtime must restore minimum population after one second")
+	assert_false(spawner.pickup_cells().has(pickup_cell), "runtime respawn must avoid the collected cell")
+	for occupied_cell: Vector2i in loading_train.train_cells():
+		assert_false(spawner.pickup_cells().has(occupied_cell), "runtime respawn must avoid current train cells")
+	for forward_cell: Vector2i in loading_train.forward_cells(2):
+		assert_false(spawner.pickup_cells().has(forward_cell), "runtime respawn must avoid the next two route cells")
+	assert_equal(loading_loop.last_spawn_status(), &"SPAWNED", "delivery loop must expose runtime spawn result")
 
 	var matching_station: Variant = null
 	for station: Variant in stations:
