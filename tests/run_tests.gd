@@ -7,6 +7,7 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/train/test_train_movement.gd"),
 	preload("res://tests/cargo/test_cargo_stack.gd"),
 	preload("res://tests/station/test_station_placement.gd"),
+	preload("res://tests/cargo/test_cargo_spawner.gd"),
 ]
 
 const WATCHDOG_SECONDS := 10.0
