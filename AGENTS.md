@@ -1,6 +1,6 @@
 # Switchy Express 공용 AI 작업 규칙
 
-이 저장소는 `alsdmlals4-eng/Base` v9.3 운영 계약을 적용한 Godot 모바일 게임 프로젝트다.
+이 저장소는 `alsdmlals4-eng/Base` v9.4 운영 계약을 적용한 Godot 모바일 게임 프로젝트다.
 
 ## 우선순위
 
@@ -9,7 +9,7 @@
 3. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
 4. 등록된 분야 책임 원본
 5. 실제 코드·데이터·Scene·Resource·자산·테스트
-6. 프로젝트에 고정된 Base v9.3 기준
+6. 프로젝트에 고정된 Base v9.4 기준
 7. 외부 사례·과거 대화·추정
 
 ## 역할 분리
@@ -62,3 +62,17 @@
 - 무조작 영구 생존 루프 허용
 - 실행하지 않은 테스트를 통과로 보고
 - 사용자 승인 없이 광고·가챠·에너지·PvP·길드 추가
+
+## Base v9.4 운영 계약
+
+```yaml
+base_version: 9.4.0
+base_payload_commit: a728712cb776ec98f4875914a580fcf7d0156593
+base_trusted_evidence_commit: ef1fba11167e4da0b298123b0c85ebd268191a42
+base_pin_finalization_commit: 87a0b54c2847ce4b685879209205957c170cc1cd
+base_registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59
+```
+
+- `[모델 추천]`은 실제 설정을 자동 변경하지 않으며 사용자가 checkpoint에서 변경한다.
+- 퍼즐 규칙·레벨 의미·LIFO·화물/역 색상+모양·저장 호환성은 `HARD_CONSTRAINT`다.
+- UI 모션은 퍼즐 결과·점수·연료·적재·하역·저장의 권위가 아니다.
