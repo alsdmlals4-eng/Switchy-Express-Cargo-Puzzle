@@ -88,6 +88,14 @@ func switch_cells() -> Array[Vector2i]:
 	return result
 
 
+func two_state_switch_count() -> int:
+	return _switch_count_with_state_count(2)
+
+
+func three_state_switch_count() -> int:
+	return _switch_count_with_state_count(3)
+
+
 func is_fully_connected() -> bool:
 	var cells := all_cells()
 	if cells.is_empty():
@@ -211,6 +219,14 @@ func signature() -> String:
 			neighbor_parts.append("%d,%d" % [neighbor.x, neighbor.y])
 		parts.append("%d,%d:%s" % [cell.x, cell.y, "/".join(neighbor_parts)])
 	return "|".join(parts)
+
+
+func _switch_count_with_state_count(expected_state_count: int) -> int:
+	var count := 0
+	for rail_switch: Variant in _switches.values():
+		if rail_switch.state_count() == expected_state_count:
+			count += 1
+	return count
 
 
 func _peek_next_cell(current: Vector2i, previous: Vector2i) -> Vector2i:
