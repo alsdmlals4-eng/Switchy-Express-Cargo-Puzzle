@@ -13,10 +13,12 @@ func run() -> void:
 	if not controller_exists or not state_exists:
 		return
 
-	var graph: Variant = load(GENERATOR_PATH).new().generate(17)
+	var generator: Variant = load(GENERATOR_PATH).new()
+	var controller_script: Script = load(CONTROLLER_PATH)
+	var graph: Variant = generator.generate(17)
 	var start_cell: Vector2i = graph.all_cells()[20]
 	var previous_cell: Vector2i = graph.neighbors(start_cell)[0]
-	var controller: Variant = load(CONTROLLER_PATH).new()
+	var controller: Variant = controller_script.new()
 	controller.configure(graph, start_cell, previous_cell, 8)
 	controller.set_speed(2.5)
 	assert_equal(controller.speed, 2.5, "controller must store requested cells-per-second speed")
@@ -35,7 +37,76 @@ func run() -> void:
 		_assert_train_cells_are_unique_and_connected(controller, graph, "step %d" % step)
 		assert_true(controller.history_size() <= 13, "step %d route history must remain bounded" % step)
 
-	var switch_graph: Variant = load(GENERATOR_PATH).new().generate(23)
+	_test_continuous_movement(controller_script, generator)
+	_test_primed_trails_across_seeds(controller_script, generator)
+	_test_switch_passage(controller_script, generator)
+
+
+func _test_continuous_movement(controller_script: Script, generator: Variant) -> void:
+	var graph: Variant = generator.generate(41)
+	var start_cell: Vector2i = graph.all_cells()[24]
+	var previous_cell: Vector2i = graph.neighbors(start_cell)[0]
+	var first_target: Vector2i = graph.next_cell(start_cell, previous_cell)
+	var controller: Variant = controller_script.new()
+	controller.configure(graph, start_cell, previous_cell, 2)
+	controller.set_wagon_count(2)
+	controller.set_speed(2.0)
+
+	assert_equal(controller.movement_progress(), 0.0, "movement progress must start at zero")
+	assert_equal(controller.target_cell(), first_target, "target cell must follow current graph routing")
+	assert_equal(controller.advance_time(0.25), 0, "quarter second at speed two must not cross a full cell")
+	assert_equal(controller.movement_progress(), 0.5, "quarter second at speed two must advance half a cell")
+	assert_equal(
+		controller.locomotive_position(),
+		Vector2(start_cell).lerp(Vector2(first_target), 0.5),
+		"locomotive must interpolate between current and target cells"
+	)
+	var wagon_positions: Array[Vector2] = controller.wagon_positions()
+	assert_equal(wagon_positions.size(), 2, "continuous view must include both wagons")
+	assert_equal(
+		wagon_positions[0],
+		Vector2(previous_cell).lerp(Vector2(start_cell), 0.5),
+		"first wagon must interpolate over the locomotive's previous segment"
+	)
+	assert_equal(controller.train_positions().size(), 3, "continuous train positions must include locomotive and wagons")
+
+	assert_equal(controller.advance_time(0.25), 1, "second quarter second must cross exactly one cell")
+	assert_equal(controller.current_cell(), first_target, "cell crossing must commit locomotive to target")
+	assert_equal(controller.movement_progress(), 0.0, "exact cell crossing must leave zero remainder")
+	assert_equal(controller.wagon_positions()[0], Vector2(start_cell), "wagon must reach prior locomotive cell at boundary")
+
+	var expected_current: Vector2i = controller.current_cell()
+	var expected_previous: Vector2i = controller.previous_cell()
+	for _index: int in range(2):
+		var next: Vector2i = graph.next_cell(expected_current, expected_previous)
+		expected_previous = expected_current
+		expected_current = next
+	assert_equal(controller.advance_time(1.25), 2, "large delta must process every full crossed cell")
+	assert_equal(controller.current_cell(), expected_current, "large delta must end on the correct graph cell")
+	assert_equal(controller.movement_progress(), 0.5, "large delta must preserve fractional remainder")
+	assert_true(controller.history_size() <= 7, "continuous movement must preserve bounded history")
+
+
+func _test_primed_trails_across_seeds(controller_script: Script, generator: Variant) -> void:
+	for seed: int in range(1, 26):
+		var graph: Variant = generator.generate(seed)
+		var cells: Array[Vector2i] = graph.all_cells()
+		var sample_indices: Array[int] = [5, cells.size() / 2, cells.size() - 6]
+		for sample_index: int in sample_indices:
+			var start_cell: Vector2i = cells[sample_index]
+			var previous_cell: Vector2i = graph.neighbors(start_cell)[0]
+			var controller: Variant = controller_script.new()
+			controller.configure(graph, start_cell, previous_cell, 8)
+			controller.set_wagon_count(8)
+			_assert_train_cells_are_unique_and_connected(
+				controller,
+				graph,
+				"seed %d sample %d primed trail" % [seed, sample_index]
+			)
+
+
+func _test_switch_passage(controller_script: Script, generator: Variant) -> void:
+	var switch_graph: Variant = generator.generate(23)
 	var junction: Vector2i = switch_graph.switch_cells()[0]
 	var incoming: Vector2i = switch_graph.neighbors(junction)[0]
 	switch_graph.configure_switch_approach(junction, incoming)
@@ -44,7 +115,7 @@ func run() -> void:
 	var selected_exit: Vector2i = switch_graph.next_cell(junction, incoming)
 	assert_false(selected_exit == default_exit, "test setup must select a non-default switch exit")
 
-	var switch_controller: Variant = load(CONTROLLER_PATH).new()
+	var switch_controller: Variant = controller_script.new()
 	switch_controller.configure(switch_graph, junction, incoming, 3)
 	switch_controller.advance_one_cell()
 	assert_equal(switch_controller.current_cell(), selected_exit, "locomotive must use the selected switch route")
