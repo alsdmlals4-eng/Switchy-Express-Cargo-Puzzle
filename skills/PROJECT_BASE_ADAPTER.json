@@ -1,10 +1,11 @@
 {
   "artifact_role": "PROJECT_BASE_ADAPTER",
   "base_release": {
-    "release_commit": "30ca6c7b5f93521f0eb0eed42d01437cd43c50ae",
-    "release_evidence_commit": "462a86db192d23d0f386281a1eb54b0a8cbad62e",
+    "release_commit": "a728712cb776ec98f4875914a580fcf7d0156593",
+    "release_evidence_commit": "ef1fba11167e4da0b298123b0c85ebd268191a42",
+    "finalization_commit": "87a0b54c2847ce4b685879209205957c170cc1cd",
     "repository": "alsdmlals4-eng/Base",
-    "version": "9.3.0"
+    "version": "9.4.0"
   },
   "compatibility": {
     "cycle": "ONE_CYCLE",
@@ -29,7 +30,7 @@
   "protected_baseline": {
     "authority_kind": "GIT_COMMIT",
     "authority_ref": "refs/heads/main",
-    "commit": "7500ccea1cddd6c163965a44370b653bbc176f85",
+    "commit": "4e435a1a6d10ab146197671049da80709fd18c1f",
     "policy_sha256": "204da76df84fb289d5f9d8445195532124788648d65698e8901463c58ec545a3",
     "policy_source_path": "AGENTS.md",
     "policy_source_type": "VERIFIED_PROJECT_MAIN",
@@ -44,18 +45,19 @@
   "routing": {
     "aliases": [],
     "base_routes": [
-      "managing-project-intake-and-work-contract",
-      "managing-game-project-operating-system",
-      "managing-design-documents",
       "analyzing-and-refining-game-concepts",
-      "designing-vertical-slices",
-      "running-adversarial-review-and-refinement",
-      "auditing-canonical-reference-freshness",
-      "synchronizing-local-and-github-state",
-      "maintaining-long-running-task-continuity",
       "auditing-and-refining-ui-art",
+      "auditing-canonical-reference-freshness",
+      "designing-vertical-slices",
+      "maintaining-long-running-task-continuity",
+      "maintaining-project-context-and-handoff",
+      "managing-design-documents",
+      "managing-game-project-operating-system",
+      "managing-project-intake-and-work-contract",
+      "optimizing-ai-model-and-prompt-costs",
       "reviewing-and-validating-project-changes",
-      "maintaining-project-context-and-handoff"
+      "running-adversarial-review-and-refinement",
+      "synchronizing-local-and-github-state"
     ],
     "inactive_routes": [],
     "precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
@@ -64,30 +66,41 @@
     ]
   },
   "schema_version": 1,
-  "shared_overrides": {},
+  "shared_overrides": {
+    "optimizing-ai-model-and-prompt-costs": {
+      "modes": [
+        "route-model-and-effort",
+        "design-cacheable-prefix",
+        "estimate-cost",
+        "measure-actual-usage",
+        "recalibrate"
+      ],
+      "provider_measurement_status": "NOT_RUN"
+    }
+  },
   "skill_registry": {
     "base": {
       "hash_definition": "RAW_FILE_BYTES_SHA256",
       "path": "skills/SKILL_REGISTRY.json",
-      "sha256": "9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1"
+      "sha256": "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59"
     },
     "project": {
       "hash_definition": "RAW_FILE_BYTES_SHA256",
       "path": "skills/SKILL_REGISTRY.json",
-      "sha256": "0180a86093743b88e8e78bdbbe38b8810edeba98b216399cde286ced000f7869"
+      "sha256": "5e11ac8243d5ae8ae1f0816ba473b82e84fa80080f8463e08c1a1dce52b0dc64"
     }
   },
   "validators": [
     {
       "command": "python tools/validate_project_contract.py",
-      "status": "PASSED",
-      "evidence_commit": "7500ccea1cddd6c163965a44370b653bbc176f85"
+      "status": "PASSED_AT_BASELINE",
+      "evidence_commit": "4e435a1a6d10ab146197671049da80709fd18c1f"
     },
     {
       "command": "godot --headless --path . --script res://tests/run_tests.gd",
-      "status": "PASSED",
-      "evidence_commit": "7500ccea1cddd6c163965a44370b653bbc176f85",
-      "summary": "3 cases / 934 assertions / 0 failures"
+      "status": "PASSED_AT_BASELINE",
+      "evidence_commit": "4e435a1a6d10ab146197671049da80709fd18c1f",
+      "summary": "9 cases / 6915 assertions / 0 failures"
     }
   ]
 }

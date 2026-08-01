@@ -36,7 +36,7 @@ def main() -> int:
     if actual != expected:
         raise SystemExit(f"project skill registry hash mismatch: {actual} != {expected}")
 
-    if adapter["base_release"]["version"] != "9.3.0":
+    if adapter["base_release"]["version"] != "9.4.0":
         raise SystemExit("unexpected Base version")
     if adapter["project"]["engine"] != "Godot 4.7.1":
         raise SystemExit("unexpected engine pin")

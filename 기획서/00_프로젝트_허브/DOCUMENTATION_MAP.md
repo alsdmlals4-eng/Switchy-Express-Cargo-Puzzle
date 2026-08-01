@@ -17,3 +17,5 @@
 | Base 기준은 무엇인가 | `../../../docs/BASE_RULES_VERSION.md` |
 | 문서 책임·상태는 어디에 있는가 | `DESIGN_DOCUMENT_REGISTRY.json` |
 | Skill 라우팅은 어디에 있는가 | `../../../skills/SKILL_REGISTRY.json`, `../../../skills/PROJECT_BASE_ADAPTER.json` |
+| AI 모델·지시·Context 작업 흐름은 무엇인가 | `../../../docs/AI_WORKFLOW.md` |
+| Base v9.4 적용·보호 감사는 무엇인가 | `../../50_제작_검증/BASE_V9_4_ADOPTION_AUDIT.md` |

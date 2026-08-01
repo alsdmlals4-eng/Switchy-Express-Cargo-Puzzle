@@ -102,6 +102,12 @@
       "owner": "base",
       "base_path": "skills/maintaining-project-context-and-handoff/SKILL.md",
       "status": "ACTIVE"
+    },
+    {
+      "id": "optimizing-ai-model-and-prompt-costs",
+      "owner": "base",
+      "base_path": "skills/optimizing-ai-model-and-prompt-costs/SKILL.md",
+      "status": "ACTIVE"
     }
   ]
 }

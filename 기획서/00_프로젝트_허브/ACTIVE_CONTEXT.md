@@ -68,3 +68,9 @@ Codex가 아래 실행문을 사용해 Issue #5만 테스트 우선으로 구현
 - 최신 적대적 감사: `기획서/50_제작_검증/POST_VS01_ADVERSARIAL_AUDIT.md`
 - Google Sheets 12개 표준 GDD 탭 재조회: `PASS`
 - Decision `SX-DEC-001~013`, Evidence `EV-VS01-001`, Audit `SX-AUD-002`: `SYNCED`
+
+## Base v9.4 운영 계약
+
+- Base `9.4.0` payload/evidence와 model/prompt/cost route를 프로젝트 Registry·Adapter에 적용했다.
+- VS-01/VS-02 제품 코드·퍼즐 규칙·레벨·화물·선로·저장·Sheet는 변경하지 않는다.
+- Godot headless 회귀는 PR에서 재실행하며 Android 실기기·사람·provider 검증은 `NOT_RUN` 또는 `HUMAN_NOT_RUN`이다.
