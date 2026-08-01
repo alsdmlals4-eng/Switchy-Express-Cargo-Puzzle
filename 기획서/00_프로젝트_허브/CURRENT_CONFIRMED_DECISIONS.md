@@ -3,7 +3,7 @@
 Last updated: `2026-08-01`
 Original decision baseline: `dadb5ca0a3acc3ba6e730f7a9de438f0bd8ebe59`
 Latest implementation evidence: `801632949d28564528e38d83dac59cccc6f06fb2`
-Canonical post-VS01 sync commit: `PENDING_POST_VS01_SYNC`
+Canonical post-VS01 sync commit: `7500ccea1cddd6c163965a44370b653bbc176f85`
 
 | Decision ID | 분야 | 현재 결정 | 근거 | 상태 |
 |---|---|---|---|---|
@@ -34,9 +34,10 @@ Canonical post-VS01 sync commit: `PENDING_POST_VS01_SYNC`
 ## 동기화 상태
 
 - GitHub implementation Commit: `801632949d28564528e38d83dac59cccc6f06fb2`
+- GitHub canonical sync Commit: `7500ccea1cddd6c163965a44370b653bbc176f85`
 - Google Sheets: `https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit`
-- Sheet·GitHub 상태: `GITHUB_UPDATE_PENDING_SHEET`
-- 재조회: `2026-08-01`
+- Sheet·GitHub 상태: `SYNCED`
+- Sheet 재조회: `2026-08-01 10:09 +09:00 · PASS`
 - 감사: `기획서/50_제작_검증/POST_VS01_ADVERSARIAL_AUDIT.md`
 
 ## 대체 관계
