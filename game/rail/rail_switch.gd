@@ -34,6 +34,14 @@ func valid_exits_for(incoming_cell: Vector2i) -> Array[Vector2i]:
 	for neighbor: Vector2i in _neighbors:
 		if neighbor != incoming_cell:
 			exits.append(neighbor)
+
+	var travel_direction := cell - incoming_cell
+	var straight_exit := cell + travel_direction
+	var straight_index := exits.find(straight_exit)
+	if straight_index > 0:
+		exits.remove_at(straight_index)
+		exits.push_front(straight_exit)
+
 	return exits
 
 
