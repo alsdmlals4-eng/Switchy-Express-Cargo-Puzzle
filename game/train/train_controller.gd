@@ -5,6 +5,7 @@ const TrainStateScript := preload("res://game/train/train_state.gd")
 
 var speed: float = 0.0
 var _movement_progress: float = 0.0
+var _target_cell: Vector2i = Vector2i.ZERO
 var _graph: Variant
 var _state: Variant
 
@@ -19,6 +20,7 @@ func configure(
 	_state = TrainStateScript.new()
 	_state.configure(graph, start_cell, incoming_cell, max_wagons)
 	_movement_progress = 0.0
+	_refresh_target()
 
 
 func set_speed(cells_per_second: float) -> void:
@@ -51,7 +53,7 @@ func movement_progress() -> float:
 
 func target_cell() -> Vector2i:
 	assert(_state != null, "TrainController must be configured before target lookup")
-	return _graph.next_cell(_state.current_cell, _state.previous_cell)
+	return _target_cell
 
 
 func locomotive_position(cell_size: Vector2 = Vector2.ONE) -> Vector2:
@@ -107,12 +109,18 @@ func history_size() -> int:
 func _commit_next_cell() -> Vector2i:
 	var departing_cell: Vector2i = _state.current_cell
 	var incoming_cell: Vector2i = _state.previous_cell
-	var next: Vector2i = _graph.next_cell(departing_cell, incoming_cell)
+	var next: Vector2i = _target_cell
+	assert(_graph.neighbors(departing_cell).has(next), "locked train target must remain connected")
 	assert(next != incoming_cell, "train movement must not reverse immediately")
 	_state.advance(next)
 	if _graph.switch_cells().has(departing_cell):
 		_graph.commit_switch_passage(departing_cell)
+	_refresh_target()
 	return next
+
+
+func _refresh_target() -> void:
+	_target_cell = _graph.next_cell(_state.current_cell, _state.previous_cell)
 
 
 func _scaled_cell(cell: Vector2i, cell_size: Vector2) -> Vector2:
