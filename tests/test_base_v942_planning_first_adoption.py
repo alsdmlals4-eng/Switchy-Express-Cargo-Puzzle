@@ -12,12 +12,12 @@ class BaseV942PlanningFirstAdoptionTests(unittest.TestCase):
     def test_released_identity_and_planning_contract(self) -> None:
         adapter = json.loads(ADAPTER.read_text(encoding="utf-8"))
         release = adapter["base_release"]
-        self.assertEqual("9.4.2", release["version"])
-        self.assertEqual("dd705d7f48a7919187bc0507610ba5fc5b43a658", release["release_commit"])
-        self.assertEqual("0c6cdd128bf1f5782e96b3a6240c9585f8d1ef6d", release["release_evidence_commit"])
-        self.assertEqual("ac9466edc2d93b59f274c9ac55ca719eba2809e3", release["finalization_commit"])
+        self.assertEqual("9.4.3", release["version"])
+        self.assertEqual("7dd1a4f80388bc5faca767ff74a3eb32dc9d0ac8", release["release_commit"])
+        self.assertEqual("da33a350d61b8adc52df97fccc7001708a933370", release["release_evidence_commit"])
+        self.assertEqual("0b7c94f38d959efc0fc9442274c60b2e268a3c97", release["finalization_commit"])
         planning = adapter["shared_overrides"]["managing-project-intake-and-work-contract"]["planning_first_governance"]
-        self.assertEqual("base-v9.4.2.lock.json", planning["base_release_lock"])
+        self.assertEqual("base-v9.4.3.lock.json", planning["base_release_lock"])
         self.assertEqual(10, planning["max_approved_decisions_per_batch"])
         self.assertEqual("RECOMMENDED_DEFAULT", planning["numeric_default_state"])
         self.assertEqual("GRILL_ME_REQUIRED", planning["planning_conflict_state"])
