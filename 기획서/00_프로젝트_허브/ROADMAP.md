@@ -37,16 +37,18 @@
 - [x] 전체 기획 Coverage Matrix 작성 (`SX-AUD-004`)
 - [x] 분야 간 1차 충돌 적대적 검토
 - [x] `SX-DEC-014` Combo 의미 확정·Sheet 동기화
-- [x] 안전 보완: Skill·계측·표본 판정·오디오 fallback·Plan·Registry 최신화
-- [x] `SX-DEC-015` 화물 1개=compact wagon token 1개·압축 점유 의미 확정
-- [x] `SX-DEC-015` 설계 규격·본책·VS 계약·플레이테스트 소비자 반영
-- [x] `SX-DEC-015` canonical commit `b874225…` Sheet 동기화·12탭 재조회
-- [ ] `SX-DEC-016` 첫 세션 온보딩 방식
-- [ ] 실패 학습 정보의 별도 Decision 필요성 재검증
+- [x] `SX-DEC-015` compact wagon token·compressed footprint 확정·Sheet 동기화
+- [x] `SX-DEC-016` 실제 첫 run 상황형 온보딩 사용자 승인
+- [x] `SX-DEC-016` 설계 규격과 TDD 구현 계획 작성
+- [x] `SX-OPS-001` Grill Me 10건 batch merge·pre-merge audit 프로토콜 작성
+- [ ] `SX-DEC-016`·`SX-OPS-001` canonical PR pre-merge 전수 감사와 병합
+- [ ] canonical merge commit을 Sheet에 기록·12탭 재조회
+- [ ] Sync Closure PR 병합
+- [ ] `GMB-001` 시작: `SX-DEC-017`부터 10건
 - [ ] 남은 중요 Grill Me 완료
 - [ ] VS-03 Codex Definition of Ready
 
-완료 기준: GitHub 정본·Issue·Plan·Sheet가 실제 구현과 일치하고, 중요한 기획 충돌이 Decision ID로 닫히며, 상세 수치는 시험값으로 구분된다.
+완료 기준: GitHub 정본·Issue·Plan·Sheet가 실제 구현과 일치하고, 중요한 기획 충돌이 Decision ID로 닫히며, 상세 수치는 시험값으로 구분된다. 정규 Grill Me batch는 10건 canonical merge와 Sheet closure까지 완료돼야 닫힌다.
 
 ## M3 — 핵심 생존 루프 · NOT_STARTED
 
@@ -68,7 +70,7 @@
 - [ ] `COMBO ×N`·Run Max Combo·별도 speed bonus 피드백
 - [ ] CargoStack→compact token count/order ViewModel
 - [ ] fractional path history 기반 0~8 token 추종
-- [ ] 8 token chain 약 2.18칸·trailing footprint 최대 3칸 시험값
+- [ ] 8 token chain 2.18칸·trailing footprint 최대 3칸 시험값
 - [ ] compressed footprint 기반 spawn exclusion
 - [ ] rear token·HUD first item·CargoStack top parity
 - [ ] 0/1/4/8·곡선 대표 캡처
@@ -77,7 +79,18 @@
 - [ ] 저장 버전·손상 fallback
 - [ ] 48dp·safe area·Reduced Motion·mute·haptic-off
 
-M3 종료 기준: 한 세션이 시작→운행→적재→compact token 변화→분기→LIFO 하역→Combo·보상→연료 0→결과→재시작까지 실제로 연결되고 자동 테스트가 통과한다.
+### VS-03C · first-session contextual onboarding
+
+- [ ] OnboardingState와 normalized domain events
+- [ ] first-run assist policy: fuel drain 0.5×·escalation pause·120초·3초 restore `TEST_VALUE`
+- [ ] 첫 LOAD·첫 switch safe pause
+- [ ] mixed-stack LIFO proof와 첫 Combo proof
+- [ ] 저연료 BOOST hint
+- [ ] skip·timeout·resume·versioned preference
+- [ ] Help 재생 시 assist 미활성
+- [ ] assisted first run과 일반 balance telemetry 분리
+
+M3 종료 기준: 한 세션이 시작→상황형 학습→운행→적재→compact token 변화→분기→LIFO 하역→Combo·보상→연료 0→결과→재시작까지 실제로 연결되고 자동 테스트가 통과한다.
 
 ## M4 — 목표 품질·플레이테스트 · NOT_STARTED
 
@@ -85,22 +98,42 @@ M3 종료 기준: 한 세션이 시작→운행→적재→compact token 변화�
 - [ ] 10분 headless soak
 - [ ] Android 실제 기기 실행·성능
 - [ ] 첫 경험 사용자 5명 이상
-- [ ] LIFO·Combo·분기·compact token 이해율 검증
+- [ ] 4/5 LOAD·분기 독립 수행
+- [ ] 4/5 rear-token LIFO 설명
+- [ ] 4/5 Combo 의미 설명
+- [ ] 3/5 안내 비과잉 평가
+- [ ] first input 전 불공정 실패 0건
 - [ ] 8 token 가독성·spawn 공정성 검증
+- [ ] assisted first run과 일반 balance 분석 분리
 - [ ] 맵 다양성·경로 엔트로피 측정
 - [ ] 밸런스 재조정
 - [ ] MUST_FIX 회귀 검증
 - [ ] Production Gate
 
+## M5 — Grill Me Batch 운영 · ACTIVE_AFTER_CATCH_UP
+
+책임 정본: `기획서/50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md`
+
+```text
+CATCH-UP-001: SX-DEC-014~016
+→ current canonical PR + Sheet closure
+→ GMB-001: SX-DEC-017부터 0/10
+→ 각 승인: batch branch/PR + Sheet APPROVED_PENDING_BATCH_MERGE
+→ 10번째 승인: FREEZE + GitHub/PR/Sheet 12탭 adversarial audit
+→ canonical merge + Sheet readback + Sync Closure
+```
+
 ## 현재 실행 순서
 
 ```text
 SX-DEC-014·015 GitHub/Sheet SYNCED
-→ SX-DEC-016 온보딩 Grill Me
-→ 실패학습 Decision 필요성 재검증
+→ SX-DEC-016 + SX-OPS-001 catch-up canonical merge
+→ Sheet 12탭 sync closure
+→ GMB-001 / SX-DEC-017부터 10건
 → G3P close
 → VS-03A
 → VS-03B
+→ VS-03C
 → VS-04
 → Production Gate
 ```
