@@ -4,7 +4,7 @@
 batch_id: GMB-001
 baseline_main: 993c3ed1aaee172be52a8a8899685b419f7f6d97
 branch: batch/gmb-001
-draft_pr: PENDING_CREATION
+draft_pr: 29
 batch_size: 10
 approved_count: 1/10
 status: IN_PROGRESS · APPROVED_PENDING_BATCH_MERGE
