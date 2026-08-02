@@ -17,7 +17,7 @@
 - [x] bounded spawn and deferred recovery
 - [x] matching-group unload
 
-증거: PR #9/#12/#13, product baseline `4e435a1a6d10ab146197671049da80709fd18c1f`, historical `9 cases / 6915 assertions / 0 failures`.
+기존 증거: PR #9/#12/#13, historical `9 cases / 6915 assertions / 0 failures`.
 
 ## M2 — 총기획·정본 복구 · COMPLETE
 
@@ -25,7 +25,7 @@
 - [x] 올바른 Sheet 식별·잘못된 `19Ff...` 제외
 - [x] `SX-DEC-014~016`, `SX-OPS-001` sync
 - [x] GMB-001 `SX-DEC-017~026`, `EV-USER-006~015`
-- [x] specs·TDD plans·canonical consumer
+- [x] specs·TDD plans·canonical consumers
 - [x] VS/Production scope staging
 - [x] PR #29 Decision merge `9b63421a...`
 - [x] PR #34 closure `aac3ed87...`
@@ -47,39 +47,51 @@ Audit: `SX-AUD-005`; Evidence: `EV-USER-016`.
 - [x] exact acceptance/evidence locations
 - [x] target3/target100 separation
 - [x] known open P0/P1 implementation-planning finding 0 after fixes
-- [x] PR #35 DoR merge `82fd3eeb1915e6ceedb2f5330b27e903064d6eb5`
-- [x] correct Sheet Audit/Evidence canonical readback PASS
-- [x] execution authority limited to `VS03-01`
+- [x] PR #35/#36 and correct Sheet closure
 
-Current state:
+## M3 — VS-03 Local Core · IN_PROGRESS
+
+현재 상태 권위:
 
 ```text
-G3P PASS · READY_FOR_BUILD
-Codex READY_FOR_BUILD · VS03-01_ONLY
-product implementation NOT_STARTED
+기획서/50_제작_검증/VS03_PACKAGE_STATUS.md
 ```
 
-## M3 — VS-03 Local Core · NOT_STARTED
+### VS03-01 — Run Lifecycle, Economy and Difficulty · COMPLETE
 
-### VS03-01 — Run Lifecycle, Economy and Difficulty · READY_FOR_BUILD
+Audit: `SX-AUD-006`; Evidence: `EV-VS03-01-001`.
 
-- [ ] minimal TestCase helpers using current runner
-- [ ] RunBalance·RunState·RunSummary·RunController
-- [ ] boundary-sliced movement/event/fuel-zero order
-- [ ] time speed/fuel·cargo slowdown·BOOST cost
-- [ ] unload reward·Combo/max_combo/speed_bonus
-- [ ] no-input finite survival·fuel-zero once
-- [ ] DifficultyForecast/Event/Director
-- [ ] existing 9 suites regression
+- [x] minimal TestCase helpers using current runner
+- [x] RunBalance·RunState·RunSummary·RunController
+- [x] boundary-sliced movement/event/fuel-zero order
+- [x] time speed/fuel·cargo slowdown·BOOST cost
+- [x] unload reward·Combo/max_combo/speed/heavy bonus
+- [x] no-input finite survival·fuel-zero once
+- [x] DifficultyForecast/Event/Director
+- [x] actual DeliveryLoop integration
+- [x] existing 9 suites regression
+- [x] difficulty event/run-clock time consistency
 
-### VS03-02 — Compact Footprint · BLOCKED_BY_VS03_01
+증거:
+
+```text
+PR #37 merge 43972d3d23e931af3dbc81ab9b1c7d942fffb201
+Project Contract 227 PASS
+Godot Tests 214 PASS
+16 cases · 7110 assertions · 0 failures
+```
+
+### VS03-02 — Compact Footprint · READY_FOR_BUILD
 
 - [ ] compact token state 0~8
-- [ ] rear=LIFO top and fractional path order
+- [ ] front→rear = stack bottom→top
+- [ ] rear = LIFO top
+- [ ] fractional path continuity on straight/curve/switch
 - [ ] TrainFootprint occupied cells
+- [ ] 8-token trailing footprint `<=3` TEST_VALUE
 - [ ] optional DeliveryLoop occupancy provider
 - [ ] legacy `train_cells()` fallback
-- [ ] compressed respawn exclusion integration
+- [ ] compressed spawn/respawn exclusion integration
 
 ### VS03-03 — Minimum Official Map Flow · BLOCKED_BY_VS03_02
 
@@ -170,9 +182,9 @@ M3 종료는 local automated flow를 증명하는 것이다. Android·human·onl
 ## Current Execution Order
 
 ```text
-VS03-01 separate Codex execution
-→ VS03-02 after VS03-01 merge
-→ VS03-03
+VS03-01 · COMPLETE
+→ VS03-02 separate TDD execution
+→ VS03-03 after VS03-02 merge/sync
 → VS03-04
 → VS03-05
 → VS03-06
