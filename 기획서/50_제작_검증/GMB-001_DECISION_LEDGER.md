@@ -6,12 +6,12 @@ baseline_main: 993c3ed1aaee172be52a8a8899685b419f7f6d97
 branch: batch/gmb-001
 draft_pr: 29
 batch_size: 10
-approved_count: 8/10
+approved_count: 9/10
 status: IN_PROGRESS · APPROVED_PENDING_BATCH_MERGE
 canonical_main_sync: NOT_YET_MERGED
 sheet_state: APPROVED_PENDING_BATCH_MERGE
 codex_state: CODEX_NOT_READY
-next_decision: SX-DEC-025
+next_decision: SX-DEC-026
 ```
 
 ## 운영 경계
@@ -34,7 +34,7 @@ next_decision: SX-DEC-025
 | 6 | `SX-DEC-022` | `EV-USER-011` | 난이도 상승 전 짧은 경고와 3단계 지속 신호, 내부 공식은 비공개 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-difficulty-escalation-communication-design.md` |
 | 7 | `SX-DEC-023` | `EV-USER-012` | RESTART는 같은 map/seed, 새 seed는 100+ 검증 맵 카탈로그 제작에 사용 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-same-seed-restart-curated-map-catalog-design.md` |
 | 8 | `SX-DEC-024` | `EV-USER-013` | NEW RUN은 미발견 맵 우선 자동 순환, 발견 맵은 브라우저에서 직접 재선택 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-automatic-map-discovery-and-reselection-design.md` |
-| 9 | — | — | — | OPEN | — |
+| 9 | `SX-DEC-025` | `EV-USER-014` | 공식 global+맵별 기록 병행, data-only 사용자 맵 제작·검증·업로드·공유 플레이 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-hybrid-map-records-and-user-published-maps-design.md` |
 | 10 | — | — | — | OPEN | — |
 
 ---
@@ -300,7 +300,7 @@ source: 2026-08-02 conversation · recommended option C approved
 
 ### 결정
 
-`NEW RUN`은 현재 eligible catalog에서 아직 발견하지 않은 map을 persisted non-replacement shuffle bag으로 먼저 배정한다. 모든 eligible map이 발견된 뒤에는 최근 map을 피하는 replay bag을 사용한다. authoritative run start를 한 번 완료한 stable `map_id`는 RECENT·FAVORITES·ALL DISCOVERED 브라우저에서 직접 재선택할 수 있다.
+`NEW RUN`은 현재 eligible official catalog에서 아직 발견하지 않은 map을 persisted non-replacement shuffle bag으로 먼저 배정한다. 모든 eligible map이 발견된 뒤에는 최근 map을 피하는 replay bag을 사용한다. authoritative run start를 한 번 완료한 stable `map_id`는 RECENT·FAVORITES·ALL DISCOVERED 브라우저에서 직접 재선택할 수 있다.
 
 ### 요청 모드
 
@@ -320,12 +320,12 @@ SELECT_DISCOVERED_MAP:
 
 ### 보호 계약
 
-- 모든 eligible map은 처음부터 자동 발견 후보이며 재화·광고·기간·에너지로 잠그지 않는다.
+- 모든 eligible official map은 처음부터 자동 발견 후보이며 재화·광고·기간·에너지로 잠그지 않는다.
 - 발견은 achievement가 아니라 content exposure다. assisted first run도 발견 가능하지만 표준 record·goal·variable reward는 계속 비적격이다.
 - 발견·play count·recent·bag 소비는 reconstruction과 `FULL_MAP_READY` 뒤 authoritative run-start commit에서 atomic·idempotent 처리한다.
 - selection receipt는 request ID·catalog revision·map ID/revision을 고정하며 duplicate event가 두 map 또는 두 run을 만들지 못한다.
 - raw seed·generator version·signature는 UI에 표시하거나 입력받지 않는다.
-- manual selection은 discovered+currently eligible map만 허용하며 automatic bag을 소비하지 않는다.
+- manual selection은 discovered+currently eligible official map만 허용하며 automatic bag을 소비하지 않는다.
 - stable `map_id` revision은 발견/즐겨찾기를 유지한다. 실질적으로 새 map이면 새 `map_id`를 사용한다.
 - retired/removed/quarantined map은 active bag에서 제거하고 unavailable tombstone으로만 보존한다.
 - automatic reconstruction failure는 bounded next-candidate 시도를 허용하지만 discovery/bag을 소비하지 않는다.
@@ -354,27 +354,149 @@ SELECT_DISCOVERED_MAP:
 
 ### Findings
 
-- `F61` replacement random 반복·starvation.
-- `F62` 100-item 선택 과부하·undiscovered content leakage.
-- `F63` manual selection이 auto cycle/restart semantics를 오염.
-- `F64` catalog revision·retirement·migration으로 discovery state 손상.
-- `F65` duplicate UI/reconstruction failure가 잘못된 map을 시작.
+`F61` replacement random 반복·starvation · `F62` 100-item 선택 과부하·undiscovered content leakage · `F63` manual selection의 auto cycle/restart semantics 오염 · `F64` catalog revision·retirement·migration discovery 손상 · `F65` duplicate UI/reconstruction failure의 wrong-map start
+
+---
+
+## SX-DEC-025 — 전체+맵별 기록 + 사용자 제작 맵 게시·공유
+
+```yaml
+evidence_id: EV-USER-014
+evidence_type: CONFIRMED_USER_DECISION
+source: 2026-08-02 conversation · recommended option C approved plus user map creation/publication requirement
+```
+
+### 결정
+
+공식 맵은 전체 개인 기록 3종과 맵별 개인 기록 3종을 함께 보존한다. 사용자는 제한된 인게임 맵 배치 editor에서 data-only layout을 만들고 local validation·creator test를 거쳐 업로드할 수 있다. 서버 재검증과 moderation 경계를 통과한 immutable publication revision은 creator 본인과 다른 사용자가 PRIVATE·UNLISTED·PUBLIC 경로에서 플레이할 수 있다.
+
+### Record scopes
+
+```yaml
+OFFICIAL_GLOBAL_PERSONAL:
+  key: competitive_ruleset_id
+
+OFFICIAL_PER_MAP_PERSONAL:
+  key: map_id + competitive_layout_revision + competitive_ruleset_id
+
+UGC_PER_REVISION_PERSONAL:
+  key: published_user_map_revision_id + content_hash + ruleset_id
+```
+
+- official eligible run은 global+per-map을 한 transaction으로 비교·갱신한다.
+- Result는 현재 맵 신기록을 우선하고 실제 global 갱신만 별도 표시한다.
+- 두 scope가 동시에 갱신돼도 SX-DEC-021 record bonus는 run당 한 번이다.
+- UGC run은 official global/per-map record를 갱신하지 않는다.
+- editor test/local draft는 모든 standard record·goal·reward에 비적격이다.
+- published UGC는 exact revision의 UGC 개인 기록만 가질 수 있다.
+
+### Map source identity
+
+```yaml
+OFFICIAL_SEEDED:
+  reconstruction: seed + generator/ruleset versions + signatures
+
+USER_AUTHORED:
+  reconstruction: immutable canonical layout payload + content hash + publication receipt
+```
+
+- UGC가 official seed contract를 위조하거나 official map count에 포함되지 않는다.
+- 모든 published revision은 immutable이며 수정은 새 revision이다.
+- same-map RESTART는 exact source identity를 유지하면서 새 RunIdentity와 fresh mutable service graph를 생성한다.
+
+### Editor contract
+
+초기 허용:
+
+- rail 배치·삭제·회전
+- switch 배치·초기 방향
+- train start 위치·방향
+- station·pickup·spawn marker 배치
+- bounded title·description·approved tags
+- undo/redo, local save/load, validation, preview, creator test
+
+금지:
+
+- script·plugin·shader·macro
+- external image·audio·font·model·URL
+- ruleset·score·fuel·speed·reward·record eligibility override
+- hidden trigger·network request·arbitrary executable data
+
+### Publication lifecycle
+
+```text
+LOCAL_DRAFT
+→ LOCAL_VALID
+→ UPLOAD_PENDING
+→ SERVER_VALIDATING
+→ PRIVATE_VALIDATED
+→ UNLISTED or PUBLIC_REVIEW_PENDING
+→ PUBLIC
+
+failure/operation:
+REJECTED_VALIDATION
+REJECTED_MODERATION
+QUARANTINED
+DELISTED_BY_CREATOR
+REMOVED_BY_MODERATOR
+INCOMPATIBLE
+```
+
+- client validation 성공은 publish 승인이 아니다.
+- 서버는 schema, canonical hash, object budget, deterministic reconstruction, connectivity/start safety, bounded headless smoke, duplicate signature, text moderation, account/rate limit을 다시 검증한다.
+- 동일 upload request ID 재처리는 동일 publication result를 반환한다.
+- public moderation 운영 준비가 없으면 PRIVATE+UNLISTED만 feature-flag release한다.
+
+### Playback contract
+
+- creator는 PRIVATE publication을 플레이할 수 있다.
+- 다른 사용자는 UNLISTED share code/link 또는 PUBLIC browser를 통해 플레이할 수 있다.
+- UGC는 official AUTO_NEW_RUN bag·official discovery progress에 포함되지 않는다.
+- content hash·receipt·compatibility 검증 뒤 `FULL_MAP_READY`와 independent RunIdentity를 생성한다.
+- unavailable/quarantined UGC를 다른 map으로 silent substitution하지 않는다.
+- official progression reward와 community leaderboard는 SX-DEC-026 전까지 비활성이다.
+
+### Moderation·privacy
+
+- publish는 authenticated account를 요구하되 local draft/test는 offline 가능 범위를 유지한다.
+- custom text만 moderation 대상이며 custom executable/asset upload는 금지한다.
+- report·block·delist·moderator removal·emergency quarantine을 제공한다.
+- public creator identity는 공개 display ID만 사용하며 email·IP·precise location은 metadata/telemetry에 노출하지 않는다.
+- quotas·rate limits·text lengths·payload limits·moderation thresholds는 `TEST_VALUE`다.
+
+### 문서·상태
+
+- 설계: `docs/superpowers/specs/2026-08-02-hybrid-map-records-and-user-published-maps-design.md`
+- 계획: `docs/superpowers/plans/2026-08-02-hybrid-map-records-and-user-published-maps.md`
+- 구현·editor·backend·moderation·runtime·Android·privacy·사람: `NOT_STARTED / NOT_RUN`
+
+### Findings
+
+- `F66` 서로 다른 map 난도를 global record 공정 경쟁으로 오해.
+- `F67` farm UGC가 official record·goal·reward를 오염.
+- `F68` malicious/invalid layout·resource bomb·forged validation upload.
+- `F69` in-place UGC revision 변경으로 record identity 혼합.
+- `F70` moderation spam·harassment·privacy·operations capacity 실패.
 
 ---
 
 ## Cross-Decision Protected Contracts
 
-- UI·camera·Tween·animation·result·collection·reward·warning·map browser는 non-authoritative.
-- `FULL_MAP_READY` 전 run progression·discovery commit 없음.
+- UI·camera·Tween·animation·result·collection·reward·warning·map browser·editor view는 non-authoritative.
+- `FULL_MAP_READY` 전 run progression·discovery·record commit 없음.
 - active run은 고정 전체 맵.
-- assisted first run은 표준 record·goal·variable reward·balance evidence와 분리되지만 map discovery는 가능.
-- currency·unlock·reward·selection·Profile operation은 atomic·idempotent.
-- map identity와 run/transaction/selection identity는 분리.
-- same-map restart는 새 mutable service graph를 만들며 기존 instance를 reset 재사용하지 않는다.
-- fallback/duplicate map은 제품 map count에 포함하지 않는다.
-- automatic map policy는 favorites·spending·skill·retention prediction·previous performance를 가중치로 사용하지 않는다.
-- manual/restart failure는 silent different-map substitution을 하지 않는다.
-- balance·timing·price·reward·camera·difficulty band·catalog·recent-window·UI density threshold는 검증 전 `TEST_VALUE`.
+- assisted first run은 표준 record·goal·variable reward·balance evidence와 분리되지만 official map discovery는 가능.
+- currency·unlock·reward·selection·record·Profile·publication operation은 atomic·idempotent.
+- map source identity와 run/transaction/selection/upload identity는 분리.
+- same-map restart는 exact official seed identity 또는 exact UGC publication revision을 유지하고 새 mutable service graph를 만든다.
+- fallback/duplicate official map은 제품 map count에 포함하지 않는다.
+- UGC는 official map count, official auto discovery bag, official record, official reward를 오염하지 않는다.
+- automatic official map policy는 favorites·spending·skill·retention prediction·previous performance를 가중치로 사용하지 않는다.
+- manual/restart/UGC load failure는 silent different-map substitution을 하지 않는다.
+- UGC package는 data-only canonical layout이며 executable/custom asset을 포함하지 않는다.
+- published UGC revision은 immutable하고 record는 revision-scoped다.
+- global personal record는 all-official-map 개인 최고값이며 online cross-map fairness leaderboard가 아니다.
+- balance·timing·price·reward·camera·difficulty band·catalog·recent-window·UI density·UGC quota·moderation threshold는 검증 전 `TEST_VALUE`.
 
 ## Adversarial Finding Register
 
@@ -388,8 +510,9 @@ SELECT_DISCOVERED_MAP:
 | Difficulty Signal | `F51~F55` |
 | Restart/Map Catalog | `F56~F60` |
 | Map Assignment/Browser | `F61~F65` |
+| Scoped Records/UGC Publication | `F66~F70` |
 
-현재 설계상 알려진 P0는 없다. `F58`은 generator 다양성·target-100 audit 전까지 `NOT_MET`이며 `F61~F65`는 구현·runtime·100-entry UI·Android·사람 검증 전까지 follow-up 의무다.
+현재 설계상 알려진 P0는 없다. `F58`은 generator 다양성·target-100 audit 전까지 `NOT_MET`이다. `F61~F70`은 구현·runtime·backend·moderation·100-entry/UGC UI·Android·privacy·사람 검증 전까지 follow-up 의무다.
 
 ## Verification State
 
@@ -407,17 +530,25 @@ map_catalog_target_3: NOT_RUN
 map_catalog_target_100: NOT_RUN
 map_assignment_three_map_flow: NOT_RUN
 map_browser_100_entry: NOT_RUN
+scoped_record_runtime: NOT_RUN
+ugc_editor: NOT_STARTED
+ugc_backend: NOT_STARTED
+ugc_server_validation: NOT_RUN
+ugc_moderation_operations: NOT_RUN
+ugc_privacy_review: NOT_RUN
+ugc_two_account_playback: NOT_RUN
 batch_status: APPROVED_PENDING_BATCH_MERGE
 codex_state: CODEX_NOT_READY
 ```
 
 ## 다음 Grill Me 후보
 
-`SX-DEC-025` — 100+ map 간 기록 공정성을 어떻게 구성할지 결정한다.
+`SX-DEC-026` — UGC 플레이·제작에 progression reward와 community signal을 어느 범위까지 허용할지 결정한다.
 
-- global 기록만 유지,
-- map별 기록만 유지,
-- global 개인 기록 + map별 기록 병행,
-- 또는 별도 조합.
+- UGC는 기록·즐겨찾기만 제공하고 reward 없음,
+- 플레이어에게 제한된 UGC completion reward 제공,
+- creator에게 bounded engagement reward 제공,
+- rating/leaderboard까지 포함,
+- 또는 anti-abuse 경계를 둔 조합.
 
-상태: `NEXT_GRILL_ME · GMB-001 SLOT 9`.
+상태: `NEXT_GRILL_ME · GMB-001 SLOT 10`.
