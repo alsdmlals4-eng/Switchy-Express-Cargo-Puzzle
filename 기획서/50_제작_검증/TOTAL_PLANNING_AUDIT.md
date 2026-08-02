@@ -32,7 +32,7 @@ VS-03 구현 전에 프로젝트의 제품·경험·시스템·콘텐츠·UX·�
 
 | 영역 | 현재 상태 | 확인된 강점 | 공백·충돌 | 판정 |
 |---|---|---|---|---|
-| 프로젝트·운영 | 정본·Sheet 동기화 완료 | 새 작업자가 VS-02 완료와 다음 Gate 복원 가능 | 프로젝트 Skill의 Post-VS01 참조를 Post-VS02로 갱신 | AUTO_FIXED |
+| 프로젝트·운영 | 정본·Sheet 동기화 완료 | 새 작업자가 VS-02 완료와 다음 Gate 복원 가능 | Skill·Plan·Registry의 구형 참조 발견 후 복구 | AUTO_FIXED |
 | 제품·타깃 | 모바일 캐주얼·짧은 세션·기록 경쟁 | 제품 약속은 선명함 | 목표 세션 시간·첫 세션 기대 결과는 실측 전 수치 | TEST_VALUE_REQUIRED |
 | 핵심 플레이 | 자동운행→LOAD→분기→LIFO | 독립 기술 계약과 테스트가 존재 | Combo 의미는 `SX-DEC-014`로 확정 | DECISION_CLOSED |
 | 화물·화차 | capacity 8·최대 8화차 | 코드가 wagon count와 cargo count를 독립 제공 | 한 화물=한 화차인지, 빈 화차가 존재하는지, 증감 시점 미정 | USER_DECISION_REQUIRED |
@@ -56,13 +56,15 @@ VS-03 구현 전에 프로젝트의 제품·경험·시스템·콘텐츠·UX·�
 | SX-AUD-004-F01 | PLANNING_CONFLICT | Combo가 단일 하역 그룹인지 배송 streak인지 불명확 | 점수·HUD·저장 차단 | CONFLICT_FIXED | `SX-DEC-014` 사용자 승인 |
 | SX-AUD-004-F02 | UNDERDESIGN | cargo count와 visible wagon 관계 미정 | 실루엣·무게 가독성·점유·애니메이션 충돌 | USER_DECISION_REQUIRED | `SX-DEC-015` NEXT Grill Me |
 | SX-AUD-004-F03 | UNDERDESIGN | 첫 세션 학습 순서·도움 방식 미정 | 이해 실패가 판단 실패로 오인될 위험 | USER_DECISION_REQUIRED 후보 | F02 뒤 판정 |
-| SX-AUD-004-F04 | STALE_REFERENCE | 프로젝트 Skill이 Post-VS01과 구형 구현 경계 사용 | 잘못된 사실 복원 | CONFLICT_FIXED | 현재 PR에서 Post-VS02로 갱신 |
+| SX-AUD-004-F04 | STALE_REFERENCE | 프로젝트 Skill이 Post-VS01과 구형 구현 경계 사용 | 잘못된 사실 복원 | CONFLICT_FIXED | Post-VS02·총기획 기준으로 갱신 |
 | SX-AUD-004-F05 | MEASUREMENT_GAP | 5명 표본에 70%·50% 기준 | 반올림 자의성 | CONFLICT_FIXED | 퍼센트+실제 명수·ceil 규칙 병기 |
 | SX-AUD-004-F06 | ACCESSIBILITY_RISK | telemetry가 `color`만 기록 | 색상+모양 오류 원인 분리 불가 | CONFLICT_FIXED | cargo_type·color·shape 기록 |
 | SX-AUD-004-F07 | UNDERDESIGN | 오디오·햅틱 사건 우선순위 부재 | fallback과 정보 설계 단절 | IMPROVED | P0/P1/P2 권장 계약 작성 |
 | SX-AUD-004-F08 | UNPROVEN_ASSUMPTION | 속도·연료·보상·목표 세션 수치 | 영구 생존·상시 BOOST·피로 위험 | RESEARCH_OR_TEST_REQUIRED | TEST_VALUE·시뮬레이션·플레이테스트 |
 | SX-AUD-004-F09 | PRODUCTION_RISK | 역6·화물12+·분기·HUD의 실제 밀도 미검증 | 작은 화면 정보 과부하 | TEST_IN_VERTICAL_SLICE | VS-03B 캡처·Android 검증 |
 | SX-AUD-004-F10 | MISSING_CANON | 총기획 감사·Decision Queue 책임 문서 부재 | 기획 보완 추적 불가 | CONFLICT_FIXED | 이 문서를 current 감사로 등록 |
+| SX-AUD-004-F11 | STALE_REFERENCE | 마스터 Plan이 복구를 IN_PROGRESS, main을 `539d2bae…`로 표시 | 완료 작업 재실행·잘못된 구현 기준 | CONFLICT_FIXED | PR #16/#17 완료·main `474bef44…`·Decision 소비자 반영 |
+| SX-AUD-004-F12 | AUTHORITY_CONFLICT | Registry에서 총기획 감사와 Post-VS02 감사를 모두 CURRENT로 표시 | 현행 감사 원본 선택 불명확 | CONFLICT_FIXED | 총기획 감사 CURRENT·Post-VS02 HISTORICAL |
 
 ## 확정 Decision — SX-DEC-014
 
@@ -82,6 +84,7 @@ max_combo = 한 판에서 기록한 최대 Combo
 - `speed_bonus_applied`를 별도 telemetry 필드로 기록
 - 저장은 `max_combo`만 보존
 - `5+` 보상표의 모호한 “+ 콤보” 표현 제거
+- Vertical Slice 계약과 마스터 Plan의 Task 6~8까지 동일 의미 전파
 
 판정: `CONFLICT_FIXED · READY_FOR_VS03_PLAN · IMPLEMENTATION_NOT_STARTED`.
 
@@ -150,6 +153,9 @@ max_combo = 한 판에서 기록한 최대 Combo
 - Combo와 speed bonus를 점수·HUD·저장·telemetry에서 분리
 - 오디오·햅틱 사건 우선순위와 mute/haptic-off fallback 권장 계약 작성
 - 목표 세션 시간과 경제 수치는 `TEST_VALUE`로 유지
+- 마스터 구현 계획의 완료 상태·main·Task 6~8 소비자 최신화
+- Vertical Slice 계약에 Combo 의미·제외 범위·품질 기준 반영
+- Registry의 현행 감사 권위를 `SX-AUD-004`로 단일화
 
 ## 현재 Gate
 
