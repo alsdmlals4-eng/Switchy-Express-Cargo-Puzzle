@@ -25,6 +25,12 @@ func assert_equal(actual: Variant, expected: Variant, message: String) -> void:
 		failures.append("%s | expected=%s actual=%s" % [message, str(expected), str(actual)])
 
 
+func assert_not_equal(actual: Variant, unexpected: Variant, message: String) -> void:
+	assertion_count += 1
+	if actual == unexpected:
+		failures.append("%s | unexpected=%s actual=%s" % [message, str(unexpected), str(actual)])
+
+
 func assert_not_null(value: Variant, message: String) -> void:
 	assertion_count += 1
 	if value == null:
@@ -35,6 +41,21 @@ func assert_greater_equal(actual: int, expected_minimum: int, message: String) -
 	assertion_count += 1
 	if actual < expected_minimum:
 		failures.append("%s | expected>=%d actual=%d" % [message, expected_minimum, actual])
+
+
+func assert_less_equal(actual: float, expected_maximum: float, message: String) -> void:
+	assertion_count += 1
+	if actual > expected_maximum:
+		failures.append("%s | expected<=%s actual=%s" % [message, str(expected_maximum), str(actual)])
+
+
+func assert_almost_equal(actual: float, expected: float, tolerance: float, message: String) -> void:
+	assertion_count += 1
+	if absf(actual - expected) > tolerance:
+		failures.append(
+			"%s | expected=%s actual=%s tolerance=%s"
+			% [message, str(expected), str(actual), str(tolerance)]
+		)
 
 
 func passed() -> bool:

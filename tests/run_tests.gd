@@ -10,6 +10,13 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/cargo/test_cargo_spawner.gd"),
 	preload("res://tests/station/test_station_unloading.gd"),
 	preload("res://tests/integration/test_delivery_loop.gd"),
+	preload("res://tests/run/test_run_balance.gd"),
+	preload("res://tests/run/test_run_state.gd"),
+	preload("res://tests/difficulty/test_difficulty_director.gd"),
+	preload("res://tests/run/test_run_controller.gd"),
+	preload("res://tests/run/test_run_controller_difficulty_events.gd"),
+	preload("res://tests/integration/test_run_controller_delivery_loop.gd"),
+	preload("res://tests/run/test_run_controller_guards.gd"),
 ]
 
 const WATCHDOG_SECONDS := 10.0

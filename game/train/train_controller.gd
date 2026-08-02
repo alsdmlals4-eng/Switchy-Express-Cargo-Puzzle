@@ -53,6 +53,13 @@ func movement_progress() -> float:
 	return _movement_progress
 
 
+func seconds_to_next_cell() -> float:
+	assert(_state != null, "TrainController must be configured before boundary lookup")
+	if speed <= 0.0:
+		return INF
+	return maxf((1.0 - _movement_progress) / speed, 0.0)
+
+
 func target_cell() -> Vector2i:
 	assert(_state != null, "TrainController must be configured before target lookup")
 	return _target_cell
@@ -78,10 +85,40 @@ func forward_cells(step_count: int) -> Array[Vector2i]:
 	return result
 
 
+func route_history_cells() -> Array[Vector2i]:
+	assert(_state != null, "TrainController must be configured before history lookup")
+	var result: Array[Vector2i] = []
+	result.append_array(_state.route_history)
+	return result
+
+
 func locomotive_position(cell_size: Vector2 = Vector2.ONE) -> Vector2:
 	var from_position := _scaled_cell(current_cell(), cell_size)
 	var to_position := _scaled_cell(target_cell(), cell_size)
 	return from_position.lerp(to_position, _movement_progress)
+
+
+func sample_trailing_position(
+	trailing_distance_cells: float,
+	cell_size: Vector2 = Vector2.ONE
+) -> Vector2:
+	assert(_state != null, "TrainController must be configured before path sampling")
+	var points: Array[Vector2] = []
+	points.append(Vector2(current_cell()).lerp(Vector2(target_cell()), _movement_progress))
+	for cell: Vector2i in _state.route_history:
+		points.append(Vector2(cell))
+
+	var remaining := maxf(trailing_distance_cells, 0.0)
+	for index: int in range(points.size() - 1):
+		var from_point: Vector2 = points[index]
+		var to_point: Vector2 = points[index + 1]
+		var segment_length := from_point.distance_to(to_point)
+		if segment_length <= 0.000001:
+			continue
+		if remaining <= segment_length:
+			return from_point.lerp(to_point, remaining / segment_length) * cell_size
+		remaining -= segment_length
+	return points[points.size() - 1] * cell_size
 
 
 func wagon_positions(cell_size: Vector2 = Vector2.ONE) -> Array[Vector2]:
