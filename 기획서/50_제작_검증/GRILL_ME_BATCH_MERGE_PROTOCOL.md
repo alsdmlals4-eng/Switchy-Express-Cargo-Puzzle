@@ -3,13 +3,13 @@
 ```yaml
 protocol_id: SX-OPS-001
 evidence_id: EV-USER-005
-status: USER_APPROVED · ACTIVE_AFTER_SX_DEC_016_CATCH_UP
+status: ACTIVE · GITHUB_SHEET_SYNCED
 owner: PROJECT_OWNER + PLANNING_AGENT
 batch_size: 10_GRILL_ME_APPROVALS
-current_catch_up_boundary: ALL_APPROVALS_THROUGH_SX-DEC-016
-next_batch_id: GMB-001
-next_batch_start: SX-DEC-017
-next_batch_count: 0/10
+completed_catch_up: CATCH-UP-001 · SX-DEC-014~016
+current_batch_id: GMB-001
+current_batch_start: SX-DEC-017
+current_batch_count: 0/10
 implementation_merge_policy: NO_PRODUCT_IMPLEMENTATION_UNLESS_SEPARATELY_APPROVED
 ```
 
@@ -17,13 +17,12 @@ implementation_merge_policy: NO_PRODUCT_IMPLEMENTATION_UNLESS_SEPARATELY_APPROVE
 
 Grill Me 승인 한 건마다 main·Sheet·Closure PR을 반복해 작업 흐름이 지나치게 잘게 쪼개지는 것을 막으면서, 승인 내용이 대화에만 남거나 GitHub와 Google Sheet 사이에서 유실되는 것도 방지한다.
 
-앞으로 Grill Me 승인은 한 건씩 질문하고 확정하되, **10건을 하나의 canonical batch PR로 묶어 병합**한다. 10번째 승인이 들어오면 병합 직전 GitHub·Google Sheet·PR을 다시 전수 확인하고 적대적 검토 루프를 통과한 뒤 canonical 병합과 Sheet closure까지 완료한다.
+Grill Me 승인은 한 건씩 질문하고 확정하되, **10건을 하나의 canonical batch PR로 묶어 병합**한다. 10번째 승인이 들어오면 병합 직전 GitHub·Google Sheet·PR을 다시 전수 확인하고 적대적 검토 루프를 통과한 뒤 canonical 병합과 Sheet closure까지 완료한다.
 
 ## 2. 현재 경계
 
-- `SX-DEC-014`, `SX-DEC-015`, `SX-DEC-016`은 배치 전환 이전 승인분이다.
-- 이번 catch-up 작업에서 `SX-DEC-016`까지 canonical main과 Sheet에 병합·동기화한다.
-- 이후 첫 정규 배치는 `GMB-001`이며 `SX-DEC-017`부터 센다.
+- `SX-DEC-014`, `SX-DEC-015`, `SX-DEC-016` catch-up은 PR #27 / `3cd13ff375a597d4eba9035af5b05e6186fb4853`과 Sheet 12탭 readback으로 완료됐다.
+- 첫 정규 배치는 `GMB-001`이며 `SX-DEC-017`부터 센다. 현재 `0/10`이다.
 - `SX-OPS-001` 같은 운영 규칙은 Grill Me 게임 기획 10건 카운트에 포함하지 않는다.
 - 사용자가 명시적으로 즉시 병합을 지시한 경우만 배치 중간 병합 예외를 허용한다.
 
@@ -46,8 +45,8 @@ Grill Me 승인 한 건마다 main·Sheet·Closure PR을 반복해 작업 흐름
 
 | Batch ID | 대상 | 승인 수 | 상태 | Canonical PR | Sheet 상태 | Closure PR |
 |---|---|---:|---|---|---|---|
-| CATCH-UP-001 | `SX-DEC-014~016` | 3/3 | IN_PROGRESS_UNTIL_CURRENT_PR_CLOSED | 현재 작업 PR | `SX-DEC-016` 반영 대기 | 현재 작업 후 생성 |
-| GMB-001 | `SX-DEC-017`부터 다음 10건 | 0/10 | NOT_STARTED | 미생성 | 기존 main과 SYNCED | 미생성 |
+| CATCH-UP-001 | `SX-DEC-014~016` | 3/3 | CLOSED | PR #18/#24/#27 | `PASS · 12탭 재조회 완료 · SYNCED` | PR #19/#25/현재 closure |
+| GMB-001 | `SX-DEC-017`부터 다음 10건 | 0/10 | NOT_STARTED | 미생성 | main `3cd13ff…`와 SYNCED | 미생성 |
 
 정규 batch 안에서는 승인 순서와 Decision ID를 삭제·재사용하지 않는다. 사용자가 기존 결정을 수정하면 새 Decision 또는 명시적 supersede 관계로 기록한다.
 
