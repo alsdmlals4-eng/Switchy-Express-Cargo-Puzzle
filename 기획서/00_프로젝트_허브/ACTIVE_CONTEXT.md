@@ -9,16 +9,18 @@
 - VS-02 런타임 화물 재생성 누락은 PR #13에서 복구 완료.
 - Base v9.4 AI 운영·UI 모션 계약은 PR #15에서 적용 완료.
 - Post-VS02 정본 복구는 PR #16 / `8245e22905d64e22b599fe009bbb660d005392ed`에서 완료.
+- Post-VS02 Sheet 종료는 PR #17 / `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1`에서 완료.
 - 제품 구현 기준: `4e435a1a6d10ab146197671049da80709fd18c1f`.
 - Godot 검증: `9 cases / 6915 assertions / 0 failures`.
-- Project Contract와 Base v9.4 focused validation: PASS.
-- 실제 Switchy Express Google Sheets 12개 탭에 canonical commit `8245e229...` 반영·재조회 완료.
-- Sheet 상태: `SYNCED`.
+- 실제 Switchy Express Google Sheets 12개 탭은 Post-VS02 기준 `SYNCED`.
 - 제공된 `19Ff...` 시트는 다른 프로젝트이며 변경하지 않았다.
 - Issue #5: CLOSED · COMPLETED.
 - Issue #6: OPEN · 다음 구현 후보.
 - 현재 Work Mode: `TOTAL_PLANNING · REVIEW`.
 - Codex 상태: `CODEX_NOT_READY`.
+- 현행 총기획 감사: `SX-AUD-004`.
+- `SX-DEC-014`: 사용자 승인·GitHub PR 반영 중·Sheet 동기화 대기.
+- 다음 Grill Me: `SX-DEC-015` 화물 수와 표시 화차 수·점유 관계.
 
 ## 구현된 범위
 
@@ -47,19 +49,29 @@
 - 색상별 맵 pickup 최소 4개
 - 금지 칸·직전 위치·열차 전방 2칸 제외
 - 1초 지연 재생성과 `SPAWN_DEFERRED` 회복
-- LIFO 동일색 연속 그룹 하역
+- LIFO 동일 타입 연속 그룹 하역
 - 실제 stack과 동일한 하역 순서 ViewModel
 - 정확한 cell-crossing 시각의 DeliveryLoop 이벤트
+
+## 총기획에서 확정된 추가 Decision
+
+### SX-DEC-014 — Combo
+
+- Combo는 한 번의 역 도착에서 연속 하역된 동일 `cargo_type` 개수다.
+- `max_combo`는 한 판의 최대 하역 그룹 크기다.
+- 배송 사이에 유지되는 Combo streak는 없다.
+- 빠른 배송은 별도 `speed_bonus` 시험 차원이다.
+- HUD·결과·telemetry·저장의 의미를 이 정의로 통일한다.
 
 ## 현재 미구현
 
 - 시간 기반 속도 상승과 연료 소모
 - 화물 적재량 감속
 - BOOST 속도·추가 연료 소모
-- 배송 점수·연료 보상·콤보 경제
+- 배송 점수·연료 보상·Combo 계산
 - 무입력 유한 생존과 연료 0 게임오버
 - 결과 요약·즉시 재시작
-- 최고 점수·최장 생존·최대 콤보 로컬 기록
+- 최고 점수·최장 생존·최대 Combo 로컬 기록
 - 제품 RailBoardView·SwitchView·HUD·결과 화면
 - 접근성 설정 실제 동작
 - 대표 런타임 캡처
@@ -70,31 +82,30 @@
 
 ```text
 GitHub·Sheet 기준선 동기화 완료
-→ 기획 Coverage·분야 간 충돌 감사
-→ 적대적 공격과 비판 재검증
+→ SX-AUD-004 Coverage·충돌 감사
 → SAFE_PLANNING_FIXES 반영
-→ 중요 기획 충돌만 Grill Me
-→ 승인 Decision 즉시 정본·Issue·Plan·Sheet 동기화
-→ Codex Definition of Ready 판정
+→ 중요 기획 충돌을 한 건씩 Grill Me
+→ 승인 Decision을 정본·Issue·Goal에 반영
+→ canonical merge commit으로 Sheet 동기화
+→ 다음 Decision 또는 Codex Definition of Ready
 ```
 
 상세 수치는 사용자 지시에 따라 GPT 권장 시험값으로 작성하되 `RECOMMENDED_DEFAULT / TEST_VALUE`로 표시한다. 플레이어 판타지, 대표 경험, 주요 UX, 실패·보상 의미, 범위를 바꾸는 충돌은 사용자 Decision 없이 확정하지 않는다.
 
 ## 다음 작업
 
-1. 전체 기획 Coverage와 분야 간 충돌 적대적 감사
-2. `AUTO_FIX_ELIGIBLE` 기획 누락 보완
-3. 가장 차단적인 `USER_DECISION_REQUIRED`를 한 건씩 Grill Me
-4. 승인된 기획을 본책·Issue #6·VS-03 Goal·Sheet에 즉시 동기화
+1. `SX-DEC-014` PR exact HEAD 검증·병합
+2. 같은 Decision·Evidence·commit을 Sheet에 반영·재조회
+3. `SX-DEC-015` 화물–화차 관계 Grill Me
+4. 이후 첫 세션 온보딩·실패 학습 정보의 Decision 필요성 재검증
 5. `PLANNING_AND_REVIEW_COMPLETE_GATE` 이후에만 Codex Build 인계
 
 ## 주요 위험
 
-- CargoStack capacity와 실제 화차 수·화차 표현의 의미가 불명확할 가능성
+- CargoStack capacity와 실제 화차 수·표시·spawn 점유 의미가 불명확함
 - 자동 운행에서 분기 판단 시간이 부족하거나 과도하게 여유로울 가능성
 - 화물 감속이 생존 최적화 exploit가 될 가능성
 - BOOST가 항상 정답이거나 무가치할 가능성
-- 콤보의 의미가 동일색 그룹 크기와 연속 배송 streak 사이에서 혼용될 가능성
 - 결과·재시작 모션이 점수·연료·저장의 권위를 소유하는 회귀 위험
 - 15×10 화면에서 역·화물·분기·HUD가 겹칠 위험
 - 실제 맵 다양성·경로 엔트로피가 반복 플레이에 부족할 가능성
@@ -102,8 +113,8 @@ GitHub·Sheet 기준선 동기화 완료
 
 ## 감사·동기화
 
-- 최신 구현 감사: `기획서/50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md`
-- 감사 ID: `SX-AUD-003`
-- Evidence: `EV-VS02-001`, `EV-VS02-FIX-001`, `EV-BASE-V94-001`
-- GitHub canonical recovery: `8245e22905d64e22b599fe009bbb660d005392ed`
-- Google Sheets 12개 탭 readback: `PASS · SYNCED`
+- Post-VS02 감사: `SX-AUD-003` · HISTORICAL
+- 현행 총기획 감사: `SX-AUD-004` · CURRENT
+- 새 사용자 Evidence: `EV-USER-002`
+- Post-VS02 Sheet 12개 탭 readback: `PASS · SYNCED`
+- `SX-DEC-014` Sheet 상태: `GITHUB_UPDATE_PENDING_SHEET`
