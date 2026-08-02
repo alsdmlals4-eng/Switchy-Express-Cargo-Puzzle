@@ -42,14 +42,14 @@
 | Post-VS02 canonical recovery | COMPLETE | PR #16 / `8245e229…` |
 | Post-VS02 Sheet closure | COMPLETE | PR #17 / `474bef44…` |
 | Total planning and Grill Me | IN_PROGRESS | `SX-AUD-004` |
-| `SX-DEC-014` Combo | CONFIRMED · IMPLEMENTATION_NOT_STARTED | `EV-USER-002` |
+| `SX-DEC-014` Combo | CONFIRMED · GITHUB_SHEET_SYNCED · IMPLEMENTATION_NOT_STARTED | PR #18 / `ca505386…` |
 | `SX-DEC-015` cargo/wagon relation | USER_DECISION_REQUIRED | `SX-AUD-004-F02` |
 | Task 6 · run economy | BLOCKED_BY_PLANNING | Issue #6 / VS-03A |
 | Task 7 · product UI/result/save | BLOCKED_BY_PLANNING | Issue #6 / VS-03B |
 | Task 8 · telemetry/soak/device/playtest | NOT_STARTED | Issue #7 |
 
 Implementation baseline: `4e435a1a6d10ab146197671049da80709fd18c1f`
-Latest synchronized main: `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1`
+Latest synchronized main: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
 Historical Post-VS02 audit: `기획서/50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md`
 Current planning audit: `기획서/50_제작_검증/TOTAL_PLANNING_AUDIT.md`
 Current planning Goal: `기획서/00_프로젝트_허브/EXECUTABLE_PROMPTS/CODEX_GOAL_VS_03.md`
@@ -149,7 +149,7 @@ tests/integration/test_delivery_loop.gd
 - [x] Classify findings as `AUTO_FIX_ELIGIBLE / USER_DECISION_REQUIRED / RESEARCH_OR_TEST_REQUIRED`.
 - [x] Apply current safe planning fixes for Skill freshness, playtest thresholds, telemetry fields, and audio/haptic fallbacks.
 - [x] Confirm `SX-DEC-014` Combo semantics.
-- [ ] Synchronize `SX-DEC-014`, `EV-USER-002`, and `SX-AUD-004` to Sheet using the PR merge commit.
+- [x] Synchronize `SX-DEC-014`, `EV-USER-002`, and `SX-AUD-004` to Sheet using PR #18 commit `ca505386…`; 12-tab readback PASS.
 - [ ] Confirm `SX-DEC-015` cargo/wagon meaning.
 - [ ] Re-evaluate onboarding and failure-learning gaps after `SX-DEC-015`.
 - [ ] Ensure all approved Decisions are reflected in canon, Issues, Plan, Active Context, and Sheet.
