@@ -2,11 +2,12 @@
 
 ```yaml
 audit_id: SX-AUD-004
-status: IN_PROGRESS · SX-DEC-014_CONFIRMED · NEXT_GRILL_ME_SX-DEC-015
+status: IN_PROGRESS · SX-DEC-014_SYNCED · NEXT_GRILL_ME_SX-DEC-015
 baseline_main: 474bef445c2cf5e501bd7478e26a5b8d0dfe26f1
+combo_decision_commit: ca50538652c72cbb282d7818990e92a0dfe79c9a
 work_mode: TOTAL_PLANNING · REVIEW
 implementation_authority: PLANNING_AND_DOCUMENTATION_ONLY
-sheet_state: SYNCED_AT_8245e22905d64e22b599fe009bbb660d005392ed
+sheet_state: SYNCED_AT_CA505386 · 12_TAB_READBACK_PASS
 codex_state: CODEX_NOT_READY
 number_policy: RECOMMENDED_DEFAULT_OR_TEST_VALUE
 user_decision_policy: ONE_MATERIAL_GRILL_ME_AT_A_TIME
@@ -34,7 +35,7 @@ VS-03 구현 전에 프로젝트의 제품·경험·시스템·콘텐츠·UX·�
 |---|---|---|---|---|
 | 프로젝트·운영 | 정본·Sheet 동기화 완료 | 새 작업자가 VS-02 완료와 다음 Gate 복원 가능 | Skill·Plan·Registry의 구형 참조 발견 후 복구 | AUTO_FIXED |
 | 제품·타깃 | 모바일 캐주얼·짧은 세션·기록 경쟁 | 제품 약속은 선명함 | 목표 세션 시간·첫 세션 기대 결과는 실측 전 수치 | TEST_VALUE_REQUIRED |
-| 핵심 플레이 | 자동운행→LOAD→분기→LIFO | 독립 기술 계약과 테스트가 존재 | Combo 의미는 `SX-DEC-014`로 확정 | DECISION_CLOSED |
+| 핵심 플레이 | 자동운행→LOAD→분기→LIFO | 독립 기술 계약과 테스트가 존재 | Combo 의미는 `SX-DEC-014`로 확정·동기화 | DECISION_CLOSED |
 | 화물·화차 | capacity 8·최대 8화차 | 코드가 wagon count와 cargo count를 독립 제공 | 한 화물=한 화차인지, 빈 화차가 존재하는지, 증감 시점 미정 | USER_DECISION_REQUIRED |
 | 생존 경제 | 시간·무게·BOOST 위험 교환 | Combo와 speed bonus가 분리됨 | 수치는 미검증 | TEST_VALUE_REQUIRED |
 | 실패·복구 | 연료 0→결과→재시작 | 즉시 재도전 방향 명확 | 결과 화면의 실패 원인·학습 정보 우선순위 미정 | NEEDS_IMPROVEMENT |
@@ -53,7 +54,7 @@ VS-03 구현 전에 프로젝트의 제품·경험·시스템·콘텐츠·UX·�
 
 | ID | 유형 | 문제 | 영향 | 판정 | 처리 |
 |---|---|---|---|---|---|
-| SX-AUD-004-F01 | PLANNING_CONFLICT | Combo가 단일 하역 그룹인지 배송 streak인지 불명확 | 점수·HUD·저장 차단 | CONFLICT_FIXED | `SX-DEC-014` 사용자 승인 |
+| SX-AUD-004-F01 | PLANNING_CONFLICT | Combo가 단일 하역 그룹인지 배송 streak인지 불명확 | 점수·HUD·저장 차단 | CONFLICT_FIXED | `SX-DEC-014` 사용자 승인·GitHub/Sheet SYNCED |
 | SX-AUD-004-F02 | UNDERDESIGN | cargo count와 visible wagon 관계 미정 | 실루엣·무게 가독성·점유·애니메이션 충돌 | USER_DECISION_REQUIRED | `SX-DEC-015` NEXT Grill Me |
 | SX-AUD-004-F03 | UNDERDESIGN | 첫 세션 학습 순서·도움 방식 미정 | 이해 실패가 판단 실패로 오인될 위험 | USER_DECISION_REQUIRED 후보 | F02 뒤 판정 |
 | SX-AUD-004-F04 | STALE_REFERENCE | 프로젝트 Skill이 Post-VS01과 구형 구현 경계 사용 | 잘못된 사실 복원 | CONFLICT_FIXED | Post-VS02·총기획 기준으로 갱신 |
@@ -86,7 +87,15 @@ max_combo = 한 판에서 기록한 최대 Combo
 - `5+` 보상표의 모호한 “+ 콤보” 표현 제거
 - Vertical Slice 계약과 마스터 Plan의 Task 6~8까지 동일 의미 전파
 
-판정: `CONFLICT_FIXED · READY_FOR_VS03_PLAN · IMPLEMENTATION_NOT_STARTED`.
+판정: `CONFLICT_FIXED · GITHUB_SHEET_SYNCED · IMPLEMENTATION_NOT_STARTED`.
+
+동기화 증거:
+
+- PR #18 canonical commit: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
+- Google Sheets: Adapter의 `1EpQ...`
+- Decision `SX-DEC-014`, Evidence `EV-USER-002`, Audit `SX-AUD-004`
+- 12개 탭 readback: `PASS · SYNCED`
+- 다른 프로젝트 `19Ff...` Sheet: 변경하지 않음
 
 ## 다음 충돌 근거 — SX-AUD-004-F02
 
@@ -140,7 +149,7 @@ max_combo = 한 판에서 기록한 최대 Combo
 
 ## Decision Queue
 
-1. `SX-DEC-014` Combo 정의 — `CONFIRMED · CLOSED`
+1. `SX-DEC-014` Combo 정의 — `CONFIRMED · SYNCED · CLOSED`
 2. `SX-DEC-015` 화물·화차 시각/기능 관계 — `NOW · BLOCKS VS-03B`
 3. `SX-DEC-016` 첫 세션 온보딩 방식 — `LATER · BLOCKS USER PLAYTEST`
 4. 세계·마스코트 상세 범위 — 현재 VS에서는 `DEFERRED_WITH_BOUNDARY` 권장
@@ -161,4 +170,4 @@ max_combo = 한 판에서 기록한 최대 Combo
 
 `USER_DECISION_REQUIRED · SX-DEC-015 · CODEX_NOT_READY`
 
-`SX-DEC-014`는 승인됐지만 PR 병합 commit과 Google Sheets 동기화가 끝나기 전에는 `SYNCED`로 표시하지 않는다. VS-03 구현은 전체 필수 Decision과 G3P가 닫힌 뒤에만 시작한다.
+`SX-DEC-014`는 canonical commit과 Google Sheets 12개 탭 readback까지 `SYNCED`다. 다음 작업은 `SX-DEC-015`이며, VS-03 구현은 전체 필수 Decision과 G3P가 닫힌 뒤에만 시작한다.

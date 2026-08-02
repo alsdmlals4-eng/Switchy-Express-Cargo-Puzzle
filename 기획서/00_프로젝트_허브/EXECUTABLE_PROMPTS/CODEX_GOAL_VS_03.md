@@ -5,7 +5,7 @@ GitHub Issue: `#6`
 Parent Epic: `#3`
 Blocked by implementation: `#5 · COMPLETED`
 Blocked by planning: `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE`
-Baseline main: `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1`
+Baseline main: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
 Plan: `docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md` Task 6~7
 
 > 이 문서는 현재 구현 명령이 아니다. 전체 기획 Coverage·적대적 검토·필수 Grill Me Decision·GitHub/Sheet 동기화가 닫힌 뒤 `READY_FOR_BUILD`로 승격한다.
@@ -35,7 +35,7 @@ Plan: `docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md` Task
 - `SX-DEC-011`
 - `SX-DEC-012`
 - `SX-DEC-013`
-- `SX-DEC-014`
+- `SX-DEC-014` · GitHub/Sheet `SYNCED`
 
 상세 수치는 `CORE_SYSTEMS.md`의 `TEST_VALUE`를 사용하며 사용자 확정 밸런스로 취급하지 않는다.
 
@@ -176,7 +176,7 @@ Issue #7은 다음을 구현·검증한다.
 
 ## 아직 닫히지 않은 기획 Gate
 
-- CargoStack 수량과 화차의 제품 표현 관계
+- `SX-DEC-015` CargoStack 수량과 화차의 제품 표현·점유 관계
 - 첫 세션에서 분기·LOAD·LIFO를 가르치는 순서
 - 실패 결과에서 강조할 원인·학습·재도전 정보
 - 실제 맵에 필요한 최소 시각 밀도와 카메라 정책
@@ -187,9 +187,9 @@ Issue #7은 다음을 구현·검증한다.
 ## READY_FOR_BUILD 조건
 
 - [x] Post-VS02 GitHub·Sheet `SYNCED`
-- [ ] 전체 기획 Coverage 감사 완료
+- [x] `SX-DEC-014`, `EV-USER-002`, `SX-AUD-004` GitHub·Sheet `SYNCED`
+- [ ] 전체 필수 기획 Decision 완료
 - [ ] MUST_FIX 0 또는 승인 보류
-- [ ] 필수 Grill Me Decision 완료
 - [ ] Issue #6·Plan·본책 책임 일치
 - [ ] 실제 main·Branch·exact file/API 재검수
 - [ ] 테스트·수동 검증·롤백 확정

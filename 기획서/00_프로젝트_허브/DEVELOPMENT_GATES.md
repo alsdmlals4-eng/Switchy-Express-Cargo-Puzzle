@@ -76,7 +76,7 @@ Status: `IN_PROGRESS`
 - [x] 분야 간 1차 충돌 적대적 검토
 - [x] `SX-DEC-014` Combo 의미 확정
 - [x] 안전 보완과 구형 Skill·Plan·Registry 참조 복구
-- [ ] `SX-DEC-014` canonical commit Sheet 동기화
+- [x] `SX-DEC-014`, `EV-USER-002`, `SX-AUD-004` canonical commit Sheet 동기화·12탭 재조회
 - [ ] `SX-DEC-015` 화물–화차 관계 확정
 - [ ] 후속 Grill Me Decision 필요성 재검증·완료
 - [ ] VS-03 범위·수용 기준·저장·UX 책임 최종 일치
