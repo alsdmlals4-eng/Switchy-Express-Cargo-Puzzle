@@ -6,7 +6,7 @@ baseline_main: 993c3ed1aaee172be52a8a8899685b419f7f6d97
 branch: batch/gmb-001
 draft_pr: 29
 batch_size: 10
-approved_count: 4/10
+approved_count: 5/10
 status: IN_PROGRESS · APPROVED_PENDING_BATCH_MERGE
 canonical_main_sync: NOT_YET_MERGED
 sheet_state: APPROVED_PENDING_BATCH_MERGE
@@ -29,7 +29,7 @@ codex_state: CODEX_NOT_READY
 | 2 | `SX-DEC-018` | `EV-USER-007` | 최초 준비 화면은 기관차 주변을 약간 확대하고 START 뒤 run 시작 전에 전체 맵으로 복귀하며 실제 운행은 고정 전체 맵 유지 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-preparation-zoom-full-map-camera-design.md` |
 | 3 | `SX-DEC-019` | `EV-USER-008` | 영구 진행은 표준 개인 기록과 성능 없는 꾸미기 해금·장착만 허용하며 기능 성장은 금지 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-records-cosmetic-only-progression-design.md` |
 | 4 | `SX-DEC-020` | `EV-USER-009` | 목표형 꾸미기는 목표 달성 또는 재화 구매로 해금하고 일부 꾸미기는 재화 전용으로 배치 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-goal-or-currency-cosmetic-unlocks-design.md` |
-| 5 | — | — | — | OPEN | — |
+| 5 | `SX-DEC-021` | `EV-USER-010` | 유효 run 기본 보상에 배송·Combo·신기록 bounded 보너스를 더하고 무조작·assist·중복 지급을 차단 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-bounded-run-cosmetic-currency-rewards-design.md` |
 | 6 | — | — | — | OPEN | — |
 | 7 | — | — | — | OPEN | — |
 | 8 | — | — | — | OPEN | — |
@@ -284,6 +284,82 @@ human_validation: NOT_RUN
 - 구현 목표 소비자: `기획서/00_프로젝트_허브/EXECUTABLE_PROMPTS/CODEX_GOAL_VS_03.md` — 10/10 사전감사에서 최종 전파
 - 검증 소비자: `기획서/50_제작_검증/PLAYTEST_PLAN.md` — 10/10 사전감사에서 최종 전파
 
+## SX-DEC-021 — bounded run 꾸미기 재화 보상
+
+### 사용자 승인
+
+사용자는 2026-08-02 Grill Me에서 권장안 C인 `유효 run 기본 보상 + 상한 있는 성과 보너스`를 승인했다.
+
+### 결정
+
+```text
+완료·무결성·ruleset 자격을 통과하고 성공 배송이 1회 이상인 일반 run에는 기본 재화를 지급한다.
+성공 배송, 최고 Combo 단계, authoritative 표준 신기록에 bounded 보너스를 더한다.
+생존 시간과 raw score에는 직접 비례 보상을 주지 않으며 run 총액 상한을 적용한다.
+first-run assist는 일반 계산에서 제외하고 실제 온보딩 완료 시 1회 고정 입문 보상만 허용한다.
+```
+
+### Evidence
+
+```yaml
+evidence_id: EV-USER-010
+evidence_type: CONFIRMED_USER_DECISION
+source: 2026-08-02 conversation · recommended option C approved
+status: RECORDED_IN_BATCH_BRANCH
+```
+
+### 파생 계약
+
+- 일반 reward 자격: completed, current ruleset, integrity VALID, non-debug, non-assisted, successful deliveries >=1.
+- 생존 시간·raw score는 직접 reward component가 아니다.
+- 초기 `TEST_VALUE`: base 10, delivery +2 each cap 10, Combo highest tier 3→2/5→5/8→8, any new standard record +5 once, run cap 30.
+- 여러 표준 기록이 한 run에서 갱신돼도 record bonus는 run당 1회다.
+- Combo tier는 누적 합산하지 않고 가장 높은 단계 하나만 지급한다.
+- first-run assist의 일반 reward는 0이며, 실제 온보딩 완료+배송 1회 시 intro grant 10 `TEST_VALUE`를 Profile당 1회만 지급한다.
+- reward event ID는 stable하고 balance+journal과 함께 atomic·idempotent하게 commit한다.
+- record bonus는 UI flag가 아니라 authoritative `RecordCommitResult`를 사용한다.
+- ResultPanel은 commit된 receipt만 표시하고 RESTART primary를 유지한다.
+- save 실패는 잔액과 journal을 함께 rollback하며 같은 event ID 재시도를 허용한다.
+- 가격·시간당 획득 목표·최종 경제 속도는 telemetry와 대표 가격 대조 전까지 `TEST_VALUE`다.
+- 실제 화폐·광고·일일 임무·시즌·gacha·온라인 sync는 별도 승인 전까지 범위 밖이다.
+
+### Formula v1 TEST_VALUE
+
+```yaml
+base_reward: 10
+delivery_reward_each: 2
+delivery_reward_cap: 10
+combo_tiers:
+  3: 2
+  5: 5
+  8: 8
+new_record_reward: 5
+new_record_reward_cap_per_run: 5
+run_total_cap: 30
+onboarding_intro_grant: 10
+```
+
+### 구현·검증 상태
+
+```yaml
+planning_spec: APPROVED
+implementation: NOT_STARTED
+automated_tests: NOT_RUN
+android: NOT_RUN
+human_validation: NOT_RUN
+economy_simulation: NOT_RUN
+```
+
+### 책임 문서
+
+- 설계: `docs/superpowers/specs/2026-08-02-bounded-run-cosmetic-currency-rewards-design.md`
+- TDD 계획: `docs/superpowers/plans/2026-08-02-bounded-run-cosmetic-currency-rewards.md`
+- 기반 설계: `docs/superpowers/specs/2026-08-02-goal-or-currency-cosmetic-unlocks-design.md`
+- 시스템 소비자: `기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md` — 10/10 사전감사에서 최종 전파
+- 결과 표현 소비자: `docs/superpowers/specs/2026-08-02-result-failure-feedback-design.md` — 10/10 사전감사에서 최종 전파
+- 구현 목표 소비자: `기획서/00_프로젝트_허브/EXECUTABLE_PROMPTS/CODEX_GOAL_VS_03.md` — 10/10 사전감사에서 최종 전파
+- 검증 소비자: `기획서/50_제작_검증/PLAYTEST_PLAN.md` — 10/10 사전감사에서 최종 전파
+
 ## Adversarial Findings
 
 | Finding ID | 유형 | 문제 | 처리 |
@@ -307,12 +383,17 @@ human_validation: NOT_RUN
 | `SX-AUD-004-F42` | DOUBLE_DEBIT_REWARD_RISK | 중복 event·save 재시도로 재화가 여러 번 차감되거나 보상이 중복될 위험 | transaction ID와 atomic idempotent 처리 |
 | `SX-AUD-004-F43` | CURRENCY_ONLY_POWER_FOMO_RISK | 재화 전용 item이 성능 우위·실제 화폐·기간 한정으로 오해될 위험 | cosmetic parity·영구 catalog·별도 승인 경계 |
 | `SX-AUD-004-F44` | ASSISTED_GOAL_FARM_RISK | first-run assist·debug·무결성 손상 run으로 목표를 쉽게 완료할 위험 | GoalEligibilityPolicy에서 제외 |
-| `SX-AUD-004-F45` | ECONOMY_PACING_RISK | 가격과 획득량 불일치로 무의미한 파밍 또는 즉시 고갈이 발생할 위험 | 가격을 TEST_VALUE로 두고 재화 획득 정책을 다음 Decision으로 분리 |
+| `SX-AUD-004-F45` | ECONOMY_PACING_RISK | 가격과 획득량 불일치로 무의미한 파밍 또는 즉시 고갈이 발생할 위험 | 가격·획득량을 TEST_VALUE로 두고 simulation·telemetry 대조 |
+| `SX-AUD-004-F46` | SHORT_IDLE_FARM_RISK | 생존 시간·종료 횟수만으로 재화를 얻어 무조작·짧은 반복 run이 최적화될 위험 | 완료+배송 1회 자격, 생존 직접 보상 금지 |
+| `SX-AUD-004-F47` | PERFORMANCE_REWARD_SNOWBALL_RISK | 배송·Combo·점수에 무제한 비례해 상위권 획득량이 폭증할 위험 | component cap·highest Combo tier·record once·run total cap |
+| `SX-AUD-004-F48` | DUPLICATE_GRANT_RETRY_RISK | 종료 중복·restart 연타·save 재시도에서 동일 run 보상이 여러 번 지급될 위험 | stable event ID와 balance+journal atomic idempotency |
+| `SX-AUD-004-F49` | ASSISTED_REWARD_CONTAMINATION_RISK | first-run assist가 일반 성과 재화와 경제 telemetry를 오염할 위험 | 일반 계산 제외, 실제 완료 시 1회 고정 intro grant 분리 |
+| `SX-AUD-004-F50` | RECORD_ORDER_UI_AUTHORITY_RISK | UI 신기록 연출이나 commit 전 예상값이 record bonus·잔액 권위가 될 위험 | RecordCommitResult 뒤 계산하고 committed receipt만 표시 |
 
-현재 P0/P1 open finding은 없다. 제품 구현, 일반 run 재화 획득, 가격 튜닝, 대표 자산, Profile runtime, Android 가독성, 사람 반응은 `NOT_STARTED / NOT_DECIDED / NOT_RUN`이다.
+현재 P0/P1 open finding은 없다. 제품 구현, 가격 튜닝, 대표 자산, Profile runtime, reward runtime, Android 가독성, 경제 simulation, 사람 반응은 `NOT_STARTED / NOT_RUN`이다.
 
 ## 다음 후보
 
-`SX-DEC-021` — 꾸미기 전용 재화를 의미 있는 run 기본 보상, 성과 비례 보너스, 또는 bounded 혼합 방식 중 어떤 구조로 획득할지.
+`SX-DEC-022` — 운행 중 난이도 상승을 완전히 숨길지, 정확한 수치로 공개할지, 또는 milestone 경고와 간결한 시각 신호로 알릴지.
 
-상태: `NEXT_GRILL_ME · GMB-001 SLOT 5`.
+상태: `NEXT_GRILL_ME · GMB-001 SLOT 6`.
