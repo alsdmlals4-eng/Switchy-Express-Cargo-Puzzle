@@ -24,6 +24,7 @@ human_validation: HUMAN_NOT_RUN
 5. 시험 수치가 사용자 확정 수치로 오인된다.
 6. 문서상 화차와 CargoStack의 관계가 불명확해 제품 표현이 임의 설계된다.
 7. 실제 자동 테스트 통과가 Android·사람 이해·재미까지 증명한 것으로 확대된다.
+8. 현재 상태를 간결하게 만들면서 과거 실행 계약·실패·복구 세부 이력을 삭제한다.
 
 ## 기준 사실
 
@@ -49,6 +50,7 @@ human_validation: HUMAN_NOT_RUN
 | SX-AUD-003-F08 | UNPROVEN_ASSUMPTION | 속도·연료·보상 값 | 밸런스 과확정 | RESEARCH_OR_TEST_REQUIRED | TEST_VALUE 유지 |
 | SX-AUD-003-F09 | PLAYER_EXPERIENCE_RISK | 자동 운행 판단 시간·온보딩 미검증 | 조작보다 UI 실수로 실패 | TEST_IN_VERTICAL_SLICE | UI·사람 테스트 |
 | SX-AUD-003-F10 | BLOCKED_UNVERIFIED | Android·성능·사람·soak | 품질 Gate 미완료 | DEFER_WITH_BOUNDARY | Issue #7 |
+| SX-AUD-003-F11 | PREVIOUS_CONTRACT_REGRESSION | 첫 PR diff가 Changelog와 VS-02 Goal을 축약 | 실패·중단·TDD 근거 손실 | MUST_FIX | 원문 이력·실행 계약 전문 복원 |
 
 ## 비판 재검증
 
@@ -76,6 +78,18 @@ human_validation: HUMAN_NOT_RUN
 
 판정: `RESEARCH_OR_TEST_REQUIRED / BLOCKED_UNVERIFIED`.
 
+### F11
+
+초기 정본 복구 diff는 현재 상태를 명료하게 만들었지만, 기존 Changelog의 상세 실패·복구 기록과 `CODEX_GOAL_VS_02.md`의 TDD·보호·중단 계약을 과도하게 축약했다. 이 정보는 Git 이력에만 의존하지 않고 현재 감사에서 직접 복원할 가치가 있다.
+
+판정: `MUST_FIX · CONFLICT_FIXED`.
+
+조치:
+
+- Changelog 과거 항목의 원문 세부 내용 복원
+- VS-02 Goal의 전체 역사 실행 계약 보존
+- 현재 완료 상태와 후속 VS-03 책임을 상단에서 명확히 표시
+
 ## 보호한 강점
 
 - 자동 운행·분기 선택·LOAD·LIFO 핵심 조합
@@ -87,6 +101,7 @@ human_validation: HUMAN_NOT_RUN
 - 승인된 프리미엄 캐주얼 3D 카툰 방향
 - Godot 4.7.1·Android landscape
 - 기존 Decision ID와 저장 호환성 보호 경계
+- 이전 실행 계약의 TDD·중단 조건·실패 복구 이력
 
 ## 실제 반영 범위
 
@@ -95,6 +110,7 @@ human_validation: HUMAN_NOT_RUN
 - 구현·검증 상태와 다음 Goal만 실제 main에 맞춤
 - 상세 수치는 `TEST_VALUE`
 - 중요 기획 방향은 사용자 승인 전 확정하지 않음
+- 역사 계약은 삭제·축약하지 않고 현재 상태와 분리해 보존
 
 ## 회귀 검증 요구
 
@@ -104,11 +120,13 @@ human_validation: HUMAN_NOT_RUN
 - `git diff --check`
 - PR changed-file inventory
 - exact HEAD Actions
+- Changelog 과거 항목 보존 대조
+- VS-02 TDD·보호·중단 계약 보존 대조
 - Sheet 12개 탭 readback
 - 콜드 스타트: 다음 작업이 Issue #6 이전의 총기획 감사로 복원되는지 확인
 
 ## 현재 판정
 
-`CONFLICT_FOUND · CANONICAL_RECOVERY_APPROVED · SHEET_SYNC_PENDING`
+`CONFLICT_FOUND · PRESERVATION_REGRESSION_FIXED · CANONICAL_RECOVERY_APPROVED · SHEET_SYNC_PENDING`
 
 정본 복구와 Sheet 재조회가 끝나기 전에는 다음 중요 기획 Grill Me를 시작하지 않는다.
