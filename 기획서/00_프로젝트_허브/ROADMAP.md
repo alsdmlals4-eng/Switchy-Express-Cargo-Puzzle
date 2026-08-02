@@ -31,7 +31,7 @@
 - [x] PR #34 closure `aac3ed87...`
 - [x] correct Sheet final 12-tab readback PASS
 
-## M2.5 — Definition of Ready · PASS PENDING CANONICAL SYNC
+## M2.5 — Definition of Ready · COMPLETE
 
 Audit: `SX-AUD-005`; Evidence: `EV-USER-016`.
 
@@ -47,19 +47,21 @@ Audit: `SX-AUD-005`; Evidence: `EV-USER-016`.
 - [x] exact acceptance/evidence locations
 - [x] target3/target100 separation
 - [x] known open P0/P1 implementation-planning finding 0 after fixes
-- [ ] canonical DoR merge
-- [ ] Sheet Audit/Evidence/ready closure
+- [x] PR #35 DoR merge `82fd3eeb1915e6ceedb2f5330b27e903064d6eb5`
+- [x] correct Sheet Audit/Evidence canonical readback PASS
+- [x] execution authority limited to `VS03-01`
 
-After closure:
+Current state:
 
 ```text
 G3P PASS · READY_FOR_BUILD
-initial authorization VS03-01 only
+Codex READY_FOR_BUILD · VS03-01_ONLY
+product implementation NOT_STARTED
 ```
 
 ## M3 — VS-03 Local Core · NOT_STARTED
 
-### VS03-01 — Run Lifecycle, Economy and Difficulty
+### VS03-01 — Run Lifecycle, Economy and Difficulty · READY_FOR_BUILD
 
 - [ ] minimal TestCase helpers using current runner
 - [ ] RunBalance·RunState·RunSummary·RunController
@@ -70,7 +72,7 @@ initial authorization VS03-01 only
 - [ ] DifficultyForecast/Event/Director
 - [ ] existing 9 suites regression
 
-### VS03-02 — Compact Footprint
+### VS03-02 — Compact Footprint · BLOCKED_BY_VS03_01
 
 - [ ] compact token state 0~8
 - [ ] rear=LIFO top and fractional path order
@@ -79,7 +81,7 @@ initial authorization VS03-01 only
 - [ ] legacy `train_cells()` fallback
 - [ ] compressed respawn exclusion integration
 
-### VS03-03 — Minimum Official Map Flow
+### VS03-03 — Minimum Official Map Flow · BLOCKED_BY_VS03_02
 
 - [ ] explicit MapDefinition reconstruction fields
 - [ ] strict MapCatalog and target3 manifest
@@ -91,7 +93,7 @@ initial authorization VS03-01 only
 
 Target100 generator expansion is not included. `F58` remains `NOT_MET`.
 
-### VS03-04 — Profile and Local Progression
+### VS03-04 — Profile and Local Progression · BLOCKED_BY_VS03_03
 
 - [ ] Profile schema v1 and atomic store
 - [ ] ProfileTransactionService single writer
@@ -101,7 +103,7 @@ Target100 generator expansion is not included. `F58` remains `NOT_MET`.
 - [ ] bounded cosmetic-currency reward
 - [ ] record→reward ordering and idempotency
 
-### VS03-05 — Product Surface
+### VS03-05 — Product Surface · BLOCKED_BY_VS03_04
 
 - [ ] PlayScene composition root and main integration
 - [ ] RailBoardView·SwitchView·TrainView·compact token view
@@ -111,7 +113,7 @@ Target100 generator expansion is not included. `F58` remains `NOT_MET`.
 - [ ] collection and discovered-map browser
 - [ ] Reduced Motion·safe area·48dp state tests
 
-### VS03-06 — Contextual Onboarding
+### VS03-06 — Contextual Onboarding · BLOCKED_BY_VS03_05
 
 - [ ] OnboardingState·normalized events
 - [ ] first LOAD/switch safe pause
@@ -120,7 +122,7 @@ Target100 generator expansion is not included. `F58` remains `NOT_MET`.
 - [ ] skip·timeout·Help·preferences
 - [ ] assisted/standard evidence separation
 
-### VS03-07 — Integration and Handoff
+### VS03-07 — Integration and Handoff · BLOCKED_BY_VS03_06
 
 - [ ] end-to-end first run→result→restart/new map
 - [ ] bounded telemetry
@@ -168,9 +170,8 @@ M3 종료는 local automated flow를 증명하는 것이다. Android·human·onl
 ## Current Execution Order
 
 ```text
-DoR canonical sync
-→ VS03-01
-→ VS03-02
+VS03-01 separate Codex execution
+→ VS03-02 after VS03-01 merge
 → VS03-03
 → VS03-04
 → VS03-05
@@ -181,4 +182,4 @@ DoR canonical sync
 → M6 online UGC
 ```
 
-Next batch/Decision remains `NOT_STARTED / NOT_ASSIGNED` unless a material player-facing choice appears.
+Next batch/Decision remains `NOT_STARTED / NOT_ASSIGNED` unless implementation reveals a material player-facing choice.
