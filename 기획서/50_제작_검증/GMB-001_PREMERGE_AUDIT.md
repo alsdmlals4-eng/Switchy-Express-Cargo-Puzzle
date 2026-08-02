@@ -7,143 +7,162 @@ batch: GMB-001
 decisions: SX-DEC-017~026
 evidence: EV-USER-006~015
 baseline_main: 993c3ed1aaee172be52a8a8899685b419f7f6d97
-status: IN_PROGRESS · CANON_CONSUMER_REPAIR
-sheet: 10/10_FROZEN_READBACK_PASS
+status: PASS · MERGE_AUTHORIZED_SUBJECT_TO_FINAL_EXACT_HEAD_AND_SHEET_READBACK
+sheet: 10/10_FROZEN_READBACK_PASS · FINAL_HEAD_RESYNC_REQUIRED
 product_implementation: NOT_STARTED
 codex_state: CODEX_NOT_READY
 ```
 
-## 목적
+## Result
 
-10개 사용자 승인을 대화·branch 문서·PR body에만 남기지 않고 GitHub 권위 문서·Issue·계획·Gate·올바른 Google Sheet 12탭에 같은 의미와 경계로 전파했는지 병합 전에 공격적으로 검증한다.
+`GMB-001`은 정확히 10개의 사용자 승인 Decision과 10개의 Evidence를 포함한다. 승인 의미·공통 권위·단계 범위·정본 소비자를 적대적으로 대조한 결과, 병합을 막는 알려진 P0/P1 설계 Finding은 없다.
+
+최종 merge authorization은 이 문서를 포함한 **최종 exact head**에서 다음이 다시 성공하고, 동일 SHA가 올바른 Sheet의 frozen batch summary에 기록된 뒤 효력을 갖는다.
+
+```text
+behind 0
+planning-only changed-file inventory
+Project Contract success
+Godot Tests success
+unresolved review threads 0
+REQUEST_CHANGES 0
+PR open + mergeable
+Sheet 12-tab final-head readback PASS
+```
 
 ## Batch Inventory
 
-| Slot | Decision | Evidence | Spec | Plan |
-|---:|---|---|---|---|
-| 1 | SX-DEC-017 | EV-USER-006 | result-failure-feedback-design | result-failure-feedback |
-| 2 | SX-DEC-018 | EV-USER-007 | preparation-zoom-full-map-camera-design | preparation-zoom-full-map-camera |
-| 3 | SX-DEC-019 | EV-USER-008 | records-cosmetic-only-progression-design | records-cosmetic-only-progression |
-| 4 | SX-DEC-020 | EV-USER-009 | goal-or-currency-cosmetic-unlocks-design | goal-or-currency-cosmetic-unlocks |
-| 5 | SX-DEC-021 | EV-USER-010 | bounded-run-cosmetic-currency-rewards-design | bounded-run-cosmetic-currency-rewards |
-| 6 | SX-DEC-022 | EV-USER-011 | difficulty-escalation-communication-design | difficulty-escalation-communication |
-| 7 | SX-DEC-023 | EV-USER-012 | same-seed-restart-curated-map-catalog-design | same-seed-restart-curated-map-catalog |
-| 8 | SX-DEC-024 | EV-USER-013 | automatic-map-discovery-and-reselection-design | automatic-map-discovery-and-reselection |
-| 9 | SX-DEC-025 | EV-USER-014 | hybrid-map-records-and-user-published-maps-design | hybrid-map-records-and-user-published-maps |
-| 10 | SX-DEC-026 | EV-USER-015 | non-economic-ugc-community-signals-design | non-economic-ugc-community-signals |
+| Slot | Decision | Evidence | Responsibility |
+|---:|---|---|---|
+| 1 | SX-DEC-017 | EV-USER-006 | result cause/action + neutral fallback |
+| 2 | SX-DEC-018 | EV-USER-007 | PREP zoom + FULL_MAP_READY + active full map |
+| 3 | SX-DEC-019 | EV-USER-008 | standard records + cosmetic-only progression |
+| 4 | SX-DEC-020 | EV-USER-009 | DEFAULT/DUAL_PATH/CURRENCY_ONLY unlocks |
+| 5 | SX-DEC-021 | EV-USER-010 | bounded eligible-run cosmetic-currency rewards |
+| 6 | SX-DEC-022 | EV-USER-011 | difficulty prewarning + persistent signal |
+| 7 | SX-DEC-023 | EV-USER-012 | same-map restart + official catalog target |
+| 8 | SX-DEC-024 | EV-USER-013 | undiscovered-first official selection + reselection |
+| 9 | SX-DEC-025 | EV-USER-014 | official scoped records + data-only user-map publication |
+| 10 | SX-DEC-026 | EV-USER-015 | non-economic UGC community signals |
 
-Exact filenames are under `docs/superpowers/specs/` and `docs/superpowers/plans/` with the `2026-08-02-` prefix.
+Specs and TDD plans are linked by `GMB-001_CANONICAL_DECISIONS.md` and the batch ledger.
 
-## Audit Attacks and Results
+## Audit Attacks
 
-### A1 — 승인 왜곡
+### 1. User-intent distortion
 
-- 모든 Decision은 사용자의 선택과 추가 조건을 별도 Evidence ID로 보존한다.
-- `SX-DEC-023`은 단순 retry seed 선택이 아니라 same-map retry와 100+ 공식 카탈로그 목표를 함께 기록한다.
-- `SX-DEC-025`는 기록 정책과 사용자 맵 제작·다른 사용자 플레이 요구를 함께 보존한다.
-- `SX-DEC-026`은 C안 그대로 비경제적 신호만 허용한다.
+- SX-DEC-023 preserves both same-map retry and the user’s 100+ official-map goal.
+- SX-DEC-025 preserves both global/per-map record policy and user-created map upload/playback.
+- SX-DEC-026 preserves recommended option C: non-economic signals only.
 
-판정: `PASS`.
+Result: `PASS`.
 
-### A2 — 단계 범위 폭증
+### 2. Scope explosion
 
-공식 100+ 맵, UGC editor/backend/moderation/community를 모두 즉시 VS-03에 넣으면 기존 생존 루프 구현이 온라인 플랫폼 구축으로 팽창한다.
+Putting official 100+ completion, full editor, backend, moderation, privacy, and community infrastructure into the immediate VS would replace the local survival slice with an online platform project.
 
-보정:
+Applied staging:
 
-- VS-03: result/camera/local records/cosmetics/rewards/difficulty/same-map retry/최소 3 official maps/official local per-map records.
-- Production/Online: official 100+ target, full UGC editor/publication/backend/moderation/community.
+- VS-03 local: result, camera, local Profile/economy, difficulty, same-map retry, minimum 3 official maps, local official global/per-map records.
+- Production/Online: official target 100+, full UGC editor/publication/backend/moderation/community.
 
-판정: `AUTO_FIX_APPLIED`.
+Result: `AUTO_FIX_APPLIED · DECISION_MEANING_PRESERVED`.
 
-### A3 — 기록 공정성
+### 3. Authority confusion
 
-- official global record는 all-official-map 개인 최고값이며 cross-map 온라인 경쟁 leaderboard가 아니다.
-- 공정한 비교 단위는 official per-map record다.
-- UGC record는 exact immutable publication revision으로 분리한다.
-- 한 run의 global+per-map 동시 갱신은 record reward를 한 번만 발생시킨다.
+UI·camera·Tween·animation·onboarding·result·browser·editor·community view remain non-authoritative. Domain services and immutable receipts own run, record, reward, publication, and signal commits.
 
-판정: `PASS_WITH_RUNTIME_FOLLOWUP`.
+Result: `PASS`.
 
-### A4 — 경제 오염
+### 4. Record fairness
 
-- editor test/local draft/UGC play/community signal은 official reward·goal·discovery·record를 변경하지 않는다.
-- `SX-DEC-026`의 favorite/play/recommend/staff pick은 wallet·unlock·creator payout에 연결하지 않는다.
+- official global record = personal best across eligible official maps, not a fair cross-map online leaderboard.
+- fair comparison unit = official per-map record.
+- UGC record = exact immutable publication revision.
+- global+per-map updates are atomic and produce at most one record reward component.
 
-판정: `PASS_WITH_ARCHITECTURAL_TEST_REQUIRED`.
+Result: `PASS_WITH_RUNTIME_FOLLOWUP`.
 
-### A5 — 권위 혼선
+### 5. Official progression contamination
 
-UI·animation·camera·tutorial·result·browser·editor·community view는 gameplay, record, reward, publication, signal aggregate 권위를 갖지 않는다.
+UGC draft/test/play/community signals cannot mutate official map count, discovery, records, goals, rewards, wallet, unlocks, or official selection weight.
 
-판정: `PASS`.
+Result: `PASS_WITH_ARCHITECTURAL_TEST_REQUIRED`.
 
-### A6 — identity 충돌
+### 6. Identity and replay
 
-분리 대상:
+Official map, UGC revision, run, record transaction, reward event, selection request, upload request, and signal request identities are separate. Mutations are atomic/idempotent or replay-safe.
 
-```text
-official map identity
-UGC publication revision identity
-run identity
-record transaction identity
-reward event identity
-selection request identity
-upload request identity
-community signal request identity
-```
+Result: `PASS_WITH_IMPLEMENTATION_TEST_REQUIRED`.
 
-판정: `PASS_WITH_IMPLEMENTATION_TEST_REQUIRED`.
+### 7. Generator diversity overclaim
 
-### A7 — generator 다양성 과장
+The current generator does not substantiate 100 unique official layouts. Fallback and duplicate layouts do not count.
 
-현재 generator가 약 16 topology 조합만 제공한다는 분석을 숨기지 않는다. fallback·duplicate layout은 100+ 목표에서 제외한다.
+Result: `F58 NOT_MET · PLANNING_MERGE_ALLOWED · PRODUCTION_GATE_REQUIRED`.
 
-판정: `F58 NOT_MET · MERGE_ALLOWED_AS_PLANNING_FOLLOWUP`.
+### 8. Endless-game metric mismatch
 
-### A8 — endless game metric mismatch
+Generic completion rate is not used for endless survival UGC. Qualified play is a minimum anti-spam activity receipt, not a quality score.
 
-Switchy Express는 무한 생존형이므로 일반 stage completion rate를 UGC 품질 지표로 사용하지 않는다. `qualified play`는 실제 활동의 최소 anti-spam 자격일 뿐 품질 점수가 아니다.
+Result: `F73 FIXED_IN_PLAN`.
 
-판정: `F73 AUTO_FIXED`.
+### 9. Moderation/privacy overclaim
 
-### A9 — moderation/privacy 과장
+Client mocks and local UI do not prove online publication, moderation, anti-abuse, privacy, or two-account readiness.
 
-client mock·local UI로 online, moderation, anti-abuse, privacy readiness를 주장하지 않는다. 실제 backend·두 계정·quarantine·event rebuild·privacy review가 필요하다.
+Result: `PASS_WITH_PRODUCTION_GATES`.
 
-판정: `PASS_WITH_PRODUCTION_GATES`.
+### 10. Historical preservation
 
-### A10 — 역사 손실
+SX-DEC-001~016 and prior implementation evidence remain in current canon. The unrelated Sheet remains untouched; `30_세계_서사` remains unchanged.
 
-- SX-DEC-001~016과 기존 구현 evidence를 보존한다.
-- 관련 없는 `30_세계_서사` Sheet 행을 변경하지 않는다.
-- 다른 프로젝트의 `19Ff...` Sheet를 변경하지 않는다.
+Result: `PASS`.
 
-판정: `PASS`.
+### 11. Stale consumers
 
-### A11 — stale consumer
+Initial P1 stale references (`0/10`, `NEXT SX-DEC-017`) were found in current hub, Active Context, Decision Registry, Roadmap, Gates, protocol, total audit, Vertical Slice contract/current plan, and Codex goal.
 
-초기 검사에서 다음 문서가 `GMB-001 0/10`·`NEXT SX-DEC-017`을 가리켰다.
+Repaired consumers:
 
-- START_HERE
-- ACTIVE_CONTEXT
-- CURRENT_CONFIRMED_DECISIONS
-- ROADMAP
-- DEVELOPMENT_GATES
-- TOTAL_PLANNING_AUDIT
+- `START_HERE.md`
+- `ACTIVE_CONTEXT.md`
+- `CURRENT_CONFIRMED_DECISIONS.md`
+- `GMB-001_CANONICAL_DECISIONS.md`
+- `ROADMAP.md`
+- `DEVELOPMENT_GATES.md`
+- `TOTAL_PLANNING_AUDIT.md`
+- `VERTICAL_SLICE_CONTRACT.md`
 - current Vertical Slice plan
-- CODEX_GOAL_VS_03
-- GRILL_ME_BATCH_MERGE_PROTOCOL
+- `CODEX_GOAL_VS_03.md`
+- `GRILL_ME_BATCH_MERGE_PROTOCOL.md`
 
-판정: `P1 STALE_REFERENCE · AUTO_FIX_IN_PROGRESS`.
+GitHub code-search results that still show old text point to historical indexed commits, not the current batch head.
 
-### A12 — 승인되지 않은 구현 잠입
+Result: `P1 CLOSED`.
 
-현재 batch의 허용 변경은 planning 문서뿐이다. product code·Scene·Resource·asset·runtime data가 있으면 병합을 중단한다.
+### 12. Unauthorized implementation
 
-판정: `PENDING_FINAL_CHANGED_FILE_INVENTORY`.
+Preliminary changed-file inventory at head `1738e637fe6a8169dda2ff0158d6ca45c56e7949` contained 33 files, all under planning/spec/canon paths. Product code, Scene, Resource, asset, and runtime data changes: 0.
 
-## Google Sheet Audit
+Result: `PASS_PRELIMINARY · FINAL_HEAD_RECHECK_REQUIRED`.
+
+## Preliminary Exact-Head Evidence
+
+Head: `1738e637fe6a8169dda2ff0158d6ca45c56e7949`
+
+- compare to main: ahead 52, behind 0
+- changed files: 33 planning documents
+- product files: 0
+- Project Contract run 193: success
+- Godot Tests run 184: success
+- unresolved review threads: 0
+- REQUEST_CHANGES: 0
+- PR: open, Draft, mergeable
+
+This evidence justified closing the content audit. Because this audit/ledger update creates a new head, all technical checks and Sheet final-head sync must be rerun before merge.
+
+## Google Sheet Evidence
 
 Workbook:
 
@@ -154,53 +173,54 @@ Locale: ko_KR
 Timezone: Asia/Seoul
 ```
 
-10/10 frozen pre-audit readback:
+Frozen 10/10 readback:
 
-- 12 tabs reread: PASS
-- SX-DEC-017~026 present: PASS
-- EV-USER-006~015 present: PASS
-- branch head recorded: PASS at readback time
-- historical rows preserved: PASS
-- `30_세계_서사` unchanged: PASS
-- wrong Sheet untouched: PASS
-- status remains pending/frozen, not prematurely SYNCED: PASS
+- all 12 tabs reread: PASS
+- SX-DEC-017~026: present
+- EV-USER-006~015: present
+- historical rows: preserved
+- `30_세계_서사`: unchanged
+- wrong `19Ff...` Sheet: untouched
+- state: pending/frozen, not prematurely SYNCED
 
-Final branch-head commit changes after this readback require one final re-sync before merge.
+The final branch head after all audit commits must replace the batch-summary head before merge.
 
-## Open Evidence — Not Merge-Blocking for Planning
+## Open Evidence — Explicitly Not Passed
 
-- runtime feature tests
-- Android device evidence
-- localization and accessibility
-- economy simulation
-- map target 3 and target 100 audits
-- three-map discovery flow
-- 100-entry official browser
-- UGC editor/backend/server validation
-- moderation operations
-- privacy review
-- two-account playback
-- community signal backend and anti-abuse
-- 5명+ comprehension
+```yaml
+runtime_features: NOT_RUN
+android: NOT_RUN
+localization: NOT_RUN
+accessibility: NOT_RUN
+human_5_plus: NOT_RUN
+economy_simulation: NOT_RUN
+official_map_target_3: NOT_RUN
+official_map_target_100: NOT_RUN
+three_map_flow: NOT_RUN
+official_browser_100: NOT_RUN
+ugc_editor: NOT_STARTED
+ugc_backend: NOT_STARTED
+ugc_server_validation: NOT_RUN
+moderation: NOT_RUN
+privacy: NOT_RUN
+two_account_playback: NOT_RUN
+community_backend: NOT_STARTED
+anti_abuse: NOT_RUN
+```
 
-These remain `NOT_STARTED / NOT_RUN`; none may be called PASS by this planning merge.
+Planning merge must not be represented as any of these evidence gates passing.
 
-## Merge Gate
+## Final Merge Gate
 
-Required before authorization:
+- [x] exactly 10 decisions/evidence
+- [x] no SX-DEC-027
+- [x] user intent preserved
+- [x] current consumers repaired
+- [x] VS/Production staging fixed
+- [x] no known open P0/P1 design finding
+- [x] preliminary behind 0 / planning-only inventory / CI / review checks
+- [ ] final exact-head checks after this audit commit
+- [ ] final-head Sheet sync and 12-tab readback
+- [ ] expected-head protected canonical merge
 
-- [x] exactly 10 Decision/Evidence pairs
-- [x] batch frozen; no SX-DEC-027
-- [x] Sheet 12-tab frozen readback
-- [ ] stale current consumers repaired
-- [ ] final exact head captured and Sheet re-synced
-- [ ] compare to main behind 0
-- [ ] changed files planning-only
-- [ ] Project Contract success
-- [ ] Godot Tests success
-- [ ] unresolved review threads 0
-- [ ] REQUEST_CHANGES 0
-- [ ] PR open, mergeable, exact-head protected
-- [ ] P0/P1 open findings 0
-
-Final result will be recorded as `PASS · MERGE_AUTHORIZED` only after these checks run on the final head.
+When the last three items pass, no further user Decision is required for GMB-001 canonical merge.
