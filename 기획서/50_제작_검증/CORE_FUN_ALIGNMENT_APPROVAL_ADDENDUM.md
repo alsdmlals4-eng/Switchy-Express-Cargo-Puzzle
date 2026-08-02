@@ -65,10 +65,26 @@ docs/superpowers/plans/2026-08-03-vs03-05a-minimal-playable-core-surface.md
 - VS03-04는 Profile와 장기 진행만 소유한다.
 - VS03-05B는 result·collection·map browser presentation만 소유한다.
 
+## Canonical merge protocol
+
+```text
+PR #39 exact head
+→ planning/docs/project-Skill inventory only
+→ behind main 0
+→ Project Contract PASS
+→ Godot Tests PASS
+→ review threads 0
+→ REQUEST_CHANGES 0
+→ expected-head merge
+→ correct Sheet SX-AUD-007 / EV-USER-017~018 sync and 12-tab readback
+→ small Sync Closure PR with final merge SHA/current state
+→ final Sheet resync/readback
+```
+
 ## 현재 보호 경계
 
 - 현재 구현 권위는 계속 `VS03-02_ONLY`다.
-- PR #39 canonical merge·Sheet synchronization 전 main 정본은 변경 완료로 표시하지 않는다.
+- PR #39 canonical merge·Sheet synchronization 전 main 정본은 완료로 표시하지 않는다.
 - 제품 코드·테스트·Scene·Profile·Sheet는 PR #39 branch에서 변경하지 않는다.
 - 다음 제품 구현은 PR #39 closure 뒤 최신 main에서 별도 VS03-02 branch로 시작한다.
 - Android·human·economy·target100·online UGC 증거는 계속 `NOT_RUN / NOT_MET`다.
