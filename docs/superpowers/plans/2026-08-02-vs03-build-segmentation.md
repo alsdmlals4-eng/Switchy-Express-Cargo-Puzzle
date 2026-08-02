@@ -3,12 +3,13 @@
 ```yaml
 audit_id: SX-AUD-005
 evidence_id: EV-USER-016
-status: PLANNING_ONLY · READY_FOR_BUILD_CANDIDATE
+status: READY_FOR_BUILD · VS03-01_ONLY
+canonical_merge: 82fd3eeb1915e6ceedb2f5330b27e903064d6eb5
 execution_order: VS03-01_TO_VS03-07
 product_implementation: NOT_STARTED
 ```
 
-> Implementation must use the repository's current custom test runner and the execution architecture in `docs/superpowers/specs/2026-08-02-vs03-execution-architecture-design.md`. This plan supersedes conflicting file paths, test commands, runner APIs, and package ordering in older Decision-specific plans while preserving their approved behavior.
+> Implementation must use the repository's current custom test runner and the execution architecture in `docs/superpowers/specs/2026-08-02-vs03-execution-architecture-design.md`. This plan supersedes conflicting file paths, test commands, runner APIs, and package ordering in older Decision-specific plans while preserving their approved behavior. Current execution authority applies to `VS03-01` only.
 
 ## 1. Universal Gate for Every Package
 
@@ -44,6 +45,8 @@ Each package PR body must list:
 - explicit `NOT_RUN` evidence
 
 ## 2. VS03-01 — Authoritative Run Lifecycle and Difficulty Core
+
+Status: `READY_FOR_BUILD · NOT_STARTED`
 
 ### Decisions
 
@@ -112,6 +115,8 @@ No save, scene, resource, asset, or catalog changes. Revert PR as one unit.
 
 ## 3. VS03-02 — Compact Tokens and Spawn Occupancy Seam
 
+Status: `BLOCKED_BY_VS03_01`
+
 ### Decisions
 
 `SX-DEC-015` plus protected existing spawn rules.
@@ -172,6 +177,8 @@ Provider is optional, so reverting restores previous behavior without changing e
 ---
 
 ## 4. VS03-03 — Map Identity, Target-3 Catalog, Fresh Session, Restart and Selection
+
+Status: `BLOCKED_BY_VS03_02`
 
 ### Decisions
 
@@ -249,6 +256,8 @@ Catalog manifest and all session/catalog code revert together. Runtime generatio
 ---
 
 ## 5. VS03-04 — Profile Transaction Foundation, Records, Cosmetics, Unlocks and Rewards
+
+Status: `BLOCKED_BY_VS03_03`
 
 ### Decisions
 
@@ -351,6 +360,8 @@ No product UI depends on new assets yet. Revert PR before any released Profile. 
 
 ## 6. VS03-05 — Product Scene, Camera, HUD, Result and Local Browsers
 
+Status: `BLOCKED_BY_VS03_04`
+
 ### Decisions
 
 Presentation portions of `SX-DEC-015`, `017~024`, local `025`.
@@ -428,6 +439,8 @@ tests/run_tests.gd
 
 ## 7. VS03-06 — Contextual First-Run Onboarding
 
+Status: `BLOCKED_BY_VS03_05`
+
 ### Decisions
 
 `SX-DEC-016`, assisted evidence boundaries from `019~022`.
@@ -481,6 +494,8 @@ Disable/skip onboarding and assist while preserving standard run. No tutorial-on
 ---
 
 ## 8. VS03-07 — End-to-End Integration and Evidence Handoff
+
+Status: `BLOCKED_BY_VS03_06`
 
 ### Goal
 
@@ -560,10 +575,9 @@ Stop the current package and do not proceed when:
 
 ## 11. Initial Build Authorization
 
-After canonical DoR merge and Sheet readback:
-
 ```text
-READY_FOR_BUILD applies to VS03-01 only.
+G3P PASS · READY_FOR_BUILD
+Codex READY_FOR_BUILD applies to VS03-01 only.
 VS03-02..07 become eligible sequentially after the prior package merge Gate.
 No new product Decision is required unless implementation reveals a material player-facing choice or changes approved meaning.
 ```
