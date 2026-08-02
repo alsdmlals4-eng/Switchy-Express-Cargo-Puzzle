@@ -11,9 +11,10 @@
 - 자동 검증 기반: Godot headless `9 cases / 6915 assertions / 0 failures`
 - GMB-001: `CLOSED · SX-DEC-017~026`
 - Decision merge: PR #29 · `9b63421a5ab4d57adbfcf69d2b6e1bf8e3d17496`
-- Definition of Ready: `SX-AUD-005 · PASS_WITH_PLANNING_FIXES`
+- Definition of Ready: `SX-AUD-005 · PASS · SYNCED`
+- DoR merge: PR #35 · `82fd3eeb1915e6ceedb2f5330b27e903064d6eb5`
 - DoR evidence: `EV-USER-016`
-- Codex: `READY_FOR_BUILD_PENDING_CANONICAL_SYNC`
+- Codex: `READY_FOR_BUILD · VS03-01_ONLY`
 - 최초 구현 package: `VS03-01 · run lifecycle/economy/difficulty`
 - 제품 구현: `NOT_STARTED`
 - 목표 플랫폼: Android / Google Play, 가로형
@@ -45,7 +46,7 @@ VS03-01 authoritative run lifecycle/economy/difficulty
 → VS03-07 end-to-end integration/evidence handoff
 ```
 
-공통 hotspot package는 병렬로 진행하지 않으며, 각 package는 이전 package merge 뒤에 시작합니다.
+공통 hotspot package는 병렬로 진행하지 않으며, 각 package는 이전 package merge 뒤에 시작합니다. 현재 실행 권위는 `VS03-01` 하나뿐입니다.
 
 ## DoR 핵심 보정
 
@@ -63,7 +64,8 @@ VS03-01 authoritative run lifecycle/economy/difficulty
 - GitHub Markdown·JSON이 상세 책임 원본입니다.
 - Google Sheets는 사용자용 GDD 작업면이며 GitHub 정본을 대체하지 않습니다.
 - ChatGPT는 기획·구조·데이터 설계·Issue·Codex Goal·적대적 검토를 담당합니다.
-- Codex는 canonical sync 후 승인된 package만 구현합니다.
+- Codex는 승인된 package만 구현합니다.
+- `READY_FOR_BUILD`는 구현 완료가 아니며, 별도 Codex 작업이 시작되기 전 제품 구현은 `NOT_STARTED`입니다.
 - 실행하지 않은 runtime·Android·사람·온라인 테스트를 PASS로 보고하지 않습니다.
 - 중요 player-facing choice가 새로 발생할 때만 Decision/Grill Me를 추가합니다.
 - wrong `19Ff...` Sheet는 수정하지 않습니다.
