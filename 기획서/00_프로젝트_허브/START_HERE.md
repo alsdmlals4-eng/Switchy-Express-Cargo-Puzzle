@@ -10,18 +10,18 @@
 | 엔진 | Godot 4.7.1 / GDScript |
 | 화면 | 가로형 |
 | 현재 단계 | `VERTICAL_SLICE_IN_PROGRESS · VS02_RUNTIME_PASSED` |
-| 코어 상태 | `CORE_CONFIRMED · SX-DEC-014_SYNCED · SX-DEC-015_CONFIRMED` |
+| 코어 상태 | `CORE_CONFIRMED · SX-DEC-014/015_SYNCED` |
 | 제품 구현 | `RAIL_TRAIN_CARGO_LIFO_IMPLEMENTED` |
 | 현재 Gate | `G2 PASS · G3 PARTIAL · G3P IN_PROGRESS` |
 | 최근 제품 구현 | PR #13 · `4e435a1a6d10ab146197671049da80709fd18c1f` |
-| 최근 동기화 종료 | PR #19 · `11c6914b0fdcfb946c85e303d05017a77b969e55` |
+| 최근 기획 정본 | PR #24 · `b8742253247da25a0190f80b898b9bbe6ec6a1cf` |
 | 테스트 | Godot headless `9 cases · 6915 assertions · 0 failures` |
+| Sheet | `SX-DEC-015 · EV-USER-003 · SX-AUD-004 · 12탭 readback PASS · SYNCED` |
 | 현재 Work Mode | `TOTAL_PLANNING · REVIEW` |
 | Codex | `CODEX_NOT_READY` |
 | 현행 감사 | `SX-AUD-004 · TOTAL_PLANNING_AUDIT.md` |
-| 현재 Decision | `SX-DEC-015 compact wagon tokens · Sheet 동기화 대기` |
 | 다음 Grill Me | `SX-DEC-016 첫 세션 온보딩 방식` |
-| Sheet | Adapter의 `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo` |
+| Sheet ID | Adapter의 `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo` |
 | Base | v9.4.0 (`a728712cb776ec98f4875914a580fcf7d0156593`) |
 
 ## 한 문장 플레이어 약속
@@ -32,7 +32,7 @@
 
 > `Combo`는 한 번의 역 도착에서 stack top부터 연속 하역한 동일 화물 타입의 개수이며, 빠른 연속 배송은 별도 `speed_bonus`다.
 
-> 화물 1개는 작은 토큰형 화차 1개로 표시한다. 최대 8개 token chain은 약 2.18칸으로 압축하며 가장 뒤 token이 다음 LIFO 하역 대상이다.
+> 화물 1개는 작은 토큰형 화차 1개로 표시한다. 최대 8개 token chain은 권장 시험값 약 2.18칸으로 압축하며 가장 뒤 token이 다음 LIFO 하역 대상이다.
 
 ## 현재 읽기 순서
 
@@ -66,7 +66,7 @@ Post-VS02 구현·정본 복구의 역사 감사는 `POST_VS02_ADVERSARIAL_AUDIT
 - `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE`: IN_PROGRESS
   - Post-VS02 GitHub·Sheet 동기화: PASSED
   - Combo 의미·정본·Sheet: `SX-DEC-014 SYNCED`
-  - compact wagon token 의미: `SX-DEC-015 CONFIRMED · SHEET_PENDING`
+  - compact wagon token 의미·정본·Sheet: `SX-DEC-015 SYNCED`
   - 온보딩 방식: `SX-DEC-016 NEXT`
   - 후속 Decision·Definition of Ready: 진행 중
 - `G4_TARGET_QUALITY_SLICE`: NOT_STARTED
@@ -74,12 +74,11 @@ Post-VS02 구현·정본 복구의 역사 감사는 `POST_VS02_ADVERSARIAL_AUDIT
 
 ## 현재 작업
 
-1. `SX-DEC-015`를 exact HEAD 검증·병합
-2. 같은 Decision·Evidence·commit을 Sheet에 기록·재조회
-3. `SX-DEC-016` 첫 세션 온보딩 방식을 Grill Me로 확정
-4. 실패 학습 정보의 별도 Decision 필요성 재검증
-5. 상세 수치는 `RECOMMENDED_DEFAULT / TEST_VALUE`로 설계
-6. 필수 기획 Gate가 닫힌 뒤 VS-03 Codex 구현 계약 확정
+1. `SX-DEC-016` 첫 세션 온보딩 방식을 Grill Me로 확정
+2. 승인 내용을 정본·Issue #6·Plan·VS-03 Goal·Sheet에 같은 ID로 반영
+3. 실패 학습 정보의 별도 Decision 필요성 재검증
+4. 상세 수치는 `RECOMMENDED_DEFAULT / TEST_VALUE`로 설계
+5. 필수 기획 Gate가 닫힌 뒤 VS-03 Codex 구현 계약 확정
 
 ## 다음 구현 후보
 
