@@ -1,11 +1,11 @@
 {
   "artifact_role": "PROJECT_BASE_ADAPTER",
   "base_release": {
-    "release_commit": "3f2c4a624d302b704c1b5322eb5c9f34ad55abb9",
-    "release_evidence_commit": "ff117d24d5bdb121314e109a6aa9b4f552e0fdc1",
-    "finalization_commit": "87a0b54c2847ce4b685879209205957c170cc1cd",
+    "release_commit": "7dd1a4f80388bc5faca767ff74a3eb32dc9d0ac8",
+    "release_evidence_commit": "da33a350d61b8adc52df97fccc7001708a933370",
+    "finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
     "repository": "alsdmlals4-eng/Base",
-    "version": "9.4.1"
+    "version": "9.4.3"
   },
   "compatibility": {
     "cycle": "ONE_CYCLE",
@@ -94,6 +94,28 @@
       "base_validator_path": "tools/check_external_ai_worktree_contract.py",
       "base_release_lock": "base-v9.4.1.lock.json",
       "actual_external_ai_worktree_execution": "NOT_RUN"
+    },
+    "managing-project-intake-and-work-contract": {
+      "first_prompt_governance": {
+        "actual_project_instruction_execution": "NOT_RUN",
+        "approval_reuse": "REUSE_EXACT_APPROVAL_REFERENCE",
+        "base_contract_source": "skills/managing-project-intake-and-work-contract/SKILL.md",
+        "base_release_finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
+        "base_release_lock": "base-v9.4.3.lock.json",
+        "direction_anchor_reference": "skills/managing-project-intake-and-work-contract/references/first-prompt-direction-anchoring.md",
+        "instruction_flow": [
+          "route",
+          "first-prompt",
+          "contract",
+          "clarify"
+        ],
+        "l0_exceptions": [
+          "TYPO",
+          "OBVIOUS_FORMAT",
+          "IDENTICAL_VALIDATION_RERUN"
+        ],
+        "unconfirmed_state": "AWAITING_USER_CONFIRMATION"
+      }
     }
   },
   "skill_registry": {
@@ -122,6 +144,11 @@
     },
     {
       "command": "python tests/test_base_shared_external_ai_adapter.py",
+      "status": "REQUIRED_ON_PULL_REQUEST",
+      "evidence_commit": null
+    },
+    {
+      "command": "python tests/test_base_v943_first_prompt_adoption.py",
       "status": "REQUIRED_ON_PULL_REQUEST",
       "evidence_commit": null
     }
