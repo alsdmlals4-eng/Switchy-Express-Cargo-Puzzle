@@ -3,13 +3,14 @@
 ```yaml
 audit_id: SX-AUD-005
 evidence_id: EV-USER-016
-status: PASS_WITH_PLANNING_FIXES · READY_FOR_BUILD_CANDIDATE
+status: PASS_WITH_PLANNING_FIXES · READY_FOR_BUILD · SYNCED
 review_date: 2026-08-02
 product_baseline: 4e435a1a6d10ab146197671049da80709fd18c1f
 planning_baseline: aac3ed870a8ff5e5c5f38d647f8a3ae91f8c0574
+canonical_merge: 82fd3eeb1915e6ceedb2f5330b27e903064d6eb5
 product_implementation: NOT_STARTED
-sheet_state: CANONICAL_SYNC_PENDING
-codex_state: READY_FOR_BUILD_PENDING_CANONICAL_SYNC
+sheet_state: CANONICAL_READBACK_PASS
+codex_state: READY_FOR_BUILD
 first_authorized_package: VS03-01
 ```
 
@@ -17,7 +18,7 @@ first_authorized_package: VS03-01
 
 저장소 실제 코드, test runner, current plans, Issue #6, GMB-001 canon을 대조한 결과, 최초 상태는 `NOT_READY`였다. 기존 승인 계획에는 실행자가 그대로 복사할 경우 발생하는 P1 충돌이 있었다.
 
-본 감사에서 제품 의도를 바꾸지 않는 planning fix를 적용했다.
+제품 의도를 바꾸지 않는 planning fix를 적용하고 PR #35·올바른 Sheet에 canonical sync했다.
 
 - 실제 custom test runner로 테스트 계약 통일
 - compact footprint와 기존 `train_cells()` 점유 가정 사이에 backward-compatible seam 정의
@@ -30,9 +31,15 @@ first_authorized_package: VS03-01
 - 잘못된/존재하지 않는 파일 경로를 실행 정본에서 교정
 - rollback과 evidence 위치 고정
 
-이 문서, 실행 아키텍처, build segmentation이 canonical merge되고 올바른 Sheet에 같은 Audit/Evidence ID와 merge SHA가 반영된 뒤 `G3P PASS · READY_FOR_BUILD`로 승격할 수 있다.
+현재 판정:
 
-승격 범위는 `VS03-01`뿐이다. 제품 구현은 아직 시작되지 않았다.
+```text
+G3P PASS · READY_FOR_BUILD
+Codex READY_FOR_BUILD · VS03-01_ONLY
+product implementation NOT_STARTED
+```
+
+승격은 전체 VS-03을 한 번에 구현하라는 뜻이 아니다. `VS03-01`만 최초 실행 권위를 가지며 VS03-02~07은 이전 package merge까지 차단된다.
 
 ## 2. 검토한 실제 기준
 
@@ -192,6 +199,21 @@ Current product save implementation: `none`.
 
 ## 8. Exact Acceptance Evidence
 
+### Planning/DoR evidence
+
+- PR #35 exact head: `cb2946e64803698fcbf947e31a09826ac6f73cc2`
+- merge SHA: `82fd3eeb1915e6ceedb2f5330b27e903064d6eb5`
+- compare: ahead 13 / behind 0
+- changed files: 13 planning/docs/project-skill files
+- product files: 0
+- Project Contract run 199: success
+- Godot Tests run 188: success
+- review threads: 0
+- REQUEST_CHANGES: 0
+- correct Sheet canonical readback: PASS
+- historical Decision SHA rows preserved
+- `30_세계_서사`: unchanged
+
 ### Package automated evidence
 
 - tests under package-specific directories
@@ -233,14 +255,8 @@ Rollback cannot change rail/LIFO/Combo/record/reward approved semantics.
 
 ### Authorized local build
 
-- run economy/difficulty
-- compact token/footprint
-- target3 official maps
-- same-map restart and local selection
-- local Profile/records/cosmetics/unlocks/rewards
-- camera/HUD/result/local browsers
-- contextual onboarding
-- bounded local telemetry
+- VS03-01 run economy/difficulty only as the initial package
+- later sequential packages for compact token/footprint, target3 maps, local Profile/progression, product UI, onboarding, integration
 
 ### Not authorized in VS-03
 
@@ -264,17 +280,16 @@ Rollback cannot change rail/LIFO/Combo/record/reward approved semantics.
 - [x] composition/session ownership
 - [x] authoritative frame order
 - [x] user instruction to proceed (`EV-USER-016`)
-- [ ] canonical PR merge
-- [ ] correct Sheet Audit/Evidence/ready status + final readback
+- [x] canonical PR #35 merge
+- [x] correct Sheet Audit/Evidence status + canonical readback
+- [x] Sync Closure metadata prepared
 
-## 12. Promotion Rule
-
-After the final two items pass:
+## 12. Promotion Result
 
 ```yaml
 G3P: PASS · READY_FOR_BUILD
 codex_state: READY_FOR_BUILD
-initial_package: VS03-01
+initial_package: VS03-01_ONLY
 product_implementation: NOT_STARTED
 ```
 
