@@ -1,11 +1,17 @@
 # Codex Goal — VS-02 기차·화차·화물·스테이션·LIFO
 
-Status: `READY_FOR_BUILD`
-GitHub Issue: `#5`
+Status: `COMPLETE · HISTORICAL_EXECUTION_CONTRACT`
+GitHub Issue: `#5 · CLOSED`
 Parent Epic: `#3`
 Blocked by: `#4` — `COMPLETED`
-Implementation baseline: `801632949d28564528e38d83dac59cccc6f06fb2`
+Original implementation baseline: `801632949d28564528e38d83dac59cccc6f06fb2`
+Implementation PR: `#12`
+Implementation main: `0738d9c10e431a43e7a2f34590369c3f17d1f8a5`
+Runtime recovery PR: `#13`
+Validated recovery main: `4e435a1a6d10ab146197671049da80709fd18c1f`
 Plan: `docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md` Task 4~5
+
+> 이 파일은 완료된 VS-02의 역사 실행 계약이다. 아래의 원래 범위·TDD 순서·보호 조건·중단 조건을 감사와 회귀 근거로 보존하며 새 구현에 다시 사용하지 않는다. 현재 기획·Codex 준비 상태는 `CODEX_GOAL_VS_03.md`가 책임진다.
 
 ## 역할
 
@@ -243,3 +249,11 @@ git status --short
 - 화차 8개 이력 요구가 메모리·정확성 계약과 충돌
 - 정본과 실제 구현 사이의 LIFO·스폰 금지 규칙 충돌
 - 현재 Goal 밖의 연료·점수·HUD 변경이 필요
+
+## 완료 기록
+
+- PR #12: `9 cases / 6908 assertions / 0 failures`
+- PR #13: `9 cases / 6915 assertions / 0 failures`
+- Project Contract: PASS
+- 범위 내 제품 계약: 구현·검증 완료
+- Android·제품 UI·성능·사람 검수: 이 Goal 범위 밖이며 `NOT_RUN`

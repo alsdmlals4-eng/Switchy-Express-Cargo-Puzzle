@@ -2,75 +2,117 @@
 
 ## 현재 상태
 
-- 프로젝트 이름과 핵심 코어가 사용자 승인됨.
-- Base v9.3 프로젝트 운영체계가 설치되어 있음.
-- Vertical Slice Issue #4 / PR #9가 완료됨.
-- 구현 Commit: `801632949d28564528e38d83dac59cccc6f06fb2`.
-- 정본·감사 Commit: `7500ccea1cddd6c163965a44370b653bbc176f85`.
-- Godot 4.7.1 프로젝트·헤드리스 테스트 러너·15×10 RailGraph·2/3단계 분기 로직이 구현됨.
-- Godot 검증: `3 cases / 934 assertions / 0 failures`.
-- Project Contract: PASS.
-- Issue #4: CLOSED · COMPLETED.
-- Google Sheets는 `USER_FACING_GDD_WORKSPACE`이며 `7500ccea1cddd6c163965a44370b653bbc176f85` 기준으로 재조회·동기화 완료.
-- Sheet 상태: `SYNCED`.
-- HTML POC는 규칙 탐색용으로 종료하며 Godot 제품 구현 증거로 사용하지 않음.
-- 승인 시각 방향: 부드럽고 둥근 프리미엄 캐주얼 3D 카툰, 토끼 기관사 마스코트, 선명한 선로·분기 상태.
-- 현재 Work Mode: `PLAN · CODEX_BUILD_READY`.
-- Vertical Slice Epic: GitHub Issue #3.
-- 다음 실행 Issue: GitHub Issue #5.
+- 프로젝트 이름·핵심 코어·Vertical Slice 방향은 사용자 승인 상태다.
+- Base v9.4 프로젝트 운영 계약이 적용돼 있다.
+- VS-01 Issue #4 / PR #9 완료.
+- VS-02 Issue #5 / PR #12 완료.
+- VS-02 런타임 화물 재생성 누락은 PR #13에서 복구 완료.
+- Base v9.4 AI 운영·UI 모션 계약은 PR #15에서 적용 완료.
+- 제품 구현 기준: `4e435a1a6d10ab146197671049da80709fd18c1f`.
+- 최신 main: `539d2bae18d20e303649f047b9df69e8e224b2e7`.
+- Godot 검증: `9 cases / 6915 assertions / 0 failures`.
+- Project Contract와 Base v9.4 focused validation: PASS.
+- Issue #5: CLOSED · COMPLETED.
+- Issue #6: OPEN · 다음 구현 후보.
+- 현재 Work Mode: `TOTAL_PLANNING · REVIEW`.
+- Codex 상태: `CODEX_NOT_READY`.
+- GitHub 정본과 Google Sheets는 VS-01 상태에 머물러 있었으며 현재 복구 중이다.
+- Sheet 상태: `GITHUB_UPDATE_PENDING_SHEET`.
+- 제공된 `19Ff...` 시트는 다른 프로젝트이므로 변경 대상에서 제외한다.
+- 실제 Switchy Express GDD는 Adapter의 `1EpQ...` 시트다.
 
 ## 구현된 범위
 
-- 1920×1080 가로형 Godot main scene
-- 결정론적 15×10 전체 연결 철도 그래프
+### VS-01
+
+- Godot 4.7.1 프로젝트·헤드리스 테스트 러너
+- 결정론적 15×10 전체 연결 RailGraph
 - 막다른길 0·cycle rank 3 이상
-- seeds 1~100 생성 검사
 - 2단계 분기 최소 4개·3단계 분기 최소 2개
-- 직진 가능 시 기본 A노선 직진 우선
+- 직진 우선 기본 A노선
 - 즉시 180도 반전 금지
 - 5칸 경로 preview와 실제 next-cell 일치
-- 통과 후 기본 상태 복귀
 - 결정론적 safe fallback
-- Godot 런타임 Script Error를 CI 실패로 판정
 
-## 현재 차이
+### VS-02
 
-- 기관차 이동·경로 보간·화차 추종이 없음.
-- 화물 타입·스택·LOAD 입력·화물 생성이 없음.
-- 스테이션 배치·LIFO 하역이 없음.
-- 연료·점수·속도·BOOST·게임오버가 없음.
-- RailGraph 생성은 계약을 통과하지만 실제 맵 다양성·경로 엔트로피는 아직 미검증.
-- 승인 콘셉트 이미지는 시각 방향으로 승인됐지만 저장소 영구 자산 import는 별도 작업임.
-- Android export·실기 성능·접근성·플레이테스트 증거는 `NOT_RUN`.
+- 선택된 RailGraph 경로를 따르는 연속 기관차 이동
+- 최대 8개 화차의 제한된 경로 이력 추종
+- 이동 중 목표 분기 고정과 통과 후 분기 초기화
+- `RED_STAR / BLUE_DIAMOND / YELLOW_TRIANGLE`
+- capacity 8 LIFO CargoStack
+- LOAD 상태에서만 적재
+- BOOST 요청 시 LOAD 비활성 입력 계약
+- 색상별 스테이션 2개·총 6개 결정론적 배치
+- 동색 역 그래프 거리 최소 5칸
+- 색상별 맵 pickup 최소 4개
+- 금지 칸·직전 위치·열차 전방 2칸 제외
+- 1초 지연 재생성과 `SPAWN_DEFERRED` 회복
+- LIFO 동일색 연속 그룹 하역
+- 실제 stack과 동일한 하역 순서 ViewModel
+- 정확한 cell-crossing 시각의 DeliveryLoop 이벤트
+
+## 현재 미구현
+
+- 시간 기반 속도 상승과 연료 소모
+- 화물 적재량 감속
+- BOOST 속도·추가 연료 소모
+- 배송 점수·연료 보상·콤보 경제
+- 무입력 유한 생존과 연료 0 게임오버
+- 결과 요약·즉시 재시작
+- 최고 점수·최장 생존·최대 콤보 로컬 기록
+- 제품 RailBoardView·SwitchView·HUD·결과 화면
+- 접근성 설정 실제 동작
+- 대표 런타임 캡처
+- Android export·실기 성능
+- 10분 soak·사용자 플레이테스트
+
+## 현재 총기획 작업
+
+총기획은 빈 문서에서 새 게임을 발명하는 작업이 아니다.
+
+```text
+현재 결정·강점·실제 구현 복원
+→ 기획 Coverage·분야 간 충돌 감사
+→ 적대적 공격과 비판 재검증
+→ SAFE_PLANNING_FIXES 반영
+→ 중요 기획 충돌만 Grill Me
+→ 정본·Issue·Plan·Sheet 동기화
+→ Codex Definition of Ready 판정
+```
+
+상세 수치는 사용자 지시에 따라 GPT 권장 시험값으로 작성하되 `RECOMMENDED_DEFAULT / TEST_VALUE`로 표시한다. 플레이어 판타지, 대표 경험, 주요 UX, 실패·보상 의미, 범위를 바꾸는 충돌은 사용자 Decision 없이 확정하지 않는다.
 
 ## 다음 작업
 
-Codex가 아래 실행문을 사용해 Issue #5만 테스트 우선으로 구현한다.
-
-`기획서/00_프로젝트_허브/EXECUTABLE_PROMPTS/CODEX_GOAL_VS_02.md`
-
-다음 Goal:
-
-> 선택된 선로를 따르는 기관차와 최대 8개 화차, LOAD 선택 적재, 색상별 최소 화물 유지, 색상별 역 2개, LIFO 연속 하역과 하역 순서 ViewModel을 실패→통과 증거와 함께 구현한다.
+1. Post-VS02 정본 복구 PR 검증·병합
+2. canonical merge commit을 Switchy Express Sheet에 반영하고 재조회
+3. Sheet Sync Closure PR
+4. 전체 기획 Coverage와 분야 간 충돌 적대적 감사
+5. 가장 차단적인 `USER_DECISION_REQUIRED`를 한 건씩 Grill Me
+6. 승인된 기획을 본책·Issue #6·VS-03 Goal에 즉시 동기화
+7. `PLANNING_AND_REVIEW_COMPLETE_GATE` 이후에만 Codex Build 인계
 
 ## 주요 위험
 
-- 분기 데이터는 정확하지만 실제 화면에서 활성 방향이 읽히지 않을 수 있음.
-- 현재 생성기의 구조 변형 폭이 실제 반복 플레이에 부족할 수 있음.
-- 화차 경로 이력이 분기·곡선에서 겹침이나 순간 이동을 만들 수 있음.
-- 역 6개·동색 거리 5칸·화물 최소 12개를 작은 맵에 배치할 때 후보 부족이 생길 수 있음.
-- 화물 감속이 후반 속도 상승을 상쇄해 영구 생존 전략이 될 수 있음.
-- 부스터가 항상 정답이거나 사용 가치가 없을 수 있음.
-- 작은 가로형 맵에서 화물·역·분기 UI가 겹칠 수 있음.
+- 문서·Sheet가 실제 구현보다 뒤처져 잘못된 Goal을 재실행할 위험
+- 속도·연료·보상 시험값이 확정 수치처럼 굳어질 위험
+- CargoStack capacity와 실제 화차 수·화차 표현의 의미가 불명확할 가능성
+- 자동 운행에서 분기 판단 시간이 부족하거나 과도하게 여유로울 가능성
+- 화물 감속이 생존 최적화 exploit가 될 가능성
+- BOOST가 항상 정답이거나 무가치할 가능성
+- 결과·재시작 모션이 점수·연료·저장의 권위를 소유하는 회귀 위험
+- 15×10 화면에서 역·화물·분기·HUD가 겹칠 위험
+- 실제 맵 다양성·경로 엔트로피가 반복 플레이에 부족할 가능성
+- Android·사람 이해·성능·접근성은 여전히 `NOT_RUN / HUMAN_NOT_RUN`
 
 ## 감사·동기화
 
-- 최신 적대적 감사: `기획서/50_제작_검증/POST_VS01_ADVERSARIAL_AUDIT.md`
-- Google Sheets 12개 표준 GDD 탭 재조회: `PASS`
-- Decision `SX-DEC-001~013`, Evidence `EV-VS01-001`, Audit `SX-AUD-002`: `SYNCED`
-
-## Base v9.4 운영 계약
-
-- Base `9.4.0` payload/evidence와 model/prompt/cost route를 프로젝트 Registry·Adapter에 적용했다.
-- VS-01/VS-02 제품 코드·퍼즐 규칙·레벨·화물·선로·저장·Sheet는 변경하지 않는다.
-- Godot headless 회귀는 PR에서 재실행하며 Android 실기기·사람·provider 검증은 `NOT_RUN` 또는 `HUMAN_NOT_RUN`이다.
+- 최신 구현 감사: `기획서/50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md`
+- VS-01 감사 `SX-AUD-002`는 역사 증거로 보존
+- 새 감사 ID: `SX-AUD-003`
+- 새 Evidence:
+  - `EV-VS02-001`
+  - `EV-VS02-FIX-001`
+  - `EV-BASE-V94-001`
+- Google Sheets는 1차 PR 병합 후 같은 Evidence·Commit으로 재동기화한다.
