@@ -19,3 +19,4 @@ for path in paths:
  for before,after in old.items(): updated=updated.replace(before,after)
  updated=updated.replace('"9.4.2"','"9.4.3"').replace("'9.4.2'","'9.4.3'").replace('base-v9.4.2.lock.json','base-v9.4.3.lock.json')
  if updated!=text: path.write_text(updated,encoding='utf-8')
+# workflow trigger: canonical Adapter and consumer sync
