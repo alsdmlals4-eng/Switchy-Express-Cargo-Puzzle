@@ -8,18 +8,17 @@
 - VS-02 Issue #5 / PR #12 완료.
 - VS-02 런타임 화물 재생성 누락은 PR #13에서 복구 완료.
 - Base v9.4 AI 운영·UI 모션 계약은 PR #15에서 적용 완료.
+- Post-VS02 정본 복구는 PR #16 / `8245e22905d64e22b599fe009bbb660d005392ed`에서 완료.
 - 제품 구현 기준: `4e435a1a6d10ab146197671049da80709fd18c1f`.
-- 최신 main: `539d2bae18d20e303649f047b9df69e8e224b2e7`.
 - Godot 검증: `9 cases / 6915 assertions / 0 failures`.
 - Project Contract와 Base v9.4 focused validation: PASS.
+- 실제 Switchy Express Google Sheets 12개 탭에 canonical commit `8245e229...` 반영·재조회 완료.
+- Sheet 상태: `SYNCED`.
+- 제공된 `19Ff...` 시트는 다른 프로젝트이며 변경하지 않았다.
 - Issue #5: CLOSED · COMPLETED.
 - Issue #6: OPEN · 다음 구현 후보.
 - 현재 Work Mode: `TOTAL_PLANNING · REVIEW`.
 - Codex 상태: `CODEX_NOT_READY`.
-- GitHub 정본과 Google Sheets는 VS-01 상태에 머물러 있었으며 현재 복구 중이다.
-- Sheet 상태: `GITHUB_UPDATE_PENDING_SHEET`.
-- 제공된 `19Ff...` 시트는 다른 프로젝트이므로 변경 대상에서 제외한다.
-- 실제 Switchy Express GDD는 Adapter의 `1EpQ...` 시트다.
 
 ## 구현된 범위
 
@@ -69,15 +68,13 @@
 
 ## 현재 총기획 작업
 
-총기획은 빈 문서에서 새 게임을 발명하는 작업이 아니다.
-
 ```text
-현재 결정·강점·실제 구현 복원
+GitHub·Sheet 기준선 동기화 완료
 → 기획 Coverage·분야 간 충돌 감사
 → 적대적 공격과 비판 재검증
 → SAFE_PLANNING_FIXES 반영
 → 중요 기획 충돌만 Grill Me
-→ 정본·Issue·Plan·Sheet 동기화
+→ 승인 Decision 즉시 정본·Issue·Plan·Sheet 동기화
 → Codex Definition of Ready 판정
 ```
 
@@ -85,22 +82,19 @@
 
 ## 다음 작업
 
-1. Post-VS02 정본 복구 PR 검증·병합
-2. canonical merge commit을 Switchy Express Sheet에 반영하고 재조회
-3. Sheet Sync Closure PR
-4. 전체 기획 Coverage와 분야 간 충돌 적대적 감사
-5. 가장 차단적인 `USER_DECISION_REQUIRED`를 한 건씩 Grill Me
-6. 승인된 기획을 본책·Issue #6·VS-03 Goal에 즉시 동기화
-7. `PLANNING_AND_REVIEW_COMPLETE_GATE` 이후에만 Codex Build 인계
+1. 전체 기획 Coverage와 분야 간 충돌 적대적 감사
+2. `AUTO_FIX_ELIGIBLE` 기획 누락 보완
+3. 가장 차단적인 `USER_DECISION_REQUIRED`를 한 건씩 Grill Me
+4. 승인된 기획을 본책·Issue #6·VS-03 Goal·Sheet에 즉시 동기화
+5. `PLANNING_AND_REVIEW_COMPLETE_GATE` 이후에만 Codex Build 인계
 
 ## 주요 위험
 
-- 문서·Sheet가 실제 구현보다 뒤처져 잘못된 Goal을 재실행할 위험
-- 속도·연료·보상 시험값이 확정 수치처럼 굳어질 위험
 - CargoStack capacity와 실제 화차 수·화차 표현의 의미가 불명확할 가능성
 - 자동 운행에서 분기 판단 시간이 부족하거나 과도하게 여유로울 가능성
 - 화물 감속이 생존 최적화 exploit가 될 가능성
 - BOOST가 항상 정답이거나 무가치할 가능성
+- 콤보의 의미가 동일색 그룹 크기와 연속 배송 streak 사이에서 혼용될 가능성
 - 결과·재시작 모션이 점수·연료·저장의 권위를 소유하는 회귀 위험
 - 15×10 화면에서 역·화물·분기·HUD가 겹칠 위험
 - 실제 맵 다양성·경로 엔트로피가 반복 플레이에 부족할 가능성
@@ -109,10 +103,7 @@
 ## 감사·동기화
 
 - 최신 구현 감사: `기획서/50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md`
-- VS-01 감사 `SX-AUD-002`는 역사 증거로 보존
-- 새 감사 ID: `SX-AUD-003`
-- 새 Evidence:
-  - `EV-VS02-001`
-  - `EV-VS02-FIX-001`
-  - `EV-BASE-V94-001`
-- Google Sheets는 1차 PR 병합 후 같은 Evidence·Commit으로 재동기화한다.
+- 감사 ID: `SX-AUD-003`
+- Evidence: `EV-VS02-001`, `EV-VS02-FIX-001`, `EV-BASE-V94-001`
+- GitHub canonical recovery: `8245e22905d64e22b599fe009bbb660d005392ed`
+- Google Sheets 12개 탭 readback: `PASS · SYNCED`
