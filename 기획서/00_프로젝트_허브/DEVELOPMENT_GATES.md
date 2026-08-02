@@ -30,7 +30,7 @@ Status: `PASS · LOCAL/PRODUCTION_SCOPE_STAGED`
 
 ## G3 — CORE_RUNTIME_PROVEN
 
-Status: `PARTIAL`
+Status: `PARTIAL · VS03_01_HEADLESS_PASSED`
 
 완료:
 
@@ -39,22 +39,24 @@ Status: `PARTIAL`
 - [x] continuous train movement
 - [x] CargoStack·station·pickup·LIFO unload
 - [x] deferred pickup recovery
-- [x] historical automated evidence `9 cases / 6915 assertions / 0 failures`
+- [x] survival economy·unload-group Combo core
+- [x] fuel-zero one-shot·immutable summary·post-end guard
+- [x] deterministic difficulty authority·commit events
+- [x] actual DeliveryLoop integration
+- [x] current automated evidence `16 cases / 7110 assertions / 0 failures`
 
 남음:
 
-- [ ] survival economy·Combo
-- [ ] compact token runtime·footprint
-- [ ] product HUD/result/camera
+- [ ] compact token runtime·compressed footprint
+- [ ] minimum 3 official maps·session·restart·selection
 - [ ] Profile/records/cosmetics/unlocks/rewards
-- [ ] difficulty signal
-- [ ] same-map restart
-- [ ] minimum 3 official maps·selection/reselection
+- [ ] product HUD/result/camera/browser
 - [ ] contextual onboarding
+- [ ] end-to-end local product flow
 
 ## G3P — TOTAL_PLANNING_AND_REVIEW_COMPLETE
 
-Status: `PASS · READY_FOR_BUILD · SX-AUD-005`
+Status: `PASS · SX-AUD-005`
 
 - [x] GMB-001 canonical Decision/Sheet closure
 - [x] actual code/API/file inventory
@@ -68,19 +70,8 @@ Status: `PASS · READY_FOR_BUILD · SX-AUD-005`
 - [x] rollback strategy
 - [x] exact acceptance/evidence locations
 - [x] target3/target100 scope separation
-- [x] user instruction `EV-USER-016`
 - [x] known open P0/P1 implementation-planning findings 0 after fixes
-- [x] PR #35 canonical merge `82fd3eeb1915e6ceedb2f5330b27e903064d6eb5`
-- [x] correct Sheet `SX-AUD-005 / EV-USER-016` canonical readback PASS
-- [x] Sync Closure metadata prepared
-
-승격 의미:
-
-```text
-Codex READY_FOR_BUILD · VS03-01_ONLY
-product implementation NOT_STARTED until execution begins
-VS03-02~07 BLOCKED_BY_PREVIOUS_PACKAGE
-```
+- [x] PR #35/#36 and correct Sheet closure
 
 ## G3B — GRILL_ME_BATCH_PREMERGE
 
@@ -94,38 +85,56 @@ Status: `GMB-001 CLOSED`
 
 ## G3I — VS-03 IMPLEMENTATION PACKAGES
 
-Status: `VS03-01 READY_FOR_BUILD · NOT_STARTED`
+Status: `VS03-01 MERGED_AND_VERIFIED · VS03-02 READY_FOR_BUILD`
+
+현재 상태 권위:
+
+```text
+기획서/50_제작_검증/VS03_PACKAGE_STATUS.md
+기획서/50_제작_검증/VS03_01_IMPLEMENTATION_AUDIT.md
+```
+
+VS03-01 증거:
+
+```text
+PR #37 merge 43972d3d23e931af3dbc81ab9b1c7d942fffb201
+SX-AUD-006 · EV-VS03-01-001
+Project Contract 227 PASS
+Godot Tests 214 PASS
+16 cases · 7110 assertions · 0 failures
+behind0 · thread0 · REQUEST_CHANGES0 · P0/P1 0
+```
 
 Canonical order:
 
 ```text
-VS03-01 run lifecycle/economy/difficulty
-→ VS03-02 compact footprint/DeliveryLoop seam
-→ VS03-03 target3 maps/session/restart/selection
-→ VS03-04 Profile transactions/records/cosmetics/unlocks/rewards
-→ VS03-05 product scene/camera/HUD/result/browsers
-→ VS03-06 contextual onboarding
-→ VS03-07 integration/evidence handoff
+VS03-01 run lifecycle/economy/difficulty · DONE
+→ VS03-02 compact footprint/DeliveryLoop seam · READY
+→ VS03-03 target3 maps/session/restart/selection · BLOCKED
+→ VS03-04 Profile transactions/records/cosmetics/unlocks/rewards · BLOCKED
+→ VS03-05 product scene/camera/HUD/result/browsers · BLOCKED
+→ VS03-06 contextual onboarding · BLOCKED
+→ VS03-07 integration/evidence handoff · BLOCKED
 ```
 
 Rules:
 
-- current authority is VS03-01 only
-- previous package must merge before the next package starts
+- current authority is VS03-02 only
+- previous package must merge and synchronize before next package starts
 - shared hotspot packages do not run in parallel
 - every PR requires behind 0, Project Contract/Godot success, thread 0, REQUEST_CHANGES 0
 - package ownership, rollback, and explicit NOT_RUN evidence are mandatory
 
 ## G4 — TARGET_QUALITY_SLICE
 
-Status: `NOT_STARTED`
+Status: `NOT_STARTED · DOMAIN_CORE_PARTIAL`
 
-- [ ] survival economy + no-input finite survival
+- [x] headless survival economy + no-input finite survival
 - [ ] product Scene·HUD·result insight
 - [ ] compact tokens·rear LIFO·compressed footprint
 - [ ] PREP zoom·FULL_MAP_READY·active full map
 - [ ] local records·cosmetic/unlock/reward representative flow
-- [ ] difficulty prewarning/persistent signal
+- [ ] visible difficulty prewarning/persistent signal
 - [ ] same-map restart
 - [ ] minimum 3 validated official maps and discovery/reselection
 - [ ] contextual onboarding
@@ -188,8 +197,9 @@ Forbidden initial claims/features:
 ## Current Transition
 
 ```text
-G3P PASS · READY_FOR_BUILD
-→ separate Codex execution for VS03-01
+VS03-01 merge 43972d3d...
+→ Sync Closure + correct Sheet
+→ VS03-02 compact token/footprint branch
 → TDD + exact-head package Gate
-→ merge before VS03-02 promotion
+→ merge before VS03-03 promotion
 ```
