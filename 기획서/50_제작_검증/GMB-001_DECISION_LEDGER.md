@@ -6,12 +6,12 @@ baseline_main: 993c3ed1aaee172be52a8a8899685b419f7f6d97
 branch: batch/gmb-001
 draft_pr: 29
 batch_size: 10
-approved_count: 7/10
+approved_count: 8/10
 status: IN_PROGRESS · APPROVED_PENDING_BATCH_MERGE
 canonical_main_sync: NOT_YET_MERGED
 sheet_state: APPROVED_PENDING_BATCH_MERGE
 codex_state: CODEX_NOT_READY
-next_decision: SX-DEC-024
+next_decision: SX-DEC-025
 ```
 
 ## 운영 경계
@@ -33,7 +33,7 @@ next_decision: SX-DEC-024
 | 5 | `SX-DEC-021` | `EV-USER-010` | 유효 run 기본 재화와 배송·Combo·신기록 bounded 보너스 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-bounded-run-cosmetic-currency-rewards-design.md` |
 | 6 | `SX-DEC-022` | `EV-USER-011` | 난이도 상승 전 짧은 경고와 3단계 지속 신호, 내부 공식은 비공개 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-difficulty-escalation-communication-design.md` |
 | 7 | `SX-DEC-023` | `EV-USER-012` | RESTART는 같은 map/seed, 새 seed는 100+ 검증 맵 카탈로그 제작에 사용 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-same-seed-restart-curated-map-catalog-design.md` |
-| 8 | — | — | — | OPEN | — |
+| 8 | `SX-DEC-024` | `EV-USER-013` | NEW RUN은 미발견 맵 우선 자동 순환, 발견 맵은 브라우저에서 직접 재선택 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-automatic-map-discovery-and-reselection-design.md` |
 | 9 | — | — | — | OPEN | — |
 | 10 | — | — | — | OPEN | — |
 
@@ -53,8 +53,7 @@ source: 2026-08-02 conversation · recommended option A approved
 
 ### 보호 계약
 
-- cause code: `BOOST_OVERUSE`, `HEAVY_LOAD_DELAY`, `DELIVERY_GAP`, `ROUTE_MISMATCH_LOOP`, `NEUTRAL`.
-- 원인 분석은 deterministic analyzer가 담당한다.
+- deterministic analyzer만 cause를 결정한다.
 - 비난·가짜 반사실·근거 없는 단정 금지.
 - UI·animation은 결과 계산·저장·reward·restart 권위가 아니다.
 - assisted first run evidence는 일반 run과 분리한다.
@@ -83,7 +82,7 @@ source: 2026-08-02 conversation · option A with preparation zoom refinement
 
 ### 결정
 
-최초 PREP/READY에서는 기관차와 출발 주변을 약간 확대한다. START 뒤 fuel·timer·difficulty·spawn·board input을 시작하기 전에 전체 15×10 맵으로 복귀하며, `FULL_MAP_READY` 뒤 authoritative run을 시작한다. active run은 고정 전체 맵이다.
+최초 PREP/READY에서는 기관차와 출발 주변을 약간 확대한다. START 뒤 fuel·timer·difficulty·spawn·board input을 시작하기 전에 전체 맵으로 복귀하며, `FULL_MAP_READY` 뒤 authoritative run을 시작한다. active run은 고정 전체 맵이다.
 
 ### 보호 계약
 
@@ -92,7 +91,6 @@ source: 2026-08-02 conversation · option A with preparation zoom refinement
 - Reduced Motion은 즉시 full-map cut.
 - 즉시 RESTART는 준비 확대를 반복하지 않고 full-map direct.
 - Camera2D·Tween·animation은 run 권위가 아니다.
-- generation-safe readiness와 synchronous fallback으로 interruption deadlock 방지.
 
 ### 문서·상태
 
@@ -123,9 +121,8 @@ source: 2026-08-02 conversation · hybrid A+B approved
 - 기록: `best_score`, `longest_survival_seconds`, `best_max_combo`.
 - assisted first run·ruleset mismatch·integrity invalid는 표준 기록 비적격.
 - cosmetic metadata에 modifier/stat/multiplier/bonus field 금지.
-- speed·fuel·capacity·BOOST·score·spawn·map·route·collision·camera·onboarding·record eligibility 불변.
-- active route·switch·station·cargo·rear LIFO·fuel warning 가독성 불변.
-- 누락/삭제 cosmetic ID는 category default fallback.
+- gameplay·collision·camera·record eligibility parity 유지.
+- 누락 cosmetic ID는 category default fallback.
 - versioned atomic Profile과 기록/꾸미기 데이터 격리.
 
 ### 문서·상태
@@ -204,7 +201,6 @@ onboarding_intro_grant: 10
 - record bonus는 run당 한 번.
 - assisted variable reward는 0, 실제 onboarding 완료+배송의 intro grant만 Profile당 한 번.
 - reward event ID와 balance+journal atomic·idempotent commit.
-- `RecordCommitResult`가 신기록 증거이며 UI animation은 증거가 아님.
 - ResultPanel은 committed receipt만 표시하고 RESTART primary 유지.
 
 ### 문서·상태
@@ -245,11 +241,9 @@ bands: {CALM: steps 0-1, BUSY: steps 2-3, INTENSE: steps 4+}
 - `DifficultyDirector`만 schedule·commit 권위 보유.
 - presentation은 forecast/event를 읽을 뿐 advance·delay·skip·reroll 금지.
 - 경고는 simulation pause·input lock·board 가림을 만들지 않는다.
-- assist/pause는 authoritative clock과 presentation clock을 함께 멈춤.
 - assist 종료는 fresh forecast, no catch-up.
-- restart는 generation을 갱신하고 stale warning/callback 무효화.
-- suspend/resume wall-clock catch-up 금지.
-- same seed/ruleset/input은 warning mode·Reduced Motion과 무관하게 동일 simulation.
+- restart는 stale warning/callback을 무효화한다.
+- warning mode·Reduced Motion은 simulation을 바꾸지 않는다.
 
 ### 문서·상태
 
@@ -268,93 +262,21 @@ bands: {CALM: steps 0-1, BUSY: steps 2-3, INTENSE: steps 4+}
 ```yaml
 evidence_id: EV-USER-012
 evidence_type: CONFIRMED_USER_DECISION
-source: 2026-08-02 conversation · option A approved with 100+ map-catalog refinement
-user_statement: RESTART는 같은 seed; 새 seed 제작은 맵 개수를 늘리는 데 사용하며 약 100개 이상 목표
+source: 2026-08-02 conversation · option A approved with 100+ map catalog refinement
 ```
 
 ### 결정
 
-`RESTART`는 종료된 run과 같은 `map_id`, `map_revision`, `map_seed`, generator/ruleset version, reconstruction signature를 사용한다. 새 seed를 뽑거나 다른 맵을 선택하지 않는다.
+`RESTART`는 종료 run과 같은 `map_id`, revision, seed, generator/ruleset version, component/layout/content signatures를 사용한다. 새 seed는 runtime reroll이 아니라 offline 맵 제작 입력이며 production 목표는 100개 이상 고유 validated `layout_signature`다.
 
-새 seed는 별도의 offline content pipeline에서 생성·검증·중복 제거한 뒤 맵 카탈로그에 추가한다. 제품 목표는 seed 정수 100개가 아니라 **고유 `layout_signature`를 가진 검증 맵 100개 이상**이다.
+### 보호 계약
 
-### Identity 계약
-
-```text
-immutable map identity
-= map_id + revision + seed + generator/ruleset versions
-+ graph/station/initial-pickup/layout/content signatures
-
-mutable attempt identity
-= new run_id + retry_index + restarted_from_run_id
-```
-
-- same-map retry는 map identity를 보존한다.
-- 매 attempt는 새 `run_id`, reward event namespace, telemetry row를 가진다.
-- `map_seed`를 run/reward/save transaction ID로 사용하지 않는다.
-
-### Reset 계약
-
-재시작 때 반드시 새 instance로 재구성:
-
-- RunState·fuel·score·Combo,
-- CargoStack·compact token,
-- switch runtime/target lock,
-- train position·speed·route history,
-- station/delivery state,
-- pickup collection·pending respawn,
-- difficulty schedule state·forecast·warning cooldown/presentation generation,
-- result evidence·pause/suspend·reward/save transaction state.
-
-### MapDefinition 필드
-
-```yaml
-map_id: StringName
-map_revision: int
-map_seed: int
-generator_version: StringName
-ruleset_version: StringName
-graph_signature: String
-station_signature: String
-initial_pickup_signature: String
-layout_signature: String
-content_signature: String
-validation_status: DRAFT|VALIDATED|SHIPPED|RETIRED
-used_fallback: bool
-```
-
-standard run은 `VALIDATED|SHIPPED`, complete signatures, `used_fallback=false`만 허용한다.
-
-### 카탈로그 고유성·생성기 제약
-
-현재 `RailGenerator`는 upper/lower row와 left/right column의 네 이진 선택만 사용하므로 선로 topology가 최대 약 16개다. 현재 코드로 seeds 1~100이 valid여도 100개의 실질적 선로 layout을 뜻하지 않는다.
-
-권장 확장:
-
-- interior rows `1..8`에서 서로 다른 2개,
-- interior columns `1..13`에서 서로 다른 3개,
-- perimeter loop 유지,
-- `(seed, attempt)` deterministic shuffle,
-- 기존 32 attempts와 safe fallback 유지,
-- fallback·duplicate layout은 catalog promotion 거부.
-
-### Vertical Slice·Production 경계
-
-- VS: 고유 validated map 3개, same-map restart 1개, component signature parity, mutable reset, new IDs, duplicate/fallback rejection.
-- Production: 고유 validated `layout_signature` 100개 이상 + rebuild audit + visual/readability + difficulty distribution + human evidence.
-- 100개 생성 도구가 존재하는 것과 100개 제작 완료는 구분한다.
-
-### 연동 계약
-
-- `SX-DEC-017`: 같은 조건에서 실패 학습을 시험.
-- `SX-DEC-018`: restart는 direct full-map, `FULL_MAP_READY` gate 유지.
-- `SX-DEC-019~021`: retry도 새 eligible run이며 record/reward는 새 run identity 사용.
-- `SX-DEC-022`: old warning/forecast 폐기, same seed/ruleset/input event parity.
-- `SX-DEC-016`: map은 같되 assist state는 기존 Profile/onboarding 계약으로 재구성.
-
-### 미결 범위
-
-다른 맵의 선택·순환·해금·발견 방식과 global/per-map record 공정성은 `SX-DEC-024+`로 분리한다.
+- retry마다 새 `run_id`, reward namespace, telemetry lineage, mutable service graph를 생성한다.
+- fuel·score·Combo·CargoStack·switch·train·station·spawn·difficulty·warning·result·transaction state는 초기화한다.
+- fallback·duplicate layout은 제품 map count에 포함하지 않는다.
+- generator/ruleset 변경은 새 version과 map revision을 요구한다.
+- 현재 generator 약 16 topology 제약 때문에 다양성 확장과 target-100 audit가 필수다.
+- VS target은 unique validated map 3개와 same-map restart 증거다.
 
 ### 문서·상태
 
@@ -364,25 +286,95 @@ standard run은 `VALIDATED|SHIPPED`, complete signatures, `used_fallback=false`�
 
 ### Findings
 
-- `F56` mutable restart leakage.
-- `F57` seed와 transaction identity 충돌.
-- `F58` duplicate/fallback seed로 map count 부풀림.
-- `F59` generator/ruleset version drift.
-- `F60` 100+ catalog 규모의 invalid·unreadable·difficulty outlier QA 실패.
+`F56` mutable restart leakage · `F57` seed/transaction identity 충돌 · `F58` duplicate/fallback count 부풀림 · `F59` version drift · `F60` catalog-scale QA 실패
+
+---
+
+## SX-DEC-024 — 자동 발견 순환 + 발견 맵 직접 재선택
+
+```yaml
+evidence_id: EV-USER-013
+evidence_type: CONFIRMED_USER_DECISION
+source: 2026-08-02 conversation · recommended option C approved
+```
+
+### 결정
+
+`NEW RUN`은 현재 eligible catalog에서 아직 발견하지 않은 map을 persisted non-replacement shuffle bag으로 먼저 배정한다. 모든 eligible map이 발견된 뒤에는 최근 map을 피하는 replay bag을 사용한다. authoritative run start를 한 번 완료한 stable `map_id`는 RECENT·FAVORITES·ALL DISCOVERED 브라우저에서 직접 재선택할 수 있다.
+
+### 요청 모드
+
+```yaml
+RESTART_SAME_MAP:
+  same_map: true
+  consumes_auto_cycle: false
+
+AUTO_NEW_RUN:
+  undiscovered_first: true
+  consumes_auto_cycle: committed_run_start_only
+
+SELECT_DISCOVERED_MAP:
+  discovered_required: true
+  consumes_auto_cycle: false
+```
+
+### 보호 계약
+
+- 모든 eligible map은 처음부터 자동 발견 후보이며 재화·광고·기간·에너지로 잠그지 않는다.
+- 발견은 achievement가 아니라 content exposure다. assisted first run도 발견 가능하지만 표준 record·goal·variable reward는 계속 비적격이다.
+- 발견·play count·recent·bag 소비는 reconstruction과 `FULL_MAP_READY` 뒤 authoritative run-start commit에서 atomic·idempotent 처리한다.
+- selection receipt는 request ID·catalog revision·map ID/revision을 고정하며 duplicate event가 두 map 또는 두 run을 만들지 못한다.
+- raw seed·generator version·signature는 UI에 표시하거나 입력받지 않는다.
+- manual selection은 discovered+currently eligible map만 허용하며 automatic bag을 소비하지 않는다.
+- stable `map_id` revision은 발견/즐겨찾기를 유지한다. 실질적으로 새 map이면 새 `map_id`를 사용한다.
+- retired/removed/quarantined map은 active bag에서 제거하고 unavailable tombstone으로만 보존한다.
+- automatic reconstruction failure는 bounded next-candidate 시도를 허용하지만 discovery/bag을 소비하지 않는다.
+- manual/restart failure는 다른 map으로 조용히 대체하지 않는다.
+- eligible map이 없으면 `NO_ELIGIBLE_MAP`; runtime seed 또는 fallback map을 생성하지 않는다.
+- replay recent exclusion `3`, UI density, retention threshold는 `TEST_VALUE`다.
+
+### 브라우저 계약
+
+- sections: `RECENT`, `FAVORITES`, `ALL DISCOVERED`.
+- card: localized name/short label, favorite, play count, availability; raw seed 없음.
+- undiscovered map은 이름·layout을 나열하지 않고 `discovered / eligible` aggregate progress만 표시한다.
+- Result: `RESTART` primary, `NEW RUN` secondary, `CHOOSE MAP` compact entry.
+- 48dp, text+icon/shape, 140% localization, Reduced Motion parity.
+
+### Vertical Slice·Production 경계
+
+- VS 3 map: 첫 3회 AUTO start 무중복 발견, 4번째 immediate-repeat 회피, restart bag 무소비, manual discovered-only, save/reload, duplicate idempotency, invalid auto skip/manual no-substitution.
+- Production 100+: 첫 100 successful AUTO discovery start가 catalog 불변 시 100 stable map ID를 정확히 한 번씩 노출, replay starvation 없음, additions 우선, retirement 제외, 100-entry UI·Android·localization·accessibility·human evidence.
+
+### 문서·상태
+
+- 설계: `docs/superpowers/specs/2026-08-02-automatic-map-discovery-and-reselection-design.md`
+- 계획: `docs/superpowers/plans/2026-08-02-automatic-map-discovery-and-reselection.md`
+- 구현·Profile·browser asset·runtime·Android·localization·사람: `NOT_STARTED / NOT_RUN`
+
+### Findings
+
+- `F61` replacement random 반복·starvation.
+- `F62` 100-item 선택 과부하·undiscovered content leakage.
+- `F63` manual selection이 auto cycle/restart semantics를 오염.
+- `F64` catalog revision·retirement·migration으로 discovery state 손상.
+- `F65` duplicate UI/reconstruction failure가 잘못된 map을 시작.
 
 ---
 
 ## Cross-Decision Protected Contracts
 
-- UI·camera·Tween·animation·result·collection·reward·warning은 non-authoritative.
-- `FULL_MAP_READY` 전 run progression 없음.
+- UI·camera·Tween·animation·result·collection·reward·warning·map browser는 non-authoritative.
+- `FULL_MAP_READY` 전 run progression·discovery commit 없음.
 - active run은 고정 전체 맵.
-- assisted first run은 표준 record·goal·variable reward·balance evidence와 분리.
-- currency·unlock·reward operation은 atomic·idempotent.
-- map identity와 run/transaction identity는 분리.
-- same-map restart는 새 mutable service graph를 만들며 reset 메서드로 기존 instance를 재사용하지 않음.
-- fallback/duplicate map은 제품 map count에 포함하지 않음.
-- balance·timing·price·reward·camera·difficulty band·catalog thresholds는 검증 전 `TEST_VALUE`.
+- assisted first run은 표준 record·goal·variable reward·balance evidence와 분리되지만 map discovery는 가능.
+- currency·unlock·reward·selection·Profile operation은 atomic·idempotent.
+- map identity와 run/transaction/selection identity는 분리.
+- same-map restart는 새 mutable service graph를 만들며 기존 instance를 reset 재사용하지 않는다.
+- fallback/duplicate map은 제품 map count에 포함하지 않는다.
+- automatic map policy는 favorites·spending·skill·retention prediction·previous performance를 가중치로 사용하지 않는다.
+- manual/restart failure는 silent different-map substitution을 하지 않는다.
+- balance·timing·price·reward·camera·difficulty band·catalog·recent-window·UI density threshold는 검증 전 `TEST_VALUE`.
 
 ## Adversarial Finding Register
 
@@ -395,8 +387,9 @@ standard run은 `VALIDATED|SHIPPED`, complete signatures, `used_fallback=false`�
 | Currency Reward | `F46~F50` |
 | Difficulty Signal | `F51~F55` |
 | Restart/Map Catalog | `F56~F60` |
+| Map Assignment/Browser | `F61~F65` |
 
-현재 설계상 알려진 P0는 없다. `F58`은 현재 생성기 구현이 100 unique-layout 목표를 충족하지 못한다는 명시적 구현 의무이며, 확장·target-100 audit 전까지 production map 목표는 `NOT_MET`이다.
+현재 설계상 알려진 P0는 없다. `F58`은 generator 다양성·target-100 audit 전까지 `NOT_MET`이며 `F61~F65`는 구현·runtime·100-entry UI·Android·사람 검증 전까지 follow-up 의무다.
 
 ## Verification State
 
@@ -412,17 +405,19 @@ localization: NOT_RUN
 economy_simulation: NOT_RUN
 map_catalog_target_3: NOT_RUN
 map_catalog_target_100: NOT_RUN
+map_assignment_three_map_flow: NOT_RUN
+map_browser_100_entry: NOT_RUN
 batch_status: APPROVED_PENDING_BATCH_MERGE
 codex_state: CODEX_NOT_READY
 ```
 
 ## 다음 Grill Me 후보
 
-`SX-DEC-024` — 100+ 맵을 플레이어에게 어떻게 배정·노출할지 결정한다.
+`SX-DEC-025` — 100+ map 간 기록 공정성을 어떻게 구성할지 결정한다.
 
-- 전체 맵 직접 선택,
-- 자동 순환/무작위 배정,
-- 비반복 자동 순환 + 플레이한 맵 직접 선택,
+- global 기록만 유지,
+- map별 기록만 유지,
+- global 개인 기록 + map별 기록 병행,
 - 또는 별도 조합.
 
-상태: `NEXT_GRILL_ME · GMB-001 SLOT 8`.
+상태: `NEXT_GRILL_ME · GMB-001 SLOT 9`.
