@@ -6,7 +6,7 @@ baseline_main: 993c3ed1aaee172be52a8a8899685b419f7f6d97
 branch: batch/gmb-001
 draft_pr: 29
 batch_size: 10
-approved_count: 3/10
+approved_count: 4/10
 status: IN_PROGRESS · APPROVED_PENDING_BATCH_MERGE
 canonical_main_sync: NOT_YET_MERGED
 sheet_state: APPROVED_PENDING_BATCH_MERGE
@@ -28,7 +28,7 @@ codex_state: CODEX_NOT_READY
 | 1 | `SX-DEC-017` | `EV-USER-006` | 결과 화면에 검증된 실패 원인 1개와 다음 행동 1개를 표시하고, 불확실하면 중립 fallback 사용 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-result-failure-feedback-design.md` |
 | 2 | `SX-DEC-018` | `EV-USER-007` | 최초 준비 화면은 기관차 주변을 약간 확대하고 START 뒤 run 시작 전에 전체 맵으로 복귀하며 실제 운행은 고정 전체 맵 유지 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-preparation-zoom-full-map-camera-design.md` |
 | 3 | `SX-DEC-019` | `EV-USER-008` | 영구 진행은 표준 개인 기록과 성능 없는 꾸미기 해금·장착만 허용하며 기능 성장은 금지 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-records-cosmetic-only-progression-design.md` |
-| 4 | — | — | — | OPEN | — |
+| 4 | `SX-DEC-020` | `EV-USER-009` | 목표형 꾸미기는 목표 달성 또는 재화 구매로 해금하고 일부 꾸미기는 재화 전용으로 배치 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-goal-or-currency-cosmetic-unlocks-design.md` |
 | 5 | — | — | — | OPEN | — |
 | 6 | — | — | — | OPEN | — |
 | 7 | — | — | — | OPEN | — |
@@ -212,6 +212,78 @@ human_validation: NOT_RUN
 - 구현 목표 소비자: `기획서/00_프로젝트_허브/EXECUTABLE_PROMPTS/CODEX_GOAL_VS_03.md` — 10/10 사전감사에서 최종 전파
 - 검증 소비자: `기획서/50_제작_검증/PLAYTEST_PLAN.md` — 10/10 사전감사에서 최종 전파
 
+## SX-DEC-020 — 목표 또는 재화 해금 + 재화 전용 배치
+
+### 사용자 승인
+
+사용자는 2026-08-02 Grill Me에서 A안과 C안을 결합해, 목표 달성 시 해금되지만 목표를 달성하지 않아도 재화로 대체 해금할 수 있게 하고 재화로만 해금 가능한 꾸미기도 배치하도록 승인했다.
+
+### 결정
+
+```text
+꾸미기 해금 유형은 DEFAULT, DUAL_PATH, CURRENCY_ONLY로 분리한다.
+DUAL_PATH 꾸미기는 목표 달성 또는 꾸미기 전용 재화 구매 중 하나로 해금한다.
+CURRENCY_ONLY 꾸미기는 목표 경로 없이 재화 구매로만 해금한다.
+재화 구매는 목표 완료·업적 표식을 대신하지 않으며,
+구매 뒤 실제 목표를 달성하면 중복 소유 대신 1회 대체 보상을 지급한다.
+```
+
+### Evidence
+
+```yaml
+evidence_id: EV-USER-009
+evidence_type: CONFIRMED_USER_DECISION
+source: 2026-08-02 conversation · hybrid A+C with currency-only placement approved
+status: RECORDED_IN_BATCH_BRANCH
+```
+
+### 파생 계약
+
+- `GOAL_ONLY` 유형은 두지 않는다. 목표형 꾸미기에도 재화 대체 경로를 제공한다.
+- DEFAULT는 항상 보유하며 가격·목표가 없다.
+- DUAL_PATH는 non-empty goal ID와 양수 가격을 가진다.
+- CURRENCY_ONLY는 goal ID가 없고 양수 가격을 가진다.
+- 구매로 해금해도 목표 진행·완료 상태는 변경하지 않는다.
+- 구매 후 목표 달성 시 목표 완료 기록은 남기고, 소유권 대신 bounded 1회 compensation을 지급한다.
+- compensation은 item 가격 이하 `TEST_VALUE`다.
+- goal evidence는 completed, non-assisted, current ruleset, integrity VALID run만 사용한다.
+- 재화 차감과 해금은 동일 transaction에서 atomic·idempotent하게 처리한다.
+- 동일 transaction/event를 재처리해도 추가 차감·진행·보상이 없다.
+- 재화 전용 꾸미기는 성능·충돌·정보 가독성 우위를 제공하지 않는다.
+- 실제 화폐·광고·시즌·loot box·기간 한정 FOMO는 별도 승인 전까지 금지한다.
+- 일반 run 재화 획득 공식은 `SX-DEC-021`에서 별도 확정한다.
+- 가격·compensation·대표 목표 threshold는 모두 `TEST_VALUE`다.
+
+### Vertical Slice 대표 배치
+
+```text
+locomotive.default         → DEFAULT
+locomotive.goal_sample     → DUAL_PATH
+locomotive.currency_sample → CURRENCY_ONLY
+```
+
+대표 ID·가격·목표는 구현 fixture이며 최종 콘텐츠·경제 승인값이 아니다.
+
+### 구현·검증 상태
+
+```yaml
+planning_spec: APPROVED
+implementation: NOT_STARTED
+automated_tests: NOT_RUN
+android: NOT_RUN
+human_validation: NOT_RUN
+```
+
+### 책임 문서
+
+- 설계: `docs/superpowers/specs/2026-08-02-goal-or-currency-cosmetic-unlocks-design.md`
+- TDD 계획: `docs/superpowers/plans/2026-08-02-goal-or-currency-cosmetic-unlocks.md`
+- 기반 설계: `docs/superpowers/specs/2026-08-02-records-cosmetic-only-progression-design.md`
+- 시스템 소비자: `기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md` — 10/10 사전감사에서 최종 전파
+- 표현 소비자: `기획서/40_표현/VISUAL_DIRECTION.md` — 10/10 사전감사에서 최종 전파
+- 구현 목표 소비자: `기획서/00_프로젝트_허브/EXECUTABLE_PROMPTS/CODEX_GOAL_VS_03.md` — 10/10 사전감사에서 최종 전파
+- 검증 소비자: `기획서/50_제작_검증/PLAYTEST_PLAN.md` — 10/10 사전감사에서 최종 전파
+
 ## Adversarial Findings
 
 | Finding ID | 유형 | 문제 | 처리 |
@@ -231,11 +303,16 @@ human_validation: NOT_RUN
 | `SX-AUD-004-F38` | ASSISTED_RECORD_CONTAMINATION | first-run assist 기록이 표준 최고 기록을 덮어쓸 위험 | RecordEligibilityPolicy에서 assisted run 제외 |
 | `SX-AUD-004-F39` | IDLE_GRIND_EXPLOIT_RISK | 무조작 시간·중복 종료 event가 cosmetic 파밍 수단이 될 위험 | 유효 run 근거와 idempotent unlock 계약 |
 | `SX-AUD-004-F40` | SAVE_MIGRATION_LOCKOUT_RISK | 삭제 cosmetic·save 손상으로 장착 UI나 게임 시작이 막힐 위험 | default cosmetic fallback과 field-level partial recovery |
+| `SX-AUD-004-F41` | ACHIEVEMENT_VALUE_EROSION_RISK | 재화 구매가 목표 달성 의미까지 대체할 위험 | ownership과 goal completion·provenance 분리 |
+| `SX-AUD-004-F42` | DOUBLE_DEBIT_REWARD_RISK | 중복 event·save 재시도로 재화가 여러 번 차감되거나 보상이 중복될 위험 | transaction ID와 atomic idempotent 처리 |
+| `SX-AUD-004-F43` | CURRENCY_ONLY_POWER_FOMO_RISK | 재화 전용 item이 성능 우위·실제 화폐·기간 한정으로 오해될 위험 | cosmetic parity·영구 catalog·별도 승인 경계 |
+| `SX-AUD-004-F44` | ASSISTED_GOAL_FARM_RISK | first-run assist·debug·무결성 손상 run으로 목표를 쉽게 완료할 위험 | GoalEligibilityPolicy에서 제외 |
+| `SX-AUD-004-F45` | ECONOMY_PACING_RISK | 가격과 획득량 불일치로 무의미한 파밍 또는 즉시 고갈이 발생할 위험 | 가격을 TEST_VALUE로 두고 재화 획득 정책을 다음 Decision으로 분리 |
 
-현재 P0/P1 open finding은 없다. 구체 해금 경제·대표 자산·Profile runtime·Android 가독성·사람 반응은 `NOT_DECIDED / NOT_STARTED / NOT_RUN`이다.
+현재 P0/P1 open finding은 없다. 제품 구현, 일반 run 재화 획득, 가격 튜닝, 대표 자산, Profile runtime, Android 가독성, 사람 반응은 `NOT_STARTED / NOT_DECIDED / NOT_RUN`이다.
 
 ## 다음 후보
 
-`SX-DEC-020` — cosmetic을 업적 milestone, run 보상 통화, 또는 두 방식의 결합 중 어떤 획득 구조로 해금할지.
+`SX-DEC-021` — 꾸미기 전용 재화를 의미 있는 run 기본 보상, 성과 비례 보너스, 또는 bounded 혼합 방식 중 어떤 구조로 획득할지.
 
-상태: `NEXT_GRILL_ME · GMB-001 SLOT 4`.
+상태: `NEXT_GRILL_ME · GMB-001 SLOT 5`.
