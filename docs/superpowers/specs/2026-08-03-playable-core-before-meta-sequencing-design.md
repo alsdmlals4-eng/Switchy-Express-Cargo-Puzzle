@@ -4,7 +4,7 @@
 audit_id: SX-AUD-007
 evidence_id: EV-USER-018
 user_approval: RECOMMENDED_OPTION_C
-status: APPROVED_DESIGN · IMPLEMENTATION_PLAN_NOT_YET_AUTHORIZED
+status: APPROVED_DESIGN · USER_SPEC_REVIEW_REQUIRED
 product_rule_change: false
 current_implementation_authority: VS03-02_ONLY
 ```
@@ -42,6 +42,8 @@ VS03-01 run lifecycle/economy/difficulty · DONE
 
 `VS03-R1`은 새 플레이어 규칙이 아니라 `SX-AUD-007-F87`을 닫는 안전 교정 package다. 실제 속도·연료 압력 경계와 `DifficultyDirector` forecast/commit schedule을 일치시킨다.
 
+현재 `VS03-02` 실행 권위는 변경하지 않는다. `VS03-R1`은 `VS03-03`이 병합·동기화된 뒤, 어떤 difficulty presentation도 구현하기 전 별도 package로 수행한다.
+
 ## 3. VS03-05A — 최소 플레이 가능 핵심 화면
 
 ### 목표
@@ -62,7 +64,7 @@ Meta와 persistence 없이도 다음 질문에 답할 수 있는 첫 제품 화�
 - PREP slight zoom과 `FULL_MAP_READY`
 - active run fixed full-map camera
 - 난이도 persistent band의 최소 read-only 표시
-- pause/restart를 제외한 run core smoke path
+- run core smoke path
 - Reduced Motion instant/static parity
 
 ### 제외
