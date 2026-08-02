@@ -1,0 +1,38 @@
+from __future__ import annotations
+
+import json
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+ADAPTER = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
+
+
+class BaseV942PlanningFirstAdoptionTests(unittest.TestCase):
+    def test_released_identity_and_planning_contract(self) -> None:
+        adapter = json.loads(ADAPTER.read_text(encoding="utf-8"))
+        release = adapter["base_release"]
+        self.assertEqual("9.4.2", release["version"])
+        self.assertEqual("dd705d7f48a7919187bc0507610ba5fc5b43a658", release["release_commit"])
+        self.assertEqual("0c6cdd128bf1f5782e96b3a6240c9585f8d1ef6d", release["release_evidence_commit"])
+        self.assertEqual("ac9466edc2d93b59f274c9ac55ca719eba2809e3", release["finalization_commit"])
+        planning = adapter["shared_overrides"]["managing-project-intake-and-work-contract"]["planning_first_governance"]
+        self.assertEqual("base-v9.4.2.lock.json", planning["base_release_lock"])
+        self.assertEqual(10, planning["max_approved_decisions_per_batch"])
+        self.assertEqual("RECOMMENDED_DEFAULT", planning["numeric_default_state"])
+        self.assertEqual("GRILL_ME_REQUIRED", planning["planning_conflict_state"])
+        self.assertEqual("APPROVED_PENDING_MERGE", planning["pre_merge_sheet_state"])
+        self.assertEqual("SYNCED_TO_MAIN", planning["post_merge_sheet_state"])
+        self.assertEqual("NOT_RUN", planning["actual_project_batch_execution"])
+
+    def test_switchy_product_and_sheet_boundaries_remain_unchanged(self) -> None:
+        adapter = json.loads(ADAPTER.read_text(encoding="utf-8"))
+        self.assertEqual("SYNCED", adapter["gdd_sheet"]["sync_status"])
+        self.assertEqual("Godot 4.7.1", adapter["project"]["engine"])
+        self.assertEqual("Android", adapter["project"]["platform"])
+        self.assertEqual(["project.godot", "game/**", "assets/**", "기획서/**"], adapter["protected_paths"])
+        self.assertEqual("NOT_RUN", adapter["shared_overrides"]["orchestrating-deepseek-worktrees"]["actual_external_ai_worktree_execution"])
+
+
+if __name__ == "__main__":
+    unittest.main()
