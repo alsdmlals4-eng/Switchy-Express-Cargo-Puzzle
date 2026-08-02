@@ -1,19 +1,20 @@
 # Codex Goal — VS-03 Local Survival Vertical Slice
 
 ```yaml
-status: READY_FOR_BUILD_PENDING_CANONICAL_SYNC
+status: READY_FOR_BUILD
 issue: 6
 parent_epic: 3
 product_baseline: 4e435a1a6d10ab146197671049da80709fd18c1f
 gmb001: CLOSED · SX-DEC-017~026 · DECISION_MERGE_9b63421a
-dor_audit: SX-AUD-005
+dor_audit: SX-AUD-005 · PASS · SYNCED
+dor_merge: 82fd3eeb1915e6ceedb2f5330b27e903064d6eb5
 dor_evidence: EV-USER-016
-execution_authority: VS03-01_ONLY_AFTER_CANONICAL_SYNC
+execution_authority: VS03-01_ONLY
 online_ugc: OUT_OF_SCOPE_FOR_VS03
 product_implementation: NOT_STARTED
 ```
 
-> 이 문서는 DoR planning PR과 올바른 Sheet readback이 완료된 뒤 `VS03-01`에 한해 실행 권위를 갖는다. VS03-02~07을 병렬로 시작하지 않는다.
+> 이 문서는 현재 `VS03-01`에 한해 실행 가능한 Codex Goal이다. VS03-02~07을 병렬로 시작하지 않으며, 별도 Codex 작업이 실제로 시작되기 전 제품 구현은 `NOT_STARTED`다.
 
 ## 반드시 먼저 읽기
 
@@ -214,11 +215,13 @@ This package cannot claim:
 - Android/localization/accessibility/human PASS
 - online/UGC readiness
 
-## Start Condition
+## Start State
 
 ```text
-DoR PR merged
-+ correct Sheet SX-AUD-005 / EV-USER-016 canonical sync
-+ exact final readback PASS
+DoR PR #35 merged 82fd3eeb1915e6ceedb2f5330b27e903064d6eb5
++ correct Sheet SX-AUD-005 / EV-USER-016 canonical readback PASS
++ G3P PASS
 = Codex READY_FOR_BUILD · VS03-01
 ```
+
+A separate Codex execution must still create the implementation branch and begin TDD. This document does not claim implementation has started.
