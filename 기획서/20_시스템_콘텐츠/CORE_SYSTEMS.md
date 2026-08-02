@@ -87,6 +87,25 @@
 
 상태: `IMPLEMENTED · PASSED`.
 
+## Combo 의미 — SX-DEC-014
+
+상태: `CONFIRMED · NOT_STARTED`.
+
+```text
+combo_count = 이번 한 번의 역 도착에서 연속 하역된 동일 cargo_type 개수
+max_combo = 한 판에서 기록한 combo_count 최댓값
+```
+
+필수 계약:
+
+- `combo_count`는 `Station.try_unload()`가 반환한 `count`와 같다.
+- Combo는 배송 이벤트 로컬 값이며 다음 배송까지 유지되는 streak state가 아니다.
+- 빠른 배송은 `seconds_since_delivery`로 계산하는 별도 `speed_bonus`다.
+- `speed_bonus`는 Combo를 증가·유지·리셋하지 않는다.
+- 빈 역·타입 불일치는 `combo_count = 0`이고 보상 0이다.
+- telemetry는 `unload_group_size`와 `speed_bonus_applied`를 별도 기록한다.
+- 저장은 `max_combo`만 보존한다.
+
 ## VS-03 생존 경제 권위
 
 권장 책임 경계:
@@ -99,7 +118,7 @@ RunBalance
 → 순수 속도·연료·배송 보상 계산
 
 RunState
-→ elapsed·fuel·score·combo·game-over의 단일 상태
+→ elapsed·fuel·score·last_combo·max_combo·game-over의 단일 상태
 
 RunController
 → DeliveryLoop 이벤트 소비, TrainController 속도 주입, run 종료
@@ -152,32 +171,36 @@ boost_drain_multiplier = 2.4
 
 분류: `TEST_VALUE`
 
-| 연속 하역 | 기본 점수 | 연료 |
+| Combo=`unload_group_size` | 기본 점수 | 연료 |
 |---:|---:|---:|
 | 1 | 100 | 5 |
 | 2 | 260 | 12 |
 | 3 | 540 | 21 |
 | 4 | 960 | 32 |
-| 5+ | `300 × 개수` + 콤보 | `8 × 개수` |
+| 5+ | `300 × 개수` | `8 × 개수` |
 
 추가 시험식:
 
 ```text
-speed_bonus = 1.25 if 이전 배송 후 8초 이내 else 1.0
+speed_bonus = 1.25 if 이전 유효 배송 후 8초 이내 else 1.0
 heavy_bonus = 1.15 if 배송 직전 화물 6개 이상 else 1.0
-final_score = round(base_combo_score × speed_bonus × heavy_bonus)
+final_score = round(base_unload_score × speed_bonus × heavy_bonus)
 ```
 
-BOOST 사용 시간 자체, 무입력 이동, 빈 역 통과에는 점수를 주지 않는다.
+- `base_unload_score`는 이번 `unload_group_size`만으로 결정한다.
+- `speed_bonus`와 `heavy_bonus`는 Combo 정의가 아니라 점수 배율이다.
+- BOOST 사용 시간 자체, 무입력 이동, 빈 역 통과에는 점수를 주지 않는다.
+- 모든 수치는 플레이테스트 전 `TEST_VALUE`다.
 
-## 콤보·보상 의미 공백
+## 보상 의미 후속 검증
 
-다음은 상세 수치가 아니라 플레이어 경험 의미를 바꿀 수 있어 총기획 감사 대상이다.
+Combo 정의는 닫혔지만 아래 항목은 수치·위험 보상 검증으로 남는다.
 
-- 콤보가 한 번의 동일색 그룹 크기인지, 연속 배송 streak인지
-- 큰 stack의 위험을 점수 보너스로 얼마나 직접 보상할지
-- 실패 직전의 저연료 배송을 별도 위험 보상으로 강조할지
-- 이 선택은 기존 문서가 혼용하는지 확인한 뒤 필요할 경우 Grill Me로 확정
+- 큰 stack의 위험을 `heavy_bonus`가 충분히 보상하는지
+- 저연료 배송을 별도 위험 보상으로 추가할 필요가 있는지
+- `speed_bonus`가 LIFO 계획보다 속도 경쟁을 과도하게 앞세우는지
+
+현재는 새 Decision을 만들지 않고 시뮬레이션·플레이테스트에서 검증한다.
 
 ## 무조작·악용 방지
 
@@ -192,13 +215,13 @@ BOOST 사용 시간 자체, 무입력 이동, 빈 역 통과에는 점수를 주
 
 ## 결과·저장 권장 계약
 
-분류: `RECOMMENDED_DEFAULT`
+분류: `RECOMMENDED_DEFAULT`.
 
 저장 대상:
 
 - `best_score`
 - `longest_survival_seconds`
-- `max_combo`
+- `max_combo` — 한 번의 역 도착에서 기록한 최대 연속 하역 개수
 - `schema_version`
 
 원칙:
@@ -217,6 +240,7 @@ BOOST 사용 시간 자체, 무입력 이동, 빈 역 통과에는 점수를 주
 | 기차·화차 | IMPLEMENTED · PASSED |
 | 화물·역·LIFO | IMPLEMENTED · PASSED |
 | DeliveryLoop 런타임 최소 수량 | IMPLEMENTED · PASSED |
+| Combo 의미 | CONFIRMED · NOT_STARTED |
 | 속도·연료·점수·BOOST | NOT_STARTED · TEST_VALUES_DEFINED |
 | 게임오버·결과·기록 | NOT_STARTED |
 | 제품 HUD·Android·플레이테스트 | NOT_RUN |

@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-08-02 — Total Planning Decision · SX-DEC-014
+
+- 총기획 Coverage·충돌 감사 `SX-AUD-004` 시작
+- Combo 의미 충돌을 `SX-AUD-004-F01`로 확인
+- 사용자 권장안 승인으로 `SX-DEC-014` 확정
+- Combo를 한 번의 역 도착에서 연속 하역된 동일 `cargo_type` 개수로 정의
+- `max_combo`를 한 판의 최대 하역 그룹 크기로 정의
+- 빠른 연속 배송을 Combo가 아닌 별도 `speed_bonus` 시험 차원으로 분리
+- `EV-USER-002` 등록
+- Core Gameplay·Core Systems·Visual Direction·Playtest Plan·VS-03 Goal·Issue #6 동기화
+- 하역 보상표의 모호한 “+ 콤보” 표현 제거
+- telemetry를 `cargo_type`·color·shape·`unload_group_size`로 확장
+- 5명 플레이테스트 퍼센트 기준에 실제 통과 명수와 ceil 규칙 병기
+- 오디오·햅틱 정보 우선순위·mute/haptic-off fallback 권장 계약 추가
+- 다음 중요 충돌을 `SX-DEC-015` 화물 수–표시 화차 수·점유 관계로 승격
+- 상세 점수·연료·피드백 시간은 계속 `TEST_VALUE`
+- 제품 코드 변경 없음, `CODEX_NOT_READY` 유지
+- PR 병합 commit을 올바른 Switchy Express Sheet에 같은 Decision·Evidence·Audit ID로 기록한 뒤 `SYNCED` 종료 예정
+
 ## 2026-08-02 — Post-VS02 Sheet Sync Closed
 
 - PR #16 canonical recovery commit `8245e22905d64e22b599fe009bbb660d005392ed`를 실제 Switchy Express Google Sheets에 반영
