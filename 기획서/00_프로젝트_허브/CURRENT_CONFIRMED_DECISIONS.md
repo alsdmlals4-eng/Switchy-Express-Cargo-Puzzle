@@ -6,11 +6,12 @@ Last updated: `2026-08-02`
 product_baseline: 4e435a1a6d10ab146197671049da80709fd18c1f
 latest_planning_decision_merge: 9b63421a5ab4d57adbfcf69d2b6e1bf8e3d17496
 gmb001: CLOSED · SX-DEC-017~026 · 10/10
-dor_audit: SX-AUD-005 · PASS_WITH_PLANNING_FIXES
+dor_audit: SX-AUD-005 · PASS · SYNCED
+dor_merge: 82fd3eeb1915e6ceedb2f5330b27e903064d6eb5
 dor_evidence: EV-USER-016
-sheet: GMB001_SYNCED · DOR_CANONICAL_SYNC_PENDING
-implementation_authority: VS03-01_PENDING_CANONICAL_SYNC
-codex_state: READY_FOR_BUILD_PENDING_CANONICAL_SYNC
+sheet: DOR_CANONICAL_READBACK_PASS
+implementation_authority: VS03-01_ONLY
+codex_state: READY_FOR_BUILD
 product_implementation: NOT_STARTED
 ```
 
@@ -50,8 +51,8 @@ product_implementation: NOT_STARTED
 
 | ID | 범위 | 근거 | 현재 상태 |
 |---|---|---|---|
-| SX-AUD-004 | 전체 기획 coverage·Decision 충돌 | EV-USER-002~015 | GMB001_CLOSED · RUNTIME_FOLLOWUPS |
-| SX-AUD-005 | VS-03 Definition of Ready·실제 API/file/test/save/order/rollback | EV-USER-016 | PASS_WITH_PLANNING_FIXES · CANONICAL_SYNC_PENDING |
+| SX-AUD-004 | 전체 기획 coverage·Decision 충돌 | EV-USER-002~015 | PASS · GMB001_CLOSED · RUNTIME_FOLLOWUPS |
+| SX-AUD-005 | VS-03 Definition of Ready·실제 API/file/test/save/order/rollback | EV-USER-016 | PASS_WITH_PLANNING_FIXES · SYNCED · VS03-01_AUTHORIZED |
 
 `SX-AUD-005`는 제품 규칙 Decision을 변경하지 않는다. 승인된 의미를 실제 저장소에서 구현 가능한 package contract로 정규화한다.
 
@@ -67,11 +68,12 @@ docs/superpowers/plans/2026-08-02-vs03-build-segmentation.md
 
 Decision-specific plans remain responsibility references. Their pseudocode/path/test command conflicts are non-authoritative against the DoR canon.
 
-After merge + Sheet closure:
+Current authority:
 
 ```text
 Codex READY_FOR_BUILD · VS03-01 only
-product implementation still NOT_STARTED until execution begins
+product implementation NOT_STARTED until execution begins
+VS03-02~07 BLOCKED_BY_PREVIOUS_PACKAGE
 ```
 
 ## Implementation Tracking
@@ -80,7 +82,7 @@ product implementation still NOT_STARTED until execution begins
 |---|---|---|
 | existing rail/train/cargo/LIFO foundation | IMPLEMENTED_OR_PARTIAL | historical automated PASS/PARTIAL |
 | SX-DEC-014~026 runtime | NOT_STARTED_OR_NOT_RUN | planning approved only |
-| VS03-01 | READY_PENDING_CANONICAL_SYNC | NOT_STARTED |
+| VS03-01 | READY_FOR_BUILD | NOT_STARTED |
 | VS03-02~07 | BLOCKED_BY_PREVIOUS_PACKAGE | NOT_STARTED |
 | target3 official maps | PLANNED_VS03 | NOT_RUN |
 | target100 official maps | PRODUCTION | `F58 NOT_MET` |
@@ -106,7 +108,7 @@ product implementation still NOT_STARTED until execution begins
 |---|---|
 | EV-USER-002~005 | CONFIRMED_USER_DECISION/OPERATION · SYNCED |
 | EV-USER-006~015 | CONFIRMED_USER_DECISION · PR #29/SHEET SYNCED |
-| EV-USER-016 | user instruction to execute G3P DoR review and recommended fixes · CANONICAL_SYNC_PENDING |
+| EV-USER-016 | user instruction to execute G3P DoR review and recommended fixes · PR #35/SHEET SYNCED |
 | EV-VS01-001 | VALIDATED |
 | EV-VS02-001 | VALIDATED |
 | EV-VS02-FIX-001 | VALIDATED |
@@ -123,8 +125,8 @@ product implementation still NOT_STARTED until execution begins
 
 ```text
 GMB-001 CLOSED
-DoR branch planning only
-DoR canonical merge pending
-correct Sheet DoR rows pending
+DoR PR #35 merged 82fd3eeb1915e6ceedb2f5330b27e903064d6eb5
+correct Sheet canonical readback PASS
 wrong 19Ff... Sheet untouched
+VS03-01 READY_FOR_BUILD
 ```

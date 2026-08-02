@@ -54,9 +54,7 @@ Status: `PARTIAL`
 
 ## G3P — TOTAL_PLANNING_AND_REVIEW_COMPLETE
 
-Status: `PASS_PENDING_CANONICAL_SYNC · SX-AUD-005`
-
-완료:
+Status: `PASS · READY_FOR_BUILD · SX-AUD-005`
 
 - [x] GMB-001 canonical Decision/Sheet closure
 - [x] actual code/API/file inventory
@@ -70,21 +68,18 @@ Status: `PASS_PENDING_CANONICAL_SYNC · SX-AUD-005`
 - [x] rollback strategy
 - [x] exact acceptance/evidence locations
 - [x] target3/target100 scope separation
-- [x] user instruction to proceed: `EV-USER-016`
+- [x] user instruction `EV-USER-016`
 - [x] known open P0/P1 implementation-planning findings 0 after fixes
+- [x] PR #35 canonical merge `82fd3eeb1915e6ceedb2f5330b27e903064d6eb5`
+- [x] correct Sheet `SX-AUD-005 / EV-USER-016` canonical readback PASS
+- [x] Sync Closure metadata prepared
 
-남음:
-
-- [ ] DoR planning PR canonical merge
-- [ ] correct Sheet `SX-AUD-005 / EV-USER-016` + merge SHA
-- [ ] final 12-tab readback and Sync Closure
-
-Final state after these items:
+승격 의미:
 
 ```text
-G3P PASS · READY_FOR_BUILD
-Codex READY_FOR_BUILD · VS03-01
-product implementation NOT_STARTED
+Codex READY_FOR_BUILD · VS03-01_ONLY
+product implementation NOT_STARTED until execution begins
+VS03-02~07 BLOCKED_BY_PREVIOUS_PACKAGE
 ```
 
 ## G3B — GRILL_ME_BATCH_PREMERGE
@@ -99,7 +94,7 @@ Status: `GMB-001 CLOSED`
 
 ## G3I — VS-03 IMPLEMENTATION PACKAGES
 
-Status: `NOT_STARTED · FIRST_PACKAGE_PENDING_DOR_SYNC`
+Status: `VS03-01 READY_FOR_BUILD · NOT_STARTED`
 
 Canonical order:
 
@@ -115,10 +110,11 @@ VS03-01 run lifecycle/economy/difficulty
 
 Rules:
 
-- previous package must merge first
+- current authority is VS03-01 only
+- previous package must merge before the next package starts
 - shared hotspot packages do not run in parallel
 - every PR requires behind 0, Project Contract/Godot success, thread 0, REQUEST_CHANGES 0
-- initial authorization is VS03-01 only
+- package ownership, rollback, and explicit NOT_RUN evidence are mandatory
 
 ## G4 — TARGET_QUALITY_SLICE
 
@@ -192,8 +188,8 @@ Forbidden initial claims/features:
 ## Current Transition
 
 ```text
-SX-AUD-005 candidate
-→ canonical merge + Sheet readback
-→ G3P PASS
-→ VS03-01 only
+G3P PASS · READY_FOR_BUILD
+→ separate Codex execution for VS03-01
+→ TDD + exact-head package Gate
+→ merge before VS03-02 promotion
 ```
