@@ -6,7 +6,8 @@
 2. **Toy railway clarity** — 장난감 철도판처럼 선로·침목·곡선·분기 구조가 즉시 읽힘
 3. **Global readability** — 짧은 텍스트, 명확한 아이콘, 색상+모양 이중 부호
 4. **Juicy logistics** — compact token 적재, 스위치 전환, LIFO 하역 Combo, 부스터에 강한 즉시 피드백
-5. **Cozy mascot world** — 토끼 기관사와 작은 역·초원·꽃·물가·미니어처 소품
+5. **Contextual learning** — 실제 첫 run에서 행동 대상과 결과를 짧게 강조하되 장기 플레이 화면을 가리지 않음
+6. **Cozy mascot world** — 토끼 기관사와 작은 역·초원·꽃·물가·미니어처 소품
 
 ## 화면 구성
 
@@ -39,7 +40,7 @@
 - 기관차 쪽부터 뒤쪽까지 stack bottom→top 순서로 배치한다.
 - 가장 뒤 토큰이 마지막 적재 화물이자 다음 하역 대상이다.
 - 적재는 뒤에 토큰이 결합되고, 하역은 뒤쪽 동일 타입 그룹이 빠지는 연출을 사용한다.
-- 최대 8개 토큰은 길게 늘어진 full-size wagon 열이 아니라 약 2.18 rail-cell 길이의 압축 체인으로 표현한다.
+- 최대 8개 토큰은 길게 늘어진 full-size wagon 열이 아니라 2.18 rail-cell 길이의 압축 체인 `TEST_VALUE`로 표현한다.
 - 권장 시험값: token body 0.22칸, center spacing 0.28칸, trailing footprint 최대 3칸.
 - 토큰은 색상뿐 아니라 별/마름모/삼각형을 충분히 크게 표시한다.
 - 곡선에서는 fractional path history를 따라가며 안쪽으로 지름길을 만들지 않는다.
@@ -58,6 +59,39 @@
 - 결과 화면은 `MAX COMBO`와 신기록 여부를 표시한다.
 - 빠른 배송의 `speed_bonus`가 발동하면 Combo와 분리된 작은 속도 보너스 피드백을 사용한다.
 - 피드백 지속 시간·크기·이징은 `TEST_VALUE`이며 Reduced Motion에서는 즉시 정적 표기로 대체한다.
+
+## 상황형 첫 세션 온보딩 — SX-DEC-016
+
+### 표현 원칙
+
+- 별도 튜토리얼 화면으로 맵을 가리지 않고 실제 첫 run 위에 짧은 안내를 얹는다.
+- 설명은 한 화면 최대 2줄, 한 문장 중심이다.
+- 필수 행동 대상은 색상만이 아니라 아이콘·외곽선·포인터·텍스트 중 둘 이상으로 강조한다.
+- 첫 LOAD와 첫 분기의 safe pause 동안에도 현재 열차·화물·경로·HUD 관계가 보여야 한다.
+- 안내 카드가 다음 분기 preview·rear token·연료 게이지를 가리면 위치를 자동 회피한다.
+- `건너뛰기`는 모든 필수 단계에서 한 번의 명확한 행동으로 접근 가능해야 한다.
+
+### 단계별 시각
+
+| 단계 | 주요 강조 | 카피 |
+|---|---|---|
+| FIRST_LOAD | LOAD 버튼·접근 pickup | `LOAD를 누르고 있는 동안 화물을 싣습니다.` |
+| TOKEN_MEANING | 새 rear token·HUD first item | `화물 1개가 작은 화차 1개로 뒤에 붙습니다.` |
+| FIRST_SWITCH | 분기 레버·현재 단계·3~5칸 preview | `분기기를 눌러 다음 경로를 바꿉니다.` |
+| LIFO_PROOF | mixed stack rear B·B 역·하역 뒤 A 잔존 | `가장 뒤 화물부터 내립니다.` |
+| COMBO_PROOF | rear same-type group·역·COMBO ×N | `같은 화물을 이어 싣고 한 번에 내리면 Combo가 커집니다.` |
+| BOOST_HINT | BOOST·연료 게이지·추가 소모 아이콘 | `BOOST는 빨라지지만 연료를 더 씁니다.` |
+
+### 권위·중단 계약
+
+- overlay hide·text advance·animation completion은 onboarding step 완료·safe pause 해제 조건이 아니다.
+- 실제 pickup·switch target lock·unload·Combo domain event 또는 skip·teardown만 상태를 진행한다.
+- overlay가 중단·재생성돼도 같은 단계의 gameplay reward가 반복되지 않는다.
+- Reduced Motion은 pulse·bounce를 정적 외곽선·번호·화살표로 바꾸며 정보는 유지한다.
+- mute·haptic-off에서도 모든 온보딩 P0/P1 정보가 시각적으로 남는다.
+- Help 카드 재생은 first-run assist를 켜지 않는다.
+
+상세 설계: `docs/superpowers/specs/2026-08-02-first-session-contextual-onboarding-design.md`.
 
 ## 분기기 UX
 
@@ -83,6 +117,7 @@
 - 3단계 분기 상태는 색뿐 아니라 단계 점·번호·레버 방향 중 둘 이상으로 표시
 - Combo는 숫자와 `COMBO` 텍스트를 함께 표시하고 색·모션만으로 전달하지 않음
 - 토큰이 작아도 shape glyph의 최소 식별 크기를 Android 캡처에서 검증
+- 온보딩 강조와 skip도 48dp·safe area·색상 외 부호를 지킴
 
 ## 오디오·햅틱 권장 계약
 
@@ -93,11 +128,12 @@
 | P0 | 연료 위험·게임오버 | 경고음·짧은 위험 진동 | 게이지 점멸·위험 아이콘·정적 결과 원인 |
 | P1 | 분기 전환 접수·목표 잠금 | 레버 클릭·짧은 탭 진동 | 레버 상태·활성 경로 즉시 변경 |
 | P1 | 화물 적재·토큰 결합·하역 Combo | 결합음·하역 상승음·단계 진동 | token/HUD 즉시 갱신·`COMBO ×N` |
+| P1 | 온보딩 대상 전환 | 짧은 안내음·한 번의 탭 진동 | 아이콘·외곽선·텍스트 강조 |
 | P2 | BOOST 시작·종료 | 엔진 피치 변화·지속 약진동 | BOOST 버튼·속도·연료 배율 표시 |
 | P2 | speed bonus | 짧은 성공음 | 별도 보너스 배지·점수 증가 분리 표시 |
 
 - 소리·진동은 입력 접수와 도메인 결과를 구분한다.
-- 오디오·햅틱 완료는 점수·연료·분기·적재·저장의 권위가 아니다.
+- 오디오·햅틱 완료는 점수·연료·분기·적재·온보딩 단계·저장의 권위가 아니다.
 - P0/P1 정보는 mute·haptic-off에서도 시각적으로 완전해야 한다.
 - 구체 파형·볼륨·진동 길이는 제품 테스트 전 `TEST_VALUE`다.
 
@@ -111,9 +147,11 @@
 2. SwitchView에서 기본 A·대안 B/C·현재 상태를 한눈에 표시
 3. compact token 0/1/4/8개 상태에서 화물 수·rear LIFO token·색상+모양을 식별
 4. 8개 token chain이 trailing 3칸 이내이며 역·화물·분기·preview를 가리지 않는지 확인
-5. 작은 Android 화면에서 48dp 터치 영역과 safe area 확인
-6. Combo와 speed bonus가 서로 다른 의미로 읽히는지 확인
-7. 승인 콘셉트와 실제 1920×1080 캡처를 비교해 `PASS / REVISE` 판정
+5. FIRST_LOAD·FIRST_SWITCH safe pause에서 안내 카드가 대상과 경로를 가리지 않는지 확인
+6. mixed-stack LIFO와 COMBO ×N이 설명 없이 이어지는지 확인
+7. 작은 Android 화면에서 48dp 터치 영역과 safe area 확인
+8. Combo와 speed bonus가 서로 다른 의미로 읽히는지 확인
+9. 승인 콘셉트와 실제 1920×1080 캡처를 비교해 `PASS / REVISE` 판정
 
 ## UI 모션·중단·반복 계약
 
@@ -121,8 +159,8 @@
 입력 접수 → 처리 중 → 도메인 결과 확정 → 결과 표현
 ```
 
-- 분기 전환·LOAD·화물 적재·token 추가/제거·LIFO 하역·Combo·BOOST·결과·재시작 모션은 중단과 즉시 완료 경로를 가진다.
-- 빠른 반복·재진입·재시작에서 분기 상태·화물 stack·token count/order·점수·연료·배송·spawn이 중복되지 않아야 한다.
-- `AnimationPlayer`·`Tween` 완료 signal은 선로 선택·적재·하역·token 점유·점수·연료·게임오버·저장의 권위 시점이 아니다.
-- `Reduced Motion`, `mute`, `haptic-off`에서도 활성 경로·다음 하역·연료·위험·결과 원인·다음 행동을 보존한다.
-- Android safe area·48dp·성능·사람 이해는 `NOT_RUN` / `HUMAN_NOT_RUN`으로 유지한다.
+- 분기 전환·LOAD·화물 적재·token 추가/제거·LIFO 하역·Combo·BOOST·온보딩·결과·재시작 모션은 중단과 즉시 완료 경로를 가진다.
+- 빠른 반복·재진입·재시작에서 분기 상태·화물 stack·token count/order·온보딩 step·점수·연료·배송·spawn이 중복되지 않아야 한다.
+- `AnimationPlayer`·`Tween` 완료 signal은 선로 선택·적재·하역·token 점유·온보딩 단계·점수·연료·게임오버·저장의 권위 시점이 아니다.
+- `Reduced Motion`, `mute`, `haptic-off`에서도 활성 경로·다음 하역·온보딩 대상·연료·위험·결과 원인·다음 행동을 보존한다.
+- Android safe area·48dp·성능·사람 이해는 `NOT_RUN / HUMAN_NOT_RUN`으로 유지한다.

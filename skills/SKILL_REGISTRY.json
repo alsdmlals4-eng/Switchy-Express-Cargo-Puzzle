@@ -25,13 +25,21 @@
         "boost",
         "score",
         "onboarding",
+        "first session",
+        "tutorial",
+        "failure learning",
+        "result screen",
+        "Grill Me",
+        "batch merge",
+        "pre-merge audit",
         "visual readability"
       ],
       "negative_triggers": [
         "unrelated repository administration"
       ],
       "outputs": [
-        "project gameplay decision or review"
+        "project gameplay decision or review",
+        "Grill Me batch ledger and pre-merge audit"
       ]
     },
     {

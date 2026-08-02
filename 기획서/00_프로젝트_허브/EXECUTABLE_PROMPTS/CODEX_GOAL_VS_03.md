@@ -1,25 +1,28 @@
-# Codex Goal — VS-03 생존 경제·제품 플레이 화면
+# Codex Goal — VS-03 생존 경제·제품 플레이 화면·첫 세션 온보딩
 
 Status: `PLANNING_DRAFT · CODEX_NOT_READY`
 GitHub Issue: `#6`
 Parent Epic: `#3`
 Blocked by implementation: `#5 · COMPLETED`
-Blocked by planning: `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE`
-Baseline main: `b8742253247da25a0190f80b898b9bbe6ec6a1cf`
-Plan: `docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md` Task 6~7
+Blocked by planning: `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE · G3B_GRILL_ME_BATCH_PREMERGE`
+Baseline synchronized main before this Decision: `867563bb7bb69cfbb7343ef734585dd034ad7a64`
+Master Plan: `docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md` Task 6~7
 Compact token spec: `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md`
+Onboarding spec: `docs/superpowers/specs/2026-08-02-first-session-contextual-onboarding-design.md`
+Onboarding plan: `docs/superpowers/plans/2026-08-02-first-session-contextual-onboarding.md`
 
-> 이 문서는 현재 구현 명령이 아니다. 전체 기획 Coverage·적대적 검토·필수 Grill Me Decision·GitHub/Sheet 동기화가 닫힌 뒤 `READY_FOR_BUILD`로 승격한다.
+> 이 문서는 현재 구현 명령이 아니다. 전체 기획 Coverage·Grill Me batch·GitHub/Sheet 동기화가 닫힌 뒤 `READY_FOR_BUILD`로 승격한다.
 
 ## 플레이어에게 보여야 할 결과
 
 ```text
-자동 운행
-→ LOAD 선택 적재
+실제 첫 무한 run 시작
+→ 첫 LOAD 상황 학습
 → compact wagon token 뒤쪽 추가
-→ 분기 판단
-→ rear token부터 LIFO 배송
+→ 첫 분기 preview와 실제 경로 학습
+→ rear token부터 mixed-stack LIFO 배송
 → 하역 그룹 Combo·점수·연료 보상
+→ 일반 run으로 연속 전환
 → 시간·화물·BOOST의 속도/연료 압박
 → 연료 0
 → 결과·기록
@@ -37,8 +40,10 @@ Compact token spec: `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-token
 - `SX-DEC-013`
 - `SX-DEC-014` · GitHub/Sheet `SYNCED`
 - `SX-DEC-015` · GitHub/Sheet `SYNCED`
+- `SX-DEC-016` · USER_APPROVED · CANON_IN_PROGRESS
+- `SX-OPS-001` · 10건 batch merge protocol APPROVED
 
-상세 속도·연료·보상·token 기하 수치는 `CORE_SYSTEMS.md`의 `TEST_VALUE`를 사용하며 사용자 확정 밸런스로 취급하지 않는다.
+상세 속도·연료·보상·token 기하·onboarding assist 수치는 `TEST_VALUE`이며 사용자 확정 영구 밸런스로 취급하지 않는다.
 
 ## Combo 계약 — SX-DEC-014
 
@@ -62,6 +67,23 @@ Compact token spec: `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-token
 - CargoStack·token count/order·footprint는 같은 도메인 단계에서 갱신한다.
 - animation completion은 cargo·token·occupancy 권위가 아니다.
 
+## first-session contextual onboarding 계약 — SX-DEC-016
+
+- 별도 튜토리얼 맵·가짜 보상·튜토리얼 전용 공식 없음.
+- 실제 첫 run 순서: `LOAD → token → switch → mixed-stack LIFO → Combo → low-fuel BOOST`.
+- 첫 LOAD와 첫 switch에서만 safe full pause를 요청한다.
+- first-run assist 권장 시험값:
+  - fuel drain multiplier 0.5
+  - difficulty escalation paused
+  - max duration 120 seconds
+  - restore duration 3 seconds
+  - BOOST hint fuel ratio <= 0.35
+- core complete·skip·timeout 중 먼저 발생한 시점에 assist를 종료한다.
+- OnboardingState는 실제 domain event를 소비하고 gameplay 결과를 직접 변경하지 않는다.
+- overlay·animation completion은 step complete·unpause·reward 권위가 아니다.
+- Help는 다시 볼 수 있지만 first-run assist를 재활성화하지 않는다.
+- `assisted_first_run`을 기록해 일반 balance evidence와 분리한다.
+
 ## 보호 범위
 
 - RailGraph·RailSwitch 공개 동작
@@ -76,6 +98,8 @@ Compact token spec: `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-token
 - 제품 규칙·저장 호환성
 - UI 모션 비권위 계약
 - compact token을 위해 기존 라우팅·CargoStack 의미를 변경하지 않음
+- 온보딩을 위해 실제 LIFO·Combo·점수·연료 공식을 변경하지 않음
+- assisted first run 수치를 일반 balance 합격 증거로 사용하지 않음
 
 ## 패키지 A — VS-03A 생존 경제 도메인
 
@@ -170,7 +194,7 @@ tests/save/test_record_store.gd
 - 중앙: 실제 graph와 같은 선로, 활성 경로 굵기+발광+화살표
 - 0~8 compact wagon tokens
 - rear token == CargoStack top == HUD first unload item
-- 8 token chain 약 2.18칸, trailing footprint 최대 3칸 `TEST_VALUE`
+- 8 token chain 2.18칸, trailing footprint 최대 3칸 `TEST_VALUE`
 - fractional path history, corner cutting 0, ordering swap 0
 - compressed footprint 안 pickup spawn 0
 - 성공 하역: `COMBO ×N` 즉시 피드백
@@ -196,37 +220,90 @@ tests/save/test_record_store.gd
 - token state changes and spawn footprint update in one domain step
 - 0/1/4/8·curve representative captures
 
+## 패키지 C — VS-03C 실제 첫 run 상황형 온보딩
+
+### 목표
+
+별도 튜토리얼 스테이지 없이 실제 첫 run에서 LOAD·분기·LIFO·Combo·BOOST의 의미를 행동 직후 이해시키고, 같은 run을 일반 무한 플레이로 이어간다.
+
+### 예정 파일
+
+```text
+game/onboarding/onboarding_event.gd
+game/onboarding/onboarding_state.gd
+game/onboarding/first_run_assist_policy.gd
+game/onboarding/onboarding_preferences.gd
+game/ui/onboarding/onboarding_view_model.gd
+game/ui/onboarding/onboarding_overlay.tscn
+game/ui/onboarding/onboarding_overlay.gd
+game/ui/help/help_panel.tscn
+game/ui/help/help_panel.gd
+tests/onboarding/test_onboarding_state.gd
+tests/onboarding/test_first_run_assist_policy.gd
+tests/onboarding/test_onboarding_preferences.gd
+tests/onboarding/test_onboarding_view_model.gd
+tests/integration/test_onboarding_delivery_flow.gd
+tests/integration/test_onboarding_skip_resume.gd
+tests/ui/test_onboarding_overlay_state.gd
+```
+
+### 필수 계약
+
+- 실제 domain events만 step transition을 완료
+- out-of-order event 무시·step regression 금지
+- first LOAD·first switch만 safe pause
+- UI hide·animation complete로 unpause 금지
+- real flow: load A → load B → unload B → A remains → load A → unload A×2 → Combo×2
+- assist timeout·skip·resume idempotent
+- completion preference와 best record 분리
+- assist 종료 후 normal balance 복원
+- Help는 assist 미활성
+- Reduced Motion·mute·haptic-off 정보 보존
+- telemetry에 `assisted_first_run`
+
 ## Issue #7 책임 경계
 
 Issue #7은 다음을 구현·검증한다.
 
 - telemetry event log
-- token_count·rear_token_type·trailing_footprint fields
-- 기록 지속성·손상 fallback의 통합 검증
+- token_count·rear_token_type·trailing_footprint·onboarding fields
+- 기록·onboarding preference 지속성·손상 fallback 통합 검증
 - 10분 soak
 - Android export·실기 성능
 - 실제 캡처
 - 첫 경험 사용자 5명+
+- assisted first run과 일반 balance 분석 분리
 - 최종 P0/P1 적대적 검토
 - `PASS / REVISE / PIVOT / STOP`
 
-`RecordStore`의 최초 구현은 VS-03B가 소유한다.
+최초 RecordStore·OnboardingPreferences 구현은 VS-03B/C가 소유한다.
 
 ## 아직 닫히지 않은 기획 Gate
 
-- `SX-DEC-016` 첫 세션에서 분기·LOAD·LIFO·compact token을 가르치는 방식
-- 실패 결과에서 강조할 원인·학습·재도전 정보
+- `SX-DEC-017` 결과 화면에서 강조할 실패 원인·다음 행동 정보
 - 실제 맵에 필요한 최소 카메라 정책
 - 사운드·진동의 실제 제품 테스트
+- GMB-001의 나머지 중요 Decision
 
 이 중 프로젝트 방향을 다르게 만드는 항목만 Grill Me로 확정한다. 기술·시험 수치는 GPT 권장안으로 작성한다.
+
+## Grill Me batch 경계 — SX-OPS-001
+
+- 현재 `SX-DEC-016`까지 catch-up canonical merge·Sheet closure한다.
+- 다음 `GMB-001`은 `SX-DEC-017`부터 10건을 센다.
+- batch 중 승인안은 `APPROVED_PENDING_BATCH_MERGE`이며 main `SYNCED`로 표시하지 않는다.
+- 10번째 승인 후 main·PR·Issue·Goal·Plan·Gate·Registry·Sheet 12탭 pre-merge adversarial audit를 수행한다.
+- exact-head checks 성공, P0/P1 0, review thread 0일 때만 병합한다.
+- Sheet canonical merge commit·12탭 readback·Sync Closure PR까지 완료해야 batch CLOSED다.
 
 ## READY_FOR_BUILD 조건
 
 - [x] Post-VS02 GitHub·Sheet `SYNCED`
 - [x] `SX-DEC-014`, `EV-USER-002`, `SX-AUD-004` GitHub·Sheet `SYNCED`
 - [x] `SX-DEC-015`, `EV-USER-003` GitHub·Sheet `SYNCED`
-- [ ] `SX-DEC-016`과 전체 필수 기획 Decision 완료
+- [x] `SX-DEC-016` 사용자 승인·설계·TDD 계획 작성
+- [ ] `SX-DEC-016`·`SX-OPS-001` canonical merge·Sheet closure
+- [ ] GMB-001과 전체 필수 기획 Decision 완료
 - [ ] MUST_FIX 0 또는 승인 보류
 - [ ] Issue #6·Plan·본책 책임 일치
 - [ ] 실제 main·Branch·exact file/API 재검수

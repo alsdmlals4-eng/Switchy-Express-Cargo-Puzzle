@@ -17,8 +17,8 @@
     "spreadsheet_id": "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo",
     "url": "https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit",
     "decision_commit": "b8742253247da25a0190f80b898b9bbe6ec6a1cf",
-    "sync_status": "SYNCED",
-    "verified_at": "2026-08-02T14:45:00+09:00"
+    "sync_status": "GITHUB_UPDATE_PENDING_SHEET",
+    "verified_at": "2026-08-02T15:16:00+09:00"
   },
   "project": {
     "engine": "Godot 4.7.1",
@@ -30,7 +30,7 @@
   "protected_baseline": {
     "authority_kind": "GIT_COMMIT",
     "authority_ref": "refs/heads/main",
-    "commit": "b8742253247da25a0190f80b898b9bbe6ec6a1cf",
+    "commit": "867563bb7bb69cfbb7343ef734585dd034ad7a64",
     "policy_sha256": "204da76df84fb289d5f9d8445195532124788648d65698e8901463c58ec545a3",
     "policy_source_path": "AGENTS.md",
     "policy_source_type": "VERIFIED_PROJECT_MAIN",
@@ -87,19 +87,19 @@
     "project": {
       "hash_definition": "RAW_FILE_BYTES_SHA256",
       "path": "skills/SKILL_REGISTRY.json",
-      "sha256": "25aff10d23d05c568ec0cb2c83075e4b85af1ca6354053a338ab8b5f3e98e794"
+      "sha256": "002fe50b4ede7ba305c11b6f18fe811ea1c06a16ddc543410c4b83c68b762bd2"
     }
   },
   "validators": [
     {
       "command": "python tools/validate_project_contract.py",
       "status": "PASSED_AT_BASELINE",
-      "evidence_commit": "b8742253247da25a0190f80b898b9bbe6ec6a1cf"
+      "evidence_commit": "867563bb7bb69cfbb7343ef734585dd034ad7a64"
     },
     {
       "command": "godot --headless --path . --script res://tests/run_tests.gd",
       "status": "PASSED_AT_BASELINE",
-      "evidence_commit": "b8742253247da25a0190f80b898b9bbe6ec6a1cf",
+      "evidence_commit": "867563bb7bb69cfbb7343ef734585dd034ad7a64",
       "summary": "9 cases / 6915 assertions / 0 failures"
     }
   ]
