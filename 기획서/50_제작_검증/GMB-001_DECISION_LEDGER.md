@@ -6,7 +6,7 @@ baseline_main: 993c3ed1aaee172be52a8a8899685b419f7f6d97
 branch: batch/gmb-001
 draft_pr: 29
 batch_size: 10
-approved_count: 2/10
+approved_count: 3/10
 status: IN_PROGRESS · APPROVED_PENDING_BATCH_MERGE
 canonical_main_sync: NOT_YET_MERGED
 sheet_state: APPROVED_PENDING_BATCH_MERGE
@@ -27,7 +27,7 @@ codex_state: CODEX_NOT_READY
 |---:|---|---|---|---|---|
 | 1 | `SX-DEC-017` | `EV-USER-006` | 결과 화면에 검증된 실패 원인 1개와 다음 행동 1개를 표시하고, 불확실하면 중립 fallback 사용 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-result-failure-feedback-design.md` |
 | 2 | `SX-DEC-018` | `EV-USER-007` | 최초 준비 화면은 기관차 주변을 약간 확대하고 START 뒤 run 시작 전에 전체 맵으로 복귀하며 실제 운행은 고정 전체 맵 유지 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-preparation-zoom-full-map-camera-design.md` |
-| 3 | — | — | — | OPEN | — |
+| 3 | `SX-DEC-019` | `EV-USER-008` | 영구 진행은 표준 개인 기록과 성능 없는 꾸미기 해금·장착만 허용하며 기능 성장은 금지 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-records-cosmetic-only-progression-design.md` |
 | 4 | — | — | — | OPEN | — |
 | 5 | — | — | — | OPEN | — |
 | 6 | — | — | — | OPEN | — |
@@ -155,6 +155,63 @@ human_validation: NOT_RUN
 - 온보딩 소비자: `docs/superpowers/specs/2026-08-02-first-session-contextual-onboarding-design.md` — 10/10 사전감사에서 최종 전파
 - 검증 소비자: `기획서/50_제작_검증/PLAYTEST_PLAN.md` — 10/10 사전감사에서 최종 전파
 
+## SX-DEC-019 — 표준 기록 + cosmetic-only 영구 진행
+
+### 사용자 승인
+
+사용자는 2026-08-02 Grill Me에서 A안의 순수 기록 경쟁과 B안의 성능 없는 꾸미기 수집을 결합한 `A+B`를 승인했다.
+
+### 결정
+
+```text
+run 밖 영구 진행은 표준 개인 기록과 꾸미기 해금·장착으로 제한한다.
+모든 표준 run은 같은 속도·연료·적재·점수·BOOST·맵·충돌 규칙을 사용한다.
+꾸미기는 외형·소리·연출만 변경하며 어떤 gameplay 수치와 기록 자격도 변경하지 않는다.
+first-run assist 판은 표준 경쟁 기록을 덮어쓰지 않는다.
+```
+
+### Evidence
+
+```yaml
+evidence_id: EV-USER-008
+evidence_type: CONFIRMED_USER_DECISION
+source: 2026-08-02 conversation · hybrid A+B approved
+status: RECORDED_IN_BATCH_BRANCH
+```
+
+### 파생 계약
+
+- 표준 기록: `best_score`, `longest_survival_seconds`, `best_max_combo`.
+- 최소 권위는 로컬 개인 기록이며 온라인 리더보드는 이번 범위가 아니다.
+- assisted first run, ruleset mismatch, integrity invalid run은 표준 기록 비적격이다.
+- cosmetic category는 기관차, 기관사 의상, 역·맵 테마, 기적음·배기, cargo token 스킨으로 확장 가능하다.
+- CosmeticDefinition에는 gameplay modifier field를 두지 않는다.
+- cosmetic 장착 전후 speed·fuel·score·capacity·collision·footprint·seed·record eligibility는 동일해야 한다.
+- token 스킨은 색상+모양 의미와 rear/HUD parity를 유지한다.
+- 테마·파티클·기적음은 P0/P1 시각·오디오 신호를 가리지 않는다.
+- 누락·삭제·호환 불가 cosmetic ID는 category 기본값으로 fallback한다.
+- Vertical Slice는 기록 저장과 대표 기관차 스킨 1종만 검증하며 상점·통화·시즌은 만들지 않는다.
+- 꾸미기 획득 방식·가격·희귀도·유료 판매·광고 보상은 아직 미확정이다.
+
+### 구현·검증 상태
+
+```yaml
+planning_spec: APPROVED
+implementation: NOT_STARTED
+automated_tests: NOT_RUN
+android: NOT_RUN
+human_validation: NOT_RUN
+```
+
+### 책임 문서
+
+- 설계: `docs/superpowers/specs/2026-08-02-records-cosmetic-only-progression-design.md`
+- TDD 계획: `docs/superpowers/plans/2026-08-02-records-cosmetic-only-progression.md`
+- 시스템 소비자: `기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md` — 10/10 사전감사에서 최종 전파
+- 표현 소비자: `기획서/40_표현/VISUAL_DIRECTION.md` — 10/10 사전감사에서 최종 전파
+- 구현 목표 소비자: `기획서/00_프로젝트_허브/EXECUTABLE_PROMPTS/CODEX_GOAL_VS_03.md` — 10/10 사전감사에서 최종 전파
+- 검증 소비자: `기획서/50_제작_검증/PLAYTEST_PLAN.md` — 10/10 사전감사에서 최종 전파
+
 ## Adversarial Findings
 
 | Finding ID | 유형 | 문제 | 처리 |
@@ -169,11 +226,16 @@ human_validation: NOT_RUN
 | `SX-AUD-004-F33` | INPUT_MAPPING_RISK | zoom transition 중 board tap이 잘못된 world target으로 변환될 위험 | transition 중 board input lock, FULL_MAP 후 좌표 parity 테스트 |
 | `SX-AUD-004-F34` | RETRY_FRICTION_MOTION_RISK | 매 재시작마다 줌 연출을 반복하면 재도전 속도 저하·멀미 가능 | 즉시 RESTART는 full-map direct 기본, Reduced Motion 즉시 cut |
 | `SX-AUD-004-F35` | INTERRUPTION_AUTHORITY_RISK | Tween 완료를 유일한 시작 조건으로 사용하면 suspend·skip·오류에서 deadlock | generation-safe idempotent state와 synchronous full-map fallback |
+| `SX-AUD-004-F36` | HIDDEN_POWER_LEAK_RISK | cosmetic metadata나 Profile이 숨은 speed·fuel·score modifier를 제공할 위험 | modifier field 금지와 gameplay parity 자동 테스트 |
+| `SX-AUD-004-F37` | READABILITY_COLLISION_RISK | 스킨·테마·파티클이 collision·경로·station·token 의미를 바꿀 위험 | collision/footprint 불변과 Android 비교 캡처 |
+| `SX-AUD-004-F38` | ASSISTED_RECORD_CONTAMINATION | first-run assist 기록이 표준 최고 기록을 덮어쓸 위험 | RecordEligibilityPolicy에서 assisted run 제외 |
+| `SX-AUD-004-F39` | IDLE_GRIND_EXPLOIT_RISK | 무조작 시간·중복 종료 event가 cosmetic 파밍 수단이 될 위험 | 유효 run 근거와 idempotent unlock 계약 |
+| `SX-AUD-004-F40` | SAVE_MIGRATION_LOCKOUT_RISK | 삭제 cosmetic·save 손상으로 장착 UI나 게임 시작이 막힐 위험 | default cosmetic fallback과 field-level partial recovery |
 
-현재 P0/P1 open finding은 없다. 실제 카메라 배율·전환 속도·Android framing·터치 좌표·사람 반응은 `TEST_REQUIRED / HUMAN_NOT_RUN`이다.
+현재 P0/P1 open finding은 없다. 구체 해금 경제·대표 자산·Profile runtime·Android 가독성·사람 반응은 `NOT_DECIDED / NOT_STARTED / NOT_RUN`이다.
 
 ## 다음 후보
 
-`SX-DEC-019` — run 밖의 영구 진행을 순수 기록 경쟁, cosmetic-only 수집, 기능 성장 중 어떤 정책으로 제한할지.
+`SX-DEC-020` — cosmetic을 업적 milestone, run 보상 통화, 또는 두 방식의 결합 중 어떤 획득 구조로 해금할지.
 
-상태: `NEXT_GRILL_ME · GMB-001 SLOT 3`.
+상태: `NEXT_GRILL_ME · GMB-001 SLOT 4`.
