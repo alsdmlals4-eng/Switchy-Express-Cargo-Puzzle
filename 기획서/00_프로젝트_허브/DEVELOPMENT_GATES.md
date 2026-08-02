@@ -4,36 +4,29 @@
 
 Status: `PASS`
 
-- [x] 프로젝트 제목 확정
-- [x] 플랫폼·엔진 방향 확정
-- [x] 저장소와 실제 Switchy Express Google Sheets 확인
-- [x] 잘못 제공된 타 프로젝트 Sheet를 변경 대상에서 제외
+- [x] 프로젝트·플랫폼·엔진 확정
+- [x] 저장소와 올바른 Switchy Express Sheet 확인
+- [x] 잘못 제공된 `19Ff...` Sheet 제외
 
 ## G1 — CORE_CONFIRMED
 
 Status: `PASS`
 
-- [x] 핵심 루프 사용자 승인
-- [x] 적재·분기·하역·연료·점수 구조 승인
-- [x] LIFO 하역 승인
-- [x] 가로형 연결 철도망 승인
-- [x] 시각 방향 승인
-- [x] `SX-DEC-014` 하역 그룹 Combo 의미 승인
-- [x] `SX-DEC-015` compact wagon token 의미 승인
-- [x] `SX-DEC-016` 실제 첫 run 상황형 온보딩 승인
+- [x] 자동 운행·LOAD·분기·LIFO·연료·점수 구조
+- [x] 15×10 connected railway
+- [x] visual direction
+- [x] Combo·compact token·actual-run onboarding
+- [x] `SX-DEC-017~026` 사용자 승인
 
 ## G2 — VERTICAL_SLICE_CONTRACT_APPROVED
 
-Status: `PASS`
+Status: `PASS · GMB001_SCOPE_STAGED`
 
-- [x] 대표 경험과 포함·제외 범위 작성
-- [x] 초기 시험값과 성공 기준 작성
-- [x] VS-01 Issue #4 완료
-- [x] VS-02 Issue #5 완료
-- [x] Base v9.4 운영 계약 적용
-- [x] Combo와 speed bonus의 의미 분리
-- [x] 화물 수·token 수·LIFO 순서·compressed footprint 계약 작성
-- [x] 온보딩 domain authority·safe pause·assist·skip·Help·검증 계약 작성
+- [x] representative experience·include/exclude
+- [x] Combo/token/onboarding contracts
+- [x] result/camera/Profile/reward/difficulty/restart/map-selection contracts
+- [x] VS local scope와 Production online UGC scope 분리
+- [x] all tuning values marked `TEST_VALUE`
 
 ## G3 — CORE_RUNTIME_PROVEN
 
@@ -41,125 +34,150 @@ Status: `PARTIAL`
 
 완료:
 
-- [x] Godot 4.7.1 프로젝트와 헤드리스 테스트
-- [x] 15×10 연결 철도망 로직
-- [x] 2·3단계 분기 로직
-- [x] seeds 1~100 연결·막다른길·분기 밀도 검사
-- [x] 5칸 경로 미리보기와 실제 다음 칸 일치
-- [x] 직진 우선 기본 노선과 통과 뒤 초기화
-- [x] 연속 기관차 이동과 최대 8개 wagon 위치 계산 기반
-- [x] LOAD 선택 적재와 capacity 8 LIFO stack
-- [x] 색상별 화물 최소 4개와 스테이션 6개
-- [x] 금지 칸·지연 재생성·deferred 회복
-- [x] LIFO 동일 타입 연속 그룹 하역
-- [x] DeliveryLoop 런타임 최소 화물 회복
-- [x] Godot headless `9 cases / 6915 assertions / 0 failures`
+- [x] Godot project/headless tests
+- [x] RailGraph·switch·preview parity
+- [x] continuous train movement
+- [x] CargoStack·station·pickup·LIFO unload
+- [x] deferred pickup recovery
+- [x] historical automated evidence `9 cases / 6915 assertions / 0 failures`
 
 남음:
 
-- [ ] compact token count/order ViewModel
-- [ ] fractional path following과 trailing footprint 최대 3칸
-- [ ] compressed footprint 기반 spawn exclusion
-- [ ] `SX-DEC-014` Combo 계산·max_combo 구현
-- [ ] 시간 기반 속도·연료
-- [ ] 화물 감속·BOOST 경제
-- [ ] 배송 점수·연료 보상
-- [ ] 무입력 상태의 유한 생존 검증
-- [ ] 게임오버·결과·즉시 재시작
-- [ ] 최고 점수·최장 생존·최대 Combo 저장
-- [ ] 저장 손상·버전 fallback 계약
-- [ ] OnboardingState·first-run assist policy
-- [ ] 실제 domain event 기반 LOAD·switch·LIFO·Combo 단계 전환
-- [ ] safe pause·skip·resume·Help·onboarding preference
+- [ ] survival economy·Combo
+- [ ] compact token runtime·footprint
+- [ ] product HUD/result/camera
+- [ ] records/Profile/cosmetics/unlocks/rewards
+- [ ] difficulty signal
+- [ ] same-map restart
+- [ ] minimum 3 official maps·selection/reselection
+- [ ] contextual onboarding
 
-다음 실행 후보: Issue #6. 단, `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE` 전에는 Codex Build를 시작하지 않는다.
+`G3P`와 별도 구현 승인 전 Codex Build를 시작하지 않는다.
 
 ## G3P — TOTAL_PLANNING_AND_REVIEW_COMPLETE
 
-Status: `IN_PROGRESS`
+Status: `IN_PROGRESS · GMB001_PREMERGE_AUDIT`
 
-- [x] 최신 main·실제 구현·최근 PR·Issue 복원
-- [x] Post-VS02 정본 드리프트 확인·복구
-- [x] Google Sheets post-VS02 동기화·12탭 재조회
-- [x] 상세 수치를 `RECOMMENDED_DEFAULT / TEST_VALUE`로 관리하는 권한 확인
-- [x] 전체 기획 Coverage Matrix 작성
-- [x] 분야 간 1차 충돌 적대적 검토
-- [x] `SX-DEC-014` Combo 의미 확정·GitHub/Sheet 동기화
-- [x] `SX-DEC-015` compact wagon token 의미·설계·GitHub/Sheet 동기화
-- [x] `SX-DEC-016` 실제 첫 run 상황형 온보딩 사용자 승인·설계·TDD 계획
-- [x] `SX-OPS-001` Grill Me 10건 batch merge 프로토콜 승인·정본화
-- [x] catch-up PR #27 병합 전 GitHub·PR·Sheet 전수 감사
-- [x] `SX-DEC-016`, `EV-USER-004`, `SX-OPS-001`, `EV-USER-005` canonical merge·Sheet 12탭 closure
-- [ ] `GMB-001`: `SX-DEC-017`부터 중요 Decision 10건
-- [ ] VS-03 범위·수용 기준·저장·UX 책임 최종 일치
-- [ ] Codex Definition of Ready
+- [x] latest main·implementation·PR·Issue 복원
+- [x] Post-VS02 canon/Sheet recovery
+- [x] SX-DEC-014~016·SX-OPS-001 canonical sync
+- [x] GMB-001 exactly 10 approvals (`SX-DEC-017~026`)
+- [x] EV-USER-006~015
+- [x] specs·TDD plans·batch ledger
+- [x] Sheet 10/10 frozen 12-tab readback
+- [x] VS versus Production/online UGC staging
+- [ ] current consumer stale references 0
+- [ ] final exact-head PR/CI/inventory/review audit
+- [ ] PR #29 canonical merge
+- [ ] Sheet canonical merge SHA·12-tab readback
+- [ ] Sync Closure PR
+- [ ] Definition of Ready explicit promotion
+
+GMB-001 closure alone does not automatically set `READY_FOR_BUILD`.
 
 ## G3B — GRILL_ME_BATCH_PREMERGE
 
-Status: `GMB-001_NOT_STARTED · 0/10`
+Status: `GMB-001 · 10/10 · FROZEN · AUDIT_IN_PROGRESS`
 
-책임 정본: `기획서/50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md`
+책임 정본:
 
-Catch-up evidence:
+- `기획서/50_제작_검증/GMB-001_DECISION_LEDGER.md`
+- `기획서/50_제작_검증/GMB-001_PREMERGE_AUDIT.md`
+- `기획서/50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md`
 
-- [x] main·PR exact head·changed-file inventory·full patch 확인
-- [x] Decision/Evidence·Issue·Goal·Plan·Gate·Registry·Adapter 소비자 확인
-- [x] 올바른 Sheet ID·제목과 12개 탭 재조회
-- [x] F21 역사 계약 복원·F22 VS-03C 순서 복원·F23 Sheet stale 행 수정
-- [x] P0/P1 open finding 0
-- [x] unresolved review thread 0
-- [x] Project Contract success
-- [x] Godot full regression success
-- [x] 승인되지 않은 제품 코드·Scene·Resource·asset 변경 0
-- [x] PR #27 canonical merge·Sheet readback PASS
+Freeze 확인:
 
-GMB-001 완료 조건:
+- [x] SX-DEC-017~026 exactly
+- [x] EV-USER-006~015 exactly
+- [x] no SX-DEC-027
+- [x] Sheet frozen, not prematurely SYNCED
+- [x] product code/Scene/Resource/asset changes prohibited
+- [x] 12-tab readback; history and world/narrative preserved
+
+Merge 전 필수:
+
+- [ ] compare to main: behind 0
+- [ ] changed files planning-only
+- [ ] exact-head Project Contract success
+- [ ] exact-head Godot Tests success
+- [ ] unresolved review threads 0
+- [ ] REQUEST_CHANGES 0
+- [ ] P0/P1 open findings 0
+- [ ] PR open/mergeable and expected-head protected
+
+Merge 후 필수:
 
 ```text
-10 approvals
-→ FREEZE_FOR_PREMERGE_AUDIT
-→ exact-head checks + P0/P1 0 + review thread 0
-→ canonical PR merge
-→ Sheet canonical merge commit update
+canonical merge SHA
+→ Sheet all relevant rows canonicalized
 → 12-tab readback PASS
 → Sync Closure PR checks + merge
+→ GMB-001 CLOSED
 ```
-
-`SYNCED`는 canonical merge와 Sheet readback 뒤에만 표시한다.
 
 ## G4 — TARGET_QUALITY_SLICE
 
 Status: `NOT_STARTED`
 
-- [ ] 실제 플레이 Scene과 모바일 가로형 HUD
-- [ ] 승인 시각 방향의 제품 적용
-- [ ] 분기 상태와 실제 경로 화면 일치
-- [ ] 색상+모양 이중 부호
-- [ ] `COMBO ×N`과 speed bonus의 의미 분리
-- [ ] 0~8 compact wagon tokens와 rear LIFO token 표현
-- [ ] 8 token chain 2.18칸·trailing footprint 최대 3칸 TEST_VALUE
-- [ ] compressed footprint spawn exclusion
-- [ ] first-run contextual onboarding overlay·safe pause·Help
-- [ ] first-run assist와 일반 balance 증거 분리
-- [ ] 0/1/4/8·곡선·온보딩 단계 대표 캡처
-- [ ] 48dp 터치 영역과 Android safe area
-- [ ] Reduced Motion·mute·haptic-off
-- [ ] Android export·실기 성능
+- [ ] survival economy + no-input finite survival
+- [ ] product play Scene·HUD·result insight
+- [ ] 0~8 compact tokens·rear LIFO·compressed footprint
+- [ ] PREP zoom·FULL_MAP_READY·active full map
+- [ ] local records·cosmetic/unlock/reward representative flow
+- [ ] difficulty prewarning/persistent signal
+- [ ] same-map restart
+- [ ] minimum 3 validated official maps and discovery/reselection
+- [ ] contextual onboarding
+- [ ] 48dp·safe area·Reduced Motion·mute/haptic-off
+
+Not in G4:
+
+- official 100+ completion
+- full UGC editor/backend/publication
+- moderation/community backend
 
 ## G5 — PLAYTEST_EVIDENCE
 
 Status: `NOT_STARTED`
 
-- [ ] 10분 soak
-- [ ] 최소 5명 첫 경험 테스트
-- [ ] 행동 계측과 인터뷰
-- [ ] 4/5 이상 LOAD·분기 독립 수행
-- [ ] 4/5 이상 rear-token LIFO 설명
-- [ ] 4/5 이상 Combo를 한 번의 하역 그룹으로 설명
-- [ ] 3/5 이상 안내가 과도하게 끊지 않았다고 평가
-- [ ] first required input 전 불공정 연료 0·강제 경로 실패 0건
-- [ ] 8 token 상태 경로·역·분기 가독성
-- [ ] assisted first run과 일반 balance 분석 분리
-- [ ] 승인된 MUST_FIX 회귀 테스트
-- [ ] `PASS / REVISE / PIVOT / STOP`
-- [ ] Production 진입 결정
+- [ ] 10-minute soak
+- [ ] Android device performance
+- [ ] 5명+ first experience
+- [ ] LIFO·Combo·token·result insight·map choice comprehension
+- [ ] assisted/standard evidence separation
+- [ ] target3 map readability/distribution
+- [ ] economy simulation
+- [ ] PASS / REVISE / PIVOT / STOP
+
+## G6 — OFFICIAL_CATALOG_PRODUCTION
+
+Status: `NOT_STARTED · F58_NOT_MET`
+
+- [ ] generator diversity expansion
+- [ ] 100+ unique validated official layouts
+- [ ] fallback/duplicate exclusion
+- [ ] first-100 non-replacement audit
+- [ ] 100-entry browser QA
+- [ ] version migration
+
+## G7 — ONLINE_UGC_PRODUCTION
+
+Status: `NOT_STARTED`
+
+- [ ] data-only editor
+- [ ] publication/account backend
+- [ ] server validation·immutable revisions
+- [ ] PRIVATE/UNLISTED/PUBLIC
+- [ ] moderation·report·block·quarantine
+- [ ] UGC records
+- [ ] non-economic community signals
+- [ ] event journal·aggregate rebuild·anti-abuse
+- [ ] privacy review·two-account playback
+- [ ] Android/localization/accessibility/human evidence
+
+Forbidden initial claims/features:
+
+- no ONLINE/MODERATION/ANTI_ABUSE/PRIVACY READY from mocks
+- no UGC currency/creator payout
+- no rating/comments/followers/trending/leaderboards
+- no engagement-weighted official map assignment
