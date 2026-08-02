@@ -15,6 +15,7 @@
 | DoR 정본 | PR #35 · `82fd3eeb1915e6ceedb2f5330b27e903064d6eb5` |
 | VS03-01 감사 | `SX-AUD-006 · EV-VS03-01-001 · PASS` |
 | VS03-01 구현 | PR #37 · `43972d3d23e931af3dbc81ab9b1c7d942fffb201` |
+| 핵심 재미 정렬 감사 | `SX-AUD-007 · DRAFT REVIEW` |
 | 올바른 Sheet | `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo` |
 | 현재 Codex 권위 | `READY_FOR_BUILD · VS03-02_ONLY` |
 | 다음 package | `VS03-02 · compact footprint / DeliveryLoop occupancy seam` |
@@ -25,14 +26,29 @@
 
 > 필요한 화물을 작은 토큰형 화차로 역순 적재하고, 선로 분기기를 바꿔 알맞은 역에서 큰 하역 Combo를 만들며 연료가 다하기 전까지 최고 점수를 갱신한다.
 
+## 핵심 재미 위계
+
+```text
+LIFO 적재 순서 계획
+→ 목적 역까지의 노선 선행 결정
+→ 큰 그룹을 위한 위험·생존 판단
+→ BOOST와 배송 속도의 전술적 시간 관리
+→ 결과 학습·같은 조건 재도전
+→ 기록·꾸미기·맵 발견·UGC
+```
+
+빠른 탭·BOOST·메타 보상·콘텐츠 수가 적재 순서와 노선 계획보다 앞서면 방향 이탈이다.
+
 ## 현재 읽기 순서
 
 ```text
 CURRENT_CONFIRMED_DECISIONS.md
+→ ../10_경험/CORE_FUN_SYSTEM_HIERARCHY.md
 → GMB-001_CANONICAL_DECISIONS.md
 → ACTIVE_CONTEXT.md
 → ../../50_제작_검증/VS03_PACKAGE_STATUS.md
 → ../../50_제작_검증/VS03_01_IMPLEMENTATION_AUDIT.md
+→ ../../50_제작_검증/CORE_FUN_ALIGNMENT_AUDIT.md
 → ../../50_제작_검증/VS03_DEFINITION_OF_READY_AUDIT.md
 → ../../../docs/superpowers/specs/2026-08-02-vs03-execution-architecture-design.md
 → ../../../docs/superpowers/plans/2026-08-02-vs03-build-segmentation.md
@@ -79,6 +95,21 @@ Godot Tests 214 PASS
 behind 0 · thread 0 · REQUEST_CHANGES 0 · P0/P1 0
 ```
 
+## 핵심 재미 정렬 감사 — SX-AUD-007
+
+주요 검토 결과:
+
+- 방향: `KEEP_AND_SHARPEN`
+- core: 선택 적재 LIFO·선행 분기·그룹 하역·생존 경제·BOOST trade·compact readability
+- 보조: onboarding·HUD/result·maps·records/cosmetics/Profile·target100·UGC
+- 현재 소비자 문서 일부가 VS03-01 이전 상태를 유지함
+- speed/fuel 실제 boundary와 DifficultyDirector commit 간 authority split 후보
+- 단색 적재 지배 전략·compact token 가독성·landscape reach는 증거 공백
+- Profile/meta보다 최소 playable core surface를 앞당길지 사용자 검토 필요
+- 이후 material Grill Me는 benchmark·현업 기본안·비용·실패 위험·검증 Gate를 포함
+
+이 감사 PR은 제품 규칙이나 구현 순서를 자동 변경하지 않는다.
+
 ## Canonical 구현 순서
 
 ```text
@@ -96,9 +127,8 @@ VS03-01 run lifecycle/economy/difficulty · DONE
 ## 현재 작업
 
 ```text
-VS03-01 merge 43972d3d...
-→ GitHub/Sheet Sync Closure
-→ VS03-02 별도 branch
+SX-AUD-007 core-fun/benchmark Draft review
++ VS03-02 별도 구현 준비
 → compact token·TrainFootprint·occupancy provider TDD
 → exact-head package Gate
 ```
