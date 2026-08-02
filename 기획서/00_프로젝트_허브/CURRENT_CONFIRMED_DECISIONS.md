@@ -11,7 +11,8 @@ Post-VS02 Sheet closure: `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1`
 Total Planning Combo Decision: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
 Combo Sheet closure: `11c6914b0fdcfb946c85e303d05017a77b969e55`
 Compact Wagon Token Decision: `b8742253247da25a0190f80b898b9bbe6ec6a1cf`
-First-Session Onboarding Decision: `CANON_IN_PROGRESS`
+First-Session Onboarding Decision and batch protocol: `3cd13ff375a597d4eba9035af5b05e6186fb4853`
+First-Session Sheet readback: `PASS · 12탭 재조회 완료`
 
 | Decision ID | 분야 | 현재 결정 | 근거 | 상태 |
 |---|---|---|---|---|
@@ -50,8 +51,8 @@ First-Session Onboarding Decision: `CANON_IN_PROGRESS`
 | SX-DEC-013 | IMPLEMENTED | PASSED | PR #9·#12 / locked route·preview parity | 런타임 시각 검증 |
 | SX-DEC-014 | DOMAIN_SEMANTICS_CONFIRMED | NOT_STARTED | 사용자 승인 · 기존 `try_unload().count`가 입력 근거 | RunBalance 보상·HUD 피드백·`max_combo` 저장·telemetry |
 | SX-DEC-015 | PLANNING_SPEC_APPROVED | NOT_STARTED | PR #24 / `b8742253247da25a0190f80b898b9bbe6ec6a1cf` | compact token ViewModel·fractional path follow·compressed occupancy·Android 가독성 |
-| SX-DEC-016 | PLANNING_SPEC_APPROVED | NOT_STARTED | `docs/superpowers/specs/2026-08-02-first-session-contextual-onboarding-design.md` | state machine·first-run assist·overlay·help·telemetry·Android/human validation |
-| SX-OPS-001 | OPERATING_PROTOCOL_APPROVED | ACTIVE_AFTER_CATCH_UP | `기획서/50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md` | GMB-001에서 10건 단위 운영 검증 |
+| SX-DEC-016 | PLANNING_SPEC_APPROVED | NOT_STARTED | PR #27 / `3cd13ff375a597d4eba9035af5b05e6186fb4853` | state machine·first-run assist·overlay·help·telemetry·Android/human validation |
+| SX-OPS-001 | OPERATING_PROTOCOL_APPROVED | ACTIVE_GMB_001 | PR #27 / Sheet 12탭 readback PASS | `SX-DEC-017`부터 10건 단위 프로토콜 첫 실행 |
 
 ## Evidence 원장
 
@@ -59,8 +60,8 @@ First-Session Onboarding Decision: `CANON_IN_PROGRESS`
 |---|---|---|---|
 | EV-USER-002 | Combo를 단일 역 도착의 동일 타입 연속 하역 개수로 확정하고 빠른 배송을 별도 `speed_bonus`로 분리 | 사용자 승인·PR #18 / `ca50538652c72cbb282d7818990e92a0dfe79c9a` | CONFIRMED_USER_DECISION |
 | EV-USER-003 | 화물 1개를 작은 토큰형 화차 1개로 표시하고 긴 열차로 인한 가시성 저하를 막도록 압축 표현 | 사용자 승인·PR #24 / `b8742253247da25a0190f80b898b9bbe6ec6a1cf` | CONFIRMED_USER_DECISION |
-| EV-USER-004 | 실제 첫 run에서 LOAD·token·분기·LIFO·Combo·BOOST를 단계적으로 가르치는 상황형 온보딩 A안 승인 | 2026-08-02 사용자 승인·현재 planning PR | CONFIRMED_USER_DECISION |
-| EV-USER-005 | 지금까지 승인분 병합 및 이후 Grill Me 10건마다 사전 전수 감사 후 병합 | 2026-08-02 사용자 운영 지시·현재 planning PR | CONFIRMED_USER_OPERATION |
+| EV-USER-004 | 실제 첫 run에서 LOAD·token·분기·LIFO·Combo·BOOST를 단계적으로 가르치는 상황형 온보딩 A안 승인 | 사용자 승인·PR #27 / `3cd13ff375a597d4eba9035af5b05e6186fb4853` | CONFIRMED_USER_DECISION |
+| EV-USER-005 | 지금까지 승인분 병합 및 이후 Grill Me 10건마다 사전 전수 감사 후 병합 | 사용자 지시·PR #27 / `3cd13ff375a597d4eba9035af5b05e6186fb4853` | CONFIRMED_USER_OPERATION |
 | EV-VS01-001 | Godot·RailGraph·분기 기반 | PR #9 / `801632949d28564528e38d83dac59cccc6f06fb2` | VALIDATED |
 | EV-VS02-001 | 기차·화차·화물·역·LIFO | PR #12 / `0738d9c10e431a43e7a2f34590369c3f17d1f8a5` | VALIDATED |
 | EV-VS02-FIX-001 | DeliveryLoop 안의 최소 화물 재생성 회복 | PR #13 / `4e435a1a6d10ab146197671049da80709fd18c1f` | VALIDATED |
@@ -104,8 +105,8 @@ First-Session Onboarding Decision: `CANON_IN_PROGRESS`
 
 ## SX-OPS-001 배치 병합 계약
 
-- `SX-DEC-016`까지는 catch-up으로 즉시 canonical 병합·Sheet 동기화한다.
-- 다음 정규 batch `GMB-001`은 `SX-DEC-017`부터 Grill Me 승인 10건을 센다.
+- `SX-DEC-016`까지의 catch-up은 PR #27과 Sheet 12탭 readback으로 닫혔다.
+- 정규 batch `GMB-001`은 `SX-DEC-017`부터 Grill Me 승인 10건을 센다. 현재 `0/10`이다.
 - 승인 직후 batch branch·draft PR·Sheet에 같은 Decision/Evidence를 `APPROVED_PENDING_BATCH_MERGE`로 기록한다.
 - 10번째 승인 후 새 질문을 중단하고 GitHub main·batch PR·Issue·Goal·Plan·Gate·Registry·Sheet 12탭을 전수 대조한다.
 - P0/P1 open finding 0, unresolved review thread 0, exact-head required checks success일 때만 canonical PR을 병합한다.
@@ -121,10 +122,11 @@ First-Session Onboarding Decision: `CANON_IN_PROGRESS`
 
 ## 동기화 상태
 
-- GitHub latest synchronized planning main before `SX-DEC-016`: `b8742253247da25a0190f80b898b9bbe6ec6a1cf`
+- GitHub latest synchronized planning main: `3cd13ff375a597d4eba9035af5b05e6186fb4853`
 - Google Sheets: Adapter의 `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`
-- `SX-DEC-014/015`: `GITHUB_SHEET_SYNCED`
-- `SX-DEC-016`, `EV-USER-004`, `SX-OPS-001`, `EV-USER-005`: `GITHUB_CANON_IN_PROGRESS · SHEET_PENDING_CANONICAL_MERGE`
+- `SX-DEC-014/015/016`, `SX-OPS-001`: `GITHUB_SHEET_SYNCED`
+- Sheet 감사: `PASS · 12탭 재조회 완료`
+- `GMB-001`: `NOT_STARTED · 0/10 · NEXT SX-DEC-017`
 - compact token·onboarding 런타임·Android·사람 검증: `NOT_STARTED / NOT_RUN / HUMAN_NOT_RUN`
 - 제공된 `19Ff...` 시트는 다른 프로젝트이며 변경하지 않았다.
 - `CODEX_NOT_READY`
