@@ -20,6 +20,7 @@ Status: `PASS`
 - [x] 시각 방향 승인
 - [x] `SX-DEC-014` 하역 그룹 Combo 의미 승인
 - [x] `SX-DEC-015` compact wagon token 의미 승인
+- [x] `SX-DEC-016` 실제 첫 run 상황형 온보딩 승인
 
 ## G2 — VERTICAL_SLICE_CONTRACT_APPROVED
 
@@ -32,6 +33,7 @@ Status: `PASS`
 - [x] Base v9.4 운영 계약 적용
 - [x] Combo와 speed bonus의 의미 분리
 - [x] 화물 수·token 수·LIFO 순서·compressed footprint 계약 작성
+- [x] 온보딩 domain authority·safe pause·assist·skip·Help·검증 계약 작성
 
 ## G3 — CORE_RUNTIME_PROVEN
 
@@ -66,6 +68,9 @@ Status: `PARTIAL`
 - [ ] 게임오버·결과·즉시 재시작
 - [ ] 최고 점수·최장 생존·최대 Combo 저장
 - [ ] 저장 손상·버전 fallback 계약
+- [ ] OnboardingState·first-run assist policy
+- [ ] 실제 domain event 기반 LOAD·switch·LIFO·Combo 단계 전환
+- [ ] safe pause·skip·resume·Help·onboarding preference
 
 다음 실행 후보: Issue #6. 단, `PLANNING_AND_REVIEW_COMPLETE_GATE` 전에는 Codex Build를 시작하지 않는다.
 
@@ -80,14 +85,48 @@ Status: `IN_PROGRESS`
 - [x] 전체 기획 Coverage Matrix 작성
 - [x] 분야 간 1차 충돌 적대적 검토
 - [x] `SX-DEC-014` Combo 의미 확정·GitHub/Sheet 동기화
-- [x] 안전 보완과 구형 Skill·Plan·Registry 참조 복구
-- [x] `SX-DEC-015` compact wagon token 의미 확정
-- [x] `SX-DEC-015` 설계 규격·본책·VS·플레이테스트 계약 반영
-- [x] `SX-DEC-015` canonical commit `b874225…` Sheet 동기화·12탭 재조회
-- [ ] `SX-DEC-016` 첫 세션 온보딩 방식 확정
-- [ ] 실패 학습 정보의 별도 Decision 필요성 재검증
+- [x] `SX-DEC-015` compact wagon token 의미·설계·GitHub/Sheet 동기화
+- [x] `SX-DEC-016` 실제 첫 run 상황형 온보딩 사용자 승인
+- [x] `SX-DEC-016` 설계 정본·TDD 계획 작성
+- [x] `SX-OPS-001` Grill Me 10건 batch merge 프로토콜 승인·정본화
+- [ ] 현재 catch-up canonical PR 병합 직전 GitHub·PR·Sheet 전수 감사
+- [ ] `SX-DEC-016`, `EV-USER-004`, `SX-OPS-001`, `EV-USER-005` canonical merge·Sheet 12탭 closure
+- [ ] 실패 학습 정보 `SX-DEC-017`부터 GMB-001 10건 Decision batch
 - [ ] VS-03 범위·수용 기준·저장·UX 책임 최종 일치
 - [ ] Codex Definition of Ready
+
+## G3B — GRILL_ME_BATCH_PREMERGE
+
+Status: `CATCH_UP_IN_PROGRESS · GMB-001_NOT_STARTED`
+
+책임 정본: `기획서/50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md`
+
+현재 catch-up 병합 조건:
+
+- [ ] current main SHA 재확인
+- [ ] canonical PR exact head·changed-file inventory·full patch 확인
+- [ ] Decision/Evidence·Issue·Goal·Plan·Gate·Registry·Adapter 소비자 확인
+- [ ] 올바른 Sheet ID·제목과 12개 탭 재조회
+- [ ] 왜곡·충돌·누락·권위·증거과장·역사손실·sync drift 적대적 검토
+- [ ] P0/P1 open finding 0
+- [ ] unresolved review thread 0
+- [ ] Project Contract success
+- [ ] Godot full regression success
+- [ ] 승인되지 않은 제품 코드·Scene·Resource·asset 변경 0
+
+정규 GMB 완료 조건:
+
+```text
+10 approvals
+→ FREEZE_FOR_PREMERGE_AUDIT
+→ exact-head checks + P0/P1 0 + review thread 0
+→ canonical PR merge
+→ Sheet canonical merge commit update
+→ 12-tab readback PASS
+→ Sync Closure PR checks + merge
+```
+
+`SYNCED`는 canonical merge와 Sheet readback 뒤에만 표시한다.
 
 ## G4 — TARGET_QUALITY_SLICE
 
@@ -99,9 +138,11 @@ Status: `NOT_STARTED`
 - [ ] 색상+모양 이중 부호
 - [ ] `COMBO ×N`과 speed bonus의 의미 분리
 - [ ] 0~8 compact wagon tokens와 rear LIFO token 표현
-- [ ] 8 token chain 약 2.18칸·trailing footprint 최대 3칸
+- [ ] 8 token chain 2.18칸·trailing footprint 최대 3칸 TEST_VALUE
 - [ ] compressed footprint spawn exclusion
-- [ ] 0/1/4/8·곡선 대표 캡처
+- [ ] first-run contextual onboarding overlay·safe pause·Help
+- [ ] first-run assist와 일반 balance 증거 분리
+- [ ] 0/1/4/8·곡선·온보딩 단계 대표 캡처
 - [ ] 48dp 터치 영역과 Android safe area
 - [ ] Reduced Motion·mute·haptic-off
 - [ ] Android export·실기 성능
@@ -113,9 +154,13 @@ Status: `NOT_STARTED`
 - [ ] 10분 soak
 - [ ] 최소 5명 첫 경험 테스트
 - [ ] 행동 계측과 인터뷰
-- [ ] LIFO·Combo·분기·token 적재량 이해율 기준 충족
-- [ ] rear token을 다음 하역 대상으로 80% 이상 식별
+- [ ] 4/5 이상 LOAD·분기 독립 수행
+- [ ] 4/5 이상 rear-token LIFO 설명
+- [ ] 4/5 이상 Combo를 한 번의 하역 그룹으로 설명
+- [ ] 3/5 이상 안내가 과도하게 끊지 않았다고 평가
+- [ ] first required input 전 불공정 연료 0·강제 경로 실패 0건
 - [ ] 8 token 상태 경로·역·분기 가독성
+- [ ] assisted first run과 일반 balance 분석 분리
 - [ ] 승인된 MUST_FIX 회귀 테스트
 - [ ] `PASS / REVISE / PIVOT / STOP`
 - [ ] Production 진입 결정
