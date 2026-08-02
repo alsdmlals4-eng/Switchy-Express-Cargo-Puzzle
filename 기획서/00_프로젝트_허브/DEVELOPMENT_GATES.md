@@ -66,9 +66,9 @@ Status: `PARTIAL`
 Status: `IN_PROGRESS`
 
 - [x] 최신 main·실제 구현·최근 PR·Issue 복원
-- [x] Post-VS02 정본 드리프트 확인
+- [x] Post-VS02 정본 드리프트 확인·복구
+- [x] Google Sheets post-VS02 동기화·12탭 재조회
 - [x] 상세 수치를 `RECOMMENDED_DEFAULT / TEST_VALUE`로 관리하는 권한 확인
-- [ ] Google Sheets post-VS02 동기화
 - [ ] 전체 기획 Coverage 감사
 - [ ] 분야 간 충돌 적대적 검토
 - [ ] 필요한 Grill Me Decision 완료
