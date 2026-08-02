@@ -31,20 +31,17 @@
 
 - [x] Post-VS02 실제 구현과 정본 드리프트 감사
 - [x] 잘못 제공된 타 프로젝트 Sheet 제외
-- [x] Post-VS02 GitHub 정본 복구 PR #16
-- [x] 올바른 Switchy Express Sheet 동기화
-- [x] 12개 탭 readback과 Sync Closure PR #17
-- [x] 전체 기획 Coverage Matrix 작성 (`SX-AUD-004`)
-- [x] 분야 간 1차 충돌 적대적 검토
+- [x] Post-VS02 GitHub 정본 복구·올바른 Sheet 동기화
+- [x] 전체 기획 Coverage Matrix와 분야 간 적대적 검토
 - [x] `SX-DEC-014` Combo 의미 확정·Sheet 동기화
 - [x] `SX-DEC-015` compact wagon token·compressed footprint 확정·Sheet 동기화
-- [x] `SX-DEC-016` 실제 첫 run 상황형 온보딩 사용자 승인
-- [x] `SX-DEC-016` 설계 규격과 TDD 구현 계획 작성
-- [x] `SX-OPS-001` Grill Me 10건 batch merge·pre-merge audit 프로토콜 작성
-- [ ] `SX-DEC-016`·`SX-OPS-001` canonical PR pre-merge 전수 감사와 병합
-- [ ] canonical merge commit을 Sheet에 기록·12탭 재조회
-- [ ] Sync Closure PR 병합
-- [ ] `GMB-001` 시작: `SX-DEC-017`부터 10건
+- [x] `SX-DEC-016` 실제 첫 run 상황형 온보딩 승인·설계·TDD 계획
+- [x] `SX-OPS-001` Grill Me 10건 batch merge·pre-merge audit 프로토콜
+- [x] PR #27 병합 직전 GitHub·PR·Sheet 전수 감사
+- [x] F21 역사 계약·F22 VS-03C 순서·F23 Sheet stale 행 수정
+- [x] canonical merge `3cd13ff375a597d4eba9035af5b05e6186fb4853`
+- [x] `SX-DEC-016`·`SX-OPS-001` Sheet 12탭 readback `PASS · SYNCED`
+- [ ] `GMB-001`: `SX-DEC-017`부터 중요 Decision 10건, 현재 0/10
 - [ ] 남은 중요 Grill Me 완료
 - [ ] VS-03 Codex Definition of Ready
 
@@ -110,13 +107,12 @@ M3 종료 기준: 한 세션이 시작→상황형 학습→운행→적재→co
 - [ ] MUST_FIX 회귀 검증
 - [ ] Production Gate
 
-## M5 — Grill Me Batch 운영 · ACTIVE_AFTER_CATCH_UP
+## M5 — Grill Me Batch 운영 · ACTIVE
 
 책임 정본: `기획서/50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md`
 
 ```text
-CATCH-UP-001: SX-DEC-014~016
-→ current canonical PR + Sheet closure
+CATCH-UP-001: SX-DEC-014~016 · CLOSED
 → GMB-001: SX-DEC-017부터 0/10
 → 각 승인: batch branch/PR + Sheet APPROVED_PENDING_BATCH_MERGE
 → 10번째 승인: FREEZE + GitHub/PR/Sheet 12탭 adversarial audit
@@ -126,9 +122,7 @@ CATCH-UP-001: SX-DEC-014~016
 ## 현재 실행 순서
 
 ```text
-SX-DEC-014·015 GitHub/Sheet SYNCED
-→ SX-DEC-016 + SX-OPS-001 catch-up canonical merge
-→ Sheet 12탭 sync closure
+SX-DEC-014/015/016 · SX-OPS-001 GitHub/Sheet SYNCED
 → GMB-001 / SX-DEC-017부터 10건
 → G3P close
 → VS-03A
