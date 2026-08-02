@@ -36,12 +36,11 @@
 - [x] 12개 탭 readback과 Sync Closure PR #17
 - [x] 전체 기획 Coverage Matrix 작성 (`SX-AUD-004`)
 - [x] 분야 간 1차 충돌 적대적 검토
-- [x] `SX-DEC-014` Combo 의미 확정
+- [x] `SX-DEC-014` Combo 의미 확정·Sheet 동기화
 - [x] 안전 보완: Skill·계측·표본 판정·오디오 fallback·Plan·Registry 최신화
-- [x] `SX-DEC-014` canonical commit `ca505386…` Sheet 동기화·12탭 재조회
 - [x] `SX-DEC-015` 화물 1개=compact wagon token 1개·압축 점유 의미 확정
 - [x] `SX-DEC-015` 설계 규격·본책·VS 계약·플레이테스트 소비자 반영
-- [ ] `SX-DEC-015` canonical commit Sheet 동기화
+- [x] `SX-DEC-015` canonical commit `b874225…` Sheet 동기화·12탭 재조회
 - [ ] `SX-DEC-016` 첫 세션 온보딩 방식
 - [ ] 실패 학습 정보의 별도 Decision 필요성 재검증
 - [ ] 남은 중요 Grill Me 완료
@@ -96,7 +95,7 @@ M3 종료 기준: 한 세션이 시작→운행→적재→compact token 변화�
 ## 현재 실행 순서
 
 ```text
-SX-DEC-015 PR merge·Sheet sync
+SX-DEC-014·015 GitHub/Sheet SYNCED
 → SX-DEC-016 온보딩 Grill Me
 → 실패학습 Decision 필요성 재검증
 → G3P close
