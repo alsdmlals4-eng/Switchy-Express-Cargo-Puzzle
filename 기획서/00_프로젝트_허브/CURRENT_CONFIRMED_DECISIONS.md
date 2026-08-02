@@ -7,6 +7,7 @@ VS-02 implementation: `0738d9c10e431a43e7a2f34590369c3f17d1f8a5`
 VS-02 runtime recovery: `4e435a1a6d10ab146197671049da80709fd18c1f`
 Base v9.4 adoption: `539d2bae18d20e303649f047b9df69e8e224b2e7`
 Post-VS02 canonical recovery: `8245e22905d64e22b599fe009bbb660d005392ed`
+Post-VS02 Sheet closure: `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1`
 
 | Decision ID | 분야 | 현재 결정 | 근거 | 상태 |
 |---|---|---|---|---|
@@ -23,6 +24,7 @@ Post-VS02 canonical recovery: `8245e22905d64e22b599fe009bbb660d005392ed`
 | SX-DEC-011 | 표현 | 부드럽고 둥근 프리미엄 캐주얼 3D 카툰, 친근한 토끼 기관사, 선명한 선로·분기 UX를 사용한다. | 사용자 승인 | CONFIRMED |
 | SX-DEC-012 | 기술 | Godot 4.7.1/GDScript, Android/Google Play, 가로형 화면을 초기 기술 기준으로 사용한다. | 프로젝트 기본값·PR #9 | CONFIRMED |
 | SX-DEC-013 | 분기 UX | 분기기의 기본 A노선은 가능한 경우 현재 진행 방향의 직진을 우선하며, 미리보기 첫 칸과 실제 다음 칸은 항상 일치해야 한다. | 사용자 권장안 일괄 승인·PR #9 | CONFIRMED |
+| SX-DEC-014 | 점수·피드백 | `Combo`는 한 번의 역 도착에서 stack top부터 연속 하역된 동일 화물 타입의 개수다. `max_combo`는 한 판의 최대 하역 그룹 크기이며, 빠른 연속 배송은 Combo가 아니라 별도 `speed_bonus` 시험 차원이다. | 사용자 권장안 승인 · EV-USER-002 | CONFIRMED |
 
 ## 구현·검증 추적
 
@@ -39,17 +41,29 @@ Post-VS02 canonical recovery: `8245e22905d64e22b599fe009bbb660d005392ed`
 | SX-DEC-011 | APPROVED_DIRECTION | HUMAN_RUNTIME_NOT_RUN | 사용자 승인 콘셉트·Visual Direction | 제품 UI·아트·Android 캡처 |
 | SX-DEC-012 | IMPLEMENTED_BASELINE | PARTIAL | Godot 4.7.1 headless 6915 assertions | Android export·실기·성능 |
 | SX-DEC-013 | IMPLEMENTED | PASSED | PR #9·#12 / locked route·preview parity | 런타임 시각 검증 |
+| SX-DEC-014 | DOMAIN_SEMANTICS_CONFIRMED | NOT_STARTED | 사용자 승인 · 기존 `try_unload().count`가 입력 근거 | RunBalance 보상·HUD 피드백·`max_combo` 저장·telemetry |
 
 ## Evidence 원장
 
 | Evidence ID | 내용 | GitHub 증거 | 상태 |
 |---|---|---|---|
+| EV-USER-002 | Combo를 단일 역 도착의 동일 타입 연속 하역 개수로 확정하고 빠른 배송을 별도 `speed_bonus`로 분리 | 2026-08-02 사용자 권장안 승인 | CONFIRMED_USER_DECISION |
 | EV-VS01-001 | Godot·RailGraph·분기 기반 | PR #9 / `801632949d28564528e38d83dac59cccc6f06fb2` | VALIDATED |
 | EV-VS02-001 | 기차·화차·화물·역·LIFO | PR #12 / `0738d9c10e431a43e7a2f34590369c3f17d1f8a5` | VALIDATED |
 | EV-VS02-FIX-001 | DeliveryLoop 안의 최소 화물 재생성 회복 | PR #13 / `4e435a1a6d10ab146197671049da80709fd18c1f` | VALIDATED |
 | EV-BASE-V94-001 | Base v9.4 운영·UI 모션 계약 적용 | PR #15 / `539d2bae18d20e303649f047b9df69e8e224b2e7` | VALIDATED_AUTOMATED_ONLY |
 | SX-AUD-002 | Post-VS01 적대적 감사 | `POST_VS01_ADVERSARIAL_AUDIT.md` | HISTORICAL |
-| SX-AUD-003 | Post-VS02 정본·구현·Sheet 적대적 감사 | `POST_VS02_ADVERSARIAL_AUDIT.md` | CURRENT |
+| SX-AUD-003 | Post-VS02 정본·구현·Sheet 적대적 감사 | `POST_VS02_ADVERSARIAL_AUDIT.md` | HISTORICAL |
+| SX-AUD-004 | 총기획 Coverage·충돌 감사 | `TOTAL_PLANNING_AUDIT.md` | CURRENT |
+
+## SX-DEC-014 파생 계약
+
+- `combo_count = unloaded_count`이며 한 번의 `station_arrived` 처리 안에서만 계산한다.
+- 다른 역 도착까지 유지되는 Combo streak state는 만들지 않는다.
+- `max_combo = max(previous_max_combo, combo_count)`다.
+- 빠른 배송 여부는 `seconds_since_delivery`로 계산하는 `speed_bonus`이며 Combo를 증가·유지·리셋하지 않는다.
+- 빈 역 도착이나 타입 불일치는 `combo_count = 0`, 점수·연료 보상 0이다.
+- HUD는 성공 하역 시 `COMBO ×N` 피드백을 표시하고 결과 화면은 `MAX COMBO`를 표시한다. 지속 표기 위치·시간은 VS-03B의 시각 시험값이다.
 
 ## 수치·기획 결정 규칙
 
@@ -60,11 +74,12 @@ Post-VS02 canonical recovery: `8245e22905d64e22b599fe009bbb660d005392ed`
 
 ## 동기화 상태
 
-- GitHub canonical recovery Commit: `8245e22905d64e22b599fe009bbb660d005392ed`
+- GitHub latest synced main: `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1`
 - Google Sheets: Adapter의 `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`
-- Sheet·GitHub 상태: `SYNCED`
-- Sheet 12개 탭 재조회: `2026-08-02 11:18 +09:00 · PASS`
-- 제공된 `19Ff...` 시트는 다른 프로젝트이며 변경하지 않았다.
+- 기존 Post-VS02 상태: `SYNCED`
+- `SX-DEC-014`: `GITHUB_UPDATE_PENDING_SHEET`
+- PR 병합 commit을 Decision·Evidence·Audit와 함께 Sheet에 기록한 뒤 별도 closure에서 `SYNCED`로 전환한다.
+- 제공된 `19Ff...` 시트는 다른 프로젝트이며 변경하지 않는다.
 
 ## 대체 관계
 
@@ -73,3 +88,4 @@ Post-VS02 canonical recovery: `8245e22905d64e22b599fe009bbb660d005392ed`
 - 세로형 화면안은 가로형 화면안으로 대체됨.
 - 15×15·14×9 맵 후보는 최종 15×10 기준으로 대체됨.
 - 좌표 순서에 의존하는 기본 분기안은 `SX-DEC-013`의 직진 우선 기본 노선으로 대체됨.
+- 연속 배송 streak를 Combo로 부르는 후보는 `SX-DEC-014`에 의해 제외되며 필요 시 별도 Delivery Chain Decision으로만 재도입한다.
