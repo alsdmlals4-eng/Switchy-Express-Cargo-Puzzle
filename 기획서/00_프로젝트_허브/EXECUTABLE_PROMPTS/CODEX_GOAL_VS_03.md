@@ -5,7 +5,7 @@ GitHub Issue: `#6`
 Parent Epic: `#3`
 Blocked by implementation: `#5 · COMPLETED`
 Blocked by planning: `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE`
-Baseline main: `11c6914b0fdcfb946c85e303d05017a77b969e55`
+Baseline main: `b8742253247da25a0190f80b898b9bbe6ec6a1cf`
 Plan: `docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md` Task 6~7
 Compact token spec: `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md`
 
@@ -36,7 +36,7 @@ Compact token spec: `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-token
 - `SX-DEC-012`
 - `SX-DEC-013`
 - `SX-DEC-014` · GitHub/Sheet `SYNCED`
-- `SX-DEC-015` · compact wagon token `CONFIRMED · SHEET_PENDING`
+- `SX-DEC-015` · GitHub/Sheet `SYNCED`
 
 상세 속도·연료·보상·token 기하 수치는 `CORE_SYSTEMS.md`의 `TEST_VALUE`를 사용하며 사용자 확정 밸런스로 취급하지 않는다.
 
@@ -225,7 +225,7 @@ Issue #7은 다음을 구현·검증한다.
 
 - [x] Post-VS02 GitHub·Sheet `SYNCED`
 - [x] `SX-DEC-014`, `EV-USER-002`, `SX-AUD-004` GitHub·Sheet `SYNCED`
-- [ ] `SX-DEC-015`, `EV-USER-003` GitHub·Sheet `SYNCED`
+- [x] `SX-DEC-015`, `EV-USER-003` GitHub·Sheet `SYNCED`
 - [ ] `SX-DEC-016`과 전체 필수 기획 Decision 완료
 - [ ] MUST_FIX 0 또는 승인 보류
 - [ ] Issue #6·Plan·본책 책임 일치

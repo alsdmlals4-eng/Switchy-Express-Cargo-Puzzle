@@ -83,7 +83,7 @@ Status: `IN_PROGRESS`
 - [x] 안전 보완과 구형 Skill·Plan·Registry 참조 복구
 - [x] `SX-DEC-015` compact wagon token 의미 확정
 - [x] `SX-DEC-015` 설계 규격·본책·VS·플레이테스트 계약 반영
-- [ ] `SX-DEC-015` canonical commit Sheet 동기화
+- [x] `SX-DEC-015` canonical commit `b874225…` Sheet 동기화·12탭 재조회
 - [ ] `SX-DEC-016` 첫 세션 온보딩 방식 확정
 - [ ] 실패 학습 정보의 별도 Decision 필요성 재검증
 - [ ] VS-03 범위·수용 기준·저장·UX 책임 최종 일치

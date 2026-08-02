@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-08-02 — SX-DEC-015 Sheet Sync Closed
+
+- PR #24 canonical planning commit `b8742253247da25a0190f80b898b9bbe6ec6a1cf` 확정
+- `SX-DEC-015`, `EV-USER-003`, `SX-AUD-004`를 실제 Switchy Express Google Sheets에 같은 ID와 commit으로 반영
+- 허브·작업순서·결정·근거·감사·GDD 요약·시각 작업면·경험·시스템·세계·표현·제작 검증 12개 탭 재조회
+- compact token 의미, rear=LIFO top, 8-token chain 2.18칸 TEST_VALUE, trailing footprint 최대 3칸이 GitHub·Sheet에서 일치
+- 비소비자 `30_세계_서사`와 과거 Decision·Evidence 행은 보존
+- Audit 상태 `PASS · 12탭 재조회 완료`
+- GitHub·Sheet 상태를 `SYNCED`로 전환
+- Decision 한 문장의 `2.25칸` 표기 drift를 `2.18칸`으로 통일하고 `SX-AUD-004-F16` 기록
+- 잘못 제공된 `19Ff...` 타 프로젝트 Sheet는 변경하지 않음
+- 다음 중요 기획은 `SX-DEC-016` 첫 세션 온보딩 방식
+- compact token 런타임·Android·사람 검증은 `NOT_STARTED / NOT_RUN / HUMAN_NOT_RUN`
+- 제품 코드·Scene·Resource·asset 변경 없음, `CODEX_NOT_READY` 유지
+
 ## 2026-08-02 — Total Planning Decision · SX-DEC-015
 
 - 사용자 권장안 승인으로 `SX-DEC-015` 확정
@@ -19,7 +34,6 @@
 - 적대적 보완 `SX-AUD-004-F13~F15`: 긴 열차 밀도·spawn 공정성·작은 shape 가독성
 - 다음 중요 충돌을 `SX-DEC-016` 첫 세션 온보딩 방식으로 이동
 - 제품 코드·Scene·Resource·asset 변경 없음, `CODEX_NOT_READY` 유지
-- PR merge commit을 올바른 Switchy Express Sheet에 같은 Decision·Evidence ID로 기록한 뒤 `SYNCED` 종료 예정
 
 ## 2026-08-02 — SX-DEC-014 Sheet Sync Closed
 

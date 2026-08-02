@@ -10,8 +10,9 @@
 - Base v9.4 AI 운영·UI 모션 계약은 PR #15에서 적용 완료.
 - Post-VS02 정본 복구는 PR #16 / `8245e22905d64e22b599fe009bbb660d005392ed`에서 완료.
 - Post-VS02 Sheet 종료는 PR #17 / `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1`에서 완료.
-- `SX-DEC-014` Combo 결정은 PR #18 / `ca50538652c72cbb282d7818990e92a0dfe79c9a`에서 정본화됐다.
-- `SX-DEC-014`, `EV-USER-002`, `SX-AUD-004`는 실제 Switchy Express Sheet 12개 탭 재조회까지 `PASS · SYNCED`다.
+- `SX-DEC-014` Combo 결정은 PR #18 / `ca50538652c72cbb282d7818990e92a0dfe79c9a`에서 정본화되고 Sheet까지 동기화됐다.
+- `SX-DEC-015` compact wagon token 결정은 PR #24 / `b8742253247da25a0190f80b898b9bbe6ec6a1cf`에서 정본화됐다.
+- `SX-DEC-015`, `EV-USER-003`, `SX-AUD-004`는 실제 Switchy Express Sheet 12개 탭 재조회까지 `PASS · SYNCED`다.
 - 제품 구현 기준: `4e435a1a6d10ab146197671049da80709fd18c1f`.
 - Godot 검증: `9 cases / 6915 assertions / 0 failures`.
 - 제공된 `19Ff...` 시트는 다른 프로젝트이며 변경하지 않았다.
@@ -20,8 +21,7 @@
 - 현재 Work Mode: `TOTAL_PLANNING · REVIEW`.
 - Codex 상태: `CODEX_NOT_READY`.
 - 현행 총기획 감사: `SX-AUD-004`.
-- `SX-DEC-015`: 사용자 승인·GitHub 정본 반영 중·Sheet 동기화 대기.
-- 다음 Grill Me 후보: `SX-DEC-016` 첫 세션 온보딩 방식.
+- 다음 Grill Me: `SX-DEC-016` 첫 세션 온보딩 방식.
 
 ## 구현된 범위
 
@@ -94,11 +94,10 @@
 ## 현재 총기획 작업
 
 ```text
-SX-DEC-014 GitHub·Sheet SYNCED
-→ SX-DEC-015 사용자 승인·정본 반영
-→ canonical merge commit으로 Sheet 동기화
+SX-DEC-014·015 GitHub·Sheet SYNCED
 → SX-DEC-016 온보딩 Grill Me
 → 실패학습 Decision 필요성 재검증
+→ 승인 Decision 정본·Issue·Goal·Sheet 동기화
 → Codex Definition of Ready
 ```
 
@@ -106,17 +105,18 @@ SX-DEC-014 GitHub·Sheet SYNCED
 
 ## 다음 작업
 
-1. `SX-DEC-015` exact HEAD 검증·병합
-2. 같은 Decision·Evidence·commit을 Sheet에 반영·재조회
-3. `SX-DEC-016` 첫 세션 온보딩 방식 Grill Me
-4. 실패 학습 정보가 별도 Decision인지 적대적으로 재검증
-5. 남은 필수 Decision이 0이면 `G3P`와 Codex Definition of Ready 판정
+1. `SX-DEC-016` 첫 세션 온보딩 방식 Grill Me
+2. 승인 내용을 정본·Issue #6·Plan·VS-03 Goal·Sheet에 같은 ID로 반영
+3. 실패 학습 정보가 별도 Decision인지 적대적으로 재검증
+4. 남은 필수 Decision이 0이면 `G3P`와 Codex Definition of Ready 판정
+5. Gate 통과 이후에만 Codex Build 인계
 
 ## 주요 위험
 
 - compact token이 너무 작아 색상+모양을 읽지 못할 가능성
 - 압축 점유 계산 누락으로 pickup이 token chain 위에 생성될 가능성
 - tight turn에서 token 순서가 바뀌거나 곡선을 가로지를 가능성
+- 첫 세션에서 LOAD·분기·LIFO·compact token 정보를 한꺼번에 제공해 과부하가 발생할 가능성
 - 자동 운행에서 분기 판단 시간이 부족하거나 과도하게 여유로울 가능성
 - 화물 감속이 생존 최적화 exploit가 될 가능성
 - BOOST가 항상 정답이거나 무가치할 가능성
@@ -131,6 +131,6 @@ SX-DEC-014 GitHub·Sheet SYNCED
 - 현행 총기획 감사: `SX-AUD-004` · CURRENT
 - 사용자 Evidence: `EV-USER-002`, `EV-USER-003`
 - `SX-DEC-014` canonical commit: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
-- Sheet 12개 탭 readback: `PASS · SYNCED` for `SX-DEC-014`
-- `SX-DEC-015` Sheet 상태: `GITHUB_UPDATE_PENDING_SHEET`
+- `SX-DEC-015` canonical commit: `b8742253247da25a0190f80b898b9bbe6ec6a1cf`
+- Sheet 12개 탭 readback: `PASS · SYNCED`
 - 다음 차단 Finding: `SX-AUD-004-F03`

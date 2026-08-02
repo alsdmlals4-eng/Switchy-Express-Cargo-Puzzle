@@ -10,6 +10,7 @@ Post-VS02 canonical recovery: `8245e22905d64e22b599fe009bbb660d005392ed`
 Post-VS02 Sheet closure: `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1`
 Total Planning Combo Decision: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
 Combo Sheet closure: `11c6914b0fdcfb946c85e303d05017a77b969e55`
+Compact Wagon Token Decision: `b8742253247da25a0190f80b898b9bbe6ec6a1cf`
 
 | Decision ID | 분야 | 현재 결정 | 근거 | 상태 |
 |---|---|---|---|---|
@@ -27,7 +28,7 @@ Combo Sheet closure: `11c6914b0fdcfb946c85e303d05017a77b969e55`
 | SX-DEC-012 | 기술 | Godot 4.7.1/GDScript, Android/Google Play, 가로형 화면을 초기 기술 기준으로 사용한다. | 프로젝트 기본값·PR #9 | CONFIRMED |
 | SX-DEC-013 | 분기 UX | 분기기의 기본 A노선은 가능한 경우 현재 진행 방향의 직진을 우선하며, 미리보기 첫 칸과 실제 다음 칸은 항상 일치해야 한다. | 사용자 권장안 일괄 승인·PR #9 | CONFIRMED |
 | SX-DEC-014 | 점수·피드백 | `Combo`는 한 번의 역 도착에서 stack top부터 연속 하역된 동일 화물 타입의 개수다. `max_combo`는 한 판의 최대 하역 그룹 크기이며, 빠른 연속 배송은 Combo가 아니라 별도 `speed_bonus` 시험 차원이다. | 사용자 권장안 승인 · EV-USER-002 | CONFIRMED |
-| SX-DEC-015 | 화물·화차 UX | 적재 화물 1개를 작은 토큰형 화차 1개로 표시하되 최대 8개 토큰 열은 약 2.25칸 이내로 압축하고, 생성 금지 점유는 압축 footprint만 사용한다. | 사용자 권장안 승인·토큰형 보정 · EV-USER-003 | CONFIRMED |
+| SX-DEC-015 | 화물·화차 UX | 적재 화물 1개를 작은 토큰형 화차 1개로 표시하되 최대 8개 토큰 열은 권장 시험값 약 2.18칸으로 압축하고, 생성 금지 점유는 압축 footprint만 사용한다. | 사용자 권장안 승인·토큰형 보정 · EV-USER-003 | CONFIRMED |
 
 ## 구현·검증 추적
 
@@ -45,14 +46,14 @@ Combo Sheet closure: `11c6914b0fdcfb946c85e303d05017a77b969e55`
 | SX-DEC-012 | IMPLEMENTED_BASELINE | PARTIAL | Godot 4.7.1 headless 6915 assertions | Android export·실기·성능 |
 | SX-DEC-013 | IMPLEMENTED | PASSED | PR #9·#12 / locked route·preview parity | 런타임 시각 검증 |
 | SX-DEC-014 | DOMAIN_SEMANTICS_CONFIRMED | NOT_STARTED | 사용자 승인 · 기존 `try_unload().count`가 입력 근거 | RunBalance 보상·HUD 피드백·`max_combo` 저장·telemetry |
-| SX-DEC-015 | PLANNING_SPEC_APPROVED | NOT_STARTED | `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md` | compact token ViewModel·fractional path follow·compressed occupancy·Android 가독성 |
+| SX-DEC-015 | PLANNING_SPEC_APPROVED | NOT_STARTED | PR #24 / `b8742253247da25a0190f80b898b9bbe6ec6a1cf` | compact token ViewModel·fractional path follow·compressed occupancy·Android 가독성 |
 
 ## Evidence 원장
 
 | Evidence ID | 내용 | GitHub 증거 | 상태 |
 |---|---|---|---|
 | EV-USER-002 | Combo를 단일 역 도착의 동일 타입 연속 하역 개수로 확정하고 빠른 배송을 별도 `speed_bonus`로 분리 | 사용자 승인·PR #18 / `ca50538652c72cbb282d7818990e92a0dfe79c9a` | CONFIRMED_USER_DECISION |
-| EV-USER-003 | 화물 1개를 작은 토큰형 화차 1개로 표시하고 긴 열차로 인한 가시성 저하를 막도록 압축 표현 | 2026-08-02 사용자 권장안 승인·보정 | CONFIRMED_USER_DECISION |
+| EV-USER-003 | 화물 1개를 작은 토큰형 화차 1개로 표시하고 긴 열차로 인한 가시성 저하를 막도록 압축 표현 | 사용자 승인·PR #24 / `b8742253247da25a0190f80b898b9bbe6ec6a1cf` | CONFIRMED_USER_DECISION |
 | EV-VS01-001 | Godot·RailGraph·분기 기반 | PR #9 / `801632949d28564528e38d83dac59cccc6f06fb2` | VALIDATED |
 | EV-VS02-001 | 기차·화차·화물·역·LIFO | PR #12 / `0738d9c10e431a43e7a2f34590369c3f17d1f8a5` | VALIDATED |
 | EV-VS02-FIX-001 | DeliveryLoop 안의 최소 화물 재생성 회복 | PR #13 / `4e435a1a6d10ab146197671049da80709fd18c1f` | VALIDATED |
@@ -92,11 +93,12 @@ Combo Sheet closure: `11c6914b0fdcfb946c85e303d05017a77b969e55`
 
 ## 동기화 상태
 
-- GitHub latest synced main: `11c6914b0fdcfb946c85e303d05017a77b969e55`
+- GitHub latest synced main: `b8742253247da25a0190f80b898b9bbe6ec6a1cf`
 - Google Sheets: Adapter의 `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`
-- `SX-DEC-014`, `EV-USER-002`, `SX-AUD-004`: `SYNCED`
-- `SX-DEC-015`, `EV-USER-003`: `GITHUB_UPDATE_PENDING_SHEET`
-- Sheet 12개 탭 readback: `PASS · 2026-08-02` for `SX-DEC-014`
+- `SX-DEC-014`, `EV-USER-002`: `SYNCED`
+- `SX-DEC-015`, `EV-USER-003`: `SYNCED`
+- `SX-AUD-004`: `SYNCED · PASS · 12탭 재조회 완료`
+- compact token 런타임·Android·사람 검증: `NOT_STARTED / NOT_RUN / HUMAN_NOT_RUN`
 - 제공된 `19Ff...` 시트는 다른 프로젝트이며 변경하지 않았다.
 
 ## 대체 관계

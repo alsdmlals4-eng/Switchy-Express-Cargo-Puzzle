@@ -45,14 +45,14 @@
 | Post-VS02 canonical recovery | COMPLETE | PR #16 / `8245e229…` |
 | Post-VS02 Sheet closure | COMPLETE | PR #17 / `474bef44…` |
 | `SX-DEC-014` Combo | CONFIRMED · GITHUB_SHEET_SYNCED · IMPLEMENTATION_NOT_STARTED | PR #18/#19 |
-| `SX-DEC-015` compact wagon tokens | CONFIRMED · CANON_IN_PROGRESS · IMPLEMENTATION_NOT_STARTED | `EV-USER-003` |
+| `SX-DEC-015` compact wagon tokens | CONFIRMED · GITHUB_SHEET_SYNCED · IMPLEMENTATION_NOT_STARTED | PR #24 / `b874225…` |
 | `SX-DEC-016` onboarding | USER_DECISION_REQUIRED_NEXT | `SX-AUD-004-F03` |
 | Task 6 · run economy | BLOCKED_BY_PLANNING | Issue #6 / VS-03A |
 | Task 7 · compact token product UI/result/save | BLOCKED_BY_PLANNING | Issue #6 / VS-03B |
 | Task 8 · telemetry/soak/device/playtest | NOT_STARTED | Issue #7 |
 
 Implementation baseline: `4e435a1a6d10ab146197671049da80709fd18c1f`
-Latest synchronized main before `SX-DEC-015`: `11c6914b0fdcfb946c85e303d05017a77b969e55`
+Latest synchronized planning main: `b8742253247da25a0190f80b898b9bbe6ec6a1cf`
 Historical Post-VS02 audit: `기획서/50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md`
 Current planning audit: `기획서/50_제작_검증/TOTAL_PLANNING_AUDIT.md`
 Compact token spec: `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md`
@@ -156,7 +156,7 @@ tests/integration/test_delivery_loop.gd
 - [x] Confirm `SX-DEC-015`: cargo 1 = compact wagon token 1.
 - [x] Define compressed geometry, LIFO ordering, domain authority, and spawn footprint.
 - [x] Add compact token spec and update Core/Visual/VS/Playtest contracts.
-- [ ] Merge `SX-DEC-015` canonical PR and sync `EV-USER-003` to Sheet.
+- [x] Merge PR #24 and synchronize `SX-DEC-015`, `EV-USER-003`, and `SX-AUD-004` to Sheet with 12-tab readback PASS.
 - [ ] Confirm `SX-DEC-016` onboarding approach.
 - [ ] Re-evaluate failure-learning gap after onboarding Decision.
 - [ ] Ensure all approved Decisions are reflected in canon, Issues, Plan, Active Context, and Sheet.
