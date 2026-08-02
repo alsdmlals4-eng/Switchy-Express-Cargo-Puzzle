@@ -1,6 +1,6 @@
 ---
 name: base-project-router
-description: Thin repository router for Base v9.3 and Switchy Express project-local skills.
+description: Thin repository router for Base v9.4 and Switchy Express project-local skills.
 ---
 
 # Base Project Router
