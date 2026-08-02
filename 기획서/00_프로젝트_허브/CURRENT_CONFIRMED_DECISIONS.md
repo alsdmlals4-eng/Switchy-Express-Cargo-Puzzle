@@ -13,7 +13,9 @@ vs03_01_audit: SX-AUD-006 · PASS · SYNCED
 vs03_01_evidence: EV-VS03-01-001
 vs03_01_merge: 43972d3d23e931af3dbc81ab9b1c7d942fffb201
 vs03_01_closure: 9360eff0a97f48f2234fcaf35425f80e94fac445
-core_fun_audit: SX-AUD-007 · DRAFT_REVIEW
+core_fun_audit: SX-AUD-007 · USER_APPROVED_PENDING_CANONICAL_MERGE
+core_fun_evidence: EV-USER-017
+sequencing_evidence: EV-USER-018 · RECOMMENDED_OPTION_C
 implementation_authority: VS03-02_ONLY
 codex_state: READY_FOR_BUILD
 product_implementation: IN_PROGRESS · VS03-01_MERGED
@@ -72,27 +74,41 @@ LIFO 적재 순서 계획
 | SX-AUD-004 | 전체 기획 coverage·Decision 충돌 | EV-USER-002~015 | PASS · GMB001_CLOSED · RUNTIME_FOLLOWUPS |
 | SX-AUD-005 | VS-03 Definition of Ready·실제 API/file/test/save/order/rollback | EV-USER-016 | PASS_WITH_PLANNING_FIXES · SYNCED |
 | SX-AUD-006 | VS03-01 planning preflight·TDD·implementation·exact-head Gate | EV-VS03-01-001 | PASS · MERGED_AND_VERIFIED · SYNCED |
-| SX-AUD-007 | core fun/system hierarchy·benchmark·PR #37/#38 consumer review | EV-USER-017 | DRAFT_REVIEW · PRODUCT_RULE_CHANGE_NONE |
+| SX-AUD-007 | core fun/system hierarchy·benchmark·PR consumer review·package sequencing | EV-USER-017~018 | USER_APPROVED · IMPLEMENTATION_PLANS_COMPLETE · CANONICAL_MERGE_PENDING |
+
+`SX-AUD-007`은 제품 규칙 Decision을 변경하지 않는다. 핵심 재미 위계, 현재 소비자 정합성, benchmark-backed Grill Me 규칙, 안전 교정 package, 구현 순서를 정규화한다.
 
 ## Current Execution Authority
 
-Canonical current-status documents:
+Canonical current-status and future-order documents:
 
 ```text
 기획서/10_경험/CORE_FUN_SYSTEM_HIERARCHY.md
 기획서/50_제작_검증/VS03_PACKAGE_STATUS.md
+기획서/50_제작_검증/CORE_FUN_ALIGNMENT_AUDIT.md
+기획서/50_제작_검증/CORE_FUN_ALIGNMENT_APPROVAL_ADDENDUM.md
+docs/superpowers/specs/2026-08-03-playable-core-before-meta-sequencing-design.md
+docs/superpowers/plans/2026-08-03-vs03-core-first-resegmentation.md
+docs/superpowers/plans/2026-08-03-vs03-r1-difficulty-authority-alignment.md
+docs/superpowers/plans/2026-08-03-vs03-05a-minimal-playable-core-surface.md
 기획서/50_제작_검증/VS03_01_IMPLEMENTATION_AUDIT.md
 기획서/50_제작_검증/VS03_DEFINITION_OF_READY_AUDIT.md
 docs/superpowers/specs/2026-08-02-vs03-execution-architecture-design.md
 docs/superpowers/plans/2026-08-02-vs03-build-segmentation.md
 ```
 
-Decision-specific plans remain behavior references. Their old status, pseudocode, path, test command, or shared-file order is non-authoritative against current status and DoR canon.
+Older plans remain behavior and unchanged-package responsibility references. Their old status or package order is non-authoritative against current status and the approved core-first plan.
 
 ```text
 VS03-01 · MERGED_AND_VERIFIED
 → VS03-02 · READY_FOR_BUILD · CURRENT_AUTHORITY
-→ VS03-03~07 · BLOCKED_BY_PREVIOUS_PACKAGE
+→ VS03-03 · BLOCKED_BY_VS03_02
+→ VS03-R1 · BLOCKED_BY_VS03_03
+→ VS03-05A · BLOCKED_BY_VS03_R1
+→ VS03-04 · BLOCKED_BY_VS03_05A
+→ VS03-05B · BLOCKED_BY_VS03_04
+→ VS03-06 · BLOCKED_BY_VS03_05B
+→ VS03-07 · BLOCKED_BY_VS03_06
 ```
 
 ## Implementation Tracking
@@ -102,7 +118,12 @@ VS03-01 · MERGED_AND_VERIFIED
 | rail/train/cargo/LIFO foundation | IMPLEMENTED | automated PASS |
 | VS03-01 run lifecycle/economy/Combo/difficulty core | MERGED_AND_VERIFIED | 16 cases · 7110 assertions · 0 failures |
 | VS03-02 compact token/footprint/occupancy | READY_FOR_BUILD | NOT_STARTED |
-| VS03-03~07 | BLOCKED_BY_PREVIOUS_PACKAGE | NOT_STARTED |
+| VS03-03 map/session/restart/selection | BLOCKED_BY_VS03_02 | NOT_STARTED |
+| VS03-R1 difficulty authority alignment | PLANNED · BLOCKED_BY_VS03_03 | NOT_STARTED |
+| VS03-05A minimal playable core | PLANNED · BLOCKED_BY_VS03_R1 | NOT_STARTED |
+| VS03-04 Profile/meta foundation | BLOCKED_BY_VS03_05A | NOT_STARTED |
+| VS03-05B result/collection/browser | BLOCKED_BY_VS03_04 | NOT_STARTED |
+| VS03-06~07 | BLOCKED_BY_PREVIOUS_PACKAGE | NOT_STARTED |
 | target3 official maps | PLANNED_VS03 | NOT_RUN |
 | target100 official maps | PRODUCTION | `F58 NOT_MET` |
 | UGC online/backend/community | PRODUCTION | NOT_STARTED/NOT_RUN |
@@ -116,7 +137,8 @@ VS03-01 · MERGED_AND_VERIFIED
 - compact footprint는 explicit provider로 DeliveryLoop에 주입하고 legacy fallback을 보존한다.
 - RunSessionFactory는 fully configured session만 성공으로 반환한다.
 - movement/event/fuel-zero는 boundary-sliced authoritative order를 따른다.
-- DifficultyDirector는 실제 player-facing pressure change의 authoritative schedule/commit과 정렬되어야 한다.
+- DifficultyDirector는 실제 speed/fuel pressure boundary 전체의 authoritative schedule/commit을 소유하도록 VS03-R1에서 정렬한다.
+- VS03-05A는 Profile schema나 임시 저장 형식을 만들지 않는다.
 - ProfileStore/TransactionService가 유일한 persistence writer다.
 - assisted first run은 standard record·goal·variable reward·balance evidence와 분리한다.
 - same-map restart는 fresh mutable services를 만든다.
@@ -144,7 +166,8 @@ VS03-01 · MERGED_AND_VERIFIED
 | EV-USER-006~015 | CONFIRMED_USER_DECISION · PR #29/SHEET SYNCED |
 | EV-USER-016 | DoR review and recommended fixes · PR #35/SHEET SYNCED |
 | EV-VS03-01-001 | VS03-01 exact-head implementation evidence · PR #37/#38/SHEET SYNCED |
-| EV-USER-017 | user instruction for core-fun adversarial review and benchmark-backed workflow · DRAFT_REVIEW |
+| EV-USER-017 | core-fun adversarial review and benchmark-backed workflow instruction · PR #39 PENDING_MERGE |
+| EV-USER-018 | approved recommended option C and written sequencing design · PR #39 PENDING_MERGE |
 | EV-VS01-001 | VALIDATED |
 | EV-VS02-001 | VALIDATED |
 | EV-VS02-FIX-001 | VALIDATED |
@@ -166,5 +189,5 @@ VS03-01 closure PR #38 merged 9360eff0...
 correct Sheet SX-AUD-006 / EV-VS03-01-001 readback PASS
 wrong 19Ff... Sheet untouched
 VS03-02 READY_FOR_BUILD · CURRENT_AUTHORITY
-SX-AUD-007 Draft review open
+SX-AUD-007 / EV-USER-017~018 · PR #39 CANONICAL_MERGE_PENDING
 ```
