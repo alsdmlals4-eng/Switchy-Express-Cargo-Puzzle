@@ -11,13 +11,15 @@
 | 제품 구현 | `RAIL_TRAIN_CARGO_LIFO_IMPLEMENTED` |
 | GMB-001 | `CLOSED · SX-DEC-017~026 · 10/10` |
 | Decision 정본 | PR #29 · `9b63421a5ab4d57adbfcf69d2b6e1bf8e3d17496` |
-| DoR 감사 | `SX-AUD-005 · PASS_WITH_PLANNING_FIXES` |
+| DoR 감사 | `SX-AUD-005 · PASS · SYNCED` |
+| DoR 정본 | PR #35 · `82fd3eeb1915e6ceedb2f5330b27e903064d6eb5` |
 | DoR 근거 | `EV-USER-016` |
-| Sheet | `GMB-001 SYNCED · DoR CANONICAL_SYNC_PENDING` |
+| Sheet | `SX-AUD-005 · CANONICAL READBACK PASS` |
 | 올바른 Sheet | `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo` |
 | 제품 코드 변경 | `0 · PLANNING_ONLY` |
-| Codex | `READY_FOR_BUILD_PENDING_CANONICAL_SYNC` |
+| Codex | `READY_FOR_BUILD · VS03-01_ONLY` |
 | 최초 허용 package | `VS03-01 · run lifecycle/economy/difficulty` |
+| 제품 구현 | `NOT_STARTED` |
 | 기존 제품 증거 | Godot headless `9 cases · 6915 assertions · 0 failures` |
 
 ## 한 문장 플레이어 약속
@@ -44,8 +46,9 @@ CURRENT_CONFIRMED_DECISIONS.md
 - `G1_CORE_CONFIRMED`: PASS
 - `G2_VERTICAL_SLICE_CONTRACT_APPROVED`: PASS
 - `G3_CORE_RUNTIME_PROVEN`: PARTIAL
-- `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE`: `PASS_PENDING_CANONICAL_SYNC`
+- `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE`: `PASS · READY_FOR_BUILD`
 - `G3B_GRILL_ME_BATCH_PREMERGE`: `GMB-001 CLOSED`
+- `G3I_VS03_IMPLEMENTATION`: `VS03-01 READY · NOT_STARTED`
 - `G4_TARGET_QUALITY_SLICE`: NOT_STARTED
 - `G5_PLAYTEST_EVIDENCE`: NOT_STARTED
 - `G6_OFFICIAL_CATALOG_PRODUCTION`: `NOT_STARTED · F58_NOT_MET`
@@ -80,21 +83,21 @@ VS03-01 run lifecycle/economy/difficulty
 → VS03-07 integration/evidence handoff
 ```
 
-첫 package만 최초 승격 대상이며, 공통 파일 package는 병렬 실행하지 않는다.
+첫 package만 현재 실행 권위를 가지며 공통 파일 package는 병렬 실행하지 않는다.
 
 ## 현재 작업
 
 ```text
-DoR planning PR exact-head 검증
-→ 올바른 Sheet SX-AUD-005 / EV-USER-016 pending 반영
-→ canonical merge
-→ Sheet merge SHA + 12-tab readback
-→ Sync Closure
-→ Codex READY_FOR_BUILD · VS03-01
+G3P PASS · READY_FOR_BUILD
+→ 별도 Codex 작업에서 VS03-01 branch 생성
+→ TDD red→green
+→ exact-head package Gate
+→ merge 후 VS03-02 승격 검토
 ```
 
 ## 보호 경계
 
+- `READY_FOR_BUILD`는 구현 완료가 아니다.
 - 제품 구현은 별도 Codex 실행이 시작되기 전까지 `NOT_STARTED`다.
 - VS-03는 local core와 최소 3개 validated official maps만 목표로 한다.
 - target100 completion과 online UGC는 Production 후속 Gate다.
