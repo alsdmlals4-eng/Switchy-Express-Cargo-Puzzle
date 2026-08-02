@@ -1,0 +1,23 @@
+name: Apply Base v9.4.3 First Prompt Adapter Once
+on:
+  push:
+    branches: ["agent/base-v9-4-3-first-prompt-adapter-r2"]
+    paths: ["tools/apply_base_v943_first_prompt_adapter.py",".github/workflows/apply-base-v943-first-prompt-adapter.yml"]
+permissions: {contents: write}
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with: {ref: "agent/base-v9-4-3-first-prompt-adapter-r2"}
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with: {python-version: "3.12"}
+      - run: python tools/apply_base_v943_first_prompt_adapter.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add skills/PROJECT_BASE_ADAPTER.json tests tools/validate_project_contract.py
+          git diff --cached --quiet && exit 0
+          git commit -m "chore: pin Base v9.4.3 first-prompt adapter"
+          git push origin HEAD:agent/base-v9-4-3-first-prompt-adapter-r2
