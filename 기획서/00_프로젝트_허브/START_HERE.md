@@ -10,16 +10,16 @@
 | 엔진 | Godot 4.7.1 / GDScript |
 | 화면 | 가로형 |
 | 현재 단계 | `VERTICAL_SLICE_IN_PROGRESS · VS02_RUNTIME_PASSED` |
-| 코어 상태 | `CORE_CONFIRMED · SX-DEC-014_CONFIRMED` |
+| 코어 상태 | `CORE_CONFIRMED · SX-DEC-014_SYNCED` |
 | 제품 구현 | `RAIL_TRAIN_CARGO_LIFO_IMPLEMENTED` |
 | 현재 Gate | `G2 PASS · G3 PARTIAL · G3P IN_PROGRESS` |
 | 최근 제품 구현 | PR #13 · `4e435a1a6d10ab146197671049da80709fd18c1f` |
-| 최근 Sheet 종료 | PR #17 · `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1` |
+| 최근 기획 결정 | PR #18 · `ca50538652c72cbb282d7818990e92a0dfe79c9a` |
 | 테스트 | Godot headless `9 cases · 6915 assertions · 0 failures` |
 | 현재 Work Mode | `TOTAL_PLANNING · REVIEW` |
 | Codex | `CODEX_NOT_READY` |
 | 현행 감사 | `SX-AUD-004 · TOTAL_PLANNING_AUDIT.md` |
-| 현재 Decision | `SX-DEC-014 Combo 확정 · Sheet 동기화 대기` |
+| 최근 Decision | `SX-DEC-014 Combo · GitHub/Sheet SYNCED` |
 | 다음 Grill Me | `SX-DEC-015 화물–화차 관계` |
 | Sheet | Adapter의 `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo` |
 | Base | v9.4.0 (`a728712cb776ec98f4875914a580fcf7d0156593`) |
@@ -61,20 +61,19 @@ Post-VS02 구현·정본 복구의 역사 감사는 `POST_VS02_ADVERSARIAL_AUDIT
   - 연료·속도·점수·BOOST·게임오버·기록: NOT_STARTED
 - `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE`: IN_PROGRESS
   - Post-VS02 GitHub·Sheet 동기화: PASSED
-  - Combo 의미: `SX-DEC-014 CONFIRMED`
+  - Combo 의미·정본·Sheet: `SX-DEC-014 SYNCED`
   - 화물–화차 관계: `SX-DEC-015 USER_DECISION_REQUIRED`
-  - 전체 기획 Coverage·후속 Grill Me: 진행 중
+  - 후속 Grill Me·Definition of Ready: 진행 중
 - `G4_TARGET_QUALITY_SLICE`: NOT_STARTED
 - `G5_PLAYTEST_EVIDENCE`: NOT_STARTED
 
 ## 현재 작업
 
-1. `SX-DEC-014`를 PR 병합 commit으로 확정
-2. 같은 Decision·Evidence·Audit ID를 Google Sheets에 기록·재조회
-3. `SX-DEC-015` 화물–화차 관계를 Grill Me로 확정
-4. 검증된 `SAFE_PLANNING_FIXES` 즉시 반영
-5. 상세 수치는 `RECOMMENDED_DEFAULT / TEST_VALUE`로 설계
-6. 전체 기획 Gate가 닫힌 뒤 VS-03 Codex 구현 계약 확정
+1. `SX-DEC-015` 화물–화차 관계를 Grill Me로 확정
+2. 승인 Decision을 정본·Issue·Plan·Goal·Sheet에 같은 ID로 즉시 반영
+3. 첫 세션 온보딩·실패 학습 정보의 Decision 필요성 재검증
+4. 상세 수치는 `RECOMMENDED_DEFAULT / TEST_VALUE`로 설계
+5. 필수 기획 Gate가 닫힌 뒤 VS-03 Codex 구현 계약 확정
 
 ## 다음 구현 후보
 
