@@ -12,14 +12,14 @@
 | 현재 단계 | `VERTICAL_SLICE_IN_PROGRESS · VS02_RUNTIME_PASSED` |
 | 코어 상태 | `CORE_CONFIRMED` |
 | 제품 구현 | `RAIL_TRAIN_CARGO_LIFO_IMPLEMENTED` |
-| 현재 Gate | `G2 PASS · G3 PARTIAL` |
+| 현재 Gate | `G2 PASS · G3 PARTIAL · G3P IN_PROGRESS` |
 | 최근 제품 구현 | PR #13 · `4e435a1a6d10ab146197671049da80709fd18c1f` |
-| 최근 운영 적용 | PR #15 · `539d2bae18d20e303649f047b9df69e8e224b2e7` |
+| 최근 정본 복구 | PR #16 · `8245e22905d64e22b599fe009bbb660d005392ed` |
 | 테스트 | Godot headless `9 cases · 6915 assertions · 0 failures` |
 | 현재 Work Mode | `TOTAL_PLANNING · REVIEW` |
 | Codex | `CODEX_NOT_READY` |
 | Sheet | Adapter의 `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo` |
-| Sheet 상태 | `GITHUB_UPDATE_PENDING_SHEET` |
+| Sheet 상태 | `SYNCED · 12탭 재조회 완료` |
 | Base | v9.4.0 (`a728712cb776ec98f4875914a580fcf7d0156593`) |
 
 ## 한 문장 플레이어 약속
@@ -50,17 +50,20 @@ CURRENT_CONFIRMED_DECISIONS.md
   - 기관차·최대 8개 화차·LOAD·화물·역·LIFO: PASSED
   - 런타임 최소 화물 재생성: PASSED
   - 연료·속도·점수·BOOST·게임오버·기록: NOT_STARTED
+- `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE`: IN_PROGRESS
+  - Post-VS02 GitHub·Sheet 동기화: PASSED
+  - 전체 기획 Coverage·분야 간 충돌·Grill Me: 진행 대상
 - `G4_TARGET_QUALITY_SLICE`: NOT_STARTED
 - `G5_PLAYTEST_EVIDENCE`: NOT_STARTED
 
 ## 현재 작업
 
-1. Post-VS02 GitHub 정본과 실제 구현 상태 복구
-2. 올바른 Switchy Express Google Sheets 재동기화
-3. 프로젝트 전체 기획 Coverage와 분야 간 충돌 적대적 감사
-4. 상세 수치는 `RECOMMENDED_DEFAULT / TEST_VALUE`로 설계
-5. 프로젝트 방향이 갈리는 중요 기획 공백만 Grill Me
-6. 승인된 전체 기획이 닫힌 뒤 VS-03 Codex 구현 계약 확정
+1. 프로젝트 전체 기획 Coverage와 분야 간 충돌 적대적 감사
+2. 검증된 `SAFE_PLANNING_FIXES` 즉시 반영
+3. 상세 수치는 `RECOMMENDED_DEFAULT / TEST_VALUE`로 설계
+4. 프로젝트 방향이 갈리는 중요 기획 공백만 한 건씩 Grill Me
+5. 승인 Decision을 GitHub 정본·Issue·Plan·Sheet에 즉시 동기화
+6. 전체 기획 Gate가 닫힌 뒤 VS-03 Codex 구현 계약 확정
 
 ## 다음 구현 후보
 
