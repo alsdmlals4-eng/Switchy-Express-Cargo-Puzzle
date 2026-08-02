@@ -5,6 +5,7 @@
 | 지금 무엇을 만들고 있는가 | `START_HERE.md` |
 | 현재 상태와 다음 작업은 무엇인가 | `ACTIVE_CONTEXT.md` |
 | 승인된 결정은 무엇인가 | `CURRENT_CONFIRMED_DECISIONS.md` |
+| 화물 수와 compact wagon token의 표시·LIFO·점유 관계는 무엇인가 | `../../../docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md` |
 | 전체 기획 Coverage·충돌·Grill Me Queue는 무엇인가 | `../../50_제작_검증/TOTAL_PLANNING_AUDIT.md` |
 | VS-02 뒤 구현·정본·Sheet 누락과 위험은 무엇인가 | `../../50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md` |
 | VS-01 당시 감사는 무엇인가 | `../../50_제작_검증/POST_VS01_ADVERSARIAL_AUDIT.md` |
