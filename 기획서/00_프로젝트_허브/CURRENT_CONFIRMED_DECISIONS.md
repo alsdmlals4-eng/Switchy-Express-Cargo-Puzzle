@@ -8,6 +8,7 @@ VS-02 runtime recovery: `4e435a1a6d10ab146197671049da80709fd18c1f`
 Base v9.4 adoption: `539d2bae18d20e303649f047b9df69e8e224b2e7`
 Post-VS02 canonical recovery: `8245e22905d64e22b599fe009bbb660d005392ed`
 Post-VS02 Sheet closure: `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1`
+Total Planning Combo Decision: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
 
 | Decision ID | 분야 | 현재 결정 | 근거 | 상태 |
 |---|---|---|---|---|
@@ -47,7 +48,7 @@ Post-VS02 Sheet closure: `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1`
 
 | Evidence ID | 내용 | GitHub 증거 | 상태 |
 |---|---|---|---|
-| EV-USER-002 | Combo를 단일 역 도착의 동일 타입 연속 하역 개수로 확정하고 빠른 배송을 별도 `speed_bonus`로 분리 | 2026-08-02 사용자 권장안 승인 | CONFIRMED_USER_DECISION |
+| EV-USER-002 | Combo를 단일 역 도착의 동일 타입 연속 하역 개수로 확정하고 빠른 배송을 별도 `speed_bonus`로 분리 | 사용자 승인·PR #18 / `ca50538652c72cbb282d7818990e92a0dfe79c9a` | CONFIRMED_USER_DECISION |
 | EV-VS01-001 | Godot·RailGraph·분기 기반 | PR #9 / `801632949d28564528e38d83dac59cccc6f06fb2` | VALIDATED |
 | EV-VS02-001 | 기차·화차·화물·역·LIFO | PR #12 / `0738d9c10e431a43e7a2f34590369c3f17d1f8a5` | VALIDATED |
 | EV-VS02-FIX-001 | DeliveryLoop 안의 최소 화물 재생성 회복 | PR #13 / `4e435a1a6d10ab146197671049da80709fd18c1f` | VALIDATED |
@@ -74,12 +75,11 @@ Post-VS02 Sheet closure: `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1`
 
 ## 동기화 상태
 
-- GitHub latest synced main: `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1`
+- GitHub latest synced main: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
 - Google Sheets: Adapter의 `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`
-- 기존 Post-VS02 상태: `SYNCED`
-- `SX-DEC-014`: `GITHUB_UPDATE_PENDING_SHEET`
-- PR 병합 commit을 Decision·Evidence·Audit와 함께 Sheet에 기록한 뒤 별도 closure에서 `SYNCED`로 전환한다.
-- 제공된 `19Ff...` 시트는 다른 프로젝트이며 변경하지 않는다.
+- `SX-DEC-014`, `EV-USER-002`, `SX-AUD-004`: `SYNCED`
+- Sheet 12개 탭 readback: `PASS · 2026-08-02`
+- 제공된 `19Ff...` 시트는 다른 프로젝트이며 변경하지 않았다.
 
 ## 대체 관계
 
