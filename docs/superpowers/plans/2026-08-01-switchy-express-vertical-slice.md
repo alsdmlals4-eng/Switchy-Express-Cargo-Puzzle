@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build a playable Godot 4.7.1 Android-landscape Vertical Slice that proves connected rail routing, multi-state switches, selective cargo loading, LIFO unloading, fuel survival, cargo slowdown, boost risk, score competition, readable product UI, persistence, and actual play evidence.
+**Goal:** Build a playable Godot 4.7.1 Android-landscape Vertical Slice that proves connected rail routing, multi-state switches, selective cargo loading, LIFO unloading, fuel survival, cargo slowdown, boost risk, unload-group Combo scoring, readable product UI, persistence, and actual play evidence.
 
-**Architecture:** Represent the 15×10 rail board as a deterministic graph. `RailGraph` owns connectivity and switch states; `TrainController` advances along graph edges without physics; `CargoStack` owns LIFO data; `DeliveryLoop` owns pickup/unload integration; pure run services compute speed, fuel, scoring, and game-over. Rendering, motion, audio, haptics, result panels, and persistence consume domain state without owning gameplay outcomes.
+**Architecture:** Represent the 15×10 rail board as a deterministic graph. `RailGraph` owns connectivity and switch states; `TrainController` advances along graph edges without physics; `CargoStack` owns LIFO data; `DeliveryLoop` owns pickup/unload integration; pure run services compute speed, fuel, scoring, Combo, and game-over. Rendering, motion, audio, haptics, result panels, and persistence consume domain state without owning gameplay outcomes.
 
 **Tech Stack:** Godot 4.7.1-stable, GDScript, built-in Resource/Node/Control APIs, custom headless test runner, Android landscape export.
 
@@ -17,6 +17,8 @@
 - Route preview first cell and actual next cell must match.
 - Red, blue, and yellow each have exactly two stations and at least four map cargo pickups.
 - Unloading is LIFO; only the consecutive top group matching the station unloads.
+- `Combo` is the number of matching cargo items unloaded during one station arrival; `max_combo` is the largest such group in the run.
+- Fast consecutive delivery is a separate `speed_bonus` `TEST_VALUE`, not a Combo streak.
 - Cargo slows the train; fuel drain is time-based and does not fall with speed.
 - Boost increases speed and multiplies fuel drain; LOAD and BOOST cannot be active together.
 - No branch slow motion.
@@ -37,15 +39,19 @@
 | Task 3 · multi-state RailSwitch | COMPLETE | preview parity·straight-first PASS |
 | Task 4 · train movement/wagons | COMPLETE | PR #12 |
 | Task 5 · cargo/station/LIFO/runtime recovery | COMPLETE | PR #12·#13 |
-| Post-VS02 canonical recovery | IN_PROGRESS | `SX-AUD-003` |
-| Total planning and Grill Me | IN_PROGRESS | `G3P` |
+| Post-VS02 canonical recovery | COMPLETE | PR #16 / `8245e229…` |
+| Post-VS02 Sheet closure | COMPLETE | PR #17 / `474bef44…` |
+| Total planning and Grill Me | IN_PROGRESS | `SX-AUD-004` |
+| `SX-DEC-014` Combo | CONFIRMED · IMPLEMENTATION_NOT_STARTED | `EV-USER-002` |
+| `SX-DEC-015` cargo/wagon relation | USER_DECISION_REQUIRED | `SX-AUD-004-F02` |
 | Task 6 · run economy | BLOCKED_BY_PLANNING | Issue #6 / VS-03A |
 | Task 7 · product UI/result/save | BLOCKED_BY_PLANNING | Issue #6 / VS-03B |
 | Task 8 · telemetry/soak/device/playtest | NOT_STARTED | Issue #7 |
 
 Implementation baseline: `4e435a1a6d10ab146197671049da80709fd18c1f`
-Current main: `539d2bae18d20e303649f047b9df69e8e224b2e7`
-Post-VS02 audit: `기획서/50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md`
+Latest synchronized main: `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1`
+Historical Post-VS02 audit: `기획서/50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md`
+Current planning audit: `기획서/50_제작_검증/TOTAL_PLANNING_AUDIT.md`
 Current planning Goal: `기획서/00_프로젝트_허브/EXECUTABLE_PROMPTS/CODEX_GOAL_VS_03.md`
 
 ---
@@ -91,6 +97,7 @@ tests/train/test_train_movement.gd
 - [x] bounded history.
 - [x] interpolated locomotive and wagon positions.
 - [x] `forward_cells(step_count)` for safe spawn exclusion.
+- [ ] Decide whether visible wagon count mirrors cargo count (`SX-DEC-015`).
 
 ### Task 5: Cargo population, stations, LIFO, and DeliveryLoop · COMPLETE
 
@@ -124,41 +131,35 @@ tests/integration/test_delivery_loop.gd
 
 ## Planning Gate Before Remaining Tasks
 
-### Task P1: Restore post-VS02 canonical state
+### Task P1: Restore post-VS02 canonical state · COMPLETE
 
-**Files:**
+- [x] Project Hub, Decisions, Gates, Roadmap, Changelog, Core documents updated.
+- [x] `POST_VS02_ADVERSARIAL_AUDIT.md` created and registered.
+- [x] VS-02 Goal marked historical and VS-03 planning Goal created.
+- [x] GitHub main, Issue, Plan, actual code, and Sheet show VS-02 complete.
+- [x] `EV-VS02-001`, `EV-VS02-FIX-001`, `EV-BASE-V94-001`, `SX-AUD-003` traceable.
+- [x] wrong `19Ff...` Sheet not modified.
+- [x] canonical recovery commit `8245e229…` present in Sheet readback.
+- [x] PR #17 closed synchronization as `SYNCED`.
 
-- Modify project Hub, Decisions, Gates, Roadmap, Changelog.
-- Modify Core Gameplay and Core Systems.
-- Create `POST_VS02_ADVERSARIAL_AUDIT.md`.
-- Update Documentation Map and Registry.
-- Mark VS-02 Goal historical.
-- Create VS-03 planning Goal.
-- Synchronize the configured Switchy Express Sheet after merge.
+### Task P2: Total planning, adversarial review, and Grill Me · IN_PROGRESS
 
-Acceptance:
-
-- [ ] GitHub main, Issue, Plan, actual code, and Sheet show VS-02 complete.
-- [ ] `EV-VS02-001`, `EV-VS02-FIX-001`, `EV-BASE-V94-001`, `SX-AUD-003` are traceable.
-- [ ] wrong `19Ff...` Sheet is not modified.
-- [ ] exact canonical merge commit is present in Sheet readback.
-- [ ] sync closure PR marks `SYNCED`.
-
-### Task P2: Total planning, adversarial review, and Grill Me
-
-- [ ] Audit product/experience/system/content/world/UX/art/audio/data/technology/QA/production coverage.
-- [ ] Compare player promise against core loop, economy, UI, accessibility, data, and Vertical Slice.
-- [ ] Classify findings as `AUTO_FIX_ELIGIBLE / USER_DECISION_REQUIRED / RESEARCH_OR_TEST_REQUIRED`.
-- [ ] Apply safe planning fixes.
-- [ ] Ask one most-blocking Grill Me Decision at a time.
-- [ ] Update canon, Issues, Plan, Active Context, and Sheet after each approved Decision.
+- [x] Create and register `SX-AUD-004` coverage and conflict audit.
+- [x] Audit product/experience/system/content/world/UX/art/audio/data/technology/QA/production coverage.
+- [x] Classify findings as `AUTO_FIX_ELIGIBLE / USER_DECISION_REQUIRED / RESEARCH_OR_TEST_REQUIRED`.
+- [x] Apply current safe planning fixes for Skill freshness, playtest thresholds, telemetry fields, and audio/haptic fallbacks.
+- [x] Confirm `SX-DEC-014` Combo semantics.
+- [ ] Synchronize `SX-DEC-014`, `EV-USER-002`, and `SX-AUD-004` to Sheet using the PR merge commit.
+- [ ] Confirm `SX-DEC-015` cargo/wagon meaning.
+- [ ] Re-evaluate onboarding and failure-learning gaps after `SX-DEC-015`.
+- [ ] Ensure all approved Decisions are reflected in canon, Issues, Plan, Active Context, and Sheet.
 - [ ] Close `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE`.
 
 ---
 
 ## Remaining Vertical Slice
 
-### Task 6: VS-03A — Speed, fuel, score, boost, and game over
+### Task 6: VS-03A — Speed, fuel, score, boost, Combo, and game over
 
 **Files:**
 
@@ -180,22 +181,27 @@ Acceptance:
 - Produces:
   - `RunBalance.speed(...) -> float`
   - `RunBalance.fuel_drain_per_second(...) -> float`
-  - `RunBalance.delivery_reward(...) -> Dictionary`
+  - `RunBalance.delivery_reward(unload_group_size, seconds_since_delivery, cargo_before_delivery) -> Dictionary`
   - `RunController.advance_time(...) -> Array[Dictionary]`
   - `signal run_ended(summary: Dictionary)`
 
+`delivery_reward()` must expose `combo_count`, `base_unload_score`, bonus multipliers, `score_delta`, and `fuel_delta` as separable values.
+
 - [ ] Write formula and boundary tests from `CORE_SYSTEMS.md`.
-- [ ] Run them and verify RED for missing run classes.
+- [ ] Verify `combo_count == unload_group_size == try_unload().count`.
+- [ ] Verify `max_combo` updates once per valid unload event.
+- [ ] Verify `speed_bonus` never changes Combo state.
+- [ ] Run tests and verify RED for missing run classes.
 - [ ] Implement pure `RunBalance`.
 - [ ] Run focused tests and verify GREEN.
 - [ ] Write DeliveryLoop reward and single-game-over integration tests.
-- [ ] Run and verify RED.
 - [ ] Implement `RunState` and `RunController`.
 - [ ] Verify input 0 reaches fuel 0 within 180 seconds and score stays zero.
 - [ ] Verify cargo slowdown never lowers fuel drain.
 - [ ] Verify boost is not free and LOAD remains blocked.
+- [ ] Verify empty or mismatched station arrival grants Combo/score/fuel 0.
 - [ ] Run the full suite.
-- [ ] Commit: `feat: add survival score and boost economy`.
+- [ ] Commit: `feat: add survival score combo and boost economy`.
 
 ### Task 7: VS-03B — Gameplay Scene, HUD, results, restart, and records
 
@@ -224,14 +230,17 @@ Acceptance:
   - CargoStack unload order.
 - Produces:
   - display-only ViewModels.
+  - `COMBO ×N` event feedback and run `max_combo` display.
   - result summary rendering.
-  - versioned best score/time/combo persistence.
+  - versioned best score/time/max_combo persistence.
 
 - [ ] Write failing ViewModel, touch-state, result, restart, and save tests.
 - [ ] Verify RED.
 - [ ] Build the minimal playable scene using domain state as authority.
 - [ ] Verify highlighted path and actual route parity.
 - [ ] Verify HUD unload order equals CargoStack.
+- [ ] Verify Combo feedback uses unload-group size and speed bonus is visually separate.
+- [ ] Resolve visible wagon/cargo mapping according to `SX-DEC-015` before implementing TrainView.
 - [ ] Verify animations cannot duplicate pickup, unload, reward, game-over, or save.
 - [ ] Verify Reduced Motion and instant-complete preserve information.
 - [ ] Verify corrupted/unknown save falls back without destroying current run.
@@ -249,13 +258,15 @@ Acceptance:
 - Modify: Hub, Gates, Decisions, Sheet.
 
 - [ ] Implement bounded run/cargo/switch/station/boost/fuel/end events.
+- [ ] Record cargo events with `cargo_type`, color, shape, stack size, and position.
+- [ ] Record unload events with `unload_group_size` and `speed_bonus_applied` separately.
 - [ ] Verify record persistence and corruption fallback in integration.
 - [ ] Run all project and Godot tests.
 - [ ] Run a 10-minute soak and inspect memory/event/history growth.
 - [ ] Export and run on a target Android device.
 - [ ] Capture frame time, memory, safe area, and touch evidence.
-- [ ] Run first-experience playtests with at least five people.
-- [ ] Attack preview mismatch, fake branch, starvation, slowdown exploit, permanent boost, no-input farming, touch overlap, color-only information, and event growth.
+- [ ] Run first-experience playtests with at least five people using percentage and concrete-count gates.
+- [ ] Attack preview mismatch, fake branch, starvation, slowdown exploit, permanent boost, no-input farming, touch overlap, color-only information, Combo/streak confusion, and event growth.
 - [ ] Add regression tests for approved P0/P1 findings.
 - [ ] Record `PASS / REVISE / PIVOT / STOP`.
 - [ ] Synchronize GitHub canon and Sheet.
