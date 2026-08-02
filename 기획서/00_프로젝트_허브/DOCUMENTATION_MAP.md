@@ -5,6 +5,7 @@
 | 지금 무엇을 만들고 있는가 | `START_HERE.md` |
 | 현재 상태와 다음 작업은 무엇인가 | `ACTIVE_CONTEXT.md` |
 | 승인된 결정은 무엇인가 | `CURRENT_CONFIRMED_DECISIONS.md` |
+| 전체 기획 Coverage·충돌·Grill Me Queue는 무엇인가 | `../../50_제작_검증/TOTAL_PLANNING_AUDIT.md` |
 | VS-02 뒤 구현·정본·Sheet 누락과 위험은 무엇인가 | `../../50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md` |
 | VS-01 당시 감사는 무엇인가 | `../../50_제작_검증/POST_VS01_ADVERSARIAL_AUDIT.md` |
 | 핵심 플레이는 무엇인가 | `../../10_경험/CORE_GAMEPLAY.md` |
@@ -19,5 +20,6 @@
 | Base 기준은 무엇인가 | `../../../docs/BASE_RULES_VERSION.md` |
 | 문서 책임·상태는 어디에 있는가 | `DESIGN_DOCUMENT_REGISTRY.json` |
 | Skill 라우팅은 어디에 있는가 | `../../../skills/SKILL_REGISTRY.json`, `../../../skills/PROJECT_BASE_ADAPTER.json` |
+| 프로젝트 전용 기획 규칙은 무엇인가 | `../../../skills/switchy-express-design/SKILL.md` |
 | AI 모델·지시·Context 작업 흐름은 무엇인가 | `../../../docs/AI_WORKFLOW.md` |
 | Base v9.4 적용·보호 감사는 무엇인가 | `../../50_제작_검증/BASE_V9_4_ADOPTION_AUDIT.md` |
