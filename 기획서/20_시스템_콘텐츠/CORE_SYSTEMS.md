@@ -28,18 +28,59 @@
 
 남은 검증: unique-map 수·경로 엔트로피·실제 화면 가독성.
 
-## 기차·화차
+## 기차·compact wagon tokens — SX-DEC-015
+
+기존 기반:
 
 - 기관차는 cells-per-second 속도를 외부에서 주입받음
 - RailGraph 경로를 연속 보간하며 cell boundary 이벤트 발생
-- 최대 8개 화차
-- 이동 거리 기준 1칸 간격의 제한된 route history
-- 직선·곡선·분기에서 겹침·즉시 반전 방지
+- TrainState는 0~8 wagon count와 bounded route history 제공
+- 직선·곡선·분기에서 위치 추종
 - 현재 열차 점유 칸과 전방 경로 조회 API 제공
 
-상태: `IMPLEMENTED · PASSED`.
+확정 제품 계약:
 
-총기획 공백: CargoStack item 수와 실제 표시 화차 수의 관계·빈 화차 표현·화차 추가/제거 시점.
+```text
+compact_wagon_token_count = cargo_stack.size()
+front → rear token order = stack bottom → stack top
+rear token = next LIFO unload item
+```
+
+- 화물 0개에서는 기관차만 표시한다.
+- 적재는 token chain 뒤에 해당 cargo_type 토큰 1개를 추가한다.
+- 유효 하역은 뒤쪽부터 같은 cargo_type 연속 토큰 그룹을 제거한다.
+- 토큰은 색상+모양 이중 부호를 가진다.
+- full-size 1-cell wagon을 화물마다 추가하지 않는다.
+- CargoStack 변경과 token count/order·점유 갱신은 같은 도메인 단계에서 완료한다.
+- 렌더링·추가/제거 모션은 이미 확정된 상태를 표현하며 권위를 갖지 않는다.
+
+상태: `CONFIRMED · PLANNING_SPEC_APPROVED · IMPLEMENTATION_NOT_STARTED`.
+
+### compact geometry 시험값
+
+분류: `TEST_VALUE`.
+
+```text
+token_body_length = 0.22 cell
+token_center_spacing = 0.28 cell
+8-token chain length = 2.18 cells
+max_reserved_trailing_footprint = 3 cells
+```
+
+- 수치는 VS-03B에서 조정 가능하다.
+- Decision을 유지하기 위한 불변조건은 8개 개별 식별, trailing 점유 최대 3칸, 경로·역·분기 가독성 보존이다.
+- 토큰은 fractional path-history offset을 사용해 곡선 안쪽을 가로지르지 않는다.
+- tight turn에서도 token ordering이 바뀌면 안 된다.
+
+### spawn occupancy 계약
+
+- 화물 8개를 8개의 full-size 점유 칸으로 계산하지 않는다.
+- 생성 금지는 기관차와 압축 token chain이 실제로 교차하는 rail cell만 포함한다.
+- 8개 적재의 trailing exclusion은 최대 3칸으로 bounded한다.
+- 기존 전방 2칸 안전 exclusion은 별도 유지한다.
+- token animation 중에도 committed compact footprint가 생성 공정성의 권위다.
+
+상세 규격: `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md`.
 
 ## 화물 스택
 
@@ -49,7 +90,7 @@
 - BOOST 요청이 있으면 LOAD 비활성
 - stack top은 마지막 적재
 - `unload_order()`는 실제 stack의 역순
-- 제품 HUD는 이 ViewModel을 소비
+- 제품 HUD와 compact token ViewModel은 이 상태를 소비
 
 상태: `IMPLEMENTED · PASSED`.
 
@@ -57,15 +98,17 @@
 
 - 맵 pickup 최소: 색상별 4개
 - 적재 후 1초 지연 재생성
-- 금지: 기차·화차, 역, 분기기, 기존 pickup, 전방 2칸, 직전 수집 칸
+- 금지: committed compact train footprint, 역, 분기기, 기존 pickup, 전방 2칸, 직전 수집 칸
 - 한 칸에 pickup 최대 1개
 - 동일 seed·점유 상태에서 재현
 - 유효 칸이 없으면 `SPAWN_DEFERRED`
 - DeliveryLoop가 pending request를 처리해 실제 런타임 최소 수량을 회복
 
-상태: `IMPLEMENTED · PASSED`.
+현재 구현은 full-cell wagon count 기반 점유를 사용하므로 `SX-DEC-015` 구현 시 compressed footprint로 교체해야 한다.
 
-남은 검증: 장시간 starvation, 10분 soak, 실제 플레이 공정성.
+상태: 기존 생성·회복 `IMPLEMENTED · PASSED`; compact footprint 연결 `NOT_STARTED`.
+
+남은 검증: 0/1/4/8 token 점유, 장시간 starvation, 10분 soak, 실제 플레이 공정성.
 
 ## 스테이션
 
@@ -84,8 +127,9 @@
 - top부터 같은 타입인 연속 그룹만 하역
 - `R,R,B,R`의 하역 순서 `R,B,R,R`
 - 하역 전후 Unload Order, count, items, station을 결과 Dictionary로 반환
+- 같은 결과 이벤트가 compact token rear group과 HUD first group을 함께 갱신
 
-상태: `IMPLEMENTED · PASSED`.
+상태: LIFO 도메인 `IMPLEMENTED · PASSED`; token 소비자 `NOT_STARTED`.
 
 ## Combo 의미 — SX-DEC-014
 
@@ -113,6 +157,12 @@ max_combo = 한 판에서 기록한 combo_count 최댓값
 ```text
 DeliveryLoop
 → 픽업·하역 도메인 이벤트
+
+CargoTokenViewModel
+→ CargoStack을 compact token count/order로 투영
+
+TrainFootprint
+→ 압축 token geometry의 occupied rail cells 계산
 
 RunBalance
 → 순수 속도·연료·배송 보상 계산
@@ -144,6 +194,7 @@ current_speed = base_speed × cargo_multiplier × boost_multiplier
 
 - cargo 0~8 범위 단위 테스트
 - 화물 감속이 time-based 연료 소모를 낮추지 않음
+- compact token 크기는 감속 계산에 영향을 주지 않고 CargoStack size만 사용
 - 분기 탭 판단 시간이 실제 화면에서 확보되는지 사람 테스트
 - 값 조정은 Decision 변경이 아니라 TEST_VALUE recalibration
 
@@ -210,6 +261,7 @@ Combo 정의는 닫혔지만 아래 항목은 수치·위험 보상 검증으로
 - BOOST 상시 사용이 평균 생존 최적해가 아니어야 함
 - 빈 역·무입력·같은 셀 반복으로 보상 없음
 - spawn·event·route history는 무한 증가하지 않음
+- compact token으로 압축해도 spawn exclusion을 누락하거나 pickup이 열차 위에 생성되면 안 됨
 
 분류: 자동 검증 가능한 계약 + 실제 밸런스는 플레이테스트 필요.
 
@@ -230,6 +282,7 @@ Combo 정의는 닫혔지만 아래 항목은 수치·위험 보상 검증으로
 - Issue #7은 지속성·손상 fallback·soak 검증을 소유
 - 저장 실패가 현재 run 결과를 파괴하지 않음
 - 손상·알 수 없는 버전은 안전한 기본값으로 격리하고 원본을 덮어쓰기 전 오류 기록
+- compact token visual state는 저장하지 않고 CargoStack/run state에서 재구성
 - 게임 규칙·레벨·seed history 전체 저장은 Vertical Slice 범위 밖
 
 ## 구현 상태
@@ -237,10 +290,11 @@ Combo 정의는 닫혔지만 아래 항목은 수치·위험 보상 검증으로
 | 영역 | 상태 |
 |---|---|
 | Godot·RailGraph·분기 | IMPLEMENTED · PASSED |
-| 기차·화차 | IMPLEMENTED · PASSED |
+| 기차 full-cell wagon 기반 | IMPLEMENTED · PASSED · TO_BE_ADAPTED |
 | 화물·역·LIFO | IMPLEMENTED · PASSED |
 | DeliveryLoop 런타임 최소 수량 | IMPLEMENTED · PASSED |
 | Combo 의미 | CONFIRMED · NOT_STARTED |
+| compact wagon tokens | CONFIRMED · PLANNING_SPEC_APPROVED · NOT_STARTED |
 | 속도·연료·점수·BOOST | NOT_STARTED · TEST_VALUES_DEFINED |
 | 게임오버·결과·기록 | NOT_STARTED |
 | 제품 HUD·Android·플레이테스트 | NOT_RUN |
