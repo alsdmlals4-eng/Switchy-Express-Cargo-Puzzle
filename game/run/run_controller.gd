@@ -2,6 +2,7 @@ class_name RunController
 extends RefCounted
 
 signal run_ended(summary: Variant)
+signal difficulty_committed(event: Variant)
 
 const RunBalanceScript := preload("res://game/run/run_balance.gd")
 const RunStateScript := preload("res://game/run/run_state.gd")
@@ -94,7 +95,10 @@ func advance_time(delta_seconds: float) -> Array[Dictionary]:
 			var applied_event := _apply_delivery_event(raw_event, segment_seconds)
 			emitted_events.append(applied_event)
 
-		_difficulty_director.advance(segment_seconds)
+		var difficulty_events: Array = _difficulty_director.advance(segment_seconds)
+		for difficulty_event: Variant in difficulty_events:
+			difficulty_committed.emit(difficulty_event)
+
 		_run_state.advance_clock(segment_seconds)
 		if boosting:
 			_run_metrics.record_boost_time(segment_seconds)
