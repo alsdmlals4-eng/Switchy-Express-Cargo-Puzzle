@@ -7,10 +7,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
-BASE_VERSION = "9.4.2"
-BASE_RELEASE_COMMIT = "dd705d7f48a7919187bc0507610ba5fc5b43a658"
-BASE_RELEASE_EVIDENCE_COMMIT = "0c6cdd128bf1f5782e96b3a6240c9585f8d1ef6d"
-BASE_FINALIZATION_COMMIT = "ac9466edc2d93b59f274c9ac55ca719eba2809e3"
+BASE_VERSION = "9.4.3"
+BASE_RELEASE_COMMIT = "7dd1a4f80388bc5faca767ff74a3eb32dc9d0ac8"
+BASE_RELEASE_EVIDENCE_COMMIT = "da33a350d61b8adc52df97fccc7001708a933370"
+BASE_FINALIZATION_COMMIT = "0b7c94f38d959efc0fc9442274c60b2e268a3c97"
 BASE_REGISTRY_SHA256 = "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59"
 
 REQUIRED = [
@@ -59,7 +59,7 @@ def main() -> int:
         raise SystemExit("unexpected Base Registry SHA-256")
 
     planning = adapter["shared_overrides"]["managing-project-intake-and-work-contract"]["planning_first_governance"]
-    if planning["base_release_lock"] != "base-v9.4.2.lock.json":
+    if planning["base_release_lock"] != "base-v9.4.3.lock.json":
         raise SystemExit("unexpected planning-first release lock")
     if planning["max_approved_decisions_per_batch"] != 10:
         raise SystemExit("unexpected Grill Me batch maximum")
