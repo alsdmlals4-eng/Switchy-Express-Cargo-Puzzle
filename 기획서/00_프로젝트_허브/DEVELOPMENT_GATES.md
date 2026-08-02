@@ -16,7 +16,7 @@ Status: `PASS`
 - [x] 15×10 connected railway
 - [x] visual direction
 - [x] Combo·compact token·actual-run onboarding
-- [x] `SX-DEC-017~026` 사용자 승인
+- [x] `SX-DEC-017~026` 사용자 승인·canonical sync
 
 ## G2 — VERTICAL_SLICE_CONTRACT_APPROVED
 
@@ -26,7 +26,7 @@ Status: `PASS · GMB001_SCOPE_STAGED`
 - [x] Combo/token/onboarding contracts
 - [x] result/camera/Profile/reward/difficulty/restart/map-selection contracts
 - [x] VS local scope와 Production online UGC scope 분리
-- [x] all tuning values marked `TEST_VALUE`
+- [x] tuning values marked `TEST_VALUE`
 
 ## G3 — CORE_RUNTIME_PROVEN
 
@@ -52,76 +52,67 @@ Status: `PARTIAL`
 - [ ] minimum 3 official maps·selection/reselection
 - [ ] contextual onboarding
 
-`G3P`와 별도 구현 승인 전 Codex Build를 시작하지 않는다.
-
 ## G3P — TOTAL_PLANNING_AND_REVIEW_COMPLETE
 
-Status: `IN_PROGRESS · GMB001_PREMERGE_AUDIT`
+Status: `DEFINITION_OF_READY_REVIEW_REQUIRED`
 
-- [x] latest main·implementation·PR·Issue 복원
+완료:
+
 - [x] Post-VS02 canon/Sheet recovery
-- [x] SX-DEC-014~016·SX-OPS-001 canonical sync
+- [x] SX-DEC-014~016·SX-OPS-001 sync
 - [x] GMB-001 exactly 10 approvals (`SX-DEC-017~026`)
 - [x] EV-USER-006~015
-- [x] specs·TDD plans·batch ledger
-- [x] Sheet 10/10 frozen 12-tab readback
+- [x] specs·TDD plans·ledger·canonical consumer
 - [x] VS versus Production/online UGC staging
-- [ ] current consumer stale references 0
-- [ ] final exact-head PR/CI/inventory/review audit
-- [ ] PR #29 canonical merge
-- [ ] Sheet canonical merge SHA·12-tab readback
-- [ ] Sync Closure PR
-- [ ] Definition of Ready explicit promotion
+- [x] pre-merge adversarial audit PASS
+- [x] PR #29 expected-head canonical merge
+- [x] Decision merge SHA `9b63421a5ab4d57adbfcf69d2b6e1bf8e3d17496`
+- [x] correct Sheet canonical SHA·12-tab readback PASS
+- [x] GMB-001 Sync Closure metadata
 
-GMB-001 closure alone does not automatically set `READY_FOR_BUILD`.
+남음:
+
+- [ ] existing API/file collision review for implementation
+- [ ] package dependency/order audit
+- [ ] rollback·save-migration boundary confirmation
+- [ ] exact acceptance-test/evidence locations review
+- [ ] explicit `READY_FOR_BUILD` promotion
+
+GMB-001 closure alone does not set `READY_FOR_BUILD`.
 
 ## G3B — GRILL_ME_BATCH_PREMERGE
 
-Status: `GMB-001 · 10/10 · FROZEN · AUDIT_IN_PROGRESS`
+Status: `GMB-001 CLOSED`
 
-책임 정본:
+Closure evidence:
 
-- `기획서/50_제작_검증/GMB-001_DECISION_LEDGER.md`
-- `기획서/50_제작_검증/GMB-001_PREMERGE_AUDIT.md`
-- `기획서/50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md`
+- [x] exactly `SX-DEC-017~026`, `EV-USER-006~015`
+- [x] no `SX-DEC-027`
+- [x] behind 0
+- [x] 33 planning-only files; product files 0
+- [x] Project Contract run 195 success
+- [x] Godot Tests run 186 success
+- [x] unresolved review threads 0
+- [x] REQUEST_CHANGES 0
+- [x] known open P0/P1 design findings 0
+- [x] PR #29 expected-head merge
+- [x] Sheet canonical SHA + 12-tab readback PASS
+- [x] history preserved·`30_세계_서사` unchanged
 
-Freeze 확인:
+Responsibility:
 
-- [x] SX-DEC-017~026 exactly
-- [x] EV-USER-006~015 exactly
-- [x] no SX-DEC-027
-- [x] Sheet frozen, not prematurely SYNCED
-- [x] product code/Scene/Resource/asset changes prohibited
-- [x] 12-tab readback; history and world/narrative preserved
-
-Merge 전 필수:
-
-- [ ] compare to main: behind 0
-- [ ] changed files planning-only
-- [ ] exact-head Project Contract success
-- [ ] exact-head Godot Tests success
-- [ ] unresolved review threads 0
-- [ ] REQUEST_CHANGES 0
-- [ ] P0/P1 open findings 0
-- [ ] PR open/mergeable and expected-head protected
-
-Merge 후 필수:
-
-```text
-canonical merge SHA
-→ Sheet all relevant rows canonicalized
-→ 12-tab readback PASS
-→ Sync Closure PR checks + merge
-→ GMB-001 CLOSED
-```
+- `GMB-001_DECISION_LEDGER.md`
+- `GMB-001_PREMERGE_AUDIT.md`
+- `GRILL_ME_BATCH_MERGE_PROTOCOL.md`
+- `../00_프로젝트_허브/GMB-001_CANONICAL_DECISIONS.md`
 
 ## G4 — TARGET_QUALITY_SLICE
 
 Status: `NOT_STARTED`
 
 - [ ] survival economy + no-input finite survival
-- [ ] product play Scene·HUD·result insight
-- [ ] 0~8 compact tokens·rear LIFO·compressed footprint
+- [ ] product Scene·HUD·result insight
+- [ ] compact tokens·rear LIFO·compressed footprint
 - [ ] PREP zoom·FULL_MAP_READY·active full map
 - [ ] local records·cosmetic/unlock/reward representative flow
 - [ ] difficulty prewarning/persistent signal
@@ -132,7 +123,7 @@ Status: `NOT_STARTED`
 
 Not in G4:
 
-- official 100+ completion
+- official target 100+ completion
 - full UGC editor/backend/publication
 - moderation/community backend
 
@@ -181,3 +172,14 @@ Forbidden initial claims/features:
 - no UGC currency/creator payout
 - no rating/comments/followers/trending/leaderboards
 - no engagement-weighted official map assignment
+
+## Current Transition
+
+```text
+GMB-001 CLOSED
+→ G3P Definition of Ready review
+→ explicit READY_FOR_BUILD approval
+→ VS-03A/B/C/D
+```
+
+`CODEX_NOT_READY` remains until explicit promotion.

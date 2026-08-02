@@ -19,32 +19,35 @@
 
 증거: PR #9/#12/#13, product baseline `4e435a1a6d10ab146197671049da80709fd18c1f`, 기존 Godot `9 cases / 6915 assertions / 0 failures`.
 
-## M2 — 총기획·정본 복구 · GMB-001 PREMERGE
-
-완료:
+## M2 — 총기획·정본 복구 · COMPLETE
 
 - [x] Post-VS02 implementation/canon drift 감사·복구
 - [x] 올바른 Sheet 식별·잘못된 `19Ff...` 제외
-- [x] `SX-DEC-014` Combo
-- [x] `SX-DEC-015` compact wagon tokens
-- [x] `SX-DEC-016` actual first-run onboarding
-- [x] `SX-OPS-001` 10-approval batch protocol
-- [x] catch-up PR #27·Sheet closure
-- [x] `GMB-001` 사용자 승인 10건: `SX-DEC-017~026`
+- [x] `SX-DEC-014~016`과 `SX-OPS-001` sync
+- [x] GMB-001 사용자 승인 10건: `SX-DEC-017~026`
 - [x] `EV-USER-006~015`
-- [x] PR #29 freeze
-- [x] Sheet 10/10 frozen 12-tab readback
-- [x] VS/Production 범위 분리 정본화
+- [x] specs·TDD plans·batch ledger·canonical consumer
+- [x] VS/Production 범위 분리
+- [x] pre-merge adversarial audit PASS
+- [x] PR #29 expected-head canonical merge
+- [x] Decision merge SHA `9b63421a5ab4d57adbfcf69d2b6e1bf8e3d17496`
+- [x] correct Sheet canonical SHA·12-tab readback PASS
+- [x] history preserved·`30_세계_서사` unchanged
+- [x] GMB-001 Sync Closure metadata
 
-진행 중:
+M2/GMB-001은 `CLOSED`다. 이는 제품 구현 완료나 자동 Build 승격을 의미하지 않는다.
 
-- [ ] current consumer stale reference 0건
-- [ ] final exact-head CI·inventory·review audit
-- [ ] PR #29 canonical merge
-- [ ] Sheet canonical merge SHA·12-tab readback
-- [ ] Sync Closure PR
+## M2.5 — Definition of Ready Review · NEXT
 
-M2 종료는 승인 10건을 기록한 시점이 아니라 canonical merge와 Sheet closure가 끝난 시점이다.
+- [ ] existing API/file collision review
+- [ ] VS-03A/B/C/D dependency and order audit
+- [ ] rollback strategy
+- [ ] Profile/save schema migration boundary
+- [ ] exact acceptance tests and evidence locations
+- [ ] implementation PR segmentation
+- [ ] explicit `READY_FOR_BUILD` user approval
+
+현재 `CODEX_NOT_READY`.
 
 ## M3 — VS-03 Local Core · NOT_STARTED
 
@@ -60,16 +63,16 @@ M2 종료는 승인 10건을 기록한 시점이 아니라 canonical merge와 Sh
 
 - [ ] RailBoardView·SwitchView·HUD
 - [ ] compact tokens·fractional path·compressed footprint
-- [ ] result insight with neutral fallback (`SX-DEC-017`)
-- [ ] PREP zoom·`FULL_MAP_READY`·active full map (`SX-DEC-018`)
-- [ ] local standard global/per-map records
+- [ ] result insight with neutral fallback
+- [ ] PREP zoom·`FULL_MAP_READY`·active full map
+- [ ] official local global/per-map records
 - [ ] cosmetic-only registry/collection
 - [ ] representative unlock modes and atomic transaction
 - [ ] bounded cosmetic-currency reward
 - [ ] same-map restart
 - [ ] save schema/fallback
 
-### VS-03C — first-session onboarding
+### VS-03C — contextual onboarding
 
 - [ ] OnboardingState·normalized events
 - [ ] first LOAD/switch safe pause
@@ -78,16 +81,16 @@ M2 종료는 승인 10건을 기록한 시점이 아니라 canonical merge와 Sh
 - [ ] skip·resume·Help·preferences
 - [ ] assisted/standard evidence separation
 
-### VS-03D — local map variety·difficulty integration
+### VS-03D — local map variety·difficulty
 
 - [ ] difficulty forecast/commit signal
 - [ ] minimum 3 validated official maps
-- [ ] undiscovered-first selection for the minimum set
+- [ ] undiscovered-first selection
 - [ ] discovered map reselection
-- [ ] same-map restart exact reconstruction
+- [ ] same-map exact reconstruction
 - [ ] global/per-map record transaction parity
 
-M3 종료 기준: 로컬 한 세션이 onboarding→run→delivery→result→same-map/new-map flow로 연결되고 자동 테스트가 통과한다. 이는 Android·사람·온라인 PASS가 아니다.
+M3 종료는 로컬 한 세션이 onboarding→run→delivery→result→same-map/new-map flow로 연결되고 자동 테스트가 통과하는 것이다. Android·사람·온라인 PASS는 별도다.
 
 ## M4 — 목표 품질·플레이테스트 · NOT_STARTED
 
@@ -108,14 +111,14 @@ M3 종료 기준: 로컬 한 세션이 onboarding→run→delivery→result→sa
 - [ ] fallback/duplicate count 0
 - [ ] 100+ validated official layouts
 - [ ] first-100 non-replacement start audit
-- [ ] 100-entry official browser performance/readability
-- [ ] version migration and incompatible-map policy
+- [ ] 100-entry browser performance/readability
+- [ ] version migration
 
 `F58`은 M5 증거 전까지 `NOT_MET`이다.
 
 ## M6 — Online UGC Production · NOT_STARTED
 
-### UGC publication
+### Publication
 
 - [ ] data-only editor
 - [ ] local canonicalization/validation
@@ -143,26 +146,20 @@ M3 종료 기준: 로컬 한 세션이 onboarding→run→delivery→result→sa
 
 ```text
 CATCH-UP-001 · SX-DEC-014~016 · CLOSED
-GMB-001 · SX-DEC-017~026 · 10/10 · FROZEN
-→ final premerge audit
-→ PR #29 canonical merge
-→ Sheet canonical SHA/readback
-→ Sync Closure PR
-→ GMB-001 CLOSED
+GMB-001 · SX-DEC-017~026 · CLOSED
+next batch: NOT_STARTED
+next Decision: NOT_ASSIGNED
 ```
 
-다음 batch나 `SX-DEC-027`은 GMB-001 closure 전 시작하지 않는다.
+다음 batch는 별도 사용자 작업으로 시작한다.
 
 ## 현재 실행 순서
 
 ```text
-GMB-001 closure
-→ G3P Definition of Ready 재검토
-→ VS-03A
-→ VS-03B
-→ VS-03C
-→ VS-03D
+M2.5 Definition of Ready review
+→ explicit READY_FOR_BUILD approval
+→ VS-03A → VS-03B → VS-03C → VS-03D
 → VS-04 evidence
-→ M5 official catalog production
-→ M6 online UGC production
+→ M5 official catalog
+→ M6 online UGC
 ```
