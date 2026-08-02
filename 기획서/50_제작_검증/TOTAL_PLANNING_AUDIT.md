@@ -2,12 +2,13 @@
 
 ```yaml
 audit_id: SX-AUD-004
-status: IN_PROGRESS · SX-DEC-014_SYNCED · SX-DEC-015_CONFIRMED · NEXT_GRILL_ME_SX-DEC-016
-baseline_main: 11c6914b0fdcfb946c85e303d05017a77b969e55
+status: IN_PROGRESS · SX-DEC-014/015_SYNCED · NEXT_GRILL_ME_SX-DEC-016
+baseline_main: b8742253247da25a0190f80b898b9bbe6ec6a1cf
 combo_decision_commit: ca50538652c72cbb282d7818990e92a0dfe79c9a
+compact_token_decision_commit: b8742253247da25a0190f80b898b9bbe6ec6a1cf
 work_mode: TOTAL_PLANNING · REVIEW
 implementation_authority: PLANNING_AND_DOCUMENTATION_ONLY
-sheet_state: SX_DEC_014_SYNCED · SX_DEC_015_PENDING_MERGE_AND_SHEET
+sheet_state: PASS · SYNCED · 12_TABS_REREAD
 codex_state: CODEX_NOT_READY
 number_policy: RECOMMENDED_DEFAULT_OR_TEST_VALUE
 user_decision_policy: ONE_MATERIAL_GRILL_ME_AT_A_TIME
@@ -24,6 +25,7 @@ VS-03 구현 전에 프로젝트의 제품·경험·시스템·콘텐츠·UX·�
 - 직진 우선·preview parity·segment target lock
 - 색상+모양 화물·역
 - 최대 적재 8·결정론적 배치·bounded failure·deferred recovery
+- compact token으로 적재량·LIFO를 표시하면서 긴 열차의 화면 점유를 억제
 - 귀엽고 친근한 프리미엄 캐주얼 철도 방향
 - 짧은 모바일 세션과 기록 경쟁
 - 제품 결과와 UI 모션의 권위 분리
@@ -33,7 +35,7 @@ VS-03 구현 전에 프로젝트의 제품·경험·시스템·콘텐츠·UX·�
 
 | 영역 | 현재 상태 | 확인된 강점 | 공백·충돌 | 판정 |
 |---|---|---|---|---|
-| 프로젝트·운영 | 정본·Sheet 동기화 루프 운영 | 새 작업자가 VS-02 완료와 다음 Gate 복원 가능 | 새 Decision merge·Sheet closure 필요 | IN_PROGRESS |
+| 프로젝트·운영 | `SX-DEC-014/015` GitHub·Sheet 동기화 완료 | 새 작업자가 VS-02 완료와 다음 Gate 복원 가능 | 온보딩 Decision 필요 | IN_PROGRESS |
 | 제품·타깃 | 모바일 캐주얼·짧은 세션·기록 경쟁 | 제품 약속은 선명함 | 목표 세션 시간·첫 세션 기대 결과는 실측 전 수치 | TEST_VALUE_REQUIRED |
 | 핵심 플레이 | 자동운행→LOAD→분기→LIFO | Combo·compact token 의미 확정 | 실제 생존 경제 미구현 | READY_FOR_PLAN |
 | 화물·화차 | 화물 1개=compact token 1개 | 적재량·LIFO 순서를 세계 안에서 표시 | 작은 token 가독성·곡선·점유는 미검증 | DECISION_CLOSED_THEN_TEST |
@@ -48,14 +50,14 @@ VS-03 구현 전에 프로젝트의 제품·경험·시스템·콘텐츠·UX·�
 | 텔레메트리 | 핵심 이벤트·cargo_type·token fields | 원인 분리 가능 | 실제 event log 미구현 | AUTO_FIXED_THEN_BUILD |
 | 플레이테스트 | 5명+·핵심 과제·구체 명수 | LIFO·Combo·token 이해 측정 가능 | 실제 표본 없음 | AUTO_FIXED_THEN_TEST |
 | 성능·접근성 | 60 FPS·48dp·색+모양 | 목표 품질 Gate 존재 | 기기·해상도·사람 증거 없음 | BLOCKED_UNVERIFIED |
-| 제작·인계 | VS-03A→VS-03B→VS-04 | 책임 분리·테스트 순서 명확 | 온보딩 Decision·Sheet sync 미완료 | CODEX_NOT_READY |
+| 제작·인계 | VS-03A→VS-03B→VS-04 | 책임 분리·테스트 순서 명확 | 온보딩 Decision 미완료 | CODEX_NOT_READY |
 
 ## Finding Ledger
 
 | ID | 유형 | 문제 | 영향 | 판정 | 처리 |
 |---|---|---|---|---|---|
 | SX-AUD-004-F01 | PLANNING_CONFLICT | Combo가 단일 하역 그룹인지 배송 streak인지 불명확 | 점수·HUD·저장 차단 | CONFLICT_FIXED | `SX-DEC-014` 사용자 승인·GitHub/Sheet SYNCED |
-| SX-AUD-004-F02 | UNDERDESIGN | cargo count와 visible wagon 관계 미정 | 실루엣·무게 가독성·점유·애니메이션 충돌 | CONFLICT_FIXED | `SX-DEC-015` compact token 사용자 승인 |
+| SX-AUD-004-F02 | UNDERDESIGN | cargo count와 visible wagon 관계 미정 | 실루엣·무게 가독성·점유·애니메이션 충돌 | CONFLICT_FIXED | `SX-DEC-015` compact token 사용자 승인·GitHub/Sheet SYNCED |
 | SX-AUD-004-F03 | UNDERDESIGN | 첫 세션 학습 순서·도움 방식 미정 | 이해 실패가 판단 실패로 오인될 위험 | USER_DECISION_REQUIRED | `SX-DEC-016` NEXT Grill Me |
 | SX-AUD-004-F04 | STALE_REFERENCE | 프로젝트 Skill이 Post-VS01과 구형 구현 경계 사용 | 잘못된 사실 복원 | CONFLICT_FIXED | Post-VS02·총기획 기준으로 갱신 |
 | SX-AUD-004-F05 | MEASUREMENT_GAP | 5명 표본에 70%·50% 기준 | 반올림 자의성 | CONFLICT_FIXED | 퍼센트+실제 명수·ceil 규칙 병기 |
@@ -64,11 +66,12 @@ VS-03 구현 전에 프로젝트의 제품·경험·시스템·콘텐츠·UX·�
 | SX-AUD-004-F08 | UNPROVEN_ASSUMPTION | 속도·연료·보상·목표 세션 수치 | 영구 생존·상시 BOOST·피로 위험 | RESEARCH_OR_TEST_REQUIRED | TEST_VALUE·시뮬레이션·플레이테스트 |
 | SX-AUD-004-F09 | PRODUCTION_RISK | 역6·화물12+·분기·HUD의 실제 밀도 미검증 | 작은 화면 정보 과부하 | TEST_IN_VERTICAL_SLICE | VS-03B 캡처·Android 검증 |
 | SX-AUD-004-F10 | MISSING_CANON | 총기획 감사·Decision Queue 책임 문서 부재 | 기획 보완 추적 불가 | CONFLICT_FIXED | 이 문서를 current 감사로 등록 |
-| SX-AUD-004-F11 | STALE_REFERENCE | 마스터 Plan이 복구를 IN_PROGRESS, 구형 main 표시 | 완료 작업 재실행·잘못된 구현 기준 | CONFLICT_FIXED | PR #16/#17/#18/#19 상태 전파 |
+| SX-AUD-004-F11 | STALE_REFERENCE | 마스터 Plan이 복구를 IN_PROGRESS, 구형 main 표시 | 완료 작업 재실행·잘못된 구현 기준 | CONFLICT_FIXED | PR #16/#17/#18/#19/#24 상태 전파 |
 | SX-AUD-004-F12 | AUTHORITY_CONFLICT | 총기획 감사와 Post-VS02 감사를 모두 CURRENT로 표시 | 현행 감사 선택 불명확 | CONFLICT_FIXED | 총기획 감사 CURRENT·Post-VS02 HISTORICAL |
 | SX-AUD-004-F13 | UX_DENSITY_RISK | 1 cargo=1 full-cell wagon은 최대 적재 시 열차가 8칸 늘어남 | 경로·역·spawn 가시성 저하 | CONFLICT_FIXED | 1:1 compact token·최대 trailing 3칸 |
 | SX-AUD-004-F14 | SPAWN_FAIRNESS_RISK | token을 시각만 압축하고 spawn 점유를 8칸 유지할 가능성 | 가용 pickup 공간 불필요 감소 | CONFLICT_FIXED_IN_PLAN | compressed footprint를 점유 권위로 정의 |
 | SX-AUD-004-F15 | ACCESSIBILITY_RISK | token 축소로 shape 식별이 사라질 가능성 | 색각 사용자·LIFO 판단 실패 | TEST_REQUIRED | 0/1/4/8·곡선·Android 가독성 Gate |
+| SX-AUD-004-F16 | TEST_VALUE_DRIFT | Decision 한 문장에 약 2.25칸, 파생 계약·Sheet에 2.18칸 표기 | 구현자가 다른 기하값을 선택할 위험 | CONFLICT_FIXED | 권장 TEST_VALUE 2.18칸으로 통일 |
 
 ## 확정 Decision — SX-DEC-014
 
@@ -78,19 +81,9 @@ max_combo = 한 판에서 기록한 최대 Combo
 빠른 연속 배송 = Combo가 아닌 별도 speed_bonus 시험 차원
 ```
 
-파생 결과:
-
-- `try_unload().count`, `combo_count`, `unload_group_size`를 같은 값으로 통일
-- 배송 사이에 유지되는 Combo streak state 제거
-- HUD `COMBO ×N`, 상단 run 최대 Combo, 결과 `MAX COMBO`
-- `speed_bonus_applied`를 별도 telemetry 필드로 기록
-- 저장은 `max_combo`만 보존
-
 판정: `CONFLICT_FIXED · GITHUB_SHEET_SYNCED · IMPLEMENTATION_NOT_STARTED`.
 
 ## 확정 Decision — SX-DEC-015
-
-사용자 승인·보정:
 
 ```text
 화물 1개 = 작은 토큰형 화차 1개
@@ -124,12 +117,12 @@ trailing spawn footprint = 최대 3칸 TEST_VALUE
 
 - `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md`
 
-판정: `CONFLICT_FIXED · GITHUB_CANON_PENDING_MERGE · SHEET_PENDING · IMPLEMENTATION_NOT_STARTED`.
+판정: `CONFLICT_FIXED · GITHUB_SHEET_SYNCED · IMPLEMENTATION_NOT_STARTED`.
 
 ## Decision Queue
 
 1. `SX-DEC-014` Combo 정의 — `CONFIRMED · SYNCED · CLOSED`
-2. `SX-DEC-015` compact wagon token 관계 — `CONFIRMED · GITHUB/SHEET SYNC IN_PROGRESS`
+2. `SX-DEC-015` compact wagon token 관계 — `CONFIRMED · SYNCED · CLOSED`
 3. `SX-DEC-016` 첫 세션 온보딩 방식 — `NOW · BLOCKS USER PLAYTEST`
 4. 실패 결과 학습 정보 — `REASSESS_AFTER_SX_DEC_016`
 5. 세계·마스코트 상세 범위 — `DEFERRED_WITH_BOUNDARY`
@@ -145,9 +138,10 @@ trailing spawn footprint = 최대 3칸 TEST_VALUE
 - 목표 세션 시간·경제·token 기하 수치는 `TEST_VALUE`로 유지
 - compact token과 compressed footprint를 본책·VS·Playtest에 전파
 - Registry의 현행 감사 권위를 `SX-AUD-004`로 단일화
+- compact chain 권장값을 2.18칸으로 통일
 
 ## 현재 Gate
 
-`GITHUB_UPDATE_PENDING_SHEET · SX-DEC-015 · CODEX_NOT_READY`
+`USER_DECISION_REQUIRED · SX-DEC-016 · CODEX_NOT_READY`
 
-`SX-DEC-015`를 PR merge commit과 Google Sheets에 같은 Decision/Evidence ID로 동기화한 뒤 다음 질문 `SX-DEC-016`을 진행한다. VS-03 구현은 전체 필수 Decision과 G3P가 닫힌 뒤에만 시작한다.
+`SX-DEC-014/015`는 GitHub 정본과 Google Sheets 12개 탭 재조회까지 `PASS · SYNCED`다. 다음 질문은 첫 세션 온보딩 방식이며, VS-03 구현은 전체 필수 Decision과 G3P가 닫힌 뒤에만 시작한다.
