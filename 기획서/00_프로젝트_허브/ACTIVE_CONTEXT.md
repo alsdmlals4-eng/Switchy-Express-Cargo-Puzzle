@@ -8,17 +8,17 @@
 - VS-02 Issue #5 / PR #12 완료.
 - VS-02 런타임 화물 재생성 누락은 PR #13에서 복구 완료.
 - Base v9.4 AI 운영·UI 모션 계약은 PR #15에서 적용 완료.
-- Post-VS02 정본 복구는 PR #16 / `8245e22905d64e22b599fe009bbb660d005392ed`에서 완료.
-- Post-VS02 Sheet 종료는 PR #17 / `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1`에서 완료.
+- Post-VS02 정본 복구·Sheet 종료는 PR #16/#17에서 완료.
 - `SX-DEC-014` Combo는 PR #18/#19를 거쳐 GitHub·Sheet `SYNCED`다.
 - `SX-DEC-015` compact wagon token은 PR #24/#25를 거쳐 GitHub·Sheet `SYNCED`다.
-- `SX-DEC-016` 실제 첫 run 상황형 온보딩과 `SX-OPS-001` 10건 배치 병합 운영은 사용자 승인됐고 현재 canonical PR 반영 중이다.
+- `SX-DEC-016` 실제 첫 run 상황형 온보딩과 `SX-OPS-001` 10건 배치 운영은 PR #27 / `3cd13ff375a597d4eba9035af5b05e6186fb4853`과 Sheet 12탭 readback을 거쳐 `SYNCED`다.
+- `GMB-001`은 `SX-DEC-017`부터 시작하며 현재 `0/10`이다.
 - 제품 구현 기준: `4e435a1a6d10ab146197671049da80709fd18c1f`.
-- 직전 synchronized planning main: `867563bb7bb69cfbb7343ef734585dd034ad7a64`.
+- 최신 synchronized planning main: `3cd13ff375a597d4eba9035af5b05e6186fb4853`.
 - Godot 기존 검증: `9 cases / 6915 assertions / 0 failures`.
 - 제공된 `19Ff...` 시트는 다른 프로젝트이며 변경하지 않는다.
 - Issue #5: CLOSED · COMPLETED.
-- Issue #6: OPEN · VS-03A/VS-03B와 향후 온보딩 구현 후보.
+- Issue #6: OPEN · VS-03A/VS-03B/VS-03C 계획 범위.
 - 현재 Work Mode: `TOTAL_PLANNING · REVIEW`.
 - Codex 상태: `CODEX_NOT_READY`.
 - 현행 총기획 감사: `SX-AUD-004`.
@@ -84,8 +84,9 @@
 
 ### SX-OPS-001 — Grill Me 10건 배치 병합
 
-- `SX-DEC-016`까지는 catch-up으로 즉시 canonical 병합·Sheet closure한다.
-- 다음 정규 batch `GMB-001`은 `SX-DEC-017`부터 10건을 센다.
+- `SX-DEC-016`까지의 catch-up은 canonical PR과 Sheet closure로 완료됐다.
+- 정규 batch `GMB-001`은 `SX-DEC-017`부터 10건을 센다. 현재 `0/10`이다.
+- 승인 직후 batch branch·draft PR·Sheet에 `APPROVED_PENDING_BATCH_MERGE`로 기록한다.
 - 10번째 승인 후 GitHub main·PR·Issue·정본·Registry·Sheet 12탭을 다시 읽고 적대적 검토한다.
 - exact-head checks 성공, P0/P1 open finding 0, unresolved review thread 0일 때만 병합한다.
 - canonical merge commit을 Sheet에 기록하고 12탭 readback PASS와 Sync Closure PR 병합까지 batch 완료로 본다.
@@ -111,36 +112,33 @@
 ## 현재 총기획 작업
 
 ```text
-SX-DEC-014·015 GitHub·Sheet SYNCED
-→ SX-DEC-016 + SX-OPS-001 canonical PR
-→ 병합 직전 GitHub·Sheet·PR 적대적 전수 대조
-→ canonical merge commit으로 Sheet 12탭 동기화·재조회
-→ Sync Closure PR 병합
+SX-DEC-014/015/016 · SX-OPS-001 GitHub/Sheet SYNCED
 → GMB-001 시작: SX-DEC-017부터 0/10
+→ 승인마다 batch branch/PR·Sheet APPROVED_PENDING_BATCH_MERGE
+→ 10번째 승인 후 pre-merge adversarial audit
+→ canonical merge·Sheet readback·Sync Closure
+→ G3P close·VS-03 Definition of Ready
 ```
 
 상세 수치는 사용자 지시에 따라 GPT 권장 시험값으로 작성하되 `RECOMMENDED_DEFAULT / TEST_VALUE`로 표시한다. 플레이어 판타지, 대표 경험, 주요 UX, 실패·보상 의미, 범위를 바꾸는 충돌은 사용자 Decision 없이 확정하지 않는다.
 
 ## 다음 작업
 
-1. `SX-DEC-016`과 `SX-OPS-001`의 정본·Issue·Goal·Gate·Sheet 소비자를 완성한다.
-2. canonical PR exact head와 current main/Sheet를 병합 직전 다시 전수 감사한다.
-3. canonical PR 병합 후 올바른 Sheet에 같은 Decision·Evidence·merge commit을 기록한다.
-4. 12탭 readback PASS 후 Sync Closure PR을 검증·병합한다.
-5. `GMB-001`을 0/10으로 시작하고 `SX-DEC-017` 결과 화면 실패 학습을 한 건만 Grill Me한다.
+1. `GMB-001` slot 1인 `SX-DEC-017` 결과 화면 실패 학습을 한 건만 Grill Me한다.
+2. 승인되면 동일 Decision/Evidence를 batch branch·draft PR·Sheet에 `APPROVED_PENDING_BATCH_MERGE`로 기록한다.
+3. 승인 수를 1/10로 갱신하고 다음 Decision 전 충돌을 재검토한다.
+4. 10번째 승인에서 새 질문을 멈추고 `SX-OPS-001` 전수 감사를 실행한다.
 
 ## 주요 위험
 
 - compact token이 너무 작아 색상+모양을 읽지 못할 가능성
 - 압축 점유 계산 누락으로 pickup이 token chain 위에 생성될 가능성
 - tight turn에서 token 순서가 바뀌거나 곡선을 가로지를 가능성
-- 첫 세션에 LOAD·분기·LIFO·Combo를 과도하게 밀집해 안내 피로가 생길 가능성
-- tutorial overlay나 animation이 simulation pause·단계 완료·보상을 소유하는 회귀 위험
+- 첫 세션 안내 피로와 safe pause lock 가능성
+- tutorial overlay나 animation이 단계 완료·보상을 소유하는 회귀 위험
 - 0.5× assisted first run을 일반 생존 경제 증거로 혼합할 위험
-- 10건 batch 대기 중 Sheet를 `SYNCED`로 오표기하거나 11번째 범위가 잠입할 위험
-- 자동 운행에서 분기 판단 시간이 부족하거나 과도하게 여유로울 가능성
-- 화물 감속이 생존 최적화 exploit가 될 가능성
-- BOOST가 항상 정답이거나 무가치할 가능성
+- batch 대기 중 Sheet를 `SYNCED`로 오표기하거나 11번째 범위가 잠입할 위험
+- 화물 감속·BOOST 경제 exploit 가능성
 - 결과·재시작 모션이 점수·연료·저장의 권위를 소유하는 회귀 위험
 - Android·사람 이해·성능·접근성은 여전히 `NOT_RUN / HUMAN_NOT_RUN`
 
@@ -149,8 +147,7 @@ SX-DEC-014·015 GitHub·Sheet SYNCED
 - Post-VS02 감사: `SX-AUD-003` · HISTORICAL
 - 현행 총기획 감사: `SX-AUD-004` · CURRENT
 - 사용자 Evidence: `EV-USER-002`, `EV-USER-003`, `EV-USER-004`, `EV-USER-005`
-- `SX-DEC-014` canonical commit: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
-- `SX-DEC-015` canonical commit: `b8742253247da25a0190f80b898b9bbe6ec6a1cf`
-- `SX-DEC-016` / `SX-OPS-001`: `CANON_IN_PROGRESS · SHEET_PENDING_CANONICAL_MERGE`
-- 이전 Sheet 12개 탭 readback: `PASS · SYNCED` through `SX-DEC-015`
-- 현재 차단: canonical merge·Sheet closure, 제품 구현은 여전히 `CODEX_NOT_READY`
+- `SX-DEC-016` / `SX-OPS-001` canonical commit: `3cd13ff375a597d4eba9035af5b05e6186fb4853`
+- Google Sheet: `PASS · 12탭 재조회 완료 · SYNCED`
+- `GMB-001`: `NOT_STARTED · 0/10 · NEXT SX-DEC-017`
+- 제품 구현은 여전히 `CODEX_NOT_READY`
