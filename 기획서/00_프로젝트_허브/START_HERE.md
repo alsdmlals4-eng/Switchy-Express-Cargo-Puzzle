@@ -43,18 +43,20 @@
 CURRENT_CONFIRMED_DECISIONS.md
 → ACTIVE_CONTEXT.md
 → ../../50_제작_검증/TOTAL_PLANNING_AUDIT.md
+→ ../../../docs/superpowers/plans/2026-08-02-switchy-express-current-vertical-slice.md
+→ ../../50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md
 → ../../../docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md
 → ../../../docs/superpowers/specs/2026-08-02-first-session-contextual-onboarding-design.md
-→ ../../50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md
 → ../../10_경험/CORE_GAMEPLAY.md
 → ../../20_시스템_콘텐츠/CORE_SYSTEMS.md
 → ../../40_표현/VISUAL_DIRECTION.md
 → ../../50_제작_검증/VERTICAL_SLICE_CONTRACT.md
 → ../../50_제작_검증/PLAYTEST_PLAN.md
-→ ../../../docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md
 → ../../../docs/superpowers/plans/2026-08-02-first-session-contextual-onboarding.md
 → EXECUTABLE_PROMPTS/CODEX_GOAL_VS_03.md
 ```
+
+`docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md`는 VS-01·VS-02 상세 실행 이력을 보존하는 `HISTORICAL_FOUNDATION`이다. 그 안의 구형 planning status보다 2026-08-02 Current Plan을 우선한다.
 
 Post-VS02 구현·정본 복구의 역사 감사는 `POST_VS02_ADVERSARIAL_AUDIT.md`에서 확인한다.
 
@@ -77,6 +79,7 @@ Post-VS02 구현·정본 복구의 역사 감사는 `POST_VS02_ADVERSARIAL_AUDIT
   - 상황형 첫 run 온보딩: `SX-DEC-016 CANON_IN_PROGRESS`
   - 10건 배치 운영: `SX-OPS-001 APPROVED`
   - 후속 Decision·Definition of Ready: 진행 중
+- `G3B_GRILL_ME_BATCH_PREMERGE`: CATCH_UP_IN_PROGRESS
 - `G4_TARGET_QUALITY_SLICE`: NOT_STARTED
 - `G5_PLAYTEST_EVIDENCE`: NOT_STARTED
 
@@ -95,7 +98,7 @@ Issue #6 / VS-03을 순차 패키지로 준비한다.
 ```text
 VS-03A · 생존 경제 도메인
 → VS-03B · compact token 플레이 화면·HUD·결과·기록·재시작
-→ SX-DEC-016 구현 package · OnboardingState·first-run assist·overlay·Help
+→ VS-03C · OnboardingState·first-run assist·overlay·Help
 → Issue #7 · 텔레메트리·soak·Android·플레이테스트·최종 적대 검토
 ```
 
