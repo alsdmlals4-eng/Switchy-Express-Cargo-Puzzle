@@ -4,7 +4,7 @@
 audit_id: SX-AUD-007
 evidence_id: EV-USER-018
 user_approval: RECOMMENDED_OPTION_C
-status: APPROVED_DESIGN · USER_SPEC_REVIEW_REQUIRED
+status: APPROVED · IMPLEMENTATION_PLANS_COMPLETE · CANONICAL_MERGE_PENDING
 product_rule_change: false
 current_implementation_authority: VS03-02_ONLY
 ```
@@ -40,9 +40,7 @@ VS03-01 run lifecycle/economy/difficulty · DONE
 → VS03-07 end-to-end integration/evidence handoff
 ```
 
-`VS03-R1`은 새 플레이어 규칙이 아니라 `SX-AUD-007-F87`을 닫는 안전 교정 package다. 실제 속도·연료 압력 경계와 `DifficultyDirector` forecast/commit schedule을 일치시킨다.
-
-현재 `VS03-02` 실행 권위는 변경하지 않는다. `VS03-R1`은 `VS03-03`이 병합·동기화된 뒤, 어떤 difficulty presentation도 구현하기 전 별도 package로 수행한다.
+`VS03-R1`은 새 플레이어 규칙이 아니라 `SX-AUD-007-F87`을 닫는 안전 교정 package다. 실제 속도·연료 압력 경계와 `DifficultyDirector` forecast/commit schedule을 일치시킨다. 현재 VS03-02를 중단시키지 않으며 VS03-03 merge·sync 뒤, VS03-05A 전에 실행한다.
 
 ## 3. VS03-05A — 최소 플레이 가능 핵심 화면
 
@@ -64,7 +62,6 @@ Meta와 persistence 없이도 다음 질문에 답할 수 있는 첫 제품 화�
 - PREP slight zoom과 `FULL_MAP_READY`
 - active run fixed full-map camera
 - 난이도 persistent band의 최소 read-only 표시
-- run core smoke path
 - Reduced Motion instant/static parity
 
 ### 제외
@@ -157,8 +154,7 @@ default DifficultyDirector commit: 30초
 
 ### 교정 방향
 
-- `RunBalance`가 독립적으로 숨은 schedule을 계산하지 않는다.
-- 난이도 schedule은 모든 실제 pressure boundary를 제공한다.
+- `RunBalance`는 수치 공식을 소유하고 `DifficultyDirector`는 모든 실제 pressure boundary의 schedule을 소유한다.
 - 30초와 45초가 겹치는 경계는 하나의 authoritative timestamp에서 필요한 변화들을 묶는다.
 - presentation은 immutable forecast/commit event만 읽는다.
 - exact 내부 수식은 UI에 노출하지 않는다.
@@ -168,6 +164,7 @@ default DifficultyDirector commit: 30초
 
 - 30초 speed-only commit
 - 45초 fuel-only commit
+- 60초 speed-only commit
 - 90초 speed+fuel combined commit
 - 경계 전 forecast lead
 - large delta에서 ordered multi-boundary commit
@@ -184,7 +181,7 @@ default DifficultyDirector commit: 30초
 - Train Valley 2: 공식 콘텐츠와 사용자 제작 콘텐츠의 단계 분리만 참고한다.
 - Rail Route: authoritative routing model과 presentation 분리만 참고한다.
 
-다음은 현재 핵심에 도입하지 않는다.
+도입하지 않는 것:
 
 - 철도망 건설이 핵심이 되는 구조
 - 충돌 회피 반사신경 중심 구조
@@ -210,18 +207,25 @@ default DifficultyDirector commit: 30초
 - camera는 instant full-map fallback
 - difficulty presentation은 숨겨도 authoritative schedule은 유지
 
-## 9. 증거 경계
+## 9. 구현 계획
 
-이 설계 승인으로 완료되는 것:
+```text
+docs/superpowers/plans/2026-08-03-vs03-core-first-resegmentation.md
+docs/superpowers/plans/2026-08-03-vs03-r1-difficulty-authority-alignment.md
+docs/superpowers/plans/2026-08-03-vs03-05a-minimal-playable-core-surface.md
+```
+
+## 10. 증거 경계
+
+이 승인으로 완료되는 것:
 
 - package sequencing 결정
 - 05A/05B 책임 분리
-- F91 해결 방향
-- F87 교정 계약
+- F91 해결
+- F87 교정 계약과 구현 계획
 
 완료되지 않는 것:
 
-- 구현 계획
 - 제품 코드
 - Android runtime
 - 10분 soak
@@ -231,11 +235,11 @@ default DifficultyDirector commit: 30초
 - target100
 - online UGC
 
-## 10. 현재 판정
+## 11. 현재 판정
 
 ```text
 F91: RESOLVED_BY_USER_APPROVAL · OPTION_C
-F87: CORRECTION_DESIGNED · IMPLEMENTATION_NOT_STARTED
-PR #39: DRAFT · USER_SPEC_REVIEW_REQUIRED
+F87: IMPLEMENTATION_PLAN_COMPLETE · IMPLEMENTATION_NOT_STARTED
+PR #39: CANONICAL_MERGE_PENDING
 current build authority: VS03-02_ONLY
 ```
