@@ -20,7 +20,8 @@
 - 현재 Work Mode: `TOTAL_PLANNING · REVIEW`.
 - Codex 상태: `CODEX_NOT_READY`.
 - 현행 총기획 감사: `SX-AUD-004`.
-- 다음 Grill Me: `SX-DEC-015` 화물 수와 표시 화차 수·점유 관계.
+- `SX-DEC-015`: 사용자 승인·GitHub 정본 반영 중·Sheet 동기화 대기.
+- 다음 Grill Me 후보: `SX-DEC-016` 첫 세션 온보딩 방식.
 
 ## 구현된 범위
 
@@ -38,7 +39,7 @@
 ### VS-02
 
 - 선택된 RailGraph 경로를 따르는 연속 기관차 이동
-- 최대 8개 화차의 제한된 경로 이력 추종
+- 최대 8개 화차 위치 계산 기반
 - 이동 중 목표 분기 고정과 통과 후 분기 초기화
 - `RED_STAR / BLUE_DIAMOND / YELLOW_TRIANGLE`
 - capacity 8 LIFO CargoStack
@@ -63,8 +64,20 @@
 - 빠른 배송은 별도 `speed_bonus` 시험 차원이다.
 - HUD·결과·telemetry·저장의 의미를 이 정의로 통일한다.
 
+### SX-DEC-015 — compact wagon tokens
+
+- 적재 화물 1개를 작은 토큰형 화차 1개로 표시한다.
+- 0화물에서는 기관차만 보인다.
+- 앞→뒤 token 순서는 stack bottom→top이며 가장 뒤 token이 다음 하역 대상이다.
+- 최대 8개 token chain은 권장 시험값 약 2.18칸, trailing 점유 최대 3칸으로 압축한다.
+- 화물 8개를 full-size 선로 8칸 점유로 취급하지 않는다.
+- 생성 금지는 기관차와 압축 token chain이 실제 교차하는 칸을 사용한다.
+- CargoStack 변경과 token count/order·점유 갱신은 같은 도메인 단계에서 완료한다.
+- 상세 규격: `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md`.
+
 ## 현재 미구현
 
+- compact token ViewModel·fractional path following·compressed footprint
 - 시간 기반 속도 상승과 연료 소모
 - 화물 적재량 감속
 - BOOST 속도·추가 연료 소모
@@ -82,9 +95,10 @@
 
 ```text
 SX-DEC-014 GitHub·Sheet SYNCED
-→ SX-DEC-015 화물–화차 관계 Grill Me
-→ 후속 온보딩·실패학습 Decision 필요성 재검증
-→ 승인 Decision 정본·Issue·Goal·Sheet 동기화
+→ SX-DEC-015 사용자 승인·정본 반영
+→ canonical merge commit으로 Sheet 동기화
+→ SX-DEC-016 온보딩 Grill Me
+→ 실패학습 Decision 필요성 재검증
 → Codex Definition of Ready
 ```
 
@@ -92,15 +106,17 @@ SX-DEC-014 GitHub·Sheet SYNCED
 
 ## 다음 작업
 
-1. `SX-DEC-015` 화물–화차 관계 Grill Me
-2. 승인 내용을 정본·Issue #6·Plan·VS-03 Goal·Sheet에 같은 ID로 반영
-3. 첫 세션 온보딩·실패 학습 정보가 별도 Decision인지 적대적으로 재검증
-4. 남은 필수 Decision이 0이면 `G3P`와 Codex Definition of Ready 판정
-5. Gate 통과 이후에만 Codex Build 인계
+1. `SX-DEC-015` exact HEAD 검증·병합
+2. 같은 Decision·Evidence·commit을 Sheet에 반영·재조회
+3. `SX-DEC-016` 첫 세션 온보딩 방식 Grill Me
+4. 실패 학습 정보가 별도 Decision인지 적대적으로 재검증
+5. 남은 필수 Decision이 0이면 `G3P`와 Codex Definition of Ready 판정
 
 ## 주요 위험
 
-- CargoStack capacity와 실제 화차 수·표시·spawn 점유 의미가 불명확함
+- compact token이 너무 작아 색상+모양을 읽지 못할 가능성
+- 압축 점유 계산 누락으로 pickup이 token chain 위에 생성될 가능성
+- tight turn에서 token 순서가 바뀌거나 곡선을 가로지를 가능성
 - 자동 운행에서 분기 판단 시간이 부족하거나 과도하게 여유로울 가능성
 - 화물 감속이 생존 최적화 exploit가 될 가능성
 - BOOST가 항상 정답이거나 무가치할 가능성
@@ -113,7 +129,8 @@ SX-DEC-014 GitHub·Sheet SYNCED
 
 - Post-VS02 감사: `SX-AUD-003` · HISTORICAL
 - 현행 총기획 감사: `SX-AUD-004` · CURRENT
-- 사용자 Evidence: `EV-USER-002`
+- 사용자 Evidence: `EV-USER-002`, `EV-USER-003`
 - `SX-DEC-014` canonical commit: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
-- Sheet 12개 탭 readback: `PASS · SYNCED`
-- 다음 차단 Finding: `SX-AUD-004-F02`
+- Sheet 12개 탭 readback: `PASS · SYNCED` for `SX-DEC-014`
+- `SX-DEC-015` Sheet 상태: `GITHUB_UPDATE_PENDING_SHEET`
+- 다음 차단 Finding: `SX-AUD-004-F03`

@@ -1,5 +1,26 @@
 # Changelog
 
+## 2026-08-02 — Total Planning Decision · SX-DEC-015
+
+- 사용자 권장안 승인으로 `SX-DEC-015` 확정
+- 적재 화물 1개를 작은 토큰형 화차 1개로 표시
+- 빈 화차는 표시하지 않고 0화물에서는 기관차만 표시
+- front→rear token 순서를 stack bottom→top으로 정의
+- 가장 뒤 token을 CargoStack top·다음 LIFO 하역 대상으로 정의
+- full-size 1-cell wagon 8개로 길게 늘어지는 후보 폐기
+- 권장 시험값: token body 0.22칸, spacing 0.28칸, 8 token chain 2.18칸, trailing footprint 최대 3칸
+- 화물 8개를 spawn 점유 8칸으로 해석하지 않고 compressed footprint를 점유 권위로 정의
+- CargoStack 변경과 token count/order·점유 갱신을 같은 도메인 단계로 고정
+- token 추가·제거 animation은 도메인 권위를 갖지 않음
+- `EV-USER-003` 등록
+- compact token 설계 정본 `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md` 추가
+- Core Gameplay·Core Systems·Visual Direction·VS Contract·Playtest·Goal·Plan·Issue #6 소비자 갱신
+- telemetry에 token_count·rear_token_type·trailing_footprint 추가
+- 적대적 보완 `SX-AUD-004-F13~F15`: 긴 열차 밀도·spawn 공정성·작은 shape 가독성
+- 다음 중요 충돌을 `SX-DEC-016` 첫 세션 온보딩 방식으로 이동
+- 제품 코드·Scene·Resource·asset 변경 없음, `CODEX_NOT_READY` 유지
+- PR merge commit을 올바른 Switchy Express Sheet에 같은 Decision·Evidence ID로 기록한 뒤 `SYNCED` 종료 예정
+
 ## 2026-08-02 — SX-DEC-014 Sheet Sync Closed
 
 - PR #18 canonical planning commit `ca50538652c72cbb282d7818990e92a0dfe79c9a` 확정

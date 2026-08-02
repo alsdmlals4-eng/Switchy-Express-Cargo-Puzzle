@@ -5,7 +5,7 @@
 1. **Cute premium casual** — 둥글고 부드러운 3D 카툰, 따뜻한 조명, 친근한 표정
 2. **Toy railway clarity** — 장난감 철도판처럼 선로·침목·곡선·분기 구조가 즉시 읽힘
 3. **Global readability** — 짧은 텍스트, 명확한 아이콘, 색상+모양 이중 부호
-4. **Juicy logistics** — 적재 결합, 스위치 전환, LIFO 하역 Combo, 부스터에 강한 즉시 피드백
+4. **Juicy logistics** — compact token 적재, 스위치 전환, LIFO 하역 Combo, 부스터에 강한 즉시 피드백
 5. **Cozy mascot world** — 토끼 기관사와 작은 역·초원·꽃·물가·미니어처 소품
 
 ## 화면 구성
@@ -25,12 +25,29 @@
 - 비활성 후보 경로는 어둡게
 - 분기 레버와 단계 상태 표시
 - 역은 색상+별/마름모/삼각형
-- 화물은 같은 색·모양 체계
+- 화물과 compact wagon token은 같은 색·모양 체계
 
 ### 하단 HUD
 - 왼쪽 `LOAD`
 - 중앙 `UNLOAD ORDER`: 맨 왼쪽이 다음 하역 화물
 - 오른쪽 `BOOST`
+
+## compact wagon tokens — SX-DEC-015
+
+- 적재 화물 1개를 작은 토큰형 화차 1개로 표시한다.
+- 빈 화차는 표시하지 않으며 0화물에서는 기관차만 보인다.
+- 기관차 쪽부터 뒤쪽까지 stack bottom→top 순서로 배치한다.
+- 가장 뒤 토큰이 마지막 적재 화물이자 다음 하역 대상이다.
+- 적재는 뒤에 토큰이 결합되고, 하역은 뒤쪽 동일 타입 그룹이 빠지는 연출을 사용한다.
+- 최대 8개 토큰은 길게 늘어진 full-size wagon 열이 아니라 약 2.18 rail-cell 길이의 압축 체인으로 표현한다.
+- 권장 시험값: token body 0.22칸, center spacing 0.28칸, trailing footprint 최대 3칸.
+- 토큰은 색상뿐 아니라 별/마름모/삼각형을 충분히 크게 표시한다.
+- 곡선에서는 fractional path history를 따라가며 안쪽으로 지름길을 만들지 않는다.
+- 토큰이 일부 겹쳐도 가장 뒤 LIFO 토큰과 종류별 부호가 읽혀야 한다.
+- 정확한 순서는 HUD Unload Order가 보완하며 HUD 첫 항목은 가장 뒤 토큰과 일치한다.
+- 추가·제거 모션은 CargoStack 변경 뒤 실행되는 표현이며 상태 권위가 아니다.
+
+상세 규격: `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md`.
 
 ## Combo 피드백 — SX-DEC-014
 
@@ -59,11 +76,13 @@
 
 - 빨강=별, 파랑=마름모, 노랑=삼각형
 - 색상만으로 하역 가능 여부를 전달하지 않음
+- compact token도 화물·역과 같은 모양 부호 사용
 - 활성 선로는 색+굵기+화살표를 함께 사용
 - 버튼은 48dp 이상 터치 영역
 - 중요한 점수·연료 정보는 높은 명암 대비 유지
 - 3단계 분기 상태는 색뿐 아니라 단계 점·번호·레버 방향 중 둘 이상으로 표시
 - Combo는 숫자와 `COMBO` 텍스트를 함께 표시하고 색·모션만으로 전달하지 않음
+- 토큰이 작아도 shape glyph의 최소 식별 크기를 Android 캡처에서 검증
 
 ## 오디오·햅틱 권장 계약
 
@@ -73,7 +92,7 @@
 |---:|---|---|---|
 | P0 | 연료 위험·게임오버 | 경고음·짧은 위험 진동 | 게이지 점멸·위험 아이콘·정적 결과 원인 |
 | P1 | 분기 전환 접수·목표 잠금 | 레버 클릭·짧은 탭 진동 | 레버 상태·활성 경로 즉시 변경 |
-| P1 | 화물 적재·하역 Combo | 결합음·하역 상승음·단계 진동 | stack/HUD 즉시 갱신·`COMBO ×N` |
+| P1 | 화물 적재·토큰 결합·하역 Combo | 결합음·하역 상승음·단계 진동 | token/HUD 즉시 갱신·`COMBO ×N` |
 | P2 | BOOST 시작·종료 | 엔진 피치 변화·지속 약진동 | BOOST 버튼·속도·연료 배율 표시 |
 | P2 | speed bonus | 짧은 성공음 | 별도 보너스 배지·점수 증가 분리 표시 |
 
@@ -90,10 +109,11 @@
 
 1. RailBoardView에서 선로 연결 형태를 실제 그래프와 동일하게 렌더
 2. SwitchView에서 기본 A·대안 B/C·현재 상태를 한눈에 표시
-3. 15×10 화면에서 역 6개·화물 12개 이상·분기 정보를 겹침 없이 표시
-4. 작은 Android 화면에서 48dp 터치 영역과 safe area 확인
-5. Combo와 speed bonus가 서로 다른 의미로 읽히는지 확인
-6. 승인 콘셉트와 실제 1920×1080 캡처를 비교해 `PASS / REVISE` 판정
+3. compact token 0/1/4/8개 상태에서 화물 수·rear LIFO token·색상+모양을 식별
+4. 8개 token chain이 trailing 3칸 이내이며 역·화물·분기·preview를 가리지 않는지 확인
+5. 작은 Android 화면에서 48dp 터치 영역과 safe area 확인
+6. Combo와 speed bonus가 서로 다른 의미로 읽히는지 확인
+7. 승인 콘셉트와 실제 1920×1080 캡처를 비교해 `PASS / REVISE` 판정
 
 ## UI 모션·중단·반복 계약
 
@@ -101,8 +121,8 @@
 입력 접수 → 처리 중 → 도메인 결과 확정 → 결과 표현
 ```
 
-- 분기 전환·LOAD·화물 적재·LIFO 하역·Combo·BOOST·결과·재시작 모션은 중단과 즉시 완료 경로를 가진다.
-- 빠른 반복·재진입·재시작에서 분기 상태·화물 stack·점수·연료·배송·spawn이 중복되지 않아야 한다.
-- `AnimationPlayer`·`Tween` 완료 signal은 선로 선택·적재·하역·점수·연료·게임오버·저장의 권위 시점이 아니다.
+- 분기 전환·LOAD·화물 적재·token 추가/제거·LIFO 하역·Combo·BOOST·결과·재시작 모션은 중단과 즉시 완료 경로를 가진다.
+- 빠른 반복·재진입·재시작에서 분기 상태·화물 stack·token count/order·점수·연료·배송·spawn이 중복되지 않아야 한다.
+- `AnimationPlayer`·`Tween` 완료 signal은 선로 선택·적재·하역·token 점유·점수·연료·게임오버·저장의 권위 시점이 아니다.
 - `Reduced Motion`, `mute`, `haptic-off`에서도 활성 경로·다음 하역·연료·위험·결과 원인·다음 행동을 보존한다.
 - Android safe area·48dp·성능·사람 이해는 `NOT_RUN` / `HUMAN_NOT_RUN`으로 유지한다.

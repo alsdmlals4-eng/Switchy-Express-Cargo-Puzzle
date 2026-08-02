@@ -16,12 +16,15 @@
       "positive_triggers": [
         "core gameplay",
         "cargo",
+        "wagon",
+        "compact token",
         "rail map",
         "switch",
         "station",
         "fuel",
         "boost",
         "score",
+        "onboarding",
         "visual readability"
       ],
       "negative_triggers": [

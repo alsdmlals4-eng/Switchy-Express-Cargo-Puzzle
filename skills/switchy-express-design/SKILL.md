@@ -1,6 +1,6 @@
 ---
 name: switchy-express-design
-description: Use for Switchy Express project-specific gameplay, route, cargo-stack, fuel, boost, station, scoring, map-generation, onboarding, or visual-readability decisions and reviews.
+description: Use for Switchy Express project-specific gameplay, route, cargo-stack, compact-wagon-token, fuel, boost, station, scoring, map-generation, onboarding, or visual-readability decisions and reviews.
 ---
 
 # Switchy Express Design Discipline
@@ -10,12 +10,13 @@ description: Use for Switchy Express project-specific gameplay, route, cargo-sta
 1. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
 2. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
 3. `기획서/50_제작_검증/TOTAL_PLANNING_AUDIT.md`
-4. `기획서/50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md`
-5. `기획서/10_경험/CORE_GAMEPLAY.md`
-6. `기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md`
-7. `기획서/40_표현/VISUAL_DIRECTION.md`
-8. `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
-9. `기획서/50_제작_검증/PLAYTEST_PLAN.md`
+4. `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md`
+5. `기획서/50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md`
+6. `기획서/10_경험/CORE_GAMEPLAY.md`
+7. `기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md`
+8. `기획서/40_표현/VISUAL_DIRECTION.md`
+9. `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
+10. `기획서/50_제작_검증/PLAYTEST_PLAN.md`
 
 ## Invariants
 
@@ -36,7 +37,11 @@ description: Use for Switchy Express project-specific gameplay, route, cargo-sta
 - Boost increases speed and fuel drain
 - Fuel depletion ends run
 - Color plus shape encoding
-- UI motion does not own gameplay outcomes
+- Combo equals one station arrival's matching unload-group size
+- Cargo count equals compact wagon token count, 0 through 8
+- Front-to-rear tokens equal CargoStack bottom-to-top; rear token is next unload
+- Eight compact tokens reserve no more than three trailing rail cells
+- UI motion does not own gameplay or occupancy outcomes
 - No input-free infinite survival
 
 ## Current implementation boundary
@@ -44,23 +49,30 @@ description: Use for Switchy Express project-specific gameplay, route, cargo-sta
 Implemented and headless-tested:
 
 - Godot project, RailGraph, RailGenerator, and RailSwitch
-- continuous train movement and up to eight wagons
+- continuous train movement and full-cell wagon-position foundation up to eight
 - cargo types, capacity-eight LIFO stack, LOAD input contract
 - station placement and cargo population
 - DeliveryLoop pickup, unloading, and runtime respawn recovery
 - `9 cases / 6915 assertions / 0 failures`
 
-Not yet implemented or directly validated:
+Approved planning, not yet implemented:
 
+- compact wagon token count/order ViewModel
+- fractional compact token path following
+- compressed train footprint and spawn exclusion
 - speed, fuel, score, boost economy, game-over, results, restart, and records
 - product RailBoardView, SwitchView, HUD, final art, audio, and haptics
+
+Not yet directly validated:
+
 - Android export, device performance, accessibility runtime, soak, and human playtest
+- compact token shape readability at 0/1/4/8 cargo
 - sufficient procedural variety and actual visual readability
 
 ## Planning rules
 
-- Detailed balance and timing values begin as `RECOMMENDED_DEFAULT` or `TEST_VALUE`.
-- A proposal that changes player fantasy, core choice, combo meaning, cargo/wagon meaning, onboarding policy, major UX, content meaning, or Vertical Slice scope is `USER_DECISION_REQUIRED`.
+- Detailed balance, timing, and compact-token geometry begin as `RECOMMENDED_DEFAULT` or `TEST_VALUE`.
+- A proposal that changes player fantasy, core choice, combo meaning, cargo/token meaning, onboarding policy, major UX, content meaning, or Vertical Slice scope is `USER_DECISION_REQUIRED`.
 - Ask one material Grill Me Decision at a time after repository facts and alternatives are documented.
 - Synchronize approved Decisions to GitHub canon, Issues/Plan, and the configured Google Sheet with the same Decision ID.
 - Do not promote `CODEX_GOAL_VS_03.md` from `CODEX_NOT_READY` until required planning decisions and acceptance criteria are closed.

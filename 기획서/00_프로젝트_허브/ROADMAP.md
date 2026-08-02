@@ -13,7 +13,7 @@
 - [x] 2단계·3단계 분기기
 - [x] 직진 우선 기본 노선·5칸 경로 미리보기
 - [x] 연속 기관차 이동·경로 보간
-- [x] 최대 8개 화차의 제한된 이동 이력 추종
+- [x] 최대 8개 화차 위치 계산 기반
 - [x] LOAD 선택 적재와 LIFO stack
 - [x] 스테이션 6개와 색상별 pickup 최소 4개
 - [x] 런타임 재생성 회복
@@ -39,8 +39,11 @@
 - [x] `SX-DEC-014` Combo 의미 확정
 - [x] 안전 보완: Skill·계측·표본 판정·오디오 fallback·Plan·Registry 최신화
 - [x] `SX-DEC-014` canonical commit `ca505386…` Sheet 동기화·12탭 재조회
-- [ ] `SX-DEC-015` 화물 수–표시 화차 수·점유 관계
-- [ ] 온보딩·실패 학습 정보의 Decision 필요성 재검증
+- [x] `SX-DEC-015` 화물 1개=compact wagon token 1개·압축 점유 의미 확정
+- [x] `SX-DEC-015` 설계 규격·본책·VS 계약·플레이테스트 소비자 반영
+- [ ] `SX-DEC-015` canonical commit Sheet 동기화
+- [ ] `SX-DEC-016` 첫 세션 온보딩 방식
+- [ ] 실패 학습 정보의 별도 Decision 필요성 재검증
 - [ ] 남은 중요 Grill Me 완료
 - [ ] VS-03 Codex Definition of Ready
 
@@ -64,14 +67,18 @@
 - [ ] RailBoardView·SwitchView
 - [ ] LOAD·BOOST·Unload Order HUD
 - [ ] `COMBO ×N`·Run Max Combo·별도 speed bonus 피드백
-- [ ] `SX-DEC-015`에 따른 화물–화차 표현
+- [ ] CargoStack→compact token count/order ViewModel
+- [ ] fractional path history 기반 0~8 token 추종
+- [ ] 8 token chain 약 2.18칸·trailing footprint 최대 3칸 시험값
+- [ ] compressed footprint 기반 spawn exclusion
+- [ ] rear token·HUD first item·CargoStack top parity
+- [ ] 0/1/4/8·곡선 대표 캡처
 - [ ] 결과 화면·즉시 재시작
 - [ ] 최고 점수·최장 생존·최대 Combo 저장
 - [ ] 저장 버전·손상 fallback
 - [ ] 48dp·safe area·Reduced Motion·mute·haptic-off
-- [ ] 대표 상태 캡처
 
-M3 종료 기준: 한 세션이 시작→운행→적재→분기→하역→Combo·보상→연료 0→결과→재시작까지 실제로 연결되고 자동 테스트가 통과한다.
+M3 종료 기준: 한 세션이 시작→운행→적재→compact token 변화→분기→LIFO 하역→Combo·보상→연료 0→결과→재시작까지 실제로 연결되고 자동 테스트가 통과한다.
 
 ## M4 — 목표 품질·플레이테스트 · NOT_STARTED
 
@@ -79,7 +86,8 @@ M3 종료 기준: 한 세션이 시작→운행→적재→분기→하역→Com
 - [ ] 10분 headless soak
 - [ ] Android 실제 기기 실행·성능
 - [ ] 첫 경험 사용자 5명 이상
-- [ ] LIFO·Combo·분기 이해율 검증
+- [ ] LIFO·Combo·분기·compact token 이해율 검증
+- [ ] 8 token 가독성·spawn 공정성 검증
 - [ ] 맵 다양성·경로 엔트로피 측정
 - [ ] 밸런스 재조정
 - [ ] MUST_FIX 회귀 검증
@@ -88,8 +96,9 @@ M3 종료 기준: 한 세션이 시작→운행→적재→분기→하역→Com
 ## 현재 실행 순서
 
 ```text
-SX-DEC-015 Grill Me
-→ 후속 중요 Decision 재검증
+SX-DEC-015 PR merge·Sheet sync
+→ SX-DEC-016 온보딩 Grill Me
+→ 실패학습 Decision 필요성 재검증
 → G3P close
 → VS-03A
 → VS-03B

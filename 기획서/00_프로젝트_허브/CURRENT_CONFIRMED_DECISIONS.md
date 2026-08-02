@@ -9,6 +9,7 @@ Base v9.4 adoption: `539d2bae18d20e303649f047b9df69e8e224b2e7`
 Post-VS02 canonical recovery: `8245e22905d64e22b599fe009bbb660d005392ed`
 Post-VS02 Sheet closure: `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1`
 Total Planning Combo Decision: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
+Combo Sheet closure: `11c6914b0fdcfb946c85e303d05017a77b969e55`
 
 | Decision ID | 분야 | 현재 결정 | 근거 | 상태 |
 |---|---|---|---|---|
@@ -26,6 +27,7 @@ Total Planning Combo Decision: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
 | SX-DEC-012 | 기술 | Godot 4.7.1/GDScript, Android/Google Play, 가로형 화면을 초기 기술 기준으로 사용한다. | 프로젝트 기본값·PR #9 | CONFIRMED |
 | SX-DEC-013 | 분기 UX | 분기기의 기본 A노선은 가능한 경우 현재 진행 방향의 직진을 우선하며, 미리보기 첫 칸과 실제 다음 칸은 항상 일치해야 한다. | 사용자 권장안 일괄 승인·PR #9 | CONFIRMED |
 | SX-DEC-014 | 점수·피드백 | `Combo`는 한 번의 역 도착에서 stack top부터 연속 하역된 동일 화물 타입의 개수다. `max_combo`는 한 판의 최대 하역 그룹 크기이며, 빠른 연속 배송은 Combo가 아니라 별도 `speed_bonus` 시험 차원이다. | 사용자 권장안 승인 · EV-USER-002 | CONFIRMED |
+| SX-DEC-015 | 화물·화차 UX | 적재 화물 1개를 작은 토큰형 화차 1개로 표시하되 최대 8개 토큰 열은 약 2.25칸 이내로 압축하고, 생성 금지 점유는 압축 footprint만 사용한다. | 사용자 권장안 승인·토큰형 보정 · EV-USER-003 | CONFIRMED |
 
 ## 구현·검증 추적
 
@@ -43,12 +45,14 @@ Total Planning Combo Decision: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
 | SX-DEC-012 | IMPLEMENTED_BASELINE | PARTIAL | Godot 4.7.1 headless 6915 assertions | Android export·실기·성능 |
 | SX-DEC-013 | IMPLEMENTED | PASSED | PR #9·#12 / locked route·preview parity | 런타임 시각 검증 |
 | SX-DEC-014 | DOMAIN_SEMANTICS_CONFIRMED | NOT_STARTED | 사용자 승인 · 기존 `try_unload().count`가 입력 근거 | RunBalance 보상·HUD 피드백·`max_combo` 저장·telemetry |
+| SX-DEC-015 | PLANNING_SPEC_APPROVED | NOT_STARTED | `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md` | compact token ViewModel·fractional path follow·compressed occupancy·Android 가독성 |
 
 ## Evidence 원장
 
 | Evidence ID | 내용 | GitHub 증거 | 상태 |
 |---|---|---|---|
 | EV-USER-002 | Combo를 단일 역 도착의 동일 타입 연속 하역 개수로 확정하고 빠른 배송을 별도 `speed_bonus`로 분리 | 사용자 승인·PR #18 / `ca50538652c72cbb282d7818990e92a0dfe79c9a` | CONFIRMED_USER_DECISION |
+| EV-USER-003 | 화물 1개를 작은 토큰형 화차 1개로 표시하고 긴 열차로 인한 가시성 저하를 막도록 압축 표현 | 2026-08-02 사용자 권장안 승인·보정 | CONFIRMED_USER_DECISION |
 | EV-VS01-001 | Godot·RailGraph·분기 기반 | PR #9 / `801632949d28564528e38d83dac59cccc6f06fb2` | VALIDATED |
 | EV-VS02-001 | 기차·화차·화물·역·LIFO | PR #12 / `0738d9c10e431a43e7a2f34590369c3f17d1f8a5` | VALIDATED |
 | EV-VS02-FIX-001 | DeliveryLoop 안의 최소 화물 재생성 회복 | PR #13 / `4e435a1a6d10ab146197671049da80709fd18c1f` | VALIDATED |
@@ -66,19 +70,33 @@ Total Planning Combo Decision: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
 - 빈 역 도착이나 타입 불일치는 `combo_count = 0`, 점수·연료 보상 0이다.
 - HUD는 성공 하역 시 `COMBO ×N` 피드백을 표시하고 결과 화면은 `MAX COMBO`를 표시한다. 지속 표기 위치·시간은 VS-03B의 시각 시험값이다.
 
+## SX-DEC-015 파생 계약
+
+- `compact_wagon_token_count == cargo_stack.size()`이며 범위는 0~8이다.
+- 화물 0개에서는 기관차만 표시하고 빈 토큰 화차는 표시하지 않는다.
+- 기관차 쪽부터 뒤쪽까지의 토큰 순서는 stack bottom→top이며, 가장 뒤 토큰이 다음 LIFO 하역 대상이다.
+- 적재는 뒤에 토큰 1개를 추가하고 유효 하역은 뒤쪽의 동일 타입 연속 토큰 그룹을 제거한다.
+- 토큰은 색상+모양 이중 부호를 가진다.
+- 권장 시험값은 body 0.22칸, 중심 간격 0.28칸, 8개 최대 열 길이 2.18칸, trailing 점유 최대 3칸이다.
+- 화물 8개를 선로 8칸 점유로 해석하지 않는다. 생성 금지는 기관차와 압축 토큰 열이 실제로 교차하는 칸만 사용한다.
+- CargoStack 변경과 토큰 count/order·점유 갱신은 같은 도메인 단계에서 완료하며 모션 완료 신호는 권위를 갖지 않는다.
+- HUD Unload Order의 첫 항목은 가장 뒤 토큰·CargoStack top과 항상 일치해야 한다.
+- 세부 크기·간격은 `TEST_VALUE`이며, 8개 식별 가능·최대 trailing 3칸·경로 가독성 유지 조건 안에서 조정할 수 있다.
+
 ## 수치·기획 결정 규칙
 
-- 속도·연료·점수·보상·타이밍의 상세 수치는 사용자 지시에 따라 GPT 권장안으로 작성한다.
+- 속도·연료·점수·보상·타이밍·토큰 기하의 상세 수치는 사용자 지시에 따라 GPT 권장안으로 작성한다.
 - 해당 수치는 플레이테스트 전까지 `RECOMMENDED_DEFAULT` 또는 `TEST_VALUE`다.
 - 프로젝트 코어·대표 경험·주요 UX·콘텐츠 의미·실패와 보상 의미가 갈리는 선택은 Grill Me로만 확정한다.
 - 기존 승인 Decision을 기술 세부 질문으로 다시 묻지 않는다.
 
 ## 동기화 상태
 
-- GitHub latest synced main: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
+- GitHub latest synced main: `11c6914b0fdcfb946c85e303d05017a77b969e55`
 - Google Sheets: Adapter의 `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`
 - `SX-DEC-014`, `EV-USER-002`, `SX-AUD-004`: `SYNCED`
-- Sheet 12개 탭 readback: `PASS · 2026-08-02`
+- `SX-DEC-015`, `EV-USER-003`: `GITHUB_UPDATE_PENDING_SHEET`
+- Sheet 12개 탭 readback: `PASS · 2026-08-02` for `SX-DEC-014`
 - 제공된 `19Ff...` 시트는 다른 프로젝트이며 변경하지 않았다.
 
 ## 대체 관계
@@ -89,3 +107,4 @@ Total Planning Combo Decision: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
 - 15×15·14×9 맵 후보는 최종 15×10 기준으로 대체됨.
 - 좌표 순서에 의존하는 기본 분기안은 `SX-DEC-013`의 직진 우선 기본 노선으로 대체됨.
 - 연속 배송 streak를 Combo로 부르는 후보는 `SX-DEC-014`에 의해 제외되며 필요 시 별도 Delivery Chain Decision으로만 재도입한다.
+- 화물당 한 칸짜리 full-size wagon과 항상 표시되는 빈 8화차 후보는 `SX-DEC-015`의 compact token 방식으로 대체된다.
