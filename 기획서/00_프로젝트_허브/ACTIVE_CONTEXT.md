@@ -10,16 +10,16 @@
 - Base v9.4 AI 운영·UI 모션 계약은 PR #15에서 적용 완료.
 - Post-VS02 정본 복구는 PR #16 / `8245e22905d64e22b599fe009bbb660d005392ed`에서 완료.
 - Post-VS02 Sheet 종료는 PR #17 / `474bef445c2cf5e501bd7478e26a5b8d0dfe26f1`에서 완료.
+- `SX-DEC-014` Combo 결정은 PR #18 / `ca50538652c72cbb282d7818990e92a0dfe79c9a`에서 정본화됐다.
+- `SX-DEC-014`, `EV-USER-002`, `SX-AUD-004`는 실제 Switchy Express Sheet 12개 탭 재조회까지 `PASS · SYNCED`다.
 - 제품 구현 기준: `4e435a1a6d10ab146197671049da80709fd18c1f`.
 - Godot 검증: `9 cases / 6915 assertions / 0 failures`.
-- 실제 Switchy Express Google Sheets 12개 탭은 Post-VS02 기준 `SYNCED`.
 - 제공된 `19Ff...` 시트는 다른 프로젝트이며 변경하지 않았다.
 - Issue #5: CLOSED · COMPLETED.
 - Issue #6: OPEN · 다음 구현 후보.
 - 현재 Work Mode: `TOTAL_PLANNING · REVIEW`.
 - Codex 상태: `CODEX_NOT_READY`.
 - 현행 총기획 감사: `SX-AUD-004`.
-- `SX-DEC-014`: 사용자 승인·GitHub PR 반영 중·Sheet 동기화 대기.
 - 다음 Grill Me: `SX-DEC-015` 화물 수와 표시 화차 수·점유 관계.
 
 ## 구현된 범위
@@ -81,24 +81,22 @@
 ## 현재 총기획 작업
 
 ```text
-GitHub·Sheet 기준선 동기화 완료
-→ SX-AUD-004 Coverage·충돌 감사
-→ SAFE_PLANNING_FIXES 반영
-→ 중요 기획 충돌을 한 건씩 Grill Me
-→ 승인 Decision을 정본·Issue·Goal에 반영
-→ canonical merge commit으로 Sheet 동기화
-→ 다음 Decision 또는 Codex Definition of Ready
+SX-DEC-014 GitHub·Sheet SYNCED
+→ SX-DEC-015 화물–화차 관계 Grill Me
+→ 후속 온보딩·실패학습 Decision 필요성 재검증
+→ 승인 Decision 정본·Issue·Goal·Sheet 동기화
+→ Codex Definition of Ready
 ```
 
 상세 수치는 사용자 지시에 따라 GPT 권장 시험값으로 작성하되 `RECOMMENDED_DEFAULT / TEST_VALUE`로 표시한다. 플레이어 판타지, 대표 경험, 주요 UX, 실패·보상 의미, 범위를 바꾸는 충돌은 사용자 Decision 없이 확정하지 않는다.
 
 ## 다음 작업
 
-1. `SX-DEC-014` PR exact HEAD 검증·병합
-2. 같은 Decision·Evidence·commit을 Sheet에 반영·재조회
-3. `SX-DEC-015` 화물–화차 관계 Grill Me
-4. 이후 첫 세션 온보딩·실패 학습 정보의 Decision 필요성 재검증
-5. `PLANNING_AND_REVIEW_COMPLETE_GATE` 이후에만 Codex Build 인계
+1. `SX-DEC-015` 화물–화차 관계 Grill Me
+2. 승인 내용을 정본·Issue #6·Plan·VS-03 Goal·Sheet에 같은 ID로 반영
+3. 첫 세션 온보딩·실패 학습 정보가 별도 Decision인지 적대적으로 재검증
+4. 남은 필수 Decision이 0이면 `G3P`와 Codex Definition of Ready 판정
+5. Gate 통과 이후에만 Codex Build 인계
 
 ## 주요 위험
 
@@ -115,6 +113,7 @@ GitHub·Sheet 기준선 동기화 완료
 
 - Post-VS02 감사: `SX-AUD-003` · HISTORICAL
 - 현행 총기획 감사: `SX-AUD-004` · CURRENT
-- 새 사용자 Evidence: `EV-USER-002`
-- Post-VS02 Sheet 12개 탭 readback: `PASS · SYNCED`
-- `SX-DEC-014` Sheet 상태: `GITHUB_UPDATE_PENDING_SHEET`
+- 사용자 Evidence: `EV-USER-002`
+- `SX-DEC-014` canonical commit: `ca50538652c72cbb282d7818990e92a0dfe79c9a`
+- Sheet 12개 탭 readback: `PASS · SYNCED`
+- 다음 차단 Finding: `SX-AUD-004-F02`
