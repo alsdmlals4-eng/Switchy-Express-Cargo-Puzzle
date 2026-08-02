@@ -48,9 +48,10 @@ Older Decision plans remain behavior references. When their pseudocode, path, te
 
 ```yaml
 gmb001: CLOSED · SX-DEC-017~026
-dor_audit: SX-AUD-005 · PASS_WITH_PLANNING_FIXES
-codex: READY_FOR_BUILD_PENDING_CANONICAL_SYNC
-initial_package: VS03-01
+dor_audit: SX-AUD-005 · PASS · SYNCED
+dor_merge: 82fd3eeb1915e6ceedb2f5330b27e903064d6eb5
+codex: READY_FOR_BUILD
+initial_package: VS03-01_ONLY
 product_implementation: NOT_STARTED
 F58: NOT_MET
 ```
@@ -77,13 +78,13 @@ Do not use nonexistent `tests/run_single.gd`, unsupported `--suite`, `func run(t
 ## Execution Packages
 
 ```text
-VS03-01 run lifecycle/economy/difficulty
-→ VS03-02 compact footprint/DeliveryLoop seam
-→ VS03-03 target3 maps/session/restart/selection
-→ VS03-04 Profile transaction/records/cosmetics/unlocks/rewards
-→ VS03-05 product scene/camera/HUD/result/browsers
-→ VS03-06 contextual onboarding
-→ VS03-07 integration/evidence handoff
+VS03-01 run lifecycle/economy/difficulty · READY_FOR_BUILD
+→ VS03-02 compact footprint/DeliveryLoop seam · BLOCKED
+→ VS03-03 target3 maps/session/restart/selection · BLOCKED
+→ VS03-04 Profile transaction/records/cosmetics/unlocks/rewards · BLOCKED
+→ VS03-05 product scene/camera/HUD/result/browsers · BLOCKED
+→ VS03-06 contextual onboarding · BLOCKED
+→ VS03-07 integration/evidence handoff · BLOCKED
 ```
 
 Rules:
@@ -93,6 +94,7 @@ Rules:
 - only touch package-owned files unless the PR documents a necessary narrow adapter
 - run full regression after each boundary connection
 - no package may claim Android/human/online evidence
+- `READY_FOR_BUILD` applies to VS03-01 only until it merges
 
 ## Architecture Boundaries
 
