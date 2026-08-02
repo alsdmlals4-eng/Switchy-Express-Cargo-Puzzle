@@ -46,10 +46,10 @@ func run() -> void:
 
 	var committed_events: Array = []
 	var observed_run_times: Array[float] = []
-	controller.difficulty_committed.connect(func(event: Variant) -> void:
+	var on_difficulty_committed := func(event: Variant) -> void:
 		committed_events.append(event)
 		observed_run_times.append(controller.run_state().elapsed_seconds())
-	)
+	controller.difficulty_committed.connect(on_difficulty_committed)
 	controller.configure(
 		FakeTrain.new(),
 		FakeDeliveryLoop.new(),
@@ -70,3 +70,4 @@ func run() -> void:
 	controller.advance_time(30.0)
 	assert_equal(committed_events.size(), 2, "each later boundary must emit exactly one event")
 	assert_almost_equal(observed_run_times[1], 60.0, 0.0001, "later commit signals must preserve cross-authority time consistency")
+	controller.difficulty_committed.disconnect(on_difficulty_committed)
