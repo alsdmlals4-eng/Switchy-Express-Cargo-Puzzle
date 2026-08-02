@@ -563,7 +563,7 @@ git commit -m "feat: add view-only locomotive cosmetic"
 **Files:**
 - Create: `game/ui/collection_panel.tscn`
 - Create: `game/ui/collection_panel.gd`
-- Create: `game/cosmetics/cosmetic_view_model.gd`
+- Modify: `game/cosmetics/cosmetic_view_model.gd`
 - Test: `tests/ui/test_collection_panel_state.gd`
 
 **Interfaces:**
