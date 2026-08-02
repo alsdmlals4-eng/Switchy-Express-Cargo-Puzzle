@@ -6,7 +6,7 @@ baseline_main: 993c3ed1aaee172be52a8a8899685b419f7f6d97
 branch: batch/gmb-001
 draft_pr: 29
 batch_size: 10
-approved_count: 5/10
+approved_count: 6/10
 status: IN_PROGRESS · APPROVED_PENDING_BATCH_MERGE
 canonical_main_sync: NOT_YET_MERGED
 sheet_state: APPROVED_PENDING_BATCH_MERGE
@@ -16,42 +16,31 @@ codex_state: CODEX_NOT_READY
 ## 운영 경계
 
 - 이 원장은 `SX-OPS-001`에 따른 첫 정규 Grill Me 배치의 branch authority다.
-- 승인된 Decision은 이 branch와 Draft PR, 올바른 Google Sheet에 즉시 기록한다.
+- 승인된 Decision은 동일 Decision ID로 branch·Draft PR·Issue·올바른 Google Sheet에 즉시 기록한다.
 - 10/10 전에는 main에 병합하거나 `SYNCED`로 표시하지 않는다.
-- 10번째 승인 후 새 Decision을 멈추고 GitHub·PR·Issue·정본·Registry·Sheet 12탭 적대적 전수감사를 수행한다.
+- 10번째 승인 뒤 새 Decision을 동결하고 GitHub·PR·Issue·정본·Registry·Sheet 12탭 적대적 전수감사를 수행한다.
 - 제품 코드·Scene·Resource·asset은 별도 구현 승인과 `READY_FOR_BUILD` 전에는 변경하지 않는다.
 
 ## Batch Inventory
 
 | Slot | Decision | Evidence | 요약 | 상태 | 책임 정본 |
 |---:|---|---|---|---|---|
-| 1 | `SX-DEC-017` | `EV-USER-006` | 결과 화면에 검증된 실패 원인 1개와 다음 행동 1개를 표시하고, 불확실하면 중립 fallback 사용 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-result-failure-feedback-design.md` |
-| 2 | `SX-DEC-018` | `EV-USER-007` | 최초 준비 화면은 기관차 주변을 약간 확대하고 START 뒤 run 시작 전에 전체 맵으로 복귀하며 실제 운행은 고정 전체 맵 유지 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-preparation-zoom-full-map-camera-design.md` |
-| 3 | `SX-DEC-019` | `EV-USER-008` | 영구 진행은 표준 개인 기록과 성능 없는 꾸미기 해금·장착만 허용하며 기능 성장은 금지 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-records-cosmetic-only-progression-design.md` |
-| 4 | `SX-DEC-020` | `EV-USER-009` | 목표형 꾸미기는 목표 달성 또는 재화 구매로 해금하고 일부 꾸미기는 재화 전용으로 배치 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-goal-or-currency-cosmetic-unlocks-design.md` |
-| 5 | `SX-DEC-021` | `EV-USER-010` | 유효 run 기본 보상에 배송·Combo·신기록 bounded 보너스를 더하고 무조작·assist·중복 지급을 차단 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-bounded-run-cosmetic-currency-rewards-design.md` |
-| 6 | — | — | — | OPEN | — |
+| 1 | `SX-DEC-017` | `EV-USER-006` | 결과에 검증된 실패 원인 1개와 다음 행동 1개, 불확실하면 중립 fallback | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-result-failure-feedback-design.md` |
+| 2 | `SX-DEC-018` | `EV-USER-007` | 최초 PREP 약한 확대, START 뒤 전체 맵 복귀, active run 고정 전체 맵 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-preparation-zoom-full-map-camera-design.md` |
+| 3 | `SX-DEC-019` | `EV-USER-008` | 표준 개인 기록과 성능 없는 cosmetic-only 영구 진행 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-records-cosmetic-only-progression-design.md` |
+| 4 | `SX-DEC-020` | `EV-USER-009` | DEFAULT·DUAL_PATH·CURRENCY_ONLY 해금, 목표 또는 재화 경로 분리 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-goal-or-currency-cosmetic-unlocks-design.md` |
+| 5 | `SX-DEC-021` | `EV-USER-010` | 유효 run 기본 재화와 배송·Combo·신기록 bounded 보너스 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-bounded-run-cosmetic-currency-rewards-design.md` |
+| 6 | `SX-DEC-022` | `EV-USER-011` | 난이도 상승 전 짧은 경고와 3단계 지속 신호, 정확한 내부 공식은 비공개 | APPROVED_PENDING_BATCH_MERGE | `docs/superpowers/specs/2026-08-02-difficulty-escalation-communication-design.md` |
 | 7 | — | — | — | OPEN | — |
 | 8 | — | — | — | OPEN | — |
 | 9 | — | — | — | OPEN | — |
 | 10 | — | — | — | OPEN | — |
 
+---
+
 ## SX-DEC-017 — 결과 화면 실패 학습
 
-### 사용자 승인
-
-사용자는 2026-08-02 Grill Me에서 권장안 A를 승인했다.
-
-### 결정
-
-```text
-연료 0 결과 화면은 기본 기록을 유지한 채,
-실제 run telemetry로 뒷받침되는 핵심 실패 원인 1개와
-다음 판에서 실행할 행동 1개를 표시한다.
-원인 신뢰도가 부족하거나 후보가 비슷하면 중립 fallback을 사용한다.
-```
-
-### Evidence
+### 사용자 승인·Evidence
 
 ```yaml
 evidence_id: EV-USER-006
@@ -60,19 +49,20 @@ source: 2026-08-02 conversation · recommended option A approved
 status: RECORDED_IN_BATCH_BRANCH
 ```
 
-### 파생 계약
+### 결정
 
-- 결과 핵심 기록: score, survival time, max_combo, new record.
-- insight card: cause 1줄 + action 1줄.
+연료 0 결과 화면은 score·survival time·max Combo·new record를 유지하고, 실제 run telemetry로 뒷받침되는 핵심 실패 원인 1개와 다음 run 행동 1개를 표시한다. 근거가 약하거나 후보가 비슷하면 `NEUTRAL` fallback을 사용한다.
+
+### 보호 계약
+
+- 원인 분석은 immutable `RunSummary`를 읽는 deterministic analyzer가 담당한다.
+- UI·animation은 원인 계산·저장·게임오버·reward·restart 권위가 아니다.
+- 문구는 비난 대신 관측 상태와 행동 제안을 분리한다.
+- assisted first run은 일반 밸런스·원인 evidence와 분리한다.
 - RESTART는 primary action이다.
-- 원인 판정은 immutable RunSummary를 읽는 deterministic analyzer가 담당한다.
-- UI·animation은 원인 계산·저장·게임오버·재시작 권위가 아니다.
-- 후보가 약하거나 동률이면 `NEUTRAL` fallback.
-- 문구는 비난 대신 관측 상태와 다음 행동을 분리한다.
-- first-run assist 판은 `assisted_first_run`으로 일반 밸런스 증거와 분리한다.
-- 원인 threshold는 `TEST_VALUE`이며 사용자 확정 영구 수치가 아니다.
+- cause threshold·confidence·margin은 `TEST_VALUE`다.
 
-### 권장 1차 cause code
+### 1차 cause code
 
 ```text
 BOOST_OVERUSE
@@ -82,40 +72,17 @@ ROUTE_MISMATCH_LOOP
 NEUTRAL
 ```
 
-### 구현·검증 상태
-
-```yaml
-planning_spec: APPROVED
-implementation: NOT_STARTED
-automated_tests: NOT_RUN
-android: NOT_RUN
-human_validation: NOT_RUN
-```
-
-### 책임 문서
+### 책임 문서·상태
 
 - 설계: `docs/superpowers/specs/2026-08-02-result-failure-feedback-design.md`
 - TDD 계획: `docs/superpowers/plans/2026-08-02-result-failure-feedback.md`
-- 구현 목표 소비자: `기획서/00_프로젝트_허브/EXECUTABLE_PROMPTS/CODEX_GOAL_VS_03.md` — 10/10 사전감사에서 최종 전파
-- 표현 소비자: `기획서/40_표현/VISUAL_DIRECTION.md` — 10/10 사전감사에서 최종 전파
-- 검증 소비자: `기획서/50_제작_검증/PLAYTEST_PLAN.md` — 10/10 사전감사에서 최종 전파
+- 구현·자동화·Android·사람 검증: `NOT_STARTED / NOT_RUN`
+
+---
 
 ## SX-DEC-018 — 준비 확대 + 실제 운행 전체 맵 고정
 
-### 사용자 승인
-
-사용자는 2026-08-02 Grill Me에서 A안인 전체 맵 고정을 선택하고, 준비 단계·게임 시작 시에는 조금 더 확대해서 보도록 보정했다.
-
-### 결정
-
-```text
-최초 PREP/READY 화면에서는 기관차와 출발 주변을 약간 확대한다.
-START 입력 뒤 simulation·fuel·difficulty·spawn progression을 시작하기 전에
-카메라를 전체 15×10 맵 framing으로 복귀시킨다.
-FULL_MAP_READY 뒤 실제 운행을 시작하며 ACTIVE_RUN 동안 카메라는 고정 전체 맵을 유지한다.
-```
-
-### Evidence
+### 사용자 승인·Evidence
 
 ```yaml
 evidence_id: EV-USER-007
@@ -124,53 +91,30 @@ source: 2026-08-02 conversation · option A refined with preparation/start zoom
 status: RECORDED_IN_BATCH_BRANCH
 ```
 
-### 파생 계약
+### 결정
 
-- PREP magnification 권장 baseline은 full-map 대비 `1.20× TEST_VALUE`다.
-- START→FULL_MAP transition 권장 baseline은 `0.75초 TEST_VALUE`다.
-- 전환 중 fuel·timer·difficulty·spawn·board input·onboarding assist timer는 진행하지 않는다.
-- FULL_MAP_READY와 run start는 preparation generation마다 정확히 한 번만 확정한다.
-- 실제 운행 중 열차 추적·자동 줌·화면 회전·상황형 확대 창은 사용하지 않는다.
-- FIRST_LOAD·FIRST_SWITCH 온보딩은 카메라 이동 대신 외곽선·아이콘·경로 강조를 사용한다.
-- Reduced Motion은 즉시 전체 맵 cut을 사용한다.
-- 즉시 RESTART는 재도전 속도를 위해 준비 확대를 반복하지 않고 전체 맵으로 복귀하는 것을 권장 기본값으로 둔다.
-- Camera2D·Tween·animation은 run·점수·연료·분기·spawn·온보딩 권위가 아니다.
+최초 PREP/READY에서는 기관차와 출발 주변을 약간 확대한다. START 입력 뒤 simulation·fuel·timer·difficulty·spawn·board input을 시작하기 전에 전체 15×10 맵으로 복귀하고, `FULL_MAP_READY` 뒤 authoritative run을 시작한다. active run은 고정 전체 맵이다.
 
-### 구현·검증 상태
+### 보호 계약
 
-```yaml
-planning_spec: APPROVED
-implementation: NOT_STARTED
-automated_tests: NOT_RUN
-android: NOT_RUN
-human_validation: NOT_RUN
-```
+- PREP baseline `1.20×`, transition `0.75s`는 `TEST_VALUE`다.
+- 실제 운행 중 추적·자동 줌·회전·free pan·context inset은 없다.
+- Reduced Motion은 즉시 full-map cut을 사용한다.
+- 즉시 RESTART는 준비 확대를 반복하지 않고 full-map direct를 기본으로 한다.
+- Camera2D·Tween·animation은 run·fuel·spawn·route·onboarding 권위가 아니다.
+- generation-safe readiness와 synchronous fallback으로 interruption deadlock을 방지한다.
 
-### 책임 문서
+### 책임 문서·상태
 
 - 설계: `docs/superpowers/specs/2026-08-02-preparation-zoom-full-map-camera-design.md`
 - TDD 계획: `docs/superpowers/plans/2026-08-02-preparation-zoom-full-map-camera.md`
-- 구현 목표 소비자: `기획서/00_프로젝트_허브/EXECUTABLE_PROMPTS/CODEX_GOAL_VS_03.md` — 10/10 사전감사에서 최종 전파
-- 표현 소비자: `기획서/40_표현/VISUAL_DIRECTION.md` — 10/10 사전감사에서 최종 전파
-- 온보딩 소비자: `docs/superpowers/specs/2026-08-02-first-session-contextual-onboarding-design.md` — 10/10 사전감사에서 최종 전파
-- 검증 소비자: `기획서/50_제작_검증/PLAYTEST_PLAN.md` — 10/10 사전감사에서 최종 전파
+- 구현·자동화·Android·사람 검증: `NOT_STARTED / NOT_RUN`
+
+---
 
 ## SX-DEC-019 — 표준 기록 + cosmetic-only 영구 진행
 
-### 사용자 승인
-
-사용자는 2026-08-02 Grill Me에서 A안의 순수 기록 경쟁과 B안의 성능 없는 꾸미기 수집을 결합한 `A+B`를 승인했다.
-
-### 결정
-
-```text
-run 밖 영구 진행은 표준 개인 기록과 꾸미기 해금·장착으로 제한한다.
-모든 표준 run은 같은 속도·연료·적재·점수·BOOST·맵·충돌 규칙을 사용한다.
-꾸미기는 외형·소리·연출만 변경하며 어떤 gameplay 수치와 기록 자격도 변경하지 않는다.
-first-run assist 판은 표준 경쟁 기록을 덮어쓰지 않는다.
-```
-
-### Evidence
+### 사용자 승인·Evidence
 
 ```yaml
 evidence_id: EV-USER-008
@@ -179,56 +123,31 @@ source: 2026-08-02 conversation · hybrid A+B approved
 status: RECORDED_IN_BATCH_BRANCH
 ```
 
-### 파생 계약
+### 결정
+
+run 밖 영구 진행은 표준 개인 기록과 꾸미기 해금·장착으로 제한한다. 모든 표준 run은 동일한 속도·연료·적재·점수·BOOST·맵·충돌 규칙을 사용하며, 꾸미기는 외형·소리·연출만 바꾼다.
+
+### 보호 계약
 
 - 표준 기록: `best_score`, `longest_survival_seconds`, `best_max_combo`.
-- 최소 권위는 로컬 개인 기록이며 온라인 리더보드는 이번 범위가 아니다.
 - assisted first run, ruleset mismatch, integrity invalid run은 표준 기록 비적격이다.
-- cosmetic category는 기관차, 기관사 의상, 역·맵 테마, 기적음·배기, cargo token 스킨으로 확장 가능하다.
-- CosmeticDefinition에는 gameplay modifier field를 두지 않는다.
-- cosmetic 장착 전후 speed·fuel·score·capacity·collision·footprint·seed·record eligibility는 동일해야 한다.
-- token 스킨은 색상+모양 의미와 rear/HUD parity를 유지한다.
-- 테마·파티클·기적음은 P0/P1 시각·오디오 신호를 가리지 않는다.
-- 누락·삭제·호환 불가 cosmetic ID는 category 기본값으로 fallback한다.
-- Vertical Slice는 기록 저장과 대표 기관차 스킨 1종만 검증하며 상점·통화·시즌은 만들지 않는다.
-- 꾸미기 획득 방식·가격·희귀도·유료 판매·광고 보상은 아직 미확정이다.
+- `CosmeticDefinition`에는 gameplay modifier field가 없다.
+- equip 전후 speed·fuel·score·capacity·collision·footprint·seed·record eligibility parity를 유지한다.
+- token 스킨은 색상+모양과 rear/HUD 의미를 보존한다.
+- 누락·삭제 cosmetic ID는 category default로 fallback한다.
+- Vertical Slice는 기록 저장과 대표 기관차 스킨 1종만 검증한다.
 
-### 구현·검증 상태
-
-```yaml
-planning_spec: APPROVED
-implementation: NOT_STARTED
-automated_tests: NOT_RUN
-android: NOT_RUN
-human_validation: NOT_RUN
-```
-
-### 책임 문서
+### 책임 문서·상태
 
 - 설계: `docs/superpowers/specs/2026-08-02-records-cosmetic-only-progression-design.md`
 - TDD 계획: `docs/superpowers/plans/2026-08-02-records-cosmetic-only-progression.md`
-- 시스템 소비자: `기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md` — 10/10 사전감사에서 최종 전파
-- 표현 소비자: `기획서/40_표현/VISUAL_DIRECTION.md` — 10/10 사전감사에서 최종 전파
-- 구현 목표 소비자: `기획서/00_프로젝트_허브/EXECUTABLE_PROMPTS/CODEX_GOAL_VS_03.md` — 10/10 사전감사에서 최종 전파
-- 검증 소비자: `기획서/50_제작_검증/PLAYTEST_PLAN.md` — 10/10 사전감사에서 최종 전파
+- 구현·자동화·asset·Android·사람 검증: `NOT_STARTED / NOT_RUN`
+
+---
 
 ## SX-DEC-020 — 목표 또는 재화 해금 + 재화 전용 배치
 
-### 사용자 승인
-
-사용자는 2026-08-02 Grill Me에서 A안과 C안을 결합해, 목표 달성 시 해금되지만 목표를 달성하지 않아도 재화로 대체 해금할 수 있게 하고 재화로만 해금 가능한 꾸미기도 배치하도록 승인했다.
-
-### 결정
-
-```text
-꾸미기 해금 유형은 DEFAULT, DUAL_PATH, CURRENCY_ONLY로 분리한다.
-DUAL_PATH 꾸미기는 목표 달성 또는 꾸미기 전용 재화 구매 중 하나로 해금한다.
-CURRENCY_ONLY 꾸미기는 목표 경로 없이 재화 구매로만 해금한다.
-재화 구매는 목표 완료·업적 표식을 대신하지 않으며,
-구매 뒤 실제 목표를 달성하면 중복 소유 대신 1회 대체 보상을 지급한다.
-```
-
-### Evidence
+### 사용자 승인·Evidence
 
 ```yaml
 evidence_id: EV-USER-009
@@ -237,24 +156,22 @@ source: 2026-08-02 conversation · hybrid A+C with currency-only placement appro
 status: RECORDED_IN_BATCH_BRANCH
 ```
 
-### 파생 계약
+### 결정
 
-- `GOAL_ONLY` 유형은 두지 않는다. 목표형 꾸미기에도 재화 대체 경로를 제공한다.
+꾸미기 해금 유형은 `DEFAULT`, `DUAL_PATH`, `CURRENCY_ONLY`다. DUAL_PATH는 eligible goal 완료 또는 꾸미기 재화 구매로 해금하며, CURRENCY_ONLY는 재화로만 해금한다. 구매는 목표 완료·업적 표식을 대신하지 않는다.
+
+### 보호 계약
+
 - DEFAULT는 항상 보유하며 가격·목표가 없다.
 - DUAL_PATH는 non-empty goal ID와 양수 가격을 가진다.
 - CURRENCY_ONLY는 goal ID가 없고 양수 가격을 가진다.
-- 구매로 해금해도 목표 진행·완료 상태는 변경하지 않는다.
-- 구매 후 목표 달성 시 목표 완료 기록은 남기고, 소유권 대신 bounded 1회 compensation을 지급한다.
+- 구매 후 실제 goal 완료 시 goal 기록을 남기고 bounded 1회 compensation만 지급한다.
 - compensation은 item 가격 이하 `TEST_VALUE`다.
 - goal evidence는 completed, non-assisted, current ruleset, integrity VALID run만 사용한다.
-- 재화 차감과 해금은 동일 transaction에서 atomic·idempotent하게 처리한다.
-- 동일 transaction/event를 재처리해도 추가 차감·진행·보상이 없다.
-- 재화 전용 꾸미기는 성능·충돌·정보 가독성 우위를 제공하지 않는다.
-- 실제 화폐·광고·시즌·loot box·기간 한정 FOMO는 별도 승인 전까지 금지한다.
-- 일반 run 재화 획득 공식은 `SX-DEC-021`에서 별도 확정한다.
-- 가격·compensation·대표 목표 threshold는 모두 `TEST_VALUE`다.
+- debit+unlock과 compensation은 atomic·idempotent transaction이다.
+- real money·ads·season·loot box·limited FOMO는 별도 승인 전 금지한다.
 
-### Vertical Slice 대표 배치
+### 대표 fixture
 
 ```text
 locomotive.default         → DEFAULT
@@ -262,44 +179,17 @@ locomotive.goal_sample     → DUAL_PATH
 locomotive.currency_sample → CURRENCY_ONLY
 ```
 
-대표 ID·가격·목표는 구현 fixture이며 최종 콘텐츠·경제 승인값이 아니다.
-
-### 구현·검증 상태
-
-```yaml
-planning_spec: APPROVED
-implementation: NOT_STARTED
-automated_tests: NOT_RUN
-android: NOT_RUN
-human_validation: NOT_RUN
-```
-
-### 책임 문서
+### 책임 문서·상태
 
 - 설계: `docs/superpowers/specs/2026-08-02-goal-or-currency-cosmetic-unlocks-design.md`
 - TDD 계획: `docs/superpowers/plans/2026-08-02-goal-or-currency-cosmetic-unlocks.md`
-- 기반 설계: `docs/superpowers/specs/2026-08-02-records-cosmetic-only-progression-design.md`
-- 시스템 소비자: `기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md` — 10/10 사전감사에서 최종 전파
-- 표현 소비자: `기획서/40_표현/VISUAL_DIRECTION.md` — 10/10 사전감사에서 최종 전파
-- 구현 목표 소비자: `기획서/00_프로젝트_허브/EXECUTABLE_PROMPTS/CODEX_GOAL_VS_03.md` — 10/10 사전감사에서 최종 전파
-- 검증 소비자: `기획서/50_제작_검증/PLAYTEST_PLAN.md` — 10/10 사전감사에서 최종 전파
+- 구현·자동화·Profile·Android·사람 검증: `NOT_STARTED / NOT_RUN`
+
+---
 
 ## SX-DEC-021 — bounded run 꾸미기 재화 보상
 
-### 사용자 승인
-
-사용자는 2026-08-02 Grill Me에서 권장안 C인 `유효 run 기본 보상 + 상한 있는 성과 보너스`를 승인했다.
-
-### 결정
-
-```text
-완료·무결성·ruleset 자격을 통과하고 성공 배송이 1회 이상인 일반 run에는 기본 재화를 지급한다.
-성공 배송, 최고 Combo 단계, authoritative 표준 신기록에 bounded 보너스를 더한다.
-생존 시간과 raw score에는 직접 비례 보상을 주지 않으며 run 총액 상한을 적용한다.
-first-run assist는 일반 계산에서 제외하고 실제 온보딩 완료 시 1회 고정 입문 보상만 허용한다.
-```
-
-### Evidence
+### 사용자 승인·Evidence
 
 ```yaml
 evidence_id: EV-USER-010
@@ -308,22 +198,11 @@ source: 2026-08-02 conversation · recommended option C approved
 status: RECORDED_IN_BATCH_BRANCH
 ```
 
-### 파생 계약
+### 결정
 
-- 일반 reward 자격: completed, current ruleset, integrity VALID, non-debug, non-assisted, successful deliveries >=1.
-- 생존 시간·raw score는 직접 reward component가 아니다.
-- 초기 `TEST_VALUE`: base 10, delivery +2 each cap 10, Combo highest tier 3→2/5→5/8→8, any new standard record +5 once, run cap 30.
-- 여러 표준 기록이 한 run에서 갱신돼도 record bonus는 run당 1회다.
-- Combo tier는 누적 합산하지 않고 가장 높은 단계 하나만 지급한다.
-- first-run assist의 일반 reward는 0이며, 실제 온보딩 완료+배송 1회 시 intro grant 10 `TEST_VALUE`를 Profile당 1회만 지급한다.
-- reward event ID는 stable하고 balance+journal과 함께 atomic·idempotent하게 commit한다.
-- record bonus는 UI flag가 아니라 authoritative `RecordCommitResult`를 사용한다.
-- ResultPanel은 commit된 receipt만 표시하고 RESTART primary를 유지한다.
-- save 실패는 잔액과 journal을 함께 rollback하며 같은 event ID 재시도를 허용한다.
-- 가격·시간당 획득 목표·최종 경제 속도는 telemetry와 대표 가격 대조 전까지 `TEST_VALUE`다.
-- 실제 화폐·광고·일일 임무·시즌·gacha·온라인 sync는 별도 승인 전까지 범위 밖이다.
+completed·current ruleset·integrity VALID·non-debug·non-assisted이고 성공 배송이 1회 이상인 일반 run에 기본 재화를 지급한다. 성공 배송, 최고 Combo 단계, authoritative 표준 신기록에 bounded 보너스를 더하며 생존 시간과 raw score에는 직접 비례 보상을 주지 않는다.
 
-### Formula v1 TEST_VALUE
+### Formula v1 `TEST_VALUE`
 
 ```yaml
 base_reward: 10
@@ -339,61 +218,138 @@ run_total_cap: 30
 onboarding_intro_grant: 10
 ```
 
-### 구현·검증 상태
+### 보호 계약
 
-```yaml
-planning_spec: APPROVED
-implementation: NOT_STARTED
-automated_tests: NOT_RUN
-android: NOT_RUN
-human_validation: NOT_RUN
-economy_simulation: NOT_RUN
-```
+- 여러 기록이 갱신돼도 record bonus는 run당 한 번이다.
+- Combo tier는 합산하지 않고 최고 단계 하나만 지급한다.
+- assisted first run의 variable reward는 0이다.
+- 실제 onboarding 완료+배송 1회 시 intro grant를 Profile당 한 번만 지급한다.
+- reward event ID와 balance+journal은 atomic·idempotent하게 commit한다.
+- record bonus는 UI가 아닌 authoritative `RecordCommitResult`를 사용한다.
+- ResultPanel은 committed receipt만 표시하고 RESTART primary를 유지한다.
+- 가격·시간당 획득·최종 경제 속도는 `TEST_VALUE`다.
 
-### 책임 문서
+### 책임 문서·상태
 
 - 설계: `docs/superpowers/specs/2026-08-02-bounded-run-cosmetic-currency-rewards-design.md`
 - TDD 계획: `docs/superpowers/plans/2026-08-02-bounded-run-cosmetic-currency-rewards.md`
-- 기반 설계: `docs/superpowers/specs/2026-08-02-goal-or-currency-cosmetic-unlocks-design.md`
-- 시스템 소비자: `기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md` — 10/10 사전감사에서 최종 전파
-- 결과 표현 소비자: `docs/superpowers/specs/2026-08-02-result-failure-feedback-design.md` — 10/10 사전감사에서 최종 전파
-- 구현 목표 소비자: `기획서/00_프로젝트_허브/EXECUTABLE_PROMPTS/CODEX_GOAL_VS_03.md` — 10/10 사전감사에서 최종 전파
-- 검증 소비자: `기획서/50_제작_검증/PLAYTEST_PLAN.md` — 10/10 사전감사에서 최종 전파
+- 구현·자동화·Profile·경제 simulation·Android·사람 검증: `NOT_STARTED / NOT_RUN`
+
+---
+
+## SX-DEC-022 — 난이도 상승 사전 경고 + 지속 신호
+
+### 사용자 승인·Evidence
+
+```yaml
+evidence_id: EV-USER-011
+evidence_type: CONFIRMED_USER_DECISION
+source: 2026-08-02 conversation · recommended option C approved
+status: RECORDED_IN_BATCH_BRANCH
+```
+
+### 결정
+
+운행 중 난이도 상승은 정확한 내부 수치와 공식을 상시 공개하지 않는다. authoritative 난이도 시스템이 예정한 의미 있는 상승 직전에 짧은 경고를 표시하고, 상승 후에는 현재 운행 압력을 3단계 persistent indicator로 유지한다.
+
+```text
+DifficultyDirector forecast
+→ short prewarning
+→ authoritative DifficultyStepCommitted
+→ persistent band update
+```
+
+### Initial `TEST_VALUE`
+
+```yaml
+prewarning_lead_seconds: 5.0
+prewarning_allowed_range_seconds: 3.0-7.0
+banner_visible_seconds: 1.5
+banner_allowed_range_seconds: 1.0-2.0
+banner_cooldown_seconds: 8.0
+persistent_bands:
+  CALM: steps 0-1
+  BUSY: steps 2-3
+  INTENSE: steps 4+
+```
+
+### 보호 계약
+
+- `DifficultyDirector` 또는 기존 authoritative 동등체만 schedule·step commit을 소유한다.
+- presentation은 immutable forecast와 committed event만 읽고 난이도를 advance·delay·skip·reroll하지 않는다.
+- 경고는 최대 2줄이며 exact step·spawn interval·배율·임계 시각을 기본 HUD에 표시하지 않는다.
+- cooldown 중 banner를 stack하지 않고 latest committed step만 coalesce한다.
+- persistent indicator는 committed event마다 최신 band로 즉시 갱신한다.
+- forecast가 누락돼도 committed event readback으로 indicator를 복구하고 generic fallback을 사용할 수 있다.
+- warning은 simulation을 pause하거나 board input을 잠그지 않는다.
+- first-run assist와 onboarding safe pause 중 authoritative escalation과 warning timer를 모두 pause한다.
+- assist 종료 시 fresh forecast를 읽고 보류 시간을 catch-up하지 않는다.
+- manual pause 중 authoritative countdown·banner·cooldown이 함께 멈춘다.
+- restart는 새 run generation을 발급하고 pending/coalesced/Tween callback을 동기적으로 폐기한다.
+- suspend/resume은 wall-clock catch-up을 사용하지 않는다.
+- 같은 seed·ruleset·입력은 warning enabled/disabled/Reduced Motion과 무관하게 같은 simulation hash와 commit sequence를 만든다.
+- persistent band는 텍스트+형태+채움으로 표현하며 색상에만 의존하지 않는다.
+- Reduced Motion은 움직임을 제거하되 copy·band·timing 의미를 보존한다.
+- mute에서도 완전한 정보가 남고 Vertical Slice 기본 haptic은 없다.
+- banner는 rail·station·switch·cargo token·fuel warning·rear LIFO 정보를 가리지 않는 reserved HUD lane에 둔다.
+- 모든 threshold·timing·band mapping은 `TEST_VALUE`다.
+
+### 책임 문서·상태
+
+- 설계: `docs/superpowers/specs/2026-08-02-difficulty-escalation-communication-design.md`
+- TDD 계획: `docs/superpowers/plans/2026-08-02-difficulty-escalation-communication.md`
+- 기반 계약: first-session onboarding, preparation camera, result feedback specs
+- 구현·자동화·telemetry·localization·Android·사람 검증: `NOT_STARTED / NOT_RUN`
+
+---
 
 ## Adversarial Findings
 
 | Finding ID | 유형 | 문제 | 처리 |
 |---|---|---|---|
-| `SX-AUD-004-F26` | CAUSALITY_OVERCLAIM_RISK | 상관관계 지표를 단일 실패 원인으로 단정할 위험 | 우세 score·margin 기준 미달 시 neutral fallback |
-| `SX-AUD-004-F27` | PLAYER_BLAME_RISK | 결과 문구가 플레이어 비난으로 느껴질 위험 | 관측 상태+행동 제안 문장 원칙, 5명+ human validation |
-| `SX-AUD-004-F28` | AUTHORITY_RISK | ResultPanel이 기록·종료·재시작 또는 원인 계산을 소유할 위험 | RunSummary→Analyzer→ViewModel→View 단방향 계약 |
-| `SX-AUD-004-F29` | EVIDENCE_CONTAMINATION | assisted first run이 일반 원인·밸런스 분포를 오염할 위험 | `assisted_first_run` 분석 분리 |
-| `SX-AUD-004-F30` | RESULT_DENSITY_RISK | 여러 원인·그래프가 모바일 재시작 흐름을 늦출 위험 | 기본 cause 1+action 1, optional details만 secondary |
-| `SX-AUD-004-F31` | FAIRNESS_RISK | 전체 맵 전환 중 fuel·timer·spawn이 진행되면 첫 선택 전에 손해가 발생 | FULL_MAP_READY 전 모든 run progression 정지 |
-| `SX-AUD-004-F32` | ORIENTATION_RISK | 준비 확대가 과하면 첫 pickup·출발 경로·가까운 분기 관계를 숨김 | 1.15×~1.25× TEST_VALUE와 필수 포함 요소 검증 |
-| `SX-AUD-004-F33` | INPUT_MAPPING_RISK | zoom transition 중 board tap이 잘못된 world target으로 변환될 위험 | transition 중 board input lock, FULL_MAP 후 좌표 parity 테스트 |
-| `SX-AUD-004-F34` | RETRY_FRICTION_MOTION_RISK | 매 재시작마다 줌 연출을 반복하면 재도전 속도 저하·멀미 가능 | 즉시 RESTART는 full-map direct 기본, Reduced Motion 즉시 cut |
-| `SX-AUD-004-F35` | INTERRUPTION_AUTHORITY_RISK | Tween 완료를 유일한 시작 조건으로 사용하면 suspend·skip·오류에서 deadlock | generation-safe idempotent state와 synchronous full-map fallback |
-| `SX-AUD-004-F36` | HIDDEN_POWER_LEAK_RISK | cosmetic metadata나 Profile이 숨은 speed·fuel·score modifier를 제공할 위험 | modifier field 금지와 gameplay parity 자동 테스트 |
-| `SX-AUD-004-F37` | READABILITY_COLLISION_RISK | 스킨·테마·파티클이 collision·경로·station·token 의미를 바꿀 위험 | collision/footprint 불변과 Android 비교 캡처 |
-| `SX-AUD-004-F38` | ASSISTED_RECORD_CONTAMINATION | first-run assist 기록이 표준 최고 기록을 덮어쓸 위험 | RecordEligibilityPolicy에서 assisted run 제외 |
-| `SX-AUD-004-F39` | IDLE_GRIND_EXPLOIT_RISK | 무조작 시간·중복 종료 event가 cosmetic 파밍 수단이 될 위험 | 유효 run 근거와 idempotent unlock 계약 |
-| `SX-AUD-004-F40` | SAVE_MIGRATION_LOCKOUT_RISK | 삭제 cosmetic·save 손상으로 장착 UI나 게임 시작이 막힐 위험 | default cosmetic fallback과 field-level partial recovery |
-| `SX-AUD-004-F41` | ACHIEVEMENT_VALUE_EROSION_RISK | 재화 구매가 목표 달성 의미까지 대체할 위험 | ownership과 goal completion·provenance 분리 |
-| `SX-AUD-004-F42` | DOUBLE_DEBIT_REWARD_RISK | 중복 event·save 재시도로 재화가 여러 번 차감되거나 보상이 중복될 위험 | transaction ID와 atomic idempotent 처리 |
-| `SX-AUD-004-F43` | CURRENCY_ONLY_POWER_FOMO_RISK | 재화 전용 item이 성능 우위·실제 화폐·기간 한정으로 오해될 위험 | cosmetic parity·영구 catalog·별도 승인 경계 |
-| `SX-AUD-004-F44` | ASSISTED_GOAL_FARM_RISK | first-run assist·debug·무결성 손상 run으로 목표를 쉽게 완료할 위험 | GoalEligibilityPolicy에서 제외 |
-| `SX-AUD-004-F45` | ECONOMY_PACING_RISK | 가격과 획득량 불일치로 무의미한 파밍 또는 즉시 고갈이 발생할 위험 | 가격·획득량을 TEST_VALUE로 두고 simulation·telemetry 대조 |
-| `SX-AUD-004-F46` | SHORT_IDLE_FARM_RISK | 생존 시간·종료 횟수만으로 재화를 얻어 무조작·짧은 반복 run이 최적화될 위험 | 완료+배송 1회 자격, 생존 직접 보상 금지 |
-| `SX-AUD-004-F47` | PERFORMANCE_REWARD_SNOWBALL_RISK | 배송·Combo·점수에 무제한 비례해 상위권 획득량이 폭증할 위험 | component cap·highest Combo tier·record once·run total cap |
-| `SX-AUD-004-F48` | DUPLICATE_GRANT_RETRY_RISK | 종료 중복·restart 연타·save 재시도에서 동일 run 보상이 여러 번 지급될 위험 | stable event ID와 balance+journal atomic idempotency |
-| `SX-AUD-004-F49` | ASSISTED_REWARD_CONTAMINATION_RISK | first-run assist가 일반 성과 재화와 경제 telemetry를 오염할 위험 | 일반 계산 제외, 실제 완료 시 1회 고정 intro grant 분리 |
-| `SX-AUD-004-F50` | RECORD_ORDER_UI_AUTHORITY_RISK | UI 신기록 연출이나 commit 전 예상값이 record bonus·잔액 권위가 될 위험 | RecordCommitResult 뒤 계산하고 committed receipt만 표시 |
+| `SX-AUD-004-F26` | CAUSALITY_OVERCLAIM_RISK | 상관 지표를 단일 실패 원인으로 단정 | 우세 score·margin 미달 시 neutral fallback |
+| `SX-AUD-004-F27` | PLAYER_BLAME_RISK | 결과 문구가 플레이어 비난으로 인식 | 관측 상태+행동 제안, 5명+ 검증 |
+| `SX-AUD-004-F28` | AUTHORITY_RISK | ResultPanel이 기록·종료·재시작·원인 계산 소유 | RunSummary→Analyzer→ViewModel 단방향 |
+| `SX-AUD-004-F29` | EVIDENCE_CONTAMINATION | assisted first run이 일반 원인 evidence 오염 | assisted segment 분리 |
+| `SX-AUD-004-F30` | RESULT_DENSITY_RISK | 결과 화면 과밀 | cause 1+action 1, details secondary |
+| `SX-AUD-004-F31` | FAIRNESS_RISK | full-map 전 progression으로 첫 선택 전 손실 | FULL_MAP_READY 전 progression 정지 |
+| `SX-AUD-004-F32` | ORIENTATION_RISK | PREP 과대 확대 | 1.15~1.25×와 필수 framing 검증 |
+| `SX-AUD-004-F33` | INPUT_MAPPING_RISK | zoom 중 touch 좌표 오류 | transition input lock·좌표 parity |
+| `SX-AUD-004-F34` | RETRY_MOTION_RISK | restart zoom 반복·멀미 | restart full-map direct·Reduced Motion cut |
+| `SX-AUD-004-F35` | INTERRUPTION_AUTHORITY_RISK | Tween 완료 의존 deadlock | generation-safe state·sync fallback |
+| `SX-AUD-004-F36` | HIDDEN_POWER_LEAK_RISK | cosmetic hidden modifier | modifier field 금지·gameplay parity |
+| `SX-AUD-004-F37` | READABILITY_COLLISION_RISK | 스킨이 collision·정보 의미 변경 | collision/footprint 불변·Android 비교 |
+| `SX-AUD-004-F38` | ASSISTED_RECORD_CONTAMINATION | assist 기록이 표준 기록 갱신 | RecordEligibility 제외 |
+| `SX-AUD-004-F39` | IDLE_GRIND_EXPLOIT_RISK | 무조작·중복 종료 파밍 | 유효 run·idempotent event |
+| `SX-AUD-004-F40` | SAVE_MIGRATION_LOCKOUT_RISK | cosmetic/save 손상 lockout | default fallback·부분 복구 |
+| `SX-AUD-004-F41` | ACHIEVEMENT_VALUE_EROSION_RISK | 구매가 목표 의미 대체 | ownership·goal completion 분리 |
+| `SX-AUD-004-F42` | DOUBLE_DEBIT_REWARD_RISK | 중복 debit·compensation | atomic idempotent transaction |
+| `SX-AUD-004-F43` | CURRENCY_ONLY_POWER_FOMO_RISK | 재화 전용이 power/FOMO로 오해 | cosmetic parity·영구 catalog 경계 |
+| `SX-AUD-004-F44` | ASSISTED_GOAL_FARM_RISK | assist/debug run 목표 farming | GoalEligibility 제외 |
+| `SX-AUD-004-F45` | ECONOMY_PACING_RISK | 가격·획득량 불일치 | TEST_VALUE·simulation·telemetry 대조 |
+| `SX-AUD-004-F46` | SHORT_IDLE_FARM_RISK | 짧은·무조작 run 재화 최적화 | 완료+배송 1회, 생존 직접 보상 금지 |
+| `SX-AUD-004-F47` | REWARD_SNOWBALL_RISK | 성과 비례 보상 폭증 | component·run cap·highest tier |
+| `SX-AUD-004-F48` | DUPLICATE_GRANT_RETRY_RISK | restart/save retry 중복 지급 | stable event ID·atomic journal |
+| `SX-AUD-004-F49` | ASSISTED_REWARD_CONTAMINATION | assist가 일반 경제 오염 | variable reward 0·intro 1회 분리 |
+| `SX-AUD-004-F50` | RECORD_ORDER_UI_AUTHORITY_RISK | UI record flag가 bonus 권위 | RecordCommitResult 뒤 계산·committed receipt |
+| `SX-AUD-004-F51` | DIFFICULTY_PRESENTATION_AUTHORITY_RISK | UI·animation이 난이도 시점·step을 소유 | DifficultyDirector 단독 권위·read-only presentation |
+| `SX-AUD-004-F52` | FORECAST_DRIFT_LATE_WARNING_RISK | forecast와 commit이 어긋나 경고가 늦거나 틀림 | generation+revision 검증·committed readback·fallback |
+| `SX-AUD-004-F53` | WARNING_SPAM_OCCLUSION_RISK | 반복 banner가 board를 가리고 판단 방해 | 2줄·reserved lane·cooldown·latest-only coalescing |
+| `SX-AUD-004-F54` | ASSIST_PAUSE_RESTART_LIFECYCLE_RISK | assist·pause·restart·resume에서 stale/catch-up 발생 | authoritative pause·fresh forecast·generation reset·no wall-clock catch-up |
+| `SX-AUD-004-F55` | ACCESSIBILITY_LOCALIZATION_PARITY_RISK | 색상·motion·짧은 문구 의존으로 정보 손실 | text+shape+fill·static Reduced Motion·140% localization 검증 |
 
-현재 P0/P1 open finding은 없다. 제품 구현, 가격 튜닝, 대표 자산, Profile runtime, reward runtime, Android 가독성, 경제 simulation, 사람 반응은 `NOT_STARTED / NOT_RUN`이다.
+현재 알려진 P0/P1 open finding은 없다. 제품 구현, runtime feature tests, Profile·reward·difficulty runtime, Android, localization stress, 경제 simulation, 사람 반응은 `NOT_STARTED / NOT_RUN`이다.
+
+## 10/10 전수 전파 대상
+
+- `기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md`
+- `기획서/40_표현/VISUAL_DIRECTION.md`
+- `기획서/50_제작_검증/PLAYTEST_PLAN.md`
+- `기획서/00_프로젝트_허브/EXECUTABLE_PROMPTS/CODEX_GOAL_VS_03.md`
+- Decision Registry·Issue #6·Approval/Gate 문서
 
 ## 다음 후보
 
-`SX-DEC-022` — 운행 중 난이도 상승을 완전히 숨길지, 정확한 수치로 공개할지, 또는 milestone 경고와 간결한 시각 신호로 알릴지.
+`SX-DEC-023` — 즉시 RESTART가 같은 map/seed를 재사용할지, 항상 새 seed를 만들지, 또는 `RESTART=같은 seed / NEW RUN=새 seed`로 분리할지.
 
-상태: `NEXT_GRILL_ME · GMB-001 SLOT 6`.
+상태: `NEXT_GRILL_ME · GMB-001 SLOT 7`.
