@@ -31,9 +31,9 @@
 
 - [x] Post-VS02 실제 구현과 정본 드리프트 감사
 - [x] 잘못 제공된 타 프로젝트 Sheet 제외
-- [ ] Post-VS02 GitHub 정본 복구 PR
-- [ ] 올바른 Switchy Express Sheet 동기화
-- [ ] Sync Closure PR
+- [x] Post-VS02 GitHub 정본 복구 PR #16
+- [x] 올바른 Switchy Express Sheet 동기화
+- [x] 12개 탭 readback과 Sync Closure
 - [ ] 전체 기획 Coverage 감사
 - [ ] 분야 간 충돌 적대적 검토
 - [ ] 중요 기획 공백 Grill Me
@@ -79,9 +79,7 @@ M3 종료 기준: 한 세션이 시작→운행→적재→분기→하역→보
 ## 현재 실행 순서
 
 ```text
-Post-VS02 Canonical Recovery
-→ Sheet Sync Closure
-→ Total Planning Coverage·Adversarial Audit
+Total Planning Coverage·Adversarial Audit
 → Grill Me Decision Queue
 → VS-03A
 → VS-03B
