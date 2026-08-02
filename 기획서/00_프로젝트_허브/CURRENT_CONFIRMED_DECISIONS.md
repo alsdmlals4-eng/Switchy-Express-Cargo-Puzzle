@@ -6,7 +6,7 @@ VS-01 canonical sync: `7500ccea1cddd6c163965a44370b653bbc176f85`
 VS-02 implementation: `0738d9c10e431a43e7a2f34590369c3f17d1f8a5`
 VS-02 runtime recovery: `4e435a1a6d10ab146197671049da80709fd18c1f`
 Base v9.4 adoption: `539d2bae18d20e303649f047b9df69e8e224b2e7`
-Post-VS02 canonical recovery: `GITHUB_UPDATE_PENDING_SHEET`
+Post-VS02 canonical recovery: `8245e22905d64e22b599fe009bbb660d005392ed`
 
 | Decision ID | 분야 | 현재 결정 | 근거 | 상태 |
 |---|---|---|---|---|
@@ -60,11 +60,11 @@ Post-VS02 canonical recovery: `GITHUB_UPDATE_PENDING_SHEET`
 
 ## 동기화 상태
 
-- GitHub latest main: `539d2bae18d20e303649f047b9df69e8e224b2e7`
+- GitHub canonical recovery Commit: `8245e22905d64e22b599fe009bbb660d005392ed`
 - Google Sheets: Adapter의 `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`
-- 현재 상태: `GITHUB_UPDATE_PENDING_SHEET`
-- 제공된 `19Ff...` 시트는 다른 프로젝트이며 수정 대상이 아니다.
-- Sheet 재조회와 canonical recovery commit 기록 후에만 `SYNCED`로 전환한다.
+- Sheet·GitHub 상태: `SYNCED`
+- Sheet 12개 탭 재조회: `2026-08-02 11:18 +09:00 · PASS`
+- 제공된 `19Ff...` 시트는 다른 프로젝트이며 변경하지 않았다.
 
 ## 대체 관계
 
