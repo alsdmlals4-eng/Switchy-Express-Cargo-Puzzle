@@ -45,8 +45,10 @@ func run() -> void:
 		return
 
 	var committed_events: Array = []
+	var observed_run_times: Array[float] = []
 	controller.difficulty_committed.connect(func(event: Variant) -> void:
 		committed_events.append(event)
+		observed_run_times.append(controller.run_state().elapsed_seconds())
 	)
 	controller.configure(
 		FakeTrain.new(),
@@ -64,5 +66,7 @@ func run() -> void:
 	assert_equal(committed_events[0].from_level(), 0, "forwarded event must preserve previous level")
 	assert_equal(committed_events[0].to_level(), 1, "forwarded event must preserve committed level")
 	assert_almost_equal(committed_events[0].committed_at(), 30.0, 0.0001, "forwarded event must preserve commit timestamp")
+	assert_almost_equal(observed_run_times[0], 30.0, 0.0001, "event consumers must observe the same authoritative run time as the commit")
 	controller.advance_time(30.0)
 	assert_equal(committed_events.size(), 2, "each later boundary must emit exactly one event")
+	assert_almost_equal(observed_run_times[1], 60.0, 0.0001, "later commit signals must preserve cross-authority time consistency")
