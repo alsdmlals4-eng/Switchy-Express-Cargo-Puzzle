@@ -1,16 +1,16 @@
 # Switchy Express Current Vertical Slice Master Plan
 
 ```yaml
-status: CURRENT · PLANNING_ONLY · CODEX_NOT_READY
+status: CURRENT · PLANNING_ONLY · DEFINITION_OF_READY_REVIEW_REQUIRED
 historical_foundation: docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md
 product_baseline: 4e435a1a6d10ab146197671049da80709fd18c1f
-gmb001_baseline_main: 993c3ed1aaee172be52a8a8899685b419f7f6d97
-current_audit: GMB-001_PREMERGE_AUDIT.md
-current_batch: GMB-001 · SX-DEC-017~026 · 10/10 · FROZEN
+gmb001_decision_merge: 9b63421a5ab4d57adbfcf69d2b6e1bf8e3d17496
+gmb001: CLOSED · SX-DEC-017~026
 implementation_state: NOT_STARTED_FOR_GMB001
+codex_state: CODEX_NOT_READY
 ```
 
-> 이 문서는 현재 구현 명령이 아니다. PR #29 canonical merge, Sheet closure, Sync Closure, Definition of Ready의 명시적 승격 전에는 Codex가 제품 구현을 시작하지 않는다.
+> 이 문서는 현재 구현 명령이 아니다. GMB-001 planning sync는 끝났지만 Definition of Ready 적대적 검토와 명시적 `READY_FOR_BUILD` 승격 전에는 Codex가 제품 구현을 시작하지 않는다.
 
 ## 목표
 
@@ -29,28 +29,26 @@ implementation_state: NOT_STARTED_FOR_GMB001
 
 ## 승인된 Planning Set
 
-상세 정본:
+- `SX-DEC-014`: one-arrival Combo
+- `SX-DEC-015`: compact wagon tokens
+- `SX-DEC-016`: contextual onboarding
+- `SX-DEC-017`: result learning
+- `SX-DEC-018`: PREP camera/full-map gate
+- `SX-DEC-019`: records/cosmetic-only progression
+- `SX-DEC-020`: unlock modes
+- `SX-DEC-021`: bounded rewards
+- `SX-DEC-022`: difficulty communication
+- `SX-DEC-023`: same-map restart/official catalog
+- `SX-DEC-024`: official map discovery/reselection
+- `SX-DEC-025`: official scoped records/user-map publication design
+- `SX-DEC-026`: non-economic UGC community design
+
+정본:
 
 - `기획서/00_프로젝트_허브/GMB-001_CANONICAL_DECISIONS.md`
 - `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
 
-```text
-SX-DEC-014 Combo
-SX-DEC-015 compact wagon tokens
-SX-DEC-016 contextual onboarding
-SX-DEC-017 result learning
-SX-DEC-018 PREP camera/full-map gate
-SX-DEC-019 records/cosmetic-only progression
-SX-DEC-020 unlock modes
-SX-DEC-021 bounded rewards
-SX-DEC-022 difficulty communication
-SX-DEC-023 same-map restart/official catalog
-SX-DEC-024 official map discovery/reselection
-SX-DEC-025 official scoped records/user-map publication design
-SX-DEC-026 non-economic UGC community design
-```
-
-모든 GMB-001 항목은 planning approved이며 runtime·Android·human·online evidence는 `NOT_STARTED / NOT_RUN`이다.
+모든 항목은 planning approved이며 runtime·Android·human·online evidence는 `NOT_STARTED / NOT_RUN`이다.
 
 ## Scope Staging
 
@@ -67,103 +65,72 @@ SX-DEC-026 non-economic UGC community design
 - minimum 3 validated official maps
 - undiscovered-first selection and discovered-map reselection
 - official global/per-map local records
+- survival economy·compact tokens·contextual onboarding
 
 ### Production/online scope
 
-- official 100+ unique layout completion
-- full official browser at catalog scale
+- official target 100+ unique layouts and scale browser
 - full UGC editor
 - account/upload/publication backend
 - server validation·immutable revisions
 - online sharing·moderation·privacy
-- UGC records/community signal event journal·anti-abuse
+- UGC records/community event journal·anti-abuse
 
-Production scope is planned now but not a VS implementation requirement. Local mocks do not prove online readiness.
+Local mocks do not prove online readiness.
 
-## Package A — VS-03A Run Economy
+## VS-03A — Run Economy and Difficulty
 
-### Goal
-
-Existing DeliveryLoop와 연결된 deterministic survival economy를 headless로 증명한다.
-
-### Planned modules
+Planned responsibility:
 
 ```text
-game/run/run_balance.gd
-game/run/run_state.gd
-game/run/run_controller.gd
-game/difficulty/difficulty_director.gd
-game/difficulty/difficulty_forecast.gd
-game/difficulty/difficulty_step_event.gd
-tests/run/*
-tests/difficulty/*
+RunBalance / RunState / RunController
+DifficultyDirector / Forecast / StepEvent
+DifficultySignalPolicy / PresentationState
+focused unit and lifecycle tests
 ```
 
-### Contracts
+Required behavior:
 
-- time-based speed/fuel
-- cargo slowdown·BOOST speed/cost
+- time speed/fuel
+- cargo slowdown·BOOST cost
 - unload reward·Combo/max_combo/speed_bonus
 - no-input finite survival
-- fuel-zero run end once
-- difficulty schedule owned by director
-- presentation cannot mutate difficulty
-- first-run assist/pause stop authoritative difficulty clock without catch-up
+- fuel-zero end once
+- authoritative difficulty schedule
+- forecast prewarning + persistent band
+- presentation cannot mutate simulation
+- pause/assist/restart deterministic lifecycle
 
-### Tests
+## VS-03B — Product Surface, Result, Profile
 
-- cargo 0~8 boundaries
-- BOOST/LOAD priority
-- Combo parity
-- no reward on mismatch/empty
-- no-input fuel-zero within bounded `TEST_VALUE`
-- duplicate event 0
-- warning enabled/disabled simulation trace parity
-- pause/assist/restart lifecycle
-
-## Package B — VS-03B Product Surface, Result, Profile
-
-### Planned modules
+Planned responsibility:
 
 ```text
-game/play/*
-game/rail/rail_board_view.gd
-game/rail/switch_view.gd
-game/train/compact_wagon_token_view.gd
-game/train/train_footprint.gd
-game/camera/*
-game/ui/game_hud.*
-game/ui/result_panel.*
-game/result/*
-game/profile/*
-game/records/*
-game/cosmetics/*
-game/progression/*
-tests/ui/*
-tests/profile/*
-tests/records/*
-tests/progression/*
+RailBoardView / SwitchView
+CompactWagonTokenView / TrainFootprint
+CameraPresentationState / FULL_MAP_READY gate
+GameHUD / ResultPanel / ResultInsightAnalyzer
+ProfileStore / ScopedRecordStore
+CosmeticRegistry / UnlockRegistry / Wallet
+RewardEligibility / RewardCalculator / ProgressionService
 ```
 
-### Contracts
+Required behavior:
 
 - fixed active full map; PREP-only slight zoom
-- `FULL_MAP_READY` before authoritative progression
 - compact token count/order/rear/footprint parity
-- result score/time/max Combo/new record + cause/action
-- neutral fallback for weak evidence
+- score/fuel/speed/max Combo/time HUD
+- result cause 1 + action 1; neutral fallback
 - RESTART primary
-- official global and current-map records atomic
-- dual scope update gives at most one record reward component
-- cosmetic modifier 0
+- official global + current-map records atomic
+- cosmetic gameplay modifier 0
 - DEFAULT/DUAL_PATH/CURRENCY_ONLY semantics
-- atomic/idempotent purchase, compensation, reward, record writes
-- save failure does not destroy result
+- bounded rewards; no direct raw-score/survival currency
+- dual record update gives one record reward component max
+- save retry produces no duplicate transaction
 - 48dp·safe area·Reduced Motion·mute/haptic-off
 
-## Package C — VS-03C Contextual Onboarding
-
-Responsibility plan: `docs/superpowers/plans/2026-08-02-first-session-contextual-onboarding.md`.
+## VS-03C — Contextual Onboarding
 
 - normalized events·OnboardingState
 - FirstRunAssistPolicy
@@ -173,56 +140,33 @@ Responsibility plan: `docs/superpowers/plans/2026-08-02-first-session-contextual
 - skip·timeout·resume
 - versioned preferences
 - overlay·Help·telemetry
-- assisted standard-record/reward/balance exclusion
+- assisted/standard record/reward/balance separation
 
-## Package D — VS-03D Minimum Official Map Flow
+## VS-03D — Minimum Official Map Flow
 
-### Goal
-
-최소 3개 official map에서 same-map learning과 new-map variety를 증명한다.
-
-### Planned modules
+Planned responsibility:
 
 ```text
-game/maps/map_definition.gd
-game/maps/map_catalog.gd
-game/maps/map_identity.gd
-game/maps/map_selection_request.gd
-game/maps/map_selection_receipt.gd
-game/maps/map_selection_service.gd
-game/maps/map_discovery_state.gd
-game/maps/run_session_factory.gd
-game/ui/map_browser_view_model.gd
-game/ui/map_browser_panel.gd
-tests/maps/*
-tests/integration/test_three_map_flow.gd
+MapDefinition / MapIdentity / MapCatalog
+RunIdentity / RunSessionFactory
+MapSelectionRequest / Receipt / Service
+MapDiscoveryState / replay bag
+compact discovered-map browser
 ```
 
-### Contracts
+Required behavior:
 
-- three distinct validated layout signatures
-- fallback/duplicate not counted
+- minimum 3 distinct validated official layout signatures
 - NEW RUN undiscovered-first
-- RESTART exact same map and fresh run state
-- manual/restart auto-bag consume 0
+- RESTART exact same map and fresh IDs/state
+- manual/restart auto-bag consumption 0
 - discovery after reconstruction + FULL_MAP_READY + run start
 - discovered map direct reselection
+- no raw seed UI
+- no silent different-map substitution
 - official global/per-map record scope
-- raw seed/version/signatures hidden from player UI
-- load failure never silently chooses another map
 
-### Tests
-
-```text
-first 3 eligible starts unique
-4th start no immediate repeat under TEST_VALUE policy
-restart same identity + fresh run IDs
-manual selection no bag mutation
-process interruption receipt replay/idempotency
-current-map/global record atomicity
-```
-
-## Package E — VS-04 Evidence
+## VS-04 Evidence
 
 - bounded telemetry
 - 10-minute soak
@@ -258,26 +202,31 @@ current-map/global record atomicity
 
 No UGC rewards, creator payout, rating/comments/followers/trending/leaderboard initially.
 
-## READY_FOR_BUILD Gate
+## Definition of Ready Gate
 
-- [x] GMB-001 10 user decisions approved and frozen
-- [x] local versus Production scope defined
-- [ ] PR #29 premerge audit PASS
-- [ ] canonical merge
-- [ ] Sheet canonical SHA + 12-tab readback
-- [ ] Sync Closure PR merge
-- [ ] Issue #6 scope updated and accepted
-- [ ] existing API/file collision review
-- [ ] final package dependency/order audit
-- [ ] rollback and save-migration boundary confirmed
+Completed:
+
+- [x] GMB-001 10 user Decisions approved
+- [x] pre-merge audit PASS
+- [x] PR #29 canonical merge
+- [x] correct Sheet canonical SHA + 12-tab readback
+- [x] VS versus Production scope staged
+
+Required before Build:
+
+- [ ] existing API/file collision inventory
+- [ ] package dependency/order audit
+- [ ] rollback strategy
+- [ ] Profile/save migration boundary
+- [ ] exact acceptance tests and evidence locations
+- [ ] implementation PR segmentation
 - [ ] explicit `READY_FOR_BUILD` promotion
-
-Until every required item is complete, `CODEX_NOT_READY` remains.
 
 ## Current Action
 
 ```text
-No new Grill Me
-No product implementation
-Complete GMB-001 premerge audit and closure
+GMB-001 CLOSED
+Perform G3P Definition of Ready review
+Do not implement yet
+CODEX_NOT_READY
 ```
