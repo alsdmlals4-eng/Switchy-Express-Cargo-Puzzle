@@ -12,16 +12,20 @@ description: Use for Switchy Express gameplay, route, cargo-stack, compact-token
 3. `기획서/10_경험/CORE_FUN_SYSTEM_HIERARCHY.md`
 4. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
 5. `기획서/50_제작_검증/VS03_PACKAGE_STATUS.md`
-6. `기획서/50_제작_검증/VS03_01_IMPLEMENTATION_AUDIT.md`
-7. `기획서/50_제작_검증/VS03_DEFINITION_OF_READY_AUDIT.md`
-8. `docs/superpowers/specs/2026-08-02-vs03-execution-architecture-design.md`
-9. `docs/superpowers/plans/2026-08-02-vs03-build-segmentation.md`
-10. `docs/superpowers/plans/2026-08-02-switchy-express-current-vertical-slice.md`
-11. `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
-12. package-specific Decision specs/plans
-13. actual code and tests
+6. `기획서/50_제작_검증/CORE_FUN_ALIGNMENT_AUDIT.md`
+7. `기획서/50_제작_검증/CORE_FUN_ALIGNMENT_APPROVAL_ADDENDUM.md`
+8. `docs/superpowers/specs/2026-08-03-playable-core-before-meta-sequencing-design.md`
+9. `docs/superpowers/plans/2026-08-03-vs03-core-first-resegmentation.md`
+10. current package-specific plan
+11. `기획서/50_제작_검증/VS03_01_IMPLEMENTATION_AUDIT.md`
+12. `기획서/50_제작_검증/VS03_DEFINITION_OF_READY_AUDIT.md`
+13. `docs/superpowers/specs/2026-08-02-vs03-execution-architecture-design.md`
+14. `docs/superpowers/plans/2026-08-02-vs03-build-segmentation.md`
+15. `docs/superpowers/plans/2026-08-02-switchy-express-current-vertical-slice.md`
+16. `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
+17. actual code and tests
 
-`VS03_PACKAGE_STATUS.md` owns current package status. Older Decision plans and contracts remain behavior references. When old status text, pseudocode, path, test command, or shared-file order conflicts with current status/DoR canon, use current status and DoR canon without changing approved player-facing meaning.
+`VS03_PACKAGE_STATUS.md` owns current package status. `2026-08-03-vs03-core-first-resegmentation.md` owns the approved future order. Older plans remain behavior and unchanged-package responsibility references. When old status text, package order, pseudocode, path, test command, or shared-file order conflicts with the current status, core-first plan, or DoR canon, use the newer authority without changing approved player-facing meaning.
 
 ## Core Fun Authority
 
@@ -75,6 +79,8 @@ dor_audit: SX-AUD-005 · PASS · SYNCED
 vs03_01_audit: SX-AUD-006 · PASS · SYNCED
 vs03_01_merge: 43972d3d23e931af3dbc81ab9b1c7d942fffb201
 closure_merge: 9360eff0a97f48f2234fcaf35425f80e94fac445
+core_fun_audit: SX-AUD-007 · USER_APPROVED_PENDING_CANONICAL_MERGE
+sequencing_evidence: EV-USER-018 · RECOMMENDED_OPTION_C
 codex: READY_FOR_BUILD
 current_package: VS03-02_ONLY
 product_implementation: IN_PROGRESS · VS03-01_MERGED
@@ -108,8 +114,10 @@ Do not use nonexistent `tests/run_single.gd`, unsupported `--suite`, `func run(t
 VS03-01 run lifecycle/economy/difficulty · MERGED_AND_VERIFIED
 → VS03-02 compact footprint/DeliveryLoop seam · READY_FOR_BUILD
 → VS03-03 target3 maps/session/restart/selection · BLOCKED
+→ VS03-R1 difficulty authority alignment · BLOCKED
+→ VS03-05A minimal playable core surface · BLOCKED
 → VS03-04 Profile transaction/records/cosmetics/unlocks/rewards · BLOCKED
-→ VS03-05 product scene/camera/HUD/result/browsers · BLOCKED
+→ VS03-05B result/collection/map browser · BLOCKED
 → VS03-06 contextual onboarding · BLOCKED
 → VS03-07 integration/evidence handoff · BLOCKED
 ```
@@ -122,6 +130,9 @@ Rules:
 - run full regression after each boundary connection
 - no package may claim Android/human/online evidence
 - current implementation authority applies to VS03-02 only
+- VS03-R1 follows `2026-08-03-vs03-r1-difficulty-authority-alignment.md`
+- VS03-05A follows `2026-08-03-vs03-05a-minimal-playable-core-surface.md`
+- VS03-05A may not create Profile, result, record, reward, collection, or map-browser authority
 
 ## Architecture Boundaries
 
@@ -132,7 +143,7 @@ Rules:
 - `RunSessionFactory`: fully configured sessions only
 - `TrainFootprint`: compressed spawn occupancy authority
 - `DeliveryLoop`: existing pickup/unload integration plus optional occupancy provider
-- `DifficultyDirector`: authoritative difficulty/pressure schedule and commit boundary
+- `DifficultyDirector`: authoritative union schedule for every speed/fuel pressure boundary
 - `ProfileStore`: serialization/normalization/atomic replace
 - `ProfileTransactionService`: only Profile mutation writer
 - presentation: read-only ViewModels/intents
@@ -157,6 +168,7 @@ Use a boundary-sliced loop with at most one cell event per segment. Calculate th
 - records, rewards, unlocks, discovery, and onboarding do not save independently
 - operation IDs are namespaced and idempotent
 - save failure cannot mutate RunState or block result/restart
+- Profile begins only after VS03-05A proves the minimal playable surface automatically
 
 ## Benchmark-Backed Work Rule
 
