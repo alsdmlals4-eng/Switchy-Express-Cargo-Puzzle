@@ -14,6 +14,7 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/run/test_run_state.gd"),
 	preload("res://tests/difficulty/test_difficulty_director.gd"),
 	preload("res://tests/run/test_run_controller.gd"),
+	preload("res://tests/run/test_run_controller_difficulty_events.gd"),
 ]
 
 const WATCHDOG_SECONDS := 10.0
