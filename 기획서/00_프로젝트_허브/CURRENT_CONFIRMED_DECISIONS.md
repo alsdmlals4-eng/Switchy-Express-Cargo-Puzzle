@@ -76,19 +76,20 @@ First-Session Onboarding Decision: `CANON_IN_PROGRESS`
 - `max_combo = max(previous_max_combo, combo_count)`다.
 - 빠른 배송 여부는 `seconds_since_delivery`로 계산하는 `speed_bonus`이며 Combo를 증가·유지·리셋하지 않는다.
 - 빈 역 도착이나 타입 불일치는 `combo_count = 0`, 점수·연료 보상 0이다.
-- HUD는 성공 하역 시 `COMBO ×N` 피드백을 표시하고 결과 화면은 `MAX COMBO`를 표시한다.
+- HUD는 성공 하역 시 `COMBO ×N` 피드백을 표시하고 결과 화면은 `MAX COMBO`를 표시한다. 지속 표기 위치·시간은 VS-03B의 시각 시험값이다.
 
 ## SX-DEC-015 파생 계약
 
 - `compact_wagon_token_count == cargo_stack.size()`이며 범위는 0~8이다.
 - 화물 0개에서는 기관차만 표시하고 빈 토큰 화차는 표시하지 않는다.
 - 기관차 쪽부터 뒤쪽까지의 토큰 순서는 stack bottom→top이며, 가장 뒤 토큰이 다음 LIFO 하역 대상이다.
-- 적재는 뒤에 토큰 1개를 추가하고 유효 하역은 뒤쪽 동일 타입 연속 그룹을 제거한다.
+- 적재는 뒤에 토큰 1개를 추가하고 유효 하역은 뒤쪽의 동일 타입 연속 토큰 그룹을 제거한다.
 - 토큰은 색상+모양 이중 부호를 가진다.
 - 권장 시험값은 body 0.22칸, 중심 간격 0.28칸, 8개 최대 열 길이 2.18칸, trailing 점유 최대 3칸이다.
-- 화물 8개를 선로 8칸 점유로 해석하지 않는다.
-- CargoStack 변경과 token count/order·점유 갱신은 같은 도메인 단계에서 완료한다.
-- HUD Unload Order 첫 항목·rear token·CargoStack top은 항상 같다.
+- 화물 8개를 선로 8칸 점유로 해석하지 않는다. 생성 금지는 기관차와 압축 토큰 열이 실제로 교차하는 칸만 사용한다.
+- CargoStack 변경과 토큰 count/order·점유 갱신은 같은 도메인 단계에서 완료하며 모션 완료 신호는 권위를 갖지 않는다.
+- HUD Unload Order의 첫 항목은 가장 뒤 토큰·CargoStack top과 항상 일치해야 한다.
+- 세부 크기·간격은 `TEST_VALUE`이며, 8개 식별 가능·최대 trailing 3칸·경로 가독성 유지 조건 안에서 조정할 수 있다.
 
 ## SX-DEC-016 파생 계약
 
@@ -124,12 +125,17 @@ First-Session Onboarding Decision: `CANON_IN_PROGRESS`
 - Google Sheets: Adapter의 `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`
 - `SX-DEC-014/015`: `GITHUB_SHEET_SYNCED`
 - `SX-DEC-016`, `EV-USER-004`, `SX-OPS-001`, `EV-USER-005`: `GITHUB_CANON_IN_PROGRESS · SHEET_PENDING_CANONICAL_MERGE`
+- compact token·onboarding 런타임·Android·사람 검증: `NOT_STARTED / NOT_RUN / HUMAN_NOT_RUN`
+- 제공된 `19Ff...` 시트는 다른 프로젝트이며 변경하지 않았다.
 - `CODEX_NOT_READY`
 
 ## 폐기·대체된 후보
 
+- 자동차·스네이크 직접 조작안은 현재 기차 노선 조작안으로 대체됨.
+- FIFO 하역안은 LIFO 하역안으로 대체됨.
+- 세로형 화면안은 가로형 화면안으로 대체됨.
 - 15×15·14×9 맵 후보는 최종 15×10 기준으로 대체됨.
 - 좌표 순서에 의존하는 기본 분기안은 `SX-DEC-013`의 직진 우선 기본 노선으로 대체됨.
-- 연속 배송 streak를 Combo로 부르는 후보는 `SX-DEC-014`에 의해 제외됨.
-- 화물당 한 칸짜리 full-size wagon과 항상 표시되는 빈 8화차 후보는 `SX-DEC-015`의 compact token 방식으로 대체됨.
-- 별도 고정 튜토리얼 판과 설명 화면만 제공하는 후보는 `SX-DEC-016`의 실제 첫 run 상황형 온보딩으로 대체됨.
+- 연속 배송 streak를 Combo로 부르는 후보는 `SX-DEC-014`에 의해 제외되며 필요 시 별도 Delivery Chain Decision으로만 재도입한다.
+- 화물당 한 칸짜리 full-size wagon과 항상 표시되는 빈 8화차 후보는 `SX-DEC-015`의 compact token 방식으로 대체된다.
+- 별도 고정 튜토리얼 판과 설명 화면만 제공하는 후보는 `SX-DEC-016`의 실제 첫 run 상황형 온보딩으로 대체된다.
