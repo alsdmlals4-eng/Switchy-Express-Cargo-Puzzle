@@ -106,7 +106,7 @@ func _test_train_boundary_and_history_seams() -> void:
 	assert_equal(train.sample_trailing_position(1.5), Vector2(incoming_cell), "fractional history sampling must follow the prior connected segment")
 
 	var history: Array[Vector2i] = train.route_history_cells()
-	var original_size := train.history_size()
+	var original_size: int = train.history_size()
 	history.clear()
 	assert_equal(train.history_size(), original_size, "route history seam must return a defensive copy")
 	train.set_speed(0.0)
