@@ -8,79 +8,96 @@ stage: VERTICAL_SLICE_IN_PROGRESS · VS02_RUNTIME_PASSED
 work_mode: TOTAL_PLANNING · REVIEW
 product_baseline: 4e435a1a6d10ab146197671049da80709fd18c1f
 gmb001_decision_merge: 9b63421a5ab4d57adbfcf69d2b6e1bf8e3d17496
-current_batch: GMB-001 · SX-DEC-017~026 · 10/10
-batch_state: CLOSED
-sheet_state: SYNCED · 12_TABS_READBACK_PASS
-product_implementation: NOT_STARTED_FOR_GMB001
-codex_state: CODEX_NOT_READY
-next_gate: G3P_DEFINITION_OF_READY_REVIEW
+gmb001: CLOSED · SX-DEC-017~026
+dor_audit: SX-AUD-005 · PASS_WITH_PLANNING_FIXES
+dor_evidence: EV-USER-016
+product_implementation: NOT_STARTED
+codex_state: READY_FOR_BUILD_PENDING_CANONICAL_SYNC
+first_authorized_package: VS03-01
+sheet_state: GMB001_SYNCED · DOR_SYNC_PENDING
 ```
 
-## 완료된 운영 동기화
+## 완료된 운영·기획
 
-- `SX-DEC-014~016`과 `SX-OPS-001`: PR #27·Sheet closure 완료.
-- `SX-DEC-017~026`, `EV-USER-006~015`: PR #29에서 canonical merge 완료.
-- PR #29 Decision 정본 SHA: `9b63421a5ab4d57adbfcf69d2b6e1bf8e3d17496`.
-- 올바른 Sheet `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`: canonical SHA 반영 후 12탭 readback PASS.
-- 역사 행 보존, `30_세계_서사` 무변경, 잘못된 `19Ff...` Sheet 미변경.
-- pre-merge 기준: behind 0, planning-only 33 files, Project Contract/Godot success, thread 0, REQUEST_CHANGES 0, P0/P1 0.
+- VS-01/02 철도·열차·화물·LIFO 기반 구현과 기존 headless 증거 완료.
+- `SX-DEC-014~016`, `SX-OPS-001` canonical sync 완료.
+- `GMB-001 · SX-DEC-017~026`, `EV-USER-006~015` PR #29·Sheet sync 완료.
+- GMB-001 closure PR #34 완료.
+- 올바른 Sheet는 `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`다.
+- 잘못된 `19Ff...` Sheet는 변경하지 않는다.
 
 ## 검증된 제품 기반
 
-- Godot 4.7.1 project·headless runner
-- 15×10 connected RailGraph·막다른길 0
+- Godot 4.7.1 project·custom headless runner
+- 15×10 connected RailGraph·no dead ends
 - 2/3-state RailSwitch·straight-first·preview parity·target lock
 - continuous train movement
 - capacity 8 LIFO CargoStack
 - LOAD contract·BOOST priority
 - station 6·pickup minimum 4/type
-- bounded deterministic placement·deferred respawn recovery
-- LIFO matching group unload
-- 기존 증거: `9 cases / 6915 assertions / 0 failures`
+- deterministic placement·deferred respawn recovery
+- LIFO matching-group unload
+- historical `9 cases / 6915 assertions / 0 failures`
 
-## 확정됐지만 미구현인 계약
+## DoR 결과 — SX-AUD-005
 
-정본: `GMB-001_CANONICAL_DECISIONS.md`.
+실제 code/test/plan/Issue를 대조해 다음 P1 실행 충돌을 정본에서 폐쇄했다.
 
-- `SX-DEC-014`: one-arrival unload-group Combo
-- `SX-DEC-015`: compact wagon tokens·rear=LIFO top·compressed footprint
-- `SX-DEC-016`: actual first-run contextual onboarding
-- `SX-DEC-017`: evidence-based result insight
-- `SX-DEC-018`: PREP zoom + `FULL_MAP_READY` + active full map
-- `SX-DEC-019`: standard records + cosmetic-only progression
-- `SX-DEC-020`: DEFAULT/DUAL_PATH/CURRENCY_ONLY unlocks
-- `SX-DEC-021`: bounded eligible-run cosmetic-currency reward
-- `SX-DEC-022`: difficulty prewarning + persistent pressure band
-- `SX-DEC-023`: exact same-map restart + validated official catalog target
-- `SX-DEC-024`: undiscovered-first official map selection + reselection
-- `SX-DEC-025`: official global/per-map records + data-only UGC publication design
-- `SX-DEC-026`: non-economic UGC community signals
+1. compact footprint와 `train.train_cells()` spawn occupancy 충돌
+2. 실제 test runner와 `run(test)/test.case/run_single/--suite` 예시 불일치
+3. empty Main과 composition owner 부재
+4. 공통 hotspot의 다중 plan owner
+5. 불완전 RunSessionFactory·map start/incoming 누락
+6. movement/event/fuel-zero authoritative order 누락
+7. Profile multi-writer·중복 transaction 위험
+8. 잘못된/존재하지 않는 file path
+9. target100 scan의 VS scope/watchdog 오염
+10. rollback/evidence 위치 분산
 
-Planning approval is not implementation success.
+Fix canon:
 
-## 단계 경계
+```text
+기획서/50_제작_검증/VS03_DEFINITION_OF_READY_AUDIT.md
+docs/superpowers/specs/2026-08-02-vs03-execution-architecture-design.md
+docs/superpowers/plans/2026-08-02-vs03-build-segmentation.md
+```
 
-### VS-03 로컬 후보
+Known open P0/P1 implementation-planning finding after fixes: `0`.
 
-- 생존 경제·Combo·compact tokens·제품 HUD
-- result insight·기록·재시작
-- PREP camera·full-map run gate
-- local cosmetic registry/unlock/reward representative flow
-- difficulty signal
-- exact same-map restart
-- 최소 3개 validated official maps와 discovery/reselection
-- official global+per-map local records
-- contextual onboarding
+## 실행 경계
 
-### Production / 온라인 후속
+### 최초 허용 package — VS03-01
 
-- 100+ unique official layout target·분포 audit·scale browser
-- full UGC editor
-- publication/account/backend/server validation
-- PRIVATE/UNLISTED/PUBLIC sharing
-- moderation·report·block·quarantine
-- online UGC records
-- community journal·anti-abuse·privacy·two-account evidence
+```text
+RunBalance / RunState / RunSummary / RunController
+RunMetricsAccumulator
+DifficultyForecast / DifficultyEvent / DifficultyDirector
+minimal TestCase helpers
+read-only TrainController timing/path seam
+```
+
+금지:
+
+- compact footprint 구현은 VS03-02
+- map/session/restart/selection은 VS03-03
+- Profile/records/rewards/unlocks는 VS03-04
+- Scene/HUD/result/camera/browser는 VS03-05
+- onboarding은 VS03-06
+- target100/UGC/online은 Production
+
+## Canonical package order
+
+```text
+VS03-01
+→ VS03-02
+→ VS03-03
+→ VS03-04
+→ VS03-05
+→ VS03-06
+→ VS03-07
+```
+
+공통 hotspot package는 병렬 실행하지 않는다. 각 package는 이전 merged main에서 시작한다.
 
 ## 현재 미구현·미검증
 
@@ -89,33 +106,31 @@ runtime_SX_DEC_014_026: NOT_STARTED_OR_NOT_RUN
 official_map_target_3: NOT_RUN
 official_map_target_100: NOT_RUN
 F58: NOT_MET
-scoped_record_runtime: NOT_RUN
-ugc_editor_backend: NOT_STARTED
-moderation_privacy_two_account: NOT_RUN
-community_anti_abuse: NOT_RUN
+profile_records_rewards: NOT_STARTED
 android_localization_accessibility_human: NOT_RUN
+ugc_editor_backend_moderation_privacy_community: NOT_STARTED_OR_NOT_RUN
 ```
 
-## 다음 실행 순서
+## 현재 실행 순서
 
 ```text
-G3P Definition of Ready 적대적 재검토
-→ existing API/file collision audit
-→ package dependency/order audit
-→ rollback·save migration boundary 확인
-→ 명시적 READY_FOR_BUILD 승인
-→ VS-03A → VS-03B → VS-03C → VS-03D
+DoR planning PR 검증·merge
+→ correct Sheet SX-AUD-005 / EV-USER-016 canonical sync
+→ Sync Closure
+→ Codex READY_FOR_BUILD · VS03-01
+→ 별도 Codex 구현 작업 시작
 ```
 
 ## 금지
 
-- GMB-001 closure를 제품 구현 완료 또는 `READY_FOR_BUILD`로 해석
-- 제품 코드·Scene·Resource·asset 변경을 별도 승인 없이 시작
-- UGC backend를 VS-03 필수 범위로 확장
-- client mock만으로 ONLINE/MODERATION/ANTI_ABUSE/PRIVACY READY 주장
-- runtime·Android·사람 검증을 실행하지 않고 PASS 표기
-- community signal을 reward·unlock·official map weighting에 연결
+- canonical sync 전 제품 구현 시작
+- VS03-02~07 병렬 시작
+- unsupported test runner API 복사
+- Profile 다중 writer
+- selected/restarted map silent substitution
+- target100을 VS-03 완료 조건으로 끌어오기
+- local mock으로 Android/human/online readiness 주장
 
 ## 다음 작업
 
-새 Decision을 자동 생성하지 않는다. 다음 단계는 `G3P Definition of Ready` 검토이며, 구현 시작 전 사용자 승인과 상태 승격이 필요하다.
+현재 chat의 작업은 DoR 정본·GitHub·Sheet closure까지다. 제품 구현은 별도 Codex 실행에서 `VS03-01`부터 시작한다.

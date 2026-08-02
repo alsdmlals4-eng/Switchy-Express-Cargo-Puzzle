@@ -2,127 +2,120 @@
 
 ```yaml
 audit_id: SX-AUD-004
-status: CURRENT · GMB-001_CLOSED · DEFINITION_OF_READY_REVIEW_REQUIRED
+status: PASS · GMB001_CLOSED · DOR_SX_AUD_005_PENDING_CANONICAL_SYNC
 product_baseline: 4e435a1a6d10ab146197671049da80709fd18c1f
 gmb001_decision_merge: 9b63421a5ab4d57adbfcf69d2b6e1bf8e3d17496
 work_mode: TOTAL_PLANNING · REVIEW
-implementation_authority: PLANNING_AND_DOCUMENTATION_ONLY
-sheet_state: SYNCED · 12_TABS_READBACK_PASS
-codex_state: CODEX_NOT_READY
-number_policy: RECOMMENDED_DEFAULT_OR_TEST_VALUE
-user_decision_policy: ONE_MATERIAL_GRILL_ME_AT_A_TIME
+implementation_authority: VS03-01_PENDING_DOR_CANONICAL_SYNC
+sheet_state: GMB001_SYNCED · DOR_SYNC_PENDING
+codex_state: READY_FOR_BUILD_PENDING_CANONICAL_SYNC
 ```
 
-## 목적
+## 목적과 결과
 
-VS-03 구현 전에 제품·경험·시스템·콘텐츠·UX·표현·데이터·저장·검증·제작 기획을 실제 구현과 대조한다. 안전한 보완은 자동 반영하고 제품 방향을 바꾸는 충돌만 사용자 Decision으로 닫는다.
+VS-03 구현 전에 제품·경험·시스템·콘텐츠·UX·표현·데이터·저장·검증·제작 기획을 실제 구현과 대조했다.
 
-`SX-DEC-014~016` catch-up과 `GMB-001 · SX-DEC-017~026`의 canonical sync는 완료됐다. 다음 단계는 구현 시작이 아니라 `Definition of Ready` 적대적 재검토다.
+- `SX-DEC-014~016`과 `GMB-001 · SX-DEC-017~026`의 canonical sync 완료.
+- GMB-001 known open P0/P1 planning finding 0으로 closure 완료.
+- 후속 `SX-AUD-005`에서 실제 코드·test runner·파일·package·save·rollback까지 Definition of Ready를 검사했다.
+- `SX-AUD-005-F76~F85`를 제품 의미 변경 없이 planning fix로 폐쇄했다.
+- DoR canonical merge와 Sheet closure 뒤 G3P를 `READY_FOR_BUILD`로 승격할 수 있다.
 
 ## GMB-001 Closure
 
-- [x] exactly 10 decisions: `SX-DEC-017~026`
-- [x] exactly 10 evidence entries: `EV-USER-006~015`
-- [x] specs·TDD plans·ledger·canonical consumer
-- [x] stale current consumers repaired
-- [x] VS local versus Production/online UGC staging
-- [x] pre-merge adversarial audit PASS
-- [x] final head ahead 54 / behind 0
-- [x] 33 planning-only files; product files 0
-- [x] Project Contract run 195 success
-- [x] Godot Tests run 186 success
-- [x] review thread 0 / REQUEST_CHANGES 0
-- [x] expected-head protected PR #29 merge
-- [x] Decision merge SHA `9b63421a5ab4d57adbfcf69d2b6e1bf8e3d17496`
-- [x] correct Sheet canonical SHA·12-tab readback PASS
-- [x] history preserved·`30_세계_서사` unchanged
+- [x] exactly `SX-DEC-017~026`, `EV-USER-006~015`
+- [x] specs·TDD plans·canonical consumer
+- [x] VS/Production scope staging
+- [x] pre-merge audit PASS
+- [x] PR #29 Decision merge `9b63421a...`
+- [x] PR #34 closure `aac3ed87...`
+- [x] correct Sheet 12-tab final readback PASS
+- [x] product code/Scene/Resource/asset changes 0
 
-Known open P0/P1 planning findings at closure: 0.
+## Definition of Ready — SX-AUD-005
 
-## Coverage Matrix
+### Findings closed in planning
 
-| 영역 | 현재 상태 | 강점 | 남은 공백·경계 | 판정 |
-|---|---|---|---|---|
-| 운영 | GMB-001 CLOSED | 10건 batch·audit·closure 완료 | 다음 batch 미시작 | PASS |
-| 핵심 플레이 | rail/train/cargo/LIFO 기반 구현 | 코어 의미 선명 | 생존 경제·Combo runtime | READY_FOR_DOR_REVIEW |
-| 결과 학습 | SX-DEC-017 | 근거 1개+행동 1개·neutral fallback | telemetry/runtime/human | TEST_REQUIRED |
-| 카메라 | SX-DEC-018 | FULL_MAP_READY·active full map | Android motion/input | TEST_REQUIRED |
-| Profile | SX-DEC-019~021 | no power·atomic/idempotent | runtime/economy simulation | TEST_REQUIRED |
-| 난이도 | SX-DEC-022 | forecast/commit authority 분리 | curve/timing/localization | TEST_REQUIRED |
-| 공식 맵 | SX-DEC-023~024 | same-map retry·undiscovered-first | target3/target100·browser | F58_NOT_MET |
-| 기록 | SX-DEC-025 | global+per-map atomic scope | runtime migration·UI | TEST_REQUIRED |
-| UGC publication | SX-DEC-025 | data-only·immutable revision·server validation | editor/backend/moderation/privacy | PRODUCTION_GATE |
-| UGC community | SX-DEC-026 | non-economic·qualified play·1 recommendation | backend/journal/anti-abuse | PRODUCTION_GATE |
-| 온보딩 | SX-DEC-016 | actual run·safe pause·assist separation | runtime/Android/human | TEST_REQUIRED |
-| 성능·접근성 | Gate 존재 | 48dp·color+shape·Reduced Motion | device/human evidence | BLOCKED_UNVERIFIED |
-
-## Finding Status
-
-| 범위 | IDs | 현재 판정 |
+| Finding | Risk | Fix |
 |---|---|---|
-| 기존 총기획 | F01~F24 | planning fixes applied; runtime follow-ups remain |
-| Result | F26~F30 | PLANNING_FIXED · RUNTIME_NOT_RUN |
-| Camera | F31~F35 | PLANNING_FIXED · DEVICE_NOT_RUN |
-| Records/Cosmetics | F36~F40 | PLANNING_FIXED · RUNTIME_NOT_RUN |
-| Unlocks/Rewards | F41~F50 | PLANNING_FIXED · ECONOMY_NOT_RUN |
-| Difficulty | F51~F55 | PLANNING_FIXED · RUNTIME_NOT_RUN |
-| Restart/Catalog | F56~F60 | `F58 NOT_MET` · TARGET_AUDIT_NOT_RUN |
-| Assignment/Browser | F61~F65 | PLANNING_FIXED · FLOW_NOT_RUN |
-| Records/UGC Publication | F66~F70 | PRODUCTION_GATES_NOT_RUN |
-| UGC Community | F71~F75 | PRODUCTION_GATES_NOT_RUN |
+| F76 | compact footprint vs full-cell spawn occupancy | optional TrainFootprint provider; legacy fallback |
+| F77 | plan test APIs do not match current runner | `func run()` custom runner canonical |
+| F78 | empty main/composition owner missing | Main→PlayScene→RunController/RunSession |
+| F79 | shared file multi-owner overwrite | 7 sequential packages and owner matrix |
+| F80 | incomplete session reconstruction | explicit start/incoming and fully configured session |
+| F81 | movement/event/fuel-zero ordering absent | boundary-sliced authoritative order |
+| F82 | Profile multi-writer/duplicate commits | ProfileStore + ProfileTransactionService single writer |
+| F83 | incorrect/nonexistent paths | actual paths and creation owner fixed |
+| F84 | target100 scope/watchdog contamination | target3 in VS; target100 in G6/M5 |
+| F85 | rollback/evidence ambiguity | package rollback/evidence/stop gates |
 
-## 단계 보정
+Known open P0/P1 implementation-planning finding after fixes: `0`.
 
-### VS-03 local
+`F58` remains `NOT_MET`; it is a Production evidence gap, not a closed VS finding.
 
-- result learning·camera/run gate
-- local records/cosmetic/unlock/reward representative flow
-- difficulty communication
-- same-map restart
-- minimum 3 validated official maps·selection/reselection
-- official local global/per-map records
-- survival economy·compact tokens·contextual onboarding
+## Canonical DoR Documents
 
-### Production/online
-
-- official target 100+ completion
-- full UGC editor/publication/backend/server validation
-- moderation/privacy/two-account playback
-- UGC records/community event journal/anti-abuse
-
-이 분리는 Decision을 약화하지 않고 구현 순서를 현실화한다.
-
-## Explicitly Open Evidence
-
-```yaml
-runtime_features: NOT_RUN
-android: NOT_RUN
-localization_accessibility: NOT_RUN
-human_5_plus: NOT_RUN
-economy_simulation: NOT_RUN
-official_map_target_3: NOT_RUN
-official_map_target_100: NOT_RUN
-three_map_flow: NOT_RUN
-official_browser_100: NOT_RUN
-ugc_editor_backend: NOT_STARTED
-moderation_privacy_two_account: NOT_RUN
-community_anti_abuse: NOT_RUN
+```text
+기획서/50_제작_검증/VS03_DEFINITION_OF_READY_AUDIT.md
+docs/superpowers/specs/2026-08-02-vs03-execution-architecture-design.md
+docs/superpowers/plans/2026-08-02-vs03-build-segmentation.md
 ```
 
-client mock이나 headless unit test만으로 online/product quality PASS를 주장하지 않는다.
+These documents override conflicting pseudocode, path, runner command, and shared-file order in older implementation examples while preserving Decision meaning.
 
-## Definition of Ready Review
+## Build Sequence
 
-다음 항목을 검토하고 사용자에게 구현 승격을 요청해야 한다.
+```text
+VS03-01 run lifecycle/economy/difficulty
+→ VS03-02 compact footprint/DeliveryLoop seam
+→ VS03-03 target3 maps/session/restart/selection
+→ VS03-04 Profile transactions/records/cosmetics/unlocks/rewards
+→ VS03-05 product scene/camera/HUD/result/browsers
+→ VS03-06 contextual onboarding
+→ VS03-07 end-to-end integration/evidence handoff
+```
 
-- [ ] existing API/file collision inventory
-- [ ] VS-03A/B/C/D dependency and order
-- [ ] implementation PR segmentation
-- [ ] rollback strategy
-- [ ] Profile/save schema migration boundary
-- [ ] exact acceptance tests and evidence locations
-- [ ] scope budget and deferral enforcement
-- [ ] explicit `READY_FOR_BUILD` approval
+Each package starts after the previous package merges. Shared hotspots do not run in parallel.
+
+## Initial Build Authority
+
+After DoR canonical merge and correct Sheet final readback:
+
+```yaml
+G3P: PASS · READY_FOR_BUILD
+codex: READY_FOR_BUILD
+initial_package: VS03-01_ONLY
+product_implementation: NOT_STARTED
+```
+
+VS03-01 may create only run lifecycle/difficulty/test-helper files and limited read-only TrainController seams. It may not implement compact footprint, maps, Profile, scenes, UI, onboarding, target100, or UGC.
+
+## Evidence Boundary
+
+Still `NOT_STARTED / NOT_RUN`:
+
+- SX-DEC-014~026 runtime features
+- target3 maps and three-map flow
+- Profile/records/reward/economy simulation
+- Android/device/soak/localization/accessibility
+- 5명+ human comprehension
+- target100 and F58 closure
+- UGC editor/backend/moderation/privacy/community/anti-abuse
+
+Planning/DoR PASS is not runtime or product-quality PASS.
+
+## Final DoR Checklist
+
+- [x] actual API/file collision inventory
+- [x] test runner normalization
+- [x] package dependency/order and hotspot owner
+- [x] rollback strategy
+- [x] Profile/save boundary
+- [x] exact acceptance/evidence locations
+- [x] scope budget/deferral
+- [x] user instruction `EV-USER-016`
+- [ ] canonical DoR PR merge
+- [ ] correct Sheet Audit/Evidence/ready closure
 
 ## Decision Queue
 
@@ -130,5 +123,5 @@ client mock이나 headless unit test만으로 online/product quality PASS를 주
 GMB-001 CLOSED
 next batch NOT_STARTED
 next Decision NOT_ASSIGNED
-current product state CODEX_NOT_READY
+no new Decision required for VS03-01 unless implementation reveals a material player-facing choice
 ```

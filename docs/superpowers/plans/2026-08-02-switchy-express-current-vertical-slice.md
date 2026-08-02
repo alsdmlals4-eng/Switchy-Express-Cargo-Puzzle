@@ -1,16 +1,18 @@
 # Switchy Express Current Vertical Slice Master Plan
 
 ```yaml
-status: CURRENT · PLANNING_ONLY · DEFINITION_OF_READY_REVIEW_REQUIRED
-historical_foundation: docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md
+status: CURRENT · READY_FOR_BUILD_PENDING_CANONICAL_SYNC
 product_baseline: 4e435a1a6d10ab146197671049da80709fd18c1f
 gmb001_decision_merge: 9b63421a5ab4d57adbfcf69d2b6e1bf8e3d17496
 gmb001: CLOSED · SX-DEC-017~026
-implementation_state: NOT_STARTED_FOR_GMB001
-codex_state: CODEX_NOT_READY
+dor_audit: SX-AUD-005
+dor_evidence: EV-USER-016
+implementation_state: NOT_STARTED
+codex_state: READY_FOR_BUILD_PENDING_CANONICAL_SYNC
+first_authorized_package: VS03-01
 ```
 
-> 이 문서는 현재 구현 명령이 아니다. GMB-001 planning sync는 끝났지만 Definition of Ready 적대적 검토와 명시적 `READY_FOR_BUILD` 승격 전에는 Codex가 제품 구현을 시작하지 않는다.
+> GMB-001 기획 sync와 G3P Definition of Ready 적대적 검토가 완료됐다. 이 branch의 DoR 정본이 merge되고 올바른 Sheet readback이 끝난 뒤 `VS03-01` 구현만 시작할 수 있다.
 
 ## 목표
 
@@ -29,64 +31,94 @@ codex_state: CODEX_NOT_READY
 
 ## 승인된 Planning Set
 
-- `SX-DEC-014`: one-arrival Combo
-- `SX-DEC-015`: compact wagon tokens
-- `SX-DEC-016`: contextual onboarding
-- `SX-DEC-017`: result learning
-- `SX-DEC-018`: PREP camera/full-map gate
-- `SX-DEC-019`: records/cosmetic-only progression
-- `SX-DEC-020`: unlock modes
-- `SX-DEC-021`: bounded rewards
-- `SX-DEC-022`: difficulty communication
-- `SX-DEC-023`: same-map restart/official catalog
-- `SX-DEC-024`: official map discovery/reselection
-- `SX-DEC-025`: official scoped records/user-map publication design
-- `SX-DEC-026`: non-economic UGC community design
+`SX-DEC-014~026`은 planning approved·canonical synced다. 상세 의미는 다음 정본을 따른다.
 
-정본:
+```text
+기획서/00_프로젝트_허브/GMB-001_CANONICAL_DECISIONS.md
+기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md
+```
 
-- `기획서/00_프로젝트_허브/GMB-001_CANONICAL_DECISIONS.md`
-- `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
+실행 구조는 다음이 우선한다.
 
-모든 항목은 planning approved이며 runtime·Android·human·online evidence는 `NOT_STARTED / NOT_RUN`이다.
+```text
+기획서/50_제작_검증/VS03_DEFINITION_OF_READY_AUDIT.md
+docs/superpowers/specs/2026-08-02-vs03-execution-architecture-design.md
+docs/superpowers/plans/2026-08-02-vs03-build-segmentation.md
+```
+
+Decision별 오래된 예시 코드·경로·테스트 명령이 실제 저장소와 충돌하면 위 DoR 문서를 적용한다. Decision 의미는 변경하지 않는다.
+
+## Definition of Ready Result
+
+`SX-AUD-005`에서 다음을 실제 코드와 대조하고 고정했다.
+
+- API/file collision inventory
+- custom test runner normalization
+- compact footprint occupancy seam
+- composition root·RunSession ownership
+- authoritative frame/tie order
+- MapDefinition reconstruction fields·fully configured session
+- Profile single-writer transaction
+- package dependency/order and hotspot ownership
+- rollback strategy
+- exact automated/deferred evidence locations
+- target3/target100 scope separation
+
+Known open P0/P1 implementation-planning finding after fixes: `0`.
+
+`F58`은 Production target100 증거 전까지 `NOT_MET`다.
 
 ## Scope Staging
 
-### Vertical Slice local scope
+### VS-03 local
 
-- result insight·neutral fallback
-- PREP zoom·`FULL_MAP_READY`·active full map
-- local standard records
-- representative cosmetic registry/collection/equip
-- representative unlock modes and atomic transactions
-- bounded local reward calculation/Profile grant
-- difficulty warning/persistent signal
+- survival economy·Combo·difficulty authority
+- compact tokens·compressed footprint
 - exact same-map restart
 - minimum 3 validated official maps
 - undiscovered-first selection and discovered-map reselection
-- official global/per-map local records
-- survival economy·compact tokens·contextual onboarding
+- local official global/per-map records
+- representative cosmetic/unlock/reward Profile flow
+- PREP camera·FULL_MAP_READY·HUD·result
+- contextual first-run onboarding
+- bounded local telemetry and end-to-end automated evidence
 
-### Production/online scope
+### Production/online
 
 - official target 100+ unique layouts and scale browser
-- full UGC editor
-- account/upload/publication backend
-- server validation·immutable revisions
+- full UGC editor/publication/backend/server validation
 - online sharing·moderation·privacy
-- UGC records/community event journal·anti-abuse
+- UGC records/community journal·anti-abuse
 
 Local mocks do not prove online readiness.
 
-## VS-03A — Run Economy and Difficulty
-
-Planned responsibility:
+## Canonical Build Sequence
 
 ```text
-RunBalance / RunState / RunController
-DifficultyDirector / Forecast / StepEvent
-DifficultySignalPolicy / PresentationState
-focused unit and lifecycle tests
+VS03-01 · authoritative run lifecycle/economy/difficulty
+→ VS03-02 · compact footprint + DeliveryLoop occupancy seam
+→ VS03-03 · target3 map identity/session/restart/selection
+→ VS03-04 · Profile transactions/records/cosmetics/unlocks/rewards
+→ VS03-05 · product scene/camera/HUD/result/local browsers
+→ VS03-06 · contextual onboarding
+→ VS03-07 · end-to-end integration/evidence handoff
+```
+
+Packages must not run in parallel when they share hotspot files. Each starts from the previous merged main.
+
+## Initial Build Package — VS03-01
+
+Responsibilities:
+
+```text
+RunBalance
+RunState
+RunSummary
+RunController
+RunMetricsAccumulator
+DifficultyForecast/Event/Director
+minimal TestCase helpers
+read-only TrainController boundary helpers
 ```
 
 Required behavior:
@@ -94,139 +126,47 @@ Required behavior:
 - time speed/fuel
 - cargo slowdown·BOOST cost
 - unload reward·Combo/max_combo/speed_bonus
+- boundary-sliced movement and fuel-zero ordering
 - no-input finite survival
 - fuel-zero end once
-- authoritative difficulty schedule
-- forecast prewarning + persistent band
-- presentation cannot mutate simulation
-- pause/assist/restart deterministic lifecycle
+- authoritative difficulty schedule/pause/restart
+- no UI/Profile/map/catalog/onboarding implementation in this package
 
-## VS-03B — Product Surface, Result, Profile
+## Protected Runtime Contracts
 
-Planned responsibility:
+- current custom runner: `tests/run_tests.gd`, suite `func run()` only
+- existing RailGraph/RailSwitch/CargoStack/DeliveryLoop meaning preserved
+- compact occupancy uses future optional provider; legacy fallback remains
+- UI/camera/animation/onboarding non-authoritative
+- one fully configured RunSession per attempt
+- Profile has one writer when introduced
+- selected/restarted map never silently changes
+- no runtime/Android/human/online PASS without execution
 
-```text
-RailBoardView / SwitchView
-CompactWagonTokenView / TrainFootprint
-CameraPresentationState / FULL_MAP_READY gate
-GameHUD / ResultPanel / ResultInsightAnalyzer
-ProfileStore / ScopedRecordStore
-CosmeticRegistry / UnlockRegistry / Wallet
-RewardEligibility / RewardCalculator / ProgressionService
-```
+## Acceptance and Evidence
 
-Required behavior:
-
-- fixed active full map; PREP-only slight zoom
-- compact token count/order/rear/footprint parity
-- score/fuel/speed/max Combo/time HUD
-- result cause 1 + action 1; neutral fallback
-- RESTART primary
-- official global + current-map records atomic
-- cosmetic gameplay modifier 0
-- DEFAULT/DUAL_PATH/CURRENCY_ONLY semantics
-- bounded rewards; no direct raw-score/survival currency
-- dual record update gives one record reward component max
-- save retry produces no duplicate transaction
-- 48dp·safe area·Reduced Motion·mute/haptic-off
-
-## VS-03C — Contextual Onboarding
-
-- normalized events·OnboardingState
-- FirstRunAssistPolicy
-- first LOAD/switch safe pause only
-- real mixed-stack LIFO·Combo proof
-- low-fuel BOOST hint
-- skip·timeout·resume
-- versioned preferences
-- overlay·Help·telemetry
-- assisted/standard record/reward/balance separation
-
-## VS-03D — Minimum Official Map Flow
-
-Planned responsibility:
+Each package requires exact-head:
 
 ```text
-MapDefinition / MapIdentity / MapCatalog
-RunIdentity / RunSessionFactory
-MapSelectionRequest / Receipt / Service
-MapDiscoveryState / replay bag
-compact discovered-map browser
+behind 0
+Project Contract success
+Godot Tests success
+review threads 0
+REQUEST_CHANGES 0
+owned-file scope respected
+package acceptance tests registered
 ```
 
-Required behavior:
+VS03-07 creates `기획서/50_제작_검증/VS03_IMPLEMENTATION_AUDIT.md`.
 
-- minimum 3 distinct validated official layout signatures
-- NEW RUN undiscovered-first
-- RESTART exact same map and fresh IDs/state
-- manual/restart auto-bag consumption 0
-- discovery after reconstruction + FULL_MAP_READY + run start
-- discovered map direct reselection
-- no raw seed UI
-- no silent different-map substitution
-- official global/per-map record scope
-
-## VS-04 Evidence
-
-- bounded telemetry
-- 10-minute soak
-- Android export/device performance
-- representative captures
-- 5+ first-experience users
-- result/camera/token/map-choice/record comprehension
-- assisted/standard run separation
-- economy simulation
-- target3 map readability/distribution
-- final adversarial review
-- `PASS / REVISE / PIVOT / STOP`
-
-## Production Follow-Up
-
-### Official catalog
-
-- generator diversity expansion
-- 100+ unique validated layouts
-- target-100 distribution/reconstruction/browser audits
-- `F58` closure
-
-### Online UGC
-
-- data-only editor and local validation
-- publication/account backend and real server receipts
-- PRIVATE/UNLISTED/PUBLIC
-- moderation·quarantine·report·block
-- revision-scoped UGC records
-- favorites·qualified plays·recommendations·staff picks
-- event journal·aggregate rebuild·anti-abuse·privacy
-- two-account playback
-
-No UGC rewards, creator payout, rating/comments/followers/trending/leaderboard initially.
-
-## Definition of Ready Gate
-
-Completed:
-
-- [x] GMB-001 10 user Decisions approved
-- [x] pre-merge audit PASS
-- [x] PR #29 canonical merge
-- [x] correct Sheet canonical SHA + 12-tab readback
-- [x] VS versus Production scope staged
-
-Required before Build:
-
-- [ ] existing API/file collision inventory
-- [ ] package dependency/order audit
-- [ ] rollback strategy
-- [ ] Profile/save migration boundary
-- [ ] exact acceptance tests and evidence locations
-- [ ] implementation PR segmentation
-- [ ] explicit `READY_FOR_BUILD` promotion
+Issue #7 retains Android, 10-minute soak, localization/accessibility runtime, economy simulation, representative captures, and 5명+ human evidence.
 
 ## Current Action
 
 ```text
-GMB-001 CLOSED
-Perform G3P Definition of Ready review
-Do not implement yet
-CODEX_NOT_READY
+merge DoR planning PR
+→ synchronize SX-AUD-005 / EV-USER-016 to correct Sheet
+→ final readback
+→ Codex READY_FOR_BUILD · VS03-01
+→ product implementation remains NOT_STARTED until a separate Codex execution starts
 ```
