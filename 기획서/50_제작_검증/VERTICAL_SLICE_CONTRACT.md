@@ -1,273 +1,374 @@
 # Vertical Slice Contract
 
 ```yaml
-status: APPROVED_CONTRACT · GMB001_LOCAL_SCOPE_STAGED
-product_implementation: NOT_STARTED_FOR_GMB001
-codex_state: CODEX_NOT_READY
+status: APPROVED_CONTRACT · IMPLEMENTATION_IN_PROGRESS
+core_fun_authority: CORE_FUN_SYSTEM_HIERARCHY.md
+vs03_01: MERGED_AND_VERIFIED
+current_package_authority: VS03-02_ONLY
+product_scene_runtime: NOT_RUN
+android_human_evidence: NOT_RUN
 online_ugc: DEFERRED_TO_PRODUCTION_GATE
 ```
 
+현재 package 상태는 `VS03_PACKAGE_STATUS.md`가 소유한다. 이 문서는 제품 의미·Vertical Slice 범위·품질 기준을 소유한다.
+
+## 핵심 재미
+
+> 자동으로 달리는 열차에서 앞으로 필요한 하역 순서를 역산해 화물을 골라 싣고, 분기기를 미리 바꾸며, 무게와 연료 압박을 감수해 큰 LIFO 하역 그룹을 성공시키는 계획형 생존 퍼즐.
+
+우선순위:
+
+```text
+LIFO 적재 순서 계획
+→ 노선 선행 결정
+→ 큰 그룹을 위한 위험·생존 판단
+→ BOOST·배송 tempo
+→ 결과 학습·재도전
+→ records/cosmetics/maps/UGC
+```
+
+보조 시스템은 위 핵심 판단을 학습·반복·확장하며 대체하지 않는다.
+
 ## 목표
 
-한 판에서 실제 첫 세션 학습, 적재 선택, 2·3단계 분기 전환, compact token LIFO 하역, 하역 그룹 Combo, 연료 생존, 화물 감속, BOOST 위험 선택이 연결된다. 결과에서 실패를 이해하고 같은 맵 또는 새 공식 맵을 선택하며, 로컬 기록·꾸미기 진행이 다음 판 동기로 이어지는지 목표 품질로 검증한다.
+한 판에서 실제 첫 세션 학습, 선택 적재, 2/3단계 분기 전환, compact token LIFO 하역, 하역 그룹 Combo, 연료 생존, 화물 감속, BOOST 위험 선택이 연결된다. 결과에서 실패를 이해하고 같은 맵 또는 새 공식 맵을 선택하며, local records·cosmetic progression이 다음 판 동기로 이어지는지 목표 품질로 검증한다.
 
 ## 포함 — VS-03 Local Scope
 
-### 기존 코어
+### 구현 기반
 
-- Godot 4.7.1 / Android 가로형 기준
+- Godot 4.7.1 / Android landscape
 - 15×10 connected railway·no dead ends
-- 2-state switch 최소 4개·3-state switch 최소 2개
+- 2-state switch 최소 4개·3-state 최소 2개
 - 색상별 station 2개·pickup 최소 4개
-- automatic train movement·LOAD·BOOST
+- automatic movement·LOAD·BOOST input contract
 - capacity 8 LIFO CargoStack
-- `SX-DEC-014` one-arrival unload-group Combo
-- `SX-DEC-015` compact wagon tokens 0~8·rear=LIFO top·compressed footprint
-- score·fuel·speed·cargo slowdown·BOOST cost
-- fuel-zero end·result·restart
-- `SX-DEC-016` actual first-run contextual onboarding
+- deterministic placement·deferred recovery
 
-### GMB-001 local integration
+### VS03-01 — 구현·headless 검증 완료
 
-- `SX-DEC-017`: immutable RunSummary 기반 실패 원인 1개·다음 행동 1개·neutral fallback
-- `SX-DEC-018`: first PREP slight zoom, explicit `FULL_MAP_READY`, active-run fixed full map
-- `SX-DEC-019`: local standard records 3종과 gameplay power 없는 대표 cosmetic registry/collection/equip
-- `SX-DEC-020`: 대표 `DEFAULT / DUAL_PATH / CURRENCY_ONLY` unlock flow와 atomic local transaction
-- `SX-DEC-021`: eligible standard run의 bounded cosmetic-currency calculation·idempotent Profile grant
-- `SX-DEC-022`: authoritative difficulty forecast/commit 기반 prewarning와 `CALM/BUSY/INTENSE` signal
-- `SX-DEC-023`: exact same-map restart와 fresh mutable RunSession
-- `SX-DEC-023/024`: 최소 3개 validated official maps, undiscovered-first selection, discovered-map reselection
-- `SX-DEC-025`: official all-map global personal records + official per-map personal records의 atomic local commit
-- assisted first run과 standard record/reward/balance evidence 분리
-- Android safe area·48dp·Reduced Motion·mute·haptic-off
-- headless tests·10-minute soak·representative captures·5명+ first-experience validation 계획
+- `SX-DEC-009`: score·fuel·time pressure·fuel-zero end
+- `SX-DEC-010`: cargo slowdown·BOOST speed/cost
+- `SX-DEC-014`: one-arrival unload-group Combo
+- RunBalance·RunState·RunSummary·RunController
+- RunMetricsAccumulator
+- DifficultyForecast/Event/Director core
+- boundary-sliced event/run-clock/difficulty/fuel-zero order
+- actual DeliveryLoop·CargoStack·Station integration
+
+증거:
+
+```text
+PR #37 merge 43972d3d23e931af3dbc81ab9b1c7d942fffb201
+Project Contract 227 PASS
+Godot Tests 214 PASS
+16 cases · 7110 assertions · 0 failures
+```
+
+### 현재 package — VS03-02
+
+- `SX-DEC-015` compact wagon tokens 0~8
+- rear=LIFO top
+- compressed footprint
+- optional DeliveryLoop occupancy provider
+- full-cell legacy fallback
+- spawn/respawn exclusion integration
+- minimum Android viewport readability evidence hook
+
+### 후속 VS-03 local integration
+
+- `SX-DEC-016`: actual first-run contextual onboarding
+- `SX-DEC-017`: evidence-based result cause/action and neutral fallback
+- `SX-DEC-018`: PREP camera·FULL_MAP_READY·active full map
+- `SX-DEC-019`: standard records and cosmetic-only collection/equip
+- `SX-DEC-020`: DEFAULT/DUAL_PATH/CURRENCY_ONLY unlock
+- `SX-DEC-021`: bounded cosmetic currency
+- `SX-DEC-022`: authoritative difficulty prewarning and persistent signal
+- `SX-DEC-023`: exact same-map restart and fresh RunSession
+- `SX-DEC-023/024`: minimum 3 validated official maps and discovery/reselection
+- `SX-DEC-025`: official global + per-map personal records atomic commit
+- assisted first run separated from standard evidence
+- Android safe area·48dp·Reduced Motion·mute·haptic-off contracts
+- headless tests·soak·captures·5+ first-experience validation plan
 
 ## 제외 — Production / Online Gate
 
-- official 100+ unique layout 목표 완료와 전체 분포 audit
-- 100-entry official browser의 최종 제품화
+- official 100+ unique layout completion and distribution audit
+- final 100-entry browser
 - full user-map editor
-- account·upload·publication backend
-- server recanonicalization·hash·smoke validation
-- PRIVATE/UNLISTED/PUBLIC online publication
-- moderation·report·block·quarantine 운영
-- online UGC revision-scoped records
-- `SX-DEC-026` community signal backend·event journal·anti-abuse
-- creator payout·UGC currency reward·rating·comments·followers·leaderboards
-- client mock만으로 ONLINE/MODERATION/ANTI_ABUSE/PRIVACY READY 주장
-- 광고·결제·에너지·가챠·PvP·guild·실시간 ranking
-- iOS 출시 작업
+- account/upload/publication backend
+- server recanonicalization/hash/smoke validation
+- PRIVATE/UNLISTED/PUBLIC publication
+- moderation·report·block·quarantine operations
+- online UGC records
+- community backend·event journal·anti-abuse
+- creator payout·UGC reward·rating·comments·followers·leaderboards
+- ads·payment·energy·gacha·PvP·guild·real-time ranking
+- iOS release work
 
-VS-03에서 data model 또는 interface seam을 마련할 수 있으나 online service 완료를 수용 기준으로 삼지 않는다.
+VS-03 may add seams/data boundaries but cannot claim online readiness from local mocks.
 
 ## Core Authority Contracts
 
-- gameplay domain이 score·fuel·cargo·route·Combo·difficulty·run end를 소유한다.
-- UI·camera·Tween·animation·tutorial·result·collection·browser는 non-authoritative다.
-- `FULL_MAP_READY` 전 authoritative run progression·discovery·record commit을 시작하지 않는다.
-- animation completion은 cargo·occupancy·record·reward·restart 권위가 아니다.
-- map identity, run identity, record transaction, reward event, selection request를 분리한다.
-- same-map restart는 이전 mutable object graph를 reset 재사용하지 않고 fresh services를 생성한다.
-- currency·unlock·reward·selection·record·Profile writes는 atomic·idempotent 또는 replay-safe다.
-- assisted first run은 standard record·goal·variable reward·balance evidence에 비적격이다.
-- UI failure나 save retry가 reward·record를 중복 commit하지 않는다.
+- gameplay domain owns score·fuel·cargo·route·Combo·difficulty·run end.
+- UI·camera·Tween·animation·tutorial·result·collection·browser are non-authoritative.
+- `FULL_MAP_READY` precedes authoritative progression/discovery/record commit.
+- animation completion never owns cargo·occupancy·record·reward·restart.
+- map identity, run identity, record transaction, reward event, selection request are distinct.
+- same-map restart creates fresh mutable services.
+- currency·unlock·reward·selection·record·Profile operations are atomic/idempotent or replay-safe.
+- assisted first run is ineligible for standard record·goal·variable reward·balance evidence.
+- UI failure/save retry cannot duplicate commits.
+- DifficultyDirector must align with every meaningful player-facing pressure change; unannounced speed/fuel boundary changes are not accepted.
 
 ## Combo Contract — SX-DEC-014
 
 - `combo_count == unload_group_size == try_unload().count`.
-- 한 번의 station arrival 안에서 stack top부터 연속 하역된 동일 cargo type 개수다.
-- `max_combo`는 run 최대 group size다.
-- delivery streak는 없다.
-- `speed_bonus`는 독립 `TEST_VALUE`다.
-- empty/mismatch arrival은 Combo·score·fuel reward 0이다.
-- HUD·result·telemetry·save가 같은 의미를 사용한다.
+- one station arrival, stack top부터 같은 type 연속 하역 수.
+- `max_combo` is run maximum group size.
+- no delivery streak Combo.
+- speed bonus is independent `TEST_VALUE`.
+- empty/mismatch arrival gives Combo·score·fuel reward 0.
+- domain·HUD·result·telemetry·save use identical meaning.
+
+상태: domain implementation `PASSED`; presentation/save consumers later package.
 
 ## Compact Wagon Token Contract — SX-DEC-015
 
-- token count == CargoStack size, 범위 0~8.
-- cargo 0이면 locomotive만 표시한다.
+- token count == CargoStack size, 0~8.
+- cargo 0이면 locomotive only.
 - front→rear == stack bottom→top.
-- rear token == CargoStack top == HUD first unload item.
-- token은 color+shape 이중 부호다.
-- load/unload 뒤 count/order/footprint를 같은 domain step에서 갱신한다.
-- 권장 `TEST_VALUE`: body 0.22 cell, spacing 0.28, 8-token chain 2.18, trailing footprint ≤3 cells.
-- spawn exclusion은 full-size 8-cell wagon이 아니라 실제 compressed footprint intersection을 사용한다.
-- curve sampling은 token order를 보존하고 corner cutting을 만들지 않는다.
+- rear == stack top == HUD first unload item.
+- color+shape dual encoding.
+- load/unload count·order·footprint commit in same domain step.
+- body 0.22 cell, spacing 0.28, chain 2.18, trailing footprint ≤3 cells `TEST_VALUE`.
+- spawn exclusion uses actual compressed footprint, not 8 full cells.
+- curve sampling preserves order and prevents corner cutting.
+
+상태: `VS03-02 READY_FOR_BUILD`.
 
 ## First-Session Onboarding — SX-DEC-016
 
-- 실제 첫 endless run: `LOAD → token → first switch → mixed-stack LIFO → Combo → low-fuel BOOST`.
-- first LOAD와 first switch 전에만 safe full pause를 요청할 수 있다.
-- 일반 run에 branch slow motion을 추가하지 않는다.
-- assist `TEST_VALUE`: fuel drain 0.5×, escalation paused, max 120 sec, restore 3 sec, BOOST hint fuel≤35%.
-- core complete·skip·timeout 중 먼저 발생한 조건에서 종료한다.
-- OnboardingState는 normalized domain events를 소비하고 gameplay를 직접 변경하지 않는다.
-- overlay hide·copy advance·animation complete는 step/unpause/reward 조건이 아니다.
-- Help는 안내를 재생하지만 assist를 재활성화하지 않는다.
+- actual endless run: `LOAD → token → switch → mixed-stack LIFO → Combo → low-fuel BOOST`.
+- safe full pause only before first LOAD and first switch.
+- no general branch slow motion.
+- assist `TEST_VALUE`: fuel drain 0.5×, escalation paused, max120 sec, restore3 sec, BOOST hint fuel≤35%.
+- finish on core complete/skip/timeout first condition.
+- OnboardingState consumes normalized domain events.
+- overlay/copy/animation are not step/unpause/reward authority.
+- Help replay does not reactivate assist.
+
+상태: planned, VS03-06.
 
 ## Result Learning — SX-DEC-017
 
-- score·survival time·max Combo·new record를 유지한다.
-- evidence가 충분할 때 cause 1개와 next action 1개만 표시한다.
-- weak/tied/damaged/too-short/assisted evidence는 neutral fallback을 사용한다.
-- copy는 플레이어를 비난하거나 확률적 사건을 확정 원인으로 단정하지 않는다.
-- restart는 primary action이다.
+- score·survival·max Combo·new record.
+- when evidence is sufficient, one cause and one next action.
+- weak/tied/damaged/too-short/assisted uses neutral fallback.
+- no blame or false causality.
+- restart primary.
+
+상태: planned, VS03-05.
 
 ## Camera and Run Gate — SX-DEC-018
 
-- first PREP/READY에서 locomotive 주변 slight zoom `1.20× TEST_VALUE`.
-- transition `0.75s TEST_VALUE` 뒤 전체 맵으로 복귀한다.
-- `FULL_MAP_READY`를 확인한 뒤 authoritative run clock·spawn·difficulty를 시작한다.
-- active run은 고정 전체 맵이며 free pan/zoom을 제공하지 않는다.
-- Reduced Motion은 instant/static transition을 사용해도 run timing이 같다.
-- restart는 기본적으로 PREP zoom을 반복하지 않는 `TEST_VALUE`다.
+- first PREP slight zoom `1.20× TEST_VALUE`.
+- transition `0.75 sec TEST_VALUE`.
+- authoritative run begins only after `FULL_MAP_READY`.
+- active run fixed full map, no free pan/zoom.
+- Reduced Motion may use instant/static transition with identical timing.
+- restart usually skips PREP zoom `TEST_VALUE`.
+
+상태: planned, VS03-05.
 
 ## Local Profile / Cosmetics / Unlock / Rewards — SX-DEC-019~021
 
-### Standard records
+Standard records:
 
 - `best_score`
 - `longest_survival_seconds`
 - `best_max_combo`
 
-Eligibility: completed, current ruleset, integrity valid, non-debug/test, non-assisted.
+Eligibility: completed/current ruleset/integrity valid/non-debug/non-assisted.
 
-### Cosmetic integrity
+Cosmetics:
 
-- gameplay/stat/collision/camera/readability/record modifier 0.
-- representative collection/equip만 VS에서 증명한다.
+- gameplay/stat/collision/camera/readability/record modifiers 0.
+- representative collection/equip only in VS.
 
-### Unlock modes
+Unlock modes:
 
 - `DEFAULT`
-- `DUAL_PATH`: eligible goal 또는 cosmetic currency
+- `DUAL_PATH`: eligible goal or currency
 - `CURRENCY_ONLY`: currency only
 
-구매는 goal completion/achievement를 위조하지 않는다. Purchase-first then legitimate goal completion compensation은 bounded·one-time·idempotent다.
+Purchase does not fake goal completion. Purchase-first then legitimate goal compensation is bounded·one-time·idempotent.
 
-### Reward `TEST_VALUE`
+Reward `TEST_VALUE`:
 
-- standard eligibility + successful delivery ≥1
-- base 10
-- delivery +2, cap 10
+- standard eligibility + successful delivery≥1
+- base10
+- delivery +2 cap10
 - highest Combo tier +2/+5/+8
-- authoritative standard record update +5 once
-- run cap 30
-- assisted onboarding completion + delivery: fixed intro 10 once
-- no direct survival-time or raw-score currency component
-- global+per-map record 동시 갱신도 record reward component는 run당 최대 1회
+- authoritative record update +5 once
+- run cap30
+- assisted onboarding completion+delivery fixed intro10 once
+- no raw score/survival currency
+- global+per-map update still grants record component max once
+
+상태: planned, VS03-04.
 
 ## Difficulty Communication — SX-DEC-022
 
-- DifficultyDirector 또는 existing equivalent가 schedule·commit을 단독 소유한다.
-- immutable forecast/event만 presentation이 소비한다.
-- exact internal formula, spawn intervals, multipliers, next threshold timing은 default HUD에 숨긴다.
-- `TEST_VALUE`: lead 5s, banner 1.5s, cooldown 8s, CALM/BUSY/INTENSE.
-- warning은 최대 2줄이며 board·station·switch·token·fuel·LIFO info를 가리지 않는다.
-- assist/pause는 authoritative timers도 멈추고 resume에 wall-clock catch-up을 하지 않는다.
-- warning on/off와 Reduced Motion은 같은 authoritative simulation trace를 보존한다.
+- DifficultyDirector/equivalent owns schedule·commit.
+- immutable forecast/event only consumed by presentation.
+- exact internal formula/interval/multiplier/threshold hidden by default.
+- lead5 sec, banner1.5 sec, cooldown8 sec, CALM/BUSY/INTENSE `TEST_VALUE`.
+- warning ≤2 lines and cannot obscure board/station/switch/token/fuel/LIFO info.
+- assist/pause stop authoritative timers; no wall-clock catch-up.
+- warning/motion preference cannot mutate simulation trace.
+
+Current core implements a 30-sec DifficultyDirector commit, while RunBalance fuel pressure changes at 45-sec boundaries. `SX-AUD-007-F87` requires schedule alignment before presentation acceptance.
 
 ## Same-Map Restart and Minimum Official Map Set — SX-DEC-023~024
 
-### Restart
+Restart:
 
-- exact official map ID/revision/seed/generator+ruleset versions/signatures 유지.
-- new run ID·reward IDs·record transaction·presentation generation 생성.
-- score/fuel/cargo/switch/train/spawn/combo/difficulty/warning/onboarding-local/result state 전부 fresh reset.
-- incompatible map은 다른 map으로 silent substitution하지 않는다.
+- exact map ID/revision/seed/generator+ruleset versions/signatures.
+- new run/reward/record/presentation identities.
+- fresh score/fuel/cargo/switch/train/spawn/combo/difficulty/result state.
+- no silent substitution.
 
-### Minimum set for VS
+VS minimum:
 
-- 최소 3개 official map은 서로 다른 validated layout signatures를 사용한다.
-- first eligible `NEW RUN` cycle은 미발견 map을 우선 배정한다.
-- `RESTART`와 manual reselection은 automatic bag을 소비하지 않는다.
-- discovery는 reconstruction + `FULL_MAP_READY` + authoritative run start 뒤 atomic commit.
-- discovered maps는 최소 compact browser/list에서 직접 재선택 가능하다.
+- 3 official maps with distinct validated layout signatures.
+- first eligible NEW RUN cycle prioritizes undiscovered maps.
+- restart/manual consumes automatic bag 0.
+- discovery commits after reconstruction + FULL_MAP_READY + authoritative start.
+- discovered maps selectable in compact browser/list.
 
-100+ official target은 Production Gate이며 fallback/duplicate는 count에서 제외한다. `F58`은 target-100 audit 전 `NOT_MET`다.
+100+ target is Production; fallback/duplicates excluded; `F58 NOT_MET` until audit.
+
+상태: planned, VS03-03.
 
 ## Scoped Official Records — SX-DEC-025 Local Portion
 
-- official global scope: all eligible official maps의 개인 최고값.
-- official per-map scope: exact official map identity의 개인 최고값.
-- 한 eligible run이 두 scope를 한 atomic transaction으로 평가한다.
-- result는 current-map record를 우선 표시하고 실제 global update만 별도로 표시한다.
-- global record는 cross-map online fairness leaderboard가 아니다.
-- UGC draft/publication data는 VS local official records에 들어오지 않는다.
+- global official personal best across eligible official maps.
+- per-map official personal best for exact stable identity.
+- one eligible run evaluates both in one atomic transaction.
+- result prioritizes current-map record and separately shows real global update.
+- global personal best is not cross-map online fairness leaderboard.
+- UGC does not enter VS local official records.
+
+상태: planned, VS03-04/05.
+
+## Core-Fun Guardrails
+
+- mono-color selective loading may not become an almost universal optimal strategy.
+- speed/heavy bonus may not outweigh load-order/group-size planning.
+- BOOST always-on may not dominate both survival and score.
+- carrying irrelevant cargo for heavy bonus may not dominate.
+- difficulty may raise decision frequency/opportunity cost, not only reflex precision.
+- meta rewards/content volume may not become the primary repeat reason before core fun is proven.
+
+Required evidence:
+
+- mixed-stack and distinct-type distribution
+- mono-color delivery ratio
+- Combo distribution
+- base/speed/heavy score contribution
+- route preparation and recovery behavior
+- BOOST uptime and lost LOAD opportunity
 
 ## Quality Bar
 
 ### Readability
 
-- first 3 sec: train/cargo/station/switch 구분.
-- active route·preview 판별.
-- HUD unload order와 rear token parity.
-- color vision 조건에서도 shape 식별.
-- Combo와 speed bonus 구분.
-- 0/1/4/8 token cargo count와 rear target 식별.
-- result cause/action/current-map/global record label 구분.
-- difficulty warning과 persistent band가 critical board/HUD를 가리지 않음.
-- PREP zoom과 active full map의 차이를 이해.
+- first 3 sec: train/cargo/station/switch distinction.
+- active route and preview distinction.
+- HUD unload order and rear token parity.
+- color+shape identification.
+- Combo versus speed bonus distinction.
+- 0/1/4/8 tokens and rear target readable.
+- result cause/action/current/global labels distinct.
+- difficulty UI does not obscure critical information.
+- PREP versus active camera understood.
 
 ### Input
 
-- LOAD/BOOST 한 손 입력.
+- LOAD/BOOST single-pointer friendly.
 - switch target ≥48dp.
-- first LOAD/switch safe pause만 domain action·skip·teardown으로 해제.
-- transition 동안 authoritative input/progression race 0.
-- restart/new run/choose discovered map semantics 혼동 0.
+- no simultaneous chord requirement.
+- safe pause release only by domain action/skip/teardown.
+- no authoritative race during transitions.
+- restart/new-run/select-map semantics distinct.
+- landscape full-map reach tested on actual devices.
 
 ### System
 
-- 기존 RailGraph/CargoStack/DeliveryLoop regression 0.
+- existing RailGraph/CargoStack/DeliveryLoop regression 0.
 - token count/order/rear/footprint parity.
-- `combo_count` parity.
+- Combo parity.
 - no-input finite survival.
 - BOOST always-on not optimal.
-- reward/record duplicate commit 0.
-- assisted run standard record/reward update 0.
-- difficulty presentation simulation mutation 0.
-- same-map restart authoritative trace parity for same input sequence.
-- first three official eligible NEW RUN starts unique.
-- manual/restart consumes auto bag 0.
+- reward/record duplicate 0.
+- assisted standard update 0.
+- presentation simulation mutation 0.
+- same-map restart trace parity for same input.
+- first 3 eligible NEW RUN starts unique.
+- manual/restart auto-bag consume 0.
 - global/per-map record transaction atomic.
+- actual pressure boundary without forecast/commit 0.
 
-### Human targets — `TEST_VALUE`
+### Human targets — TEST_VALUE
 
 Minimum 5 participants:
 
 - 4/5 LOAD·switch independent within 3 min.
 - 4/5 rear-token LIFO explanation.
 - 4/5 one-arrival Combo explanation.
+- 4/5 success attributed to load-order/route planning, not only fast tapping.
 - 4/5 result advice understood as evidence/fallback, not blame.
-- 4/5 same-map restart versus new-map distinction.
-- 4/5 current-map versus all-map personal record distinction.
+- 4/5 restart versus new-map distinction.
+- 4/5 current-map versus all-map record distinction.
 - 3/5 onboarding not overly interruptive.
 
 ### Performance / Accessibility
 
-- target Android 60 FPS, 1% low ≥45 FPS `TARGET`.
-- 10-minute run no sustained memory growth.
+- Android target 60 FPS, 1% low ≥45 `TARGET`.
+- 10-minute no sustained memory growth.
 - no per-frame full graph/Scene-tree scan.
 - 48dp·safe area.
 - color+shape+text/outline.
-- 140% localization stress for new labels.
+- 140% localization stress.
 - Reduced Motion/mute/haptic-off semantic parity.
+
+## Benchmark Positioning
+
+Reference patterns:
+
+- Mini Metro: escalating survival pressure and learnable failure.
+- Conduct THIS!: few inputs and immediate route feedback.
+- Railbound: readable carriage-order and route causality.
+- Train Valley 2: staged official/user-created content.
+- Rail Route: authoritative routing systems separated from presentation.
+
+Do not copy network construction, collision-reflex focus, tycoon depth, automation, or UGC scale before LIFO-route core proof.
 
 ## Evidence Boundary
 
 - planning approval ≠ runtime implementation.
-- headless test ≠ Android/human/product quality.
+- headless pass ≠ product Scene/Android/human quality.
 - assisted first-run metrics ≠ standard balance evidence.
-- 3-map VS evidence ≠ 100+ official catalog completion.
-- local data model/mock ≠ online UGC readiness.
-- current GMB-001 product code·Scene·Resource·asset change is not authorized.
+- target3 ≠ target100 completion.
+- local model/mock ≠ online UGC readiness.
+- VS03-01 is implemented; VS03-02~07 remain staged according to package status.
 
 ## Decision Gate
 
-- `PASS`: local core and three-map representative flow prove repeat intent and comprehension.
-- `REVISE`: core works but economy, map readability, result advice, signal timing, or onboarding needs adjustment.
+- `PASS`: local core and target3 flow prove load-order/route planning, repeat intent, and comprehension.
+- `REVISE`: core works but economy, readability, result, signals, maps, or onboarding need adjustment.
 - `PIVOT`: players do not recognize load-order·route planning·large unload group as the core.
 - `STOP`: comprehension and repeat intent remain absent after bounded revisions.
 
-Online UGC has its own later Production Gate and cannot change the VS decision result without separate evidence.
+Online UGC has a separate Production Gate and cannot change the VS result without separate evidence.
