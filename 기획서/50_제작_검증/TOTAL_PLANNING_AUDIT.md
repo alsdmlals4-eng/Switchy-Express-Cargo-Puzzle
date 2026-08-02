@@ -2,24 +2,27 @@
 
 ```yaml
 audit_id: SX-AUD-004
-status: PASS · GMB001_CLOSED · DOR_SX_AUD_005_PENDING_CANONICAL_SYNC
+status: PASS · GMB001_CLOSED · DOR_SX_AUD_005_SYNCED
 product_baseline: 4e435a1a6d10ab146197671049da80709fd18c1f
 gmb001_decision_merge: 9b63421a5ab4d57adbfcf69d2b6e1bf8e3d17496
-work_mode: TOTAL_PLANNING · REVIEW
-implementation_authority: VS03-01_PENDING_DOR_CANONICAL_SYNC
-sheet_state: GMB001_SYNCED · DOR_SYNC_PENDING
-codex_state: READY_FOR_BUILD_PENDING_CANONICAL_SYNC
+dor_merge: 82fd3eeb1915e6ceedb2f5330b27e903064d6eb5
+work_mode: IMPLEMENTATION_READY · STAGED
+implementation_authority: VS03-01_ONLY
+sheet_state: DOR_CANONICAL_READBACK_PASS
+codex_state: READY_FOR_BUILD
+product_implementation: NOT_STARTED
 ```
 
 ## 목적과 결과
 
 VS-03 구현 전에 제품·경험·시스템·콘텐츠·UX·표현·데이터·저장·검증·제작 기획을 실제 구현과 대조했다.
 
-- `SX-DEC-014~016`과 `GMB-001 · SX-DEC-017~026`의 canonical sync 완료.
+- `SX-DEC-014~026`, `SX-OPS-001` canonical sync 완료.
 - GMB-001 known open P0/P1 planning finding 0으로 closure 완료.
-- 후속 `SX-AUD-005`에서 실제 코드·test runner·파일·package·save·rollback까지 Definition of Ready를 검사했다.
+- `SX-AUD-005`에서 실제 코드·test runner·파일·package·save·rollback까지 Definition of Ready를 검사했다.
 - `SX-AUD-005-F76~F85`를 제품 의미 변경 없이 planning fix로 폐쇄했다.
-- DoR canonical merge와 Sheet closure 뒤 G3P를 `READY_FOR_BUILD`로 승격할 수 있다.
+- PR #35와 올바른 Sheet canonical readback으로 G3P가 `READY_FOR_BUILD`로 승격됐다.
+- 현재 구현 권위는 `VS03-01` 하나뿐이며 제품 구현은 아직 시작되지 않았다.
 
 ## GMB-001 Closure
 
@@ -79,8 +82,6 @@ Each package starts after the previous package merges. Shared hotspots do not ru
 
 ## Initial Build Authority
 
-After DoR canonical merge and correct Sheet final readback:
-
 ```yaml
 G3P: PASS · READY_FOR_BUILD
 codex: READY_FOR_BUILD
@@ -114,13 +115,15 @@ Planning/DoR PASS is not runtime or product-quality PASS.
 - [x] exact acceptance/evidence locations
 - [x] scope budget/deferral
 - [x] user instruction `EV-USER-016`
-- [ ] canonical DoR PR merge
-- [ ] correct Sheet Audit/Evidence/ready closure
+- [x] canonical DoR PR #35 merge `82fd3eeb1915e6ceedb2f5330b27e903064d6eb5`
+- [x] correct Sheet Audit/Evidence canonical readback PASS
+- [x] Sync Closure metadata prepared
 
 ## Decision Queue
 
 ```text
 GMB-001 CLOSED
+DoR CLOSED
 next batch NOT_STARTED
 next Decision NOT_ASSIGNED
 no new Decision required for VS03-01 unless implementation reveals a material player-facing choice
