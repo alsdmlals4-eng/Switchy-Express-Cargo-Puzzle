@@ -10,18 +10,17 @@
 | 엔진 | Godot 4.7.1 / GDScript |
 | 화면 | 가로형 |
 | 현재 단계 | `VERTICAL_SLICE_IN_PROGRESS · VS02_RUNTIME_PASSED` |
-| 코어 상태 | `CORE_CONFIRMED · SX-DEC-014/015_SYNCED · SX-DEC-016_CANON_IN_PROGRESS` |
+| 코어 상태 | `CORE_CONFIRMED · SX-DEC-014/015/016_SYNCED` |
 | 제품 구현 | `RAIL_TRAIN_CARGO_LIFO_IMPLEMENTED` |
 | 현재 Gate | `G2 PASS · G3 PARTIAL · G3P IN_PROGRESS` |
 | 최근 제품 구현 | PR #13 · `4e435a1a6d10ab146197671049da80709fd18c1f` |
-| 최근 synchronized planning main | PR #25 · `867563bb7bb69cfbb7343ef734585dd034ad7a64` |
+| 최신 synchronized planning main | PR #27 · `3cd13ff375a597d4eba9035af5b05e6186fb4853` |
 | 테스트 기준 | Godot headless `9 cases · 6915 assertions · 0 failures` |
-| Sheet | `SX-DEC-014/015 · 12탭 readback PASS · SYNCED`; `SX-DEC-016` canonical merge 대기 |
+| Sheet | `SX-DEC-014/015/016 · SX-OPS-001 · PASS · 12탭 재조회 완료 · SYNCED` |
 | 현재 Work Mode | `TOTAL_PLANNING · REVIEW` |
 | Codex | `CODEX_NOT_READY` |
 | 현행 감사 | `SX-AUD-004 · TOTAL_PLANNING_AUDIT.md` |
-| 현재 승인 | `SX-DEC-016 상황형 첫 run 온보딩 · SX-OPS-001 10건 배치 병합` |
-| 다음 정규 Batch | `GMB-001 · SX-DEC-017부터 0/10` |
+| 현재 Batch | `GMB-001 · SX-DEC-017부터 0/10` |
 | Sheet ID | Adapter의 `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo` |
 | Base | v9.4.0 (`a728712cb776ec98f4875914a580fcf7d0156593`) |
 
@@ -58,42 +57,30 @@ CURRENT_CONFIRMED_DECISIONS.md
 
 `docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md`는 VS-01·VS-02 상세 실행 이력을 보존하는 `HISTORICAL_FOUNDATION`이다. 그 안의 구형 planning status보다 2026-08-02 Current Plan을 우선한다.
 
-Post-VS02 구현·정본 복구의 역사 감사는 `POST_VS02_ADVERSARIAL_AUDIT.md`에서 확인한다.
-
 ## 현재 Gate
 
 - `G0_PROJECT_IDENTIFIED`: PASS
 - `G1_CORE_CONFIRMED`: PASS
 - `G2_VERTICAL_SLICE_CONTRACT_APPROVED`: PASS
 - `G3_CORE_RUNTIME_PROVEN`: PARTIAL
-  - Godot 기반·RailGraph·2/3단계 분기: PASSED
-  - 기관차 이동·LOAD·화물·역·LIFO: PASSED
-  - 기존 full-cell wagon position foundation: PASSED · compact token adaptation pending
-  - 런타임 최소 화물 재생성: PASSED
-  - 연료·속도·점수·BOOST·게임오버·기록: NOT_STARTED
-  - 상황형 첫 run 온보딩: PLANNING_SPEC_APPROVED · IMPLEMENTATION_NOT_STARTED
+  - RailGraph·분기·기관차·LOAD·화물·역·LIFO·런타임 재생성: PASSED
+  - compact token runtime·경제·제품 UI·결과·기록·상황형 온보딩: NOT_STARTED
 - `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE`: IN_PROGRESS
-  - Post-VS02 GitHub·Sheet 동기화: PASSED
-  - Combo: `SX-DEC-014 SYNCED`
-  - compact wagon token: `SX-DEC-015 SYNCED`
-  - 상황형 첫 run 온보딩: `SX-DEC-016 CANON_IN_PROGRESS`
-  - 10건 배치 운영: `SX-OPS-001 APPROVED`
+  - `SX-DEC-014/015/016`, `SX-OPS-001`: GitHub·Sheet SYNCED
+  - `GMB-001`: 0/10
   - 후속 Decision·Definition of Ready: 진행 중
-- `G3B_GRILL_ME_BATCH_PREMERGE`: CATCH_UP_IN_PROGRESS
+- `G3B_GRILL_ME_BATCH_PREMERGE`: GMB-001_NOT_STARTED
 - `G4_TARGET_QUALITY_SLICE`: NOT_STARTED
 - `G5_PLAYTEST_EVIDENCE`: NOT_STARTED
 
 ## 현재 작업
 
-1. `SX-DEC-016`·`SX-OPS-001` 소비자를 정본·Issue #6·Plan·VS-03 Goal에 반영
-2. canonical PR 병합 직전 main·PR·Sheet 12탭을 다시 전수 대조
-3. 적대적 Finding P0/P1 0, exact-head checks 성공, review thread 0에서만 병합
-4. canonical merge commit을 Sheet에 기록하고 12탭 readback PASS
-5. Sync Closure PR을 검증·병합한 뒤 `GMB-001`을 0/10으로 시작
+1. `GMB-001` slot 1인 `SX-DEC-017` 결과 화면 실패 학습 Decision을 한 건만 Grill Me한다.
+2. 승인 시 batch branch·draft PR·Sheet에 `APPROVED_PENDING_BATCH_MERGE`로 기록한다.
+3. 10번째 승인에서 새 질문을 중단하고 GitHub·PR·Sheet 12탭 전수 감사 후 병합한다.
+4. canonical merge·Sheet readback·Sync Closure PR까지 완료해야 GMB-001을 닫는다.
 
 ## 다음 구현 후보
-
-Issue #6 / VS-03을 순차 패키지로 준비한다.
 
 ```text
 VS-03A · 생존 경제 도메인
@@ -102,4 +89,4 @@ VS-03A · 생존 경제 도메인
 → Issue #7 · 텔레메트리·soak·Android·플레이테스트·최종 적대 검토
 ```
 
-현재 실행문 `CODEX_GOAL_VS_03.md`는 `PLANNING_DRAFT · CODEX_NOT_READY`이며 총기획·Grill Me batch Gate 전에는 구현에 사용하지 않는다.
+현재 실행문 `CODEX_GOAL_VS_03.md`는 `PLANNING_DRAFT · CODEX_NOT_READY`이며 GMB-001과 남은 총기획 Gate 전에는 구현에 사용하지 않는다.

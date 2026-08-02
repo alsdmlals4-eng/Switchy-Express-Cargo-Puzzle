@@ -4,14 +4,15 @@ Status: `PLANNING_DRAFT · CODEX_NOT_READY`
 GitHub Issue: `#6`
 Parent Epic: `#3`
 Blocked by implementation: `#5 · COMPLETED`
-Blocked by planning: `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE · G3B_GRILL_ME_BATCH_PREMERGE`
-Baseline synchronized main before this Decision: `867563bb7bb69cfbb7343ef734585dd034ad7a64`
-Master Plan: `docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md` Task 6~7
+Blocked by planning: `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE · GMB-001`
+Latest synchronized planning main: `3cd13ff375a597d4eba9035af5b05e6186fb4853`
+Current Master Plan: `docs/superpowers/plans/2026-08-02-switchy-express-current-vertical-slice.md`
+Historical foundation: `docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md`
 Compact token spec: `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md`
 Onboarding spec: `docs/superpowers/specs/2026-08-02-first-session-contextual-onboarding-design.md`
 Onboarding plan: `docs/superpowers/plans/2026-08-02-first-session-contextual-onboarding.md`
 
-> 이 문서는 현재 구현 명령이 아니다. 전체 기획 Coverage·Grill Me batch·GitHub/Sheet 동기화가 닫힌 뒤 `READY_FOR_BUILD`로 승격한다.
+> 이 문서는 현재 구현 명령이 아니다. GMB-001과 남은 총기획 Gate가 닫힌 뒤 `READY_FOR_BUILD`로 승격한다.
 
 ## 플레이어에게 보여야 할 결과
 
@@ -29,7 +30,7 @@ Onboarding plan: `docs/superpowers/plans/2026-08-02-first-session-contextual-onb
 → 즉시 재시작
 ```
 
-## 승인 Decision
+## 승인·동기화 상태
 
 - `SX-DEC-002`
 - `SX-DEC-003`
@@ -40,8 +41,9 @@ Onboarding plan: `docs/superpowers/plans/2026-08-02-first-session-contextual-onb
 - `SX-DEC-013`
 - `SX-DEC-014` · GitHub/Sheet `SYNCED`
 - `SX-DEC-015` · GitHub/Sheet `SYNCED`
-- `SX-DEC-016` · USER_APPROVED · CANON_IN_PROGRESS
-- `SX-OPS-001` · 10건 batch merge protocol APPROVED
+- `SX-DEC-016` · PR #27 / `3cd13ff375a597d4eba9035af5b05e6186fb4853` · Sheet 12탭 `PASS · SYNCED`
+- `SX-OPS-001` · ACTIVE
+- `GMB-001` · `SX-DEC-017`부터 `0/10`
 
 상세 속도·연료·보상·token 기하·onboarding assist 수치는 `TEST_VALUE`이며 사용자 확정 영구 밸런스로 취급하지 않는다.
 
@@ -289,8 +291,8 @@ Issue #7은 다음을 구현·검증한다.
 
 ## Grill Me batch 경계 — SX-OPS-001
 
-- 현재 `SX-DEC-016`까지 catch-up canonical merge·Sheet closure한다.
-- 다음 `GMB-001`은 `SX-DEC-017`부터 10건을 센다.
+- `CATCH-UP-001 · SX-DEC-014~016`: CLOSED.
+- `GMB-001`: `SX-DEC-017`부터 10건, 현재 0/10.
 - batch 중 승인안은 `APPROVED_PENDING_BATCH_MERGE`이며 main `SYNCED`로 표시하지 않는다.
 - 10번째 승인 후 main·PR·Issue·Goal·Plan·Gate·Registry·Sheet 12탭 pre-merge adversarial audit를 수행한다.
 - exact-head checks 성공, P0/P1 0, review thread 0일 때만 병합한다.
@@ -301,8 +303,7 @@ Issue #7은 다음을 구현·검증한다.
 - [x] Post-VS02 GitHub·Sheet `SYNCED`
 - [x] `SX-DEC-014`, `EV-USER-002`, `SX-AUD-004` GitHub·Sheet `SYNCED`
 - [x] `SX-DEC-015`, `EV-USER-003` GitHub·Sheet `SYNCED`
-- [x] `SX-DEC-016` 사용자 승인·설계·TDD 계획 작성
-- [ ] `SX-DEC-016`·`SX-OPS-001` canonical merge·Sheet closure
+- [x] `SX-DEC-016`, `EV-USER-004`, `SX-OPS-001`, `EV-USER-005` GitHub·Sheet `SYNCED`
 - [ ] GMB-001과 전체 필수 기획 Decision 완료
 - [ ] MUST_FIX 0 또는 승인 보류
 - [ ] Issue #6·Plan·본책 책임 일치

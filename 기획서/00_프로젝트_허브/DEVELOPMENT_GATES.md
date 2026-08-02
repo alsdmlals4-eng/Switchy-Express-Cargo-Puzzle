@@ -72,7 +72,7 @@ Status: `PARTIAL`
 - [ ] 실제 domain event 기반 LOAD·switch·LIFO·Combo 단계 전환
 - [ ] safe pause·skip·resume·Help·onboarding preference
 
-다음 실행 후보: Issue #6. 단, `PLANNING_AND_REVIEW_COMPLETE_GATE` 전에는 Codex Build를 시작하지 않는다.
+다음 실행 후보: Issue #6. 단, `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE` 전에는 Codex Build를 시작하지 않는다.
 
 ## G3P — TOTAL_PLANNING_AND_REVIEW_COMPLETE
 
@@ -86,35 +86,34 @@ Status: `IN_PROGRESS`
 - [x] 분야 간 1차 충돌 적대적 검토
 - [x] `SX-DEC-014` Combo 의미 확정·GitHub/Sheet 동기화
 - [x] `SX-DEC-015` compact wagon token 의미·설계·GitHub/Sheet 동기화
-- [x] `SX-DEC-016` 실제 첫 run 상황형 온보딩 사용자 승인
-- [x] `SX-DEC-016` 설계 정본·TDD 계획 작성
+- [x] `SX-DEC-016` 실제 첫 run 상황형 온보딩 사용자 승인·설계·TDD 계획
 - [x] `SX-OPS-001` Grill Me 10건 batch merge 프로토콜 승인·정본화
-- [ ] 현재 catch-up canonical PR 병합 직전 GitHub·PR·Sheet 전수 감사
-- [ ] `SX-DEC-016`, `EV-USER-004`, `SX-OPS-001`, `EV-USER-005` canonical merge·Sheet 12탭 closure
-- [ ] 실패 학습 정보 `SX-DEC-017`부터 GMB-001 10건 Decision batch
+- [x] catch-up PR #27 병합 전 GitHub·PR·Sheet 전수 감사
+- [x] `SX-DEC-016`, `EV-USER-004`, `SX-OPS-001`, `EV-USER-005` canonical merge·Sheet 12탭 closure
+- [ ] `GMB-001`: `SX-DEC-017`부터 중요 Decision 10건
 - [ ] VS-03 범위·수용 기준·저장·UX 책임 최종 일치
 - [ ] Codex Definition of Ready
 
 ## G3B — GRILL_ME_BATCH_PREMERGE
 
-Status: `CATCH_UP_IN_PROGRESS · GMB-001_NOT_STARTED`
+Status: `GMB-001_NOT_STARTED · 0/10`
 
 책임 정본: `기획서/50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md`
 
-현재 catch-up 병합 조건:
+Catch-up evidence:
 
-- [ ] current main SHA 재확인
-- [ ] canonical PR exact head·changed-file inventory·full patch 확인
-- [ ] Decision/Evidence·Issue·Goal·Plan·Gate·Registry·Adapter 소비자 확인
-- [ ] 올바른 Sheet ID·제목과 12개 탭 재조회
-- [ ] 왜곡·충돌·누락·권위·증거과장·역사손실·sync drift 적대적 검토
-- [ ] P0/P1 open finding 0
-- [ ] unresolved review thread 0
-- [ ] Project Contract success
-- [ ] Godot full regression success
-- [ ] 승인되지 않은 제품 코드·Scene·Resource·asset 변경 0
+- [x] main·PR exact head·changed-file inventory·full patch 확인
+- [x] Decision/Evidence·Issue·Goal·Plan·Gate·Registry·Adapter 소비자 확인
+- [x] 올바른 Sheet ID·제목과 12개 탭 재조회
+- [x] F21 역사 계약 복원·F22 VS-03C 순서 복원·F23 Sheet stale 행 수정
+- [x] P0/P1 open finding 0
+- [x] unresolved review thread 0
+- [x] Project Contract success
+- [x] Godot full regression success
+- [x] 승인되지 않은 제품 코드·Scene·Resource·asset 변경 0
+- [x] PR #27 canonical merge·Sheet readback PASS
 
-정규 GMB 완료 조건:
+GMB-001 완료 조건:
 
 ```text
 10 approvals
