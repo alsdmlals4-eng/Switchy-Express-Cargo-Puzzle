@@ -19,6 +19,7 @@ Status: `PASS`
 - [x] 가로형 연결 철도망 승인
 - [x] 시각 방향 승인
 - [x] `SX-DEC-014` 하역 그룹 Combo 의미 승인
+- [x] `SX-DEC-015` compact wagon token 의미 승인
 
 ## G2 — VERTICAL_SLICE_CONTRACT_APPROVED
 
@@ -30,6 +31,7 @@ Status: `PASS`
 - [x] VS-02 Issue #5 완료
 - [x] Base v9.4 운영 계약 적용
 - [x] Combo와 speed bonus의 의미 분리
+- [x] 화물 수·token 수·LIFO 순서·compressed footprint 계약 작성
 
 ## G3 — CORE_RUNTIME_PROVEN
 
@@ -43,7 +45,7 @@ Status: `PARTIAL`
 - [x] seeds 1~100 연결·막다른길·분기 밀도 검사
 - [x] 5칸 경로 미리보기와 실제 다음 칸 일치
 - [x] 직진 우선 기본 노선과 통과 뒤 초기화
-- [x] 연속 기관차 이동과 최대 8개 화차 추종
+- [x] 연속 기관차 이동과 최대 8개 wagon 위치 계산 기반
 - [x] LOAD 선택 적재와 capacity 8 LIFO stack
 - [x] 색상별 화물 최소 4개와 스테이션 6개
 - [x] 금지 칸·지연 재생성·deferred 회복
@@ -53,6 +55,9 @@ Status: `PARTIAL`
 
 남음:
 
+- [ ] compact token count/order ViewModel
+- [ ] fractional path following과 trailing footprint 최대 3칸
+- [ ] compressed footprint 기반 spawn exclusion
 - [ ] `SX-DEC-014` Combo 계산·max_combo 구현
 - [ ] 시간 기반 속도·연료
 - [ ] 화물 감속·BOOST 경제
@@ -74,11 +79,13 @@ Status: `IN_PROGRESS`
 - [x] 상세 수치를 `RECOMMENDED_DEFAULT / TEST_VALUE`로 관리하는 권한 확인
 - [x] 전체 기획 Coverage Matrix 작성
 - [x] 분야 간 1차 충돌 적대적 검토
-- [x] `SX-DEC-014` Combo 의미 확정
+- [x] `SX-DEC-014` Combo 의미 확정·GitHub/Sheet 동기화
 - [x] 안전 보완과 구형 Skill·Plan·Registry 참조 복구
-- [x] `SX-DEC-014`, `EV-USER-002`, `SX-AUD-004` canonical commit Sheet 동기화·12탭 재조회
-- [ ] `SX-DEC-015` 화물–화차 관계 확정
-- [ ] 후속 Grill Me Decision 필요성 재검증·완료
+- [x] `SX-DEC-015` compact wagon token 의미 확정
+- [x] `SX-DEC-015` 설계 규격·본책·VS·플레이테스트 계약 반영
+- [ ] `SX-DEC-015` canonical commit Sheet 동기화
+- [ ] `SX-DEC-016` 첫 세션 온보딩 방식 확정
+- [ ] 실패 학습 정보의 별도 Decision 필요성 재검증
 - [ ] VS-03 범위·수용 기준·저장·UX 책임 최종 일치
 - [ ] Codex Definition of Ready
 
@@ -91,10 +98,12 @@ Status: `NOT_STARTED`
 - [ ] 분기 상태와 실제 경로 화면 일치
 - [ ] 색상+모양 이중 부호
 - [ ] `COMBO ×N`과 speed bonus의 의미 분리
-- [ ] `SX-DEC-015`에 따른 화차·화물 표현
+- [ ] 0~8 compact wagon tokens와 rear LIFO token 표현
+- [ ] 8 token chain 약 2.18칸·trailing footprint 최대 3칸
+- [ ] compressed footprint spawn exclusion
+- [ ] 0/1/4/8·곡선 대표 캡처
 - [ ] 48dp 터치 영역과 Android safe area
 - [ ] Reduced Motion·mute·haptic-off
-- [ ] 대표 플레이 캡처
 - [ ] Android export·실기 성능
 
 ## G5 — PLAYTEST_EVIDENCE
@@ -104,7 +113,9 @@ Status: `NOT_STARTED`
 - [ ] 10분 soak
 - [ ] 최소 5명 첫 경험 테스트
 - [ ] 행동 계측과 인터뷰
-- [ ] LIFO·Combo·분기 이해율 기준 충족
+- [ ] LIFO·Combo·분기·token 적재량 이해율 기준 충족
+- [ ] rear token을 다음 하역 대상으로 80% 이상 식별
+- [ ] 8 token 상태 경로·역·분기 가독성
 - [ ] 승인된 MUST_FIX 회귀 테스트
 - [ ] `PASS / REVISE / PIVOT / STOP`
 - [ ] Production 진입 결정
