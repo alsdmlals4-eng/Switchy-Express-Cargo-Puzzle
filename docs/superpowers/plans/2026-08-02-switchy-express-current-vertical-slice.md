@@ -1,18 +1,19 @@
 # Switchy Express Current Vertical Slice Master Plan
 
 ```yaml
-status: CURRENT · READY_FOR_BUILD_PENDING_CANONICAL_SYNC
+status: CURRENT · READY_FOR_BUILD
 product_baseline: 4e435a1a6d10ab146197671049da80709fd18c1f
 gmb001_decision_merge: 9b63421a5ab4d57adbfcf69d2b6e1bf8e3d17496
 gmb001: CLOSED · SX-DEC-017~026
-dor_audit: SX-AUD-005
+dor_audit: SX-AUD-005 · PASS · SYNCED
+dor_merge: 82fd3eeb1915e6ceedb2f5330b27e903064d6eb5
 dor_evidence: EV-USER-016
 implementation_state: NOT_STARTED
-codex_state: READY_FOR_BUILD_PENDING_CANONICAL_SYNC
+codex_state: READY_FOR_BUILD
 first_authorized_package: VS03-01
 ```
 
-> GMB-001 기획 sync와 G3P Definition of Ready 적대적 검토가 완료됐다. 이 branch의 DoR 정본이 merge되고 올바른 Sheet readback이 끝난 뒤 `VS03-01` 구현만 시작할 수 있다.
+> GMB-001 기획 sync와 G3P Definition of Ready 적대적 검토가 완료됐다. 현재 실행 권위는 `VS03-01`에만 적용되며, 제품 구현은 별도 Codex 작업이 시작되기 전까지 `NOT_STARTED`다.
 
 ## 목표
 
@@ -20,7 +21,7 @@ first_authorized_package: VS03-01
 
 ## 검증된 기반
 
-- Godot 4.7.1 project·headless runner
+- Godot 4.7.1 project·custom headless runner
 - 15×10 connected RailGraph·no dead ends
 - 2/3-state RailSwitch·straight-first·preview parity·target lock
 - continuous train movement
@@ -155,6 +156,7 @@ review threads 0
 REQUEST_CHANGES 0
 owned-file scope respected
 package acceptance tests registered
+rollback and NOT_RUN evidence documented
 ```
 
 VS03-07 creates `기획서/50_제작_검증/VS03_IMPLEMENTATION_AUDIT.md`.
@@ -164,9 +166,11 @@ Issue #7 retains Android, 10-minute soak, localization/accessibility runtime, ec
 ## Current Action
 
 ```text
-merge DoR planning PR
-→ synchronize SX-AUD-005 / EV-USER-016 to correct Sheet
-→ final readback
-→ Codex READY_FOR_BUILD · VS03-01
-→ product implementation remains NOT_STARTED until a separate Codex execution starts
+separate Codex execution from latest main
+→ create VS03-01 branch
+→ actual custom-runner TDD red→green
+→ exact-head package Gate
+→ merge before VS03-02 promotion
 ```
+
+`READY_FOR_BUILD` is not implementation success. Product implementation remains `NOT_STARTED` until the Codex execution actually begins.
