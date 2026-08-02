@@ -4,10 +4,10 @@
 audit_id: SX-AUD-005
 evidence_id: EV-USER-016
 scope: DEFINITION_OF_READY
-status: APPROVED_RECOMMENDED_ARCHITECTURE · CANONICAL_SYNC_PENDING
+status: APPROVED_RECOMMENDED_ARCHITECTURE · SYNCED
+canonical_merge: 82fd3eeb1915e6ceedb2f5330b27e903064d6eb5
 product_implementation: NOT_STARTED
 product_baseline: 4e435a1a6d10ab146197671049da80709fd18c1f
-planning_baseline: aac3ed870a8ff5e5c5f38d647f8a3ae91f8c0574
 ```
 
 ## 1. 목적
@@ -366,8 +366,6 @@ VS-03 구현 허용:
 - Android/human/soak PASS 주장
 
 ## 13. Ready 판정
-
-이 아키텍처와 build segmentation이 canonical merge되고 올바른 Sheet readback이 통과하면:
 
 ```text
 G3P = PASS · READY_FOR_BUILD
