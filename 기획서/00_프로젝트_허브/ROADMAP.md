@@ -38,7 +38,7 @@
 - [x] 분야 간 1차 충돌 적대적 검토
 - [x] `SX-DEC-014` Combo 의미 확정
 - [x] 안전 보완: Skill·계측·표본 판정·오디오 fallback·Plan·Registry 최신화
-- [ ] `SX-DEC-014` canonical commit Sheet 동기화
+- [x] `SX-DEC-014` canonical commit `ca505386…` Sheet 동기화·12탭 재조회
 - [ ] `SX-DEC-015` 화물 수–표시 화차 수·점유 관계
 - [ ] 온보딩·실패 학습 정보의 Decision 필요성 재검증
 - [ ] 남은 중요 Grill Me 완료
@@ -88,8 +88,7 @@ M3 종료 기준: 한 세션이 시작→운행→적재→분기→하역→Com
 ## 현재 실행 순서
 
 ```text
-SX-DEC-014 PR merge·Sheet sync
-→ SX-DEC-015 Grill Me
+SX-DEC-015 Grill Me
 → 후속 중요 Decision 재검증
 → G3P close
 → VS-03A
