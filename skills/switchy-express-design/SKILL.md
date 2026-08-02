@@ -10,16 +10,19 @@ description: Use for Switchy Express project-specific gameplay, route, cargo-sta
 1. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
 2. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
 3. `기획서/50_제작_검증/TOTAL_PLANNING_AUDIT.md`
-4. `기획서/50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md`
-5. `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md`
-6. `docs/superpowers/specs/2026-08-02-first-session-contextual-onboarding-design.md`
-7. `docs/superpowers/plans/2026-08-02-first-session-contextual-onboarding.md`
-8. `기획서/50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md`
-9. `기획서/10_경험/CORE_GAMEPLAY.md`
-10. `기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md`
-11. `기획서/40_표현/VISUAL_DIRECTION.md`
-12. `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
-13. `기획서/50_제작_검증/PLAYTEST_PLAN.md`
+4. `docs/superpowers/plans/2026-08-02-switchy-express-current-vertical-slice.md`
+5. `기획서/50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md`
+6. `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md`
+7. `docs/superpowers/specs/2026-08-02-first-session-contextual-onboarding-design.md`
+8. `docs/superpowers/plans/2026-08-02-first-session-contextual-onboarding.md`
+9. `기획서/50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md`
+10. `기획서/10_경험/CORE_GAMEPLAY.md`
+11. `기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md`
+12. `기획서/40_표현/VISUAL_DIRECTION.md`
+13. `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
+14. `기획서/50_제작_검증/PLAYTEST_PLAN.md`
+
+`docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md` is historical implementation foundation. Do not use its stale planning-status lines over the current 2026-08-02 plan.
 
 ## Invariants
 
