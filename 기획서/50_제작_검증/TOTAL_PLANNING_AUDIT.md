@@ -56,7 +56,7 @@ VS-03 구현 전에 프로젝트의 제품·경험·시스템·콘텐츠·UX·�
 | 텔레메트리 | 핵심 이벤트·cargo_type·token·onboarding fields | 원인 분리 가능 | 실제 event log 미구현 | AUTO_FIXED_THEN_BUILD |
 | 플레이테스트 | 5명+·핵심 과제·구체 명수 | LIFO·Combo·token·onboarding 이해 측정 가능 | 실제 표본 없음 | AUTO_FIXED_THEN_TEST |
 | 성능·접근성 | 60 FPS·48dp·색+모양 | 목표 품질 Gate 존재 | 기기·해상도·사람 증거 없음 | BLOCKED_UNVERIFIED |
-| 제작·인계 | VS-03A→VS-03B→VS-04 | 책임 분리·테스트 순서 명확 | 총기획 후속 Decision과 evidence 미완료 | CODEX_NOT_READY |
+| 제작·인계 | VS-03A→VS-03B→VS-03C→VS-04 | 책임 분리·테스트 순서 명확 | 총기획 후속 Decision과 evidence 미완료 | CODEX_NOT_READY |
 
 ## Finding Ledger
 
@@ -72,16 +72,18 @@ VS-03 구현 전에 프로젝트의 제품·경험·시스템·콘텐츠·UX·�
 | SX-AUD-004-F08 | UNPROVEN_ASSUMPTION | 속도·연료·보상·목표 세션 수치 | 영구 생존·상시 BOOST·피로 위험 | RESEARCH_OR_TEST_REQUIRED | TEST_VALUE·시뮬레이션·플레이테스트 |
 | SX-AUD-004-F09 | PRODUCTION_RISK | 역6·화물12+·분기·HUD의 실제 밀도 미검증 | 작은 화면 정보 과부하 | TEST_IN_VERTICAL_SLICE | VS-03B 캡처·Android 검증 |
 | SX-AUD-004-F10 | MISSING_CANON | 총기획 감사·Decision Queue 책임 문서 부재 | 기획 보완 추적 불가 | CONFLICT_FIXED | 이 문서를 current 감사로 등록 |
-| SX-AUD-004-F11 | STALE_REFERENCE | 마스터 Plan이 복구를 IN_PROGRESS, 구형 main 표시 | 완료 작업 재실행·잘못된 구현 기준 | CONFLICT_FIXED | 후속 상태 전파·새 planning companion 작성 |
+| SX-AUD-004-F11 | STALE_REFERENCE | 마스터 Plan이 복구를 IN_PROGRESS, 구형 main 표시 | 완료 작업 재실행·잘못된 구현 기준 | CONFLICT_FIXED | 새 current plan 등록·구형 plan HISTORICAL |
 | SX-AUD-004-F12 | AUTHORITY_CONFLICT | 총기획 감사와 Post-VS02 감사를 모두 CURRENT로 표시 | 현행 감사 선택 불명확 | CONFLICT_FIXED | 총기획 감사 CURRENT·Post-VS02 HISTORICAL |
 | SX-AUD-004-F13 | UX_DENSITY_RISK | 1 cargo=1 full-cell wagon은 최대 적재 시 열차가 8칸 늘어남 | 경로·역·spawn 가시성 저하 | CONFLICT_FIXED | 1:1 compact token·최대 trailing 3칸 |
 | SX-AUD-004-F14 | SPAWN_FAIRNESS_RISK | token을 시각만 압축하고 spawn 점유를 8칸 유지할 가능성 | 가용 pickup 공간 불필요 감소 | CONFLICT_FIXED_IN_PLAN | compressed footprint를 점유 권위로 정의 |
 | SX-AUD-004-F15 | ACCESSIBILITY_RISK | token 축소로 shape 식별이 사라질 가능성 | 색각 사용자·LIFO 판단 실패 | TEST_REQUIRED | 0/1/4/8·곡선·Android 가독성 Gate |
 | SX-AUD-004-F16 | TEST_VALUE_DRIFT | Decision 한 문장에 2.25칸, 파생 계약·Sheet에 2.18칸 표기 | 구현자가 다른 기하값 선택 | CONFLICT_FIXED | 권장 TEST_VALUE 2.18칸으로 통일 |
 | SX-AUD-004-F17 | ONBOARDING_AUTHORITY_RISK | tutorial overlay나 animation이 pickup·pause·step 완료를 소유할 가능성 | 중복 보상·잠금·resume 오류 | CONFLICT_FIXED_IN_SPEC | OnboardingState는 domain event 소비, UI는 표시만 담당 |
-| SX-AUD-004-F18 | EVIDENCE_CONTAMINATION | 0.5× 연료·난이도 정지 first-run을 일반 밸런스 증거로 섞을 가능성 | 생존 경제 결론 왜곡 | AUTO_FIX_ELIGIBLE | assisted_first_run flag로 telemetry·분석 분리, 일반 run 별도 검증 |
+| SX-AUD-004-F18 | EVIDENCE_CONTAMINATION | 0.5× 연료·난이도 정지 first-run을 일반 밸런스 증거로 섞을 가능성 | 생존 경제 결론 왜곡 | AUTO_FIXED | `assisted_first_run`으로 telemetry·분석 분리 |
 | SX-AUD-004-F19 | OPERATING_DRIFT_RISK | 10건 대기 중 Sheet가 main보다 앞서면서 SYNCED로 오표기될 가능성 | 정본·Sheet 권위 혼선 | CONFLICT_FIXED_IN_PROTOCOL | `APPROVED_PENDING_BATCH_MERGE`와 branch commit 사용 |
 | SX-AUD-004-F20 | BATCH_SCOPE_RISK | 10건 PR에 11번째 Decision·무관 리팩터링이 잠입할 가능성 | 승인 범위 왜곡·검토 불가 | CONFLICT_FIXED_IN_PROTOCOL | 10번째 승인 후 Freeze, changed-file·Decision inventory Gate |
+| SX-AUD-004-F21 | HISTORICAL_CONTRACT_LOSS | Decision 원장 갱신 중 과거 자동차/FIFO/세로형 대체 이력과 compact-token 세부 계약이 축약됨 | 과거 선택 근거·구현 보호선 손실 | CONFLICT_FIXED | 원문 대체 이력·실제 교차 칸·모션 비권위·조정 조건 복원 |
+| SX-AUD-004-F22 | PACKAGE_SEQUENCE_OMISSION | Coverage Matrix 제작 순서에 VS-03C 온보딩 package가 빠짐 | 구현자가 온보딩을 VS-04로 넘기거나 누락할 위험 | CONFLICT_FIXED | `VS-03A→VS-03B→VS-03C→VS-04`로 통일 |
 
 ## 확정 Decision — SX-DEC-014
 
@@ -150,7 +152,7 @@ canonical merge 후 Sheet 12탭 readback PASS와 Sync Closure PR 병합까지 ba
 
 ## 자동 보완 반영
 
-- 프로젝트 Skill의 읽기 순서·구현 경계를 Post-VS02로 갱신
+- 프로젝트 Skill의 읽기 순서·구현 경계를 Post-VS02와 current 2026-08-02 plan으로 갱신
 - 플레이테스트 퍼센트에 실제 명수·ceil 판정 병기
 - telemetry를 cargo_type·color·shape·unload_group_size 기반으로 확장
 - Combo와 speed bonus를 점수·HUD·저장·telemetry에서 분리
@@ -159,32 +161,57 @@ canonical merge 후 Sheet 12탭 readback PASS와 Sync Closure PR 병합까지 ba
 - 오디오·햅틱 사건 우선순위와 mute/haptic-off fallback 권장 계약 작성
 - 목표 세션 시간·경제·token 기하·온보딩 assist 수치는 `TEST_VALUE`로 유지
 - 10건 batch pending 상태와 main SYNCED 상태를 분리
+- 과거 Decision 대체 이력과 기존 계획의 상세 실행 증거 보존
+
+## 병합 직전 적대적 대조
+
+대상:
+
+- main baseline `867563bb7bb69cfbb7343ef734585dd034ad7a64`
+- PR #27 exact head
+- Issue #6
+- Decision·Goal·Plan·Gate·Skill·Registry·Adapter
+- 올바른 Sheet `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo` 12개 탭
+
+확인된 사항:
+
+- current main 외부 변경 없음
+- 제품 코드·Scene·Resource·asset 변경 0
+- Sheet ID·제목·12개 탭 일치
+- Sheet는 예상대로 `SX-DEC-015`까지 SYNCED, `SX-DEC-016`은 canonical merge 전 기준선
+- 잘못 제공된 `19Ff...` Sheet는 대상에서 제외
+- F21 역사·세부 계약 축약과 F22 VS-03C 순서 누락을 병합 전에 수정
+- Android·사람·온보딩 runtime 증거는 계속 `NOT_RUN`
+
+최종 exact-head workflows와 review 상태는 F21/F22 수정 후 다시 확인한다.
 
 ## 현재 Gate 판정
 
 - `G2_IMPLEMENTED_FOUNDATION`: PASS
 - `G3_CORE_LOOP_IMPLEMENTED`: PARTIAL
 - `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE`: NOT_READY
+- `G3B_GRILL_ME_BATCH_PREMERGE`: IN_PROGRESS
 - `G4_TARGET_QUALITY_VERTICAL_SLICE`: NOT_READY
 - `CODEX_DEFINITION_OF_READY`: NOT_READY
 
 현재 차단:
 
 ```text
-SX-DEC-016 canonical merge + Sheet closure
-→ SX-DEC-017부터 GMB-001 10건 Decision batch
-→ 남은 필수 Decision 0 재판정
-→ VS-03 Codex Definition of Ready
+PR #27 exact-head 재검증·병합
+→ SX-DEC-016/SX-OPS-001 Sheet canonical merge commit 반영·12탭 재조회
+→ Sync Closure PR
+→ GMB-001 / SX-DEC-017부터 0/10
 ```
 
 ## 다음 작업
 
-1. `SX-DEC-016`과 `SX-OPS-001` canonical PR exact-head 검증
-2. 병합 직전 main·Sheet·PR 적대적 전수 대조
-3. canonical 병합 후 같은 Decision/Evidence와 merge commit을 Sheet에 기록
-4. 12탭 readback PASS 후 Sync Closure PR 병합
-5. `GMB-001` ledger를 0/10으로 시작하고 `SX-DEC-017`을 한 건만 질문
+1. F21/F22 수정 후 PR #27 exact-head 검증 재실행
+2. changed-file inventory·full patch·review thread 재확인
+3. P0/P1 open finding 0이면 canonical 병합
+4. 같은 Decision/Evidence와 merge commit을 Sheet에 기록
+5. 12탭 readback PASS 후 Sync Closure PR 병합
+6. `GMB-001` ledger를 0/10으로 시작하고 `SX-DEC-017`을 한 건만 질문
 
 ## 결론
 
-`SX-DEC-014/015`는 GitHub와 Google Sheets에서 `PASS · SYNCED`다. `SX-DEC-016`과 `SX-OPS-001`은 사용자 승인됐으나 현재 PR과 Sheet closure가 끝나기 전까지 `CANON_IN_PROGRESS`다. 제품 구현·Android·사람 검증은 여전히 `NOT_STARTED / NOT_RUN`이며 `CODEX_NOT_READY`를 유지한다.
+`SX-DEC-014/015`는 GitHub와 Google Sheets에서 `PASS · SYNCED`다. `SX-DEC-016`과 `SX-OPS-001`은 사용자 승인됐으나 PR #27과 Sheet closure가 끝나기 전까지 `CANON_IN_PROGRESS`다. F21·F22는 병합 전에 수정됐다. 제품 구현·Android·사람 검증은 여전히 `NOT_STARTED / NOT_RUN`이며 `CODEX_NOT_READY`를 유지한다.
