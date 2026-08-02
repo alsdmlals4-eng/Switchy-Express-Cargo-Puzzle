@@ -1,5 +1,27 @@
 # Changelog
 
+## 2026-08-02 — Total Planning Decision · SX-DEC-016 and SX-OPS-001
+
+- 사용자 권장안 승인으로 `SX-DEC-016` 실제 첫 run 상황형 온보딩 확정
+- 별도 튜토리얼 맵·가짜 보상·튜토리얼 전용 LIFO/Combo 공식 제외
+- 학습 순서를 `LOAD → compact token → 첫 분기 → mixed-stack LIFO → Combo → 저연료 BOOST`로 고정
+- 첫 LOAD와 첫 분기에서만 safe full simulation pause 허용
+- first-run assist 권장 `TEST_VALUE`: fuel drain 0.5×, escalation pause, max 120초, restore 3초, BOOST hint <=35%
+- OnboardingState는 실제 domain event를 소비하며 UI·animation은 gameplay·pause release·reward·save 권위를 갖지 않음
+- Help 재생 시 first-run assist 미활성, assisted first run과 일반 balance evidence 분리
+- `EV-USER-004` 등록
+- 온보딩 설계 정본과 TDD 구현 계획 추가
+- 사용자 운영 지시를 `SX-OPS-001`·`EV-USER-005`로 등록
+- `SX-DEC-016`까지 catch-up canonical merge·Sheet closure 후 `SX-DEC-017`부터 `GMB-001` 0/10 시작
+- 정규 Grill Me 승인 10번째에서 새 질문을 freeze하고 GitHub main·PR·Issue·Goal·Plan·Gate·Registry·Sheet 12탭 전수 대조
+- P0/P1 open finding 0·unresolved review thread 0·exact-head checks success일 때만 canonical merge
+- canonical merge commit Sheet 기록·12탭 readback PASS·Sync Closure PR 병합까지 batch 완료
+- 적대적 Finding `SX-AUD-004-F17~F20`: onboarding authority, evidence contamination, pending/SYNCED drift, 11번째 범위 잠입
+- Core Gameplay·VS Contract·Playtest·VS-03 Goal·Issue #6·Skill·Registry·Adapter 소비자 갱신
+- 제품 코드·Scene·Resource·asset 변경 없음
+- Onboarding runtime·Android·사람 검증은 `NOT_STARTED / NOT_RUN / HUMAN_NOT_RUN`
+- `CODEX_NOT_READY` 유지
+
 ## 2026-08-02 — SX-DEC-015 Sheet Sync Closed
 
 - PR #24 canonical planning commit `b8742253247da25a0190f80b898b9bbe6ec6a1cf` 확정
