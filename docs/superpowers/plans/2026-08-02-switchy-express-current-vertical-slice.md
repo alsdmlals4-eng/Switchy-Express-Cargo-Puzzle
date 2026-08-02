@@ -4,10 +4,10 @@
 status: CURRENT · PLANNING_ONLY · CODEX_NOT_READY
 supersedes_current_status_of: docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md
 historical_foundation_preserved: true
-baseline_synchronized_main: 867563bb7bb69cfbb7343ef734585dd034ad7a64
+latest_synchronized_main: 3cd13ff375a597d4eba9035af5b05e6186fb4853
 current_audit: SX-AUD-004
-current_catch_up: SX-DEC-016 + SX-OPS-001
-next_batch: GMB-001 · SX-DEC-017 · 0/10
+completed_catch_up: SX-DEC-014~016 + SX-OPS-001 · GITHUB_SHEET_SYNCED
+current_batch: GMB-001 · SX-DEC-017 · 0/10
 ```
 
 > 2026-08-01 계획은 VS-01·VS-02 상세 구현 이력과 TDD 증거를 보존하는 `HISTORICAL_FOUNDATION`이다. 현재 planning status·Decision Queue·VS-03 package 순서는 이 문서와 `CODEX_GOAL_VS_03.md`가 우선한다.
@@ -53,18 +53,19 @@ next_batch: GMB-001 · SX-DEC-017 · 0/10
 - UI/animation non-authoritative
 - assisted first run separated from standard balance evidence
 
-## 현재 catch-up 완료 순서
+상태: PR #27 / `3cd13ff375a597d4eba9035af5b05e6186fb4853`, Sheet `PASS · 12탭 재조회 완료 · SYNCED`, runtime `NOT_STARTED`.
+
+## 완료된 catch-up evidence
 
 ```text
-1. canonical planning PR exact-head 검증
-2. GitHub main·PR·Issue·Goal·Plan·Gate·Skill·Registry·Adapter 전수 대조
-3. correct Sheet ID/title와 12 tabs 전수 대조
-4. P0/P1 open finding 0·review thread 0·checks success
-5. canonical merge with expected head SHA
-6. SX-DEC-016·EV-USER-004·SX-OPS-001·EV-USER-005를 merge commit으로 Sheet 기록
-7. Sheet 12-tab readback PASS
-8. Sync Closure PR checks + merge
-9. GMB-001 0/10 시작
+GitHub main·PR·Issue·Goal·Plan·Gate·Skill·Registry·Adapter 전수 대조
+→ F21 역사 계약 복원
+→ F22 VS-03C package 순서 복원
+→ exact-head Project Contract/Godot success
+→ PR #27 canonical merge
+→ SX-DEC-016·EV-USER-004·SX-OPS-001·EV-USER-005 Sheet 기록
+→ F23 Sheet AB-TP01 stale 행 수정
+→ 12-tab readback PASS · SYNCED
 ```
 
 ## VS-03A · Run economy
@@ -112,8 +113,8 @@ next_batch: GMB-001 · SX-DEC-017 · 0/10
 
 책임 정본: `기획서/50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md`.
 
-- `SX-DEC-016`까지 current catch-up.
-- `GMB-001`은 `SX-DEC-017`부터 10건.
+- `CATCH-UP-001 · SX-DEC-014~016`: CLOSED.
+- `GMB-001`은 `SX-DEC-017`부터 10건이며 현재 0/10.
 - 각 승인 후 batch branch/draft PR·Sheet `APPROVED_PENDING_BATCH_MERGE`.
 - 10번째 승인 후 Freeze·pre-merge adversarial audit.
 - canonical merge·Sheet 12-tab readback·Sync Closure까지 batch CLOSED 아님.
@@ -122,11 +123,11 @@ next_batch: GMB-001 · SX-DEC-017 · 0/10
 
 `SX-DEC-017` — 연료 0 결과 화면에서 어떤 실패 원인·다음 행동을 가장 먼저 보여줄지.
 
-상태: `NEXT_GRILL_ME · GMB-001 SLOT 1`, 현재 catch-up closure 전에는 질문하지 않는다.
+상태: `NEXT_GRILL_ME · GMB-001 SLOT 1`.
 
 ## READY_FOR_BUILD
 
-- [ ] current catch-up canonical merge·Sheet closure
+- [x] `SX-DEC-014/015/016`·`SX-OPS-001` canonical merge·Sheet closure
 - [ ] GMB-001과 남은 필수 Decision 완료
 - [ ] Issue #6·Goal·Plan·canon·Sheet 책임 일치
 - [ ] exact code/API review
