@@ -11,7 +11,7 @@
     {"id":"SX-PLAYTEST","question":"플레이테스트와 계측","source":"기획서/50_제작_검증/PLAYTEST_PLAN.md","format":"markdown","publication_policy":"source_only","status":"CURRENT"},
     {"id":"SX-TOTAL-PLANNING-AUDIT","question":"전체 기획 Coverage·충돌·Grill Me Decision Queue는 무엇인가","source":"기획서/50_제작_검증/TOTAL_PLANNING_AUDIT.md","format":"markdown","publication_policy":"source_only","status":"CURRENT"},
     {"id":"SX-AUDIT-VS01","question":"VS-01 구현 뒤 누락·충돌·위험은 무엇이었는가","source":"기획서/50_제작_검증/POST_VS01_ADVERSARIAL_AUDIT.md","format":"markdown","publication_policy":"source_only","status":"HISTORICAL"},
-    {"id":"SX-AUDIT-VS02","question":"VS-02 구현 뒤 정본·실제 구현·Sheet 충돌과 다음 위험은 무엇인가","source":"기획서/50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md","format":"markdown","publication_policy":"source_only","status":"CURRENT"},
+    {"id":"SX-AUDIT-VS02","question":"VS-02 구현 뒤 정본·실제 구현·Sheet 충돌과 다음 위험은 무엇인가","source":"기획서/50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md","format":"markdown","publication_policy":"source_only","status":"HISTORICAL"},
     {"id":"SX-BASE-V94-AUDIT","question":"Base v9.4 적용과 보호 경계는 무엇인가","source":"기획서/50_제작_검증/BASE_V9_4_ADOPTION_AUDIT.md","format":"markdown","publication_policy":"source_only","status":"CURRENT"}
   ]
 }
