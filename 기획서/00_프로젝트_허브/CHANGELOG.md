@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-08-02 — SX-DEC-014 Sheet Sync Closed
+
+- PR #18 canonical planning commit `ca50538652c72cbb282d7818990e92a0dfe79c9a` 확정
+- `SX-DEC-014`, `EV-USER-002`, `SX-AUD-004`를 실제 Switchy Express Google Sheets에 같은 ID와 commit으로 반영
+- 허브·작업순서·결정·근거·감사·GDD 요약·시각 작업면·경험·시스템·세계·표현·제작 검증 12개 탭 재조회
+- 새 Decision 소비자는 `ca505386…`, 비소비자·역사 행은 기존 commit과 내용을 보존
+- Audit 상태 `PASS · 12탭 재조회 완료`
+- GitHub·Sheet 상태를 `SYNCED`로 전환
+- 잘못 제공된 `19Ff...` 타 프로젝트 Sheet는 변경하지 않음
+- 다음 중요 기획은 `SX-DEC-015` 화물 수–표시 화차 수·점유 관계
+- 제품 코드·Scene·Resource·asset 변경 없음, `CODEX_NOT_READY` 유지
+
 ## 2026-08-02 — Total Planning Decision · SX-DEC-014
 
 - 총기획 Coverage·충돌 감사 `SX-AUD-004` 시작
@@ -17,7 +29,6 @@
 - 다음 중요 충돌을 `SX-DEC-015` 화물 수–표시 화차 수·점유 관계로 승격
 - 상세 점수·연료·피드백 시간은 계속 `TEST_VALUE`
 - 제품 코드 변경 없음, `CODEX_NOT_READY` 유지
-- PR 병합 commit을 올바른 Switchy Express Sheet에 같은 Decision·Evidence·Audit ID로 기록한 뒤 `SYNCED` 종료 예정
 
 ## 2026-08-02 — Post-VS02 Sheet Sync Closed
 
