@@ -16,9 +16,9 @@
     "role": "USER_FACING_GDD_WORKSPACE",
     "spreadsheet_id": "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo",
     "url": "https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit",
-    "decision_commit": "7500ccea1cddd6c163965a44370b653bbc176f85",
-    "sync_status": "SYNCED",
-    "verified_at": "2026-08-01T10:09:00+09:00"
+    "decision_commit": "539d2bae18d20e303649f047b9df69e8e224b2e7",
+    "sync_status": "GITHUB_UPDATE_PENDING_SHEET",
+    "verified_at": "2026-08-02T10:54:00+09:00"
   },
   "project": {
     "engine": "Godot 4.7.1",
@@ -30,7 +30,7 @@
   "protected_baseline": {
     "authority_kind": "GIT_COMMIT",
     "authority_ref": "refs/heads/main",
-    "commit": "4e435a1a6d10ab146197671049da80709fd18c1f",
+    "commit": "539d2bae18d20e303649f047b9df69e8e224b2e7",
     "policy_sha256": "204da76df84fb289d5f9d8445195532124788648d65698e8901463c58ec545a3",
     "policy_source_path": "AGENTS.md",
     "policy_source_type": "VERIFIED_PROJECT_MAIN",
@@ -94,12 +94,12 @@
     {
       "command": "python tools/validate_project_contract.py",
       "status": "PASSED_AT_BASELINE",
-      "evidence_commit": "4e435a1a6d10ab146197671049da80709fd18c1f"
+      "evidence_commit": "539d2bae18d20e303649f047b9df69e8e224b2e7"
     },
     {
       "command": "godot --headless --path . --script res://tests/run_tests.gd",
       "status": "PASSED_AT_BASELINE",
-      "evidence_commit": "4e435a1a6d10ab146197671049da80709fd18c1f",
+      "evidence_commit": "539d2bae18d20e303649f047b9df69e8e224b2e7",
       "summary": "9 cases / 6915 assertions / 0 failures"
     }
   ]
