@@ -25,6 +25,7 @@ human_validation: HUMAN_NOT_RUN
 6. 문서상 화차와 CargoStack의 관계가 불명확해 제품 표현이 임의 설계된다.
 7. 실제 자동 테스트 통과가 Android·사람 이해·재미까지 증명한 것으로 확대된다.
 8. 현재 상태를 간결하게 만들면서 과거 실행 계약·실패·복구 세부 이력을 삭제한다.
+9. Base v9.4 Adapter가 있어도 활성 라우터가 v9.3을 가리켜 작업자가 구형 계약으로 진입한다.
 
 ## 기준 사실
 
@@ -35,6 +36,7 @@ human_validation: HUMAN_NOT_RUN
 - 정확한 PR #15 HEAD에서 Project Contract와 Godot Tests가 PASS했다.
 - 기존 README·START_HERE·Active Context·Decisions·Gates·Roadmap·Core Systems·Sheet는 VS-01 상태였다.
 - Adapter에 고정된 Sheet는 `1EpQ...`이며 사용자가 이번 요청에 제공한 `19Ff...`는 다른 프로젝트다.
+- 활성 `.agents/skills/base-project-router/SKILL.md` 설명은 Base v9.3을 가리키고 있었다.
 
 ## Finding Ledger
 
@@ -51,6 +53,7 @@ human_validation: HUMAN_NOT_RUN
 | SX-AUD-003-F09 | PLAYER_EXPERIENCE_RISK | 자동 운행 판단 시간·온보딩 미검증 | 조작보다 UI 실수로 실패 | TEST_IN_VERTICAL_SLICE | UI·사람 테스트 |
 | SX-AUD-003-F10 | BLOCKED_UNVERIFIED | Android·성능·사람·soak | 품질 Gate 미완료 | DEFER_WITH_BOUNDARY | Issue #7 |
 | SX-AUD-003-F11 | PREVIOUS_CONTRACT_REGRESSION | 첫 PR diff가 Changelog와 VS-02 Goal을 축약 | 실패·중단·TDD 근거 손실 | MUST_FIX | 원문 이력·실행 계약 전문 복원 |
+| SX-AUD-003-F12 | STALE_REFERENCE | 활성 project router가 Base v9.3 설명 사용 | 구형 기준으로 라우팅될 위험 | MUST_FIX | v9.4로 갱신·계약 재검증 |
 
 ## 비판 재검증
 
@@ -90,6 +93,14 @@ human_validation: HUMAN_NOT_RUN
 - VS-02 Goal의 전체 역사 실행 계약 보존
 - 현재 완료 상태와 후속 VS-03 책임을 상단에서 명확히 표시
 
+### F12
+
+Base v9.4 적용 PR 뒤에도 활성 project router의 frontmatter 설명이 v9.3을 가리켰다. 실제 Adapter·AGENTS와 충돌하고 새 작업자의 첫 라우팅에 영향을 줄 수 있으므로 역사 참조가 아니다.
+
+판정: `MUST_FIX · CONFLICT_FIXED`.
+
+조치: router 설명을 Base v9.4로 갱신하고 exact HEAD Project Contract와 Godot 회귀를 다시 실행한다.
+
 ## 보호한 강점
 
 - 자동 운행·분기 선택·LOAD·LIFO 핵심 조합
@@ -102,6 +113,7 @@ human_validation: HUMAN_NOT_RUN
 - Godot 4.7.1·Android landscape
 - 기존 Decision ID와 저장 호환성 보호 경계
 - 이전 실행 계약의 TDD·중단 조건·실패 복구 이력
+- Base v9.4 프로젝트 라우팅 경계
 
 ## 실제 반영 범위
 
@@ -111,6 +123,7 @@ human_validation: HUMAN_NOT_RUN
 - 상세 수치는 `TEST_VALUE`
 - 중요 기획 방향은 사용자 승인 전 확정하지 않음
 - 역사 계약은 삭제·축약하지 않고 현재 상태와 분리해 보존
+- 활성 라우터의 구형 Base 설명만 현행 pin에 맞춤
 
 ## 회귀 검증 요구
 
@@ -122,11 +135,12 @@ human_validation: HUMAN_NOT_RUN
 - exact HEAD Actions
 - Changelog 과거 항목 보존 대조
 - VS-02 TDD·보호·중단 계약 보존 대조
+- 활성 Base v9.3 참조 검색과 허용 역사 분류
 - Sheet 12개 탭 readback
 - 콜드 스타트: 다음 작업이 Issue #6 이전의 총기획 감사로 복원되는지 확인
 
 ## 현재 판정
 
-`CONFLICT_FOUND · PRESERVATION_REGRESSION_FIXED · CANONICAL_RECOVERY_APPROVED · SHEET_SYNC_PENDING`
+`CONFLICT_FOUND · PRESERVATION_REGRESSION_FIXED · STALE_ROUTER_FIXED · CANONICAL_RECOVERY_APPROVED · SHEET_SYNC_PENDING`
 
 정본 복구와 Sheet 재조회가 끝나기 전에는 다음 중요 기획 Grill Me를 시작하지 않는다.
