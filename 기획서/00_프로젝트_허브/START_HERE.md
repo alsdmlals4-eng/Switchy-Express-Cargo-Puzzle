@@ -15,7 +15,7 @@
 | VS03-01 감사 | `SX-AUD-006 · EV-VS03-01-001 · PASS · SYNCED` |
 | VS03-01 구현 | PR #37 · `43972d3d23e931af3dbc81ab9b1c7d942fffb201` |
 | 핵심 재미 정렬 | `SX-AUD-007 · PASS_WITH_FOLLOWUPS · SYNCED` |
-| VS03-02 감사 | `SX-AUD-008 · EV-VS03-02-001 · PASS · MERGED_AND_VERIFIED` |
+| VS03-02 감사 | `SX-AUD-008 · EV-VS03-02-001 · PASS · MERGED_AND_VERIFIED · SYNCED` |
 | VS03-02 구현 | PR #41 · `cfe6d5ca0c76942720c5c12ad5dc59aaa651b915` |
 | 올바른 Sheet | `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo` |
 | 현재 Codex 권위 | `READY_FOR_BUILD · VS03-03_ONLY` |
@@ -122,9 +122,10 @@ VS03-01 run lifecycle/economy/difficulty · DONE
 ## 현재 작업
 
 ```text
-VS03-02 closure merge
-→ correct Sheet closure SHA + final 12-tab readback
-→ latest main에서 VS03-03 별도 TDD branch
+latest main
+→ VS03-03 별도 TDD branch
+→ target3 MapDefinition/Catalog·RunSessionFactory·restart·selection
+→ exact-head package Gate
 ```
 
 ## VS03-03 보호 경계
