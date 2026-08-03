@@ -36,7 +36,9 @@ func run() -> void:
 	first.cargo_stack.push(&"RED_STAR")
 	first.compact_token_state.sync_from_stack()
 	first.input_state.set_boost_requested(true)
-	first.run_controller.start()
+	assert_true(first.run_controller.start(), "fresh run authority must start")
+	first.run_controller.run_state().apply_fuel_delta(100.0)
+	assert_almost_equal(first.run_controller.run_state().fuel(), 100.0, 0.0001, "factory must preserve approved FUEL_MAX=100")
 	first.run_controller.advance_time(0.5)
 
 	var retry_result: Dictionary = factory.restart(first)
