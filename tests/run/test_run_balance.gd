@@ -1,6 +1,7 @@
 extends "res://tests/test_case.gd"
 
 const BALANCE_PATH := "res://game/run/run_balance.gd"
+const SNAPSHOT_PATH := "res://game/difficulty/difficulty_pressure_snapshot.gd"
 
 
 func run() -> void:
@@ -42,33 +43,36 @@ func _test_fuel_formula(balance: Variant) -> void:
 
 
 func _test_pressure_compatibility(balance: Variant) -> void:
-	assert_true(balance.has_method("speed_multiplier_for_pressure"), "snapshot speed API must exist")
-	assert_true(balance.has_method("fuel_multiplier_for_pressure"), "snapshot fuel API must exist")
-	assert_true(balance.has_method("effective_speed_for_pressure"), "snapshot effective speed API must exist")
-	assert_true(balance.has_method("effective_fuel_rate_for_pressure"), "snapshot effective fuel API must exist")
-	if not balance.has_method("effective_speed_for_pressure") or not balance.has_method("effective_fuel_rate_for_pressure"):
+	assert_true(balance.has_method("base_speed_for_step"), "snapshot speed-step API must exist")
+	assert_true(balance.has_method("base_fuel_drain_for_step"), "snapshot fuel-step API must exist")
+	assert_true(balance.has_method("current_speed_for_snapshot"), "snapshot current-speed API must exist")
+	assert_true(balance.has_method("fuel_drain_rate_for_snapshot"), "snapshot fuel-rate API must exist")
+	if not balance.has_method("current_speed_for_snapshot") or not balance.has_method("fuel_drain_rate_for_snapshot"):
 		return
 
-	assert_almost_equal(balance.speed_multiplier_for_pressure(0), 1.0, 0.0001, "speed step zero multiplier")
-	assert_almost_equal(balance.speed_multiplier_for_pressure(1), 1.08, 0.0001, "speed step one multiplier")
-	assert_almost_equal(balance.speed_multiplier_for_pressure(99), 1.8, 0.0001, "speed pressure multiplier must cap")
-	assert_almost_equal(balance.fuel_multiplier_for_pressure(0), 1.0, 0.0001, "fuel step zero multiplier")
-	assert_almost_equal(balance.fuel_multiplier_for_pressure(1), 1.12, 0.0001, "fuel step one multiplier")
-	assert_almost_equal(balance.effective_speed_for_pressure(4, 2, false), 1.6072, 0.0001, "snapshot speed must compose cargo slowdown")
-	assert_almost_equal(balance.effective_fuel_rate_for_pressure(4, 2, true), 2.976, 0.0001, "snapshot fuel must ignore cargo and compose BOOST")
+	var snapshot_script: Script = load(SNAPSHOT_PATH)
+	assert_almost_equal(balance.base_speed_for_step(0), 1.8, 0.0001, "speed step zero")
+	assert_almost_equal(balance.base_speed_for_step(1), 1.88, 0.0001, "speed step one")
+	assert_almost_equal(balance.base_speed_for_step(99), 3.4, 0.0001, "speed pressure must cap")
+	assert_almost_equal(balance.base_fuel_drain_for_step(0), 1.0, 0.0001, "fuel step zero")
+	assert_almost_equal(balance.base_fuel_drain_for_step(1), 1.12, 0.0001, "fuel step one")
+	var pressure: Variant = snapshot_script.new(2, 2, 90.0)
+	assert_almost_equal(balance.current_speed_for_snapshot(pressure, 4, false), 1.6072, 0.0001, "snapshot speed must compose cargo slowdown")
+	assert_almost_equal(balance.fuel_drain_rate_for_snapshot(pressure, true), 2.976, 0.0001, "snapshot fuel must compose BOOST")
 
 	for elapsed: float in [0.0, 29.999, 30.0, 44.999, 45.0, 89.999, 90.0, 10000.0]:
 		var speed_step := int(floor(elapsed / balance.SPEED_STEP_SECONDS))
 		var fuel_step := int(floor(elapsed / balance.FUEL_STEP_SECONDS))
+		var parity_snapshot: Variant = snapshot_script.new(speed_step, fuel_step, elapsed)
 		assert_almost_equal(
 			balance.current_speed(elapsed, 4, true),
-			balance.effective_speed_for_pressure(4, speed_step, true),
+			balance.current_speed_for_snapshot(parity_snapshot, 4, true),
 			0.0001,
 			"elapsed speed wrapper must preserve snapshot parity at %s" % elapsed
 		)
 		assert_almost_equal(
 			balance.fuel_drain_rate(elapsed, true),
-			balance.effective_fuel_rate_for_pressure(4, fuel_step, true),
+			balance.fuel_drain_rate_for_snapshot(parity_snapshot, true),
 			0.0001,
 			"elapsed fuel wrapper must preserve snapshot parity at %s" % elapsed
 		)
