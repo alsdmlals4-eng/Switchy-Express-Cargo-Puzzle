@@ -2,6 +2,7 @@ class_name MapDefinition
 extends RefCounted
 
 const RUNTIME_STATUSES: Array[StringName] = [&"VALIDATED", &"SHIPPED"]
+const SELF_SCRIPT_PATH := "res://game/map/map_definition.gd"
 
 var map_id: StringName = &""
 var map_revision: int = 0
@@ -19,8 +20,8 @@ var content_signature: String = ""
 var used_fallback: bool = false
 
 
-static func create(data: Dictionary) -> MapDefinition:
-	var value := MapDefinition.new()
+static func create(data: Dictionary) -> Variant:
+	var value: Variant = load(SELF_SCRIPT_PATH).new()
 	value.map_id = StringName(data.get("map_id", &""))
 	value.map_revision = int(data.get("map_revision", 0))
 	value.map_seed = int(data.get("map_seed", 0))
