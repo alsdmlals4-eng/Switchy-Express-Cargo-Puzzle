@@ -12,9 +12,9 @@ description: Use for Switchy Express gameplay, route, cargo-stack, compact-token
 3. `기획서/10_경험/CORE_FUN_SYSTEM_HIERARCHY.md`
 4. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
 5. `기획서/50_제작_검증/VS03_PACKAGE_STATUS.md`
-6. `기획서/50_제작_검증/CORE_FUN_ALIGNMENT_SYNC_CLOSURE.md`
-7. `기획서/50_제작_검증/CORE_FUN_ALIGNMENT_AUDIT.md`
-8. `기획서/50_제작_검증/CORE_FUN_ALIGNMENT_APPROVAL_ADDENDUM.md`
+6. `기획서/50_제작_검증/VS03_02_SYNC_CLOSURE.md`
+7. `기획서/50_제작_검증/VS03_02_IMPLEMENTATION_AUDIT.md`
+8. `기획서/50_제작_검증/CORE_FUN_ALIGNMENT_SYNC_CLOSURE.md`
 9. `docs/superpowers/specs/2026-08-03-playable-core-before-meta-sequencing-design.md`
 10. `docs/superpowers/plans/2026-08-03-vs03-core-first-resegmentation.md`
 11. current package-specific plan
@@ -26,11 +26,9 @@ description: Use for Switchy Express gameplay, route, cargo-stack, compact-token
 17. `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
 18. actual code and tests
 
-`VS03_PACKAGE_STATUS.md` owns current package status. `2026-08-03-vs03-core-first-resegmentation.md` owns the approved future order. Older plans remain behavior and unchanged-package responsibility references. When old status text, package order, pseudocode, path, test command, or shared-file order conflicts with the current status, core-first plan, or DoR canon, use the newer authority without changing approved player-facing meaning.
+`VS03_PACKAGE_STATUS.md` owns current package status. `2026-08-03-vs03-core-first-resegmentation.md` owns the approved future order. Older plans remain behavior and unchanged-package responsibility references. When old status text, package order, pseudocode, path, test command, or shared-file order conflicts with newer authority, use the newer authority without changing approved player-facing meaning.
 
 ## Core Fun Authority
-
-The core fun is:
 
 > Anticipate the required unload order, selectively load cargo into a LIFO stack, prepare the route in advance, and accept weight/fuel pressure to execute a large matching unload group.
 
@@ -45,7 +43,7 @@ LIFO load-order planning
 → records/cosmetics/map discovery/UGC
 ```
 
-Every feature, balance value, UI choice, and package proposal must show how it protects or strengthens this hierarchy. Faster tapping, BOOST uptime, meta rewards, content volume, or UGC may not become a substitute for load-order and route planning.
+Every feature, balance value, UI choice, and package proposal must show how it protects or strengthens this hierarchy. Faster tapping, BOOST uptime, meta rewards, content volume, or UGC may not replace load-order and route planning.
 
 ## Product Invariants
 
@@ -67,7 +65,9 @@ Every feature, balance value, UI choice, and package proposal must show how it p
 - color plus shape encoding
 - Combo equals one-arrival matching unload-group size
 - one cargo equals one compact token; rear equals LIFO top
-- compact capacity-eight footprint reserves at most three trailing rail cells `TEST_VALUE`
+- compact token positions follow route history
+- capacity-eight geometry ends at 2.18 cells and reserves at most three trailing rail cells `TEST_VALUE`
+- compact occupied cells are conservative and replace full-cell spawn occupancy when provider is present
 - onboarding occurs in the real run
 - assisted evidence separated from standard evidence
 - UI/camera/animation never own gameplay, Profile, map, record, or reward outcomes
@@ -81,13 +81,16 @@ vs03_01_audit: SX-AUD-006 · PASS · SYNCED
 vs03_01_merge: 43972d3d23e931af3dbc81ab9b1c7d942fffb201
 vs03_01_closure: 9360eff0a97f48f2234fcaf35425f80e94fac445
 core_fun_audit: SX-AUD-007 · PASS_WITH_FOLLOWUPS · SYNCED
-core_fun_evidence: EV-USER-017~018
 core_fun_merge: a9368617102420639cc2bb83ee2b0c45505958a6
-sequencing_approval: RECOMMENDED_OPTION_C
+core_fun_closure: 0aaa9005af9bca7560bc75b6fff3cd3f9f197a92
+vs03_02_audit: SX-AUD-008 · PASS · MERGED_AND_VERIFIED · SHEET_READBACK_PASS
+vs03_02_evidence: EV-VS03-02-001
+vs03_02_merge: cfe6d5ca0c76942720c5c12ad5dc59aaa651b915
 codex: READY_FOR_BUILD
-current_package: VS03-02_ONLY
-product_implementation: IN_PROGRESS · VS03-01_MERGED
-headless_evidence: 16 cases · 7110 assertions · 0 failures
+current_package: VS03-03_ONLY
+product_implementation: IN_PROGRESS · VS03_01_AND_02_MERGED
+headless_evidence: 19 cases · 7499 assertions · 0 failures
+F92: EVIDENCE_GAP · PRODUCT_VIEW/DEVICE/HUMAN_NOT_RUN
 F58: NOT_MET
 runtime_android_human_online: NOT_RUN
 ```
@@ -115,8 +118,8 @@ Do not use nonexistent `tests/run_single.gd`, unsupported `--suite`, `func run(t
 
 ```text
 VS03-01 run lifecycle/economy/difficulty · MERGED_AND_VERIFIED
-→ VS03-02 compact footprint/DeliveryLoop seam · READY_FOR_BUILD
-→ VS03-03 target3 maps/session/restart/selection · BLOCKED
+→ VS03-02 compact footprint/DeliveryLoop seam · MERGED_AND_VERIFIED
+→ VS03-03 target3 maps/session/restart/selection · READY_FOR_BUILD · CURRENT
 → VS03-R1 difficulty authority alignment · BLOCKED
 → VS03-05A minimal playable core surface · BLOCKED
 → VS03-04 Profile transaction/records/cosmetics/unlocks/rewards · BLOCKED
@@ -127,15 +130,64 @@ VS03-01 run lifecycle/economy/difficulty · MERGED_AND_VERIFIED
 
 Rules:
 
-- start from latest main after the previous package merge and canonical synchronization
+- start from latest main after previous package merge and canonical synchronization
 - do not run shared-hotspot packages in parallel
 - only touch package-owned files unless the PR documents a necessary narrow adapter
 - run full regression after each boundary connection
-- no package may claim Android/human/online evidence
-- current implementation authority applies to VS03-02 only
+- no package may claim Android/human/online evidence without execution
+- current implementation authority applies to VS03-03 only
 - VS03-R1 follows `2026-08-03-vs03-r1-difficulty-authority-alignment.md`
 - VS03-05A follows `2026-08-03-vs03-05a-minimal-playable-core-surface.md`
 - VS03-05A may not create Profile, result, record, reward, collection, or map-browser authority
+
+## VS03-02 Implemented Contract
+
+- `CompactWagonTokenState` mirrors CargoStack `0..8`.
+- front-to-rear equals stack bottom-to-top; rear equals top.
+- changed source snapshot increments one revision; unchanged snapshot does not.
+- `TrainFootprint` uses route-history sampling and conservative occupied-cell reservation.
+- token distance is `0.22 + index×0.28`; capacity 8 ends at `2.18` cells.
+- occupied order is locomotive-first/front-to-rear; trailing occupied cells are `<=3`.
+- `DeliveryLoop.configure(..., occupancy_provider = null)` preserves exact legacy fallback.
+- pickup/unload synchronizes compact state once per stack mutation.
+- spawn/respawn avoids compact occupied cells and existing forward exclusion.
+
+Do not regress compact production occupancy to full-cell `train_cells()`.
+
+## VS03-03 Current Contract
+
+Implement only:
+
+```text
+exactly 3 distinct validated official maps
++ immutable MapDefinition and strict MapCatalog
++ fully configured RunSessionFactory
++ explicit start/incoming train cells
++ exact same-map restart with fresh mutable services/identities
++ automatic undiscovered-first selection
++ discovered-map semantic reselection domain
+```
+
+Requirements:
+
+- target3 is VS scope; target100 remains Production.
+- MapDefinition contains stable map identity, seed, generator/content version, and required signatures.
+- catalog construction rejects duplicates, fallback maps, invalid starts, and signature drift.
+- session factory returns success only after all mutable services and adapters are configured.
+- restart reuses the same immutable map definition but creates a new run ID, transaction ID, and mutable object graph.
+- automatic selection is deterministic under explicit state and cannot starve eligible undiscovered maps.
+- manual/restart requests do not consume automatic discovery state incorrectly.
+- selected or restarted map is never silently substituted.
+- raw seed is not player-facing.
+
+Forbidden in VS03-03:
+
+- Profile writer or final persistence schema
+- product Scene/HUD/result/camera/browser presentation
+- VS03-R1 difficulty union schedule
+- onboarding
+- target100 generator expansion/audit
+- UGC/online
 
 ## Architecture Boundaries
 
@@ -145,8 +197,8 @@ Rules:
 - `RunSession`: one attempt's complete mutable service graph
 - `RunSessionFactory`: fully configured sessions only
 - `TrainFootprint`: compressed spawn occupancy authority
-- `DeliveryLoop`: existing pickup/unload integration plus optional occupancy provider
-- `DifficultyDirector`: authoritative union schedule for every speed/fuel pressure boundary
+- `DeliveryLoop`: pickup/unload integration plus optional occupancy provider
+- `DifficultyDirector`: authoritative union schedule after VS03-R1
 - `ProfileStore`: serialization/normalization/atomic replace
 - `ProfileTransactionService`: only Profile mutation writer
 - presentation: read-only ViewModels/intents
@@ -175,25 +227,15 @@ Use a boundary-sliced loop with at most one cell event per segment. Calculate th
 
 ## Benchmark-Backed Work Rule
 
-For a material player-facing decision, package sequencing choice, or important product recommendation, do not rely only on internal preference.
+For a material player-facing decision, package sequencing choice, or important product recommendation, research and compare:
 
-Research and compare:
+1. at least one close benchmark;
+2. at least one adjacent benchmark solving the same problem differently;
+3. current professional guidance or primary source when relevant.
 
-1. at least one close benchmark with a similar genre, input model, platform, or session structure;
-2. at least one adjacent benchmark that solves the same design problem through a different genre or structure;
-3. current professional guidance or a primary source when the question concerns platform, accessibility, economy, live operations, backend, moderation, or publication.
-
-Use primary/official sources when possible. Record the research date and clearly separate:
-
-- source-supported facts;
-- inference for Switchy;
-- unverified hypotheses requiring tests.
-
-Benchmarking must not be a feature checklist or popularity argument. State what to learn, what not to copy, and why Switchy's LIFO-route identity changes the recommendation.
+Record the research date and separate source-supported facts, Switchy inference, and unverified hypotheses. State what to learn, what not to copy, production cost, strongest failure risk, and validation Gate.
 
 ## Benchmark-Backed Grill Me Format
-
-Every material Grill Me should include:
 
 ```text
 Decision question
@@ -210,19 +252,7 @@ Decision question
 → validation method and evidence gate
 ```
 
-Comparison axes should include the relevant subset of:
-
-- core goal and player fantasy
-- action/input density
-- cognitive load and readability
-- failure model and recovery
-- session length and repeat motivation
-- accessibility/localization/device reach
-- economy/meta/monetization influence
-- implementation and content cost
-- analytics, device, simulation, or human evidence required
-
-Do not ask a material Grill Me before checking whether the question is already answered by current Decision canon or can be closed as a safe implementation correction.
+Do not ask a material Grill Me before checking whether current Decision canon already answers it or whether it is a safe implementation correction.
 
 ## Adversarial Review Lenses
 
@@ -234,16 +264,15 @@ Do not ask a material Grill Me before checking whether the question is already a
 - multi-owner file overwrite
 - UI/animation authority leakage
 - full-cell occupancy leaking into compact footprint
-- compact token/rear item unreadable on the minimum Android viewport
+- occupied rail segment under-reservation
+- compact token/rear item unreadable on minimum Android viewport
 - session returned before complete configuration
-- fuel/event/difficulty order or authority ambiguity
-- Profile multi-writer or duplicate grant
-- map identity/revision silent substitution
+- stale mutable service reuse on restart
+- map identity/version/signature silent substitution
 - target100/online scope entering VS-03
-- meta implementation delaying playable-core evidence
 - unsupported test harness examples
 - automated evidence overstated as device/human evidence
-- benchmark citation without a stated adoption/rejection rationale
+- benchmark citation without adoption/rejection rationale
 
 ## PR Gate
 

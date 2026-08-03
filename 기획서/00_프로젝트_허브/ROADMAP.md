@@ -18,7 +18,7 @@
 ## M2 — 총기획·정본 · COMPLETE
 
 - [x] `SX-DEC-014~026`, `SX-OPS-001`, GMB-001 canonical sync
-- [x] 올바른 Sheet 식별·잘못된 `19Ff...` 제외
+- [x] 올바른 Sheet 식별·wrong `19Ff...` 제외
 - [x] VS/Production scope staging
 - [x] PR #29/#34 and final Sheet readback
 
@@ -39,11 +39,9 @@ Audit: `SX-AUD-007`; Evidence: `EV-USER-017~018`.
 - [x] benchmark-backed Grill Me process
 - [x] current-consumer drift review
 - [x] F91 core-before-meta option C user approval
-- [x] VS03-R1 executable plan
-- [x] VS03-05A executable plan
+- [x] VS03-R1 and VS03-05A executable plans
 - [x] 05A/04/05B responsibility split
-- [x] PR #39 canonical merge `a9368617102420639cc2bb83ee2b0c45505958a6`
-- [x] correct Sheet 12-tab canonical readback
+- [x] PR #39/#40 and correct Sheet closure
 
 ## M3 — VS-03 Local Core · IN_PROGRESS
 
@@ -59,7 +57,7 @@ Current state authority:
 - [x] boundary-sliced movement/event/fuel-zero order
 - [x] speed/fuel pressure·cargo slowdown·BOOST cost
 - [x] unload reward·Combo/max_combo/speed/heavy bonus
-- [x] deterministic difficulty events and actual DeliveryLoop integration
+- [x] deterministic difficulty foundation and actual DeliveryLoop integration
 
 Evidence:
 
@@ -68,19 +66,33 @@ PR #37 merge 43972d3d23e931af3dbc81ab9b1c7d942fffb201
 16 cases · 7110 assertions · 0 failures
 ```
 
-### VS03-02 — Compact Tokens and Footprint · READY_FOR_BUILD
+### VS03-02 — Compact Tokens and Footprint · COMPLETE
 
-- [ ] token state 0~8, front→rear=bottom→top, rear=LIFO top
-- [ ] fractional path continuity
-- [ ] TrainFootprint occupied cells and trailing footprint `<=3` TEST_VALUE
-- [ ] optional DeliveryLoop occupancy provider
-- [ ] compressed spawn/respawn exclusion
+- [x] token state 0~8, front→rear=bottom→top, rear=LIFO top
+- [x] route-history fractional path continuity
+- [x] TrainFootprint geometry 2.18 cell and trailing footprint `<=3`
+- [x] optional DeliveryLoop occupancy provider and legacy fallback
+- [x] compact pickup spawn/respawn exclusion
+- [x] conservative farther-segment reservation
 
-### VS03-03 — Official Target-3 and RunSession · BLOCKED_BY_VS03_02
+Evidence:
 
-- [ ] explicit map reconstruction and strict target3 catalog
+```text
+PR #41 merge cfe6d5ca0c76942720c5c12ad5dc59aaa651b915
+Project Contract 281 PASS
+Godot Tests 261 PASS
+19 cases · 7499 assertions · 0 failures
+```
+
+Product-view/Android/human readability remains `NOT_RUN` under `F92`.
+
+### VS03-03 — Official Target-3 and RunSession · READY_FOR_BUILD
+
+- [ ] exactly 3 distinct validated non-fallback official maps
+- [ ] immutable MapDefinition and strict target3 catalog
 - [ ] fully configured RunSessionFactory
-- [ ] exact restart and fresh identities/services
+- [ ] explicit train start/incoming cells
+- [ ] exact same-map restart with fresh identities/services
 - [ ] undiscovered-first and discovered-map reselection
 - [ ] no raw seed or silent substitution
 
@@ -133,7 +145,7 @@ No balance-value or player-rule change.
 - [ ] bounded telemetry and retry idempotency
 - [ ] Issue #7 evidence handoff
 
-M3 completion proves the automated local flow, not Android·human·online readiness.
+M3 completion proves automated local flow, not Android·human·online readiness.
 
 ## M4 — Target Quality and Playtest · NOT_STARTED
 
@@ -141,7 +153,7 @@ M3 completion proves the automated local flow, not Android·human·online readin
 - [ ] 10-minute soak
 - [ ] safe area·48dp·Reduced Motion·localization/accessibility
 - [ ] economy and mono-color strategy simulation
-- [ ] compact token readability and 5+ first-experience playtest
+- [ ] compact token product readability and 5+ first-experience playtest
 - [ ] representative captures and PASS/REVISE/PIVOT/STOP
 
 ## M5 — Official Catalog Production · NOT_STARTED
@@ -161,9 +173,7 @@ M3 completion proves the automated local flow, not Android·human·online readin
 ## Current Execution Order
 
 ```text
-Sync Closure merge/final Sheet readback
-→ VS03-02
-→ VS03-03
+VS03-03
 → VS03-R1
 → VS03-05A
 → VS03-04
