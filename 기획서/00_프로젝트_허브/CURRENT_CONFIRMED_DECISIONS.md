@@ -16,7 +16,7 @@ core_fun_audit: SX-AUD-007 · PASS_WITH_FOLLOWUPS · SYNCED
 core_fun_evidence: EV-USER-017~018
 core_fun_merge: a9368617102420639cc2bb83ee2b0c45505958a6
 core_fun_closure: 0aaa9005af9bca7560bc75b6fff3cd3f9f197a92
-vs03_02_audit: SX-AUD-008 · PASS · MERGED_AND_VERIFIED · SHEET_READBACK_PASS
+vs03_02_audit: SX-AUD-008 · PASS · MERGED_AND_VERIFIED · SHEET_READBACK_PASS · SYNCED
 vs03_02_evidence: EV-VS03-02-001
 vs03_02_merge: cfe6d5ca0c76942720c5c12ad5dc59aaa651b915
 implementation_authority: VS03-03_ONLY
@@ -78,7 +78,7 @@ LIFO 적재 순서 계획
 | SX-AUD-005 | VS-03 Definition of Ready·실제 API/file/test/save/order/rollback | EV-USER-016 | PASS_WITH_PLANNING_FIXES · SYNCED |
 | SX-AUD-006 | VS03-01 planning preflight·TDD·implementation·exact-head Gate | EV-VS03-01-001 | PASS · MERGED_AND_VERIFIED · SYNCED |
 | SX-AUD-007 | core fun/system hierarchy·benchmark·package sequencing | EV-USER-017~018 | PASS_WITH_FOLLOWUPS · SYNCED · CLOSED |
-| SX-AUD-008 | VS03-02 compact-token/footprint/occupancy TDD·implementation·exact-head Gate | EV-VS03-02-001 | PASS · MERGED_AND_VERIFIED · SHEET_READBACK_PASS |
+| SX-AUD-008 | VS03-02 compact-token/footprint/occupancy TDD·implementation·exact-head Gate | EV-VS03-02-001 | PASS · MERGED_AND_VERIFIED · SHEET_READBACK_PASS · SYNCED |
 
 `SX-AUD-008`은 새 player rule을 만들지 않는다. `SX-DEC-015`의 승인 의미를 실제 domain geometry와 spawn occupancy로 구현한다.
 
@@ -105,7 +105,7 @@ Older plans remain behavior and unchanged-package responsibility references. Old
 
 ```text
 VS03-01 · MERGED_AND_VERIFIED · SYNCED
-→ VS03-02 · MERGED_AND_VERIFIED · SHEET_SYNCED
+→ VS03-02 · MERGED_AND_VERIFIED · SYNCED
 → VS03-03 · READY_FOR_BUILD · CURRENT_AUTHORITY
 → VS03-R1 · BLOCKED_BY_VS03_03
 → VS03-05A · BLOCKED_BY_VS03_R1
@@ -121,7 +121,7 @@ VS03-01 · MERGED_AND_VERIFIED · SYNCED
 |---|---|---|
 | rail/train/cargo/LIFO foundation | IMPLEMENTED | automated PASS |
 | VS03-01 run lifecycle/economy/Combo/difficulty core | MERGED_AND_VERIFIED | 16 cases · 7110 assertions · 0 failures |
-| VS03-02 compact token/footprint/occupancy | MERGED_AND_VERIFIED | 19 cases · 7499 assertions · 0 failures |
+| VS03-02 compact token/footprint/occupancy | MERGED_AND_VERIFIED · SYNCED | 19 cases · 7499 assertions · 0 failures |
 | VS03-03 map/session/restart/selection | READY_FOR_BUILD · NOT_STARTED | CURRENT_AUTHORITY |
 | VS03-R1 difficulty authority alignment | PLANNED · BLOCKED_BY_VS03_03 | NOT_STARTED |
 | VS03-05A minimal playable core | PLANNED · BLOCKED_BY_VS03_R1 | NOT_STARTED |
@@ -162,7 +162,7 @@ VS03-01 · MERGED_AND_VERIFIED · SYNCED
 | EV-USER-016 | DoR review · PR #35/#36/SHEET SYNCED |
 | EV-VS03-01-001 | VS03-01 exact-head evidence · PR #37/#38/SHEET SYNCED |
 | EV-USER-017~018 | core-fun review and sequence approval · PR #39/#40/SHEET SYNCED |
-| EV-VS03-02-001 | VS03-02 exact-head implementation evidence · PR #41/SHEET SYNCED · CLOSURE_IN_PROGRESS |
+| EV-VS03-02-001 | VS03-02 exact-head implementation evidence · PR #41/SHEET SYNCED |
 | EV-VS01-001 | VALIDATED |
 | EV-VS02-001 | VALIDATED |
 | EV-VS02-FIX-001 | VALIDATED |
@@ -181,7 +181,7 @@ VS03-01 · MERGED_AND_VERIFIED · SYNCED
 ```text
 VS03-02 implementation PR #41 merged cfe6d5ca...
 correct Sheet SX-AUD-008 / EV-VS03-02-001 readback PASS
-VS03-02 closure PR in progress
+VS03-02 closure documents READY · final closure SHA recorded after merge
 wrong 19Ff... Sheet untouched
 VS03-03 READY_FOR_BUILD · CURRENT_AUTHORITY
 ```
