@@ -68,7 +68,7 @@ Status: `GMB-001 CLOSED`
 
 ## G3C — CORE_FUN_ALIGNMENT
 
-Status: `USER_APPROVED · CANONICAL_MERGE_PENDING`
+Status: `PASS_WITH_FOLLOWUPS · CANONICAL_MERGED · SHEET_READBACK_PASS`
 
 Audit/Evidence:
 
@@ -76,6 +76,7 @@ Audit/Evidence:
 SX-AUD-007
 EV-USER-017 · core/system/benchmark review instruction
 EV-USER-018 · RECOMMENDED_OPTION_C approval
+PR #39 merge · a9368617102420639cc2bb83ee2b0c45505958a6
 ```
 
 - [x] core/support hierarchy
@@ -84,8 +85,16 @@ EV-USER-018 · RECOMMENDED_OPTION_C approval
 - [x] F87 VS03-R1 correction plan
 - [x] F91 core-before-meta option C
 - [x] VS03-05A executable plan
-- [ ] PR #39 canonical merge
-- [ ] correct Sheet synchronization and closure
+- [x] PR #39 canonical merge
+- [x] correct Sheet 12-tab canonical readback
+
+Follow-ups remain implementation/evidence work, not planning blockers:
+
+- F87 VS03-R1 implementation
+- F89 mono-color strategy evidence
+- F90 Android reach evidence
+- F92 compact-token readability evidence
+- F58 target100 Production evidence
 
 ## G3I — VS-03 IMPLEMENTATION PACKAGES
 
@@ -176,8 +185,8 @@ Status: `NOT_STARTED`
 ## Current Transition
 
 ```text
-PR #39 exact-head Gate
-→ canonical merge and Sheet closure
+Sync Closure merge
+→ correct Sheet closure SHA and final 12-tab readback
 → latest main VS03-02 TDD branch
 → sequential approved package order
 ```
