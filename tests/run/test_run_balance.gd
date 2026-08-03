@@ -12,6 +12,7 @@ func run() -> void:
 	var balance: Variant = load(BALANCE_PATH).new()
 	_test_speed_formula(balance)
 	_test_fuel_formula(balance)
+	_test_pressure_compatibility(balance)
 	_test_delivery_rewards(balance)
 
 
@@ -38,6 +39,39 @@ func _test_fuel_formula(balance: Variant) -> void:
 	assert_almost_equal(balance.fuel_drain_rate(0.0, false), 1.0, 0.0001, "normal drain must equal base drain")
 	assert_almost_equal(balance.fuel_drain_rate(0.0, true), 2.4, 0.0001, "BOOST must cost 2.4 times fuel")
 	assert_almost_equal(balance.fuel_drain_rate(45.0, true), 2.688, 0.0001, "BOOST drain must scale with time pressure")
+
+
+func _test_pressure_compatibility(balance: Variant) -> void:
+	assert_true(balance.has_method("speed_multiplier_for_pressure"), "snapshot speed API must exist")
+	assert_true(balance.has_method("fuel_multiplier_for_pressure"), "snapshot fuel API must exist")
+	assert_true(balance.has_method("effective_speed_for_pressure"), "snapshot effective speed API must exist")
+	assert_true(balance.has_method("effective_fuel_rate_for_pressure"), "snapshot effective fuel API must exist")
+	if not balance.has_method("effective_speed_for_pressure") or not balance.has_method("effective_fuel_rate_for_pressure"):
+		return
+
+	assert_almost_equal(balance.speed_multiplier_for_pressure(0), 1.0, 0.0001, "speed step zero multiplier")
+	assert_almost_equal(balance.speed_multiplier_for_pressure(1), 1.08, 0.0001, "speed step one multiplier")
+	assert_almost_equal(balance.speed_multiplier_for_pressure(99), 1.8, 0.0001, "speed pressure multiplier must cap")
+	assert_almost_equal(balance.fuel_multiplier_for_pressure(0), 1.0, 0.0001, "fuel step zero multiplier")
+	assert_almost_equal(balance.fuel_multiplier_for_pressure(1), 1.12, 0.0001, "fuel step one multiplier")
+	assert_almost_equal(balance.effective_speed_for_pressure(4, 2, false), 1.6072, 0.0001, "snapshot speed must compose cargo slowdown")
+	assert_almost_equal(balance.effective_fuel_rate_for_pressure(4, 2, true), 2.976, 0.0001, "snapshot fuel must ignore cargo and compose BOOST")
+
+	for elapsed: float in [0.0, 29.999, 30.0, 44.999, 45.0, 89.999, 90.0, 10000.0]:
+		var speed_step := int(floor(elapsed / balance.SPEED_STEP_SECONDS))
+		var fuel_step := int(floor(elapsed / balance.FUEL_STEP_SECONDS))
+		assert_almost_equal(
+			balance.current_speed(elapsed, 4, true),
+			balance.effective_speed_for_pressure(4, speed_step, true),
+			0.0001,
+			"elapsed speed wrapper must preserve snapshot parity at %s" % elapsed
+		)
+		assert_almost_equal(
+			balance.fuel_drain_rate(elapsed, true),
+			balance.effective_fuel_rate_for_pressure(4, fuel_step, true),
+			0.0001,
+			"elapsed fuel wrapper must preserve snapshot parity at %s" % elapsed
+		)
 
 
 func _test_delivery_rewards(balance: Variant) -> void:
