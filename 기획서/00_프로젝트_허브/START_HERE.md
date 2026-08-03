@@ -7,21 +7,20 @@
 | 제목 | **Switchy Express: Cargo Puzzle** |
 | 장르 | 무한 생존 점수 경쟁형 철도 노선·화물 스택 퍼즐 |
 | 플랫폼·엔진 | Android / Google Play · Godot 4.7.1 / GDScript |
-| 현재 단계 | `VERTICAL_SLICE_IN_PROGRESS · VS03_01_HEADLESS_PASSED` |
-| 구현 기반 | `RAIL_TRAIN_CARGO_LIFO + VS03_01_RUN_CORE_IMPLEMENTED` |
+| 현재 단계 | `VERTICAL_SLICE_IN_PROGRESS · VS03_02_HEADLESS_PASSED` |
+| 구현 기반 | `RAIL_TRAIN_CARGO_LIFO + VS03_01_RUN_CORE + VS03_02_COMPACT_FOOTPRINT` |
 | GMB-001 | `CLOSED · SX-DEC-017~026 · 10/10` |
 | Decision 정본 | PR #29 · `9b63421a5ab4d57adbfcf69d2b6e1bf8e3d17496` |
 | DoR 감사 | `SX-AUD-005 · PASS · SYNCED` |
-| DoR 정본 | PR #35 · `82fd3eeb1915e6ceedb2f5330b27e903064d6eb5` |
-| VS03-01 감사 | `SX-AUD-006 · EV-VS03-01-001 · PASS` |
+| VS03-01 감사 | `SX-AUD-006 · EV-VS03-01-001 · PASS · SYNCED` |
 | VS03-01 구현 | PR #37 · `43972d3d23e931af3dbc81ab9b1c7d942fffb201` |
-| 핵심 재미 정렬 감사 | `SX-AUD-007 · EV-USER-017~018 · PASS_WITH_FOLLOWUPS · SYNCED` |
-| 핵심 재미 정본 | PR #39 · `a9368617102420639cc2bb83ee2b0c45505958a6` |
-| 실행 순서 승인 | `EV-USER-018 · RECOMMENDED_OPTION_C` |
+| 핵심 재미 정렬 | `SX-AUD-007 · PASS_WITH_FOLLOWUPS · SYNCED` |
+| VS03-02 감사 | `SX-AUD-008 · EV-VS03-02-001 · PASS · MERGED_AND_VERIFIED` |
+| VS03-02 구현 | PR #41 · `cfe6d5ca0c76942720c5c12ad5dc59aaa651b915` |
 | 올바른 Sheet | `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo` |
-| 현재 Codex 권위 | `READY_FOR_BUILD · VS03-02_ONLY` |
-| 다음 package | `VS03-02 · compact footprint / DeliveryLoop occupancy seam` |
-| 자동 검증 | Godot headless `16 cases · 7110 assertions · 0 failures` |
+| 현재 Codex 권위 | `READY_FOR_BUILD · VS03-03_ONLY` |
+| 다음 package | `VS03-03 · target3 maps / RunSession / restart / selection` |
+| 자동 검증 | Godot headless `19 cases · 7499 assertions · 0 failures` |
 | 제품 Scene·Android·사람 증거 | `NOT_RUN` |
 
 ## 한 문장 플레이어 약속
@@ -46,95 +45,70 @@ LIFO 적재 순서 계획
 ```text
 CURRENT_CONFIRMED_DECISIONS.md
 → ../10_경험/CORE_FUN_SYSTEM_HIERARCHY.md
-→ GMB-001_CANONICAL_DECISIONS.md
 → ACTIVE_CONTEXT.md
 → ../../50_제작_검증/VS03_PACKAGE_STATUS.md
+→ ../../50_제작_검증/VS03_02_SYNC_CLOSURE.md
+→ ../../50_제작_검증/VS03_02_IMPLEMENTATION_AUDIT.md
 → ../../50_제작_검증/CORE_FUN_ALIGNMENT_SYNC_CLOSURE.md
-→ ../../50_제작_검증/CORE_FUN_ALIGNMENT_AUDIT.md
-→ ../../50_제작_검증/CORE_FUN_ALIGNMENT_APPROVAL_ADDENDUM.md
-→ ../../../docs/superpowers/specs/2026-08-03-playable-core-before-meta-sequencing-design.md
 → ../../../docs/superpowers/plans/2026-08-03-vs03-core-first-resegmentation.md
-→ package-specific plan
+→ current package-specific plan
 → ../../50_제작_검증/VS03_01_IMPLEMENTATION_AUDIT.md
 → ../../50_제작_검증/VS03_DEFINITION_OF_READY_AUDIT.md
 → ../../../docs/superpowers/specs/2026-08-02-vs03-execution-architecture-design.md
 → ../../../docs/superpowers/plans/2026-08-02-vs03-build-segmentation.md
-→ ../../../docs/superpowers/plans/2026-08-02-switchy-express-current-vertical-slice.md
 → ../../50_제작_검증/VERTICAL_SLICE_CONTRACT.md
 → EXECUTABLE_PROMPTS/CODEX_GOAL_VS_03.md
 ```
 
-`VS03_PACKAGE_STATUS.md`가 현재 package 상태를 소유한다. `2026-08-03-vs03-core-first-resegmentation.md`가 승인된 미래 순서를 소유한다. 오래된 상세 계획은 변경되지 않은 package 목표·파일 소유권·수용 기준의 참고로 유지한다.
+`VS03_PACKAGE_STATUS.md`가 현재 package 상태를 소유한다. `2026-08-03-vs03-core-first-resegmentation.md`가 승인된 미래 순서를 소유한다.
 
 ## Gate 상태
 
 - `G0_PROJECT_IDENTIFIED`: PASS
 - `G1_CORE_CONFIRMED`: PASS
 - `G2_VERTICAL_SLICE_CONTRACT_APPROVED`: PASS
-- `G3_CORE_RUNTIME_PROVEN`: `PARTIAL · VS03_01_HEADLESS_PASSED`
+- `G3_CORE_RUNTIME_PROVEN`: `PARTIAL · VS03_02_HEADLESS_PASSED`
 - `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE`: PASS
 - `G3B_GRILL_ME_BATCH_PREMERGE`: `GMB-001 CLOSED`
-- `G3I_VS03_IMPLEMENTATION`: `VS03-01 MERGED_AND_VERIFIED · VS03-02 READY_FOR_BUILD`
 - `G3C_CORE_FUN_ALIGNMENT`: `SX-AUD-007 PASS_WITH_FOLLOWUPS · SYNCED · CLOSED`
+- `G3I_VS03_IMPLEMENTATION`: `VS03-01/02 MERGED_AND_VERIFIED · VS03-03 READY_FOR_BUILD`
 - `G4_TARGET_QUALITY_SLICE`: NOT_STARTED
 - `G5_PLAYTEST_EVIDENCE`: NOT_STARTED
 - `G6_OFFICIAL_CATALOG_PRODUCTION`: `NOT_STARTED · F58_NOT_MET`
 - `G7_ONLINE_UGC_PRODUCTION`: NOT_STARTED
 
-## VS03-01 완료 내용
+## VS03-02 완료 내용
 
-- 시간 기반 속도·연료 압력
-- 화물 수 기반 이동 감속과 연료 소모 분리
-- BOOST 속도 증가·추가 연료 비용·LOAD 배제
-- unload-group Combo·점수·연료 보상
-- fuel-zero 1회 종료·immutable summary·종료 후 mutation 차단
-- deterministic difficulty forecast/commit/band
-- event/run-clock/difficulty/fuel-zero 권위 순서
-- TrainController next-boundary·history·fractional path read seam
-- 실제 DeliveryLoop·CargoStack·Station 결합 테스트
+- CargoStack `0..8`과 compact token `0..8`의 1:1 투영
+- front→rear=bottom→top, rear=LIFO top
+- token 거리 `0.22 + index×0.28`, capacity 8=`2.18` cell
+- route-history 기반 직선·곡선·switch geometry
+- conservative unique occupancy, trailing `<=3`
+- DeliveryLoop optional occupancy provider
+- omitted/null provider의 `train.train_cells()` fallback
+- pickup·unload 1회 동기화
+- compact spawn/respawn exclusion
 
 Exact-head 증거:
 
 ```text
-af2577eeb8a1c4891a2ca322aa70c4066335cd0e
-Project Contract 227 PASS
-Godot Tests 214 PASS
-16 cases · 7110 assertions · 0 failures
+5477ecd8d7c14c73a62a3c666d15aa4e826a92ab
+Project Contract 281 PASS
+Godot Tests 261 PASS
+19 cases · 7499 assertions · 0 failures
 behind 0 · thread 0 · REQUEST_CHANGES 0 · P0/P1 0
-```
-
-## 핵심 재미 정렬 감사 — SX-AUD-007
-
-판정:
-
-- 방향: `KEEP_AND_SHARPEN`
-- 핵심: 선택 적재 LIFO·선행 분기·그룹 하역·생존 경제·BOOST trade·compact readability
-- 보조: onboarding·HUD/result·maps·records/cosmetics/Profile·target100·UGC
-- F86 current-consumer drift: 보정 완료
-- F87 난이도 schedule split: `VS03-R1` 실행 계획 완료·구현 미시작
-- F88 핵심 재미 위계 미명시: 보정 완료
-- F91 meta-before-playable: `EV-USER-018 OPTION_C`로 해결
-- F89 단색 지배 전략·F90 device reach·F92 token 가독성: 검증 증거 공백 유지
-- 이후 material Grill Me는 benchmark·현업 기본안·비용·실패 위험·검증 Gate 포함
-
-PR #39 exact-head 증거:
-
-```text
-577af564a0c20789b36bf379f91d7745a285ba4d
-18 planning/current-consumer/project-Skill files
-Project Contract 265 PASS
-Godot Tests 247 PASS
-behind 0 · thread 0 · REQUEST_CHANGES 0
-canonical merge a9368617102420639cc2bb83ee2b0c45505958a6
+canonical merge cfe6d5ca0c76942720c5c12ad5dc59aaa651b915
 correct Sheet 12-tab readback PASS
 ```
+
+Headless geometry PASS는 제품 화면·Android·사람 가독성 PASS가 아니다. `F92`는 계속 evidence gap이다.
 
 ## 승인된 구현 순서
 
 ```text
 VS03-01 run lifecycle/economy/difficulty · DONE
-→ VS03-02 compact footprint/DeliveryLoop seam · READY
-→ VS03-03 target3 maps/session/restart/selection · BLOCKED
+→ VS03-02 compact footprint/DeliveryLoop seam · DONE
+→ VS03-03 target3 maps/session/restart/selection · READY · CURRENT
 → VS03-R1 difficulty authority alignment · BLOCKED
 → VS03-05A minimal playable core surface · BLOCKED
 → VS03-04 Profile transactions/records/cosmetics/unlocks/rewards · BLOCKED
@@ -148,18 +122,33 @@ VS03-01 run lifecycle/economy/difficulty · DONE
 ## 현재 작업
 
 ```text
-latest main
-→ VS03-02 별도 TDD branch
-→ compact token·TrainFootprint·occupancy provider
-→ exact-head package Gate
+VS03-02 closure merge
+→ correct Sheet closure SHA + final 12-tab readback
+→ latest main에서 VS03-03 별도 TDD branch
 ```
 
-## 보호 경계
+## VS03-03 보호 경계
 
-- headless PASS는 product Scene runtime·Android·사람 검증 완료가 아니다.
-- 현재 실행 권위는 VS03-02뿐이다.
-- VS03-R1은 VS03-03 뒤·VS03-05A 전에 실행한다.
-- VS03-05A는 최소 playable core만 다루고 Profile/result/record/reward/collection/browser를 만들지 않는다.
+허용:
+
+- exactly 3 distinct validated official maps
+- immutable MapDefinition·strict MapCatalog
+- fully configured RunSessionFactory
+- same-map restart with fresh mutable services/identities
+- automatic undiscovered-first selection
+- discovered-map semantic reselection domain
+
+금지:
+
+- VS03-R1 difficulty correction
+- product Scene/HUD/result/camera/browser
+- Profile/save/records/rewards/unlocks
+- onboarding
+- target100·UGC·online
+
+## 공통 보호 경계
+
+- 현재 실행 권위는 VS03-03뿐이다.
 - Profile/save는 VS03-05A automated Gate 전 시작하지 않는다.
 - target100과 online UGC는 Production 후속 Gate다.
 - `F58`은 target100 증거 전 `NOT_MET`다.
