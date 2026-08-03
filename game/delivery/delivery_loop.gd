@@ -7,6 +7,7 @@ var _train: Variant
 var _cargo_stack: Variant
 var _cargo_spawner: Variant
 var _input_state: Variant
+var _occupancy_provider: Variant
 var _stations_by_cell: Dictionary = {}
 var _elapsed_time: float = 0.0
 var _last_spawn_status: StringName = &"WAITING"
@@ -18,7 +19,8 @@ func configure(
 	cargo_stack: Variant,
 	cargo_spawner: Variant,
 	input_state: Variant,
-	stations: Array
+	stations: Array,
+	occupancy_provider: Variant = null
 ) -> void:
 	var callback := Callable(self, "_on_cell_entered")
 	if _train != null and _train.cell_entered.is_connected(callback):
@@ -28,6 +30,9 @@ func configure(
 	_cargo_stack = cargo_stack
 	_cargo_spawner = cargo_spawner
 	_input_state = input_state
+	_occupancy_provider = occupancy_provider
+	if _occupancy_provider != null:
+		assert(_occupancy_provider.has_method("occupied_cells"), "occupancy provider must expose occupied_cells()")
 	_stations_by_cell.clear()
 	for station: Variant in stations:
 		assert(not _stations_by_cell.has(station.cell), "one rail cell may contain only one station")
@@ -36,6 +41,7 @@ func configure(
 	_elapsed_time = 0.0
 	_last_spawn_status = &"WAITING"
 	_current_events.clear()
+	_synchronize_occupancy_provider()
 	_train.cell_entered.connect(callback)
 
 
@@ -52,7 +58,7 @@ func advance_time(delta_seconds: float) -> Array[Dictionary]:
 
 	_last_spawn_status = _cargo_spawner.process(
 		_elapsed_time,
-		_train.train_cells(),
+		_occupied_cells_for_spawn(),
 		_train.forward_cells(2)
 	)
 	return _current_events.duplicate(true)
@@ -67,6 +73,7 @@ func handle_cell_entered(cell: Vector2i, event_time: float) -> Dictionary:
 		"unloaded": false,
 		"unload_result": {},
 	}
+	var stack_changed := false
 
 	var pickup_type: StringName = _cargo_spawner.cargo_at(cell)
 	if pickup_type != &"" and _cargo_stack.try_load(pickup_type, _input_state):
@@ -74,12 +81,16 @@ func handle_cell_entered(cell: Vector2i, event_time: float) -> Dictionary:
 		assert(collected_type == pickup_type, "loaded cargo and removed map pickup must match")
 		event.picked_up = true
 		event.pickup_type = pickup_type
+		stack_changed = true
 
 	if _stations_by_cell.has(cell):
 		var unload_result: Dictionary = _stations_by_cell[cell].try_unload(_cargo_stack)
 		event.unload_result = unload_result
 		event.unloaded = int(unload_result.count) > 0
+		stack_changed = stack_changed or event.unloaded
 
+	if stack_changed:
+		_synchronize_occupancy_provider()
 	return event
 
 
@@ -89,6 +100,17 @@ func elapsed_time() -> float:
 
 func last_spawn_status() -> StringName:
 	return _last_spawn_status
+
+
+func _occupied_cells_for_spawn() -> Array:
+	if _occupancy_provider == null:
+		return _train.train_cells()
+	return _occupancy_provider.occupied_cells()
+
+
+func _synchronize_occupancy_provider() -> void:
+	if _occupancy_provider != null and _occupancy_provider.has_method("sync_from_sources"):
+		_occupancy_provider.sync_from_sources()
 
 
 func _advance_train(delta_seconds: float) -> void:
