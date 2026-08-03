@@ -1,4 +1,4 @@
-extends TestCase
+extends "res://tests/test_case.gd"
 
 const MapDefinitionScript := preload("res://game/map/map_definition.gd")
 const Fixture := preload("res://tests/support/map_fixture.gd")
