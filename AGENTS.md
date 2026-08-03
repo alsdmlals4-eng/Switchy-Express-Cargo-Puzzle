@@ -1,6 +1,6 @@
 # Switchy Express 공용 AI 작업 규칙
 
-이 저장소는 `alsdmlals4-eng/Base` v9.4 운영 계약을 적용한 Godot 모바일 게임 프로젝트다.
+이 저장소는 `alsdmlals4-eng/Base` v9.4.3 운영 계약을 적용한 Godot 모바일 게임 프로젝트다.
 
 ## 우선순위
 
@@ -9,7 +9,7 @@
 3. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
 4. 등록된 분야 책임 원본
 5. 실제 코드·데이터·Scene·Resource·자산·테스트
-6. 프로젝트에 고정된 Base v9.4 기준
+6. 프로젝트에 고정된 Base v9.4.3 기준
 7. 외부 사례·과거 대화·추정
 
 ## 역할 분리
@@ -63,16 +63,19 @@
 - 실행하지 않은 테스트를 통과로 보고
 - 사용자 승인 없이 광고·가챠·에너지·PvP·길드 추가
 
-## Base v9.4 운영 계약
+## Base v9.4.3 운영 계약
 
 ```yaml
-base_version: 9.4.0
-base_payload_commit: a728712cb776ec98f4875914a580fcf7d0156593
-base_trusted_evidence_commit: ef1fba11167e4da0b298123b0c85ebd268191a42
-base_pin_finalization_commit: 87a0b54c2847ce4b685879209205957c170cc1cd
+base_version: 9.4.3
+base_payload_commit: 7dd1a4f80388bc5faca767ff74a3eb32dc9d0ac8
+base_trusted_evidence_commit: da33a350d61b8adc52df97fccc7001708a933370
+base_pin_finalization_commit: 0b7c94f38d959efc0fc9442274c60b2e268a3c97
 base_registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59
 ```
 
 - `[모델 추천]`은 실제 설정을 자동 변경하지 않으며 사용자가 checkpoint에서 변경한다.
+- L1 이상 지시문은 `route → first-prompt → contract → clarify`를 거치고 exact approval reference가 있으면 재사용한다.
+- 기획 충돌은 Grill Me 사용자 승인을 요구하며, 가역적 상세 수치는 이유·조정 조건·검증 한계를 기록한 GPT 권장 기본값으로 진행할 수 있다.
+- Grill Me 승인 배치는 최대 10건이며 고위험·정본 충돌·구현 차단·세션 종료 시 조기 체크포인트를 허용한다.
 - 퍼즐 규칙·레벨 의미·LIFO·화물/역 색상+모양·저장 호환성은 `HARD_CONSTRAINT`다.
 - UI 모션은 퍼즐 결과·점수·연료·적재·하역·저장의 권위가 아니다.
