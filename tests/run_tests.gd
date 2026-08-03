@@ -30,6 +30,7 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/difficulty/test_difficulty_pressure_schedule.gd"),
 	preload("res://tests/run/test_run_controller.gd"),
 	preload("res://tests/run/test_run_controller_difficulty_events.gd"),
+	preload("res://tests/run/test_run_controller_pressure_authority.gd"),
 	preload("res://tests/run/test_run_controller_guards.gd"),
 	preload("res://tests/run/test_run_identity.gd"),
 	preload("res://tests/run/test_run_session_factory.gd"),
