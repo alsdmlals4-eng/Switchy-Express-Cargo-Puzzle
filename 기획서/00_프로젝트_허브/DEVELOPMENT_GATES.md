@@ -209,8 +209,8 @@ Status: `NOT_STARTED`
 ## Current Transition
 
 ```text
-VS03-02 closure merge
-→ correct Sheet closure SHA and final 12-tab readback
-→ latest main VS03-03 TDD branch
+latest main
+→ VS03-03 separate TDD branch
+→ target3 map/session/restart/selection exact-head Gate
 → sequential approved package order
 ```
