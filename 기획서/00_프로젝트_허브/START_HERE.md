@@ -15,7 +15,7 @@
 | DoR 정본 | PR #35 · `82fd3eeb1915e6ceedb2f5330b27e903064d6eb5` |
 | VS03-01 감사 | `SX-AUD-006 · EV-VS03-01-001 · PASS` |
 | VS03-01 구현 | PR #37 · `43972d3d23e931af3dbc81ab9b1c7d942fffb201` |
-| 핵심 재미 정렬 감사 | `SX-AUD-007 · EV-USER-017~018 · CANONICAL_MERGED · SHEET_READBACK_PASS` |
+| 핵심 재미 정렬 감사 | `SX-AUD-007 · EV-USER-017~018 · PASS_WITH_FOLLOWUPS · SYNCED` |
 | 핵심 재미 정본 | PR #39 · `a9368617102420639cc2bb83ee2b0c45505958a6` |
 | 실행 순서 승인 | `EV-USER-018 · RECOMMENDED_OPTION_C` |
 | 올바른 Sheet | `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo` |
@@ -75,7 +75,7 @@ CURRENT_CONFIRMED_DECISIONS.md
 - `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE`: PASS
 - `G3B_GRILL_ME_BATCH_PREMERGE`: `GMB-001 CLOSED`
 - `G3I_VS03_IMPLEMENTATION`: `VS03-01 MERGED_AND_VERIFIED · VS03-02 READY_FOR_BUILD`
-- `G3C_CORE_FUN_ALIGNMENT`: `SX-AUD-007 CANONICAL_MERGED · SHEET_READBACK_PASS · CLOSURE_IN_PROGRESS`
+- `G3C_CORE_FUN_ALIGNMENT`: `SX-AUD-007 PASS_WITH_FOLLOWUPS · SYNCED · CLOSED`
 - `G4_TARGET_QUALITY_SLICE`: NOT_STARTED
 - `G5_PLAYTEST_EVIDENCE`: NOT_STARTED
 - `G6_OFFICIAL_CATALOG_PRODUCTION`: `NOT_STARTED · F58_NOT_MET`
@@ -148,11 +148,10 @@ VS03-01 run lifecycle/economy/difficulty · DONE
 ## 현재 작업
 
 ```text
-PR #39 canonical merge a9368617
-→ correct Sheet 12-tab readback PASS
-→ Sync Closure PR
-→ final Sheet closure SHA/readback
-→ VS03-02 별도 구현 branch
+latest main
+→ VS03-02 별도 TDD branch
+→ compact token·TrainFootprint·occupancy provider
+→ exact-head package Gate
 ```
 
 ## 보호 경계
