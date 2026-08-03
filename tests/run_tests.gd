@@ -11,6 +11,7 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/map/test_map_selection_request.gd"),
 	preload("res://tests/map/test_map_shuffle_bag.gd"),
 	preload("res://tests/map/test_map_selection_service.gd"),
+	preload("res://tests/map/test_map_selection_security.gd"),
 	preload("res://tests/train/test_train_movement.gd"),
 	preload("res://tests/train/test_compact_wagon_tokens.gd"),
 	preload("res://tests/train/test_train_footprint.gd"),
