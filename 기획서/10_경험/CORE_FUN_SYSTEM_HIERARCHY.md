@@ -1,10 +1,10 @@
 # Core Fun and System Hierarchy
 
 ```yaml
-status: CANONICAL_REVIEW_CANDIDATE
+status: CANONICAL · SYNCED
+audit: SX-AUD-007 · CLOSED
 source_decisions: SX-DEC-002~010 · SX-DEC-014~026
-audit: SX-AUD-007
-current_package_authority: VS03-02_ONLY
+current_package_authority: VS03-03_ONLY
 ```
 
 ## 한 문장 핵심 재미
