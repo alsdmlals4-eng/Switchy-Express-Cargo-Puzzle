@@ -4,7 +4,8 @@
 status: APPROVED_CONTRACT · IMPLEMENTATION_IN_PROGRESS
 core_fun_authority: CORE_FUN_SYSTEM_HIERARCHY.md
 vs03_01: MERGED_AND_VERIFIED
-current_package_authority: VS03-02_ONLY
+vs03_02: MERGED_AND_VERIFIED · SYNCED
+current_package_authority: VS03-03_ONLY
 product_scene_runtime: NOT_RUN
 android_human_evidence: NOT_RUN
 online_ugc: DEFERRED_TO_PRODUCTION_GATE
@@ -65,15 +66,40 @@ Godot Tests 214 PASS
 16 cases · 7110 assertions · 0 failures
 ```
 
-### 현재 package — VS03-02
+### VS03-02 — 구현·headless 검증 완료
 
 - `SX-DEC-015` compact wagon tokens 0~8
 - rear=LIFO top
-- compressed footprint
+- route-history compressed footprint
 - optional DeliveryLoop occupancy provider
 - full-cell legacy fallback
 - spawn/respawn exclusion integration
-- minimum Android viewport readability evidence hook
+- capacity 8 chain `2.18` cells and trailing occupied cells `<=3`
+
+증거:
+
+```text
+PR #41 merge cfe6d5ca0c76942720c5c12ad5dc59aaa651b915
+PR #42 closure 6ef78fe779271321dc58198254eba91445f7799d
+Project Contract 281 PASS
+Godot Tests 261 PASS
+19 cases · 7499 assertions · 0 failures
+```
+
+제품 Scene·Android·사람 가독성은 `F92 · NOT_RUN`이다.
+
+### 현재 package — VS03-03
+
+- exactly 3 distinct validated non-fallback official maps
+- immutable `MapDefinition` and strict target3 `MapCatalog`
+- fully configured `RunSessionFactory`
+- explicit train start/incoming cells
+- exact same-map restart with fresh run·transaction·service identities
+- automatic undiscovered-first selection
+- discovered-map semantic reselection domain
+- raw seed player exposure 0 and silent substitution 0
+
+Profile writer·product Scene·difficulty union schedule·onboarding·target100·UGC/online은 이 package에서 제외한다.
 
 ### 후속 VS-03 local integration
 
@@ -145,7 +171,7 @@ VS-03 may add seams/data boundaries but cannot claim online readiness from local
 - spawn exclusion uses actual compressed footprint, not 8 full cells.
 - curve sampling preserves order and prevents corner cutting.
 
-상태: `VS03-02 READY_FOR_BUILD`.
+상태: `MERGED_AND_VERIFIED · SYNCED`; product-view·Android·human readability는 `F92 · NOT_RUN`.
 
 ## First-Session Onboarding — SX-DEC-016
 
@@ -168,7 +194,7 @@ VS-03 may add seams/data boundaries but cannot claim online readiness from local
 - no blame or false causality.
 - restart primary.
 
-상태: planned, VS03-05.
+상태: planned, VS03-05B.
 
 ## Camera and Run Gate — SX-DEC-018
 
@@ -179,7 +205,7 @@ VS-03 may add seams/data boundaries but cannot claim online readiness from local
 - Reduced Motion may use instant/static transition with identical timing.
 - restart usually skips PREP zoom `TEST_VALUE`.
 
-상태: planned, VS03-05.
+상태: planned, VS03-05A.
 
 ## Local Profile / Cosmetics / Unlock / Rewards — SX-DEC-019~021
 
@@ -249,7 +275,7 @@ VS minimum:
 
 100+ target is Production; fallback/duplicates excluded; `F58 NOT_MET` until audit.
 
-상태: planned, VS03-03.
+상태: `READY_FOR_BUILD · VS03-03 CURRENT`.
 
 ## Scoped Official Records — SX-DEC-025 Local Portion
 
@@ -260,7 +286,7 @@ VS minimum:
 - global personal best is not cross-map online fairness leaderboard.
 - UGC does not enter VS local official records.
 
-상태: planned, VS03-04/05.
+상태: planned, VS03-04/05B.
 
 ## Core-Fun Guardrails
 
@@ -362,7 +388,7 @@ Do not copy network construction, collision-reflex focus, tycoon depth, automati
 - assisted first-run metrics ≠ standard balance evidence.
 - target3 ≠ target100 completion.
 - local model/mock ≠ online UGC readiness.
-- VS03-01 is implemented; VS03-02~07 remain staged according to package status.
+- VS03-01/02 are implemented and synchronized; VS03-03~07 remain staged according to package status.
 
 ## Decision Gate
 
