@@ -93,7 +93,7 @@ Product-view/Android/human readability remains `NOT_RUN` under `F92`.
 - [ ] fully configured RunSessionFactory
 - [ ] explicit train start/incoming cells
 - [ ] exact same-map restart with fresh identities/services
-- [ ] undiscovered-first and discovered-map reselection domain
+- [ ] undiscovered-first and discovered-map reselection
 - [ ] no raw seed or silent substitution
 
 `F58` remains `NOT_MET`; target100 is Production.
@@ -173,8 +173,7 @@ M3 completion proves automated local flow, not Android·human·online readiness.
 ## Current Execution Order
 
 ```text
-VS03-02 closure merge/final Sheet readback
-→ VS03-03
+VS03-03
 → VS03-R1
 → VS03-05A
 → VS03-04
