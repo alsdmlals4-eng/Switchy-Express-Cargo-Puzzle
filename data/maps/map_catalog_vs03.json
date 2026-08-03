@@ -1,0 +1,35 @@
+{
+  "catalog_revision": "vs03-target3-r1",
+  "entries": [
+    {
+      "map_id": "map.sx.0001",
+      "map_revision": 1,
+      "map_seed": 1,
+      "generator_version": "railgen_v1",
+      "ruleset_version": "standard_v1",
+      "validation_status": "VALIDATED",
+      "start_cell": [0, 0],
+      "incoming_cell": [0, 1]
+    },
+    {
+      "map_id": "map.sx.0002",
+      "map_revision": 1,
+      "map_seed": 2,
+      "generator_version": "railgen_v1",
+      "ruleset_version": "standard_v1",
+      "validation_status": "VALIDATED",
+      "start_cell": [0, 0],
+      "incoming_cell": [0, 1]
+    },
+    {
+      "map_id": "map.sx.0003",
+      "map_revision": 1,
+      "map_seed": 5,
+      "generator_version": "railgen_v1",
+      "ruleset_version": "standard_v1",
+      "validation_status": "VALIDATED",
+      "start_cell": [0, 0],
+      "incoming_cell": [0, 1]
+    }
+  ]
+}
