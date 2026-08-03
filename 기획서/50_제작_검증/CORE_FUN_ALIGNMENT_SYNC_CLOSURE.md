@@ -6,7 +6,7 @@ evidence: EV-USER-017~018
 canonical_pr: 39
 canonical_merge: a9368617102420639cc2bb83ee2b0c45505958a6
 sheet_id: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
-state: CANONICAL_MERGED · SHEET_READBACK_PASS · CLOSURE_PR_IN_PROGRESS
+state: CANONICAL_MERGED · SHEET_READBACK_PASS · SYNCED · CLOSED
 current_build_authority: VS03-02_ONLY
 product_change: NONE
 ```
@@ -54,19 +54,8 @@ Verified:
 - `30_세계_서사` is unchanged.
 - wrong Sheet beginning `19Ff...` was not modified.
 
-Current Sheet state before this closure merges:
-
-```text
-SYNCED_CANONICAL_MERGE · SX-AUD-007 · CLOSURE_PENDING
-```
-
 ## Closure boundary
 
 This PR changes planning/current-state documents only. It does not start VS03-02 and does not change product code, tests, Scene, Resource, assets, Profile, catalog, runtime data, balance, or player rules.
 
-After this closure merges:
-
-1. record the closure merge SHA in the correct Sheet;
-2. replace `CLOSURE_PENDING` with final `SYNCED · CLOSED` state;
-3. perform the final 12-tab readback;
-4. start VS03-02 from latest main in a separate TDD branch.
+After this closure merges, its merge SHA is recorded in the correct Sheet and all 12 tabs are reread one final time. Product implementation may then continue only with VS03-02 from latest main.
