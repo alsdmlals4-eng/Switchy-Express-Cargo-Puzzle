@@ -14,6 +14,8 @@ func run() -> void:
 	if not token_state_exists:
 		return
 
+	_assert_every_supported_count()
+
 	var stack: Variant = load(STACK_PATH).new(8)
 	var token_state: Variant = load(TOKEN_STATE_PATH).new()
 	token_state.configure(stack)
@@ -45,3 +47,20 @@ func run() -> void:
 	assert_equal(token_state.token_count(), 7, "unload must reduce compact token count")
 	assert_equal(token_state.rear_type(), BLUE, "rear compact token must follow the new CargoStack top")
 	assert_equal(token_state.revision(), 2, "second changed snapshot must advance exactly once")
+
+
+func _assert_every_supported_count() -> void:
+	var sequence: Array[StringName] = [RED, BLUE, YELLOW, RED, BLUE, YELLOW, RED, BLUE]
+	for count: int in range(9):
+		var stack: Variant = load(STACK_PATH).new(8)
+		for index: int in range(count):
+			assert_true(stack.push(sequence[index]), "count %d setup cargo must load" % count)
+		var token_state: Variant = load(TOKEN_STATE_PATH).new()
+		token_state.configure(stack)
+		var expected: Array[StringName] = []
+		for index: int in range(count):
+			expected.append(sequence[index])
+		assert_equal(token_state.token_count(), count, "count %d must map one cargo to one compact token" % count)
+		assert_equal(token_state.front_to_rear_types(), expected, "count %d must preserve bottom-to-top order" % count)
+		var expected_rear: StringName = &"" if count == 0 else sequence[count - 1]
+		assert_equal(token_state.rear_type(), expected_rear, "count %d rear must equal the LIFO top" % count)
