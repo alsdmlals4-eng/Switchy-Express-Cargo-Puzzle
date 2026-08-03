@@ -6,7 +6,7 @@ evidence_id: EV-VS03-02-001
 decision: SX-DEC-015
 implementation_pr: 41
 implementation_merge: cfe6d5ca0c76942720c5c12ad5dc59aaa651b915
-state: PASS · MERGED_AND_VERIFIED · SHEET_READBACK_PASS · CLOSURE_IN_PROGRESS
+state: PASS · MERGED_AND_VERIFIED · SHEET_READBACK_PASS · SYNCED · CLOSED
 next_authority: VS03-03_ONLY
 player_rule_change: NONE
 ```
@@ -134,6 +134,8 @@ canonical squash merge cfe6d5ca0c76942720c5c12ad5dc59aaa651b915
 - `30_세계_서사`는 변경되지 않았다.
 - wrong `19Ff...` Sheet는 수정하지 않았다.
 
+Closure PR merge SHA는 올바른 Sheet에 후속 기록하고 최종 12-tab readback으로 봉인한다.
+
 ## 8. 미검증 경계
 
 ```yaml
@@ -154,7 +156,7 @@ Headless geometry PASS는 제품 화면 가독성·Android·사람 검증 완료
 
 ## 9. 다음 권위
 
-Closure 완료 후 현재 구현 권위는 오직 `VS03-03_ONLY`다.
+현재 구현 권위는 오직 `VS03-03_ONLY`다.
 
 ```text
 exactly 3 validated official maps
