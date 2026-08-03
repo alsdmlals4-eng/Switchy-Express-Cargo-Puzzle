@@ -70,6 +70,14 @@ func run() -> void:
 	)
 	_assert_occupied_cells(footprint, train, "partial straight/curve segment")
 
+	train.advance_time(0.2)
+	var boundary_history: Array[Vector2i] = train.route_history_cells()
+	assert_true(
+		footprint.occupied_cells().has(boundary_history[2]),
+		"footprint must reserve the farther rail cell when a token extends into that segment"
+	)
+	_assert_occupied_cells(footprint, train, "near-boundary conservative reservation")
+
 	for step: int in range(12):
 		train.advance_time(0.5)
 		var moved_positions: Array[Vector2] = footprint.token_positions()
