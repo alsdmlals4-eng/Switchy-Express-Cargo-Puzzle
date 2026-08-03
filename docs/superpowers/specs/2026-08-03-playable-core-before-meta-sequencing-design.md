@@ -4,7 +4,8 @@
 audit_id: SX-AUD-007
 evidence_id: EV-USER-018
 user_approval: RECOMMENDED_OPTION_C
-status: APPROVED · IMPLEMENTATION_PLANS_COMPLETE · CANONICAL_MERGE_PENDING
+status: APPROVED · IMPLEMENTATION_PLANS_COMPLETE · CANONICAL_MERGED · SHEET_READBACK_PASS
+canonical_merge: a9368617102420639cc2bb83ee2b0c45505958a6
 product_rule_change: false
 current_implementation_authority: VS03-02_ONLY
 ```
@@ -223,6 +224,7 @@ docs/superpowers/plans/2026-08-03-vs03-05a-minimal-playable-core-surface.md
 - 05A/05B 책임 분리
 - F91 해결
 - F87 교정 계약과 구현 계획
+- canonical GitHub merge and correct Sheet readback
 
 완료되지 않는 것:
 
@@ -240,6 +242,6 @@ docs/superpowers/plans/2026-08-03-vs03-05a-minimal-playable-core-surface.md
 ```text
 F91: RESOLVED_BY_USER_APPROVAL · OPTION_C
 F87: IMPLEMENTATION_PLAN_COMPLETE · IMPLEMENTATION_NOT_STARTED
-PR #39: CANONICAL_MERGE_PENDING
+sync: CANONICAL_MERGED · SHEET_READBACK_PASS
 current build authority: VS03-02_ONLY
 ```

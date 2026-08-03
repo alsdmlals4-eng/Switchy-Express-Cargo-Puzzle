@@ -27,7 +27,8 @@ LIFO 적재 순서 계획
 - GMB-001: `CLOSED · SX-DEC-017~026`
 - Decision merge: PR #29 · `9b63421a5ab4d57adbfcf69d2b6e1bf8e3d17496`
 - Definition of Ready: `SX-AUD-005 · PASS · SYNCED`
-- 핵심 재미 정렬: `SX-AUD-007 · EV-USER-017~018 · CANONICAL_MERGE_PENDING`
+- 핵심 재미 정렬: `SX-AUD-007 · EV-USER-017~018 · CANONICAL_MERGED · SHEET_READBACK_PASS`
+- 핵심 재미 정본 merge: PR #39 · `a9368617102420639cc2bb83ee2b0c45505958a6`
 - Codex: `READY_FOR_BUILD · VS03-02_ONLY`
 - 다음 구현 package: `VS03-02 · compact token / TrainFootprint / DeliveryLoop occupancy provider`
 - 제품 Scene runtime·Android·사람 검증: `NOT_RUN`
@@ -42,6 +43,7 @@ AGENTS.md
 → 기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md
 → 기획서/10_경험/CORE_FUN_SYSTEM_HIERARCHY.md
 → 기획서/50_제작_검증/VS03_PACKAGE_STATUS.md
+→ 기획서/50_제작_검증/CORE_FUN_ALIGNMENT_SYNC_CLOSURE.md
 → 기획서/50_제작_검증/CORE_FUN_ALIGNMENT_AUDIT.md
 → 기획서/50_제작_검증/CORE_FUN_ALIGNMENT_APPROVAL_ADDENDUM.md
 → docs/superpowers/specs/2026-08-03-playable-core-before-meta-sequencing-design.md

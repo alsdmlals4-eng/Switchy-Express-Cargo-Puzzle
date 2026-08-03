@@ -15,7 +15,8 @@
 | DoR 정본 | PR #35 · `82fd3eeb1915e6ceedb2f5330b27e903064d6eb5` |
 | VS03-01 감사 | `SX-AUD-006 · EV-VS03-01-001 · PASS` |
 | VS03-01 구현 | PR #37 · `43972d3d23e931af3dbc81ab9b1c7d942fffb201` |
-| 핵심 재미 정렬 감사 | `SX-AUD-007 · USER_APPROVED_PENDING_CANONICAL_MERGE` |
+| 핵심 재미 정렬 감사 | `SX-AUD-007 · EV-USER-017~018 · PASS_WITH_FOLLOWUPS · SYNCED` |
+| 핵심 재미 정본 | PR #39 · `a9368617102420639cc2bb83ee2b0c45505958a6` |
 | 실행 순서 승인 | `EV-USER-018 · RECOMMENDED_OPTION_C` |
 | 올바른 Sheet | `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo` |
 | 현재 Codex 권위 | `READY_FOR_BUILD · VS03-02_ONLY` |
@@ -48,6 +49,7 @@ CURRENT_CONFIRMED_DECISIONS.md
 → GMB-001_CANONICAL_DECISIONS.md
 → ACTIVE_CONTEXT.md
 → ../../50_제작_검증/VS03_PACKAGE_STATUS.md
+→ ../../50_제작_검증/CORE_FUN_ALIGNMENT_SYNC_CLOSURE.md
 → ../../50_제작_검증/CORE_FUN_ALIGNMENT_AUDIT.md
 → ../../50_제작_검증/CORE_FUN_ALIGNMENT_APPROVAL_ADDENDUM.md
 → ../../../docs/superpowers/specs/2026-08-03-playable-core-before-meta-sequencing-design.md
@@ -73,7 +75,7 @@ CURRENT_CONFIRMED_DECISIONS.md
 - `G3P_TOTAL_PLANNING_AND_REVIEW_COMPLETE`: PASS
 - `G3B_GRILL_ME_BATCH_PREMERGE`: `GMB-001 CLOSED`
 - `G3I_VS03_IMPLEMENTATION`: `VS03-01 MERGED_AND_VERIFIED · VS03-02 READY_FOR_BUILD`
-- `G3C_CORE_FUN_ALIGNMENT`: `SX-AUD-007 USER_APPROVED · CANONICAL_MERGE_PENDING`
+- `G3C_CORE_FUN_ALIGNMENT`: `SX-AUD-007 PASS_WITH_FOLLOWUPS · SYNCED · CLOSED`
 - `G4_TARGET_QUALITY_SLICE`: NOT_STARTED
 - `G5_PLAYTEST_EVIDENCE`: NOT_STARTED
 - `G6_OFFICIAL_CATALOG_PRODUCTION`: `NOT_STARTED · F58_NOT_MET`
@@ -108,12 +110,24 @@ behind 0 · thread 0 · REQUEST_CHANGES 0 · P0/P1 0
 - 방향: `KEEP_AND_SHARPEN`
 - 핵심: 선택 적재 LIFO·선행 분기·그룹 하역·생존 경제·BOOST trade·compact readability
 - 보조: onboarding·HUD/result·maps·records/cosmetics/Profile·target100·UGC
-- F86 현재 소비자 상태 드리프트: 보정
-- F87 난이도 schedule split: `VS03-R1` 교정 계획 작성
-- F88 핵심 재미 위계 미명시: 보정
+- F86 current-consumer drift: 보정 완료
+- F87 난이도 schedule split: `VS03-R1` 실행 계획 완료·구현 미시작
+- F88 핵심 재미 위계 미명시: 보정 완료
 - F91 meta-before-playable: `EV-USER-018 OPTION_C`로 해결
-- F89 단색 지배 전략·F92 token 가독성: 검증 증거 공백 유지
+- F89 단색 지배 전략·F90 device reach·F92 token 가독성: 검증 증거 공백 유지
 - 이후 material Grill Me는 benchmark·현업 기본안·비용·실패 위험·검증 Gate 포함
+
+PR #39 exact-head 증거:
+
+```text
+577af564a0c20789b36bf379f91d7745a285ba4d
+18 planning/current-consumer/project-Skill files
+Project Contract 265 PASS
+Godot Tests 247 PASS
+behind 0 · thread 0 · REQUEST_CHANGES 0
+canonical merge a9368617102420639cc2bb83ee2b0c45505958a6
+correct Sheet 12-tab readback PASS
+```
 
 ## 승인된 구현 순서
 
@@ -134,10 +148,10 @@ VS03-01 run lifecycle/economy/difficulty · DONE
 ## 현재 작업
 
 ```text
-SX-AUD-007 / EV-USER-018 implementation plans complete
-→ PR #39 exact-head Gate
-→ canonical merge + correct Sheet synchronization
-→ VS03-02 별도 구현 branch
+latest main
+→ VS03-02 별도 TDD branch
+→ compact token·TrainFootprint·occupancy provider
+→ exact-head package Gate
 ```
 
 ## 보호 경계

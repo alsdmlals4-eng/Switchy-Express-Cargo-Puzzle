@@ -12,18 +12,19 @@ description: Use for Switchy Express gameplay, route, cargo-stack, compact-token
 3. `기획서/10_경험/CORE_FUN_SYSTEM_HIERARCHY.md`
 4. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
 5. `기획서/50_제작_검증/VS03_PACKAGE_STATUS.md`
-6. `기획서/50_제작_검증/CORE_FUN_ALIGNMENT_AUDIT.md`
-7. `기획서/50_제작_검증/CORE_FUN_ALIGNMENT_APPROVAL_ADDENDUM.md`
-8. `docs/superpowers/specs/2026-08-03-playable-core-before-meta-sequencing-design.md`
-9. `docs/superpowers/plans/2026-08-03-vs03-core-first-resegmentation.md`
-10. current package-specific plan
-11. `기획서/50_제작_검증/VS03_01_IMPLEMENTATION_AUDIT.md`
-12. `기획서/50_제작_검증/VS03_DEFINITION_OF_READY_AUDIT.md`
-13. `docs/superpowers/specs/2026-08-02-vs03-execution-architecture-design.md`
-14. `docs/superpowers/plans/2026-08-02-vs03-build-segmentation.md`
-15. `docs/superpowers/plans/2026-08-02-switchy-express-current-vertical-slice.md`
-16. `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
-17. actual code and tests
+6. `기획서/50_제작_검증/CORE_FUN_ALIGNMENT_SYNC_CLOSURE.md`
+7. `기획서/50_제작_검증/CORE_FUN_ALIGNMENT_AUDIT.md`
+8. `기획서/50_제작_검증/CORE_FUN_ALIGNMENT_APPROVAL_ADDENDUM.md`
+9. `docs/superpowers/specs/2026-08-03-playable-core-before-meta-sequencing-design.md`
+10. `docs/superpowers/plans/2026-08-03-vs03-core-first-resegmentation.md`
+11. current package-specific plan
+12. `기획서/50_제작_검증/VS03_01_IMPLEMENTATION_AUDIT.md`
+13. `기획서/50_제작_검증/VS03_DEFINITION_OF_READY_AUDIT.md`
+14. `docs/superpowers/specs/2026-08-02-vs03-execution-architecture-design.md`
+15. `docs/superpowers/plans/2026-08-02-vs03-build-segmentation.md`
+16. `docs/superpowers/plans/2026-08-02-switchy-express-current-vertical-slice.md`
+17. `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
+18. actual code and tests
 
 `VS03_PACKAGE_STATUS.md` owns current package status. `2026-08-03-vs03-core-first-resegmentation.md` owns the approved future order. Older plans remain behavior and unchanged-package responsibility references. When old status text, package order, pseudocode, path, test command, or shared-file order conflicts with the current status, core-first plan, or DoR canon, use the newer authority without changing approved player-facing meaning.
 
@@ -78,9 +79,11 @@ gmb001: CLOSED · SX-DEC-017~026
 dor_audit: SX-AUD-005 · PASS · SYNCED
 vs03_01_audit: SX-AUD-006 · PASS · SYNCED
 vs03_01_merge: 43972d3d23e931af3dbc81ab9b1c7d942fffb201
-closure_merge: 9360eff0a97f48f2234fcaf35425f80e94fac445
-core_fun_audit: SX-AUD-007 · USER_APPROVED_PENDING_CANONICAL_MERGE
-sequencing_evidence: EV-USER-018 · RECOMMENDED_OPTION_C
+vs03_01_closure: 9360eff0a97f48f2234fcaf35425f80e94fac445
+core_fun_audit: SX-AUD-007 · PASS_WITH_FOLLOWUPS · SYNCED
+core_fun_evidence: EV-USER-017~018
+core_fun_merge: a9368617102420639cc2bb83ee2b0c45505958a6
+sequencing_approval: RECOMMENDED_OPTION_C
 codex: READY_FOR_BUILD
 current_package: VS03-02_ONLY
 product_implementation: IN_PROGRESS · VS03-01_MERGED

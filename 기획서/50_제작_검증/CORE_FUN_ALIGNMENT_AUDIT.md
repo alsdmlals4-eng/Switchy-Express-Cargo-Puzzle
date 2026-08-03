@@ -4,7 +4,8 @@
 audit_id: SX-AUD-007
 evidence_id: EV-USER-017~018
 scope: core fun · core/support systems · benchmark · PR #37/#38 · current main · package sequencing
-state: USER_APPROVED · IMPLEMENTATION_PLANS_COMPLETE · CANONICAL_MERGE_PENDING
+state: PASS_WITH_FOLLOWUPS · CANONICAL_MERGED · SHEET_READBACK_PASS
+canonical_merge: a9368617102420639cc2bb83ee2b0c45505958a6
 product_rule_change: NONE
 current_package_authority: VS03-02_ONLY
 ```
@@ -112,9 +113,9 @@ Conduct THIS!의 실시간 분기 압박
 
 | Finding | 내용 | 심각도 | 최종 상태 |
 |---|---|---:|---|
-| SX-AUD-007-F86 | current consumer status drift | P1 | `FIXED_IN_PR_39` |
+| SX-AUD-007-F86 | current consumer status drift | P1 | `FIXED` |
 | SX-AUD-007-F87 | 30초 DifficultyDirector와 45초 fuel boundary authority split | P1 | `CORRECTION_PLANNED · VS03-R1 · NOT_STARTED` |
-| SX-AUD-007-F88 | core-fun hierarchy unstated | P1 | `FIXED_IN_PR_39` |
+| SX-AUD-007-F88 | core-fun hierarchy unstated | P1 | `FIXED` |
 | SX-AUD-007-F89 | mono-color loading dominant-strategy risk | P1 evidence gap | `VALIDATION_NOT_RUN` |
 | SX-AUD-007-F90 | landscape one-hand reach ambiguity | P1 UX | `SINGLE_POINTER_NORMALIZED · DEVICE_NOT_RUN` |
 | SX-AUD-007-F91 | Profile/meta before playable surface | P1 execution | `RESOLVED_BY_EV-USER-018 · OPTION_C` |
@@ -209,7 +210,20 @@ docs/superpowers/plans/2026-08-03-vs03-05a-minimal-playable-core-surface.md
 
 중요 player-facing choice, package sequencing, 플랫폼·접근성·경제·온라인 정책에 적용한다. 안전한 구현 교정에는 불필요한 Decision을 추가하지 않는다.
 
-## 11. 최종 판정
+## 11. Canonical evidence
+
+```text
+PR #39 exact head 577af564a0c20789b36bf379f91d7745a285ba4d
+18 planning/current-consumer/project-Skill files
+product files 0
+Project Contract 265 PASS
+Godot Tests 247 PASS
+behind 0 · thread 0 · REQUEST_CHANGES 0
+canonical merge a9368617102420639cc2bb83ee2b0c45505958a6
+correct Sheet 12-tab readback PASS
+```
+
+## 12. 최종 판정
 
 ```text
 core_direction: KEEP_AND_SHARPEN
@@ -217,8 +231,7 @@ player_rule_change: NONE
 F91: RESOLVED
 F87: PLANNED_NOT_IMPLEMENTED
 current_build_authority: VS03-02_ONLY
-PR_39: CANONICAL_MERGE_PENDING
-Sheet: NOT_UPDATED_BEFORE_MERGE
+sync: CANONICAL_MERGED · SHEET_READBACK_PASS
 ```
 
 제품 Scene runtime·Android·soak·localization/accessibility·economy simulation·captures·5명+ 사람 검증·target100·online UGC는 계속 `NOT_RUN`; `F58`은 `NOT_MET`다.

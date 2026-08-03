@@ -13,9 +13,10 @@ vs03_01_audit: SX-AUD-006 · PASS · SYNCED
 vs03_01_evidence: EV-VS03-01-001
 vs03_01_merge: 43972d3d23e931af3dbc81ab9b1c7d942fffb201
 vs03_01_closure: 9360eff0a97f48f2234fcaf35425f80e94fac445
-core_fun_audit: SX-AUD-007 · USER_APPROVED_PENDING_CANONICAL_MERGE
-core_fun_evidence: EV-USER-017
-sequencing_evidence: EV-USER-018 · RECOMMENDED_OPTION_C
+core_fun_audit: SX-AUD-007 · PASS_WITH_FOLLOWUPS · SYNCED
+core_fun_evidence: EV-USER-017~018
+core_fun_merge: a9368617102420639cc2bb83ee2b0c45505958a6
+sequencing_approval: RECOMMENDED_OPTION_C
 implementation_authority: VS03-02_ONLY
 codex_state: READY_FOR_BUILD
 product_implementation: IN_PROGRESS · VS03-01_MERGED
@@ -74,7 +75,7 @@ LIFO 적재 순서 계획
 | SX-AUD-004 | 전체 기획 coverage·Decision 충돌 | EV-USER-002~015 | PASS · GMB001_CLOSED · RUNTIME_FOLLOWUPS |
 | SX-AUD-005 | VS-03 Definition of Ready·실제 API/file/test/save/order/rollback | EV-USER-016 | PASS_WITH_PLANNING_FIXES · SYNCED |
 | SX-AUD-006 | VS03-01 planning preflight·TDD·implementation·exact-head Gate | EV-VS03-01-001 | PASS · MERGED_AND_VERIFIED · SYNCED |
-| SX-AUD-007 | core fun/system hierarchy·benchmark·PR consumer review·package sequencing | EV-USER-017~018 | USER_APPROVED · IMPLEMENTATION_PLANS_COMPLETE · CANONICAL_MERGE_PENDING |
+| SX-AUD-007 | core fun/system hierarchy·benchmark·PR consumer review·package sequencing | EV-USER-017~018 | PASS_WITH_FOLLOWUPS · CANONICAL_MERGED · SHEET_READBACK_PASS |
 
 `SX-AUD-007`은 제품 규칙 Decision을 변경하지 않는다. 핵심 재미 위계, 현재 소비자 정합성, benchmark-backed Grill Me 규칙, 안전 교정 package, 구현 순서를 정규화한다.
 
@@ -85,6 +86,7 @@ Canonical current-status and future-order documents:
 ```text
 기획서/10_경험/CORE_FUN_SYSTEM_HIERARCHY.md
 기획서/50_제작_검증/VS03_PACKAGE_STATUS.md
+기획서/50_제작_검증/CORE_FUN_ALIGNMENT_SYNC_CLOSURE.md
 기획서/50_제작_검증/CORE_FUN_ALIGNMENT_AUDIT.md
 기획서/50_제작_검증/CORE_FUN_ALIGNMENT_APPROVAL_ADDENDUM.md
 docs/superpowers/specs/2026-08-03-playable-core-before-meta-sequencing-design.md
@@ -166,8 +168,8 @@ VS03-01 · MERGED_AND_VERIFIED
 | EV-USER-006~015 | CONFIRMED_USER_DECISION · PR #29/SHEET SYNCED |
 | EV-USER-016 | DoR review and recommended fixes · PR #35/SHEET SYNCED |
 | EV-VS03-01-001 | VS03-01 exact-head implementation evidence · PR #37/#38/SHEET SYNCED |
-| EV-USER-017 | core-fun adversarial review and benchmark-backed workflow instruction · PR #39 PENDING_MERGE |
-| EV-USER-018 | approved recommended option C and written sequencing design · PR #39 PENDING_MERGE |
+| EV-USER-017 | core-fun adversarial review and benchmark-backed workflow instruction · PR #39/SHEET SYNCED |
+| EV-USER-018 | approved recommended option C and written sequencing design · PR #39/SHEET SYNCED |
 | EV-VS01-001 | VALIDATED |
 | EV-VS02-001 | VALIDATED |
 | EV-VS02-FIX-001 | VALIDATED |
@@ -186,8 +188,8 @@ VS03-01 · MERGED_AND_VERIFIED
 GMB-001 CLOSED
 VS03-01 implementation PR #37 merged 43972d3d...
 VS03-01 closure PR #38 merged 9360eff0...
-correct Sheet SX-AUD-006 / EV-VS03-01-001 readback PASS
+SX-AUD-007 canonical PR #39 merged a9368617...
+correct Sheet SX-AUD-007 / EV-USER-017~018 12-tab readback PASS
 wrong 19Ff... Sheet untouched
 VS03-02 READY_FOR_BUILD · CURRENT_AUTHORITY
-SX-AUD-007 / EV-USER-017~018 · PR #39 CANONICAL_MERGE_PENDING
 ```

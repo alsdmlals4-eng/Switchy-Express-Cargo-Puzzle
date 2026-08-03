@@ -31,7 +31,7 @@ Audit: `SX-AUD-005`; Evidence: `EV-USER-016`.
 - [x] target3/target100 separation
 - [x] package ownership and exact evidence gates
 
-## M2.6 — Core-Fun Alignment · CANONICAL_MERGE_PENDING
+## M2.6 — Core-Fun Alignment · COMPLETE
 
 Audit: `SX-AUD-007`; Evidence: `EV-USER-017~018`.
 
@@ -42,7 +42,8 @@ Audit: `SX-AUD-007`; Evidence: `EV-USER-017~018`.
 - [x] VS03-R1 executable plan
 - [x] VS03-05A executable plan
 - [x] 05A/04/05B responsibility split
-- [ ] PR #39 canonical merge and Sheet closure
+- [x] PR #39 canonical merge `a9368617102420639cc2bb83ee2b0c45505958a6`
+- [x] correct Sheet 12-tab canonical readback
 
 ## M3 — VS-03 Local Core · IN_PROGRESS
 
@@ -160,7 +161,7 @@ M3 completion proves the automated local flow, not Android·human·online readin
 ## Current Execution Order
 
 ```text
-PR #39 merge/sync
+Sync Closure merge/final Sheet readback
 → VS03-02
 → VS03-03
 → VS03-R1
