@@ -33,7 +33,7 @@ func run() -> void:
 	assert_equal(first.compact_token_state.token_count(), 0, "fresh token state must match empty stack")
 	assert_true(first.cargo_spawner.pickup_cells().size() >= 12, "fresh session must contain configured initial pickups")
 
-	first.cargo_stack.push(&"RED")
+	first.cargo_stack.push(&"RED_STAR")
 	first.compact_token_state.sync_from_stack()
 	first.input_state.set_boost_requested(true)
 	first.run_controller.start()
