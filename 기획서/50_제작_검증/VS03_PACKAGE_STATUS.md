@@ -10,9 +10,13 @@ vs03_01_merge: 43972d3d23e931af3dbc81ab9b1c7d942fffb201
 vs03_02_audit: SX-AUD-008 · PASS · MERGED_AND_VERIFIED · SHEET_READBACK_PASS
 vs03_02_evidence: EV-VS03-02-001
 vs03_02_merge: cfe6d5ca0c76942720c5c12ad5dc59aaa651b915
+vs03_03_audit: SX-AUD-010 · PREMERGE_REVIEW
+vs03_03_evidence: EV-VS03-03-001 · EXACT_HEAD_GREEN
+vs03_03_pr: 46 · MERGE_PENDING
 core_fun_audit: SX-AUD-007 · PASS_WITH_FOLLOWUPS · SYNCED
 sequencing_evidence: EV-USER-018 · RECOMMENDED_OPTION_C
 current_authorized_package: VS03-03
+next_authority_after_merge_sync: VS03-R1
 future_order_approved: true
 ```
 
@@ -30,9 +34,9 @@ future_order_approved: true
 | Package | 상태 | 권위 증거 | 다음 조건 |
 |---|---|---|---|
 | VS03-01 | `MERGED_AND_VERIFIED · SYNCED` | PR #37/#38 · `SX-AUD-006` | 완료 |
-| VS03-02 | `MERGED_AND_VERIFIED · SHEET_SYNCED` | PR #41 · `cfe6d5ca...` · `SX-AUD-008` | closure 완료 |
-| VS03-03 | `READY_FOR_BUILD · NOT_STARTED · CURRENT_AUTHORITY` | VS03-02 exact-head Gate + Sheet readback | 별도 branch·TDD |
-| VS03-R1 | `BLOCKED_BY_VS03_03` | `SX-AUD-007-F87 · EV-USER-018` | VS03-03 merge·sync |
+| VS03-02 | `MERGED_AND_VERIFIED · SHEET_SYNCED` | PR #41/#42 · `SX-AUD-008` | 완료 |
+| VS03-03 | `IMPLEMENTED_ON_PR · EXACT_HEAD_GREEN · MERGE_PENDING · CURRENT_AUTHORITY` | PR #46 · `SX-AUD-010 · EV-VS03-03-001` | premerge audit·Sheet pending·merge·closure |
+| VS03-R1 | `BLOCKED_BY_VS03_03_MERGE_SYNC` | `SX-AUD-007-F87 · EV-USER-018` | VS03-03 merge·Sheet closure |
 | VS03-05A | `BLOCKED_BY_VS03_R1` | `EV-USER-018 · OPTION_C` | VS03-R1 merge·sync |
 | VS03-04 | `BLOCKED_BY_VS03_05A` | `EV-USER-018 · OPTION_C` | VS03-05A merge·sync |
 | VS03-05B | `BLOCKED_BY_VS03_04` | `EV-USER-018 · OPTION_C` | VS03-04 merge·sync |
@@ -44,7 +48,7 @@ future_order_approved: true
 ```text
 VS03-01 run lifecycle/economy/difficulty · DONE
 → VS03-02 compact token/TrainFootprint/DeliveryLoop occupancy · DONE
-→ VS03-03 target3 maps/session/restart/selection · CURRENT
+→ VS03-03 target3 maps/session/restart/selection · IMPLEMENTED_ON_PR · MERGE_PENDING
 → VS03-R1 difficulty authority alignment
 → VS03-05A minimal playable core surface
 → VS03-04 Profile/records/cosmetics/unlocks/rewards
@@ -97,20 +101,36 @@ behind 0 · thread 0 · REQUEST_CHANGES 0
 
 상세: `기획서/50_제작_검증/VS03_02_IMPLEMENTATION_AUDIT.md`.
 
-## VS03-03 실행 권위
-
-목표:
+## VS03-03 병합 전 구현 증거
 
 ```text
-exactly 3 distinct validated official maps
-+ immutable MapDefinition / strict MapCatalog
-+ fully configured RunSessionFactory
-+ exact same-map restart with fresh mutable services and identities
-+ automatic undiscovered-first selection
-+ discovered-map semantic reselection domain
+PR #46 · branch agent/vs03-03-map-session-selection
+SX-AUD-010 · PREMERGE_REVIEW
+EV-VS03-03-001 · EXACT_HEAD_GREEN
+31 cases · 7681 assertions · 0 failures
+Project Contract 340 PASS
+Godot Tests 315 PASS
 ```
 
-필수 계약:
+검증 범위:
+
+- target3 checked-in official catalog, distinct layout signatures, fallback 0
+- strict identity/revision/layout/content duplicate rejection
+- deterministic graph·station·initial pickup reconstruction
+- fully configured fresh RunSession service graph
+- exact same-map restart with fresh run/transaction/service identities
+- automatic undiscovered-first target3 cycle
+- manual/restart auto-bag consumption 0
+- selection receipt commit after successful session construction only
+- duplicate request·forged/mutated receipt rejection
+- raw seed public exposure 0
+- approved `FUEL_MAX=100`, `FUEL_START=65` authority preservation
+
+상세: `기획서/50_제작_검증/VS03_03_IMPLEMENTATION_AUDIT.md`.
+
+병합·correct Sheet closure 전에는 완료 또는 `VS03-R1_ONLY`를 주장하지 않는다.
+
+## VS03-03 계약
 
 - target3만 VS 범위다. target100은 Production이며 `F58 NOT_MET`를 유지한다.
 - `RunSessionFactory`는 완전히 구성된 session만 성공으로 반환한다.
