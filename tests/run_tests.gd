@@ -5,6 +5,7 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/rail/test_rail_generator.gd"),
 	preload("res://tests/rail/test_switch_routing.gd"),
 	preload("res://tests/train/test_train_movement.gd"),
+	preload("res://tests/train/test_compact_wagon_tokens.gd"),
 	preload("res://tests/cargo/test_cargo_stack.gd"),
 	preload("res://tests/station/test_station_placement.gd"),
 	preload("res://tests/cargo/test_cargo_spawner.gd"),
