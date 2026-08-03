@@ -1,4 +1,4 @@
-extends TestCase
+extends "res://tests/test_case.gd"
 
 const MapCatalogScript := preload("res://game/map/map_catalog.gd")
 const MapBuildPipelineScript := preload("res://game/map/map_build_pipeline.gd")
