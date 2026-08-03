@@ -8,7 +8,9 @@ stage: VERTICAL_SLICE_IN_PROGRESS · VS03_01_HEADLESS_PASSED
 work_mode: IMPLEMENTATION_IN_PROGRESS · SEQUENTIAL_PACKAGES
 vs03_01_audit: SX-AUD-006 · PASS · SYNCED
 vs03_01_merge: 43972d3d23e931af3dbc81ab9b1c7d942fffb201
-core_fun_audit: SX-AUD-007 · EV-USER-017~018 · CANONICAL_MERGE_PENDING
+core_fun_audit: SX-AUD-007 · PASS_WITH_FOLLOWUPS · SYNCED
+core_fun_evidence: EV-USER-017~018
+core_fun_merge: a9368617102420639cc2bb83ee2b0c45505958a6
 product_implementation: VS03_01_MERGED
 codex_state: READY_FOR_BUILD
 current_authorized_package: VS03-02
@@ -32,6 +34,7 @@ LIFO 적재 순서 계획
 - `SX-AUD-005 / EV-USER-016` DoR canonical sync.
 - VS03-01 PR #37·closure PR #38·Sheet sync.
 - RunBalance·RunState·RunSummary·RunController·DifficultyDirector·Combo·BOOST·fuel-zero 기반.
+- `SX-AUD-007 / EV-USER-017~018` PR #39 canonical merge·correct Sheet 12-tab readback.
 - Godot headless `16 cases · 7110 assertions · 0 failures`.
 
 ## 현재 실행 권위 — VS03-02
@@ -69,6 +72,7 @@ VS03-01 · MERGED_AND_VERIFIED
 정본:
 
 ```text
+기획서/50_제작_검증/CORE_FUN_ALIGNMENT_SYNC_CLOSURE.md
 docs/superpowers/specs/2026-08-03-playable-core-before-meta-sequencing-design.md
 docs/superpowers/plans/2026-08-03-vs03-core-first-resegmentation.md
 docs/superpowers/plans/2026-08-03-vs03-r1-difficulty-authority-alignment.md
@@ -97,7 +101,7 @@ docs/superpowers/plans/2026-08-03-vs03-05a-minimal-playable-core-surface.md
 
 ## Finding 추적
 
-- F86 current consumer drift: fixed in PR #39.
+- F86 current consumer drift: fixed.
 - F87 difficulty authority split: VS03-R1 plan complete, implementation not started.
 - F89 mono-color dominant strategy: evidence gap.
 - F90 landscape input: single-pointer/no-chord, device not run.
@@ -123,10 +127,8 @@ ugc_editor_backend_moderation_privacy_community: NOT_STARTED_OR_NOT_RUN
 ## 다음 작업
 
 ```text
-PR #39 exact-head planning Gate
-→ canonical merge
-→ correct Sheet SX-AUD-007 / EV-USER-017~018 sync
-→ Sync Closure
+Sync Closure merge
+→ correct Sheet closure SHA + final 12-tab readback
 → latest main에서 VS03-02 TDD 시작
 ```
 
