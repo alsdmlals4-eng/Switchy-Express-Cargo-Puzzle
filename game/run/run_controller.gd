@@ -57,7 +57,10 @@ func configure(
 
 func start() -> bool:
 	assert(_run_state != null, "RunController must be configured before start")
-	return _run_state.start()
+	var started: bool = _run_state.start()
+	if started:
+		_refresh_train_speed()
+	return started
 
 
 func pause() -> bool:
@@ -67,7 +70,10 @@ func pause() -> bool:
 
 func resume() -> bool:
 	assert(_run_state != null, "RunController must be configured before resume")
-	return _run_state.resume()
+	var resumed: bool = _run_state.resume()
+	if resumed:
+		_refresh_train_speed()
+	return resumed
 
 
 func advance_time(delta_seconds: float) -> Array[Dictionary]:
@@ -80,9 +86,16 @@ func advance_time(delta_seconds: float) -> Array[Dictionary]:
 	while remaining_time > TIME_EPSILON and _run_state.is_active():
 		var boosting: bool = _input_state.is_boosting()
 		var cargo_count: int = int(_cargo_stack.size())
-		var elapsed_before: float = _run_state.elapsed_seconds()
-		var speed: float = _balance.current_speed(elapsed_before, cargo_count, boosting)
-		var fuel_drain_rate: float = _balance.fuel_drain_rate(elapsed_before, boosting)
+		var pressure_snapshot: Variant = _difficulty_director.current_snapshot()
+		var speed: float = _balance.current_speed_for_snapshot(
+			pressure_snapshot,
+			cargo_count,
+			boosting
+		)
+		var fuel_drain_rate: float = _balance.fuel_drain_rate_for_snapshot(
+			pressure_snapshot,
+			boosting
+		)
 		_train.set_speed(speed)
 
 		var segment_seconds := _segment_duration(remaining_time, fuel_drain_rate)
@@ -105,6 +118,8 @@ func advance_time(delta_seconds: float) -> Array[Dictionary]:
 		_run_state.apply_fuel_delta(-fuel_drain_rate * segment_seconds)
 		remaining_time = maxf(remaining_time - segment_seconds, 0.0)
 		_finish_if_fuel_empty()
+		if _run_state.is_active():
+			_refresh_train_speed()
 
 	return emitted_events
 
@@ -123,6 +138,17 @@ func difficulty_director() -> Variant:
 
 func summary() -> Variant:
 	return _summary
+
+
+func _refresh_train_speed() -> void:
+	if _train == null or _balance == null or _difficulty_director == null:
+		return
+	var snapshot: Variant = _difficulty_director.current_snapshot()
+	var cargo_count: int = int(_cargo_stack.size())
+	var boosting: bool = _input_state.is_boosting()
+	_train.set_speed(
+		_balance.current_speed_for_snapshot(snapshot, cargo_count, boosting)
+	)
 
 
 func _segment_duration(remaining_time: float, fuel_drain_rate: float) -> float:
