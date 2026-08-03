@@ -20,10 +20,17 @@ const HEAVY_CARGO_THRESHOLD := 6
 const HEAVY_BONUS_MULTIPLIER := 1.15
 
 
+func base_speed_for_step(speed_step: int) -> float:
+	return minf(
+		SPEED_MAX,
+		SPEED_START + SPEED_STEP_AMOUNT * float(maxi(speed_step, 0))
+	)
+
+
 func base_speed(elapsed_seconds: float) -> float:
 	var safe_elapsed := maxf(elapsed_seconds, 0.0)
-	var step_count := int(floor(safe_elapsed / SPEED_STEP_SECONDS))
-	return minf(SPEED_MAX, SPEED_START + SPEED_STEP_AMOUNT * float(step_count))
+	var speed_step := int(floor(safe_elapsed / SPEED_STEP_SECONDS))
+	return base_speed_for_step(speed_step)
 
 
 func cargo_multiplier(cargo_count: int) -> float:
@@ -31,20 +38,44 @@ func cargo_multiplier(cargo_count: int) -> float:
 	return maxf(CARGO_MULTIPLIER_MIN, 1.0 - CARGO_SLOWDOWN_PER_ITEM * float(bounded_count))
 
 
-func current_speed(elapsed_seconds: float, cargo_count: int, boosting: bool) -> float:
+func current_speed_for_snapshot(snapshot: Variant, cargo_count: int, boosting: bool) -> float:
+	assert(snapshot != null and snapshot.has_method("speed_step"), "pressure snapshot with speed_step required")
 	var boost_multiplier := BOOST_SPEED_MULTIPLIER if boosting else 1.0
-	return base_speed(elapsed_seconds) * cargo_multiplier(cargo_count) * boost_multiplier
+	return (
+		base_speed_for_step(int(snapshot.speed_step()))
+		* cargo_multiplier(cargo_count)
+		* boost_multiplier
+	)
+
+
+func current_speed(elapsed_seconds: float, cargo_count: int, boosting: bool) -> float:
+	var safe_elapsed := maxf(elapsed_seconds, 0.0)
+	var speed_step := int(floor(safe_elapsed / SPEED_STEP_SECONDS))
+	var boost_multiplier := BOOST_SPEED_MULTIPLIER if boosting else 1.0
+	return base_speed_for_step(speed_step) * cargo_multiplier(cargo_count) * boost_multiplier
+
+
+func base_fuel_drain_for_step(fuel_step: int) -> float:
+	return FUEL_DRAIN_START + FUEL_STEP_AMOUNT * float(maxi(fuel_step, 0))
 
 
 func base_fuel_drain(elapsed_seconds: float) -> float:
 	var safe_elapsed := maxf(elapsed_seconds, 0.0)
-	var step_count := int(floor(safe_elapsed / FUEL_STEP_SECONDS))
-	return FUEL_DRAIN_START + FUEL_STEP_AMOUNT * float(step_count)
+	var fuel_step := int(floor(safe_elapsed / FUEL_STEP_SECONDS))
+	return base_fuel_drain_for_step(fuel_step)
+
+
+func fuel_drain_rate_for_snapshot(snapshot: Variant, boosting: bool) -> float:
+	assert(snapshot != null and snapshot.has_method("fuel_step"), "pressure snapshot with fuel_step required")
+	var boost_multiplier := BOOST_DRAIN_MULTIPLIER if boosting else 1.0
+	return base_fuel_drain_for_step(int(snapshot.fuel_step())) * boost_multiplier
 
 
 func fuel_drain_rate(elapsed_seconds: float, boosting: bool) -> float:
+	var safe_elapsed := maxf(elapsed_seconds, 0.0)
+	var fuel_step := int(floor(safe_elapsed / FUEL_STEP_SECONDS))
 	var boost_multiplier := BOOST_DRAIN_MULTIPLIER if boosting else 1.0
-	return base_fuel_drain(elapsed_seconds) * boost_multiplier
+	return base_fuel_drain_for_step(fuel_step) * boost_multiplier
 
 
 func unload_base_score(combo_count: int) -> int:
