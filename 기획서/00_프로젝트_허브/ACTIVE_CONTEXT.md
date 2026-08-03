@@ -10,7 +10,7 @@ vs03_01_audit: SX-AUD-006 · PASS · SYNCED
 vs03_01_merge: 43972d3d23e931af3dbc81ab9b1c7d942fffb201
 core_fun_audit: SX-AUD-007 · PASS_WITH_FOLLOWUPS · SYNCED
 core_fun_merge: a9368617102420639cc2bb83ee2b0c45505958a6
-vs03_02_audit: SX-AUD-008 · PASS · MERGED_AND_VERIFIED · SHEET_READBACK_PASS
+vs03_02_audit: SX-AUD-008 · PASS · MERGED_AND_VERIFIED · SYNCED
 vs03_02_evidence: EV-VS03-02-001
 vs03_02_merge: cfe6d5ca0c76942720c5c12ad5dc59aaa651b915
 product_implementation: VS03_01_AND_02_MERGED
@@ -142,9 +142,10 @@ ugc_editor_backend_moderation_privacy_community: NOT_STARTED_OR_NOT_RUN
 ## 다음 작업
 
 ```text
-VS03-02 closure merge
-→ correct Sheet closure SHA + final 12-tab readback
-→ latest main에서 VS03-03 TDD 시작
+latest main에서 VS03-03 별도 TDD branch
+→ target3 map identity/catalog
+→ fresh RunSession/restart/selection
+→ exact-head package Gate
 ```
 
 ## 금지
