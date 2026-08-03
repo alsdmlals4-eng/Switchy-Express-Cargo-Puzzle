@@ -4,7 +4,7 @@
 
 - [x] GitHub 정본·Registry·Base Adapter·Google Sheets 연결
 - [x] 저장소만으로 현재 결정과 다음 작업 복원
-- [x] Base v9.4 운영 계약 적용
+- [x] Base v9.4.3 운영 계약 적용
 
 ## M1 — 철도·열차·화물 기반 · COMPLETE
 
