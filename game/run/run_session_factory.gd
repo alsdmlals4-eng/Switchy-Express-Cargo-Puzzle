@@ -3,6 +3,7 @@ extends RefCounted
 
 const RunIdentityScript := preload("res://game/run/run_identity.gd")
 const RunSessionScript := preload("res://game/run/run_session.gd")
+const RunBalanceScript := preload("res://game/run/run_balance.gd")
 const CargoStackScript := preload("res://game/cargo/cargo_stack.gd")
 const GameplayInputStateScript := preload("res://game/input/gameplay_input_state.gd")
 const TrainControllerScript := preload("res://game/train/train_controller.gd")
@@ -84,8 +85,8 @@ func create_for_definition(
 		delivery_loop,
 		cargo_stack,
 		input_state,
-		65.0,
-		65.0,
+		RunBalanceScript.FUEL_MAX,
+		RunBalanceScript.FUEL_START,
 		assisted
 	)
 
