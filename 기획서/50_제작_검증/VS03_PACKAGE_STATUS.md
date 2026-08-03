@@ -10,13 +10,13 @@ vs03_01_merge: 43972d3d23e931af3dbc81ab9b1c7d942fffb201
 vs03_02_audit: SX-AUD-008 · PASS · MERGED_AND_VERIFIED · SHEET_READBACK_PASS
 vs03_02_evidence: EV-VS03-02-001
 vs03_02_merge: cfe6d5ca0c76942720c5c12ad5dc59aaa651b915
-vs03_03_audit: SX-AUD-010 · PREMERGE_REVIEW
-vs03_03_evidence: EV-VS03-03-001 · EXACT_HEAD_GREEN
-vs03_03_pr: 46 · MERGE_PENDING
+vs03_03_audit: SX-AUD-010 · MERGED_AND_VERIFIED · SHEET_READBACK_PASS
+vs03_03_evidence: EV-VS03-03-001 · ADOPT
+vs03_03_merge: 53aa4eb5025b8c44db9bdb8e877a93e0266e6765
 core_fun_audit: SX-AUD-007 · PASS_WITH_FOLLOWUPS · SYNCED
 sequencing_evidence: EV-USER-018 · RECOMMENDED_OPTION_C
-current_authorized_package: VS03-03
-next_authority_after_merge_sync: VS03-R1
+current_authorized_package: VS03-R1
+next_authority_after_merge_sync: VS03-05A
 future_order_approved: true
 ```
 
@@ -27,7 +27,7 @@ future_order_approved: true
 - `VS03-R1`은 `docs/superpowers/plans/2026-08-03-vs03-r1-difficulty-authority-alignment.md`를 따른다.
 - `VS03-05A`는 `docs/superpowers/plans/2026-08-03-vs03-05a-minimal-playable-core-surface.md`를 따른다.
 - 오래된 status/order가 이 문서와 충돌하면 이 문서가 우선한다.
-- 이전 package merge·정본 동기화 전 다음 package를 시작하지 않는다.
+- 이전 package merge·정본·Sheet 동기화 전 다음 package를 시작하지 않는다.
 
 ## 현재 상태
 
@@ -35,8 +35,8 @@ future_order_approved: true
 |---|---|---|---|
 | VS03-01 | `MERGED_AND_VERIFIED · SYNCED` | PR #37/#38 · `SX-AUD-006` | 완료 |
 | VS03-02 | `MERGED_AND_VERIFIED · SHEET_SYNCED` | PR #41/#42 · `SX-AUD-008` | 완료 |
-| VS03-03 | `IMPLEMENTED_ON_PR · EXACT_HEAD_GREEN · MERGE_PENDING · CURRENT_AUTHORITY` | PR #46 · `SX-AUD-010 · EV-VS03-03-001` | premerge audit·Sheet pending·merge·closure |
-| VS03-R1 | `BLOCKED_BY_VS03_03_MERGE_SYNC` | `SX-AUD-007-F87 · EV-USER-018` | VS03-03 merge·Sheet closure |
+| VS03-03 | `MERGED_AND_VERIFIED · SHEET_READBACK_PASS` | PR #46 · `SX-AUD-010 · EV-VS03-03-001` | 완료 |
+| VS03-R1 | `READY_FOR_BUILD · CURRENT_AUTHORITY` | `SX-AUD-007-F87 · EV-USER-018` | latest-main TDD implementation |
 | VS03-05A | `BLOCKED_BY_VS03_R1` | `EV-USER-018 · OPTION_C` | VS03-R1 merge·sync |
 | VS03-04 | `BLOCKED_BY_VS03_05A` | `EV-USER-018 · OPTION_C` | VS03-05A merge·sync |
 | VS03-05B | `BLOCKED_BY_VS03_04` | `EV-USER-018 · OPTION_C` | VS03-04 merge·sync |
@@ -48,8 +48,8 @@ future_order_approved: true
 ```text
 VS03-01 run lifecycle/economy/difficulty · DONE
 → VS03-02 compact token/TrainFootprint/DeliveryLoop occupancy · DONE
-→ VS03-03 target3 maps/session/restart/selection · IMPLEMENTED_ON_PR · MERGE_PENDING
-→ VS03-R1 difficulty authority alignment
+→ VS03-03 target3 maps/session/restart/selection · DONE
+→ VS03-R1 difficulty authority alignment · CURRENT
 → VS03-05A minimal playable core surface
 → VS03-04 Profile/records/cosmetics/unlocks/rewards
 → VS03-05B result/collection/map browser
@@ -101,15 +101,17 @@ behind 0 · thread 0 · REQUEST_CHANGES 0
 
 상세: `기획서/50_제작_검증/VS03_02_IMPLEMENTATION_AUDIT.md`.
 
-## VS03-03 병합 전 구현 증거
+## VS03-03 완료 증거
 
 ```text
-PR #46 · branch agent/vs03-03-map-session-selection
-SX-AUD-010 · PREMERGE_REVIEW
-EV-VS03-03-001 · EXACT_HEAD_GREEN
+PR #46 exact head 2bc4d0fcbb310790e6a2e5fd444688cb20f02162
+canonical merge 53aa4eb5025b8c44db9bdb8e877a93e0266e6765
+Project Contract 342 PASS
+Godot Tests 317 PASS
 31 cases · 7681 assertions · 0 failures
-Project Contract 340 PASS
-Godot Tests 315 PASS
+changed files 33 · package-owned only
+behind 0 · thread 0 · REQUEST_CHANGES 0
+correct Sheet 12-tab readback PASS
 ```
 
 검증 범위:
@@ -123,31 +125,21 @@ Godot Tests 315 PASS
 - manual/restart auto-bag consumption 0
 - selection receipt commit after successful session construction only
 - duplicate request·forged/mutated receipt rejection
+- failed session construction discovery/bag mutation 0
 - raw seed public exposure 0
 - approved `FUEL_MAX=100`, `FUEL_START=65` authority preservation
 
 상세: `기획서/50_제작_검증/VS03_03_IMPLEMENTATION_AUDIT.md`.
 
-병합·correct Sheet closure 전에는 완료 또는 `VS03-R1_ONLY`를 주장하지 않는다.
+## VS03-R1 현재 계약
 
-## VS03-03 계약
-
-- target3만 VS 범위다. target100은 Production이며 `F58 NOT_MET`를 유지한다.
-- `RunSessionFactory`는 완전히 구성된 session만 성공으로 반환한다.
-- train start cell과 incoming cell을 명시한다.
-- same-map restart는 같은 MapDefinition을 사용하되 run/transaction/service identity는 새로 만든다.
-- selected/restarted map을 silent substitution하지 않는다.
-- raw seed를 player UI에 노출하지 않는다.
-- Profile writer·product Scene·browser presentation은 이 package에서 만들지 않는다.
-
-금지:
-
-- VS03-R1 difficulty authority correction
-- product Scene/HUD/result/camera/browser
-- Profile/save/records/rewards/unlocks
-- onboarding
-- generator target100 expansion
-- UGC·online
+- 현재 권위는 `VS03-R1_ONLY`다.
+- `RunBalance`와 `DifficultyDirector` 사이의 난이도 권위·공식 baseline 정합만 수정한다.
+- core-fun audit `F87`의 승인된 계획을 따른다.
+- VS03-05A 제품 Scene·HUD·카메라·compact token view는 R1 merge·sync 후 시작한다.
+- VS03-04 Profile persistence를 앞당기지 않는다.
+- 새로운 기획 의미 충돌이 생기면 Grill Me 사용자 승인을 요구한다.
+- 상세 수치는 승인된 의미를 보존하는 `TEST_VALUE`로 TDD·simulation evidence와 함께 조정할 수 있다.
 
 ## 유지되는 미검증 경계
 
