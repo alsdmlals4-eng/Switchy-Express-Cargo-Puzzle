@@ -6,7 +6,9 @@
 status_authority: CURRENT_PACKAGE_STATE_ONLY
 implementation_audit: SX-AUD-006
 implementation_evidence: EV-VS03-01-001
-core_fun_audit: SX-AUD-007
+core_fun_audit: SX-AUD-007 · PASS_WITH_FOLLOWUPS · SYNCED
+core_fun_evidence: EV-USER-017~018
+core_fun_merge: a9368617102420639cc2bb83ee2b0c45505958a6
 sequencing_evidence: EV-USER-018 · RECOMMENDED_OPTION_C
 vs03_01_pr: 37
 vs03_01_merge: 43972d3d23e931af3dbc81ab9b1c7d942fffb201
@@ -29,7 +31,7 @@ future_order_approved: true
 | Package | 상태 | 권위 증거 | 다음 조건 |
 |---|---|---|---|
 | VS03-01 | `MERGED_AND_VERIFIED` | PR #37 · merge `43972d3d...` · `SX-AUD-006` | 완료 |
-| VS03-02 | `READY_FOR_BUILD · NOT_STARTED` | VS03-01 exact-head Gate PASS | 별도 branch·TDD |
+| VS03-02 | `READY_FOR_BUILD · NOT_STARTED` | VS03-01 exact-head Gate + SX-AUD-007 closure | 별도 branch·TDD |
 | VS03-03 | `BLOCKED_BY_VS03_02` | — | VS03-02 merge·sync |
 | VS03-R1 | `BLOCKED_BY_VS03_03` | `SX-AUD-007-F87 · EV-USER-018` | VS03-03 merge·sync |
 | VS03-05A | `BLOCKED_BY_VS03_R1` | `EV-USER-018 · OPTION_C` | VS03-R1 merge·sync |
@@ -79,6 +81,18 @@ P0/P1 0
 - difficulty signal과 RunState 시간 일치
 - TrainController next-boundary/history/fractional path read seam
 - 실제 DeliveryLoop·CargoStack·Station 결합
+
+## SX-AUD-007 closure evidence
+
+```text
+PR #39 exact head 577af564a0c20789b36bf379f91d7745a285ba4d
+canonical merge a9368617102420639cc2bb83ee2b0c45505958a6
+18 planning/current-consumer/project-Skill files
+product files 0
+Project Contract 265 PASS
+Godot Tests 247 PASS
+correct Sheet 12-tab readback PASS
+```
 
 ## VS03-02 실행 권위
 
