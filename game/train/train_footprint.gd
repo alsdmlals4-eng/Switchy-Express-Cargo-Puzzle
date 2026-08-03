@@ -15,6 +15,11 @@ func configure(train: Variant, token_state: Variant) -> void:
 	_token_state = token_state
 
 
+func sync_from_sources() -> bool:
+	_assert_configured()
+	return _token_state.sync_from_stack()
+
+
 func token_distance_cells(index: int) -> float:
 	_assert_configured()
 	assert(index >= 0 and index < _token_state.token_count(), "token index must exist")
