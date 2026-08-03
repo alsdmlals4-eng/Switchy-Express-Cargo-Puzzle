@@ -63,10 +63,13 @@ func commit_receipt(receipt: Variant) -> bool:
 			if not _undiscovered_bag.consume(receipt.map_id):
 				return false
 		&"REPLAY":
+			if not is_discovered(receipt.map_id):
+				return false
 			if not _replay_bag.consume(receipt.map_id):
 				return false
 		&"MANUAL", &"RESTART":
-			pass
+			if not is_discovered(receipt.map_id):
+				return false
 		_:
 			return false
 
