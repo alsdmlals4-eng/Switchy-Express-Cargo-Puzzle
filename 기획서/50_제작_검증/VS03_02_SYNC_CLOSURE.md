@@ -6,7 +6,7 @@ evidence_id: EV-VS03-02-001
 implementation_pr: 41
 implementation_merge: cfe6d5ca0c76942720c5c12ad5dc59aaa651b915
 sheet_id: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
-state: IMPLEMENTATION_MERGED · SHEET_READBACK_PASS · CLOSURE_PR_IN_PROGRESS
+state: IMPLEMENTATION_MERGED · SHEET_READBACK_PASS · SYNCED · CLOSED
 current_build_authority: VS03-03_ONLY
 product_change_in_closure: NONE
 ```
@@ -45,22 +45,20 @@ canonical merge cfe6d5ca0c76942720c5c12ad5dc59aaa651b915
 - `30_세계_서사`는 변경되지 않았다.
 - wrong `19Ff...` Sheet는 수정하지 않았다.
 
-현재 Sheet 상태:
-
-```text
-SYNCED_CANONICAL_MERGE · SX-AUD-008 · CLOSURE_PENDING
-```
+Closure merge SHA는 올바른 Sheet에 기록하고 최종 12-tab readback을 수행한다. GitHub main의 현재 상태는 이미 `VS03-03_ONLY` 권위를 가리키도록 봉인한다.
 
 ## Closure boundary
 
 이 closure PR은 문서·현재 상태·Issue·프로젝트 Skill만 갱신한다. 제품 코드·테스트·Scene·Resource·asset·Profile·catalog·runtime data·balance·player rules를 변경하지 않는다.
 
-Closure merge 뒤:
+현재 다음 단계:
 
-1. closure SHA를 올바른 Sheet에 기록한다.
-2. `CLOSURE_PENDING`을 `SYNCED · CLOSED`로 바꾼다.
-3. 12개 탭을 최종 재조회한다.
-4. 최신 main에서 별도 VS03-03 TDD branch를 시작할 수 있다.
+```text
+closure expected-head merge
+→ closure SHA를 correct Sheet에 기록
+→ final 12-tab readback
+→ latest main에서 VS03-03 별도 TDD branch
+```
 
 ## Evidence limits
 
