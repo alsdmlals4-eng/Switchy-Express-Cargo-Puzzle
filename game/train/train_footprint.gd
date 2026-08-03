@@ -52,7 +52,7 @@ func occupied_cells() -> Array[Vector2i]:
 			token_distance_cells(index) - float(_train.movement_progress()),
 			0.0
 		)
-		var history_index := clampi(roundi(distance_from_current), 0, history.size() - 1)
+		var history_index := clampi(ceili(distance_from_current), 0, history.size() - 1)
 		var cell: Vector2i = history[history_index]
 		if not occupied.has(cell):
 			occupied.append(cell)
