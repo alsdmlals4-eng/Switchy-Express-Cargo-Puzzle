@@ -91,6 +91,48 @@ func run() -> void:
 			)
 		_assert_occupied_cells(footprint, train, "step %d" % step)
 
+	_test_switch_route_sampling()
+
+
+func _test_switch_route_sampling() -> void:
+	var graph: Variant = load(GENERATOR_PATH).new().generate(23)
+	var junction: Vector2i = graph.switch_cells()[0]
+	var incoming: Vector2i = graph.neighbors(junction)[0]
+	graph.configure_switch_approach(junction, incoming)
+	var default_exit: Vector2i = graph.next_cell(junction, incoming)
+	graph.cycle_switch(junction, incoming)
+	var selected_exit: Vector2i = graph.next_cell(junction, incoming)
+	assert_not_equal(selected_exit, default_exit, "switch setup must select a non-default exit")
+
+	var train: Variant = load(TRAIN_PATH).new()
+	train.configure(graph, junction, incoming, 8)
+	train.set_speed(1.0)
+	var stack: Variant = load(STACK_PATH).new(8)
+	for cargo_type: StringName in [RED, BLUE, YELLOW, RED, BLUE, YELLOW, RED, BLUE]:
+		assert_true(stack.push(cargo_type), "switch footprint setup must load eight tokens")
+	var token_state: Variant = load(TOKEN_STATE_PATH).new()
+	token_state.configure(stack)
+	var footprint: Variant = load(FOOTPRINT_PATH).new()
+	footprint.configure(train, token_state)
+
+	assert_equal(train.advance_time(1.0), 1, "switch footprint setup must cross the selected junction exit")
+	assert_equal(train.current_cell(), selected_exit, "train must commit the selected switch exit")
+	train.advance_time(0.5)
+	var history: Array[Vector2i] = train.route_history_cells()
+	assert_equal(history[1], junction, "route history must retain the switch junction behind the locomotive")
+	assert_equal(history[2], incoming, "route history must retain the incoming switch rail behind the junction")
+	for index: int in range(footprint.token_positions().size()):
+		var expected: Vector2 = train.sample_trailing_position(footprint.token_distance_cells(index))
+		assert_almost_equal(
+			footprint.token_positions()[index].distance_to(expected),
+			0.0,
+			POSITION_TOLERANCE,
+			"switch token %d must follow the committed route without corner cutting" % index
+		)
+	assert_true(footprint.occupied_cells().has(junction), "switch footprint must reserve the junction behind the train")
+	assert_true(footprint.occupied_cells().has(incoming), "switch footprint must reserve the incoming rail reached by trailing tokens")
+	_assert_occupied_cells(footprint, train, "committed switch route")
+
 
 func _assert_occupied_cells(footprint: Variant, train: Variant, context: String) -> void:
 	var occupied: Array[Vector2i] = footprint.occupied_cells()
