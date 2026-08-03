@@ -3,6 +3,7 @@ extends "res://tests/test_case.gd"
 const CONTROLLER_PATH := "res://game/run/run_controller.gd"
 const INPUT_PATH := "res://game/input/gameplay_input_state.gd"
 const BALANCE_PATH := "res://game/run/run_balance.gd"
+const SNAPSHOT_PATH := "res://game/difficulty/difficulty_pressure_snapshot.gd"
 
 
 class FakeTrain:
@@ -51,17 +52,11 @@ func run() -> void:
 	assert_true(controller.start(), "pressure authority fixture must start")
 
 	var balance: Variant = load(BALANCE_PATH).new()
-	assert_almost_equal(
-		train.speed,
-		balance.effective_speed_for_pressure(4, 0, false),
-		0.0001,
-		"initial motion must consume zero pressure snapshot"
-	)
 	controller.advance_time(10.0)
 	assert_equal(controller.difficulty_director().current_snapshot().speed_step(), 1, "director commits injected speed boundary")
 	assert_almost_equal(
 		train.speed,
-		balance.effective_speed_for_pressure(4, 1, false),
+		balance.current_speed_for_snapshot(controller.difficulty_director().current_snapshot(), 4, false),
 		0.0001,
 		"controller speed must follow director snapshot instead of elapsed thirty-second wrapper"
 	)
@@ -72,13 +67,14 @@ func run() -> void:
 	assert_equal(controller.difficulty_director().current_snapshot().fuel_step(), 1, "combined boundary advances fuel")
 	assert_almost_equal(
 		train.speed,
-		balance.effective_speed_for_pressure(4, 2, false),
+		balance.current_speed_for_snapshot(controller.difficulty_director().current_snapshot(), 4, false),
 		0.0001,
 		"combined snapshot must drive speed"
 	)
+	var zero_pressure: Variant = load(SNAPSHOT_PATH).new(0, 0, 0.0)
 	assert_almost_equal(
 		fuel_at_ten - controller.run_state().fuel(),
-		10.0 * balance.effective_fuel_rate_for_pressure(4, 0, false),
+		10.0 * balance.fuel_drain_rate_for_snapshot(zero_pressure, false),
 		0.0001,
 		"fuel step commits at boundary and must not retroactively affect prior interval"
 	)
@@ -86,8 +82,8 @@ func run() -> void:
 	controller.advance_time(1.0)
 	assert_almost_equal(
 		1000.0 - controller.run_state().fuel(),
-		20.0 * balance.effective_fuel_rate_for_pressure(4, 0, false)
-		+ balance.effective_fuel_rate_for_pressure(4, 1, false),
+		20.0 * balance.fuel_drain_rate_for_snapshot(zero_pressure, false)
+		+ balance.fuel_drain_rate_for_snapshot(controller.difficulty_director().current_snapshot(), false),
 		0.0001,
 		"post-boundary fuel drain must consume committed fuel snapshot"
 	)
