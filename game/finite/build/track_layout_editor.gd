@@ -1,7 +1,8 @@
 class_name TrackLayoutEditor
 extends RefCounted
 
-const TrackPieceScript := preload("res://game/finite/build/track_piece.gd")
+const TRACK_PIECE_PATH := "res://game/finite/build/track_piece.gd"
+const TrackPieceScript := preload(TRACK_PIECE_PATH)
 const TrackEditResultScript := preload("res://game/finite/build/track_edit_result.gd")
 
 const PASS: StringName = &"PASS"
@@ -111,7 +112,7 @@ func _validated_piece_copy(piece: Variant) -> Variant:
 	if piece == null or not piece is RefCounted:
 		return null
 	var piece_script: Script = piece.get_script()
-	if piece_script == null or piece_script.resource_path != TrackPieceScript.resource_path:
+	if piece_script == null or piece_script.resource_path != TRACK_PIECE_PATH:
 		return null
 	return piece.duplicate_piece()
 
