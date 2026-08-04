@@ -60,3 +60,14 @@ func run() -> void:
 	summary.completion_time = 999.0
 	assert_equal(summary.outcome, original_outcome, "summary outcome must remain immutable")
 	assert_almost_equal(summary.completion_time, original_completion, 0.000001, "summary timing must remain immutable")
+
+	var state_controller: Variant = controller_script.new()
+	state_controller.configure(FakeTrain.new(), FakeDeliveryLoop.new(), input_script.new(), 90.0, 2.0)
+	assert_true(state_controller.start(), "state snapshot fixture must start")
+	var exposed_state: Variant = state_controller.run_state()
+	assert_true(exposed_state.fail(), "exposed state copy may be mutated independently")
+	assert_equal(
+		state_controller.run_state().phase(),
+		&"RUNNING",
+		"external run-state access must not mutate controller-owned phase"
+	)
