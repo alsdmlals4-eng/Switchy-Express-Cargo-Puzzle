@@ -22,6 +22,8 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/finite/integration/test_finite_sealed_snapshot.gd"),
 	preload("res://tests/finite/input/test_finite_gameplay_input_state.gd"),
 	preload("res://tests/finite/cargo/test_unlimited_cargo_stack.gd"),
+	preload("res://tests/finite/cargo/test_fixed_cargo_field.gd"),
+	preload("res://tests/finite/delivery/test_finite_delivery_loop.gd"),
 	preload("res://tests/train/test_train_movement.gd"),
 	preload("res://tests/train/test_compact_wagon_tokens.gd"),
 	preload("res://tests/train/test_train_footprint.gd"),
