@@ -70,6 +70,13 @@ func run() -> void:
 	assert_equal(automatic.attempt_serial(), 11, "automatic attempt serial must continue after the highest issued serial")
 	assert_not_equal(automatic.attempt_identity(), explicit.attempt_identity(), "automatic attempt must have a unique identity")
 
+	var late_retry_result: Dictionary = factory.retry(first)
+	assert_true(late_retry_result["success"], "an older valid result must still retry with the next unused serial")
+	var late_retry: Variant = late_retry_result["session"]
+	assert_equal(late_retry.attempt_serial(), 12, "late retry must allocate the next unused serial")
+	assert_equal(late_retry.solution_identity(), first.solution_identity(), "late retry must preserve solution identity")
+	assert_not_equal(late_retry.attempt_identity(), automatic.attempt_identity(), "late retry must remain globally unique within the factory")
+
 	var invalid_serial: Dictionary = factory.create_attempt(0)
 	assert_false(invalid_serial["success"], "zero attempt serial must be rejected")
 	assert_equal(invalid_serial["error_code"], &"INVALID_ATTEMPT_SERIAL", "invalid serial rejection must be stable")
