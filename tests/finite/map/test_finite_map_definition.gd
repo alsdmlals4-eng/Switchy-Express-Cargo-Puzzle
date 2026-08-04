@@ -111,3 +111,27 @@ func run() -> void:
 		fractional_errors.has("station placement rail_anchor rotation_quarters must be an integer"),
 		"fractional rotations must not be truncated into valid rotations"
 	)
+
+	var fractional_metadata: Variant = definition_script.create({
+		"definition_schema_version": 2.5,
+		"map_id": "FP_FRACTIONAL_META",
+		"map_revision": 1.5,
+		"ruleset_version": "fp_core_v1",
+		"board_size": [7, 5],
+		"start_cell": [1, 2],
+		"incoming_cell": [0, 2],
+		"buildable_cells": [[2, 2]],
+		"blocked_cells": [],
+		"station_placements": [],
+		"cargo_placements": [],
+		"time_limit_seconds": 90.0,
+	})
+	var metadata_errors: Array[String] = fractional_metadata.validation_errors()
+	assert_true(
+		metadata_errors.has("definition_schema_version must be an integer"),
+		"fractional schema version must not be truncated"
+	)
+	assert_true(
+		metadata_errors.has("map_revision must be an integer"),
+		"fractional map revision must not be truncated"
+	)
