@@ -1,10 +1,12 @@
 # GMB-002 승인 원장
 
-상태: `USER_APPROVED · CANON_MERGE_CANDIDATE`
+상태: `MERGED_AND_SYNCED · CLOSED`
 날짜: `2026-08-04`
 근거: `EV-USER-019`
 범위: `SX-DEC-027~036`
 감사: `SX-AUD-012`
+정본 병합: `PR #50 · c06c07a529d1bd5d4de00c2f83f53edcd4f8c77d`
+Sheet: `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo · FINAL_12_TAB_READBACK_PASS`
 
 이 원장은 2026-08-04 대화에서 사용자가 명시적으로 승인한 권장안과 수정안을 10개 제품 결정으로 묶는다. 세부 규칙은 `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`가 책임진다.
 
@@ -44,6 +46,17 @@
 - 튜토리얼 이후 미학습 기믹이 있어도 일일·주간 도전에 참여 가능.
 - 별은 신속/절약/점수이며 3별이 맵 리더보드 등록 Gate.
 
+## 정본 동기화 종료 증거
+
+- Canon PR: `#50`, squash merge `c06c07a529d1bd5d4de00c2f83f53edcd4f8c77d`
+- Project Contract: `run 367 PASS`
+- Godot Tests: `run 338 PASS`
+- PR review: `unresolved thread 0 · REQUEST_CHANGES 0`
+- Product code·test·scene·asset change: `0`
+- Correct Sheet: `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`
+- Sheet: `12-tab same-ID final readback PASS`
+- Wrong `19Ff...` Sheet: `변경 0`
+
 ## 구현 Gate
 
-이 배치의 canonical merge는 구현 승인이 아니다. 다음 단계는 새 기준선용 Definition of Ready이며, 기존 VS03 package를 그대로 이어서 구현하지 않는다.
+이 배치의 canonical merge는 구현 승인이 아니다. 다음 단계는 새 기준선용 `FINITE_PUZZLE_DEFINITION_OF_READY`이며, 기존 VS03 package를 그대로 이어서 구현하지 않는다.
