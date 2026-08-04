@@ -51,11 +51,24 @@ func run() -> void:
 	assert_equal(retry.attempt_serial(), first.attempt_serial() + 1, "retry must increment attempt serial")
 
 	var explicit_result: Dictionary = factory.create_attempt(10)
-	assert_true(explicit_result["success"], "factory must accept an explicit positive attempt serial")
+	assert_true(explicit_result["success"], "factory must accept an explicit future attempt serial")
 	var explicit: Variant = explicit_result["session"]
 	assert_equal(explicit.solution_identity(), first.solution_identity(), "explicit attempt must preserve solution identity")
 	assert_equal(explicit.attempt_serial(), 10, "explicit attempt serial must be retained")
 	assert_not_equal(explicit.attempt_identity(), retry.attempt_identity(), "different serials must produce different attempt identities")
+
+	var duplicate_serial: Dictionary = factory.create_attempt(10)
+	assert_false(duplicate_serial["success"], "attempt serial reuse must be rejected")
+	assert_equal(duplicate_serial["error_code"], &"ATTEMPT_SERIAL_REUSED", "duplicate attempt rejection must be stable")
+	var stale_serial: Dictionary = factory.create_attempt(2)
+	assert_false(stale_serial["success"], "stale attempt serial must be rejected")
+	assert_equal(stale_serial["error_code"], &"ATTEMPT_SERIAL_REUSED", "stale attempt rejection must be stable")
+
+	var automatic_result: Dictionary = factory.create_attempt()
+	assert_true(automatic_result["success"], "automatic attempt serial must remain available")
+	var automatic: Variant = automatic_result["session"]
+	assert_equal(automatic.attempt_serial(), 11, "automatic attempt serial must continue after the highest issued serial")
+	assert_not_equal(automatic.attempt_identity(), explicit.attempt_identity(), "automatic attempt must have a unique identity")
 
 	var invalid_serial: Dictionary = factory.create_attempt(0)
 	assert_false(invalid_serial["success"], "zero attempt serial must be rejected")
