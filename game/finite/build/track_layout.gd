@@ -2,14 +2,16 @@ class_name TrackLayout
 extends RefCounted
 
 const SELF_SCRIPT_PATH := "res://game/finite/build/track_layout.gd"
+const TRACK_PIECE_PATH := "res://game/finite/build/track_piece.gd"
 
 var _pieces_by_cell: Dictionary = {}
 
 
 func put_piece(piece: Variant) -> bool:
-	if piece == null:
+	if piece == null or not piece is RefCounted:
 		return false
-	if not piece.has_method("duplicate_piece") or not piece.has_method("build_cost"):
+	var piece_script: Script = piece.get_script()
+	if piece_script == null or piece_script.resource_path != TRACK_PIECE_PATH:
 		return false
 	var copy: Variant = piece.duplicate_piece()
 	if copy == null:
