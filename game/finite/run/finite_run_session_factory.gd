@@ -135,7 +135,7 @@ func retry(previous_session: Variant) -> Dictionary:
 	var expected: Variant = FiniteSolutionIdentityScript.create(_definition, _layout, 1)
 	if previous_session.solution_identity() != expected.solution_identity:
 		return _failed(&"RETRY_SOLUTION_MISMATCH", "retry must preserve exact finite solution identity")
-	return create_attempt(previous_session.attempt_serial() + 1)
+	return create_attempt()
 
 
 func _clear_configuration() -> void:
