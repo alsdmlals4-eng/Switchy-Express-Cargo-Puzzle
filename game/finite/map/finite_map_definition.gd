@@ -2,6 +2,7 @@ class_name FiniteMapDefinition
 extends RefCounted
 
 const CargoTypeScript := preload("res://game/cargo/cargo_type.gd")
+const SELF_SCRIPT_PATH := "res://game/finite/map/finite_map_definition.gd"
 
 const SCHEMA_VERSION := 2
 const VALID_ANCHOR_GEOMETRIES: Array[StringName] = [
@@ -26,7 +27,7 @@ var time_limit_seconds: float = 0.0
 
 
 static func create(data: Dictionary) -> Variant:
-	var value := FiniteMapDefinition.new()
+	var value: Variant = load(SELF_SCRIPT_PATH).new()
 	value.definition_schema_version = int(data.get("definition_schema_version", 0))
 	value.map_id = StringName(data.get("map_id", &""))
 	value.map_revision = int(data.get("map_revision", 0))
