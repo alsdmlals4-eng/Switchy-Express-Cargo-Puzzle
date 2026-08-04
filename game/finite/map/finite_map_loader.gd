@@ -38,10 +38,12 @@ static func load_from_dictionary(source: Dictionary) -> Variant:
 	for rect: Variant in rects:
 		if not rect is Dictionary:
 			return null
-		var minimum := _read_cell(rect.get("minimum", null))
-		var maximum := _read_cell(rect.get("maximum", null))
-		if minimum == null or maximum == null:
+		var minimum_raw: Variant = _read_cell(rect.get("minimum", null))
+		var maximum_raw: Variant = _read_cell(rect.get("maximum", null))
+		if minimum_raw == null or maximum_raw == null:
 			return null
+		var minimum: Vector2i = minimum_raw
+		var maximum: Vector2i = maximum_raw
 		if minimum.x > maximum.x or minimum.y > maximum.y:
 			return null
 		for y: int in range(minimum.y, maximum.y + 1):
