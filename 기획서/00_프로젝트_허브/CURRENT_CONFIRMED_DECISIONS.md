@@ -8,7 +8,9 @@ current_decision_batch: GMB-002
 current_decisions: SX-DEC-027~036
 current_evidence: EV-USER-019
 current_audit: SX-AUD-012
-planning_state: USER_APPROVED · CANON_MERGE_CANDIDATE
+planning_state: MERGED_AND_SYNCED · CLOSED
+canon_merge: PR_50 · c06c07a529d1bd5d4de00c2f83f53edcd4f8c77d
+sheet_state: FINAL_12_TAB_READBACK_PASS
 implementation_state: LEGACY_RUNTIME_PRESENT · REPLAN_REQUIRED
 next_gate: FINITE_PUZZLE_DEFINITION_OF_READY
 old_vs03_execution_order: REPLACED
@@ -83,7 +85,17 @@ old_vs03_execution_order: REPLACED
 | Audit ID | 범위 | 상태 |
 |---|---|---|
 | SX-AUD-001~011 | 기존 endless 기준선의 운영·기획·구현 감사 | `[역사 증거]` |
-| SX-AUD-012 | finite delivery pivot, 핵심 재미·충돌·누락·지배 전략 감사 | PASS_WITH_REPLAN_REQUIRED |
+| SX-AUD-012 | finite delivery pivot, 핵심 재미·충돌·누락·지배 전략 감사 | PASS_WITH_REPLAN_REQUIRED · CLOSED |
+
+## Canonical Sync Evidence
+
+- Canon merge: `PR #50 · c06c07a529d1bd5d4de00c2f83f53edcd4f8c77d`
+- Project Contract: `367 PASS`
+- Godot Tests: `338 PASS`
+- Review: `unresolved thread 0 · REQUEST_CHANGES 0`
+- Correct Sheet: `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`
+- Sheet readback: `12 tabs PASS`
+- Wrong `19Ff...` Sheet: `변경 0`
 
 ## Implementation Status
 
@@ -111,8 +123,7 @@ old_vs03_execution_order: REPLACED
 ## Current Execution Authority
 
 ```text
-GMB-002 CANON MERGE
-→ Sheet same-ID sync
+GMB-002 MERGED_AND_SYNCED
 → FINITE_PUZZLE_DEFINITION_OF_READY
 → package resegmentation
 → TDD implementation
