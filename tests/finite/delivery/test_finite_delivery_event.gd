@@ -11,12 +11,13 @@ func run() -> void:
 		return
 
 	var event_script: Script = load(EVENT_PATH)
+	var authored_items: Array[StringName] = [A, A]
 	var event: Variant = event_script.new(
 		Vector2i(2, 3),
 		4.5,
 		true,
 		A,
-		[A, A],
+		authored_items,
 		true,
 		7,
 		2
