@@ -57,9 +57,11 @@ func layout_signature() -> String:
 	var start_error := hashing_context.start(HashingContext.HASH_SHA256)
 	if start_error != OK:
 		return ""
-	var update_error := hashing_context.update(canonical_string().to_utf8_buffer())
-	if update_error != OK:
-		return ""
+	var bytes := canonical_string().to_utf8_buffer()
+	if not bytes.is_empty():
+		var update_error := hashing_context.update(bytes)
+		if update_error != OK:
+			return ""
 	return hashing_context.finish().hex_encode()
 
 
