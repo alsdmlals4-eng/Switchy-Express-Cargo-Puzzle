@@ -49,7 +49,7 @@ func configure(
 	_remaining_map_cargo = maxi(initial_remaining_map_cargo, 0)
 	_stack_size = 0
 
-	var entered_callable := Callable(self, "_on_train_cell_entered")
+	var entered_callable: Callable = Callable(self, "_on_train_cell_entered")
 	if _train.has_signal("cell_entered") and not _train.is_connected("cell_entered", entered_callable):
 		_train.connect("cell_entered", entered_callable)
 
@@ -89,15 +89,15 @@ func advance_time(delta_seconds: float) -> Array[StringName]:
 	if _run_state.phase() == &"READY" or _run_state.phase() == &"PAUSED" or _run_state.is_terminal():
 		return emitted_items
 
-	var remaining := delta_seconds
+	var remaining: float = delta_seconds
 	while remaining > TIME_EPSILON and not _run_state.is_terminal():
 		if _run_state.phase() == &"RUNNING":
-			var until_limit := _run_state.time_limit_seconds() - _run_state.elapsed_seconds()
+			var until_limit: float = float(_run_state.time_limit_seconds()) - float(_run_state.elapsed_seconds())
 			if until_limit <= TIME_EPSILON:
 				_finish_terminal(FAILURE)
 				break
 
-			var segment := minf(remaining, until_limit)
+			var segment: float = minf(remaining, until_limit)
 			var until_cell: float = float(_train.seconds_to_next_cell())
 			if is_finite(until_cell) and until_cell > TIME_EPSILON:
 				segment = minf(segment, until_cell)
@@ -118,7 +118,7 @@ func advance_time(delta_seconds: float) -> Array[StringName]:
 			if _unload_sequence == null:
 				_resolve_unload_completion()
 				continue
-			var unload_segment := minf(remaining, _unload_sequence.remaining_seconds())
+			var unload_segment: float = minf(remaining, float(_unload_sequence.remaining_seconds()))
 			if unload_segment <= TIME_EPSILON:
 				_resolve_unload_completion()
 				continue
@@ -189,7 +189,7 @@ func _on_train_cell_entered(cell: Vector2i) -> void:
 func _resolve_unload_completion() -> void:
 	_unload_sequence = null
 	if _pending_outcome != &"":
-		var outcome := _pending_outcome
+		var outcome: StringName = _pending_outcome
 		_pending_outcome = &""
 		_finish_terminal(outcome)
 		return
@@ -203,7 +203,7 @@ func _resolve_unload_completion() -> void:
 func _finish_terminal(outcome: StringName) -> void:
 	if _run_state == null or _run_state.is_terminal():
 		return
-	var changed := _run_state.succeed() if outcome == SUCCESS else _run_state.fail()
+	var changed: bool = bool(_run_state.succeed()) if outcome == SUCCESS else bool(_run_state.fail())
 	if not changed:
 		return
 	_train.set_speed(0.0)
