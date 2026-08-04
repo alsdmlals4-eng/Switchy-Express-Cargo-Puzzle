@@ -83,3 +83,31 @@ func run() -> void:
 		missing_cell.validation_errors().has("station placement cell is required"),
 		"missing placement cell must not silently become board origin"
 	)
+
+	var fractional: Variant = definition_script.create({
+		"definition_schema_version": 2,
+		"map_id": "FP_FRACTIONAL",
+		"map_revision": 1,
+		"ruleset_version": "fp_core_v1",
+		"board_size": [7, 5],
+		"start_cell": [1.5, 2],
+		"incoming_cell": [0, 2],
+		"buildable_cells": [[2, 2]],
+		"blocked_cells": [],
+		"station_placements": [{
+			"cell": [5, 1],
+			"cargo_type": "RED_STAR",
+			"rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 1.5},
+		}],
+		"cargo_placements": [],
+		"time_limit_seconds": 90.0,
+	})
+	var fractional_errors: Array[String] = fractional.validation_errors()
+	assert_true(
+		fractional_errors.has("start_cell is required"),
+		"fractional coordinates must not be truncated into valid cells"
+	)
+	assert_true(
+		fractional_errors.has("station placement rail_anchor rotation_quarters must be an integer"),
+		"fractional rotations must not be truncated into valid rotations"
+	)
