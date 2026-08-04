@@ -5,11 +5,14 @@
 ```text
 GMB-002 · SX-DEC-027~036
 → finite delivery track-building puzzle
+→ canon merged and Sheet synced
 → implementation replan required
 ```
 
 정본: `FINITE_DELIVERY_PUZZLE_BASELINE.md`
-감사: `SX-AUD-012_FINITE_DELIVERY_PIVOT_AUDIT.md`
+감사: `SX_AUD_012_FINITE_DELIVERY_PIVOT_AUDIT.md`
+정본 병합: `PR #50 · c06c07a529d1bd5d4de00c2f83f53edcd4f8c77d`
+Sheet: `FINAL_12_TAB_READBACK_PASS`
 
 ## 역사적으로 완료된 기반
 
@@ -22,7 +25,7 @@ GMB-002 · SX-DEC-027~036
 
 마지막 항목은 `[역사 증거]`이며 새 제품 권위가 아니다.
 
-## 제품 기준선 전환 — CURRENT
+## 제품 기준선 전환 — CLOSED
 
 - [x] 자유 선로 건설·비용·건설 불가 구역 승인
 - [x] 유한 배송·제한 시간·성공/실패 승인
@@ -31,8 +34,9 @@ GMB-002 · SX-DEC-027~036
 - [x] 별·3종 리더보드 승인
 - [x] 튜토리얼·챕터·반복 도전 승인
 - [x] SX-AUD-012 적대적 검토
-- [ ] GitHub canonical PR merge
-- [ ] correct Sheet same-ID sync and 12-tab readback
+- [x] GitHub canonical PR #50 merge
+- [x] correct Sheet same-ID sync and 12-tab readback
+- [x] old files `[대체됨]`·`[보류]`·`[폐기]`·`[역사 증거]` 분류
 
 ## FP-M0 — 새 Definition of Ready
 
