@@ -24,6 +24,7 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/finite/cargo/test_unlimited_cargo_stack.gd"),
 	preload("res://tests/finite/cargo/test_fixed_cargo_field.gd"),
 	preload("res://tests/finite/delivery/test_finite_delivery_loop.gd"),
+	preload("res://tests/finite/delivery/test_finite_delivery_event.gd"),
 	preload("res://tests/train/test_train_movement.gd"),
 	preload("res://tests/train/test_compact_wagon_tokens.gd"),
 	preload("res://tests/train/test_train_footprint.gd"),
