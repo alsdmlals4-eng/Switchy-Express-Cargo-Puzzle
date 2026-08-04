@@ -38,6 +38,8 @@ func run() -> void:
 	assert_equal(stack.size(), 31, "matching pop must reduce size")
 	assert_equal(stack.pop_matching_group(top_type), [], "mismatched TOP must not mutate stack")
 
+	stack.clear()
+	assert_true(stack.push(&"BLUE_DIAMOND"), "mismatch base cargo must load")
 	assert_true(stack.push(&"RED_STAR"), "first repeated A must load")
 	assert_true(stack.push(&"RED_STAR"), "second repeated A must load")
 	assert_true(stack.push(&"RED_STAR"), "third repeated A must load")
@@ -46,7 +48,8 @@ func run() -> void:
 		[&"RED_STAR", &"RED_STAR", &"RED_STAR"],
 		"matching group must pop every consecutive TOP cargo"
 	)
-	assert_equal(stack.size(), 31, "group pop must stop at first mismatch")
+	assert_equal(stack.size(), 1, "group pop must stop at first mismatch")
+	assert_equal(stack.peek(), &"BLUE_DIAMOND", "mismatched base cargo must remain")
 
 	stack.clear()
 	assert_equal(stack.size(), 0, "clear must remove every cargo")
