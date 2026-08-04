@@ -24,13 +24,14 @@ func run() -> void:
 	)
 
 	var leaked_items: Array[StringName] = event.unloaded_items
+	var replacement_items: Array[StringName] = []
 	leaked_items.clear()
 	event.cell = Vector2i(9, 9)
 	event.event_time = 99.0
 	event.picked_up = false
 	event.pickup_type = &"BLUE_DIAMOND"
 	event.unload_count = 0
-	event.unloaded_items = []
+	event.unloaded_items = replacement_items
 	event.stop_requested = false
 	event.remaining_map_cargo = 0
 	event.stack_size = 0
