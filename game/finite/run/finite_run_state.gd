@@ -1,6 +1,7 @@
 class_name FiniteRunState
 extends RefCounted
 
+const SELF_SCRIPT_PATH := "res://game/finite/run/finite_run_state.gd"
 const READY: StringName = &"READY"
 const RUNNING: StringName = &"RUNNING"
 const UNLOADING: StringName = &"UNLOADING"
@@ -97,3 +98,11 @@ func time_limit_seconds() -> float:
 
 func is_terminal() -> bool:
 	return _phase == SUCCESS or _phase == FAILURE
+
+
+func duplicate_state() -> Variant:
+	var copy: Variant = load(SELF_SCRIPT_PATH).new(_time_limit_seconds)
+	copy._phase = _phase
+	copy._resume_phase = _resume_phase
+	copy._elapsed_seconds = _elapsed_seconds
+	return copy
