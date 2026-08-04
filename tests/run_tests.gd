@@ -32,6 +32,8 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/finite/run/test_finite_solution_identity.gd"),
 	preload("res://tests/finite/integration/test_failed_run_preserves_layout.gd"),
 	preload("res://tests/finite/integration/test_solution_identity_retry.gd"),
+	preload("res://tests/finite/presentation/test_finite_slice_presenter.gd"),
+	preload("res://tests/finite/smoke/test_finite_slice_scene_boot.gd"),
 	preload("res://tests/train/test_train_movement.gd"),
 	preload("res://tests/train/test_compact_wagon_tokens.gd"),
 	preload("res://tests/train/test_train_footprint.gd"),
