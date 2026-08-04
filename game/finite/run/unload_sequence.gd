@@ -1,6 +1,7 @@
 class_name UnloadSequence
 extends RefCounted
 
+const SELF_SCRIPT_PATH := "res://game/finite/run/unload_sequence.gd"
 const MIN_DURATION_SECONDS := 0.12
 const PER_ITEM_SECONDS := 0.08
 const MAX_DURATION_SECONDS := 1.0
@@ -27,7 +28,7 @@ func advance_time(delta_seconds: float) -> Array[StringName]:
 		return emitted
 
 	_elapsed_seconds = minf(_elapsed_seconds + delta_seconds, _total_duration)
-	var target_count := _target_emitted_count()
+	var target_count: int = _target_emitted_count()
 	while _emitted_count < target_count:
 		emitted.append(_items[_emitted_count])
 		_emitted_count += 1
@@ -54,10 +55,17 @@ func items() -> Array[StringName]:
 	return _items.duplicate()
 
 
+func duplicate_sequence() -> Variant:
+	var copy: Variant = load(SELF_SCRIPT_PATH).new(_items)
+	copy._elapsed_seconds = _elapsed_seconds
+	copy._emitted_count = _emitted_count
+	return copy
+
+
 func _target_emitted_count() -> int:
 	if _items.is_empty():
 		return 0
 	if _elapsed_seconds >= _total_duration - TIME_EPSILON:
 		return _items.size()
-	var progress := _elapsed_seconds / _total_duration
+	var progress: float = _elapsed_seconds / _total_duration
 	return clampi(int(floor(progress * float(_items.size()) + TIME_EPSILON)), 0, _items.size())
