@@ -1,378 +1,249 @@
 # Core Systems
 
-## 상태 범례
+상태: `CURRENT_CANON · GMB-002 · IMPLEMENTATION_REPLAN_REQUIRED`
 
-- `CONFIRMED`: 사용자 승인 규칙
-- `IMPLEMENTED`: 실제 코드 존재
-- `PASSED`: 자동 검증 통과
-- `RECOMMENDED_DEFAULT`: 권장 초기 구조
-- `TEST_VALUE`: 플레이테스트 전 시험 수치
-- `NOT_RUN`: 실행 증거 없음
+세부 제품 규칙은 `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`가 책임진다.
 
 ## 시스템 위계
 
-핵심 시스템:
-
 ```text
-선택 적재 LIFO
-+ 자동 운행·선행 분기
-+ station 연속 그룹 하역
-+ 생존 경제
-+ BOOST 위험 교환
-+ compact rear-item 가독성
+MapDefinition: 지형·시작점·역·화물·건설 가능 영역
+→ TrackLayout: 플레이어가 건설한 선로·속성·비용
+→ Preflight: 구조적 도달 가능성과 trap 검사
+→ Run: 자동 이동·적재·분기·LIFO 하역
+→ Result: 성공/실패·별·기록·분석
 ```
 
-보조 시스템:
+기존 `MapDefinition = 완성된 RailGraph` 계약은 `[대체됨]`이다. 새 DoR에서 base map identity와 player-built layout identity를 분리한다.
+
+## 맵 정의
+
+맵이 소유하는 것:
+
+- 시작점
+- 역과 종류
+- 화물 지점과 종류
+- 건설 가능·불가 셀
+- 터널·교량 허용 지점
+- 제한 시간
+- 신속·절약·점수 별 목표
+- 속도 리더보드 최대 비용
+- 추천 설계도
+- ruleset version
+
+플레이어가 소유하는 것:
+
+- 설치한 선로 형태
+- 일반·가속·저비용 속성
+- 일방통행 방향
+- 분기 초기 상태
+- 최종 건설비
+
+## 건설 비용
 
 ```text
-onboarding·HUD/camera/result
-+ restart/maps
-+ records/cosmetics/Profile
-+ telemetry/evidence
-+ target100/UGC Production
+current_build_cost = 운행 시작 시 존재하는 최종 TrackLayout 비용 합
 ```
 
-기술 구현은 보조 시스템의 편의보다 LIFO 적재 순서와 노선 계획의 가독성·신뢰성을 우선한다.
+- 설치 시 즉시 증가
+- 철거 시 전액 감소
+- 과거에 설치·철거한 누적 비용은 기록하지 않음
+- 일반 클리어 비용 상한 없음
+- 속도 리더보드는 맵별 최대 비용 사용
+- 절약 별·가격 순위는 최종 비용 사용
+- 모든 수치는 `TEST_VALUE`
 
-상세 위계: `기획서/10_경험/CORE_FUN_SYSTEM_HIERARCHY.md`.
+초기값:
 
-## 현재 구현 증거
+| 요소 | 비용·성능 |
+|---|---|
+| 일반 직선·곡선 | 100 |
+| 분기·교차 | 200 |
+| 가속 | 300 · 1.5× |
+| 저비용 | 60~70 · 0.75× |
+| 일방통행 | +50 |
+| 회차 | 350 |
+| 교량 | 칸당 250 |
+| 터널 | 600+ |
 
-```text
-VS03-01 PR #37 merge 43972d3d23e931af3dbc81ab9b1c7d942fffb201
-Project Contract 227 PASS
-Godot Tests 214 PASS
-16 cases · 7110 assertions · 0 failures
-```
+## 선로 그래프 의미
 
-현재 권위:
+- 직선·곡선: 두 연결점
+- 분기: 진입 방향에서 둘 이상의 유효 출구, 활성 출구 1개
+- 교차: 가로·세로 연결은 독립이며 교차점에서 회전 불가
+- 일방통행: 허용 방향으로만 edge 존재
+- 회차: 열차 진행 방향을 반전
+- 터널·교량: 맵이 허용한 지형만 통과
 
-```text
-VS03-01 run core · MERGED_AND_VERIFIED
-→ VS03-02 compact token/TrainFootprint/occupancy · READY_FOR_BUILD
-```
+분기는 플레이어가 다시 탭할 때까지 상태를 유지한다. 열차가 해당 분기 위에 있을 때만 변경을 잠근다.
 
-## RailGraph·분기 기반
+## 시작 전 검사
 
-- 맵 크기 15×10
-- 전체 선로 하나의 연결 요소
-- degree-1 막다른길 0
-- cycle rank 최소 3
-- 2단계 분기 최소 4개
-- 3단계 분기 최소 2개
-- 각 유효 분기 경로 최소 3칸
-- 같은 seed는 같은 graph signature
-- 32회 후보 실패 시 결정론적 safe fallback
-- 직진 가능한 경우 기본 A 노선은 직진 우선
-- 5칸 preview 첫 칸과 실제 다음 칸 동일
-- segment 진입 뒤 목표 exit 잠금
+검사함:
 
-상태: `IMPLEMENTED · PASSED`.
+- 시작점에서 모든 역 도달 가능
+- 시작점에서 모든 화물 지점 도달 가능
+- 일방통행 반영
+- 필수 지점이 서로 방문 가능한 구조인지 확인
+- 진입 후 탈출 불가능한 필수 trap 확인
 
-남은 증거: target3/target100 unique layout, 경로 entropy, 제품 화면 가독성.
+검사하지 않음:
 
-## 기차·compact wagon tokens — SX-DEC-015
-
-기존 구현:
-
-- cells-per-second 속도를 외부에서 주입
-- RailGraph 경로 연속 보간과 cell boundary event
-- bounded route history
-- `seconds_to_next_cell()`
-- fractional path sampling seam
-- 직선·곡선·분기 추종
-- 현재 열차 점유와 전방 경로 조회
-
-확정 제품 계약:
-
-```text
-compact_wagon_token_count = cargo_stack.size()
-front → rear token order = stack bottom → stack top
-rear token = next LIFO unload item
-```
-
-- 화물 0이면 기관차만 표시
-- 적재하면 chain 뒤에 cargo token 1개 추가
-- 유효 하역은 뒤쪽부터 같은 type 연속 그룹 제거
-- 색상+모양 이중 부호
-- full-size 1-cell wagon을 cargo마다 추가하지 않음
-- CargoStack·token count/order·점유를 같은 domain step에서 commit
-- rendering·motion은 committed state 표현만 담당
-
-상태: `CONFIRMED · VS03-02_READY_FOR_BUILD`.
-
-### compact geometry 시험값
-
-```text
-token_body_length = 0.22 cell
-token_center_spacing = 0.28 cell
-8-token chain length = 2.18 cells
-max_reserved_trailing_footprint = 3 cells
-```
-
-- 불변조건: 8개 개별 식별, trailing 점유 최대 3칸, route/station/switch 가독성
-- fractional path-history offset 사용
-- curve 안쪽 corner cutting 금지
-- tight turn에서 token order swap 금지
-
-### spawn occupancy 계약
-
-- cargo 8개를 8 full-size occupied cells로 계산하지 않음
-- 기관차와 compressed token chain이 실제 교차하는 rail cells만 점유
-- trailing exclusion 최대 3칸
-- 기존 forward 2-cell safety exclusion 별도 유지
-- animation 중에도 committed compact footprint가 spawn authority
-
-상세: `docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md`.
+- 정확한 LIFO 해답
+- 자동/수동 적재 타이밍
+- 분기 조작 순서
+- 제한 시간 성공 해답
+- 최소 비용·최대 Combo 해답
 
 ## 화물 스택
 
-- type: `RED_STAR`, `BLUE_DIAMOND`, `YELLOW_TRIANGLE`
-- capacity 8
-- LOAD 활성 시에만 적재
-- BOOST 요청 시 LOAD 비활성
-- stack top은 마지막 적재
-- `unload_order()`는 실제 stack 역순
-- HUD와 compact token ViewModel은 같은 상태 소비
+- 화물 지점당 1개
+- 고정 배치, 적재 후 재생성 없음
+- domain capacity 제한 없음
+- 적재 시 stack top에 push
+- 하역 시 TOP 연속 일치 그룹 pop
+- 화물·역은 색상+모양 이중 부호
 
-상태: `IMPLEMENTED · PASSED`.
+무제한 스택은 물리 화차를 무한히 늘린다는 뜻이 아니다. 새 표현 설계는 TOP·다음 그룹과 전체 순서를 읽을 수 있어야 하며 8/16/32개 가독성을 검증한다.
 
-## 화물 생성
-
-- map pickup 최소 색상별 4개
-- 적재 후 1초 지연 재생성
-- 금지: committed train footprint, station, switch, existing pickup, forward 2 cells, last collected cell
-- 한 칸 pickup 최대 1개
-- 동일 seed·occupancy에서 재현
-- 유효 칸 없으면 `SPAWN_DEFERRED`
-- DeliveryLoop가 pending request를 처리해 runtime 최소 수량 회복
-
-현재 구현은 `train.train_cells()` full-cell occupancy를 사용한다. VS03-02에서 optional occupancy provider를 추가하고 product path에 TrainFootprint를 주입한다. legacy null-provider behavior는 보존한다.
-
-상태: 생성·회복 `IMPLEMENTED · PASSED`; compact occupancy `READY_FOR_BUILD`.
-
-남은 증거: 0/1/4/8 token occupancy, long-run starvation, 10-minute soak, 실제 공정성.
-
-## 스테이션
-
-- 빨강·파랑·노랑 각 2개, 총 6개
-- 일반 선로 위 배치
-- switch·train start cell 제외
-- 동색 두 역 그래프 최단거리 최소 5칸
-- 동일 seed에서 동일 배치
-- 실패는 명시적 bounded failure
-
-상태: `IMPLEMENTED · PASSED`.
-
-## LIFO 하역
-
-- top과 station type이 다르면 0개
-- top부터 같은 type 연속 그룹만 하역
-- 적재 `R,R,B,R`의 하역 순서 `R,B,R,R`
-- 하역 전후 Unload Order·count·items·station을 result Dictionary로 반환
-- 같은 event가 compact rear group·HUD first group·RunController Combo의 입력
-
-상태: LIFO domain `IMPLEMENTED · PASSED`; token consumer `VS03-02_READY`.
-
-## Combo — SX-DEC-014
+## 적재 상태
 
 ```text
-combo_count = one-arrival unload_group_size = try_unload().count
-max_combo = run 최대 combo_count
+manual_load = 기본
+load_held = 통과 화물 적재
+auto_load = 활성 중 모든 통과 화물 적재
 ```
 
-- 배송 이벤트 local 값이며 streak state가 아님
-- `seconds_since_delivery` 기반 speed bonus와 분리
-- empty/mismatch arrival은 Combo·score·fuel reward 0
-- telemetry는 unload group과 bonus flags 분리
-- 저장은 max_combo
+- 운행 중 manual/auto 전환 가능
+- 화물 통과 시점에만 적재 판정
+- 적재로 정차·감속 없음
+- 적재하지 않은 화물은 남음
 
-상태: `IMPLEMENTED · PASSED`.
-
-## VS03-01 생존 경제 권위
-
-책임 경계:
+## 하역·Combo
 
 ```text
-DeliveryLoop
-→ pickup/unload domain event
-
-RunBalance
-→ pure speed/fuel/delivery reward formula
-
-RunState
-→ elapsed/fuel/score/last_combo/max_combo/phase/end reason
-
-RunMetricsAccumulator
-→ bounded pickup/delivery/unload/boost metrics
-
-DifficultyDirector
-→ pressure forecast/commit level and band
-
-RunController
-→ boundary-sliced time, DeliveryLoop event, Train speed, difficulty, fuel-zero, summary
-
-HUD·Animation
-→ read-only presentation
+unload_count = TOP부터 station type과 연속 일치하는 수
+combo_count = unload_count
 ```
 
-상태: `IMPLEMENTED · HEADLESS_PASSED`.
+- `unload_count == 0`: 정차 없이 통과
+- `unload_count >= 1`: 자동 정차·하역
+- 총 하역 시간 최대 1초
+- 개수가 많을수록 개당 연출 간격 감소
+- 모든 제거는 domain commit이 먼저이고 animation은 표현
+- 2 Combo 이상 가속·점수
 
-### 속도 시험식
+초기 가속:
 
 ```text
-base_speed(t) = min(3.4, 1.8 + 0.08 × floor(t / 30초))
-cargo_multiplier(n) = max(0.64, 1.0 - 0.045 × n)
-boost_multiplier = 1.45 if BOOST else 1.0
-current_speed = base_speed × cargo_multiplier × boost_multiplier
+combo_speed = 1.25× TEST_VALUE
+combo_duration = combo별 TEST_VALUE
+new_remaining = max(current_remaining, new_duration)
+final_speed_cap = 2.0× base TEST_VALUE
 ```
 
-검증됨:
+## 운행 시간·판정
 
-- cargo 0~8 multiplier
-- cargo slowdown이 fuel drain을 할인하지 않음
-- compact geometry는 slowdown에 영향 없음; CargoStack size만 사용
-- BOOST speed multiplier
+- 건설 단계 clock 0
+- 운행 시작과 동시에 run clock 시작
+- pause 중 clock·이동·입력 정지
+- pause 중 분기·적재 모드 변경 불가
+- 마지막 하역 animation 완료 시 success seal
+- time limit 도달 시 undelivered count가 1 이상이면 failure seal
+- success/failure 뒤 domain mutation 금지
 
-남은 증거: 실제 분기 판단 시간, Android 화면, economy simulation.
-
-### 연료 시험식
+## 별
 
 ```text
-fuel_max = 100
-fuel_start = 65
-base_drain(t) = 1.0 + 0.12 × floor(t / 45초)
-boost_drain_multiplier = 2.4
+speed_star = success && completion_time <= map.speed_target
+cost_star = success && build_cost <= map.cost_target
+score_star = success && total_score >= map.score_target
 ```
 
-검증됨:
+- 서로 다른 run에서 누적
+- 영구 유지
+- 목표 사전 공개
+- 진행에 필수 아님
+- 3별 획득 시 해당 맵 리더보드 등록 개방
 
-- 실제 경과 시간 기준 drain
-- cargo slowdown과 drain 분리
-- pause 중 clock/drain 정지
-- fuel-zero one-shot end
-- 종료 뒤 mutation 없음
-- summary immutable
+## 리더보드
 
-### 하역 보상 시험값
+### 속도
 
-| Combo | base score | fuel |
-|---:|---:|---:|
-| 1 | 100 | 5 |
-| 2 | 260 | 12 |
-| 3 | 540 | 21 |
-| 4 | 960 | 32 |
-| 5+ | `300 × count` | `8 × count` |
+자격: success + build_cost <= map.speed_board_cost_cap
+정렬: completion_time ASC, build_cost ASC
 
-```text
-speed_bonus = 1.25 if previous valid delivery ≤8 sec else 1.0
-heavy_bonus = 1.15 if pre-unload cargo ≥6 else 1.0
-final_score = round(base_unload_score × speed_bonus × heavy_bonus)
-```
+### 가격
 
-- base score는 이번 unload group만으로 결정
-- bonus는 Combo 정의가 아님
-- BOOST uptime, no-input movement, empty station은 score 0
-- speed와 heavy 동시 최대 multiplier는 1.4375
-- 모든 값은 `TEST_VALUE`
+자격: success + completion_time <= map.time_limit
+정렬: build_cost ASC, completion_time ASC
 
-## Difficulty authority alignment finding — SX-AUD-007-F87
+### 점수
 
-승인 계약은 DifficultyDirector가 escalation schedule·commit을 단독 소유하도록 요구한다.
+자격: success
+초기 정규화: 시간 45% + 비용 45% + Combo 10% `TEST_VALUE`
+정렬: score DESC, completion_time ASC, build_cost ASC
 
-현재 코드:
+기록은 map ID·revision·ruleset version·layout result와 결합한다. 다른 플레이어의 TrackLayout과 조작 순서는 공개하지 않는다.
 
-```text
-speed boundary: 30 sec
-fuel-drain boundary: 45 sec
-difficulty commit: 30 sec
-```
+## 튜토리얼·캠페인 데이터
 
-따라서 45초·135초 등의 fuel pressure change는 별도 forecast/commit 없이 발생할 수 있다.
+- stage 1~10: tutorial flag, teaching objective 1개, 힌트 단계, 실패 피드백
+- stage 11+: chapter, bundle, exam flag
+- 3개 묶음 중 2개 clear로 다음 묶음
+- 챕터 시험은 해당 chapter의 taught mechanics만 사용
 
-상태: `P1 SAFE_IMPLEMENTATION_CORRECTION_CANDIDATE`.
+## 일일·주간 도전
 
-권장 보정:
+- fixed seed
+- 기간 동안 동일 map/ruleset
+- 무제한 retry
+- 캠페인 미학습 기믹도 사용 가능
+- 미학습 항목은 micro tutorial metadata 제공
+- 기간 종료 시 official record freeze
+- archive replay는 practice record만 갱신
 
-- 모든 실제 speed/fuel pressure boundary를 DifficultyDirector schedule에 포함하거나
-- DifficultyDirector가 next balance boundary와 pressure snapshot을 소유하도록 통합
-- balance 값이 바뀌었는데 authoritative forecast/commit이 없는 시각 0 테스트
-- presentation 구현 전 수정
+절차 생성 Gate:
 
-이는 player-facing 규칙 변경이 아니라 승인된 authority contract 정렬이다.
+- 구조적 도달 가능성
+- 최소 1개 solver-verified 또는 authored-safe solution
+- 별 목표와 비용 상한의 유효 범위
+- 추천 노선이 랭킹 최적해가 아님
+- seed/revision/ruleset immutable
 
-## 핵심 재미 적대적 검증
+## 꾸미기·보상
 
-### 단색 적재 지배 위험 — F89
+- 성능 변화 0
+- chapter 별 10/20/27/30 보상 `TEST_VALUE`
+- 반복 도전 첫 성공·개인 개선·백분위 보상 분리
+- 상위 1/10/25/50%와 성공 참가자
+- 세 부문 중복 재화 100/70/50% `TEST_VALUE`
+- 배지·칭호는 전부 지급
 
-LOAD가 선택형이므로 한 색만 골라 싣고 같은 색 역으로 배달하는 방식이 거의 항상 우월하면 mixed-stack LIFO 계획이 사라진다.
+## 구형 시스템 상태
 
-필수 지표:
-
-- mixed-stack run/segment 비율
-- stack distinct-type count
-- mono-color delivery 비율
-- blocked/mismatch cargo 보유 시간
-- Combo 1/2/3/4/5+ 분포
-- score 중 base/speed/heavy 기여
-
-수치 목표는 simulation과 human play에서 정한다. 지금 즉시 강제 혼합 규칙을 추가하지 않는다.
-
-### bonus 위계
-
-- 큰 group의 cargo당 base score: 100 →130 →180 →240 →300
-- large group을 직접 보상하는 방향은 적합
-- speed/heavy bonus가 planning choice를 역전하는지 측정 필요
-- 성공 설명이 “빠르게 눌렀다”보다 “순서와 경로를 만들었다”여야 함
-
-### BOOST exploit
-
-- 항상 켜는 것이 생존·점수 모두 최적이면 실패
-- BOOST로 LOAD를 포기하는 기회비용이 실제로 발생해야 함
-- 저연료 panic button으로만 쓰여도 반복 전략이 얕아질 수 있음
-
-### heavy bonus exploit
-
-- 무관한 cargo를 계속 들고 다니는 것이 점수 최적이면 실패
-- heavy bonus는 intentional risk를 보상하되 blocked stack을 장려하지 않아야 함
-
-## 무조작·악용 방지
-
-- 입력 0회에서 configured bound 내 fuel zero, score 0
-- 기본 노선 반복의 기대 fuel 수지 음수
-- cargo slowdown으로 drain 할인 불가
-- BOOST 상시 사용이 평균 생존 최적해가 아니어야 함
-- empty station·no-input·same-cell repeat reward 없음
-- spawn/event/route history bounded
-- compact token 적용 뒤 pickup이 footprint 위에 생성되면 안 됨
-
-자동 계약은 일부 검증됐고 실제 밸런스·지배 전략은 simulation/human test가 필요하다.
-
-## 결과·저장 계약
-
-표준 기록:
-
-- `best_score`
-- `longest_survival_seconds`
-- `best_max_combo`
-
-- current-map + global official scope atomic commit은 VS03-04
-- save failure가 current result/restart를 파괴하지 않음
-- corrupt/unknown version은 안전 격리
-- compact token visual state는 저장하지 않고 CargoStack에서 재구성
-- ProfileStore/TransactionService single writer
-
-## 구현 상태
-
-| 영역 | 상태 |
+| 시스템 | 상태 |
 |---|---|
-| Godot·RailGraph·분기 | IMPLEMENTED · PASSED |
-| 화물·역·LIFO·spawn recovery | IMPLEMENTED · PASSED |
-| VS03-01 Combo·속도·연료·BOOST·game-over·summary·difficulty core | IMPLEMENTED · HEADLESS_PASSED |
-| compact wagon token·TrainFootprint·occupancy provider | VS03-02 READY_FOR_BUILD |
-| target3 map/session/restart/selection | BLOCKED · VS03-03 |
-| Profile·records·cosmetics·rewards | BLOCKED · VS03-04 |
-| product Scene·HUD·result·camera | BLOCKED · VS03-05 |
-| contextual onboarding | BLOCKED · VS03-06 |
-| Android·economy simulation·human playtest | NOT_RUN |
-| target100·online UGC | PRODUCTION · NOT_STARTED/NOT_RUN |
+| 완성형 generated connected rail | `[대체됨]` |
+| capacity 8 | `[대체됨]` |
+| pickup respawn | `[폐기]` |
+| cargo-count slowdown | `[폐기]` |
+| fuel drain/recovery/fuel-zero | `[폐기]` |
+| BOOST input | `[폐기]` |
+| timed difficulty pressure | `[폐기]` |
+| switch auto-reset | `[대체됨]` |
+| old tests/PR evidence | `[역사 증거]` |
+| UGC/backend | `[보류]` |
+
+## 다음 구현 Gate
+
+```text
+1. finite puzzle DoR
+2. MapDefinition/TrackLayout identity 설계
+3. track editor UX·graph rules
+4. unlimited stack representation
+5. star/score/time target methodology
+6. package segmentation
+7. TDD implementation
+8. Android/human/balance evidence
+```

@@ -1,186 +1,123 @@
 # Roadmap
 
-## M0 — 운영체계 설치 · COMPLETE
-
-- [x] GitHub 정본·Registry·Base Adapter·Google Sheets 연결
-- [x] 저장소만으로 현재 결정과 다음 작업 복원
-- [x] Base v9.4.3 운영 계약 적용
-
-## M1 — 철도·열차·화물 기반 · COMPLETE
-
-- [x] Godot 4.7.1 project·custom headless runner
-- [x] 15×10 connected RailGraph·no dead ends
-- [x] 2/3-state switches·straight-first·preview parity
-- [x] continuous train movement
-- [x] capacity 8 LIFO CargoStack
-- [x] station·pickup·bounded recovery·matching-group unload
-
-## M2 — 총기획·정본 · COMPLETE
-
-- [x] `SX-DEC-014~026`, `SX-OPS-001`, GMB-001 canonical sync
-- [x] 올바른 Sheet 식별·wrong `19Ff...` 제외
-- [x] VS/Production scope staging
-- [x] PR #29/#34 and final Sheet readback
-
-## M2.5 — Definition of Ready · COMPLETE
-
-Audit: `SX-AUD-005`; Evidence: `EV-USER-016`.
-
-- [x] actual API/file/test/save/order/rollback review
-- [x] compact occupancy seam·RunSession·Profile writer boundaries
-- [x] target3/target100 separation
-- [x] package ownership and exact evidence gates
-
-## M2.6 — Core-Fun Alignment · COMPLETE
-
-Audit: `SX-AUD-007`; Evidence: `EV-USER-017~018`.
-
-- [x] core/support system hierarchy
-- [x] benchmark-backed Grill Me process
-- [x] current-consumer drift review
-- [x] F91 core-before-meta option C user approval
-- [x] VS03-R1 and VS03-05A executable plans
-- [x] 05A/04/05B responsibility split
-- [x] PR #39/#40 and correct Sheet closure
-
-## M3 — VS-03 Local Core · IN_PROGRESS
-
-Current state authority:
+## 현재 제품 권위
 
 ```text
-기획서/50_제작_검증/VS03_PACKAGE_STATUS.md
+GMB-002 · SX-DEC-027~036
+→ finite delivery track-building puzzle
+→ implementation replan required
 ```
 
-### VS03-01 — Run Lifecycle, Economy and Difficulty · COMPLETE
+정본: `FINITE_DELIVERY_PUZZLE_BASELINE.md`
+감사: `SX-AUD-012_FINITE_DELIVERY_PIVOT_AUDIT.md`
 
-- [x] RunBalance·RunState·RunSummary·RunController
-- [x] boundary-sliced movement/event/fuel-zero order
-- [x] speed/fuel pressure·cargo slowdown·BOOST cost
-- [x] unload reward·Combo/max_combo/speed/heavy bonus
-- [x] deterministic difficulty foundation and actual DeliveryLoop integration
+## 역사적으로 완료된 기반
 
-Evidence:
+- [x] M0 운영체계 설치
+- [x] Godot RailGraph·자동 이동·분기 기반
+- [x] CargoStack·LIFO·Station domain
+- [x] compact token/TrainFootprint seam
+- [x] map/session/restart identity 기반
+- [x] old endless run lifecycle·difficulty implementation
 
-```text
-PR #37 merge 43972d3d23e931af3dbc81ab9b1c7d942fffb201
-16 cases · 7110 assertions · 0 failures
-```
+마지막 항목은 `[역사 증거]`이며 새 제품 권위가 아니다.
 
-### VS03-02 — Compact Tokens and Footprint · COMPLETE
+## 제품 기준선 전환 — CURRENT
 
-- [x] token state 0~8, front→rear=bottom→top, rear=LIFO top
-- [x] route-history fractional path continuity
-- [x] TrainFootprint geometry 2.18 cell and trailing footprint `<=3`
-- [x] optional DeliveryLoop occupancy provider and legacy fallback
-- [x] compact pickup spawn/respawn exclusion
-- [x] conservative farther-segment reservation
+- [x] 자유 선로 건설·비용·건설 불가 구역 승인
+- [x] 유한 배송·제한 시간·성공/실패 승인
+- [x] 무제한 LIFO·수동/자동 적재 승인
+- [x] 선로 종류·Combo 가속 승인
+- [x] 별·3종 리더보드 승인
+- [x] 튜토리얼·챕터·반복 도전 승인
+- [x] SX-AUD-012 적대적 검토
+- [ ] GitHub canonical PR merge
+- [ ] correct Sheet same-ID sync and 12-tab readback
 
-Evidence:
+## FP-M0 — 새 Definition of Ready
 
-```text
-PR #41 merge cfe6d5ca0c76942720c5c12ad5dc59aaa651b915
-Project Contract 281 PASS
-Godot Tests 261 PASS
-19 cases · 7499 assertions · 0 failures
-```
+- [ ] legacy code 재사용·제거 inventory
+- [ ] MapDefinition/TrackLayout identity
+- [ ] track editor graph·cost contract
+- [ ] finite run state contract
+- [ ] unlimited stack representation
+- [ ] star/score/leaderboard ruleset
+- [ ] tutorial 1~10 map specification
+- [ ] package boundaries·rollback·test plan
+- [ ] adversarial DoR audit
+- [ ] 사용자 승인
 
-Product-view/Android/human readability remains `NOT_RUN` under `F92`.
+## FP-M1 — 건설 가능한 대표 맵
 
-### VS03-03 — Official Target-3 and RunSession · READY_FOR_BUILD
+- [ ] 건설 가능/불가 표면
+- [ ] 직선·곡선·분기·교차
+- [ ] 비용·철거 전액 환급
+- [ ] 추천 ghost route와 예상 비용
+- [ ] 모든 역·화물 도달 가능성 검사
+- [ ] trap detector
 
-- [ ] exactly 3 distinct validated non-fallback official maps
-- [ ] immutable MapDefinition and strict target3 catalog
-- [ ] fully configured RunSessionFactory
-- [ ] explicit train start/incoming cells
-- [ ] exact same-map restart with fresh identities/services
-- [ ] undiscovered-first and discovered-map reselection
-- [ ] no raw seed or silent substitution
+## FP-M2 — 유한 배송 코어
 
-`F58` remains `NOT_MET`; target100 is Production.
+- [ ] 수동 적재 기본
+- [ ] 자동 적재 토글
+- [ ] 무제한 CargoStack
+- [ ] TOP 연속 그룹 하역
+- [ ] station skip
+- [ ] 최대 1초 가시 하역
+- [ ] time limit success/failure
+- [ ] 실패 후 노선 유지
+- [ ] pause integrity
 
-### VS03-R1 — Difficulty Authority Alignment · BLOCKED_BY_VS03_03
+## FP-M3 — 최적화 선로와 Combo
 
-- [ ] immutable pressure snapshot
-- [ ] 30/45-second union schedule
-- [ ] combined 90-second commit
-- [ ] snapshot-based RunBalance consumption
-- [ ] pause/reset/large-delta/event-time parity
+- [ ] 가속·저비용·일방통행
+- [ ] 회차
+- [ ] Combo 가속·점수
+- [ ] 속도 상한
+- [ ] 지배 전략 simulation
 
-No balance-value or player-rule change.
+## FP-M4 — 튜토리얼·캠페인
 
-### VS03-05A — Minimal Playable Core Surface · BLOCKED_BY_VS03_R1
+- [ ] 1~10 tutorial
+- [ ] 요청형 3단계 hint
+- [ ] chapter/bundle/exam
+- [ ] 최소 3개 본편 representative maps
+- [ ] speed/cost/score 별 목표 playtest
 
-- [ ] PlayScene composition root and main host
-- [ ] board·train·compact token·switch views
-- [ ] semantic LOAD·BOOST·switch input
-- [ ] minimal HUD and rear-item parity
-- [ ] PREP camera·FULL_MAP_READY·active fixed full map
-- [ ] Reduced Motion/presentation-off simulation parity
-- [ ] Profile/result/record/reward/collection/browser dependencies 0
+## FP-M5 — 별·기록·제품 화면
 
-### VS03-04 — Profile and Local Progression · BLOCKED_BY_VS03_05A
+- [ ] 누적 3별
+- [ ] local speed/cost/score board
+- [ ] build/run/result HUD
+- [ ] 결과 분석
+- [ ] cosmetic-only chapter rewards
 
-- [ ] Profile schema v1 and single writer
-- [ ] global/per-map records
-- [ ] cosmetics·unlock modes·bounded reward
-- [ ] atomic/idempotent run-end transaction
+## FP-M6 — Android·사람 검증
 
-### VS03-05B — Result and Local Browsers · BLOCKED_BY_VS03_04
+- [ ] landscape build UX
+- [ ] 8/16/32 cargo readability
+- [ ] 분기 reach·load hold ergonomics
+- [ ] color+shape accessibility
+- [ ] Korean/English localization stress
+- [ ] balance simulation
+- [ ] 최소 5명 human test
 
-- [ ] result cause 1 + action 1 + neutral fallback
-- [ ] committed record/reward receipt display
-- [ ] collection/equip presentation
-- [ ] discovered-map browser and semantic actions
-- [ ] direct Profile mutation from presentation 0
+## FP-Production — 온라인 반복 도전
 
-### VS03-06 — Contextual Onboarding · BLOCKED_BY_VS03_05B
+- [ ] fixed-seed daily/weekly
+- [ ] online 3 leaderboards
+- [ ] percentile rewards
+- [ ] archive replay
+- [ ] anti-cheat·ruleset identity
+- [ ] live ops and moderation
 
-- [ ] real-run LOAD→token→switch→LIFO→Combo→BOOST learning
-- [ ] safe pause·skip·timeout·Help
-- [ ] assisted/standard evidence separation
+## 보류
 
-### VS03-07 — Integration and Handoff · BLOCKED_BY_VS03_06
+- UGC editor·publication·community
+- 환적역
+- 다중 열차·신호 자동화
+- procedural campaign
 
-- [ ] full local deterministic flow
-- [ ] bounded telemetry and retry idempotency
-- [ ] Issue #7 evidence handoff
+## 대체된 실행 순서
 
-M3 completion proves automated local flow, not Android·human·online readiness.
-
-## M4 — Target Quality and Playtest · NOT_STARTED
-
-- [ ] Android export/device performance
-- [ ] 10-minute soak
-- [ ] safe area·48dp·Reduced Motion·localization/accessibility
-- [ ] economy and mono-color strategy simulation
-- [ ] compact token product readability and 5+ first-experience playtest
-- [ ] representative captures and PASS/REVISE/PIVOT/STOP
-
-## M5 — Official Catalog Production · NOT_STARTED
-
-- [ ] generator diversity and 100+ unique layouts
-- [ ] fallback/duplicate exclusion and first-100 audit
-- [ ] browser QA and version migration
-
-`F58` remains `NOT_MET` until M5 evidence.
-
-## M6 — Online UGC Production · NOT_STARTED
-
-- [ ] data-only editor and publication backend
-- [ ] server validation·immutable revisions·visibility
-- [ ] moderation·privacy·anti-abuse·community signals
-
-## Current Execution Order
-
-```text
-VS03-03
-→ VS03-R1
-→ VS03-05A
-→ VS03-04
-→ VS03-05B
-→ VS03-06
-→ VS03-07
-→ M4 evidence
-→ M5 target100
-→ M6 online UGC
-```
+기존 `VS03-R1 → VS03-05A → VS03-04 → VS03-05B → VS03-06 → VS03-07`은 `[대체됨]`이다. 새 DoR 승인 전 제품 구현을 자동 진행하지 않는다.
