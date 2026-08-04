@@ -101,6 +101,15 @@ func run() -> void:
 	assert_almost_equal(non_final_train.speed, 2.0, 0.000001, "non-final unload must restore base speed")
 	assert_equal(non_final_controller.summary(), null, "non-final unload must not freeze summary")
 
+	var crossing_case: Dictionary = _configured(controller_script, input_script)
+	var crossing_controller: Variant = crossing_case["controller"]
+	assert_true(crossing_controller.start(), "deadline-crossing case must start")
+	var crossing_event: Variant = event_script.new(Vector2i(8, 1), 89.95, false, &"", one_item, true, 1, 0)
+	assert_true(crossing_controller.accept_delivery_event(crossing_event), "non-final unload near deadline must begin")
+	crossing_controller.advance_time(0.12)
+	assert_equal(crossing_controller.run_state().phase(), &"FAILURE", "unfinished cargo must fail when clock reaches the limit during unload")
+	assert_almost_equal(crossing_controller.summary().completion_time, 90.0, 0.000001, "non-final unload timeout must commit at exactly 90.000")
+
 
 func _assert_final_delivery_case(
 	controller_script: Script,
