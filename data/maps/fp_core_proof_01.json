@@ -1,0 +1,48 @@
+{
+  "definition_schema_version": 2,
+  "map_id": "FP_CORE_PROOF_01",
+  "map_revision": 1,
+  "ruleset_version": "fp_core_v1",
+  "board_size": [11, 9],
+  "start_cell": [1, 4],
+  "incoming_cell": [0, 4],
+  "time_limit_seconds": 90.0,
+  "buildable_rects": [
+    {"minimum": [1, 1], "maximum": [10, 8]}
+  ],
+  "blocked_cells": [[4, 3], [6, 3], [4, 5], [6, 5]],
+  "station_placements": [
+    {
+      "cell": [8, 5],
+      "cargo_type": "RED_STAR",
+      "rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 1}
+    },
+    {
+      "cell": [10, 7],
+      "cargo_type": "BLUE_DIAMOND",
+      "rail_anchor": {"geometry": "CURVE", "rotation_quarters": 3}
+    }
+  ],
+  "cargo_placements": [
+    {
+      "cell": [9, 4],
+      "cargo_type": "RED_STAR",
+      "rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 0}
+    },
+    {
+      "cell": [10, 5],
+      "cargo_type": "BLUE_DIAMOND",
+      "rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 1}
+    },
+    {
+      "cell": [10, 6],
+      "cargo_type": "RED_STAR",
+      "rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 1}
+    },
+    {
+      "cell": [9, 7],
+      "cargo_type": "RED_STAR",
+      "rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 0}
+    }
+  ]
+}
