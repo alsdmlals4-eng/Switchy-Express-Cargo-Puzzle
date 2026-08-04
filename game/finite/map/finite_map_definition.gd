@@ -229,6 +229,14 @@ static func _validate_source_placement_list(
 			continue
 		if not _is_cell_value(item.get("cell", null)):
 			errors.append("%s placement cell is required" % placement_kind)
+		var anchor: Variant = item.get("rail_anchor", null)
+		if anchor is Dictionary:
+			var raw_rotation: Variant = anchor.get("rotation_quarters", null)
+			if not _is_integer_number(raw_rotation):
+				errors.append(
+					"%s placement rail_anchor rotation_quarters must be an integer"
+					% placement_kind
+				)
 
 
 static func _is_cell_value(raw: Variant) -> bool:
@@ -237,21 +245,25 @@ static func _is_cell_value(raw: Variant) -> bool:
 	if raw is Array:
 		return (
 			raw.size() == 2
-			and _is_number(raw[0])
-			and _is_number(raw[1])
+			and _is_integer_number(raw[0])
+			and _is_integer_number(raw[1])
 		)
 	if raw is Dictionary:
 		return (
 			raw.has("x")
 			and raw.has("y")
-			and _is_number(raw.get("x"))
-			and _is_number(raw.get("y"))
+			and _is_integer_number(raw.get("x"))
+			and _is_integer_number(raw.get("y"))
 		)
 	return false
 
 
-static func _is_number(value: Variant) -> bool:
-	return typeof(value) == TYPE_INT or typeof(value) == TYPE_FLOAT
+static func _is_integer_number(value: Variant) -> bool:
+	if typeof(value) == TYPE_INT:
+		return true
+	if typeof(value) == TYPE_FLOAT:
+		return is_finite(value) and value == floor(value)
+	return false
 
 
 static func _read_cell(raw: Variant) -> Vector2i:
