@@ -74,6 +74,8 @@ func validation_errors() -> Array[String]:
 		errors.append("time_limit_seconds must be positive")
 	if start_cell == incoming_cell:
 		errors.append("incoming_cell must differ from start_cell")
+	if incoming_cell != start_cell + Vector2i.LEFT:
+		errors.append("incoming_cell must be immediately left of start_cell")
 
 	_validate_surface(errors)
 	_validate_placements(station_placements, "station", errors)
