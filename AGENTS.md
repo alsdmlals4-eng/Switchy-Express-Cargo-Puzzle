@@ -6,17 +6,19 @@
 
 1. 사용자의 최신 지시
 2. 이 `AGENTS.md`
-3. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
-4. 등록된 분야 책임 원본
-5. 실제 코드·데이터·Scene·Resource·자산·테스트
-6. 프로젝트에 고정된 Base v9.4.3 기준
-7. 외부 사례·과거 대화·추정
+3. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
+4. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
+5. 등록된 분야 책임 원본
+6. 실제 코드·데이터·Scene·Resource·자산·테스트
+7. 프로젝트에 고정된 Base v9.4.3 기준
+8. 외부 사례·과거 대화·추정
 
 ## 역할 분리
 
-- ChatGPT: 기획, 벤치마킹, 시스템·데이터 설계, Google Sheets GDD, GitHub 문서·Issue, Codex Goal, 적대적 검토, 테스트 체크리스트
-- Codex: 승인된 구현 계획에 따른 실제 Godot/GDScript 코드와 저장소 파일 변경
+- ChatGPT: 핵심 재미, 콘텐츠·맵·규칙 기획, 벤치마킹, 아트·UX 방향, Google Sheets GDD, GitHub 정본·Issue, 적대적 검토, Codex 전달 명세
+- Codex: 사용자 승인과 새 Definition of Ready 이후 실제 Godot/GDScript 코드·테스트 변경
 - 사용자가 명시하지 않은 게임 규칙·세계관·과금·콘텐츠를 임의로 확정하지 않는다.
+- 현재 대화에서 합의된 제품 규칙과 구현 상세를 혼동하지 않는다.
 
 ## 엔진·플랫폼
 
@@ -26,40 +28,73 @@
 - Orientation: landscape
 - Godot 용어를 사용하며 Unity/C#/Prefab/MonoBehaviour 프레이밍을 사용하지 않는다.
 
-## 현재 코어 보호
+## 현재 제품 기준선 — GMB-002
 
-- 자동 운행하는 화물열차
-- 연결된 가로형 15×10 철도망
-- 2단계·3단계 이상 분기기
-- `짐싣기` 입력 중 지나가는 화물만 적재
-- 마지막에 실은 화물부터 하역하는 LIFO 규칙
-- 같은 색 연속 하역 콤보
-- 배송으로 점수와 연료 회복
-- 시간 경과에 따른 기본 속도·연료 소모 증가
-- 화물 적재량에 따른 속도 감소
-- 부스터 사용 중 속도 증가와 추가 연료 소모
-- 연료 0에서 게임오버
-- 무한 생존과 최고 점수 경쟁
+- 수작업 유한 배송 퍼즐
+- 건설 불가 구역을 제외한 자유 선로 건설
+- 선로별 건설비와 전액 환급 가능한 건설 단계
+- 모든 역·화물의 구조적 도달 가능성 완료 후 운행 시작
+- 자동 운행 + 수동 적재 기본 + 자동 적재 토글 + 분기 직접 탭
+- 화물칸 수량 제한 없음
+- 마지막에 실은 화물부터 하역하는 LIFO
+- TOP에서 같은 종류가 연속되는 그룹만 자동 하역
+- Combo는 일시 가속과 점수 보너스
+- 제한 시간 종료 시 미배송 화물이 있으면 실패
+- 마지막 하역 완료 시 즉시 성공
+- 신속·절약·점수 별과 속도·가격·점수 리더보드
+- 1~10 튜토리얼, 11+ 테마 챕터, 일일·주간 고정 시드 도전
+- 성능 없는 꾸미기 보상만 허용
 
 코어 변경은 `USER_DECISION_REQUIRED`다.
 
-## 정본
+## 현재 정본
 
+- 제품 기준선: `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
+- 대체 등록부: `기획서/00_프로젝트_허브/CANON_REPLACEMENT_REGISTER.md`
 - 현재 결정: `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
 - 핵심 경험: `기획서/10_경험/CORE_GAMEPLAY.md`
 - 시스템 규칙: `기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md`
 - 아트·UI: `기획서/40_표현/VISUAL_DIRECTION.md`
-- Vertical Slice: `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
+- 제작·검증: `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
 - 사용자 GDD: `https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit`
+
+## 구형 구현 처리
+
+현재 main의 다음 구현은 역사 증거이자 부분 재사용 후보지만 새 제품 완료 증거가 아니다.
+
+- RailGraph·자동 이동·분기·CargoStack·LIFO
+- compact token/TrainFootprint
+- map/session/restart/selection
+
+다음 구현은 새 제품 기준에서 `LEGACY_IMPLEMENTATION`이다.
+
+- endless survival
+- fuel drain/recovery/fuel-zero end
+- player BOOST input
+- cargo capacity 8
+- cargo-count slowdown
+- timed speed/fuel pressure escalation
+- pickup respawn
+- switch auto-reset after passing
+
+새 DoR 전에는 제품 구현을 이어가지 않는다.
+
+## 상태 표기
+
+- `[대체됨]`: 새 정본이 같은 책임을 인수함
+- `[보류]`: 현재 범위 밖이며 재검토 가능
+- `[폐기]`: 새 제품 방향과 충돌해 구현 대상으로 사용하지 않음
+- `[역사 증거]`: 당시 구현·테스트 사실만 보존
 
 ## 금지
 
 - 승인 없이 코어 변경
-- HTML POC를 제품 구현 완료 증거로 사용
-- 생성 콘셉트 이미지를 실제 게임 캡처로 표시
+- old endless 구현을 새 finite puzzle 구현 완료로 보고
 - FIFO 하역으로 되돌리기
 - 색상만으로 화물과 역을 구분
-- 무조작 영구 생존 루프 허용
+- 운행 중 선로 건설·철거 허용
+- 추천 설계도를 랭킹 최적해로 제공
+- 성능 강화 꾸미기·과금 추가
 - 실행하지 않은 테스트를 통과로 보고
 - 사용자 승인 없이 광고·가챠·에너지·PvP·길드 추가
 
@@ -75,7 +110,8 @@ base_registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5
 
 - `[모델 추천]`은 실제 설정을 자동 변경하지 않으며 사용자가 checkpoint에서 변경한다.
 - L1 이상 지시문은 `route → first-prompt → contract → clarify`를 거치고 exact approval reference가 있으면 재사용한다.
-- 기획 충돌은 Grill Me 사용자 승인을 요구하며, 가역적 상세 수치는 이유·조정 조건·검증 한계를 기록한 GPT 권장 기본값으로 진행할 수 있다.
-- Grill Me 승인 배치는 최대 10건이며 고위험·정본 충돌·구현 차단·세션 종료 시 조기 체크포인트를 허용한다.
-- 퍼즐 규칙·레벨 의미·LIFO·화물/역 색상+모양·저장 호환성은 `HARD_CONSTRAINT`다.
-- UI 모션은 퍼즐 결과·점수·연료·적재·하역·저장의 권위가 아니다.
+- 기획 충돌은 Grill Me 사용자 승인을 요구한다.
+- 가역적 상세 수치는 이유·조정 조건·검증 한계를 기록한 `TEST_VALUE`로 진행할 수 있다.
+- Grill Me 승인 배치는 최대 10건이며 고위험·정본 충돌·구현 차단·세션 종료 시 조기 checkpoint를 허용한다.
+- LIFO·화물/역 색상+모양·저장 호환성·랭킹 ruleset identity는 `HARD_CONSTRAINT`다.
+- UI 모션은 퍼즐 결과·점수·적재·하역·저장의 권위가 아니다.
