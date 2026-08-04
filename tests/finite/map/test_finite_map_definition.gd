@@ -61,3 +61,25 @@ func run() -> void:
 	assert_true(errors.has("incoming_cell must differ from start_cell"), "equal start and incoming must fail")
 	assert_true(errors.has("buildable_cells and blocked_cells must not overlap"), "surface overlap must fail")
 	assert_true(errors.has("time_limit_seconds must be positive"), "non-positive time limit must fail")
+
+	var missing_cell: Variant = definition_script.create({
+		"definition_schema_version": 2,
+		"map_id": "FP_MISSING_CELL",
+		"map_revision": 1,
+		"ruleset_version": "fp_core_v1",
+		"board_size": [7, 5],
+		"start_cell": [1, 2],
+		"incoming_cell": [0, 2],
+		"buildable_cells": [[2, 2]],
+		"blocked_cells": [],
+		"station_placements": [{
+			"cargo_type": "RED_STAR",
+			"rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 0},
+		}],
+		"cargo_placements": [],
+		"time_limit_seconds": 90.0,
+	})
+	assert_true(
+		missing_cell.validation_errors().has("station placement cell is required"),
+		"missing placement cell must not silently become board origin"
+	)
