@@ -18,6 +18,7 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/finite/build/test_track_layout_editor.gd"),
 	preload("res://tests/finite/rail/test_finite_track_graph.gd"),
 	preload("res://tests/finite/build/test_preflight_validator.gd"),
+	preload("res://tests/finite/integration/test_finite_build_session.gd"),
 	preload("res://tests/train/test_train_movement.gd"),
 	preload("res://tests/train/test_compact_wagon_tokens.gd"),
 	preload("res://tests/train/test_train_footprint.gd"),
