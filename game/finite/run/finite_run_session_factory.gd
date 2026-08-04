@@ -61,6 +61,8 @@ func create_attempt(attempt_serial: int = -1) -> Dictionary:
 	var serial: int = _next_attempt_serial if attempt_serial == -1 else attempt_serial
 	if serial <= 0:
 		return _failed(&"INVALID_ATTEMPT_SERIAL", "attempt serial must be positive")
+	if attempt_serial != -1 and serial < _next_attempt_serial:
+		return _failed(&"ATTEMPT_SERIAL_REUSED", "attempt serial must increase monotonically")
 
 	var definition: Variant = FiniteMapDefinitionScript.create(_definition.to_dictionary())
 	var layout: Variant = _layout.duplicate_layout()
