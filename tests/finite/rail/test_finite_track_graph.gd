@@ -132,5 +132,5 @@ func run() -> void:
 	assert_equal(graph.switch_cells(), [switch_cell], "switch cells must be deterministic and sorted")
 
 	var preview: Array[Vector2i] = graph.preview_route(Vector2i(3, 3), Vector2i(2, 3), 4)
-	assert_equal(preview[0], Vector2i(3, 3), "preview must begin at current cell")
-	assert_equal(preview[1], Vector2i(4, 3), "preview must preserve entry-aware crossing direction")
+	assert_equal(preview[0], Vector2i(4, 3), "preview must begin with the next cell")
+	assert_equal(preview[1], Vector2i(5, 3), "preview must preserve entry-aware crossing direction")
