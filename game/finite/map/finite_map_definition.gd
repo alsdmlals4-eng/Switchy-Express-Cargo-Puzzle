@@ -24,10 +24,12 @@ var blocked_cells: Array[Vector2i] = []
 var station_placements: Array[Dictionary] = []
 var cargo_placements: Array[Dictionary] = []
 var time_limit_seconds: float = 0.0
+var _source_errors: Array[String] = []
 
 
 static func create(data: Dictionary) -> Variant:
 	var value: Variant = load(SELF_SCRIPT_PATH).new()
+	value._source_errors = _source_validation_errors(data)
 	value.definition_schema_version = int(data.get("definition_schema_version", 0))
 	value.map_id = StringName(data.get("map_id", &""))
 	value.map_revision = int(data.get("map_revision", 0))
@@ -57,7 +59,7 @@ func required_anchor_cells() -> Array[Vector2i]:
 
 
 func validation_errors() -> Array[String]:
-	var errors: Array[String] = []
+	var errors: Array[String] = _source_errors.duplicate()
 	if definition_schema_version != SCHEMA_VERSION:
 		errors.append("definition_schema_version must equal 2")
 	if map_id == &"":
@@ -187,6 +189,69 @@ func _inside_board(cell: Vector2i) -> bool:
 		and cell.x < board_size.x
 		and cell.y < board_size.y
 	)
+
+
+static func _source_validation_errors(data: Dictionary) -> Array[String]:
+	var errors: Array[String] = []
+	if not _is_cell_value(data.get("board_size", null)):
+		errors.append("board_size is required")
+	if not _is_cell_value(data.get("start_cell", null)):
+		errors.append("start_cell is required")
+	if not _is_cell_value(data.get("incoming_cell", null)):
+		errors.append("incoming_cell is required")
+	_validate_source_cell_list(data.get("buildable_cells", []), "buildable_cells", errors)
+	_validate_source_cell_list(data.get("blocked_cells", []), "blocked_cells", errors)
+	_validate_source_placement_list(data.get("station_placements", []), "station", errors)
+	_validate_source_placement_list(data.get("cargo_placements", []), "cargo", errors)
+	return errors
+
+
+static func _validate_source_cell_list(raw: Variant, field_name: String, errors: Array[String]) -> void:
+	if not raw is Array:
+		errors.append("%s must be an array" % field_name)
+		return
+	for item: Variant in raw:
+		if not _is_cell_value(item):
+			errors.append("%s entries must be valid cells" % field_name)
+
+
+static func _validate_source_placement_list(
+	raw: Variant,
+	placement_kind: String,
+	errors: Array[String]
+) -> void:
+	if not raw is Array:
+		errors.append("%s placements must be an array" % placement_kind)
+		return
+	for item: Variant in raw:
+		if not item is Dictionary:
+			errors.append("%s placement must be a dictionary" % placement_kind)
+			continue
+		if not _is_cell_value(item.get("cell", null)):
+			errors.append("%s placement cell is required" % placement_kind)
+
+
+static func _is_cell_value(raw: Variant) -> bool:
+	if raw is Vector2i:
+		return true
+	if raw is Array:
+		return (
+			raw.size() == 2
+			and _is_number(raw[0])
+			and _is_number(raw[1])
+		)
+	if raw is Dictionary:
+		return (
+			raw.has("x")
+			and raw.has("y")
+			and _is_number(raw.get("x"))
+			and _is_number(raw.get("y"))
+		)
+	return false
+
+
+static func _is_number(value: Variant) -> bool:
+	return typeof(value) == TYPE_INT or typeof(value) == TYPE_FLOAT
 
 
 static func _read_cell(raw: Variant) -> Vector2i:
