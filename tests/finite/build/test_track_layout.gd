@@ -5,6 +5,17 @@ const LAYOUT_PATH := "res://game/finite/build/track_layout.gd"
 const EMPTY_SHA256 := "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 
 
+class FakePiece:
+	extends RefCounted
+	var cell: Vector2i = Vector2i(6, 2)
+
+	func duplicate_piece() -> Variant:
+		return self
+
+	func build_cost() -> int:
+		return 1
+
+
 func run() -> void:
 	var piece_exists := ResourceLoader.exists(PIECE_PATH, "Script")
 	var layout_exists := ResourceLoader.exists(LAYOUT_PATH, "Script")
@@ -17,6 +28,7 @@ func run() -> void:
 	var layout_script: Script = load(LAYOUT_PATH)
 	var empty: Variant = layout_script.new()
 	assert_equal(empty.layout_signature(), EMPTY_SHA256, "empty layout must have canonical SHA-256 identity")
+	assert_false(empty.put_piece(FakePiece.new()), "layout must reject TrackPiece impostors")
 
 	var straight: Variant = piece_script.create(Vector2i(2, 2), &"STRAIGHT", 0, Vector2i.ZERO)
 	var curve: Variant = piece_script.create(Vector2i(3, 2), &"CURVE", 1, Vector2i.ZERO)
