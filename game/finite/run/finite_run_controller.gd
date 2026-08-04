@@ -118,14 +118,30 @@ func advance_time(delta_seconds: float) -> Array[StringName]:
 			if _unload_sequence == null:
 				_resolve_unload_completion()
 				continue
+
 			var unload_segment: float = minf(remaining, float(_unload_sequence.remaining_seconds()))
+			if _pending_outcome == &"":
+				var unload_until_limit: float = (
+					float(_run_state.time_limit_seconds()) - float(_run_state.elapsed_seconds())
+				)
+				if unload_until_limit <= TIME_EPSILON:
+					_finish_terminal(FAILURE)
+					break
+				unload_segment = minf(unload_segment, unload_until_limit)
+
 			if unload_segment <= TIME_EPSILON:
 				_resolve_unload_completion()
 				continue
 			_run_state.advance_clock(unload_segment)
 			emitted_items.append_array(_unload_sequence.advance_time(unload_segment))
 			remaining = maxf(remaining - unload_segment, 0.0)
-			if _unload_sequence.is_complete():
+
+			if (
+				_pending_outcome == &""
+				and _run_state.elapsed_seconds() >= _run_state.time_limit_seconds() - TIME_EPSILON
+			):
+				_finish_terminal(FAILURE)
+			elif _unload_sequence.is_complete():
 				_resolve_unload_completion()
 		else:
 			break
@@ -206,6 +222,7 @@ func _finish_terminal(outcome: StringName) -> void:
 	var changed: bool = bool(_run_state.succeed()) if outcome == SUCCESS else bool(_run_state.fail())
 	if not changed:
 		return
+	_unload_sequence = null
 	_train.set_speed(0.0)
 	_input_state.set_paused(true)
 	_summary = FiniteRunSummaryScript.new(
