@@ -183,7 +183,9 @@ func run_state() -> Variant:
 
 
 func unload_sequence() -> Variant:
-	return _unload_sequence
+	if _unload_sequence == null:
+		return null
+	return _unload_sequence.duplicate_sequence()
 
 
 func final_delivery_commit_time() -> float:
