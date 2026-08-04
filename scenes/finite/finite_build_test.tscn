@@ -1,0 +1,28 @@
+[gd_scene format=3]
+
+[node name="FiniteBuildTest" type="Node2D"]
+
+[node name="BoardPlaceholder" type="Node2D" parent="."]
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="Cost" type="Label" parent="Hud"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 260.0
+offset_bottom = 40.0
+text = "Construction cost: 0"
+
+[node name="Recommended" type="Label" parent="Hud"]
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 320.0
+offset_bottom = 72.0
+text = "Recommended estimate: TEST_VALUE"
+
+[node name="Status" type="Label" parent="Hud"]
+offset_left = 16.0
+offset_top = 80.0
+offset_right = 320.0
+offset_bottom = 104.0
+text = "Preflight: BUILD"
