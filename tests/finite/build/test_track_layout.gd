@@ -2,6 +2,7 @@ extends "res://tests/test_case.gd"
 
 const PIECE_PATH := "res://game/finite/build/track_piece.gd"
 const LAYOUT_PATH := "res://game/finite/build/track_layout.gd"
+const EMPTY_SHA256 := "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 
 
 func run() -> void:
@@ -14,6 +15,9 @@ func run() -> void:
 
 	var piece_script: Script = load(PIECE_PATH)
 	var layout_script: Script = load(LAYOUT_PATH)
+	var empty: Variant = layout_script.new()
+	assert_equal(empty.layout_signature(), EMPTY_SHA256, "empty layout must have canonical SHA-256 identity")
+
 	var straight: Variant = piece_script.create(Vector2i(2, 2), &"STRAIGHT", 0, Vector2i.ZERO)
 	var curve: Variant = piece_script.create(Vector2i(3, 2), &"CURVE", 1, Vector2i.ZERO)
 	var switch_piece: Variant = piece_script.create(Vector2i(4, 2), &"SWITCH", 0, Vector2i.RIGHT)
