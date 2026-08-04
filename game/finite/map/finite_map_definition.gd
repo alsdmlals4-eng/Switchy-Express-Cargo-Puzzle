@@ -193,6 +193,10 @@ func _inside_board(cell: Vector2i) -> bool:
 
 static func _source_validation_errors(data: Dictionary) -> Array[String]:
 	var errors: Array[String] = []
+	if not _is_integer_number(data.get("definition_schema_version", null)):
+		errors.append("definition_schema_version must be an integer")
+	if not _is_integer_number(data.get("map_revision", null)):
+		errors.append("map_revision must be an integer")
 	if not _is_cell_value(data.get("board_size", null)):
 		errors.append("board_size is required")
 	if not _is_cell_value(data.get("start_cell", null)):
