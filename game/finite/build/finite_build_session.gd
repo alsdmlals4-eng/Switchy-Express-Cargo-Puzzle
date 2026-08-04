@@ -93,7 +93,10 @@ func begin_run() -> Variant:
 
 
 func sealed_snapshot() -> Dictionary:
-	return _sealed.duplicate(false)
+	var result: Dictionary = _sealed.duplicate(false)
+	if result.has("layout") and result["layout"] != null:
+		result["layout"] = result["layout"].duplicate_layout()
+	return result
 
 
 func _phase_locked(affected_cells: Array[Vector2i]) -> Variant:
