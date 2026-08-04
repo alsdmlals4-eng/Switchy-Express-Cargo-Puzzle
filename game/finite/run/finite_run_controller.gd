@@ -179,7 +179,9 @@ func accept_delivery_event(event: Variant) -> bool:
 
 
 func run_state() -> Variant:
-	return _run_state
+	if _run_state == null:
+		return null
+	return _run_state.duplicate_state()
 
 
 func unload_sequence() -> Variant:
