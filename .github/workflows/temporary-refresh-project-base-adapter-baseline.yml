@@ -1,0 +1,86 @@
+name: Temporary Refresh Project Base Adapter Baseline
+
+on:
+  push:
+    branches:
+      - agent/rebuild-thin-base-adapter-wave-b-current
+    paths:
+      - tools/refresh_project_base_adapter_baseline.py
+      - .github/workflows/temporary-refresh-project-base-adapter-baseline.yml
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out synchronized adapter branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: agent/rebuild-thin-base-adapter-wave-b-current
+          fetch-depth: 0
+
+      - name: Check out trusted Base validator
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: alsdmlals4-eng/Base
+          ref: bfdc9e44d4a6920dc085eaa3f9d19d31b1acd2a1
+          path: .base-contract
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.12"
+
+      - name: Install validator dependencies
+        run: python -m pip install -r .base-contract/.github/validation-requirements.txt
+
+      - name: Refresh exact baseline and evidence hashes
+        run: python tools/refresh_project_base_adapter_baseline.py
+
+      - name: Commit refreshed authority before generation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            skills/PROJECT_BASE_ADAPTER.json \
+            docs/PROJECT_OPERATING_STATE.json \
+            docs/PROJECT_OPERATING_HEALTH.json \
+            docs/operations/PROJECT_BASE_ADAPTER_MIGRATION_2026-08-06.md \
+            docs/superpowers/plans/2026-08-06-switchy-thin-base-adapter-migration.md \
+            tests/test_project_base_adapter_thin_migration.py
+          git diff --cached --check
+          git commit -m "chore: refresh Switchy exact adapter baseline"
+
+      - name: Regenerate Base-owned operating artifacts
+        run: |
+          python .base-contract/tools/build_project_operating_artifacts.py \
+            --project-root . \
+            --base-repository .base-contract \
+            --protected-base 8c6dd60c634019e64178e72aa4959a2a970708e1 \
+            --write
+
+      - name: Verify refreshed baseline and contract
+        run: |
+          python -m unittest tests.test_project_base_adapter_thin_migration -v
+          python .base-contract/tools/check_project_operating_contract.py \
+            --project-root . \
+            --base-repository .base-contract \
+            --protected-base 8c6dd60c634019e64178e72aa4959a2a970708e1 \
+            --check
+
+      - name: Remove one-time refresh surfaces
+        run: |
+          rm tools/refresh_project_base_adapter_baseline.py
+          rm .github/workflows/temporary-refresh-project-base-adapter-baseline.yml
+          rm -rf .base-contract
+
+      - name: Commit verified generated outputs
+        run: |
+          git add -A
+          git diff --cached --check
+          git commit -m "chore: regenerate Switchy adapter views after main sync"
+          git push origin HEAD:agent/rebuild-thin-base-adapter-wave-b-current
