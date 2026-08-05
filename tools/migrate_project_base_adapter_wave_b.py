@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ADAPTER_PATH = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
 HEALTH_PATH = ROOT / "docs/PROJECT_OPERATING_HEALTH.json"
+STATE_PATH = ROOT / "docs/PROJECT_OPERATING_STATE.json"
 MIGRATION_PATH = ROOT / "docs/operations/PROJECT_BASE_ADAPTER_MIGRATION_2026-08-06.md"
 PROJECT_REGISTRY_PATH = ROOT / "skills/SKILL_REGISTRY.json"
 
@@ -15,10 +16,6 @@ DECISION = "DEC-BASE-20260805-001"
 SOURCE_MAIN = "a45176a3655ae6b36e69f1d58a8556626ca9df86"
 TRUSTED_BASE = "bfdc9e44d4a6920dc085eaa3f9d19d31b1acd2a1"
 BASE_REGISTRY_SHA = "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59"
-
-
-def read_json(path: Path) -> dict:
-    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def write_json(path: Path, value: dict) -> None:
@@ -42,13 +39,17 @@ def route(value: str) -> dict:
     return {"route_id": value, "skill_id": value, "status": "ACTIVE"}
 
 
+def evidence(evidence_id: str, source: str, digest: str) -> dict:
+    return {"id": evidence_id, "source": source, "sha256": digest}
+
+
 def main() -> None:
     original_bytes = ADAPTER_PATH.read_bytes()
     original = json.loads(original_bytes.decode("utf-8"))
 
-    health = {
+    state_doc = {
         "schema_version": 1,
-        "artifact_role": "PROJECT_OPERATING_HEALTH",
+        "artifact_role": "SWITCHY_PROJECT_OPERATING_STATE",
         "project": "Switchy Express: Cargo Puzzle",
         "repository": "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle",
         "current_main_at_migration": SOURCE_MAIN,
@@ -73,9 +74,11 @@ def main() -> None:
             },
             "normalized_contract": {
                 "adapter_schema": "BASE_V1_THIN_ADAPTER",
+                "health_schema": "BASE_PROJECT_OPERATING_HEALTH_V1",
                 "protected_baseline_policy": "OPTION_A_EXACT_TRUSTED_BASE_EQUALITY",
                 "gdd_sheet_contract_status": "CURRENT",
-                "project_state_authority": "docs/PROJECT_OPERATING_HEALTH.json",
+                "project_state_authority": "docs/PROJECT_OPERATING_STATE.json",
+                "machine_health_authority": "docs/PROJECT_OPERATING_HEALTH.json",
                 "product_files": "UNCHANGED",
                 "google_sheets": "UNCHANGED",
             },
@@ -87,6 +90,36 @@ def main() -> None:
             "physical_device_validation": "NOT_RUN",
             "human_validation": "HUMAN_NOT_RUN",
             "production_adapter_ready": "NOT_READY",
+        },
+    }
+    write_json(STATE_PATH, state_doc)
+    state_digest = sha256_bytes(STATE_PATH.read_bytes())
+    state_evidence = evidence("switchy-project-state", "docs/PROJECT_OPERATING_STATE.json", state_digest)
+
+    health = {
+        "schema_version": 1,
+        "artifact_role": "PROJECT_OPERATING_HEALTH",
+        "operating_maturity": "OM-L4",
+        "product_evidence_maturity": "PE-3",
+        "critical_gates": {
+            "static": "PASS",
+            "runtime": "PASS",
+            "device": "NOT_RUN",
+            "accessibility": "NOT_RUN",
+            "human": "NOT_RUN",
+        },
+        "integrity_verdict": "PASS_WITH_NOT_RUN_GATES",
+        "evidence": {
+            "operating": [state_evidence],
+            "product": [state_evidence],
+            "sheet": [state_evidence],
+            "gates": {
+                "static": [state_evidence],
+                "runtime": [state_evidence],
+                "device": [],
+                "accessibility": [],
+                "human": [],
+            },
         },
     }
     write_json(HEALTH_PATH, health)
@@ -160,7 +193,8 @@ source_main: {SOURCE_MAIN}
 trusted_base_validator: {TRUSTED_BASE}
 strategy: OPTION_A_EXACT_TRUSTED_BASE_EQUALITY
 adapter_authority: BASE_V1_THIN_ADAPTER
-project_state_authority: docs/PROJECT_OPERATING_HEALTH.json
+project_state_authority: docs/PROJECT_OPERATING_STATE.json
+machine_health_authority: docs/PROJECT_OPERATING_HEALTH.json
 PRODUCT_FILES_UNCHANGED: true
 GOOGLE_SHEETS_UNCHANGED: true
 physical_device_validation: NOT_RUN
@@ -186,7 +220,7 @@ These references remain project-owned. Repository and CI evidence does not promo
 
 ## Scope boundary
 
-The migration changes the Base connection contract and official generated views only. It does not edit `project.godot`, `game/**`, `assets/**`, `기획서/**`, APK evidence, Godot Pilot adoption content, or Google Sheet cells.
+The migration changes the Base connection contract, standard machine health, project-owned state, and official generated views only. It does not edit `project.godot`, `game/**`, `assets/**`, `기획서/**`, APK evidence, Godot Pilot adoption content, or Google Sheet cells.
 """,
         encoding="utf-8",
     )
