@@ -1,0 +1,17 @@
+{
+  "artifact_role": "SWITCHY_SHEET_AUTHORITY_EVIDENCE",
+  "decision_id": "DEC-BASE-20260805-001",
+  "interpretation": "Existing synchronized Sheet authority is preserved; this adapter migration performs no Sheet write.",
+  "legacy_gdd_sheet": {
+    "decision_commit": "3cd13ff375a597d4eba9035af5b05e6186fb4853",
+    "role": "USER_FACING_GDD_WORKSPACE",
+    "spreadsheet_id": "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo",
+    "sync_status": "SYNCED",
+    "url": "https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit",
+    "verified_at": "2026-08-02T15:16:00+09:00"
+  },
+  "repository": "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle",
+  "schema_version": 1,
+  "sheet_mutation": "NONE",
+  "source_adapter_baseline": "a45176a3655ae6b36e69f1d58a8556626ca9df86"
+}

@@ -1,0 +1,44 @@
+{
+  "artifact_role": "PROJECT_OPERATING_HEALTH",
+  "critical_gates": {
+    "accessibility": "NOT_RUN",
+    "device": "NOT_RUN",
+    "human": "NOT_RUN",
+    "runtime": "NOT_RUN",
+    "static": "PASS"
+  },
+  "evidence": {
+    "gates": {
+      "accessibility": [],
+      "device": [],
+      "human": [],
+      "runtime": [],
+      "static": [
+        {
+          "id": "SX-BASE-RULES-STATIC",
+          "sha256": "32c8cf87e670a20d150cb981f75f44949c3459e5d0607203d7e2c793d5296ce7",
+          "source": "docs/BASE_RULES_VERSION.md"
+        }
+      ]
+    },
+    "operating": [
+      {
+        "id": "SX-ADAPTER-MIGRATION-20260806",
+        "sha256": "2948a3130ad4ba4461786f278cb83a2853d57ad3d546c37f7462621b7de7f7e6",
+        "source": "docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json"
+      }
+    ],
+    "product": [],
+    "sheet": [
+      {
+        "id": "SX-SHEET-AUTHORITY-20260806",
+        "sha256": "061228e1c50f43167713592ab1fc6697f906b89f313092b5bc1ed9a006a1cb52",
+        "source": "docs/operations/SWITCHY_SHEET_AUTHORITY_EVIDENCE_2026-08-06.json"
+      }
+    ]
+  },
+  "integrity_verdict": "PASS_WITH_NOT_RUN_GATES",
+  "operating_maturity": "OM-L1",
+  "product_evidence_maturity": "PE-0",
+  "schema_version": 1
+}
