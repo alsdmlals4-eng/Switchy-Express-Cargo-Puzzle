@@ -95,17 +95,25 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         self.assertEqual("HUMAN_NOT_RUN", evidence["human_validation"])
         self.assertEqual("NOT_READY", evidence["production_adapter_ready"])
 
-    def test_health_uses_base_machine_contract_only(self) -> None:
+    def test_health_uses_unique_verified_evidence_only(self) -> None:
         health = load_json(HEALTH_PATH)
         self.assertEqual(HEALTH_KEYS, set(health))
         self.assertEqual("PROJECT_OPERATING_HEALTH", health["artifact_role"])
-        self.assertEqual("OM-L4", health["operating_maturity"])
-        self.assertEqual("PE-3", health["product_evidence_maturity"])
+        self.assertEqual("OM-L1", health["operating_maturity"])
+        self.assertEqual("PE-1", health["product_evidence_maturity"])
         self.assertEqual("PASS_WITH_NOT_RUN_GATES", health["integrity_verdict"])
         self.assertEqual("PASS", health["critical_gates"]["static"])
-        self.assertEqual("PASS", health["critical_gates"]["runtime"])
+        self.assertEqual("NOT_RUN", health["critical_gates"]["runtime"])
         self.assertEqual("NOT_RUN", health["critical_gates"]["device"])
         self.assertEqual("NOT_RUN", health["critical_gates"]["human"])
+        records = (
+            health["evidence"]["operating"]
+            + health["evidence"]["product"]
+            + health["evidence"]["sheet"]
+            + [record for values in health["evidence"]["gates"].values() for record in values]
+        )
+        self.assertEqual(len(records), len({record["id"] for record in records}))
+        self.assertEqual(len(records), len({record["source"] for record in records}))
 
     def test_migration_map_and_workflow_preserve_project_authority(self) -> None:
         migration = MIGRATION_PATH.read_text(encoding="utf-8")
