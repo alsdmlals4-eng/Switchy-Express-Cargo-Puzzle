@@ -18,6 +18,12 @@ func run() -> void:
 		),
 		"feature override must target validation launcher"
 	)
+	assert_true(
+		project_text.contains(
+			"textures/vram_compression/import_etc2_astc=true"
+		),
+		"Android export must enable ETC2/ASTC texture imports"
+	)
 
 	var hash_context := HashingContext.new()
 	assert_equal(hash_context.start(HashingContext.HASH_SHA256), OK, "main scene hash must initialize")
