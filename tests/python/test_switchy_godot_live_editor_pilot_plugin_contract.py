@@ -122,7 +122,8 @@ class SwitchyGodotLiveEditorPilotPluginContractTests(unittest.TestCase):
         for marker in (
             "const STABLE_OBSERVATION_FRAMES := 30",
             "const STABLE_OBSERVATION_ATTEMPTS := 180",
-            "get_resource_filesystem().is_scanning()",
+            "EditorInterface.get_resource_filesystem()",
+            "editor_filesystem.is_scanning()",
             "_wait_for_stable_observation",
             "stable_observation_pass",
             "batch_failure_codes",
