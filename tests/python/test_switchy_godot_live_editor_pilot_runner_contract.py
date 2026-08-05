@@ -54,7 +54,8 @@ class SwitchyGodotLiveEditorPilotRunnerContractTests(unittest.TestCase):
         for marker in (
             "protected_inventory",
             "SCRIPT ERROR:",
-            "line.startswith(\"ERROR:\")",
+            "_unexpected_godot_errors",
+            "HEADLESS_THUMBNAIL_LOCATION",
             "temporary_scene_byte_restore_pass",
             "project_regression_pass",
             "source_integrity_pass",
