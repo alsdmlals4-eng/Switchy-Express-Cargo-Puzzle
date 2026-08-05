@@ -1,20 +1,20 @@
 # Finite Delivery First Vertical Slice Contract
 
 ```yaml
-status: VALIDATION_PREP_PASS · MANUAL_GATES_OPEN
+status: APK_EXPORT_PASS · MANUAL_ACCEPTANCE_OPEN
 product_authority: GMB-002 · SX-DEC-027~036
-execution_authority: FP-DOR-001 · EV-USER-021
-current_audit: SX-AUD-018
-current_main: abc75abd00765ba6ea3aa471c29962f314963be5
-implementation_state: FP-01_PASS · FP-02_PASS · TASK_11_PASS · TASK_12_AUTOMATED_PASS · VALIDATION_PREP_PASS
+execution_authority: FP-DOR-001 · EV-USER-021 · EV-USER-022
+current_audit: SX-AUD-019
+canonical_export_source: 536911449018a3caf3511bc64e7bf1a66edf2016
+implementation_state: FP-01_PASS · FP-02_PASS · PRODUCT_SURFACE_PASS · AUTOMATED_INTEGRATION_PASS · VALIDATION_PREP_PASS · APK_EXPORT_PASS
 default_entrypoint: LEGACY_RUNTIME_DEFAULT
-next_gate: ANDROID_APK_EXPORT → ANDROID_SMOKE → FIVEPERSON_COMPREHENSION
+next_gate: ANDROID_DEVICE_SMOKE → FIVE_PERSON_COMPREHENSION
 cutover_status: BLOCKED
 ```
 
-## 1. 계약 목적
+## 1. 목적과 권위
 
-이 계약은 첫 번째 유한 배송 퍼즐 Slice의 구현 완료 범위와 제품 전환 조건을 정의한다. 자동 테스트 성공, 검증 준비 성공, 실제 제품 승인을 분리하며 재현 가능한 Android build·실기기 조작성·처음 보는 사용자의 이해 증거 없이 finite Slice를 기본 런타임으로 전환하지 않는다.
+이 계약은 첫 유한 배송 퍼즐 Slice의 구현·패키징 완료 범위와 제품 전환 조건을 정의한다. 자동 테스트, APK 생성, 실기기 조작성, 처음 보는 사용자의 이해도와 production cutover를 서로 다른 Gate로 유지한다.
 
 권위 문서:
 
@@ -23,168 +23,146 @@ cutover_status: BLOCKED
 - `docs/superpowers/plans/2026-08-05-finite-puzzle-first-vertical-slice.md`
 - `docs/superpowers/specs/2026-08-05-finite-validation-harness-design.md`
 - `docs/superpowers/plans/2026-08-05-finite-validation-harness.md`
+- `docs/superpowers/specs/2026-08-05-android-validation-apk-ci-design.md`
+- `docs/superpowers/plans/2026-08-05-android-validation-apk-ci.md`
 - `기획서/50_제작_검증/FP_01_02_IMPLEMENTATION_AUDIT.md`
 - `기획서/50_제작_검증/SX_AUD_018_VALIDATION_PREPARATION_AUDIT.md`
+- `기획서/50_제작_검증/SX_AUD_019_ANDROID_APK_PIPELINE_PROBE.md`
 
-## 2. First Slice 포함 범위
+## 2. 구현 완료 범위
 
 ### FP-01 · 선로 건설
 
 - authored `FiniteMapDefinition` schema v2
-- player `TrackLayout` identity와 solution signature
-- 직선·곡선·분기·교차 설치
-- 설치·회전·교체·철거·전체 초기화
-- 조각별 건설비와 철거 전액 환급
-- 구조 검사: 시작 연결, 필수 역·화물 도달 가능성, dangling edge, crossing, branch exit, permanent trap
-- PASS 후 최종 배치 봉인
+- `TrackLayout` identity·solution signature
+- 직선·곡선·분기·교차 설치, 회전, 교체, 철거, 전체 초기화
+- 조각별 비용·철거 전액 환급
+- 시작 연결, 역·화물 도달성, dangling edge, crossing, branch exit, permanent trap 구조 검사
+- PASS 뒤 정의·배치·비용·graph 봉인
 
 ### FP-02 · 유한 배송 런
 
 - 기차 자동 운행
-- 수동 LOAD 홀드와 자동 적재 토글
-- 무제한 LIFO CargoStack
-- cargo point 적재 전용, station 하역 전용
-- TOP 연속 동일 화물 자동 하역
-- 하역 표시 최대 1초
-- 정확한 제한 시간 성공·실패 판정
-- 이동·하역 중 pause integrity
-- 동일 배치 fresh runtime 재시도
+- 수동 LOAD hold·auto-load toggle
+- 무제한 LIFO stack과 고정 화물
+- cargo point 적재 전용·station 하역 전용
+- TOP 연속 동일 화물 그룹 하역·최대 1초 표시
+- 정확한 제한 시간·pause·success/failure
+- 동일 배치 fresh runtime retry
 - map·solution·attempt identity 분리
 
-### 제품 화면
+### 제품 화면·통합
 
-- BUILD / RUNNING / UNLOADING / PAUSED / SUCCESS / FAILURE 상태
-- 현재 건설비와 추천 비용
-- preflight 주된 실패 이유와 문제 cell
-- 화물의 색상+형상+텍스트 중복 표현
-- LIFO TOP 명시
+- BUILD/RUNNING/UNLOADING/PAUSED/SUCCESS/FAILURE
+- 비용·추천 비용·preflight 문제 표시
+- 색상+형상+텍스트와 LIFO TOP 중복 표현
 - 최소 48×48dp 상당 조작 영역
-- RUNNING/UNLOADING에서 branch 직접 탭
-- PAUSED에서 확인 외 조작 금지
+- RUNNING/UNLOADING branch 직접 탭과 점유 잠금
+- UI 명령으로 `A → B → A → A`, 하역 `2 → 1 → 1`, A역 재방문·성공 증명
+- crossing 격리, pause integrity, 실패 후 배치 보존·retry 초기화
 
-## 3. 대표 통합 증명
+## 3. Validation·APK 완료 범위
 
-대표 proof map에서 UI 명령으로 canonical Alpha 배치를 만들고 다음을 증명했다.
+- 제품과 분리된 validation launcher
+- 한 APK의 `PROOF`, `STACK_8`, `STACK_16`, `STACK_32`
+- 기기 내 mode selector와 Back
+- invalid mode fail-closed
+- `validation_harness` custom feature와 격리 package ID
+- product main·`game/main/main.tscn` 불변 검사
+- 고정된 Godot/JDK/Android SDK·Build Tools·NDK·template workflow
+- export 전 전체 테스트와 product invariant 검사
+- APK·SHA-256·manifest·summary·14일 artifact·provenance attestation
 
-```text
-load contact order: A → B → A → A
-unload groups: 2 → 1 → 1
-required behavior: A station revisit under LIFO
-terminal result: SUCCESS within finite limit
+Canonical APK:
+
+```yaml
+source_commit: 536911449018a3caf3511bc64e7bf1a66edf2016
+workflow_run_id: 31011620357
+artifact_id: 8932725351
+artifact_name: switchy-express-validation-53691144
+apk_size_bytes: 28771631
+apk_sha256: eb49225ab4062e5cf863f79a0d17f85d339ea176d7f0bb6f04096ed8a07559ea
+artifact_zip_sha256: 1802ca52dd90eb674f89b0a6e4678152d314c5644d135a84033388b4d3ee7193
+attestation_id: 39044925
+expiry: 2026-08-19T13:45:27Z
 ```
 
-교차 선로의 차선 격리, branch 사전 설정·점유 잠금·재시도 초기화, 실패 후 배치 보존도 자동 검증에 포함된다.
+## 4. 검증 Gate
 
-## 4. 제외 범위
-
-첫 Slice 완료 판정에 다음을 포함하지 않는다.
-
-- 가속·저비용·일방통행·회차·터널·교량 선로
-- Combo 가속·점수 보상
-- 별·랭킹·캠페인·튜토리얼 챕터
-- 일일·주간 도전과 online service
-- UGC
-- 최종 아트 패키지
-- 대표 맵 외 광범위 balance 승인
-
-이 기능들은 `SX-DEC-030~036`의 제품 정본에는 존재하지만 후속 FP package에서 구현한다. First Slice 테스트가 해당 기능 구현 완료를 의미하지 않는다.
-
-## 5. Legacy 격리
-
-다음 endless 구현은 `[대체됨 · 역사 증거]`로 보존한다.
-
-- fuel·fuel-zero
-- BOOST
-- cargo capacity 8
-- cargo-count slowdown
-- timed pressure와 difficulty authority
-- pickup respawn
-- branch auto-reset
-- endless survival score
-
-legacy 테스트는 회귀 방지에는 사용하지만 finite 제품 증거 수에 합산하지 않는다. finite와 legacy 규칙을 한 player-facing session에서 혼합하지 않는다.
-
-## 6. 검증 Gate
-
-| Gate | 상태 | 기준 |
+| Gate | 상태 | 증거/기준 |
 |---|---|---|
-| AUTOMATED CORE | PASS | Contract #490, Godot #451, `60 cases · 10,382 assertions · 0 failures` |
-| VALIDATION PREP | PASS | PR #62/#63, Contract #508, Godot #464, `63 cases · 10,714 assertions · 0 failures` |
-| APK EXPORT | NOT_RUN | `Android Validation` preset과 launcher는 준비됐으나 실제 export 기록·APK hash 없음 |
-| ANDROID | NOT_RUN | 실기기/공식 emulator landscape smoke 전체 항목 미실행 |
-| HUMAN | NOT_RUN | 같은 validation APK를 사용한 5명 검증 미실행 |
-| BALANCE | NOT_RUN | First Slice production cutover 필수 Gate 아님 |
+| AUTOMATED CORE | PASS | Contract #490, Godot #451, `60 cases · 10,382 assertions` |
+| VALIDATION PREP | PASS | PR #62/#63, Contract #508, Godot #464, `63 cases · 10,714 assertions` |
+| SELECTOR·APK WORKFLOW STATIC | PASS | PR #65/#66/#69/#70/#71와 TDD RED/GREEN |
+| APK EXPORT | PASS | main run `31011620357`, `65 cases · 10,792 assertions`, APK hash·manifest·attestation 일치 |
+| ANDROID | NOT_RUN | 동일 APK hash로 landscape 실기기 smoke 필요 |
+| HUMAN | NOT_RUN | 동일 APK hash로 처음 보는 5명 이해도 검증 필요 |
+| BALANCE | NOT_RUN | First Slice cutover 필수 Gate 아님 |
 | ONLINE | NOT_RUN | First Slice 범위 밖 |
 | FINAL ART | NOT_RUN | 후속 제작 Gate |
 
-세부 실행·기록 형식은 `FP_01_02_IMPLEMENTATION_AUDIT.md`와 `SX_AUD_018_VALIDATION_PREPARATION_AUDIT.md`를 따른다.
+## 5. Android Device Smoke 계약
 
-## 7. Validation 준비 완료 계약
+동일 APK SHA-256 `eb49225a...759ea`에서 다음을 기록한다.
 
-검증 준비 package는 다음을 제공한다.
+1. 기기 모델·Android 버전·해상도·orientation
+2. 설치·첫 부팅·재부팅
+3. 4개 mode와 Back
+4. BUILD→RUN→pause/resume→result→retry
+5. LOAD hold·auto-load·branch 직접 탭
+6. 8/16/32 stack TOP 가독성
+7. safe area·48dp 터치·겹침·잘림
+8. crash·ANR·입력 누락·심각한 frame 저하
 
-1. `Android Validation` debug export preset
-2. `validation_harness` custom feature에만 연결되는 launcher main-scene override
-3. 실제 finite proof Slice를 그대로 mount하는 `PROOF` mode
-4. Presenter/View 기반 `STACK_8`, `STACK_16`, `STACK_32`
-5. 정확한 token 수, 하나의 final/rear TOP, 색상+형상+텍스트 검사
-6. invalid mode·unknown argument fail-closed 검사
-7. production base main과 `game/main/main.tscn` 불변 검사
-8. password·keystore·SDK·사용자 경로 부재 검사
+실패 시 같은 APK 증거를 보존하고 수정 package를 TDD로 분리한다. 새 APK가 생성되면 hash가 바뀌므로 Android·HUMAN 증거를 새 hash로 다시 수행한다.
 
-validation harness는 제품 콘텐츠, 캠페인 맵, 저장 데이터, 제품 기본 진입점으로 취급하지 않는다. package identifier는 validation 전용으로 격리한다.
+## 6. 제외·Legacy 격리
 
-## 8. Cutover 조건
+후속 범위:
 
-다음 조건이 모두 충족돼야 별도 production-cutover PR을 생성할 수 있다.
+- 가속·저비용·일방통행·회차·터널·교량
+- Combo 가속·점수 보상
+- 별·랭킹·튜토리얼·캠페인·일일/주간·online·UGC
+- 최종 아트와 광범위 balance
+
+`fuel`, `BOOST`, capacity 8, cargo slowdown, timed pressure, pickup respawn, switch auto-reset, endless score는 `[대체됨 · 역사 증거]`다. legacy와 finite 규칙을 한 player-facing session에 혼합하지 않고, old 테스트를 finite PASS 수치에 합산하지 않는다.
+
+## 7. Cutover 조건
+
+별도 production-cutover PR은 다음 모두 충족 후에만 생성한다.
 
 1. AUTOMATED CORE PASS
 2. VALIDATION PREP PASS
-3. APK export 성공과 SHA-256 기록
+3. APK EXPORT PASS
 4. ANDROID PASS
 5. HUMAN PASS
 6. Critical/Important 결함 0
-7. unresolved review thread 0
-8. REQUEST_CHANGES 0
-9. validation build SHA·APK hash·기기·사람 증거 기록
-10. GitHub 권위 문서와 correct Google Sheet same-ID 동기화
+7. unresolved review thread 0·REQUEST_CHANGES 0
+8. build SHA·APK hash·기기·사람 증거 기록
+9. GitHub 권위 문서·correct Google Sheet same-ID 동기화
 
-production cutover는 `game/main/main.tscn`과 필요한 최소 어댑터만 변경한다. legacy 파일 삭제는 별도 migration package다.
+cutover는 `game/main/main.tscn`과 최소 어댑터만 변경한다. legacy 삭제는 별도 migration package다.
 
-## 9. Android 검증 진입점 원칙
+## 8. Rollback·보안 경계
 
-제품 base main은 계속 legacy runtime을 사용한다.
+- validation APK는 debug QA artifact이며 release candidate나 store binary가 아니다.
+- release key·고정 credential·SDK 사용자 경로를 저장하지 않는다.
+- production base main은 계속 `res://game/main/main.tscn`이다.
+- cutover 전 장애는 validation workflow/override만 되돌리고 finite core를 보존한다.
+- old endless 파일은 삭제하지 않는다.
 
-```ini
-run/main_scene="res://game/main/main.tscn"
-run/main_scene.validation_harness="res://tools/validation/finite/finite_validation_launcher.tscn"
-```
-
-- `Android Validation` preset만 `validation_harness` feature를 활성화한다.
-- export source는 main `abc75abd00765ba6ea3aa471c29962f314963be5`로 고정한다.
-- Godot·export-template·Android SDK 버전, 명령, APK SHA-256을 기록한다.
-- `PROOF`와 `STACK_8/16/32` mode를 같은 APK에서 실행한다.
-- 수동 Gate 통과 후 production-cutover PR에서 전환을 다시 검토한다.
-
-## 10. Rollback
-
-- PR #55~#60과 #62~#63은 package별로 추적 가능하다.
-- production cutover 전에는 legacy 기본 진입점이 유지되므로 validation 준비 병합만으로 사용자 제품이 바뀌지 않는다.
-- validation feature override 또는 preset 문제가 있으면 PR #63 merge를 되돌려도 core implementation은 보존된다.
-- cutover 후 문제가 발생하면 진입점 커밋만 되돌리고 finite 구현·테스트는 진단 가능한 상태로 보존한다.
-- old endless 파일을 삭제하지 않는다.
-
-## 11. 현재 결론
+## 9. 현재 결론
 
 ```text
 FINITE CORE IMPLEMENTATION: PASS
 FINITE PRODUCT SURFACE: PASS
 INTEGRATED AUTOMATION: PASS
 VALIDATION PREPARATION: PASS
-ANDROID APK EXPORT: NOT_RUN
-ANDROID: NOT_RUN
-HUMAN: NOT_RUN
-DEFAULT CUTOVER: BLOCKED
+ANDROID APK EXPORT: PASS
+ANDROID DEVICE SMOKE: NOT_RUN
+FIVE-PERSON COMPREHENSION: NOT_RUN
+DEFAULT ENTRYPOINT: LEGACY
+PRODUCTION CUTOVER: BLOCKED
 ```
 
-다음 권위 작업은 `Android Validation` preset으로 APK를 재현 가능하게 export하고 Android smoke와 5명 comprehension 검증을 실제 수행하는 것이다.
+다음 권위 작업은 canonical APK hash를 유지한 Android landscape smoke다.
