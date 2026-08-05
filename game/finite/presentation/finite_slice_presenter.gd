@@ -68,7 +68,7 @@ func show_run(
 		elapsed = float(run_state.elapsed_seconds())
 		limit = float(run_state.time_limit_seconds())
 
-	var controls_active := phase == &"RUNNING"
+	var controls_active := phase == &"RUNNING" or phase == &"UNLOADING"
 	var displayed_stack: Array[StringName] = (
 		_visual_stack.duplicate()
 		if _unload_visual_active and phase == &"UNLOADING"
