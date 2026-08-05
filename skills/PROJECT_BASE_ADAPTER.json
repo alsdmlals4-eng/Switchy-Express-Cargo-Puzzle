@@ -31,7 +31,7 @@
   "protected_baseline": {
     "authority_kind": "REMOTE_TRACKING_REF",
     "authority_ref": "refs/remotes/origin/main",
-    "commit": "a45176a3655ae6b36e69f1d58a8556626ca9df86",
+    "commit": "8c6dd60c634019e64178e72aa4959a2a970708e1",
     "policy_sha256": "51b3ca7e05165069666d1235413d3277580646c63008b472f15df4fb4db9f0ca",
     "policy_source_path": "skills/PROJECT_BASE_ADAPTER.json",
     "policy_source_type": "CANONICAL_ADAPTER_SOURCE",

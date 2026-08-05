@@ -2,7 +2,7 @@
 
 ```yaml
 decision_id: DEC-BASE-20260805-001
-source_main: a45176a3655ae6b36e69f1d58a8556626ca9df86
+source_main: 8c6dd60c634019e64178e72aa4959a2a970708e1
 trusted_base_validator: bfdc9e44d4a6920dc085eaa3f9d19d31b1acd2a1
 strategy: OPTION_A_EXACT_TRUSTED_BASE_EQUALITY
 adapter_authority: BASE_V1_THIN_ADAPTER

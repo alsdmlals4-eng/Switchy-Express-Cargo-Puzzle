@@ -11,7 +11,7 @@
 ## Global Constraints
 
 - Governing decision: `DEC-BASE-20260805-001`.
-- Exact PR-base baseline: `a45176a3655ae6b36e69f1d58a8556626ca9df86`.
+- Exact PR-base baseline: `8c6dd60c634019e64178e72aa4959a2a970708e1`.
 - Trusted Base validator: `bfdc9e44d4a6920dc085eaa3f9d19d31b1acd2a1`.
 - Preserve active finite product canon, Android smoke readiness, APK pipeline evidence, Godot Pilot adoption, and Google Sheet authority without promoting evidence.
 - `physical_device_validation` and `human_validation` remain `NOT_RUN`.
@@ -107,7 +107,7 @@ Use exactly the twelve Base v1 root keys.
 
 - [ ] **Step 2: Normalize Sheet and baseline**
 
-Keep Sheet ID, URL, decision commit, and verification timestamp, add `declared_sync_status: "SYNCED"`, and set the contract status to `CURRENT`. Set baseline authority to `REMOTE_TRACKING_REF`, ref to `refs/remotes/origin/main`, source type to `CANONICAL_ADAPTER_SOURCE`, source path to the canonical adapter, and commit to `a45176a3655ae6b36e69f1d58a8556626ca9df86`.
+Keep Sheet ID, URL, decision commit, and verification timestamp, add `declared_sync_status: "SYNCED"`, and set the contract status to `CURRENT`. Set baseline authority to `REMOTE_TRACKING_REF`, ref to `refs/remotes/origin/main`, source type to `CANONICAL_ADAPTER_SOURCE`, source path to the canonical adapter, and commit to `8c6dd60c634019e64178e72aa4959a2a970708e1`.
 
 - [ ] **Step 3: Calculate policy and Registry hashes**
 
@@ -136,7 +136,7 @@ git commit -m "fix: rebuild Switchy thin Base adapter"
 python .base-contract/tools/build_project_operating_artifacts.py \
   --project-root . \
   --base-repository .base-contract \
-  --protected-base a45176a3655ae6b36e69f1d58a8556626ca9df86 \
+  --protected-base 8c6dd60c634019e64178e72aa4959a2a970708e1 \
   --write
 ```
 
@@ -146,7 +146,7 @@ python .base-contract/tools/build_project_operating_artifacts.py \
 python .base-contract/tools/check_project_operating_contract.py \
   --project-root . \
   --base-repository .base-contract \
-  --protected-base a45176a3655ae6b36e69f1d58a8556626ca9df86 \
+  --protected-base 8c6dd60c634019e64178e72aa4959a2a970708e1 \
   --check
 python -m unittest tests.test_project_base_adapter_thin_migration -v
 python tools/validate_project_contract.py

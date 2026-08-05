@@ -16,7 +16,7 @@
       {
         "id": "switchy-operating-state",
         "source": "docs/PROJECT_OPERATING_STATE.json",
-        "sha256": "39f74908a22b54ad7320e5f7d8661c4166bbad8c8e32fd67aa80191b4fc9b142"
+        "sha256": "8e21cbd8dc17237a0b6bd5f800cf347c8fc921bb3bc501a7ab3fd5028979c5de"
       }
     ],
     "product": [
@@ -30,7 +30,7 @@
       {
         "id": "switchy-sheet-migration",
         "source": "docs/operations/PROJECT_BASE_ADAPTER_MIGRATION_2026-08-06.md",
-        "sha256": "92fa76058fd2b94842cd444bb3a5becc05b9067837f8ebd99d6fdbb044523590"
+        "sha256": "e14b890f629c171d8b3b4d94157a8699d0586dcbb6d909aaa9325c46780c99e3"
       }
     ],
     "gates": {
@@ -38,7 +38,7 @@
         {
           "id": "switchy-static-adapter",
           "source": "skills/PROJECT_BASE_ADAPTER.json",
-          "sha256": "969664cce7d0c92264498287f2faf520c57c9bf921daaadeac60930e1e342d82"
+          "sha256": "224b9726fa3f374b6b81b98e22890562755d17a23784760921cb20ece93216e3"
         }
       ],
       "runtime": [],

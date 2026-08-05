@@ -3,7 +3,7 @@
   "artifact_role": "SWITCHY_PROJECT_OPERATING_STATE",
   "project": "Switchy Express: Cargo Puzzle",
   "repository": "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle",
-  "current_main_at_migration": "a45176a3655ae6b36e69f1d58a8556626ca9df86",
+  "current_main_at_migration": "8c6dd60c634019e64178e72aa4959a2a970708e1",
   "current_authority": {
     "design_registry": "기획서/00_프로젝트_허브/DESIGN_DOCUMENT_REGISTRY.json",
     "android_device_smoke_readiness": "기획서/50_제작_검증/ANDROID_DEVICE_SMOKE_READINESS_CLOSURE.md",
@@ -14,7 +14,7 @@
   "adapter_migration": {
     "decision_id": "DEC-BASE-20260805-001",
     "status": "PRESERVED_AND_MIGRATED_ON_DRAFT_BRANCH",
-    "source_main_commit": "a45176a3655ae6b36e69f1d58a8556626ca9df86",
+    "source_main_commit": "8c6dd60c634019e64178e72aa4959a2a970708e1",
     "trusted_base_validator": "bfdc9e44d4a6920dc085eaa3f9d19d31b1acd2a1",
     "source_adapter_sha256": "031f9ba69f829f26587aa6c62c50d5f922999fc6129fa3b847ccd32b9886840d",
     "original_project_skill_registry_sha256": "b65b926348fccf31bae74bbc3c4fc0ec7d81f88ecb332fc52895f37ad7ba2484",
@@ -221,6 +221,13 @@
       "machine_health_authority": "docs/PROJECT_OPERATING_HEALTH.json",
       "product_files": "UNCHANGED",
       "google_sheets": "UNCHANGED"
+    },
+    "baseline_refresh": {
+      "reason": "MAIN_ADVANCED_BY_PR_89_BEFORE_ADAPTER_PR_COMPLETION",
+      "previous_exact_base": "a45176a3655ae6b36e69f1d58a8556626ca9df86",
+      "current_exact_base": "8c6dd60c634019e64178e72aa4959a2a970708e1",
+      "preserved_main_change": "SELF_CONTAINED_GODOT_PILOT_EVIDENCE",
+      "product_files_modified_by_adapter_refresh": false
     }
   },
   "evidence_boundaries": {
