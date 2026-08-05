@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-08-05 — Android Device Smoke Canonical Freshness Repair · EV-USER-023
+
+- 사용자 승인 `EV-USER-023`으로 Android Device Smoke 전 canonical-freshness repair 확정
+- 활성 `START_HERE`·`ACTIVE_CONTEXT`·`DEVELOPMENT_GATES`를 finite 현재 권위와 Android Device Smoke로 복구
+- Documentation Map·Design Document Registry에서 old VS03·capacity-eight·fuel·BOOST 자료를 `HISTORICAL / SUPERSEDED`로 분류
+- 프로젝트 Skill·Registry를 finite delivery puzzle·unlimited LIFO·persistent branch·Android validation 권위로 갱신
+- `PROJECT_BASE_ADAPTER.json`에 project Registry raw-byte SHA-256 전파
+- physical-device AND-01~20 Runbook과 `overall_gate: NOT_RUN` evidence Template 추가
+- focused contract RED→GREEN, Project Contract #565 PASS
+- Godot Tests #509 `65 cases · 10,792 assertions · 0 failures`
+- Base Shared External AI Adapter #15, Planning First #8, First Prompt #9 PASS
+- 제품 코드·Scene·APK·Android export workflow·기본 진입점·게임 규칙·자산·Google Sheet 변경 없음
+- 과거 VS03·endless·fuel·BOOST·capacity-eight 자료는 역사 증거로 보존
+- Android Device Smoke·Five-person Comprehension은 `NOT_RUN`, Production Cutover는 `BLOCKED`
+- 다음 작업은 canonical APK 전체 hash 확인 후 물리 Android landscape 기기에서 AND-01~20 실행
+
 ## 2026-08-02 — Total Planning Decision · SX-DEC-016 and SX-OPS-001
 
 - 사용자 권장안 승인으로 `SX-DEC-016` 실제 첫 run 상황형 온보딩 확정

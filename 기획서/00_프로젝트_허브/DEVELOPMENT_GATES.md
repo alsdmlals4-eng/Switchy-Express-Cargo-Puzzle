@@ -1,216 +1,173 @@
 # Development Gates
 
+## Active Gate Chain
+
+```text
+G0 PROJECT_IDENTIFIED: PASS
+→ G1 FINITE_PRODUCT_AUTHORITY: PASS
+→ G2 AUTOMATED_CORE: PASS
+→ G3 VALIDATION_PREPARATION: PASS
+→ G4 CANONICAL MAIN APK EXPORT: PASS
+→ G5 ANDROID DEVICE SMOKE: NOT_RUN · CURRENT
+→ G6 FIVE-PERSON COMPREHENSION: NOT_RUN · BLOCKED_BY_G5
+→ G7 PRODUCTION CUTOVER REVIEW: BLOCKED_BY_G5_G6
+```
+
 ## G0 — PROJECT_IDENTIFIED
 
 Status: `PASS`
 
-- [x] 프로젝트·플랫폼·엔진 확정
-- [x] 저장소와 올바른 Switchy Express Sheet 확인
-- [x] wrong `19Ff...` Sheet 제외
+- [x] Repository: `alsdmlals4-eng/Switchy-Express-Cargo-Puzzle`
+- [x] Engine: Godot `4.7.1-stable` · GDScript
+- [x] Primary platform: Android · landscape
+- [x] Correct Sheet: `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`
+- [x] Wrong `19Ff...` Sheet excluded
 
-## G1 — CORE_CONFIRMED
+## G1 — FINITE_PRODUCT_AUTHORITY
+
+Status: `PASS · GMB-002 · SX-DEC-027~036`
+
+- [x] finite authored delivery puzzle
+- [x] free track construction with construction cost and full BUILD refund
+- [x] structural preflight before run
+- [x] automatic movement, manual/auto loading, persistent branch direct tap
+- [x] unlimited LIFO and TOP contiguous-group unloading
+- [x] finite timer, immediate success on final unload, failure with undelivered cargo
+- [x] cosmetic-only fairness
+
+Historical endless/fuel/BOOST/capacity-eight rules do not own current behavior.
+
+## G2 — AUTOMATED_CORE
 
 Status: `PASS`
 
-- [x] 자동 운행·LOAD·분기·LIFO·연료·점수 구조
-- [x] 15×10 connected railway
-- [x] Combo·compact token·actual-run onboarding semantics
-- [x] `SX-DEC-017~026` canonical sync
-- [x] 핵심 재미 위계 `LIFO > route > risk/tempo > meta`
+- [x] map definition·track layout·editor·preflight
+- [x] build session·sealed snapshot
+- [x] fixed cargo field·manual/auto loading·unlimited LIFO
+- [x] delivery event·finite lifecycle·pause·result
+- [x] immutable solution/attempt identity and same-layout retry
+- [x] landscape finite product view
+- [x] integrated `A → B → A → A` / `2 → 1 → 1` proof
+- [x] automated regression evidence preserved in `SX-AUD-017~019`
 
-## G2 — VERTICAL_SLICE_CONTRACT_APPROVED
+자동 테스트는 Android touch, safe area, 실기기 성능 또는 사람 이해도를 증명하지 않는다.
 
-Status: `PASS · LOCAL/PRODUCTION_SCOPE_STAGED`
+## G3 — VALIDATION_PREPARATION
 
-- [x] representative experience·include/exclude
-- [x] result/camera/Profile/reward/difficulty/restart/map contracts
-- [x] VS local and Production online scope separation
-- [x] tuning values marked `TEST_VALUE`
+Status: `PASS · SX-AUD-018`
 
-## G3 — CORE_RUNTIME_PROVEN
+- [x] isolated validation launcher
+- [x] `PROOF` real finite Slice
+- [x] view-owned `STACK 8 / STACK 16 / STACK 32`
+- [x] on-device Selector and Back
+- [x] fail-closed invalid mode handling
+- [x] Android validation export preset and isolated package
+- [x] production `run/main_scene` and `game/main/main.tscn` invariance
 
-Status: `PARTIAL · VS03_02_HEADLESS_PASSED`
+## G4 — CANONICAL MAIN APK EXPORT
 
-Completed:
+Status: `PASS · SX-AUD-019 · EV-FP-APK-001`
 
-- [x] RailGraph·switch·train·CargoStack·station·pickup·LIFO
-- [x] survival economy·Combo·fuel-zero·immutable summary
-- [x] difficulty forecast/commit foundation
-- [x] actual DeliveryLoop integration
-- [x] compact token state `0..8`
-- [x] route-history TrainFootprint·conservative compressed occupancy
-- [x] optional DeliveryLoop provider·legacy fallback·respawn exclusion
-- [x] `19 cases / 7499 assertions / 0 failures`
-
-Remaining:
-
-- [ ] target3 maps·RunSession·restart·selection
-- [ ] all speed/fuel pressure boundaries under one authority
-- [ ] minimal playable core surface
-- [ ] Profile/records/cosmetics/unlocks/rewards
-- [ ] result/collection/map browser
-- [ ] contextual onboarding
-- [ ] end-to-end local flow
-
-## G3P — TOTAL_PLANNING_AND_REVIEW_COMPLETE
-
-Status: `PASS · SX-AUD-005`
-
-- [x] actual API/file/test/save/order/rollback review
-- [x] composition and transaction boundaries
-- [x] target3/target100 separation
-- [x] package ownership and exact gates
-
-## G3B — GRILL_ME_BATCH_PREMERGE
-
-Status: `GMB-001 CLOSED`
-
-- [x] `SX-DEC-017~026`, `EV-USER-006~015`
-- [x] PR #29/#34 and correct Sheet readback
-
-## G3C — CORE_FUN_ALIGNMENT
-
-Status: `PASS_WITH_FOLLOWUPS · SYNCED · CLOSED`
-
-- [x] `SX-AUD-007 / EV-USER-017~018`
-- [x] core/support hierarchy
-- [x] benchmark-backed Grill Me format
-- [x] F87 VS03-R1 correction plan
-- [x] F91 core-before-meta option C
-- [x] PR #39/#40 and correct Sheet closure
-
-Follow-ups remain implementation/evidence work:
-
-- F87 VS03-R1 implementation
-- F89 mono-color strategy evidence
-- F90 Android reach evidence
-- F92 compact-token product readability evidence
-- F58 target100 Production evidence
-
-## G3I — VS-03 IMPLEMENTATION PACKAGES
-
-Status: `VS03-01/02 MERGED_AND_VERIFIED · VS03-03 READY_FOR_BUILD`
-
-Current and future order:
-
-```text
-VS03-01 run lifecycle/economy/difficulty · DONE
-→ VS03-02 compact footprint/DeliveryLoop seam · DONE
-→ VS03-03 target3 maps/session/restart/selection · READY · CURRENT
-→ VS03-R1 difficulty authority alignment · BLOCKED
-→ VS03-05A minimal playable core surface · BLOCKED
-→ VS03-04 Profile/records/cosmetics/unlocks/rewards · BLOCKED
-→ VS03-05B result/collection/map browser · BLOCKED
-→ VS03-06 contextual onboarding · BLOCKED
-→ VS03-07 integration/evidence handoff · BLOCKED
+```yaml
+workflow: Android Validation APK
+workflow_run_id: 31011620357
+source_commit: 536911449018a3caf3511bc64e7bf1a66edf2016
+result: SUCCESS
+tests: 65 cases · 10,792 assertions · 0 failures
+apk_size_bytes: 28771631
+apk_sha256: eb49225ab4062e5cf863f79a0d17f85d339ea176d7f0bb6f04096ed8a07559ea
+artifact_zip_sha256: 1802ca52dd90eb674f89b0a6e4678152d314c5644d135a84033388b4d3ee7193
+attestation_id: 39044925
+artifact_expiry: 2026-08-19T13:45:27Z
 ```
 
-Rules:
+- [x] workflow source and manifest source match
+- [x] APK actual hash, `.sha256`, manifest and attestation subject match
+- [x] validation package: `com.alsdmlals4.switchyexpress.validation`
+- [x] product entrypoint remains legacy
 
-- current authority is VS03-03 only
-- previous package must merge and synchronize before next starts
-- shared hotspots do not run in parallel
-- every PR requires behind 0, Project Contract/Godot success, thread 0, REQUEST_CHANGES 0
-- package ownership, rollback, and explicit evidence ceiling are mandatory
+APK export PASS는 device/HUMAN/cutover PASS가 아니다.
 
-### VS03-02 Gate · PASS
+## G5 — ANDROID DEVICE SMOKE
+
+Status: `NOT_RUN · CURRENT`
+
+Authority:
+
+- `기획서/50_제작_검증/ANDROID_DEVICE_SMOKE_RUNBOOK.md`
+- `기획서/50_제작_검증/ANDROID_DEVICE_SMOKE_EVIDENCE_TEMPLATE.md`
+
+Required:
+
+- [ ] full canonical APK SHA-256 match
+- [ ] physical Android landscape device
+- [ ] AND-01~20 all executed
+- [ ] `PROOF / STACK 8 / STACK 16 / STACK 32 / Back`
+- [ ] BUILD→RUN→pause/resume→result→retry/edit
+- [ ] LOAD hold·auto-load·branch direct tap·occupied lock
+- [ ] 8/16/32 rear/TOP readability
+- [ ] safe area·touch target·clipping·overlap·input omission
+- [ ] crash·ANR·script error·severe frame degradation absent
+- [ ] linked recordings/screenshots/logs with privacy review
+
+Gate:
 
 ```text
-PR #41 exact head 5477ecd8d7c14c73a62a3c666d15aa4e826a92ab
-merge cfe6d5ca0c76942720c5c12ad5dc59aaa651b915
-Project Contract 281 PASS
-Godot Tests 261 PASS
-19 cases · 7499 assertions · 0 failures
-behind 0 · thread 0 · REQUEST_CHANGES 0
+PASS: AND-01~20 all PASS on one physical device with the canonical hash.
+FAIL: one or more executable required items FAIL.
+BLOCKED: hash/package/device/evidence prerequisite prevents a valid run.
+NOT_RUN: one or more required items were not performed.
 ```
 
-- [x] token count/order/rear parity for `0..8`
-- [x] `0.22 + index×0.28`, capacity 8=`2.18`
-- [x] straight·curve·switch route sampling
-- [x] conservative unique occupancy, trailing `<=3`
-- [x] provider injection and exact legacy fallback
-- [x] pickup/unload one-sync semantics
-- [x] compact spawn/respawn exclusion
+## G6 — FIVE-PERSON COMPREHENSION
 
-F92 product-view/device/human readability remains `NOT_RUN`.
+Status: `NOT_RUN · BLOCKED_BY_G5`
 
-### VS03-03 Gate
+Android reviewed PASS 뒤 같은 APK SHA-256으로 수행한다.
 
-- [ ] exactly three distinct validated non-fallback official maps
-- [ ] immutable MapDefinition and strict target3 MapCatalog
-- [ ] fully configured RunSessionFactory
-- [ ] explicit train start/incoming cells
-- [ ] same-map restart with fresh run/transaction/services
-- [ ] automatic undiscovered-first selection
-- [ ] discovered-map semantic reselection domain
-- [ ] no raw seed or silent substitution
-- [ ] Profile/product Scene/target100 dependencies 0
+- [ ] P01~P05 first-contact sessions
+- [ ] 4/5+ explain last-loaded cargo as TOP
+- [ ] 4/5+ explain why `A/B/A/A` requires A revisit
+- [ ] failure recovery and same-layout retry comprehension
+- [ ] shape/text identification without relying on color alone
+- [ ] no solution coaching beyond control failure recovery
 
-### VS03-R1 Gate
+## G7 — PRODUCTION CUTOVER REVIEW
 
-- [ ] 30-second speed-only commit
-- [ ] 45-second fuel-only commit
-- [ ] 90-second combined commit
-- [ ] large-delta order, pause/reset, event-time parity
-- [ ] balance constants unchanged
+Status: `BLOCKED_BY_G5_G6`
 
-### VS03-05A Gate
+별도 승인과 PR이 필요하다.
 
-- [ ] PlayScene smoke and Main host-only boundary
-- [ ] token/rear/HUD parity
-- [ ] switch preview/actual parity
-- [ ] `FULL_MAP_READY` before run start
-- [ ] semantic single-pointer/no-chord inputs
-- [ ] presentation/Reduced Motion trace parity
-- [ ] Profile/result/record/reward/collection/browser dependency 0
+- [ ] Android Device Smoke reviewed PASS
+- [ ] Five-person Comprehension reviewed PASS
+- [ ] default entrypoint cutover design and rollback
+- [ ] production package/signing/release evidence
+- [ ] final art/icon and store consistency where required
 
-Profile implementation cannot start before the 05A automated gate passes.
+## Separate Later Gates
 
-## G4 — TARGET_QUALITY_SLICE
+다음은 G5의 완료 조건이 아니며 별도 package다.
 
-Status: `NOT_STARTED · DOMAIN_CORE_PARTIAL`
+- final art and production icon
+- target100 official catalog
+- daily/weekly online challenge backend
+- UGC editor/publication/moderation/privacy/community
+- Google Play submission, rating and target audience
+- asset rights runtime audit and release compliance evidence
+- GitHub Action runtime modernization
 
-- [ ] product board/train/token/switch readability
-- [ ] compact tokens and PREP/full-map camera
-- [ ] visible difficulty signal
-- [ ] result/record/reward and map-selection presentation
-- [ ] contextual onboarding
-- [ ] 48dp·safe area·Reduced Motion·mute/haptic-off
+## Historical Package Boundary
 
-Not in G4: target100 completion or online UGC backend.
-
-## G5 — PLAYTEST EVIDENCE
-
-Status: `NOT_STARTED`
-
-- [ ] 10-minute soak and Android performance
-- [ ] localization/accessibility runtime
-- [ ] mono-color strategy and economy simulation
-- [ ] compact token readability and 5+ first experience
-- [ ] LIFO·Combo·token·route·result comprehension
-- [ ] PASS / REVISE / PIVOT / STOP
-
-## G6 — OFFICIAL CATALOG PRODUCTION
-
-Status: `NOT_STARTED · F58_NOT_MET`
-
-- [ ] 100+ unique validated layouts
-- [ ] fallback/duplicate exclusion and first-100 audit
-- [ ] browser QA and migration
-
-## G7 — ONLINE UGC PRODUCTION
-
-Status: `NOT_STARTED`
-
-- [ ] data-only editor·publication backend
-- [ ] server validation·immutable revisions
-- [ ] moderation·privacy·anti-abuse·community signals
+과거 VS03 package order, fuel pressure, BOOST, capacity-eight compact wagon and endless progression 자료는 `HISTORICAL_REPLACED` 또는 `LEGACY_IMPLEMENTATION`이다. 당시 코드·테스트·감사의 역사 증거로 보존하지만 current Gate나 다음 작업 권위를 갖지 않는다.
 
 ## Current Transition
 
 ```text
-latest main
-→ VS03-03 separate TDD branch
-→ target3 map/session/restart/selection exact-head Gate
-→ sequential approved package order
+canonical APK hash verification
+→ physical Android AND-01~20
+→ evidence completeness and privacy review
+→ adversarial review
+→ reviewed Gate decision
 ```
+
+실제 증거 전에는 `SX-AUD-020`, Android PASS, Five-person PASS, Google Sheet Android closure 또는 production cutover를 기록하지 않는다.

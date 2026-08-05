@@ -2,22 +2,189 @@
   "schema_version": 1,
   "project": "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle",
   "documents": [
-    {"id":"SX-HUB","question":"프로젝트 현재 상태","source":"기획서/00_프로젝트_허브/START_HERE.md","format":"markdown","publication_policy":"source_only","status":"CURRENT"},
-    {"id":"SX-DECISIONS","question":"현재 승인 결정","source":"기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md","format":"markdown","publication_policy":"source_only","status":"CURRENT"},
-    {"id":"SX-CURRENT-VS-PLAN","question":"현재 Vertical Slice 구현·기획·batch 순서는 무엇인가","source":"docs/superpowers/plans/2026-08-02-switchy-express-current-vertical-slice.md","format":"markdown","publication_policy":"source_only","status":"CURRENT"},
-    {"id":"SX-COMPACT-WAGON-TOKENS","question":"화물 수와 compact wagon token의 표시·LIFO·점유 관계는 무엇인가","source":"docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md","format":"markdown","publication_policy":"source_only","status":"CURRENT"},
-    {"id":"SX-FIRST-SESSION-ONBOARDING","question":"실제 첫 run에서 LOAD·token·분기·LIFO·Combo·BOOST를 어떻게 가르치는가","source":"docs/superpowers/specs/2026-08-02-first-session-contextual-onboarding-design.md","format":"markdown","publication_policy":"source_only","status":"CURRENT"},
-    {"id":"SX-FIRST-SESSION-ONBOARDING-PLAN","question":"상황형 첫 세션 온보딩을 어떤 TDD 순서로 구현하는가","source":"docs/superpowers/plans/2026-08-02-first-session-contextual-onboarding.md","format":"markdown","publication_policy":"source_only","status":"CURRENT"},
-    {"id":"SX-GRILL-ME-BATCH-PROTOCOL","question":"Grill Me 승인 10건을 언제 어떻게 감사·병합·Sheet closure하는가","source":"기획서/50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md","format":"markdown","publication_policy":"source_only","status":"CURRENT"},
-    {"id":"SX-CORE-GAMEPLAY","question":"핵심 경험과 루프","source":"기획서/10_경험/CORE_GAMEPLAY.md","format":"markdown","publication_policy":"milestone_sync","status":"CURRENT"},
-    {"id":"SX-CORE-SYSTEMS","question":"화물·노선·연료·점수 시스템","source":"기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md","format":"markdown","publication_policy":"milestone_sync","status":"CURRENT"},
-    {"id":"SX-VISUAL","question":"시각·UI 방향","source":"기획서/40_표현/VISUAL_DIRECTION.md","format":"markdown","publication_policy":"milestone_sync","status":"CURRENT"},
-    {"id":"SX-VS","question":"Vertical Slice 범위와 품질","source":"기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md","format":"markdown","publication_policy":"milestone_sync","status":"CURRENT"},
-    {"id":"SX-PLAYTEST","question":"플레이테스트와 계측","source":"기획서/50_제작_검증/PLAYTEST_PLAN.md","format":"markdown","publication_policy":"source_only","status":"CURRENT"},
-    {"id":"SX-TOTAL-PLANNING-AUDIT","question":"전체 기획 Coverage·충돌·Grill Me Decision Queue는 무엇인가","source":"기획서/50_제작_검증/TOTAL_PLANNING_AUDIT.md","format":"markdown","publication_policy":"source_only","status":"CURRENT"},
-    {"id":"SX-AUDIT-VS01","question":"VS-01 구현 뒤 누락·충돌·위험은 무엇이었는가","source":"기획서/50_제작_검증/POST_VS01_ADVERSARIAL_AUDIT.md","format":"markdown","publication_policy":"source_only","status":"HISTORICAL"},
-    {"id":"SX-AUDIT-VS02","question":"VS-02 구현 뒤 정본·실제 구현·Sheet 충돌과 다음 위험은 무엇인가","source":"기획서/50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md","format":"markdown","publication_policy":"source_only","status":"HISTORICAL"},
-    {"id":"SX-VS-PLAN-2026-08-01","question":"VS-01·VS-02 상세 TDD 이력과 기존 VS-03 기반 계획은 무엇인가","source":"docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md","format":"markdown","publication_policy":"source_only","status":"HISTORICAL"},
-    {"id":"SX-BASE-V94-AUDIT","question":"Base v9.4 적용과 보호 경계는 무엇인가","source":"기획서/50_제작_검증/BASE_V9_4_ADOPTION_AUDIT.md","format":"markdown","publication_policy":"source_only","status":"CURRENT"}
+    {
+      "id": "SX-HUB",
+      "question": "프로젝트 현재 제품과 Gate는 무엇인가",
+      "source": "기획서/00_프로젝트_허브/START_HERE.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-ACTIVE-CONTEXT",
+      "question": "현재 상태와 다음 정확한 작업은 무엇인가",
+      "source": "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-DEVELOPMENT-GATES",
+      "question": "현재 개발 Gate와 차단 관계는 무엇인가",
+      "source": "기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-DECISIONS",
+      "question": "현재 승인 결정",
+      "source": "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-FINITE-BASELINE",
+      "question": "finite 제품 기준선은 무엇인가",
+      "source": "기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-APK-AUDIT-019",
+      "question": "정식 Android Validation APK export 증거는 무엇인가",
+      "source": "기획서/50_제작_검증/SX_AUD_019_ANDROID_APK_PIPELINE_PROBE.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-ANDROID-SMOKE-RUNBOOK",
+      "question": "Android 실기기 Smoke를 어떻게 실행하는가",
+      "source": "기획서/50_제작_검증/ANDROID_DEVICE_SMOKE_RUNBOOK.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-ANDROID-SMOKE-EVIDENCE-TEMPLATE",
+      "question": "Android 실기기 Smoke 결과를 어떤 형식으로 기록하는가",
+      "source": "기획서/50_제작_검증/ANDROID_DEVICE_SMOKE_EVIDENCE_TEMPLATE.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-GRILL-ME-BATCH-PROTOCOL",
+      "question": "Grill Me 승인 10건을 언제 어떻게 감사·병합·Sheet closure하는가",
+      "source": "기획서/50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-CORE-GAMEPLAY",
+      "question": "핵심 경험과 루프",
+      "source": "기획서/10_경험/CORE_GAMEPLAY.md",
+      "format": "markdown",
+      "publication_policy": "milestone_sync",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-CORE-SYSTEMS",
+      "question": "finite 선로·화물·LIFO·시간 시스템",
+      "source": "기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md",
+      "format": "markdown",
+      "publication_policy": "milestone_sync",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-VISUAL",
+      "question": "시각·UI 방향",
+      "source": "기획서/40_표현/VISUAL_DIRECTION.md",
+      "format": "markdown",
+      "publication_policy": "milestone_sync",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-VS",
+      "question": "Vertical Slice 범위와 품질·cutover 경계",
+      "source": "기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md",
+      "format": "markdown",
+      "publication_policy": "milestone_sync",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-PLAYTEST",
+      "question": "플레이테스트와 사람 검증",
+      "source": "기획서/50_제작_검증/PLAYTEST_PLAN.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-BASE-V94-AUDIT",
+      "question": "Base v9.4 적용과 보호 경계는 무엇인가",
+      "source": "기획서/50_제작_검증/BASE_V9_4_ADOPTION_AUDIT.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-CURRENT-VS-PLAN",
+      "question": "old endless 기반 VS03 구현·기획·batch 순서는 무엇이었는가",
+      "source": "docs/superpowers/plans/2026-08-02-switchy-express-current-vertical-slice.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "HISTORICAL"
+    },
+    {
+      "id": "SX-COMPACT-WAGON-TOKENS",
+      "question": "capacity-eight compact wagon token 설계는 무엇이었는가",
+      "source": "docs/superpowers/specs/2026-08-02-compact-cargo-wagon-tokens-design.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "HISTORICAL"
+    },
+    {
+      "id": "SX-FIRST-SESSION-ONBOARDING",
+      "question": "fuel·BOOST 기반 첫 run 온보딩은 무엇이었는가",
+      "source": "docs/superpowers/specs/2026-08-02-first-session-contextual-onboarding-design.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "SUPERSEDED"
+    },
+    {
+      "id": "SX-FIRST-SESSION-ONBOARDING-PLAN",
+      "question": "fuel·BOOST 기반 첫 세션 온보딩 TDD 계획은 무엇이었는가",
+      "source": "docs/superpowers/plans/2026-08-02-first-session-contextual-onboarding.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "SUPERSEDED"
+    },
+    {
+      "id": "SX-TOTAL-PLANNING-AUDIT",
+      "question": "old VS03 전체 기획 Coverage·충돌·Grill Me Queue는 무엇이었는가",
+      "source": "기획서/50_제작_검증/TOTAL_PLANNING_AUDIT.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "HISTORICAL"
+    },
+    {
+      "id": "SX-AUDIT-VS01",
+      "question": "VS-01 구현 당시 누락·충돌·위험은 무엇이었는가",
+      "source": "기획서/50_제작_검증/POST_VS01_ADVERSARIAL_AUDIT.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "HISTORICAL"
+    },
+    {
+      "id": "SX-AUDIT-VS02",
+      "question": "VS-02 구현 당시 정본·실제 구현·Sheet 충돌은 무엇이었는가",
+      "source": "기획서/50_제작_검증/POST_VS02_ADVERSARIAL_AUDIT.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "HISTORICAL"
+    },
+    {
+      "id": "SX-VS-PLAN-2026-08-01",
+      "question": "VS-01·VS-02 상세 TDD 이력과 기존 VS-03 기반 계획은 무엇인가",
+      "source": "docs/superpowers/plans/2026-08-01-switchy-express-vertical-slice.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "HISTORICAL"
+    }
   ]
 }
