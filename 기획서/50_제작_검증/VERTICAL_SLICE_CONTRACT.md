@@ -1,20 +1,20 @@
 # Finite Delivery First Vertical Slice Contract
 
 ```yaml
-status: CURRENT_MANUAL_ACCEPTANCE_GATE
+status: VALIDATION_PREREQUISITES_BLOCKED
 product_authority: GMB-002 · SX-DEC-027~036
 execution_authority: FP-DOR-001 · EV-USER-021
 current_audit: SX-AUD-017
 current_main: 3a4aeaa63561f78e6b1065c80bda9a64af220051
 implementation_state: FP-01_PASS · FP-02_PASS · TASK_11_PASS · TASK_12_AUTOMATED_PASS
 default_entrypoint: LEGACY_RUNTIME_DEFAULT
-next_gate: ANDROID_SMOKE + FIVE_PERSON_COMPREHENSION
+next_gate: VALIDATION_HARNESS + ANDROID_EXPORT_PRESET
 cutover_status: BLOCKED
 ```
 
 ## 1. 계약 목적
 
-이 계약은 첫 번째 유한 배송 퍼즐 Slice의 구현 완료 범위와 제품 전환 조건을 정의한다. 자동 테스트 성공과 실제 제품 승인 상태를 분리하며, Android 실기기와 처음 보는 사용자의 이해 증거 없이 finite Slice를 기본 런타임으로 전환하지 않는다.
+이 계약은 첫 번째 유한 배송 퍼즐 Slice의 구현 완료 범위와 제품 전환 조건을 정의한다. 자동 테스트 성공과 실제 제품 승인 상태를 분리하며, 재현 가능한 Android 검증 빌드와 처음 보는 사용자의 이해 증거 없이 finite Slice를 기본 런타임으로 전환하지 않는다.
 
 권위 문서:
 
@@ -106,55 +106,73 @@ legacy 테스트는 회귀 방지에는 사용하지만 finite 제품 증거 수
 | Gate | 상태 | 기준 |
 |---|---|---|
 | AUTOMATED | PASS | Contract #490, Godot #451, `60 cases · 10,382 assertions · 0 failures` |
-| ANDROID | NOT_RUN | 실기기 또는 공식 emulator landscape smoke 전체 항목 |
-| HUMAN | NOT_RUN | 5명 중 4명 이상 LIFO TOP·A 재방문·edit/retry 이해 |
+| VALIDATION PREP | BLOCKED | Android export preset·validation launcher·8/16/32 stack harness 없음 |
+| ANDROID | NOT_RUN · BLOCKED_PREREQUISITES | 실기기/공식 emulator landscape smoke 전체 항목 |
+| HUMAN | NOT_RUN · BLOCKED_BY_BUILD | 같은 validation build를 사용한 5명 검증 |
 | BALANCE | NOT_RUN | First Slice production cutover 필수 Gate 아님 |
 | ONLINE | NOT_RUN | First Slice 범위 밖 |
 | FINAL ART | NOT_RUN | 후속 제작 Gate |
 
 세부 실행·기록 형식은 `FP_01_02_IMPLEMENTATION_AUDIT.md`를 따른다.
 
-## 7. Cutover 조건
+## 7. Validation 준비 계약
+
+저장소에는 현재 `export_presets.cfg`가 없고, finite authored map은 화물 4개의 proof map 하나뿐이다. 계획의 `TOP 8/16/32` 가독성 항목을 수행할 수 있는 fixture도 없다.
+
+다음 준비 package는 제품 기능을 추가하지 않고 아래만 제공해야 한다.
+
+1. 재현 가능한 Android debug export preset
+2. production main과 분리된 validation 전용 launcher
+3. 실제 finite proof Slice 실행 모드
+4. Presenter/View 기반 8·16·32 stack 가독성 모드
+5. launcher 부팅·모드별 token 수·production entrypoint 불변 테스트
+6. validation artifact의 branch SHA·APK SHA-256 기록 절차
+
+validation harness는 제품 콘텐츠, 캠페인 맵, 저장 데이터, 제품 진입점으로 취급하지 않는다. 별도 설계·TDD·적대적 리뷰 후에만 병합한다.
+
+## 8. Cutover 조건
 
 다음 조건이 모두 충족돼야 별도 production-cutover PR을 생성할 수 있다.
 
 1. AUTOMATED PASS
-2. ANDROID PASS
-3. HUMAN PASS
-4. Critical/Important 결함 0
-5. unresolved review thread 0
-6. REQUEST_CHANGES 0
-7. validation build SHA·APK hash·기기·사람 증거 기록
-8. GitHub 권위 문서와 correct Google Sheet same-ID 동기화
+2. VALIDATION PREP PASS
+3. ANDROID PASS
+4. HUMAN PASS
+5. Critical/Important 결함 0
+6. unresolved review thread 0
+7. REQUEST_CHANGES 0
+8. validation build SHA·APK hash·기기·사람 증거 기록
+9. GitHub 권위 문서와 correct Google Sheet same-ID 동기화
 
 production cutover는 `game/main/main.tscn`과 필요한 최소 어댑터만 변경한다. legacy 파일 삭제는 별도 migration package다.
 
-## 8. Android 검증 진입점 원칙
+## 9. Android 검증 진입점 원칙
 
 현재 main은 legacy runtime을 유지한다. Android smoke를 위해 main을 조기 전환하지 않는다.
 
-- main SHA에서 별도 `validation/fp-android-smoke` 브랜치를 만든다.
-- validation 브랜치에서만 finite scene 진입점 단일 커밋을 만든다.
+- 준비 package의 validation launcher를 사용한다.
+- 실제 device run은 별도 `validation/fp-android-smoke` 브랜치에서 수행한다.
 - branch SHA와 APK SHA-256을 증거로 남긴다.
 - validation 브랜치는 main에 병합하지 않는다.
 - 수동 Gate 통과 후 production-cutover PR에서 전환을 다시 검토한다.
 
-## 9. Rollback
+## 10. Rollback
 
 - PR #55~#60은 package별로 추적 가능하다.
 - production cutover 전에는 legacy 기본 진입점이 유지되므로 자동 구현 병합만으로 사용자 제품이 바뀌지 않는다.
 - cutover 후 문제가 발생하면 진입점 커밋만 되돌리고 finite 구현·테스트는 진단 가능한 상태로 보존한다.
 - old endless 파일을 삭제하지 않는다.
 
-## 10. 현재 결론
+## 11. 현재 결론
 
 ```text
 FINITE CORE IMPLEMENTATION: PASS
 FINITE PRODUCT SURFACE: PASS
 INTEGRATED AUTOMATION: PASS
-ANDROID: NOT_RUN
-HUMAN: NOT_RUN
+VALIDATION PREPARATION: BLOCKED
+ANDROID: NOT_RUN · BLOCKED_PREREQUISITES
+HUMAN: NOT_RUN · BLOCKED_BY_BUILD
 DEFAULT CUTOVER: BLOCKED
 ```
 
-다음 권위 작업은 Android smoke와 5명 comprehension 검증이다. 수동 증거가 채워질 때까지 First Slice는 구현 완료 후보이며 production default가 아니다.
+다음 권위 작업은 validation harness와 Android export preset의 설계·TDD 구현이다. 준비 package PASS 후 Android smoke와 5명 comprehension 검증을 실행한다.
