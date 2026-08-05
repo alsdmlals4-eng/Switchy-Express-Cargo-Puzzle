@@ -1,6 +1,8 @@
 class_name FiniteDeliveryLoop
 extends RefCounted
 
+signal delivery_event_created(event: Variant)
+
 const FiniteDeliveryEventScript := preload("res://game/finite/delivery/finite_delivery_event.gd")
 
 var _cargo_field: Variant
@@ -47,7 +49,7 @@ func handle_cell_entered(cell: Vector2i, event_time: float) -> Variant:
 			unloaded_items.append(StringName(item))
 		stop_requested = not unloaded_items.is_empty()
 
-	return FiniteDeliveryEventScript.new(
+	var event: Variant = FiniteDeliveryEventScript.new(
 		cell,
 		event_time,
 		picked_up,
@@ -57,6 +59,8 @@ func handle_cell_entered(cell: Vector2i, event_time: float) -> Variant:
 		_remaining_map_cargo(),
 		_stack_size()
 	)
+	delivery_event_created.emit(event)
+	return event
 
 
 func reset() -> void:
