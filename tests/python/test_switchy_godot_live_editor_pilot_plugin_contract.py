@@ -84,6 +84,23 @@ class SwitchyGodotLiveEditorPilotPluginContractTests(unittest.TestCase):
             with self.subTest(forbidden=forbidden):
                 self.assertNotIn(forbidden, source)
 
+    def test_plugin_restores_exact_original_bytes_only_for_the_pinned_scene(self) -> None:
+        self.assertTrue(PLUGIN_GD.is_file(), f"missing {PLUGIN_GD.relative_to(ROOT)}")
+        source = PLUGIN_GD.read_text(encoding="utf-8")
+        for marker in (
+            "var _original_scene_bytes := PackedByteArray()",
+            "FileAccess.get_file_as_bytes",
+            "ProjectSettings.globalize_path(TARGET_SCENE)",
+            "file.store_buffer(_original_scene_bytes)",
+            "TEMPORARY_RESTORE_BYTE_WRITE",
+            "restore_code",
+            "final_restore_code",
+        ):
+            with self.subTest(marker=marker):
+                self.assertIn(marker, source)
+        self.assertNotIn("FileAccess.open(arguments", source)
+        self.assertNotIn("FileAccess.open(envelope", source)
+
 
 if __name__ == "__main__":
     unittest.main()
