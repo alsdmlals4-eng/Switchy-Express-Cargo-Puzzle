@@ -34,6 +34,36 @@ class TestAndroidSmokeCanonicalFreshness(unittest.TestCase):
         self.assertNotIn("current authority is VS03-03 only", gates)
         self.assertNotIn("VS03-03 READY_FOR_BUILD", gates)
 
+    def test_active_supporting_consumers_are_current(self) -> None:
+        readme = read("README.md")
+        roadmap = read("기획서/00_프로젝트_허브/ROADMAP.md")
+        systems = read("기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md")
+        playtest = read("기획서/50_제작_검증/PLAYTEST_PLAN.md")
+
+        self.assertIn("CANONICAL MAIN APK EXPORT: PASS", readme)
+        self.assertIn("ANDROID DEVICE SMOKE: NOT_RUN", readme)
+        self.assertNotIn("FINITE_PUZZLE_DEFINITION_OF_READY", readme)
+        self.assertNotIn("finite delivery runtime not aligned", readme)
+
+        self.assertIn("CANONICAL MAIN APK EXPORT · PASS", roadmap)
+        self.assertIn("ANDROID DEVICE SMOKE · CURRENT", roadmap)
+        self.assertNotIn("implementation replan required", roadmap)
+        self.assertNotIn("## FP-M0 — 새 Definition of Ready", roadmap)
+
+        self.assertIn("CURRENT_CANON · GMB-002 · AUTOMATED_CORE_PASS", systems)
+        self.assertIn("## 다음 검증 Gate", systems)
+        self.assertIn("ANDROID DEVICE SMOKE", systems)
+        self.assertNotIn("IMPLEMENTATION_REPLAN_REQUIRED", systems)
+        self.assertNotIn("1. finite puzzle DoR", systems)
+
+        self.assertIn("FIVE-PERSON COMPREHENSION", playtest)
+        self.assertIn(CANONICAL_APK_SHA256, playtest)
+        self.assertIn("P01", playtest)
+        self.assertIn("P05", playtest)
+        self.assertIn("4/5", playtest)
+        for stale in ("부스터", "연료", "BOOST", "capacity 8", "assisted_first_run"):
+            self.assertNotIn(stale, playtest)
+
     def test_documentation_routes_have_one_current_device_authority(self) -> None:
         registry = json.loads(
             read("기획서/00_프로젝트_허브/DESIGN_DOCUMENT_REGISTRY.json")
