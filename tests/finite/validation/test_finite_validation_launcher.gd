@@ -1,6 +1,7 @@
 extends "res://tests/test_case.gd"
 
 const LAUNCHER_SCENE := "res://tools/validation/finite/finite_validation_launcher.tscn"
+const LAUNCHER_SCRIPT := "res://tools/validation/finite/finite_validation_launcher.gd"
 const PROOF_SCENE := "res://game/finite/main/finite_slice.tscn"
 
 
@@ -11,6 +12,20 @@ func run() -> void:
 	)
 	if not ResourceLoader.exists(LAUNCHER_SCENE, "PackedScene"):
 		return
+
+	var launcher_script: Script = load(LAUNCHER_SCRIPT)
+	assert_equal(
+		launcher_script.mode_from_user_args(PackedStringArray()),
+		&"PROOF",
+		"missing validation argument must default to proof"
+	)
+	assert_equal(
+		launcher_script.mode_from_user_args(
+			PackedStringArray(["--validation-mode=bogus"])
+		),
+		&"INVALID",
+		"an explicit unknown validation argument must fail closed"
+	)
 
 	var packed: PackedScene = load(LAUNCHER_SCENE)
 	var launcher: Control = packed.instantiate()
