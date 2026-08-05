@@ -6,7 +6,8 @@
 status: DESIGN_APPROVED
 user_approval: current_conversation_2026-08-06T01:46+09:00
 implementation: NOT_STARTED
-implementation_authorization: AWAITING_WRITTEN_SPEC_REVIEW
+implementation_authorization: NOT_GRANTED
+next_gate: WRITTEN_SPEC_USER_REVIEW
 repository: alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
 baseline_main: ce278d17c536e9cc017c3f9c1bc429deb853a5fc
 engine: Godot 4.7.1-stable
@@ -87,10 +88,12 @@ A provenance manifest must record every vendored path and raw-byte SHA-256. Stat
 
 ```yaml
 scene: res://game/finite/presentation/finite_slice_view.tscn
-source_blob_sha: b400b6f96d37d796033fb8214d500c82fd37c8e9
+source_git_blob_sha: b400b6f96d37d796033fb8214d500c82fd37c8e9
 target_node: Board/BoardTitle
 original_name: BoardTitle
 ```
+
+The Git blob SHA is the approved design-time identity anchor. The implementation plan must compute and record the raw-file SHA-256 from the then-current fresh baseline; the materializer and Runtime use that raw-file SHA-256 rather than treating a Git blob SHA as a file-content SHA-256.
 
 `Board/BoardTitle` is an owned leaf Label in the actual finite-slice UI Scene. The current Scene script does not access this node by path, while operational nodes such as `Board`, `TopBar`, `BuildTools`, `RunTools` and `ResultPanel` are path-addressed and therefore excluded from mutation.
 
@@ -333,8 +336,10 @@ fresh_main_sha_recorded: true
 base_adapter_commit_pinned: true
 protected_paths_unchanged_in_planned_diff: true
 runtime_target_scene_and_node_pinned: true
-no_conflicting_open_pr: true
+no_other_conflicting_open_implementation_pr: true
 ```
+
+The open design/plan PR for this same Pilot is not considered a conflicting implementation PR.
 
 ## Definition of Done for Pilot PR
 
