@@ -70,6 +70,8 @@ def _load_module(path: Path, name: str):
 
 
 class SwitchyGodotLiveEditorPilotContractTests(unittest.TestCase):
+    maxDiff = None
+
     def test_required_pilot_files_exist(self) -> None:
         missing = [str(path.relative_to(ROOT)) for path in REQUIRED_FILES if not path.is_file()]
         self.assertEqual([], missing, f"missing Pilot files: {missing}")
