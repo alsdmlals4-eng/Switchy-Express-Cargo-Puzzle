@@ -17,6 +17,7 @@ import project_operating_contract as contract
 
 BASE_SHA = os.environ["PROJECT_BASE_SHA"]
 ADAPTER_PATH = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
+REGISTRY_PATH = ROOT / "skills/SKILL_REGISTRY.json"
 HEALTH_PATH = ROOT / "docs/PROJECT_OPERATING_HEALTH.json"
 MIGRATION_PATH = ROOT / "docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json"
 SHEET_PATH = ROOT / "docs/operations/SWITCHY_SHEET_AUTHORITY_EVIDENCE_2026-08-06.json"
@@ -41,6 +42,11 @@ def active_route(skill_id: object) -> dict[str, str]:
 
 def main() -> None:
     old = json.loads(ADAPTER_PATH.read_text(encoding="utf-8"))
+    legacy_registry_raw = subprocess.check_output(
+        ["git", "-C", str(ROOT), "show", f"{BASE_SHA}:skills/SKILL_REGISTRY.json"]
+    )
+    legacy_registry = json.loads(legacy_registry_raw.decode("utf-8"))
+    current_registry = json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))
 
     migration = {
         "artifact_role": "SWITCHY_ADAPTER_MIGRATION_STATE",
@@ -54,6 +60,13 @@ def main() -> None:
         "legacy_gdd_sheet": old["gdd_sheet"],
         "legacy_protected_baseline": old["protected_baseline"],
         "legacy_adapter_snapshot": old,
+        "legacy_project_registry": legacy_registry,
+        "registry_compatibility_addition": {
+            "project_skill_id": "switchy-express-design",
+            "legacy_field_preserved": "id",
+            "base_v1_field_added": "skill_id",
+            "base_owned_entries_changed": false,
+        },
         "preserved_project_evidence": [
             "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
             "기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md",
@@ -83,10 +96,16 @@ def main() -> None:
     write_json(SHEET_PATH, sheet_evidence)
 
     project_registry_path = str(old["skill_registry"]["project"]["path"])
-    registry_raw = subprocess.check_output(
-        ["git", "-C", str(ROOT), "show", f"{BASE_SHA}:{project_registry_path}"]
-    )
-    project_registry_hash = hashlib.sha256(registry_raw).hexdigest()
+    if project_registry_path != REGISTRY_PATH.relative_to(ROOT).as_posix():
+        raise SystemExit(f"unexpected project Registry path: {project_registry_path}")
+    project_entries = [
+        item
+        for item in current_registry.get("skills", [])
+        if isinstance(item, dict) and item.get("owner") == "project"
+    ]
+    if len(project_entries) != 1 or project_entries[0].get("skill_id") != "switchy-express-design":
+        raise SystemExit("project Skill compatibility identity is not established")
+    project_registry_hash = hashlib.sha256(REGISTRY_PATH.read_bytes()).hexdigest()
 
     gdd_sheet = dict(old["gdd_sheet"])
     gdd_sheet["declared_sync_status"] = old["gdd_sheet"].get("sync_status")
