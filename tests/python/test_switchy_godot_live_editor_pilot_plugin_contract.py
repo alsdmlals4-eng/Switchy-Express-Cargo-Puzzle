@@ -9,17 +9,18 @@ PLUGIN_ROOT = ROOT / "tools/godot-live-editor-pilot/pilot_plugin"
 PLUGIN_CFG = PLUGIN_ROOT / "plugin.cfg"
 PLUGIN_GD = PLUGIN_ROOT / "plugin.gd"
 EXACT_RESTORE_GD = PLUGIN_ROOT / "plugin_exact_restore.gd"
+RUNTIME_STABILITY_GD = PLUGIN_ROOT / "plugin_runtime_stability.gd"
 
 
 class SwitchyGodotLiveEditorPilotPluginContractTests(unittest.TestCase):
     maxDiff = None
 
     def test_plugin_files_exist(self) -> None:
-        for path in (PLUGIN_CFG, PLUGIN_GD, EXACT_RESTORE_GD):
+        for path in (PLUGIN_CFG, PLUGIN_GD, EXACT_RESTORE_GD, RUNTIME_STABILITY_GD):
             with self.subTest(path=path):
                 self.assertTrue(path.is_file(), f"missing {path.relative_to(ROOT)}")
         config = PLUGIN_CFG.read_text(encoding="utf-8")
-        self.assertIn('script="plugin_exact_restore.gd"', config)
+        self.assertIn('script="plugin_runtime_stability.gd"', config)
 
     def test_plugin_targets_only_the_approved_switchy_scene_and_node(self) -> None:
         self.assertTrue(PLUGIN_GD.is_file(), f"missing {PLUGIN_GD.relative_to(ROOT)}")
@@ -66,7 +67,7 @@ class SwitchyGodotLiveEditorPilotPluginContractTests(unittest.TestCase):
         self.assertTrue(PLUGIN_GD.is_file(), f"missing {PLUGIN_GD.relative_to(ROOT)}")
         combined = "\n".join(
             path.read_text(encoding="utf-8")
-            for path in (PLUGIN_GD, EXACT_RESTORE_GD)
+            for path in (PLUGIN_GD, EXACT_RESTORE_GD, RUNTIME_STABILITY_GD)
             if path.is_file()
         )
         for marker in (
@@ -111,6 +112,24 @@ class SwitchyGodotLiveEditorPilotPluginContractTests(unittest.TestCase):
                 self.assertIn(marker, source)
         self.assertNotIn("FileAccess.open(arguments", source)
         self.assertNotIn("FileAccess.open(envelope", source)
+
+    def test_plugin_waits_for_stable_editor_state_and_reports_batch_failures(self) -> None:
+        self.assertTrue(
+            RUNTIME_STABILITY_GD.is_file(),
+            f"missing {RUNTIME_STABILITY_GD.relative_to(ROOT)}",
+        )
+        source = RUNTIME_STABILITY_GD.read_text(encoding="utf-8")
+        for marker in (
+            "_wait_for_stable_observation",
+            "stable_observation_pass",
+            "batch_failure_codes",
+            "batch_observation_revision",
+            "BATCH_STATE_NOT_STABLE",
+            "EditorInterface.open_scene_from_path(TARGET_SCENE)",
+            "FINAL_REOPENED_FROM_ORIGINAL_BYTES",
+        ):
+            with self.subTest(marker=marker):
+                self.assertIn(marker, source)
 
 
 if __name__ == "__main__":
