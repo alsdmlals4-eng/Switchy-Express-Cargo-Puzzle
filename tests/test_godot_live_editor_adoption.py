@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_C0_SHA = "cabbc59b170c5da2bb1df7e4d4d535857dd35495"
+BASE_C0_SHA = "8d6df19de04374506560408cf0819a5990861c2e"
 GODOT_ARCHIVE_SHA256 = "c7ff14fd28472c8d4f193043de30278dcf7e5241a1dcf7566b02e27addaa33ba"
 DESCRIPTOR = ROOT / ".godot-live-editor/project-pilot.json"
 ADOPTION_DOC = ROOT / "docs/GODOT_LIVE_EDITOR_ADOPTION.md"
@@ -91,6 +91,11 @@ def test_adoption_document_preserves_truthful_scope() -> None:
         "MAIN_SCENE_READ_ONLY",
         "SCRATCH_SCENE_MUTATION_ONLY",
         "SOURCE_TREE_UNCHANGED",
+        "SELF_CONTAINED_EVIDENCE_BUNDLE",
+        "project-pilot-evidence.json",
+        "runtime-result.json",
+        "scratch.tscn",
+        "ARTIFACT_BYTE_HASH_MISMATCH",
         "PRODUCTION_ADAPTER_READY: NOT_READY",
         "Program B",
         "Program C",
