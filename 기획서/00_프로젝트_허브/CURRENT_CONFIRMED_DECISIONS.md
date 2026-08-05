@@ -15,7 +15,7 @@ implementation_state: AUTOMATED_CORE_PASS · VALIDATION_PREP_PASS · APK_EXPORT_
 manual_gate_state: ANDROID_NOT_RUN · HUMAN_NOT_RUN
 cutover_state: BLOCKED
 next_gate: ANDROID_DEVICE_SMOKE → FIVE_PERSON_COMPREHENSION
-sheet_state: SX-AUD-019_SYNC_PENDING
+sheet_state: SX-AUD-019_SYNCED_TO_MAIN_0695ff2f
 old_vs03_execution_order: REPLACED · HISTORICAL_EVIDENCE
 ```
 
@@ -168,7 +168,7 @@ APK, `.sha256`, manifest, run source와 provenance가 일치해 `APK_EXPORT: PAS
 | SX-AUD-013~016 | core·clock·identity·surface | PASS_WITH_NEXT_GATES |
 | SX-AUD-017 | end-to-end·수동 Gate 준비 | PASS_WITH_PREREQUISITE_BLOCKERS |
 | SX-AUD-018 | validation 준비 | PASS |
-| SX-AUD-019 | selector·APK pipeline·canonical main export | APK_EXPORT_PASS · ANDROID/HUMAN_OPEN |
+| SX-AUD-019 | selector·APK pipeline·canonical main export | APK_EXPORT_PASS · SHEET_SYNCED · ANDROID/HUMAN_OPEN |
 
 ## Current Execution Authority
 
@@ -183,4 +183,4 @@ GMB-002 MERGED
 → production cutover review
 ```
 
-Android·HUMAN 증거 전에는 finite를 product default 또는 제품 검증 완료로 표시하지 않는다. Correct Sheet는 `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`이며 wrong `19Ff...` Sheet는 변경 금지다.
+Android·HUMAN 증거 전에는 finite를 product default 또는 제품 검증 완료로 표시하지 않는다. Correct Sheet `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`는 `SX-AUD-019 · EV-FP-APK-001`로 동기화됐으며 wrong `19Ff...` Sheet는 변경 금지다.
