@@ -80,6 +80,7 @@ def main() -> None:
             "normalized_contract": {
                 "adapter_schema": "BASE_V1_THIN_ADAPTER",
                 "health_schema": "BASE_PROJECT_OPERATING_HEALTH_V1",
+                "project_registry_authority": "PROJECT_ONLY_REGISTRY",
                 "project_registry_compatibility": "LEGACY_ID_PRESERVED_CANONICAL_SKILL_ID_ADDED",
                 "protected_baseline_policy": "OPTION_A_EXACT_TRUSTED_BASE_EQUALITY",
                 "gdd_sheet_contract_status": "CURRENT",
@@ -100,11 +101,17 @@ def main() -> None:
     }
     write_json(STATE_PATH, state_doc)
 
-    normalized_registry = copy.deepcopy(original_registry)
-    for entry in normalized_registry.get("skills", []):
-        legacy_id = entry.get("id")
-        if isinstance(legacy_id, str):
-            entry["skill_id"] = legacy_id
+    normalized_registry = {
+        "schema_version": original_registry["schema_version"],
+        "selection_policy": copy.deepcopy(original_registry["selection_policy"]),
+        "skills": [],
+    }
+    for entry in original_registry.get("skills", []):
+        if entry.get("owner") != "project":
+            continue
+        normalized = copy.deepcopy(entry)
+        normalized["skill_id"] = normalized["id"]
+        normalized_registry["skills"].append(normalized)
     write_json(REGISTRY_PATH, normalized_registry)
 
     protected_paths = copy.deepcopy(original["protected_paths"])
@@ -162,7 +169,8 @@ def main() -> None:
     write_json(ADAPTER_PATH, adapter)
 
     mapping_rows = [
-        ("skills/SKILL_REGISTRY.json#/skills/*/id", "/adapter_migration/original_project_skill_registry", "legacy id retained; matching skill_id added for Base routing"),
+        ("skills/SKILL_REGISTRY.json base-owned entries", "/adapter_migration/original_project_skill_registry", "removed from project Registry; Base Registry remains authority"),
+        ("skills/SKILL_REGISTRY.json#/skills/*/id", "/adapter_migration/original_project_skill_registry", "project legacy id retained; matching skill_id added"),
         ("/gdd_sheet/sync_status", "/adapter_migration/preserved_from_adapter/gdd_sheet/sync_status", "SYNCED retained; adapter token CURRENT"),
         ("/protected_baseline", "/adapter_migration/preserved_from_adapter/protected_baseline", "invalid legacy enums retained; canonical exact-base contract replaces them"),
         ("/routing/base_routes", "/adapter_migration/preserved_from_adapter/routing/base_routes", "strings retained and converted to ACTIVE typed records"),
@@ -181,6 +189,7 @@ trusted_base_validator: {TRUSTED_BASE}
 strategy: OPTION_A_EXACT_TRUSTED_BASE_EQUALITY
 adapter_authority: BASE_V1_THIN_ADAPTER
 project_registry: skills/SKILL_REGISTRY.json
+project_registry_authority: PROJECT_ONLY_REGISTRY
 project_state_authority: docs/PROJECT_OPERATING_STATE.json
 machine_health_authority: docs/PROJECT_OPERATING_HEALTH.json
 PRODUCT_FILES_UNCHANGED: true
@@ -206,9 +215,9 @@ These references remain project-owned. Repository and CI evidence does not promo
 |---|---|---|
 {table}
 
-## Registry compatibility
+## Registry authority correction
 
-The project Registry used legacy `id` keys while the Base v1 router indexes `skill_id`. Each entry keeps its original `id` and receives an identical `skill_id`; no Skill is renamed, removed, or redirected. The original complete Registry and raw-byte hash are preserved in `docs/PROJECT_OPERATING_STATE.json`.
+The former project Registry duplicated Base-owned Skill entries and used legacy `id` keys. The active Registry now contains project-owned Skills only. `switchy-express-design` keeps its original `id` and receives the identical canonical `skill_id`. No project Skill is renamed, removed, or redirected. The original complete Registry and raw-byte hash are preserved in `docs/PROJECT_OPERATING_STATE.json`.
 
 ## Evidence separation
 
@@ -221,7 +230,7 @@ Each health evidence ID and source is unique. One operating and one product reco
 
 ## Scope boundary
 
-The migration changes the project Registry compatibility key, Base connection contract, standard machine health, project-owned state, and official generated views only. It does not edit `project.godot`, `game/**`, `assets/**`, `기획서/**`, APK evidence, Godot Pilot adoption content, or Google Sheet cells.
+The migration changes the project Registry authority, Base connection contract, standard machine health, project-owned state, and official generated views only. It does not edit `project.godot`, `game/**`, `assets/**`, `기획서/**`, APK evidence, Godot Pilot adoption content, or Google Sheet cells.
 """,
         encoding="utf-8",
     )
