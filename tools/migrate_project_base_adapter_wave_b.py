@@ -11,6 +11,7 @@ HEALTH_PATH = ROOT / "docs/PROJECT_OPERATING_HEALTH.json"
 STATE_PATH = ROOT / "docs/PROJECT_OPERATING_STATE.json"
 MIGRATION_PATH = ROOT / "docs/operations/PROJECT_BASE_ADAPTER_MIGRATION_2026-08-06.md"
 PROJECT_REGISTRY_PATH = ROOT / "skills/SKILL_REGISTRY.json"
+APK_EVIDENCE_PATH = ROOT / "기획서/50_제작_검증/SX_AUD_019_ANDROID_APK_PIPELINE_PROBE.md"
 
 DECISION = "DEC-BASE-20260805-001"
 SOURCE_MAIN = "a45176a3655ae6b36e69f1d58a8556626ca9df86"
@@ -39,8 +40,8 @@ def route(value: str) -> dict:
     return {"route_id": value, "skill_id": value, "status": "ACTIVE"}
 
 
-def evidence(evidence_id: str, source: str, digest: str) -> dict:
-    return {"id": evidence_id, "source": source, "sha256": digest}
+def evidence(evidence_id: str, source: str, path: Path) -> dict:
+    return {"id": evidence_id, "source": source, "sha256": sha256_bytes(path.read_bytes())}
 
 
 def main() -> None:
@@ -93,42 +94,19 @@ def main() -> None:
         },
     }
     write_json(STATE_PATH, state_doc)
-    state_digest = sha256_bytes(STATE_PATH.read_bytes())
-    state_evidence = evidence("switchy-project-state", "docs/PROJECT_OPERATING_STATE.json", state_digest)
-
-    health = {
-        "schema_version": 1,
-        "artifact_role": "PROJECT_OPERATING_HEALTH",
-        "operating_maturity": "OM-L4",
-        "product_evidence_maturity": "PE-3",
-        "critical_gates": {
-            "static": "PASS",
-            "runtime": "PASS",
-            "device": "NOT_RUN",
-            "accessibility": "NOT_RUN",
-            "human": "NOT_RUN",
-        },
-        "integrity_verdict": "PASS_WITH_NOT_RUN_GATES",
-        "evidence": {
-            "operating": [state_evidence],
-            "product": [state_evidence],
-            "sheet": [state_evidence],
-            "gates": {
-                "static": [state_evidence],
-                "runtime": [state_evidence],
-                "device": [],
-                "accessibility": [],
-                "human": [],
-            },
-        },
-    }
-    write_json(HEALTH_PATH, health)
 
     protected_paths = copy.deepcopy(original["protected_paths"])
     project_registry_sha = sha256_bytes(PROJECT_REGISTRY_PATH.read_bytes())
     gdd_sheet = copy.deepcopy(original["gdd_sheet"])
     gdd_sheet["declared_sync_status"] = original["gdd_sheet"]["sync_status"]
     gdd_sheet["sync_status"] = "CURRENT"
+    validator_commands = [value["command"] for value in original["validators"]]
+    validator_commands.extend(
+        [
+            "python -m unittest tests.test_project_base_adapter_thin_migration -v",
+            "python -m pytest tests/test_godot_live_editor_adoption.py -q",
+        ]
+    )
 
     adapter = {
         "artifact_role": "PROJECT_BASE_ADAPTER",
@@ -167,11 +145,7 @@ def main() -> None:
                 "sha256": project_registry_sha,
             },
         },
-        "validators": [value["command"] for value in original["validators"]]
-        + [
-            "python -m unittest tests.test_project_base_adapter_thin_migration -v",
-            "python -m pytest tests/test_godot_live_editor_adoption.py -q",
-        ],
+        "validators": list(dict.fromkeys(validator_commands)),
     }
     write_json(ADAPTER_PATH, adapter)
 
@@ -218,12 +192,49 @@ These references remain project-owned. Repository and CI evidence does not promo
 |---|---|---|
 {table}
 
+## Evidence separation
+
+- operating maturity: `docs/PROJECT_OPERATING_STATE.json`;
+- product evidence: `기획서/50_제작_검증/SX_AUD_019_ANDROID_APK_PIPELINE_PROBE.md`;
+- Sheet-current contract: this migration record;
+- static adapter gate: `skills/PROJECT_BASE_ADAPTER.json`.
+
+Each health evidence ID and source is unique. One operating and one product record cap the conservative machine levels at `OM-L1` and `PE-1`. Existing Godot and APK evidence is preserved, but runtime remains `NOT_RUN` in this adapter migration until exact-head project execution is separately evaluated.
+
 ## Scope boundary
 
 The migration changes the Base connection contract, standard machine health, project-owned state, and official generated views only. It does not edit `project.godot`, `game/**`, `assets/**`, `기획서/**`, APK evidence, Godot Pilot adoption content, or Google Sheet cells.
 """,
         encoding="utf-8",
     )
+
+    health = {
+        "schema_version": 1,
+        "artifact_role": "PROJECT_OPERATING_HEALTH",
+        "operating_maturity": "OM-L1",
+        "product_evidence_maturity": "PE-1",
+        "critical_gates": {
+            "static": "PASS",
+            "runtime": "NOT_RUN",
+            "device": "NOT_RUN",
+            "accessibility": "NOT_RUN",
+            "human": "NOT_RUN",
+        },
+        "integrity_verdict": "PASS_WITH_NOT_RUN_GATES",
+        "evidence": {
+            "operating": [evidence("switchy-operating-state", "docs/PROJECT_OPERATING_STATE.json", STATE_PATH)],
+            "product": [evidence("switchy-apk-pipeline", "기획서/50_제작_검증/SX_AUD_019_ANDROID_APK_PIPELINE_PROBE.md", APK_EVIDENCE_PATH)],
+            "sheet": [evidence("switchy-sheet-migration", "docs/operations/PROJECT_BASE_ADAPTER_MIGRATION_2026-08-06.md", MIGRATION_PATH)],
+            "gates": {
+                "static": [evidence("switchy-static-adapter", "skills/PROJECT_BASE_ADAPTER.json", ADAPTER_PATH)],
+                "runtime": [],
+                "device": [],
+                "accessibility": [],
+                "human": [],
+            },
+        },
+    }
+    write_json(HEALTH_PATH, health)
 
 
 if __name__ == "__main__":
