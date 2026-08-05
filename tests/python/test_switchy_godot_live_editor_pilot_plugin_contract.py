@@ -8,14 +8,18 @@ ROOT = Path(__file__).resolve().parents[2]
 PLUGIN_ROOT = ROOT / "tools/godot-live-editor-pilot/pilot_plugin"
 PLUGIN_CFG = PLUGIN_ROOT / "plugin.cfg"
 PLUGIN_GD = PLUGIN_ROOT / "plugin.gd"
+EXACT_RESTORE_GD = PLUGIN_ROOT / "plugin_exact_restore.gd"
 
 
 class SwitchyGodotLiveEditorPilotPluginContractTests(unittest.TestCase):
     maxDiff = None
 
     def test_plugin_files_exist(self) -> None:
-        self.assertTrue(PLUGIN_CFG.is_file(), f"missing {PLUGIN_CFG.relative_to(ROOT)}")
-        self.assertTrue(PLUGIN_GD.is_file(), f"missing {PLUGIN_GD.relative_to(ROOT)}")
+        for path in (PLUGIN_CFG, PLUGIN_GD, EXACT_RESTORE_GD):
+            with self.subTest(path=path):
+                self.assertTrue(path.is_file(), f"missing {path.relative_to(ROOT)}")
+        config = PLUGIN_CFG.read_text(encoding="utf-8")
+        self.assertIn('script="plugin_exact_restore.gd"', config)
 
     def test_plugin_targets_only_the_approved_switchy_scene_and_node(self) -> None:
         self.assertTrue(PLUGIN_GD.is_file(), f"missing {PLUGIN_GD.relative_to(ROOT)}")
@@ -60,7 +64,11 @@ class SwitchyGodotLiveEditorPilotPluginContractTests(unittest.TestCase):
 
     def test_plugin_has_bounded_restore_and_result_paths(self) -> None:
         self.assertTrue(PLUGIN_GD.is_file(), f"missing {PLUGIN_GD.relative_to(ROOT)}")
-        source = PLUGIN_GD.read_text(encoding="utf-8")
+        combined = "\n".join(
+            path.read_text(encoding="utf-8")
+            for path in (PLUGIN_GD, EXACT_RESTORE_GD)
+            if path.is_file()
+        )
         for marker in (
             "switchy_real_project_pilot_result.json",
             "_restore_original_scene",
@@ -70,7 +78,7 @@ class SwitchyGodotLiveEditorPilotPluginContractTests(unittest.TestCase):
             "production_adapter_ready",
         ):
             with self.subTest(marker=marker):
-                self.assertIn(marker, source)
+                self.assertIn(marker, combined)
         for forbidden in (
             "TCPServer",
             "WebSocketPeer",
@@ -82,11 +90,14 @@ class SwitchyGodotLiveEditorPilotPluginContractTests(unittest.TestCase):
             "Expression.new",
         ):
             with self.subTest(forbidden=forbidden):
-                self.assertNotIn(forbidden, source)
+                self.assertNotIn(forbidden, combined)
 
     def test_plugin_restores_exact_original_bytes_only_for_the_pinned_scene(self) -> None:
-        self.assertTrue(PLUGIN_GD.is_file(), f"missing {PLUGIN_GD.relative_to(ROOT)}")
-        source = PLUGIN_GD.read_text(encoding="utf-8")
+        self.assertTrue(
+            EXACT_RESTORE_GD.is_file(),
+            f"missing {EXACT_RESTORE_GD.relative_to(ROOT)}",
+        )
+        source = EXACT_RESTORE_GD.read_text(encoding="utf-8")
         for marker in (
             "var _original_scene_bytes := PackedByteArray()",
             "FileAccess.get_file_as_bytes",
