@@ -14,8 +14,9 @@ const VIEW_SCENE_PATH := "res://game/finite/presentation/finite_slice_view.tscn"
 
 const PresenterScript := preload("res://game/finite/presentation/finite_slice_presenter.gd")
 const RunStateFixtureScript := preload("res://tools/validation/finite/validation_run_state_fixture.gd")
+const SelectorScript := preload("res://tools/validation/finite/finite_validation_mode_selector.gd")
 
-@onready var _selector := get_node("Selector") as FiniteValidationModeSelector
+@onready var _selector: Variant = get_node("Selector")
 @onready var _back_overlay := get_node("BackOverlay") as Control
 @onready var _back_button := get_node("BackOverlay/BackButton") as Button
 
