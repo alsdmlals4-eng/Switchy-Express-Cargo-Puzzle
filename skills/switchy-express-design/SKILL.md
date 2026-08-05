@@ -1,297 +1,236 @@
 ---
 name: switchy-express-design
-description: Use for Switchy Express gameplay, route, cargo-stack, compact-token, run-lifecycle, map, Profile, onboarding, result, progression, benchmarking, or verification work.
+description: Use for Switchy Express finite-delivery gameplay, track construction, cargo encounter order, unlimited LIFO, persistent branch, Android device smoke, five-person comprehension, readability, retry, or product validation work.
 ---
 
-# Switchy Express Design and Execution Discipline
+# Switchy Express Design and Validation Discipline
 
-## Read first
+## Purpose
+
+이 Skill은 `Switchy Express: Cargo Puzzle`의 현 finite 제품 기획·검토·검증을 책임진다. 과거 endless 구현과 VS03 계획을 현재 제품 권위로 부활시키지 않고, 현재 승인 결정·실제 finite 코드·자동 증거·Android/HUMAN Gate를 연결한다.
+
+## Read First
 
 1. `기획서/00_프로젝트_허브/START_HERE.md`
 2. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
-3. `기획서/10_경험/CORE_FUN_SYSTEM_HIERARCHY.md`
+3. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
 4. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
-5. `기획서/50_제작_검증/VS03_PACKAGE_STATUS.md`
-6. `기획서/50_제작_검증/VS03_02_SYNC_CLOSURE.md`
-7. `기획서/50_제작_검증/VS03_02_IMPLEMENTATION_AUDIT.md`
-8. `기획서/50_제작_검증/CORE_FUN_ALIGNMENT_SYNC_CLOSURE.md`
-9. `docs/superpowers/specs/2026-08-03-playable-core-before-meta-sequencing-design.md`
-10. `docs/superpowers/plans/2026-08-03-vs03-core-first-resegmentation.md`
-11. current package-specific plan
-12. `기획서/50_제작_검증/VS03_01_IMPLEMENTATION_AUDIT.md`
-13. `기획서/50_제작_검증/VS03_DEFINITION_OF_READY_AUDIT.md`
-14. `docs/superpowers/specs/2026-08-02-vs03-execution-architecture-design.md`
-15. `docs/superpowers/plans/2026-08-02-vs03-build-segmentation.md`
-16. `docs/superpowers/plans/2026-08-02-switchy-express-current-vertical-slice.md`
-17. `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
-18. actual code and tests
+5. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
+6. `기획서/50_제작_검증/ANDROID_DEVICE_SMOKE_RUNBOOK.md`
+7. `기획서/50_제작_검증/ANDROID_DEVICE_SMOKE_EVIDENCE_TEMPLATE.md`
+8. `기획서/50_제작_검증/SX_AUD_019_ANDROID_APK_PIPELINE_PROBE.md`
+9. `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
+10. actual finite code, Scenes, data and tests
 
-`VS03_PACKAGE_STATUS.md` owns current package status. `2026-08-03-vs03-core-first-resegmentation.md` owns the approved future order. Older plans remain behavior and unchanged-package responsibility references. When old status text, package order, pseudocode, path, test command, or shared-file order conflicts with newer authority, use the newer authority without changing approved player-facing meaning.
+`CURRENT_CONFIRMED_DECISIONS.md`가 현재 승인 결정, `ACTIVE_CONTEXT.md`가 현재 상태와 다음 작업, `DEVELOPMENT_GATES.md`가 Gate 차단 관계를 책임진다. 과거 VS03 계획·감사·실행문은 역사 증거이며 현재 실행 권위가 아니다.
 
-## Core Fun Authority
-
-> Anticipate the required unload order, selectively load cargo into a LIFO stack, prepare the route in advance, and accept weight/fuel pressure to execute a large matching unload group.
-
-Priority:
+## Current Product Authority
 
 ```text
-LIFO load-order planning
-→ route preparation
-→ risk/survival decision
-→ BOOST and delivery tempo
-→ result learning/retry
-→ records/cosmetics/map discovery/UGC
+track construction
+→ cargo encounter order
+→ manual/automatic loading
+→ unlimited LIFO
+→ route and persistent branch execution
+→ TOP contiguous-group unloading
+→ finite-time completion
+→ time/cost/score redesign
 ```
 
-Every feature, balance value, UI choice, and package proposal must show how it protects or strengthens this hierarchy. Faster tapping, BOOST uptime, meta rewards, content volume, or UGC may not replace load-order and route planning.
+### Current invariants
 
-## Product Invariants
-
+- authored finite delivery stage
+- free track construction except blocked cells
+- per-piece construction cost and full refund during BUILD
+- structural reachability preflight before RUN
 - automatic train movement
-- connected 15×10 landscape rail network
-- no degree-1 dead ends
-- 2-state and 3-state switches
-- straight route A when available
-- preview first cell equals actual next cell
-- active-segment target lock
-- LOAD-gated pickup and BOOST priority
-- capacity-eight LIFO CargoStack
-- two stations and at least four pickups per cargo type
-- deterministic bounded placement and deferred recovery
-- delivery grants score and fuel
-- cargo slowdown
-- BOOST speed increase plus extra fuel drain
-- fuel zero ends run
-- color plus shape encoding
-- Combo equals one-arrival matching unload-group size
-- one cargo equals one compact token; rear equals LIFO top
-- compact token positions follow route history
-- capacity-eight geometry ends at 2.18 cells and reserves at most three trailing rail cells `TEST_VALUE`
-- compact occupied cells are conservative and replace full-cell spawn occupancy when provider is present
-- onboarding occurs in the real run
-- assisted evidence separated from standard evidence
-- UI/camera/animation never own gameplay, Profile, map, record, or reward outcomes
+- manual LOAD hold and auto-load toggle
+- unlimited LIFO cargo stack
+- last-loaded cargo is TOP
+- only a contiguous same-type TOP group unloads at a matching station
+- persistent branch state with direct branch tap before occupation
+- occupied branch lock
+- no track construction or removal during RUN
+- finite timer failure while undelivered cargo remains
+- immediate success when the final cargo commits delivery
+- same-layout retry with fresh mutable runtime and attempt identity
+- color plus silhouette plus text encoding
+- landscape touch targets and safe-area requirements
+- cosmetic-only fairness; no power progression
+- UI, motion and presentation never own gameplay, score, save or identity authority
 
-## Current State
+### Current Gate authority
+
+```text
+FINITE AUTOMATED CORE: PASS
+VALIDATION PREPARATION: PASS
+CANONICAL MAIN APK EXPORT: PASS
+ANDROID DEVICE SMOKE: NOT_RUN · CURRENT
+FIVE-PERSON COMPREHENSION: NOT_RUN · BLOCKED_BY_ANDROID
+DEFAULT ENTRYPOINT: LEGACY
+PRODUCTION CUTOVER: BLOCKED
+```
+
+Canonical validation binary:
 
 ```yaml
-gmb001: CLOSED · SX-DEC-017~026
-dor_audit: SX-AUD-005 · PASS · SYNCED
-vs03_01_audit: SX-AUD-006 · PASS · SYNCED
-vs03_01_merge: 43972d3d23e931af3dbc81ab9b1c7d942fffb201
-vs03_01_closure: 9360eff0a97f48f2234fcaf35425f80e94fac445
-core_fun_audit: SX-AUD-007 · PASS_WITH_FOLLOWUPS · SYNCED
-core_fun_merge: a9368617102420639cc2bb83ee2b0c45505958a6
-core_fun_closure: 0aaa9005af9bca7560bc75b6fff3cd3f9f197a92
-vs03_02_audit: SX-AUD-008 · PASS · MERGED_AND_VERIFIED · SHEET_READBACK_PASS
-vs03_02_evidence: EV-VS03-02-001
-vs03_02_merge: cfe6d5ca0c76942720c5c12ad5dc59aaa651b915
-codex: READY_FOR_BUILD
-current_package: VS03-03_ONLY
-product_implementation: IN_PROGRESS · VS03_01_AND_02_MERGED
-headless_evidence: 19 cases · 7499 assertions · 0 failures
-F92: EVIDENCE_GAP · PRODUCT_VIEW/DEVICE/HUMAN_NOT_RUN
-F58: NOT_MET
-runtime_android_human_online: NOT_RUN
+source_commit: 536911449018a3caf3511bc64e7bf1a66edf2016
+apk_sha256: eb49225ab4062e5cf863f79a0d17f85d339ea176d7f0bb6f04096ed8a07559ea
+package_id: com.alsdmlals4.switchyexpress.validation
 ```
+
+### ANDROID DEVICE SMOKE route
+
+Use this route for Android touch, device layout, stack readability, stability or validation APK work:
+
+```text
+full canonical APK hash verification
+→ physical Android landscape device
+→ AND-01~20 complete execution
+→ privacy-safe evidence record
+→ item completeness review
+→ adversarial validation
+→ reviewed Gate decision
+```
+
+Rules:
+
+- use `ANDROID_DEVICE_SMOKE_RUNBOOK.md` and its evidence Template
+- never treat emulator-only evidence as physical-device PASS
+- never treat partial execution as full PASS
+- bind all evidence to the full APK SHA-256
+- a new APK invalidates inherited device/human evidence
+- Android PASS does not imply Five-person or cutover PASS
+- do not assign `SX-AUD-020` before actual reviewed evidence
+
+### Five-person comprehension route
+
+Only after reviewed Android PASS with the same APK hash:
+
+- five first-contact participants, minimal aliases only
+- no solution or route coaching
+- observe TOP explanation, A-station revisit reasoning, failure recovery and retry distinction
+- require shape/text comprehension without color-only dependence
+- separate participant words, observed actions and facilitator interpretation
+
+### Material user decisions
+
+Ask one benchmark-backed Grill Me only when a choice changes:
+
+- finite core loop or LIFO meaning
+- BUILD/RUN authority
+- loading or unloading semantics
+- timer success/failure meaning
+- major UX or accessibility interaction
+- content scope, monetization, online policy or production cutover
+
+Do not ask for facts available in canon, code, tests, APK evidence or device records. Safe technical corrections preserving approved meaning do not require a new Decision.
+
+## Legacy Implementation Boundary
+
+The following are `LEGACY_IMPLEMENTATION · HISTORICAL_EVIDENCE`:
+
+- endless survival
+- fuel and fuel-zero ending
+- player BOOST input and BOOST uptime
+- capacity eight cargo limit
+- cargo-count slowdown
+- pickup respawn
+- switch auto-reset after passage
+- timed speed/fuel pressure escalation
+- old endless score authority
+- old VS03-01/02/03/R1/04/05/06/07 package order
+
+Legacy code and tests may remain for history, migration analysis or isolated regression, but they do not define current product completion, current package authority or future design. Never combine their assertion counts with finite PASS evidence unless the evidence explicitly distinguishes both suites.
+
+## Architecture Boundaries
+
+- `FiniteBuildSession`: BUILD edits, validation and sealing
+- `TrackLayout`: authored/player track value
+- `FiniteTrackGraph`: sealed routing graph
+- `FiniteGameplayInputState`: manual/auto loading intent
+- `UnlimitedCargoStack`: finite LIFO authority
+- `FixedCargoField`: non-respawning authored cargo
+- `FiniteDeliveryLoop`: contact and unload event integration
+- `FiniteRunController`: timer, lifecycle, pause and outcome authority
+- `FiniteRunSessionFactory`: fresh attempt object graph and identity
+- `FiniteSlicePresenter`: read model only
+- `FiniteSliceView`: visual state and input intent only
+- validation launcher: proof/stack presentation only; not product authority
+
+Presentation must not mutate layout, cargo, delivery, timer, result, retry identity or saves except through approved command boundaries.
 
 ## Actual Test Contract
 
-Use the repository custom runner.
+Use the repository custom runner:
 
 ```bash
 ./Godot_v4.7.1-stable_linux.x86_64 \
   --headless --path . --script res://tests/run_tests.gd
 ```
 
-Each suite:
+Each suite extends `res://tests/test_case.gd` and implements `func run() -> void`. Do not use nonexistent single-suite runners or unsupported test APIs.
 
-```gdscript
-extends "res://tests/test_case.gd"
-func run() -> void:
-    assert_true(...)
+Relevant static contracts:
+
+```bash
+python tools/validate_project_contract.py
+python -m unittest tests.test_base_v94_ai_operations_adoption -v
+python tests/python/test_android_smoke_canonical_freshness_contract.py -v
+python tests/python/test_platform_release_asset_rights_contract.py -v
 ```
 
-Do not use nonexistent `tests/run_single.gd`, unsupported `--suite`, `func run(test)`, or `test.case()`.
-
-## Execution Packages
-
-```text
-VS03-01 run lifecycle/economy/difficulty · MERGED_AND_VERIFIED
-→ VS03-02 compact footprint/DeliveryLoop seam · MERGED_AND_VERIFIED
-→ VS03-03 target3 maps/session/restart/selection · READY_FOR_BUILD · CURRENT
-→ VS03-R1 difficulty authority alignment · BLOCKED
-→ VS03-05A minimal playable core surface · BLOCKED
-→ VS03-04 Profile transaction/records/cosmetics/unlocks/rewards · BLOCKED
-→ VS03-05B result/collection/map browser · BLOCKED
-→ VS03-06 contextual onboarding · BLOCKED
-→ VS03-07 integration/evidence handoff · BLOCKED
-```
-
-Rules:
-
-- start from latest main after previous package merge and canonical synchronization
-- do not run shared-hotspot packages in parallel
-- only touch package-owned files unless the PR documents a necessary narrow adapter
-- run full regression after each boundary connection
-- no package may claim Android/human/online evidence without execution
-- current implementation authority applies to VS03-03 only
-- VS03-R1 follows `2026-08-03-vs03-r1-difficulty-authority-alignment.md`
-- VS03-05A follows `2026-08-03-vs03-05a-minimal-playable-core-surface.md`
-- VS03-05A may not create Profile, result, record, reward, collection, or map-browser authority
-
-## VS03-02 Implemented Contract
-
-- `CompactWagonTokenState` mirrors CargoStack `0..8`.
-- front-to-rear equals stack bottom-to-top; rear equals top.
-- changed source snapshot increments one revision; unchanged snapshot does not.
-- `TrainFootprint` uses route-history sampling and conservative occupied-cell reservation.
-- token distance is `0.22 + index×0.28`; capacity 8 ends at `2.18` cells.
-- occupied order is locomotive-first/front-to-rear; trailing occupied cells are `<=3`.
-- `DeliveryLoop.configure(..., occupancy_provider = null)` preserves exact legacy fallback.
-- pickup/unload synchronizes compact state once per stack mutation.
-- spawn/respawn avoids compact occupied cells and existing forward exclusion.
-
-Do not regress compact production occupancy to full-cell `train_cells()`.
-
-## VS03-03 Current Contract
-
-Implement only:
-
-```text
-exactly 3 distinct validated official maps
-+ immutable MapDefinition and strict MapCatalog
-+ fully configured RunSessionFactory
-+ explicit start/incoming train cells
-+ exact same-map restart with fresh mutable services/identities
-+ automatic undiscovered-first selection
-+ discovered-map semantic reselection domain
-```
-
-Requirements:
-
-- target3 is VS scope; target100 remains Production.
-- MapDefinition contains stable map identity, seed, generator/content version, and required signatures.
-- catalog construction rejects duplicates, fallback maps, invalid starts, and signature drift.
-- session factory returns success only after all mutable services and adapters are configured.
-- restart reuses the same immutable map definition but creates a new run ID, transaction ID, and mutable object graph.
-- automatic selection is deterministic under explicit state and cannot starve eligible undiscovered maps.
-- manual/restart requests do not consume automatic discovery state incorrectly.
-- selected or restarted map is never silently substituted.
-- raw seed is not player-facing.
-
-Forbidden in VS03-03:
-
-- Profile writer or final persistence schema
-- product Scene/HUD/result/camera/browser presentation
-- VS03-R1 difficulty union schedule
-- onboarding
-- target100 generator expansion/audit
-- UGC/online
-
-## Architecture Boundaries
-
-- `main.gd`: application host only
-- `PlayScene`: composition root and UI intent binding
-- `RunController`: authoritative run lifecycle/tick/end
-- `RunSession`: one attempt's complete mutable service graph
-- `RunSessionFactory`: fully configured sessions only
-- `TrainFootprint`: compressed spawn occupancy authority
-- `DeliveryLoop`: pickup/unload integration plus optional occupancy provider
-- `DifficultyDirector`: authoritative union schedule after VS03-R1
-- `ProfileStore`: serialization/normalization/atomic replace
-- `ProfileTransactionService`: only Profile mutation writer
-- presentation: read-only ViewModels/intents
-
-## Frame Order
-
-Use a boundary-sliced loop with at most one cell event per segment. Calculate the next segment from remaining delta, maximum step, next cell boundary, actual difficulty/balance boundary, and predicted fuel-zero boundary. Apply exact-timestamp cell event before fuel-zero evaluation. No movement or delivery event occurs after end.
-
-## Map Scope
-
-- VS-03: exactly three distinct validated non-fallback official maps
-- Production: generator diversity expansion and 100+ unique layouts
-- target100 scan does not run inside the 10-second VS unit watchdog
-- selected/restarted map never silently changes
-- raw seed never appears in player UI
-
-## Profile Boundary
-
-- first local schema: v1
-- production path: `user://profile_v1.json`
-- tests use injectable temporary storage
-- records, rewards, unlocks, discovery, and onboarding do not save independently
-- operation IDs are namespaced and idempotent
-- save failure cannot mutate RunState or block result/restart
-- Profile begins only after VS03-05A proves the minimal playable surface automatically
-
-## Benchmark-Backed Work Rule
-
-For a material player-facing decision, package sequencing choice, or important product recommendation, research and compare:
-
-1. at least one close benchmark;
-2. at least one adjacent benchmark solving the same problem differently;
-3. current professional guidance or primary source when relevant.
-
-Record the research date and separate source-supported facts, Switchy inference, and unverified hypotheses. State what to learn, what not to copy, production cost, strongest failure risk, and validation Gate.
-
-## Benchmark-Backed Grill Me Format
-
-```text
-Decision question
-→ current project constraint/evidence
-→ close benchmark comparison
-→ adjacent benchmark or professional practice
-→ comparison axes
-→ A/B/C or custom options
-→ industry-common default
-→ Switchy-specific trade-offs
-→ production cost and failure risks
-→ recommended option
-→ strongest adversarial objection
-→ validation method and evidence gate
-```
-
-Do not ask a material Grill Me before checking whether current Decision canon already answers it or whether it is a safe implementation correction.
+Never report an unexecuted command as PASS.
 
 ## Adversarial Review Lenses
 
-- distortion of approved meaning
-- core-fun hierarchy inversion
-- monocolor or other dominant strategy that removes LIFO planning
-- speed/BOOST/reflex rewards overpowering group planning
-- existing API regression
-- multi-owner file overwrite
-- UI/animation authority leakage
-- full-cell occupancy leaking into compact footprint
-- occupied rail segment under-reservation
-- compact token/rear item unreadable on minimum Android viewport
-- session returned before complete configuration
-- stale mutable service reuse on restart
-- map identity/version/signature silent substitution
-- target100/online scope entering VS-03
-- unsupported test harness examples
-- automated evidence overstated as device/human evidence
-- benchmark citation without adoption/rejection rationale
+- current finite authority replaced by historical endless assumptions
+- stale VS03 package presented as next work
+- LIFO meaning inverted or reduced to FIFO
+- unlimited stack silently re-capped
+- branch tap or occupied lock mismatch
+- UI or animation becomes outcome authority
+- manual/auto loading state not visible or not applied on next contact
+- same-layout retry reuses stale mutable services
+- APK hash mismatch or package mismatch
+- emulator or partial matrix overstated as physical-device PASS
+- color-only cargo/TOP identification
+- safe-area clipping, overlap, missed touch or undersized target
+- pause changes timer, movement, unload commit or stack state
+- Android PASS overstated as HUMAN or production readiness
+- historical files deleted instead of reclassified
+- correct Sheet and wrong `19Ff...` workspace confused
 
 ## PR Gate
 
-Every package requires:
+Every material package requires:
 
 ```text
-behind 0
+latest main baseline
+approved authority and scope
+TDD RED observed for behavior change
+focused GREEN
 Project Contract success
 Godot Tests success
+JSON and whitespace checks
 unresolved review threads 0
 REQUEST_CHANGES 0
-owned-file inventory
-acceptance tests registered
+protected product file inventory
 rollback documented
 NOT_RUN evidence explicit
-core-fun alignment statement
-benchmark/professional comparison when a material choice was made
 ```
 
-## User Decision Rule
+For Android readiness documents, product code, APK bytes, Android export workflow and default entrypoint must remain unchanged unless a separate approved package explicitly owns them.
 
-Do not add a Decision for safe execution fixes that preserve approved meaning. Ask one material, benchmark-backed Grill Me only when implementation reveals a player-facing choice, changes core meaning, alters Vertical Slice scope/package sequencing, or introduces monetization/online policy not already approved.
+## Output Contract
+
+Depending on the request, produce one or more of:
+
+- finite product design or review
+- Android device smoke Runbook or evidence review
+- five-person comprehension preparation or evidence review
+- canonical-freshness finding and closure report
+- Codex-ready implementation plan
+- Gate decision with PASS/FAIL/BLOCKED/NOT_RUN and exact evidence ceiling
+
+Always report which authority, exact commit/APK hash, tests and unresolved risks support the conclusion.
