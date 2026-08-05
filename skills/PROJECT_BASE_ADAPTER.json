@@ -17,8 +17,9 @@
     "spreadsheet_id": "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo",
     "url": "https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit",
     "decision_commit": "3cd13ff375a597d4eba9035af5b05e6186fb4853",
-    "sync_status": "SYNCED",
-    "verified_at": "2026-08-02T15:16:00+09:00"
+    "sync_status": "CURRENT",
+    "verified_at": "2026-08-02T15:16:00+09:00",
+    "declared_sync_status": "SYNCED"
   },
   "project": {
     "engine": "Godot 4.7.1",
@@ -28,12 +29,12 @@
     "orientation": "landscape"
   },
   "protected_baseline": {
-    "authority_kind": "GIT_COMMIT",
-    "authority_ref": "refs/heads/main",
-    "commit": "3cd13ff375a597d4eba9035af5b05e6186fb4853",
-    "policy_sha256": "204da76df84fb289d5f9d8445195532124788648d65698e8901463c58ec545a3",
-    "policy_source_path": "AGENTS.md",
-    "policy_source_type": "VERIFIED_PROJECT_MAIN",
+    "authority_kind": "REMOTE_TRACKING_REF",
+    "authority_ref": "refs/remotes/origin/main",
+    "commit": "a45176a3655ae6b36e69f1d58a8556626ca9df86",
+    "policy_sha256": "51b3ca7e05165069666d1235413d3277580646c63008b472f15df4fb4db9f0ca",
+    "policy_source_path": "skills/PROJECT_BASE_ADAPTER.json",
+    "policy_source_type": "CANONICAL_ADAPTER_SOURCE",
     "protected_paths_pointer": "/protected_paths"
   },
   "protected_paths": [
@@ -45,25 +46,85 @@
   "routing": {
     "aliases": [],
     "base_routes": [
-      "analyzing-and-refining-game-concepts",
-      "auditing-and-refining-ui-art",
-      "auditing-canonical-reference-freshness",
-      "designing-vertical-slices",
-      "maintaining-long-running-task-continuity",
-      "maintaining-project-context-and-handoff",
-      "managing-design-documents",
-      "managing-game-project-operating-system",
-      "managing-project-intake-and-work-contract",
-      "optimizing-ai-model-and-prompt-costs",
-      "orchestrating-deepseek-worktrees",
-      "reviewing-and-validating-project-changes",
-      "running-adversarial-review-and-refinement",
-      "synchronizing-local-and-github-state"
+      {
+        "route_id": "analyzing-and-refining-game-concepts",
+        "skill_id": "analyzing-and-refining-game-concepts",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "auditing-and-refining-ui-art",
+        "skill_id": "auditing-and-refining-ui-art",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "auditing-canonical-reference-freshness",
+        "skill_id": "auditing-canonical-reference-freshness",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "designing-vertical-slices",
+        "skill_id": "designing-vertical-slices",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "maintaining-long-running-task-continuity",
+        "skill_id": "maintaining-long-running-task-continuity",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "maintaining-project-context-and-handoff",
+        "skill_id": "maintaining-project-context-and-handoff",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "managing-design-documents",
+        "skill_id": "managing-design-documents",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "managing-game-project-operating-system",
+        "skill_id": "managing-game-project-operating-system",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "managing-project-intake-and-work-contract",
+        "skill_id": "managing-project-intake-and-work-contract",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "optimizing-ai-model-and-prompt-costs",
+        "skill_id": "optimizing-ai-model-and-prompt-costs",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "orchestrating-deepseek-worktrees",
+        "skill_id": "orchestrating-deepseek-worktrees",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "reviewing-and-validating-project-changes",
+        "skill_id": "reviewing-and-validating-project-changes",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "running-adversarial-review-and-refinement",
+        "skill_id": "running-adversarial-review-and-refinement",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "synchronizing-local-and-github-state",
+        "skill_id": "synchronizing-local-and-github-state",
+        "status": "ACTIVE"
+      }
     ],
     "inactive_routes": [],
     "precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
     "project_routes": [
-      "switchy-express-design"
+      {
+        "route_id": "switchy-express-design",
+        "skill_id": "switchy-express-design",
+        "status": "ACTIVE"
+      }
     ]
   },
   "schema_version": 1,
@@ -139,35 +200,16 @@
     "project": {
       "hash_definition": "RAW_FILE_BYTES_SHA256",
       "path": "skills/SKILL_REGISTRY.json",
-      "sha256": "b65b926348fccf31bae74bbc3c4fc0ec7d81f88ecb332fc52895f37ad7ba2484"
+      "sha256": "a2d65805f10595638c3f522f2d107dba609b4f703665e6431d59e60e8e47ce8e"
     }
   },
   "validators": [
-    {
-      "command": "python tools/validate_project_contract.py",
-      "status": "PASSED_AT_BASELINE",
-      "evidence_commit": "3cd13ff375a597d4eba9035af5b05e6186fb4853"
-    },
-    {
-      "command": "godot --headless --path . --script res://tests/run_tests.gd",
-      "status": "PASSED_AT_BASELINE",
-      "evidence_commit": "3cd13ff375a597d4eba9035af5b05e6186fb4853",
-      "summary": "9 cases / 6915 assertions / 0 failures"
-    },
-    {
-      "command": "python tests/test_base_shared_external_ai_adapter.py",
-      "status": "REQUIRED_ON_PULL_REQUEST",
-      "evidence_commit": null
-    },
-    {
-      "command": "python tests/test_base_v942_planning_first_adoption.py",
-      "status": "REQUIRED_ON_PULL_REQUEST",
-      "evidence_commit": null
-    },
-    {
-      "command": "python tests/test_base_v943_first_prompt_adoption.py",
-      "status": "REQUIRED_ON_PULL_REQUEST",
-      "evidence_commit": null
-    }
+    "python tools/validate_project_contract.py",
+    "godot --headless --path . --script res://tests/run_tests.gd",
+    "python tests/test_base_shared_external_ai_adapter.py",
+    "python tests/test_base_v942_planning_first_adoption.py",
+    "python tests/test_base_v943_first_prompt_adoption.py",
+    "python -m unittest tests.test_project_base_adapter_thin_migration -v",
+    "python -m pytest tests/test_godot_live_editor_adoption.py -q"
   ]
 }

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "artifact_role": "PROJECT_OPERATING_HEALTH",
+  "operating_maturity": "OM-L1",
+  "product_evidence_maturity": "PE-1",
+  "critical_gates": {
+    "static": "PASS",
+    "runtime": "NOT_RUN",
+    "device": "NOT_RUN",
+    "accessibility": "NOT_RUN",
+    "human": "NOT_RUN"
+  },
+  "integrity_verdict": "PASS_WITH_NOT_RUN_GATES",
+  "evidence": {
+    "operating": [
+      {
+        "id": "switchy-operating-state",
+        "source": "docs/PROJECT_OPERATING_STATE.json",
+        "sha256": "39f74908a22b54ad7320e5f7d8661c4166bbad8c8e32fd67aa80191b4fc9b142"
+      }
+    ],
+    "product": [
+      {
+        "id": "switchy-apk-pipeline",
+        "source": "기획서/50_제작_검증/SX_AUD_019_ANDROID_APK_PIPELINE_PROBE.md",
+        "sha256": "ce2fe29a6cbacd673f3b819e14484d5345de120bee5afd155befc5150126e10c"
+      }
+    ],
+    "sheet": [
+      {
+        "id": "switchy-sheet-migration",
+        "source": "docs/operations/PROJECT_BASE_ADAPTER_MIGRATION_2026-08-06.md",
+        "sha256": "92fa76058fd2b94842cd444bb3a5becc05b9067837f8ebd99d6fdbb044523590"
+      }
+    ],
+    "gates": {
+      "static": [
+        {
+          "id": "switchy-static-adapter",
+          "source": "skills/PROJECT_BASE_ADAPTER.json",
+          "sha256": "969664cce7d0c92264498287f2faf520c57c9bf921daaadeac60930e1e342d82"
+        }
+      ],
+      "runtime": [],
+      "device": [],
+      "accessibility": [],
+      "human": []
+    }
+  }
+}
