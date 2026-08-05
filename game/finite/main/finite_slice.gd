@@ -261,21 +261,33 @@ func _dispatch_command(command: StringName, payload: Variant) -> void:
 
 
 func _handle_board_cell(cell: Vector2i) -> void:
-	_selected_cell = cell
-	if phase() != &"BUILD" or _build_session == null or _selected_geometry == &"":
+	var active_phase: StringName = phase()
+	if active_phase == &"BUILD":
+		_selected_cell = cell
+		if _build_session == null or _selected_geometry == &"":
+			return
+		var piece: Variant = TrackPieceScript.create(
+			cell,
+			_selected_geometry,
+			0,
+			Vector2i.RIGHT if _selected_geometry == &"SWITCH" else Vector2i.ZERO
+		)
+		var layout: Variant = _build_session.layout_snapshot()
+		if layout.piece_at(cell) != null:
+			_build_session.replace_piece(piece)
+		else:
+			_build_session.place_piece(piece)
+		_refresh_build_state()
 		return
-	var piece: Variant = TrackPieceScript.create(
-		cell,
-		_selected_geometry,
-		0,
-		Vector2i.RIGHT if _selected_geometry == &"SWITCH" else Vector2i.ZERO
-	)
-	var layout: Variant = _build_session.layout_snapshot()
-	if layout.piece_at(cell) != null:
-		_build_session.replace_piece(piece)
-	else:
-		_build_session.place_piece(piece)
-	_refresh_build_state()
+
+	if (
+		(active_phase == &"RUNNING" or active_phase == &"UNLOADING")
+		and _run_session != null
+		and _run_session.graph.switch_cells().has(cell)
+	):
+		_selected_cell = cell
+		_run_session.graph.cycle_switch(cell)
+		_refresh_run_or_result()
 
 
 func _handle_rotate() -> void:
