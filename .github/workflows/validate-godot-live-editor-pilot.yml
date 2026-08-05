@@ -3,6 +3,11 @@ name: Validate Godot Live-Editor Pilot
 on:
   pull_request:
     branches: [main]
+    paths:
+      - .godot-live-editor/project-pilot.json
+      - docs/GODOT_LIVE_EDITOR_ADOPTION.md
+      - tests/test_godot_live_editor_adoption.py
+      - .github/workflows/validate-godot-live-editor-pilot.yml
   push:
     branches: [main]
   workflow_dispatch:
@@ -27,8 +32,8 @@ jobs:
 
   project-pilot:
     needs: adoption-contract
-    uses: alsdmlals4-eng/Base/.github/workflows/reusable-godot-project-pilot.yml@cabbc59b170c5da2bb1df7e4d4d535857dd35495
+    uses: alsdmlals4-eng/Base/.github/workflows/reusable-godot-project-pilot.yml@8d6df19de04374506560408cf0819a5990861c2e
     with:
-      base_pilot_commit: cabbc59b170c5da2bb1df7e4d4d535857dd35495
+      base_pilot_commit: 8d6df19de04374506560408cf0819a5990861c2e
       descriptor_path: .godot-live-editor/project-pilot.json
       artifact_retention_days: 14
