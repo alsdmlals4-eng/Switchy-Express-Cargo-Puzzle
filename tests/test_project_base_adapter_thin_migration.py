@@ -7,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ADAPTER_PATH = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
+REGISTRY_PATH = ROOT / "skills/SKILL_REGISTRY.json"
 HEALTH_PATH = ROOT / "docs/PROJECT_OPERATING_HEALTH.json"
 STATE_PATH = ROOT / "docs/PROJECT_OPERATING_STATE.json"
 MIGRATION_PATH = ROOT / "docs/operations/PROJECT_BASE_ADAPTER_MIGRATION_2026-08-06.md"
@@ -64,6 +65,17 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         self.assertTrue(all(isinstance(value, str) for value in adapter["validators"]))
         self.assertFalse(any(value.startswith("manual:") for value in adapter["validators"]))
 
+    def test_project_registry_exposes_canonical_skill_ids_without_removing_legacy_ids(self) -> None:
+        registry = load_json(REGISTRY_PATH)
+        self.assertTrue(registry["skills"])
+        for entry in registry["skills"]:
+            self.assertIn("id", entry)
+            self.assertIn("skill_id", entry)
+            self.assertEqual(entry["id"], entry["skill_id"])
+        project = next(entry for entry in registry["skills"] if entry["skill_id"] == "switchy-express-design")
+        self.assertEqual("project", project["owner"])
+        self.assertEqual("skills/switchy-express-design/SKILL.md", project["path"])
+
     def test_sheet_baseline_and_registries_use_canonical_tokens(self) -> None:
         adapter = load_json(ADAPTER_PATH)
         self.assertEqual("CURRENT", adapter["gdd_sheet"]["sync_status"])
@@ -80,7 +92,7 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
             self.assertRegex(registry["sha256"], SHA256)
             self.assertEqual("RAW_FILE_BYTES_SHA256", registry["hash_definition"])
 
-    def test_original_adapter_evidence_is_preserved_in_project_state(self) -> None:
+    def test_original_adapter_and_registry_evidence_are_preserved_in_project_state(self) -> None:
         state_doc = load_json(STATE_PATH)
         migration = state_doc["adapter_migration"]
         self.assertEqual(DECISION, migration["decision_id"])
@@ -90,6 +102,8 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         self.assertEqual("GIT_COMMIT", preserved["protected_baseline"]["authority_kind"])
         self.assertEqual("VERIFIED_PROJECT_MAIN", preserved["protected_baseline"]["policy_source_type"])
         self.assertTrue(all(isinstance(value, dict) for value in preserved["validators"]))
+        self.assertIn("original_project_skill_registry", migration)
+        self.assertIn("original_project_skill_registry_sha256", migration)
         evidence = state_doc["evidence_boundaries"]
         self.assertEqual("NOT_RUN", evidence["physical_device_validation"])
         self.assertEqual("HUMAN_NOT_RUN", evidence["human_validation"])
@@ -119,7 +133,7 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         migration = MIGRATION_PATH.read_text(encoding="utf-8")
         workflow = WORKFLOW_PATH.read_text(encoding="utf-8")
         for token in (
-            DECISION, "docs/PROJECT_OPERATING_STATE.json",
+            DECISION, "docs/PROJECT_OPERATING_STATE.json", "skills/SKILL_REGISTRY.json",
             "ANDROID_DEVICE_SMOKE_READINESS_CLOSURE.md",
             "SX_AUD_019_ANDROID_APK_PIPELINE_PROBE.md",
             "GODOT_LIVE_EDITOR_ADOPTION.md", "PRODUCT_FILES_UNCHANGED",
