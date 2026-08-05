@@ -1,0 +1,209 @@
+{
+  "alias_resolutions": {},
+  "aliases": [],
+  "artifact_role": "PROJECT_SKILL_SNAPSHOT",
+  "base_registry": {
+    "hash_definition": "RAW_FILE_BYTES_SHA256",
+    "path": "skills/SKILL_REGISTRY.json",
+    "sha256": "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59"
+  },
+  "base_routes": [
+    {
+      "route_id": "analyzing-and-refining-game-concepts",
+      "skill_id": "analyzing-and-refining-game-concepts",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "auditing-and-refining-ui-art",
+      "skill_id": "auditing-and-refining-ui-art",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "auditing-canonical-reference-freshness",
+      "skill_id": "auditing-canonical-reference-freshness",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "designing-vertical-slices",
+      "skill_id": "designing-vertical-slices",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "maintaining-long-running-task-continuity",
+      "skill_id": "maintaining-long-running-task-continuity",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "maintaining-project-context-and-handoff",
+      "skill_id": "maintaining-project-context-and-handoff",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "managing-design-documents",
+      "skill_id": "managing-design-documents",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "managing-game-project-operating-system",
+      "skill_id": "managing-game-project-operating-system",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "managing-project-intake-and-work-contract",
+      "skill_id": "managing-project-intake-and-work-contract",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "optimizing-ai-model-and-prompt-costs",
+      "skill_id": "optimizing-ai-model-and-prompt-costs",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "orchestrating-deepseek-worktrees",
+      "skill_id": "orchestrating-deepseek-worktrees",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "reviewing-and-validating-project-changes",
+      "skill_id": "reviewing-and-validating-project-changes",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "running-adversarial-review-and-refinement",
+      "skill_id": "running-adversarial-review-and-refinement",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "synchronizing-local-and-github-state",
+      "skill_id": "synchronizing-local-and-github-state",
+      "status": "ACTIVE"
+    }
+  ],
+  "effective_routes": {
+    "analyzing-and-refining-game-concepts": {
+      "route_id": "analyzing-and-refining-game-concepts",
+      "skill_id": "analyzing-and-refining-game-concepts",
+      "source": "BASE_SHARED",
+      "status": "ACTIVE",
+      "target_route_id": "analyzing-and-refining-game-concepts"
+    },
+    "auditing-and-refining-ui-art": {
+      "route_id": "auditing-and-refining-ui-art",
+      "skill_id": "auditing-and-refining-ui-art",
+      "source": "BASE_SHARED",
+      "status": "ACTIVE",
+      "target_route_id": "auditing-and-refining-ui-art"
+    },
+    "auditing-canonical-reference-freshness": {
+      "route_id": "auditing-canonical-reference-freshness",
+      "skill_id": "auditing-canonical-reference-freshness",
+      "source": "BASE_SHARED",
+      "status": "ACTIVE",
+      "target_route_id": "auditing-canonical-reference-freshness"
+    },
+    "designing-vertical-slices": {
+      "route_id": "designing-vertical-slices",
+      "skill_id": "designing-vertical-slices",
+      "source": "BASE_SHARED",
+      "status": "ACTIVE",
+      "target_route_id": "designing-vertical-slices"
+    },
+    "maintaining-long-running-task-continuity": {
+      "route_id": "maintaining-long-running-task-continuity",
+      "skill_id": "maintaining-long-running-task-continuity",
+      "source": "BASE_SHARED",
+      "status": "ACTIVE",
+      "target_route_id": "maintaining-long-running-task-continuity"
+    },
+    "maintaining-project-context-and-handoff": {
+      "route_id": "maintaining-project-context-and-handoff",
+      "skill_id": "maintaining-project-context-and-handoff",
+      "source": "BASE_SHARED",
+      "status": "ACTIVE",
+      "target_route_id": "maintaining-project-context-and-handoff"
+    },
+    "managing-design-documents": {
+      "route_id": "managing-design-documents",
+      "skill_id": "managing-design-documents",
+      "source": "BASE_SHARED",
+      "status": "ACTIVE",
+      "target_route_id": "managing-design-documents"
+    },
+    "managing-game-project-operating-system": {
+      "route_id": "managing-game-project-operating-system",
+      "skill_id": "managing-game-project-operating-system",
+      "source": "BASE_SHARED",
+      "status": "ACTIVE",
+      "target_route_id": "managing-game-project-operating-system"
+    },
+    "managing-project-intake-and-work-contract": {
+      "route_id": "managing-project-intake-and-work-contract",
+      "skill_id": "managing-project-intake-and-work-contract",
+      "source": "BASE_SHARED",
+      "status": "ACTIVE",
+      "target_route_id": "managing-project-intake-and-work-contract"
+    },
+    "optimizing-ai-model-and-prompt-costs": {
+      "route_id": "optimizing-ai-model-and-prompt-costs",
+      "skill_id": "optimizing-ai-model-and-prompt-costs",
+      "source": "BASE_SHARED",
+      "status": "ACTIVE",
+      "target_route_id": "optimizing-ai-model-and-prompt-costs"
+    },
+    "orchestrating-deepseek-worktrees": {
+      "route_id": "orchestrating-deepseek-worktrees",
+      "skill_id": "orchestrating-deepseek-worktrees",
+      "source": "BASE_SHARED",
+      "status": "ACTIVE",
+      "target_route_id": "orchestrating-deepseek-worktrees"
+    },
+    "reviewing-and-validating-project-changes": {
+      "route_id": "reviewing-and-validating-project-changes",
+      "skill_id": "reviewing-and-validating-project-changes",
+      "source": "BASE_SHARED",
+      "status": "ACTIVE",
+      "target_route_id": "reviewing-and-validating-project-changes"
+    },
+    "running-adversarial-review-and-refinement": {
+      "route_id": "running-adversarial-review-and-refinement",
+      "skill_id": "running-adversarial-review-and-refinement",
+      "source": "BASE_SHARED",
+      "status": "ACTIVE",
+      "target_route_id": "running-adversarial-review-and-refinement"
+    },
+    "switchy-express-design": {
+      "route_id": "switchy-express-design",
+      "skill_id": "switchy-express-design",
+      "source": "PROJECT_LOCAL",
+      "status": "ACTIVE",
+      "target_route_id": "switchy-express-design"
+    },
+    "synchronizing-local-and-github-state": {
+      "route_id": "synchronizing-local-and-github-state",
+      "skill_id": "synchronizing-local-and-github-state",
+      "source": "BASE_SHARED",
+      "status": "ACTIVE",
+      "target_route_id": "synchronizing-local-and-github-state"
+    }
+  },
+  "generated": true,
+  "inactive_routes": [],
+  "project_registry": {
+    "hash_definition": "RAW_FILE_BYTES_SHA256",
+    "path": "skills/SKILL_REGISTRY.json",
+    "sha256": "048896cee3879a384cea4eb46442ea0cedd52317163d67fd885bba9d6dd58787"
+  },
+  "project_routes": [
+    {
+      "route_id": "switchy-express-design",
+      "skill_id": "switchy-express-design",
+      "status": "ACTIVE"
+    }
+  ],
+  "schema_version": 1,
+  "source_registry": {
+    "hash_definition": "RAW_FILE_BYTES_SHA256",
+    "path": "skills/PROJECT_BASE_ADAPTER.json",
+    "sha256": "571bd73584f1332db490532d7e3ab1540f7e1cc8ede45154fed419a4260eb439"
+  }
+}

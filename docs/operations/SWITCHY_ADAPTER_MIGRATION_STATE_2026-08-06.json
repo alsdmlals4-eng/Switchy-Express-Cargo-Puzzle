@@ -1,0 +1,390 @@
+{
+  "artifact_role": "SWITCHY_ADAPTER_MIGRATION_STATE",
+  "baseline_commit": "8c6dd60c634019e64178e72aa4959a2a970708e1",
+  "decision_id": "DEC-BASE-20260805-001",
+  "google_sheet_mutation": "NONE",
+  "legacy_adapter_snapshot": {
+    "artifact_role": "PROJECT_BASE_ADAPTER",
+    "base_release": {
+      "finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
+      "release_commit": "7dd1a4f80388bc5faca767ff74a3eb32dc9d0ac8",
+      "release_evidence_commit": "da33a350d61b8adc52df97fccc7001708a933370",
+      "repository": "alsdmlals4-eng/Base",
+      "version": "9.4.3"
+    },
+    "compatibility": {
+      "cycle": "ONE_CYCLE",
+      "legacy_inputs": {},
+      "views": []
+    },
+    "gdd_sheet": {
+      "decision_commit": "3cd13ff375a597d4eba9035af5b05e6186fb4853",
+      "role": "USER_FACING_GDD_WORKSPACE",
+      "spreadsheet_id": "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo",
+      "sync_status": "SYNCED",
+      "url": "https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit",
+      "verified_at": "2026-08-02T15:16:00+09:00"
+    },
+    "project": {
+      "engine": "Godot 4.7.1",
+      "orientation": "landscape",
+      "platform": "Android",
+      "repository": "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle",
+      "root": "."
+    },
+    "protected_baseline": {
+      "authority_kind": "GIT_COMMIT",
+      "authority_ref": "refs/heads/main",
+      "commit": "3cd13ff375a597d4eba9035af5b05e6186fb4853",
+      "policy_sha256": "204da76df84fb289d5f9d8445195532124788648d65698e8901463c58ec545a3",
+      "policy_source_path": "AGENTS.md",
+      "policy_source_type": "VERIFIED_PROJECT_MAIN",
+      "protected_paths_pointer": "/protected_paths"
+    },
+    "protected_paths": [
+      "project.godot",
+      "game/**",
+      "assets/**",
+      "기획서/**"
+    ],
+    "routing": {
+      "aliases": [],
+      "base_routes": [
+        "analyzing-and-refining-game-concepts",
+        "auditing-and-refining-ui-art",
+        "auditing-canonical-reference-freshness",
+        "designing-vertical-slices",
+        "maintaining-long-running-task-continuity",
+        "maintaining-project-context-and-handoff",
+        "managing-design-documents",
+        "managing-game-project-operating-system",
+        "managing-project-intake-and-work-contract",
+        "optimizing-ai-model-and-prompt-costs",
+        "orchestrating-deepseek-worktrees",
+        "reviewing-and-validating-project-changes",
+        "running-adversarial-review-and-refinement",
+        "synchronizing-local-and-github-state"
+      ],
+      "inactive_routes": [],
+      "precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
+      "project_routes": [
+        "switchy-express-design"
+      ]
+    },
+    "schema_version": 1,
+    "shared_overrides": {
+      "managing-project-intake-and-work-contract": {
+        "first_prompt_governance": {
+          "actual_project_instruction_execution": "NOT_RUN",
+          "approval_reuse": "REUSE_EXACT_APPROVAL_REFERENCE",
+          "base_contract_source": "skills/managing-project-intake-and-work-contract/SKILL.md",
+          "base_release_finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
+          "base_release_lock": "base-v9.4.3.lock.json",
+          "direction_anchor_reference": "skills/managing-project-intake-and-work-contract/references/first-prompt-direction-anchoring.md",
+          "instruction_flow": [
+            "route",
+            "first-prompt",
+            "contract",
+            "clarify"
+          ],
+          "l0_exceptions": [
+            "TYPO",
+            "OBVIOUS_FORMAT",
+            "IDENTICAL_VALIDATION_RERUN"
+          ],
+          "unconfirmed_state": "AWAITING_USER_CONFIRMATION"
+        },
+        "planning_first_governance": {
+          "actual_project_batch_execution": "NOT_RUN",
+          "base_contract_source": "docs/PLANNING_FIRST_GRILL_ME_BATCH_POLICY.md",
+          "base_release_finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
+          "base_release_lock": "base-v9.4.3.lock.json",
+          "checkpoint_template": "templates/project-operations/GRILL_ME_BATCH_CHECKPOINT.md",
+          "max_approved_decisions_per_batch": 10,
+          "numeric_default_state": "RECOMMENDED_DEFAULT",
+          "planning_conflict_state": "GRILL_ME_REQUIRED",
+          "post_merge_sheet_state": "SYNCED_TO_MAIN",
+          "pre_merge_sheet_state": "APPROVED_PENDING_MERGE"
+        }
+      },
+      "optimizing-ai-model-and-prompt-costs": {
+        "modes": [
+          "route-model-and-effort",
+          "design-cacheable-prefix",
+          "estimate-cost",
+          "measure-actual-usage",
+          "recalibrate"
+        ],
+        "provider_measurement_status": "NOT_RUN"
+      },
+      "orchestrating-deepseek-worktrees": {
+        "actual_external_ai_worktree_execution": "NOT_RUN",
+        "allowed_write_roots": [
+          "drafts/external-ai/**"
+        ],
+        "base_contract_source": "skills/orchestrating-deepseek-worktrees/SKILL.md",
+        "base_release_lock": "base-v9.4.1.lock.json",
+        "base_validator_adoption": "ADOPTED_FROM_BASE_V9_4_1",
+        "base_validator_path": "tools/check_external_ai_worktree_contract.py",
+        "draft_root": "drafts/external-ai/",
+        "integration_policy": "LOCAL_REVIEW_REQUIRED_BEFORE_CANON",
+        "protected_paths_source": "skills/PROJECT_BASE_ADAPTER.json#/protected_paths",
+        "result_state": "REVIEW_PENDING",
+        "task_branch_prefix": "ai/deepseek-",
+        "work_package_source": "templates/ai/DEEPSEEK_WORK_PACKAGE.md",
+        "worktree_parent": ".worktrees/"
+      }
+    },
+    "skill_registry": {
+      "base": {
+        "hash_definition": "RAW_FILE_BYTES_SHA256",
+        "path": "skills/SKILL_REGISTRY.json",
+        "sha256": "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59"
+      },
+      "project": {
+        "hash_definition": "RAW_FILE_BYTES_SHA256",
+        "path": "skills/SKILL_REGISTRY.json",
+        "sha256": "b65b926348fccf31bae74bbc3c4fc0ec7d81f88ecb332fc52895f37ad7ba2484"
+      }
+    },
+    "validators": [
+      {
+        "command": "python tools/validate_project_contract.py",
+        "evidence_commit": "3cd13ff375a597d4eba9035af5b05e6186fb4853",
+        "status": "PASSED_AT_BASELINE"
+      },
+      {
+        "command": "godot --headless --path . --script res://tests/run_tests.gd",
+        "evidence_commit": "3cd13ff375a597d4eba9035af5b05e6186fb4853",
+        "status": "PASSED_AT_BASELINE",
+        "summary": "9 cases / 6915 assertions / 0 failures"
+      },
+      {
+        "command": "python tests/test_base_shared_external_ai_adapter.py",
+        "evidence_commit": null,
+        "status": "REQUIRED_ON_PULL_REQUEST"
+      },
+      {
+        "command": "python tests/test_base_v942_planning_first_adoption.py",
+        "evidence_commit": null,
+        "status": "REQUIRED_ON_PULL_REQUEST"
+      },
+      {
+        "command": "python tests/test_base_v943_first_prompt_adoption.py",
+        "evidence_commit": null,
+        "status": "REQUIRED_ON_PULL_REQUEST"
+      }
+    ]
+  },
+  "legacy_gdd_sheet": {
+    "decision_commit": "3cd13ff375a597d4eba9035af5b05e6186fb4853",
+    "role": "USER_FACING_GDD_WORKSPACE",
+    "spreadsheet_id": "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo",
+    "sync_status": "SYNCED",
+    "url": "https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit",
+    "verified_at": "2026-08-02T15:16:00+09:00"
+  },
+  "legacy_project_registry": {
+    "schema_version": 1,
+    "selection_policy": {
+      "automatic_selection": true,
+      "default_selection": "automatic-trigger-match",
+      "load_all_skills": false,
+      "require_execution_report": true,
+      "user_skill_declaration_required": false
+    },
+    "skills": [
+      {
+        "id": "switchy-express-design",
+        "negative_triggers": [
+          "unrelated repository administration"
+        ],
+        "outputs": [
+          "finite product design or review",
+          "Android device smoke runbook or evidence review",
+          "five-person comprehension preparation or evidence review"
+        ],
+        "owner": "project",
+        "path": "skills/switchy-express-design/SKILL.md",
+        "positive_triggers": [
+          "finite delivery puzzle",
+          "track construction",
+          "cargo encounter order",
+          "manual load",
+          "auto-load",
+          "unlimited LIFO",
+          "persistent branch",
+          "TOP unloading",
+          "finite timer",
+          "same-layout retry",
+          "Android device smoke",
+          "validation APK",
+          "five-person comprehension",
+          "visual readability",
+          "canonical APK hash"
+        ],
+        "status": "ACTIVE"
+      },
+      {
+        "base_path": "skills/managing-project-intake-and-work-contract/SKILL.md",
+        "id": "managing-project-intake-and-work-contract",
+        "owner": "base",
+        "status": "ACTIVE"
+      },
+      {
+        "base_path": "skills/managing-game-project-operating-system/SKILL.md",
+        "id": "managing-game-project-operating-system",
+        "owner": "base",
+        "status": "ACTIVE"
+      },
+      {
+        "base_path": "skills/managing-design-documents/SKILL.md",
+        "id": "managing-design-documents",
+        "owner": "base",
+        "status": "ACTIVE"
+      },
+      {
+        "base_path": "skills/analyzing-and-refining-game-concepts/SKILL.md",
+        "id": "analyzing-and-refining-game-concepts",
+        "owner": "base",
+        "status": "ACTIVE"
+      },
+      {
+        "base_path": "skills/designing-vertical-slices/SKILL.md",
+        "id": "designing-vertical-slices",
+        "owner": "base",
+        "status": "ACTIVE"
+      },
+      {
+        "base_path": "skills/running-adversarial-review-and-refinement/SKILL.md",
+        "id": "running-adversarial-review-and-refinement",
+        "owner": "base",
+        "status": "ACTIVE"
+      },
+      {
+        "base_path": "skills/auditing-canonical-reference-freshness/SKILL.md",
+        "id": "auditing-canonical-reference-freshness",
+        "owner": "base",
+        "status": "ACTIVE"
+      },
+      {
+        "base_path": "skills/synchronizing-local-and-github-state/SKILL.md",
+        "id": "synchronizing-local-and-github-state",
+        "owner": "base",
+        "status": "ACTIVE"
+      },
+      {
+        "base_path": "skills/maintaining-long-running-task-continuity/SKILL.md",
+        "id": "maintaining-long-running-task-continuity",
+        "owner": "base",
+        "status": "ACTIVE"
+      },
+      {
+        "base_path": "skills/auditing-and-refining-ui-art/SKILL.md",
+        "id": "auditing-and-refining-ui-art",
+        "owner": "base",
+        "status": "ACTIVE"
+      },
+      {
+        "base_path": "skills/reviewing-and-validating-project-changes/SKILL.md",
+        "id": "reviewing-and-validating-project-changes",
+        "owner": "base",
+        "status": "ACTIVE"
+      },
+      {
+        "base_path": "skills/maintaining-project-context-and-handoff/SKILL.md",
+        "id": "maintaining-project-context-and-handoff",
+        "owner": "base",
+        "status": "ACTIVE"
+      },
+      {
+        "base_path": "skills/optimizing-ai-model-and-prompt-costs/SKILL.md",
+        "id": "optimizing-ai-model-and-prompt-costs",
+        "owner": "base",
+        "status": "ACTIVE"
+      }
+    ]
+  },
+  "legacy_protected_baseline": {
+    "authority_kind": "GIT_COMMIT",
+    "authority_ref": "refs/heads/main",
+    "commit": "3cd13ff375a597d4eba9035af5b05e6186fb4853",
+    "policy_sha256": "204da76df84fb289d5f9d8445195532124788648d65698e8901463c58ec545a3",
+    "policy_source_path": "AGENTS.md",
+    "policy_source_type": "VERIFIED_PROJECT_MAIN",
+    "protected_paths_pointer": "/protected_paths"
+  },
+  "legacy_routing": {
+    "aliases": [],
+    "base_routes": [
+      "analyzing-and-refining-game-concepts",
+      "auditing-and-refining-ui-art",
+      "auditing-canonical-reference-freshness",
+      "designing-vertical-slices",
+      "maintaining-long-running-task-continuity",
+      "maintaining-project-context-and-handoff",
+      "managing-design-documents",
+      "managing-game-project-operating-system",
+      "managing-project-intake-and-work-contract",
+      "optimizing-ai-model-and-prompt-costs",
+      "orchestrating-deepseek-worktrees",
+      "reviewing-and-validating-project-changes",
+      "running-adversarial-review-and-refinement",
+      "synchronizing-local-and-github-state"
+    ],
+    "inactive_routes": [],
+    "precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
+    "project_routes": [
+      "switchy-express-design"
+    ]
+  },
+  "legacy_validators": [
+    {
+      "command": "python tools/validate_project_contract.py",
+      "evidence_commit": "3cd13ff375a597d4eba9035af5b05e6186fb4853",
+      "status": "PASSED_AT_BASELINE"
+    },
+    {
+      "command": "godot --headless --path . --script res://tests/run_tests.gd",
+      "evidence_commit": "3cd13ff375a597d4eba9035af5b05e6186fb4853",
+      "status": "PASSED_AT_BASELINE",
+      "summary": "9 cases / 6915 assertions / 0 failures"
+    },
+    {
+      "command": "python tests/test_base_shared_external_ai_adapter.py",
+      "evidence_commit": null,
+      "status": "REQUIRED_ON_PULL_REQUEST"
+    },
+    {
+      "command": "python tests/test_base_v942_planning_first_adoption.py",
+      "evidence_commit": null,
+      "status": "REQUIRED_ON_PULL_REQUEST"
+    },
+    {
+      "command": "python tests/test_base_v943_first_prompt_adoption.py",
+      "evidence_commit": null,
+      "status": "REQUIRED_ON_PULL_REQUEST"
+    }
+  ],
+  "migration_policy": "LOSSLESS_INCOMPATIBLE_SHAPES_OUTSIDE_BASE_ADAPTER",
+  "preserved_project_evidence": [
+    "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
+    "기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md",
+    "기획서/50_제작_검증/ANDROID_DEVICE_SMOKE_RUNBOOK.md",
+    "기획서/50_제작_검증/FP_01_02_IMPLEMENTATION_AUDIT.md",
+    "기획서/50_제작_검증/SX_AUD_018_VALIDATION_PREPARATION_AUDIT.md",
+    "docs/superpowers/specs/2026-08-05-android-validation-apk-ci-design.md",
+    "docs/superpowers/plans/2026-08-05-android-validation-apk-ci.md",
+    "docs/GAME_RELEASE_COMPLIANCE_EVIDENCE_PACK.md",
+    "docs/PLATFORM_RELEASE_AND_ASSET_RIGHTS_PROFILE.md"
+  ],
+  "product_mutation": "NONE",
+  "registry_compatibility_addition": {
+    "base_owned_entries_changed": false,
+    "base_v1_field_added": "skill_id",
+    "legacy_field_preserved": "id",
+    "project_skill_id": "switchy-express-design"
+  },
+  "repository": "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle",
+  "schema_version": 1
+}

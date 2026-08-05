@@ -10,6 +10,7 @@
   "skills": [
     {
       "id": "switchy-express-design",
+      "skill_id": "switchy-express-design",
       "owner": "project",
       "path": "skills/switchy-express-design/SKILL.md",
       "status": "ACTIVE",
