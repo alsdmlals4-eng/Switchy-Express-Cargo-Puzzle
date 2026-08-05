@@ -5,6 +5,7 @@ const MODE_PROOF: StringName = &"PROOF"
 const MODE_STACK_8: StringName = &"STACK_8"
 const MODE_STACK_16: StringName = &"STACK_16"
 const MODE_STACK_32: StringName = &"STACK_32"
+const MODE_INVALID: StringName = &"INVALID"
 const ERROR_INVALID_MODE: StringName = &"INVALID_MODE"
 const ERROR_MISSING_SCENE: StringName = &"MISSING_SCENE"
 const PROOF_SCENE_PATH := "res://game/finite/main/finite_slice.tscn"
@@ -38,6 +39,8 @@ static func mode_from_user_args(args: PackedStringArray) -> StringName:
 				return MODE_STACK_16
 			"stack32":
 				return MODE_STACK_32
+			_:
+				return MODE_INVALID
 	return MODE_PROOF
 
 
