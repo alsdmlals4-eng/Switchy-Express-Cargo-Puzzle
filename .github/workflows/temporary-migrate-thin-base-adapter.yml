@@ -1,0 +1,234 @@
+name: Materialize strict thin Base adapter
+
+on:
+  push:
+    branches:
+      - agent/rebuild-thin-base-adapter
+    paths:
+      - .github/workflows/temporary-migrate-thin-base-adapter.yml
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out project history
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: Check out trusted Base contract
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: alsdmlals4-eng/Base
+          ref: bfdc9e44d4a6920dc085eaa3f9d19d31b1acd2a1
+          path: .base-contract
+          fetch-depth: 0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.12"
+      - name: Install Base contract dependencies
+        run: python -m pip install -r .base-contract/.github/validation-requirements.txt
+      - name: Preserve project state and write strict authority files
+        env:
+          PROJECT_BASE_SHA: a45176a3655ae6b36e69f1d58a8556626ca9df86
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path.cwd()
+          sys.path.insert(0, str(root / ".base-contract" / "tools"))
+          import project_operating_contract as contract
+
+          base_sha = os.environ["PROJECT_BASE_SHA"]
+          adapter_path = root / "skills/PROJECT_BASE_ADAPTER.json"
+          health_path = root / "docs/PROJECT_OPERATING_HEALTH.json"
+          migration_path = root / "docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json"
+          sheet_path = root / "docs/operations/SWITCHY_SHEET_AUTHORITY_EVIDENCE_2026-08-06.json"
+          old = json.loads(adapter_path.read_text(encoding="utf-8"))
+
+          migration = {
+              "artifact_role": "SWITCHY_ADAPTER_MIGRATION_STATE",
+              "schema_version": 1,
+              "decision_id": "DEC-BASE-20260805-001",
+              "repository": "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle",
+              "baseline_commit": base_sha,
+              "migration_policy": "LOSSLESS_INCOMPATIBLE_SHAPES_OUTSIDE_BASE_ADAPTER",
+              "legacy_routing": old["routing"],
+              "legacy_validators": old["validators"],
+              "legacy_gdd_sheet": old["gdd_sheet"],
+              "legacy_protected_baseline": old["protected_baseline"],
+              "legacy_adapter_snapshot": old,
+              "preserved_project_evidence": [
+                  "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
+                  "기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md",
+                  "기획서/50_제작_검증/ANDROID_DEVICE_SMOKE_RUNBOOK.md",
+                  "기획서/50_제작_검증/FP_01_02_IMPLEMENTATION_AUDIT.md",
+                  "기획서/50_제작_검증/SX_AUD_018_VALIDATION_PREPARATION_AUDIT.md",
+                  "docs/superpowers/specs/2026-08-05-android-validation-apk-ci-design.md",
+                  "docs/superpowers/plans/2026-08-05-android-validation-apk-ci.md",
+                  "docs/GAME_RELEASE_COMPLIANCE_EVIDENCE_PACK.md",
+                  "docs/PLATFORM_RELEASE_AND_ASSET_RIGHTS_PROFILE.md",
+              ],
+              "product_mutation": "NONE",
+              "google_sheet_mutation": "NONE",
+          }
+          migration_path.parent.mkdir(parents=True, exist_ok=True)
+          migration_path.write_bytes(contract.canonical_json(migration))
+
+          sheet_evidence = {
+              "artifact_role": "SWITCHY_SHEET_AUTHORITY_EVIDENCE",
+              "schema_version": 1,
+              "decision_id": "DEC-BASE-20260805-001",
+              "repository": "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle",
+              "source_adapter_baseline": base_sha,
+              "legacy_gdd_sheet": old["gdd_sheet"],
+              "sheet_mutation": "NONE",
+              "interpretation": "Existing synchronized Sheet authority is preserved; this adapter migration performs no Sheet write.",
+          }
+          sheet_path.write_bytes(contract.canonical_json(sheet_evidence))
+
+          project_registry_path = old["skill_registry"]["project"]["path"]
+          project_registry_raw = subprocess.check_output(
+              ["git", "show", f"{base_sha}:{project_registry_path}"]
+          )
+          project_registry_hash = hashlib.sha256(project_registry_raw).hexdigest()
+
+          def active_route(skill_id: str) -> dict[str, str]:
+              return {"route_id": skill_id, "skill_id": skill_id, "status": "ACTIVE"}
+
+          gdd_sheet = dict(old["gdd_sheet"])
+          gdd_sheet["declared_sync_status"] = old["gdd_sheet"].get("sync_status")
+          gdd_sheet["sync_status"] = "CURRENT"
+
+          strict_adapter = {
+              "schema_version": 1,
+              "artifact_role": "PROJECT_BASE_ADAPTER",
+              "base_release": {
+                  key: old["base_release"][key]
+                  for key in (
+                      "repository",
+                      "version",
+                      "release_commit",
+                      "release_evidence_commit",
+                      "finalization_commit",
+                  )
+                  if key in old["base_release"]
+              },
+              "project": old["project"],
+              "routing": {
+                  "base_routes": [active_route(str(item)) for item in old["routing"]["base_routes"]],
+                  "project_routes": [active_route(str(item)) for item in old["routing"]["project_routes"]],
+                  "inactive_routes": [],
+                  "aliases": old["routing"].get("aliases", []),
+                  "precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
+              },
+              "skill_registry": {
+                  "base": {
+                      "path": old["skill_registry"]["base"]["path"],
+                      "sha256": old["skill_registry"]["base"]["sha256"],
+                      "hash_definition": "RAW_FILE_BYTES_SHA256",
+                  },
+                  "project": {
+                      "path": project_registry_path,
+                      "sha256": project_registry_hash,
+                      "hash_definition": "RAW_FILE_BYTES_SHA256",
+                  },
+              },
+              "shared_overrides": old["shared_overrides"],
+              "gdd_sheet": gdd_sheet,
+              "protected_baseline": {
+                  "authority_kind": "REMOTE_TRACKING_REF",
+                  "authority_ref": "refs/remotes/origin/main",
+                  "commit": base_sha,
+                  "policy_source_type": "FIRST_MIGRATION_LEGACY_SOURCE",
+                  "policy_source_path": "skills/PROJECT_BASE_ADAPTER.json",
+                  "protected_paths_pointer": "/protected_paths",
+                  "policy_sha256": contract._protected_policy_hash(old["protected_paths"]),
+              },
+              "protected_paths": old["protected_paths"],
+              "validators": [str(item["command"]) for item in old["validators"]],
+              "compatibility": {
+                  "cycle": old["compatibility"]["cycle"],
+                  "views": old["compatibility"]["views"],
+                  "legacy_inputs": old["compatibility"]["legacy_inputs"],
+              },
+          }
+          adapter_path.write_bytes(contract.canonical_json(strict_adapter))
+
+          def evidence_record(record_id: str, source: str) -> dict[str, str]:
+              path = root / source
+              if not path.is_file():
+                  raise SystemExit(f"missing evidence source: {source}")
+              return {"id": record_id, "source": source, "sha256": contract.sha256_file(path)}
+
+          strict_health = {
+              "schema_version": 1,
+              "artifact_role": "PROJECT_OPERATING_HEALTH",
+              "operating_maturity": "OM-L1",
+              "product_evidence_maturity": "PE-0",
+              "critical_gates": {
+                  "static": "PASS",
+                  "runtime": "NOT_RUN",
+                  "device": "NOT_RUN",
+                  "accessibility": "NOT_RUN",
+                  "human": "NOT_RUN",
+              },
+              "integrity_verdict": "PASS_WITH_NOT_RUN_GATES",
+              "evidence": {
+                  "operating": [
+                      evidence_record("SX-ADAPTER-MIGRATION-20260806", migration_path.relative_to(root).as_posix())
+                  ],
+                  "product": [],
+                  "sheet": [
+                      evidence_record("SX-SHEET-AUTHORITY-20260806", sheet_path.relative_to(root).as_posix())
+                  ],
+                  "gates": {
+                      "static": [
+                          evidence_record("SX-BASE-RULES-STATIC", "docs/BASE_RULES_VERSION.md")
+                      ],
+                      "runtime": [],
+                      "device": [],
+                      "accessibility": [],
+                      "human": [],
+                  },
+              },
+          }
+          health_path.write_bytes(contract.canonical_json(strict_health))
+          PY
+      - name: Generate Base-owned views and validate
+        env:
+          PROJECT_BASE_SHA: a45176a3655ae6b36e69f1d58a8556626ca9df86
+        run: |
+          python .base-contract/tools/build_project_operating_artifacts.py \
+            --project-root . \
+            --base-repository .base-contract \
+            --protected-base "$PROJECT_BASE_SHA" \
+            --write
+          python .base-contract/tools/check_project_operating_contract.py \
+            --project-root . \
+            --base-repository .base-contract \
+            --protected-base "$PROJECT_BASE_SHA" \
+            --check
+          python tests/python/test_project_base_adapter_thin_migration.py -v
+      - name: Commit authority and generated views
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            skills/PROJECT_BASE_ADAPTER.json \
+            docs/PROJECT_OPERATING_HEALTH.json \
+            docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json \
+            docs/operations/SWITCHY_SHEET_AUTHORITY_EVIDENCE_2026-08-06.json \
+            skills/PROJECT_SKILL_SNAPSHOT.json \
+            docs/PROJECT_OPERATING_DASHBOARD.html \
+            .agents/skills/switchy-express-cargo-puzzle-workflow-router/SKILL.md
+          git diff --cached --check
+          git commit -m "fix: materialize strict thin Base adapter"
+          git push origin HEAD:agent/rebuild-thin-base-adapter
