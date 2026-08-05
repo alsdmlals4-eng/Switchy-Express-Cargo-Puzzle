@@ -1,6 +1,7 @@
 class_name FiniteValidationLauncher
 extends Control
 
+const MODE_SELECTOR: StringName = &"SELECTOR"
 const MODE_PROOF: StringName = &"PROOF"
 const MODE_STACK_8: StringName = &"STACK_8"
 const MODE_STACK_16: StringName = &"STACK_16"
@@ -14,6 +15,10 @@ const VIEW_SCENE_PATH := "res://game/finite/presentation/finite_slice_view.tscn"
 const PresenterScript := preload("res://game/finite/presentation/finite_slice_presenter.gd")
 const RunStateFixtureScript := preload("res://tools/validation/finite/validation_run_state_fixture.gd")
 
+@onready var _selector := get_node("Selector") as FiniteValidationModeSelector
+@onready var _back_overlay := get_node("BackOverlay") as Control
+@onready var _back_button := get_node("BackOverlay/BackButton") as Button
+
 var _active_mode: StringName = &""
 var _active_scene_path := ""
 var _stack_fixture_size := 0
@@ -22,7 +27,13 @@ var _mounted_child: Node
 
 
 func _ready() -> void:
-	configure_mode(mode_from_user_args(OS.get_cmdline_user_args()))
+	_selector.mode_requested.connect(_on_mode_requested)
+	_back_button.pressed.connect(show_selector)
+	var requested := mode_from_user_args(OS.get_cmdline_user_args())
+	if requested == MODE_SELECTOR:
+		show_selector()
+	else:
+		configure_mode(requested)
 
 
 static func mode_from_user_args(args: PackedStringArray) -> StringName:
@@ -41,7 +52,7 @@ static func mode_from_user_args(args: PackedStringArray) -> StringName:
 				return MODE_STACK_32
 			_:
 				return MODE_INVALID
-	return MODE_PROOF
+	return MODE_SELECTOR
 
 
 func configure_mode(mode: StringName) -> bool:
@@ -54,22 +65,47 @@ func configure_mode(mode: StringName) -> bool:
 	match mode:
 		MODE_PROOF:
 			if not _mount_proof():
+				_show_safe_selector_preserving_error()
 				return false
 		MODE_STACK_8:
 			if not _mount_stack(8):
+				_show_safe_selector_preserving_error()
 				return false
 		MODE_STACK_16:
 			if not _mount_stack(16):
+				_show_safe_selector_preserving_error()
 				return false
 		MODE_STACK_32:
 			if not _mount_stack(32):
+				_show_safe_selector_preserving_error()
 				return false
 		_:
 			_last_error = ERROR_INVALID_MODE
+			_show_safe_selector_preserving_error()
 			return false
 
+	_selector.hide_selector()
+	_back_overlay.visible = true
 	_active_mode = mode
 	return true
+
+
+func show_selector() -> void:
+	_clear_mounted_child()
+	_active_mode = MODE_SELECTOR
+	_active_scene_path = ""
+	_stack_fixture_size = 0
+	_last_error = &""
+	_selector.show_selector()
+	_back_overlay.visible = false
+
+
+func selector_visible() -> bool:
+	return _selector.is_selector_visible()
+
+
+func back_control_visible() -> bool:
+	return _back_overlay.visible
 
 
 func active_mode() -> StringName:
@@ -90,6 +126,18 @@ func last_error() -> StringName:
 
 func mounted_child() -> Node:
 	return _mounted_child
+
+
+func _on_mode_requested(mode: StringName) -> void:
+	configure_mode(mode)
+
+
+func _show_safe_selector_preserving_error() -> void:
+	_active_mode = MODE_INVALID
+	_active_scene_path = ""
+	_stack_fixture_size = 0
+	_selector.show_selector()
+	_back_overlay.visible = false
 
 
 func _mount_proof() -> bool:
