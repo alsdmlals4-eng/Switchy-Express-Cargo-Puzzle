@@ -1,8 +1,8 @@
 @tool
 extends "plugin_exact_restore.gd"
 
-const STABLE_OBSERVATION_FRAMES := 3
-const STABLE_OBSERVATION_ATTEMPTS := 30
+const STABLE_OBSERVATION_FRAMES := 30
+const STABLE_OBSERVATION_ATTEMPTS := 180
 
 var _stable_observation_pass := false
 var _batch_failure_codes: Array[String] = []
@@ -35,12 +35,21 @@ func _wait_for_stable_observation() -> Dictionary:
     var previous_key := ""
     var stable_frames := 0
     var last_observation: Dictionary = {}
+    var editor_filesystem := EditorInterface.get_resource_filesystem()
     for _attempt in range(STABLE_OBSERVATION_ATTEMPTS):
         var root := EditorInterface.get_edited_scene_root()
         if root == null or str(root.scene_file_path) != TARGET_SCENE:
             EditorInterface.open_scene_from_path(TARGET_SCENE)
+            previous_key = ""
+            stable_frames = 0
             await get_tree().process_frame
             await get_tree().process_frame
+            continue
+        if editor_filesystem.is_scanning():
+            previous_key = ""
+            stable_frames = 0
+            await get_tree().process_frame
+            continue
         var observation: Dictionary = _probe.observe(
             get_editor_interface(),
             get_undo_redo(),
