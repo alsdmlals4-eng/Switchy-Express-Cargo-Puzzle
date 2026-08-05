@@ -12,9 +12,10 @@ current_audit: SX-AUD-017
 current_main: 3a4aeaa63561f78e6b1065c80bda9a64af220051
 planning_state: MERGED_AND_SYNCED
 implementation_state: TASK_12_AUTOMATED_PASS · LEGACY_RUNTIME_DEFAULT
-manual_gate_state: ANDROID_NOT_RUN · HUMAN_NOT_RUN
+validation_prep_state: BLOCKED_MISSING_EXPORT_PRESET_AND_STACK_HARNESS
+manual_gate_state: ANDROID_BLOCKED_PREREQUISITES · HUMAN_BLOCKED_BY_BUILD
 cutover_state: BLOCKED
-next_gate: ANDROID_SMOKE + FIVE_PERSON_COMPREHENSION
+next_gate: VALIDATION_HARNESS + ANDROID_EXPORT_PRESET
 sheet_state: SX-AUD-017_SYNCED
 old_vs03_execution_order: REPLACED · HISTORICAL_EVIDENCE
 ```
@@ -87,13 +88,23 @@ Godot Tests #451 PASS
 unresolved thread 0 · REQUEST_CHANGES 0
 ```
 
-### 열려 있는 필수 Gate
+### 검증 준비 차단점
 
-- Android landscape 실기기 또는 공식 emulator smoke: `NOT_RUN`
-- 5명 comprehension validation: `NOT_RUN`
+- 저장소에 `export_presets.cfg`가 없다.
+- finite authored map은 화물 4개의 proof map 하나뿐이다.
+- `TOP 8/16/32` 가독성을 검증할 QA fixture 또는 validation harness가 없다.
+- finite는 아직 product main이 아니며 validation 전용 launcher가 없다.
+
+따라서 Android와 5명 검증은 실행 전 단계에서 차단돼 있다. 준비 package는 제품 규칙을 추가하지 않고 Android debug preset, validation launcher, proof 실행 모드, 8/16/32 stack 가독성 모드, entrypoint 불변 테스트만 제공해야 한다.
+
+### 열려 있는 Gate
+
+- Validation preparation: `BLOCKED`
+- Android landscape smoke: `NOT_RUN · BLOCKED_PREREQUISITES`
+- 5명 comprehension validation: `NOT_RUN · BLOCKED_BY_BUILD`
 - production default cutover: `BLOCKED`
 
-수동 실행 계약과 기록 양식은 `FP_01_02_IMPLEMENTATION_AUDIT.md`를 따른다.
+세부 실행 계약과 기록 양식은 `FP_01_02_IMPLEMENTATION_AUDIT.md`를 따른다.
 
 ## Preserved Decisions
 
@@ -140,7 +151,7 @@ unresolved thread 0 · REQUEST_CHANGES 0
 - switch auto-reset
 - endless survival score
 
-old tests는 old contract의 회귀 증거이며 finite 제품 PASS 수치로 합산하지 않는다. 기본 진입점은 수동 Gate 전까지 legacy를 유지한다.
+old tests는 old contract의 회귀 증거이며 finite 제품 PASS 수치로 합산하지 않는다. 기본 진입점은 validation preparation·Android·HUMAN Gate 전까지 legacy를 유지한다.
 
 ## Audit Registry
 
@@ -152,7 +163,7 @@ old tests는 old contract의 회귀 증거이며 finite 제품 PASS 수치로 �
 | SX-AUD-014 | finite clock·하역·캡슐화 | PASS_WITH_NEXT_GATES |
 | SX-AUD-015 | solution/attempt identity·retry | PASS_WITH_NEXT_GATES |
 | SX-AUD-016 | 제품 화면·48dp·명령 경계 | PASS_WITH_NEXT_GATES |
-| SX-AUD-017 | end-to-end 자동 통합·직접 branch tap·수동 Gate 분리 | PASS_WITH_MANUAL_GATES |
+| SX-AUD-017 | end-to-end 자동 통합·직접 branch tap·수동 Gate 분리 | AUTOMATED_PASS · VALIDATION_PREP_BLOCKED |
 
 ## Canonical Sync Evidence
 
@@ -171,9 +182,10 @@ old tests는 old contract의 회귀 증거이며 finite 제품 PASS 수치로 �
 GMB-002 MERGED
 → FP-DOR-001 APPROVED
 → FP-01/FP-02 + Task 11/12 AUTOMATED PASS
+→ VALIDATION HARNESS + ANDROID EXPORT PRESET
 → ANDROID SMOKE
 → FIVE-PERSON COMPREHENSION
 → production cutover review
 ```
 
-Android/HUMAN 증거 전에는 finite 구현을 production default 또는 제품 검증 완료로 표시하지 않는다.
+validation preparation과 Android/HUMAN 증거 전에는 finite 구현을 production default 또는 제품 검증 완료로 표시하지 않는다.
