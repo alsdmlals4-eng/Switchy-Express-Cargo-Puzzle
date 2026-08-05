@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ADAPTER_PATH = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
 HEALTH_PATH = ROOT / "docs/PROJECT_OPERATING_HEALTH.json"
+STATE_PATH = ROOT / "docs/PROJECT_OPERATING_STATE.json"
 MIGRATION_PATH = ROOT / "docs/operations/PROJECT_BASE_ADAPTER_MIGRATION_2026-08-06.md"
 WORKFLOW_PATH = ROOT / ".github/workflows/validate-project-base-adapter.yml"
 
@@ -29,6 +30,10 @@ BASELINE_KEYS = {
     "policy_source_path", "protected_paths_pointer", "policy_sha256",
 }
 REGISTRY_KEYS = {"path", "sha256", "hash_definition"}
+HEALTH_KEYS = {
+    "schema_version", "artifact_role", "operating_maturity",
+    "product_evidence_maturity", "critical_gates", "integrity_verdict", "evidence",
+}
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 TRUSTED_BASE = "bfdc9e44d4a6920dc085eaa3f9d19d31b1acd2a1"
 PR_BASE = "a45176a3655ae6b36e69f1d58a8556626ca9df86"
@@ -75,9 +80,9 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
             self.assertRegex(registry["sha256"], SHA256)
             self.assertEqual("RAW_FILE_BYTES_SHA256", registry["hash_definition"])
 
-    def test_original_adapter_evidence_is_preserved_in_project_health(self) -> None:
-        health = load_json(HEALTH_PATH)
-        migration = health["adapter_migration"]
+    def test_original_adapter_evidence_is_preserved_in_project_state(self) -> None:
+        state_doc = load_json(STATE_PATH)
+        migration = state_doc["adapter_migration"]
         self.assertEqual(DECISION, migration["decision_id"])
         self.assertEqual(PR_BASE, migration["source_main_commit"])
         preserved = migration["preserved_from_adapter"]
@@ -85,20 +90,31 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         self.assertEqual("GIT_COMMIT", preserved["protected_baseline"]["authority_kind"])
         self.assertEqual("VERIFIED_PROJECT_MAIN", preserved["protected_baseline"]["policy_source_type"])
         self.assertTrue(all(isinstance(value, dict) for value in preserved["validators"]))
-        evidence = health["evidence_boundaries"]
+        evidence = state_doc["evidence_boundaries"]
         self.assertEqual("NOT_RUN", evidence["physical_device_validation"])
         self.assertEqual("HUMAN_NOT_RUN", evidence["human_validation"])
         self.assertEqual("NOT_READY", evidence["production_adapter_ready"])
+
+    def test_health_uses_base_machine_contract_only(self) -> None:
+        health = load_json(HEALTH_PATH)
+        self.assertEqual(HEALTH_KEYS, set(health))
+        self.assertEqual("PROJECT_OPERATING_HEALTH", health["artifact_role"])
+        self.assertEqual("OM-L4", health["operating_maturity"])
+        self.assertEqual("PE-3", health["product_evidence_maturity"])
+        self.assertEqual("PASS_WITH_NOT_RUN_GATES", health["integrity_verdict"])
+        self.assertEqual("PASS", health["critical_gates"]["static"])
+        self.assertEqual("PASS", health["critical_gates"]["runtime"])
+        self.assertEqual("NOT_RUN", health["critical_gates"]["device"])
+        self.assertEqual("NOT_RUN", health["critical_gates"]["human"])
 
     def test_migration_map_and_workflow_preserve_project_authority(self) -> None:
         migration = MIGRATION_PATH.read_text(encoding="utf-8")
         workflow = WORKFLOW_PATH.read_text(encoding="utf-8")
         for token in (
-            DECISION,
+            DECISION, "docs/PROJECT_OPERATING_STATE.json",
             "ANDROID_DEVICE_SMOKE_READINESS_CLOSURE.md",
             "SX_AUD_019_ANDROID_APK_PIPELINE_PROBE.md",
-            "GODOT_LIVE_EDITOR_ADOPTION.md",
-            "PRODUCT_FILES_UNCHANGED",
+            "GODOT_LIVE_EDITOR_ADOPTION.md", "PRODUCT_FILES_UNCHANGED",
             "GOOGLE_SHEETS_UNCHANGED",
         ):
             self.assertIn(token, migration)
