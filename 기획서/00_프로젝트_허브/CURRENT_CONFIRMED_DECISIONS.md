@@ -7,16 +7,16 @@ current_product_baseline: FINITE_DELIVERY_PUZZLE_BASELINE
 current_decision_batch: GMB-002
 current_decisions: SX-DEC-027~036
 current_execution_authority: FP-DOR-001 · EV-USER-021
-current_evidence: EV-FP-DOR-001
-current_audit: SX-AUD-017
-current_main: 3a4aeaa63561f78e6b1065c80bda9a64af220051
+current_evidence: EV-FP-VAL-001
+current_audit: SX-AUD-018
+current_main: abc75abd00765ba6ea3aa471c29962f314963be5
 planning_state: MERGED_AND_SYNCED
-implementation_state: TASK_12_AUTOMATED_PASS · LEGACY_RUNTIME_DEFAULT
-validation_prep_state: BLOCKED_MISSING_EXPORT_PRESET_AND_STACK_HARNESS
-manual_gate_state: ANDROID_BLOCKED_PREREQUISITES · HUMAN_BLOCKED_BY_BUILD
+implementation_state: TASK_12_AUTOMATED_PASS · VALIDATION_PREP_PASS · LEGACY_RUNTIME_DEFAULT
+validation_prep_state: PASS
+manual_gate_state: APK_EXPORT_NOT_RUN · ANDROID_NOT_RUN · HUMAN_NOT_RUN
 cutover_state: BLOCKED
-next_gate: VALIDATION_HARNESS + ANDROID_EXPORT_PRESET
-sheet_state: SX-AUD-017_SYNCED
+next_gate: ANDROID_APK_EXPORT → ANDROID_SMOKE → FIVE_PERSON_COMPREHENSION
+sheet_state: SX-AUD-018_SYNC_PENDING
 old_vs03_execution_order: REPLACED · HISTORICAL_EVIDENCE
 ```
 
@@ -39,8 +39,11 @@ old_vs03_execution_order: REPLACED · HISTORICAL_EVIDENCE
 - `기획서/50_제작_검증/GMB_002_APPROVAL_LEDGER.md`
 - `docs/superpowers/specs/2026-08-04-finite-puzzle-definition-of-ready-design.md`
 - `docs/superpowers/plans/2026-08-05-finite-puzzle-first-vertical-slice.md`
+- `docs/superpowers/specs/2026-08-05-finite-validation-harness-design.md`
+- `docs/superpowers/plans/2026-08-05-finite-validation-harness.md`
 - `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
 - `기획서/50_제작_검증/FP_01_02_IMPLEMENTATION_AUDIT.md`
+- `기획서/50_제작_검증/SX_AUD_018_VALIDATION_PREPARATION_AUDIT.md`
 - `기획서/00_프로젝트_허브/CANON_REPLACEMENT_REGISTER.md`
 
 ## Current Decision Registry
@@ -60,7 +63,7 @@ old_vs03_execution_order: REPLACED · HISTORICAL_EVIDENCE
 
 ## First Slice Implementation Status
 
-### 완료된 자동 범위
+### 완료된 자동 코어 범위
 
 - authored map schema v2
 - player TrackLayout identity와 거래형 편집
@@ -71,13 +74,13 @@ old_vs03_execution_order: REPLACED · HISTORICAL_EVIDENCE
 - 무제한 LIFO와 고정 화물
 - station skip·TOP group unload
 - 정확한 제한 시간·pause·success/failure
-- 동일 배치 fresh retry와 identity
+- 동일 배치 fresh runtime 재시도와 identity
 - BUILD/RUN/RESULT 화면
 - 48dp 상당 control과 색상+형상+텍스트 표현
 - UI 명령 기반 end-to-end 통합
 - branch 직접 탭·점유 잠금·재시도 초기화
 
-최종 자동 증거:
+자동 코어 증거:
 
 ```text
 PR #55~#60 MERGED
@@ -85,26 +88,40 @@ main 3a4aeaa63561f78e6b1065c80bda9a64af220051
 Project Contract #490 PASS
 Godot Tests #451 PASS
 60 cases · 10,382 assertions · 0 failures
+```
+
+### 완료된 검증 준비 범위
+
+- production main과 분리된 validation launcher
+- 실제 finite proof Slice를 mount하는 `PROOF` mode
+- Presenter/View 기반 `STACK_8`, `STACK_16`, `STACK_32`
+- 모든 stack fixture의 정확한 token 수와 final/rear TOP
+- 색상+형상+텍스트 중복 표현 검증
+- invalid mode와 unknown command-line argument fail closed
+- `validation_harness` custom feature 기반 main-scene override
+- 별도 Android validation package identity·debug export preset
+- production `game/main/main.tscn` SHA-256 불변 검사
+- secret·password·machine path 부재 검사
+
+검증 준비 증거:
+
+```text
+PR #62 design MERGED · 94bdc5e97d21d261db22559ada51ad43594ebf74
+PR #63 implementation MERGED · abc75abd00765ba6ea3aa471c29962f314963be5
+Project Contract #508 PASS
+Godot Tests #464 PASS
+63 cases · 10,714 assertions · 0 failures
 unresolved thread 0 · REQUEST_CHANGES 0
 ```
 
-### 검증 준비 차단점
+### 열려 있는 수동 Gate
 
-- 저장소에 `export_presets.cfg`가 없다.
-- finite authored map은 화물 4개의 proof map 하나뿐이다.
-- `TOP 8/16/32` 가독성을 검증할 QA fixture 또는 validation harness가 없다.
-- finite는 아직 product main이 아니며 validation 전용 launcher가 없다.
-
-따라서 Android와 5명 검증은 실행 전 단계에서 차단돼 있다. 준비 package는 제품 규칙을 추가하지 않고 Android debug preset, validation launcher, proof 실행 모드, 8/16/32 stack 가독성 모드, entrypoint 불변 테스트만 제공해야 한다.
-
-### 열려 있는 Gate
-
-- Validation preparation: `BLOCKED`
-- Android landscape smoke: `NOT_RUN · BLOCKED_PREREQUISITES`
-- 5명 comprehension validation: `NOT_RUN · BLOCKED_BY_BUILD`
+- Android APK export: `NOT_RUN`
+- Android landscape smoke: `NOT_RUN`
+- 5명 comprehension validation: `NOT_RUN`
 - production default cutover: `BLOCKED`
 
-세부 실행 계약과 기록 양식은 `FP_01_02_IMPLEMENTATION_AUDIT.md`를 따른다.
+검증 준비 도구가 존재한다는 사실은 APK가 생성됐거나 실제 기기·사람 검증이 통과했다는 뜻이 아니다. 세부 실행 계약은 `SX_AUD_018_VALIDATION_PREPARATION_AUDIT.md`와 `FP_01_02_IMPLEMENTATION_AUDIT.md`를 따른다.
 
 ## Preserved Decisions
 
@@ -151,7 +168,7 @@ unresolved thread 0 · REQUEST_CHANGES 0
 - switch auto-reset
 - endless survival score
 
-old tests는 old contract의 회귀 증거이며 finite 제품 PASS 수치로 합산하지 않는다. 기본 진입점은 validation preparation·Android·HUMAN Gate 전까지 legacy를 유지한다.
+old tests는 old contract의 회귀 증거이며 finite 제품 PASS 수치로 합산하지 않는다. 기본 진입점은 APK export·Android·HUMAN Gate 전까지 legacy를 유지한다.
 
 ## Audit Registry
 
@@ -163,17 +180,19 @@ old tests는 old contract의 회귀 증거이며 finite 제품 PASS 수치로 �
 | SX-AUD-014 | finite clock·하역·캡슐화 | PASS_WITH_NEXT_GATES |
 | SX-AUD-015 | solution/attempt identity·retry | PASS_WITH_NEXT_GATES |
 | SX-AUD-016 | 제품 화면·48dp·명령 경계 | PASS_WITH_NEXT_GATES |
-| SX-AUD-017 | end-to-end 자동 통합·직접 branch tap·수동 Gate 분리 | AUTOMATED_PASS · VALIDATION_PREP_BLOCKED |
+| SX-AUD-017 | end-to-end 자동 통합·수동 Gate 계획 실행 가능성 | PASS_WITH_PREREQUISITE_BLOCKERS |
+| SX-AUD-018 | validation launcher·8/16/32 fixture·Android preset·entrypoint 불변 | VALIDATION_PREP_PASS |
 
 ## Canonical Sync Evidence
 
-- Main: `3a4aeaa63561f78e6b1065c80bda9a64af220051`
-- Implementation PRs: `#55~#60 MERGED`
-- Project Contract: `#490 PASS`
-- Godot Tests: `#451 PASS`
+- Current main: `abc75abd00765ba6ea3aa471c29962f314963be5`
+- Core implementation PRs: `#55~#60 MERGED`
+- Validation design/implementation: `#62/#63 MERGED`
+- Project Contract: `#508 PASS`
+- Godot Tests: `#464 PASS`
 - Review: `unresolved thread 0 · REQUEST_CHANGES 0`
 - Correct Sheet: `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`
-- Sheet audit: `SX-AUD-017 SYNCED`
+- Sheet audit: `SX-AUD-018 SYNC_PENDING`
 - Wrong `19Ff...` Sheet: 변경 금지
 
 ## Current Execution Authority
@@ -182,10 +201,11 @@ old tests는 old contract의 회귀 증거이며 finite 제품 PASS 수치로 �
 GMB-002 MERGED
 → FP-DOR-001 APPROVED
 → FP-01/FP-02 + Task 11/12 AUTOMATED PASS
-→ VALIDATION HARNESS + ANDROID EXPORT PRESET
+→ VALIDATION PREPARATION PASS
+→ ANDROID APK EXPORT
 → ANDROID SMOKE
 → FIVE-PERSON COMPREHENSION
 → production cutover review
 ```
 
-validation preparation과 Android/HUMAN 증거 전에는 finite 구현을 production default 또는 제품 검증 완료로 표시하지 않는다.
+Android APK·기기·사람 증거 전에는 finite 구현을 production default 또는 제품 검증 완료로 표시하지 않는다.
