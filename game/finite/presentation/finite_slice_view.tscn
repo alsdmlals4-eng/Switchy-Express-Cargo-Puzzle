@@ -1,0 +1,284 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://game/finite/presentation/finite_slice_view.gd" id="1_view"]
+
+[node name="FiniteSliceView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_view")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.055, 0.071, 0.09, 1)
+
+[node name="Board" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.02
+anchor_top = 0.14
+anchor_right = 0.72
+anchor_bottom = 0.73
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+mouse_filter = 0
+clip_contents = true
+tooltip_text = "Track construction board"
+
+[node name="BoardTitle" type="Label" parent="Board"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 18.0
+offset_top = 14.0
+offset_right = -18.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 22
+text = "ROUTE BOARD · tap cells to construct"
+horizontal_alignment = 1
+
+[node name="BoardGuide" type="Label" parent="Board"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 68.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.65, 0.72, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+text = "Finite proof map\n\nBuild a closed network through every cargo point and station.\nThe translucent guide and problem-cell overlays are rendered here in the integrated proof."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.02
+anchor_top = 0.02
+anchor_right = 0.98
+anchor_bottom = 0.115
+theme_override_constants/separation = 18
+
+[node name="PhaseLabel" type="Label" parent="TopBar"]
+custom_minimum_size = Vector2(210, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "PHASE · BUILD"
+vertical_alignment = 1
+
+[node name="CostLabel" type="Label" parent="TopBar"]
+custom_minimum_size = Vector2(290, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "COST · 0"
+vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="TopBar"]
+custom_minimum_size = Vector2(210, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "CLOCK · PAUSED"
+vertical_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="TopBar"]
+custom_minimum_size = Vector2(520, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "Build a structurally valid route"
+vertical_alignment = 1
+
+[node name="StackPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.735
+anchor_top = 0.14
+anchor_right = 0.98
+anchor_bottom = 0.73
+
+[node name="StackTitle" type="Label" parent="StackPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 14.0
+offset_right = -16.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 22
+text = "LIFO CARGO"
+horizontal_alignment = 1
+
+[node name="StackLabel" type="Label" parent="StackPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 56.0
+offset_right = -18.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 18
+text = "STACK · EMPTY"
+autowrap_mode = 2
+vertical_alignment = 1
+
+[node name="BuildTools" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.02
+anchor_top = 0.79
+anchor_right = 0.98
+anchor_bottom = 0.9
+theme_override_constants/separation = 10
+
+[node name="StraightButton" type="Button" parent="BuildTools"]
+custom_minimum_size = Vector2(112, 56)
+layout_mode = 2
+text = "STRAIGHT"
+
+[node name="CurveButton" type="Button" parent="BuildTools"]
+custom_minimum_size = Vector2(96, 56)
+layout_mode = 2
+text = "CURVE"
+
+[node name="SwitchPieceButton" type="Button" parent="BuildTools"]
+custom_minimum_size = Vector2(104, 56)
+layout_mode = 2
+text = "BRANCH"
+
+[node name="CrossingButton" type="Button" parent="BuildTools"]
+custom_minimum_size = Vector2(112, 56)
+layout_mode = 2
+text = "CROSSING"
+
+[node name="RotateButton" type="Button" parent="BuildTools"]
+custom_minimum_size = Vector2(96, 56)
+layout_mode = 2
+text = "ROTATE"
+
+[node name="RemoveButton" type="Button" parent="BuildTools"]
+custom_minimum_size = Vector2(104, 56)
+layout_mode = 2
+text = "REMOVE"
+
+[node name="ClearButton" type="Button" parent="BuildTools"]
+custom_minimum_size = Vector2(96, 56)
+layout_mode = 2
+text = "CLEAR"
+
+[node name="StartButton" type="Button" parent="BuildTools"]
+custom_minimum_size = Vector2(132, 56)
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "START RUN"
+
+[node name="RunTools" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.02
+anchor_top = 0.79
+anchor_right = 0.98
+anchor_bottom = 0.9
+theme_override_constants/separation = 12
+
+[node name="LoadButton" type="Button" parent="RunTools"]
+custom_minimum_size = Vector2(210, 56)
+layout_mode = 2
+action_mode = 0
+text = "HOLD TO LOAD"
+
+[node name="AutoButton" type="Button" parent="RunTools"]
+custom_minimum_size = Vector2(180, 56)
+layout_mode = 2
+text = "AUTO · OFF"
+
+[node name="SwitchButton" type="Button" parent="RunTools"]
+custom_minimum_size = Vector2(190, 56)
+layout_mode = 2
+text = "CHANGE BRANCH"
+
+[node name="PauseButton" type="Button" parent="RunTools"]
+custom_minimum_size = Vector2(150, 56)
+layout_mode = 2
+text = "PAUSE"
+
+[node name="ResumeButton" type="Button" parent="RunTools"]
+visible = false
+custom_minimum_size = Vector2(150, 56)
+layout_mode = 2
+text = "RESUME"
+
+[node name="ResultPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.31
+anchor_top = 0.25
+anchor_right = 0.69
+anchor_bottom = 0.69
+
+[node name="ResultLabel" type="Label" parent="ResultPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 210.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "RESULT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryButton" type="Button" parent="ResultPanel"]
+custom_minimum_size = Vector2(260, 56)
+layout_mode = 0
+anchor_left = 0.08
+anchor_top = 0.72
+anchor_right = 0.48
+anchor_bottom = 0.92
+text = "RETRY SAME LAYOUT"
+
+[node name="EditButton" type="Button" parent="ResultPanel"]
+custom_minimum_size = Vector2(220, 56)
+layout_mode = 0
+anchor_left = 0.52
+anchor_top = 0.72
+anchor_right = 0.92
+anchor_bottom = 0.92
+text = "EDIT LAYOUT"
+
+[node name="Footer" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.02
+anchor_top = 0.925
+anchor_right = 0.98
+anchor_bottom = 0.985
+theme_override_colors/font_color = Color(0.58, 0.66, 0.74, 1)
+theme_override_font_sizes/font_size = 16
+text = "Cargo uses color + silhouette + text. Stack order is bottom → TOP. Pause is inspection-only."
+horizontal_alignment = 1
+vertical_alignment = 1
