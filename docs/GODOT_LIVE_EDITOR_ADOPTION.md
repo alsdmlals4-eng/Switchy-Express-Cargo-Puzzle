@@ -8,11 +8,12 @@ main_scene_policy: MAIN_SCENE_READ_ONLY
 mutation_policy: SCRATCH_SCENE_MUTATION_ONLY
 source_integrity: SOURCE_TREE_UNCHANGED
 legacy_godot_ai: ABSENT
-base_pilot_pin_state: HOTFIX_CANDIDATE_VALIDATION
+base_pilot_pin_state: MERGED_IMMUTABLE_PIN
+base_pilot_commit: cabbc59b170c5da2bb1df7e4d4d535857dd35495
 PRODUCTION_ADAPTER_READY: NOT_READY
 ```
 
-This repository currently validates Base Pilot hotfix candidate `a0421c8cddb78e61f7ae6d1ed30a3408b5578118` in an isolated real-project Pilot. This is not the final adoption pin. After the Base hotfix is approved and squash-merged, all four adoption files must be updated to the resulting immutable merge commit and the Pilot must run again.
+This repository adopts merged Base Pilot commit `cabbc59b170c5da2bb1df7e4d4d535857dd35495` only as an isolated real-project Pilot. All four adoption files bind the same immutable commit. Later movement of Base `main` does not change this cohort pin.
 
 The repository does not permanently install the Base editor addon into the product project.
 
@@ -28,7 +29,7 @@ The workflow inventories Git-tracked source bytes before and after execution. An
 
 The uploaded bounded evidence records the exact repository commit, exact Base commit, source inventory digests, main Scene inspection result, scratch Scene operation results, ledger state, network-listener state, and physical SHA-256 values recomputed from saved bytes.
 
-A GitHub Actions artifact is review evidence with limited retention. It is not itself a production-readiness declaration. The final post-merge `main` artifact must later be physically reverified before Base C1 can promote its bounded result.
+A GitHub Actions artifact is review evidence with limited retention. It is not itself a production-readiness declaration. The post-merge `main` artifact must later be physically reverified before Base C1 can promote its bounded result.
 
 ## What the Pilot does not do
 
