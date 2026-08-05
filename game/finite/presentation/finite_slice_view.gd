@@ -1,6 +1,7 @@
 class_name FiniteSliceView
 extends Control
 
+signal board_cell_requested(cell: Vector2i)
 signal build_tool_selected(tool: StringName)
 signal rotate_requested
 signal remove_requested
@@ -13,6 +14,8 @@ signal pause_requested
 signal resume_requested
 signal retry_requested
 signal edit_requested
+
+const DEFAULT_BOARD_SIZE := Vector2i(11, 9)
 
 var _last_model: Dictionary = {}
 
@@ -31,6 +34,39 @@ func apply_model(model: Dictionary) -> void:
 
 func last_model() -> Dictionary:
 	return _last_model.duplicate(true)
+
+
+func request_board_cell(cell: Vector2i) -> void:
+	if cell.x < 0 or cell.y < 0:
+		return
+	board_cell_requested.emit(cell)
+
+
+func board_cell_from_local(
+	local_position: Vector2,
+	board_pixel_size: Vector2,
+	grid_size: Vector2i = DEFAULT_BOARD_SIZE
+) -> Vector2i:
+	if grid_size.x <= 0 or grid_size.y <= 0:
+		return Vector2i(-1, -1)
+	if board_pixel_size.x <= 0.0 or board_pixel_size.y <= 0.0:
+		return Vector2i(-1, -1)
+	if (
+		local_position.x < 0.0
+		or local_position.y < 0.0
+		or local_position.x >= board_pixel_size.x
+		or local_position.y >= board_pixel_size.y
+	):
+		return Vector2i(-1, -1)
+	var column: int = mini(
+		int(floor(local_position.x / board_pixel_size.x * float(grid_size.x))),
+		grid_size.x - 1
+	)
+	var row: int = mini(
+		int(floor(local_position.y / board_pixel_size.y * float(grid_size.y))),
+		grid_size.y - 1
+	)
+	return Vector2i(column, row)
 
 
 func _apply_to_nodes(model: Dictionary) -> void:
@@ -72,6 +108,8 @@ func _apply_to_nodes(model: Dictionary) -> void:
 
 
 func _connect_commands() -> void:
+	var board: Control = get_node("Board")
+	board.gui_input.connect(_on_board_gui_input)
 	_get_button("BuildTools/StraightButton").pressed.connect(
 		func() -> void: build_tool_selected.emit(&"STRAIGHT")
 	)
@@ -120,6 +158,23 @@ func _connect_commands() -> void:
 	_get_button("ResultPanel/EditButton").pressed.connect(
 		func() -> void: edit_requested.emit()
 	)
+
+
+func _on_board_gui_input(event: InputEvent) -> void:
+	var local_position := Vector2(-1.0, -1.0)
+	var pressed := false
+	if event is InputEventMouseButton:
+		var mouse_event := event as InputEventMouseButton
+		pressed = mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_LEFT
+		local_position = mouse_event.position
+	elif event is InputEventScreenTouch:
+		var touch_event := event as InputEventScreenTouch
+		pressed = touch_event.pressed
+		local_position = touch_event.position
+	if not pressed:
+		return
+	var board: Control = get_node("Board")
+	request_board_cell(board_cell_from_local(local_position, board.size, DEFAULT_BOARD_SIZE))
 
 
 func _set_build_controls(enabled: bool) -> void:
