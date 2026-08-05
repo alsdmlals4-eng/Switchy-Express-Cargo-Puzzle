@@ -3,11 +3,13 @@
 ## Status
 
 ```yaml
-status: DESIGN_APPROVED
-user_approval: current_conversation_2026-08-06T01:46+09:00
+status: DESIGN_APPROVED_PLAN_WRITTEN
+design_user_approval: current_conversation_2026-08-06T06:28+09:00
 implementation: NOT_STARTED
+implementation_plan: docs/superpowers/plans/2026-08-06-switchy-godot-live-editor-real-project-pilot.md
+implementation_plan_approval: AWAITING_USER
 implementation_authorization: NOT_GRANTED
-next_gate: WRITTEN_SPEC_USER_REVIEW
+next_gate: PLAN_APPROVAL_AND_PR_82_MERGE_AUTHORIZATION
 repository: alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
 baseline_main: ce278d17c536e9cc017c3f9c1bc429deb853a5fc
 engine: Godot 4.7.1-stable
@@ -332,6 +334,7 @@ Implementation may begin only when all are true:
 written_design_reviewed_by_user: true
 implementation_plan_committed: true
 implementation_plan_approved_by_user: true
+design_plan_pr_merged: true
 fresh_main_sha_recorded: true
 base_adapter_commit_pinned: true
 protected_paths_unchanged_in_planned_diff: true
@@ -373,12 +376,13 @@ production_adapter_ready: false
 
 ## Follow-up sequence
 
-After this design receives written-spec approval:
-
-1. write a detailed TDD implementation plan;
-2. obtain separate implementation approval;
-3. implement on a fresh branch from then-current `main`;
-4. complete exact-head CI and actual Godot Runtime Pilot;
-5. submit a Draft PR with evidence and adversarial review;
-6. decide whether a second structurally different project Pilot is warranted;
-7. only after both Pilots decide whether production adoption or external transport should be designed.
+1. user reviews the detailed TDD implementation plan;
+2. obtain explicit approval covering both PR #82 squash merge and implementation start;
+3. revalidate PR #82 exact HEAD, unresolved threads and latest `main`;
+4. squash-merge PR #82 only after that authorization;
+5. create a separate implementation branch from the resulting then-current `main`;
+6. execute the approved plan with test-only RED first and review checkpoints;
+7. complete exact-head CI and actual Godot Runtime Pilot;
+8. submit an independent Draft implementation PR with evidence and adversarial review;
+9. stop before implementation-PR merge until a new explicit user approval;
+10. only after a second structurally different Pilot decide whether production adoption or external transport should be designed.
