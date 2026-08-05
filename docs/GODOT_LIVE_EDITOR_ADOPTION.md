@@ -8,14 +8,17 @@ main_scene_policy: MAIN_SCENE_READ_ONLY
 mutation_policy: SCRATCH_SCENE_MUTATION_ONLY
 source_integrity: SOURCE_TREE_UNCHANGED
 legacy_godot_ai: ABSENT
+base_pilot_pin_state: HOTFIX_CANDIDATE_VALIDATION
 PRODUCTION_ADAPTER_READY: NOT_READY
 ```
 
-This repository adopts Base C0 commit `0084d5a6dd546aa001ced46b8cc8e3db8f38035d` only as an isolated real-project Pilot. It does not permanently install the Base editor addon into the product project.
+This repository currently validates Base Pilot hotfix candidate `2b2c7c6cbd2d700a0737b97ac12397329eddc6f3` in an isolated real-project Pilot. This is not the final adoption pin. After the Base hotfix is approved and squash-merged, all four adoption files must be updated to the resulting immutable merge commit and the Pilot must run again.
+
+The repository does not permanently install the Base editor addon into the product project.
 
 ## What the Pilot does
 
-The reusable workflow checks out the exact Base C0 commit, verifies the closed project descriptor, copies this repository into a disposable workspace, and runs the existing `res://tests/run_tests.gd` behavior check.
+The reusable workflow checks out the exact pinned Base commit, verifies the closed project descriptor, copies this repository into a disposable workspace, and runs the existing `res://tests/run_tests.gd` behavior check.
 
 It opens the configured main Scene `res://game/main/main.tscn` only for inspection under `MAIN_SCENE_READ_ONLY`. Rename, Editor Undo, save, ledger recording, and physical SHA-256 verification occur only in the runner-owned `res://.godot-live-editor-pilot/scratch.tscn` under `SCRATCH_SCENE_MUTATION_ONLY`.
 
@@ -23,9 +26,9 @@ The workflow inventories Git-tracked source bytes before and after execution. An
 
 ## Evidence and physical hashes
 
-The uploaded bounded evidence records the exact repository commit, exact Base C0 commit, source inventory digests, main Scene inspection result, scratch Scene operation results, ledger state, network-listener state, and physical SHA-256 values recomputed from saved bytes.
+The uploaded bounded evidence records the exact repository commit, exact Base commit, source inventory digests, main Scene inspection result, scratch Scene operation results, ledger state, network-listener state, and physical SHA-256 values recomputed from saved bytes.
 
-A GitHub Actions artifact is review evidence with limited retention. It is not itself a production-readiness declaration. The post-merge `main` artifact must later be physically reverified before Base C1 can promote its bounded result.
+A GitHub Actions artifact is review evidence with limited retention. It is not itself a production-readiness declaration. The final post-merge `main` artifact must later be physically reverified before Base C1 can promote its bounded result.
 
 ## What the Pilot does not do
 
