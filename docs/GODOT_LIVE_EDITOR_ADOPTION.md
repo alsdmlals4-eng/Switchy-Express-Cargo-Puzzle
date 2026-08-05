@@ -12,7 +12,7 @@ base_pilot_pin_state: HOTFIX_CANDIDATE_VALIDATION
 PRODUCTION_ADAPTER_READY: NOT_READY
 ```
 
-This repository currently validates Base Pilot hotfix candidate `2b2c7c6cbd2d700a0737b97ac12397329eddc6f3` in an isolated real-project Pilot. This is not the final adoption pin. After the Base hotfix is approved and squash-merged, all four adoption files must be updated to the resulting immutable merge commit and the Pilot must run again.
+This repository currently validates Base Pilot hotfix candidate `a0421c8cddb78e61f7ae6d1ed30a3408b5578118` in an isolated real-project Pilot. This is not the final adoption pin. After the Base hotfix is approved and squash-merged, all four adoption files must be updated to the resulting immutable merge commit and the Pilot must run again.
 
 The repository does not permanently install the Base editor addon into the product project.
 
