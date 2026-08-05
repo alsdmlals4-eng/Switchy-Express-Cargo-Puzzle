@@ -118,14 +118,18 @@ def _failure(
     code: str,
     *,
     detail: str = "",
+    diagnostics: dict[str, Any] | None = None,
     production_adapter_ready: bool = False,
 ) -> dict[str, Any]:
-    return {
+    payload: dict[str, Any] = {
         "status": "FAIL",
         "code": code,
         "detail": detail,
         "production_adapter_ready": production_adapter_ready,
     }
+    if diagnostics is not None:
+        payload["diagnostics"] = diagnostics
+    return payload
 
 
 def _validate_runtime_result(payload: dict[str, Any]) -> list[str]:
@@ -265,11 +269,17 @@ def run_pilot(
             return 1, _failure("RUNTIME_RESULT_INVALID", detail=str(error))
         if not isinstance(runtime, dict):
             return 1, _failure("RUNTIME_RESULT_INVALID", detail="JSON object required")
+
+        headless_thumbnail_error_count = _headless_thumbnail_error_count(editor_output)
         runtime_errors = _validate_runtime_result(runtime)
         if runtime_errors:
             return 1, _failure(
                 "RUNTIME_RESULT_INVALID",
                 detail="|".join(runtime_errors),
+                diagnostics={
+                    "editor_runtime": runtime,
+                    "headless_thumbnail_error_count": headless_thumbnail_error_count,
+                },
             )
 
         unexpected_editor_errors = _unexpected_godot_errors(editor_output)
@@ -277,8 +287,11 @@ def run_pilot(
             return 1, _failure(
                 "RUNTIME_RESULT_INVALID",
                 detail="|".join(unexpected_editor_errors),
+                diagnostics={
+                    "editor_runtime": runtime,
+                    "headless_thumbnail_error_count": headless_thumbnail_error_count,
+                },
             )
-        headless_thumbnail_error_count = _headless_thumbnail_error_count(editor_output)
         runtime["headless_thumbnail_error_count"] = headless_thumbnail_error_count
 
         regression_started = time.perf_counter_ns()
@@ -314,12 +327,16 @@ def run_pilot(
             return 1, _failure(
                 "PROJECT_REGRESSION_FAILED",
                 detail=regression_text[-4000:],
+                diagnostics={"editor_runtime": runtime},
             )
 
         source_after = contract.protected_inventory(ROOT)
         source_integrity_pass = source_after == source_before
         if not source_integrity_pass:
-            return 1, _failure("SOURCE_INTEGRITY_FAILURE")
+            return 1, _failure(
+                "SOURCE_INTEGRITY_FAILURE",
+                diagnostics={"editor_runtime": runtime},
+            )
 
         runtime["source_integrity_pass"] = True
         runtime["project_regression_pass"] = True
@@ -403,6 +420,7 @@ if __name__ == "__main__":
 
 
 __all__ = [
+    "_failure",
     "_headless_thumbnail_error_count",
     "_unexpected_godot_errors",
     "run_pilot",
