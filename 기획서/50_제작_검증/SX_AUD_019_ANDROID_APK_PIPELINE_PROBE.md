@@ -13,7 +13,7 @@ android_device_smoke: NOT_RUN
 five_person_comprehension: NOT_RUN
 production_cutover: BLOCKED
 default_entrypoint: LEGACY_RUNTIME_DEFAULT
-sheet_state: SYNC_PENDING
+sheet_state: SYNCED_TO_MAIN_0695ff2f
 ```
 
 ## 1. 감사 질문과 판정
@@ -38,6 +38,8 @@ sheet_state: SYNC_PENDING
 | ETC2/ASTC export 수정 | PR #71 · `536911449018a3caf3511bc64e7bf1a66edf2016` |
 | hosted-runner Probe 기록 | `ff50097f014cea51ccebb54f53ac832212112853` |
 | 정식 main workflow 실행 | run `31011620357` · attempt `1` |
+| canonical export closure | PR #75 · `0695ff2f6dacebd9ad50e4eeaf9ce13bd6da7168` |
+| correct Sheet sync | `SX-AUD-019 · EV-FP-APK-001` five-surface read/write closure |
 
 PR #67·#68·#72는 동시 작업과 중복되거나 stale base에서 생성돼 병합하지 않았다. 유효한 결함과 검증 증거만 정본 PR·감사에 흡수했다.
 
@@ -53,6 +55,7 @@ PR #67·#68·#72는 동시 작업과 중복되거나 stale base에서 생성돼 
 | Main hardening RED/GREEN | #532 PASS | #483 FAIL → #533/#484 PASS | SDK/JDK·서명·Scene hash 고정 |
 | ETC2/ASTC RED/GREEN | #535 PASS | #485 FAIL → #536/#486 PASS | 실제 export 차단 원인 회귀 고정 |
 | Canonical workflow tests | runtime job PASS | `65 cases · 10,792 assertions · 0 failures` | export 전 전체 회귀 PASS |
+| Canonical closure docs | #542 PASS | #490 PASS | APK Gate·다음 수동 Gate 정본 반영 PASS |
 
 ## 4. 역사 Probe 증거
 
@@ -172,4 +175,5 @@ Android PASS 뒤 같은 APK hash로 처음 보는 5명의 comprehension 검증�
 - Android·HUMAN·cutover는 계속 `NOT_RUN/BLOCKED`다.
 - production `run/main_scene`과 `game/main/main.tscn`은 변경하지 않는다.
 - legacy 기본 진입점은 유지한다.
+- correct Sheet `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`는 `SX-AUD-019 · EV-FP-APK-001`로 동기화됐다.
 - wrong `19Ff...` Sheet는 계속 변경 금지다.
