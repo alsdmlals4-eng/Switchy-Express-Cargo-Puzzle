@@ -11,6 +11,7 @@ config_version=5
 
 config/name="Switchy Express: Cargo Puzzle"
 run/main_scene="res://game/main/main.tscn"
+run/main_scene.validation_harness="res://tools/validation/finite/finite_validation_launcher.tscn"
 
 [display]
 
