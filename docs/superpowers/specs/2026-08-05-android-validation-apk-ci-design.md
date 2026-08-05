@@ -1,8 +1,9 @@
 # Android Validation APK CI Design
 
 ```yaml
-status: USER_SPEC_REVIEW
-approval_basis: user approved recommended single-QA-APK approach on 2026-08-05
+status: USER_APPROVED · IMPLEMENTATION_PLAN_READY
+approval_id: EV-USER-022
+approval_basis: user approved the committed single-QA-APK specification on 2026-08-05
 product_authority: GMB-002 · SX-DEC-027~036
 execution_authority: FP-DOR-001 · EV-USER-021
 prior_audit: SX-AUD-018
@@ -342,7 +343,7 @@ No product scene, gameplay-domain file, save system, release-signing file, or st
 
 This design contains one approval item and is below the maximum approval batch size of ten.
 
-User approval of the recommended approach authorized writing this design. Implementation authority begins only after the user reviews this committed specification and approves it.
+`EV-USER-022` approves this committed specification and authorizes implementation planning. Code implementation begins only after the implementation plan execution mode is selected.
 
 ## 12. Self-Review
 
