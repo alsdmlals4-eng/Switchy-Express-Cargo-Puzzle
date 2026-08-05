@@ -66,6 +66,24 @@ class SwitchyGodotLiveEditorPilotRunnerErrorTests(unittest.TestCase):
         )
         self.assertEqual(0, runner._headless_thumbnail_error_count(output))
 
+    def test_failure_report_can_preserve_bounded_runtime_diagnostics(self) -> None:
+        runner = _load_runner()
+        diagnostics = {
+            "editor_runtime": {
+                "status": "FAIL",
+                "code": "RESTORE_HASH_MISMATCH",
+                "original_scene_sha256": "a" * 64,
+                "restored_scene_sha256": "b" * 64,
+            }
+        }
+        payload = runner._failure(
+            "RUNTIME_RESULT_INVALID",
+            detail="restore mismatch",
+            diagnostics=diagnostics,
+        )
+        self.assertEqual(diagnostics, payload["diagnostics"])
+        self.assertFalse(payload["production_adapter_ready"])
+
 
 if __name__ == "__main__":
     unittest.main()
