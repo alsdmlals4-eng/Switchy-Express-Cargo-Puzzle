@@ -121,6 +121,7 @@ func run() -> void:
 	assert_true(paused["resume_visible"], "PAUSED must expose Resume")
 
 	var unload_items: Array[StringName] = [A, A]
+	var one_emission: Array[StringName] = [A]
 	presenter.begin_unload_visual(load_order, unload_items)
 	presenter.show_run(FakeRunState.new(&"UNLOADING", 13.0, 90.0), load_order, true, 4300)
 	var unloading: Dictionary = presenter.model()
@@ -128,10 +129,10 @@ func run() -> void:
 	assert_equal(unloading["stack_tokens"].size(), 4, "unload visual must begin from pre-commit stack")
 	assert_false(unloading["switch_enabled"], "UNLOADING must disable switch input")
 	assert_false(unloading["load_enabled"], "UNLOADING must disable load input")
-	presenter.apply_unload_emissions([A])
+	presenter.apply_unload_emissions(one_emission)
 	assert_equal(presenter.model()["stack_tokens"].size(), 3, "first emission must remove one visible TOP token")
 	assert_equal(presenter.model()["stack_tokens"][2]["top"], true, "new visual TOP must update after one emission")
-	presenter.apply_unload_emissions([A])
+	presenter.apply_unload_emissions(one_emission)
 	assert_equal(presenter.model()["stack_tokens"].size(), 2, "second emission must remove the second token")
 	assert_false(presenter.model()["unload_visual_active"], "all unload emissions must close the visual sequence")
 
