@@ -1,0 +1,246 @@
+name: Android Validation Probe
+
+on:
+  push:
+    branches:
+      - ci/android-validation-probe
+
+permissions:
+  contents: read
+  id-token: write
+  attestations: write
+
+env:
+  GODOT_VERSION: 4.7.1-stable
+  JAVA_VERSION: '17'
+  ANDROID_PLATFORM: android-35
+  ANDROID_BUILD_TOOLS: 35.0.1
+  ANDROID_NDK_VERSION: 28.1.13356709
+  GODOT_BINARY: Godot_v4.7.1-stable_linux.x86_64
+  GODOT_ARCHIVE: Godot_v4.7.1-stable_linux.x86_64.zip
+  GODOT_TEMPLATES_ARCHIVE: Godot_v4.7.1-stable_export_templates.tpz
+  APK_PATH: builds/switchy-express-validation.apk
+
+jobs:
+  build-validation-apk-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install pinned Android SDK components
+        shell: bash
+        run: |
+          set -euo pipefail
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager \
+            "platform-tools" \
+            "platforms;android-35" \
+            "build-tools;35.0.1" \
+            "cmake;3.10.2.4988404" \
+            "ndk;28.1.13356709"
+          test -x "${ANDROID_HOME}/platform-tools/adb"
+          test -d "${ANDROID_HOME}/build-tools/${ANDROID_BUILD_TOOLS}"
+          test -d "${ANDROID_HOME}/ndk/${ANDROID_NDK_VERSION}"
+
+      - name: Configure ephemeral Android debug signing
+        shell: bash
+        run: |
+          set -euo pipefail
+          signing_path="${RUNNER_TEMP}/android-validation-debug.jks"
+          signing_pass="$(openssl rand -hex 16)"
+          keytool -genkeypair \
+            -alias validationdebug \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -dname "CN=Switchy Express Validation,O=Validation,C=KR" \
+            -keystore "${signing_path}" \
+            -storepass "${signing_pass}" \
+            -keypass "${signing_pass}" \
+            -deststoretype PKCS12
+          {
+            echo "GODOT_ANDROID_KEYSTORE_DEBUG_PATH=${signing_path}"
+            echo "GODOT_ANDROID_KEYSTORE_DEBUG_USER=validationdebug"
+            echo "GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD=${signing_pass}"
+          } >> "${GITHUB_ENV}"
+
+      - name: Configure Godot Android editor paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          config_root="${RUNNER_TEMP}/godot-config"
+          mkdir -p "${config_root}/godot"
+          cat > "${config_root}/godot/editor_settings-4.tres" <<EOF
+          [gd_resource type="EditorSettings" format=3]
+
+          [resource]
+          export/android/java_sdk_path = "${JAVA_HOME}"
+          export/android/android_sdk_path = "${ANDROID_HOME}"
+          EOF
+          echo "XDG_CONFIG_HOME=${config_root}" >> "${GITHUB_ENV}"
+
+      - name: Install Godot and Android export templates
+        shell: bash
+        run: |
+          set -euo pipefail
+          base_url="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}"
+          curl --fail --location --retry 3 \
+            --output "${GODOT_ARCHIVE}" \
+            "${base_url}/${GODOT_ARCHIVE}"
+          curl --fail --location --retry 3 \
+            --output "${GODOT_TEMPLATES_ARCHIVE}" \
+            "${base_url}/${GODOT_TEMPLATES_ARCHIVE}"
+          unzip -q "${GODOT_ARCHIVE}"
+          chmod +x "${GODOT_BINARY}"
+          rm -rf template-unpack
+          mkdir -p template-unpack
+          unzip -q "${GODOT_TEMPLATES_ARCHIVE}" -d template-unpack
+          template_dir="${HOME}/.local/share/godot/export_templates/4.7.1.stable"
+          mkdir -p "${template_dir}"
+          cp -a template-unpack/templates/. "${template_dir}/"
+          printf '%s\n' '4.7.1.stable' > "${template_dir}/version.txt"
+          "./${GODOT_BINARY}" --version | tee godot-version.txt
+          grep -F '4.7.1.stable' godot-version.txt
+          test -f "${template_dir}/android_debug.apk"
+
+      - name: Run complete headless test suite
+        shell: bash
+        run: |
+          set +e
+          output=$(timeout 45s "./${GODOT_BINARY}" \
+            --headless \
+            --path . \
+            --script res://tests/run_tests.gd 2>&1)
+          status=$?
+          set -e
+          printf '%s\n' "$output" | tee validation-test-output.txt
+          if printf '%s\n' "$output" | grep -E 'SCRIPT ERROR:|(^|[[:space:]])ERROR:'; then
+            exit 1
+          fi
+          exit "$status"
+
+      - name: Verify product entrypoint invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -F 'run/main_scene="res://game/main/main.tscn"' project.godot
+          grep -F 'run/main_scene.validation_harness="res://tools/validation/finite/finite_validation_launcher.tscn"' project.godot
+          grep -F 'name="Android Validation"' export_presets.cfg
+          grep -F 'custom_features="validation_harness"' export_presets.cfg
+          grep -F 'package/unique_name="com.alsdmlals4.switchyexpress.validation"' export_presets.cfg
+          printf '%s  %s\n' \
+            '05f3045700fbef7122606e099a918a6cb59cc06a22ab1b7f826dc368df7bdeb2' \
+            'game/main/main.tscn' | sha256sum --check --strict
+
+      - name: Export Android validation APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p builds
+          "./${GODOT_BINARY}" \
+            --headless \
+            --path . \
+            --export-debug "Android Validation" \
+            "${APK_PATH}" 2>&1 | tee android-validation-export.log
+          test -s builds/switchy-express-validation.apk
+
+      - name: Derive artifact metadata
+        id: meta
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "short_sha=${GITHUB_SHA::8}" >> "${GITHUB_OUTPUT}"
+
+      - name: Generate build evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha256sum builds/switchy-express-validation.apk \
+            | tee builds/switchy-express-validation.apk.sha256
+          apk_sha="$(cut -d ' ' -f 1 builds/switchy-express-validation.apk.sha256)"
+          export APK_SHA="${apk_sha}"
+          python - <<'PY'
+          import json
+          import os
+          import re
+          from pathlib import Path
+
+          source_commit = os.environ["GITHUB_SHA"]
+          apk_sha = os.environ["APK_SHA"]
+          if re.fullmatch(r"[0-9a-f]{40}", source_commit) is None:
+              raise SystemExit("invalid source commit")
+          if re.fullmatch(r"[0-9a-f]{64}", apk_sha) is None:
+              raise SystemExit("invalid APK SHA-256")
+
+          manifest = {
+              "schema_version": 1,
+              "source_commit": source_commit,
+              "workflow_run_id": os.environ["GITHUB_RUN_ID"],
+              "workflow_run_attempt": os.environ["GITHUB_RUN_ATTEMPT"],
+              "godot_version": "4.7.1-stable",
+              "java_version": "17",
+              "android_platform": "35",
+              "android_build_tools": "35.0.1",
+              "android_ndk": "r28b",
+              "export_preset": "Android Validation",
+              "package_id": "com.alsdmlals4.switchyexpress.validation",
+              "apk_filename": "switchy-express-validation.apk",
+              "apk_sha256": apk_sha,
+              "validation_modes": ["PROOF", "STACK_8", "STACK_16", "STACK_32"],
+              "production_main": "res://game/main/main.tscn",
+              "probe_only": True,
+          }
+          builds = Path("builds")
+          (builds / "validation-build-manifest.json").write_text(
+              json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          summary = "\n".join(
+              [
+                  "ANDROID VALIDATION APK PROBE",
+                  f"source_commit={source_commit}",
+                  f"workflow_run_id={manifest['workflow_run_id']}",
+                  f"workflow_run_attempt={manifest['workflow_run_attempt']}",
+                  f"apk_sha256={apk_sha}",
+                  "godot_version=4.7.1-stable",
+                  "android_platform=35",
+                  "android_build_tools=35.0.1",
+                  "android_ndk=r28b",
+                  "export_preset=Android Validation",
+                  "package_id=com.alsdmlals4.switchyexpress.validation",
+                  "APK_EXPORT=PROBE_ARTIFACT_CREATED_NOT_CANONICAL_PASS",
+                  "ANDROID_DEVICE_SMOKE=NOT_RUN",
+                  "FIVE_PERSON_COMPREHENSION=NOT_RUN",
+                  "PRODUCTION_CUTOVER=BLOCKED",
+                  "",
+              ]
+          )
+          (builds / "validation-build-summary.txt").write_text(summary, encoding="utf-8")
+          PY
+          python -m json.tool builds/validation-build-manifest.json >/dev/null
+          test -s builds/validation-build-summary.txt
+
+      - name: Attest APK provenance
+        uses: actions/attest@v4
+        with:
+          subject-path: builds/switchy-express-validation.apk
+
+      - name: Upload validation evidence bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: switchy-express-validation-probe-${{ steps.meta.outputs.short_sha }}
+          path: |
+            builds/switchy-express-validation.apk
+            builds/switchy-express-validation.apk.sha256
+            builds/validation-build-manifest.json
+            builds/validation-build-summary.txt
+          retention-days: 14
+          if-no-files-found: error
