@@ -14,32 +14,29 @@
       "path": "skills/switchy-express-design/SKILL.md",
       "status": "ACTIVE",
       "positive_triggers": [
-        "core gameplay",
-        "cargo",
-        "wagon",
-        "compact token",
-        "rail map",
-        "switch",
-        "station",
-        "fuel",
-        "boost",
-        "score",
-        "onboarding",
-        "first session",
-        "tutorial",
-        "failure learning",
-        "result screen",
-        "Grill Me",
-        "batch merge",
-        "pre-merge audit",
-        "visual readability"
+        "finite delivery puzzle",
+        "track construction",
+        "cargo encounter order",
+        "manual load",
+        "auto-load",
+        "unlimited LIFO",
+        "persistent branch",
+        "TOP unloading",
+        "finite timer",
+        "same-layout retry",
+        "Android device smoke",
+        "validation APK",
+        "five-person comprehension",
+        "visual readability",
+        "canonical APK hash"
       ],
       "negative_triggers": [
         "unrelated repository administration"
       ],
       "outputs": [
-        "project gameplay decision or review",
-        "Grill Me batch ledger and pre-merge audit"
+        "finite product design or review",
+        "Android device smoke runbook or evidence review",
+        "five-person comprehension preparation or evidence review"
       ]
     },
     {
