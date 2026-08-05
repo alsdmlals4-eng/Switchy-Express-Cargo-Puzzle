@@ -36,6 +36,7 @@ class TestAndroidSmokeCanonicalFreshness(unittest.TestCase):
 
     def test_active_supporting_consumers_are_current(self) -> None:
         readme = read("README.md")
+        baseline = read("기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md")
         roadmap = read("기획서/00_프로젝트_허브/ROADMAP.md")
         systems = read("기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md")
         playtest = read("기획서/50_제작_검증/PLAYTEST_PLAN.md")
@@ -44,6 +45,12 @@ class TestAndroidSmokeCanonicalFreshness(unittest.TestCase):
         self.assertIn("ANDROID DEVICE SMOKE: NOT_RUN", readme)
         self.assertNotIn("FINITE_PUZZLE_DEFINITION_OF_READY", readme)
         self.assertNotIn("finite delivery runtime not aligned", readme)
+
+        self.assertIn(
+            "CURRENT_CANON · USER_APPROVED · AUTOMATED_CORE_PASS · MANUAL_ACCEPTANCE_NOT_RUN",
+            baseline,
+        )
+        self.assertNotIn("IMPLEMENTATION_REPLAN_REQUIRED", baseline)
 
         self.assertIn("CANONICAL MAIN APK EXPORT · PASS", roadmap)
         self.assertIn("ANDROID DEVICE SMOKE · CURRENT", roadmap)
