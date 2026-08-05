@@ -24,7 +24,7 @@
     "operating": [
       {
         "id": "SX-ADAPTER-MIGRATION-20260806",
-        "sha256": "2948a3130ad4ba4461786f278cb83a2853d57ad3d546c37f7462621b7de7f7e6",
+        "sha256": "fe19d417bf23b0d7f1d0df2f4f1b44cfa199cae37374323b360f6a7471a763d7",
         "source": "docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json"
       }
     ],
@@ -32,7 +32,7 @@
     "sheet": [
       {
         "id": "SX-SHEET-AUTHORITY-20260806",
-        "sha256": "061228e1c50f43167713592ab1fc6697f906b89f313092b5bc1ed9a006a1cb52",
+        "sha256": "e9d6ea755e319fc6aa9ef50d6c5297cce0818d2c0544047e54bec13ba1875788",
         "source": "docs/operations/SWITCHY_SHEET_AUTHORITY_EVIDENCE_2026-08-06.json"
       }
     ]
