@@ -49,4 +49,4 @@ jobs:
           git commit -m "fix: materialize strict thin Base adapter"
           git push origin HEAD:agent/rebuild-thin-base-adapter
 
-# rerun: registry compatibility identity added
+# rerun: project-owned skill_id compatibility validated
