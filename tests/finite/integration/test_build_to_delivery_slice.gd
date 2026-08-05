@@ -51,6 +51,37 @@ func run() -> void:
 	view.start_requested.emit()
 	assert_equal(slice.phase(), &"RUNNING", "Start command must create and start a finite attempt")
 	assert_false(slice.presenter_model()["editing_enabled"], "run start must seal editing")
+
+	var runtime: Variant = slice.get("_run_session")
+	assert_not_null(runtime, "started finite slice must own one active run session")
+	var switch_cell := Vector2i(3, 4)
+	var switch_approach := Vector2i(2, 4)
+	var authored_exit: Vector2i = runtime.graph.next_cell(switch_cell, switch_approach)
+	view.request_board_cell(switch_cell)
+	assert_not_equal(
+		runtime.graph.next_cell(switch_cell, switch_approach),
+		authored_exit,
+		"tapping an unoccupied branch during RUNNING must directly preconfigure it"
+	)
+	view.request_board_cell(switch_cell)
+	assert_equal(
+		runtime.graph.next_cell(switch_cell, switch_approach),
+		authored_exit,
+		"a second direct branch tap must restore the two-state route"
+	)
+
+	view.pause_requested.emit()
+	assert_equal(slice.phase(), &"PAUSED", "Pause command must enter inspection-only mode")
+	var paused_exit: Vector2i = runtime.graph.next_cell(switch_cell, switch_approach)
+	view.request_board_cell(switch_cell)
+	assert_equal(
+		runtime.graph.next_cell(switch_cell, switch_approach),
+		paused_exit,
+		"board taps during PAUSED must not preconfigure a branch"
+	)
+	view.resume_requested.emit()
+	assert_equal(slice.phase(), &"RUNNING", "Resume command must restore RUNNING")
+
 	view.auto_toggle_requested.emit()
 	assert_true(slice.presenter_model()["auto_load_active"], "auto toggle must update the product surface")
 
