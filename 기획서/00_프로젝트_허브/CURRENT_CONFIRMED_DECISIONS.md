@@ -6,17 +6,16 @@ Last updated: `2026-08-05`
 current_product_baseline: FINITE_DELIVERY_PUZZLE_BASELINE
 current_decision_batch: GMB-002
 current_decisions: SX-DEC-027~036
-current_execution_authority: FP-DOR-001 · EV-USER-021
-current_evidence: EV-FP-VAL-001
-current_audit: SX-AUD-018
-current_main: abc75abd00765ba6ea3aa471c29962f314963be5
+current_execution_authority: FP-DOR-001 · EV-USER-021 · EV-USER-022
+current_evidence: EV-FP-APK-001
+current_audit: SX-AUD-019
+canonical_export_source: 536911449018a3caf3511bc64e7bf1a66edf2016
 planning_state: MERGED_AND_SYNCED
-implementation_state: TASK_12_AUTOMATED_PASS · VALIDATION_PREP_PASS · LEGACY_RUNTIME_DEFAULT
-validation_prep_state: PASS
-manual_gate_state: APK_EXPORT_NOT_RUN · ANDROID_NOT_RUN · HUMAN_NOT_RUN
+implementation_state: AUTOMATED_CORE_PASS · VALIDATION_PREP_PASS · APK_EXPORT_PASS · LEGACY_RUNTIME_DEFAULT
+manual_gate_state: ANDROID_NOT_RUN · HUMAN_NOT_RUN
 cutover_state: BLOCKED
-next_gate: ANDROID_APK_EXPORT → ANDROID_SMOKE → FIVE_PERSON_COMPREHENSION
-sheet_state: SX-AUD-018_SYNC_PENDING
+next_gate: ANDROID_DEVICE_SMOKE → FIVE_PERSON_COMPREHENSION
+sheet_state: SX-AUD-019_SYNC_PENDING
 old_vs03_execution_order: REPLACED · HISTORICAL_EVIDENCE
 ```
 
@@ -31,7 +30,7 @@ old_vs03_execution_order: REPLACED · HISTORICAL_EVIDENCE
 → 시간·건설비·점수별 후속 재설계와 기록 경쟁
 ```
 
-현재 첫 Slice는 Combo 보상·별·랭킹 전 단계다. `A → B → A → A` 적재와 `2 → 1 → 1` 하역으로 LIFO 재방문 핵심을 증명한다.
+첫 Slice는 `A → B → A → A` 적재와 `2 → 1 → 1` 하역으로 A역 재방문 LIFO 핵심을 자동 증명했다. Combo 보상·별·랭킹·캠페인은 후속 package다.
 
 ## Current Authority Files
 
@@ -41,46 +40,32 @@ old_vs03_execution_order: REPLACED · HISTORICAL_EVIDENCE
 - `docs/superpowers/plans/2026-08-05-finite-puzzle-first-vertical-slice.md`
 - `docs/superpowers/specs/2026-08-05-finite-validation-harness-design.md`
 - `docs/superpowers/plans/2026-08-05-finite-validation-harness.md`
+- `docs/superpowers/specs/2026-08-05-android-validation-apk-ci-design.md`
+- `docs/superpowers/plans/2026-08-05-android-validation-apk-ci.md`
 - `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
 - `기획서/50_제작_검증/FP_01_02_IMPLEMENTATION_AUDIT.md`
 - `기획서/50_제작_검증/SX_AUD_018_VALIDATION_PREPARATION_AUDIT.md`
+- `기획서/50_제작_검증/SX_AUD_019_ANDROID_APK_PIPELINE_PROBE.md`
 - `기획서/00_프로젝트_허브/CANON_REPLACEMENT_REGISTER.md`
 
 ## Current Decision Registry
 
-| Decision ID | 분야 | 현재 결정 | First Slice 상태 |
+| Decision ID | 분야 | 현재 결정 | 상태 |
 |---|---|---|---|
-| SX-DEC-027 | 제품 핵심 | 제한 시간 안에 모든 고정 화물을 배송하는 유한 수작업 퍼즐을 주 제품으로 한다. | AUTOMATED PASS |
-| SX-DEC-028 | 건설 | 건설 불가 구역 외 자유 선로 건설, 조각별 비용, 시간 정지, 전액 환급, 추천 비용을 적용한다. | 핵심 건설 PASS · ghost route 후속 |
-| SX-DEC-029 | 운행·판정 | 구조 검사, 운행 중 건설 금지, 제한 시간 실패, 마지막 하역 성공, 확인 전용 pause를 적용한다. | AUTOMATED PASS |
-| SX-DEC-030 | 선로 | 직선·곡선·분기·교차를 기본으로 하고 성능·특수·지형 선로는 후속 package로 확장한다. | 기본 4종 PASS · 나머지 후속 |
-| SX-DEC-031 | 적재·LIFO | 수동 홀드·자동 적재 토글, 무제한 스택, 정차 없는 적재, TOP 연속 그룹 하역을 적용한다. | AUTOMATED PASS |
-| SX-DEC-032 | Combo | 하역 그룹 수를 Combo로 삼아 최대 1초 하역과 후속 가속·점수 보상을 적용한다. | 그룹·1초 PASS · 보상 후속 |
-| SX-DEC-033 | 별·랭킹 | 신속·절약·점수 별과 3종 리더보드를 적용한다. | NOT_STARTED · 후속 FP |
-| SX-DEC-034 | 캠페인 | 1~10 튜토리얼과 테마 챕터·챕터 시험을 적용한다. | NOT_STARTED · 후속 FP |
-| SX-DEC-035 | 반복 도전 | 일일·주간 고정 시드 도전과 기간 기록을 운영한다. | ONLINE NOT_RUN · 후속 production |
-| SX-DEC-036 | 진행·공정성 | 꾸미기만 보상하고 성능 강화와 타 플레이어 노선·리플레이 공개를 금지한다. | 원칙 유지 · 보상 구현 후속 |
+| SX-DEC-027 | 제품 핵심 | 제한 시간 안에 모든 고정 화물을 배송하는 유한 수작업 퍼즐 | CORE PASS · APK PASS |
+| SX-DEC-028 | 건설 | 자유 선로 건설, 조각 비용, 시간 정지, 전액 환급, 추천 비용 | 핵심 PASS · ghost route 후속 |
+| SX-DEC-029 | 운행·판정 | 구조 검사, 런 중 건설 금지, 제한 시간 실패, 마지막 하역 성공, 확인 pause | PASS |
+| SX-DEC-030 | 선로 | 직선·곡선·분기·교차 기본, 성능·특수·지형 선로 후속 | 기본 4종 PASS |
+| SX-DEC-031 | 적재·LIFO | 수동 hold·auto toggle, 무제한 stack, 정차 없는 적재, TOP 그룹 하역 | PASS |
+| SX-DEC-032 | Combo | 하역 그룹을 Combo로 사용, 최대 1초 표시, 가속·점수 후속 | 그룹·표시 PASS |
+| SX-DEC-033 | 별·랭킹 | 신속·절약·점수 별과 3종 leaderboard | NOT_STARTED |
+| SX-DEC-034 | 캠페인 | 1~10 tutorial과 theme chapter·시험 | NOT_STARTED |
+| SX-DEC-035 | 반복 도전 | 일일·주간 fixed-seed challenge | ONLINE NOT_RUN |
+| SX-DEC-036 | 진행·공정성 | cosmetic-only, power progression·타인 route/replay 공개 금지 | 원칙 유지 |
 
-## First Slice Implementation Status
+## First Slice Evidence
 
-### 완료된 자동 코어 범위
-
-- authored map schema v2
-- player TrackLayout identity와 거래형 편집
-- 직선·곡선·분기·교차 graph
-- 구조 검사와 permanent trap 차단
-- proof map과 canonical Alpha/Beta solution
-- 수동/자동 적재
-- 무제한 LIFO와 고정 화물
-- station skip·TOP group unload
-- 정확한 제한 시간·pause·success/failure
-- 동일 배치 fresh runtime 재시도와 identity
-- BUILD/RUN/RESULT 화면
-- 48dp 상당 control과 색상+형상+텍스트 표현
-- UI 명령 기반 end-to-end 통합
-- branch 직접 탭·점유 잠금·재시도 초기화
-
-자동 코어 증거:
+### 자동 코어
 
 ```text
 PR #55~#60 MERGED
@@ -90,122 +75,112 @@ Godot Tests #451 PASS
 60 cases · 10,382 assertions · 0 failures
 ```
 
-### 완료된 검증 준비 범위
-
-- production main과 분리된 validation launcher
-- 실제 finite proof Slice를 mount하는 `PROOF` mode
-- Presenter/View 기반 `STACK_8`, `STACK_16`, `STACK_32`
-- 모든 stack fixture의 정확한 token 수와 final/rear TOP
-- 색상+형상+텍스트 중복 표현 검증
-- invalid mode와 unknown command-line argument fail closed
-- `validation_harness` custom feature 기반 main-scene override
-- 별도 Android validation package identity·debug export preset
-- production `game/main/main.tscn` SHA-256 불변 검사
-- secret·password·machine path 부재 검사
-
-검증 준비 증거:
+### Validation 준비
 
 ```text
-PR #62 design MERGED · 94bdc5e97d21d261db22559ada51ad43594ebf74
-PR #63 implementation MERGED · abc75abd00765ba6ea3aa471c29962f314963be5
+PR #62/#63 MERGED
 Project Contract #508 PASS
 Godot Tests #464 PASS
 63 cases · 10,714 assertions · 0 failures
-unresolved thread 0 · REQUEST_CHANGES 0
 ```
 
-### 열려 있는 수동 Gate
+### Selector·APK workflow
 
-- Android APK export: `NOT_RUN`
-- Android landscape smoke: `NOT_RUN`
-- 5명 comprehension validation: `NOT_RUN`
+```text
+PR #65/#66/#69/#70/#71 MERGED
+TDD RED/GREEN contracts PASS
+canonical source 536911449018a3caf3511bc64e7bf1a66edf2016
+```
+
+### Canonical APK export
+
+```yaml
+workflow_run_id: 31011620357
+workflow_run_attempt: 1
+result: SUCCESS
+tests: 65 cases · 10,792 assertions · 0 failures
+artifact_id: 8932725351
+artifact_name: switchy-express-validation-53691144
+apk_size_bytes: 28771631
+apk_sha256: eb49225ab4062e5cf863f79a0d17f85d339ea176d7f0bb6f04096ed8a07559ea
+artifact_zip_sha256: 1802ca52dd90eb674f89b0a6e4678152d314c5644d135a84033388b4d3ee7193
+attestation_id: 39044925
+artifact_expiry: 2026-08-19T13:45:27Z
+```
+
+APK, `.sha256`, manifest, run source와 provenance가 일치해 `APK_EXPORT: PASS`로 승격한다.
+
+## Open Manual Gates
+
+- Android landscape device smoke: `NOT_RUN`
+- five-person comprehension: `NOT_RUN`
 - production default cutover: `BLOCKED`
 
-검증 준비 도구가 존재한다는 사실은 APK가 생성됐거나 실제 기기·사람 검증이 통과했다는 뜻이 아니다. 세부 실행 계약은 `SX_AUD_018_VALIDATION_PREPARATION_AUDIT.md`와 `FP_01_02_IMPLEMENTATION_AUDIT.md`를 따른다.
+두 수동 Gate는 동일 APK SHA-256 `eb49225a...759ea`로 수행한다. 새 APK가 생성되면 이전 기기·사람 증거를 새 hash에 자동 승계하지 않는다.
+
+## Non-blocking Follow-ups
+
+- F141: project icon 미지정 — production art Gate 전에 validation/product icon 지정
+- F142: 일부 GitHub Action runtime 노후화 경고 — 별도 CI 유지보수 package에서 TDD 갱신
+
+현재 export 생성·서명·artifact 증거에는 영향을 주지 않아 APK Gate를 차단하지 않는다.
 
 ## Preserved Decisions
 
-다음 기존 결정의 의미는 새 기준선에서도 유지한다.
+- SX-DEC-001: 정식 제목 `Switchy Express: Cargo Puzzle`
+- SX-DEC-008: LIFO와 TOP 연속 동일 종류 그룹 하역. capacity 8은 대체됨.
+- SX-DEC-011: 프리미엄 캐주얼 3D 카툰·토끼 기관사
+- SX-DEC-012: Godot 4.7.1·GDScript·Android·가로형
+- SX-DEC-014: 한 역 도착의 연속 동일 화물 하역 수가 Combo
+- SX-DEC-015: rear/TOP을 읽는 compact token 의미
+- SX-DEC-019: cosmetic-only 공정성
+- SX-DEC-023: 같은 조건 재도전과 immutable identity
 
-- `SX-DEC-001`: 정식 제목 `Switchy Express: Cargo Puzzle`
-- `SX-DEC-008`: 마지막 적재부터 하역하는 LIFO와 TOP 연속 동일 종류 그룹 하역. `capacity 8`은 대체됨.
-- `SX-DEC-011`: 프리미엄 캐주얼 3D 카툰·토끼 기관사 방향
-- `SX-DEC-012`: Godot 4.7.1·GDScript·Android·가로형
-- `SX-DEC-014`: Combo는 한 번의 역 도착에서 연속 하역된 동일 화물 수
-- `SX-DEC-015`: rear/TOP을 읽을 수 있는 compact token 의미. 수량 8 한정 표현은 대체됨.
-- `SX-DEC-019`: cosmetic-only 공정성 원칙
-- `SX-DEC-023`: 같은 조건 재도전과 immutable identity 원칙
-
-## Superseded Decisions
+## Superseded·Held Decisions
 
 | 기존 결정 | 상태 | 대체 권위 |
 |---|---|---|
 | SX-DEC-002 무한 생존 | `[대체됨]` | SX-DEC-027 |
 | SX-DEC-003 LOAD+분기+BOOST | `[부분 대체]` | SX-DEC-029/031; BOOST 폐기 |
-| SX-DEC-004 완성형 connected rail | `[대체됨]` | SX-DEC-028/030 |
-| SX-DEC-006 색상별 역 2개 고정 | `[대체됨]` | authored stage content |
-| SX-DEC-007 pickup 지속 재생성 | `[폐기]` | SX-DEC-031 |
+| SX-DEC-004 완성형 rail | `[대체됨]` | SX-DEC-028/030 |
+| SX-DEC-006 역 2개 고정 | `[대체됨]` | authored stage content |
+| SX-DEC-007 pickup respawn | `[폐기]` | SX-DEC-031 |
 | SX-DEC-008 capacity 8 | `[대체됨]` | SX-DEC-031 |
-| SX-DEC-009 연료 경제·fuel-zero | `[폐기]` | SX-DEC-027/029 |
-| SX-DEC-010 화물 감속·BOOST | `[폐기]` | SX-DEC-030/032 |
-| SX-DEC-013 분기 통과 후 기본 복귀 | `[대체됨]` | persistent switch · SX-DEC-029/030 |
-| SX-DEC-016 endless 첫 run 온보딩 | `[대체됨]` | SX-DEC-034 |
-| SX-DEC-017 연료 0 결과 문맥 | `[대체됨]` | 제한 시간 미배송 실패 분석 |
-| SX-DEC-022 timed pressure 제품 권위 | `[폐기]` | SX-DEC-029 |
-| SX-DEC-024 endless map discovery | `[보류/재설계]` | 캠페인·도전 선택 구조 |
+| SX-DEC-009 fuel/fuel-zero | `[폐기]` | SX-DEC-027/029 |
+| SX-DEC-010 cargo slowdown·BOOST | `[폐기]` | SX-DEC-030/032 |
+| SX-DEC-013 switch auto-reset | `[대체됨]` | persistent switch |
+| SX-DEC-016 endless onboarding | `[대체됨]` | SX-DEC-034 |
+| SX-DEC-017 fuel result | `[대체됨]` | 제한 시간 미배송 분석 |
+| SX-DEC-022 timed pressure | `[폐기]` | SX-DEC-029 |
+| SX-DEC-024 endless discovery | `[보류/재설계]` | campaign·challenge 선택 |
 | SX-DEC-025~026 UGC | `[보류]` | production 재검토 |
 
 ## Legacy Implementation Boundary
 
-다음 구현은 `[대체됨 · 역사 증거]`다.
-
-- fuel·fuel-zero
-- BOOST
-- capacity 8
-- cargo slowdown
-- timed difficulty pressure
-- pickup respawn
-- switch auto-reset
-- endless survival score
-
-old tests는 old contract의 회귀 증거이며 finite 제품 PASS 수치로 합산하지 않는다. 기본 진입점은 APK export·Android·HUMAN Gate 전까지 legacy를 유지한다.
+`fuel`, `BOOST`, capacity 8, cargo slowdown, timed pressure, pickup respawn, switch auto-reset, endless score는 `[대체됨 · 역사 증거]`다. old 테스트는 finite PASS 수치에 합산하지 않으며, APK export·Android·HUMAN 완료 전까지 기본 진입점은 legacy다.
 
 ## Audit Registry
 
 | Audit ID | 범위 | 상태 |
 |---|---|---|
-| SX-AUD-001~011 | 기존 endless 운영·기획·구현 | `[역사 증거]` |
-| SX-AUD-012 | finite delivery pivot·정본 재정렬 | CLOSED |
-| SX-AUD-013 | FP-01C→FP-02A·불변 이벤트 | PASS_WITH_NEXT_GATES |
-| SX-AUD-014 | finite clock·하역·캡슐화 | PASS_WITH_NEXT_GATES |
-| SX-AUD-015 | solution/attempt identity·retry | PASS_WITH_NEXT_GATES |
-| SX-AUD-016 | 제품 화면·48dp·명령 경계 | PASS_WITH_NEXT_GATES |
-| SX-AUD-017 | end-to-end 자동 통합·수동 Gate 계획 실행 가능성 | PASS_WITH_PREREQUISITE_BLOCKERS |
-| SX-AUD-018 | validation launcher·8/16/32 fixture·Android preset·entrypoint 불변 | VALIDATION_PREP_PASS |
-
-## Canonical Sync Evidence
-
-- Current main: `abc75abd00765ba6ea3aa471c29962f314963be5`
-- Core implementation PRs: `#55~#60 MERGED`
-- Validation design/implementation: `#62/#63 MERGED`
-- Project Contract: `#508 PASS`
-- Godot Tests: `#464 PASS`
-- Review: `unresolved thread 0 · REQUEST_CHANGES 0`
-- Correct Sheet: `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`
-- Sheet audit: `SX-AUD-018 SYNC_PENDING`
-- Wrong `19Ff...` Sheet: 변경 금지
+| SX-AUD-001~011 | 기존 endless | `[역사 증거]` |
+| SX-AUD-012 | finite pivot | CLOSED |
+| SX-AUD-013~016 | core·clock·identity·surface | PASS_WITH_NEXT_GATES |
+| SX-AUD-017 | end-to-end·수동 Gate 준비 | PASS_WITH_PREREQUISITE_BLOCKERS |
+| SX-AUD-018 | validation 준비 | PASS |
+| SX-AUD-019 | selector·APK pipeline·canonical main export | APK_EXPORT_PASS · ANDROID/HUMAN_OPEN |
 
 ## Current Execution Authority
 
 ```text
 GMB-002 MERGED
 → FP-DOR-001 APPROVED
-→ FP-01/FP-02 + Task 11/12 AUTOMATED PASS
+→ FP-01/FP-02 AUTOMATED PASS
 → VALIDATION PREPARATION PASS
-→ ANDROID APK EXPORT
-→ ANDROID SMOKE
+→ CANONICAL APK EXPORT PASS
+→ ANDROID DEVICE SMOKE
 → FIVE-PERSON COMPREHENSION
 → production cutover review
 ```
 
-Android APK·기기·사람 증거 전에는 finite 구현을 production default 또는 제품 검증 완료로 표시하지 않는다.
+Android·HUMAN 증거 전에는 finite를 product default 또는 제품 검증 완료로 표시하지 않는다. Correct Sheet는 `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`이며 wrong `19Ff...` Sheet는 변경 금지다.
