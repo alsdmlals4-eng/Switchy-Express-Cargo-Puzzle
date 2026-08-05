@@ -271,7 +271,7 @@ func _handle_board_cell(cell: Vector2i) -> void:
 		Vector2i.RIGHT if _selected_geometry == &"SWITCH" else Vector2i.ZERO
 	)
 	var layout: Variant = _build_session.layout_snapshot()
-	if layout.has_piece(cell):
+	if layout.piece_at(cell) != null:
 		_build_session.replace_piece(piece)
 	else:
 		_build_session.place_piece(piece)
