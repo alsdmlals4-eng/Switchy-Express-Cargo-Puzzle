@@ -128,6 +128,13 @@ def test_workflow_uses_one_immutable_base_c0_pin() -> None:
     assert text.count(BASE_C0_SHA) == 2
 
 
+def test_pull_request_trigger_is_scoped_to_adoption_surface() -> None:
+    text = _required_text(WORKFLOW)
+    assert "    paths:\n" in text
+    for path in sorted(ALLOWED_PATHS):
+        assert f"      - {path}\n" in text
+
+
 def test_change_surface_is_bounded_to_four_adoption_files() -> None:
     changed = _changed_paths_from_main()
     assert changed <= ALLOWED_PATHS, f"forbidden changed paths: {sorted(changed - ALLOWED_PATHS)}"
