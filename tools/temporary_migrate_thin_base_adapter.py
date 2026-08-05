@@ -65,7 +65,7 @@ def main() -> None:
             "project_skill_id": "switchy-express-design",
             "legacy_field_preserved": "id",
             "base_v1_field_added": "skill_id",
-            "base_owned_entries_changed": false,
+            "base_owned_entries_changed": False,
         },
         "preserved_project_evidence": [
             "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
