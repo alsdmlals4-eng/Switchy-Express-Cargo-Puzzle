@@ -40,6 +40,7 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/finite/integration/test_pause_integrity.gd"),
 	preload("res://tests/finite/integration/test_finite_adversarial_cases.gd"),
 	preload("res://tests/finite/validation/test_finite_validation_launcher.gd"),
+	preload("res://tests/finite/validation/test_validation_mode_selector.gd"),
 	preload("res://tests/finite/validation/test_validation_stack_modes.gd"),
 	preload("res://tests/finite/validation/test_validation_entrypoint_invariance.gd"),
 	preload("res://tests/train/test_train_movement.gd"),

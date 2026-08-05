@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://tools/validation/finite/finite_validation_launcher.gd" id="1_launcher"]
+[ext_resource type="PackedScene" path="res://tools/validation/finite/finite_validation_mode_selector.tscn" id="2_selector"]
 
 [node name="FiniteValidationLauncher" type="Control"]
 layout_mode = 3
@@ -18,3 +19,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Selector" parent="." instance=ExtResource("2_selector")]
+layout_mode = 1
+
+[node name="BackOverlay" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 84.0
+grow_horizontal = 0
+mouse_filter = 1
+
+[node name="BackButton" type="Button" parent="BackOverlay"]
+custom_minimum_size = Vector2(200, 56)
+layout_mode = 2
+text = "BACK TO MODES"
