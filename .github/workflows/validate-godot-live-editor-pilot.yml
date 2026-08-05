@@ -3,6 +3,11 @@ name: Validate Godot Live-Editor Pilot
 on:
   pull_request:
     branches: [main]
+    paths:
+      - .godot-live-editor/project-pilot.json
+      - docs/GODOT_LIVE_EDITOR_ADOPTION.md
+      - tests/test_godot_live_editor_adoption.py
+      - .github/workflows/validate-godot-live-editor-pilot.yml
   push:
     branches: [main]
   workflow_dispatch:
