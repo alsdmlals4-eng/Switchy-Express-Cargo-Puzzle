@@ -55,7 +55,12 @@ func run() -> void:
 	)
 
 	var lowered := text.to_lower()
-	assert_false(lowered.contains("keystore"), "workflow must not contain keystore configuration")
-	assert_false(lowered.contains("storepass"), "workflow must not contain signing password")
+	assert_false(
+		lowered.contains("godot_android_keystore_release"),
+		"validation workflow must not configure release signing"
+	)
+	assert_false(lowered.contains("storepass android"), "workflow must not commit a fixed store password")
+	assert_false(lowered.contains("keypass android"), "workflow must not commit a fixed key password")
+	assert_false(text.contains("secrets."), "workflow must not depend on repository signing secrets")
 	assert_false(text.contains("C:\\"), "workflow must not contain Windows user paths")
 	assert_false(text.contains("/Users/"), "workflow must not contain macOS user paths")
