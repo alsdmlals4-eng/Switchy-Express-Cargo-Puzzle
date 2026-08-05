@@ -1,10 +1,11 @@
 # Switchy Express 유한 배송 퍼즐 제품 기준선
 
-상태: `CURRENT_CANON · USER_APPROVED · IMPLEMENTATION_REPLAN_REQUIRED`
+상태: `CURRENT_CANON · USER_APPROVED · AUTOMATED_CORE_PASS · MANUAL_ACCEPTANCE_NOT_RUN`
 
 결정 묶음: `GMB-002 · SX-DEC-027~036`
 근거: `EV-USER-019 · 2026-08-04 승인 대화 종합`
-감사: `SX-AUD-012`
+제품 기준선 감사: `SX-AUD-012`
+현재 실행 증거: `SX-AUD-019 · EV-FP-APK-001`
 
 이 문서는 기존 무한 생존·연료·BOOST 제품 기준선을 대체하는 현재 제품 정본이다. 기존 구현과 감사 증거는 역사적 사실로 보존하지만, 새 제품 의미의 구현 완료 증거로 재사용하지 않는다.
 
@@ -254,16 +255,23 @@ A역 재방문: 남은 A 1개 하역
 
 ## 13. 구현·증거 상태
 
-- 현재 코드의 RailGraph·자동 이동·분기·CargoStack·LIFO 일부는 재사용 후보다.
-- 현재 코드의 fuel·BOOST·capacity 8·cargo respawn·endless difficulty는 `LEGACY_IMPLEMENTATION`이다.
-- 현재 구현 테스트 통과는 역사적 증거이며 새 기준선의 플레이 가능·밸런스·Android 증거가 아니다.
-- 다음 구현 전 새 제품 기준선에 맞춘 Definition of Ready와 패키지 재분할이 필요하다.
+- finite automated core, product surface와 integrated proof는 현재 제품 의미로 구현·자동 검증됐다.
+- validation launcher는 `PROOF / STACK 8 / STACK 16 / STACK 32` 모드와 production entrypoint 불변성을 검증한다.
+- canonical main APK export는 `SX-AUD-019 · EV-FP-APK-001`로 PASS했으며, APK 전체 SHA-256은 `eb49225ab4062e5cf863f79a0d17f85d339ea176d7f0bb6f04096ed8a07559ea`다.
+- fuel·BOOST·capacity 8·cargo respawn·endless difficulty 구현은 `LEGACY_IMPLEMENTATION`이며 현재 제품 권위가 아니다.
+- Combo 가속·점수 tuning, 확장 선로, 캠페인·기록·온라인 기능은 후속 제작 범위이며 현재 Slice 완료를 의미하지 않는다.
+- Android Device Smoke와 Five-person Comprehension은 실제 물리 기기·사람 증거가 없어 `NOT_RUN`이다.
 
 현재 상태:
 
 ```text
-PLANNING_CANON_APPROVED
-IMPLEMENTATION_REPLAN_REQUIRED
-RUNTIME_NOT_ALIGNED
-ANDROID/HUMAN/BALANCE/ONLINE_NOT_RUN
+FINITE_AUTOMATED_CORE_PASS
+PRODUCT_SURFACE_PASS
+VALIDATION_PREPARATION_PASS
+CANONICAL_MAIN_APK_EXPORT_PASS
+ANDROID_DEVICE_SMOKE_NOT_RUN
+FIVE_PERSON_COMPREHENSION_NOT_RUN
+DEFAULT_ENTRYPOINT_LEGACY
+PRODUCTION_CUTOVER_BLOCKED
+BALANCE/ONLINE_NOT_RUN
 ```
