@@ -65,15 +65,16 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         self.assertTrue(all(isinstance(value, str) for value in adapter["validators"]))
         self.assertFalse(any(value.startswith("manual:") for value in adapter["validators"]))
 
-    def test_project_registry_exposes_canonical_skill_ids_without_removing_legacy_ids(self) -> None:
+    def test_project_registry_contains_project_owned_skills_only(self) -> None:
         registry = load_json(REGISTRY_PATH)
         self.assertTrue(registry["skills"])
         for entry in registry["skills"]:
+            self.assertEqual("project", entry["owner"])
             self.assertIn("id", entry)
             self.assertIn("skill_id", entry)
             self.assertEqual(entry["id"], entry["skill_id"])
-        project = next(entry for entry in registry["skills"] if entry["skill_id"] == "switchy-express-design")
-        self.assertEqual("project", project["owner"])
+        self.assertEqual(["switchy-express-design"], [entry["skill_id"] for entry in registry["skills"]])
+        project = registry["skills"][0]
         self.assertEqual("skills/switchy-express-design/SKILL.md", project["path"])
 
     def test_sheet_baseline_and_registries_use_canonical_tokens(self) -> None:
@@ -103,6 +104,8 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         self.assertEqual("VERIFIED_PROJECT_MAIN", preserved["protected_baseline"]["policy_source_type"])
         self.assertTrue(all(isinstance(value, dict) for value in preserved["validators"]))
         self.assertIn("original_project_skill_registry", migration)
+        original_registry = migration["original_project_skill_registry"]
+        self.assertTrue(any(entry.get("owner") == "base" for entry in original_registry["skills"]))
         self.assertIn("original_project_skill_registry_sha256", migration)
         evidence = state_doc["evidence_boundaries"]
         self.assertEqual("NOT_RUN", evidence["physical_device_validation"])
@@ -134,7 +137,7 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         workflow = WORKFLOW_PATH.read_text(encoding="utf-8")
         for token in (
             DECISION, "docs/PROJECT_OPERATING_STATE.json", "skills/SKILL_REGISTRY.json",
-            "ANDROID_DEVICE_SMOKE_READINESS_CLOSURE.md",
+            "PROJECT_ONLY_REGISTRY", "ANDROID_DEVICE_SMOKE_READINESS_CLOSURE.md",
             "SX_AUD_019_ANDROID_APK_PIPELINE_PROBE.md",
             "GODOT_LIVE_EDITOR_ADOPTION.md", "PRODUCT_FILES_UNCHANGED",
             "GOOGLE_SHEETS_UNCHANGED",
