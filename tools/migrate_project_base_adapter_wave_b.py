@@ -7,10 +7,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ADAPTER_PATH = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
+REGISTRY_PATH = ROOT / "skills/SKILL_REGISTRY.json"
 HEALTH_PATH = ROOT / "docs/PROJECT_OPERATING_HEALTH.json"
 STATE_PATH = ROOT / "docs/PROJECT_OPERATING_STATE.json"
 MIGRATION_PATH = ROOT / "docs/operations/PROJECT_BASE_ADAPTER_MIGRATION_2026-08-06.md"
-PROJECT_REGISTRY_PATH = ROOT / "skills/SKILL_REGISTRY.json"
 APK_EVIDENCE_PATH = ROOT / "기획서/50_제작_검증/SX_AUD_019_ANDROID_APK_PIPELINE_PROBE.md"
 
 DECISION = "DEC-BASE-20260805-001"
@@ -45,8 +45,10 @@ def evidence(evidence_id: str, source: str, path: Path) -> dict:
 
 
 def main() -> None:
-    original_bytes = ADAPTER_PATH.read_bytes()
-    original = json.loads(original_bytes.decode("utf-8"))
+    original_adapter_bytes = ADAPTER_PATH.read_bytes()
+    original = json.loads(original_adapter_bytes.decode("utf-8"))
+    original_registry_bytes = REGISTRY_PATH.read_bytes()
+    original_registry = json.loads(original_registry_bytes.decode("utf-8"))
 
     state_doc = {
         "schema_version": 1,
@@ -66,7 +68,9 @@ def main() -> None:
             "status": "PRESERVED_AND_MIGRATED_ON_DRAFT_BRANCH",
             "source_main_commit": SOURCE_MAIN,
             "trusted_base_validator": TRUSTED_BASE,
-            "source_adapter_sha256": sha256_bytes(original_bytes),
+            "source_adapter_sha256": sha256_bytes(original_adapter_bytes),
+            "original_project_skill_registry_sha256": sha256_bytes(original_registry_bytes),
+            "original_project_skill_registry": original_registry,
             "preserved_from_adapter": {
                 "gdd_sheet": copy.deepcopy(original["gdd_sheet"]),
                 "protected_baseline": copy.deepcopy(original["protected_baseline"]),
@@ -76,6 +80,7 @@ def main() -> None:
             "normalized_contract": {
                 "adapter_schema": "BASE_V1_THIN_ADAPTER",
                 "health_schema": "BASE_PROJECT_OPERATING_HEALTH_V1",
+                "project_registry_compatibility": "LEGACY_ID_PRESERVED_CANONICAL_SKILL_ID_ADDED",
                 "protected_baseline_policy": "OPTION_A_EXACT_TRUSTED_BASE_EQUALITY",
                 "gdd_sheet_contract_status": "CURRENT",
                 "project_state_authority": "docs/PROJECT_OPERATING_STATE.json",
@@ -95,8 +100,15 @@ def main() -> None:
     }
     write_json(STATE_PATH, state_doc)
 
+    normalized_registry = copy.deepcopy(original_registry)
+    for entry in normalized_registry.get("skills", []):
+        legacy_id = entry.get("id")
+        if isinstance(legacy_id, str):
+            entry["skill_id"] = legacy_id
+    write_json(REGISTRY_PATH, normalized_registry)
+
     protected_paths = copy.deepcopy(original["protected_paths"])
-    project_registry_sha = sha256_bytes(PROJECT_REGISTRY_PATH.read_bytes())
+    project_registry_sha = sha256_bytes(REGISTRY_PATH.read_bytes())
     gdd_sheet = copy.deepcopy(original["gdd_sheet"])
     gdd_sheet["declared_sync_status"] = original["gdd_sheet"]["sync_status"]
     gdd_sheet["sync_status"] = "CURRENT"
@@ -150,6 +162,7 @@ def main() -> None:
     write_json(ADAPTER_PATH, adapter)
 
     mapping_rows = [
+        ("skills/SKILL_REGISTRY.json#/skills/*/id", "/adapter_migration/original_project_skill_registry", "legacy id retained; matching skill_id added for Base routing"),
         ("/gdd_sheet/sync_status", "/adapter_migration/preserved_from_adapter/gdd_sheet/sync_status", "SYNCED retained; adapter token CURRENT"),
         ("/protected_baseline", "/adapter_migration/preserved_from_adapter/protected_baseline", "invalid legacy enums retained; canonical exact-base contract replaces them"),
         ("/routing/base_routes", "/adapter_migration/preserved_from_adapter/routing/base_routes", "strings retained and converted to ACTIVE typed records"),
@@ -167,6 +180,7 @@ source_main: {SOURCE_MAIN}
 trusted_base_validator: {TRUSTED_BASE}
 strategy: OPTION_A_EXACT_TRUSTED_BASE_EQUALITY
 adapter_authority: BASE_V1_THIN_ADAPTER
+project_registry: skills/SKILL_REGISTRY.json
 project_state_authority: docs/PROJECT_OPERATING_STATE.json
 machine_health_authority: docs/PROJECT_OPERATING_HEALTH.json
 PRODUCT_FILES_UNCHANGED: true
@@ -188,9 +202,13 @@ These references remain project-owned. Repository and CI evidence does not promo
 
 ## Field map
 
-| Original adapter field | Project-owned destination | Treatment |
+| Original adapter or Registry field | Project-owned destination | Treatment |
 |---|---|---|
 {table}
+
+## Registry compatibility
+
+The project Registry used legacy `id` keys while the Base v1 router indexes `skill_id`. Each entry keeps its original `id` and receives an identical `skill_id`; no Skill is renamed, removed, or redirected. The original complete Registry and raw-byte hash are preserved in `docs/PROJECT_OPERATING_STATE.json`.
 
 ## Evidence separation
 
@@ -203,7 +221,7 @@ Each health evidence ID and source is unique. One operating and one product reco
 
 ## Scope boundary
 
-The migration changes the Base connection contract, standard machine health, project-owned state, and official generated views only. It does not edit `project.godot`, `game/**`, `assets/**`, `기획서/**`, APK evidence, Godot Pilot adoption content, or Google Sheet cells.
+The migration changes the project Registry compatibility key, Base connection contract, standard machine health, project-owned state, and official generated views only. It does not edit `project.godot`, `game/**`, `assets/**`, `기획서/**`, APK evidence, Godot Pilot adoption content, or Google Sheet cells.
 """,
         encoding="utf-8",
     )
