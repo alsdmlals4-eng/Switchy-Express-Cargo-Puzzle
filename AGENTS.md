@@ -115,3 +115,15 @@ base_registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5
 - Grill Me 승인 배치는 최대 10건이며 고위험·정본 충돌·구현 차단·세션 종료 시 조기 checkpoint를 허용한다.
 - LIFO·화물/역 색상+모양·저장 호환성·랭킹 ruleset identity는 `HARD_CONSTRAINT`다.
 - UI 모션은 퍼즐 결과·점수·적재·하역·저장의 권위가 아니다.
+
+## 플랫폼 출시·에셋 권리
+
+출시·외부 자산·AI·외주·참조 기반 독립 제작 작업은 다음 프로젝트 증거를 읽는다.
+
+- `docs/PLATFORM_RELEASE_AND_ASSET_RIGHTS_PROFILE.md`
+- `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`
+- `docs/GAME_RELEASE_COMPLIANCE_EVIDENCE_PACK.md`
+
+Android·Google Play가 우선이다. 콘텐츠 등급과 target audience를 분리하고 Families, 광고 SDK, 데이터·개인정보, ads/IAP와 cosmetic currency를 함께 검토한다. 원본을 조금 수정하거나 AI로 변환했다는 이유만으로 독립 자산으로 보지 않고 `reference_brief`, `forbidden_expression`, 별도 `final_asset_record`, 유사성 검토를 요구한다.
+
+필수 권리·계약·약관 버전·플랫폼 답변·build/store/questionnaire 일치가 미확인이면 `RELEASE_BLOCKED_UNVERIFIED`다. 사용자 승인 없는 광고·가챠·에너지·성능 과금 금지와 새 DoR 전 제품 구현 중단을 변경하지 않는다.
