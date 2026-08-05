@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 RUNNER = ROOT / "tools/run_switchy_godot_live_editor_pilot.py"
+GODOT_WORKFLOW = ROOT / ".github/workflows/godot-tests.yml"
 
 
 class SwitchyGodotLiveEditorPilotRunnerContractTests(unittest.TestCase):
@@ -68,6 +69,23 @@ class SwitchyGodotLiveEditorPilotRunnerContractTests(unittest.TestCase):
         for forbidden in ("shell=True", "os.system(", "eval(", "exec("):
             with self.subTest(forbidden=forbidden):
                 self.assertNotIn(forbidden, source)
+
+    def test_godot_workflow_runs_project_tests_before_actual_pilot_and_uploads_report(self) -> None:
+        self.assertTrue(GODOT_WORKFLOW.is_file(), f"missing {GODOT_WORKFLOW.relative_to(ROOT)}")
+        source = GODOT_WORKFLOW.read_text(encoding="utf-8")
+        for marker in (
+            "run_switchy_godot_live_editor_pilot.py",
+            "--godot ./Godot_v4.7.1-stable_linux.x86_64",
+            "actions/upload-artifact@v4",
+            "switchy-godot-live-editor-pilot-report",
+            "artifacts/godot-live-editor-ci/switchy-pilot-report.json",
+        ):
+            with self.subTest(marker=marker):
+                self.assertIn(marker, source)
+        self.assertLess(
+            source.index("res://tests/run_tests.gd"),
+            source.index("run_switchy_godot_live_editor_pilot.py"),
+        )
 
 
 if __name__ == "__main__":
