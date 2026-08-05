@@ -48,3 +48,5 @@ jobs:
           git diff --cached --check
           git commit -m "fix: materialize strict thin Base adapter"
           git push origin HEAD:agent/rebuild-thin-base-adapter
+
+# rerun: registry compatibility identity added
