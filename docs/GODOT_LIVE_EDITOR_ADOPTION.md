@@ -9,11 +9,12 @@ mutation_policy: SCRATCH_SCENE_MUTATION_ONLY
 source_integrity: SOURCE_TREE_UNCHANGED
 legacy_godot_ai: ABSENT
 base_pilot_pin_state: MERGED_IMMUTABLE_PIN
-base_pilot_commit: cabbc59b170c5da2bb1df7e4d4d535857dd35495
+base_pilot_commit: 8d6df19de04374506560408cf0819a5990861c2e
+artifact_bundle: SELF_CONTAINED_THREE_FILE_REQUIRED
 PRODUCTION_ADAPTER_READY: NOT_READY
 ```
 
-This repository adopts merged Base Pilot commit `cabbc59b170c5da2bb1df7e4d4d535857dd35495` only as an isolated real-project Pilot. All four adoption files bind the same immutable commit. Later movement of Base `main` does not change this cohort pin.
+This repository adopts merged Base Pilot commit `8d6df19de04374506560408cf0819a5990861c2e` only as an isolated real-project Pilot. All four adoption files bind the same immutable commit. Later movement of Base `main` does not change this cohort pin.
 
 The repository does not permanently install the Base editor addon into the product project.
 
@@ -29,7 +30,15 @@ The workflow inventories Git-tracked source bytes before and after execution. An
 
 The uploaded bounded evidence records the exact repository commit, exact Base commit, source inventory digests, main Scene inspection result, scratch Scene operation results, ledger state, network-listener state, and physical SHA-256 values recomputed from saved bytes.
 
-A GitHub Actions artifact is review evidence with limited retention. It is not itself a production-readiness declaration. The post-merge `main` artifact must later be physically reverified before Base C1 can promote its bounded result.
+The Base C0.1 artifact bundle must contain all three files:
+
+```text
+project-pilot-evidence.json
+runtime-result.json
+scratch.tscn
+```
+
+A GitHub Actions artifact is review evidence with limited retention. It is not itself a production-readiness declaration. The post-merge `main` artifact must be downloaded and both `runtime-result.json` and `scratch.tscn` must be physically rehashed before Base C1 can promote its bounded result.
 
 ## What the Pilot does not do
 
