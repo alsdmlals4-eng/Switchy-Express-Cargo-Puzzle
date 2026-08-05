@@ -26,6 +26,10 @@ RUNTIME_RESULT_RELATIVE = Path(
 SUMMARY_PATTERN = re.compile(
     r"TEST SUMMARY: cases=(?P<cases>\d+) failed=(?P<failed>\d+) assertions=(?P<assertions>\d+)"
 )
+HEADLESS_THUMBNAIL_ERROR = 'ERROR: Parameter "t" is null.'
+HEADLESS_THUMBNAIL_LOCATION = (
+    "texture_2d_get (./servers/rendering/dummy/storage/texture_storage.h:110)"
+)
 REQUIRED_RUNTIME_FLAGS = (
     "scene_inspect_pass",
     "dirty_rename_pass",
@@ -75,14 +79,39 @@ def _write_report(path: Path, payload: dict[str, Any]) -> None:
     )
 
 
+def _is_exact_headless_thumbnail_error(lines: list[str], index: int) -> bool:
+    if lines[index].strip() != HEADLESS_THUMBNAIL_ERROR:
+        return False
+    following = "\n".join(line.strip() for line in lines[index + 1 : index + 4])
+    return HEADLESS_THUMBNAIL_LOCATION in following
+
+
+def _headless_thumbnail_error_count(stream: str) -> int:
+    lines = stream.splitlines()
+    return sum(
+        1
+        for index, line in enumerate(lines)
+        if line.strip() == HEADLESS_THUMBNAIL_ERROR
+        and _is_exact_headless_thumbnail_error(lines, index)
+    )
+
+
+def _unexpected_godot_errors(stream: str) -> list[str]:
+    lines = stream.splitlines()
+    unexpected: list[str] = []
+    for index, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.startswith("SCRIPT ERROR:"):
+            unexpected.append(stripped)
+        elif stripped.startswith("ERROR:") and not _is_exact_headless_thumbnail_error(
+            lines, index
+        ):
+            unexpected.append(stripped)
+    return unexpected
+
+
 def _contains_godot_error(*streams: str) -> bool:
-    for stream in streams:
-        if "SCRIPT ERROR:" in stream:
-            return True
-        for line in stream.splitlines():
-            if line.startswith("ERROR:"):
-                return True
-    return False
+    return any(_unexpected_godot_errors(stream) for stream in streams)
 
 
 def _failure(
@@ -216,15 +245,20 @@ def run_pilot(
         except subprocess.TimeoutExpired:
             return 2, _failure("RUNTIME_TIMEOUT", detail="Editor Pilot timeout")
         editor_wall_usec = (time.perf_counter_ns() - editor_started) // 1000
-        if editor.returncode != 0 or _contains_godot_error(editor.stdout, editor.stderr):
+        editor_output = editor.stdout + "\n" + editor.stderr
+        if editor.returncode != 0:
             return 1, _failure(
                 "RUNTIME_RESULT_INVALID",
-                detail=(editor.stdout + "\n" + editor.stderr)[-4000:],
+                detail=f"editor_exit={editor.returncode}\n{editor_output[-4000:]}",
             )
 
         runtime_result_path = project / RUNTIME_RESULT_RELATIVE
         if not runtime_result_path.is_file():
-            return 1, _failure("RUNTIME_RESULT_MISSING")
+            unexpected = _unexpected_godot_errors(editor_output)
+            detail = "runtime result missing"
+            if unexpected:
+                detail += "|" + "|".join(unexpected)
+            return 1, _failure("RUNTIME_RESULT_MISSING", detail=detail)
         try:
             runtime = json.loads(runtime_result_path.read_text(encoding="utf-8"))
         except (json.JSONDecodeError, UnicodeDecodeError) as error:
@@ -237,6 +271,15 @@ def run_pilot(
                 "RUNTIME_RESULT_INVALID",
                 detail="|".join(runtime_errors),
             )
+
+        unexpected_editor_errors = _unexpected_godot_errors(editor_output)
+        if unexpected_editor_errors:
+            return 1, _failure(
+                "RUNTIME_RESULT_INVALID",
+                detail="|".join(unexpected_editor_errors),
+            )
+        headless_thumbnail_error_count = _headless_thumbnail_error_count(editor_output)
+        runtime["headless_thumbnail_error_count"] = headless_thumbnail_error_count
 
         regression_started = time.perf_counter_ns()
         try:
@@ -312,6 +355,10 @@ def run_pilot(
                 "batch_64_elapsed_usec": runtime.get("batch_64_elapsed_usec"),
             },
             "limitations": {
+                "headless_dummy_thumbnail_errors_observed": headless_thumbnail_error_count,
+                "headless_dummy_thumbnail_error_policy": (
+                    "KNOWN_EXACT_GODOT_DUMMY_RENDERER_SAVE_THUMBNAIL_ERROR_ONLY"
+                ),
                 "windows_runtime": "NOT_RUN",
                 "android_device": "NOT_RUN",
                 "physical_input": "NOT_RUN",
@@ -355,4 +402,8 @@ if __name__ == "__main__":
     raise SystemExit(main())
 
 
-__all__ = ["run_pilot"]
+__all__ = [
+    "_headless_thumbnail_error_count",
+    "_unexpected_godot_errors",
+    "run_pilot",
+]
