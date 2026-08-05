@@ -5,7 +5,6 @@ import subprocess
 import unittest
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 ADAPTER_PATH = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
 SKILL_ID = "orchestrating-deepseek-worktrees"
@@ -18,17 +17,27 @@ def load_adapter() -> dict:
     return json.loads(ADAPTER_PATH.read_text(encoding="utf-8"))
 
 
+def base_route_skill_ids(adapter: dict) -> set[str]:
+    return {route["skill_id"] for route in adapter["routing"]["base_routes"]}
+
+
 class BaseSharedExternalAIAdapterTests(unittest.TestCase):
     def test_preserves_current_released_base_identity(self) -> None:
         adapter = load_adapter()
         self.assertEqual("9.4.3", adapter["base_release"]["version"])
         self.assertEqual(BASE_RELEASE_COMMIT, adapter["base_release"]["release_commit"])
-        self.assertEqual(BASE_RELEASE_EVIDENCE, adapter["base_release"]["release_evidence_commit"])
-        self.assertEqual(BASE_REGISTRY_SHA256, adapter["skill_registry"]["base"]["sha256"])
+        self.assertEqual(
+            BASE_RELEASE_EVIDENCE,
+            adapter["base_release"]["release_evidence_commit"],
+        )
+        self.assertEqual(
+            BASE_REGISTRY_SHA256,
+            adapter["skill_registry"]["base"]["sha256"],
+        )
 
     def test_routes_external_ai_worktree_skill_without_copying_body(self) -> None:
         adapter = load_adapter()
-        self.assertIn(SKILL_ID, adapter["routing"]["base_routes"])
+        self.assertIn(SKILL_ID, base_route_skill_ids(adapter))
         self.assertFalse((ROOT / "skills/orchestrating-deepseek-worktrees/SKILL.md").exists())
 
     def test_binds_project_isolation_and_v941_validator_boundary(self) -> None:
@@ -38,27 +47,40 @@ class BaseSharedExternalAIAdapterTests(unittest.TestCase):
         self.assertEqual("ai/deepseek-", override["task_branch_prefix"])
         self.assertEqual("drafts/external-ai/", override["draft_root"])
         self.assertEqual(["drafts/external-ai/**"], override["allowed_write_roots"])
-        self.assertEqual("skills/PROJECT_BASE_ADAPTER.json#/protected_paths", override["protected_paths_source"])
+        self.assertEqual(
+            "skills/PROJECT_BASE_ADAPTER.json#/protected_paths",
+            override["protected_paths_source"],
+        )
         self.assertEqual("REVIEW_PENDING", override["result_state"])
-        self.assertEqual("LOCAL_REVIEW_REQUIRED_BEFORE_CANON", override["integration_policy"])
+        self.assertEqual(
+            "LOCAL_REVIEW_REQUIRED_BEFORE_CANON",
+            override["integration_policy"],
+        )
         self.assertEqual("ADOPTED_FROM_BASE_V9_4_1", override["base_validator_adoption"])
-        self.assertEqual("tools/check_external_ai_worktree_contract.py", override["base_validator_path"])
+        self.assertEqual(
+            "tools/check_external_ai_worktree_contract.py",
+            override["base_validator_path"],
+        )
         self.assertEqual("base-v9.4.1.lock.json", override["base_release_lock"])
         self.assertEqual("NOT_RUN", override["actual_external_ai_worktree_execution"])
-        self.assertEqual("SYNCED", adapter["gdd_sheet"]["sync_status"])
+        self.assertEqual("CURRENT", adapter["gdd_sheet"]["sync_status"])
+        self.assertEqual("SYNCED", adapter["gdd_sheet"]["declared_sync_status"])
         self.assertTrue(adapter["protected_paths"])
 
     def test_worktree_parent_is_ignored_by_git(self) -> None:
-        result = subprocess.run(["git", "check-ignore", "-q", ".worktrees/"], cwd=ROOT, check=False)
+        result = subprocess.run(
+            ["git", "check-ignore", "-q", ".worktrees/"],
+            cwd=ROOT,
+            check=False,
+        )
         self.assertEqual(0, result.returncode)
 
     def test_project_validation_discovers_adapter_test(self) -> None:
         adapter = load_adapter()
-        commands = {
-            item["command"] if isinstance(item, dict) else item
-            for item in adapter["validators"]
-        }
-        self.assertIn("python tests/test_base_shared_external_ai_adapter.py", commands)
+        self.assertIn(
+            "python tests/test_base_shared_external_ai_adapter.py",
+            set(adapter["validators"]),
+        )
 
 
 if __name__ == "__main__":
