@@ -78,6 +78,9 @@ func _connect_view_commands() -> void:
 	var view: Node = get_node_or_null("View")
 	if view == null:
 		return
+	view.board_cell_requested.connect(
+		func(cell: Vector2i) -> void: _record_command(&"BOARD_CELL", cell)
+	)
 	view.build_tool_selected.connect(
 		func(tool: StringName) -> void: _record_command(&"BUILD_TOOL", tool)
 	)
