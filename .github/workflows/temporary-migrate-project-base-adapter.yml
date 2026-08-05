@@ -38,8 +38,21 @@ jobs:
       - name: Install validator dependencies
         run: python -m pip install -r .base-contract/.github/validation-requirements.txt
 
-      - name: Preserve evidence and rebuild thin adapter
+      - name: Preserve evidence and rebuild thin authority
         run: python tools/migrate_project_base_adapter_wave_b.py
+
+      - name: Commit canonical authority before generation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            skills/PROJECT_BASE_ADAPTER.json \
+            skills/SKILL_REGISTRY.json \
+            docs/PROJECT_OPERATING_STATE.json \
+            docs/PROJECT_OPERATING_HEALTH.json \
+            docs/operations/PROJECT_BASE_ADAPTER_MIGRATION_2026-08-06.md
+          git diff --cached --check
+          git commit -m "fix: establish Switchy thin adapter authority"
 
       - name: Regenerate Base-owned operating artifacts
         run: |
@@ -64,11 +77,9 @@ jobs:
           rm .github/workflows/temporary-migrate-project-base-adapter.yml
           rm -rf .base-contract
 
-      - name: Commit verified migration
+      - name: Commit verified generated outputs
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git diff --cached --check
-          git commit -m "fix: rebuild Switchy thin Base adapter"
+          git commit -m "chore: regenerate Switchy adapter views"
           git push origin HEAD:agent/rebuild-thin-base-adapter-wave-b-current
