@@ -23,6 +23,22 @@ func run() -> void:
 		"outer padding must not dispatch a board cell"
 	)
 
+	assert_equal(
+		RendererScript.snapshot_cell([4, 3]),
+		Vector2i(4, 3),
+		"JSON marker coordinates must normalize from Array to Vector2i"
+	)
+	assert_equal(
+		RendererScript.snapshot_cell(Vector2i(6, 2)),
+		Vector2i(6, 2),
+		"typed marker coordinates must remain unchanged"
+	)
+	assert_equal(
+		RendererScript.snapshot_cell([4]),
+		Vector2i(-1, -1),
+		"malformed marker coordinates must be rejected"
+	)
+
 	var source: Dictionary = {
 		"map_id": &"VS_DEMO_01",
 		"board_size": Vector2i(11, 9),

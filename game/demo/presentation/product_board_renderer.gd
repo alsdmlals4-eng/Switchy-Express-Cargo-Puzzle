@@ -191,12 +191,13 @@ func _draw_fixed_markers(rect: Rect2, board_size: Vector2i) -> void:
 
 
 func _draw_marker(
-	cell: Vector2i,
+	cell_value: Variant,
 	cargo_type: StringName,
 	is_station: bool,
 	rect: Rect2,
 	board_size: Vector2i
 ) -> void:
+	var cell := snapshot_cell(cell_value)
 	if cell == NO_CELL:
 		return
 	var cell_rect := _cell_rect(cell, rect, board_size).grow(-5.0)
@@ -325,6 +326,16 @@ func _board_rect() -> Rect2:
 			maxf(size.y - Palette.BOARD_PADDING * 2.0, 0.0)
 		)
 	)
+
+
+static func snapshot_cell(value: Variant) -> Vector2i:
+	if value is Vector2i:
+		return value
+	if value is Vector2:
+		return Vector2i(int(value.x), int(value.y))
+	if value is Array and value.size() == 2:
+		return Vector2i(int(value[0]), int(value[1]))
+	return NO_CELL
 
 
 static func _cell_size(rect: Rect2, board_size: Vector2i) -> Vector2:
