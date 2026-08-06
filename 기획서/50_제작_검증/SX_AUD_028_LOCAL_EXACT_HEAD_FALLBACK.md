@@ -5,66 +5,23 @@ audit_id: SX-AUD-028
 decision_id: SX-DEC-047
 approval_batch_id: GMB-005
 date: 2026-08-07
-project_main: a18b9fd52734f1884286bc3d0830e337d0c800c9
-base_main_observed: 4f98f968a377f7b6a11aafa4fc94d11bddbebedc
-trigger: USER_REPORTED_GITHUB_ACTIONS_BUDGET_UNAVAILABLE
-```
-
-## Entry readback
-
-```yaml
-project_default_branch: main
-open_pull_requests: 0
-main_protected: false
-required_status_checks: []
-rulesets: []
-google_sheet_phase: GUT_FORMAL_ADOPTION_PHASE_B_NEXT
-```
-
-## Finding
-
-GitHub-hosted Actions cannot be relied on for the current batch. The repository does not technically require hosted status checks, so direct merging is possible, but merging without replacement evidence would violate the active v4.3 contract.
-
-## Approved correction
-
-Create a repository-owned local exact-HEAD verifier and use external execution evidence instead of hosted runner evidence. Preserve all objective gates and record skipped hosted workflows as `NOT_RUN`.
-
-## Scope
-
-```yaml
+validation_mode: WINDOWS_WSL2_MATRIX
+python_targets:
+  - WINDOWS_3_11
+  - WINDOWS_3_12
+  - WINDOWS_3_13
+  - WSL2_UBUNTU_3_12
+full_project_target: WINDOWS_GODOT_4_7_1
 GAMEPLAY_UNCHANGED: true
-PROJECT_GODOT_UNCHANGED: true
-SCENE_RESOURCE_UNCHANGED: true
-EXISTING_WORKFLOWS_UNCHANGED: true
-NEW_BINARY_ASSETS: false
 WINDOWS_FULL_PROJECT_NOT_RUN: true
 ANDROID_DEVICE_NOT_RUN: true
 HIGODOT_CONNECTION_NOT_VERIFIED: true
 ```
 
-## Test-first evidence
+사용자가 Windows와 WSL2 환경을 모두 설치했다고 확인했다. 따라서 GitHub-hosted Actions 매트릭스에 가장 가까운 로컬 재현 범위로 Python 4개 환경을 채택한다. Godot/GUT는 Windows exact HEAD에서 실행하고, WSL2는 Python 계약 재현에 한정한다.
 
-```yaml
-red_1: missing Python verifier file
-red_2: missing hash, JUnit and evidence APIs
-red_3: missing PowerShell wrapper
-red_4: missing operator/canon/audit documents
-green_target: Python unittest module and compileall
-```
+PR #103 초기 구현의 적대적 검토에서 Python bytecode가 `__pycache__`를 만들면 post-run dirty gate가 자기 자신 때문에 실패할 수 있고, Git 오류 코드 문자열에 비ASCII 오타가 있는 결함을 발견했다. `-B`, `PYTHONDONTWRITEBYTECODE=1`, hardened entry의 `GIT_COMMAND_FAILED`로 교정한다.
 
-## Residual risk
+WSL2는 Windows 경로를 `wslpath`로 변환한 뒤 `git rev-parse HEAD`와 clean status를 독립 확인한다. 네 Python target 중 하나라도 누락·실패·버전 불일치·HEAD 불일치면 전체 검증을 실패시킨다.
 
-- The current remote execution environment cannot clone the full repository or run Godot.
-- Full project verification must therefore run on the user Windows checkout after this tooling is merged.
-- A local PASS for one SHA cannot be reused after any commit.
-- Windows visual runtime, Android device, human comprehension, and HiGodot connection remain separate gates.
-
-## Current status
-
-```text
-LOCAL_VERIFIER_IMPLEMENTED_AND_UNIT_TESTED
-→ TOOLING_PR_EXACT_DIFF_REVIEW
-→ MERGED_MAIN_READBACK
-→ WINDOWS_FULL_PROJECT_EXACT_HEAD_RUN
-→ GUT_PHASE_B_AND_GAMEPLAY_TDD
-```
+현재 환경에서는 Windows/WSL2 실제 실행을 할 수 없으므로 도구의 Python 단위 계약만 컨테이너에서 검증한다. 전체 매트릭스와 Godot/GUT PASS는 사용자 Windows checkout에서 exact PR HEAD로 실행하기 전까지 `NOT_RUN`이다.
