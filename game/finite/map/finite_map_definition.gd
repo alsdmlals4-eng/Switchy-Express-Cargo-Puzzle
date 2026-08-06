@@ -23,6 +23,7 @@ var buildable_cells: Array[Vector2i] = []
 var blocked_cells: Array[Vector2i] = []
 var station_placements: Array[Dictionary] = []
 var cargo_placements: Array[Dictionary] = []
+var marker_tracks_player_built: bool = false
 var time_limit_seconds: float = 0.0
 var _source_errors: Array[String] = []
 
@@ -41,6 +42,7 @@ static func create(data: Dictionary) -> Variant:
 	value.blocked_cells = _read_cells(data.get("blocked_cells", []))
 	value.station_placements = _read_placements(data.get("station_placements", []))
 	value.cargo_placements = _read_placements(data.get("cargo_placements", []))
+	value.marker_tracks_player_built = bool(data.get("marker_tracks_player_built", false))
 	value.time_limit_seconds = float(data.get("time_limit_seconds", 0.0))
 	return value
 
@@ -49,8 +51,23 @@ func identity_key() -> String:
 	return "%s@%d" % [map_id, map_revision]
 
 
+func marker_tracks_are_player_built() -> bool:
+	return marker_tracks_player_built
+
+
 func required_anchor_cells() -> Array[Vector2i]:
 	var result: Array[Vector2i] = [start_cell, incoming_cell]
+	for placement: Dictionary in station_placements:
+		result.append(_read_cell(placement.get("cell", [])))
+	for placement: Dictionary in cargo_placements:
+		result.append(_read_cell(placement.get("cell", [])))
+	return result
+
+
+func fixed_anchor_cells() -> Array[Vector2i]:
+	var result: Array[Vector2i] = [start_cell, incoming_cell]
+	if marker_tracks_player_built:
+		return result
 	for placement: Dictionary in station_placements:
 		result.append(_read_cell(placement.get("cell", [])))
 	for placement: Dictionary in cargo_placements:
@@ -98,6 +115,7 @@ func to_dictionary() -> Dictionary:
 		"blocked_cells": _cells_to_arrays(blocked_cells),
 		"station_placements": station_placements.duplicate(true),
 		"cargo_placements": cargo_placements.duplicate(true),
+		"marker_tracks_player_built": marker_tracks_player_built,
 		"time_limit_seconds": time_limit_seconds,
 	}
 
@@ -174,11 +192,11 @@ func _validate_fixed_anchor_surface_exclusion(errors: Array[String]) -> void:
 	for cell: Vector2i in blocked_cells:
 		blocked[cell] = true
 
-	for cell: Vector2i in required_anchor_cells():
+	for cell: Vector2i in fixed_anchor_cells():
 		if buildable.has(cell):
 			errors.append("fixed anchor cells must not be buildable")
 			break
-	for cell: Vector2i in required_anchor_cells():
+	for cell: Vector2i in fixed_anchor_cells():
 		if blocked.has(cell):
 			errors.append("fixed anchor cells must not be blocked")
 			break
@@ -199,6 +217,8 @@ static func _source_validation_errors(data: Dictionary) -> Array[String]:
 		errors.append("definition_schema_version must be an integer")
 	if not _is_integer_number(data.get("map_revision", null)):
 		errors.append("map_revision must be an integer")
+	if data.has("marker_tracks_player_built") and typeof(data.get("marker_tracks_player_built")) != TYPE_BOOL:
+		errors.append("marker_tracks_player_built must be a boolean")
 	if not _is_cell_value(data.get("board_size", null)):
 		errors.append("board_size is required")
 	if not _is_cell_value(data.get("start_cell", null)):
