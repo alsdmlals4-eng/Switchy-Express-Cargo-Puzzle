@@ -12,7 +12,8 @@ user_evidence:
   - EV-USER-028
   - EV-USER-029
 audit_id: SX-AUD-026
-state: APPROVED_FOR_PLANNING_SYNC
+canonical_patch_commit: 8dbdb62799d11e901f68fdbb09a6aa7eb57a9e75
+state: APPROVED_PENDING_MERGE
 ```
 
 ## Player-observed evidence
