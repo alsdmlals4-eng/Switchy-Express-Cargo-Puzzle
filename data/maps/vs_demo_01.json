@@ -1,25 +1,26 @@
 {
   "definition_schema_version": 2,
   "map_id": "VS_DEMO_01",
-  "map_revision": 1,
+  "map_revision": 2,
   "ruleset_version": "fp_core_v1",
   "marker_tracks_player_built": true,
-  "board_size": [11, 9],
-  "start_cell": [1, 4],
-  "incoming_cell": [0, 4],
-  "time_limit_seconds": 120.0,
+  "allow_open_terminals_after_required": true,
+  "board_size": [15, 11],
+  "start_cell": [1, 5],
+  "incoming_cell": [0, 5],
+  "time_limit_seconds": 150.0,
   "buildable_rects": [
-    {"minimum": [1, 1], "maximum": [10, 8]}
+    {"minimum": [1, 1], "maximum": [14, 9]}
   ],
-  "blocked_cells": [[4, 3], [6, 3], [4, 5], [6, 5]],
+  "blocked_cells": [[5, 3], [7, 3], [12, 3], [5, 7], [7, 7], [12, 7]],
   "station_placements": [
-    {"cell": [8, 5], "cargo_type": "RED_STAR"},
-    {"cell": [10, 7], "cargo_type": "BLUE_DIAMOND"}
+    {"cell": [10, 7], "cargo_type": "RED_STAR"},
+    {"cell": [13, 9], "cargo_type": "BLUE_DIAMOND"}
   ],
   "cargo_placements": [
-    {"cell": [9, 4], "cargo_type": "RED_STAR"},
-    {"cell": [10, 5], "cargo_type": "BLUE_DIAMOND"},
-    {"cell": [10, 6], "cargo_type": "RED_STAR"},
-    {"cell": [9, 7], "cargo_type": "RED_STAR"}
+    {"cell": [11, 5], "cargo_type": "RED_STAR"},
+    {"cell": [14, 6], "cargo_type": "BLUE_DIAMOND"},
+    {"cell": [14, 8], "cargo_type": "RED_STAR"},
+    {"cell": [11, 9], "cargo_type": "RED_STAR"}
   ]
 }
