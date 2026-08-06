@@ -2,6 +2,7 @@ class_name ProductHUD
 extends Control
 
 signal build_tool_selected(tool: StringName)
+signal recommended_layout_requested()
 signal rotate_requested()
 signal remove_requested()
 signal clear_requested()
@@ -24,6 +25,7 @@ func _ready() -> void:
 	_connect_button("BuildToolbar/CurveButton", func() -> void: build_tool_selected.emit(&"CURVE"))
 	_connect_button("BuildToolbar/SwitchButton", func() -> void: build_tool_selected.emit(&"SWITCH"))
 	_connect_button("BuildToolbar/CrossingButton", func() -> void: build_tool_selected.emit(&"CROSSING"))
+	_connect_button("BuildToolbar/RecommendButton", func() -> void: recommended_layout_requested.emit())
 	_connect_button("BuildToolbar/RotateButton", func() -> void: rotate_requested.emit())
 	_connect_button("BuildToolbar/RemoveButton", func() -> void: remove_requested.emit())
 	_connect_button("BuildToolbar/ClearButton", func() -> void: clear_requested.emit())
@@ -137,13 +139,13 @@ static func _stack_text(tokens: Array) -> String:
 
 static func _problem_text(code: StringName) -> String:
 	match code:
-		&"DISCONNECTED", &"UNREACHABLE":
-			return "연결되지 않은 지점이 있습니다"
-		&"MISSING_START", &"START_DISCONNECTED":
+		&"DISCONNECTED", &"UNREACHABLE", &"DISCONNECTED_REQUIRED_POINT":
+			return "연결되지 않은 역 또는 화물이 있습니다"
+		&"MISSING_START", &"START_DISCONNECTED", &"INVALID_START":
 			return "출발 선로를 연결해 주세요"
-		&"INVALID_TRACK":
-			return "설치할 수 없는 선로가 있습니다"
-		&"NOT_READY":
+		&"INVALID_TRACK", &"INVALID_CROSSING", &"INVALID_SWITCH_EXIT":
+			return "분기·교차 선로의 연결 방향을 확인해 주세요"
+		&"NOT_READY", &"EMPTY_LAYOUT":
 			return "모든 역과 화물을 연결해 주세요"
 		_:
 			return "노선을 확인해 주세요"
