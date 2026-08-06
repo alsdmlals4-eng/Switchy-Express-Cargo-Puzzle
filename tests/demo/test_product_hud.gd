@@ -2,7 +2,14 @@ extends "res://tests/test_case.gd"
 
 const HUD_SCENE_PATH := "res://game/demo/presentation/product_hud.tscn"
 const BANNED_TEXT: Array[String] = [
-	"PHASE", "CLOCK", "STACK", "SUCCESS", "FAILURE", "Train running", "Time expired"
+	"PHASE",
+	"CLOCK",
+	"STACK",
+	"SUCCESS",
+	"FAILURE",
+	"Train running",
+	"Time expired",
+	"Disconnected route",
 ]
 
 
@@ -29,6 +36,10 @@ func run() -> void:
 	assert_equal(hud.get_node("BuildToolbar/StartButton").text, "운행 시작  Space", "start button shows action and shortcut")
 	assert_true(hud.get_node("BuildToolbar").visible, "BUILD toolbar visible during BUILD")
 	assert_false(hud.get_node("RunToolbar").visible, "RUN toolbar hidden during BUILD")
+	assert_false(
+		(hud.get_node("ProblemBanner/ProblemText") as Label).text.contains("Disconnected route"),
+		"preflight detail must not leak diagnostic English"
+	)
 
 	hud.apply_model(_model(&"RUNNING"))
 	assert_equal(hud.get_node("TopStatus/PhaseLabel").text, "운행 중", "RUNNING phase uses Korean copy")
@@ -41,11 +52,11 @@ func run() -> void:
 
 	hud.apply_model(_model(&"PAUSED"))
 	assert_equal(hud.get_node("TopStatus/PhaseLabel").text, "일시정지", "PAUSED phase uses Korean copy")
-	assert_true(hud.get_node("PausePanel").visible, "pause panel visible")
+	assert_true(hud.get_node("PausePanel").visible, "standalone HUD pause panel remains available")
 
 	hud.apply_model(_model(&"SUCCESS"))
 	assert_equal(hud.get_node("ResultPanel/ResultLayout/ResultTitle").text, "배송 완료", "success uses Korean copy")
-	assert_true(hud.get_node("ResultPanel").visible, "success shows result panel")
+	assert_true(hud.get_node("ResultPanel").visible, "standalone HUD success panel remains available")
 
 	hud.apply_model(_model(&"FAILURE"))
 	assert_equal(hud.get_node("ResultPanel/ResultLayout/ResultTitle").text, "배송 실패", "failure uses Korean copy")
