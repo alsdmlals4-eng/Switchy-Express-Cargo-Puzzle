@@ -149,17 +149,28 @@ func active_attempt_identity_for_test() -> String:
 	return _run_session.attempt_identity()
 
 
-func install_layout_for_test(pieces: Array) -> bool:
+func replace_layout(pieces: Array) -> bool:
 	if phase() != &"BUILD" or _build_session == null:
 		return false
 	_build_session.clear_layout()
 	for piece: Variant in pieces:
 		var result: Variant = _build_session.place_piece(piece)
 		if result == null or not bool(result.success):
+			_build_session.clear_layout()
+			_selected_geometry = &""
+			_selected_rotation_quarters = 0
+			_selected_cell = NO_CELL
 			_refresh_build_state()
 			return false
+	_selected_geometry = &""
+	_selected_rotation_quarters = 0
+	_selected_cell = NO_CELL
 	_refresh_build_state()
 	return true
+
+
+func install_layout_for_test(pieces: Array) -> bool:
+	return replace_layout(pieces)
 
 
 func _dispatch_command(command: StringName, payload: Variant) -> void:
@@ -230,10 +241,10 @@ func _handle_board_cell(cell: Vector2i) -> void:
 	if (
 		(active_phase == &"RUNNING" or active_phase == &"UNLOADING")
 		and _run_session != null
-		and _run_session.graph.switch_cells().has(cell)
+		and _run_session.graph.route_control_cells().has(cell)
 	):
 		_selected_cell = cell
-		_run_session.graph.cycle_switch(cell)
+		_run_session.graph.cycle_route_control(cell)
 		_refresh_run_or_result()
 
 
@@ -311,8 +322,8 @@ func _handle_auto_toggle() -> void:
 func _handle_switch() -> void:
 	if _run_session == null or _selected_cell == NO_CELL:
 		return
-	if _run_session.graph.switch_cells().has(_selected_cell):
-		_run_session.graph.cycle_switch(_selected_cell)
+	if _run_session.graph.route_control_cells().has(_selected_cell):
+		_run_session.graph.cycle_route_control(_selected_cell)
 	_refresh_run_or_result()
 
 
@@ -434,6 +445,8 @@ func _build_render_snapshot(current_model: Dictionary) -> Dictionary:
 
 	if _run_session != null:
 		snapshot["switch_cells"] = _run_session.graph.switch_cells().duplicate()
+		snapshot["crossing_cells"] = _run_session.graph.crossing_cells().duplicate()
+		snapshot["route_controls"] = _run_session.graph.route_control_states()
 		var train: Variant = _run_session.train
 		if train != null and train.has_method("current_cell"):
 			snapshot["train_cell"] = train.current_cell()
@@ -501,6 +514,8 @@ static func _empty_render_snapshot() -> Dictionary:
 		"train_cell": NO_CELL,
 		"train_next_cell": NO_CELL,
 		"switch_cells": [],
+		"crossing_cells": [],
+		"route_controls": [],
 		"stack_tokens": [],
 		"delivery_count": 0,
 	}
