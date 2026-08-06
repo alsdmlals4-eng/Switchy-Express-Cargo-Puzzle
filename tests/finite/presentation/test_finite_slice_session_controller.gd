@@ -35,3 +35,30 @@ func run() -> void:
 		&"FP_CORE_PROOF_01",
 		"snapshot copies cannot mutate controller state"
 	)
+
+	var rotation_controller: RefCounted = ControllerScript.new()
+	assert_true(
+		rotation_controller.initialize("res://data/maps/vs_demo_01.json"),
+		"rotation proof must initialize the demo map"
+	)
+	rotation_controller.request_command(&"BUILD_TOOL", &"CURVE")
+	assert_equal(
+		rotation_controller.render_snapshot()["selected_rotation_quarters"],
+		0,
+		"newly selected build tools start at rotation zero"
+	)
+	rotation_controller.request_command(&"ROTATE")
+	assert_equal(
+		rotation_controller.render_snapshot()["selected_rotation_quarters"],
+		1,
+		"ROTATE must turn the active build tool before placement"
+	)
+	rotation_controller.request_command(&"BOARD_CELL", Vector2i(2, 2))
+	var placed: Array = rotation_controller.render_snapshot()["layout_pieces"]
+	assert_equal(placed.size(), 1, "rotated tool must place one piece")
+	assert_equal(placed[0]["geometry"], &"CURVE", "placed piece keeps selected geometry")
+	assert_equal(
+		placed[0]["rotation_quarters"],
+		1,
+		"placed piece must keep the active tool rotation"
+	)
