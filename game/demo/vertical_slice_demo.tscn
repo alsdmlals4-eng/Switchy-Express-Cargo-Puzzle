@@ -157,7 +157,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="PanelContainer" parent="PauseOverlay"]
-custom_minimum_size = Vector2(420, 240)
+custom_minimum_size = Vector2(420, 320)
 layout_mode = 2
 
 [node name="Content" type="VBoxContainer" parent="PauseOverlay/Panel"]
@@ -179,6 +179,50 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 text = "계속 운행"
+
+[node name="ExitButton" type="Button" parent="PauseOverlay/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "현재 플레이 종료"
+
+[node name="ExitConfirmOverlay" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="ExitConfirmOverlay"]
+custom_minimum_size = Vector2(520, 340)
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="ExitConfirmOverlay/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="ExitConfirmOverlay/Panel/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "현재 플레이를 종료할까요?"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="ExitConfirmOverlay/Panel/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "현재 노선과 진행 상황은 저장되지 않습니다."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="ExitConfirmOverlay/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "계속 플레이"
+
+[node name="ConfirmButton" type="Button" parent="ExitConfirmOverlay/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "종료하고 타이틀로"
 
 [node name="ResultOverlay" type="CenterContainer" parent="."]
 layout_mode = 1
