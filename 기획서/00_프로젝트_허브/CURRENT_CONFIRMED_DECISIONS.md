@@ -6,15 +6,15 @@ Last updated: `2026-08-06`
 current_product_baseline: FINITE_DELIVERY_PUZZLE_BASELINE
 current_decision_batch: GMB-002
 current_product_decisions: SX-DEC-027~036
-current_demo_decision: SX-DEC-037
-current_execution_authority: FP-DOR-001 · EV-USER-021 · EV-USER-022 · EV-USER-023
+current_demo_decisions: SX-DEC-037 · SX-DEC-038
+current_execution_authority: FP-DOR-001 · EV-USER-021 · EV-USER-022 · EV-USER-023 · EV-USER-024
 current_android_evidence: EV-FP-APK-001
-current_audit: SX-AUD-020
+current_audit: SX-AUD-021
 planning_state: APPROVED_AND_SYNCED
-implementation_state: FINITE_CORE_PASS · PC_VERTICAL_SLICE_AUTOMATED_PASS · DEFAULT_PROJECT_PLAY_BOOT_PASS · WINDOWS_EXPORT_INTEGRITY_PASS
+implementation_state: FINITE_CORE_PASS · PC_VERTICAL_SLICE_AUTOMATED_PASS · RECOMMENDED_ROUTE_AUTOMATED_PASS · ROUTE_CONTROL_AUTOMATED_PASS · DEFAULT_PROJECT_PLAY_BOOT_PASS
 manual_gate_state: PC_LOCAL_RETEST_REQUIRED · WINDOWS_ARTIFACT_RUNTIME_NOT_RUN · ANDROID_NOT_RUN · HUMAN_NOT_RUN
 cutover_state: BLOCKED
-next_pc_gate: LOCAL_PROJECT_PLAY_RETEST → WINDOWS_RUNTIME_VISUAL_AUDIO_SMOKE
+next_pc_gate: FETCH_PULL_MAIN → LOCAL_PROJECT_PLAY_RETEST → WINDOWS_RUNTIME_VISUAL_AUDIO_SMOKE
 next_android_gate: ANDROID_DEVICE_SMOKE → FIVE_PERSON_COMPREHENSION
 correct_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
 wrong_sheet: 19Ff... · DO_NOT_MODIFY
@@ -25,9 +25,10 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 ```text
 선로 건설로 화물 조우 순서 설계
 → 수동/자동 적재로 LIFO 스택 구성
-→ 분기 전환으로 역 방문 순서 실행
+→ 운행 중 분기·교차 경로 전환
 → TOP 연속 동일 화물 하역
-→ 제한 시간 안에 모든 배송 완료
+→ 제한 시간 안에 모든 필수 배송 완료
+→ 사용하지 않는 열린 노선 끝은 허용
 → 후속 재설계
 ```
 
@@ -45,56 +46,63 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 | SX-DEC-034 | 캠페인 | tutorial·theme chapter | NOT_STARTED |
 | SX-DEC-035 | 반복 도전 | 일일·주간 fixed-seed challenge | NOT_RUN |
 | SX-DEC-036 | 공정성 | cosmetic-only, power progression·타인 route 공개 금지 | CURRENT |
-| SX-DEC-037 | PC Vertical Slice | 마우스+키보드, touch 보존, 대표 1개 스테이지, F5 기본 Project Play, Windows Demo, Android validation 보존 | AUTOMATED_PASS · LOCAL_RETEST_REQUIRED |
+| SX-DEC-037 | PC Vertical Slice | 마우스+키보드, touch 보존, 대표 스테이지, F5 기본 Project Play, Windows Demo, Android validation 보존 | AUTOMATED_PASS · LOCAL_RETEST_REQUIRED |
+| SX-DEC-038 | Demo Route Refinement | 권장 배치, 15×11 균형 맵, 열린 종착 허용, 운행 중 분기·교차 경로 표시·전환, RED-first 완주 증명 | AUTOMATED_PASS · LOCAL_RETEST_REQUIRED |
 
-## SX-DEC-037 Current Direction
+## SX-DEC-037 One-click Direction
 
 - 기본 `project.godot`의 `run/main_scene`은 `res://game/main/main.tscn`이다.
-- `game/main/main.tscn`은 `VerticalSliceDemo`를 직접 포함해 **Project Play(F5 / ▶)** 로 대표 데모를 부트한다.
+- `game/main/main.tscn`은 `VerticalSliceDemo`를 직접 포함해 Project Play(F5 / ▶)로 대표 데모를 부트한다.
 - 사용자는 별도 Scene 선택이나 editor 설정 없이 Title → Briefing → BUILD → RUN → Result → Retry/Edit/Title을 진행해야 한다.
-- `game/demo/vertical_slice_demo.tscn`은 개발·테스트용 독립 Scene으로 유지한다.
-- 기존 finite rules와 validation Scene은 공용 `FiniteSliceSessionController`를 사용한다.
-- `VS_DEMO_01@1`은 proof map과 독립된 대표 스테이지다.
-- 마우스·키보드·touch가 같은 finite command path를 사용한다.
 - Android Validation feature override·package ID·canonical APK evidence는 변경하지 않는다.
+
+## SX-DEC-038 Current Route Direction
+
+- 대표 맵 권위는 `VS_DEMO_01@2`다.
+- 보드는 `15×11`, 제한시간은 `150초`다.
+- 역·화물 마커는 서로 최소 2칸 이상 떨어지고 넓은 가로·세로 범위를 사용한다.
+- 역·화물 칸의 선로는 플레이어 설치·회전·철거 대상이다.
+- BUILD HUD의 `권장 배치`는 경고 0개이며 실제 완주 가능한 노선을 설치한다.
+- 모든 필수 화물을 적재·하역하면 사용하지 않는 열린 종착선은 허용한다.
+- 분기와 교차는 운행 중 클릭 가능하다. 분기는 활성 출구 화살표, 교차는 `직/우/좌` 상태를 표시한다.
+- 열차가 해당 제어 선로 위에 있는 동안에는 경로 전환을 잠근다.
+- 새 맵·권장 노선은 자동 완주 테스트를 RED로 먼저 확인한 뒤 구현한다.
 
 ## Latest Automated Evidence
 
 ```yaml
-pull_request: 83
-feature_head: 8807cdbdd670a0cb67948e97f922c9bd9700e1a7
-project_contract: 822 · PASS
-godot_tests: 757 · PASS
-godot_cases: 85
-godot_assertions: 11284
+workflow_name: Godot Tests
+workflow_number: 820
+workflow_run_id: 31082270619
+verified_code_head: d064e10ff93a25760f5de044698f79ac4a8f4134
+result: PASS
+godot_cases: 90
+godot_assertions: 11389
 godot_failures: 0
-thin_adapter: 82 · PASS
-asset_rights: 47 · PASS
-windows_export: 40 · PASS
+recommended_route_full_delivery: PASS
+recommended_button_warning_free_install: PASS
+runtime_switch_crossing_click: PASS
+legacy_validation_regression: PASS
+live_editor_pilot: PASS
 ```
 
 ```text
 PC AUTOMATED CORE: PASS
 DEFAULT PROJECT PLAY BOOT: PASS · AUTOMATED
-PC WINDOWS EXPORT·INTEGRITY: PASS
-PC LOCAL PROJECT PLAY: FAIL · RETEST_REQUIRED
+RECOMMENDED ROUTE: PASS · AUTOMATED
+ROUTE CONTROL UI/DOMAIN SYNC: PASS · AUTOMATED
+PC LOCAL PROJECT PLAY: RETEST_REQUIRED
 PC WINDOWS ARTIFACT RUNTIME: NOT_RUN
 ANDROID DEVICE SMOKE: NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED
-PR #83: DRAFT
 ```
 
-## Manual Runtime Finding
+## Current Manual Runtime Boundary
 
-사용자가 이전 로컬 커밋에서 타이틀 이후 보드만 표시되고 HUD·도구·조작 표면이 보이지 않는 문제를 확인했다.
+이전 사용자 실행에서 HUD 누락, JSON 좌표 오류, 시작점·마커 선로 표시·편집, 회전, 지나친 고정 선로와 경고 판정 문제가 순차 확인되었다. 최신 `main`은 해당 문제를 회귀 테스트로 고정하고 수정했다.
 
-```yaml
-manual_finding: HUD_AND_INTERACTION_SURFACE_MISSING
-status: FAIL · RETEST_REQUIRED
-```
-
-최신 브랜치에서는 HUD anchor·z-order, 기본 F5 bootstrap, gameplay/HUD/toolbar boot 테스트를 수정했다. 사용자가 `Fetch origin → Pull origin` 후 다시 F5로 실행하기 전에는 수동 PASS로 올리지 않는다.
+사용자가 `Fetch origin → Pull origin` 후 F5로 권장 배치·경로 전환·완주를 재검수하기 전에는 수동 PASS로 올리지 않는다.
 
 ## Canonical Android Evidence
 
@@ -105,11 +113,11 @@ apk_sha256: eb49225ab4062e5cf863f79a0d17f85d339ea176d7f0bb6f04096ed8a07559ea
 package_id: com.alsdmlals4.switchyexpress.validation
 ```
 
-PC 기본 진입점은 일반 제품 실행을 담당하고 Android validation feature override는 전용 launcher를 담당한다. 두 증거를 섞지 않는다.
+PC 기본 진입점과 Android validation feature override의 증거를 섞지 않는다.
 
 ## Open Gates
 
-- PC local Project Play retest: `FAIL · RETEST_REQUIRED`
+- PC local Project Play retest: `RETEST_REQUIRED`
 - Windows artifact runtime·visual·audio·physical input smoke: `NOT_RUN`
 - Android landscape device smoke: `NOT_RUN`
 - five-person comprehension: `NOT_RUN`
@@ -133,7 +141,7 @@ PC 기본 진입점은 일반 제품 실행을 담당하고 Android validation f
 ## Current Execution Authority
 
 ```text
-PC: 최신 Branch Fetch/Pull → F5 local retest → Windows artifact smoke → PR #83 review
+PC: main Fetch/Pull → F5 → 권장 배치 → 운행·경로 전환·완주 재검수
 Android: canonical APK export PASS → Android device smoke → Five-person Comprehension
 Both: 별도 production cutover review
 ```
