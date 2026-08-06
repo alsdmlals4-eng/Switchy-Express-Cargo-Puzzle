@@ -9,12 +9,12 @@ mutation_policy: SCRATCH_SCENE_MUTATION_ONLY
 source_integrity: SOURCE_TREE_UNCHANGED
 legacy_godot_ai: ABSENT
 base_pilot_pin_state: DRAFT_CANDIDATE_EXACT_HEAD
-base_pilot_commit: 11d79cbefe4120f149e8900c45ad2624fb19b777
+base_pilot_commit: ab73bc1f3961cf799432f469f808903619a23a0d
 evidence_bundle: SELF_CONTAINED_EVIDENCE_BUNDLE
 PRODUCTION_ADAPTER_READY: NOT_READY
 ```
 
-This Draft PR temporarily pins the exact unmerged Base C0.3 candidate commit `11d79cbefe4120f149e8900c45ad2624fb19b777` to verify the clean-project plugin discovery fix. All four adoption files bind the same candidate SHA. This is real-project validation evidence, not merge authorization or a production release pin.
+This Draft PR temporarily pins the exact unmerged Base C0.3 diagnostic candidate commit `ab73bc1f3961cf799432f469f808903619a23a0d`. All four adoption files bind the same candidate SHA. This is real-project validation evidence, not merge authorization or a production release pin.
 
 The repository does not permanently install the Base editor addon into the product project.
 
@@ -30,13 +30,15 @@ The workflow inventories Git-tracked source bytes before and after execution. An
 
 ## Evidence and physical hashes
 
-The bounded artifact exports a self-contained three-file bundle:
+The bounded artifact exports a self-contained three-file bundle after a successful Pilot:
 
 ```text
 project-pilot-evidence.json
 runtime-result.json
 scratch.tscn
 ```
+
+Failed runtime verification exposes only bounded fixed diagnostic fields in the failure code. Arbitrary runtime free text is not copied into trusted evidence.
 
 Before the disposable workspace is removed, Base recomputes the runtime-result and saved scratch Scene SHA-256 values, copies the two source files into the artifact bundle, and recomputes their destination hashes. Any source or copied-byte mismatch fails closed with `ARTIFACT_BYTE_HASH_MISMATCH`.
 
