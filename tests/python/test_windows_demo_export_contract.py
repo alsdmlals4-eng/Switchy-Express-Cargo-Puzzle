@@ -14,13 +14,20 @@ def _text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
+def _preset_block(text: str, index: int) -> str:
+    start_marker = f"[preset.{index}]"
+    end_marker = f"[preset.{index}.options]"
+    start = text.index(start_marker)
+    end = text.index(end_marker, start)
+    return text[start:end]
+
+
 def test_windows_demo_preset_is_isolated_and_exact() -> None:
     text = _text(PRESETS)
     for marker in (
         '[preset.1]',
         'name="Windows Demo"',
         'platform="Windows Desktop"',
-        'runnable=false',
         'custom_features="vertical_slice_demo"',
         'export_filter="all_resources"',
         'export_path="builds/windows/SwitchyExpressVerticalSlice.exe"',
@@ -28,6 +35,9 @@ def test_windows_demo_preset_is_isolated_and_exact() -> None:
         'binary_format/architecture="x86_64"',
     ):
         assert marker in text
+    windows_preset = _preset_block(text, 1)
+    assert "runnable=true" not in windows_preset
+    assert windows_preset.count("runnable=false") <= 1
 
 
 def test_windows_demo_workflow_is_pinned_and_exports_artifact() -> None:
