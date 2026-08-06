@@ -9,12 +9,12 @@ mutation_policy: SCRATCH_SCENE_MUTATION_ONLY
 source_integrity: SOURCE_TREE_UNCHANGED
 legacy_godot_ai: ABSENT
 base_pilot_pin_state: DRAFT_CANDIDATE_EXACT_HEAD
-base_pilot_commit: 5c8a5c02412094f1da8299d87837d39da0255a7d
+base_pilot_commit: a764dcada13ec69c02bb290794a3979ba981e806
 evidence_bundle: SELF_CONTAINED_EVIDENCE_BUNDLE
 PRODUCTION_ADAPTER_READY: NOT_READY
 ```
 
-This Draft PR temporarily pins the exact unmerged Base C0.3 candidate commit `5c8a5c02412094f1da8299d87837d39da0255a7d`. All four adoption files bind the same candidate SHA. This is real-project validation evidence, not merge authorization or a production release pin.
+This Draft PR temporarily pins the exact unmerged Base C0.3 candidate commit `a764dcada13ec69c02bb290794a3979ba981e806`. All four adoption files bind the same candidate SHA. This is real-project validation evidence, not merge authorization or a production release pin.
 
 The repository does not permanently install the Base editor addon into the product project.
 
@@ -24,7 +24,7 @@ The reusable workflow checks out the exact pinned Base candidate and verifies th
 
 The existing `res://tests/run_tests.gd` behavior check runs in the same prepared workspace while the staged Pilot remains disabled. Only after project import and the behavior check pass does the runner activate the already imported Pilot and build the configured manifest.
 
-The Pilot waits until the configured edited Scene path and target Node remain stable for three consecutive editor frames before submitting queued operations. It opens `res://game/main/main.tscn` only for inspection under `MAIN_SCENE_READ_ONLY`. Rename, Editor Undo, save, ledger recording, and physical SHA-256 verification occur only in the runner-owned `res://.godot-live-editor-pilot/scratch.tscn` under `SCRATCH_SCENE_MUTATION_ONLY`.
+The Pilot matches open Scene paths and roots by index, selects the requested Scene target through `EditorInterface.edit_node()`, and waits until the configured edited Scene path and target Node remain stable for three consecutive editor frames before submitting queued operations. It opens `res://game/main/main.tscn` only for inspection under `MAIN_SCENE_READ_ONLY`. Rename, Editor Undo, save, ledger recording, and physical SHA-256 verification occur only in the runner-owned `res://.godot-live-editor-pilot/scratch.tscn` under `SCRATCH_SCENE_MUTATION_ONLY`.
 
 The workflow inventories Git-tracked source bytes before and after execution. Any difference violates `SOURCE_TREE_UNCHANGED` and fails the Pilot.
 
