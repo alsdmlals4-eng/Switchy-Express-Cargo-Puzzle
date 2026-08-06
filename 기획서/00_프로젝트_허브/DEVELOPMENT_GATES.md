@@ -5,13 +5,14 @@
 ### PC Vertical Slice chain
 
 ```text
-PC0 SX-DEC-037 APPROVAL: PASS
+PC0 SX-DEC-037~039 AUTHORITY: PASS
 → PC1 AUTOMATED VERTICAL SLICE: PASS
 → PC2 DEFAULT PROJECT PLAY BOOT: PASS · AUTOMATED
-→ PC3 LOCAL PROJECT PLAY RETEST: FAIL · RETEST_REQUIRED
-→ PC4 WINDOWS DEBUG EXPORT·INTEGRITY: PASS
-→ PC5 WINDOWS ARTIFACT RUNTIME·VISUAL·AUDIO SMOKE: NOT_RUN
-→ PC6 PR #83 MERGE REVIEW: BLOCKED_BY_PC3_PC5
+→ PC3 PR #83 MERGE: PASS
+→ PC4 ROUTE·TERMINAL·MID-RUN AUTOMATED REGRESSION: PASS
+→ PC5 LOCAL ROUTE·MID-RUN RETEST: RETEST_REQUIRED
+→ PC6 WINDOWS DEBUG EXPORT·INTEGRITY: PASS
+→ PC7 WINDOWS ARTIFACT RUNTIME·VISUAL·AUDIO SMOKE: NOT_RUN
 ```
 
 ### Product·Android chain
@@ -27,7 +28,16 @@ G0 PROJECT_IDENTIFIED: PASS
 → G7 PRODUCTION CUTOVER REVIEW: BLOCKED_BY_G5_G6
 ```
 
-PC Gate는 Android·HUMAN Gate를 대체하지 않는다.
+### Base integration chain
+
+```text
+B0 BASE v9.4.3 RELEASE PIN: PASS
+→ B1 CURRENT BASE MAIN DELTA REVIEW: PASS · NOT_ADOPTED_AS_RELEASE
+→ B2 PR #94 CANDIDATE PILOT: BLOCKED_REPLAN_REQUIRED
+→ B3 MERGED IMMUTABLE PIN + SUCCESSFUL PILOT + SINGLE_AUTHORITY REVIEW: NOT_RUN
+```
+
+PC Gate는 Android·HUMAN Gate를 대체하지 않는다. Base 후보 Pilot은 제품 수동 Gate를 대체하지 않는다.
 
 ## G0 — PROJECT_IDENTIFIED
 
@@ -35,15 +45,17 @@ Status: `PASS`
 
 - Repository: `alsdmlals4-eng/Switchy-Express-Cargo-Puzzle`
 - Engine: Godot `4.7.1-stable` · GDScript
-- Platforms: PC · Android landscape
+- Platforms: Windows · Android landscape
 - Correct Sheet: `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`
 - Wrong `19Ff...` Sheet: `DO_NOT_MODIFY`
 
 ## G1 — FINITE_PRODUCT_AUTHORITY
 
-Status: `PASS · GMB-002 · SX-DEC-027~036`
+Status: `PASS · GMB-002 · SX-DEC-027~039`
 
-유한 authored delivery puzzle, 자유 선로 건설, preflight, 수동/자동 적재, unlimited LIFO, persistent branch, TOP 그룹 하역, 제한 시간 성공·실패, same-layout retry가 현재 권위다.
+현재 권위는 유한 authored delivery puzzle, 자유 선로 건설, preflight, 수동/자동 적재, unlimited LIFO, persistent branch·crossing, TOP 그룹 하역, 제한 시간 성공·실패, 한쪽 연결 최종 종착역, same-layout retry, mid-run exit다.
+
+무한 생존·fuel·BOOST·capacity 8·pickup respawn·switch auto-reset은 역사 계약이며 현재 제품 권위가 아니다.
 
 ## G2 — AUTOMATED_CORE
 
@@ -52,7 +64,10 @@ Status: `PASS`
 - map·layout·preflight·build·sealed snapshot
 - cargo field·manual/auto load·unlimited LIFO
 - delivery·pause·result·retry·identity
-- `A → B → A → A` / `2 → 1 → 1` proof
+- recommended route full delivery
+- curve renderer/domain port parity
+- one-sided final station unload success
+- mid-run menu·pause·confirm·input lock contract
 
 ## G3 — VALIDATION_PREPARATION
 
@@ -97,39 +112,30 @@ Status: `NOT_RUN · BLOCKED_BY_G5`
 
 Status: `BLOCKED_BY_G5_G6`
 
-기본 PC Project Play는 현재 Vertical Slice 검수 진입점이며 store production cutover를 의미하지 않는다.
+## PC0 — SX-DEC-037~039 AUTHORITY
 
-## PC0 — SX-DEC-037 APPROVAL
+Status: `PASS`
 
-Status: `PASS · EV-USER-023`
-
-- mouse-first + keyboard shortcuts
-- touch command path 보존
-- one representative stage
-- default Project Play로 실제 Demo 진입
+- default Project Play로 대표 Demo 진입
+- recommended route와 운행 중 분기·교차 전환
+- 한쪽 reciprocal 연결 최종 종착역
+- BUILD·RUN 중 현재 플레이 종료 확인
 - Windows debug export
 - Android validation evidence 보존
 
 ## PC1 — AUTOMATED VERTICAL SLICE
 
-Status: `PASS · SX-AUD-020`
+Status: `PASS`
 
 ```yaml
-feature_head: 8807cdbdd670a0cb67948e97f922c9bd9700e1a7
-project_contract: 822 · PASS
-godot_tests: 757 · PASS
-godot_cases: 85
-godot_assertions: 11284
+latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
+project_contract: 922 · PASS
+godot_tests: 853 · PASS
+godot_cases: 92
+godot_assertions: 11457
 godot_failures: 0
-thin_adapter: 82 · PASS
-asset_rights: 47 · PASS
+one_sided_station_assertions: 20
 ```
-
-- Title→Briefing→BUILD→RUN→Result→Retry/Edit/Title
-- shared finite controller와 validation parity
-- mouse·keyboard·touch command parity
-- Korean HUD·Theme·ghost·TOP·problem feedback
-- responsive layout와 effects/audio non-authority
 
 ## PC2 — DEFAULT PROJECT PLAY BOOT
 
@@ -145,54 +151,60 @@ project.godot
 → HUD·BUILD toolbar visible
 ```
 
-- [x] 별도 Scene 선택 불필요
-- [x] Project Settings 변경 불필요
-- [x] F5 / ▶ 기본 실행
-- [x] gameplay surface 자동 회귀 테스트
-- [x] Android validation feature override 보존
+## PC3 — PR #83 MERGE
 
-## PC3 — LOCAL PROJECT PLAY RETEST
+Status: `PASS`
 
-Status: `FAIL · RETEST_REQUIRED`
-
-이전 로컬 실행에서 타이틀 이후 보드만 표시되고 HUD·도구·입력 표면이 누락됐다.
-
-수정 완료:
-
-- HUD full anchors
-- HUD `z_index=10`
-- default main product bootstrap
-- F5 gameplay/HUD/toolbar boot regression
-- CI timeout 30초→60초
-
-재검수 절차:
-
-```text
-GitHub Desktop에서 branch 확인
-→ Fetch origin
-→ Pull origin
-→ Godot 프로젝트 다시 열기
-→ Project Play(F5 / ▶)
-→ Title·Briefing·BUILD HUD/도구 확인
-→ 실제 성공·실패·Retry/Edit 완주
+```yaml
+pr: 83
+merged_at: 2026-08-06T04:43:25Z
+merge_commit: 4189cd13bebc34649cdca39aa78bfd045805b7c8
 ```
 
-사용자 재실행 전에는 PASS로 변경하지 않는다.
+PR #83 병합 여부는 더 이상 수동 runtime Gate의 선행 차단점이 아니다. 병합 후 실제 로컬 검수는 PC5가 소유한다.
 
-## PC4 — WINDOWS DEBUG EXPORT·INTEGRITY
+## PC4 — ROUTE·TERMINAL·MID-RUN AUTOMATED REGRESSION
+
+Status: `PASS`
+
+- 15×11 권장 배치 full delivery
+- 분기·교차 runtime control
+- curve render/domain port parity
+- one-sided station Preflight PASS
+- final unload before terminal-end failure
+- mid-run menu·cancel/confirm state contract
+- title exit visibility와 mid-run flow의 수동 범위 분리
+
+## PC5 — LOCAL ROUTE·MID-RUN RETEST
+
+Status: `RETEST_REQUIRED`
+
+```text
+main 확인
+→ Fetch origin
+→ Pull origin
+→ Godot 완전 종료 후 reopen
+→ F5
+→ 권장 배치
+→ 한쪽 연결 종착역 마지막 하역·SUCCESS
+→ BUILD/RUN 메뉴 취소·상태 보존
+→ 종료 확정·Title 복귀
+```
+
+사용자가 실제로 확인하기 전에는 PASS로 변경하지 않는다.
+
+## PC6 — WINDOWS DEBUG EXPORT·INTEGRITY
 
 Status: `PASS`
 
 - Windows preset isolated
 - EXE/PCK non-empty
 - SHA-256 contract PASS
-- latest workflow: `Windows Demo Export #40`
 
-## PC5 — WINDOWS ARTIFACT RUNTIME·VISUAL·AUDIO SMOKE
+## PC7 — WINDOWS ARTIFACT RUNTIME·VISUAL·AUDIO SMOKE
 
 Status: `NOT_RUN`
 
-- EXE/PCK 같은 폴더
 - process launch·clean exit
 - 전체 제품 흐름
 - mouse·keyboard physical input
@@ -200,24 +212,53 @@ Status: `NOT_RUN`
 - audio cue·train loop·pause·success/failure
 - crash·script error·심각한 frame 저하 없음
 
-## PC6 — PR #83 MERGE REVIEW
+## B0 — BASE v9.4.3 RELEASE PIN
 
-Status: `BLOCKED_BY_PC3_PC5`
+Status: `PASS`
 
-PR #83은 Draft다. 최신 로컬 Project Play 재검수와 Windows artifact smoke가 완료되기 전에는 Ready 또는 merge로 전환하지 않는다.
+프로젝트의 채택 release는 Base `v9.4.3`이다. 최신 Base `main`은 비교·학습 대상이지 자동 승격된 release가 아니다.
+
+## B1 — CURRENT BASE MAIN DELTA REVIEW
+
+Status: `PASS · NOT_ADOPTED_AS_RELEASE`
+
+최신 Base main의 선택적 Godot addon 사용과 HiGodot 단일 저작 권위 정책을 확인했다. 현 프로젝트는 검증된 실제 소비 경로 없이 새 addon·Pilot을 자동 도입하지 않는다.
+
+## B2 — PR #94 CANDIDATE PILOT
+
+Status: `BLOCKED_REPLAN_REQUIRED`
+
+- PR 설명은 Base C0.2를 말하지만 실제 diff는 C0.3 candidate SHA를 고정
+- candidate SHA는 현재 Base main과 분기됨
+- 핵심 Pilot workflow 실패
+- merged immutable release pin 아님
+- HiGodot 단일 저작 권위와 역할 경계 재검토 필요
+
+## B3 — MERGED IMMUTABLE PIN + SUCCESSFUL PILOT + SINGLE_AUTHORITY REVIEW
+
+Status: `NOT_RUN`
+
+다음 네 조건이 모두 충족되어야 새 Pilot adoption을 merge-ready로 판단한다.
+
+1. Base의 승인·병합된 immutable SHA
+2. 프로젝트 adoption contract와 descriptor의 동일 SHA
+3. Pilot과 전체 제품 회귀의 성공
+4. HiGodot 또는 다른 Godot mutation authority와 중복되지 않는 실제 소비 경로
 
 ## Current Transition
 
 ```text
-PC: 최신 Branch Fetch/Pull → F5 local retest → artifact smoke → PR #83 review
-Android: canonical APK device smoke → evidence review → Five-person Comprehension
+PC: main Fetch/Pull → F5 one-sided station + mid-run exit retest → Windows artifact smoke
+Android: canonical APK device smoke → Five-person Comprehension
+Base: PR #94 archive/replan → merged immutable candidate가 생길 때 새 bounded adoption
 Both: separate production cutover review
 ```
 
-금지:
+## 금지
 
-- Fetch만 수행한 상태를 최신 파일 적용으로 표현
-- F6·별도 Scene 선택을 사용자 필수 절차로 안내
+- 이미 병합된 PR #83을 Draft·MAIN_PENDING·merge blocked로 표시
+- 폐기된 feature branch를 사용자 실행 경로로 안내
 - 자동·export PASS를 수동 runtime PASS로 확대
-- PC 증거를 Android/HUMAN 증거로 대체
-- 사용자 실패 증거를 무시하고 PR Ready·merge 진행
+- PC 증거를 Android·HUMAN 증거로 대체
+- 실패한 미병합 Base candidate를 release pin으로 승격
+- legacy endless·fuel·BOOST 보호 규칙 재활성화

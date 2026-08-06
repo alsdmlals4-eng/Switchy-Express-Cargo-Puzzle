@@ -5,26 +5,38 @@
 ```yaml
 project: Switchy Express: Cargo Puzzle
 product_authority: GMB-002 · SX-DEC-027~036
-demo_authority: SX-DEC-037 · EV-USER-023
-current_audit: SX-AUD-020
-feature_branch: agent/pc-vertical-slice-demo-design
-latest_verified_commit: 8807cdbdd670a0cb67948e97f922c9bd9700e1a7
+demo_authority: SX-DEC-037 · SX-DEC-038 · SX-DEC-039
+current_audit: SX-AUD-025
+active_user_branch: main
+repository_main_observed: 212d37e4577a6ffdb7b93e92de6a82785c2976eb
+latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
+pull_request_83: MERGED · 4189cd13bebc34649cdca39aa78bfd045805b7c8
+pull_request_94: DRAFT · BLOCKED_REPLAN_REQUIRED
 finite_automated_core: PASS
 pc_vertical_slice_automated_core: PASS
 default_project_play_boot: PASS · AUTOMATED
-pc_windows_debug_export: PASS
-pc_windows_artifact_integrity: PASS
-pc_local_project_play_retest: FAIL · RETEST_REQUIRED
+recommended_route: PASS · AUTOMATED
+one_sided_station_terminal: PASS · AUTOMATED
+mid_run_exit: PASS · AUTOMATED
+title_exit_visible: PASS · USER_LOCAL
+pc_local_route_and_mid_run_retest: RETEST_REQUIRED
+pc_windows_debug_export_integrity: PASS
 pc_windows_artifact_runtime_smoke: NOT_RUN
 validation_preparation: PASS
 canonical_main_apk_export: PASS
-android_device_smoke: NOT_RUN · CURRENT_ANDROID_TRACK
+android_device_smoke: NOT_RUN
 five_person_comprehension: NOT_RUN · BLOCKED_BY_ANDROID
 production_cutover: BLOCKED
-pull_request_83: DRAFT
 correct_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
 wrong_sheet: 19Ff... · DO_NOT_MODIFY
 ```
+
+## 증거 해석 규칙
+
+- `repository_main_observed`는 감사 시작 시점의 실제 `main` HEAD다.
+- `latest_automated_verified_product_main`은 92 cases·11,457 assertions의 자동 회귀가 확인된 제품 커밋이다.
+- 두 SHA가 다르다고 자동 PASS가 무효가 되는 것은 아니지만, 후속 문서·UID 커밋까지 자동 검증됐다고 확대하지 않는다.
+- 자동·export PASS는 실제 화면·음향·물리 입력·완주 PASS를 증명하지 않는다.
 
 ## Gate Summary
 
@@ -32,117 +44,113 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 FINITE AUTOMATED CORE: PASS
 PC VERTICAL SLICE AUTOMATED CORE: PASS
 DEFAULT PROJECT PLAY BOOT: PASS · AUTOMATED
+PR #83 MERGE: PASS
+ONE-SIDED FINAL STATION: PASS · AUTOMATED
+MID-RUN EXIT: PASS · AUTOMATED
+TITLE EXIT VISIBLE: PASS · USER LOCAL
+PC LOCAL ROUTE/MID-RUN FLOW: RETEST_REQUIRED
 PC WINDOWS DEBUG EXPORT·INTEGRITY: PASS
-PC LOCAL PROJECT PLAY RETEST: FAIL · RETEST_REQUIRED
 PC WINDOWS ARTIFACT RUNTIME·VISUAL·AUDIO SMOKE: NOT_RUN
-VALIDATION PREPARATION: PASS
 CANONICAL MAIN APK EXPORT: PASS
 ANDROID DEVICE SMOKE: NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED
 ```
 
-자동·패키징 PASS는 실제 사용자의 화면·음향·물리 입력·완주 PASS를 증명하지 않는다.
-
 ## 기본 사용자 실행 경로
 
 ```text
 GitHub Desktop
 → repository: Switchy-Express-Cargo-Puzzle
-→ branch: agent/pc-vertical-slice-demo-design
+→ branch: main
 → Fetch origin
 → Pull origin
-→ Godot 4.7.1에서 project.godot 열기
+→ Godot 완전 종료 후 project.godot 다시 열기
 → 별도 Scene 선택 없이 Project Play(F5 / ▶)
 → Title → Briefing → BUILD → RUN → Result → Retry/Edit/Title
 ```
 
-기본 `res://game/main/main.tscn`이 `VerticalSliceDemo`를 직접 포함한다. `res://game/demo/vertical_slice_demo.tscn`은 개발·테스트용 Scene으로 유지하지만 사용자 실행에 필요하지 않다.
+`res://game/main/main.tscn`이 `VerticalSliceDemo`를 직접 포함한다. `res://game/demo/vertical_slice_demo.tscn`은 개발·테스트용이며 사용자 필수 경로가 아니다.
 
-## 최신 자동 증거
+## 최신 자동 제품 증거
 
 ```yaml
-commit: 8807cdbdd670a0cb67948e97f922c9bd9700e1a7
-project_contract: 822 · PASS
-godot_tests: 757 · PASS
-godot_cases: 85
-godot_assertions: 11284
+commit: 1339a9467312d0ac680725894a9efb59746ec2cc
+project_contract: 922 · PASS
+godot_tests: 853 · PASS
+godot_cases: 92
+godot_assertions: 11457
 godot_failures: 0
-thin_adapter: 82 · PASS
-asset_rights: 47 · PASS
-windows_export: 40 · PASS
+one_sided_station_assertions: 20
+recommended_route_full_delivery: PASS
+curve_render_domain_port_parity: PASS
+mid_run_exit_contract: PASS
+live_editor_pilot_at_that_boundary: PASS
 ```
 
-검증 범위:
+## 현재 수동 경계
 
-- 기본 Project Play가 타이틀을 부트함
-- 타이틀 → 브리핑 → gameplay 진입
-- 제품 HUD와 BUILD toolbar가 visible 상태
-- 기존 mouse·keyboard·touch command path
-- 성공·실패·Retry/Edit/Title E2E
-- 1280×720·1600×900·1920×1080 레이아웃
-- Android validation feature override·package ID·proof map 보존
+사용자가 확인한 범위:
 
-## 사용자가 발견한 실제 결함과 현재 판정
-
-이전 로컬 커밋에서 타이틀 이후 보드만 표시되고 HUD·도구·조작 화면이 보이지 않았다.
-
-```text
-manual_runtime_result: FAIL · RETEST_REQUIRED
+```yaml
+title_exit_visible: PASS
 ```
 
-조치:
+아직 확인하지 않은 범위:
 
-- HUD full anchors 명시
-- HUD를 board 위 `z_index=10`에 고정
-- 기본 `game/main/main.tscn`을 제품 부트스트랩으로 전환
-- 기본 실행에서 gameplay·HUD·toolbar까지 확인하는 회귀 테스트 추가
-- 전체 테스트 제한을 60초로 조정해 거짓 timeout 제거
-
-최신 커밋을 사용자가 다시 실행하기 전에는 수동 PASS로 전환하지 않는다.
+```yaml
+one_sided_station_final_unload_runtime: RETEST_REQUIRED
+mid_run_menu_visible: RETEST_REQUIRED
+mid_run_cancel_state_preservation: RETEST_REQUIRED
+mid_run_confirm_title_return: RETEST_REQUIRED
+windows_artifact_runtime: NOT_RUN
+android_device: NOT_RUN
+human_comprehension: NOT_RUN
+```
 
 ## 핵심 재미
 
 ```text
 선로 건설로 화물 조우 순서 설계
 → 수동/자동 적재로 unlimited LIFO 구성
-→ persistent branch와 역 방문 순서 실행
+→ persistent branch·crossing과 역 방문 순서 실행
 → TOP 연속 동일 화물 하역
 → 제한 시간 안에 모든 배송 완료
 → 시간·건설비 기준으로 재설계
 ```
 
-## Canonical Android Validation
+## Base·Pilot 경계
 
-```yaml
-source_commit: 536911449018a3caf3511bc64e7bf1a66edf2016
-apk_sha256: eb49225ab4062e5cf863f79a0d17f85d339ea176d7f0bb6f04096ed8a07559ea
-package_id: com.alsdmlals4.switchyexpress.validation
-android_device_smoke: NOT_RUN
-```
-
-PC 기본 실행 변경은 Android validation launcher·feature override·package evidence와 분리되어 있다.
+- 프로젝트의 채택 release pin은 Base `v9.4.3`으로 유지한다.
+- 최신 Base `main`은 별도 비교 대상이지 자동 승격된 release pin이 아니다.
+- PR #94는 설명의 C0.2와 실제 C0.3 candidate pin이 불일치하고 Pilot workflow가 실패했으므로 `BLOCKED_REPLAN_REQUIRED`다.
+- HiGodot 단일 저작 권위와 중복되지 않는 실제 소비 경로가 증명되기 전에는 Pilot을 병합하지 않는다.
 
 ## 다음 정확한 작업
 
 ```text
-1. 사용자 GitHub Desktop Fetch origin → Pull origin
-2. 로컬 HEAD가 최신 전달 commit인지 확인
-3. Godot 프로젝트 다시 열기
-4. Project Play(F5 / ▶)
-5. Title·Briefing·BUILD HUD와 도구 표시 확인
-6. 선로 설치·운행·성공/실패·Retry/Edit 완주
-7. 실제 결과를 PASS 또는 FAIL · RETEST_REQUIRED로 기록
+1. main Fetch origin → Pull origin
+2. 로컬 HEAD 확인
+3. Godot 완전 종료 후 다시 열기
+4. F5
+5. Title·Briefing·BUILD HUD/도구 확인
+6. 권장 배치 적용
+7. 한쪽 연결 종착역 최종 하역·SUCCESS 확인
+8. BUILD/RUN 메뉴 취소 시 상태 보존 확인
+9. 종료 확정 시 Title 복귀 확인
+10. PASS 또는 재현 가능한 결함 기록
 ```
 
 Android device smoke와 Five-person Comprehension은 별도 Gate로 계속 열린다.
 
 ## 금지
 
-- Fetch만 수행한 상태를 최신 적용으로 간주
+- `agent/pc-vertical-slice-demo-design`을 현재 사용자 실행 브랜치로 안내
+- 이미 병합된 PR #83을 Draft·MAIN_PENDING으로 표시
+- Fetch만 수행한 상태를 최신 파일 적용으로 간주
 - F6 또는 별도 Scene 선택을 사용자 필수 절차로 안내
 - 자동·export PASS를 수동 runtime PASS로 확대
-- PC Demo가 Android canonical 증거를 대체한다고 표현
-- 사용자 실패 증거가 있는데 PR을 Ready 또는 수동 PASS로 유지
+- PC Demo 증거를 Android·HUMAN 증거로 대체
+- 미병합 Base candidate SHA를 release pin으로 승격
 - wrong `19Ff...` Sheet 변경
 - legacy endless·fuel·BOOST 계약 재활성화
