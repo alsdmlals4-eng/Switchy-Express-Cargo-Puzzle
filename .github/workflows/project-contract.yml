@@ -21,6 +21,8 @@ jobs:
         run: python tools/validate_project_contract.py
       - name: Validate Base v9.4 AI operations adoption
         run: python -m unittest tests.test_base_v94_ai_operations_adoption -v
+      - name: Validate Base adapter workflow scope
+        run: python tests/python/test_project_base_adapter_workflow_scope.py -v
       - name: Validate Android smoke canonical freshness
         run: python tests/python/test_android_smoke_canonical_freshness_contract.py -v
       - name: Check whitespace and patch integrity
