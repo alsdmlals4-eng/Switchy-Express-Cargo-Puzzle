@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import importlib.util
 import json
+import re
 import shutil
 import sys
 from dataclasses import dataclass
@@ -23,6 +24,10 @@ MANIFEST_NAME = "GODOT_LIVE_EDITOR_CAPABILITY_MANIFEST.json"
 BASE_COMMIT = "bd72e61722ebb4e29dd66b0885fba9428b1c14fb"
 EXCLUDED_NAMES = {".git", ".godot", "__pycache__", ".pytest_cache"}
 EXCLUDED_TOP_LEVEL = {"artifacts"}
+PILOT_PLUGIN_PATHS = (
+    "res://addons/base_live_editor_adapter/plugin.cfg",
+    "res://addons/switchy_live_editor_pilot/plugin.cfg",
+)
 
 
 class PilotMaterializationError(ValueError):
@@ -323,11 +328,7 @@ def _validate_source(source_root: Path, contract) -> dict[str, str]:
         raise PilotMaterializationError("SOURCE_MANIFEST_CONFIGURED")
 
     project_text = (source_root / "project.godot").read_text(encoding="utf-8")
-    if (
-        "[editor_plugins]" in project_text
-        or "base_live_editor_adapter" in project_text
-        or "switchy_live_editor_pilot" in project_text
-    ):
+    if any(plugin_path in project_text for plugin_path in PILOT_PLUGIN_PATHS):
         raise PilotMaterializationError("SOURCE_PLUGIN_ALREADY_ENABLED")
 
     plugin_root = source_root / PILOT_PLUGIN_RELATIVE
@@ -346,13 +347,36 @@ def _validate_source(source_root: Path, contract) -> dict[str, str]:
 
 def _enable_temporary_plugins(project_file: Path) -> None:
     text = project_file.read_text(encoding="utf-8")
-    if "[editor_plugins]" in text:
+    if any(plugin_path in text for plugin_path in PILOT_PLUGIN_PATHS):
         raise PilotMaterializationError("SOURCE_PLUGIN_ALREADY_ENABLED")
-    text = text.rstrip() + (
-        "\n\n[editor_plugins]\n\n"
-        'enabled=PackedStringArray("res://addons/base_live_editor_adapter/plugin.cfg", '
-        '"res://addons/switchy_live_editor_pilot/plugin.cfg")\n'
+
+    encoded_plugins = ", ".join(json.dumps(path) for path in PILOT_PLUGIN_PATHS)
+    if "[editor_plugins]" not in text:
+        text = text.rstrip() + (
+            "\n\n[editor_plugins]\n\n"
+            f"enabled=PackedStringArray({encoded_plugins})\n"
+        )
+        project_file.write_text(text, encoding="utf-8")
+        return
+
+    section_start = text.index("[editor_plugins]")
+    section_end = text.find("\n[", section_start + len("[editor_plugins]"))
+    if section_end < 0:
+        section_end = len(text)
+    section = text[section_start:section_end]
+    enabled_match = re.search(
+        r"(?m)^enabled=PackedStringArray\((.*)\)$",
+        section,
     )
+    if enabled_match is None:
+        insertion = "\n\nenabled=PackedStringArray(%s)" % encoded_plugins
+        section = section.rstrip() + insertion + "\n"
+    else:
+        existing = enabled_match.group(1).strip()
+        merged = f"{existing}, {encoded_plugins}" if existing else encoded_plugins
+        replacement = f"enabled=PackedStringArray({merged})"
+        section = section[: enabled_match.start()] + replacement + section[enabled_match.end() :]
+    text = text[:section_start] + section + text[section_end:]
     project_file.write_text(text, encoding="utf-8")
 
 
