@@ -8,6 +8,9 @@ signal pause_changed(paused: bool)
 const SessionControllerScript := preload(
 	"res://game/finite/main/finite_slice_session_controller.gd"
 )
+const RecommendedLayoutProviderScript := preload(
+	"res://game/demo/recommended_layout_provider.gd"
+)
 
 @export_file("*.json") var map_path := "res://data/maps/vs_demo_01.json"
 @export var recommended_cost := 4500
@@ -17,6 +20,7 @@ var _controller: RefCounted
 var _last_pause_state: bool = false
 
 @onready var _renderer: Control = $BoardRenderer
+@onready var _route_overlay: Control = $RouteControlOverlay
 @onready var _hud: Control = $HUD
 @onready var _desktop_input: Node = $DesktopInputAdapter
 @onready var _effects: Node = $DemoEffects
@@ -34,7 +38,7 @@ func _ready() -> void:
 	_desktop_input.command_requested.connect(_on_desktop_command_requested)
 	_controller.initialize(map_path, recommended_cost, base_speed)
 	_apply_model(_controller.model())
-	_renderer.apply_snapshot(_controller.render_snapshot())
+	_on_render_snapshot_changed(_controller.render_snapshot())
 
 
 func _process(delta: float) -> void:
@@ -74,6 +78,20 @@ func dispatch_action(action: StringName, pressed: bool) -> Dictionary:
 	return result
 
 
+func apply_recommended_layout() -> bool:
+	if _controller.phase() != &"BUILD":
+		return false
+	var map_id := StringName(_controller.render_snapshot().get("map_id", &""))
+	var pieces: Array[Variant] = RecommendedLayoutProviderScript.pieces_for_map(map_id, &"ALPHA")
+	if pieces.is_empty():
+		return false
+	var applied: bool = _controller.replace_layout(pieces)
+	if applied:
+		_audio.play_cue(&"button")
+		_audio.play_cue(&"build")
+	return applied
+
+
 func install_layout_for_test(pieces: Array) -> bool:
 	return _controller.install_layout_for_test(pieces)
 
@@ -92,7 +110,7 @@ func dispatch_action_for_test(action: StringName, pressed: bool) -> Dictionary:
 
 func _connect_controller() -> void:
 	_controller.model_changed.connect(_apply_model)
-	_controller.render_snapshot_changed.connect(_renderer.apply_snapshot)
+	_controller.render_snapshot_changed.connect(_on_render_snapshot_changed)
 	_controller.delivery_event_created.connect(_on_delivery_event_created)
 	_controller.terminal_reached.connect(_on_terminal_reached)
 
@@ -108,6 +126,7 @@ func _connect_hud() -> void:
 	_hud.build_tool_selected.connect(
 		func(tool: StringName) -> void: _dispatch_command(&"BUILD_TOOL", tool)
 	)
+	_hud.recommended_layout_requested.connect(func() -> void: apply_recommended_layout())
 	_hud.rotate_requested.connect(func() -> void: _dispatch_command(&"ROTATE"))
 	_hud.remove_requested.connect(func() -> void: _dispatch_command(&"REMOVE"))
 	_hud.clear_requested.connect(func() -> void: _dispatch_command(&"CLEAR"))
@@ -136,8 +155,6 @@ func _on_secondary_cell_requested(cell: Vector2i) -> void:
 		_dispatch_command(&"CANCEL_SELECTION")
 		return
 
-	# Clear the active build tool before selecting the exact cell. This prevents
-	# a right click from replacing the piece for one frame before removing it.
 	_dispatch_command(&"CANCEL_SELECTION")
 	_dispatch_command(&"BOARD_CELL", cell)
 	_dispatch_command(&"REMOVE")
@@ -186,6 +203,11 @@ func _apply_model(model: Dictionary) -> void:
 	if paused != _last_pause_state:
 		_last_pause_state = paused
 		pause_changed.emit(paused)
+
+
+func _on_render_snapshot_changed(snapshot: Dictionary) -> void:
+	_renderer.apply_snapshot(snapshot)
+	_route_overlay.apply_snapshot(snapshot)
 
 
 func _on_delivery_event_created(event: Variant) -> void:
