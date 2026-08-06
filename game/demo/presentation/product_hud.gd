@@ -14,6 +14,8 @@ signal retry_requested()
 signal edit_requested()
 signal title_requested()
 
+@export var use_internal_overlays: bool = true
+
 var _model: Dictionary = {}
 
 
@@ -51,8 +53,8 @@ func apply_model(model: Dictionary) -> void:
 	(get_node("RunToolbar") as Control).visible = is_run or is_paused
 	(get_node("StackPanel") as Control).visible = is_run or is_paused
 	(get_node("ProblemBanner") as Control).visible = is_build and not bool(_model.get("start_enabled", false))
-	(get_node("PausePanel") as Control).visible = is_paused
-	(get_node("ResultPanel") as Control).visible = is_result
+	(get_node("PausePanel") as Control).visible = is_paused and use_internal_overlays
+	(get_node("ResultPanel") as Control).visible = is_result and use_internal_overlays
 
 	(get_node("TopStatus/PhaseLabel") as Label).text = _phase_text(phase)
 	(get_node("TopStatus/CostLabel") as Label).text = "현재 비용 %d  ·  권장 기준 %d" % [
@@ -80,8 +82,7 @@ func apply_model(model: Dictionary) -> void:
 		_model.get("stack_tokens", [])
 	)
 	(get_node("ProblemBanner/ProblemText") as Label).text = _problem_text(
-		StringName(_model.get("primary_reason", &"")),
-		str(_model.get("status_text", ""))
+		StringName(_model.get("primary_reason", &""))
 	)
 
 	if is_result:
@@ -134,20 +135,18 @@ static func _stack_text(tokens: Array) -> String:
 	return "\n".join(labels)
 
 
-static func _problem_text(code: StringName, detail: String) -> String:
-	var heading := "노선을 확인해 주세요"
+static func _problem_text(code: StringName) -> String:
 	match code:
 		&"DISCONNECTED", &"UNREACHABLE":
-			heading = "연결되지 않은 지점이 있습니다"
+			return "연결되지 않은 지점이 있습니다"
 		&"MISSING_START", &"START_DISCONNECTED":
-			heading = "출발 선로를 연결해 주세요"
+			return "출발 선로를 연결해 주세요"
 		&"INVALID_TRACK":
-			heading = "설치할 수 없는 선로가 있습니다"
+			return "설치할 수 없는 선로가 있습니다"
 		&"NOT_READY":
-			heading = "모든 역과 화물을 연결해 주세요"
-	if detail.is_empty():
-		return heading
-	return "%s\n%s" % [heading, detail]
+			return "모든 역과 화물을 연결해 주세요"
+		_:
+			return "노선을 확인해 주세요"
 
 
 func _connect_button(path: NodePath, callback: Callable) -> void:
