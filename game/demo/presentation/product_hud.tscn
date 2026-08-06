@@ -78,37 +78,42 @@ theme_override_constants/separation = 8
 mouse_filter = 1
 
 [node name="StraightButton" type="Button" parent="BuildToolbar"]
-custom_minimum_size = Vector2(104, 52)
+custom_minimum_size = Vector2(96, 52)
 layout_mode = 2
 text = "직선  1"
 
 [node name="CurveButton" type="Button" parent="BuildToolbar"]
-custom_minimum_size = Vector2(104, 52)
+custom_minimum_size = Vector2(96, 52)
 layout_mode = 2
 text = "곡선  2"
 
 [node name="SwitchButton" type="Button" parent="BuildToolbar"]
-custom_minimum_size = Vector2(104, 52)
+custom_minimum_size = Vector2(96, 52)
 layout_mode = 2
 text = "분기  3"
 
 [node name="CrossingButton" type="Button" parent="BuildToolbar"]
-custom_minimum_size = Vector2(104, 52)
+custom_minimum_size = Vector2(96, 52)
 layout_mode = 2
 text = "교차  4"
 
+[node name="RecommendButton" type="Button" parent="BuildToolbar"]
+custom_minimum_size = Vector2(116, 52)
+layout_mode = 2
+text = "권장 배치"
+
 [node name="RotateButton" type="Button" parent="BuildToolbar"]
-custom_minimum_size = Vector2(104, 52)
+custom_minimum_size = Vector2(96, 52)
 layout_mode = 2
 text = "회전  R"
 
 [node name="RemoveButton" type="Button" parent="BuildToolbar"]
-custom_minimum_size = Vector2(116, 52)
+custom_minimum_size = Vector2(112, 52)
 layout_mode = 2
 text = "철거  우클릭"
 
 [node name="ClearButton" type="Button" parent="BuildToolbar"]
-custom_minimum_size = Vector2(104, 52)
+custom_minimum_size = Vector2(96, 52)
 layout_mode = 2
 text = "전체 철거"
 
@@ -118,7 +123,7 @@ size_flags_horizontal = 3
 mouse_filter = 2
 
 [node name="StartButton" type="Button" parent="BuildToolbar"]
-custom_minimum_size = Vector2(180, 52)
+custom_minimum_size = Vector2(168, 52)
 layout_mode = 2
 text = "운행 시작  Space"
 
