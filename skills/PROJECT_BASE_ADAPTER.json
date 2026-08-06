@@ -51,10 +51,16 @@
   },
   "gdd_sheet": {
     "decision_commit": "1339a9467312d0ac680725894a9efb59746ec2cc",
-    "declared_sync_status": "APPROVED_PENDING_MERGE",
+    "declared_sync_status": "SYNCED",
+    "pending_branch_sync": {
+      "audit": "SX-AUD-025",
+      "head": "a686ff7b953985e312d23e35587a948f7d6dc1ed",
+      "pr": 99,
+      "state": "APPROVED_PENDING_MERGE"
+    },
     "role": "USER_FACING_GDD_WORKSPACE",
     "spreadsheet_id": "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo",
-    "sync_status": "CURRENT_TO_VERIFIED_PRODUCT_MAIN",
+    "sync_status": "CURRENT",
     "url": "https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit",
     "verified_at": "2026-08-06T21:58:00+09:00"
   },
@@ -169,7 +175,7 @@
   "shared_overrides": {
     "managing-project-intake-and-work-contract": {
       "first_prompt_governance": {
-        "actual_project_instruction_execution": "EXECUTED",
+        "actual_project_instruction_execution": "NOT_RUN",
         "approval_reuse": "REUSE_EXACT_APPROVAL_REFERENCE",
         "base_contract_source": "skills/managing-project-intake-and-work-contract/SKILL.md",
         "base_release_finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
@@ -189,7 +195,7 @@
         "unconfirmed_state": "AWAITING_USER_CONFIRMATION"
       },
       "planning_first_governance": {
-        "actual_project_batch_execution": "EXECUTED",
+        "actual_project_batch_execution": "NOT_RUN",
         "base_contract_source": "docs/PLANNING_FIRST_GRILL_ME_BATCH_POLICY.md",
         "base_release_finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
         "base_release_lock": "base-v9.4.3.lock.json",

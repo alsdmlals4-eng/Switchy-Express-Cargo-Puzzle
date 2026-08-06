@@ -94,7 +94,7 @@ The adapter's Sheet verification and protected baseline predated the current fin
 - add explicit finite product authority
 - refresh observed repository and verified product SHAs
 - refresh Sheet verification metadata
-- record first-prompt and planning-first execution as executed
+- preserve Base adoption sentinel fields as `NOT_RUN` and record this recovery in separate freshness/pending-branch metadata
 - add the focused freshness validator
 
 ### State

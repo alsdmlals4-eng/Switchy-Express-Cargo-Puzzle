@@ -61,7 +61,12 @@ def test_base_protection_uses_finite_authority_without_promoting_candidate() -> 
     assert data["freshness"]["repository_main_observed"] == "212d37e4577a6ffdb7b93e92de6a82785c2976eb"
     assert data["freshness"]["latest_automated_verified_product_main"] == "1339a9467312d0ac680725894a9efb59746ec2cc"
     assert data["gdd_sheet"]["spreadsheet_id"] == "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo"
-    assert data["gdd_sheet"]["declared_sync_status"] == "APPROVED_PENDING_MERGE"
+    assert data["gdd_sheet"]["declared_sync_status"] == "SYNCED"
+    assert data["gdd_sheet"]["sync_status"] == "CURRENT"
+    pending = data["gdd_sheet"]["pending_branch_sync"]
+    assert pending["audit"] == "SX-AUD-025"
+    assert pending["pr"] == 99
+    assert pending["state"] == "APPROVED_PENDING_MERGE"
 
     historical = set(authority["historical_not_current"])
     assert {"ENDLESS_SURVIVAL", "FUEL_ZERO_GAME_OVER", "BOOST", "CAPACITY_8"} <= historical

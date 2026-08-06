@@ -66,7 +66,7 @@
 - [ ] Keep the Base v9.4.3 release SHA and lock unchanged.
 - [ ] Add current product authority and historical-not-current boundaries.
 - [ ] Refresh Sheet and protected-baseline metadata.
-- [ ] Mark first-prompt and planning-first project execution as executed.
+- [ ] Preserve the Base adoption sentinel fields as `NOT_RUN`; record this recovery in separate freshness and pending-branch metadata.
 - [ ] Add the freshness test to validators.
 
 ### Task 4: Synchronize Sheet and handle PR #94
