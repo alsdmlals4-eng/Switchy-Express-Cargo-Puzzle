@@ -240,17 +240,18 @@ func _handle_board_cell(cell: Vector2i) -> void:
 func _handle_rotate() -> void:
 	if phase() != &"BUILD" or _build_session == null:
 		return
+	if _selected_cell != NO_CELL:
+		var layout: Variant = _build_session.layout_snapshot()
+		if layout.piece_at(_selected_cell) != null:
+			_build_session.rotate_piece(_selected_cell, 1)
+			_refresh_build_state()
+			return
 	if _selected_geometry != &"":
 		_selected_rotation_quarters = _next_tool_rotation(
 			_selected_geometry,
 			_selected_rotation_quarters
 		)
 		_publish_state()
-		return
-	if _selected_cell == NO_CELL:
-		return
-	_build_session.rotate_piece(_selected_cell, 1)
-	_refresh_build_state()
 
 
 func _handle_remove() -> void:
