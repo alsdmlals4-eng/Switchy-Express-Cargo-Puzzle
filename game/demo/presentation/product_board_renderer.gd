@@ -26,13 +26,17 @@ func snapshot_for_test() -> Dictionary:
 	return _snapshot.duplicate(true)
 
 
+func ghost_descriptor_for_test() -> Dictionary:
+	return _ghost_descriptor()
+
+
 func board_cell_from_local(local: Vector2, board_size: Vector2i) -> Vector2i:
 	if board_size.x <= 0 or board_size.y <= 0:
 		return NO_CELL
-	var rect: Rect2 = _board_rect()
+	var rect := _board_rect()
 	if not rect.has_point(local):
 		return NO_CELL
-	var relative: Vector2 = local - rect.position
+	var relative := local - rect.position
 	var cell_size := Vector2(rect.size.x / float(board_size.x), rect.size.y / float(board_size.y))
 	var cell := Vector2i(
 		int(floor(relative.x / cell_size.x)),
@@ -44,13 +48,13 @@ func board_cell_from_local(local: Vector2, board_size: Vector2i) -> Vector2i:
 
 
 func request_primary_at(local: Vector2) -> void:
-	var cell: Vector2i = board_cell_from_local(local, _board_size())
+	var cell := board_cell_from_local(local, _board_size())
 	if cell != NO_CELL:
 		cell_primary_requested.emit(cell)
 
 
 func request_secondary_at(local: Vector2) -> void:
-	var cell: Vector2i = board_cell_from_local(local, _board_size())
+	var cell := board_cell_from_local(local, _board_size())
 	if cell != NO_CELL:
 		cell_secondary_requested.emit(cell)
 
@@ -78,10 +82,10 @@ func _notification(what: int) -> void:
 
 
 func _draw() -> void:
-	var board_size: Vector2i = _board_size()
+	var board_size := _board_size()
 	if board_size.x <= 0 or board_size.y <= 0:
 		return
-	var rect: Rect2 = _board_rect()
+	var rect := _board_rect()
 	draw_rect(rect.grow(4.0), Palette.BOARD_EDGE, true)
 	draw_rect(rect, Palette.BOARD, true)
 	_draw_grid(rect, board_size)
@@ -106,7 +110,7 @@ func _draw_blocked(rect: Rect2, board_size: Vector2i) -> void:
 	for value: Variant in _snapshot.get("blocked_cells", []):
 		var cell: Vector2i = value
 		var cell_rect := _cell_rect(cell, rect, board_size).grow(-3.0)
-		draw_rect(cell_rect, Color(Palette.BLOCKED, 0.38), true)
+		draw_rect(cell_rect, _alpha(Palette.BLOCKED, 0.38), true)
 		draw_line(cell_rect.position, cell_rect.end, Palette.BLOCKED, 2.0)
 		draw_line(
 			Vector2(cell_rect.end.x, cell_rect.position.y),
@@ -127,7 +131,9 @@ func _draw_layout(rect: Rect2, board_size: Vector2i) -> void:
 			StringName(piece.get("geometry", &"")),
 			int(piece.get("rotation_quarters", 0)),
 			rect,
-			board_size
+			board_size,
+			Palette.RAIL_BED,
+			Palette.RAIL_METAL
 		)
 
 
@@ -136,9 +142,11 @@ func _draw_track_piece(
 	geometry: StringName,
 	rotation: int,
 	rect: Rect2,
-	board_size: Vector2i
+	board_size: Vector2i,
+	bed_color: Color,
+	rail_color: Color
 ) -> void:
-	var center: Vector2 = _cell_rect(cell, rect, board_size).get_center()
+	var center := _cell_rect(cell, rect, board_size).get_center()
 	var half := _cell_size(rect, board_size) * 0.44
 	var directions: Array[Vector2i] = []
 	match geometry:
@@ -153,36 +161,39 @@ func _draw_track_piece(
 		_:
 			return
 	for direction: Vector2i in directions:
-		var rotated: Vector2i = _rotate_direction(direction, rotation)
-		var end := center + Vector2(rotated.x * half.x, rotated.y * half.y)
-		draw_line(center, end, Palette.RAIL_BED, Palette.RAIL_WIDTH, true)
-		draw_line(center, end, Palette.RAIL_METAL, Palette.RAIL_HIGHLIGHT_WIDTH, true)
+		var rotated := _rotate_direction(direction, rotation)
+		var endpoint := center + Vector2(rotated.x * half.x, rotated.y * half.y)
+		draw_line(center, endpoint, bed_color, Palette.RAIL_WIDTH, true)
+		draw_line(center, endpoint, rail_color, Palette.RAIL_HIGHLIGHT_WIDTH, true)
 	if geometry == &"SWITCH":
-		draw_circle(center, minf(half.x, half.y) * 0.18, Palette.SWITCH_ACTIVE)
+		draw_circle(center, minf(half.x, half.y) * 0.18, rail_color)
 
 
 func _draw_fixed_markers(rect: Rect2, board_size: Vector2i) -> void:
 	for value: Variant in _snapshot.get("station_placements", []):
 		var placement: Dictionary = value
-		_draw_station(
+		_draw_marker(
 			placement.get("cell", NO_CELL),
 			StringName(placement.get("cargo_type", &"")),
+			true,
 			rect,
 			board_size
 		)
 	for value: Variant in _snapshot.get("cargo_placements", []):
 		var placement: Dictionary = value
-		_draw_cargo(
+		_draw_marker(
 			placement.get("cell", NO_CELL),
 			StringName(placement.get("cargo_type", &"")),
+			false,
 			rect,
 			board_size
 		)
 
 
-func _draw_station(
+func _draw_marker(
 	cell: Vector2i,
 	cargo_type: StringName,
+	is_station: bool,
 	rect: Rect2,
 	board_size: Vector2i
 ) -> void:
@@ -190,34 +201,16 @@ func _draw_station(
 		return
 	var cell_rect := _cell_rect(cell, rect, board_size).grow(-5.0)
 	var color: Color = Palette.cargo_color(cargo_type)
-	draw_rect(cell_rect, Color(color, 0.22), true)
-	draw_rect(cell_rect, color, false, 4.0)
-	_draw_cargo_shape(cell_rect.get_center(), cargo_type, minf(cell_rect.size.x, cell_rect.size.y) * 0.28, color)
+	if is_station:
+		draw_rect(cell_rect, _alpha(color, 0.22), true)
+		draw_rect(cell_rect, color, false, 4.0)
+	else:
+		draw_circle(cell_rect.get_center(), minf(cell_rect.size.x, cell_rect.size.y) * 0.27, Palette.BOARD_EDGE)
+	_draw_cargo_shape(cell_rect.get_center(), cargo_type, minf(cell_rect.size.x, cell_rect.size.y) * 0.20, color)
 	_draw_marker_label(cell_rect.get_center(), cargo_type)
 
 
-func _draw_cargo(
-	cell: Vector2i,
-	cargo_type: StringName,
-	rect: Rect2,
-	board_size: Vector2i
-) -> void:
-	if cell == NO_CELL:
-		return
-	var cell_rect := _cell_rect(cell, rect, board_size)
-	var center := cell_rect.get_center()
-	var color: Color = Palette.cargo_color(cargo_type)
-	draw_circle(center, minf(cell_rect.size.x, cell_rect.size.y) * 0.25, Palette.BOARD_EDGE)
-	_draw_cargo_shape(center, cargo_type, minf(cell_rect.size.x, cell_rect.size.y) * 0.19, color)
-	_draw_marker_label(center, cargo_type)
-
-
-func _draw_cargo_shape(
-	center: Vector2,
-	cargo_type: StringName,
-	radius: float,
-	color: Color
-) -> void:
+func _draw_cargo_shape(center: Vector2, cargo_type: StringName, radius: float, color: Color) -> void:
 	if cargo_type == &"RED_STAR":
 		var points := PackedVector2Array()
 		for index: int in range(10):
@@ -226,18 +219,17 @@ func _draw_cargo_shape(
 			points.append(center + Vector2(cos(angle), sin(angle)) * length)
 		draw_colored_polygon(points, color)
 	else:
-		var points := PackedVector2Array([
+		draw_colored_polygon(PackedVector2Array([
 			center + Vector2(0.0, -radius),
 			center + Vector2(radius, 0.0),
 			center + Vector2(0.0, radius),
 			center + Vector2(-radius, 0.0),
-		])
-		draw_colored_polygon(points, color)
+		]), color)
 
 
 func _draw_marker_label(center: Vector2, cargo_type: StringName) -> void:
-	var font: Font = ThemeDB.fallback_font
-	var label: String = Palette.cargo_label(cargo_type)
+	var font := ThemeDB.fallback_font
+	var label := Palette.cargo_label(cargo_type)
 	var font_size := 16
 	var text_size := font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size)
 	draw_string(
@@ -252,15 +244,36 @@ func _draw_marker_label(center: Vector2, cargo_type: StringName) -> void:
 
 
 func _draw_state_overlays(rect: Rect2, board_size: Vector2i) -> void:
+	_draw_ghost(rect, board_size)
 	if _hover_cell != NO_CELL:
 		draw_rect(_cell_rect(_hover_cell, rect, board_size).grow(-2.0), Palette.HOVER, false, 3.0)
 	var selected: Vector2i = _snapshot.get("selected_cell", NO_CELL)
 	if selected != NO_CELL:
-		draw_rect(_cell_rect(selected, rect, board_size).grow(-4.0), Color(Palette.SELECTED, 0.28), true)
-		draw_rect(_cell_rect(selected, rect, board_size).grow(-3.0), Palette.SELECTED, false, 4.0)
+		var selected_rect := _cell_rect(selected, rect, board_size).grow(-3.0)
+		draw_rect(selected_rect, _alpha(Palette.SELECTED, 0.28), true)
+		draw_rect(selected_rect, Palette.SELECTED, false, 4.0)
 	for value: Variant in _snapshot.get("problem_cells", []):
 		var problem: Vector2i = value
 		draw_rect(_cell_rect(problem, rect, board_size).grow(-2.0), Palette.PROBLEM, false, 5.0)
+
+
+func _draw_ghost(rect: Rect2, board_size: Vector2i) -> void:
+	var descriptor := _ghost_descriptor()
+	if descriptor.is_empty():
+		return
+	var valid := bool(descriptor.get("valid", false))
+	var color: Color = Palette.GHOST_VALID if valid else Palette.GHOST_INVALID
+	var cell: Vector2i = descriptor["cell"]
+	draw_rect(_cell_rect(cell, rect, board_size).grow(-5.0), _alpha(color, 0.16), true)
+	_draw_track_piece(
+		cell,
+		StringName(descriptor["geometry"]),
+		0,
+		rect,
+		board_size,
+		_alpha(color, 0.58),
+		color
+	)
 
 
 func _draw_train(rect: Rect2, board_size: Vector2i) -> void:
@@ -273,9 +286,23 @@ func _draw_train(rect: Rect2, board_size: Vector2i) -> void:
 	var next_cell: Vector2i = _snapshot.get("train_next_cell", NO_CELL)
 	if next_cell != NO_CELL:
 		var direction := Vector2(next_cell - cell).normalized()
-		var center := cell_rect.get_center()
-		var nose := center + direction * minf(cell_rect.size.x, cell_rect.size.y) * 0.38
+		var nose := cell_rect.get_center() + direction * minf(cell_rect.size.x, cell_rect.size.y) * 0.38
 		draw_circle(nose, 4.0, Palette.TRAIN_ACCENT)
+
+
+func _ghost_descriptor() -> Dictionary:
+	if StringName(_snapshot.get("phase", &"BUILD")) != &"BUILD":
+		return {}
+	var geometry := StringName(_snapshot.get("selected_geometry", &""))
+	if _hover_cell == NO_CELL or geometry == &"":
+		return {}
+	var buildable: Array = _snapshot.get("buildable_cells", [])
+	var blocked: Array = _snapshot.get("blocked_cells", [])
+	return {
+		"cell": _hover_cell,
+		"geometry": geometry,
+		"valid": (buildable.is_empty() or buildable.has(_hover_cell)) and not blocked.has(_hover_cell),
+	}
 
 
 func _set_hover(cell: Vector2i) -> void:
@@ -314,3 +341,7 @@ static func _rotate_direction(direction: Vector2i, quarters: int) -> Vector2i:
 	for _index: int in range(posmod(quarters, 4)):
 		result = Vector2i(-result.y, result.x)
 	return result
+
+
+static func _alpha(color: Color, alpha: float) -> Color:
+	return Color(color.r, color.g, color.b, alpha)
