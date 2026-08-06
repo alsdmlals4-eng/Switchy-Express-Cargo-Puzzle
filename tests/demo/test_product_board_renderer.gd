@@ -1,6 +1,7 @@
 extends "res://tests/test_case.gd"
 
 const RendererScript := preload("res://game/demo/presentation/product_board_renderer.gd")
+const TrackPieceScript := preload("res://game/finite/build/track_piece.gd")
 
 
 func run() -> void:
@@ -38,6 +39,21 @@ func run() -> void:
 		Vector2i(-1, -1),
 		"malformed marker coordinates must be rejected"
 	)
+
+	for rotation: int in range(4):
+		var curve: Variant = TrackPieceScript.create(
+			Vector2i(2, 2),
+			&"CURVE",
+			rotation,
+			Vector2i.ZERO
+		)
+		assert_not_null(curve, "curve fixture must be valid")
+		if curve != null:
+			assert_equal(
+				RendererScript.track_ports_for_test(&"CURVE", rotation),
+				curve.ports(),
+				"rendered curve ports must match domain ports at rotation %d" % rotation
+			)
 
 	var fixed_snapshot := {
 		"start_cell": Vector2i(1, 4),
