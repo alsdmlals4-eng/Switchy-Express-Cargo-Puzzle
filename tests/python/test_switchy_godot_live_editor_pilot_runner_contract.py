@@ -42,7 +42,7 @@ class SwitchyGodotLiveEditorPilotRunnerContractTests(unittest.TestCase):
             "timeout=240",
             '"--script"',
             '"res://tests/run_tests.gd"',
-            "timeout=60",
+            "timeout=180",
             "TEST SUMMARY: cases=",
         ):
             with self.subTest(marker=marker):
