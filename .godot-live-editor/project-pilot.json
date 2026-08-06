@@ -4,7 +4,7 @@
     "repository": "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle",
     "project_id": "switchy-express-cargo-puzzle"
   },
-  "base_pilot_commit": "a764dcada13ec69c02bb290794a3979ba981e806",
+  "base_pilot_commit": "5e803762f3c4f93b7cb31669312111d708507ef5",
   "project_state": "EXISTING_GODOT_PROJECT",
   "godot": {
     "version": "4.7.1-stable",

@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_C0_SHA = "a764dcada13ec69c02bb290794a3979ba981e806"
+BASE_C0_SHA = "5e803762f3c4f93b7cb31669312111d708507ef5"
 GODOT_ARCHIVE_SHA256 = "c7ff14fd28472c8d4f193043de30278dcf7e5241a1dcf7566b02e27addaa33ba"
 DESCRIPTOR = ROOT / ".godot-live-editor/project-pilot.json"
 ADOPTION_DOC = ROOT / "docs/GODOT_LIVE_EDITOR_ADOPTION.md"
@@ -93,7 +93,7 @@ def test_adoption_document_preserves_truthful_scope() -> None:
         "SOURCE_TREE_UNCHANGED",
         "DRAFT_CANDIDATE_EXACT_HEAD",
         "SELF_CONTAINED_EVIDENCE_BUNDLE",
-        "matches open Scene paths and roots by index",
+        "closes the read-only main Scene",
         "three consecutive editor frames",
         "bounded fixed diagnostic fields",
         "first failed operation code",
