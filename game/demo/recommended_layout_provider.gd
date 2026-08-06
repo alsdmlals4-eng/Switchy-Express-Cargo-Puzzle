@@ -14,7 +14,7 @@ static func pieces_for_map(map_id: StringName, variant: StringName = &"ALPHA") -
 static func _pieces_with_switch_exit(switch_exit: Vector2i) -> Array[Variant]:
 	var specs: Array[Dictionary] = [
 		{"cell": Vector2i(2, 5), "geometry": &"STRAIGHT", "rotation": 0, "exit": Vector2i.ZERO},
-		{"cell": Vector2i(3, 5), "geometry": &"STRAIGHT", "rotation": 0, "exit": Vector2i.ZERO},
+		{"cell": Vector2i(3, 5), "geometry": &"CROSSING", "rotation": 0, "exit": Vector2i.ZERO},
 		{"cell": Vector2i(4, 5), "geometry": &"STRAIGHT", "rotation": 0, "exit": Vector2i.ZERO},
 		{"cell": Vector2i(5, 5), "geometry": &"STRAIGHT", "rotation": 0, "exit": Vector2i.ZERO},
 		{"cell": Vector2i(6, 5), "geometry": &"STRAIGHT", "rotation": 0, "exit": Vector2i.ZERO},
@@ -48,7 +48,6 @@ static func _pieces_with_switch_exit(switch_exit: Vector2i) -> Array[Variant]:
 		{"cell": Vector2i(3, 8), "geometry": &"STRAIGHT", "rotation": 1, "exit": Vector2i.ZERO},
 		{"cell": Vector2i(3, 7), "geometry": &"STRAIGHT", "rotation": 1, "exit": Vector2i.ZERO},
 		{"cell": Vector2i(3, 6), "geometry": &"STRAIGHT", "rotation": 1, "exit": Vector2i.ZERO},
-		{"cell": Vector2i(3, 5), "geometry": &"STRAIGHT", "rotation": 0, "exit": Vector2i.ZERO},
 		{"cell": Vector2i(3, 4), "geometry": &"STRAIGHT", "rotation": 1, "exit": Vector2i.ZERO},
 		{"cell": Vector2i(3, 3), "geometry": &"STRAIGHT", "rotation": 1, "exit": Vector2i.ZERO},
 		{"cell": Vector2i(3, 2), "geometry": &"STRAIGHT", "rotation": 1, "exit": Vector2i.ZERO},
@@ -67,14 +66,9 @@ static func _pieces_with_switch_exit(switch_exit: Vector2i) -> Array[Variant]:
 		{"cell": Vector2i(8, 6), "geometry": &"STRAIGHT", "rotation": 1, "exit": Vector2i.ZERO}
 	]
 	var result: Array[Variant] = []
-	var seen: Dictionary = {}
 	for spec: Dictionary in specs:
-		var cell: Vector2i = spec["cell"]
-		if seen.has(cell):
-			continue
-		seen[cell] = true
 		var piece: Variant = TrackPieceScript.create(
-			cell,
+			spec["cell"],
 			spec["geometry"],
 			spec["rotation"],
 			spec["exit"]
