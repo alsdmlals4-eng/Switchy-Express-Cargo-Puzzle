@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_C0_SHA = "2b595570bd237174b2b962a1eb54588b5ecc508d"
+BASE_C0_SHA = "11d79cbefe4120f149e8900c45ad2624fb19b777"
 GODOT_ARCHIVE_SHA256 = "c7ff14fd28472c8d4f193043de30278dcf7e5241a1dcf7566b02e27addaa33ba"
 DESCRIPTOR = ROOT / ".godot-live-editor/project-pilot.json"
 ADOPTION_DOC = ROOT / "docs/GODOT_LIVE_EDITOR_ADOPTION.md"
@@ -91,6 +91,7 @@ def test_adoption_document_preserves_truthful_scope() -> None:
         "MAIN_SCENE_READ_ONLY",
         "SCRATCH_SCENE_MUTATION_ONLY",
         "SOURCE_TREE_UNCHANGED",
+        "DRAFT_CANDIDATE_EXACT_HEAD",
         "SELF_CONTAINED_EVIDENCE_BUNDLE",
         "project-pilot-evidence.json",
         "runtime-result.json",
@@ -108,6 +109,7 @@ def test_adoption_document_preserves_truthful_scope() -> None:
         "PRODUCTION_ADAPTER_READY: READY",
         "Android Device Smoke: PASS",
         "HUMAN_USABILITY: PASS",
+        "MERGED_IMMUTABLE_PIN",
     ):
         assert forbidden_claim not in text
 
