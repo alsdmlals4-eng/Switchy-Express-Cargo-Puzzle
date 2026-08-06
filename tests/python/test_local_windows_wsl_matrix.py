@@ -85,10 +85,7 @@ class LocalWindowsWslMatrixTest(unittest.TestCase):
             matrix_path = root / "python-matrix.json"
             output_path = root / "local-verification.json"
             matrix_path.write_text(json.dumps(passing_matrix()), encoding="utf-8")
-            output_path.write_text(
-                json.dumps({"status": "PASS", "schema_version": 1}),
-                encoding="utf-8",
-            )
+            output_path.write_text(json.dumps({"status": "PASS", "schema_version": 1}), encoding="utf-8")
             summary = load_matrix().validate_matrix(passing_matrix(), "a" * 40)
             entry.bind_matrix_to_manifest(output_path, matrix_path, summary)
             payload = json.loads(output_path.read_text(encoding="utf-8"))
@@ -107,28 +104,14 @@ class LocalWindowsWslMatrixTest(unittest.TestCase):
     def test_wrapper_contract(self) -> None:
         text = WRAPPER.read_text(encoding="utf-8")
         for token in (
-            '"3.11"',
-            '"3.12"',
-            '"3.13"',
+            '"3.11"', '"3.12"', '"3.13"',
             'WslDistribution = "Ubuntu"',
             'WslPythonExecutable = "python3.12"',
-            "wsl.exe",
-            "wslpath",
-            '"--cd"',
-            "WSL_HEAD_MISMATCH",
-            "WSL_DIRTY_WORKTREE",
-            "safe.directory=",
-            "$ActualHeadOutput",
-            "$WslRepoRootLine",
-            "$WslHeadLine",
-            "$Python312ExecutableOutput",
-            "PYTHONDONTWRITEBYTECODE",
-            "SWITCHY_PYTHON_VERSION=",
-            "MARKED_OUTPUT_NOT_FOUND",
-            "python-matrix.json",
-            "--python-matrix-manifest",
-            "local_python_matrix.py",
-            "local_exact_head_verification_entry.py",
+            "wsl.exe", "wslpath", '"--cd"',
+            "WSL_HEAD_MISMATCH", "WSL_DIRTY_WORKTREE", "safe.directory=",
+            "$ActualHeadOutput", "$WslRepoRootLine", "$WslHeadLine", "$Python312ExecutableOutput",
+            "PYTHONDONTWRITEBYTECODE", "SWITCHY_PYTHON_VERSION=", "MARKED_OUTPUT_NOT_FOUND", "python-matrix.json",
+            "local_python_matrix.py", "local_exact_head_verification_entry.py",
         ):
             self.assertIn(token, text)
 

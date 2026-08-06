@@ -77,11 +77,7 @@ def validate_matrix(matrix: dict[str, object], expected_head: str) -> dict[str, 
     sanitized: dict[str, dict[str, object]] = {}
     for target, prefix in REQUIRED_TARGETS.items():
         raw = indexed[target]
-        exit_code = _as_int(
-            raw.get("exit_code", -1),
-            "PYTHON_MATRIX_TARGET_INVALID",
-            f"{target} exit_code",
-        )
+        exit_code = _as_int(raw.get("exit_code", -1), "PYTHON_MATRIX_TARGET_INVALID", f"{target} exit_code")
         version = str(raw.get("python_version", "")).strip()
         if exit_code != 0:
             raise MatrixError("PYTHON_MATRIX_TARGET_FAILED", f"{target} exit={exit_code}")
@@ -93,11 +89,7 @@ def validate_matrix(matrix: dict[str, object], expected_head: str) -> dict[str, 
         sanitized[target] = {
             "python_version": version,
             "exit_code": exit_code,
-            "duration_seconds": _as_float(
-                raw.get("duration_seconds", 0.0),
-                "PYTHON_MATRIX_TARGET_INVALID",
-                f"{target} duration_seconds",
-            ),
+            "duration_seconds": _as_float(raw.get("duration_seconds", 0.0), "PYTHON_MATRIX_TARGET_INVALID", f"{target} duration_seconds"),
             "log_file": str(raw.get("log_file", "")),
         }
     return {"status": "PASS", "exact_head": matrix_head, "targets": sanitized}
