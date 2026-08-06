@@ -13,13 +13,16 @@
     "views": []
   },
   "gdd_sheet": {
-    "decision_commit": "3cd13ff375a597d4eba9035af5b05e6186fb4853",
+    "canonical_freshness_audit": "SX-AUD-025",
+    "decision_commit": "dff1653738f1eead3cacff303080924d662767e2",
     "declared_sync_status": "SYNCED",
+    "latest_automated_verified_product_main": "1339a9467312d0ac680725894a9efb59746ec2cc",
+    "repository_main_observed": "dff1653738f1eead3cacff303080924d662767e2",
     "role": "USER_FACING_GDD_WORKSPACE",
     "spreadsheet_id": "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo",
     "sync_status": "CURRENT",
     "url": "https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit",
-    "verified_at": "2026-08-02T15:16:00+09:00"
+    "verified_at": "2026-08-06T22:45:31+09:00"
   },
   "project": {
     "engine": "Godot 4.7.1",
@@ -31,7 +34,7 @@
   "protected_baseline": {
     "authority_kind": "REMOTE_TRACKING_REF",
     "authority_ref": "refs/remotes/origin/main",
-    "commit": "8c6dd60c634019e64178e72aa4959a2a970708e1",
+    "commit": "dff1653738f1eead3cacff303080924d662767e2",
     "policy_sha256": "51b3ca7e05165069666d1235413d3277580646c63008b472f15df4fb4db9f0ca",
     "policy_source_path": "skills/PROJECT_BASE_ADAPTER.json",
     "policy_source_type": "CANONICAL_ADAPTER_SOURCE",
@@ -208,6 +211,7 @@
     "godot --headless --path . --script res://tests/run_tests.gd",
     "python tests/test_base_shared_external_ai_adapter.py",
     "python tests/test_base_v942_planning_first_adoption.py",
-    "python tests/test_base_v943_first_prompt_adoption.py"
+    "python tests/test_base_v943_first_prompt_adoption.py",
+    "python tests/test_post_merge_canon_freshness.py"
   ]
 }

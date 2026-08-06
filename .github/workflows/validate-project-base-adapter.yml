@@ -44,8 +44,20 @@ jobs:
         env:
           PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
-          python .base-contract/tools/check_project_operating_contract.py \
+          set +e
+          output=$(python .base-contract/tools/check_project_operating_contract.py \
             --project-root . \
             --base-repository .base-contract \
             --protected-base "$PR_BASE_SHA" \
-            --check
+            --check 2>&1)
+          status=$?
+          printf '%s\n' "$output"
+          if [ "$status" -ne 0 ]; then
+            while IFS= read -r line; do
+              escaped=${line//'%'/'%25'}
+              escaped=${escaped//$'\r'/'%0D'}
+              escaped=${escaped//$'\n'/'%0A'}
+              printf '::error file=skills/PROJECT_BASE_ADAPTER.json::%s\n' "$escaped"
+            done <<< "$output"
+          fi
+          exit "$status"

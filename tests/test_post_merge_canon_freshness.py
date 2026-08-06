@@ -13,6 +13,9 @@ BASE_RULES = ROOT / "docs" / "BASE_RULES_VERSION.md"
 ADAPTER = ROOT / "skills" / "PROJECT_BASE_ADAPTER.json"
 AUDIT = ROOT / "기획서" / "50_제작_검증" / "SX_AUD_025_POST_MERGE_CANON_FRESHNESS_AND_GATE_RECOVERY.md"
 
+MERGED_CANON_MAIN = "dff1653738f1eead3cacff303080924d662767e2"
+VERIFIED_PRODUCT_MAIN = "1339a9467312d0ac680725894a9efb59746ec2cc"
+
 
 def read(path: Path) -> str:
     return path.read_text(encoding="utf-8")
@@ -63,6 +66,18 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         self.assertEqual("SYNCED", adapter["gdd_sheet"]["declared_sync_status"])
         self.assertEqual("CURRENT", adapter["gdd_sheet"]["sync_status"])
         self.assertNotIn("5e803762f3c4f93b7cb31669312111d708507ef5", serialized_adapter)
+
+    def test_adapter_is_fresh_to_merged_canon_without_expanding_evidence(self) -> None:
+        adapter = json.loads(read(ADAPTER))
+        sheet = adapter["gdd_sheet"]
+        baseline = adapter["protected_baseline"]
+
+        self.assertEqual(MERGED_CANON_MAIN, baseline["commit"])
+        self.assertEqual(MERGED_CANON_MAIN, sheet["decision_commit"])
+        self.assertEqual(MERGED_CANON_MAIN, sheet["repository_main_observed"])
+        self.assertEqual(VERIFIED_PRODUCT_MAIN, sheet["latest_automated_verified_product_main"])
+        self.assertEqual("SX-AUD-025", sheet["canonical_freshness_audit"])
+        self.assertIn("python tests/test_post_merge_canon_freshness.py", adapter["validators"])
 
     def test_audit_preserves_manual_evidence_ceiling_and_split_boundary(self) -> None:
         text = read(AUDIT)
