@@ -23,6 +23,7 @@ var _build_session: Variant
 var _run_factory: Variant
 var _run_session: Variant
 var _selected_geometry: StringName = &""
+var _selected_rotation_quarters: int = 0
 var _selected_cell: Vector2i = NO_CELL
 var _delivery_history: Array = []
 var _last_command: StringName = &""
@@ -51,6 +52,7 @@ func initialize(
 		_run_factory = null
 		_run_session = null
 		_selected_geometry = &""
+		_selected_rotation_quarters = 0
 		_selected_cell = NO_CELL
 		_delivery_history.clear()
 		_terminal_emitted = false
@@ -61,6 +63,7 @@ func initialize(
 	_run_factory = null
 	_run_session = null
 	_selected_geometry = &""
+	_selected_rotation_quarters = 0
 	_selected_cell = NO_CELL
 	_delivery_history.clear()
 	_terminal_emitted = false
@@ -163,11 +166,14 @@ func _dispatch_command(command: StringName, payload: Variant) -> void:
 	match command:
 		&"BUILD_TOOL":
 			_selected_geometry = StringName(payload)
+			_selected_rotation_quarters = 0
+			_selected_cell = NO_CELL
 			_publish_state()
 		&"BOARD_CELL":
 			_handle_board_cell(payload)
 		&"CANCEL_SELECTION":
 			_selected_geometry = &""
+			_selected_rotation_quarters = 0
 			_selected_cell = NO_CELL
 			_publish_state()
 		&"ROTATE":
@@ -201,11 +207,14 @@ func _handle_board_cell(cell: Vector2i) -> void:
 		if _build_session == null or _selected_geometry == &"":
 			_publish_state()
 			return
+		var switch_exit := Vector2i.ZERO
+		if _selected_geometry == &"SWITCH":
+			switch_exit = _rotate_clockwise(Vector2i.RIGHT, _selected_rotation_quarters)
 		var piece: Variant = TrackPieceScript.create(
 			cell,
 			_selected_geometry,
-			0,
-			Vector2i.RIGHT if _selected_geometry == &"SWITCH" else Vector2i.ZERO
+			_selected_rotation_quarters,
+			switch_exit
 		)
 		if piece == null:
 			_publish_state()
@@ -229,7 +238,16 @@ func _handle_board_cell(cell: Vector2i) -> void:
 
 
 func _handle_rotate() -> void:
-	if phase() != &"BUILD" or _build_session == null or _selected_cell == NO_CELL:
+	if phase() != &"BUILD" or _build_session == null:
+		return
+	if _selected_geometry != &"":
+		_selected_rotation_quarters = _next_tool_rotation(
+			_selected_geometry,
+			_selected_rotation_quarters
+		)
+		_publish_state()
+		return
+	if _selected_cell == NO_CELL:
 		return
 	_build_session.rotate_piece(_selected_cell, 1)
 	_refresh_build_state()
@@ -328,6 +346,9 @@ func _handle_edit_layout() -> void:
 		_build_session.place_piece(piece)
 	_run_session = null
 	_run_factory = null
+	_selected_geometry = &""
+	_selected_rotation_quarters = 0
+	_selected_cell = NO_CELL
 	_delivery_history.clear()
 	_terminal_emitted = false
 	_refresh_build_state()
@@ -404,6 +425,7 @@ func _build_render_snapshot(current_model: Dictionary) -> Dictionary:
 	snapshot["layout_pieces"] = _layout_piece_descriptors()
 	snapshot["selected_cell"] = _selected_cell
 	snapshot["selected_geometry"] = _selected_geometry
+	snapshot["selected_rotation_quarters"] = _selected_rotation_quarters
 	snapshot["problem_cells"] = current_model.get("problem_cells", []).duplicate()
 	snapshot["phase"] = StringName(current_model.get("phase", &"BUILD"))
 	snapshot["stack_tokens"] = current_model.get("stack_tokens", []).duplicate(true)
@@ -439,6 +461,25 @@ func _layout_piece_descriptors() -> Array[Dictionary]:
 	return result
 
 
+static func _next_tool_rotation(geometry: StringName, current: int) -> int:
+	match geometry:
+		&"STRAIGHT":
+			return posmod(current + 1, 2)
+		&"CROSSING":
+			return 0
+		&"CURVE", &"SWITCH":
+			return posmod(current + 1, 4)
+		_:
+			return 0
+
+
+static func _rotate_clockwise(direction: Vector2i, quarter_turns: int) -> Vector2i:
+	var result := direction
+	for _index: int in range(posmod(quarter_turns, 4)):
+		result = Vector2i(-result.y, result.x)
+	return result
+
+
 static func _empty_render_snapshot() -> Dictionary:
 	return {
 		"map_id": &"",
@@ -453,6 +494,7 @@ static func _empty_render_snapshot() -> Dictionary:
 		"layout_pieces": [],
 		"selected_cell": NO_CELL,
 		"selected_geometry": &"",
+		"selected_rotation_quarters": 0,
 		"problem_cells": [],
 		"phase": &"BUILD",
 		"train_cell": NO_CELL,
