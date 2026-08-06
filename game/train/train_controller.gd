@@ -24,7 +24,7 @@ func configure(
 	_state.configure(graph, start_cell, incoming_cell, max_wagons)
 	_movement_progress = 0.0
 	_set_switch_lock(NO_LOCKED_SWITCH)
-	if _graph.switch_cells().has(start_cell):
+	if _route_control_cells().has(start_cell):
 		_set_switch_lock(start_cell)
 	_refresh_target()
 
@@ -175,11 +175,11 @@ func _commit_next_cell() -> Vector2i:
 	var next: Vector2i = _target_cell
 	assert(_graph.neighbors(departing_cell).has(next), "locked train target must remain connected")
 	assert(next != incoming_cell, "train movement must not reverse immediately")
-	if _graph.switch_cells().has(departing_cell):
+	if _route_control_cells().has(departing_cell):
 		_graph.commit_switch_passage(departing_cell)
 		_set_switch_lock(NO_LOCKED_SWITCH)
 	_state.advance(next)
-	if _graph.switch_cells().has(next):
+	if _route_control_cells().has(next):
 		_set_switch_lock(next)
 	_refresh_target()
 	cell_entered.emit(next)
@@ -191,8 +191,20 @@ func _refresh_target() -> void:
 
 
 func _set_switch_lock(cell: Vector2i) -> void:
-	if _graph != null and _graph.has_method("set_switch_locked_cell"):
+	if _graph == null:
+		return
+	if _graph.has_method("set_route_control_locked_cell"):
+		_graph.set_route_control_locked_cell(cell)
+	elif _graph.has_method("set_switch_locked_cell"):
 		_graph.set_switch_locked_cell(cell)
+
+
+func _route_control_cells() -> Array[Vector2i]:
+	if _graph == null:
+		return []
+	if _graph.has_method("route_control_cells"):
+		return _graph.route_control_cells()
+	return _graph.switch_cells()
 
 
 func _scaled_cell(cell: Vector2i, cell_size: Vector2) -> Vector2:
