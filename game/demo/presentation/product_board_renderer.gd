@@ -30,6 +30,10 @@ func ghost_descriptor_for_test() -> Dictionary:
 	return _ghost_descriptor()
 
 
+static func track_ports_for_test(geometry: StringName, rotation: int) -> Array[Vector2i]:
+	return _track_ports(geometry, rotation)
+
+
 func board_cell_from_local(local: Vector2, board_size: Vector2i) -> Vector2i:
 	if board_size.x <= 0 or board_size.y <= 0:
 		return NO_CELL
@@ -165,21 +169,11 @@ func _draw_track_piece(
 ) -> void:
 	var center := _cell_rect(cell, rect, board_size).get_center()
 	var half := _cell_size(rect, board_size) * 0.44
-	var directions: Array[Vector2i] = []
-	match geometry:
-		&"STRAIGHT":
-			directions = [Vector2i.LEFT, Vector2i.RIGHT]
-		&"CURVE":
-			directions = [Vector2i.RIGHT, Vector2i.DOWN]
-		&"SWITCH":
-			directions = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP]
-		&"CROSSING":
-			directions = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
-		_:
-			return
+	var directions: Array[Vector2i] = _track_ports(geometry, rotation)
+	if directions.is_empty():
+		return
 	for direction: Vector2i in directions:
-		var rotated := _rotate_direction(direction, rotation)
-		var endpoint := center + Vector2(rotated.x * half.x, rotated.y * half.y)
+		var endpoint := center + Vector2(direction.x * half.x, direction.y * half.y)
 		draw_line(center, endpoint, bed_color, Palette.RAIL_WIDTH, true)
 		draw_line(center, endpoint, rail_color, Palette.RAIL_HIGHLIGHT_WIDTH, true)
 	if geometry == &"SWITCH":
@@ -464,6 +458,25 @@ static func _cell_size(rect: Rect2, board_size: Vector2i) -> Vector2:
 static func _cell_rect(cell: Vector2i, rect: Rect2, board_size: Vector2i) -> Rect2:
 	var cell_size := _cell_size(rect, board_size)
 	return Rect2(rect.position + Vector2(cell.x, cell.y) * cell_size, cell_size)
+
+
+static func _track_ports(geometry: StringName, rotation: int) -> Array[Vector2i]:
+	var base_ports: Array[Vector2i] = []
+	match geometry:
+		&"STRAIGHT":
+			base_ports = [Vector2i.LEFT, Vector2i.RIGHT]
+		&"CURVE":
+			base_ports = [Vector2i.UP, Vector2i.RIGHT]
+		&"SWITCH":
+			base_ports = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP]
+		&"CROSSING":
+			base_ports = [Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN, Vector2i.LEFT]
+		_:
+			return []
+	var result: Array[Vector2i] = []
+	for port: Vector2i in base_ports:
+		result.append(_rotate_direction(port, rotation))
+	return result
 
 
 static func _rotate_direction(direction: Vector2i, quarters: int) -> Vector2i:
