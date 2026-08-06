@@ -8,6 +8,7 @@ const CONTROLS: StringName = &"CONTROLS"
 const BRIEFING: StringName = &"BRIEFING"
 const GAMEPLAY: StringName = &"GAMEPLAY"
 const PAUSED: StringName = &"PAUSED"
+const EXIT_CONFIRM: StringName = &"EXIT_CONFIRM"
 const RESULT: StringName = &"RESULT"
 
 const ProductScene := preload("res://game/demo/product_finite_slice.tscn")
@@ -26,6 +27,15 @@ func _ready() -> void:
 	_connect_button("ControlsOverlay/Panel/Content/CloseButton", close_controls)
 	_connect_button("BriefingScreen/Panel/Content/BeginButton", begin_build)
 	_connect_button("PauseOverlay/Panel/Content/ResumeButton", _resume_demo)
+	_connect_button("PauseOverlay/Panel/Content/ExitButton", request_exit_confirmation)
+	_connect_button(
+		"ExitConfirmOverlay/Panel/Content/ContinueButton",
+		cancel_exit_confirmation
+	)
+	_connect_button(
+		"ExitConfirmOverlay/Panel/Content/ConfirmButton",
+		confirm_exit_to_title
+	)
 	_connect_button("ResultOverlay/Panel/Content/RetryButton", _retry_result)
 	_connect_button("ResultOverlay/Panel/Content/EditButton", _edit_result)
 	_connect_button("ResultOverlay/Panel/Content/TitleButton", return_to_title)
@@ -66,11 +76,44 @@ func begin_build() -> void:
 	_transition_to(GAMEPLAY)
 
 
+func open_pause_menu() -> void:
+	if _state != GAMEPLAY or not is_instance_valid(_gameplay):
+		return
+	var phase: StringName = _gameplay.session_controller().phase()
+	if phase == &"BUILD":
+		_transition_to(PAUSED)
+	elif phase == &"RUNNING" or phase == &"UNLOADING":
+		_gameplay.request_command(&"PAUSE")
+	elif phase == &"PAUSED":
+		_transition_to(PAUSED)
+
+
 func set_paused(paused: bool) -> void:
 	if paused and _state == GAMEPLAY:
 		_transition_to(PAUSED)
 	elif not paused and _state == PAUSED:
 		_transition_to(GAMEPLAY)
+
+
+func request_exit_confirmation() -> void:
+	if _state != PAUSED:
+		return
+	_transition_to(EXIT_CONFIRM)
+	var continue_button := get_node_or_null(
+		"ExitConfirmOverlay/Panel/Content/ContinueButton"
+	) as Button
+	if continue_button != null:
+		continue_button.grab_focus()
+
+
+func cancel_exit_confirmation() -> void:
+	if _state == EXIT_CONFIRM:
+		_transition_to(PAUSED)
+
+
+func confirm_exit_to_title() -> void:
+	if _state == EXIT_CONFIRM:
+		return_to_title()
 
 
 func show_result(summary: Variant) -> void:
@@ -113,6 +156,12 @@ func dispatch_flow_action_for_test(action: StringName, pressed: bool) -> bool:
 				BRIEFING, RESULT:
 					return_to_title()
 					return true
+				PAUSED:
+					_resume_demo()
+					return true
+				EXIT_CONFIRM:
+					cancel_exit_confirmation()
+					return true
 	return false
 
 
@@ -139,6 +188,7 @@ func _ensure_gameplay_instance() -> Control:
 	_gameplay.terminal_reached.connect(_on_product_terminal_reached)
 	_gameplay.title_requested.connect(return_to_title)
 	_gameplay.pause_changed.connect(set_paused)
+	_gameplay.menu_requested.connect(open_pause_menu)
 	return _gameplay
 
 
@@ -158,10 +208,14 @@ func _on_product_terminal_reached(summary: Variant) -> void:
 
 
 func _resume_demo() -> void:
-	if is_instance_valid(_gameplay):
-		_gameplay.request_command(&"RESUME")
-	else:
+	if not is_instance_valid(_gameplay):
 		set_paused(false)
+		return
+	var phase: StringName = _gameplay.session_controller().phase()
+	if phase == &"PAUSED":
+		_gameplay.request_command(&"RESUME")
+	elif phase == &"BUILD" and _state == PAUSED:
+		_transition_to(GAMEPLAY)
 
 
 func _retry_result() -> void:
@@ -197,10 +251,16 @@ func _sync_visibility() -> void:
 	_set_visible("BriefingScreen", _state == BRIEFING)
 	_set_visible(
 		"GameplayContainer",
-		_state == GAMEPLAY or _state == PAUSED or _state == RESULT
+		_state == GAMEPLAY
+		or _state == PAUSED
+		or _state == EXIT_CONFIRM
+		or _state == RESULT
 	)
 	_set_visible("PauseOverlay", _state == PAUSED)
+	_set_visible("ExitConfirmOverlay", _state == EXIT_CONFIRM)
 	_set_visible("ResultOverlay", _state == RESULT)
+	if is_instance_valid(_gameplay):
+		_gameplay.set_shell_input_locked(_state != GAMEPLAY)
 
 
 func _update_result_copy(summary: Variant) -> void:
