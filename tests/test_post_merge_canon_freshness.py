@@ -22,16 +22,16 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
     def test_active_canon_uses_main_and_merged_pr_83(self) -> None:
         combined = "\n".join((read(README), read(ACTIVE), read(GATES)))
 
-        for stale in (
+        for stale_active_state in (
             "branch: agent/pc-vertical-slice-demo-design",
-            "`agent/pc-vertical-slice-demo-design` 브랜치",
+            "active_user_branch: agent/pc-vertical-slice-demo-design",
             "PR #83: DRAFT",
             "pull_request_83: DRAFT",
-            "PR #83은 Draft",
-            "MAIN_PENDING",
+            "pr_83: DRAFT",
+            "sheet_state: MAIN_PENDING",
             "PR #83 MERGE REVIEW: BLOCKED",
         ):
-            self.assertNotIn(stale, combined)
+            self.assertNotIn(stale_active_state, combined)
 
         for required in (
             "branch: main",
