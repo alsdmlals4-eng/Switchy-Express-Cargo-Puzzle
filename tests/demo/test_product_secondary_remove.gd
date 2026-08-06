@@ -19,7 +19,7 @@ func run() -> void:
 	product.request_command_for_test(&"BOARD_CELL", target)
 	assert_true(_has_piece(controller.render_snapshot(), target), "primary placement creates a piece")
 
-	var local: Vector2 = _local_for_cell(renderer, target, Vector2i(11, 9))
+	var local: Vector2 = _local_for_cell(renderer, target, Vector2i(15, 11))
 	renderer.request_secondary_at(local)
 	assert_equal(controller.last_command(), &"REMOVE", "secondary click ends on the existing remove command")
 	assert_false(_has_piece(controller.render_snapshot(), target), "secondary click removes the exact piece")
