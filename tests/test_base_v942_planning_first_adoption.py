@@ -4,6 +4,7 @@ import json
 import unittest
 from pathlib import Path
 
+
 ROOT = Path(__file__).resolve().parents[1]
 ADAPTER = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
 
@@ -27,11 +28,15 @@ class BaseV942PlanningFirstAdoptionTests(unittest.TestCase):
 
     def test_switchy_product_and_sheet_boundaries_remain_unchanged(self) -> None:
         adapter = json.loads(ADAPTER.read_text(encoding="utf-8"))
-        self.assertEqual("SYNCED", adapter["gdd_sheet"]["sync_status"])
+        self.assertEqual("CURRENT", adapter["gdd_sheet"]["sync_status"])
+        self.assertEqual("SYNCED", adapter["gdd_sheet"]["declared_sync_status"])
         self.assertEqual("Godot 4.7.1", adapter["project"]["engine"])
         self.assertEqual("Android", adapter["project"]["platform"])
         self.assertEqual(["project.godot", "game/**", "assets/**", "기획서/**"], adapter["protected_paths"])
-        self.assertEqual("NOT_RUN", adapter["shared_overrides"]["orchestrating-deepseek-worktrees"]["actual_external_ai_worktree_execution"])
+        self.assertEqual(
+            "NOT_RUN",
+            adapter["shared_overrides"]["orchestrating-deepseek-worktrees"]["actual_external_ai_worktree_execution"],
+        )
 
 
 if __name__ == "__main__":
