@@ -11,6 +11,11 @@ GODOT_ARCHIVE_SHA256 = "c7ff14fd28472c8d4f193043de30278dcf7e5241a1dcf7566b02e27a
 DESCRIPTOR = ROOT / ".godot-live-editor/project-pilot.json"
 ADOPTION_DOC = ROOT / "docs/GODOT_LIVE_EDITOR_ADOPTION.md"
 WORKFLOW = ROOT / ".github/workflows/validate-godot-live-editor-pilot.yml"
+LEGACY_EDITOR_PLUGINS = [
+    "res://addons/godot_ai/plugin.cfg",
+    "res://addons/gut/plugin.cfg",
+]
+LEGACY_AUTOLOADS = ["_mcp_game_helper"]
 ALLOWED_PATHS = {
     ".godot-live-editor/project-pilot.json",
     "docs/GODOT_LIVE_EDITOR_ADOPTION.md",
@@ -42,7 +47,7 @@ def _changed_paths_from_main() -> set[str]:
     return {line.strip() for line in output.splitlines() if line.strip()}
 
 
-def test_descriptor_is_exact_clean_baseline_contract() -> None:
+def test_descriptor_is_exact_current_project_contract() -> None:
     payload = json.loads(_required_text(DESCRIPTOR))
 
     assert payload == {
@@ -59,8 +64,8 @@ def test_descriptor_is_exact_clean_baseline_contract() -> None:
         },
         "project_file": "project.godot",
         "main_scene_source": "application/run/main_scene",
-        "legacy_editor_plugins": [],
-        "legacy_autoloads": [],
+        "legacy_editor_plugins": LEGACY_EDITOR_PLUGINS,
+        "legacy_autoloads": LEGACY_AUTOLOADS,
         "legacy_disable_mode": "TEMPORARY_COPY_ONLY",
         "source_mutation_policy": "FORBIDDEN",
         "scratch_scene_path": "res://.godot-live-editor-pilot/scratch.tscn",
@@ -75,11 +80,21 @@ def test_descriptor_is_exact_clean_baseline_contract() -> None:
     }
 
 
-def test_project_baseline_matches_reviewed_clean_pilot_assumptions() -> None:
+def test_project_baseline_matches_declared_pilot_assumptions() -> None:
     project = (ROOT / "project.godot").read_text(encoding="utf-8")
     assert 'run/main_scene="res://game/main/main.tscn"' in project
-    assert "godot_ai" not in project
-    assert "_mcp_game_helper" not in project
+    assert (
+        '_mcp_game_helper="*res://addons/godot_ai/runtime/game_helper.gd"'
+        in project
+    )
+    assert (
+        'enabled=PackedStringArray("res://addons/godot_ai/plugin.cfg", '
+        '"res://addons/gut/plugin.cfg")'
+        in project
+    )
+    for resource_path in LEGACY_EDITOR_PLUGINS:
+        assert (ROOT / resource_path.removeprefix("res://")).is_file()
+    assert (ROOT / "addons/godot_ai/runtime/game_helper.gd").is_file()
     assert (ROOT / "game/main/main.tscn").is_file()
     assert (ROOT / "tests/run_tests.gd").is_file()
 
