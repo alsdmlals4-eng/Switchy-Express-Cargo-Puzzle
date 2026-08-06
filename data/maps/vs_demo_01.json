@@ -12,15 +12,15 @@
   "buildable_rects": [
     {"minimum": [1, 1], "maximum": [14, 9]}
   ],
-  "blocked_cells": [[5, 3], [7, 3], [12, 3], [5, 7], [7, 7], [12, 7]],
+  "blocked_cells": [[5, 3], [7, 3], [11, 3], [5, 7], [7, 7], [11, 7]],
   "station_placements": [
-    {"cell": [10, 7], "cargo_type": "RED_STAR"},
-    {"cell": [13, 9], "cargo_type": "BLUE_DIAMOND"}
+    {"cell": [8, 9], "cargo_type": "RED_STAR"},
+    {"cell": [4, 9], "cargo_type": "BLUE_DIAMOND"}
   ],
   "cargo_placements": [
-    {"cell": [11, 5], "cargo_type": "RED_STAR"},
-    {"cell": [14, 6], "cargo_type": "BLUE_DIAMOND"},
-    {"cell": [14, 8], "cargo_type": "RED_STAR"},
-    {"cell": [11, 9], "cargo_type": "RED_STAR"}
+    {"cell": [6, 5], "cargo_type": "RED_STAR"},
+    {"cell": [10, 5], "cargo_type": "BLUE_DIAMOND"},
+    {"cell": [14, 7], "cargo_type": "RED_STAR"},
+    {"cell": [12, 9], "cargo_type": "RED_STAR"}
   ]
 }
