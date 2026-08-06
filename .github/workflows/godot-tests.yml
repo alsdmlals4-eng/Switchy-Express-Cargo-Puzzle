@@ -35,7 +35,9 @@ jobs:
         shell: bash
         run: |
           set +e
-          output=$(timeout 60s ./Godot_v4.7.1-stable_linux.x86_64 \
+          # A clean runner may spend over one minute importing the installed
+          # editor plugins before tests/run_tests.gd starts its own watchdog.
+          output=$(timeout 180s ./Godot_v4.7.1-stable_linux.x86_64 \
             --headless \
             --path . \
             --script res://tests/run_tests.gd 2>&1)
