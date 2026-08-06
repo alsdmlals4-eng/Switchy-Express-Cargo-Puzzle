@@ -1,5 +1,7 @@
 extends "res://tests/test_case.gd"
 
+const MainScene := preload("res://game/main/main.tscn")
+
 
 func run() -> void:
 	assert_equal(
@@ -36,3 +38,16 @@ func run() -> void:
 		ResourceLoader.exists("res://game/main/main.tscn", "PackedScene"),
 		"main scene resource must exist"
 	)
+
+	var tree := Engine.get_main_loop() as SceneTree
+	assert_not_null(tree, "project boot test requires SceneTree")
+	if tree == null:
+		return
+	var main := MainScene.instantiate()
+	tree.root.add_child(main)
+	var demo := main.get_node_or_null("VerticalSliceDemo")
+	assert_not_null(demo, "default project Play must boot the vertical slice without scene setup")
+	if demo != null:
+		assert_true(demo.has_method("state"), "default product boot must expose demo flow state")
+		assert_equal(demo.state(), &"TITLE", "default project Play must open the demo title")
+	main.free()
