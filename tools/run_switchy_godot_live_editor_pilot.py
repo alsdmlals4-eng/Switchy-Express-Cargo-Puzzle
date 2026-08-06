@@ -180,6 +180,14 @@ def _environment(workspace: Path) -> dict[str, str]:
     return environment
 
 
+def _restore_source_project_configuration(project: Path) -> None:
+    source_project = ROOT / "project.godot"
+    target_project = project / "project.godot"
+    if not source_project.is_file() or not target_project.is_file():
+        raise FileNotFoundError("project.godot unavailable for Pilot cleanup")
+    target_project.write_bytes(source_project.read_bytes())
+
+
 def run_pilot(
     *,
     godot: Path | None,
@@ -293,6 +301,11 @@ def run_pilot(
                 },
             )
         runtime["headless_thumbnail_error_count"] = headless_thumbnail_error_count
+
+        try:
+            _restore_source_project_configuration(project)
+        except OSError as error:
+            return 1, _failure("SOURCE_INTEGRITY_FAILURE", detail=str(error))
 
         regression_started = time.perf_counter_ns()
         try:
