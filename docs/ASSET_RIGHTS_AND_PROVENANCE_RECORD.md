@@ -62,3 +62,57 @@ reference_similarity_status:
 기능·퍼즐 정보 위계·색상+모양 접근성·일반 형태·재질·주파수·타이밍·성능 원리만 분석한다. 지도·열차·역·화물·UI tracing, 음악 sample, mesh·texture·rig·font glyph 추출, 특정 작가·성우 모사, 원본 AI 변환은 독립 제작으로 인정하지 않는다.
 
 공개 저장소에는 원계약서·신분증·서명·주소·계좌·결제·세금·개인정보를 넣지 않는다. `secure_original_location`, 최소 metadata, hash와 적법한 redacted excerpt만 기록한다.
+
+## VS-DEMO-PRESENTATION-001 · In-engine board and UI shapes
+
+```yaml
+asset_id: VS-DEMO-PRESENTATION-001
+category: OTHER
+name: PC Vertical Slice procedural board and UI presentation
+project: SWITCHY_EXPRESS_CARGO_PUZZLE
+creation_route: OWNED_ORIGINAL
+creator_or_vendor: project source code
+source_url_or_path: game/demo/presentation/demo_palette.gd · demo_theme_factory.gd · product_board_renderer.gd · product_hud.tscn · demo_effects.gd
+acquired_or_created_at: 2026-08-06
+license_or_contract: project-owned source code
+commercial_use: ALLOWED
+distribution_in_game_build: ALLOWED
+raw_source_redistribution: ALLOWED
+modification: ALLOWED
+attribution: NOT_REQUIRED
+reference_sources: none
+reference_similarity_status: NOT_APPLICABLE
+shipping_and_marketing_usage: CONDITIONAL · Vertical Slice evidence only until final art review
+proof_reference: PR #83 · SX-DEC-037 · SX-AUD-020
+reviewed_by: implementation adversarial review
+reviewed_at: 2026-08-06
+status: APPROVED
+notes: Godot draw primitives, StyleBoxFlat and Tween properties generate all board, marker, UI and feedback visuals at runtime. No external image, texture, model, font file or traced source is included.
+```
+
+## VS-DEMO-AUDIO-001 · In-engine procedural cues
+
+```yaml
+asset_id: VS-DEMO-AUDIO-001
+category: MUSIC_SFX
+name: PC Vertical Slice procedural UI and train audio
+project: SWITCHY_EXPRESS_CARGO_PUZZLE
+creation_route: OWNED_ORIGINAL
+creator_or_vendor: project source code
+source_url_or_path: game/demo/audio/demo_audio_director.gd
+acquired_or_created_at: 2026-08-06
+license_or_contract: project-owned source code
+commercial_use: ALLOWED
+distribution_in_game_build: ALLOWED
+raw_source_redistribution: ALLOWED
+modification: ALLOWED
+attribution: NOT_REQUIRED
+reference_sources: none
+reference_similarity_status: NOT_APPLICABLE
+shipping_and_marketing_usage: CONDITIONAL · Vertical Slice evidence only until final audio review
+proof_reference: PR #83 · SX-DEC-037 · SX-AUD-020
+reviewed_by: implementation adversarial review
+reviewed_at: 2026-08-06
+status: APPROVED
+notes: AudioStreamGenerator streams are synthesized from repository-defined frequencies, envelopes and timing. No third-party sample, recording, music file, voice or AI audio output is included.
+```

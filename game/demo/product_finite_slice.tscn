@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://game/demo/product_finite_slice.gd" id="1_product"]
+[ext_resource type="Script" path="res://game/demo/presentation/product_board_renderer.gd" id="2_board"]
+[ext_resource type="PackedScene" path="res://game/demo/presentation/product_hud.tscn" id="3_hud"]
+[ext_resource type="Script" path="res://game/demo/input/desktop_input_adapter.gd" id="4_input"]
+[ext_resource type="Script" path="res://game/demo/presentation/demo_effects.gd" id="5_effects"]
+[ext_resource type="Script" path="res://game/demo/audio/demo_audio_director.gd" id="6_audio"]
+
+[node name="ProductFiniteSlice" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_product")
+
+[node name="BoardRenderer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 72.0
+offset_right = -250.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_board")
+
+[node name="HUD" parent="." instance=ExtResource("3_hud")]
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+use_internal_overlays = false
+
+[node name="DesktopInputAdapter" type="Node" parent="."]
+script = ExtResource("4_input")
+
+[node name="DemoEffects" type="Node" parent="."]
+script = ExtResource("5_effects")
+
+[node name="DemoAudioDirector" type="Node" parent="."]
+script = ExtResource("6_audio")

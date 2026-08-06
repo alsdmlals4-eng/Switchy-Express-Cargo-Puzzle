@@ -1,0 +1,226 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://game/demo/demo_flow_controller.gd" id="1_flow"]
+
+[node name="VerticalSliceDemo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_flow")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.055, 0.102, 0.12, 1)
+mouse_filter = 2
+
+[node name="TitleScreen" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="TitleScreen"]
+custom_minimum_size = Vector2(520, 420)
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="TitleScreen/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="TitleScreen/Panel/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "SWITCHY EXPRESS"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="TitleScreen/Panel/Content"]
+layout_mode = 2
+text = "화물의 순서를 설계하는 철도 퍼즐"
+horizontal_alignment = 1
+
+[node name="SliceBadge" type="Label" parent="TitleScreen/Panel/Content"]
+layout_mode = 2
+text = "PC VERTICAL SLICE"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="TitleScreen/Panel/Content"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="TitleScreen/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "데모 시작"
+
+[node name="ControlsButton" type="Button" parent="TitleScreen/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "조작 방법"
+
+[node name="QuitButton" type="Button" parent="TitleScreen/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "종료"
+
+[node name="ControlsOverlay" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="ControlsOverlay"]
+custom_minimum_size = Vector2(620, 460)
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="ControlsOverlay/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="ControlsOverlay/Panel/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "조작 방법"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="ControlsOverlay/Panel/Content"]
+layout_mode = 2
+text = "좌클릭  설치·선택·분기 전환\n우클릭  취소·철거\n1~4  선로 도구\nR  회전\nSpace  시작·일시정지\nShift  수동 적재\nA  자동 적재"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="ControlsOverlay/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "닫기"
+
+[node name="BriefingScreen" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="BriefingScreen"]
+custom_minimum_size = Vector2(680, 420)
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="BriefingScreen/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="BriefingScreen/Panel/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "대표 배송 — 되돌아오는 별"
+horizontal_alignment = 1
+
+[node name="Objective" type="Label" parent="BriefingScreen/Panel/Content"]
+layout_mode = 2
+text = "제한 시간 안에 모든 화물을 올바른 역으로 배송하세요.\n화물은 마지막에 실은 것부터 내립니다."
+horizontal_alignment = 1
+
+[node name="Rules" type="Label" parent="BriefingScreen/Panel/Content"]
+layout_mode = 2
+text = "• 선로를 연결한 뒤 운행을 시작합니다.\n• 적재 순서가 하역 순서를 결정합니다.\n• 분기는 운행 중에도 전환할 수 있습니다."
+
+[node name="BeginButton" type="Button" parent="BriefingScreen/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "건설 시작"
+
+[node name="GameplayContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseOverlay" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="PauseOverlay"]
+custom_minimum_size = Vector2(420, 240)
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="PauseOverlay/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="PauseOverlay/Panel/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "일시정지"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="PauseOverlay/Panel/Content"]
+layout_mode = 2
+text = "노선과 화물 순서를 확인하세요."
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseOverlay/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "계속 운행"
+
+[node name="ResultOverlay" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="ResultOverlay"]
+custom_minimum_size = Vector2(560, 520)
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="ResultOverlay/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="ResultOverlay/Panel/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "배송 결과"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="ResultOverlay/Panel/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "결과를 확인하세요."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="RetryButton" type="Button" parent="ResultOverlay/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "같은 노선 다시 실행"
+
+[node name="EditButton" type="Button" parent="ResultOverlay/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "노선 수정"
+
+[node name="TitleButton" type="Button" parent="ResultOverlay/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "타이틀로"

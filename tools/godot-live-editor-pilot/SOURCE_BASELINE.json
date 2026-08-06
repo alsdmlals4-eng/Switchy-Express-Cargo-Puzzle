@@ -1,9 +1,9 @@
 {
   "repository": "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle",
-  "baseline_commit": "925f27909170c5f120df2bcf80943c4ece0f3890",
+  "baseline_commit": "895800e771eb643d9005800b8d7004138c7997b3",
   "project_godot": {
     "path": "project.godot",
-    "raw_sha256": "23a75bb0f0f3c47b7641cb474b6870bc21753ac31fb8a9683bb9f6f9691bb0c6"
+    "raw_sha256": "b44e4c84d1d566f47c601d8b95d0ccd7b9a52a14c362a05f6e2f26e3feb2fc6a"
   },
   "target_scene": {
     "path": "game/finite/presentation/finite_slice_view.tscn",

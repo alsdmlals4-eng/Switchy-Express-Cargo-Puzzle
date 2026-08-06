@@ -1,0 +1,275 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://game/demo/presentation/product_hud.gd" id="1_hud"]
+
+[node name="ProductHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_hud")
+
+[node name="TopStatus" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = -24.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_constants/separation = 28
+
+[node name="PhaseLabel" type="Label" parent="TopStatus"]
+custom_minimum_size = Vector2(180, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "건설 단계"
+vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="TopStatus"]
+custom_minimum_size = Vector2(250, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "노선을 설계하세요"
+vertical_alignment = 1
+
+[node name="CostLabel" type="Label" parent="TopStatus"]
+custom_minimum_size = Vector2(330, 48)
+layout_mode = 2
+text = "현재 비용 0  ·  권장 기준 0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ProblemBanner" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 180.0
+offset_top = 82.0
+offset_right = -180.0
+offset_bottom = 148.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="ProblemText" type="Label" parent="ProblemBanner"]
+layout_mode = 2
+text = "모든 역과 화물을 연결해 주세요"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BuildToolbar" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -80.0
+offset_right = -18.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 8
+mouse_filter = 1
+
+[node name="StraightButton" type="Button" parent="BuildToolbar"]
+custom_minimum_size = Vector2(104, 52)
+layout_mode = 2
+text = "직선  1"
+
+[node name="CurveButton" type="Button" parent="BuildToolbar"]
+custom_minimum_size = Vector2(104, 52)
+layout_mode = 2
+text = "곡선  2"
+
+[node name="SwitchButton" type="Button" parent="BuildToolbar"]
+custom_minimum_size = Vector2(104, 52)
+layout_mode = 2
+text = "분기  3"
+
+[node name="CrossingButton" type="Button" parent="BuildToolbar"]
+custom_minimum_size = Vector2(104, 52)
+layout_mode = 2
+text = "교차  4"
+
+[node name="RotateButton" type="Button" parent="BuildToolbar"]
+custom_minimum_size = Vector2(104, 52)
+layout_mode = 2
+text = "회전  R"
+
+[node name="RemoveButton" type="Button" parent="BuildToolbar"]
+custom_minimum_size = Vector2(116, 52)
+layout_mode = 2
+text = "철거  우클릭"
+
+[node name="ClearButton" type="Button" parent="BuildToolbar"]
+custom_minimum_size = Vector2(104, 52)
+layout_mode = 2
+text = "전체 철거"
+
+[node name="Spacer" type="Control" parent="BuildToolbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="StartButton" type="Button" parent="BuildToolbar"]
+custom_minimum_size = Vector2(180, 52)
+layout_mode = 2
+text = "운행 시작  Space"
+
+[node name="RunToolbar" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -80.0
+offset_right = -24.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 12
+mouse_filter = 1
+
+[node name="LoadButton" type="Button" parent="RunToolbar"]
+custom_minimum_size = Vector2(170, 52)
+layout_mode = 2
+text = "수동 적재  Shift"
+
+[node name="AutoButton" type="Button" parent="RunToolbar"]
+custom_minimum_size = Vector2(170, 52)
+layout_mode = 2
+text = "자동 적재 끔  A"
+
+[node name="RunSpacer" type="Control" parent="RunToolbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="PauseButton" type="Button" parent="RunToolbar"]
+custom_minimum_size = Vector2(180, 52)
+layout_mode = 2
+text = "일시정지  Space"
+
+[node name="ResumeButton" type="Button" parent="RunToolbar"]
+custom_minimum_size = Vector2(180, 52)
+layout_mode = 2
+text = "계속 운행  Space"
+
+[node name="StackPanel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(220, 240)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -120.0
+offset_right = -24.0
+offset_bottom = 120.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="StackLayout" type="VBoxContainer" parent="StackPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="StackTitle" type="Label" parent="StackPanel/StackLayout"]
+layout_mode = 2
+text = "화물 TOP → 마지막 적재"
+horizontal_alignment = 1
+
+[node name="StackText" type="Label" parent="StackPanel/StackLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "비어 있음"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PausePanel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(420, 170)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -85.0
+offset_right = 210.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="PauseLayout" type="VBoxContainer" parent="PausePanel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="PauseTitle" type="Label" parent="PausePanel/PauseLayout"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "일시정지"
+horizontal_alignment = 1
+
+[node name="PauseBody" type="Label" parent="PausePanel/PauseLayout"]
+layout_mode = 2
+text = "노선 확인 중"
+horizontal_alignment = 1
+
+[node name="ResultPanel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(540, 360)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -180.0
+offset_right = 270.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ResultLayout" type="VBoxContainer" parent="ResultPanel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ResultTitle" type="Label" parent="ResultPanel/ResultLayout"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "배송 완료"
+horizontal_alignment = 1
+
+[node name="ResultBody" type="Label" parent="ResultPanel/ResultLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "모든 화물을 배송했습니다."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="RetryButton" type="Button" parent="ResultPanel/ResultLayout"]
+custom_minimum_size = Vector2(180, 52)
+layout_mode = 2
+text = "같은 노선 다시 실행"
+
+[node name="EditButton" type="Button" parent="ResultPanel/ResultLayout"]
+custom_minimum_size = Vector2(180, 52)
+layout_mode = 2
+text = "노선 수정"
+
+[node name="TitleButton" type="Button" parent="ResultPanel/ResultLayout"]
+custom_minimum_size = Vector2(180, 52)
+layout_mode = 2
+text = "타이틀로"
