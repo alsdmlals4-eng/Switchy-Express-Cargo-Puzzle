@@ -189,12 +189,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="PanelContainer" parent="ResultOverlay"]
-custom_minimum_size = Vector2(520, 320)
+custom_minimum_size = Vector2(560, 520)
 layout_mode = 2
 
 [node name="Content" type="VBoxContainer" parent="ResultOverlay/Panel"]
 layout_mode = 2
-theme_override_constants/separation = 18
+theme_override_constants/separation = 16
 
 [node name="Title" type="Label" parent="ResultOverlay/Panel/Content"]
 layout_mode = 2
@@ -204,8 +204,21 @@ horizontal_alignment = 1
 
 [node name="Body" type="Label" parent="ResultOverlay/Panel/Content"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "결과를 확인하세요."
 horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="RetryButton" type="Button" parent="ResultOverlay/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "같은 노선 다시 실행"
+
+[node name="EditButton" type="Button" parent="ResultOverlay/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "노선 수정"
 
 [node name="TitleButton" type="Button" parent="ResultOverlay/Panel/Content"]
 custom_minimum_size = Vector2(0, 56)
