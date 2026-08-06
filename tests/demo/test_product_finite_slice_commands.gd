@@ -42,7 +42,7 @@ func run() -> void:
 	renderer.size = Vector2(1100.0, 900.0)
 	renderer.request_primary_at(Vector2(550.0, 450.0))
 	assert_equal(controller.last_command(), &"BOARD_CELL", "mouse/touch board path uses finite command")
-	assert_equal(controller.last_payload(), Vector2i(5, 4), "board path preserves mapped cell")
+	assert_equal(controller.last_payload(), Vector2i(7, 5), "board path preserves expanded-grid cell")
 
 	var result: Dictionary = product.dispatch_action_for_test(&"demo_tool_curve", true)
 	assert_true(bool(result.get("accepted", false)), "desktop curve action must be accepted")
