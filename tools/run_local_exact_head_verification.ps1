@@ -69,8 +69,10 @@ foreach ($RequiredTool in @($VerifierEntry, $MatrixValidator)) {
     }
 }
 
-$ActualHead = (& git -C $RepoRoot rev-parse HEAD).Trim()
-if ($LASTEXITCODE -ne 0 -or $ActualHead -ne $ExpectedHead) {
+$ActualHeadOutput = (& git -C $RepoRoot rev-parse HEAD 2>&1 | Out-String)
+$ActualHeadExitCode = $LASTEXITCODE
+$ActualHead = $ActualHeadOutput.Trim()
+if ($ActualHeadExitCode -ne 0 -or $ActualHead -ne $ExpectedHead) {
     throw "HEAD_MISMATCH expected=$ExpectedHead actual=$ActualHead"
 }
 $InitialStatus = (& git -C $RepoRoot status --porcelain=v1 | Out-String).Trim()
@@ -125,15 +127,19 @@ $WslPathResult = Invoke-CapturedNative `
 if ($WslPathResult.ExitCode -ne 0) {
     throw "WSL_PATH_RESOLUTION_FAILED exit=$($WslPathResult.ExitCode)"
 }
-$WslRepoRoot = ($WslPathResult.OutputText -split "\r?\n" | Where-Object { $_ -match '^/' } | Select-Object -First 1).Trim()
-if (-not $WslRepoRoot) { throw "WSL_PATH_OUTPUT_INVALID" }
+$WslRepoRootLine = $WslPathResult.OutputText -split "\r?\n" | Where-Object { $_ -match '^/' } | Select-Object -First 1
+if (-not $WslRepoRootLine) {
+    throw "WSL_PATH_OUTPUT_INVALID"
+}
+$WslRepoRoot = $WslRepoRootLine.Trim()
 
 $WslHeadResult = Invoke-CapturedNative `
     -Name "wsl-git-head" `
     -FilePath "wsl.exe" `
-    -ArgumentList @("-d", $WslDistribution, "--cd", $WslRepoRoot, "--", "git", "rev-parse", "HEAD") `
+    -ArgumentList @("-d", $WslDistribution, "--cd", $WslRepoRoot, "--", "git", "-c", "safe.directory=$WslRepoRoot", "rev-parse", "HEAD") `
     -LogPath (Join-Path $ArtifactDir "wsl-git-head.log")
-$WslHead = ($WslHeadResult.OutputText -split "\r?\n" | Where-Object { $_ -match '^[0-9a-fA-F]{40}$' } | Select-Object -First 1).Trim()
+$WslHeadLine = $WslHeadResult.OutputText -split "\r?\n" | Where-Object { $_ -match '^[0-9a-fA-F]{40}$' } | Select-Object -First 1
+$WslHead = if ($WslHeadLine) { $WslHeadLine.Trim() } else { "" }
 if ($WslHeadResult.ExitCode -ne 0 -or $WslHead -ne $ExpectedHead) {
     throw "WSL_HEAD_MISMATCH expected=$ExpectedHead actual=$WslHead"
 }
@@ -141,7 +147,7 @@ if ($WslHeadResult.ExitCode -ne 0 -or $WslHead -ne $ExpectedHead) {
 $WslStatusResult = Invoke-CapturedNative `
     -Name "wsl-git-status" `
     -FilePath "wsl.exe" `
-    -ArgumentList @("-d", $WslDistribution, "--cd", $WslRepoRoot, "--", "git", "status", "--porcelain=v1") `
+    -ArgumentList @("-d", $WslDistribution, "--cd", $WslRepoRoot, "--", "git", "-c", "safe.directory=$WslRepoRoot", "status", "--porcelain=v1") `
     -LogPath (Join-Path $ArtifactDir "wsl-git-status.log")
 if ($WslStatusResult.ExitCode -ne 0 -or $WslStatusResult.OutputText.Trim()) {
     throw "WSL_DIRTY_WORKTREE $($WslStatusResult.OutputText.Trim())"
@@ -191,8 +197,10 @@ if ($LASTEXITCODE -ne 0 -or $PostMatrixStatus) {
     throw "POST_MATRIX_DIRTY_WORKTREE $PostMatrixStatus"
 }
 
-$Python312Executable = (& $WindowsPyLauncher -3.12 -B -c "import sys; print(sys.executable)").Trim()
-if ($LASTEXITCODE -ne 0 -or -not $Python312Executable) {
+$Python312ExecutableOutput = (& $WindowsPyLauncher -3.12 -B -c "import sys; print(sys.executable)" 2>&1 | Out-String)
+$Python312ExitCode = $LASTEXITCODE
+$Python312Executable = $Python312ExecutableOutput.Trim()
+if ($Python312ExitCode -ne 0 -or -not $Python312Executable) {
     throw "WINDOWS_PYTHON_312_EXECUTABLE_NOT_FOUND"
 }
 
