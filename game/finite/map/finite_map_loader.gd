@@ -27,12 +27,13 @@ static func load_from_dictionary(source: Dictionary) -> Variant:
 	_add_excluded_cell(excluded, data.get("incoming_cell", null))
 	for raw: Variant in data.get("blocked_cells", []):
 		_add_excluded_cell(excluded, raw)
-	for placement: Variant in data.get("station_placements", []):
-		if placement is Dictionary:
-			_add_excluded_cell(excluded, placement.get("cell", null))
-	for placement: Variant in data.get("cargo_placements", []):
-		if placement is Dictionary:
-			_add_excluded_cell(excluded, placement.get("cell", null))
+	if not bool(data.get("marker_tracks_player_built", false)):
+		for placement: Variant in data.get("station_placements", []):
+			if placement is Dictionary:
+				_add_excluded_cell(excluded, placement.get("cell", null))
+		for placement: Variant in data.get("cargo_placements", []):
+			if placement is Dictionary:
+				_add_excluded_cell(excluded, placement.get("cell", null))
 
 	var buildable: Dictionary = {}
 	for rect: Variant in rects:
