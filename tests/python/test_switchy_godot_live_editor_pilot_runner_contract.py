@@ -48,6 +48,18 @@ class SwitchyGodotLiveEditorPilotRunnerContractTests(unittest.TestCase):
             with self.subTest(marker=marker):
                 self.assertIn(marker, source)
 
+    def test_runner_restores_source_project_configuration_before_regression(self) -> None:
+        self.assertTrue(RUNNER.is_file(), f"missing {RUNNER.relative_to(ROOT)}")
+        source = RUNNER.read_text(encoding="utf-8")
+        self.assertIn("_restore_source_project_configuration", source)
+        restore_call = source.index("_restore_source_project_configuration(")
+        regression_start = source.index("regression_started = time.perf_counter_ns()")
+        self.assertLess(
+            restore_call,
+            regression_start,
+            "temporary Pilot plugins must be removed before ordinary project regression",
+        )
+
     def test_runner_rehashes_source_and_rejects_godot_error_markers(self) -> None:
         self.assertTrue(RUNNER.is_file(), f"missing {RUNNER.relative_to(ROOT)}")
         source = RUNNER.read_text(encoding="utf-8")
