@@ -42,7 +42,18 @@ func run() -> void:
 					"%s must remain inside %s" % [path, viewport_size]
 				)
 
-		var hud := demo.get_node("GameplayContainer/ProductFiniteSlice/HUD") as Control
+		var product := demo.get_node("GameplayContainer/ProductFiniteSlice") as Control
+		var board := product.get_node("BoardRenderer") as Control
+		var hud := product.get_node("HUD") as Control
+		assert_true(hud.is_visible_in_tree(), "HUD must be visible after entering BUILD")
+		assert_true(hud.size.x >= product.size.x - 1.0, "HUD must fill product width")
+		assert_true(hud.size.y >= product.size.y - 1.0, "HUD must fill product height")
+		assert_true(hud.z_index > board.z_index, "HUD must render above the board explicitly")
+		assert_true(
+			(hud.get_node("BuildToolbar") as Control).is_visible_in_tree(),
+			"BUILD toolbar must be visible after entering BUILD"
+		)
+
 		_assert_single_layout_child(hud.get_node("StackPanel") as Control, "StackPanel")
 		_assert_single_layout_child(hud.get_node("PausePanel") as Control, "PausePanel")
 		_assert_single_layout_child(hud.get_node("ResultPanel") as Control, "ResultPanel")
