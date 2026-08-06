@@ -7,7 +7,7 @@ audit_id: SX-AUD-029
 contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.3
 baseline_main: a18b9fd52734f1884286bc3d0830e337d0c800c9
 approved_at: 2026-08-07 KST
-state: APPROVED_PENDING_PR_VALIDATION
+state: APPROVED_VALIDATION_PATH_CONFIRMED
 supersedes:
   - SX-DEC-047
 superseded_pr:
@@ -34,7 +34,7 @@ larger_runner: NOT_AUTHORIZED
 self_hosted_runner: FALLBACK_ONLY_REQUIRES_SEPARATE_APPROVAL
 ```
 
-현재 프로젝트의 `Godot Tests`, `Project Contract`, `Validate Thin Adapter Migration` 등 핵심 워크플로는 표준 runner label을 사용한다. larger runner를 별도 승인 없이 도입하지 않는다.
+현재 프로젝트의 `Godot Tests`, `Project Contract`, `Validate Thin Adapter Migration` 핵심 워크플로는 표준 runner label을 사용한다. larger runner를 별도 승인 없이 도입하지 않는다.
 
 ## Root-cause correction
 
@@ -51,6 +51,20 @@ merge_commit:
   skip_actions_token: FORBIDDEN_UNLESS_A_SEPARATE_NON_VALIDATION_DECISION_APPROVES_IT
 ```
 
+## Hosted validation evidence
+
+PR #104의 commit `a4534537c9078e1d7006fad1cad60d9ffc9ca8d3`에서 다음 `pull_request` workflow가 표준 hosted runner로 완료됐다.
+
+```yaml
+validated_commit: a4534537c9078e1d7006fad1cad60d9ffc9ca8d3
+checks:
+  Project Contract: PASS
+  Godot Tests: PASS
+  Validate Thin Adapter Migration: PASS
+```
+
+초기 0-run 판정은 실행 생성 전 조회와 SHA 필터 해석 때문에 성급했다. connector 이벤트 차단으로 확정하지 않는다. merge 전에는 항상 현재 PR HEAD와 동일 SHA의 check run을 다시 확인한다.
+
 ## Supersession
 
 `SX-DEC-047`의 Windows 3.11/3.12/3.13 + WSL2 Ubuntu 3.12 수동 exact-HEAD 검증팩은 구현 복잡도가 기존 Actions보다 커졌고, 공개 저장소 표준 runner가 무료라는 공식 정책과 맞지 않아 `SUPERSEDED_NOT_MERGED`로 종료한다.
@@ -58,8 +72,6 @@ merge_commit:
 PR #103의 파일은 `main`에 병합하지 않는다. 해당 PR과 Sheet 기록은 실패 은폐가 아니라 폐기된 접근의 이력으로 보존한다.
 
 ## Evidence model
-
-새 PR은 `[skip actions]`가 없는 커밋으로 열고 다음을 확인한다.
 
 ```text
 exact PR HEAD
