@@ -43,6 +43,7 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/finite/integration/test_vs_demo_authored_solutions.gd"),
 	preload("res://tests/finite/integration/test_demo_marker_track_editability.gd"),
 	preload("res://tests/finite/integration/test_demo_recommended_route.gd"),
+	preload("res://tests/finite/integration/test_one_sided_station_terminal.gd"),
 	preload("res://tests/finite/integration/test_pause_integrity.gd"),
 	preload("res://tests/finite/integration/test_finite_adversarial_cases.gd"),
 	preload("res://tests/finite/validation/test_finite_wrapper_controller_parity.gd"),
