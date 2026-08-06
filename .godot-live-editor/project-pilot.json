@@ -12,8 +12,13 @@
   },
   "project_file": "project.godot",
   "main_scene_source": "application/run/main_scene",
-  "legacy_editor_plugins": [],
-  "legacy_autoloads": [],
+  "legacy_editor_plugins": [
+    "res://addons/godot_ai/plugin.cfg",
+    "res://addons/gut/plugin.cfg"
+  ],
+  "legacy_autoloads": [
+    "_mcp_game_helper"
+  ],
   "legacy_disable_mode": "TEMPORARY_COPY_ONLY",
   "source_mutation_policy": "FORBIDDEN",
   "scratch_scene_path": "res://.godot-live-editor-pilot/scratch.tscn",
