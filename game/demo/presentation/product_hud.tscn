@@ -21,7 +21,7 @@ offset_top = 18.0
 offset_right = -24.0
 offset_bottom = 72.0
 grow_horizontal = 2
-theme_override_constants/separation = 28
+theme_override_constants/separation = 16
 
 [node name="PhaseLabel" type="Label" parent="TopStatus"]
 custom_minimum_size = Vector2(180, 48)
@@ -43,6 +43,11 @@ layout_mode = 2
 text = "현재 비용 0  ·  권장 기준 0"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="MenuButton" type="Button" parent="TopStatus"]
+custom_minimum_size = Vector2(116, 48)
+layout_mode = 2
+text = "메뉴"
 
 [node name="ProblemBanner" type="PanelContainer" parent="."]
 layout_mode = 1
