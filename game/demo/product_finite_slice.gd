@@ -4,6 +4,7 @@ extends Control
 signal terminal_reached(summary: Variant)
 signal title_requested()
 signal pause_changed(paused: bool)
+signal menu_requested()
 
 const SessionControllerScript := preload(
 	"res://game/finite/main/finite_slice_session_controller.gd"
@@ -18,6 +19,7 @@ const RecommendedLayoutProviderScript := preload(
 
 var _controller: RefCounted
 var _last_pause_state: bool = false
+var _shell_input_locked: bool = false
 
 @onready var _renderer: Control = $BoardRenderer
 @onready var _route_overlay: Control = $RouteControlOverlay
@@ -54,6 +56,15 @@ func _exit_tree() -> void:
 
 func session_controller() -> RefCounted:
 	return _controller
+
+
+func set_shell_input_locked(locked: bool) -> void:
+	_shell_input_locked = locked
+	_refresh_desktop_input_enabled()
+
+
+func shell_input_locked_for_test() -> bool:
+	return _shell_input_locked
 
 
 func advance_time(delta_seconds: float) -> void:
@@ -140,6 +151,7 @@ func _connect_hud() -> void:
 	_hud.retry_requested.connect(func() -> void: _dispatch_command(&"RETRY_SAME_LAYOUT"))
 	_hud.edit_requested.connect(func() -> void: _dispatch_command(&"EDIT_LAYOUT"))
 	_hud.title_requested.connect(func() -> void: title_requested.emit())
+	_hud.menu_requested.connect(func() -> void: menu_requested.emit())
 
 
 func _on_secondary_cell_requested(cell: Vector2i) -> void:
@@ -195,7 +207,7 @@ func _apply_model(model: Dictionary) -> void:
 	_hud.apply_model(model)
 	var phase: StringName = StringName(model.get("phase", &"BUILD"))
 	_desktop_input.set_phase(phase)
-	_desktop_input.set_gameplay_enabled(phase != &"SUCCESS" and phase != &"FAILURE")
+	_refresh_desktop_input_enabled()
 	var active_run: bool = phase == &"RUNNING" or phase == &"UNLOADING"
 	_audio.set_train_loop_active(active_run)
 	var paused: bool = phase == &"PAUSED"
@@ -203,6 +215,14 @@ func _apply_model(model: Dictionary) -> void:
 	if paused != _last_pause_state:
 		_last_pause_state = paused
 		pause_changed.emit(paused)
+
+
+func _refresh_desktop_input_enabled() -> void:
+	if not is_instance_valid(_desktop_input):
+		return
+	var phase: StringName = _controller.phase()
+	var terminal: bool = phase == &"SUCCESS" or phase == &"FAILURE"
+	_desktop_input.set_gameplay_enabled(not _shell_input_locked and not terminal)
 
 
 func _on_render_snapshot_changed(snapshot: Dictionary) -> void:

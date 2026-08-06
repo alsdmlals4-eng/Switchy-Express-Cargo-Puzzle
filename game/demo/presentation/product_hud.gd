@@ -14,6 +14,7 @@ signal resume_requested()
 signal retry_requested()
 signal edit_requested()
 signal title_requested()
+signal menu_requested()
 
 @export var use_internal_overlays: bool = true
 
@@ -21,6 +22,7 @@ var _model: Dictionary = {}
 
 
 func _ready() -> void:
+	_connect_button("TopStatus/MenuButton", func() -> void: menu_requested.emit())
 	_connect_button("BuildToolbar/StraightButton", func() -> void: build_tool_selected.emit(&"STRAIGHT"))
 	_connect_button("BuildToolbar/CurveButton", func() -> void: build_tool_selected.emit(&"CURVE"))
 	_connect_button("BuildToolbar/SwitchButton", func() -> void: build_tool_selected.emit(&"SWITCH"))

@@ -6,15 +6,15 @@ Last updated: `2026-08-06`
 current_product_baseline: FINITE_DELIVERY_PUZZLE_BASELINE
 current_decision_batch: GMB-002
 current_product_decisions: SX-DEC-027~036
-current_demo_decisions: SX-DEC-037 · SX-DEC-038
-current_execution_authority: FP-DOR-001 · EV-USER-021 · EV-USER-022 · EV-USER-023 · EV-USER-024
+current_demo_decisions: SX-DEC-037 · SX-DEC-038 · SX-DEC-039
+current_execution_authority: FP-DOR-001 · EV-USER-021 · EV-USER-022 · EV-USER-023 · EV-USER-024 · EV-USER-025
 current_android_evidence: EV-FP-APK-001
-current_audit: SX-AUD-021
+current_audit: SX-AUD-022
 planning_state: APPROVED_AND_SYNCED
-implementation_state: FINITE_CORE_PASS · PC_VERTICAL_SLICE_AUTOMATED_PASS · RECOMMENDED_ROUTE_AUTOMATED_PASS · ROUTE_CONTROL_AUTOMATED_PASS · DEFAULT_PROJECT_PLAY_BOOT_PASS
+implementation_state: FINITE_CORE_PASS · PC_VERTICAL_SLICE_AUTOMATED_PASS · RECOMMENDED_ROUTE_AUTOMATED_PASS · ROUTE_CONTROL_AUTOMATED_PASS · MID_RUN_EXIT_AUTOMATED_PASS · DEFAULT_PROJECT_PLAY_BOOT_PASS · WINDOWS_EXPORT_PASS
 manual_gate_state: PC_LOCAL_RETEST_REQUIRED · WINDOWS_ARTIFACT_RUNTIME_NOT_RUN · ANDROID_NOT_RUN · HUMAN_NOT_RUN
 cutover_state: BLOCKED
-next_pc_gate: FETCH_PULL_MAIN → LOCAL_PROJECT_PLAY_RETEST → WINDOWS_RUNTIME_VISUAL_AUDIO_SMOKE
+next_pc_gate: FETCH_PULL_PR95_OR_MERGED_MAIN → LOCAL_PROJECT_PLAY_RETEST → WINDOWS_RUNTIME_VISUAL_AUDIO_SMOKE
 next_android_gate: ANDROID_DEVICE_SMOKE → FIVE_PERSON_COMPREHENSION
 correct_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
 wrong_sheet: 19Ff... · DO_NOT_MODIFY
@@ -29,6 +29,7 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 → TOP 연속 동일 화물 하역
 → 제한 시간 안에 모든 필수 배송 완료
 → 사용하지 않는 열린 노선 끝은 허용
+→ 필요 시 메뉴에서 현재 플레이를 안전하게 종료
 → 후속 재설계
 ```
 
@@ -48,6 +49,7 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 | SX-DEC-036 | 공정성 | cosmetic-only, power progression·타인 route 공개 금지 | CURRENT |
 | SX-DEC-037 | PC Vertical Slice | 마우스+키보드, touch 보존, 대표 스테이지, F5 기본 Project Play, Windows Demo, Android validation 보존 | AUTOMATED_PASS · LOCAL_RETEST_REQUIRED |
 | SX-DEC-038 | Demo Route Refinement | 권장 배치, 15×11 균형 맵, 열린 종착 허용, 운행 중 분기·교차 경로 표시·전환, RED-first 완주 증명 | AUTOMATED_PASS · LOCAL_RETEST_REQUIRED |
+| SX-DEC-039 | Mid-Run Exit | BUILD·RUN의 상시 메뉴에서 Pause→종료 확인→타이틀 복귀, 취소 시 동일 플레이 유지, shell input lock | AUTOMATED_PASS · LOCAL_RETEST_REQUIRED |
 
 ## SX-DEC-037 One-click Direction
 
@@ -68,22 +70,50 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 - 열차가 해당 제어 선로 위에 있는 동안에는 경로 전환을 잠근다.
 - 새 맵·권장 노선은 자동 완주 테스트를 RED로 먼저 확인한 뒤 구현한다.
 
+## SX-DEC-039 Mid-Run Exit Direction
+
+- Product HUD 상단의 `메뉴`는 BUILD·RUN·UNLOADING·PAUSED에서 접근 가능하다.
+- BUILD에서 메뉴를 열면 finite phase는 `BUILD`로 유지하고 Shell만 일시정지한다.
+- RUNNING·UNLOADING에서 메뉴를 열면 공용 finite `PAUSE` 명령을 사용한다.
+- Pause Overlay의 `현재 플레이 종료`는 별도 Exit Confirmation을 연다.
+- 확인 화면의 초기 포커스는 안전 동작인 `계속 플레이`다.
+- `계속 플레이`는 동일 gameplay instance와 진행 상태를 유지하고 Pause로 돌아간다.
+- `종료하고 타이틀로`는 현재 gameplay instance와 stale result를 폐기하고 TITLE로 돌아간다.
+- Pause·Exit Confirmation·Result 중에는 제품 키보드 입력을 잠근다.
+- 현재 플레이 종료와 애플리케이션 종료를 분리한다.
+
 ## Latest Automated Evidence
 
 ```yaml
-workflow_name: Godot Tests
-workflow_number: 820
-workflow_run_id: 31082270619
-verified_code_head: d064e10ff93a25760f5de044698f79ac4a8f4134
-result: PASS
-godot_cases: 90
-godot_assertions: 11389
-godot_failures: 0
-recommended_route_full_delivery: PASS
-recommended_button_warning_free_install: PASS
-runtime_switch_crossing_click: PASS
-legacy_validation_regression: PASS
+verified_code_head: 573309b644cf5f94ccb6290e4de26a645b936ea9
+project_contract:
+  workflow: 901
+  run_id: 31089231562
+  result: PASS
+godot_tests:
+  workflow: 832
+  run_id: 31089231587
+  result: PASS
+  cases: 91
+  assertions: 11429
+  failures: 0
+mid_run_exit_contract: PASS
+build_shell_pause_preserves_phase: PASS
+run_menu_pauses_domain: PASS
+exit_cancel_preserves_instance: PASS
+exit_confirm_disposes_instance: PASS
+shell_input_lock: PASS
 live_editor_pilot: PASS
+thin_adapter:
+  workflow: 99
+  run_id: 31089231561
+  result: PASS
+windows_demo_export:
+  workflow: 57
+  run_id: 31089231983
+  result: PASS
+  exe_pck_export: PASS
+  artifact_hash_upload: PASS
 ```
 
 ```text
@@ -91,6 +121,8 @@ PC AUTOMATED CORE: PASS
 DEFAULT PROJECT PLAY BOOT: PASS · AUTOMATED
 RECOMMENDED ROUTE: PASS · AUTOMATED
 ROUTE CONTROL UI/DOMAIN SYNC: PASS · AUTOMATED
+MID-RUN EXIT: PASS · AUTOMATED
+WINDOWS DEMO EXPORT: PASS
 PC LOCAL PROJECT PLAY: RETEST_REQUIRED
 PC WINDOWS ARTIFACT RUNTIME: NOT_RUN
 ANDROID DEVICE SMOKE: NOT_RUN
@@ -100,9 +132,9 @@ PRODUCTION CUTOVER: BLOCKED
 
 ## Current Manual Runtime Boundary
 
-이전 사용자 실행에서 HUD 누락, JSON 좌표 오류, 시작점·마커 선로 표시·편집, 회전, 지나친 고정 선로와 경고 판정 문제가 순차 확인되었다. 최신 `main`은 해당 문제를 회귀 테스트로 고정하고 수정했다.
+이전 사용자 실행에서 HUD 누락, JSON 좌표 오류, 시작점·마커 선로 표시·편집, 회전, 지나친 고정 선로와 경고 판정, 중간 종료 경로 부재가 순차 확인되었다. 최신 PR #95는 중간 종료를 회귀 테스트로 고정하고 수정했다.
 
-사용자가 `Fetch origin → Pull origin` 후 F5로 권장 배치·경로 전환·완주를 재검수하기 전에는 수동 PASS로 올리지 않는다.
+사용자가 `Fetch origin → Pull origin` 후 F5로 BUILD 메뉴·RUN 메뉴·종료 취소·타이틀 복귀를 재검수하기 전에는 수동 PASS로 올리지 않는다.
 
 ## Canonical Android Evidence
 
@@ -141,7 +173,7 @@ PC 기본 진입점과 Android validation feature override의 증거를 섞지 �
 ## Current Execution Authority
 
 ```text
-PC: main Fetch/Pull → F5 → 권장 배치 → 운행·경로 전환·완주 재검수
+PC: PR #95 또는 병합된 main Fetch/Pull → F5 → BUILD/RUN 메뉴 → 종료 취소·확정 → 타이틀 복귀 재검수
 Android: canonical APK export PASS → Android device smoke → Five-person Comprehension
 Both: 별도 production cutover review
 ```

@@ -10,7 +10,6 @@ EXPECTED_ANDROID_MARKERS = (
     '[preset.0]',
     'name="Android Validation"',
     'platform="Android"',
-    'runnable=false',
     'custom_features="validation_harness"',
     'export_path="builds/switchy-express-validation.apk"',
     'architectures/arm64-v8a=true',
@@ -25,10 +24,21 @@ EXPECTED_ANDROID_MARKERS = (
 )
 
 
+def _preset_block(text: str, index: int) -> str:
+    start_marker = f"[preset.{index}]"
+    end_marker = f"[preset.{index}.options]"
+    start = text.index(start_marker)
+    end = text.index(end_marker, start)
+    return text[start:end]
+
+
 def test_android_validation_preset_remains_exactly_identifiable() -> None:
     text = PRESETS.read_text(encoding="utf-8")
     for marker in EXPECTED_ANDROID_MARKERS:
         assert marker in text
+    android_preset = _preset_block(text, 0)
+    assert "runnable=true" not in android_preset
+    assert android_preset.count("runnable=false") <= 1
 
 
 def test_windows_demo_uses_a_separate_preset_index_and_package_surface() -> None:
