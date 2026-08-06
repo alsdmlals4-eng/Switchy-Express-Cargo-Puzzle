@@ -50,7 +50,8 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         serialized_adapter = json.dumps(adapter, ensure_ascii=False)
 
         self.assertIn("GMB-002", rules)
-        self.assertIn("SX-DEC-027~039", rules)
+        self.assertIn("SX-DEC-027~036", rules)
+        self.assertIn("SX-DEC-037~039", rules)
         self.assertIn("Base v9.4.3 release pin은 유지", rules)
         self.assertIn("현재 제품 보호 권위가 아니다", rules)
 
