@@ -127,7 +127,8 @@ func _surface_validation_code(cell: Vector2i) -> StringName:
 		or cell.y >= _definition.board_size.y
 	):
 		return OUTSIDE_BOARD
-	if _definition.required_anchor_cells().has(cell):
+	var fixed_cells: Array[Vector2i] = _definition.fixed_anchor_cells()
+	if fixed_cells.has(cell):
 		return AUTHORED_ANCHOR
 	if _definition.blocked_cells.has(cell):
 		return BLOCKED_CELL
