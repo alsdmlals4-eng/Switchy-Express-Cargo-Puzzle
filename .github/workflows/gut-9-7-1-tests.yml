@@ -1,0 +1,117 @@
+name: GUT 9.7.1 Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  gut-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate Phase B static contracts
+        run: |
+          python -m unittest \
+            tests.python.test_gut_phase_b_guard \
+            tests.python.test_gut_phase_b_suite_contract \
+            tests.python.test_gut_phase_b_workflow_contract \
+            -v
+          python -m compileall tools tests/python
+
+      - name: Download Godot 4.7.1
+        run: |
+          curl --fail --location --retry 3 \
+            --output godot.zip \
+            https://github.com/godotengine/godot-builds/releases/download/4.7.1-stable/Godot_v4.7.1-stable_linux.x86_64.zip
+          unzip -q godot.zip
+          chmod +x Godot_v4.7.1-stable_linux.x86_64
+          ./Godot_v4.7.1-stable_linux.x86_64 --version
+
+      - name: Download pinned official GUT source
+        run: |
+          mkdir -p /tmp/gut-official
+          curl --fail --location --retry 3 \
+            --output /tmp/gut-official.zip \
+            https://github.com/bitwes/Gut/archive/aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605.zip
+          unzip -q /tmp/gut-official.zip -d /tmp/gut-official
+          official_root=$(find /tmp/gut-official -type d -path '*/addons/gut' -print -quit)
+          test -n "$official_root"
+          printf '%s\n' "$official_root" > /tmp/gut-official-root.txt
+
+      - name: Reconcile installed GUT vendor
+        run: |
+          mkdir -p test-results/gut
+          python tools/gut_phase_b_guard.py compare \
+            --local addons/gut \
+            --official "$(cat /tmp/gut-official-root.txt)" \
+            --report test-results/gut/vendor-reconciliation.json
+
+      - name: Snapshot protected production tree
+        run: |
+          python tools/gut_phase_b_guard.py snapshot \
+            --root . \
+            --output test-results/gut/production-before.json
+
+      - name: Run formal GUT consumers
+        shell: bash
+        run: |
+          set +e
+          output=$(timeout 180s ./Godot_v4.7.1-stable_linux.x86_64 \
+            --headless \
+            --path . \
+            --script res://addons/gut/gut_cmdln.gd \
+            -gexit 2>&1)
+          status=$?
+          set -e
+
+          printf '%s\n' "$output" | tee test-results/gut/gut-output.log
+          if printf '%s\n' "$output" | grep -E 'SCRIPT ERROR:|(^|[[:space:]])ERROR:'; then
+            echo 'Godot or GUT emitted a runtime or script error.' >&2
+            exit 1
+          fi
+          exit "$status"
+
+      - name: Validate GUT JUnit discovery
+        run: |
+          python tools/gut_phase_b_guard.py junit \
+            --file test-results/gut/junit.xml \
+            --minimum-tests 6 \
+            --report test-results/gut/junit-validation.json
+
+      - name: Verify protected production tree
+        run: |
+          python tools/gut_phase_b_guard.py verify \
+            --root . \
+            --before test-results/gut/production-before.json \
+            --report test-results/gut/production-after.json
+
+      - name: Upload GUT JUnit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gut-junit
+          path: test-results/gut/junit.xml
+          if-no-files-found: error
+
+      - name: Upload Phase B evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gut-phase-b-evidence
+          path: |
+            test-results/gut/*.json
+            test-results/gut/gut-output.log
+          if-no-files-found: error
