@@ -8,7 +8,7 @@ decision_id: SX-DEC-048
 baseline_main: a18b9fd52734f1884286bc3d0830e337d0c800c9
 superseded_decision: SX-DEC-047
 superseded_pr: 103
-status: PENDING_EXACT_HEAD_HOSTED_RUN
+status: STANDARD_HOSTED_PATH_CONFIRMED
 ```
 
 ## Question
@@ -46,6 +46,20 @@ GitHub 공식 문서는 공개 저장소의 표준 GitHub-hosted runner 사용�
 
 PR #103의 exact HEAD에는 `[skip actions]`가 포함되어 workflow run 0건이 의도적으로 발생했다. 이 상태는 비용 차단 증거가 아니며 `NOT_RUN`이다.
 
+PR #104의 commit `a4534537c9078e1d7006fad1cad60d9ffc9ca8d3`에서는 다음 pull-request workflow가 모두 성공했다.
+
+```yaml
+Project Contract:
+  run_id: 31130288582
+  conclusion: success
+Validate Thin Adapter Migration:
+  run_id: 31130288581
+  conclusion: success
+Godot Tests:
+  run_id: 31130288577
+  conclusion: success
+```
+
 ## Findings
 
 ```yaml
@@ -62,6 +76,10 @@ FINDING_3:
   result: LOCAL_PACK_OVERENGINEERED
   detail: Windows and WSL matrix duplicated existing hosted validation and introduced local path/tool discovery burden
 FINDING_4:
+  severity: P2
+  result: INITIAL_ZERO_RUN_DIAGNOSIS_PREMATURE
+  detail: connector-created synchronize workflows appeared after the first zero-run readback; no connector block is established
+FINDING_5:
   severity: P3
   result: NO_PRODUCTION_IMPACT
   detail: PR #103 changed validation tooling/docs/tests only and was not merged
@@ -72,9 +90,9 @@ FINDING_4:
 1. PR #103을 `SUPERSEDED_NOT_MERGED`로 닫는다.
 2. `SX-DEC-047`을 폐기 이력으로 보존한다.
 3. `SX-DEC-048`을 현재 운영 결정으로 승인한다.
-4. `main`에서 새 문서 전용 브랜치를 만들고 skip 지시 없는 커밋으로 PR을 연다.
-5. 표준 hosted workflow가 exact HEAD에서 실제 생성·완료되는지 확인한다.
-6. 확인 후 PR을 병합하고 GitHub main과 Sheet를 같은 ID로 readback한다.
+4. validation PR에는 workflow skip 지시를 넣지 않는다.
+5. 현재 PR HEAD와 동일 SHA의 hosted checks를 확인한 뒤 병합한다.
+6. GitHub main과 Sheet를 같은 ID로 readback한다.
 7. GUT 9.7.1 Phase B는 병합된 `SX-DEC-048` 기준 main에서 별도 TDD PR로 진행한다.
 
 ## Pass criteria
@@ -83,16 +101,13 @@ FINDING_4:
 pr_103: CLOSED_SUPERSEDED_NOT_MERGED
 sx_dec_047: SUPERSEDED
 new_pr_scope: DECISION_AND_AUDIT_DOCS_ONLY
-skip_actions_on_new_head: ABSENT
-hosted_runs_created: REQUIRED
-standard_runner_labels_only: REQUIRED
+skip_actions_on_validation_head: ABSENT
+hosted_runs_created: PASS
+standard_runner_labels_only: PASS
 production_workflow_scene_project_changes: NONE
+current_head_exact_checks: REQUIRED_BEFORE_MERGE
 sheet_same_id_sync: REQUIRED
 ```
-
-## Pull-request synchronize probe
-
-PR #104가 열린 뒤 이 문서 전용 커밋을 추가해 `pull_request.synchronize` 이벤트를 발생시킨다. 이 커밋에도 workflow skip 지시를 넣지 않는다. run 생성 여부로 connector 생성 이벤트와 저장소 Actions 실행 정책을 분리 진단한다.
 
 ## Evidence ceiling
 
