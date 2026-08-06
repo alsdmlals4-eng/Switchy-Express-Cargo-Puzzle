@@ -1,103 +1,16 @@
-# Local Exact-HEAD Verification Fallback Design
-
-## Status
+# Windows + WSL2 Local Exact-HEAD Verification Design
 
 ```yaml
 approval_batch_id: GMB-005
 decision_id: SX-DEC-047
 audit_id: SX-AUD-028
-approved_by: user
-approved_at: 2026-08-07 KST
-base_sha: a18b9fd52734f1884286bc3d0830e337d0c800c9
 scope: validation infrastructure only
-production_gameplay_changes: forbidden
 ```
 
-## Problem
+Python 계약 테스트를 Windows 3.11·3.12·3.13과 WSL2 Ubuntu 3.12에서 실행한다. Windows 3.12는 full verifier의 Python 권위이며, Windows Godot 4.7.1에서 project contract·legacy 회귀·GUT 9.7.1 JUnit·production mutation guard를 실행한다.
 
-GitHub-hosted Actions cannot be used for the current work because the user reports no available GitHub Actions budget. The repository currently has no branch protection, Required Status Check, or Ruleset, so a PR can technically merge without hosted checks. The v4.3 evidence contract still requires TDD, exact-HEAD verification, production mutation detection, review, and merged-main readback. The fallback therefore replaces only the execution venue; it does not weaken the validation content.
+`python-matrix.json`이 exact HEAD와 네 target 결과를 기록하고 독립 matrix validator가 이를 다시 검증한다. 네 target 중 하나라도 누락·실패·버전 불일치·HEAD 불일치면 전체 실패다. WSL2에서도 HEAD와 clean status를 독립 확인한다.
 
-## Decision
+모든 Python 실행에 `-B`와 `PYTHONDONTWRITEBYTECODE=1`을 적용해 `__pycache__` 자기오염을 막는다. 기존 verifier는 hardened compatibility entry를 통해 `GIT_COMMAND_FAILED` 오류 코드를 안정화한다.
 
-Use a repository-owned local verification bundle that runs on an exact checked-out PR HEAD and produces a machine-readable evidence manifest. Commit and PR messages for work performed during the budget constraint include `[skip actions]` so hosted workflows do not consume budget. The fallback is temporary and does not delete or redefine existing workflows.
-
-## Architecture
-
-- `tools/local_exact_head_verification.py` owns cross-platform validation orchestration, production hashing, command result capture, JUnit readback, and final evidence manifest generation.
-- `tools/run_local_exact_head_verification.ps1` is the Windows entry point. It resolves the repository root and exact Godot executable, then invokes the Python verifier.
-- `tests/python/test_local_exact_head_verification.py` verifies head mismatch rejection, dirty worktree rejection, mutation detection, JUnit discovery floors, deterministic hashing, and successful manifest output.
-- `docs/testing/LOCAL_EXACT_HEAD_VERIFICATION.md` documents the operator command, evidence fields, failure modes, PR comment format, and restoration path when hosted Actions become available.
-
-## Exact-HEAD Contract
-
-The verifier fails closed unless all of the following are true:
-
-1. `git rev-parse HEAD` equals `--expected-head`.
-2. The worktree is clean before validation.
-3. Godot reports `4.7.1-stable` or an explicitly equivalent `4.7.1` build string.
-4. Every configured command exits with code 0.
-5. GUT JUnit exists and has at least the configured minimum discovered tests.
-6. Production file hashes before and after validation are identical.
-7. Test artifacts are written only beneath the configured artifact directory.
-8. The evidence manifest records exact HEAD, tool versions, commands, exit codes, hashes, timestamps, and limitations.
-
-## Default Validation Sequence
-
-```text
-git exact-head and clean-tree gate
-→ exact Godot version gate
-→ Python unittest discovery
-→ project contract validator
-→ legacy Godot regression runner
-→ GUT 9.7.1 CLI with JUnit output
-→ production hash comparison
-→ evidence manifest
-```
-
-The existing legacy runner remains during Phase B migration and is labeled separately from formal GUT authority. A legacy PASS is not counted toward the GUT discovery floor.
-
-## Production Mutation Scope
-
-The default hash inventory includes:
-
-```text
-project.godot
-**/*.tscn
-**/*.tres
-**/*.res
-data/**
-assets/**
-game/**
-```
-
-The verifier excludes `.git`, `.godot`, the configured artifact directory, and test-only paths from the production hash inventory. Tests may write only to the artifact directory or `user://` managed by Godot.
-
-## GitHub Process Without Hosted Actions
-
-```text
-branch from verified main
-→ TDD implementation
-→ commit with [skip actions]
-→ PR
-→ exact PR HEAD readback
-→ execute local verifier against that SHA
-→ post manifest summary and SHA-256 to PR
-→ GPT diff/review-thread/mergeability attack review
-→ merge with [skip actions]
-→ main readback
-→ Sheet same-ID sync
-```
-
-A manifest generated for an older HEAD is invalid. Any new commit requires a new verifier run.
-
-## Security and Integrity
-
-- No branch protection or Ruleset is disabled because neither is currently configured.
-- Existing workflows remain unchanged and can be restored as the primary execution venue without migration.
-- The verifier never edits production files.
-- The output directory is required to be untracked or ignored before execution.
-- Secrets, tokens, credentials, and absolute user paths are not written into the evidence manifest.
-
-## Evidence Ceiling
-
-This fallback enables local exact-HEAD evidence but does not itself prove Windows runtime, Android device runtime, human comprehension, or HiGodot authoring connection. Those remain `NOT_RUN` until separately observed.
+GitHub workflow, gameplay, `project.godot`, Scene, Resource, binary asset은 변경하지 않는다. Hosted Actions는 `[skip actions]`로 `NOT_RUN` 처리한다.
