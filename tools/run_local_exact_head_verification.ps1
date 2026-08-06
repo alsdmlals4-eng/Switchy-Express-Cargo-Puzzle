@@ -128,9 +128,7 @@ if ($WslPathResult.ExitCode -ne 0) {
     throw "WSL_PATH_RESOLUTION_FAILED exit=$($WslPathResult.ExitCode)"
 }
 $WslRepoRootLine = $WslPathResult.OutputText -split "\r?\n" | Where-Object { $_ -match '^/' } | Select-Object -First 1
-if (-not $WslRepoRootLine) {
-    throw "WSL_PATH_OUTPUT_INVALID"
-}
+if (-not $WslRepoRootLine) { throw "WSL_PATH_OUTPUT_INVALID" }
 $WslRepoRoot = $WslRepoRootLine.Trim()
 
 $WslHeadResult = Invoke-CapturedNative `
@@ -218,6 +216,7 @@ $Arguments = @(
     "--expected-head", $ExpectedHead,
     "--godot-executable", $GodotExecutable,
     "--python-executable", $Python312Executable,
+    "--python-matrix-manifest", $MatrixManifestPath,
     "--artifact-dir", $ArtifactDir,
     "--output", $ManifestOutput,
     "--junit-output", $JunitOutput,
