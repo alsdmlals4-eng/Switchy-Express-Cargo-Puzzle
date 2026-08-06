@@ -1,7 +1,7 @@
 extends RefCounted
 
-const AlphaFixture := preload("res://tests/fixtures/finite/vs_demo_solution_alpha.gd")
+const ProviderScript := preload("res://game/demo/recommended_layout_provider.gd")
 
 
 static func pieces() -> Array[Variant]:
-	return AlphaFixture._pieces_with_first_exit(Vector2i.UP)
+	return ProviderScript.pieces_for_map(&"VS_DEMO_01", &"BETA")
