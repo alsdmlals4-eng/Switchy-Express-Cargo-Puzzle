@@ -70,6 +70,15 @@ Esc: 취소·뒤로
 
 ## 상태와 증거 경계
 
+기존 자동 계약이 소비하는 기계 판독 상태 토큰은 그대로 유지한다.
+
+```text
+CANONICAL MAIN APK EXPORT: PASS
+ANDROID DEVICE SMOKE: NOT_RUN
+FIVE-PERSON COMPREHENSION: NOT_RUN
+PRODUCTION CUTOVER: BLOCKED
+```
+
 ```yaml
 repository_main_observed: 212d37e4577a6ffdb7b93e92de6a82785c2976eb
 latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc

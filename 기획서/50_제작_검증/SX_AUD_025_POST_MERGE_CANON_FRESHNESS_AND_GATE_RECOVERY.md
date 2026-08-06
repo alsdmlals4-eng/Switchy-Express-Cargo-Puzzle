@@ -40,7 +40,7 @@ A user can be directed to an obsolete feature branch or wait for a merge that al
 
 ### State
 
-`FIXED_IN_BRANCH`
+`FIXED_IN_PR_99`
 
 ## Finding F144 — Repository HEAD and automated verified product HEAD conflation
 
@@ -63,7 +63,7 @@ latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
 
 ### State
 
-`FIXED_IN_BRANCH`
+`FIXED_IN_PR_99`
 
 ## Finding F145 — Base protection document preserved superseded product rules
 
@@ -77,47 +77,51 @@ A later Base adoption or protected-change check could preserve or reactivate rul
 
 ### Correction
 
-The release pin remains Base v9.4.3, but current protection now points to the finite authored delivery puzzle and `SX-DEC-027~039`. Legacy rules are retained only as historical evidence.
+The release pin remains Base v9.4.3, but the human-readable protection boundary now points to the finite authored delivery puzzle and `SX-DEC-027~039`. Legacy rules are retained only as historical evidence.
 
 ### State
 
-`FIXED_IN_BRANCH`
+`FIXED_IN_PR_99`
 
-## Finding F146 — Adapter freshness metadata was stale
+## Finding F146 — Adapter and protected canon cannot change in one PR
 
 ### Evidence
 
-The adapter's Sheet verification and protected baseline predated the current finite implementation and demo decisions.
+The trusted Base adapter validator compares the adapter's protected baseline to the exact PR base and rejects changes under `project.godot`, `game/**`, `assets/**`, and `기획서/**`. PR #99 necessarily changes active files under `기획서/**`.
+
+### Risk
+
+Changing the Adapter in the same PR would bypass or weaken the intended fail-closed protected-change boundary, or leave the PR permanently failing.
 
 ### Correction
 
-- add explicit finite product authority
-- refresh observed repository and verified product SHAs
-- refresh Sheet verification metadata
-- preserve Base adoption sentinel fields as `NOT_RUN` and record this recovery in separate freshness/pending-branch metadata
-- add the focused freshness validator
+- restore `skills/PROJECT_BASE_ADAPTER.json` to the exact PR-base version in PR #99
+- keep Base v9.4.3 sentinel semantics unchanged
+- merge the canon-only recovery first
+- create a separate adapter-only follow-up from the merged main, with no protected-path changes
+- update the Adapter baseline and freshness metadata only in that follow-up
 
 ### State
 
-`FIXED_IN_BRANCH`
+`DEFERRED_TO_ADAPTER_ONLY_FOLLOWUP`
 
 ## Finding F147 — PR #94 candidate Pilot is not merge-ready
 
 ### Evidence
 
-- PR title/body refers to Base C0.2 while actual diff pins a C0.3 candidate
-- candidate SHA is not an approved merged release pin
+- PR title/body referred to Base C0.2 while actual diff pinned a C0.3 candidate
+- candidate SHA was not an approved merged release pin
 - candidate diverged from current Base main
 - the core Pilot workflow failed
 - current Base main adds selective addon use and HiGodot single-authority boundaries
 
 ### Decision
 
-PR #94 is superseded and should be archived. A future adoption must start from an approved merged immutable Base SHA, pass the full Pilot and product regression, and prove a non-duplicative actual consumption path.
+PR #94 was archived without merge. A future adoption must start from an approved merged immutable Base SHA, pass the full Pilot and product regression, and prove a non-duplicative actual consumption path.
 
 ### State
 
-`ARCHIVE_REQUIRED`
+`ARCHIVED`
 
 ## Preserved evidence boundaries
 

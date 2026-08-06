@@ -12,70 +12,26 @@
     "legacy_inputs": {},
     "views": []
   },
-  "current_product_authority": {
-    "audit": "SX-AUD-025",
-    "decision_batch": "GMB-002",
-    "demo_decisions": [
-      "SX-DEC-037",
-      "SX-DEC-038",
-      "SX-DEC-039"
-    ],
-    "historical_not_current": [
-      "ENDLESS_SURVIVAL",
-      "FUEL_ZERO_GAME_OVER",
-      "BOOST",
-      "CAPACITY_8",
-      "PICKUP_RESPAWN",
-      "SWITCH_AUTO_RESET"
-    ],
-    "product_decisions": [
-      "SX-DEC-027",
-      "SX-DEC-028",
-      "SX-DEC-029",
-      "SX-DEC-030",
-      "SX-DEC-031",
-      "SX-DEC-032",
-      "SX-DEC-033",
-      "SX-DEC-034",
-      "SX-DEC-035",
-      "SX-DEC-036"
-    ],
-    "product_kind": "FINITE_AUTHORED_DELIVERY_PUZZLE"
-  },
-  "freshness": {
-    "latest_automated_verified_product_main": "1339a9467312d0ac680725894a9efb59746ec2cc",
-    "repository_main_observed": "212d37e4577a6ffdb7b93e92de6a82785c2976eb",
-    "reviewed_at": "2026-08-06T21:58:00+09:00",
-    "reviewed_by_audit": "SX-AUD-025",
-    "unverified_later_commits_are_not_inherited_by_automated_pass": true
-  },
   "gdd_sheet": {
-    "decision_commit": "1339a9467312d0ac680725894a9efb59746ec2cc",
+    "decision_commit": "3cd13ff375a597d4eba9035af5b05e6186fb4853",
     "declared_sync_status": "SYNCED",
-    "pending_branch_sync": {
-      "audit": "SX-AUD-025",
-      "head": "a686ff7b953985e312d23e35587a948f7d6dc1ed",
-      "pr": 99,
-      "state": "APPROVED_PENDING_MERGE"
-    },
     "role": "USER_FACING_GDD_WORKSPACE",
     "spreadsheet_id": "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo",
     "sync_status": "CURRENT",
     "url": "https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit",
-    "verified_at": "2026-08-06T21:58:00+09:00"
+    "verified_at": "2026-08-02T15:16:00+09:00"
   },
   "project": {
     "engine": "Godot 4.7.1",
     "orientation": "landscape",
     "platform": "Android",
-    "secondary_platform": "Windows",
     "repository": "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle",
     "root": "."
   },
   "protected_baseline": {
     "authority_kind": "REMOTE_TRACKING_REF",
     "authority_ref": "refs/remotes/origin/main",
-    "commit": "212d37e4577a6ffdb7b93e92de6a82785c2976eb",
+    "commit": "8c6dd60c634019e64178e72aa4959a2a970708e1",
     "policy_sha256": "51b3ca7e05165069666d1235413d3277580646c63008b472f15df4fb4db9f0ca",
     "policy_source_path": "skills/PROJECT_BASE_ADAPTER.json",
     "policy_source_type": "CANONICAL_ADAPTER_SOURCE",
@@ -252,7 +208,6 @@
     "godot --headless --path . --script res://tests/run_tests.gd",
     "python tests/test_base_shared_external_ai_adapter.py",
     "python tests/test_base_v942_planning_first_adoption.py",
-    "python tests/test_base_v943_first_prompt_adoption.py",
-    "python tests/test_post_merge_canon_freshness.py"
+    "python tests/test_base_v943_first_prompt_adoption.py"
   ]
 }

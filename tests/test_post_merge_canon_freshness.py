@@ -43,36 +43,24 @@ def test_active_canon_uses_main_and_merged_pr_83() -> None:
         assert required in combined
 
 
-def test_base_protection_uses_finite_authority_without_promoting_candidate() -> None:
+def test_base_release_pin_and_finite_protection_are_truthful() -> None:
     rules = _read(BASE_RULES)
-    data = json.loads(_read(ADAPTER))
+    adapter = json.loads(_read(ADAPTER))
+    serialized_adapter = json.dumps(adapter, ensure_ascii=False)
 
     assert "GMB-002" in rules
     assert "SX-DEC-027~039" in rules
     assert "Base v9.4.3 release pin은 유지" in rules
     assert "현재 제품 보호 권위가 아니다" in rules
 
-    authority = data["current_product_authority"]
-    assert authority["decision_batch"] == "GMB-002"
-    assert authority["product_kind"] == "FINITE_AUTHORED_DELIVERY_PUZZLE"
-    assert authority["demo_decisions"] == ["SX-DEC-037", "SX-DEC-038", "SX-DEC-039"]
-
-    assert data["base_release"]["version"] == "9.4.3"
-    assert data["freshness"]["repository_main_observed"] == "212d37e4577a6ffdb7b93e92de6a82785c2976eb"
-    assert data["freshness"]["latest_automated_verified_product_main"] == "1339a9467312d0ac680725894a9efb59746ec2cc"
-    assert data["gdd_sheet"]["spreadsheet_id"] == "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo"
-    assert data["gdd_sheet"]["declared_sync_status"] == "SYNCED"
-    assert data["gdd_sheet"]["sync_status"] == "CURRENT"
-    pending = data["gdd_sheet"]["pending_branch_sync"]
-    assert pending["audit"] == "SX-AUD-025"
-    assert pending["pr"] == 99
-    assert pending["state"] == "APPROVED_PENDING_MERGE"
-
-    historical = set(authority["historical_not_current"])
-    assert {"ENDLESS_SURVIVAL", "FUEL_ZERO_GAME_OVER", "BOOST", "CAPACITY_8"} <= historical
+    assert adapter["base_release"]["version"] == "9.4.3"
+    assert adapter["gdd_sheet"]["spreadsheet_id"] == "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo"
+    assert adapter["gdd_sheet"]["declared_sync_status"] == "SYNCED"
+    assert adapter["gdd_sheet"]["sync_status"] == "CURRENT"
+    assert "5e803762f3c4f93b7cb31669312111d708507ef5" not in serialized_adapter
 
 
-def test_audit_preserves_manual_evidence_ceiling() -> None:
+def test_audit_preserves_manual_evidence_ceiling_and_split_boundary() -> None:
     text = _read(AUDIT)
 
     for required in (
@@ -81,6 +69,7 @@ def test_audit_preserves_manual_evidence_ceiling() -> None:
         "F145",
         "F146",
         "F147",
+        "DEFERRED_TO_ADAPTER_ONLY_FOLLOWUP",
         "pc_local_route_and_mid_run_retest: RETEST_REQUIRED",
         "windows_artifact_runtime: NOT_RUN",
         "android_device_smoke: NOT_RUN",

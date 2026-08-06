@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Restore post-merge canonical freshness, align the Base adapter with the finite product authority, and prevent stale PR/branch guidance from returning.
+**Goal:** Restore post-merge canonical freshness, preserve fail-closed Base protection, and prevent stale PR/branch guidance from returning.
 
-**Architecture:** Keep product code and gameplay rules unchanged. Repair only active documentation, adapter metadata, regression contracts, and the user-facing Google Sheet. Preserve Base v9.4.3 as the adopted release pin while treating newer Base main changes as reviewed but not automatically adopted.
+**Architecture:** Keep product code and gameplay rules unchanged. PR #99 repairs active canon and user-facing Sheet state only. Because the trusted Base validator rejects Adapter changes combined with protected `기획서/**` changes, Adapter freshness is a separate follow-up after PR #99 merges.
 
 **Tech Stack:** Markdown, JSON, Python contract tests, GitHub Actions, Google Sheets.
 
@@ -25,15 +25,10 @@
 **Files:**
 - Create: `tests/test_post_merge_canon_freshness.py`
 
-**Interfaces:**
-- Consumes: active canonical documents and `skills/PROJECT_BASE_ADAPTER.json`
-- Produces: a pytest contract that fails on stale PR #83 Draft state, stale feature-branch execution guidance, legacy product authority, or unbounded Base candidate adoption
-
-- [ ] Write assertions that reject `agent/pc-vertical-slice-demo-design`, `PR #83: DRAFT`, `MAIN_PENDING`, and legacy endless/fuel/BOOST as current protection.
-- [ ] Assert `main`, `PR #83 MERGED`, `SX-AUD-025`, finite authority, separate repository/verified SHAs, and Base v9.4.3 pin.
-- [ ] Run the focused test and confirm RED against the pre-repair branch.
-- [ ] Repair documents and adapter.
-- [ ] Run the focused test and confirm GREEN.
+- [x] Reject obsolete feature-branch guidance, PR #83 Draft state, and `MAIN_PENDING`.
+- [x] Require main, PR #83 MERGED, `SX-AUD-025`, and separate observed/verified SHAs.
+- [x] Preserve Base v9.4.3 pin and reject the superseded PR #94 candidate SHA.
+- [ ] Confirm focused contract GREEN on the final PR #99 head.
 
 ### Task 2: Repair active canonical documents
 
@@ -43,51 +38,48 @@
 - Modify: `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
 - Create: `기획서/50_제작_검증/SX_AUD_025_POST_MERGE_CANON_FRESHNESS_AND_GATE_RECOVERY.md`
 
-**Interfaces:**
-- Consumes: merged PR #83 metadata, verified product commit `1339a946...`, observed main `212d37e...`
-- Produces: a single main-branch execution path and truthful manual-gate boundary
+- [x] Replace obsolete feature-branch instructions with `main`.
+- [x] Record PR #83 as merged and remove merge-review blocking language.
+- [x] Separate repository HEAD from latest automated verified product HEAD.
+- [x] Preserve local F5, Windows runtime, Android, human, and production gates as open.
+- [x] Restore exact Android canonical freshness status tokens consumed by existing tests.
 
-- [ ] Replace obsolete feature-branch instructions with `main`.
-- [ ] Record PR #83 as merged and remove merge-review blocking language.
-- [ ] Separate observed repository HEAD from latest automated verified product HEAD.
-- [ ] Preserve local F5, Windows runtime, Android, human, and production gates as open where evidence is absent.
-- [ ] Add `SX-AUD-025` with findings, corrections, and non-claims.
-
-### Task 3: Align Base adapter protection
+### Task 3: Repair the human-readable Base protection boundary
 
 **Files:**
 - Modify: `docs/BASE_RULES_VERSION.md`
-- Modify: `skills/PROJECT_BASE_ADAPTER.json`
 
-**Interfaces:**
-- Consumes: Base v9.4.3 immutable release pin and current finite product authority
-- Produces: adapter metadata that protects GMB-002/SX-DEC-027~039 without promoting current Base main or PR #94 candidate SHA
+- [x] Keep Base v9.4.3 release SHA and lock unchanged.
+- [x] Identify `GMB-002 · SX-DEC-027~039` as current finite product protection.
+- [x] Classify endless/fuel/BOOST/capacity 8/respawn/auto-reset as historical, not current.
+- [x] Avoid promoting current Base main or the PR #94 candidate as a release.
 
-- [ ] Keep the Base v9.4.3 release SHA and lock unchanged.
-- [ ] Add current product authority and historical-not-current boundaries.
-- [ ] Refresh Sheet and protected-baseline metadata.
-- [ ] Preserve the Base adoption sentinel fields as `NOT_RUN`; record this recovery in separate freshness and pending-branch metadata.
-- [ ] Add the freshness test to validators.
-
-### Task 4: Synchronize Sheet and handle PR #94
+### Task 4: Preserve Adapter fail-closed separation
 
 **Files:**
-- Update Sheet tabs: `00_프로젝트_허브`, `01_작업순서`, `02_현재_확정결정`, `04_누락_충돌_감사`, `50_제작_검증`
+- Revert in PR #99: `skills/PROJECT_BASE_ADAPTER.json`
+- Follow-up after merge: adapter-only branch and PR
 
-**Interfaces:**
-- Consumes: Draft PR number and branch head
-- Produces: same-ID `SX-AUD-025` pre-merge synchronization and an archived stale Pilot PR
+- [x] Diagnose exact-PR-base failure as a protected-path boundary, not a schema workaround target.
+- [x] Restore the Adapter to the PR-base version in PR #99.
+- [ ] After PR #99 merges, create an adapter-only PR from merged main.
+- [ ] Update protected baseline and allowed freshness metadata without modifying protected files.
+- [ ] Run trusted Base validator against the exact follow-up PR base.
 
-- [ ] Update stale PR #83 and feature-branch cells.
-- [ ] Add `SX-AUD-025` rows with `APPROVED_PENDING_MERGE`.
-- [ ] Re-read changed ranges.
-- [ ] Comment on and close PR #94 as superseded by the current Base authority review.
-- [ ] Open a Draft PR for this recovery branch.
+### Task 5: Synchronize Sheet and handle PR #94
 
-### Task 5: Verification
+- [x] Update stale PR #83 and feature-branch cells.
+- [x] Add `SX-AUD-025` rows with `APPROVED_PENDING_MERGE`.
+- [x] Re-read changed ranges.
+- [x] Comment on and close PR #94 as superseded.
+- [x] Open Draft PR #99 for canon recovery.
 
-- [ ] Run focused freshness test.
-- [ ] Run Project Contract.
-- [ ] Run Godot regression.
-- [ ] Inspect PR changed files and unresolved review threads.
-- [ ] Report manual gates without expanding PASS claims.
+### Task 6: Verification
+
+- [ ] Focused freshness test PASS.
+- [ ] Project Contract PASS.
+- [ ] Godot regression PASS.
+- [ ] PR changed-file and unresolved-thread inspection PASS.
+- [ ] Merge PR #99 with exact HEAD only after all automated checks pass.
+- [ ] Complete post-merge Sheet closure.
+- [ ] Start adapter-only follow-up PR.
