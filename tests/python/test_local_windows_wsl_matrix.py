@@ -59,6 +59,13 @@ class LocalWindowsWslMatrixTest(unittest.TestCase):
         with self.assertRaisesRegex(module.MatrixError, "PYTHON_MATRIX_HEAD_MISMATCH"):
             module.validate_matrix(passing_matrix("b" * 40), "a" * 40)
 
+    def test_matrix_rejects_invalid_numeric_fields(self) -> None:
+        module = load_matrix()
+        invalid = passing_matrix()
+        invalid["targets"][0]["exit_code"] = "not-a-number"
+        with self.assertRaisesRegex(module.MatrixError, "PYTHON_MATRIX_TARGET_INVALID"):
+            module.validate_matrix(invalid, "a" * 40)
+
     def test_matrix_summary_is_sanitized(self) -> None:
         summary = load_matrix().validate_matrix(passing_matrix(), "a" * 40)
         self.assertEqual(summary["status"], "PASS")
@@ -74,13 +81,27 @@ class LocalWindowsWslMatrixTest(unittest.TestCase):
     def test_wrapper_contract(self) -> None:
         text = WRAPPER.read_text(encoding="utf-8")
         for token in (
-            '"3.11"', '"3.12"', '"3.13"',
+            '"3.11"',
+            '"3.12"',
+            '"3.13"',
             'WslDistribution = "Ubuntu"',
             'WslPythonExecutable = "python3.12"',
-            "wsl.exe", "wslpath", '"--cd"',
-            "WSL_HEAD_MISMATCH", "WSL_DIRTY_WORKTREE",
-            "PYTHONDONTWRITEBYTECODE", "python-matrix.json",
-            "local_python_matrix.py", "local_exact_head_verification_entry.py",
+            "wsl.exe",
+            "wslpath",
+            '"--cd"',
+            "WSL_HEAD_MISMATCH",
+            "WSL_DIRTY_WORKTREE",
+            "safe.directory=",
+            "$ActualHeadOutput",
+            "$WslRepoRootLine",
+            "$WslHeadLine",
+            "$Python312ExecutableOutput",
+            "PYTHONDONTWRITEBYTECODE",
+            "SWITCHY_PYTHON_VERSION=",
+            "MARKED_OUTPUT_NOT_FOUND",
+            "python-matrix.json",
+            "local_python_matrix.py",
+            "local_exact_head_verification_entry.py",
         ):
             self.assertIn(token, text)
 
