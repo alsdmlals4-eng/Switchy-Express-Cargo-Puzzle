@@ -3,7 +3,6 @@ extends "res://tests/test_case.gd"
 const MAP_PATH := "res://data/maps/vs_demo_01.json"
 const MapLoaderScript := preload("res://game/finite/map/finite_map_loader.gd")
 const BuildSessionScript := preload("res://game/finite/build/finite_build_session.gd")
-const TrackPieceScript := preload("res://game/finite/build/track_piece.gd")
 const ControllerScript := preload("res://game/finite/main/finite_slice_session_controller.gd")
 const AlphaSolutionScript := preload("res://tests/fixtures/finite/vs_demo_solution_alpha.gd")
 
@@ -25,8 +24,21 @@ func run() -> void:
 		"station and cargo tracks must be player-built in the product demo"
 	)
 
-	var marker_pieces: Array[Variant] = _marker_pieces(definition)
-	assert_equal(marker_pieces.size(), 6, "demo route must include six editable marker cells")
+	var marker_cells: Array[Vector2i] = _marker_cells(definition)
+	assert_equal(marker_cells.size(), 6, "demo map must expose six station and cargo cells")
+	for placement: Dictionary in definition.station_placements:
+		assert_false(placement.has("rail_anchor"), "stations must not carry prelaid track data")
+	for placement: Dictionary in definition.cargo_placements:
+		assert_false(placement.has("rail_anchor"), "cargo must not carry prelaid track data")
+	for cell: Vector2i in marker_cells:
+		assert_true(definition.buildable_cells.has(cell), "every marker cell must be buildable")
+
+	var complete_layout: Array[Variant] = AlphaSolutionScript.pieces()
+	var marker_pieces: Array[Variant] = []
+	for piece: Variant in complete_layout:
+		if marker_cells.has(piece.cell):
+			marker_pieces.append(piece)
+	assert_equal(marker_pieces.size(), 6, "authored solution must include six marker-cell tracks")
 	if marker_pieces.size() != 6:
 		return
 
@@ -55,8 +67,6 @@ func run() -> void:
 		"a removed marker-cell track must be placeable again"
 	)
 
-	var complete_layout: Array[Variant] = AlphaSolutionScript.pieces()
-	complete_layout.append_array(marker_pieces)
 	var controller: RefCounted = ControllerScript.new()
 	assert_true(controller.initialize(MAP_PATH), "demo controller must initialize")
 	assert_true(
@@ -89,29 +99,12 @@ func run() -> void:
 		)
 
 
-static func _marker_pieces(definition: Variant) -> Array[Variant]:
-	var result: Array[Variant] = []
-	var placements: Array = []
-	placements.append_array(definition.station_placements)
-	placements.append_array(definition.cargo_placements)
-	for value: Variant in placements:
-		if not value is Dictionary:
-			return []
-		var placement: Dictionary = value
-		var anchor_value: Variant = placement.get("rail_anchor", null)
-		if not anchor_value is Dictionary:
-			return []
-		var anchor: Dictionary = anchor_value
-		var cell := _read_cell(placement.get("cell", []))
-		var geometry := StringName(anchor.get("geometry", &""))
-		var rotation := int(anchor.get("rotation_quarters", 0))
-		var switch_exit := Vector2i.ZERO
-		if geometry == &"SWITCH":
-			switch_exit = _rotate_clockwise(Vector2i.RIGHT, rotation)
-		var piece: Variant = TrackPieceScript.create(cell, geometry, rotation, switch_exit)
-		if piece == null:
-			return []
-		result.append(piece)
+static func _marker_cells(definition: Variant) -> Array[Vector2i]:
+	var result: Array[Vector2i] = []
+	for placement: Dictionary in definition.station_placements:
+		result.append(_read_cell(placement.get("cell", [])))
+	for placement: Dictionary in definition.cargo_placements:
+		result.append(_read_cell(placement.get("cell", [])))
 	return result
 
 
@@ -123,10 +116,3 @@ static func _read_cell(raw: Variant) -> Vector2i:
 	if raw is Dictionary:
 		return Vector2i(int(raw.get("x", 0)), int(raw.get("y", 0)))
 	return Vector2i(-1, -1)
-
-
-static func _rotate_clockwise(direction: Vector2i, quarter_turns: int) -> Vector2i:
-	var result := direction
-	for _index: int in range(posmod(quarter_turns, 4)):
-		result = Vector2i(-result.y, result.x)
-	return result
