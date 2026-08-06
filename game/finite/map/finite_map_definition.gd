@@ -164,6 +164,8 @@ func _validate_placements(
 			errors.append("%s placement cargo_type must be valid" % placement_kind)
 
 		var anchor: Variant = placement.get("rail_anchor", null)
+		if marker_tracks_player_built and anchor == null:
+			continue
 		if not anchor is Dictionary:
 			errors.append("%s placement rail_anchor is required" % placement_kind)
 			continue
