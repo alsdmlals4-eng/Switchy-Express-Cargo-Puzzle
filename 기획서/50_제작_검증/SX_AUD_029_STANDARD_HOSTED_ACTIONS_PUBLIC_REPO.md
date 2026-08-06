@@ -90,6 +90,10 @@ production_workflow_scene_project_changes: NONE
 sheet_same_id_sync: REQUIRED
 ```
 
+## Pull-request synchronize probe
+
+PR #104가 열린 뒤 이 문서 전용 커밋을 추가해 `pull_request.synchronize` 이벤트를 발생시킨다. 이 커밋에도 workflow skip 지시를 넣지 않는다. run 생성 여부로 connector 생성 이벤트와 저장소 Actions 실행 정책을 분리 진단한다.
+
 ## Evidence ceiling
 
 이 감사는 hosted Actions 운영 경로를 정정한다. GUT Phase B, gameplay, HiGodot authoring, Windows runtime, Android device, human gate의 PASS를 주장하지 않는다.
