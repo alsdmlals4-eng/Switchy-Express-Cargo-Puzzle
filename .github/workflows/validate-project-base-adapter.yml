@@ -2,6 +2,21 @@ name: Validate Project Base Adapter
 
 on:
   pull_request:
+    branches: [main]
+    paths:
+      - .agents/skills/switchy-express-cargo-puzzle-workflow-router/**
+      - skills/PROJECT_BASE_ADAPTER.json
+      - skills/PROJECT_SKILL_SNAPSHOT.json
+      - skills/SKILL_REGISTRY.json
+      - docs/PROJECT_OPERATING_DASHBOARD.html
+      - docs/PROJECT_OPERATING_HEALTH.json
+      - docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_*.json
+      - docs/operations/SWITCHY_SHEET_AUTHORITY_EVIDENCE_*.json
+      - tests/python/test_project_base_adapter_thin_migration.py
+      - tests/test_base_shared_external_ai_adapter.py
+      - tests/test_base_v942_planning_first_adoption.py
+      - tests/test_base_v943_first_prompt_adoption.py
+      - tests/test_base_v94_ai_operations_adoption.py
 
 permissions:
   contents: read
