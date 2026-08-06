@@ -5,39 +5,24 @@ decision_id: SX-DEC-047
 audit_id: SX-AUD-028
 status: ACTIVE_TEMPORARY_FALLBACK
 reason: GITHUB_HOSTED_ACTIONS_BUDGET_UNAVAILABLE
-replaces: execution venue only
-preserves:
-  - exact HEAD
-  - TDD
-  - GUT 9.7.1 discovery and JUnit
-  - legacy regression during migration
-  - production mutation guard
-  - diff and review-thread inspection
+matrix:
+  - Windows Python 3.11
+  - Windows Python 3.12
+  - Windows Python 3.13
+  - WSL2 Ubuntu Python 3.12
+full_project_runtime: Windows Godot 4.7.1 + legacy regression + GUT 9.7.1
 ```
 
-## Purpose
+## 검증 구조
 
-This procedure runs the same project validation responsibilities outside GitHub-hosted Actions when hosted minutes or budget are unavailable. It does not delete workflows, relax gameplay acceptance criteria, or convert an untested branch into a PASS.
+Python 계약 테스트는 Windows `py` 런처의 3.11·3.12·3.13과 WSL2 Ubuntu의 `python3.12`에서 실행한다. WSL2에서도 `git rev-parse HEAD`와 clean status를 독립 확인해 동일 exact HEAD를 증명한다. 이후 Windows Python 3.12로 project contract를 실행하고, Windows Godot 4.7.1에서 legacy 회귀와 GUT 9.7.1 JUnit을 한 번 실행한다. WSL2에서 Windows Godot 실행 파일을 재사용하지 않는다.
 
-Commits and merge commits made while the budget constraint is active use `[skip actions]`. This prevents hosted workflow consumption; it is not a success signal. The proof source is the generated exact-HEAD manifest plus the PR diff and review readback.
+모든 Python 실행은 `-B`와 `PYTHONDONTWRITEBYTECODE=1`을 사용해 `__pycache__`가 작업 트리를 오염시키지 않게 한다.
 
-## Prerequisites
-
-- Windows checkout of `alsdmlals4-eng/Switchy-Express-Cargo-Puzzle`
-- clean working tree
-- full 40-character PR HEAD SHA
-- Python 3.12 available as `python`
-- exact Godot `4.7.1-stable` executable
-- GUT 9.7.1 present at `res://addons/gut`
-- formal GUT consumers under `res://tests/gut`
-
-The output directory defaults to the Windows temporary directory and stays outside the repository.
-
-## Command
+## 실행 명령
 
 ```powershell
 Set-Location "C:/Users/user/Documents/GitHub/Ninza/Switchy-Express-Cargo-Puzzle"
-
 git fetch --prune origin
 git switch <pr-branch>
 git pull --ff-only origin <pr-branch>
@@ -45,78 +30,53 @@ $ExpectedHead = git rev-parse HEAD
 
 ./tools/run_local_exact_head_verification.ps1 `
   -ExpectedHead $ExpectedHead `
-  -GodotExecutable "C:/path/to/Godot_v4.7.1-stable_win64.exe"
+  -GodotExecutable "C:/path/to/Godot_v4.7.1-stable_win64.exe" `
+  -WslDistribution "Ubuntu" `
+  -WslPythonExecutable "python3.12"
 ```
 
-Do not use a short SHA for `-ExpectedHead`. The wrapper writes:
+## 외부 산출물
 
 ```text
-%TEMP%/SwitchyExpress/local-exact-head/<head-prefix>/local-verification.json
+%TEMP%/SwitchyExpress/local-exact-head/<head-prefix>/python-matrix.json
+%TEMP%/SwitchyExpress/local-exact-head/<head-prefix>/windows-python-3.11.log
+%TEMP%/SwitchyExpress/local-exact-head/<head-prefix>/windows-python-3.12.log
+%TEMP%/SwitchyExpress/local-exact-head/<head-prefix>/windows-python-3.13.log
+%TEMP%/SwitchyExpress/local-exact-head/<head-prefix>/wsl-ubuntu-python-3.12.log
 %TEMP%/SwitchyExpress/local-exact-head/<head-prefix>/gut-junit.xml
+%TEMP%/SwitchyExpress/local-exact-head/<head-prefix>/local-verification.json
 ```
 
-## Verification sequence
+`python-matrix.json`은 네 환경의 실제 Python 버전, exit code, 실행 시간, 로그 파일명, exact HEAD를 기록한다. 절대 사용자 경로와 stdout/stderr 원문은 최종 증거 요약에 넣지 않는다.
 
-1. `git rev-parse HEAD` equals the supplied exact SHA.
-2. `git status --porcelain` is empty.
-3. Godot `--version` starts with `4.7.1`.
-4. Python unittests pass.
-5. `tools/validate_project_contract.py` passes.
-6. Existing `res://tests/run_tests.gd` regression passes during migration.
-7. GUT 9.7.1 runs `res://tests/gut`, creates JUnit, and discovers at least six tests.
-8. Production hashes are identical before and after all commands.
-9. `local-verification.json` is written with exact SHA, commands, versions, counts, hashes, timestamps, and limitations.
+## 필수 실패 코드
 
-## Stable failure codes
+- `PYTHON_MATRIX_TARGETS_MISMATCH`
+- `PYTHON_MATRIX_TARGET_FAILED`
+- `PYTHON_MATRIX_HEAD_MISMATCH`
+- `PYTHON_MATRIX_VERSION_MISMATCH`
+- `WSL_HEAD_MISMATCH`
+- `WSL_DIRTY_WORKTREE`
+- `HEAD_MISMATCH`
+- `DIRTY_WORKTREE`
+- `POST_RUN_DIRTY_WORKTREE`
+- `GODOT_VERSION_MISMATCH`
+- `GUT_DISCOVERY_BELOW_MINIMUM`
+- `GUT_JUNIT_FAILURE`
+- `PRODUCTION_MUTATION`
 
-| Code | Meaning |
-|---|---|
-| `HEAD_MISMATCH` | checked-out commit differs from the reviewed PR HEAD |
-| `DIRTY_WORKTREE` | tracked or untracked repository changes exist before validation |
-| `GODOT_VERSION_MISMATCH` | executable is not Godot 4.7.1 |
-| `COMMAND_FAILED` | one validation command returned non-zero |
-| `GUT_JUNIT_MISSING` | GUT did not create the report |
-| `GUT_DISCOVERY_BELOW_MINIMUM` | fewer than six formal GUT tests were discovered |
-| `GUT_JUNIT_FAILURE` | JUnit reports failures or errors |
-| `PRODUCTION_MUTATION` | tests changed a protected production file |
-| `ARTIFACT_DIR_NOT_IGNORED` | an in-repository artifact path is not ignored |
-
-## PR evidence comment
-
-After a PASS, post the following values on the PR without committing the artifact and changing HEAD:
+## PR 증거
 
 ```text
 LOCAL_EXACT_HEAD_VERIFICATION: PASS
 HEAD: <40-character SHA>
-GODOT: <manifest godot_version>
+PYTHON_MATRIX: Windows 3.11 PASS · Windows 3.12 PASS · Windows 3.13 PASS · WSL2 Ubuntu 3.12 PASS
+GODOT: 4.7.1-stable
 GUT: discovered=<n> failures=0 errors=0
 PRODUCTION_MUTATION: false
-MANIFEST_SHA256: <sha256 of local-verification.json>
+MATRIX_SHA256: <python-matrix.json sha256>
+MANIFEST_SHA256: <local-verification.json sha256>
 LIMITATIONS: HIGODOT_CONNECTION_NOT_VERIFIED; WINDOWS_RUNTIME_SMOKE_NOT_INCLUDED; ANDROID_DEVICE_NOT_RUN; HUMAN_COMPREHENSION_NOT_RUN
 ```
 
-A comment for an older SHA is invalid. Any commit requires a fresh run and a new manifest hash.
-
-## Review and merge gate
-
-The fallback PR is mergeable only when:
-
-- reviewed exact HEAD equals current PR HEAD
-- manifest status is PASS for that SHA
-- full changed-file inventory is within approved scope
-- no production Scene, Resource, `project.godot`, or gameplay file changed without its authority
-- unresolved review threads are zero
-- no P0/P1 finding remains
-- mergeability is true
-
-The repository currently has no Required Status Check or Ruleset. This fact allows the fallback but does not replace evidence.
-
-## Restoration
-
-When GitHub-hosted Actions budget becomes available again:
-
-1. stop adding `[skip actions]` to new commits
-2. run hosted checks on the next PR exact HEAD
-3. compare hosted results with the local manifest
-4. retain the local verifier as a developer preflight and incident fallback
-5. do not delete existing workflow files as part of restoration
+GitHub-hosted run은 `[skip actions]` 때문에 `NOT_RUN`이며 PASS로 표기하지 않는다. 새 커밋이 생기면 이전 매트릭스와 manifest는 무효다.
