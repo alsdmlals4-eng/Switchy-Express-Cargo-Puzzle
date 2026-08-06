@@ -3,6 +3,7 @@
   "map_id": "VS_DEMO_01",
   "map_revision": 1,
   "ruleset_version": "fp_core_v1",
+  "marker_tracks_player_built": true,
   "board_size": [11, 9],
   "start_cell": [1, 4],
   "incoming_cell": [0, 4],
