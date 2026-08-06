@@ -11,11 +11,16 @@ func run() -> void:
 	if definition == null:
 		return
 
-	assert_equal(definition.identity_key(), "VS_DEMO_01@1", "demo map has independent identity")
-	assert_equal(definition.board_size, Vector2i(11, 9), "demo board remains readable at 16:9")
-	assert_equal(definition.time_limit_seconds, 120.0, "demo time limit supports first-play learning")
+	assert_equal(definition.identity_key(), "VS_DEMO_01@2", "demo map has revised independent identity")
+	assert_equal(definition.board_size, Vector2i(15, 11), "demo board uses the expanded playfield")
+	assert_equal(definition.time_limit_seconds, 150.0, "expanded route keeps a learnable time limit")
 	assert_equal(definition.cargo_placements.size(), 4, "demo map has four authored cargo")
 	assert_equal(definition.station_placements.size(), 2, "demo map has two station types")
+	assert_true(definition.marker_tracks_are_player_built(), "marker tracks remain player-built")
+	assert_true(
+		definition.allows_open_terminals_after_required(),
+		"product route may finish after all required deliveries"
+	)
 	assert_true(definition.validation_errors().is_empty(), "demo map definition must validate")
 
 	var proof: Variant = LoaderScript.load_from_path(PROOF_MAP_PATH)
@@ -24,3 +29,7 @@ func run() -> void:
 		assert_equal(proof.map_id, &"FP_CORE_PROOF_01", "proof map identity remains unchanged")
 		assert_not_equal(definition.map_id, proof.map_id, "demo and proof map identities remain separate")
 		assert_equal(proof.time_limit_seconds, 90.0, "proof map timing remains unchanged")
+		assert_false(
+			proof.allows_open_terminals_after_required(),
+			"proof map keeps strict closed-route validation"
+		)
