@@ -9,6 +9,7 @@ export_presets.cfg
 build/
 dist/
 exports/
+test-results/
 
 # Editors / OS
 .vscode/
