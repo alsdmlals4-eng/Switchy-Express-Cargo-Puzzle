@@ -4,18 +4,18 @@ Last updated: `2026-08-06`
 
 ```yaml
 current_product_baseline: FINITE_DELIVERY_PUZZLE_BASELINE
-current_decision_batch: GMB-002
+current_decision_batch: GMB-003
 current_product_decisions: SX-DEC-027~036
-current_demo_decisions: SX-DEC-037 · SX-DEC-038 · SX-DEC-039
-current_execution_authority: FP-DOR-001 · EV-USER-021 · EV-USER-022 · EV-USER-023 · EV-USER-024 · EV-USER-025 · EV-USER-026 · EV-USER-027
+current_demo_decisions: SX-DEC-037 · SX-DEC-038 · SX-DEC-039 · SX-DEC-040 · SX-DEC-041 · SX-DEC-042
+current_execution_authority: FP-DOR-001 · EV-USER-021 · EV-USER-022 · EV-USER-023 · EV-USER-024 · EV-USER-025 · EV-USER-026 · EV-USER-027 · EV-USER-028 · EV-USER-029
 current_android_evidence: EV-FP-APK-001
-current_audit: SX-AUD-024
-planning_state: APPROVED_AND_SYNCED
-implementation_state: FINITE_CORE_PASS · PC_VERTICAL_SLICE_AUTOMATED_PASS · RECOMMENDED_ROUTE_AUTOMATED_PASS · ROUTE_CONTROL_AUTOMATED_PASS · CURVE_RENDER_PORT_PARITY_PASS · ONE_SIDED_STATION_TERMINAL_PASS · MID_RUN_EXIT_AUTOMATED_PASS · DEFAULT_PROJECT_PLAY_BOOT_PASS · WINDOWS_EXPORT_PASS
+current_audit: SX-AUD-026
+planning_state: APPROVED_PENDING_MERGE
+implementation_state: FINITE_CORE_PASS · PC_VERTICAL_SLICE_AUTOMATED_PASS · RECOMMENDED_ROUTE_AUTOMATED_PASS · ROUTE_CONTROL_AUTOMATED_PASS · CURVE_RENDER_PORT_PARITY_PASS · ONE_SIDED_STATION_TERMINAL_PASS · MID_RUN_EXIT_AUTOMATED_PASS · DEFAULT_PROJECT_PLAY_BOOT_PASS · WINDOWS_EXPORT_PASS · ROUTE_END_AND_SWITCH_DIRECTION_IMPLEMENTATION_PENDING
 verified_code_main: 1339a9467312d0ac680725894a9efb59746ec2cc
-manual_gate_state: TITLE_EXIT_VISIBLE_PASS · PC_LOCAL_ROUTE_AND_MID_RUN_RETEST_REQUIRED · WINDOWS_ARTIFACT_RUNTIME_NOT_RUN · ANDROID_NOT_RUN · HUMAN_NOT_RUN
+manual_gate_state: TITLE_EXIT_VISIBLE_PASS · SUCCESS_RESULT_VISIBLE_PASS · RED_ONE_SIDED_STATION_USER_PASS · BLUE_ONE_SIDED_STATION_USER_FAIL · PC_LOCAL_ROUTE_AND_MID_RUN_RETEST_REQUIRED · WINDOWS_ARTIFACT_RUNTIME_NOT_RUN · ANDROID_NOT_RUN · HUMAN_NOT_RUN
 cutover_state: BLOCKED
-next_pc_gate: MAIN_FETCH_PULL → GODOT_REOPEN → F5_ONE_SIDED_STATION_AND_MID_RUN_EXIT_RETEST → WINDOWS_RUNTIME_VISUAL_AUDIO_SMOKE
+next_pc_gate: GMB003_PLAN_MERGE → TDD_IMPLEMENTATION → MAIN_FETCH_PULL → GODOT_REOPEN → F5_BLUE_TERMINAL_ROUTE_END_SWITCH_ARROW_RETEST → WINDOWS_RUNTIME_VISUAL_AUDIO_SMOKE
 next_android_gate: ANDROID_DEVICE_SMOKE → FIVE_PERSON_COMPREHENSION
 correct_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
 wrong_sheet: 19Ff... · DO_NOT_MODIFY
@@ -27,9 +27,11 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 선로 건설로 화물 조우 순서 설계
 → 수동/자동 적재로 LIFO 스택 구성
 → 운행 중 분기·교차 경로 전환
+→ 연결된 모든 분기 방향을 화살표로 확인하고 필요 시 진입 방향으로 U턴
 → TOP 연속 동일 화물 하역
 → 제한 시간 안에 모든 필수 배송 완료
-→ 사용하지 않는 열린 노선 끝과 한쪽 연결 종착역 허용
+→ 사용하지 않는 열린 노선 끝과 색상 대칭 한쪽 연결 종착역 허용
+→ 배송 완료 전 이동 불가 시 ROUTE_END 게임 오버
 → 필요 시 메뉴에서 현재 플레이를 안전하게 종료
 → 후속 재설계
 ```
@@ -51,6 +53,9 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 | SX-DEC-037 | PC Vertical Slice | 마우스+키보드, touch 보존, 대표 스테이지, F5 기본 Project Play, Windows Demo, Android validation 보존 | AUTOMATED_PASS · LOCAL_RETEST_REQUIRED |
 | SX-DEC-038 | Demo Route Refinement | 권장 배치, 15×11 균형 맵, 열린 종착, 한쪽 연결 종착역, 운행 중 분기·교차 표시·전환, 화면/판정 포트 동등성 | AUTOMATED_PASS · STATION_TERMINAL_PASS · LOCAL_RETEST_REQUIRED |
 | SX-DEC-039 | Mid-Run Exit | BUILD·RUN 상시 메뉴에서 Pause→종료 확인→타이틀 복귀, 취소 시 동일 플레이 유지, shell input lock | AUTOMATED_PASS · TITLE_EXIT_VISIBLE_PASS · MID_RUN_RETEST_REQUIRED |
+| SX-DEC-040 | Station Color Parity | 모든 역 색상은 reciprocal 이웃 1개 이상이면 동일하게 한쪽 연결 종착역으로 인정 | APPROVED · IMPLEMENTATION_PENDING |
+| SX-DEC-041 | Route-End Failure | 배송·하역 판정 뒤 이동 불가면 FAILURE/ROUTE_END, 마지막 배송 SUCCESS 우선 | APPROVED · IMPLEMENTATION_PENDING |
+| SX-DEC-042 | Switch Direction Arrows | 분기의 세 연결 방향을 화살표로 표시·직접 선택하며 진입 방향 선택 시 U턴 허용 | APPROVED · IMPLEMENTATION_PENDING |
 
 ## SX-DEC-037 One-click Direction
 
@@ -86,6 +91,30 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 - 현재 플레이 종료와 애플리케이션 종료를 분리한다.
 - 사용자가 타이틀 화면의 종료 표시를 확인했으므로 `TITLE_EXIT_VISIBLE_PASS`다.
 - BUILD/RUN 메뉴의 취소·확정 전체 흐름은 별도 로컬 재검수 전까지 PASS로 확대하지 않는다.
+
+## SX-DEC-040 Station Color Parity Direction
+
+- 역 연결 판정은 cargo type과 색상에 무관하다.
+- RED_STAR와 BLUE_DIAMOND는 같은 선로 구조에서 같은 Preflight·하역 결과를 가져야 한다.
+- 기존 자동 회귀가 RED_STAR만 명시하므로 두 색상 대칭 테스트를 추가한다.
+- 파란 역 테스트가 현재 코드에서 이미 통과하면 사용자 관찰의 원인을 임의로 색상 코드라고 단정하지 않고 정확한 로컬 SHA·선로 회전·런타임 재현을 계속 요구한다.
+
+## SX-DEC-041 Route-End Failure Direction
+
+- RUNNING 중 현재 칸의 접촉·하역 처리를 마친 뒤 합법적인 다음 칸이 없으면 `FAILURE · ROUTE_END`다.
+- 마지막 필수 배송의 pending SUCCESS는 같은 위치의 ROUTE_END보다 우선한다.
+- 비최종 하역 중 노선 끝에 도달하면 하역 연출 완료 후 ROUTE_END를 확정한다.
+- 제한 시간 실패는 `TIME_EXPIRED`로 구분한다.
+- 동일 배치 재시도와 편집 복구를 유지한다.
+
+## SX-DEC-042 Switch Direction Arrow Direction
+
+- SWITCH의 reciprocal 세 연결 방향을 모두 절차적 화살표로 표시한다.
+- 선택 방향은 굵기·채움으로 강조하고 나머지 방향도 계속 보인다.
+- 원하는 화살표를 직접 클릭·터치해 선택하며 진입 방향 선택은 U턴을 의미한다.
+- 분기 점유 중 잠금과 BUILD/RUN 권위는 유지한다.
+- CROSSING의 기존 STRAIGHT/RIGHT/LEFT 모드는 이번 배치에서 변경하지 않는다.
+- 새 바이너리 자산은 필요하지 않으며 기존 RouteControlOverlay를 안전하게 확장한다.
 
 ## Latest Automated Evidence
 
@@ -154,8 +183,12 @@ PC 기본 진입점과 Android validation feature override의 증거를 섞지 �
 
 ## Open Gates
 
-- PC local one-sided station and mid-run exit retest: `RETEST_REQUIRED`
-- Title exit visibility: `PASS · USER LOCAL`
+- Red one-sided station runtime: `PASS · USER LOCAL · EV-USER-028`
+- Blue one-sided station runtime: `FAIL · USER LOCAL · EV-USER-028 · ROOT_CAUSE_UNVERIFIED`
+- SUCCESS result visibility: `PASS · USER LOCAL · EV-USER-029`
+- Route-end game over: `APPROVED · IMPLEMENTATION_PENDING`
+- Switch three-direction arrows and U-turn: `APPROVED · IMPLEMENTATION_PENDING`
+- PC local route and mid-run retest: `RETEST_REQUIRED`
 - Windows artifact runtime·visual·audio·physical input smoke: `NOT_RUN`
 - Android landscape device smoke: `NOT_RUN`
 - five-person comprehension: `NOT_RUN`
@@ -179,7 +212,7 @@ PC 기본 진입점과 Android validation feature override의 증거를 섞지 �
 ## Current Execution Authority
 
 ```text
-PC: main Fetch/Pull → Godot reopen → F5 → 한쪽 연결 역 경고 없음·최종 하역 성공 → BUILD/RUN 메뉴 종료 취소·확정 재검수
+PC: GMB-003 plan merge → TDD implementation → main Fetch/Pull → Godot reopen → F5 → 파란 한쪽 연결 역 → ROUTE_END 실패 문구 → 분기 세 방향 화살표·U턴 → 마지막 배송 SUCCESS 우선순위 재검수
 Android: canonical APK export PASS → Android device smoke → Five-person Comprehension
 Both: 별도 production cutover review
 ```

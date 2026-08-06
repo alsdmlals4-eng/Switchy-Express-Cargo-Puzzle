@@ -5,11 +5,12 @@
 ### PC Vertical Slice chain
 
 ```text
-PC0 SX-DEC-037~039 AUTHORITY: PASS
+PC0 SX-DEC-037~042 AUTHORITY: PASS · GMB-003 PLAN
 → PC1 AUTOMATED VERTICAL SLICE: PASS
 → PC2 DEFAULT PROJECT PLAY BOOT: PASS · AUTOMATED
-→ PC3 PR #83 MERGE: PASS
+→ PC3 PR #83/#99/#100 MERGE: PASS
 → PC4 ROUTE·TERMINAL·MID-RUN AUTOMATED REGRESSION: PASS
+→ PC4A COLOR PARITY·ROUTE-END·SWITCH ARROW IMPLEMENTATION: PENDING
 → PC5 LOCAL ROUTE·MID-RUN RETEST: RETEST_REQUIRED
 → PC6 WINDOWS DEBUG EXPORT·INTEGRITY: PASS
 → PC7 WINDOWS ARTIFACT RUNTIME·VISUAL·AUDIO SMOKE: NOT_RUN
@@ -33,7 +34,7 @@ G0 PROJECT_IDENTIFIED: PASS
 ```text
 B0 BASE v9.4.3 RELEASE PIN: PASS
 → B1 CURRENT BASE MAIN DELTA REVIEW: PASS · NOT_ADOPTED_AS_RELEASE
-→ B2 PR #94 CANDIDATE PILOT: BLOCKED_REPLAN_REQUIRED
+→ B2 PR #94 CANDIDATE PILOT: CLOSED · ARCHIVED · NOT_MERGED
 → B3 MERGED IMMUTABLE PIN + SUCCESSFUL PILOT + SINGLE_AUTHORITY REVIEW: NOT_RUN
 ```
 
@@ -51,9 +52,9 @@ Status: `PASS`
 
 ## G1 — FINITE_PRODUCT_AUTHORITY
 
-Status: `PASS · GMB-002 · SX-DEC-027~039`
+Status: `PASS · GMB-003 · SX-DEC-027~042`
 
-현재 권위는 유한 authored delivery puzzle, 자유 선로 건설, preflight, 수동/자동 적재, unlimited LIFO, persistent branch·crossing, TOP 그룹 하역, 제한 시간 성공·실패, 한쪽 연결 최종 종착역, same-layout retry, mid-run exit다.
+현재 권위는 유한 authored delivery puzzle, 자유 선로 건설, preflight, 수동/자동 적재, unlimited LIFO, persistent branch·crossing, TOP 그룹 하역, 제한 시간 성공·실패, 색상 대칭 한쪽 연결 최종 종착역, 배송 전 노선 끝 ROUTE_END, 분기 세 방향 화살표·U턴, same-layout retry, mid-run exit다.
 
 무한 생존·fuel·BOOST·capacity 8·pickup respawn·switch auto-reset은 역사 계약이며 현재 제품 권위가 아니다.
 
@@ -112,7 +113,7 @@ Status: `NOT_RUN · BLOCKED_BY_G5`
 
 Status: `BLOCKED_BY_G5_G6`
 
-## PC0 — SX-DEC-037~039 AUTHORITY
+## PC0 — SX-DEC-037~042 AUTHORITY
 
 Status: `PASS`
 
@@ -175,6 +176,19 @@ Status: `PASS`
 - mid-run menu·cancel/confirm state contract
 - title exit visibility와 mid-run flow의 수동 범위 분리
 
+## PC4A — COLOR PARITY·ROUTE-END·SWITCH ARROW IMPLEMENTATION
+
+Status: `PENDING · SX-AUD-026`
+
+- RED_STAR/BLUE_DIAMOND one-sided station parity
+- final delivery SUCCESS priority over route end
+- no legal next cell → FAILURE/ROUTE_END without assertion
+- switch reciprocal three-direction selection including incoming-direction Uturn
+- all switch directions visible as procedural arrows
+- occupied lock and BUILD input pass-through
+
+자동 구현 증거 전에는 PASS로 올리지 않는다.
+
 ## PC5 — LOCAL ROUTE·MID-RUN RETEST
 
 Status: `RETEST_REQUIRED`
@@ -185,8 +199,11 @@ main 확인
 → Pull origin
 → Godot 완전 종료 후 reopen
 → F5
-→ 권장 배치
-→ 한쪽 연결 종착역 마지막 하역·SUCCESS
+→ 권장 배치 또는 재현용 배치
+→ 파란 한쪽 연결 종착역 판정
+→ 배송 전 노선 끝 FAILURE/ROUTE_END
+→ 분기 세 화살표·진입 방향 U턴·점유 잠금
+→ 마지막 하역 SUCCESS 우선순위
 → BUILD/RUN 메뉴 취소·상태 보존
 → 종료 확정·Title 복귀
 ```
@@ -226,7 +243,7 @@ Status: `PASS · NOT_ADOPTED_AS_RELEASE`
 
 ## B2 — PR #94 CANDIDATE PILOT
 
-Status: `BLOCKED_REPLAN_REQUIRED`
+Status: `CLOSED · ARCHIVED · NOT_MERGED`
 
 - PR 설명은 Base C0.2를 말하지만 실제 diff는 C0.3 candidate SHA를 고정
 - candidate SHA는 현재 Base main과 분기됨
@@ -250,7 +267,7 @@ Status: `NOT_RUN`
 ```text
 PC: main Fetch/Pull → F5 one-sided station + mid-run exit retest → Windows artifact smoke
 Android: canonical APK device smoke → Five-person Comprehension
-Base: PR #94 archive/replan → merged immutable candidate가 생길 때 새 bounded adoption
+Base: PR #94 archived → merged immutable candidate가 생길 때 새 bounded adoption
 Both: separate production cutover review
 ```
 
