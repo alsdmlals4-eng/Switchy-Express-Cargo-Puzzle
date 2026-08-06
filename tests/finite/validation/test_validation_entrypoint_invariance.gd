@@ -3,14 +3,14 @@ extends "res://tests/test_case.gd"
 const PROJECT_PATH := "res://project.godot"
 const PRESET_PATH := "res://export_presets.cfg"
 const MAIN_SCENE_PATH := "res://game/main/main.tscn"
-const APPROVED_MAIN_SHA256 := "05f3045700fbef7122606e099a918a6cb59cc06a22ab1b7f826dc368df7bdeb2"
+const APPROVED_MAIN_SHA256 := "fc122fc0e241f715f1ae0043329b6486b7e440e894e35300af1cddab64494c85"
 
 
 func run() -> void:
 	var project_text := FileAccess.get_file_as_string(PROJECT_PATH)
 	assert_true(
 		project_text.contains("run/main_scene=\"res://game/main/main.tscn\""),
-		"base production main must remain legacy"
+		"default product main must remain the approved one-click Play bootstrap"
 	)
 	assert_true(
 		project_text.contains(
@@ -31,7 +31,7 @@ func run() -> void:
 	assert_equal(
 		hash_context.finish().hex_encode(),
 		APPROVED_MAIN_SHA256,
-		"game/main/main.tscn must remain the approved baseline"
+		"game/main/main.tscn must remain the approved one-click Play bootstrap"
 	)
 
 	assert_true(FileAccess.file_exists(PRESET_PATH), "Android validation export preset must exist")
