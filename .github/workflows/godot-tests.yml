@@ -11,9 +11,13 @@ permissions:
 jobs:
   headless-tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
       - name: Download Godot 4.7.1
         run: |
@@ -43,3 +47,18 @@ jobs:
           fi
 
           exit "$status"
+
+      - name: Run Switchy real-project live-editor Pilot
+        run: |
+          mkdir -p artifacts/godot-live-editor-ci
+          python tools/run_switchy_godot_live_editor_pilot.py \
+            --godot ./Godot_v4.7.1-stable_linux.x86_64 \
+            --report artifacts/godot-live-editor-ci/switchy-pilot-report.json
+
+      - name: Upload Switchy live-editor Pilot report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: switchy-godot-live-editor-pilot-report
+          path: artifacts/godot-live-editor-ci/switchy-pilot-report.json
+          if-no-files-found: error
