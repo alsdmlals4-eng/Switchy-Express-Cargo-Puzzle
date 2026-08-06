@@ -43,28 +43,16 @@ func run() -> void:
 		"start_cell": Vector2i(1, 4),
 		"incoming_cell": Vector2i(0, 4),
 		"station_placements": [
-			{
-				"cell": [8, 5],
-				"cargo_type": "RED_STAR",
-				"rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 1},
-			},
+			{"cell": [8, 5], "cargo_type": "RED_STAR"},
 		],
 		"cargo_placements": [
-			{
-				"cell": [9, 4],
-				"cargo_type": "RED_STAR",
-				"rail_anchor": {"geometry": "CURVE", "rotation_quarters": 3},
-			},
+			{"cell": [9, 4], "cargo_type": "RED_STAR"},
 		],
 	}
 	var fixed_tracks: Array = RendererScript.fixed_track_descriptors(fixed_snapshot)
-	assert_equal(fixed_tracks.size(), 4, "start, incoming, station, and cargo rails must render")
+	assert_equal(fixed_tracks.size(), 2, "only incoming and start rails may be prelaid")
 	assert_equal(fixed_tracks[0]["cell"], Vector2i(0, 4), "incoming rail must be visible")
 	assert_equal(fixed_tracks[1]["cell"], Vector2i(1, 4), "start rail must be visible")
-	assert_equal(fixed_tracks[2]["cell"], Vector2i(8, 5), "station anchor rail must be visible")
-	assert_equal(fixed_tracks[2]["rotation_quarters"], 1, "station anchor rotation is preserved")
-	assert_equal(fixed_tracks[3]["cell"], Vector2i(9, 4), "cargo anchor rail must be visible")
-	assert_equal(fixed_tracks[3]["geometry"], &"CURVE", "cargo anchor geometry is preserved")
 	assert_equal(
 		RendererScript.start_marker_descriptor(fixed_snapshot)["cell"],
 		Vector2i(1, 4),
