@@ -9,20 +9,20 @@ mutation_policy: SCRATCH_SCENE_MUTATION_ONLY
 source_integrity: SOURCE_TREE_UNCHANGED
 legacy_godot_ai: ABSENT
 base_pilot_pin_state: MERGED_IMMUTABLE_PIN
-base_pilot_commit: 8d6df19de04374506560408cf0819a5990861c2e
+base_pilot_commit: 2b595570bd237174b2b962a1eb54588b5ecc508d
 evidence_bundle: SELF_CONTAINED_EVIDENCE_BUNDLE
 PRODUCTION_ADAPTER_READY: NOT_READY
 ```
 
-This repository adopts merged Base Pilot commit `8d6df19de04374506560408cf0819a5990861c2e` only as an isolated real-project Pilot. All four adoption files bind the same immutable commit. Later movement of Base `main` does not change this cohort pin.
+This repository adopts merged Base C0.2 Pilot commit `2b595570bd237174b2b962a1eb54588b5ecc508d` only as an isolated real-project Pilot. All four adoption files bind the same immutable commit. Later movement of Base `main` does not change this cohort pin.
 
 The repository does not permanently install the Base editor addon into the product project.
 
 ## What the Pilot does
 
-The reusable workflow checks out the exact pinned Base commit, verifies the closed project descriptor, copies this repository into a disposable workspace, and runs the existing `res://tests/run_tests.gd` behavior check.
+The reusable workflow checks out the exact pinned Base commit and verifies the closed project descriptor. It inventories the immutable source, creates a disposable full-project copy, then performs a bounded Godot Editor import and parse in that copy before running the existing `res://tests/run_tests.gd` behavior check in the same prepared workspace.
 
-It opens the configured main Scene `res://game/main/main.tscn` only for inspection under `MAIN_SCENE_READ_ONLY`. Rename, Editor Undo, save, ledger recording, and physical SHA-256 verification occur only in the runner-owned `res://.godot-live-editor-pilot/scratch.tscn` under `SCRATCH_SCENE_MUTATION_ONLY`.
+Only after project import and the behavior check pass does the runner materialize and activate the Base Pilot addon. It opens the configured main Scene `res://game/main/main.tscn` only for inspection under `MAIN_SCENE_READ_ONLY`. Rename, Editor Undo, save, ledger recording, and physical SHA-256 verification occur only in the runner-owned `res://.godot-live-editor-pilot/scratch.tscn` under `SCRATCH_SCENE_MUTATION_ONLY`.
 
 The workflow inventories Git-tracked source bytes before and after execution. Any difference violates `SOURCE_TREE_UNCHANGED` and fails the Pilot.
 
