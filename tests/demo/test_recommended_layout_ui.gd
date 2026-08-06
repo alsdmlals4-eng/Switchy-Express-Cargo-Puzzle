@@ -16,6 +16,17 @@ func run() -> void:
 		)
 	hud.free()
 
+	var tree := Engine.get_main_loop() as SceneTree
+	assert_not_null(tree, "recommended layout UI test requires SceneTree")
+	if tree == null:
+		return
 	var product: Control = PRODUCT_SCENE.instantiate()
-	assert_true(product.has_method("apply_recommended_layout"), "product slice must expose recommended layout application")
+	tree.root.add_child(product)
+	assert_true(product.has_method("apply_recommended_layout"), "product slice exposes recommended layout application")
+	var controller: RefCounted = product.session_controller()
+	var recommend_button := product.get_node("HUD/BuildToolbar/RecommendButton") as Button
+	recommend_button.pressed.emit()
+	assert_true(bool(controller.model().get("start_enabled", false)), "button installs a startable route")
+	assert_true(controller.model().get("problem_cells", []).is_empty(), "button clears all red route warnings")
+	assert_true(controller.render_snapshot().get("layout_pieces", []).size() >= 30, "button installs the complete route")
 	product.free()
