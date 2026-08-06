@@ -66,6 +66,7 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/demo/test_demo_responsive_layout.gd"),
 	preload("res://tests/demo/test_demo_touch_parity.gd"),
 	preload("res://tests/demo/test_demo_overlay_ownership.gd"),
+	preload("res://tests/demo/test_demo_mid_run_exit.gd"),
 	preload("res://tests/demo/test_product_secondary_remove.gd"),
 	preload("res://tests/demo/test_demo_flow_keyboard.gd"),
 	preload("res://tests/demo/test_demo_theme.gd"),
