@@ -8,21 +8,23 @@ main_scene_policy: MAIN_SCENE_READ_ONLY
 mutation_policy: SCRATCH_SCENE_MUTATION_ONLY
 source_integrity: SOURCE_TREE_UNCHANGED
 legacy_godot_ai: ABSENT
-base_pilot_pin_state: MERGED_IMMUTABLE_PIN
-base_pilot_commit: 2b595570bd237174b2b962a1eb54588b5ecc508d
+base_pilot_pin_state: DRAFT_CANDIDATE_EXACT_HEAD
+base_pilot_commit: 11d79cbefe4120f149e8900c45ad2624fb19b777
 evidence_bundle: SELF_CONTAINED_EVIDENCE_BUNDLE
 PRODUCTION_ADAPTER_READY: NOT_READY
 ```
 
-This repository adopts merged Base C0.2 Pilot commit `2b595570bd237174b2b962a1eb54588b5ecc508d` only as an isolated real-project Pilot. All four adoption files bind the same immutable commit. Later movement of Base `main` does not change this cohort pin.
+This Draft PR temporarily pins the exact unmerged Base C0.3 candidate commit `11d79cbefe4120f149e8900c45ad2624fb19b777` to verify the clean-project plugin discovery fix. All four adoption files bind the same candidate SHA. This is real-project validation evidence, not merge authorization or a production release pin.
 
 The repository does not permanently install the Base editor addon into the product project.
 
 ## What the Pilot does
 
-The reusable workflow checks out the exact pinned Base commit and verifies the closed project descriptor. It inventories the immutable source, creates a disposable full-project copy, then performs a bounded Godot Editor import and parse in that copy before running the existing `res://tests/run_tests.gd` behavior check in the same prepared workspace.
+The reusable workflow checks out the exact pinned Base candidate and verifies the closed project descriptor. It inventories the immutable source, creates a disposable full-project copy, removes declared legacy mutation authority, and stages the disabled Base and Pilot plugin files before the bounded Godot Editor import and parse.
 
-Only after project import and the behavior check pass does the runner materialize and activate the Base Pilot addon. It opens the configured main Scene `res://game/main/main.tscn` only for inspection under `MAIN_SCENE_READ_ONLY`. Rename, Editor Undo, save, ledger recording, and physical SHA-256 verification occur only in the runner-owned `res://.godot-live-editor-pilot/scratch.tscn` under `SCRATCH_SCENE_MUTATION_ONLY`.
+The existing `res://tests/run_tests.gd` behavior check runs in the same prepared workspace while the staged Pilot remains disabled. Only after project import and the behavior check pass does the runner activate the already imported Pilot and build the configured manifest.
+
+The Pilot opens the configured main Scene `res://game/main/main.tscn` only for inspection under `MAIN_SCENE_READ_ONLY`. Rename, Editor Undo, save, ledger recording, and physical SHA-256 verification occur only in the runner-owned `res://.godot-live-editor-pilot/scratch.tscn` under `SCRATCH_SCENE_MUTATION_ONLY`.
 
 The workflow inventories Git-tracked source bytes before and after execution. Any difference violates `SOURCE_TREE_UNCHANGED` and fails the Pilot.
 
@@ -40,7 +42,7 @@ Before the disposable workspace is removed, Base recomputes the runtime-result a
 
 The evidence JSON records the exact repository commit, exact Base commit, source inventory digests, main Scene inspection result, scratch Scene operation results, ledger state, network-listener state, and physical SHA-256 values. A reviewer can independently hash `runtime-result.json` and `scratch.tscn` and compare them with the evidence JSON rather than trusting the recorded values alone.
 
-A GitHub Actions artifact is review evidence with limited retention. It is not itself a production-readiness declaration. The post-merge `main` artifact must be physically reverified before Base C1 can promote its bounded result.
+A GitHub Actions artifact is review evidence with limited retention. It is not itself a production-readiness declaration. After Base C0.3 is approved and merged, this Draft must be repinned to the merged immutable SHA and executed again before project adoption can be considered merge-ready.
 
 ## What the Pilot does not do
 
