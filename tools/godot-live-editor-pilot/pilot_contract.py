@@ -13,6 +13,7 @@ SOURCE_BASELINE_RELATIVE = PILOT_RELATIVE / "SOURCE_BASELINE.json"
 TARGET_SCENE_RELATIVE = Path("game/finite/presentation/finite_slice_view.tscn")
 TARGET_DECLARATION = '[node name="BoardTitle" type="Label" parent="Board"]'
 EXCLUDED_PARTS = {".git", ".godot", "__pycache__", ".pytest_cache"}
+GODOT_GENERATED_SUFFIXES = {".uid"}
 
 
 def sha256_file(path: Path) -> str:
@@ -78,7 +79,15 @@ def validate_base_snapshot(root: Path) -> list[str]:
             errors.append(
                 f"BASE_SNAPSHOT_MISMATCH:{name}:expected={expected}:actual={actual}"
             )
-    actual_names = {path.name for path in vendor_root.iterdir() if path.is_file()} if vendor_root.is_dir() else set()
+    actual_names = (
+        {
+            path.name
+            for path in vendor_root.iterdir()
+            if path.is_file() and path.suffix not in GODOT_GENERATED_SUFFIXES
+        }
+        if vendor_root.is_dir()
+        else set()
+    )
     if actual_names != set(expected_files):
         errors.append(
             "BASE_SNAPSHOT_INVENTORY_MISMATCH:"
