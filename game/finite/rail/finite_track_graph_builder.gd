@@ -23,12 +23,13 @@ static func build(definition: Variant, layout: Variant) -> Variant:
 	):
 		return null
 
-	for placement: Dictionary in definition.station_placements:
-		if not _put_authored_anchor(pieces_by_cell, placement):
-			return null
-	for placement: Dictionary in definition.cargo_placements:
-		if not _put_authored_anchor(pieces_by_cell, placement):
-			return null
+	if not definition.marker_tracks_are_player_built():
+		for placement: Dictionary in definition.station_placements:
+			if not _put_authored_anchor(pieces_by_cell, placement):
+				return null
+		for placement: Dictionary in definition.cargo_placements:
+			if not _put_authored_anchor(pieces_by_cell, placement):
+				return null
 	for piece: Variant in layout.pieces():
 		if not _put_fixed_piece(pieces_by_cell, piece):
 			return null
