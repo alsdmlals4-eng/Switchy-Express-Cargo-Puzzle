@@ -30,6 +30,20 @@ def _is_sha(value: object) -> bool:
     )
 
 
+def _as_int(value: object, code: str, detail: str) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError) as error:
+        raise MatrixError(code, detail) from error
+
+
+def _as_float(value: object, code: str, detail: str) -> float:
+    try:
+        return float(value)
+    except (TypeError, ValueError) as error:
+        raise MatrixError(code, detail) from error
+
+
 def validate_matrix(matrix: dict[str, object], expected_head: str) -> dict[str, object]:
     if not _is_sha(expected_head):
         raise MatrixError("INVALID_EXACT_HEAD", expected_head)
@@ -63,11 +77,15 @@ def validate_matrix(matrix: dict[str, object], expected_head: str) -> dict[str, 
     sanitized: dict[str, dict[str, object]] = {}
     for target, prefix in REQUIRED_TARGETS.items():
         raw = indexed[target]
-        exit_code = int(raw.get("exit_code", -1))
+        exit_code = _as_int(
+            raw.get("exit_code", -1),
+            "PYTHON_MATRIX_TARGET_INVALID",
+            f"{target} exit_code",
+        )
         version = str(raw.get("python_version", "")).strip()
         if exit_code != 0:
             raise MatrixError("PYTHON_MATRIX_TARGET_FAILED", f"{target} exit={exit_code}")
-        if not version.startswith(prefix):
+        if version != prefix and not version.startswith(prefix + "."):
             raise MatrixError(
                 "PYTHON_MATRIX_VERSION_MISMATCH",
                 f"{target} expected={prefix} actual={version}",
@@ -75,7 +93,11 @@ def validate_matrix(matrix: dict[str, object], expected_head: str) -> dict[str, 
         sanitized[target] = {
             "python_version": version,
             "exit_code": exit_code,
-            "duration_seconds": float(raw.get("duration_seconds", 0.0)),
+            "duration_seconds": _as_float(
+                raw.get("duration_seconds", 0.0),
+                "PYTHON_MATRIX_TARGET_INVALID",
+                f"{target} duration_seconds",
+            ),
             "log_file": str(raw.get("log_file", "")),
         }
     return {"status": "PASS", "exact_head": matrix_head, "targets": sanitized}
