@@ -308,7 +308,7 @@ def run_pilot(
                 check=False,
                 capture_output=True,
                 text=True,
-                timeout=60,
+                timeout=180,
                 env=environment,
             )
         except subprocess.TimeoutExpired:
@@ -417,11 +417,3 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
-
-__all__ = [
-    "_failure",
-    "_headless_thumbnail_error_count",
-    "_unexpected_godot_errors",
-    "run_pilot",
-]
