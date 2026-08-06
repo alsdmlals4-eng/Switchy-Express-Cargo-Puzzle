@@ -24,6 +24,7 @@ var blocked_cells: Array[Vector2i] = []
 var station_placements: Array[Dictionary] = []
 var cargo_placements: Array[Dictionary] = []
 var marker_tracks_player_built: bool = false
+var allow_open_terminals_after_required: bool = false
 var time_limit_seconds: float = 0.0
 var _source_errors: Array[String] = []
 
@@ -43,6 +44,9 @@ static func create(data: Dictionary) -> Variant:
 	value.station_placements = _read_placements(data.get("station_placements", []))
 	value.cargo_placements = _read_placements(data.get("cargo_placements", []))
 	value.marker_tracks_player_built = bool(data.get("marker_tracks_player_built", false))
+	value.allow_open_terminals_after_required = bool(
+		data.get("allow_open_terminals_after_required", false)
+	)
 	value.time_limit_seconds = float(data.get("time_limit_seconds", 0.0))
 	return value
 
@@ -53,6 +57,10 @@ func identity_key() -> String:
 
 func marker_tracks_are_player_built() -> bool:
 	return marker_tracks_player_built
+
+
+func allows_open_terminals_after_required() -> bool:
+	return allow_open_terminals_after_required
 
 
 func required_anchor_cells() -> Array[Vector2i]:
@@ -116,6 +124,7 @@ func to_dictionary() -> Dictionary:
 		"station_placements": station_placements.duplicate(true),
 		"cargo_placements": cargo_placements.duplicate(true),
 		"marker_tracks_player_built": marker_tracks_player_built,
+		"allow_open_terminals_after_required": allow_open_terminals_after_required,
 		"time_limit_seconds": time_limit_seconds,
 	}
 
@@ -221,6 +230,11 @@ static func _source_validation_errors(data: Dictionary) -> Array[String]:
 		errors.append("map_revision must be an integer")
 	if data.has("marker_tracks_player_built") and typeof(data.get("marker_tracks_player_built")) != TYPE_BOOL:
 		errors.append("marker_tracks_player_built must be a boolean")
+	if (
+		data.has("allow_open_terminals_after_required")
+		and typeof(data.get("allow_open_terminals_after_required")) != TYPE_BOOL
+	):
+		errors.append("allow_open_terminals_after_required must be a boolean")
 	if not _is_cell_value(data.get("board_size", null)):
 		errors.append("board_size is required")
 	if not _is_cell_value(data.get("start_cell", null)):
