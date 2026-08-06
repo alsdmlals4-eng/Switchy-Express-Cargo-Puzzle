@@ -25,12 +25,13 @@ func validate(definition: Variant, layout: Variant) -> Variant:
 	if not _has_valid_start(definition, graph):
 		return _failed(INVALID_START, [definition.start_cell], "start must lead into the player network")
 
-	if not _allows_open_terminals(definition):
+	var product_route: bool = _allows_open_terminals(definition)
+	if not product_route:
 		var dangling_cells := _dangling_cells(definition, graph)
 		if not dangling_cells.is_empty():
 			return _failed(DANGLING_EDGE, dangling_cells, "ordinary track ports must connect reciprocally")
 
-	var search: Dictionary = _search_reachable_states(definition, graph)
+	var search: Dictionary = _search_reachable_states(definition, graph, product_route)
 	var disconnected_cells := _disconnected_required_cells(definition, search["reachable_cells"])
 	if not disconnected_cells.is_empty():
 		return _failed(
@@ -43,11 +44,11 @@ func validate(definition: Variant, layout: Variant) -> Variant:
 	if not invalid_crossings.is_empty():
 		return _failed(INVALID_CROSSING, invalid_crossings, "crossings require four reciprocal ports")
 
-	var invalid_switches := _invalid_switch_cells(graph)
+	var invalid_switches := _invalid_switch_cells(graph, product_route)
 	if not invalid_switches.is_empty():
 		return _failed(INVALID_SWITCH_EXIT, invalid_switches, "every switch exit must remain structurally usable")
 
-	if not _allows_open_terminals(definition):
+	if not product_route:
 		var trap_cells := _permanent_trap_cells(graph, search["states"])
 		if not trap_cells.is_empty():
 			return _failed(PERMANENT_TRAP, trap_cells, "reachable traversal states must have a forward successor")
@@ -100,7 +101,7 @@ func _invalid_crossing_cells(graph: Variant) -> Array[Vector2i]:
 	return _sorted_unique(problem_cells)
 
 
-func _invalid_switch_cells(graph: Variant) -> Array[Vector2i]:
+func _invalid_switch_cells(graph: Variant, interactive_crossings: bool) -> Array[Vector2i]:
 	var problem_cells: Array[Vector2i] = []
 	for cell: Vector2i in graph.switch_cells():
 		var piece: Variant = graph.piece_at(cell)
@@ -109,7 +110,7 @@ func _invalid_switch_cells(graph: Variant) -> Array[Vector2i]:
 			continue
 		for exit_port: Vector2i in piece.switch_exits():
 			var exit_cell := cell + exit_port
-			if _structural_successors(graph, cell, exit_cell).is_empty():
+			if _structural_successors(graph, cell, exit_cell, interactive_crossings).is_empty():
 				problem_cells.append(cell)
 				break
 	return _sorted_unique(problem_cells)
@@ -120,12 +121,16 @@ func _permanent_trap_cells(graph: Variant, states: Array[Dictionary]) -> Array[V
 	for state: Dictionary in states:
 		var previous: Vector2i = state["previous"]
 		var current: Vector2i = state["current"]
-		if _structural_successors(graph, previous, current).is_empty():
+		if _structural_successors(graph, previous, current, false).is_empty():
 			problem_cells.append(current)
 	return _sorted_unique(problem_cells)
 
 
-func _search_reachable_states(definition: Variant, graph: Variant) -> Dictionary:
+func _search_reachable_states(
+	definition: Variant,
+	graph: Variant,
+	interactive_crossings: bool
+) -> Dictionary:
 	var states: Array[Dictionary] = []
 	var reachable_cells: Dictionary = {}
 	var visited: Dictionary = {}
@@ -145,7 +150,12 @@ func _search_reachable_states(definition: Variant, graph: Variant) -> Dictionary
 		states.append(state)
 		reachable_cells[current] = true
 
-		for next_cell: Vector2i in _structural_successors(graph, previous, current):
+		for next_cell: Vector2i in _structural_successors(
+			graph,
+			previous,
+			current,
+			interactive_crossings
+		):
 			queue.append({"previous": current, "current": next_cell})
 
 	return {"states": states, "reachable_cells": reachable_cells}
@@ -154,7 +164,8 @@ func _search_reachable_states(definition: Variant, graph: Variant) -> Dictionary
 func _structural_successors(
 	graph: Variant,
 	previous: Vector2i,
-	current: Vector2i
+	current: Vector2i,
+	interactive_crossings: bool = false
 ) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
 	var piece: Variant = graph.piece_at(current)
@@ -170,9 +181,12 @@ func _structural_successors(
 				outgoing_ports.append(ports[1] if ports[0] == incoming_port else ports[0])
 		&"CROSSING":
 			if piece.ports().has(incoming_port):
-				for port: Vector2i in piece.ports():
-					if port != incoming_port:
-						outgoing_ports.append(port)
+				if interactive_crossings:
+					for port: Vector2i in piece.ports():
+						if port != incoming_port:
+							outgoing_ports.append(port)
+				else:
+					outgoing_ports.append(-incoming_port)
 		&"SWITCH":
 			if incoming_port == piece.approach_port():
 				outgoing_ports.append_array(piece.switch_exits())
