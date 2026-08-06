@@ -1,46 +1,44 @@
 # Finite Delivery First Vertical Slice Contract
 
 ```yaml
-status: APK_EXPORT_PASS · MANUAL_ACCEPTANCE_OPEN
+status: PC_AUTOMATED_AND_PACKAGE_PASS · ANDROID_APK_EXPORT_PASS · MANUAL_ACCEPTANCE_OPEN
 product_authority: GMB-002 · SX-DEC-027~036
+pc_demo_authority: SX-DEC-037 · EV-USER-023
 execution_authority: FP-DOR-001 · EV-USER-021 · EV-USER-022
-current_audit: SX-AUD-019
-canonical_export_source: 536911449018a3caf3511bc64e7bf1a66edf2016
-implementation_state: FP-01_PASS · FP-02_PASS · PRODUCT_SURFACE_PASS · AUTOMATED_INTEGRATION_PASS · VALIDATION_PREP_PASS · APK_EXPORT_PASS
+current_audits: SX-AUD-019 · SX-AUD-020
+canonical_android_export_source: 536911449018a3caf3511bc64e7bf1a66edf2016
+implementation_state: FINITE_CORE_PASS · VALIDATION_PREP_PASS · ANDROID_APK_EXPORT_PASS · PC_VERTICAL_SLICE_AUTOMATED_PASS · WINDOWS_EXPORT_INTEGRITY_PASS
 default_entrypoint: LEGACY_RUNTIME_DEFAULT
-next_gate: ANDROID_DEVICE_SMOKE → FIVE_PERSON_COMPREHENSION
+next_pc_gate: WINDOWS_RUNTIME_VISUAL_AUDIO_SMOKE
+next_android_gate: ANDROID_DEVICE_SMOKE → FIVE_PERSON_COMPREHENSION
 cutover_status: BLOCKED
 ```
 
 ## 1. 목적과 권위
 
-이 계약은 첫 유한 배송 퍼즐 Slice의 구현·패키징 완료 범위와 제품 전환 조건을 정의한다. 자동 테스트, APK 생성, 실기기 조작성, 처음 보는 사용자의 이해도와 production cutover를 서로 다른 Gate로 유지한다.
+이 계약은 유한 배송 퍼즐 코어, Android validation package, 별도 PC Vertical Slice Demo의 구현·패키징 완료 범위와 제품 전환 조건을 정의한다. 자동 테스트, export 생성, 실제 기기 실행, 처음 보는 사용자의 이해도와 production cutover는 서로 다른 Gate다.
 
 권위 문서:
 
 - `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
-- `docs/superpowers/specs/2026-08-04-finite-puzzle-definition-of-ready-design.md`
-- `docs/superpowers/plans/2026-08-05-finite-puzzle-first-vertical-slice.md`
-- `docs/superpowers/specs/2026-08-05-finite-validation-harness-design.md`
-- `docs/superpowers/plans/2026-08-05-finite-validation-harness.md`
-- `docs/superpowers/specs/2026-08-05-android-validation-apk-ci-design.md`
-- `docs/superpowers/plans/2026-08-05-android-validation-apk-ci.md`
-- `기획서/50_제작_검증/FP_01_02_IMPLEMENTATION_AUDIT.md`
-- `기획서/50_제작_검증/SX_AUD_018_VALIDATION_PREPARATION_AUDIT.md`
+- `docs/superpowers/specs/2026-08-06-pc-vertical-slice-demo-design.md`
+- `docs/superpowers/plans/2026-08-06-pc-vertical-slice-demo.md`
+- `기획서/50_제작_검증/SX_DEC_037_PC_VERTICAL_SLICE_APPROVAL_LEDGER.md`
+- `기획서/50_제작_검증/SX_AUD_020_PC_VERTICAL_SLICE_IMPLEMENTATION_AUDIT.md`
 - `기획서/50_제작_검증/SX_AUD_019_ANDROID_APK_PIPELINE_PROBE.md`
+- `기획서/50_제작_검증/ANDROID_DEVICE_SMOKE_RUNBOOK.md`
 
-## 2. 구현 완료 범위
+## 2. Finite Product Contract
 
-### FP-01 · 선로 건설
+### BUILD
 
 - authored `FiniteMapDefinition` schema v2
-- `TrackLayout` identity·solution signature
 - 직선·곡선·분기·교차 설치, 회전, 교체, 철거, 전체 초기화
 - 조각별 비용·철거 전액 환급
 - 시작 연결, 역·화물 도달성, dangling edge, crossing, branch exit, permanent trap 구조 검사
 - PASS 뒤 정의·배치·비용·graph 봉인
 
-### FP-02 · 유한 배송 런
+### RUN
 
 - 기차 자동 운행
 - 수동 LOAD hold·auto-load toggle
@@ -48,116 +46,153 @@ cutover_status: BLOCKED
 - cargo point 적재 전용·station 하역 전용
 - TOP 연속 동일 화물 그룹 하역·최대 1초 표시
 - 정확한 제한 시간·pause·success/failure
-- 동일 배치 fresh runtime retry
+- 동일 배치 fresh-runtime retry
 - map·solution·attempt identity 분리
 
-### 제품 화면·통합
+Legacy `fuel`, `BOOST`, capacity 8, cargo slowdown, timed pressure, pickup respawn, switch auto-reset, endless score는 current contract가 아니다.
 
-- BUILD/RUNNING/UNLOADING/PAUSED/SUCCESS/FAILURE
-- 비용·추천 비용·preflight 문제 표시
-- 색상+형상+텍스트와 LIFO TOP 중복 표현
-- 최소 48×48dp 상당 조작 영역
-- RUNNING/UNLOADING branch 직접 탭과 점유 잠금
-- UI 명령으로 `A → B → A → A`, 하역 `2 → 1 → 1`, A역 재방문·성공 증명
-- crossing 격리, pause integrity, 실패 후 배치 보존·retry 초기화
+## 3. PC Vertical Slice Demo Contract
 
-## 3. Validation·APK 완료 범위
+### Product shell
 
-- 제품과 분리된 validation launcher
-- 한 APK의 `PROOF`, `STACK_8`, `STACK_16`, `STACK_32`
-- 기기 내 mode selector와 Back
-- invalid mode fail-closed
-- `validation_harness` custom feature와 격리 package ID
-- product main·`game/main/main.tscn` 불변 검사
-- 고정된 Godot/JDK/Android SDK·Build Tools·NDK·template workflow
-- export 전 전체 테스트와 product invariant 검사
-- APK·SHA-256·manifest·summary·14일 artifact·provenance attestation
+- Scene: `res://game/demo/vertical_slice_demo.tscn`
+- flow: Title → Briefing → BUILD → RUN → Result
+- result actions: Retry same layout · Edit layout · Title
+- Run Current Scene(F6) 전용
+- default F5 entrypoint는 legacy 유지
 
-Canonical APK:
+### Presentation·input
+
+- mouse-first + keyboard shortcuts + existing touch path
+- Korean player-facing HUD
+- 색상+형상+텍스트 cargo/station 표현
+- LIFO TOP 중복 표현
+- build ghost, hover, selection, problem cells, train, track, switch
+- Shell 단일 Pause/Result overlay 소유권
+- 1280×720, 1600×900, 1920×1080 responsive contract
+- 최소 48px 상당 조작 영역
+- project-owned Theme, Tween effects, procedural audio
+- UI·effects·audio는 domain result를 결정하지 않는다.
+
+### Content
+
+- map: `res://data/maps/vs_demo_01.json`
+- identity: `VS_DEMO_01@1`
+- one representative stage
+- two authored successful solution variants
+- proof map `fp_core_proof_01.json` 불변
+
+## 4. Automated Evidence
+
+| Gate | 상태 | 증거 |
+|---|---|---|
+| FINITE AUTOMATED CORE | PASS | 기존 SX-AUD-017~019 + current regression |
+| PC VERTICAL SLICE AUTOMATED | PASS | Godot run `31065293026`, `85 cases · 11,258 assertions` |
+| PYTHON CONTRACTS | PASS | Windows run `31065293030`, `56 passed · 1 skipped` |
+| LIVE-EDITOR REGRESSION | PASS | source integrity + same `85/11,258` project regression |
+| WINDOWS DEBUG EXPORT | PASS | Windows run `31065293030` |
+| WINDOWS ARTIFACT INTEGRITY | PASS | ZIP/EXE/PCK actual hashes independently matched |
+| WINDOWS RUNTIME | NOT_RUN | Windows machine execution required |
+| ANDROID APK EXPORT | PASS | canonical Android run `31011620357` |
+| ANDROID DEVICE | NOT_RUN | physical landscape device required |
+| HUMAN | NOT_RUN | Android reviewed PASS 뒤 first-contact 5명 |
+| PRODUCTION CUTOVER | BLOCKED | manual Gates and separate approval required |
+
+## 5. Windows Artifact Contract
+
+```yaml
+workflow_run_id: 31065293030
+artifact_id: 8953621440
+artifact_name: switchy-express-windows-demo-c6c9eb1ffcf755845872638478e6c1e431110b41
+artifact_expiry: 2026-08-20T02:20:34Z
+artifact_zip_sha256: 7c44092b3837d84d3f027fc1625aaccaa1543d5307a174eda37824b27889af9e
+exe_file: SwitchyExpressVerticalSlice.exe
+exe_sha256: 1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244
+pck_file: SwitchyExpressVerticalSlice.pck
+pck_sha256: 66ffec232a851d1858da6a5bc0b90ca3c3e4b3769dc472fe1e97a15c0a82c741
+```
+
+EXE와 PCK는 같은 디렉터리에 있어야 한다. 이 계약은 package integrity까지만 승인하며 process launch·화면·음향·물리 입력을 승인하지 않는다.
+
+## 6. Canonical Android Contract
 
 ```yaml
 source_commit: 536911449018a3caf3511bc64e7bf1a66edf2016
 workflow_run_id: 31011620357
 artifact_id: 8932725351
-artifact_name: switchy-express-validation-53691144
-apk_size_bytes: 28771631
 apk_sha256: eb49225ab4062e5cf863f79a0d17f85d339ea176d7f0bb6f04096ed8a07559ea
 artifact_zip_sha256: 1802ca52dd90eb674f89b0a6e4678152d314c5644d135a84033388b4d3ee7193
-attestation_id: 39044925
-expiry: 2026-08-19T13:45:27Z
+package_id: com.alsdmlals4.switchyexpress.validation
 ```
 
-## 4. 검증 Gate
+PC Demo preset·artifact는 canonical Android APK와 device/HUMAN evidence를 대체하지 않는다.
 
-| Gate | 상태 | 증거/기준 |
-|---|---|---|
-| AUTOMATED CORE | PASS | Contract #490, Godot #451, `60 cases · 10,382 assertions` |
-| VALIDATION PREP | PASS | PR #62/#63, Contract #508, Godot #464, `63 cases · 10,714 assertions` |
-| SELECTOR·APK WORKFLOW STATIC | PASS | PR #65/#66/#69/#70/#71와 TDD RED/GREEN |
-| APK EXPORT | PASS | main run `31011620357`, `65 cases · 10,792 assertions`, APK hash·manifest·attestation 일치 |
-| ANDROID | NOT_RUN | 동일 APK hash로 landscape 실기기 smoke 필요 |
-| HUMAN | NOT_RUN | 동일 APK hash로 처음 보는 5명 이해도 검증 필요 |
-| BALANCE | NOT_RUN | First Slice cutover 필수 Gate 아님 |
-| ONLINE | NOT_RUN | First Slice 범위 밖 |
-| FINAL ART | NOT_RUN | 후속 제작 Gate |
+## 7. Manual Gate Contracts
 
-## 5. Android Device Smoke 계약
+### PC Windows Runtime Smoke
 
-동일 APK SHA-256 `eb49225a...759ea`에서 다음을 기록한다.
+- [ ] EXE/PCK 동일 디렉터리
+- [ ] 실행·종료
+- [ ] Title/Briefing/BUILD/RUN/Result
+- [ ] Retry same layout·Edit layout·Title
+- [ ] mouse·keyboard physical input
+- [ ] clipping·overlap·readability
+- [ ] audio cue·train loop·pause·success/failure
+- [ ] crash·script error·severe frame degradation 없음
 
-1. 기기 모델·Android 버전·해상도·orientation
-2. 설치·첫 부팅·재부팅
-3. 4개 mode와 Back
-4. BUILD→RUN→pause/resume→result→retry
-5. LOAD hold·auto-load·branch 직접 탭
-6. 8/16/32 stack TOP 가독성
-7. safe area·48dp 터치·겹침·잘림
-8. crash·ANR·입력 누락·심각한 frame 저하
+### Android Device Smoke
 
-실패 시 같은 APK 증거를 보존하고 수정 package를 TDD로 분리한다. 새 APK가 생성되면 hash가 바뀌므로 Android·HUMAN 증거를 새 hash로 다시 수행한다.
+- [ ] full canonical APK SHA-256 match
+- [ ] physical Android landscape device
+- [ ] AND-01~20 all executed
+- [ ] `PROOF / STACK 8 / STACK 16 / STACK 32 / Back`
+- [ ] BUILD→RUN→pause/resume→result→retry/edit
+- [ ] LOAD hold·auto-load·branch direct tap
+- [ ] safe area·48dp touch·clipping·overlap
+- [ ] crash·ANR·입력 누락·심각한 frame 저하 없음
 
-## 6. 제외·Legacy 격리
+### Five-person Comprehension
 
-후속 범위:
+Android reviewed PASS 뒤 동일 APK SHA-256으로 수행한다.
 
-- 가속·저비용·일방통행·회차·터널·교량
-- Combo 가속·점수 보상
-- 별·랭킹·튜토리얼·캠페인·일일/주간·online·UGC
-- 최종 아트와 광범위 balance
+- [ ] P01~P05 first-contact sessions
+- [ ] 4/5+ explain last-loaded cargo as TOP
+- [ ] 4/5+ explain A revisit requirement
+- [ ] failure recovery and retry comprehension
+- [ ] shape/text identification without color-only dependence
 
-`fuel`, `BOOST`, capacity 8, cargo slowdown, timed pressure, pickup respawn, switch auto-reset, endless score는 `[대체됨 · 역사 증거]`다. legacy와 finite 규칙을 한 player-facing session에 혼합하지 않고, old 테스트를 finite PASS 수치에 합산하지 않는다.
-
-## 7. Cutover 조건
+## 8. Cutover Conditions
 
 별도 production-cutover PR은 다음 모두 충족 후에만 생성한다.
 
-1. AUTOMATED CORE PASS
-2. VALIDATION PREP PASS
-3. APK EXPORT PASS
-4. ANDROID PASS
-5. HUMAN PASS
-6. Critical/Important 결함 0
-7. unresolved review thread 0·REQUEST_CHANGES 0
-8. build SHA·APK hash·기기·사람 증거 기록
-9. GitHub 권위 문서·correct Google Sheet same-ID 동기화
+1. finite automated core PASS
+2. Android validation prep/export PASS
+3. Android Device Smoke PASS
+4. Five-person Comprehension PASS
+5. Critical/Important 결함 0
+6. unresolved review thread 0·REQUEST_CHANGES 0
+7. build/hash/device/human evidence 기록
+8. GitHub 정본·correct Google Sheet same-ID sync
+9. 별도 사용자 승인
 
-cutover는 `game/main/main.tscn`과 최소 어댑터만 변경한다. legacy 삭제는 별도 migration package다.
+PC Demo merge는 default cutover가 아니다. `game/main/main.tscn` 전환은 이 계약에 포함되지 않는다.
 
-## 8. Rollback·보안 경계
+## 9. Rollback·Security·Rights
 
-- validation APK는 debug QA artifact이며 release candidate나 store binary가 아니다.
-- release key·고정 credential·SDK 사용자 경로를 저장하지 않는다.
-- production base main은 계속 `res://game/main/main.tscn`이다.
-- cutover 전 장애는 validation workflow/override만 되돌리고 finite core를 보존한다.
-- old endless 파일은 삭제하지 않는다.
+- debug artifacts는 store release candidate가 아니다.
+- release key·credential·사용자 SDK 경로를 저장하지 않는다.
+- validation package ID와 Android preset을 유지한다.
+- external image, texture, model, font file, music sample, voice, AI media를 PC Demo에 포함하지 않는다.
+- procedural presentation/audio rights는 `VS-DEMO-PRESENTATION-001`, `VS-DEMO-AUDIO-001`로 기록한다.
 
-## 9. 현재 결론
+## 10. Current Conclusion
 
 ```text
 FINITE CORE IMPLEMENTATION: PASS
-FINITE PRODUCT SURFACE: PASS
-INTEGRATED AUTOMATION: PASS
-VALIDATION PREPARATION: PASS
+PC VERTICAL SLICE AUTOMATED CORE: PASS
+PC WINDOWS DEBUG EXPORT·INTEGRITY: PASS
+PC WINDOWS RUNTIME SMOKE: NOT_RUN
+ANDROID VALIDATION PREPARATION: PASS
 ANDROID APK EXPORT: PASS
 ANDROID DEVICE SMOKE: NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
@@ -165,4 +200,4 @@ DEFAULT ENTRYPOINT: LEGACY
 PRODUCTION CUTOVER: BLOCKED
 ```
 
-다음 권위 작업은 canonical APK hash를 유지한 Android landscape smoke다.
+다음 실행은 PC Windows smoke와 Android canonical APK device smoke를 서로 독립적으로 수행하는 것이다.
