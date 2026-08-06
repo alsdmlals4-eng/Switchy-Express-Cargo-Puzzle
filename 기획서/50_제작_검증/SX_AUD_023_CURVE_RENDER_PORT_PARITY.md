@@ -50,15 +50,16 @@ failure: ProductBoardRenderer.track_ports_for_test missing
 ### GREEN
 
 ```yaml
-verified_head: e5b5e8ef289302dcfd0218990f4e5f99b403f331
-project_contract: PASS · #907
-godot_tests: PASS · #838
+verified_head: eca9864aeca3711bbcdbdc7b8cb63ec47ac8989a
+project_contract: PASS · #908 · run 31093048943
+godot_tests: PASS · #839 · run 31093048854
 godot_cases: 91
 godot_failures: 0
 godot_assertions: 11437
 live_editor_pilot: PASS
-thin_adapter: PASS · #104
-windows_export: PENDING_AT_AUDIT_WRITE
+thin_adapter: PASS · #105 · run 31093048867
+windows_export: PASS · #63 · run 31093049036
+windows_exe_pck_hash_upload: PASS
 ```
 
 ## Concurrent Main Baseline Repair
@@ -80,7 +81,7 @@ The source baseline was refreshed to current main commit `9e8f87b96d2cd1113e2e99
 After merge:
 
 ```text
-GitHub Desktop → Fetch origin → Pull origin on main
+GitHub Desktop → main → Fetch origin → Pull origin
 → Godot reopen → F5
 → place/rotate curves using their visible shape
 → verify connected pieces are not marked disconnected
