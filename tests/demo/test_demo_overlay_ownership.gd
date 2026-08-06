@@ -30,6 +30,14 @@ func run() -> void:
 	assert_true(demo.get_node("PauseOverlay").visible, "Shell pause overlay is visible")
 	assert_false(hud.get_node("PausePanel").visible, "embedded pause panel stays hidden")
 
+	for path: NodePath in [
+		NodePath("PauseOverlay/Panel/Content/ResumeButton"),
+		NodePath("PauseOverlay/Panel/Content/ExitButton"),
+		NodePath("ExitConfirmOverlay/Panel/Content/ContinueButton"),
+		NodePath("ExitConfirmOverlay/Panel/Content/ConfirmButton"),
+	]:
+		assert_not_null(demo.get_node_or_null(path), "%s must exist" % path)
+
 	demo.set_paused(false)
 	demo.show_result({
 		"outcome": &"SUCCESS",
