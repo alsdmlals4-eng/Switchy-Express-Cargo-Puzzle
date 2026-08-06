@@ -4,14 +4,16 @@
 
 ```yaml
 project: Switchy Express: Cargo Puzzle
-product_authority: GMB-002 · SX-DEC-027~036
-demo_authority: SX-DEC-037 · SX-DEC-038 · SX-DEC-039
-current_audit: SX-AUD-025
+product_authority: GMB-003 · SX-DEC-027~036
+demo_authority: SX-DEC-037 · SX-DEC-038 · SX-DEC-039 · SX-DEC-040 · SX-DEC-041 · SX-DEC-042
+current_audit: SX-AUD-026
 active_user_branch: main
-repository_main_observed: 212d37e4577a6ffdb7b93e92de6a82785c2976eb
+repository_main_observed: efe0ab7330387d1b411962074b5f91b3043fddc8
 latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
 pull_request_83: MERGED · 4189cd13bebc34649cdca39aa78bfd045805b7c8
-pull_request_94: DRAFT · BLOCKED_REPLAN_REQUIRED
+pull_request_94: CLOSED · ARCHIVED · NOT_MERGED
+pull_request_99: MERGED · dff1653738f1eead3cacff303080924d662767e2
+pull_request_100: MERGED · efe0ab7330387d1b411962074b5f91b3043fddc8
 finite_automated_core: PASS
 pc_vertical_slice_automated_core: PASS
 default_project_play_boot: PASS · AUTOMATED
@@ -19,6 +21,11 @@ recommended_route: PASS · AUTOMATED
 one_sided_station_terminal: PASS · AUTOMATED
 mid_run_exit: PASS · AUTOMATED
 title_exit_visible: PASS · USER_LOCAL
+success_result_visible: PASS · USER_LOCAL
+red_one_sided_station_runtime: PASS · USER_LOCAL
+blue_one_sided_station_runtime: FAIL · USER_LOCAL · ROOT_CAUSE_UNVERIFIED
+route_end_game_over: APPROVED · IMPLEMENTATION_PENDING
+switch_direction_arrows_and_uturn: APPROVED · IMPLEMENTATION_PENDING
 pc_local_route_and_mid_run_retest: RETEST_REQUIRED
 pc_windows_debug_export_integrity: PASS
 pc_windows_artifact_runtime_smoke: NOT_RUN
@@ -44,8 +51,12 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 FINITE AUTOMATED CORE: PASS
 PC VERTICAL SLICE AUTOMATED CORE: PASS
 DEFAULT PROJECT PLAY BOOT: PASS · AUTOMATED
-PR #83 MERGE: PASS
-ONE-SIDED FINAL STATION: PASS · AUTOMATED
+PR #83 MERGE: PASS · PR #99/#100 MERGE: PASS
+ONE-SIDED FINAL STATION RED: PASS · AUTOMATED/USER LOCAL
+ONE-SIDED FINAL STATION BLUE: USER LOCAL FAIL · AUTOMATED PARITY PENDING
+SUCCESS RESULT VISIBLE: PASS · USER LOCAL
+ROUTE-END GAME OVER: IMPLEMENTATION_PENDING
+SWITCH THREE-DIRECTION ARROWS/UTURN: IMPLEMENTATION_PENDING
 MID-RUN EXIT: PASS · AUTOMATED
 TITLE EXIT VISIBLE: PASS · USER LOCAL
 PC LOCAL ROUTE/MID-RUN FLOW: RETEST_REQUIRED
@@ -123,22 +134,22 @@ human_comprehension: NOT_RUN
 
 - 프로젝트의 채택 release pin은 Base `v9.4.3`으로 유지한다.
 - 최신 Base `main`은 별도 비교 대상이지 자동 승격된 release pin이 아니다.
-- PR #94는 설명의 C0.2와 실제 C0.3 candidate pin이 불일치하고 Pilot workflow가 실패했으므로 `BLOCKED_REPLAN_REQUIRED`다.
-- HiGodot 단일 저작 권위와 중복되지 않는 실제 소비 경로가 증명되기 전에는 Pilot을 병합하지 않는다.
+- PR #94는 설명의 C0.2와 실제 C0.3 candidate pin이 불일치하고 Pilot workflow가 실패해 병합 없이 `CLOSED · ARCHIVED`됐다.
+- HiGodot 단일 저작 권위와 중복되지 않는 실제 소비 경로가 증명되기 전에는 새 Pilot을 시작하지 않는다.
 
 ## 다음 정확한 작업
 
 ```text
-1. main Fetch origin → Pull origin
-2. 로컬 HEAD 확인
-3. Godot 완전 종료 후 다시 열기
-4. F5
-5. Title·Briefing·BUILD HUD/도구 확인
-6. 권장 배치 적용
-7. 한쪽 연결 종착역 최종 하역·SUCCESS 확인
-8. BUILD/RUN 메뉴 취소 시 상태 보존 확인
-9. 종료 확정 시 Title 복귀 확인
-10. PASS 또는 재현 가능한 결함 기록
+1. GMB-003 기획 PR exact-HEAD 검수·병합
+2. merged main에서 station color parity RED/characterization 실행
+3. ROUTE_END·three-way switch·arrow interaction RED 확인
+4. 최소 구현과 전체 회귀
+5. 구현 PR exact-HEAD 검수·병합
+6. main Fetch origin → Pull origin
+7. Godot 완전 종료 후 다시 열기 → F5
+8. 파란 한쪽 연결 종착역 재검수
+9. 배송 전 노선 끝 ROUTE_END와 마지막 배송 SUCCESS 우선순위 확인
+10. 분기 세 화살표·진입 방향 U턴·점유 잠금 확인
 ```
 
 Android device smoke와 Five-person Comprehension은 별도 Gate로 계속 열린다.

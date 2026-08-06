@@ -14,17 +14,20 @@
 - 수동 적재 기본·자동 적재 토글
 - 무제한 CargoStack
 - 운행 중 persistent branch·crossing 직접 전환과 점유 잠금
+- SWITCH의 세 reciprocal 방향 화살표·직접 선택·진입 방향 U턴 계획
 - TOP 연속 동일 화물 자동 하역
 - 제한 시간 미배송 실패, 마지막 하역 즉시 성공
-- 한쪽 reciprocal 연결만 있는 최종 종착역 허용
+- 배송·하역 판정 뒤 이동 불가 시 `FAILURE · ROUTE_END` 계획
+- 색상과 무관하게 한쪽 reciprocal 연결만 있는 최종 종착역 허용
 - 동일 노선 fresh-runtime 재시도
 - BUILD·RUN 중 메뉴에서 현재 플레이 종료 확인 후 타이틀 복귀
 - 성능 없는 꾸미기 보상
 
 ## 바로 실행하기
 
-현재 제품 권위: `GMB-002 · SX-DEC-027~039`  
-최신 병합 후 정본 감사: `SX-AUD-025`
+현재 제품 권위: `GMB-003 · SX-DEC-027~042`  
+현재 기획 감사: `SX-AUD-026 · APPROVED_PENDING_MERGE`  
+직전 폐쇄 감사: `SX-AUD-025 · MERGED_AND_SYNCED`
 
 1. GitHub Desktop에서 저장소 `Switchy-Express-Cargo-Puzzle`과 **`main` 브랜치**를 선택한다.
 2. `Fetch origin → Pull origin`으로 최신 `main`을 받는다.
@@ -44,15 +47,17 @@ F5
 → Title 종료 표시
 → Briefing
 → BUILD HUD·도구 표시
-→ 권장 배치
-→ 한쪽 연결 종착역에서 마지막 화물 하역·SUCCESS
+→ 파란 한쪽 연결 종착역 판정
+→ 배송 전 노선 끝 FAILURE/ROUTE_END
+→ SWITCH 세 방향 화살표·진입 방향 U턴·점유 잠금
+→ 마지막 화물 하역·SUCCESS 우선순위
 → BUILD 또는 RUN 메뉴 열기
 → 취소 후 동일 플레이 상태 유지
 → 다시 메뉴 열기
 → 종료 확정 후 Title 복귀
 ```
 
-현재 사용자 수동 증거는 `TITLE_EXIT_VISIBLE_PASS`까지만 확정됐다. 한쪽 연결 종착역 완주와 BUILD·RUN 중간 종료의 취소·확정은 `RETEST_REQUIRED`다.
+현재 사용자 수동 증거는 `TITLE_EXIT_VISIBLE_PASS`, `SUCCESS_RESULT_VISIBLE_PASS`, 빨간 한쪽 연결 역 PASS와 파란 한쪽 연결 역 FAIL이다. 파란 역 원인은 자동 parity 테스트 전까지 미확정이며, 새 ROUTE_END·분기 화살표·U턴과 BUILD/RUN 중간 종료는 `IMPLEMENTATION_PENDING` 또는 `RETEST_REQUIRED`다.
 
 ### 조작
 
@@ -80,13 +85,20 @@ PRODUCTION CUTOVER: BLOCKED
 ```
 
 ```yaml
-repository_main_observed: 212d37e4577a6ffdb7b93e92de6a82785c2976eb
+repository_main_observed: efe0ab7330387d1b411962074b5f91b3043fddc8
 latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
 pr_83: MERGED
+pr_94: CLOSED_ARCHIVED_NOT_MERGED
+pr_99: MERGED
+pr_100: MERGED
 finite_automated_core: PASS
 pc_vertical_slice_automated_core: PASS
 default_project_play_boot: PASS_AUTOMATED
-one_sided_station_terminal: PASS_AUTOMATED
+one_sided_station_terminal_red: PASS_AUTOMATED_AND_USER_LOCAL
+one_sided_station_terminal_blue: FAIL_USER_LOCAL_ROOT_CAUSE_UNVERIFIED
+success_result_visible: PASS_USER_LOCAL
+route_end_game_over: APPROVED_IMPLEMENTATION_PENDING
+switch_three_direction_arrows_uturn: APPROVED_IMPLEMENTATION_PENDING
 mid_run_exit: PASS_AUTOMATED
 title_exit_visible: PASS_USER_LOCAL
 pc_local_route_and_mid_run_retest: RETEST_REQUIRED
@@ -129,7 +141,7 @@ PC 기본 진입점과 Android validation feature override의 증거를 섞지 �
 4. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
 5. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
 6. `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
-7. `기획서/50_제작_검증/SX_AUD_025_POST_MERGE_CANON_FRESHNESS_AND_GATE_RECOVERY.md`
+7. `기획서/50_제작_검증/SX_AUD_026_ROUTE_END_AND_SWITCH_DIRECTION_PLAN.md`
 
 ## 기술
 
