@@ -26,7 +26,8 @@
 ## 바로 실행하기
 
 현재 제품 권위: `GMB-003 · SX-DEC-027~042`  
-현재 기획 감사: `SX-AUD-026 · APPROVED_PENDING_MERGE`
+현재 기획 감사: `SX-AUD-026 · APPROVED_PENDING_MERGE`  
+직전 폐쇄 감사: `SX-AUD-025 · MERGED_AND_SYNCED`
 
 1. GitHub Desktop에서 저장소 `Switchy-Express-Cargo-Puzzle`과 **`main` 브랜치**를 선택한다.
 2. `Fetch origin → Pull origin`으로 최신 `main`을 받는다.
