@@ -1,5 +1,7 @@
 from pathlib import Path
 import importlib.util
+import json
+import tempfile
 import unittest
 
 
@@ -9,13 +11,17 @@ ENTRY = ROOT / "tools/local_exact_head_verification_entry.py"
 WRAPPER = ROOT / "tools/run_local_exact_head_verification.ps1"
 
 
-def load_matrix():
-    spec = importlib.util.spec_from_file_location("local_python_matrix", MATRIX)
+def load_module(name, path):
+    spec = importlib.util.spec_from_file_location(name, path)
     if spec is None or spec.loader is None:
-        raise RuntimeError("unable to load matrix validator")
+        raise RuntimeError(f"unable to load {path}")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
+
+def load_matrix():
+    return load_module("local_python_matrix", MATRIX)
 
 
 def passing_matrix(head: str = "a" * 40):
@@ -72,11 +78,31 @@ class LocalWindowsWslMatrixTest(unittest.TestCase):
         self.assertEqual(len(summary["targets"]), 4)
         self.assertNotIn("stdout", summary["targets"]["windows-python-3.11"])
 
+    def test_entry_binds_sanitized_matrix_and_sha256(self) -> None:
+        entry = load_module("local_exact_head_verification_entry", ENTRY)
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            matrix_path = root / "python-matrix.json"
+            output_path = root / "local-verification.json"
+            matrix_path.write_text(json.dumps(passing_matrix()), encoding="utf-8")
+            output_path.write_text(
+                json.dumps({"status": "PASS", "schema_version": 1}),
+                encoding="utf-8",
+            )
+            summary = load_matrix().validate_matrix(passing_matrix(), "a" * 40)
+            entry.bind_matrix_to_manifest(output_path, matrix_path, summary)
+            payload = json.loads(output_path.read_text(encoding="utf-8"))
+            self.assertEqual(payload["schema_version"], 2)
+            self.assertEqual(payload["python_matrix"]["status"], "PASS")
+            self.assertEqual(len(payload["python_matrix_sha256"]), 64)
+
     def test_entry_hardens_git_and_bytecode(self) -> None:
         text = ENTRY.read_text(encoding="utf-8")
         self.assertIn('os.environ["PYTHONDONTWRITEBYTECODE"] = "1"', text)
         self.assertIn('base.VerificationError("GIT_COMMAND_FAILED"', text)
         self.assertIn("base._git = stable_git", text)
+        self.assertIn("--python-matrix-manifest", text)
+        self.assertIn("python_matrix_sha256", text)
 
     def test_wrapper_contract(self) -> None:
         text = WRAPPER.read_text(encoding="utf-8")
@@ -100,6 +126,7 @@ class LocalWindowsWslMatrixTest(unittest.TestCase):
             "SWITCHY_PYTHON_VERSION=",
             "MARKED_OUTPUT_NOT_FOUND",
             "python-matrix.json",
+            "--python-matrix-manifest",
             "local_python_matrix.py",
             "local_exact_head_verification_entry.py",
         ):
