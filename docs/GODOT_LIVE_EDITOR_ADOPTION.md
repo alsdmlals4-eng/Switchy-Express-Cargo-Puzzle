@@ -9,12 +9,12 @@ mutation_policy: SCRATCH_SCENE_MUTATION_ONLY
 source_integrity: SOURCE_TREE_UNCHANGED
 legacy_godot_ai: ABSENT
 base_pilot_pin_state: DRAFT_CANDIDATE_EXACT_HEAD
-base_pilot_commit: 655ca01c0cec2113488a41d88377c6df18eaec10
+base_pilot_commit: 5c8a5c02412094f1da8299d87837d39da0255a7d
 evidence_bundle: SELF_CONTAINED_EVIDENCE_BUNDLE
 PRODUCTION_ADAPTER_READY: NOT_READY
 ```
 
-This Draft PR temporarily pins the exact unmerged Base C0.3 candidate commit `655ca01c0cec2113488a41d88377c6df18eaec10`. All four adoption files bind the same candidate SHA. This is real-project validation evidence, not merge authorization or a production release pin.
+This Draft PR temporarily pins the exact unmerged Base C0.3 candidate commit `5c8a5c02412094f1da8299d87837d39da0255a7d`. All four adoption files bind the same candidate SHA. This is real-project validation evidence, not merge authorization or a production release pin.
 
 The repository does not permanently install the Base editor addon into the product project.
 
