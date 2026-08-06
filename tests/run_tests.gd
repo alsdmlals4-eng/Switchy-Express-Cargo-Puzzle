@@ -59,6 +59,7 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/demo/test_product_hud.gd"),
 	preload("res://tests/demo/test_product_finite_slice_commands.gd"),
 	preload("res://tests/demo/test_recommended_layout_ui.gd"),
+	preload("res://tests/demo/test_route_control_runtime_ui.gd"),
 	preload("res://tests/demo/test_vertical_slice_end_to_end.gd"),
 	preload("res://tests/demo/test_demo_effects_authority.gd"),
 	preload("res://tests/demo/test_demo_audio_director.gd"),
