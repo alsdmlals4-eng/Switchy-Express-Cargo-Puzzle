@@ -25,9 +25,10 @@ func validate(definition: Variant, layout: Variant) -> Variant:
 	if not _has_valid_start(definition, graph):
 		return _failed(INVALID_START, [definition.start_cell], "start must lead into the player network")
 
-	var dangling_cells := _dangling_cells(definition, graph)
-	if not dangling_cells.is_empty():
-		return _failed(DANGLING_EDGE, dangling_cells, "ordinary track ports must connect reciprocally")
+	if not _allows_open_terminals(definition):
+		var dangling_cells := _dangling_cells(definition, graph)
+		if not dangling_cells.is_empty():
+			return _failed(DANGLING_EDGE, dangling_cells, "ordinary track ports must connect reciprocally")
 
 	var search: Dictionary = _search_reachable_states(definition, graph)
 	var disconnected_cells := _disconnected_required_cells(definition, search["reachable_cells"])
@@ -46,9 +47,10 @@ func validate(definition: Variant, layout: Variant) -> Variant:
 	if not invalid_switches.is_empty():
 		return _failed(INVALID_SWITCH_EXIT, invalid_switches, "every switch exit must remain structurally usable")
 
-	var trap_cells := _permanent_trap_cells(graph, search["states"])
-	if not trap_cells.is_empty():
-		return _failed(PERMANENT_TRAP, trap_cells, "reachable traversal states must have a forward successor")
+	if not _allows_open_terminals(definition):
+		var trap_cells := _permanent_trap_cells(graph, search["states"])
+		if not trap_cells.is_empty():
+			return _failed(PERMANENT_TRAP, trap_cells, "reachable traversal states must have a forward successor")
 
 	return PreflightResultScript.new(true, PASS, [], "structural preflight passed", graph)
 
@@ -168,7 +170,9 @@ func _structural_successors(
 				outgoing_ports.append(ports[1] if ports[0] == incoming_port else ports[0])
 		&"CROSSING":
 			if piece.ports().has(incoming_port):
-				outgoing_ports.append(-incoming_port)
+				for port: Vector2i in piece.ports():
+					if port != incoming_port:
+						outgoing_ports.append(port)
 		&"SWITCH":
 			if incoming_port == piece.approach_port():
 				outgoing_ports.append_array(piece.switch_exits())
@@ -181,6 +185,14 @@ func _structural_successors(
 			result.append(next_cell)
 	result.sort_custom(_cell_precedes)
 	return result
+
+
+static func _allows_open_terminals(definition: Variant) -> bool:
+	return (
+		definition != null
+		and definition.has_method("allows_open_terminals_after_required")
+		and bool(definition.allows_open_terminals_after_required())
+	)
 
 
 static func _state_key(previous: Vector2i, current: Vector2i) -> String:
