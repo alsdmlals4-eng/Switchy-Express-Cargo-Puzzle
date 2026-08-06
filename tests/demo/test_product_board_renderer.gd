@@ -39,6 +39,38 @@ func run() -> void:
 		"malformed marker coordinates must be rejected"
 	)
 
+	var fixed_snapshot := {
+		"start_cell": Vector2i(1, 4),
+		"incoming_cell": Vector2i(0, 4),
+		"station_placements": [
+			{
+				"cell": [8, 5],
+				"cargo_type": "RED_STAR",
+				"rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 1},
+			},
+		],
+		"cargo_placements": [
+			{
+				"cell": [9, 4],
+				"cargo_type": "RED_STAR",
+				"rail_anchor": {"geometry": "CURVE", "rotation_quarters": 3},
+			},
+		],
+	}
+	var fixed_tracks: Array = RendererScript.fixed_track_descriptors(fixed_snapshot)
+	assert_equal(fixed_tracks.size(), 4, "start, incoming, station, and cargo rails must render")
+	assert_equal(fixed_tracks[0]["cell"], Vector2i(0, 4), "incoming rail must be visible")
+	assert_equal(fixed_tracks[1]["cell"], Vector2i(1, 4), "start rail must be visible")
+	assert_equal(fixed_tracks[2]["cell"], Vector2i(8, 5), "station anchor rail must be visible")
+	assert_equal(fixed_tracks[2]["rotation_quarters"], 1, "station anchor rotation is preserved")
+	assert_equal(fixed_tracks[3]["cell"], Vector2i(9, 4), "cargo anchor rail must be visible")
+	assert_equal(fixed_tracks[3]["geometry"], &"CURVE", "cargo anchor geometry is preserved")
+	assert_equal(
+		RendererScript.start_marker_descriptor(fixed_snapshot)["cell"],
+		Vector2i(1, 4),
+		"start marker must point at the authored start cell"
+	)
+
 	var source: Dictionary = {
 		"map_id": &"VS_DEMO_01",
 		"board_size": Vector2i(11, 9),
@@ -49,6 +81,7 @@ func run() -> void:
 		"problem_cells": [],
 		"selected_cell": Vector2i(3, 4),
 		"selected_geometry": &"STRAIGHT",
+		"selected_rotation_quarters": 0,
 		"phase": &"BUILD",
 		"train_cell": Vector2i(-1, -1),
 		"train_next_cell": Vector2i(-1, -1),
