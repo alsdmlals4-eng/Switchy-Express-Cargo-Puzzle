@@ -90,8 +90,10 @@ func _draw() -> void:
 	draw_rect(rect, Palette.BOARD, true)
 	_draw_grid(rect, board_size)
 	_draw_blocked(rect, board_size)
+	_draw_fixed_tracks(rect, board_size)
 	_draw_layout(rect, board_size)
 	_draw_fixed_markers(rect, board_size)
+	_draw_start_marker(rect, board_size)
 	_draw_state_overlays(rect, board_size)
 	_draw_train(rect, board_size)
 
@@ -108,7 +110,9 @@ func _draw_grid(rect: Rect2, board_size: Vector2i) -> void:
 
 func _draw_blocked(rect: Rect2, board_size: Vector2i) -> void:
 	for value: Variant in _snapshot.get("blocked_cells", []):
-		var cell: Vector2i = value
+		var cell: Vector2i = snapshot_cell(value)
+		if cell == NO_CELL:
+			continue
 		var cell_rect := _cell_rect(cell, rect, board_size).grow(-3.0)
 		draw_rect(cell_rect, _alpha(Palette.BLOCKED, 0.38), true)
 		draw_line(cell_rect.position, cell_rect.end, Palette.BLOCKED, 2.0)
@@ -120,10 +124,23 @@ func _draw_blocked(rect: Rect2, board_size: Vector2i) -> void:
 		)
 
 
+func _draw_fixed_tracks(rect: Rect2, board_size: Vector2i) -> void:
+	for descriptor: Dictionary in fixed_track_descriptors(_snapshot):
+		_draw_track_piece(
+			descriptor["cell"],
+			descriptor["geometry"],
+			descriptor["rotation_quarters"],
+			rect,
+			board_size,
+			_alpha(Palette.RAIL_BED, 0.88),
+			Palette.RAIL_METAL
+		)
+
+
 func _draw_layout(rect: Rect2, board_size: Vector2i) -> void:
 	for value: Variant in _snapshot.get("layout_pieces", []):
 		var piece: Dictionary = value
-		var cell: Vector2i = piece.get("cell", NO_CELL)
+		var cell: Vector2i = snapshot_cell(piece.get("cell", NO_CELL))
 		if cell == NO_CELL:
 			continue
 		_draw_track_piece(
@@ -211,6 +228,43 @@ func _draw_marker(
 	_draw_marker_label(cell_rect.get_center(), cargo_type)
 
 
+func _draw_start_marker(rect: Rect2, board_size: Vector2i) -> void:
+	var descriptor := start_marker_descriptor(_snapshot)
+	if descriptor.is_empty():
+		return
+	var start_cell: Vector2i = descriptor["cell"]
+	var incoming_cell: Vector2i = descriptor["incoming_cell"]
+	var cell_rect := _cell_rect(start_cell, rect, board_size).grow(-8.0)
+	var center := cell_rect.get_center()
+	var direction := Vector2(start_cell - incoming_cell).normalized()
+	if direction == Vector2.ZERO:
+		direction = Vector2.RIGHT
+	var perpendicular := Vector2(-direction.y, direction.x)
+	var radius := minf(cell_rect.size.x, cell_rect.size.y) * 0.30
+	draw_circle(center, radius, Palette.BOARD_EDGE)
+	draw_circle(center, radius * 0.78, Palette.SELECTED)
+	var tip := center + direction * radius * 0.66
+	var base := center - direction * radius * 0.34
+	draw_colored_polygon(PackedVector2Array([
+		tip,
+		base + perpendicular * radius * 0.42,
+		base - perpendicular * radius * 0.42,
+	]), Palette.TEXT_LIGHT)
+	var font := ThemeDB.fallback_font
+	var label := "START"
+	var font_size := 12
+	var text_size := font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size)
+	draw_string(
+		font,
+		Vector2(center.x - text_size.x * 0.5, cell_rect.position.y - 3.0),
+		label,
+		HORIZONTAL_ALIGNMENT_LEFT,
+		-1.0,
+		font_size,
+		Palette.BOARD_EDGE
+	)
+
+
 func _draw_cargo_shape(center: Vector2, cargo_type: StringName, radius: float, color: Color) -> void:
 	if cargo_type == &"RED_STAR":
 		var points := PackedVector2Array()
@@ -248,14 +302,15 @@ func _draw_state_overlays(rect: Rect2, board_size: Vector2i) -> void:
 	_draw_ghost(rect, board_size)
 	if _hover_cell != NO_CELL:
 		draw_rect(_cell_rect(_hover_cell, rect, board_size).grow(-2.0), Palette.HOVER, false, 3.0)
-	var selected: Vector2i = _snapshot.get("selected_cell", NO_CELL)
+	var selected: Vector2i = snapshot_cell(_snapshot.get("selected_cell", NO_CELL))
 	if selected != NO_CELL:
 		var selected_rect := _cell_rect(selected, rect, board_size).grow(-3.0)
 		draw_rect(selected_rect, _alpha(Palette.SELECTED, 0.28), true)
 		draw_rect(selected_rect, Palette.SELECTED, false, 4.0)
 	for value: Variant in _snapshot.get("problem_cells", []):
-		var problem: Vector2i = value
-		draw_rect(_cell_rect(problem, rect, board_size).grow(-2.0), Palette.PROBLEM, false, 5.0)
+		var problem: Vector2i = snapshot_cell(value)
+		if problem != NO_CELL:
+			draw_rect(_cell_rect(problem, rect, board_size).grow(-2.0), Palette.PROBLEM, false, 5.0)
 
 
 func _draw_ghost(rect: Rect2, board_size: Vector2i) -> void:
@@ -269,7 +324,7 @@ func _draw_ghost(rect: Rect2, board_size: Vector2i) -> void:
 	_draw_track_piece(
 		cell,
 		StringName(descriptor["geometry"]),
-		0,
+		int(descriptor.get("rotation_quarters", 0)),
 		rect,
 		board_size,
 		_alpha(color, 0.58),
@@ -278,13 +333,13 @@ func _draw_ghost(rect: Rect2, board_size: Vector2i) -> void:
 
 
 func _draw_train(rect: Rect2, board_size: Vector2i) -> void:
-	var cell: Vector2i = _snapshot.get("train_cell", NO_CELL)
+	var cell: Vector2i = snapshot_cell(_snapshot.get("train_cell", NO_CELL))
 	if cell == NO_CELL:
 		return
 	var cell_rect := _cell_rect(cell, rect, board_size).grow(-8.0)
 	draw_rect(cell_rect, Palette.TRAIN, true)
 	draw_rect(cell_rect, Palette.TRAIN_ACCENT, false, 3.0)
-	var next_cell: Vector2i = _snapshot.get("train_next_cell", NO_CELL)
+	var next_cell: Vector2i = snapshot_cell(_snapshot.get("train_next_cell", NO_CELL))
 	if next_cell != NO_CELL:
 		var direction := Vector2(next_cell - cell).normalized()
 		var nose := cell_rect.get_center() + direction * minf(cell_rect.size.x, cell_rect.size.y) * 0.38
@@ -302,6 +357,7 @@ func _ghost_descriptor() -> Dictionary:
 	return {
 		"cell": _hover_cell,
 		"geometry": geometry,
+		"rotation_quarters": int(_snapshot.get("selected_rotation_quarters", 0)),
 		"valid": (buildable.is_empty() or buildable.has(_hover_cell)) and not blocked.has(_hover_cell),
 	}
 
@@ -315,7 +371,7 @@ func _set_hover(cell: Vector2i) -> void:
 
 
 func _board_size() -> Vector2i:
-	return _snapshot.get("board_size", Vector2i.ZERO)
+	return snapshot_cell(_snapshot.get("board_size", Vector2i.ZERO))
 
 
 func _board_rect() -> Rect2:
@@ -335,7 +391,70 @@ static func snapshot_cell(value: Variant) -> Vector2i:
 		return Vector2i(int(value.x), int(value.y))
 	if value is Array and value.size() == 2:
 		return Vector2i(int(value[0]), int(value[1]))
+	if value is Dictionary and value.has("x") and value.has("y"):
+		return Vector2i(int(value.get("x", -1)), int(value.get("y", -1)))
 	return NO_CELL
+
+
+static func fixed_track_descriptors(snapshot: Dictionary) -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	var incoming := snapshot_cell(snapshot.get("incoming_cell", NO_CELL))
+	if incoming != NO_CELL:
+		result.append({
+			"cell": incoming,
+			"geometry": &"STRAIGHT",
+			"rotation_quarters": 0,
+			"kind": &"INCOMING",
+		})
+	var start := snapshot_cell(snapshot.get("start_cell", NO_CELL))
+	if start != NO_CELL:
+		result.append({
+			"cell": start,
+			"geometry": &"STRAIGHT",
+			"rotation_quarters": 0,
+			"kind": &"START",
+		})
+	_append_authored_tracks(result, snapshot.get("station_placements", []), &"STATION")
+	_append_authored_tracks(result, snapshot.get("cargo_placements", []), &"CARGO")
+	return result
+
+
+static func start_marker_descriptor(snapshot: Dictionary) -> Dictionary:
+	var start := snapshot_cell(snapshot.get("start_cell", NO_CELL))
+	var incoming := snapshot_cell(snapshot.get("incoming_cell", NO_CELL))
+	if start == NO_CELL or incoming == NO_CELL:
+		return {}
+	return {
+		"cell": start,
+		"incoming_cell": incoming,
+	}
+
+
+static func _append_authored_tracks(
+	result: Array[Dictionary],
+	placements_value: Variant,
+	kind: StringName
+) -> void:
+	if not placements_value is Array:
+		return
+	for value: Variant in placements_value:
+		if not value is Dictionary:
+			continue
+		var placement: Dictionary = value
+		var anchor_value: Variant = placement.get("rail_anchor", null)
+		if not anchor_value is Dictionary:
+			continue
+		var anchor: Dictionary = anchor_value
+		var cell := snapshot_cell(placement.get("cell", NO_CELL))
+		var geometry := StringName(anchor.get("geometry", &""))
+		if cell == NO_CELL or geometry == &"":
+			continue
+		result.append({
+			"cell": cell,
+			"geometry": geometry,
+			"rotation_quarters": int(anchor.get("rotation_quarters", 0)),
+			"kind": kind,
+		})
 
 
 static func _cell_size(rect: Rect2, board_size: Vector2i) -> Vector2:
