@@ -10,7 +10,7 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import Iterable, Sequence
+from typing import Iterable, Mapping, Sequence
 
 DEFAULT_PROTECTED_PATHS: tuple[str, ...] = (
     "project.godot",
@@ -20,7 +20,35 @@ DEFAULT_PROTECTED_PATHS: tuple[str, ...] = (
     "assets",
 )
 _LOAD_STEPS_PATTERN = re.compile(r"\s+load_steps=\d+")
-ALLOWED_SCENE_METADATA_PATHS = frozenset({"GutScene.tscn", "UserFileViewer.tscn"})
+ALLOWED_LOAD_STEPS_METADATA_PATHS = frozenset(
+    {
+        "GutScene.tscn",
+        "UserFileViewer.tscn",
+        "gui/GutControl.tscn",
+        "gui/GutLogo.tscn",
+        "gui/GutRunner.tscn",
+        "gui/GutSceneTheme.tres",
+        "gui/MinGui.tscn",
+        "gui/NormalGui.tscn",
+        "gui/OutputText.tscn",
+        "gui/ResizeHandle.tscn",
+        "gui/RunAtCursor.tscn",
+        "gui/RunExternally.tscn",
+        "gui/RunResults.tscn",
+        "gui/ShellOutOptions.tscn",
+        "gui/ShortcutButton.tscn",
+        "gui/run_from_editor.tscn",
+        "gut_loader_the_scene.tscn",
+    }
+)
+EXPECTED_BINARY_DIVERGENCES: dict[str, dict[str, object]] = {
+    "source_code_pro.fnt": {
+        "local_sha256": "e1149f403f4aba18913fb500e4b34aa45f44afe9e36a3e7aed923c11aacf4686",
+        "official_sha256": "404094d0aae3de496a64fca1795bed8bd60c2411a3d992551f9e8f00789b71fe",
+        "local_size": 42799,
+        "official_size": 42799,
+    }
+}
 
 
 def _iter_files(root: Path) -> dict[str, Path]:
@@ -41,31 +69,60 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _normalized_scene_bytes(path: Path) -> bytes:
+def _normalized_resource_bytes(path: Path) -> bytes:
     raw = path.read_bytes()
     try:
         text = raw.decode("utf-8")
     except UnicodeDecodeError:
         return raw
     lines = text.splitlines(keepends=True)
-    if not lines or not lines[0].startswith("[gd_scene"):
+    if not lines or not lines[0].startswith(("[gd_scene", "[gd_resource")):
         return raw
     lines[0] = _LOAD_STEPS_PATTERN.sub("", lines[0], count=1)
     return "".join(lines).encode("utf-8")
 
 
-def compare_vendor(local_root: Path, official_root: Path) -> dict[str, object]:
-    """Compare local and official GUT trees with one narrow scene normalization."""
+def _evidence(local_bytes: bytes, official_bytes: bytes) -> dict[str, object]:
+    return {
+        "local_sha256": hashlib.sha256(local_bytes).hexdigest(),
+        "official_sha256": hashlib.sha256(official_bytes).hexdigest(),
+        "local_size": len(local_bytes),
+        "official_size": len(official_bytes),
+    }
+
+
+def _matches_expected_binary_divergence(
+    evidence: Mapping[str, object], expected: Mapping[str, object] | None
+) -> bool:
+    if expected is None:
+        return False
+    required = ("local_sha256", "official_sha256", "local_size", "official_size")
+    return all(evidence.get(key) == expected.get(key) for key in required)
+
+
+def compare_vendor(
+    local_root: Path,
+    official_root: Path,
+    expected_binary_divergences: Mapping[str, Mapping[str, object]] | None = None,
+) -> dict[str, object]:
+    """Compare local and official GUT trees with explicit, frozen exceptions."""
     local_files = _iter_files(Path(local_root))
     official_files = _iter_files(Path(official_root))
     local_names = set(local_files)
     official_names = set(official_files)
+    expected_binary = (
+        EXPECTED_BINARY_DIVERGENCES
+        if expected_binary_divergences is None
+        else expected_binary_divergences
+    )
 
     missing_local = sorted(official_names - local_names)
     extra_local = sorted(local_names - official_names)
     source_divergence: list[str] = []
     divergence_evidence: dict[str, dict[str, object]] = {}
-    normalized_scene_metadata: list[str] = []
+    normalized_resource_metadata: list[str] = []
+    pinned_binary_divergence: list[str] = []
+    pinned_binary_evidence: dict[str, dict[str, object]] = {}
     exact_matches = 0
 
     for relative in sorted(local_names & official_names):
@@ -74,19 +131,19 @@ def compare_vendor(local_root: Path, official_root: Path) -> dict[str, object]:
         if local_bytes == official_bytes:
             exact_matches += 1
             continue
-        if relative in ALLOWED_SCENE_METADATA_PATHS:
-            if _normalized_scene_bytes(local_files[relative]) == _normalized_scene_bytes(
+        if relative in ALLOWED_LOAD_STEPS_METADATA_PATHS:
+            if _normalized_resource_bytes(local_files[relative]) == _normalized_resource_bytes(
                 official_files[relative]
             ):
-                normalized_scene_metadata.append(relative)
+                normalized_resource_metadata.append(relative)
                 continue
+        evidence = _evidence(local_bytes, official_bytes)
+        if _matches_expected_binary_divergence(evidence, expected_binary.get(relative)):
+            pinned_binary_divergence.append(relative)
+            pinned_binary_evidence[relative] = evidence
+            continue
         source_divergence.append(relative)
-        divergence_evidence[relative] = {
-            "local_sha256": hashlib.sha256(local_bytes).hexdigest(),
-            "official_sha256": hashlib.sha256(official_bytes).hexdigest(),
-            "local_size": len(local_bytes),
-            "official_size": len(official_bytes),
-        }
+        divergence_evidence[relative] = evidence
 
     ok = not (missing_local or extra_local or source_divergence)
     return {
@@ -94,7 +151,9 @@ def compare_vendor(local_root: Path, official_root: Path) -> dict[str, object]:
         "local_file_count": len(local_files),
         "official_file_count": len(official_files),
         "exact_match_count": exact_matches,
-        "normalized_scene_metadata": normalized_scene_metadata,
+        "normalized_resource_metadata": normalized_resource_metadata,
+        "pinned_binary_divergence": pinned_binary_divergence,
+        "pinned_binary_evidence": pinned_binary_evidence,
         "source_divergence": source_divergence,
         "divergence_evidence": divergence_evidence,
         "missing_local": missing_local,
