@@ -4,7 +4,7 @@
 
 **Goal:** Implement approved `SX-DEC-041` route-end failure ordering and `SX-DEC-042` three-direction direct switch selection/U-turn without changing Scene, Resource, Theme, signals, or project settings.
 
-**Architecture:** `TrainController` exposes safe movement availability; `FiniteRunController` owns ordered terminal outcome and failure reason. `FiniteTrackSwitch` owns all three selectable reciprocal ports, `FiniteTrackGraph` exposes stable route-control state, and `RouteControlOverlay` computes procedural arrow targets and emits selection intent while `ProductFiniteSlice` dispatches through the existing controller command boundary. GUT 9.7.1 is the formal new RED/GREEN authority; the existing custom runner remains a full-regression safety net.
+**Architecture:** `TrainController` exposes safe movement availability; `FiniteRunController` owns ordered terminal outcome and failure reason. `FiniteTrackSwitch` owns all three selectable reciprocal ports and `FiniteTrackGraph` exposes stable route-control state. `RouteControlOverlay` handles `_gui_input` into a pending intent queue; `ProductFiniteSlice` consumes that queue and dispatches through the existing controller command boundary, avoiding new signal authoring. GUT 9.7.1 is the formal new RED/GREEN authority; the existing custom runner remains a full-regression safety net.
 
 **Tech Stack:** Godot 4.7.1, typed GDScript, GUT 9.7.1, existing custom TestCase runner, GitHub Actions standard hosted runners.
 
@@ -20,6 +20,7 @@
 - Occupied route controls reject selection changes.
 - CROSSING keeps existing `STRAIGHT/RIGHT/LEFT` behavior.
 - Overlay is presentation/input intent only; graph remains route authority.
+- HiGodot signal authority is preserved: no new signal declaration or signal connection is added by this branch.
 - No `.tscn`, `.tres`, `.res`, binary asset, signal wiring, autoload, InputMap, or `project.godot` edits.
 - No physical Windows, Android, human, or connected-HiGodot PASS is inferred from CI.
 
@@ -42,7 +43,7 @@
 - Failure reasons: `TIME_EXPIRED`, `ROUTE_END`
 
 - [ ] **Step 1: Write GUT RED cases** for no-event dead-end, non-final unload-at-dead-end, final-delivery-at-dead-end priority, and timeout reason.
-- [ ] **Step 2: Run hosted `GUT 9.7.1 Tests` and confirm RED** due to missing `can_advance`/`failure_reason` or current reverse/dead-end assertion.
+- [ ] **Step 2: Run hosted `GUT 9.7.1 Tests` and confirm RED** due to missing route-end/failure-reason behavior.
 - [ ] **Step 3: Implement safe train movement**: `can_advance()` returns true only when target differs from current and remains a reciprocal neighbor; `_commit_next_cell()` returns current without emission when false; remove only the unconditional immediate-reverse prohibition so a graph-authorized U-turn can execute.
 - [ ] **Step 4: Implement ordered route-end resolution**: after `cell_entered` contact handling, fail immediately only when still RUNNING and `can_advance()==false`; after non-final unload, check route-end before resuming; pending final outcome resolves first.
 - [ ] **Step 5: Add immutable failure reason** to `FiniteRunSummary`; all timer branches use `TIME_EXPIRED`, route exhaustion uses `ROUTE_END`, success uses empty reason.
@@ -70,10 +71,10 @@
 - [ ] **Step 3: Run hosted RED** and record missing APIs/current two-exit behavior.
 - [ ] **Step 4: Implement switch domain** with stable cardinal-order connected ports, direct selection, and three-port cycle.
 - [ ] **Step 5: Implement graph selection** with existing lock authority and include `available_exits` in snapshot state.
-- [ ] **Step 6: Align preflight structural search** so SWITCH may transition through any reciprocal connected port, including incoming; do not alter CROSSING behavior.
+- [ ] **Step 6: Align preflight structural search** so SWITCH may transition through any reciprocal connected port, including incoming only for the product/open-terminal route; do not alter CROSSING behavior.
 - [ ] **Step 7: Run GUT + legacy GREEN.**
 
-### Task 3: Procedural direct-selection arrows
+### Task 3: Procedural direct-selection arrows without signal authoring
 
 **Files:**
 - Create: `tests/gut/integration/test_route_control_overlay_selection.gd`
@@ -81,14 +82,16 @@
 - Modify: `game/demo/product_finite_slice.gd`
 
 **Interfaces:**
-- Produces: signal `route_cycles_requested(cell: Vector2i, cycle_count: int)`
+- Produces: `RouteControlOverlay.consume_route_selection_requests() -> Array[Dictionary]`
+- Test helper: `RouteControlOverlay.direction_targets_for_test() -> Array[Dictionary]`
+- Request shape: `{ "cell": Vector2i, "cycle_count": int, "target_port": Vector2i }`
 - Consumes: `route_controls[].available_exits`, `selected_exit`, `locked`, snapshot `phase`.
 
 - [ ] **Step 1: Write GUT RED cases** for three direction targets, selected state, target size >= 44 px when the board cell permits it, cycle distance, lock rejection, and BUILD/PAUSED/result input rejection.
 - [ ] **Step 2: Run hosted RED** and record missing interaction contract.
 - [ ] **Step 3: Implement deterministic target descriptors** derived from snapshot + Control size; draw every SWITCH direction procedurally and distinguish selected state by fill/weight in addition to color.
-- [ ] **Step 4: Implement pointer handling** only for RUNNING/UNLOADING, emit cycle count to reach the clicked port, and keep `mouse_filter=IGNORE` outside active phases.
-- [ ] **Step 5: Connect `ProductFiniteSlice`** to dispatch existing `BOARD_CELL` command exactly `cycle_count` times; overlay never mutates graph directly.
+- [ ] **Step 4: Override `_gui_input`** only for RUNNING/UNLOADING, enqueue the cycles required to reach the clicked port, and keep `mouse_filter=IGNORE` outside active phases.
+- [ ] **Step 5: Update `ProductFiniteSlice._process`** to consume queued intents and dispatch existing `BOARD_CELL` exactly `cycle_count` times; overlay never mutates graph directly and no new signal is authored.
 - [ ] **Step 6: Run GUT + legacy full regression GREEN.**
 
 ### Task 4: Canon, Sheet, and exact-head delivery
