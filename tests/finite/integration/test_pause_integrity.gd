@@ -2,6 +2,7 @@ extends "res://tests/test_case.gd"
 
 const FACTORY_PATH := "res://game/finite/run/finite_run_session_factory.gd"
 const FIXTURE_PATH := "res://tests/fixtures/finite/finite_retry_fixture.gd"
+const SwitchDriver := preload("res://tests/fixtures/finite/three_direction_switch_driver.gd")
 
 
 func run() -> void:
@@ -21,7 +22,9 @@ func run() -> void:
 	var session: Variant = result["session"]
 	assert_true(session.input_state.toggle_auto_load(), "pause fixture must enable auto load")
 	assert_true(session.run_controller.start(), "pause fixture must start")
+	var branch_targets := SwitchDriver.capture_branch_targets(session.graph)
 
+	SwitchDriver.prepare_next_switch(session, branch_targets)
 	session.run_controller.advance_time(0.75)
 	var phase_before: StringName = session.run_controller.run_state().phase()
 	var elapsed_before: float = session.run_controller.run_state().elapsed_seconds()
@@ -52,5 +55,6 @@ func run() -> void:
 		var phase: StringName = session.run_controller.run_state().phase()
 		if phase == &"SUCCESS" or phase == &"FAILURE":
 			break
+		SwitchDriver.prepare_next_switch(session, branch_targets)
 		session.run_controller.advance_time(0.05)
-	assert_equal(session.run_controller.run_state().phase(), &"SUCCESS", "pause/resume must not prevent successful completion")
+	assert_equal(session.run_controller.run_state().phase(), &"SUCCESS", "pause/resume must not prevent successful completion with explicit switch destinations")
