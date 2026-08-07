@@ -4,15 +4,17 @@ Date: `2026-08-08 KST`
 
 ## Verdict
 
-`PASS_WITH_PHYSICAL_GATES_OPEN · EXACT_HEAD_AUTOMATED_PASS · PRE_MERGE`
+`MERGED_MAIN_VERIFIED · PASS_WITH_PHYSICAL_GATES_OPEN`
 
-PR #106 implements the already-approved `SX-DEC-041` and `SX-DEC-042` contract without widening Scene/Resource/Theme/project-settings/signal authority. Automated evidence is sufficient for pre-merge code acceptance, but it does **not** close local F5, physical Windows runtime, Android device, connected HiGodot, visual/touch readability, or human comprehension gates.
+PR #106 implemented the already-approved `SX-DEC-041` and `SX-DEC-042` contract without widening Scene/Resource/Theme/project-settings/signal authority and was merged as product main `12d1ef9b5c49e401d32dfc283db11a12574b5da3`. Automated evidence closes the implementation/merge gate only; local F5, physical Windows runtime, Android device, connected HiGodot, visual/touch readability, and human comprehension remain open.
 
 ## Authority
 
-- Baseline main: `23981d0bb3d65487951be2cbbc5ee365da624e1e`
+- Baseline main before PR #106: `23981d0bb3d65487951be2cbbc5ee365da624e1e`
 - Implementation branch: `feat/route-end-switch-direct-selection`
-- Reviewed implementation head: `9f5aeb626c7e81e9d90232f84971c13211e808b1`
+- Implementation code head: `9f5aeb626c7e81e9d90232f84971c13211e808b1`
+- Reviewed final PR head: `9c884e85efa9b60cbba21253fc71db034cc753d0`
+- Product merge: `12d1ef9b5c49e401d32dfc283db11a12574b5da3`
 - Pull request: `#106 feat: implement route-end and direct switch selection`
 - `SX-DEC-041` — contact/unload resolution precedes `FAILURE/ROUTE_END`; final required delivery SUCCESS wins.
 - `SX-DEC-042` — SWITCH exposes three reciprocal directions, direct selection, incoming-direction U-turn, occupied lock.
@@ -60,7 +62,7 @@ At head `3517430743605eab69be155c93b790f04ea8d472`, the existing Godot regressio
 - `FiniteTrackGraph.select_switch_exit()` preserves occupied-lock authority.
 - Route-control state exposes `available_exits` plus the selected direction.
 - Product/open-terminal preflight search recognizes reciprocal SWITCH traversal including the incoming direction; CROSSING keeps its existing `STRAIGHT/RIGHT/LEFT` behavior.
-- Legacy authored-route regression drivers now make explicit switch selections like the product user instead of depending on the superseded two-state/automatic-merge assumption.
+- Legacy authored-route regression drivers make explicit switch selections like the product user instead of depending on the superseded two-state/automatic-merge assumption.
 
 ### VIS-014 — procedural direct-selection overlay
 
@@ -74,9 +76,11 @@ At head `3517430743605eab69be155c93b790f04ea8d472`, the existing Godot regressio
 - Overlay never mutates graph authority directly.
 - No new signal declaration or signal connection was added.
 
-## Exact-head automated evidence
+## Automated evidence
 
-Implementation head `9f5aeb626c7e81e9d90232f84971c13211e808b1`:
+### Implementation code head
+
+Head `9f5aeb626c7e81e9d90232f84971c13211e808b1`:
 
 | Gate | Run | Result | Evidence |
 |---|---:|---|---|
@@ -96,18 +100,23 @@ Godot/live-editor pilot artifact from run `31226403396`:
 
 - artifact ID: `9012244538`
 
+### Final reviewed PR head
+
+Final PR head `9c884e85efa9b60cbba21253fc71db034cc753d0` re-ran the required checks after canon/audit updates:
+
+- GUT 9.7.1 Tests `31226750561`: PASS
+- Godot Tests `31226750559`: PASS
+- Project Contract `31226750577`: PASS
+- Validate Thin Adapter Migration `31226750563`: PASS
+- Windows Demo Export `31226750575`: PASS
+
+The exact reviewed HEAD was then merged with expected-head protection.
+
 ## Scope and authority audit
 
-PR changed-file inventory was reviewed before canon closure.
+Final PR changed-file inventory contained GDScript product logic, tests/test helpers, the implementation plan, and two canon/evidence Markdown files only.
 
-Allowed in this batch:
-
-- typed GDScript product logic required by `SX-DEC-041/042`
-- formal GUT and existing Godot regression tests
-- test-only route-driving helpers required to model the new three-direction semantics
-- decision / implementation evidence documents
-
-Not changed in the reviewed implementation diff:
+Not changed in PR #106:
 
 - `.tscn`
 - `.tres`
@@ -118,7 +127,7 @@ Not changed in the reviewed implementation diff:
 - autoload or InputMap configuration
 - signal declarations / signal connections for direct selection
 
-The implementation therefore remains inside the approved Codex/GDScript boundary and does not claim HiGodot-authored Scene/Resource changes.
+The implementation therefore stayed inside the approved Codex/GDScript boundary and did not claim HiGodot-authored Scene/Resource changes.
 
 ## Adversarial findings
 
@@ -139,28 +148,39 @@ The implementation therefore remains inside the approved Codex/GDScript boundary
 - five-person comprehension / touch readability: `NOT_RUN`
 - production cutover: `BLOCKED`
 
-The old user-local BLUE one-sided-station failure remains historical/stale runtime evidence until the merged main is fetched and reproduced; automated color parity is green and does not by itself invalidate that prior local observation.
+The old user-local BLUE one-sided-station failure remains historical/stale runtime evidence until merged main is fetched and reproduced; automated color parity is green and does not by itself invalidate that prior local observation.
 
-## Review surface
+## Review and merge surface
 
-At reviewed implementation head:
+Before merge of PR #106:
 
+- final reviewed head: `9c884e85efa9b60cbba21253fc71db034cc753d0`
 - PR mergeability: `true`
 - review submissions: `0`
 - inline review threads: `0`
 - PR comments: `0`
 - no `REQUEST_CHANGES` evidence
+- correct Sheet pre-merge same-ID readback completed for `SX-DEC-041`, `SX-DEC-042`, `SX-DEC-046`, `VIS-014`, `SX-AUD-031`, Hub/Order/Production surfaces
 
-This is not a substitute for exact-head CI after this canon/audit commit. The PR must be merged only after the final documentation carrier HEAD re-runs the required checks and the same Decision IDs are synchronized to the correct Google Sheet.
+Merge result:
 
-## Pre-merge decision
+- method: merge commit
+- expected head: `9c884e85efa9b60cbba21253fc71db034cc753d0`
+- product merge SHA: `12d1ef9b5c49e401d32dfc283db11a12574b5da3`
+- result: `merged=true`
+- open PRs immediately after merge: `0`
 
-`READY_FOR_FINAL_EXACT_HEAD_RECHECK_AND_SAME_ID_SHEET_SYNC`
+## Post-merge closure
 
-Merge is allowed only when:
+`SX-DEC-041` and `SX-DEC-042` are now `MERGED_MAIN_VERIFIED` for automated implementation evidence. `VIS-014` is implemented with automated component evidence and no new binary asset.
 
-1. final PR HEAD is read back exactly,
-2. GUT 9.7.1 Tests, Godot Tests, Project Contract, Validate Thin Adapter Migration, and any triggered required checks are green on that HEAD,
-3. `SX-DEC-041`, `SX-DEC-042`, `VIS-014`, and `SX-AUD-031` are synchronized to the correct Sheet without inventing manual PASS,
-4. review/thread/comment blockers remain zero,
-5. the reviewed expected HEAD is the one merged.
+The next authority is physical/manual validation, not additional speculative gameplay changes:
+
+1. Fetch/Pull merged main and reopen Godot.
+2. F5 verify BLUE one-sided station parity against the stale prior local observation.
+3. F5 verify ROUTE_END copy and final-delivery SUCCESS priority.
+4. F5 verify three direction arrows, direct selection, U-turn, occupied lock, and practical pointer/touch target readability.
+5. Run physical Windows artifact visual/audio/input smoke.
+6. Run Android landscape device smoke and later five-person comprehension.
+
+`PASS_WITH_PHYSICAL_GATES_OPEN` remains the ceiling until those observations exist.
