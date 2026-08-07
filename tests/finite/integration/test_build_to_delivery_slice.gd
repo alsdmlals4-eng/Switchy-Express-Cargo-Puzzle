@@ -40,11 +40,7 @@ func run() -> void:
 	var expected_layout: Variant = layout_script.new()
 	for piece: Variant in alpha_script.pieces():
 		expected_layout.put_piece(piece)
-	assert_equal(
-		slice.current_layout_signature(),
-		expected_layout.layout_signature(),
-		"UI build commands must produce the canonical alpha solution"
-	)
+	assert_equal(slice.current_layout_signature(), expected_layout.layout_signature(), "UI build commands must produce the canonical alpha solution")
 	assert_true(slice.presenter_model()["start_enabled"], "passing UI-built route must enable Start")
 
 	var view: Control = slice.get_node("View")
@@ -58,27 +54,17 @@ func run() -> void:
 	var switch_approach := Vector2i(2, 4)
 	var authored_exit: Vector2i = runtime.graph.next_cell(switch_cell, switch_approach)
 	view.request_board_cell(switch_cell)
-	assert_not_equal(
-		runtime.graph.next_cell(switch_cell, switch_approach),
-		authored_exit,
-		"tapping an unoccupied branch during RUNNING must directly preconfigure it"
-	)
+	assert_equal(runtime.graph.next_cell(switch_cell, switch_approach), switch_approach, "first tap must expose the incoming direction for U-turn")
 	view.request_board_cell(switch_cell)
-	assert_equal(
-		runtime.graph.next_cell(switch_cell, switch_approach),
-		authored_exit,
-		"a second direct branch tap must restore the two-state route"
-	)
+	assert_not_equal(runtime.graph.next_cell(switch_cell, switch_approach), authored_exit, "second tap must expose the alternate branch")
+	view.request_board_cell(switch_cell)
+	assert_equal(runtime.graph.next_cell(switch_cell, switch_approach), authored_exit, "third tap must restore the authored route")
 
 	view.pause_requested.emit()
 	assert_equal(slice.phase(), &"PAUSED", "Pause command must enter inspection-only mode")
 	var paused_exit: Vector2i = runtime.graph.next_cell(switch_cell, switch_approach)
 	view.request_board_cell(switch_cell)
-	assert_equal(
-		runtime.graph.next_cell(switch_cell, switch_approach),
-		paused_exit,
-		"board taps during PAUSED must not preconfigure a branch"
-	)
+	assert_equal(runtime.graph.next_cell(switch_cell, switch_approach), paused_exit, "board taps during PAUSED must not preconfigure a branch")
 	view.resume_requested.emit()
 	assert_equal(slice.phase(), &"RUNNING", "Resume command must restore RUNNING")
 
@@ -86,7 +72,7 @@ func run() -> void:
 	assert_true(slice.presenter_model()["auto_load_active"], "auto toggle must update the product surface")
 
 	assert_true(driver_script.advance_until_terminal(slice), "integrated alpha run must reach a terminal state")
-	assert_equal(slice.phase(), &"SUCCESS", "canonical alpha route with auto load must complete")
+	assert_equal(slice.phase(), &"SUCCESS", "canonical alpha route with explicit three-direction control must complete")
 	var summary: Variant = slice.current_summary()
 	assert_not_null(summary, "successful integrated run must expose summary")
 	assert_equal(summary.outcome, &"SUCCESS", "integrated summary must record success")
