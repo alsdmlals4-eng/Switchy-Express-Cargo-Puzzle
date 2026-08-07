@@ -156,6 +156,8 @@ All eight tests passed and JUnit reported zero errors, exposing a false-positive
 
 The final exact-head artifact contains no GUT framework error and all GUT steps succeed.
 
+A subsequent merge-readiness attack pass also identified that default `actions/checkout behavior could test a pull-request merge ref rather than the branch HEAD, and that the production snapshot occurred after Godot import. The final workflow hardening explicitly checks out the PR head SHA, snapshots production before import, rejects import error output, and re-runs vendor reconciliation after GUT. The PR remains unmergeable by contract until that hardening commit receives fresh exact-head PASS evidence.
+
 ## Merge gates remaining
 
 - final changed-file and diff review;

@@ -17,6 +17,7 @@ class GutPhaseBWorkflowContractTests(unittest.TestCase):
         self.assertIn("push:", text)
         self.assertIn("- main", text)
         self.assertIn("runs-on: ubuntu-latest", text)
+        self.assertIn("ref: ${{ github.event.pull_request.head.sha || github.sha }}", text)
         self.assertNotIn("self-hosted", text)
         self.assertNotIn("[skip actions]", text)
 
@@ -33,6 +34,11 @@ class GutPhaseBWorkflowContractTests(unittest.TestCase):
         self.assertIn("--headless --import --path .", text)
         self.assertLess(text.index("--headless --import --path ."), text.index("res://addons/gut/gut_cmdln.gd"))
         self.assertIn("tools/gut_phase_b_guard.py snapshot", text)
+        self.assertLess(text.index("Snapshot protected production tree"), text.index("Import Godot class names"))
+        self.assertIn("Reconcile installed GUT vendor after execution", text)
+        post_vendor = text[text.index("Reconcile installed GUT vendor after execution"):]
+        self.assertIn("if: always()", post_vendor[:300])
+        self.assertIn("vendor-reconciliation-after.json", post_vendor[:600])
         self.assertIn("res://addons/gut/gut_cmdln.gd", text)
         self.assertIn("-gexit", text)
         self.assertIn("test-results/gut/junit.xml", text)

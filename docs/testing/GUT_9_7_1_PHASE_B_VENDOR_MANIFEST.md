@@ -30,7 +30,7 @@ unclassified_source_divergence: []
 result: PASS
 ```
 
-The exact-head artifact is `gut-phase-b-evidence` ID `8977314810`. Phase B does not overwrite `addons/gut`.
+The exact-head artifact is `gut-phase-b-evidence` ID `8977314810`. Phase B does not overwrite `addons/gut`. The final workflow also repeats this full comparison after import and GUT execution so runtime mutation of the vendor tree cannot pass silently.
 
 ## Explicit first-line metadata paths
 

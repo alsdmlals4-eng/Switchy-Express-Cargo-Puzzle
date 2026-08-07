@@ -182,17 +182,18 @@ Artifacts:
 The dedicated `GUT 9.7.1 Tests` check runs:
 
 ```text
-checkout PR merge ref for exact head
+checkout explicit PR head SHA (push falls back to github.sha)
 → static contracts and Python compileall
 → install exact Godot 4.7.1
 → download pinned official GUT commit
 → reconcile all 259 vendor paths
-→ import Godot class names
 → snapshot protected production paths
+→ import Godot class names
 → run GUT CLI
 → reject SCRIPT ERROR, GUT ERROR, generic ERROR, and non-zero framework error summaries
 → validate JUnit minimum/failure/error counts
 → verify protected tree even when GUT fails
+→ reconcile the vendor tree again after execution
 → upload JUnit and diagnostic evidence
 ```
 
@@ -209,6 +210,8 @@ An earlier diagnostic HEAD executed all eight tests successfully but logged one 
 - rerunning all exact-head gates.
 
 The validated head contains this correction.
+
+A later merge-readiness attack pass found two additional exact-head/guard-order risks: the default checkout could use the pull-request merge ref, and the first production snapshot was taken after import. The final workflow hardening therefore explicitly checks out `github.event.pull_request.head.sha` (falling back to `github.sha` on push), snapshots protected production before import, rejects import error output, and re-runs vendor reconciliation after execution. This hardening must pass a new exact-head run before merge.
 
 ## Windows and Android shared-core coverage
 
