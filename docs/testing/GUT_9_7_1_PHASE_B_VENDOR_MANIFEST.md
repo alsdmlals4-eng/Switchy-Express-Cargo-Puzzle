@@ -11,16 +11,12 @@ official_branch: godot_4_7
 official_commit: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
 official_addon_tree: 5d6893836af4917ee62b1a395125a7530b1f239d
 license: MIT
-diagnostic_head: 453702ad62eeae7f8dc6189a0bbb569d397a0e3f
-diagnostic_run: 31133547812
-state: EXPLICIT_EXCEPTION_POLICY_DEFINED_RERUN_PENDING
+validated_head: a556d58abc68aa1b4885a34e806443301bafd7a0
+validated_run: 31134358839
+state: EXACT_HEAD_RECONCILIATION_PASS
 ```
 
-## Reconciliation policy
-
-Phase B does not overwrite `addons/gut`. The dedicated workflow downloads the pinned official commit, compares all 259 relative paths, and fails on missing files, extra files, unapproved byte divergence, or a changed frozen exception.
-
-The diagnostic exact-head artifact reported:
+## Result
 
 ```yaml
 local_file_count: 259
@@ -30,14 +26,15 @@ extra_local: []
 exact_byte_matches: 241
 first_line_load_steps_only: 17
 frozen_binary_divergence: 1
-unclassified_after_policy: 0
+unclassified_source_divergence: []
+result: PASS
 ```
 
-These classifications are accepted only when the current exact-head workflow reproduces them. The diagnostic failure itself is not a Phase B PASS.
+The exact-head artifact is `gut-phase-b-evidence` ID `8977314810`. Phase B does not overwrite `addons/gut`.
 
 ## Explicit first-line metadata paths
 
-`tools/gut_phase_b_guard.py` may remove one `load_steps=<n>` token from the first line for the following exact paths only. The first line must begin with `[gd_scene` or `[gd_resource`, and all remaining bytes must match the pinned official file.
+The guard may remove one `load_steps=<n>` token from the first line for these exact paths only. The first line must begin with `[gd_scene` or `[gd_resource`; all remaining bytes must match the pinned official file.
 
 - `GutScene.tscn`
 - `UserFileViewer.tscn`
@@ -57,11 +54,11 @@ These classifications are accepted only when the current exact-head workflow rep
 - `gui/run_from_editor.tscn`
 - `gut_loader_the_scene.tscn`
 
-There is no extension-wide or directory-wide normalization. An identical `load_steps` difference on an unlisted `.tscn` or `.tres` remains a failure.
+There is no extension-wide or directory-wide normalization. An identical token difference on an unlisted resource fails.
 
 ## Frozen binary divergence
 
-`source_code_pro.fnt` is not claimed byte-identical or semantically equivalent. It is a pre-existing GUT GUI font resource divergence, excluded from source/CLI authority and frozen to the exact diagnostic pair:
+`source_code_pro.fnt` is not claimed byte-identical or semantically equivalent. It is accepted only by the exact pair below:
 
 ```yaml
 path: source_code_pro.fnt
@@ -72,11 +69,11 @@ official_size: 42799
 classification: PINNED_PRE_EXISTING_BINARY_DIVERGENCE
 ```
 
-The guard accepts this path only when both SHA-256 values and both sizes match the frozen pair. Any future local or upstream byte change fails. Runtime GUT CLI tests must still pass independently.
+Any local or upstream byte/size change fails the check. GUT CLI runtime success is required independently.
 
 ## Source authority
 
-All GDScript, `.uid`, license, plugin, CLI, configuration, and other vendor files remain exact-byte requirements. Representative exact blobs already read include:
+All GDScript, `.uid`, license, plugin, CLI, configuration, and other vendor files remain exact-byte requirements. Representative exact blobs:
 
 | Path | Project blob | Official blob | Classification |
 |---|---|---|---|
@@ -86,16 +83,14 @@ All GDScript, `.uid`, license, plugin, CLI, configuration, and other vendor file
 
 ## Authoring boundary
 
-Phase B modifies no vendor Scene, Theme, Resource, or font file. The comparison policy is implemented in Codex-owned Python tests/tooling and CI only. Any proposal to replace or edit these Godot-authored assets requires a separate HiGodot-authorized change.
+Phase B modifies no vendor Scene, Theme, Resource, or font file. Comparison policy lives only in Codex-owned Python tests/tooling and CI. Editing or replacing a Godot-authored asset requires a separate HiGodot-authorized change.
 
-## Rollback
-
-The PR remains unmerged if an exact-head workflow reports any of the following:
+## Rollback conditions
 
 - missing or extra vendor path;
 - GDScript, license, plugin, CLI, or configuration divergence;
-- `load_steps` normalization outside the 17 explicit paths;
-- any content difference beyond the first-line token on those paths;
-- a changed `source_code_pro.fnt` hash or size pair;
+- normalization outside the 17 explicit paths;
+- content difference beyond the first-line token on those paths;
+- changed font hash/size pair;
 - unavailable pinned official archive;
 - GUT/JUnit failure or protected production-tree mutation.

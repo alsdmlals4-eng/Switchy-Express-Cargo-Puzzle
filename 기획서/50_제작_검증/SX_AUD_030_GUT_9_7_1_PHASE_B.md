@@ -7,43 +7,42 @@ decision_id: SX-DEC-044
 approval_source: GMB-004
 baseline_main: 281bc7b3aa8d66b8f39547475540ab8fcd88b4c5
 branch: test/gut-9-7-1-phase-b
-state: PR_PREPARATION_STATIC_GREEN_RUNTIME_PENDING
+validated_head: a556d58abc68aa1b4885a34e806443301bafd7a0
+state: EXACT_HEAD_GREEN_ATTACK_REVIEW_PENDING
 ```
 
 ## Objective
 
-GUT 9.7.1을 기존 custom runner와 병행하는 formal exact-head test authority로 추가한다. Phase B는 테스트 프레임워크·consumer·JUnit·vendor reconciliation·production mutation guard만 다루며 gameplay 신규 동작은 구현하지 않는다.
+Add GUT 9.7.1 as a formal exact-head test authority in parallel with the existing custom runner. Phase B covers framework configuration, real consumers, JUnit, pinned-vendor reconciliation, and a production mutation guard. It does not implement new gameplay behavior.
 
-## Scope
+## Scope readback
 
 ### Added
 
-- `.gutconfig.json`
-- focused GUT consumers under `tests/gut/`
-- `tools/gut_phase_b_guard.py`
-- Python guard/suite/workflow contract tests
-- dedicated `.github/workflows/gut-9-7-1-tests.yml`
-- vendor reconciliation manifest and implementation plan
-- generated `test-results/` ignore rule
+- `.gutconfig.json`;
+- four GUT consumer scripts with eight tests;
+- tracked `tests/gut/regression/` discovery directory;
+- `tools/gut_phase_b_guard.py`;
+- 19 Python guard/suite/workflow contract tests;
+- `.github/workflows/gut-9-7-1-tests.yml`;
+- vendor reconciliation manifest and implementation plan;
+- `test-results/` ignore rule.
 
 ### Retained
 
-- `res://tests/run_tests.gd`
-- `.github/workflows/godot-tests.yml`
-- existing production behavior and existing live-editor Pilot
+- `res://tests/run_tests.gd`;
+- `.github/workflows/godot-tests.yml`;
+- existing production behavior and live-editor Pilot.
 
 ### Explicitly unchanged
 
-- `project.godot`
-- product `.tscn`, `.tres`, `.res` files
-- GUT vendor Scene files
-- signals, InputMap, autoload, Node ownership
-- production gameplay `.gd`
-- binary assets
+- production gameplay `.gd`;
+- `project.godot`;
+- product and vendor `.tscn`, `.tres`, `.res` files;
+- signals, InputMap, autoload, Node ownership;
+- binary assets.
 
 ## Formal consumers
-
-The initial GUT suite contains eight `test_` functions across four scripts:
 
 1. RED_STAR one-sided station final success.
 2. BLUE_DIAMOND one-sided station final success.
@@ -54,81 +53,125 @@ The initial GUT suite contains eight `test_` functions across four scripts:
 7. occupied route control rejects input and reports lock state.
 8. route-control state round-trips through the overlay snapshot contract.
 
-Direct three-direction selection UI and route-end gameplay behavior remain later gameplay TDD work under `SX-DEC-041` and `SX-DEC-042`; Phase B does not silently implement them.
+Route-end gameplay and direct three-direction selection remain later production TDD under `SX-DEC-041` and `SX-DEC-042`.
 
-## Vendor reconciliation
+## Vendor reconciliation result
 
 ```yaml
-official_repository: bitwes/Gut
-official_branch: godot_4_7
-official_commit: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
-official_addon_tree: 5d6893836af4917ee62b1a395125a7530b1f239d
-project_addon_tree: 09d040309bbed0e07420ad72c4aa69cbd0e58190
-allowed_normalized_metadata:
-  - GutScene.tscn first-line load_steps token
-  - UserFileViewer.tscn first-line load_steps token
-other_divergence: FORBIDDEN
-vendor_scene_replacement: NOT_PERFORMED
+run: 31134358839
+local_file_count: 259
+official_file_count: 259
+exact_byte_match_count: 241
+normalized_first_line_load_steps_paths: 17
+pinned_binary_divergence:
+  path: source_code_pro.fnt
+  local_sha256: e1149f403f4aba18913fb500e4b34aa45f44afe9e36a3e7aed923c11aacf4686
+  official_sha256: 404094d0aae3de496a64fca1795bed8bd60c2411a3d992551f9e8f00789b71fe
+  local_size: 42799
+  official_size: 42799
+missing_local: []
+extra_local: []
+source_divergence: []
+vendor_scene_resource_overwrite: NOT_PERFORMED
 ```
 
-The exact-head workflow downloads the pinned official archive and compares every path. The full-tree result remains pending until the workflow artifact is produced.
+The font divergence is frozen evidence, not a byte-identical or semantic-equivalence claim. Every other unlisted difference remains a failure.
 
-## Mutation guard
-
-Before GUT runs, SHA-256 hashes are captured for existing paths:
-
-- `project.godot`
-- `game/`
-- `scenes/`
-- `data/`
-- `assets/` when present
-
-After GUT completes, any changed, added, or removed protected file fails the check.
-
-## Static TDD evidence
-
-A temporary isolated development workspace was used for RED→GREEN cycles.
+## TDD evidence
 
 ```yaml
-python_contract_tests:
-  total: 16
+static_contract_tests:
+  total: 19
   result: PASS
 compileall:
-  paths:
-    - tools
-    - tests/python
+  paths: [tools, tests/python]
   result: PASS
-limitations:
-  - no local Godot binary was available
-  - no GUT runtime result is claimed
-  - no JUnit result is claimed
-  - no hosted exact-head result is claimed yet
+red_green_cycles:
+  - missing guard module → guard implementation
+  - missing GUT config/consumers → four scripts and eight tests
+  - missing workflow → dedicated exact-head check
+  - vendor divergence without evidence → per-path hash/size evidence
+  - overly narrow vendor policy → explicit 17-path and frozen-font policy
+  - missing class-name import → import-before-GUT contract
+  - GUT framework false positive → directory/error-summary rejection
 ```
 
-## Required hosted gates
+## Exact-head hosted evidence
 
-The PR may merge only when its exact HEAD succeeds in:
+```yaml
+head: a556d58abc68aa1b4885a34e806443301bafd7a0
+GUT_9_7_1_Tests:
+  run: 31134358839
+  result: PASS
+  scripts: 4
+  tests: 8
+  passing_tests: 8
+  asserts: 60
+  junit_tests: 8
+  junit_failures: 0
+  junit_errors: 0
+  junit_skipped: 0
+  junit_artifact: 8977314352
+  evidence_artifact: 8977314810
+Godot_Tests:
+  run: 31134358827
+  result: PASS
+Project_Contract:
+  run: 31134358833
+  result: PASS
+Validate_Thin_Adapter_Migration:
+  run: 31134358837
+  result: PASS
+```
 
-- GUT 9.7.1 Tests
-- Godot Tests
-- Project Contract
-- Validate Thin Adapter Migration
+## Mutation guard result
 
-The GUT check must additionally prove:
+```yaml
+protected_before_count: 173
+protected_after_count: 173
+changed: []
+added: []
+removed: []
+result: PASS
+```
 
-- complete pinned-vendor comparison PASS;
-- at least six JUnit tests discovered;
-- zero JUnit failures and errors;
-- protected production tree unchanged;
-- evidence artifacts uploaded.
+The protected set covers `project.godot`, `game/`, `scenes/`, `data/`, and `assets/` when present. Verification runs with `if: always()` so a failed GUT run cannot skip mutation evidence.
+
+## Independent attack finding and correction
+
+The first runtime-green diagnostic HEAD was not accepted. Its log contained:
+
+```text
+[GUT ERROR]: The path [res://tests/gut/regression] does not exist.
+Errors 1
+```
+
+All eight tests passed and JUnit reported zero errors, exposing a false-positive gap. The final head:
+
+- tracks the regression discovery directory;
+- statically validates every configured directory;
+- rejects `GUT ERROR` output;
+- rejects non-zero framework `Errors` summaries;
+- reruns JUnit and mutation gates.
+
+The final exact-head artifact contains no GUT framework error and all GUT steps succeed.
+
+## Merge gates remaining
+
+- final changed-file and diff review;
+- review submissions and unresolved inline-thread readback;
+- PR mergeability readback;
+- exact-head identity recheck after this evidence-document commit;
+- same-ID Sheet update;
+- expected-head merge and merged-main readback.
 
 ## Evidence ceiling
 
 This audit does not claim:
 
-- GUT hosted runtime PASS before the exact-head workflow completes;
-- Windows runtime PASS;
+- physical Windows runtime PASS;
 - Android device PASS;
 - human comprehension PASS;
 - connected HiGodot authoring PASS;
-- route-end or direct-selection gameplay completion.
+- route-end or direct-selection gameplay completion;
+- merged-main Phase B authority before PR #105 is merged.
