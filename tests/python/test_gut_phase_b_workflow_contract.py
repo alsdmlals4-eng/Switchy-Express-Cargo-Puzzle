@@ -42,6 +42,8 @@ class GutPhaseBWorkflowContractTests(unittest.TestCase):
         verify_section = text[text.index("- name: Verify protected production tree"):]
         self.assertIn("if: always()", verify_section[:250])
         self.assertIn("SCRIPT ERROR:", text)
+        self.assertIn("GUT ERROR", text)
+        self.assertIn("Errors[[:space:]]+[1-9]", text)
         self.assertIn("ERROR:", text)
 
     def test_workflow_always_uploads_junit_and_phase_b_evidence(self) -> None:

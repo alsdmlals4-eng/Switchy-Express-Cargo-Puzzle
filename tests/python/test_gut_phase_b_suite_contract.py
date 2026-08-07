@@ -26,6 +26,9 @@ class GutPhaseBSuiteContractTests(unittest.TestCase):
         self.assertTrue(config["should_exit"])
         self.assertEqual(config["junit_xml_file"], "res://test-results/gut/junit.xml")
         self.assertFalse(config["junit_xml_timestamp"])
+        for directory in config["dirs"]:
+            relative = directory.removeprefix("res://")
+            self.assertTrue((ROOT / relative).is_dir(), f"missing configured GUT directory: {directory}")
 
     def test_suite_contains_real_gut_consumers(self) -> None:
         scripts = sorted(GUT_ROOT.rglob("test_*.gd"))
