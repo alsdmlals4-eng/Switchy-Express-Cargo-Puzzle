@@ -65,6 +65,15 @@ class GutPhaseBGuardTests(unittest.TestCase):
             report = compare_vendor(local, official)
 
             self.assertEqual(report["source_divergence"], ["gut.gd"])
+            self.assertEqual(
+                report["divergence_evidence"]["gut.gd"],
+                {
+                    "local_sha256": "c73d1366ec40d23336ad7ae26fe2a73a3126c6110a121774ff3c2dd068216a14",
+                    "official_sha256": "006c373933f8e49903c974a70b81864df932f34b72076a11916696e4577e804a",
+                    "local_size": 19,
+                    "official_size": 13,
+                },
+            )
 
     def test_vendor_compare_reports_missing_and_extra_files(self) -> None:
         with tempfile.TemporaryDirectory() as raw:
