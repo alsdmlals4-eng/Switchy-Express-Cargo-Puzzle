@@ -7,6 +7,8 @@ const FiniteRunSummaryScript := preload("res://game/finite/run/finite_run_summar
 
 const SUCCESS: StringName = &"SUCCESS"
 const FAILURE: StringName = &"FAILURE"
+const TIME_EXPIRED: StringName = &"TIME_EXPIRED"
+const ROUTE_END: StringName = &"ROUTE_END"
 const TIME_EPSILON := 0.000001
 
 var _train: Variant
@@ -16,6 +18,7 @@ var _run_state: Variant
 var _base_speed: float = 0.0
 var _unload_sequence: Variant
 var _pending_outcome: StringName = &""
+var _pending_failure_reason: StringName = &""
 var _final_delivery_commit_time: float = -1.0
 var _summary: Variant
 var _remaining_map_cargo: int = 1
@@ -36,6 +39,7 @@ func configure(
 	assert(train.has_method("set_speed"), "finite train must expose set_speed")
 	assert(train.has_method("advance_time"), "finite train must expose advance_time")
 	assert(train.has_method("seconds_to_next_cell"), "finite train must expose seconds_to_next_cell")
+	assert(train.has_method("can_advance"), "finite train must expose can_advance")
 
 	_train = train
 	_delivery_loop = delivery_loop
@@ -44,6 +48,7 @@ func configure(
 	_run_state = FiniteRunStateScript.new(time_limit_seconds)
 	_unload_sequence = null
 	_pending_outcome = &""
+	_pending_failure_reason = &""
 	_final_delivery_commit_time = -1.0
 	_summary = null
 	_remaining_map_cargo = maxi(initial_remaining_map_cargo, 0)
@@ -94,7 +99,7 @@ func advance_time(delta_seconds: float) -> Array[StringName]:
 		if _run_state.phase() == &"RUNNING":
 			var until_limit: float = float(_run_state.time_limit_seconds()) - float(_run_state.elapsed_seconds())
 			if until_limit <= TIME_EPSILON:
-				_finish_terminal(FAILURE)
+				_finish_terminal(FAILURE, TIME_EXPIRED)
 				break
 
 			var segment: float = minf(remaining, until_limit)
@@ -102,7 +107,7 @@ func advance_time(delta_seconds: float) -> Array[StringName]:
 			if is_finite(until_cell) and until_cell > TIME_EPSILON:
 				segment = minf(segment, until_cell)
 			if segment <= TIME_EPSILON:
-				_finish_terminal(FAILURE)
+				_finish_terminal(FAILURE, TIME_EXPIRED)
 				break
 
 			_run_state.advance_clock(segment)
@@ -113,7 +118,7 @@ func advance_time(delta_seconds: float) -> Array[StringName]:
 				_run_state.phase() == &"RUNNING"
 				and _run_state.elapsed_seconds() >= _run_state.time_limit_seconds() - TIME_EPSILON
 			):
-				_finish_terminal(FAILURE)
+				_finish_terminal(FAILURE, TIME_EXPIRED)
 		elif _run_state.phase() == &"UNLOADING":
 			if _unload_sequence == null:
 				_resolve_unload_completion()
@@ -125,7 +130,7 @@ func advance_time(delta_seconds: float) -> Array[StringName]:
 					float(_run_state.time_limit_seconds()) - float(_run_state.elapsed_seconds())
 				)
 				if unload_until_limit <= TIME_EPSILON:
-					_finish_terminal(FAILURE)
+					_finish_terminal(FAILURE, TIME_EXPIRED)
 					break
 				unload_segment = minf(unload_segment, unload_until_limit)
 
@@ -140,7 +145,7 @@ func advance_time(delta_seconds: float) -> Array[StringName]:
 				_pending_outcome == &""
 				and _run_state.elapsed_seconds() >= _run_state.time_limit_seconds() - TIME_EPSILON
 			):
-				_finish_terminal(FAILURE)
+				_finish_terminal(FAILURE, TIME_EXPIRED)
 			elif _unload_sequence.is_complete():
 				_resolve_unload_completion()
 		else:
@@ -166,6 +171,7 @@ func accept_delivery_event(event: Variant) -> bool:
 	_train.set_speed(0.0)
 
 	_pending_outcome = &""
+	_pending_failure_reason = &""
 	if _remaining_map_cargo == 0 and _stack_size == 0:
 		_final_delivery_commit_time = float(event.event_time)
 		_pending_outcome = (
@@ -173,8 +179,11 @@ func accept_delivery_event(event: Variant) -> bool:
 			if _final_delivery_commit_time <= _run_state.time_limit_seconds() + TIME_EPSILON
 			else FAILURE
 		)
+		if _pending_outcome == FAILURE:
+			_pending_failure_reason = TIME_EXPIRED
 	elif float(event.event_time) > _run_state.time_limit_seconds() + TIME_EPSILON:
 		_pending_outcome = FAILURE
+		_pending_failure_reason = TIME_EXPIRED
 	return true
 
 
@@ -204,29 +213,38 @@ func _on_train_cell_entered(cell: Vector2i) -> void:
 	var event: Variant = _delivery_loop.handle_cell_entered(cell, _run_state.elapsed_seconds())
 	if event != null:
 		accept_delivery_event(event)
+	if _run_state.phase() == &"RUNNING" and not bool(_train.can_advance()):
+		_finish_terminal(FAILURE, ROUTE_END)
 
 
 func _resolve_unload_completion() -> void:
 	_unload_sequence = null
 	if _pending_outcome != &"":
 		var outcome: StringName = _pending_outcome
+		var failure_reason: StringName = _pending_failure_reason
 		_pending_outcome = &""
-		_finish_terminal(outcome)
+		_pending_failure_reason = &""
+		_finish_terminal(outcome, failure_reason)
 		return
 	if _run_state.elapsed_seconds() >= _run_state.time_limit_seconds() - TIME_EPSILON:
-		_finish_terminal(FAILURE)
+		_finish_terminal(FAILURE, TIME_EXPIRED)
+		return
+	if not bool(_train.can_advance()):
+		_finish_terminal(FAILURE, ROUTE_END)
 		return
 	if _run_state.finish_unloading():
 		_train.set_speed(_base_speed)
 
 
-func _finish_terminal(outcome: StringName) -> void:
+func _finish_terminal(outcome: StringName, failure_reason: StringName = &"") -> void:
 	if _run_state == null or _run_state.is_terminal():
 		return
 	var changed: bool = bool(_run_state.succeed()) if outcome == SUCCESS else bool(_run_state.fail())
 	if not changed:
 		return
 	_unload_sequence = null
+	_pending_outcome = &""
+	_pending_failure_reason = &""
 	_train.set_speed(0.0)
 	_input_state.set_paused(true)
 	_summary = FiniteRunSummaryScript.new(
@@ -235,5 +253,6 @@ func _finish_terminal(outcome: StringName) -> void:
 		_final_delivery_commit_time,
 		_run_state.time_limit_seconds(),
 		_remaining_map_cargo,
-		_stack_size
+		_stack_size,
+		failure_reason
 	)
