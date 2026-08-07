@@ -51,12 +51,20 @@ class FakeSummary:
 	extends RefCounted
 
 	var outcome: StringName
+	var failure_reason: StringName
 	var completion_time: float
 	var final_delivery_commit_time: float
 	var time_limit_seconds: float
 
-	func _init(result: StringName, completed_at: float, committed_at: float, limit: float) -> void:
+	func _init(
+		result: StringName,
+		completed_at: float,
+		committed_at: float,
+		limit: float,
+		reason: StringName = &""
+	) -> void:
 		outcome = result
+		failure_reason = reason if result == &"FAILURE" else &""
 		completion_time = completed_at
 		final_delivery_commit_time = committed_at
 		time_limit_seconds = limit
@@ -137,16 +145,24 @@ func run() -> void:
 	assert_equal(presenter.model()["stack_tokens"].size(), 2, "second emission must remove the second token")
 	assert_false(presenter.model()["unload_visual_active"], "all unload emissions must close the visual sequence")
 
-	presenter.show_result(FakeSummary.new(&"FAILURE", 90.0, -1.0, 90.0), 4300)
+	presenter.show_result(FakeSummary.new(&"FAILURE", 90.0, -1.0, 90.0, &"TIME_EXPIRED"), 4300)
 	var failure: Dictionary = presenter.model()
 	assert_equal(failure["phase"], &"FAILURE", "failure summary must show FAILURE")
+	assert_equal(failure["primary_reason"], &"TIME_EXPIRED", "timeout result must expose TIME_EXPIRED")
+	assert_equal(failure["status_text"], "Time expired", "timeout result must retain timeout copy")
 	assert_true(failure["retry_visible"], "FAILURE must show Retry Same Layout")
 	assert_true(failure["edit_visible"], "FAILURE must show Edit Layout")
 	assert_false(failure["completion_visible"], "FAILURE must not show completion success")
 
+	presenter.show_result(FakeSummary.new(&"FAILURE", 18.0, -1.0, 90.0, &"ROUTE_END"), 4300)
+	var route_end: Dictionary = presenter.model()
+	assert_equal(route_end["primary_reason"], &"ROUTE_END", "route-end result must expose ROUTE_END")
+	assert_equal(route_end["status_text"], "Route ended", "route-end result must not masquerade as timeout")
+
 	presenter.show_result(FakeSummary.new(&"SUCCESS", 42.25, 42.13, 90.0), 4300)
 	var success: Dictionary = presenter.model()
 	assert_equal(success["phase"], &"SUCCESS", "success summary must show SUCCESS")
+	assert_equal(success["primary_reason"], &"SUCCESS", "success must not carry a failure reason")
 	assert_true(success["completion_visible"], "SUCCESS must show completion data")
 	assert_almost_equal(success["completion_time"], 42.25, 0.000001, "SUCCESS must show presentation completion time")
 	assert_almost_equal(success["commit_time"], 42.13, 0.000001, "SUCCESS must show final domain commit time")

@@ -70,21 +70,9 @@ func run() -> void:
 	assert_true(graph.neighbors(Vector2i(3, 3)).has(Vector2i(2, 3)), "crossing must expose west physical neighbor")
 	assert_true(graph.neighbors(Vector2i(3, 3)).has(Vector2i(3, 2)), "crossing must expose north physical neighbor")
 
-	assert_equal(
-		graph.next_cell(Vector2i(3, 3), Vector2i(2, 3)),
-		Vector2i(4, 3),
-		"west entry must exit east"
-	)
-	assert_equal(
-		graph.next_cell(Vector2i(3, 3), Vector2i(3, 2)),
-		Vector2i(3, 4),
-		"north entry must exit south"
-	)
-	assert_not_equal(
-		graph.next_cell(Vector2i(3, 3), Vector2i(2, 3)),
-		Vector2i(3, 2),
-		"crossing must never turn west entry north"
-	)
+	assert_equal(graph.next_cell(Vector2i(3, 3), Vector2i(2, 3)), Vector2i(4, 3), "west entry must exit east")
+	assert_equal(graph.next_cell(Vector2i(3, 3), Vector2i(3, 2)), Vector2i(3, 4), "north entry must exit south")
+	assert_not_equal(graph.next_cell(Vector2i(3, 3), Vector2i(2, 3)), Vector2i(3, 2), "crossing must never turn west entry north")
 
 	var switch_cell := Vector2i(6, 3)
 	var approach_cell := Vector2i(5, 3)
@@ -92,43 +80,32 @@ func run() -> void:
 	var up_exit := Vector2i(6, 2)
 	var first_exit: Vector2i = graph.next_cell(switch_cell, approach_cell)
 	assert_equal(first_exit, right_exit, "switch initial exit must match authored state")
-	assert_true(graph.cycle_switch(switch_cell), "unoccupied switch must cycle")
+	assert_true(graph.cycle_switch(switch_cell), "unoccupied switch must cycle to incoming direction")
+	assert_equal(graph.next_cell(switch_cell, approach_cell), approach_cell, "first cycle must expose approach port for U-turn")
+	assert_true(graph.cycle_switch(switch_cell), "second cycle must reach the alternate branch")
 	var second_exit: Vector2i = graph.next_cell(switch_cell, approach_cell)
-	assert_equal(second_exit, up_exit, "cycled switch must select the other exit")
-	assert_not_equal(first_exit, second_exit, "switch state must change")
+	assert_equal(second_exit, up_exit, "second cycle must select the upper exit")
+	assert_true(graph.cycle_switch(switch_cell), "third cycle must restore authored branch")
+	assert_equal(graph.next_cell(switch_cell, approach_cell), right_exit, "third cycle must restore authored exit")
+	graph.select_switch_exit(switch_cell, up_exit - switch_cell)
+	second_exit = graph.next_cell(switch_cell, approach_cell)
 	graph.commit_switch_passage(switch_cell)
-	assert_equal(
-		graph.next_cell(switch_cell, approach_cell),
-		second_exit,
-		"passage must not auto-reset"
-	)
-	assert_equal(
-		graph.next_cell(switch_cell, right_exit),
-		approach_cell,
-		"right exit entry must merge to approach"
-	)
-	assert_equal(
-		graph.next_cell(switch_cell, up_exit),
-		approach_cell,
-		"upper exit entry must merge to approach"
-	)
-	assert_not_equal(
-		graph.next_cell(switch_cell, right_exit),
-		up_exit,
-		"one exit must never cross directly to the other"
-	)
+	assert_equal(graph.next_cell(switch_cell, approach_cell), second_exit, "passage must not auto-reset")
+	assert_true(graph.select_switch_exit(switch_cell, approach_cell - switch_cell), "direct selection must allow the approach port")
+	assert_equal(graph.next_cell(switch_cell, right_exit), approach_cell, "right exit entry can merge to approach when selected")
+	assert_equal(graph.next_cell(switch_cell, up_exit), approach_cell, "upper exit entry can merge to approach when selected")
+	assert_true(graph.select_switch_exit(switch_cell, right_exit - switch_cell), "direct selection must allow right branch")
+	assert_equal(graph.next_cell(switch_cell, right_exit), right_exit, "selecting incoming right port must U-turn")
 
 	graph.set_switch_locked_cell(switch_cell)
 	assert_false(graph.cycle_switch(switch_cell), "occupied switch must lock")
-	assert_equal(graph.next_cell(switch_cell, approach_cell), second_exit, "locked switch state must persist")
+	var locked_exit: Vector2i = graph.next_cell(switch_cell, approach_cell)
+	assert_false(graph.select_switch_exit(switch_cell, up_exit - switch_cell), "occupied switch must reject direct selection")
+	assert_equal(graph.next_cell(switch_cell, approach_cell), locked_exit, "locked switch state must persist")
 	graph.set_switch_locked_cell(Vector2i(-1, -1))
 	assert_true(graph.cycle_switch(switch_cell), "clearing occupied cell must unlock switch")
 	graph.reset_switch_states()
-	assert_equal(
-		graph.next_cell(switch_cell, approach_cell),
-		right_exit,
-		"reset must restore authored initial exit"
-	)
+	assert_equal(graph.next_cell(switch_cell, approach_cell), right_exit, "reset must restore authored initial exit")
 	assert_equal(graph.switch_cells(), [switch_cell], "switch cells must be deterministic and sorted")
 
 	var preview: Array[Vector2i] = graph.preview_route(Vector2i(3, 3), Vector2i(2, 3), 4)

@@ -38,7 +38,9 @@ func run() -> void:
 	var switch_approach := Vector2i(2, 4)
 	assert_equal(first.graph.next_cell(switch_cell, switch_approach), Vector2i(4, 4), "first attempt must begin with authored switch exit")
 	assert_true(first.graph.cycle_switch(switch_cell), "first attempt switch must be mutable at runtime")
-	assert_equal(first.graph.next_cell(switch_cell, switch_approach), Vector2i(3, 3), "first attempt switch mutation must take effect")
+	assert_equal(first.graph.next_cell(switch_cell, switch_approach), switch_approach, "first cycle must select incoming direction for U-turn")
+	assert_true(first.graph.cycle_switch(switch_cell), "second cycle must reach alternate branch")
+	assert_equal(first.graph.next_cell(switch_cell, switch_approach), Vector2i(3, 3), "second cycle must select alternate branch")
 
 	var collected: StringName = first.cargo_field.collect(Vector2i(9, 4))
 	assert_equal(collected, A, "first attempt must expose authored cargo")

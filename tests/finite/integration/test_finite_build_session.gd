@@ -6,6 +6,7 @@ const SESSION_PATH := "res://game/finite/build/finite_build_session.gd"
 const ALPHA_PATH := "res://tests/fixtures/finite/fp_core_solution_alpha.gd"
 const BETA_PATH := "res://tests/fixtures/finite/fp_core_solution_beta.gd"
 const SCENE_PATH := "res://scenes/finite/finite_build_test.tscn"
+const SwitchDriver := preload("res://tests/fixtures/finite/three_direction_switch_driver.gd")
 
 const A: StringName = &"RED_STAR"
 const B: StringName = &"BLUE_DIAMOND"
@@ -36,11 +37,7 @@ func run() -> void:
 	assert_equal(definition.start_cell, Vector2i(1, 4), "proof start must be exact")
 	assert_equal(definition.incoming_cell, Vector2i(0, 4), "proof incoming must be exact")
 	assert_equal(definition.time_limit_seconds, 90.0, "proof time limit remains TEST_VALUE 90")
-	assert_equal(
-		definition.blocked_cells,
-		[Vector2i(4, 3), Vector2i(6, 3), Vector2i(4, 5), Vector2i(6, 5)],
-		"corrected blocked cells must be canonical y,x order"
-	)
+	assert_equal(definition.blocked_cells, [Vector2i(4, 3), Vector2i(6, 3), Vector2i(4, 5), Vector2i(6, 5)], "corrected blocked cells must be canonical y,x order")
 	assert_equal(definition.station_placements.size(), 2, "proof map must contain two stations")
 	assert_equal(definition.cargo_placements.size(), 4, "proof map must contain four fixed cargo points")
 	assert_equal(_placement_cells(definition.station_placements), [Vector2i(8, 5), Vector2i(10, 7)], "station cells must match correction")
@@ -83,7 +80,7 @@ func run() -> void:
 		assert_equal(rejected.code, &"PHASE_LOCKED", "sealed edit rejection must be stable")
 		assert_equal(session.layout_signature(), signature_before, "rejected runtime edit must not mutate layout")
 		var proof: Dictionary = _trace_proof(definition, snapshot["graph"], 96)
-		assert_equal(proof["first_cargo_types"], [A, B, A, A], "%s must encounter A/B/A/A" % fixture_path)
+		assert_equal(proof["first_cargo_types"], [A, B, A, A], "%s must encounter A/B/A/A with explicit switch destinations" % fixture_path)
 		assert_true(proof["station_a_visits"] >= 2, "%s must permit A-station revisit" % fixture_path)
 		signatures.append(signature_before)
 
@@ -106,21 +103,20 @@ func _trace_proof(definition: Variant, graph: Variant, step_limit: int) -> Dicti
 	var station_a_visits := 0
 	var previous: Vector2i = definition.incoming_cell
 	var current: Vector2i = definition.start_cell
+	var branch_targets: Dictionary = SwitchDriver.capture_branch_targets(graph)
 	for _step: int in range(step_limit):
 		if cargo_by_cell.has(current) and not collected_cells.has(current):
 			collected_cells[current] = true
 			first_cargo_types.append(cargo_by_cell[current])
 		if current == station_a_cell:
 			station_a_visits += 1
+		SwitchDriver.select_for_trace(graph, previous, current, branch_targets)
 		var next: Vector2i = graph.next_cell(current, previous)
 		if next == current:
 			break
 		previous = current
 		current = next
-	return {
-		"first_cargo_types": first_cargo_types,
-		"station_a_visits": station_a_visits,
-	}
+	return {"first_cargo_types": first_cargo_types, "station_a_visits": station_a_visits}
 
 
 func _placement_cells(placements: Array[Dictionary]) -> Array[Vector2i]:

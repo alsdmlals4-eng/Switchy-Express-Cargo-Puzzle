@@ -132,6 +132,13 @@ func cycle_route_control(cell: Vector2i) -> bool:
 	return false
 
 
+func select_switch_exit(cell: Vector2i, port: Vector2i) -> bool:
+	var finite_switch: Variant = _switches_by_cell.get(cell)
+	if finite_switch == null or _locked_route_control_cell == cell:
+		return false
+	return bool(finite_switch.select_exit(port))
+
+
 func route_control_states() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	for cell: Vector2i in route_control_cells():
@@ -141,6 +148,7 @@ func route_control_states() -> Array[Dictionary]:
 				"cell": cell,
 				"kind": &"SWITCH",
 				"approach_port": finite_switch.approach_port(),
+				"available_exits": finite_switch.connected_ports(),
 				"selected_exit": finite_switch.selected_exit(),
 				"locked": cell == _locked_route_control_cell,
 			})

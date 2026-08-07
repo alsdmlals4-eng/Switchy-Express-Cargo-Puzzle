@@ -1,6 +1,7 @@
 extends RefCounted
 
 const ALPHA_PATH := "res://tests/fixtures/finite/fp_core_solution_alpha.gd"
+const SwitchDriver := preload("res://tests/fixtures/finite/three_direction_switch_driver.gd")
 
 
 static func install_alpha_through_view(slice: Variant) -> bool:
@@ -23,9 +24,17 @@ static func advance_until_terminal(
 	step_seconds: float = 0.05,
 	max_steps: int = 4000
 ) -> bool:
+	var runtime: Variant = slice.get("_run_session")
+	var branch_targets: Dictionary = (
+		SwitchDriver.capture_branch_targets(runtime.graph)
+		if runtime != null
+		else {}
+	)
 	for _step: int in range(max_steps):
 		var phase: StringName = slice.phase()
 		if phase == &"SUCCESS" or phase == &"FAILURE":
 			return true
+		if runtime != null:
+			SwitchDriver.prepare_next_switch(runtime, branch_targets)
 		slice.advance_time(step_seconds)
 	return false

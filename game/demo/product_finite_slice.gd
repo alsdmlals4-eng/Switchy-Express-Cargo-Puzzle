@@ -44,6 +44,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	_consume_route_selection_requests()
 	advance_time(delta)
 
 
@@ -176,6 +177,23 @@ func _on_desktop_command_requested(command: StringName, payload: Variant) -> voi
 	if command == &"FLOW_CONFIRM":
 		return
 	_dispatch_command(command, payload)
+
+
+func _consume_route_selection_requests() -> void:
+	if not is_instance_valid(_route_overlay):
+		return
+	if not _route_overlay.has_method("consume_route_selection_requests"):
+		return
+	for value: Variant in _route_overlay.consume_route_selection_requests():
+		if not value is Dictionary:
+			continue
+		var request: Dictionary = value
+		var cell: Variant = request.get("cell")
+		if not cell is Vector2i:
+			continue
+		var cycle_count := clampi(int(request.get("cycle_count", 0)), 0, 4)
+		for _cycle: int in range(cycle_count):
+			_dispatch_command(&"BOARD_CELL", cell)
 
 
 func _dispatch_command(command: StringName, payload: Variant = null) -> void:

@@ -6,6 +6,8 @@ const EVENT_PATH := "res://game/finite/delivery/finite_delivery_event.gd"
 const INPUT_PATH := "res://game/finite/input/finite_gameplay_input_state.gd"
 
 const A: StringName = &"RED_STAR"
+const ROUTE_END: StringName = &"ROUTE_END"
+const TIME_EXPIRED: StringName = &"TIME_EXPIRED"
 
 
 class FakeTrain:
@@ -15,6 +17,7 @@ class FakeTrain:
 
 	var speed: float = 0.0
 	var advanced_seconds: float = 0.0
+	var can_advance_value: bool = true
 
 	func set_speed(value: float) -> void:
 		speed = value
@@ -26,12 +29,22 @@ class FakeTrain:
 	func seconds_to_next_cell() -> float:
 		return INF
 
+	func can_advance() -> bool:
+		return can_advance_value
+
+	func enter_cell(cell: Vector2i) -> void:
+		cell_entered.emit(cell)
+
 
 class FakeDeliveryLoop:
 	extends RefCounted
 
+	var next_event: Variant = null
+
 	func handle_cell_entered(_cell: Vector2i, _event_time: float) -> Variant:
-		return null
+		var event: Variant = next_event
+		next_event = null
+		return event
 
 
 func run() -> void:
@@ -63,7 +76,17 @@ func run() -> void:
 	timeout_controller.advance_time(90.0)
 	assert_equal(timeout_controller.run_state().phase(), &"FAILURE", "time expiry with unfinished cargo must fail")
 	assert_equal(timeout_controller.summary().outcome, &"FAILURE", "timeout summary must record failure")
+	assert_equal(timeout_controller.summary().failure_reason, TIME_EXPIRED, "timeout must record TIME_EXPIRED")
 	assert_almost_equal(timeout_controller.summary().completion_time, 90.0, 0.000001, "timeout must commit at the exact limit")
+
+	var route_end_case: Dictionary = _configured(controller_script, input_script)
+	var route_end_controller: Variant = route_end_case["controller"]
+	var route_end_train: FakeTrain = route_end_case["train"]
+	assert_true(route_end_controller.start(), "route-end controller must start")
+	route_end_train.can_advance_value = false
+	route_end_train.enter_cell(Vector2i(9, 1))
+	assert_equal(route_end_controller.run_state().phase(), &"FAILURE", "dead-end contact must fail without waiting for timeout")
+	assert_equal(route_end_controller.summary().failure_reason, ROUTE_END, "dead-end failure must record ROUTE_END")
 
 	_assert_final_delivery_case(controller_script, event_script, input_script, 89.999, &"SUCCESS")
 	_assert_final_delivery_case(controller_script, event_script, input_script, 90.0, &"SUCCESS")
@@ -101,6 +124,19 @@ func run() -> void:
 	assert_almost_equal(non_final_train.speed, 2.0, 0.000001, "non-final unload must restore base speed")
 	assert_equal(non_final_controller.summary(), null, "non-final unload must not freeze summary")
 
+	var non_final_route_case: Dictionary = _configured(controller_script, input_script)
+	var non_final_route_controller: Variant = non_final_route_case["controller"]
+	var non_final_route_train: FakeTrain = non_final_route_case["train"]
+	var non_final_route_delivery: FakeDeliveryLoop = non_final_route_case["delivery"]
+	assert_true(non_final_route_controller.start(), "non-final route-end case must start")
+	non_final_route_train.can_advance_value = false
+	non_final_route_delivery.next_event = event_script.new(Vector2i(9, 1), 5.0, false, &"", one_item, true, 1, 0)
+	non_final_route_train.enter_cell(Vector2i(9, 1))
+	assert_equal(non_final_route_controller.run_state().phase(), &"UNLOADING", "route-end delivery contact must finish unload first")
+	non_final_route_controller.advance_time(0.12)
+	assert_equal(non_final_route_controller.run_state().phase(), &"FAILURE", "non-final unload must resolve ROUTE_END after unload")
+	assert_equal(non_final_route_controller.summary().failure_reason, ROUTE_END, "post-unload dead end must keep ROUTE_END reason")
+
 	var crossing_case: Dictionary = _configured(controller_script, input_script)
 	var crossing_controller: Variant = crossing_case["controller"]
 	assert_true(crossing_controller.start(), "deadline-crossing case must start")
@@ -108,6 +144,7 @@ func run() -> void:
 	assert_true(crossing_controller.accept_delivery_event(crossing_event), "non-final unload near deadline must begin")
 	crossing_controller.advance_time(0.12)
 	assert_equal(crossing_controller.run_state().phase(), &"FAILURE", "unfinished cargo must fail when clock reaches the limit during unload")
+	assert_equal(crossing_controller.summary().failure_reason, TIME_EXPIRED, "deadline crossing must remain TIME_EXPIRED")
 	assert_almost_equal(crossing_controller.summary().completion_time, 90.0, 0.000001, "non-final unload timeout must commit at exactly 90.000")
 
 
@@ -134,6 +171,7 @@ func _assert_final_delivery_case(
 	var summary: Variant = controller.summary()
 	assert_not_null(summary, "terminal outcome must freeze a summary")
 	assert_equal(summary.outcome, expected_outcome, "summary outcome must match exact-limit rule")
+	assert_equal(summary.failure_reason, TIME_EXPIRED if expected_outcome == &"FAILURE" else &"", "summary failure reason must match terminal outcome")
 	assert_almost_equal(summary.final_delivery_commit_time, commit_time, 0.000001, "summary must retain commit timestamp")
 	assert_almost_equal(summary.time_limit_seconds, 90.0, 0.000001, "summary must retain limit")
 	assert_true(summary.completion_time >= commit_time, "presentation completion may follow domain commit")
@@ -144,10 +182,11 @@ func _assert_final_delivery_case(
 
 func _configured(controller_script: Script, input_script: Script) -> Dictionary:
 	var train := FakeTrain.new()
+	var delivery := FakeDeliveryLoop.new()
 	var input: Variant = input_script.new()
 	var controller: Variant = controller_script.new()
-	controller.configure(train, FakeDeliveryLoop.new(), input, 90.0, 2.0)
-	return {"controller": controller, "train": train, "input": input}
+	controller.configure(train, delivery, input, 90.0, 2.0)
+	return {"controller": controller, "train": train, "delivery": delivery, "input": input}
 
 
 func _all_exist(paths: Array[String]) -> bool:

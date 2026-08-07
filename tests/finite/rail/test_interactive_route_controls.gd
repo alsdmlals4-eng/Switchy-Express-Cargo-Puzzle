@@ -3,6 +3,11 @@ extends "res://tests/test_case.gd"
 const TrackPieceScript := preload("res://game/finite/build/track_piece.gd")
 const GraphScript := preload("res://game/finite/rail/finite_track_graph.gd")
 
+const SWITCH_CELL := Vector2i(4, 1)
+const SWITCH_LEFT := Vector2i.LEFT
+const SWITCH_RIGHT := Vector2i.RIGHT
+const SWITCH_UP := Vector2i.UP
+
 
 func run() -> void:
 	var pieces: Array[Variant] = [
@@ -11,7 +16,7 @@ func run() -> void:
 		TrackPieceScript.create(Vector2i(2, 1), &"STRAIGHT", 0, Vector2i.ZERO),
 		TrackPieceScript.create(Vector2i(1, 0), &"STRAIGHT", 1, Vector2i.ZERO),
 		TrackPieceScript.create(Vector2i(1, 2), &"STRAIGHT", 1, Vector2i.ZERO),
-		TrackPieceScript.create(Vector2i(4, 1), &"SWITCH", 0, Vector2i.RIGHT),
+		TrackPieceScript.create(SWITCH_CELL, &"SWITCH", 0, SWITCH_RIGHT),
 		TrackPieceScript.create(Vector2i(3, 1), &"STRAIGHT", 0, Vector2i.ZERO),
 		TrackPieceScript.create(Vector2i(5, 1), &"STRAIGHT", 0, Vector2i.ZERO),
 		TrackPieceScript.create(Vector2i(4, 0), &"STRAIGHT", 1, Vector2i.ZERO),
@@ -20,11 +25,12 @@ func run() -> void:
 	assert_true(graph.has_method("route_control_cells"), "graph must expose all interactive route controls")
 	assert_true(graph.has_method("cycle_route_control"), "graph must cycle switch and crossing routes")
 	assert_true(graph.has_method("route_control_states"), "graph must expose renderer-ready route states")
+	assert_true(graph.has_method("select_switch_exit"), "graph must support direct switch exit selection")
 	if not graph.has_method("route_control_cells"):
 		return
 
 	assert_true(graph.route_control_cells().has(Vector2i(1, 1)), "crossing must be interactive")
-	assert_true(graph.route_control_cells().has(Vector2i(4, 1)), "switch must remain interactive")
+	assert_true(graph.route_control_cells().has(SWITCH_CELL), "switch must remain interactive")
 	assert_equal(graph.next_cell(Vector2i(1, 1), Vector2i(0, 1)), Vector2i(2, 1), "crossing starts in straight mode")
 	assert_true(graph.cycle_route_control(Vector2i(1, 1)), "crossing click must change route")
 	assert_equal(graph.next_cell(Vector2i(1, 1), Vector2i(0, 1)), Vector2i(1, 2), "first crossing click turns right")
@@ -34,11 +40,39 @@ func run() -> void:
 	var states: Array = graph.route_control_states()
 	assert_equal(states.size(), 2, "switch and crossing states must both be exposed")
 	var crossing_state: Dictionary = _state_at(states, Vector2i(1, 1))
-	var switch_state: Dictionary = _state_at(states, Vector2i(4, 1))
+	var switch_state: Dictionary = _state_at(states, SWITCH_CELL)
 	assert_equal(crossing_state.get("kind"), &"CROSSING", "crossing state identifies its kind")
 	assert_equal(crossing_state.get("mode"), &"LEFT", "crossing state exposes active route")
 	assert_equal(switch_state.get("kind"), &"SWITCH", "switch state identifies its kind")
 	assert_true(switch_state.has("selected_exit"), "switch state exposes selected exit")
+	assert_true(switch_state.has("available_exits"), "switch state must expose all selectable reciprocal directions")
+	if switch_state.has("available_exits"):
+		assert_equal(
+			switch_state.get("available_exits"),
+			[SWITCH_UP, SWITCH_RIGHT, SWITCH_LEFT],
+			"switch directions must use stable cardinal order"
+		)
+
+	if graph.has_method("select_switch_exit"):
+		graph.set_route_control_locked_cell(SWITCH_CELL)
+		assert_false(
+			graph.select_switch_exit(SWITCH_CELL, SWITCH_LEFT),
+			"occupied switch must reject direct selection"
+		)
+		graph.set_route_control_locked_cell(Vector2i(-1, -1))
+		assert_true(
+			graph.select_switch_exit(SWITCH_CELL, SWITCH_LEFT),
+			"unlocked switch must accept its incoming reciprocal port"
+		)
+		assert_equal(
+			graph.next_cell(SWITCH_CELL, SWITCH_CELL + SWITCH_LEFT),
+			SWITCH_CELL + SWITCH_LEFT,
+			"selecting the incoming direction must perform a U-turn"
+		)
+		assert_false(
+			graph.select_switch_exit(SWITCH_CELL, Vector2i.DOWN),
+			"direct selection must reject disconnected ports"
+		)
 
 
 static func _state_at(states: Array, cell: Vector2i) -> Dictionary:

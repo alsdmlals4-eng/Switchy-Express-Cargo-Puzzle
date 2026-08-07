@@ -2,6 +2,7 @@ class_name FiniteRunSummary
 extends RefCounted
 
 var _outcome: StringName = &""
+var _failure_reason: StringName = &""
 var _completion_time: float = 0.0
 var _final_delivery_commit_time: float = -1.0
 var _time_limit_seconds: float = 0.0
@@ -11,6 +12,12 @@ var _stack_size: int = 0
 var outcome: StringName:
 	get:
 		return _outcome
+	set(_value):
+		pass
+
+var failure_reason: StringName:
+	get:
+		return _failure_reason
 	set(_value):
 		pass
 
@@ -51,9 +58,11 @@ func _init(
 	final_commit_at: float = -1.0,
 	time_limit: float = 0.0,
 	map_cargo_remaining: int = 0,
-	current_stack_size: int = 0
+	current_stack_size: int = 0,
+	final_failure_reason: StringName = &""
 ) -> void:
 	_outcome = final_outcome
+	_failure_reason = final_failure_reason if final_outcome == &"FAILURE" else &""
 	_completion_time = maxf(finished_at, 0.0)
 	_final_delivery_commit_time = final_commit_at
 	_time_limit_seconds = maxf(time_limit, 0.0)

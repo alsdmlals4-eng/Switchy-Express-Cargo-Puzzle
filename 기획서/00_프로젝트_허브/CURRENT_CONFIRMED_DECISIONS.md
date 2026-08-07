@@ -1,21 +1,22 @@
 # Current Confirmed Decisions
 
-Last updated: `2026-08-06`
+Last updated: `2026-08-08`
 
 ```yaml
 current_product_baseline: FINITE_DELIVERY_PUZZLE_BASELINE
 current_decision_batch: GMB-003
 current_product_decisions: SX-DEC-027~036
 current_demo_decisions: SX-DEC-037 · SX-DEC-038 · SX-DEC-039 · SX-DEC-040 · SX-DEC-041 · SX-DEC-042
-current_execution_authority: FP-DOR-001 · EV-USER-021 · EV-USER-022 · EV-USER-023 · EV-USER-024 · EV-USER-025 · EV-USER-026 · EV-USER-027 · EV-USER-028 · EV-USER-029
+current_execution_authority: FP-DOR-001 · EV-USER-021 · EV-USER-022 · EV-USER-023 · EV-USER-024 · EV-USER-025 · EV-USER-026 · EV-USER-027 · EV-USER-028 · EV-USER-029 · SX-DEC-044 · SX-DEC-046
 current_android_evidence: EV-FP-APK-001
-current_audit: SX-AUD-026
-planning_state: APPROVED_PENDING_MERGE
-implementation_state: FINITE_CORE_PASS · PC_VERTICAL_SLICE_AUTOMATED_PASS · RECOMMENDED_ROUTE_AUTOMATED_PASS · ROUTE_CONTROL_AUTOMATED_PASS · CURVE_RENDER_PORT_PARITY_PASS · ONE_SIDED_STATION_TERMINAL_PASS · MID_RUN_EXIT_AUTOMATED_PASS · DEFAULT_PROJECT_PLAY_BOOT_PASS · WINDOWS_EXPORT_PASS · ROUTE_END_AND_SWITCH_DIRECTION_IMPLEMENTATION_PENDING
-verified_code_main: 1339a9467312d0ac680725894a9efb59746ec2cc
-manual_gate_state: TITLE_EXIT_VISIBLE_PASS · SUCCESS_RESULT_VISIBLE_PASS · RED_ONE_SIDED_STATION_USER_PASS · BLUE_ONE_SIDED_STATION_USER_FAIL · PC_LOCAL_ROUTE_AND_MID_RUN_RETEST_REQUIRED · WINDOWS_ARTIFACT_RUNTIME_NOT_RUN · ANDROID_NOT_RUN · HUMAN_NOT_RUN
+current_audit: SX-AUD-031
+planning_state: APPROVED · PR_106_IMPLEMENTED_PRE_MERGE
+implementation_state: FINITE_CORE_PASS · PC_VERTICAL_SLICE_AUTOMATED_PASS · RECOMMENDED_ROUTE_AUTOMATED_PASS · ROUTE_CONTROL_AUTOMATED_PASS · CURVE_RENDER_PORT_PARITY_PASS · ONE_SIDED_STATION_TERMINAL_PASS · MID_RUN_EXIT_AUTOMATED_PASS · DEFAULT_PROJECT_PLAY_BOOT_PASS · WINDOWS_EXPORT_PASS · ROUTE_END_AND_SWITCH_DIRECTION_EXACT_HEAD_AUTOMATED_PASS
+verified_code_main: 23981d0bb3d65487951be2cbbc5ee365da624e1e
+verified_implementation_head: 9f5aeb626c7e81e9d90232f84971c13211e808b1
+manual_gate_state: TITLE_EXIT_VISIBLE_PASS · SUCCESS_RESULT_VISIBLE_PASS · RED_ONE_SIDED_STATION_USER_PASS · BLUE_ONE_SIDED_STATION_USER_FAIL_STALE_RUNTIME_EVIDENCE · PC_LOCAL_ROUTE_AND_MID_RUN_RETEST_REQUIRED · WINDOWS_ARTIFACT_RUNTIME_NOT_RUN · ANDROID_NOT_RUN · CONNECTED_HIGODOT_NOT_RUN · HUMAN_NOT_RUN
 cutover_state: BLOCKED
-next_pc_gate: GMB003_PLAN_MERGE → TDD_IMPLEMENTATION → MAIN_FETCH_PULL → GODOT_REOPEN → F5_BLUE_TERMINAL_ROUTE_END_SWITCH_ARROW_RETEST → WINDOWS_RUNTIME_VISUAL_AUDIO_SMOKE
+next_pc_gate: PR_106_EXACT_HEAD_CANON_SYNC → MERGE → MAIN_FETCH_PULL → GODOT_REOPEN → F5_BLUE_TERMINAL_ROUTE_END_SWITCH_ARROW_RETEST → WINDOWS_RUNTIME_VISUAL_AUDIO_SMOKE
 next_android_gate: ANDROID_DEVICE_SMOKE → FIVE_PERSON_COMPREHENSION
 correct_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
 wrong_sheet: 19Ff... · DO_NOT_MODIFY
@@ -53,9 +54,9 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 | SX-DEC-037 | PC Vertical Slice | 마우스+키보드, touch 보존, 대표 스테이지, F5 기본 Project Play, Windows Demo, Android validation 보존 | AUTOMATED_PASS · LOCAL_RETEST_REQUIRED |
 | SX-DEC-038 | Demo Route Refinement | 권장 배치, 15×11 균형 맵, 열린 종착, 한쪽 연결 종착역, 운행 중 분기·교차 표시·전환, 화면/판정 포트 동등성 | AUTOMATED_PASS · STATION_TERMINAL_PASS · LOCAL_RETEST_REQUIRED |
 | SX-DEC-039 | Mid-Run Exit | BUILD·RUN 상시 메뉴에서 Pause→종료 확인→타이틀 복귀, 취소 시 동일 플레이 유지, shell input lock | AUTOMATED_PASS · TITLE_EXIT_VISIBLE_PASS · MID_RUN_RETEST_REQUIRED |
-| SX-DEC-040 | Station Color Parity | 모든 역 색상은 reciprocal 이웃 1개 이상이면 동일하게 한쪽 연결 종착역으로 인정 | APPROVED · IMPLEMENTATION_PENDING |
-| SX-DEC-041 | Route-End Failure | 배송·하역 판정 뒤 이동 불가면 FAILURE/ROUTE_END, 마지막 배송 SUCCESS 우선 | APPROVED · IMPLEMENTATION_PENDING |
-| SX-DEC-042 | Switch Direction Arrows | 분기의 세 연결 방향을 화살표로 표시·직접 선택하며 진입 방향 선택 시 U턴 허용 | APPROVED · IMPLEMENTATION_PENDING |
+| SX-DEC-040 | Station Color Parity | 모든 역 색상은 reciprocal 이웃 1개 이상이면 동일하게 한쪽 연결 종착역으로 인정 | AUTOMATED_PASS · LOCAL_BLUE_RETEST_REQUIRED |
+| SX-DEC-041 | Route-End Failure | 배송·하역 판정 뒤 이동 불가면 FAILURE/ROUTE_END, 마지막 배송 SUCCESS 우선 | IMPLEMENTED_IN_PR_106 · EXACT_HEAD_AUTOMATED_PASS · PRE_MERGE |
+| SX-DEC-042 | Switch Direction Arrows | 분기의 세 연결 방향을 화살표로 표시·직접 선택하며 진입 방향 선택 시 U턴 허용 | IMPLEMENTED_IN_PR_106 · EXACT_HEAD_AUTOMATED_PASS · PRE_MERGE |
 
 ## SX-DEC-037 One-click Direction
 
@@ -107,6 +108,12 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 - 제한 시간 실패는 `TIME_EXPIRED`로 구분한다.
 - 동일 배치 재시도와 편집 복구를 유지한다.
 
+Implementation evidence on PR #106:
+- `TrainController.can_advance()` exposes route exhaustion without assertion-based movement failure.
+- `FiniteRunSummary.failure_reason` is immutable; `TIME_EXPIRED` and `ROUTE_END` remain distinct.
+- GUT exact-head run `31226403455`: route outcome ordering 6/6 PASS.
+- legacy Godot exact-head run `31226403396`: full regression 92 cases / 11,494 assertions / 0 failures.
+
 ## SX-DEC-042 Switch Direction Arrow Direction
 
 - SWITCH의 reciprocal 세 연결 방향을 모두 절차적 화살표로 표시한다.
@@ -116,29 +123,50 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 - CROSSING의 기존 STRAIGHT/RIGHT/LEFT 모드는 이번 배치에서 변경하지 않는다.
 - 새 바이너리 자산은 필요하지 않으며 기존 RouteControlOverlay를 안전하게 확장한다.
 
+Implementation evidence on PR #106:
+- `FiniteTrackSwitch` cycles stable reciprocal three-port state and accepts direct connected-port selection.
+- `FiniteTrackGraph.select_switch_exit()` preserves occupied lock authority and exposes `available_exits`.
+- `RouteControlOverlay` draws/targets all SWITCH directions procedurally and queues pointer intent only in RUNNING/UNLOADING.
+- `ProductFiniteSlice` consumes queued intent through the existing `BOARD_CELL` command boundary; no new signal wiring is added.
+- GUT exact-head run `31226403455`: switch reciprocity 5/5, overlay selection 3/3, state contract 2/2 PASS.
+
 ## Latest Automated Evidence
 
 ```yaml
-verified_code_main: 1339a9467312d0ac680725894a9efb59746ec2cc
+verified_code_main: 23981d0bb3d65487951be2cbbc5ee365da624e1e
+verified_implementation_head: 9f5aeb626c7e81e9d90232f84971c13211e808b1
 project_contract:
-  workflow: 922
+  run_id: 31226403440
   result: PASS
+gut_9_7_1:
+  run_id: 31226403455
+  result: PASS
+  tests: 18
+  passing: 18
+  assertions: 129
+  failures: 0
+  junit: PASS
+  vendor_pre_post: PASS
+  production_snapshot_guard: PASS
 godot_tests:
-  workflow: 853
-  run_id: 31097301981
+  run_id: 31226403396
   result: PASS
   cases: 92
-  assertions: 11457
+  assertions: 11494
   failures: 0
-one_sided_station_terminal:
-  test: res://tests/finite/integration/test_one_sided_station_terminal.gd
-  assertions: 20
-  preflight: PASS
-  one_reciprocal_neighbor: PASS
-  final_unload_success: PASS
 live_editor_pilot:
   result: PASS
-  temporary_plugin_cleanup_before_regression: PASS
+  protected_source_integrity: PASS
+  production_adapter_ready: false
+thin_adapter:
+  run_id: 31226403397
+  result: PASS
+windows_demo_export:
+  run_id: 31226403496
+  result: PASS
+  evidence_scope: EXPORT_PACKAGE_HASH_ONLY
+one_sided_station_parity:
+  gut: 2/2 PASS
 mid_run_exit_contract: PASS
 curve_render_domain_port_parity_0_1_2_3: PASS
 recommended_route_full_delivery: PASS
@@ -151,12 +179,16 @@ DEFAULT PROJECT PLAY BOOT: PASS · AUTOMATED
 RECOMMENDED ROUTE: PASS · AUTOMATED
 ROUTE CONTROL UI/DOMAIN SYNC: PASS · AUTOMATED
 CURVE RENDER/DOMAIN PORT PARITY: PASS · AUTOMATED
-ONE-SIDED FINAL STATION: PASS · AUTOMATED
+ONE-SIDED STATION COLOR PARITY: PASS · AUTOMATED
+ROUTE-END FAILURE ORDERING: PASS · AUTOMATED · PR #106 PRE-MERGE
+SWITCH THREE-DIRECTION/DIRECT SELECT/U-TURN: PASS · AUTOMATED · PR #106 PRE-MERGE
+PROCEDURAL DIRECTION TARGET CONTRACT: PASS · AUTOMATED · PR #106 PRE-MERGE
 MID-RUN EXIT: PASS · AUTOMATED
 TITLE EXIT VISIBLE: PASS · USER LOCAL
-WINDOWS DEMO EXPORT: PASS
-PC LOCAL ROUTE/MID-RUN FLOW: RETEST_REQUIRED
+WINDOWS DEMO EXPORT: PASS · PACKAGE/HASH ONLY
+PC LOCAL ROUTE/MID-RUN/ARROW FLOW: RETEST_REQUIRED
 PC WINDOWS ARTIFACT RUNTIME: NOT_RUN
+CONNECTED HIGODOT AUTHORING SESSION: NOT_RUN
 ANDROID DEVICE SMOKE: NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED
@@ -168,7 +200,9 @@ PRODUCTION CUTOVER: BLOCKED
 
 사용자는 타이틀 화면의 종료 표시가 정상임을 확인했다. 이는 타이틀 종료 표시만의 수동 PASS이며 BUILD/RUN 중간 종료, 종착역 실제 클릭·운행, Windows artifact runtime에 대한 PASS가 아니다.
 
-`main → Fetch origin → Pull origin → Godot reopen → F5`로 한쪽 연결 역 판정과 BUILD/RUN 종료 흐름을 재검수하기 전에는 해당 수동 Gate를 PASS로 올리지 않는다.
+PR #106의 hosted/headless PASS는 로컬 화면·실제 포인터/터치 가독성·Windows artifact 실행·Android 기기·connected HiGodot·사람 이해도 PASS로 확대하지 않는다.
+
+`main → Fetch origin → Pull origin → Godot reopen → F5`로 한쪽 연결 역, ROUTE_END 문구, 분기 세 방향 화살표·직접 선택·U턴, BUILD/RUN 종료 흐름을 재검수하기 전에는 해당 수동 Gate를 PASS로 올리지 않는다.
 
 ## Canonical Android Evidence
 
@@ -184,12 +218,14 @@ PC 기본 진입점과 Android validation feature override의 증거를 섞지 �
 ## Open Gates
 
 - Red one-sided station runtime: `PASS · USER LOCAL · EV-USER-028`
-- Blue one-sided station runtime: `FAIL · USER LOCAL · EV-USER-028 · ROOT_CAUSE_UNVERIFIED`
+- Blue one-sided station runtime: `FAIL · USER LOCAL · EV-USER-028 · STALE_RUNTIME_EVIDENCE · ROOT_CAUSE_UNVERIFIED`
+- One-sided station color parity: `PASS · AUTOMATED · GUT 2/2`
 - SUCCESS result visibility: `PASS · USER LOCAL · EV-USER-029`
-- Route-end game over: `APPROVED · IMPLEMENTATION_PENDING`
-- Switch three-direction arrows and U-turn: `APPROVED · IMPLEMENTATION_PENDING`
+- Route-end game over: `PASS · AUTOMATED · PR #106 PRE-MERGE · LOCAL_F5_RETEST_REQUIRED`
+- Switch three-direction arrows and U-turn: `PASS · AUTOMATED · PR #106 PRE-MERGE · LOCAL_VISUAL_TOUCH_RETEST_REQUIRED`
 - PC local route and mid-run retest: `RETEST_REQUIRED`
 - Windows artifact runtime·visual·audio·physical input smoke: `NOT_RUN`
+- Connected HiGodot authoring session: `NOT_RUN`
 - Android landscape device smoke: `NOT_RUN`
 - five-person comprehension: `NOT_RUN`
 - production cutover: `BLOCKED`
@@ -212,7 +248,7 @@ PC 기본 진입점과 Android validation feature override의 증거를 섞지 �
 ## Current Execution Authority
 
 ```text
-PC: GMB-003 plan merge → TDD implementation → main Fetch/Pull → Godot reopen → F5 → 파란 한쪽 연결 역 → ROUTE_END 실패 문구 → 분기 세 방향 화살표·U턴 → 마지막 배송 SUCCESS 우선순위 재검수
+PC: PR #106 exact-head automated PASS → same-ID GitHub/Sheet pre-merge sync → reviewed-head merge → main Fetch/Pull → Godot reopen → F5 → 파란 한쪽 연결 역 → ROUTE_END 실패 문구 → 분기 세 방향 화살표·직접 선택·U턴 → 마지막 배송 SUCCESS 우선순위 → Windows runtime visual/audio/input smoke
 Android: canonical APK export PASS → Android device smoke → Five-person Comprehension
 Both: 별도 production cutover review
 ```
