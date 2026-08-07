@@ -12,6 +12,7 @@ func test_running_switch_exposes_three_direction_targets() -> void:
 	var overlay: Control = _overlay(_snapshot(&"RUNNING", false, RIGHT))
 	assert_true(overlay.has_method("direction_targets_for_test"), "overlay must expose deterministic direction targets")
 	if not overlay.has_method("direction_targets_for_test"):
+		overlay.free()
 		return
 	var targets: Array = overlay.direction_targets_for_test()
 	assert_eq(targets.size(), 3)
@@ -24,6 +25,7 @@ func test_running_switch_exposes_three_direction_targets() -> void:
 	assert_false(bool(_target_for(targets, UP).get("selected", true)))
 	assert_eq(int(_target_for(targets, LEFT).get("cycle_count", -1)), 1)
 	assert_eq(int(_target_for(targets, UP).get("cycle_count", -1)), 2)
+	overlay.free()
 
 
 func test_running_pointer_enqueues_cycle_intent_without_mutating_route_state() -> void:
@@ -31,6 +33,7 @@ func test_running_pointer_enqueues_cycle_intent_without_mutating_route_state() -
 	assert_true(overlay.has_method("direction_targets_for_test"))
 	assert_true(overlay.has_method("consume_route_selection_requests"), "overlay must expose intent consumption without signal wiring")
 	if not overlay.has_method("direction_targets_for_test") or not overlay.has_method("consume_route_selection_requests"):
+		overlay.free()
 		return
 	var target: Dictionary = _target_for(overlay.direction_targets_for_test(), LEFT)
 	_send_click(overlay, (target.get("hit_rect", Rect2()) as Rect2).get_center())
@@ -40,6 +43,7 @@ func test_running_pointer_enqueues_cycle_intent_without_mutating_route_state() -
 		assert_eq(requests[0].get("cell"), CELL)
 		assert_eq(requests[0].get("target_port"), LEFT)
 		assert_eq(int(requests[0].get("cycle_count", 0)), 1)
+	overlay.free()
 
 
 func test_locked_and_inactive_phases_reject_pointer_intent() -> void:
@@ -47,6 +51,7 @@ func test_locked_and_inactive_phases_reject_pointer_intent() -> void:
 	assert_true(overlay.has_method("direction_targets_for_test"))
 	assert_true(overlay.has_method("consume_route_selection_requests"))
 	if not overlay.has_method("direction_targets_for_test") or not overlay.has_method("consume_route_selection_requests"):
+		overlay.free()
 		return
 	var target: Dictionary = _target_for(overlay.direction_targets_for_test(), LEFT)
 	_send_click(overlay, (target.get("hit_rect", Rect2()) as Rect2).get_center())
@@ -58,6 +63,7 @@ func test_locked_and_inactive_phases_reject_pointer_intent() -> void:
 		var phase_target: Dictionary = _target_for(overlay.direction_targets_for_test(), LEFT)
 		_send_click(overlay, (phase_target.get("hit_rect", Rect2()) as Rect2).get_center())
 		assert_eq(overlay.consume_route_selection_requests(), [], "%s must ignore route selection" % phase)
+	overlay.free()
 
 
 func _overlay(snapshot: Dictionary) -> Control:
