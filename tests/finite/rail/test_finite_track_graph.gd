@@ -99,7 +99,7 @@ func run() -> void:
 
 	graph.set_switch_locked_cell(switch_cell)
 	assert_false(graph.cycle_switch(switch_cell), "occupied switch must lock")
-	var locked_exit := graph.next_cell(switch_cell, approach_cell)
+	var locked_exit: Vector2i = graph.next_cell(switch_cell, approach_cell)
 	assert_false(graph.select_switch_exit(switch_cell, up_exit - switch_cell), "occupied switch must reject direct selection")
 	assert_equal(graph.next_cell(switch_cell, approach_cell), locked_exit, "locked switch state must persist")
 	graph.set_switch_locked_cell(Vector2i(-1, -1))
