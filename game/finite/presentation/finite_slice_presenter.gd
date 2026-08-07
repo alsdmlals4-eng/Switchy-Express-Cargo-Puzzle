@@ -126,11 +126,13 @@ func apply_unload_emissions(emitted_items: Array[StringName]) -> void:
 
 func show_result(summary: Variant, final_cost: int) -> void:
 	var outcome: StringName = &"FAILURE"
+	var failure_reason: StringName = &"TIME_EXPIRED"
 	var completion := 0.0
 	var commit := -1.0
 	var limit := 0.0
 	if summary != null:
 		outcome = StringName(summary.outcome)
+		failure_reason = StringName(summary.failure_reason)
 		completion = float(summary.completion_time)
 		commit = float(summary.final_delivery_commit_time)
 		limit = float(summary.time_limit_seconds)
@@ -138,8 +140,8 @@ func show_result(summary: Variant, final_cost: int) -> void:
 	_model["phase"] = outcome
 	_model["start_enabled"] = false
 	_model["editing_enabled"] = false
-	_model["primary_reason"] = outcome
-	_model["status_text"] = "Delivery complete" if outcome == &"SUCCESS" else "Time expired"
+	_model["primary_reason"] = failure_reason if outcome == &"FAILURE" else outcome
+	_model["status_text"] = _result_status_text(outcome, failure_reason)
 	_model["problem_cells"] = []
 	_model["switch_enabled"] = false
 	_model["load_enabled"] = false
@@ -208,6 +210,14 @@ func _tokens_for(load_order: Array[StringName]) -> Array[Dictionary]:
 	return result
 
 
+static func _result_status_text(outcome: StringName, failure_reason: StringName) -> String:
+	if outcome == &"SUCCESS":
+		return "Delivery complete"
+	if failure_reason == &"ROUTE_END":
+		return "Route ended"
+	return "Time expired"
+
+
 static func _run_status_text(phase: StringName) -> String:
 	match phase:
 		&"READY":
@@ -221,6 +231,6 @@ static func _run_status_text(phase: StringName) -> String:
 		&"SUCCESS":
 			return "Delivery complete"
 		&"FAILURE":
-			return "Time expired"
+			return "Run failed"
 		_:
 			return str(phase)
