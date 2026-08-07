@@ -64,6 +64,7 @@ def compare_vendor(local_root: Path, official_root: Path) -> dict[str, object]:
     missing_local = sorted(official_names - local_names)
     extra_local = sorted(local_names - official_names)
     source_divergence: list[str] = []
+    divergence_evidence: dict[str, dict[str, object]] = {}
     normalized_scene_metadata: list[str] = []
     exact_matches = 0
 
@@ -80,6 +81,12 @@ def compare_vendor(local_root: Path, official_root: Path) -> dict[str, object]:
                 normalized_scene_metadata.append(relative)
                 continue
         source_divergence.append(relative)
+        divergence_evidence[relative] = {
+            "local_sha256": hashlib.sha256(local_bytes).hexdigest(),
+            "official_sha256": hashlib.sha256(official_bytes).hexdigest(),
+            "local_size": len(local_bytes),
+            "official_size": len(official_bytes),
+        }
 
     ok = not (missing_local or extra_local or source_divergence)
     return {
@@ -89,6 +96,7 @@ def compare_vendor(local_root: Path, official_root: Path) -> dict[str, object]:
         "exact_match_count": exact_matches,
         "normalized_scene_metadata": normalized_scene_metadata,
         "source_divergence": source_divergence,
+        "divergence_evidence": divergence_evidence,
         "missing_local": missing_local,
         "extra_local": extra_local,
     }
