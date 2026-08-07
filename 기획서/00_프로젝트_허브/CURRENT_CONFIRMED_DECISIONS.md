@@ -10,13 +10,14 @@ current_demo_decisions: SX-DEC-037 · SX-DEC-038 · SX-DEC-039 · SX-DEC-040 · 
 current_execution_authority: FP-DOR-001 · EV-USER-021 · EV-USER-022 · EV-USER-023 · EV-USER-024 · EV-USER-025 · EV-USER-026 · EV-USER-027 · EV-USER-028 · EV-USER-029 · SX-DEC-044 · SX-DEC-046
 current_android_evidence: EV-FP-APK-001
 current_audit: SX-AUD-031
-planning_state: APPROVED · PR_106_IMPLEMENTED_PRE_MERGE
-implementation_state: FINITE_CORE_PASS · PC_VERTICAL_SLICE_AUTOMATED_PASS · RECOMMENDED_ROUTE_AUTOMATED_PASS · ROUTE_CONTROL_AUTOMATED_PASS · CURVE_RENDER_PORT_PARITY_PASS · ONE_SIDED_STATION_TERMINAL_PASS · MID_RUN_EXIT_AUTOMATED_PASS · DEFAULT_PROJECT_PLAY_BOOT_PASS · WINDOWS_EXPORT_PASS · ROUTE_END_AND_SWITCH_DIRECTION_EXACT_HEAD_AUTOMATED_PASS
-verified_code_main: 23981d0bb3d65487951be2cbbc5ee365da624e1e
+planning_state: APPROVED · IMPLEMENTED_AND_MERGED
+implementation_state: FINITE_CORE_PASS · PC_VERTICAL_SLICE_AUTOMATED_PASS · RECOMMENDED_ROUTE_AUTOMATED_PASS · ROUTE_CONTROL_AUTOMATED_PASS · CURVE_RENDER_PORT_PARITY_PASS · ONE_SIDED_STATION_TERMINAL_PASS · MID_RUN_EXIT_AUTOMATED_PASS · DEFAULT_PROJECT_PLAY_BOOT_PASS · WINDOWS_EXPORT_PASS · ROUTE_END_AND_SWITCH_DIRECTION_MERGED_MAIN_VERIFIED
+verified_code_main: 12d1ef9b5c49e401d32dfc283db11a12574b5da3
 verified_implementation_head: 9f5aeb626c7e81e9d90232f84971c13211e808b1
+verified_pr_head: 9c884e85efa9b60cbba21253fc71db034cc753d0
 manual_gate_state: TITLE_EXIT_VISIBLE_PASS · SUCCESS_RESULT_VISIBLE_PASS · RED_ONE_SIDED_STATION_USER_PASS · BLUE_ONE_SIDED_STATION_USER_FAIL_STALE_RUNTIME_EVIDENCE · PC_LOCAL_ROUTE_AND_MID_RUN_RETEST_REQUIRED · WINDOWS_ARTIFACT_RUNTIME_NOT_RUN · ANDROID_NOT_RUN · CONNECTED_HIGODOT_NOT_RUN · HUMAN_NOT_RUN
 cutover_state: BLOCKED
-next_pc_gate: PR_106_EXACT_HEAD_CANON_SYNC → MERGE → MAIN_FETCH_PULL → GODOT_REOPEN → F5_BLUE_TERMINAL_ROUTE_END_SWITCH_ARROW_RETEST → WINDOWS_RUNTIME_VISUAL_AUDIO_SMOKE
+next_pc_gate: MAIN_FETCH_PULL → GODOT_REOPEN → F5_BLUE_TERMINAL_ROUTE_END_SWITCH_ARROW_RETEST → WINDOWS_RUNTIME_VISUAL_AUDIO_SMOKE
 next_android_gate: ANDROID_DEVICE_SMOKE → FIVE_PERSON_COMPREHENSION
 correct_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
 wrong_sheet: 19Ff... · DO_NOT_MODIFY
@@ -55,8 +56,8 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 | SX-DEC-038 | Demo Route Refinement | 권장 배치, 15×11 균형 맵, 열린 종착, 한쪽 연결 종착역, 운행 중 분기·교차 표시·전환, 화면/판정 포트 동등성 | AUTOMATED_PASS · STATION_TERMINAL_PASS · LOCAL_RETEST_REQUIRED |
 | SX-DEC-039 | Mid-Run Exit | BUILD·RUN 상시 메뉴에서 Pause→종료 확인→타이틀 복귀, 취소 시 동일 플레이 유지, shell input lock | AUTOMATED_PASS · TITLE_EXIT_VISIBLE_PASS · MID_RUN_RETEST_REQUIRED |
 | SX-DEC-040 | Station Color Parity | 모든 역 색상은 reciprocal 이웃 1개 이상이면 동일하게 한쪽 연결 종착역으로 인정 | AUTOMATED_PASS · LOCAL_BLUE_RETEST_REQUIRED |
-| SX-DEC-041 | Route-End Failure | 배송·하역 판정 뒤 이동 불가면 FAILURE/ROUTE_END, 마지막 배송 SUCCESS 우선 | IMPLEMENTED_IN_PR_106 · EXACT_HEAD_AUTOMATED_PASS · PRE_MERGE |
-| SX-DEC-042 | Switch Direction Arrows | 분기의 세 연결 방향을 화살표로 표시·직접 선택하며 진입 방향 선택 시 U턴 허용 | IMPLEMENTED_IN_PR_106 · EXACT_HEAD_AUTOMATED_PASS · PRE_MERGE |
+| SX-DEC-041 | Route-End Failure | 배송·하역 판정 뒤 이동 불가면 FAILURE/ROUTE_END, 마지막 배송 SUCCESS 우선 | MERGED_MAIN_VERIFIED · AUTOMATED_PASS · LOCAL_F5_RETEST_REQUIRED |
+| SX-DEC-042 | Switch Direction Arrows | 분기의 세 연결 방향을 화살표로 표시·직접 선택하며 진입 방향 선택 시 U턴 허용 | MERGED_MAIN_VERIFIED · AUTOMATED_PASS · LOCAL_VISUAL_TOUCH_RETEST_REQUIRED |
 
 ## SX-DEC-037 One-click Direction
 
@@ -97,8 +98,8 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 
 - 역 연결 판정은 cargo type과 색상에 무관하다.
 - RED_STAR와 BLUE_DIAMOND는 같은 선로 구조에서 같은 Preflight·하역 결과를 가져야 한다.
-- 기존 자동 회귀가 RED_STAR만 명시하므로 두 색상 대칭 테스트를 추가한다.
-- 파란 역 테스트가 현재 코드에서 이미 통과하면 사용자 관찰의 원인을 임의로 색상 코드라고 단정하지 않고 정확한 로컬 SHA·선로 회전·런타임 재현을 계속 요구한다.
+- 자동 GUT parity는 RED_STAR와 BLUE_DIAMOND 양쪽 한쪽 연결 종착역 성공을 통과했다.
+- 과거 사용자 BLUE 실패는 병합 main을 로컬 Fetch/Pull 후 재검수하기 전까지 stale runtime evidence로 유지한다.
 
 ## SX-DEC-041 Route-End Failure Direction
 
@@ -108,11 +109,13 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 - 제한 시간 실패는 `TIME_EXPIRED`로 구분한다.
 - 동일 배치 재시도와 편집 복구를 유지한다.
 
-Implementation evidence on PR #106:
-- `TrainController.can_advance()` exposes route exhaustion without assertion-based movement failure.
-- `FiniteRunSummary.failure_reason` is immutable; `TIME_EXPIRED` and `ROUTE_END` remain distinct.
-- GUT exact-head run `31226403455`: route outcome ordering 6/6 PASS.
-- legacy Godot exact-head run `31226403396`: full regression 92 cases / 11,494 assertions / 0 failures.
+Merged implementation evidence:
+- product merge: `12d1ef9b5c49e401d32dfc283db11a12574b5da3` · PR #106.
+- reviewed final PR head: `9c884e85efa9b60cbba21253fc71db034cc753d0`.
+- implementation code head: `9f5aeb626c7e81e9d90232f84971c13211e808b1`.
+- implementation GUT run `31226403455`: route outcome ordering 6/6; full 18/18 PASS.
+- implementation Godot run `31226403396`: 92 cases / 11,494 assertions / 0 failures.
+- final PR head checks: GUT `31226750561`, Godot `31226750559`, Project Contract `31226750577`, Thin Adapter `31226750563`, Windows Demo Export `31226750575` all PASS.
 
 ## SX-DEC-042 Switch Direction Arrow Direction
 
@@ -123,54 +126,40 @@ Implementation evidence on PR #106:
 - CROSSING의 기존 STRAIGHT/RIGHT/LEFT 모드는 이번 배치에서 변경하지 않는다.
 - 새 바이너리 자산은 필요하지 않으며 기존 RouteControlOverlay를 안전하게 확장한다.
 
-Implementation evidence on PR #106:
-- `FiniteTrackSwitch` cycles stable reciprocal three-port state and accepts direct connected-port selection.
-- `FiniteTrackGraph.select_switch_exit()` preserves occupied lock authority and exposes `available_exits`.
-- `RouteControlOverlay` draws/targets all SWITCH directions procedurally and queues pointer intent only in RUNNING/UNLOADING.
-- `ProductFiniteSlice` consumes queued intent through the existing `BOARD_CELL` command boundary; no new signal wiring is added.
-- GUT exact-head run `31226403455`: switch reciprocity 5/5, overlay selection 3/3, state contract 2/2 PASS.
+Merged implementation evidence:
+- `FiniteTrackSwitch` three-port cycle/direct connected-port selection and U-turn merged in PR #106.
+- `FiniteTrackGraph.select_switch_exit()` preserves occupied lock and exposes `available_exits`.
+- `RouteControlOverlay` uses procedural targets and queued pointer intent only in RUNNING/UNLOADING.
+- `ProductFiniteSlice` consumes the queue through the existing `BOARD_CELL` command boundary; no new signal wiring.
+- implementation GUT run `31226403455`: switch 5/5, overlay 3/3, state 2/2 PASS.
+- final PR head exact checks all PASS before merge.
 
 ## Latest Automated Evidence
 
 ```yaml
-verified_code_main: 23981d0bb3d65487951be2cbbc5ee365da624e1e
-verified_implementation_head: 9f5aeb626c7e81e9d90232f84971c13211e808b1
-project_contract:
-  run_id: 31226403440
-  result: PASS
-gut_9_7_1:
-  run_id: 31226403455
-  result: PASS
-  tests: 18
-  passing: 18
-  assertions: 129
-  failures: 0
-  junit: PASS
-  vendor_pre_post: PASS
-  production_snapshot_guard: PASS
-godot_tests:
-  run_id: 31226403396
-  result: PASS
-  cases: 92
-  assertions: 11494
-  failures: 0
+verified_code_main: 12d1ef9b5c49e401d32dfc283db11a12574b5da3
+verified_pr_head: 9c884e85efa9b60cbba21253fc71db034cc753d0
+implementation_head: 9f5aeb626c7e81e9d90232f84971c13211e808b1
+implementation_evidence:
+  gut_run: 31226403455
+  gut_result: PASS_18_OF_18_129_ASSERTS
+  godot_run: 31226403396
+  godot_result: PASS_92_CASES_11494_ASSERTS_0_FAILURES
+  project_contract: 31226403440_PASS
+  thin_adapter: 31226403397_PASS
+  windows_export: 31226403496_PASS_PACKAGE_HASH_ONLY
+final_pr_head_checks:
+  gut: 31226750561_PASS
+  godot: 31226750559_PASS
+  project_contract: 31226750577_PASS
+  thin_adapter: 31226750563_PASS
+  windows_demo_export: 31226750575_PASS
+product_merge:
+  pr: 106
+  sha: 12d1ef9b5c49e401d32dfc283db11a12574b5da3
 live_editor_pilot:
-  result: PASS
-  protected_source_integrity: PASS
+  result: PASS_AUTOMATED
   production_adapter_ready: false
-thin_adapter:
-  run_id: 31226403397
-  result: PASS
-windows_demo_export:
-  run_id: 31226403496
-  result: PASS
-  evidence_scope: EXPORT_PACKAGE_HASH_ONLY
-one_sided_station_parity:
-  gut: 2/2 PASS
-mid_run_exit_contract: PASS
-curve_render_domain_port_parity_0_1_2_3: PASS
-recommended_route_full_delivery: PASS
-android_identity_invariance: PASS
 ```
 
 ```text
@@ -180,9 +169,9 @@ RECOMMENDED ROUTE: PASS · AUTOMATED
 ROUTE CONTROL UI/DOMAIN SYNC: PASS · AUTOMATED
 CURVE RENDER/DOMAIN PORT PARITY: PASS · AUTOMATED
 ONE-SIDED STATION COLOR PARITY: PASS · AUTOMATED
-ROUTE-END FAILURE ORDERING: PASS · AUTOMATED · PR #106 PRE-MERGE
-SWITCH THREE-DIRECTION/DIRECT SELECT/U-TURN: PASS · AUTOMATED · PR #106 PRE-MERGE
-PROCEDURAL DIRECTION TARGET CONTRACT: PASS · AUTOMATED · PR #106 PRE-MERGE
+ROUTE-END FAILURE ORDERING: PASS · AUTOMATED · MERGED
+SWITCH THREE-DIRECTION/DIRECT SELECT/U-TURN: PASS · AUTOMATED · MERGED
+PROCEDURAL DIRECTION TARGET CONTRACT: PASS · AUTOMATED · MERGED
 MID-RUN EXIT: PASS · AUTOMATED
 TITLE EXIT VISIBLE: PASS · USER LOCAL
 WINDOWS DEMO EXPORT: PASS · PACKAGE/HASH ONLY
@@ -196,11 +185,9 @@ PRODUCTION CUTOVER: BLOCKED
 
 ## Current Manual Runtime Boundary
 
-사용자 실기동에서 HUD 누락, JSON 좌표 오류, 시작점·마커 선로 표시·편집, 회전, 과도한 고정 선로와 경고 판정, 중간 종료 부재, 화면상 연결과 내부 곡선 포트 불일치가 순차 확인됐다.
+사용자 실기동에서 확인된 과거 문제와 수동 증거는 자동 테스트 성공으로 소급 변경하지 않는다.
 
-사용자는 타이틀 화면의 종료 표시가 정상임을 확인했다. 이는 타이틀 종료 표시만의 수동 PASS이며 BUILD/RUN 중간 종료, 종착역 실제 클릭·운행, Windows artifact runtime에 대한 PASS가 아니다.
-
-PR #106의 hosted/headless PASS는 로컬 화면·실제 포인터/터치 가독성·Windows artifact 실행·Android 기기·connected HiGodot·사람 이해도 PASS로 확대하지 않는다.
+PR #106의 hosted/headless PASS와 Windows Demo Export PASS는 로컬 화면·실제 포인터/터치 가독성·Windows artifact 실행·Android 기기·connected HiGodot·사람 이해도 PASS로 확대하지 않는다.
 
 `main → Fetch origin → Pull origin → Godot reopen → F5`로 한쪽 연결 역, ROUTE_END 문구, 분기 세 방향 화살표·직접 선택·U턴, BUILD/RUN 종료 흐름을 재검수하기 전에는 해당 수동 Gate를 PASS로 올리지 않는다.
 
@@ -219,10 +206,10 @@ PC 기본 진입점과 Android validation feature override의 증거를 섞지 �
 
 - Red one-sided station runtime: `PASS · USER LOCAL · EV-USER-028`
 - Blue one-sided station runtime: `FAIL · USER LOCAL · EV-USER-028 · STALE_RUNTIME_EVIDENCE · ROOT_CAUSE_UNVERIFIED`
-- One-sided station color parity: `PASS · AUTOMATED · GUT 2/2`
+- One-sided station color parity: `PASS · AUTOMATED · MERGED`
 - SUCCESS result visibility: `PASS · USER LOCAL · EV-USER-029`
-- Route-end game over: `PASS · AUTOMATED · PR #106 PRE-MERGE · LOCAL_F5_RETEST_REQUIRED`
-- Switch three-direction arrows and U-turn: `PASS · AUTOMATED · PR #106 PRE-MERGE · LOCAL_VISUAL_TOUCH_RETEST_REQUIRED`
+- Route-end game over: `PASS · AUTOMATED · MERGED · LOCAL_F5_RETEST_REQUIRED`
+- Switch three-direction arrows and U-turn: `PASS · AUTOMATED · MERGED · LOCAL_VISUAL_TOUCH_RETEST_REQUIRED`
 - PC local route and mid-run retest: `RETEST_REQUIRED`
 - Windows artifact runtime·visual·audio·physical input smoke: `NOT_RUN`
 - Connected HiGodot authoring session: `NOT_RUN`
@@ -248,7 +235,7 @@ PC 기본 진입점과 Android validation feature override의 증거를 섞지 �
 ## Current Execution Authority
 
 ```text
-PC: PR #106 exact-head automated PASS → same-ID GitHub/Sheet pre-merge sync → reviewed-head merge → main Fetch/Pull → Godot reopen → F5 → 파란 한쪽 연결 역 → ROUTE_END 실패 문구 → 분기 세 방향 화살표·직접 선택·U턴 → 마지막 배송 SUCCESS 우선순위 → Windows runtime visual/audio/input smoke
+PC: main 12d1ef9b product merge → Fetch origin → Pull origin → Godot reopen → F5 → 파란 한쪽 연결 역 → ROUTE_END 실패 문구 → 분기 세 방향 화살표·직접 선택·U턴 → 마지막 배송 SUCCESS 우선순위 → Windows runtime visual/audio/input smoke
 Android: canonical APK export PASS → Android device smoke → Five-person Comprehension
 Both: 별도 production cutover review
 ```
