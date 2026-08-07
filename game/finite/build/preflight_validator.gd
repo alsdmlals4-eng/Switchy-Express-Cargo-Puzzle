@@ -101,7 +101,7 @@ func _invalid_crossing_cells(graph: Variant) -> Array[Vector2i]:
 	return _sorted_unique(problem_cells)
 
 
-func _invalid_switch_cells(graph: Variant, interactive_crossings: bool) -> Array[Vector2i]:
+func _invalid_switch_cells(graph: Variant, interactive_routes: bool) -> Array[Vector2i]:
 	var problem_cells: Array[Vector2i] = []
 	for cell: Vector2i in graph.switch_cells():
 		var piece: Variant = graph.piece_at(cell)
@@ -110,7 +110,7 @@ func _invalid_switch_cells(graph: Variant, interactive_crossings: bool) -> Array
 			continue
 		for exit_port: Vector2i in piece.switch_exits():
 			var exit_cell := cell + exit_port
-			if _structural_successors(graph, cell, exit_cell, interactive_crossings).is_empty():
+			if _structural_successors(graph, cell, exit_cell, interactive_routes).is_empty():
 				problem_cells.append(cell)
 				break
 	return _sorted_unique(problem_cells)
@@ -129,7 +129,7 @@ func _permanent_trap_cells(graph: Variant, states: Array[Dictionary]) -> Array[V
 func _search_reachable_states(
 	definition: Variant,
 	graph: Variant,
-	interactive_crossings: bool
+	interactive_routes: bool
 ) -> Dictionary:
 	var states: Array[Dictionary] = []
 	var reachable_cells: Dictionary = {}
@@ -154,7 +154,7 @@ func _search_reachable_states(
 			graph,
 			previous,
 			current,
-			interactive_crossings
+			interactive_routes
 		):
 			queue.append({"previous": current, "current": next_cell})
 
@@ -165,7 +165,7 @@ func _structural_successors(
 	graph: Variant,
 	previous: Vector2i,
 	current: Vector2i,
-	interactive_crossings: bool = false
+	interactive_routes: bool = false
 ) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
 	var piece: Variant = graph.piece_at(current)
@@ -181,17 +181,20 @@ func _structural_successors(
 				outgoing_ports.append(ports[1] if ports[0] == incoming_port else ports[0])
 		&"CROSSING":
 			if piece.ports().has(incoming_port):
-				if interactive_crossings:
+				if interactive_routes:
 					for port: Vector2i in piece.ports():
 						if port != incoming_port:
 							outgoing_ports.append(port)
 				else:
 					outgoing_ports.append(-incoming_port)
 		&"SWITCH":
-			if incoming_port == piece.approach_port():
-				outgoing_ports.append_array(piece.switch_exits())
-			elif piece.switch_exits().has(incoming_port):
-				outgoing_ports.append(piece.approach_port())
+			if piece.ports().has(incoming_port):
+				if interactive_routes:
+					outgoing_ports.append_array(piece.ports())
+				elif incoming_port == piece.approach_port():
+					outgoing_ports.append_array(piece.switch_exits())
+				elif piece.switch_exits().has(incoming_port):
+					outgoing_ports.append(piece.approach_port())
 
 	for outgoing_port: Vector2i in outgoing_ports:
 		var next_cell := current + outgoing_port
