@@ -91,11 +91,12 @@ func apply_model(model: Dictionary) -> void:
 
 	if is_result:
 		var success: bool = phase == &"SUCCESS"
+		var failure_reason: StringName = StringName(_model.get("primary_reason", &"TIME_EXPIRED"))
 		(get_node("ResultPanel/ResultLayout/ResultTitle") as Label).text = "배송 완료" if success else "배송 실패"
 		(get_node("ResultPanel/ResultLayout/ResultBody") as Label).text = (
 			"모든 화물을 제한 시간 안에 배송했습니다.\n최종 건설비 %d" % int(_model.get("final_cost", 0))
 			if success
-			else "제한 시간이 종료되었습니다.\n화물 TOP과 역 방문 순서를 다시 확인하세요."
+			else _failure_body(failure_reason)
 		)
 		(get_node("ResultPanel/ResultLayout/RetryButton") as Button).visible = bool(_model.get("retry_visible", true))
 		(get_node("ResultPanel/ResultLayout/EditButton") as Button).visible = bool(_model.get("edit_visible", true))
@@ -123,6 +124,12 @@ static func _phase_text(phase: StringName) -> String:
 			return "배송 실패"
 		_:
 			return "배송 준비"
+
+
+static func _failure_body(failure_reason: StringName) -> String:
+	if failure_reason == &"ROUTE_END":
+		return "더 진행할 수 있는 연결 선로가 없습니다.\n분기 방향과 종착 노선을 다시 확인하세요."
+	return "제한 시간이 종료되었습니다.\n화물 TOP과 역 방문 순서를 다시 확인하세요."
 
 
 static func _stack_text(tokens: Array) -> String:
