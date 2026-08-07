@@ -22,6 +22,9 @@ class FakeTrain:
 	func seconds_to_next_cell() -> float:
 		return INF
 
+	func can_advance() -> bool:
+		return true
+
 
 class FakeDeliveryLoop:
 	extends RefCounted
@@ -55,10 +58,13 @@ func run() -> void:
 	var summary: Variant = controller.summary()
 	assert_not_null(summary, "completed final unload must freeze summary")
 	var original_outcome: StringName = summary.outcome
+	var original_failure_reason: StringName = summary.failure_reason
 	var original_completion: float = summary.completion_time
 	summary.outcome = &"FAILURE"
+	summary.failure_reason = &"ROUTE_END"
 	summary.completion_time = 999.0
 	assert_equal(summary.outcome, original_outcome, "summary outcome must remain immutable")
+	assert_equal(summary.failure_reason, original_failure_reason, "summary failure reason must remain immutable")
 	assert_almost_equal(summary.completion_time, original_completion, 0.000001, "summary timing must remain immutable")
 
 	var state_controller: Variant = controller_script.new()
