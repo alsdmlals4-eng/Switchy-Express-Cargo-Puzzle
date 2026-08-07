@@ -42,6 +42,9 @@ func advance_time(delta_seconds: float) -> int:
 	var crossed_cells := 0
 	while _movement_progress >= 1.0:
 		_movement_progress -= 1.0
+		if not can_advance():
+			_movement_progress = 0.0
+			break
 		_commit_next_cell()
 		crossed_cells += 1
 	return crossed_cells
@@ -62,6 +65,13 @@ func seconds_to_next_cell() -> float:
 	if speed <= 0.0:
 		return INF
 	return maxf((1.0 - _movement_progress) / speed, 0.0)
+
+
+func can_advance() -> bool:
+	assert(_state != null, "TrainController must be configured before movement lookup")
+	if _graph == null:
+		return false
+	return _target_cell != _state.current_cell and _graph.neighbors(_state.current_cell).has(_target_cell)
 
 
 func target_cell() -> Vector2i:
@@ -170,11 +180,10 @@ func history_size() -> int:
 
 
 func _commit_next_cell() -> Vector2i:
+	if not can_advance():
+		return _state.current_cell
 	var departing_cell: Vector2i = _state.current_cell
-	var incoming_cell: Vector2i = _state.previous_cell
 	var next: Vector2i = _target_cell
-	assert(_graph.neighbors(departing_cell).has(next), "locked train target must remain connected")
-	assert(next != incoming_cell, "train movement must not reverse immediately")
 	if _route_control_cells().has(departing_cell):
 		_graph.commit_switch_passage(departing_cell)
 		_set_switch_lock(NO_LOCKED_SWITCH)
