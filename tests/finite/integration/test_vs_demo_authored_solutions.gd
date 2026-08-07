@@ -3,6 +3,7 @@ extends "res://tests/test_case.gd"
 const LoaderScript := preload("res://game/finite/map/finite_map_loader.gd")
 const BuildSessionScript := preload("res://game/finite/build/finite_build_session.gd")
 const RunFactoryScript := preload("res://game/finite/run/finite_run_session_factory.gd")
+const SwitchDriver := preload("res://tests/fixtures/finite/three_direction_switch_driver.gd")
 const ALPHA_PATH := "res://tests/fixtures/finite/vs_demo_solution_alpha.gd"
 const BETA_PATH := "res://tests/fixtures/finite/vs_demo_solution_beta.gd"
 const MAP_PATH := "res://data/maps/vs_demo_01.json"
@@ -17,11 +18,7 @@ func run() -> void:
 	if not bool(alpha.get("success", false)) or not bool(beta.get("success", false)):
 		return
 
-	assert_not_equal(
-		alpha["solution_identity"],
-		beta["solution_identity"],
-		"authored route variants must retain distinct solution identities"
-	)
+	assert_not_equal(alpha["solution_identity"], beta["solution_identity"], "authored route variants must retain distinct solution identities")
 	assert_equal(alpha["pickup_order"], [&"RED_STAR", &"BLUE_DIAMOND", &"RED_STAR", &"RED_STAR"], "alpha pickup order")
 	assert_equal(beta["pickup_order"], [&"RED_STAR", &"BLUE_DIAMOND", &"RED_STAR", &"RED_STAR"], "beta pickup order")
 	assert_equal(alpha["unload_counts"], [2, 1, 1], "alpha LIFO groups")
@@ -54,15 +51,15 @@ func _run_solution(fixture_path: String) -> Dictionary:
 
 	var session: Variant = result["session"]
 	var history: Array = []
-	session.delivery_loop.delivery_event_created.connect(
-		func(event: Variant) -> void: history.append(event)
-	)
+	session.delivery_loop.delivery_event_created.connect(func(event: Variant) -> void: history.append(event))
 	session.input_state.toggle_auto_load()
 	session.run_controller.start()
+	var branch_targets := SwitchDriver.capture_branch_targets(session.graph)
 	for _step: int in range(4800):
 		var phase: StringName = session.run_controller.run_state().phase()
 		if phase == &"SUCCESS" or phase == &"FAILURE":
 			break
+		SwitchDriver.prepare_next_switch(session, branch_targets)
 		session.run_controller.advance_time(0.05)
 
 	if session.run_controller.run_state().phase() != &"SUCCESS":
