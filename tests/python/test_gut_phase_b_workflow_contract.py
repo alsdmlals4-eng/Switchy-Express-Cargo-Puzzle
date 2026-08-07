@@ -29,6 +29,9 @@ class GutPhaseBWorkflowContractTests(unittest.TestCase):
 
     def test_workflow_enforces_snapshot_gut_junit_and_error_gates(self) -> None:
         text = WORKFLOW.read_text(encoding="utf-8")
+        self.assertIn("Import Godot class names", text)
+        self.assertIn("--headless --import --path .", text)
+        self.assertLess(text.index("--headless --import --path ."), text.index("res://addons/gut/gut_cmdln.gd"))
         self.assertIn("tools/gut_phase_b_guard.py snapshot", text)
         self.assertIn("res://addons/gut/gut_cmdln.gd", text)
         self.assertIn("-gexit", text)
@@ -36,6 +39,8 @@ class GutPhaseBWorkflowContractTests(unittest.TestCase):
         self.assertIn("tools/gut_phase_b_guard.py junit", text)
         self.assertIn("--minimum-tests 6", text)
         self.assertIn("tools/gut_phase_b_guard.py verify", text)
+        verify_section = text[text.index("- name: Verify protected production tree"):]
+        self.assertIn("if: always()", verify_section[:250])
         self.assertIn("SCRIPT ERROR:", text)
         self.assertIn("ERROR:", text)
 
@@ -43,7 +48,7 @@ class GutPhaseBWorkflowContractTests(unittest.TestCase):
         text = WORKFLOW.read_text(encoding="utf-8")
         self.assertIn("name: gut-junit", text)
         self.assertIn("name: gut-phase-b-evidence", text)
-        self.assertGreaterEqual(text.count("if: always()"), 2)
+        self.assertGreaterEqual(text.count("if: always()"), 3)
 
     def test_legacy_godot_runner_remains_unchanged_in_scope(self) -> None:
         text = LEGACY_WORKFLOW.read_text(encoding="utf-8")

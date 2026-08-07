@@ -59,6 +59,13 @@ jobs:
             --official "$(cat /tmp/gut-official-root.txt)" \
             --report test-results/gut/vendor-reconciliation.json
 
+      - name: Import Godot class names
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 120s ./Godot_v4.7.1-stable_linux.x86_64 --headless --import --path . 2>&1 \
+            | tee test-results/gut/import-output.log
+
       - name: Snapshot protected production tree
         run: |
           python tools/gut_phase_b_guard.py snapshot \
@@ -92,6 +99,7 @@ jobs:
             --report test-results/gut/junit-validation.json
 
       - name: Verify protected production tree
+        if: always()
         run: |
           python tools/gut_phase_b_guard.py verify \
             --root . \
@@ -113,5 +121,5 @@ jobs:
           name: gut-phase-b-evidence
           path: |
             test-results/gut/*.json
-            test-results/gut/gut-output.log
+            test-results/gut/*.log
           if-no-files-found: error
