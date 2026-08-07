@@ -192,7 +192,7 @@ checkout explicit PR head SHA (push falls back to github.sha)
 → run GUT CLI
 → reject SCRIPT ERROR, GUT ERROR, generic ERROR, and non-zero framework error summaries
 → validate JUnit minimum/failure/error counts
-→ verify protected tree even when GUT fails
+→ verify protected tree even when GUT fails, allowing only newly generated `.gd.uid` companions whose `.gd` source existed in the before snapshot
 → reconcile the vendor tree again after execution
 → upload JUnit and diagnostic evidence
 ```
@@ -212,6 +212,7 @@ An earlier diagnostic HEAD executed all eight tests successfully but logged one 
 The validated head contains this correction.
 
 A later merge-readiness attack pass found two additional exact-head/guard-order risks: the default checkout could use the pull-request merge ref, and the first production snapshot was taken after import. The final workflow hardening therefore explicitly checks out `github.event.pull_request.head.sha` (falling back to `github.sha` on push), snapshots protected production before import, rejects import error output, and re-runs vendor reconciliation after execution. This hardening must pass a new exact-head run before merge.
+That new run correctly exposed seven Godot-generated `.gd.uid` companions under `game/finite/build/`. The mutation guard now reports these in `ignored_generated_added` only when the corresponding `.gd` file was present in the before snapshot. Existing UID changes, orphan UID additions, every other addition, all removals, and all content changes remain failures. This follows the repository's existing UID-inventory contract rather than treating generated companions as production code edits.
 
 ## Windows and Android shared-core coverage
 

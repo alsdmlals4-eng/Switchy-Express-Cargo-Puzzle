@@ -23,7 +23,7 @@ Add GUT 9.7.1 as a formal exact-head test authority in parallel with the existin
 - four GUT consumer scripts with eight tests;
 - tracked `tests/gut/regression/` discovery directory;
 - `tools/gut_phase_b_guard.py`;
-- 19 Python guard/suite/workflow contract tests;
+- 21 Python guard/suite/workflow contract tests;
 - `.github/workflows/gut-9-7-1-tests.yml`;
 - vendor reconciliation manifest and implementation plan;
 - `test-results/` ignore rule.
@@ -81,7 +81,7 @@ The font divergence is frozen evidence, not a byte-identical or semantic-equival
 
 ```yaml
 static_contract_tests:
-  total: 19
+  total: 21
   result: PASS
 compileall:
   paths: [tools, tests/python]
@@ -94,6 +94,7 @@ red_green_cycles:
   - overly narrow vendor policy → explicit 17-path and frozen-font policy
   - missing class-name import → import-before-GUT contract
   - GUT framework false positive → directory/error-summary rejection
+  - import-generated script UID companions → explicit existing-source-only metadata allowance
 ```
 
 ## Exact-head hosted evidence
@@ -156,7 +157,8 @@ All eight tests passed and JUnit reported zero errors, exposing a false-positive
 
 The final exact-head artifact contains no GUT framework error and all GUT steps succeed.
 
-A subsequent merge-readiness attack pass also identified that default `actions/checkout behavior could test a pull-request merge ref rather than the branch HEAD, and that the production snapshot occurred after Godot import. The final workflow hardening explicitly checks out the PR head SHA, snapshots production before import, rejects import error output, and re-runs vendor reconciliation after GUT. The PR remains unmergeable by contract until that hardening commit receives fresh exact-head PASS evidence.
+A subsequent merge-readiness attack pass also identified that default `actions/checkout` behavior could test a pull-request merge ref rather than the branch HEAD, and that the production snapshot occurred after Godot import. The final workflow hardening explicitly checks out the PR head SHA, snapshots production before import, rejects import error output, and re-runs vendor reconciliation after GUT. The PR remains unmergeable by contract until that hardening commit receives fresh exact-head PASS evidence.
+The first hardening run then failed the mutation gate because Godot import generated seven missing `.gd.uid` companions for existing scripts. The guard was narrowed to classify only that exact generated shape as `ignored_generated_added`: the path must end in `.gd.uid` and the corresponding `.gd` path must exist in the before snapshot. Orphan UID additions, changes to existing UIDs, all other additions, removals, and content mutations still fail. This policy has dedicated RED→GREEN tests and requires another fresh exact-head run.
 
 ## Merge gates remaining
 

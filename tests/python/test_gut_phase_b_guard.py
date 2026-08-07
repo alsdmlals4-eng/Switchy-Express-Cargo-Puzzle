@@ -198,6 +198,33 @@ class GutPhaseBGuardTests(unittest.TestCase):
             self.assertEqual(report["removed"], ["game/removed.gd"])
             self.assertFalse(report["ok"])
 
+    def test_verify_snapshot_allows_generated_uid_for_existing_script(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            (root / "game").mkdir()
+            (root / "game" / "core.gd").write_text("extends RefCounted\n", encoding="utf-8")
+            before = snapshot(root, ["game"])
+            (root / "game" / "core.gd.uid").write_text("uid://generated\n", encoding="utf-8")
+
+            report = verify_snapshot(root, before, ["game"])
+
+            self.assertTrue(report["ok"])
+            self.assertEqual(report["added"], [])
+            self.assertEqual(report["ignored_generated_added"], ["game/core.gd.uid"])
+
+    def test_verify_snapshot_rejects_orphan_uid(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            (root / "game").mkdir()
+            before = snapshot(root, ["game"])
+            (root / "game" / "orphan.gd.uid").write_text("uid://generated\n", encoding="utf-8")
+
+            report = verify_snapshot(root, before, ["game"])
+
+            self.assertFalse(report["ok"])
+            self.assertEqual(report["added"], ["game/orphan.gd.uid"])
+            self.assertEqual(report["ignored_generated_added"], [])
+
     def test_validate_junit_requires_minimum_and_zero_failures(self) -> None:
         with tempfile.TemporaryDirectory() as raw:
             junit_path = Path(raw) / "junit.xml"

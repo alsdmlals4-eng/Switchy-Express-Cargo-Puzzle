@@ -202,12 +202,20 @@ def verify_snapshot(
         for relative in before_names & after_names
         if before[relative] != after[relative]
     )
-    added = sorted(after_names - before_names)
+    raw_added = sorted(after_names - before_names)
+    ignored_generated_added = sorted(
+        relative
+        for relative in raw_added
+        if relative.endswith(".gd.uid") and relative[:-4] in before_names
+    )
+    ignored_set = set(ignored_generated_added)
+    added = [relative for relative in raw_added if relative not in ignored_set]
     removed = sorted(before_names - after_names)
     return {
         "ok": not (changed or added or removed),
         "changed": changed,
         "added": added,
+        "ignored_generated_added": ignored_generated_added,
         "removed": removed,
         "before_count": len(before),
         "after_count": len(after),
