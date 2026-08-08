@@ -23,7 +23,19 @@ def validate_output_path(output_path: Path, project_root: Path) -> Path:
     forbidden = [root / ".asset-vault", root / "assets/_vault_local"]
     if any(_is_within(resolved, blocked.resolve()) for blocked in forbidden):
         raise ValueError("preservation report output must be outside local-only vault roots")
+
+    if _is_within(resolved, root):
+        safe_project_output = (root / "test-results").resolve()
+        if not _is_within(resolved, safe_project_output):
+            raise ValueError("project-internal preservation reports are allowed only under test-results/")
     return resolved
+
+
+def write_inventory_report(output: Path, rendered: str) -> None:
+    """Write a new report without ever overwriting an existing path."""
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with output.open("x", encoding="utf-8") as handle:
+        handle.write(rendered)
 
 
 def _sha256(path: Path) -> str:
@@ -85,8 +97,7 @@ def main() -> int:
         print(rendered, end="")
     else:
         output = validate_output_path(args.output, project_root)
-        output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(rendered, encoding="utf-8")
+        write_inventory_report(output, rendered)
         print(f"inventory report written: {output}")
     return 0
 
