@@ -34,17 +34,20 @@ def validate_tracked_paths(tracked_paths: Iterable[str], allowed_paths: set[str]
 
 
 def tracked_local_only_paths(project_root: Path = ROOT) -> list[str]:
-    """Read local-only paths from the checked-out HEAD tree, not index/ignore state."""
+    """Read raw local-only paths from the checked-out HEAD tree.
+
+    `-z` disables Git's quoted-path presentation so Korean and other Unicode
+    filenames are compared to the UTF-8 allowlist by their real path values.
+    """
     result = subprocess.run(
-        ["git", "-C", str(project_root), "ls-tree", "-r", "--name-only", "HEAD"],
+        ["git", "-C", str(project_root), "ls-tree", "-r", "-z", "--name-only", "HEAD"],
         check=True,
         capture_output=True,
-        text=True,
-        encoding="utf-8",
     )
+    paths = result.stdout.decode("utf-8").split("\0")
     return sorted(
         path
-        for path in result.stdout.splitlines()
+        for path in paths
         if path == ".asset-vault"
         or path.startswith(".asset-vault/")
         or path == "assets/_vault_local"
