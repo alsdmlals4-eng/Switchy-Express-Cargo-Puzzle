@@ -2,7 +2,7 @@
 
 **Decision ID:** SX-DEC-049  
 **Date:** 2026-08-08 KST  
-**Status:** USER_APPROVED_DESIGN  
+**Status:** USER_APPROVED_DESIGN · SHEET_SYNCED  
 **Base authority:** `alsdmlals4-eng/Base@fa69a77a14f923a756064f6ae151d34cadb374f7`  
 **Project baseline:** `main@21a98f534c4479d710a3ec33972c8eda73ca6805`
 
@@ -71,13 +71,13 @@ No new signal is required. Pickup already causes `FiniteDeliveryLoop` to emit a 
 - **BUILD:** all authored cargo markers are visible.
 - **RUNNING / UNLOADING:** only uncollected cargo markers are visible.
 - **SUCCESS / FAILURE:** the final attempt state remains visible; already collected markers stay absent.
-- **Retry Same Layout:** the new attempt has a reset/fresh cargo field, so all authored markers reappear before subsequent pickups.
+- **Retry Same Layout:** `FiniteRunSessionFactory.retry()` creates a new attempt, and `create_attempt()` constructs a fresh `FixedCargoField` from authored placements, so all markers reappear before subsequent pickups.
 - **Edit Layout:** returning to BUILD shows authored markers again.
 - **Fresh run/session initialization:** authored markers begin visible.
 
 ## Rendering contract
 
-`ProductBoardRenderer` remains unchanged unless a test seam is needed. It continues to draw exactly the `cargo_placements` supplied in the render snapshot.
+`ProductBoardRenderer` remains unchanged. It continues to draw exactly the `cargo_placements` supplied in the render snapshot.
 
 Station markers are unaffected. A skipped cargo marker remains visible because it remains in `FixedCargoField.remaining_cells()`.
 
