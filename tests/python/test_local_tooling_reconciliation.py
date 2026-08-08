@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.util
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -116,8 +117,22 @@ class LocalToolingReconciliationContractTests(unittest.TestCase):
             preflight.validate_output_path(ROOT / ".asset-vault/report.json", ROOT)
         with self.assertRaises(ValueError):
             preflight.validate_output_path(ROOT / "assets/_vault_local/report.json", ROOT)
+        with self.assertRaises(ValueError):
+            preflight.validate_output_path(ROOT / "project.godot", ROOT)
         safe = preflight.validate_output_path(ROOT / "test-results/vault-report.json", ROOT)
         self.assertEqual((ROOT / "test-results/vault-report.json").resolve(), safe)
+
+        self.assertTrue(
+            hasattr(preflight, "write_inventory_report"),
+            "preflight must expose an exclusive-create report writer",
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "inventory.json"
+            preflight.write_inventory_report(output, "{}\n")
+            self.assertEqual("{}\n", output.read_text(encoding="utf-8"))
+            with self.assertRaises(FileExistsError):
+                preflight.write_inventory_report(output, "replacement\n")
+            self.assertEqual("{}\n", output.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":
