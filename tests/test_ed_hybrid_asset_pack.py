@@ -1,16 +1,15 @@
+import importlib.util
 import json
 from pathlib import Path
-from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSET_ROOT = ROOT / "art" / "production_candidates" / "ed_hybrid_v1"
 MANIFEST = ASSET_ROOT / "manifest.json"
+VALIDATOR_PATH = ROOT / "tools" / "validate_ed_hybrid_asset_pack.py"
 
-REQUIRED_TOP_KEYS = {"decision_id", "status", "art_direction", "family_targets", "assets"}
-REQUIRED_ASSET_KEYS = {
-    "path", "family", "role", "state", "provenance",
-    "transparent", "runtime_integrated", "final_asset_approved"
-}
+spec = importlib.util.spec_from_file_location("asset_validator", VALIDATOR_PATH)
+validator = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(validator)
 
 
 def load_manifest():
@@ -22,32 +21,32 @@ def test_candidate_root_and_gdignore_exist():
     assert (ROOT / "art" / "production_candidates" / ".gdignore").is_file()
 
 
-def test_manifest_contract():
+def test_manifest_contract_and_static_validation():
     data = load_manifest()
-    assert REQUIRED_TOP_KEYS <= data.keys()
     assert data["decision_id"] == "SX-DEC-051"
     assert data["status"] == "GENERATED_PRODUCTION_CANDIDATE"
     assert data["art_direction"] == "E+D HYBRID · NEO-ARCADE READABILITY"
-    assert isinstance(data["family_targets"], list) and data["family_targets"]
-    assert isinstance(data["assets"], list)
+    assert data["runtime_integrated"] is False
+    assert data["final_asset_approved"] is False
+    assert validator.validate() == 0
 
 
-def test_asset_records_are_safe_and_unique():
+def test_required_candidate_families_and_states_are_present():
     data = load_manifest()
-    seen = set()
-    for record in data["assets"]:
-        assert REQUIRED_ASSET_KEYS <= record.keys()
-        path = record["path"]
-        assert path not in seen
-        seen.add(path)
-        assert path.endswith(".png")
-        assert ".." not in Path(path).parts
-        assert record["runtime_integrated"] is False
-        assert record["final_asset_approved"] is False
-        full = ROOT / path
-        assert full.is_file()
-        with Image.open(full) as im:
-            im.verify()
-        if record["transparent"]:
-            with Image.open(full) as im:
-                assert im.mode in {"RGBA", "LA"} or "transparency" in im.info
+    families = {r["family"] for r in data["assets"]}
+    assert {"core_world", "run_lifo", "build_states", "controls", "vfx", "shells_result_meta"} <= families
+    roles = {r["role"] for r in data["assets"]}
+    assert {"locomotive_blue", "cargo_wagon_red", "cargo_wagon_blue", "cargo_wagon_yellow"} <= roles
+    assert {"stack_hud", "switch_direction", "train_cargo_strip", "load_mode", "combo_feedback"} <= roles
+    assert {"build_states", "track_palette"} <= roles
+    assert {"controls", "feedback", "result_shell", "progress_meta"} <= roles
+
+    slices = {s["name"] for r in data["assets"] for s in r.get("slices", [])}
+    assert {
+        "run_stack_empty_v01", "run_stack_32plus_v01", "run_stack_unloading_v01",
+        "run_switch_arrow_left_selected_v01", "run_switch_arrow_up_locked_v01",
+        "build_track_straight_valid_ghost_v01", "build_track_straight_invalid_ghost_v01",
+        "build_track_curve_valid_ghost_v01", "build_port_marker_left_v01",
+        "ui_button_frame_square_blue_normal_v01", "ui_button_frame_square_blue_pressed_v01",
+        "ui_button_frame_square_blue_disabled_v01", "ui_button_frame_square_blue_focus_v01"
+    } <= slices
