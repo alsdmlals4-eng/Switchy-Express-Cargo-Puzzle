@@ -1,0 +1,16 @@
+# SX-DEC-052 frozen legacy tracked .asset-vault paths.
+# These files remain tracked temporarily to avoid deleting user-local work on pull.
+.asset-vault/library/gpt-imports/2026-08-08/ChatGPT Image 2026년 8월 8일 오후 10_08_55 (1).png
+.asset-vault/library/gpt-imports/2026-08-08/ChatGPT Image 2026년 8월 8일 오후 10_08_55 (2).png
+.asset-vault/library/gpt-imports/2026-08-08/ChatGPT Image 2026년 8월 8일 오후 10_08_55 (3).png
+.asset-vault/library/gpt-imports/2026-08-08/ChatGPT Image 2026년 8월 8일 오후 10_08_55 (4).png
+.asset-vault/library/gpt-imports/2026-08-08/ChatGPT Image 2026년 8월 8일 오후 10_08_55 (5).png
+.asset-vault/library/gpt-imports/2026-08-08/ChatGPT Image 2026년 8월 8일 오후 10_08_55 (6).png
+.asset-vault/library/gpt-imports/2026-08-08/ChatGPT Image 2026년 8월 8일 오후 10_08_55 (7).png
+.asset-vault/library/gpt-imports/2026-08-08/ChatGPT Image 2026년 8월 8일 오후 10_08_55 (8).png
+.asset-vault/library/gpt-imports/2026-08-09/ChatGPT Image 2026년 8월 9일 오전 06_21_26.png
+.asset-vault/library/gpt-imports/ChatGPT Image 2026년 8월 8일 오후 08_44_27.png
+.asset-vault/library/gpt-imports/ChatGPT Image 2026년 8월 8일 오후 08_56_35 (1).png
+.asset-vault/library/gpt-imports/ChatGPT Image 2026년 8월 8일 오후 08_56_35 (2).png
+.asset-vault/library/gpt-imports/ChatGPT Image 2026년 8월 8일 오후 08_56_35 (3).png
+.asset-vault/library/gpt-imports/ChatGPT Image 2026년 8월 8일 오후 08_56_36 (4).png
