@@ -34,14 +34,22 @@ def validate_tracked_paths(tracked_paths: Iterable[str], allowed_paths: set[str]
 
 
 def tracked_local_only_paths(project_root: Path = ROOT) -> list[str]:
+    """Read local-only paths from the checked-out HEAD tree, not index/ignore state."""
     result = subprocess.run(
-        ["git", "-C", str(project_root), "ls-files", "--", ".asset-vault", "assets/_vault_local"],
+        ["git", "-C", str(project_root), "ls-tree", "-r", "--name-only", "HEAD"],
         check=True,
         capture_output=True,
         text=True,
         encoding="utf-8",
     )
-    return sorted(line for line in result.stdout.splitlines() if line.strip())
+    return sorted(
+        path
+        for path in result.stdout.splitlines()
+        if path == ".asset-vault"
+        or path.startswith(".asset-vault/")
+        or path == "assets/_vault_local"
+        or path.startswith("assets/_vault_local/")
+    )
 
 
 def validate_ignore_rules(project_root: Path = ROOT) -> list[str]:
