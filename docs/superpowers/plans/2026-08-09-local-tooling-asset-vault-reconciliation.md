@@ -20,7 +20,7 @@ RED requirements:
 - tooling state manifest records Godot AI 3.1.3, GUT 9.7.1, and Hera user-approved with local version unverified.
 - `addons/godot_ai/plugin.cfg` reports 3.1.3.
 - GUT remains 9.7.1 and Godot AI/GUT remain enabled in `project.godot`.
-- preservation preflight is inventory-only and rejects output inside local-only roots.
+- preservation preflight is inventory-only, cannot overwrite project files, and rejects unsafe output locations.
 
 Commit test/workflow first and observe expected Project Contract RED before implementation.
 
@@ -29,18 +29,22 @@ Commit test/workflow first and observe expected Project Contract RED before impl
 Modify `.gitignore`; create `docs/tooling/asset_vault_legacy_tracked_allowlist.txt` and `tools/validate_local_tooling_reconciliation.py`.
 
 - Freeze the exact 14 currently tracked `.asset-vault` PNG paths; do not delete them.
-- Validator uses `git ls-files -- .asset-vault assets/_vault_local`.
+- Validator reads the actual checked-out HEAD tree using `git ls-tree -r -z --name-only HEAD`, not index/ignore state.
+- NUL-delimited raw UTF-8 paths are required so Korean filenames are compared without Git quoted-path escaping.
 - Permit only allowlisted `.asset-vault` paths; reject every tracked `assets/_vault_local` path and every future non-allowlisted `.asset-vault` path.
 - Expose pure `validate_tracked_paths(tracked_paths, allowed_paths)` for unit testing.
 - Report `LEGACY_TRACKED_PRESERVED`, never full cleanup.
 
-## Task 3 — Add read-only local preservation preflight
+## Task 3 — Add non-destructive local preservation preflight
 
 Create `tools/asset_vault_preservation_preflight.py`.
 
 - Scan `.asset-vault/library` if present.
 - Emit stable JSON with Decision ID, `inventory_only`, relative path, size, SHA-256.
-- Optional `--output` must resolve outside `.asset-vault/` and `assets/_vault_local/`.
+- Reject output inside `.asset-vault/` and `assets/_vault_local/`.
+- If output is inside the project, permit it only below `test-results/`.
+- Write report files with exclusive creation (`x`) so an existing file can never be overwritten.
+- Output outside the project is allowed but still uses exclusive creation.
 - Never delete, move, rename, or alter vault bytes and never claim backup completion.
 - If the vault is absent, emit explicit absent/unverified status.
 
@@ -62,18 +66,18 @@ Implementation:
 ## Task 5 — GREEN validation and adversarial review
 
 Fresh evidence on implementation head:
-- focused pytest;
+- focused reconciliation test suite;
 - validator;
 - Project Contract;
 - GUT 9.7.1 Tests;
 - Godot Tests;
 - Validate Thin Adapter Migration.
 
-Adversarial review checks no vault deletion, no Scene/Resource/Theme/Animation/signal/gameplay changes, no Hera files, unchanged GUT, exact one-line Godot AI upstream delta, no future local-only expansion loophole, and no destructive preflight path.
+Adversarial review checks no vault deletion, no Scene/Resource/Theme/Animation/signal/gameplay changes, no Hera files, unchanged GUT, exact one-line Godot AI upstream delta, no future local-only expansion loophole, correct Unicode path handling, and no destructive/overwrite-capable preflight path.
 
 ## Task 6 — Canonical audit and same-ID synchronization
 
-Update Decision and create `기획서/50_제작_검증/SX_AUD_037_LOCAL_TOOLING_ASSET_VAULT_RECONCILIATION.md` with RED/GREEN heads, CI runs, upstream identities, 14-file boundary, and deferred gates:
+Update Decision and create `기획서/50_제작_검증/SX_AUD_037_LOCAL_TOOLING_ASSET_VAULT_RECONCILIATION.md` with RED/GREEN heads, CI runs, upstream identities, 14-file boundary, adversarial corrections, and deferred gates:
 `ASSET_VAULT_UNTRACK_DEFERRED_EXTERNAL_EXECUTOR`, `VAULT_LOCAL_STATE_UNVERIFIED`, `HERA_LOCAL_VERSION_UNVERIFIED`, plus runtime/POC/device/human gates.
 
 ## Task 7 — PR closure and merged-main verification
