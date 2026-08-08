@@ -4,7 +4,7 @@ Decision: `SX-DEC-051`
 
 Status: `GENERATED_PRODUCTION_CANDIDATE · PROJECT_TRACKED · NOT_RUNTIME_INTEGRATED · NOT_FINAL_ASSET_APPROVED`
 
-This directory is intentionally isolated from Godot runtime import. The 16 tracked PNG candidates are review/production handoff candidates only; they are not runtime evidence or final release-approved assets.
+This directory is intentionally isolated from Godot runtime import. The **31 tracked PNG candidates** are review/production handoff candidates only; they are not runtime evidence or final release-approved assets.
 
 Art direction: `E+D HYBRID · NEO-ARCADE READABILITY`.
 
@@ -17,9 +17,15 @@ Core rules:
 - no recognizable third-party IP/UI skin or identifiable living-artist/studio imitation;
 - every tracked candidate is registered in `manifest.json` with source reference SHA256 and runtime/final-approval flags set to false.
 
-Adversarial review auto-fixes in this approved scope:
-1. removed generated labels from train/switch candidates;
-2. rebuilt result shells as text-safe blank panels;
-3. rebuilt progress/meta candidates without generated localized copy.
+P0 coverage now includes:
+- locomotive + red/blue/yellow wagons;
+- red/blue/yellow cargo stars and stations;
+- straight/curve/crossing/three-way-switch rail;
+- start and route-end markers;
+- RUN/LIFO stack, switch, cargo-strip, load-mode and combo families;
+- BUILD placement/track palette plus ghost-route, cost HUD and preflight notice;
+- seven reusable button/control interaction states.
+
+The 15 compact coverage candidates added after the strengthened P0 contract are 64×64 text-free alpha primitives derived from the approved E+D shape/palette contract. They are candidate-only and do not alter Godot runtime authority.
 
 Runtime integration, Godot Scene/Resource/Theme authoring, POC, Windows/Android physical validation, connected HiGodot validation, human comprehension testing, and final product-asset approval remain deferred.
