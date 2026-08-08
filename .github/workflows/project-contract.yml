@@ -19,6 +19,8 @@ jobs:
           python-version: '3.12'
       - name: Validate project operating contract
         run: python tools/validate_project_contract.py
+      - name: Validate local tooling and asset-vault reconciliation
+        run: python tests/python/test_local_tooling_reconciliation.py -v
       - name: Validate Base v9.4 AI operations adoption
         run: python -m unittest tests.test_base_v94_ai_operations_adoption -v
       - name: Validate Base adapter workflow scope
