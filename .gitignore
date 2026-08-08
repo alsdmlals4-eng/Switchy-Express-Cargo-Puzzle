@@ -21,3 +21,5 @@ Thumbs.db
 .env
 *.log
 .worktrees/
+.asset-vault/
+assets/_vault_local/
