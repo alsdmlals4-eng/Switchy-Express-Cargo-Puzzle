@@ -1,0 +1,30 @@
+{
+  "decision_id": "SX-DEC-052",
+  "godot_ai": {
+    "user_local_version": "3.1.3",
+    "repo_version": "3.1.3",
+    "upstream_tag": "v3.1.3",
+    "upstream_commit": "22678e5f9b038d7203d6b43b0aae20a5417c500e",
+    "user_enabled_approved": true,
+    "repository_sync_basis": "FULL_ADDON_TREE_V3_1_2_PARITY_PLUS_UPSTREAM_V3_1_3_PLUGIN_CFG_DELTA"
+  },
+  "gut": {
+    "repo_version": "9.7.1",
+    "user_enabled_approved": true,
+    "repo_enabled": true
+  },
+  "hera": {
+    "identity": "NotNull92/hera-agent-godot",
+    "stable_upstream_version": "1.0.0",
+    "user_enabled_approved": true,
+    "local_version": null,
+    "repo_tracked": false,
+    "status": "LOCAL_VERSION_UNVERIFIED"
+  },
+  "asset_vault": {
+    "legacy_tracked_count": 14,
+    "status": "LEGACY_TRACKED_PRESERVED",
+    "untrack_status": "DEFERRED_EXTERNAL_EXECUTOR",
+    "local_preservation_status": "VAULT_LOCAL_STATE_UNVERIFIED"
+  }
+}
