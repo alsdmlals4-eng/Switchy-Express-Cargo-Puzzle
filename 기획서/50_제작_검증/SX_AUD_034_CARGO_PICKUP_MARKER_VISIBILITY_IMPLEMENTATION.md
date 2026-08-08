@@ -5,13 +5,14 @@
 **Date:** 2026-08-08 KST  
 **PR:** #110 `feat: hide collected cargo markers`  
 **Base authority:** `alsdmlals4-eng/Base@fa69a77a14f923a756064f6ae151d34cadb374f7`  
-**Project baseline:** `main@21a98f534c4479d710a3ec33972c8eda73ca6805`
+**Project baseline:** `main@21a98f534c4479d710a3ec33972c8eda73ca6805`  
+**Feature merge:** `728c41a5e21d9ffcd0913909832058b2038d70d6`
 
 ## Verdict
 
-`IMPLEMENTED_ON_PR · TDD_RED_GREEN_VERIFIED · AUTOMATED_EXACT_HEAD_PASS_AT_IMPLEMENTATION_COMMIT · PHYSICAL_F5_PICKUP_RETRY_PENDING`
+`IMPLEMENTED_AND_MERGED · TDD_RED_GREEN_VERIFIED · AUTOMATED_EXACT_HEAD_PASS · USER_PHYSICAL_F5_PICKUP_RETRY_PASS`
 
-The collected map cargo marker is now derived from the active attempt's authoritative `FixedCargoField` rather than being rendered unconditionally from authored placements. Authored map data remains immutable, skipped cargo remains visible, and retry/fresh attempts restore the authored marker set.
+The collected map cargo marker is derived from the active attempt's authoritative `FixedCargoField` rather than being rendered unconditionally from authored placements. Authored map data remains immutable, skipped cargo remains visible, and retry/fresh attempts restore the authored marker set.
 
 ## Root cause
 
@@ -83,7 +84,9 @@ At implementation head `4e3bc4031117dd925ff0120bdf7f691d2ea9eb99`:
   - real-project live-editor Pilot step PASS
 - `Windows Demo Export` run `31253130293`: PASS
 
-## Behavioral contract now covered automatically
+Final PR #110 head `721a11d03ba0a106ed42e2c7cb4c913c899f1ee6` also passed Project Contract, GUT, Godot Tests, Thin Adapter, and Windows Demo Export before merge.
+
+## Behavioral contract covered automatically
 
 The focused integration regression verifies in a real finite-session flow:
 
@@ -118,31 +121,39 @@ Not changed:
 
 Therefore the HiGodot single-authoring-authority boundary remains intact; no connected HiGodot authoring session was required for this GDScript/test/documentation change.
 
-## User physical evidence carried forward
+## Current-main lineage at physical closure
 
-The user's 2026-08-08 Godot 4.7.1 current-main F5 evidence for SX-DEC-041/042/046 remains valid and separately recorded:
+At the time the user's physical evidence was recorded, GitHub `main` had advanced to `4f1892fa6917216d007c811d326fafd90ad055c0`, whose parent is the feature merge `728c41a5e21d9ffcd0913909832058b2038d70d6`.
+
+That intervening commit adds seven generated `.gd.uid` files only and does not modify SX-DEC-049 behavior code. The user did not explicitly attest a `git rev-parse HEAD` value for the physical run, so the physical record is treated as direct user-observed behavior rather than SHA-attested runtime evidence.
+
+## User physical F5 evidence — PASS
+
+On 2026-08-08 KST, after the SX-DEC-049 implementation was merged, the user directly confirmed all three required Godot 4.7.1 F5 behaviors:
+
+1. the RED star disappears immediately after successful pickup — PASS,
+2. cargo that is skipped/not collected remains visible — PASS,
+3. `Retry Same Layout` restores previously collected stars to their authored positions — PASS.
+
+This closes the SX-DEC-049 Godot physical pickup/retry gate as:
+
+`USER_PHYSICAL_F5_PICKUP_RETRY_PASS`
+
+The earlier user physical evidence for SX-DEC-041/042/046 also remains separately recorded:
 
 - 3-direction arrows visible,
 - direct selection / U-turn / occupied lock PASS,
 - BLUE no-cargo terminal -> `FAILURE / ROUTE_END` without assertion/process termination,
 - final required delivery -> SUCCESS priority.
 
-This does **not** constitute physical evidence for the new SX-DEC-049 behavior because that implementation was not on merged main at the time of the user's test.
+## Remaining independent gates
 
-## Remaining gate
+SX-DEC-049 feature-specific Godot F5 acceptance is closed. The following project-level gates remain independent and must not be inferred from that result:
 
-After PR #110 is merged and the user's checkout is synced to the resulting main commit, physical Godot 4.7.1 F5 validation must still confirm:
+- physical Windows launch / visual / input validation: NOT_RUN,
+- Android device validation: NOT_RUN,
+- connected HiGodot validation: NOT_RUN,
+- broader human validation: NOT_RUN,
+- production cutover: BLOCKED until its remaining gates are independently satisfied.
 
-1. a successfully picked-up RED star disappears immediately,
-2. skipped/uncollected cargo remains visible,
-3. `Retry Same Layout` restores the authored markers.
-
-Until that evidence is supplied, SX-DEC-049 physical status is:
-
-`PHYSICAL_F5_PICKUP_RETRY_NOT_RUN_AFTER_IMPLEMENTATION`
-
-Windows export automation PASS is packaging/build evidence only; physical Windows launch/visual/input remains a separate gate. Android-device, connected-HiGodot, and broader human validation also remain separate/not run unless independently evidenced.
-
-## Closure handling
-
-This audit commit is documentation-only and therefore changes the PR head after the implementation-head verification above. Required final PR exact-head checks must be re-read after this audit commit before merge. Their final outcomes belong in the PR/Sheet closure record; no PASS may be inferred before those runs complete.
+Windows Demo Export automation PASS is packaging/build evidence only and is not equivalent to physical Windows runtime validation.
