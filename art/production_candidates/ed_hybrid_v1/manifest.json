@@ -1,0 +1,16 @@
+{
+  "decision_id": "SX-DEC-051",
+  "status": "GENERATED_PRODUCTION_CANDIDATE",
+  "art_direction": "E+D HYBRID · NEO-ARCADE READABILITY",
+  "runtime_integrated": false,
+  "final_asset_approved": false,
+  "family_targets": [
+    "core_world",
+    "run_lifo",
+    "build_states",
+    "controls",
+    "vfx",
+    "shells_result_meta"
+  ],
+  "assets": []
+}
