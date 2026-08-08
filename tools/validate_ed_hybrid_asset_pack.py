@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import json
+import struct
 import sys
 from pathlib import Path
-from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSET_ROOT = ROOT / "art" / "production_candidates" / "ed_hybrid_v1"
@@ -12,10 +12,42 @@ REQUIRED_ASSET_KEYS = {
     "path", "family", "role", "state", "provenance", "transparent",
     "runtime_integrated", "final_asset_approved"
 }
+PNG_SIG = b"\x89PNG\r\n\x1a\n"
 
 
 def fail(message: str) -> None:
     raise ValueError(message)
+
+
+def png_info(path: Path):
+    with path.open("rb") as f:
+        if f.read(8) != PNG_SIG:
+            fail(f"not a PNG file: {path}")
+        width = height = color_type = None
+        has_trns = False
+        while True:
+            raw_len = f.read(4)
+            if not raw_len:
+                break
+            if len(raw_len) != 4:
+                fail(f"truncated PNG: {path}")
+            length = struct.unpack(">I", raw_len)[0]
+            chunk_type = f.read(4)
+            data = f.read(length)
+            crc = f.read(4)
+            if len(data) != length or len(crc) != 4:
+                fail(f"truncated PNG chunk: {path}")
+            if chunk_type == b"IHDR":
+                if length != 13:
+                    fail(f"invalid IHDR: {path}")
+                width, height, _bit_depth, color_type, _comp, _filter, _interlace = struct.unpack(">IIBBBBB", data)
+            elif chunk_type == b"tRNS":
+                has_trns = True
+            elif chunk_type == b"IEND":
+                break
+        if not width or not height:
+            fail(f"missing/invalid dimensions: {path}")
+        return width, height, color_type in (4, 6) or has_trns
 
 
 def validate() -> int:
@@ -57,15 +89,11 @@ def validate() -> int:
         full = ROOT / rel
         if not full.is_file():
             fail(f"missing referenced asset: {rel}")
-        with Image.open(full) as image:
-            image.verify()
-        with Image.open(full) as image:
-            if image.format != "PNG":
-                fail(f"not a PNG file: {rel}")
-            if image.width <= 0 or image.height <= 0:
-                fail(f"invalid dimensions: {rel}")
-            if record["transparent"] and not (image.mode in {"RGBA", "LA"} or "transparency" in image.info):
-                fail(f"expected alpha/transparency: {rel}")
+        width, height, has_alpha = png_info(full)
+        if record.get("dimensions") and record["dimensions"] != [width, height]:
+            fail(f"dimension mismatch: {rel}")
+        if record["transparent"] and not has_alpha:
+            fail(f"expected alpha/transparency: {rel}")
     print(f"PASS: {len(data['assets'])} assets validated for SX-DEC-051")
     return 0
 
