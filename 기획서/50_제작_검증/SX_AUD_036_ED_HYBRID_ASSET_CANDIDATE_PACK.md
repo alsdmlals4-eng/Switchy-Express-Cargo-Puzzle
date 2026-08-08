@@ -1,7 +1,7 @@
 # SX-AUD-036 · E+D Hybrid Asset Candidate Pack Audit
 
 **Decision:** `SX-DEC-051`  
-**Status:** `CANDIDATE_PACKAGE_CREATED · PR_EXACT_HEAD_VALIDATION_PENDING`  
+**Status:** `FIRST_PR_VALIDATION_COMPLETE · FINAL_HEAD_RECHECK_REQUIRED`  
 **Date:** 2026-08-08 KST
 
 ## Scope audited
@@ -45,7 +45,7 @@ Technical findings fixed inside approved scope:
 
 No third-party branded IP, commercial game UI skin, or named living-artist/studio imitation was intentionally used as the target style.
 
-## TDD / validation contract
+## TDD / focused static validation
 
 The branch contains:
 
@@ -54,12 +54,47 @@ The branch contains:
 
 The tests require the six families, critical roles, and named RUN/BUILD/control slices. The validator checks PNG signature/dimensions, alpha declaration, path boundary, uniqueness, and runtime/final approval flags.
 
-Actual PR exact-head results are not inferred here. They remain pending until GitHub Actions reports them for the final PR validation identity.
+Fresh focused execution against the candidate bytes used for GitHub blobs:
+
+- `python -m pytest tests/test_ed_hybrid_asset_pack.py -q` → **PASS · 3/3 tests**
+- `python tools/validate_ed_hybrid_asset_pack.py` → **PASS · 16 assets validated for SX-DEC-051**
+
+## First PR validation identity and CI
+
+PR: `#113`  
+Base SHA: `827c5b9ffe2a9170ec099083cdd2a6942dff97f8`  
+First review head SHA: `469ece8910967abd7b3a422108eee56cb51d18f3`  
+First test-merge SHA observed by the Godot workflow: `f92ffc0044f742b23c891e9e47552ed2b1fa76ee`
+
+First validation runs:
+
+- Project Contract `31260051466` → **PASS**
+- GUT 9.7.1 Tests `31260051452` → **PASS**
+- Validate Thin Adapter Migration `31260051455` → **PASS**
+- Godot Tests `31260051463` → first attempt **FAIL only at real-project live-editor Pilot with `RUNTIME_TIMEOUT · project regression timeout`**; standalone headless regression in the same job was **PASS · 92 cases · 11,494 assertions**.
+
+### Timeout root-cause investigation
+
+The failure was treated as a technical failure, not ignored:
+
+1. the first error was read from the job log and isolated to the Pilot's nested project-regression subprocess;
+2. the PR changed no Godot runtime/pilot implementation files;
+3. the same standalone regression on the PR test merge passed 92/92 with 11,494 assertions;
+4. baseline `main` Godot run `31254615620` had the same Pilot PASS, with its nested regression completing in about 9.9 seconds;
+5. the candidate art tree is under `art/production_candidates/.gdignore` and is not current runtime content.
+
+Single hypothesis: transient CI nested-regression hang rather than source regression.
+
+Minimal hypothesis test: rerun the same failed Godot job **without source changes**. Result: rerun job `93109984618` → **PASS**, including headless regression and real-project live-editor Pilot. Therefore the initial timeout is classified as `TRANSIENT_CI_RUNTIME_TIMEOUT · REPRODUCTION_NOT_CONFIRMED` rather than a product/source regression.
+
+Because this audit update itself changes the PR head, the above is historical first-head evidence only. The final PR head must receive a fresh exact validation set before merge.
 
 ## Godot/runtime authority boundary
 
 No `.tscn`, `.tres`, Theme, Animation, signal, project setting, gameplay code, or runtime sprite integration is part of this audit. Connected HiGodot and physical runtime evidence remain NOT_RUN.
 
+Windows physical runtime, Android device, human comprehension, runtime integration/POC, and final product-asset approval remain deferred.
+
 ## Current verdict
 
-`CANDIDATE_CONTENT_READY_FOR_PR_VALIDATION · RUNTIME_POC_DEFERRED`
+`CANDIDATE_CONTENT_READY · FIRST_PR_VALIDATION_COMPLETE · FINAL_HEAD_RECHECK_REQUIRED · RUNTIME_POC_DEFERRED`
