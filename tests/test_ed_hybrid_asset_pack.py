@@ -35,10 +35,18 @@ def test_required_candidate_families_and_states_are_present():
     data = load_manifest()
     families = {r["family"] for r in data["assets"]}
     assert {"core_world", "run_lifo", "build_states", "controls", "vfx", "shells_result_meta"} <= families
+
     roles = {r["role"] for r in data["assets"]}
-    assert {"locomotive_blue", "cargo_wagon_red", "cargo_wagon_blue", "cargo_wagon_yellow"} <= roles
+    assert {
+        "locomotive_blue",
+        "cargo_wagon_red", "cargo_wagon_blue", "cargo_wagon_yellow",
+        "cargo_star_red", "cargo_star_blue", "cargo_star_yellow",
+        "station_red", "station_blue", "station_yellow",
+        "rail_straight", "rail_curve", "rail_crossing", "rail_switch_three_way",
+        "start_marker", "route_end_marker",
+    } <= roles
     assert {"stack_hud", "switch_direction", "train_cargo_strip", "load_mode", "combo_feedback"} <= roles
-    assert {"build_states", "track_palette"} <= roles
+    assert {"build_states", "track_palette", "ghost_route", "cost_hud", "preflight_notice"} <= roles
     assert {"controls", "feedback", "result_shell", "progress_meta"} <= roles
 
     slices = {s["name"] for r in data["assets"] for s in r.get("slices", [])}
