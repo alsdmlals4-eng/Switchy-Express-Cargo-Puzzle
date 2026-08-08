@@ -432,7 +432,7 @@ func _build_render_snapshot(current_model: Dictionary) -> Dictionary:
 		snapshot["buildable_cells"] = _definition.buildable_cells.duplicate()
 		snapshot["blocked_cells"] = _definition.blocked_cells.duplicate()
 		snapshot["station_placements"] = _definition.station_placements.duplicate(true)
-		snapshot["cargo_placements"] = _definition.cargo_placements.duplicate(true)
+		snapshot["cargo_placements"] = _visible_cargo_placements()
 
 	snapshot["layout_pieces"] = _layout_piece_descriptors()
 	snapshot["selected_cell"] = _selected_cell
@@ -455,6 +455,24 @@ func _build_render_snapshot(current_model: Dictionary) -> Dictionary:
 	return snapshot
 
 
+func _visible_cargo_placements() -> Array[Dictionary]:
+	if _definition == null:
+		return []
+	if _run_session == null:
+		return _definition.cargo_placements.duplicate(true)
+
+	var cargo_field: Variant = _run_session.delivery_loop.cargo_field()
+	if cargo_field == null:
+		return []
+	var remaining: Array[Vector2i] = cargo_field.remaining_cells()
+	var result: Array[Dictionary] = []
+	for placement: Dictionary in _definition.cargo_placements:
+		var cell := _placement_cell(placement.get("cell", null))
+		if cell != NO_CELL and remaining.has(cell):
+			result.append(placement.duplicate(true))
+	return result
+
+
 func _layout_piece_descriptors() -> Array[Dictionary]:
 	var layout: Variant = null
 	if _build_session != null:
@@ -473,6 +491,16 @@ func _layout_piece_descriptors() -> Array[Dictionary]:
 			"switch_initial_exit": piece.switch_initial_exit,
 		})
 	return result
+
+
+static func _placement_cell(raw: Variant) -> Vector2i:
+	if raw is Vector2i:
+		return raw
+	if raw is Array and raw.size() == 2:
+		return Vector2i(int(raw[0]), int(raw[1]))
+	if raw is Dictionary and raw.has("x") and raw.has("y"):
+		return Vector2i(int(raw.get("x", 0)), int(raw.get("y", 0)))
+	return NO_CELL
 
 
 static func _next_tool_rotation(geometry: StringName, current: int) -> int:
