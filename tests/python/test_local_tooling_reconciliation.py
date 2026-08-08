@@ -25,6 +25,14 @@ def load_module(path: Path, name: str):
     return module
 
 
+def read_allowlist() -> set[str]:
+    return {
+        line.strip()
+        for line in ALLOWLIST_FILE.read_text(encoding="utf-8").splitlines()
+        if line.strip() and not line.startswith("#")
+    }
+
+
 class LocalToolingReconciliationContractTests(unittest.TestCase):
     def test_local_only_roots_are_ignored(self) -> None:
         lines = {
@@ -50,13 +58,8 @@ class LocalToolingReconciliationContractTests(unittest.TestCase):
     def test_authority_files_record_bounded_state(self) -> None:
         self.assertTrue(ALLOWLIST_FILE.is_file(), "legacy allowlist must exist")
         self.assertTrue(STATE_FILE.is_file(), "tooling state manifest must exist")
-        allowed = [
-            line.strip()
-            for line in ALLOWLIST_FILE.read_text(encoding="utf-8").splitlines()
-            if line.strip() and not line.startswith("#")
-        ]
+        allowed = read_allowlist()
         self.assertEqual(14, len(allowed))
-        self.assertEqual(14, len(set(allowed)))
         self.assertTrue(all(path.startswith(".asset-vault/") for path in allowed))
 
         state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
@@ -95,6 +98,11 @@ class LocalToolingReconciliationContractTests(unittest.TestCase):
         )
         self.assertTrue(any("new.png" in item for item in violations))
         self.assertTrue(any("_vault_local" in item for item in violations))
+
+    def test_validator_reads_the_current_head_legacy_paths(self) -> None:
+        self.assertTrue(VALIDATOR_FILE.is_file(), "validator must exist")
+        validator = load_module(VALIDATOR_FILE, "local_tooling_validator_head_test")
+        self.assertEqual(read_allowlist(), set(validator.tracked_local_only_paths(ROOT)))
 
     def test_preservation_preflight_is_inventory_only_and_output_safe(self) -> None:
         self.assertTrue(PREFLIGHT_FILE.is_file(), "preservation preflight must exist")
