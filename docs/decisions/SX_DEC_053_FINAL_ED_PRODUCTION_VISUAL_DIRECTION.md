@@ -1,11 +1,11 @@
 # SX-DEC-053 · Final E+D Production Visual Direction
 
-**Status:** `USER_APPROVED · DISPOSITION_31_COMPLETE · IMPORT_SAFE_39_PROMOTED · AUTHORITATIVE_SLICE_BATCH_1_PROMOTED · HERO_CONTROLS_RECOVERED · CONTROL_NORMAL_BYTE_INTEGRITY_REPAIRED · SEMANTIC_SPLITS_PARTIAL · BATCH_1_EXACT_HEAD_VALIDATION_PENDING · RUNTIME_POC_DEFERRED`  
+**Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · DISPOSITION_31_COMPLETE · IMPORT_SAFE_39_PROMOTED · AUTHORITATIVE_SLICE_BATCH_1_PROMOTED · HERO_CONTROLS_RECOVERED · CONTROL_NORMAL_BYTE_INTEGRITY_REPAIRED · SEMANTIC_SPLITS_PARTIAL · RUNTIME_POC_DEFERRED`  
 **Date:** 2026-08-09 KST  
 **Baseline main:** `95dda145b518ce29bead78a5cbf5566cfa675419`  
 **Product merge/main:** `57dbdd9be2cc70e0c9b973d502f57bd725b045cb` · PR `#122`  
 **Prior canonical closure/main:** `9db05c0cc9866eb3e4a7f014a1cfe289aa4447bd` · PR `#123`  
-**Current continuation baseline:** `24d2e1121be7f967dfdd5246e1070cde4214772c`
+**Semantic-slice batch 1 merge/main:** `b02649dddc88a5340695cfd18ea5a54ffe0540f0` · PR `#125`
 
 ## Decision
 
@@ -36,7 +36,7 @@ The candidate package remains intact for provenance. The two `REPLACE` sources a
 
 Product root: `art/product_assets/ed_hybrid_v1/`
 
-Current promoted asset count in continuation batch: **39**.
+Current promoted asset count: **39**.
 
 Promoted/recovered groups:
 
@@ -56,7 +56,7 @@ Promoted/recovered groups:
 - four Stack HUD slices whose names and crop bounds were already registered by `SX-DEC-051`;
 - four BUILD placement/port slices whose names and crop bounds were already registered by `SX-DEC-051`.
 
-No new concept board was created for this continuation. The eight new files are deterministic crops of tracked candidate bytes using only pre-existing candidate-manifest slice names and bounds. No unnamed atlas region is assigned a new meaning.
+No new concept board was created for batch 1. The eight files are deterministic crops of tracked candidate bytes using only pre-existing candidate-manifest slice names and bounds. No unnamed atlas region is assigned a new meaning.
 
 ## Adversarial promotion findings and recovery
 
@@ -149,24 +149,34 @@ PR `#122` was reviewed on the final implementation identity:
 - `review_head_sha`: `e7a4f2e81355991cde632f0581baf62b6eb45a46`;
 - `base_sha`: `95dda145b518ce29bead78a5cbf5566cfa675419`;
 - `test_merge_sha`: `fd9e72f2fde02d0126e57c5fe86d573a4cf6cffd`;
-- no PR-triggered workflow runs existed on the test-merge commit, so `ci_validation_target_sha` remained the exact review head;
-- Project Contract `31316685124`: **PASS**, including `Validate final E+D product asset promotion`;
+- Project Contract `31316685124`: **PASS**;
 - GUT 9.7.1 `31316685079`: **PASS**;
 - Godot Tests `31316685077`: **PASS**;
 - Validate Thin Adapter Migration `31316685080`: **PASS**;
 - Windows Demo Export `31316685064`: **PASS**;
 - unresolved review threads: **0**.
 
-The approved scope was squash-merged without reapproval as PR `#122`, producing main commit `57dbdd9be2cc70e0c9b973d502f57bd725b045cb`. A same-ID canonical closure followed in PR `#123`, producing `9db05c0cc9866eb3e4a7f014a1cfe289aa4447bd`.
+The approved scope was squash-merged as PR `#122`, producing main commit `57dbdd9be2cc70e0c9b973d502f57bd725b045cb`. A same-ID canonical closure followed in PR `#123`, producing `9db05c0cc9866eb3e4a7f014a1cfe289aa4447bd`.
 
-The merge commits themselves do not create new runtime/device evidence. Exact reviewed PR heads remain the technical evidence, and merged-main readback is repository-delivery evidence.
+## Batch 1 exact-head and merged-main verification
 
-## Batch 1 validation state
+PR `#125` final implementation identity:
 
-Current implementation branch: `agent/sx-dec-053-authoritative-slice-batch-1`  
-Baseline: `24d2e1121be7f967dfdd5246e1070cde4214772c`
+- `review_head_sha`: `4e07fa5247a8fe743b0917b3595ce97585da82e9`;
+- `base_sha`: `24d2e1121be7f967dfdd5246e1070cde4214772c`;
+- `test_merge_sha`: `32db76a79ab7a88f58969a836457f21b6aa6d732`;
+- no PR-triggered workflow runs existed on the test-merge commit, therefore `ci_validation_target_sha = 4e07fa5247a8fe743b0917b3595ce97585da82e9`;
+- Project Contract `31320609585`: **PASS**, including `Validate final E+D product asset promotion`;
+- GUT 9.7.1 `31320609590`: **PASS**;
+- Godot Tests `31320609574`: **PASS**;
+- Validate Thin Adapter Migration `31320609566`: **PASS**;
+- Windows Demo Export `31320609573`: **PASS**;
+- unresolved review threads: **0**;
+- final PR state: Ready · mergeable true.
 
-The eight-file semantic slice continuation is **not yet reported as merged or exact-head PASS in this document**. Those claims require the implementation PR's final exact HEAD, CI result set, review-thread check, merge, merged-main readback, and a same-ID closure update.
+PR `#125` was squash-merged with expected-head protection against `4e07fa5247a8fe743b0917b3595ce97585da82e9`, producing main commit `b02649dddc88a5340695cfd18ea5a54ffe0540f0`. GitHub main readback confirmed the merge commit and the 39-product package.
+
+The merge commit itself does not create new runtime/device evidence. Exact reviewed PR-head CI remains the technical evidence, and merged-main ancestry/readback is repository-delivery evidence.
 
 ## Boundaries
 
@@ -182,4 +192,4 @@ Still deferred / NOT_RUN:
 - `.asset-vault` legacy untrack pending local preservation evidence;
 - release cutover.
 
-Google Sheet synchronization remains post-merge/post-closure only, so the Sheet can point at final canonical main evidence rather than an implementation branch SHA.
+Google Sheet synchronization is performed only after this same-ID canonical closure merges, using the closure main SHA as the final canonical reference.

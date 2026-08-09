@@ -6,8 +6,9 @@
 **Original product PR:** `#122`  
 **Original product merge/main:** `57dbdd9be2cc70e0c9b973d502f57bd725b045cb`  
 **Prior canonical closure/main:** `9db05c0cc9866eb3e4a7f014a1cfe289aa4447bd` · PR `#123`  
-**Semantic-slice continuation baseline:** `24d2e1121be7f967dfdd5246e1070cde4214772c`  
-**Status:** `ORIGINAL_PRODUCT_MERGED_MAIN_VERIFIED · DISPOSITION_31_COMPLETE · IMPORT_SAFE_39_CURRENT_BRANCH · AUTHORITATIVE_SLICE_BATCH_1_PROMOTED · BATCH_1_EXACT_HEAD_VALIDATION_PENDING · RUNTIME_POC_DEFERRED`
+**Semantic-slice batch 1 baseline:** `24d2e1121be7f967dfdd5246e1070cde4214772c`  
+**Semantic-slice batch 1 merge/main:** `b02649dddc88a5340695cfd18ea5a54ffe0540f0` · PR `#125`  
+**Status:** `MERGED_MAIN_VERIFIED · DISPOSITION_31_COMPLETE · IMPORT_SAFE_39_PROMOTED · AUTHORITATIVE_SLICE_BATCH_1_PROMOTED · HERO_CONTROLS_RECOVERED · CONTROL_NORMAL_BYTE_INTEGRITY_REPAIRED · SEMANTIC_SPLITS_PARTIAL · RUNTIME_POC_DEFERRED`
 
 ## Scope
 
@@ -23,7 +24,7 @@ Legitimate RED/GREEN evidence was produced throughout PR #122:
 - source-health recovery established PNG signature/chunk CRC/IDAT decompression/dimensions/transparency checks;
 - the 23-asset intermediate batch passed Contract/GUT/Godot/Thin/Windows at `fc886198cebde08f6c57e04de46e8c1b07530d2d` before later hero/control recovery expanded the physical product set.
 
-Earlier passing heads remain historical TDD/regression evidence only. The original merge gate used the final PR #122 exact head described below. The semantic-slice continuation has its own independent exact-head gate and is not considered PASS until that gate completes.
+Earlier passing heads remain historical TDD/regression evidence only. Each merge gate below uses its own final exact PR head.
 
 ## Source-health result
 
@@ -45,21 +46,15 @@ Current disposition counts remain unchanged:
 
 ## Current promoted product set
 
-Original merged PR #122 product PNGs: **31**.  
-Semantic-slice continuation branch product PNGs: **39**.
+Physical product PNGs after PR #125 merge: **39**.
 
-Coverage before the continuation:
+Coverage:
 
 - core world: blue hero locomotive, three smaller cargo wagons, red/blue/yellow cargo stars, red/blue/yellow stations, committed rail primitives, start/route-end markers;
-- RUN: documented switch left-selected + occupied-lock slices and Reduced-Motion-compatible combo primitive;
-- BUILD: ghost-route and cost-HUD primitives;
+- RUN: switch left-selected + occupied-lock slices, Reduced-Motion-compatible combo primitive, and four source-manifest-authoritative Stack HUD slices;
+- BUILD: ghost-route, cost-HUD primitives, and four source-manifest-authoritative placement/port slices;
 - UI: seven independent square-blue control states (`normal/hover/pressed/selected/disabled/locked/focus`);
 - shells/meta: text-safe success/failure shells and progress primitive.
-
-Semantic-slice continuation adds, on its branch only until merge:
-
-- RUN Stack HUD: `run_stack_empty_v01`, `run_stack_32plus_v01`, `run_stack_unloading_v01`, `run_stack_top_highlight_v01`;
-- BUILD placement/port: `build_track_straight_valid_ghost_v01`, `build_track_straight_invalid_ghost_v01`, `build_track_curve_valid_ghost_v01`, `build_port_marker_left_v01`.
 
 The three cargo wagon v02 assets retain the approved centered visual scale **0.74** on the original 128×96 canvas. Gameplay collision/domain geometry is unchanged.
 
@@ -70,22 +65,16 @@ The corrupt historical locomotive candidate and control-atlas candidate were not
 - locomotive reference SHA-256: `edd9b76558755e1fa603d5d3c373be57e9325055a2a1f5c92ff0b0bda88f5b8d`;
 - controls reference SHA-256: `34f4fefeabdd0030b0689868899cd71e4cf694e475f12280bb75ea61aa25d6d7`.
 
-A later exact-head CI attack exposed one additional transport-integrity defect in the promoted `normal` control PNG: its recovered scanline payload remained decodable only when the invalid zlib checksum trailer was ignored, while the stored PNG IDAT CRC/zlib checksum failed the strict validator.
+A later exact-head CI attack exposed one additional transport-integrity defect in the promoted `normal` control PNG. Bounded recovery preserved the exact recovered scanlines and re-encoded only the PNG zlib/CRC container:
 
-Bounded recovery:
-
-- no pixel redesign and no new concept generation;
-- recovered the exact original scanlines from the existing promoted file;
-- re-encoded only the PNG zlib/CRC container;
 - repaired Git blob: `2ed8efe5911cd93a307aaafcefa713380014a581`;
 - repaired-file SHA-256: `9c1e434448915882a11589d1a9dc067d296e3613d67245512a9623055a1804bc`;
+- no pixel redesign;
 - manifest records the integrity-only repair explicitly.
 
-This preserves the approved visual pixels while restoring import-safe file integrity.
+## Semantic-slice batch 1 · bounded authority proof
 
-## Semantic-slice continuation · bounded authority proof
-
-The continuation inspected the immutable `SX-DEC-051` candidate manifest before modifying product assets. Only two pending source atlases already had explicit named slices with crop bounds:
+The continuation inspected the immutable `SX-DEC-051` candidate manifest before modifying product assets. Only two pending source atlases already had explicit named slices with crop bounds used by this batch.
 
 ### Stack HUD source
 
@@ -119,7 +108,7 @@ This is a technical extraction of pre-existing authority, not a new product-dire
 
 ## Still deferred inside the visual package
 
-The branch's 39 product files are not a claim that every semantic split exists. Still deferred:
+The 39 product files are not a claim that every semantic split exists. Still deferred:
 
 - remaining Stack HUD state coverage, especially distinct predicted next-unload-group semantics plus compact/intermediate/paused coverage;
 - remaining selected switch directions beyond the documented current crop;
@@ -130,63 +119,59 @@ The branch's 39 product files are not a claim that every semantic split exists. 
 
 These remain `PROMOTE_AFTER_REVISION` work and do not justify inventing ambiguous semantics from current atlases.
 
-## Original final exact-head validation
-
-PR #122 final validation identity:
+## Original PR #122 exact-head validation
 
 - `review_head_sha`: `e7a4f2e81355991cde632f0581baf62b6eb45a46`;
 - `base_sha`: `95dda145b518ce29bead78a5cbf5566cfa675419`;
 - `test_merge_sha`: `fd9e72f2fde02d0126e57c5fe86d573a4cf6cffd`;
-- no PR-triggered workflow runs existed on the test-merge commit, therefore `ci_validation_target_sha = e7a4f2e81355991cde632f0581baf62b6eb45a46`.
-
-Final exact-head results:
-
-- Project Contract `31316685124`: **PASS**; focused `Validate final E+D product asset promotion` step **PASS**;
-- GUT 9.7.1 `31316685079`: **PASS**; JUnit discovery and protected production tree verification **PASS**;
+- Project Contract `31316685124`: **PASS**;
+- GUT 9.7.1 `31316685079`: **PASS**;
 - Godot Tests `31316685077`: **PASS**;
 - Validate Thin Adapter Migration `31316685080`: **PASS**;
 - Windows Demo Export `31316685064`: **PASS**;
+- unresolved review threads: **0**.
+
+PR `#122` was squash-merged with expected-head protection; merge commit `57dbdd9be2cc70e0c9b973d502f57bd725b045cb`. Same-ID closure PR `#123` produced `9db05c0cc9866eb3e4a7f014a1cfe289aa4447bd`.
+
+## Semantic-slice batch 1 exact-head validation
+
+PR `#125` final validation identity:
+
+- `review_head_sha`: `4e07fa5247a8fe743b0917b3595ce97585da82e9`;
+- `base_sha`: `24d2e1121be7f967dfdd5246e1070cde4214772c`;
+- `test_merge_sha`: `32db76a79ab7a88f58969a836457f21b6aa6d732`;
+- no PR-triggered workflow runs existed on the test-merge commit, therefore `ci_validation_target_sha = 4e07fa5247a8fe743b0917b3595ce97585da82e9`.
+
+Exact-head results:
+
+- Project Contract `31320609585`: **PASS**, including focused `Validate final E+D product asset promotion`;
+- GUT 9.7.1 `31320609590`: **PASS**;
+- Godot Tests `31320609574`: **PASS**;
+- Validate Thin Adapter Migration `31320609566`: **PASS**;
+- Windows Demo Export `31320609573`: **PASS**;
 - unresolved review threads: **0**;
-- PR Ready / mergeable at final check: **PASS**.
+- Ready / mergeable true at final re-read.
 
-## Original adversarial scope check and merge
+## Batch 1 adversarial scope and merge
 
-The final 41-file PR #122 diff was re-read before merge. It did not mutate:
+Baseline comparison contained **15 files**:
 
-- gameplay/domain code;
-- `.tscn` scenes;
-- Resource/Theme/Animation/signal authoring;
-- `project.godot`;
-- Godot AI/GUT/Hera plugin state;
-- `.asset-vault` bytes.
+- 8 new PNG crops;
+- product README + manifest;
+- focused Python test + validator;
+- `SX-DEC-053` decision document;
+- final product asset list;
+- this `SX-AUD-040` audit.
 
-PR `#122` was squash-merged with exact-head protection against `e7a4f2e81355991cde632f0581baf62b6eb45a46`.
+It did **not** mutate gameplay/domain code, `.tscn`, `project.godot`, Resource/Theme/Animation/signal authoring, plugin state, or `.asset-vault` bytes.
 
-- merge commit: `57dbdd9be2cc70e0c9b973d502f57bd725b045cb`;
-- GitHub main readback: **PASS**;
-- same-ID canonical closure PR `#123` later produced main `9db05c0cc9866eb3e4a7f014a1cfe289aa4447bd`.
+PR `#125` was squash-merged with exact-head protection against `4e07fa5247a8fe743b0917b3595ce97585da82e9`.
 
-The squash merge commits themselves have no separate PR-triggered workflow evidence. That absence is not converted into a runtime/device success claim; exact PR-head CI remains the technical merge evidence and merged-main ancestry/readback is repository-delivery evidence.
+- merge commit: `b02649dddc88a5340695cfd18ea5a54ffe0540f0`;
+- GitHub merged-main readback: **PASS**;
+- current main contains the 39-product package and authoritative-slice validator contract.
 
-## Semantic-slice continuation validation state
-
-Continuation branch: `agent/sx-dec-053-authoritative-slice-batch-1`  
-Base: `24d2e1121be7f967dfdd5246e1070cde4214772c`
-
-Before closure, the continuation must still satisfy:
-
-- exact final implementation HEAD identity;
-- Project Contract focused validator PASS;
-- GUT/Godot/Thin and any scope-triggered export checks;
-- branch-vs-main diff review proving no runtime/product-rule mutation;
-- unresolved review threads = 0;
-- mergeability and test-merge evidence classification;
-- expected-head protected merge;
-- merged-main readback;
-- same-ID canonical closure for `SX-DEC-053` / `SX-AUD-040`;
-- post-closure Google Sheet synchronization.
-
-None of those pending continuation gates are pre-marked PASS here.
+The merge commit itself does not create physical-runtime evidence. Exact PR-head CI remains the technical merge evidence and merged-main ancestry/readback is repository-delivery evidence.
 
 ## Deferred gates
 
@@ -196,6 +181,6 @@ Preserved:
 
 ## Closure and Sheet rule
 
-The existing #123 closure remains valid historical evidence for the original 31-product batch. The semantic-slice continuation requires a new same-ID closure only after its own exact-head validation and merge; that closure must update this audit and `SX-DEC-053` without creating a new product Decision ID.
+This same-ID closure updates only `SX-DEC-053` and `SX-AUD-040` from batch-1 validation pending to the verified merged-main evidence above. It does not reopen the approved visual direction and does not mutate product assets or runtime surfaces.
 
-Google Sheet synchronization is intentionally performed after that closure is merged, using the closure merge/main SHA as the final canonical reference. The Sheet must preserve the same `SX-DEC-053` and `SX-AUD-040` IDs and must not claim runtime/device/human validation that was not run.
+Google Sheet synchronization is performed after this closure merges, using the closure merge/main SHA as the Sheet's final canonical reference. The Sheet preserves the same `SX-DEC-053` and `SX-AUD-040` IDs and must not claim runtime/device/human validation that was not run.
