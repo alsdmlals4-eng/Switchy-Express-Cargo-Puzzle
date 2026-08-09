@@ -3,9 +3,10 @@
 **Date:** 2026-08-10 KST  
 **Decision:** `SX-DEC-054`  
 **Implementation baseline main:** `bf0146bf51eb6b7a54d1ac219b021a6a41225c4c`  
-**Branch:** `agent/sx-dec-054-run-semantic-batch-2a`  
-**PR:** `#129`  
-**Status:** `IMPLEMENTED · FINAL_EXACT_HEAD_VALIDATION_PENDING · RUNTIME_NOT_INTEGRATED`
+**Implementation branch:** `agent/sx-dec-054-run-semantic-batch-2a`  
+**Product PR:** `#129`  
+**Product merge/main:** `35b93f3a15f35780b12cd4e8887c8e06f8ade72b`  
+**Status:** `MERGED_MAIN_VERIFIED · RUN_BATCH_2A_20_SEMANTIC_PNGS · STATIC_PACKAGE_PASS · RUNTIME_NOT_INTEGRATED`
 
 ## Scope
 
@@ -21,7 +22,7 @@ This audit does not claim Godot runtime hookup, Windows physical runtime, Androi
 - baseline product owner: `art/product_assets/ed_hybrid_v1/manifest.json` / `SX-DEC-053` / 39 PNGs;
 - semantic owner: `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054.json` / `SX-DEC-054` RUN 2A / 20 PNGs;
 - ownership overlap: forbidden and statically checked;
-- physical product-root total after this branch: 59 PNGs.
+- physical product-root total after product merge: 59 PNGs.
 
 The three ambiguous historical RUN atlases for train cargo strip, load mode, and switch direction are preserved under `PRESERVE_REFERENCE_ONLY_NO_STATE_MAPPING`. No unnamed atlas region is assigned a new semantic meaning.
 
@@ -31,15 +32,15 @@ The three ambiguous historical RUN atlases for train cargo strip, load mode, and
 
 Exact RED head: `f774a56e64e257aaf347baa8847b259269fcf7cc`.
 
-The focused `SX-DEC-054` contract existed before the sidecar/assets. Windows Demo Export failed in `Run Python contracts`, which established the semantic package was missing before GREEN. Contract/GUT/Godot/Thin baseline workflows otherwise remained healthy.
+The focused `SX-DEC-054` contract existed before the sidecar/assets. Windows Demo Export failed in `Run Python contracts`, establishing the missing semantic package before GREEN. Contract/GUT/Godot/Thin baseline workflows otherwise remained healthy.
 
 ### Initial GREEN and root-cause correction
 
 20 deterministic semantic PNG primitives plus the sidecar were added and the `SX-DEC-053` validator ownership boundary was partitioned.
 
-First GREEN candidate `3ff7408495cab552c4fd17795114350438369e06` exposed a legacy test assumption: `tests/python/test_final_ed_product_asset_promotion.py` still asserted that every PNG under the shared product root belonged to the 053 manifest. This was not a product-asset defect; it was a stale single-owner test contract.
+First GREEN candidate `3ff7408495cab552c4fd17795114350438369e06` exposed a legacy test assumption: `tests/python/test_final_ed_product_asset_promotion.py` still asserted that every PNG under the shared product root belonged to the 053 manifest. This was a stale single-owner test contract, not a product-asset defect.
 
-The minimal correction changed that test to require:
+The minimal correction requires:
 
 - 053 paths unique;
 - 054 paths unique;
@@ -52,15 +53,11 @@ No 053 disposition, recovery, crop, scale, CRC/zlib, or runtime check was weaken
 
 Exact head after the ownership-test correction: `4bcb414108cf2f1893e66acbd742a1802b2cdec9`.
 
-Results:
-
 - Project Contract `31342060979`: **PASS**;
 - GUT 9.7.1 `31342060990`: **PASS**;
 - Godot Tests `31342060973`: **PASS**;
 - Validate Thin Adapter Migration `31342060986`: **PASS**;
 - Windows Demo Export `31342060975`: **PASS**.
-
-This is intermediate GREEN evidence. The merge gate must use the later final exact PR head after all owner-document updates are complete.
 
 ## RUN Batch 2A coverage
 
@@ -115,40 +112,43 @@ The focused validator checks:
 
 The existing 053 validator continues to own and verify its disposition/recovery/crop/scale/integrity contract while excluding explicitly sidecar-owned 054 PNGs from its own physical ownership set.
 
-## Adversarial scope boundary
+## Final exact-head validation and merge
 
-Authorized changes are limited to product PNG primitives, semantic sidecar/asset-list/decision/audit documents, implementation plan, focused Python validator/tests, and the minimal legacy ownership-test/validator partition required for coexistence.
+PR `#129` final review identity:
 
-Forbidden and unchanged by this batch:
+- base: `bf0146bf51eb6b7a54d1ac219b021a6a41225c4c`;
+- exact review head: `34ab2b907190f69775ace8e89c32f689ba17bc35`;
+- compare: ahead 10 / behind 0;
+- changed files: 29;
+- mergeable: true;
+- unresolved review threads: 0.
 
-- gameplay/domain rules;
-- `.tscn` scenes;
-- `project.godot`;
-- Godot Resource/Theme/Animation/signal authoring;
-- plugins;
-- `.asset-vault` bytes;
-- runtime hookup/POC.
+Exact-head workflows:
 
-## Final merge gate
+- Project Contract `31342194367`: **PASS**;
+- GUT 9.7.1 `31342194376`: **PASS**;
+- Godot Tests `31342194392`: **PASS**;
+- Validate Thin Adapter Migration `31342194374`: **PASS**;
+- Windows Demo Export `31342194375`: **PASS**.
 
-Before PR #129 can merge, re-read and require on one unchanged exact head:
+PR `#129` was squash-merged with expected-head protection against `34ab2b907190f69775ace8e89c32f689ba17bc35`.
 
-- Project Contract PASS;
-- GUT PASS;
-- Godot PASS;
-- Thin PASS;
-- Windows Demo Export PASS when triggered;
-- focused 054 contract covered by the Python-contract workflow;
-- unresolved review threads = 0;
-- base behind = 0 or otherwise reconciled;
-- changed-file scope remains within the boundary above.
+- product merge/main: `35b93f3a15f35780b12cd4e8887c8e06f8ade72b`;
+- merged-main readback: **PASS**;
+- product package: 39 `SX-DEC-053` PNGs + 20 `SX-DEC-054` RUN 2A PNGs = 59 physical product PNGs with disjoint ownership.
 
-Hosted Windows export is packaging evidence only and must not be reclassified as Windows physical runtime evidence.
+Hosted Windows Demo Export PASS is build/package evidence only and is not Windows physical runtime evidence.
+
+## Adversarial scope result
+
+The product comparison contained only approved semantic-asset package surfaces: 20 new RUN PNGs, 054 sidecar, plan/decision/audit/asset-list docs, focused validators/tests, and minimal 053 ownership coexistence changes.
+
+It did **not** mutate gameplay/domain rules, `.tscn`, `project.godot`, Godot Resource/Theme/Animation/signal authoring, plugin state, runtime hookup, or `.asset-vault` bytes.
 
 ## Deferred evidence
 
 `RUNTIME_POC_DEFERRED · WINDOWS_PHYSICAL_NOT_RUN · ANDROID_DEVICE_NOT_RUN · CONNECTED_PHYSICAL_EDITOR_NOT_RUN · HUMAN_NOT_RUN · ASSET_VAULT_UNTRACK_DEFERRED`
 
-## Closure rule
+## Closure and Sheet rule
 
-After implementation merge, update this audit and the same `SX-DEC-054` owner record with the final exact-head workflow IDs and merge/main SHA. Synchronize Google Sheet using the same Decision ID; do not create a replacement decision for technical closure.
+This docs-only merged-main closure records the verified product merge evidence without changing product assets or runtime surfaces. After the closure PR merges, synchronize Google Sheet using the same `SX-DEC-054` and `SX-AUD-041` IDs, with the closure merge/main as the final Sheet canonical reference. Do not promote hosted CI into physical/device/human evidence.
