@@ -14,7 +14,9 @@ latest_visual_asset_authority: SX-DEC-053
 latest_tooling_authority: SX-DEC-052
 latest_visual_asset_audit: SX-AUD-040
 base_reference_at_refresh: 2a6ced23f6d6de1fb6e0a281c7138beb03f1a13b
+current_android_evidence: EV-FP-APK-001
 correct_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
+wrong_sheet: 19Ff... · DO_NOT_MODIFY
 product_runtime_state: FINITE_CORE_AUTOMATED_PASS · ROUTE_END_USER_CURRENT_MAIN_F5_PASS · SWITCH_DIRECTION_USER_CURRENT_MAIN_F5_PASS · CARGO_PICKUP_RETRY_USER_F5_PASS · FULL_PC_MANUAL_GATE_NOT_CLOSED
 visual_asset_state: ED_HYBRID_FINAL_DIRECTION · 31_IMPORT_SAFE_PRODUCT_ASSETS · RUNTIME_POC_DEFERRED · SEMANTIC_SPLITS_PENDING
 tooling_state: GODOT_AI_3_1_3_SYNCED · GUT_9_7_1_PRESERVED · HERA_TRACKED_V1_0_0_USER_ADOPTED · CONNECTED_PHYSICAL_EDITOR_NOT_RUN
@@ -154,7 +156,7 @@ cargo_pickup_visibility:
   closure_main: cb6b69360f4ba865cd103573d2a2c22d5c16a1cd
 finite_visual_planning:
   pr: 112
-  merge_main: 827c5b9ffe2a9170ec099083cdd2a6942dff97f8
+  merge_main: 827c5b9ffe2a9170ec099083cdd2a2c22d5c16a1cd
 production_candidates:
   pr: 113
   closure_pr: 114
@@ -172,6 +174,19 @@ final_product_assets:
 ```
 
 These anchors identify delivery history. Individual technical PASS claims remain bounded by their exact-head workflow evidence in the corresponding decision/audit documents.
+
+## Canonical Android Evidence
+
+The earlier canonical Android validation artifact remains preserved as build/export evidence:
+
+```yaml
+source_commit: 536911449018a3caf3511bc64e7bf1a66edf2016
+workflow_run_id: 31011620357
+apk_sha256: eb49225ab4062e5cf863f79a0d17f85d339ea176d7f0bb6f04096ed8a07559ea
+package_id: com.alsdmlals4.switchyexpress.validation
+```
+
+This does not close the current Android landscape device-smoke gate. PC entrypoint evidence and Android validation evidence remain separate.
 
 ## Preserved Decisions
 
