@@ -18,8 +18,17 @@
     "stable_upstream_version": "1.0.0",
     "user_enabled_approved": true,
     "local_version": null,
-    "repo_tracked": false,
-    "status": "LOCAL_VERSION_UNVERIFIED"
+    "repo_tracked": true,
+    "repo_enabled": true,
+    "repo_version": "1.0.0",
+    "upstream_tag": "v1.0.0",
+    "upstream_commit": "10f245ddae9e7a5d569150302acbde0d78f2aa03",
+    "upstream_addon_tree_sha": "6cb87ac8ba768de1d924447f385fba6d80bcde68",
+    "user_adoption_commit": "614fbdce2b1517b8ef34eadb156bf058ecf59b1d",
+    "project_compatibility_patches": [
+      "addons/hera_agent_godot/hera_agent_plugin.gd:HEADLESS_EARLY_RETURN"
+    ],
+    "status": "REPO_TRACKED_V1_0_0_USER_ADOPTED_HEADLESS_COMPAT_PATCHED"
   },
   "asset_vault": {
     "legacy_tracked_count": 14,

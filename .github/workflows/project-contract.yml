@@ -19,6 +19,8 @@ jobs:
           python-version: '3.12'
       - name: Validate project operating contract
         run: python tools/validate_project_contract.py
+      - name: Validate Hera repo adoption recovery
+        run: python tests/python/test_hera_repo_adoption_reconciliation.py -v
       - name: Validate local tooling and asset-vault reconciliation
         run: python tests/python/test_local_tooling_reconciliation.py -v
       - name: Reject local-only vault tracking expansion

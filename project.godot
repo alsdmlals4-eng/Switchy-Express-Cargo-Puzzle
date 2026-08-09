@@ -18,7 +18,7 @@ run/main_scene.vertical_slice_demo="res://game/demo/vertical_slice_demo.tscn"
 
 [autoload]
 
-HeraGameInspector="*uid://c4ug7a211oav8"
+HeraGameInspector="*res://addons/hera_agent_godot/runtime/game_inspector.gd"
 _mcp_game_helper="*res://addons/godot_ai/runtime/game_helper.gd"
 
 [display]
