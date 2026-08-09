@@ -4,168 +4,92 @@
 **Decision:** `SX-DEC-053`  
 **Baseline main:** `95dda145b518ce29bead78a5cbf5566cfa675419`  
 **PR:** `#122`  
-**Status:** `IMPLEMENTATION_CANDIDATE · DISPOSITION_31_COMPLETE · IMPORT_SAFE_23_PROMOTED · FINAL_HEAD_RECHECK_REQUIRED · RUNTIME_POC_DEFERRED`
+**Status:** `IMPLEMENTATION_CANDIDATE · DISPOSITION_31_COMPLETE · IMPORT_SAFE_31_PROMOTED · HERO_CONTROLS_RECOVERED · CONTROL_NORMAL_BYTE_INTEGRITY_REPAIRED · FINAL_HEAD_RECHECK_REQUIRED · RUNTIME_POC_DEFERRED`
 
 ## Scope
 
-Audit the first deterministic product-asset promotion batch for the user-approved `E+D HYBRID · NEO-ARCADE READABILITY` direction. The work is asset/provenance/static-contract only. It does not author Godot scenes/resources/themes/animations/signals and does not claim runtime integration.
+Audit the deterministic product-asset promotion batch for the user-approved `E+D HYBRID · NEO-ARCADE READABILITY` direction. This work is asset/provenance/static-contract only. It does not author Godot scenes/resources/themes/animations/signals and does not claim runtime integration.
 
-## TDD evidence
+## Test-first lineage
 
-### RED 1 · missing product authority
+Legitimate RED/GREEN evidence was produced throughout PR #122:
 
-Head `8930a9543b90711328e2210372d18a3fdcdf07ab`  
-Project Contract `31310286681` expected FAILURE.
+- missing product authority RED: head `8930a9543b90711328e2210372d18a3fdcdf07ab`, Project Contract `31310286681` expected FAILURE;
+- validator-absent RED: head `491ce03b8964f16a7beae5e2daac8f13653af23d`, Project Contract `31310521719` expected FAILURE;
+- core-batch-absent RED: head `e6e03ee5921548251f6013ad53cbce411629c541`, Project Contract `31310641256` expected FAILURE;
+- source-health recovery established PNG signature/chunk CRC/IDAT decompression/dimensions/transparency checks;
+- the 23-asset intermediate batch passed Contract/GUT/Godot/Thin/Windows at `fc886198cebde08f6c57e04de46e8c1b07530d2d` before later hero/control recovery expanded the physical product set.
 
-The focused promotion contract ran before implementation and failed because `art/product_assets/ed_hybrid_v1/manifest.json` did not exist.
+Earlier passing heads are historical evidence only and are not reused as the final merge gate.
 
-### GREEN 1 · disposition ledger
+## Source-health result
 
-All 31 `SX-DEC-051` candidates received exactly one disposition. Project Contract `31310452557` passed the initial ledger contract.
+All 31 `SX-DEC-051` source candidates have exactly one disposition.
 
-### RED 2 · validator absent
-
-Head `491ce03b8964f16a7beae5e2daac8f13653af23d`  
-Project Contract `31310521719` expected FAILURE.
-
-The sole new failure was the intentionally missing product-promotion validator.
-
-### GREEN 2 · static validator
-
-Head `1a5fa3fe798451509c5f727ebbb005c737808c08`  
-Project Contract `31310592671` PASS.
-
-### RED 3 · core batch absent
-
-Head `e6e03ee5921548251f6013ad53cbce411629c541`  
-Project Contract `31310641256` expected FAILURE.
-
-The product manifest still contained no promoted core assets, so the newly required core set failed as intended.
-
-## Adversarial recovery findings
-
-### Initial core attempt exposed hidden candidate defects
-
-Initial promotion commit: `791548c63006d7167f5f71a6adcf79dabbf66d60`.
-
-This attempt failed Contract/GUT/Godot/Windows while Thin remained green. Investigation separated three causes:
-
-1. the first validator treated only PNG color types 4/6 as alpha-capable and falsely rejected palette PNGs that use a valid `tRNS` transparency chunk;
-2. first red/yellow wagon uploads did not match the locally verified deterministic outputs, exposing a transport-integrity problem;
-3. the source locomotive PNG itself contains a corrupt IDAT stream. The candidate package had been hidden from Godot import by `.gdignore`, so this defect was not previously exposed.
-
-The broken locomotive product copy was removed. The source candidate was preserved for provenance and reclassified to `PROMOTE_AFTER_REVISION`.
-
-### Recovery RED
-
-Head `bdadd142083295b68a63584a9ae9d6b81fdab6fe` intentionally added tests for:
-
-- palette + `tRNS` transparency;
-- corrupt IDAT rejection;
-- keeping the invalid locomotive pending rather than promoting it;
-- import-safe core coverage.
-
-The expected failure proved the stricter contract before the fix.
-
-### Import-safe recovery GREEN
-
-Head `3cda0e3dbb1064899f9a25cb840b7a7ed82edf71`:
-
-- Project Contract `31312215293` PASS;
-- GUT `31312215273` PASS;
-- Godot Tests `31312215361` PASS;
-- Thin Adapter `31312215329` PASS;
-- Windows Export subsequently PASS.
-
-Red/yellow wagon v02 product blobs were replaced with exact bytes matching the verified deterministic 0.74 centered-scale outputs.
-
-## Source health scan
-
-The validator was strengthened to verify PNG signature, per-chunk CRC, concatenated IDAT zlib decompression, dimensions, and transparency semantics.
-
-Result across all 31 source candidates:
+Deep source scan result:
 
 - healthy source PNGs: **29**;
-- corrupt source PNGs: **2**.
+- corrupt historical candidates: **2**;
+- corrupt candidates: locomotive source and controls-atlas source;
+- both corrupt sources remain preserved for provenance and are classified `REPLACE`, never `PROMOTE_AS_IS`.
 
-Corrupt sources:
-
-1. `art/production_candidates/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png`;
-2. `art/production_candidates/ed_hybrid_v1/ui/ui_button_controls_states_v01.png`.
-
-Both are now non-AS-IS dispositions. No corrupt source is allowed to remain `PROMOTE_AS_IS`.
-
-Health-report head `d9d2f29567969a8da6ad8e0d8bf4c43c0eb2b0da` passed Project Contract `31312574440` with `pending_corrupt_sources=2`.
-
-## Safe RUN/support promotion
-
-Only semantically proven deterministic states were promoted:
-
-- switch `left_selected`: exact documented crop `[6,5,54,50]`;
-- switch `locked`: exact documented crop `[68,5,54,50]`;
-- combo static primitive;
-- ghost-route primitive;
-- cost-HUD primitive;
-- success result shell;
-- failure result shell;
-- progress/meta primitive.
-
-The product-root completeness contract was then added. Head `132da08d3cdd3195d1101baa5fd4e73e80b0b5ad` expectedly failed Project Contract `31313108286` only because the newly staged product PNGs were not yet represented in the manifest; GUT/Godot/Thin/Windows all passed, proving those bytes imported safely.
-
-## 23-asset batch GREEN
-
-Manifest registration commit `c47b05a6dbe869d2ed6f3142e1eecaab92efda84` passed:
-
-- Project Contract `31313291931`;
-- GUT `31313291991`;
-- Godot Tests `31313291985`;
-- Thin Adapter `31313291935`;
-- Windows Export `31313291959`.
-
-The validator was then aligned with the same physical-tree completeness rule.
-
-Final implementation candidate head before this audit: `fc886198cebde08f6c57e04de46e8c1b07530d2d`.
-
-Fresh PASS at that head:
-
-- Project Contract `31313421289`;
-- GUT `31313421335`;
-- Godot Tests `31313421291`;
-- Thin Adapter `31313421305`;
-- Windows Demo Export `31313421296`.
-
-## Promotion result
-
-Source candidates: **31**.
-
-Disposition ledger:
+Current disposition counts:
 
 - `PROMOTE_AS_IS`: **18**;
-- `PROMOTE_AFTER_REVISION`: **13**;
-- `REPLACE`: **0**.
+- `PROMOTE_AFTER_REVISION`: **11**;
+- `REPLACE`: **2**;
+- total: **31**.
 
-Current manifested product PNGs: **23**.
+## Current promoted product set
 
-Three wagon v02 assets use deterministic centered scale `0.74` on the original transparent 128×96 canvas. No gameplay collision or route geometry was changed.
+Physical product PNGs: **31**.
 
-## Intentionally pending
+Coverage:
 
-Not promoted as complete:
+- core world: blue hero locomotive, three smaller cargo wagons, red/blue/yellow cargo stars, red/blue/yellow stations, committed rail primitives, start/route-end markers;
+- RUN: documented switch left-selected + occupied-lock slices and Reduced-Motion-compatible combo primitive;
+- BUILD: ghost-route and cost-HUD primitives;
+- UI: seven independent square-blue control states (`normal/hover/pressed/selected/disabled/locked/focus`);
+- shells/meta: text-safe success/failure shells and progress primitive.
 
-- locomotive import-safe final revision;
-- seven-state controls revision from the corrupt source atlas;
-- complete stack HUD state split, especially distinct next-unload-group semantics;
-- remaining switch selected directions beyond the explicitly documented crop;
-- train cargo strip after smaller-wagon hierarchy reconciliation;
-- load-mode state naming while on/off semantics remain ambiguous;
-- BUILD placement/palette/preflight complete product state split;
-- VFX causal state split.
+The three cargo wagon v02 assets retain the approved centered visual scale **0.74** on the original 128×96 canvas. Gameplay collision/domain geometry is unchanged.
 
-This is intentional evidence-preserving partial delivery, not an incomplete claim disguised as completion.
+## Hero/control recovery
+
+The corrupt historical locomotive candidate and control-atlas candidate were not overwritten. Product replacements were recovered under exact approved E+D reference provenance:
+
+- locomotive reference SHA-256: `edd9b76558755e1fa603d5d3c373be57e9325055a2a1f5c92ff0b0bda88f5b8d`;
+- controls reference SHA-256: `34f4fefeabdd0030b0689868899cd71e4cf694e475f12280bb75ea61aa25d6d7`.
+
+A later exact-head CI attack exposed one additional transport-integrity defect in the promoted `normal` control PNG: its recovered scanline payload remained decodable only when the invalid zlib checksum trailer was ignored, while the stored PNG IDAT CRC/zlib checksum failed the strict validator.
+
+Bounded recovery:
+
+- no pixel redesign and no new concept generation;
+- recovered the exact original scanlines from the existing promoted file;
+- re-encoded only the PNG zlib/CRC container;
+- repaired Git blob: `2ed8efe5911cd93a307aaafcefa713380014a581`;
+- repaired-file SHA-256: `9c1e434448915882a11589d1a9dc067d296e3613d67245512a9623055a1804bc`;
+- manifest records the integrity-only repair explicitly.
+
+This preserves the approved visual pixels while restoring import-safe file integrity.
+
+## Still deferred inside the visual package
+
+The 31 promoted files are the current bounded product-asset batch, not a claim that every future semantic split exists. Still deferred:
+
+- complete Stack HUD state split, including distinct next-unload-group semantics;
+- remaining selected switch directions beyond the documented current crop;
+- train cargo strip reconciliation with the smaller-wagon hierarchy;
+- load-mode on/off/processing semantics;
+- BUILD placement/palette/preflight complete state split;
+- causal VFX state split.
+
+These remain `PROMOTE_AFTER_REVISION` work and do not justify inventing ambiguous semantics from the current atlases.
 
 ## Adversarial scope check
 
-The batch must not mutate:
+PR #122 must not mutate:
 
 - gameplay/domain code;
 - `.tscn` scenes;
@@ -174,7 +98,7 @@ The batch must not mutate:
 - Godot AI/GUT/Hera plugin state;
 - `.asset-vault` bytes.
 
-No new concept image generation is part of this promotion batch.
+The Project Contract workflow change only makes the focused `SX-DEC-053` static contract an active CI consumer. No new concept image generation is part of this batch.
 
 ## Deferred gates
 
@@ -184,4 +108,4 @@ Preserved:
 
 ## Finalization rule
 
-This audit is not the final merge claim. The documentation/audit commit that contains this text must receive a fresh exact PR test-merge validation before PR #122 may leave Draft and merge.
+The current branch must receive fresh PR test-merge validation after the integrity and canon corrections. Only the current validation identity may be used for merge. Earlier green heads are historical TDD/regression evidence, not final approval evidence.
