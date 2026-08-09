@@ -152,7 +152,7 @@ The UI component contract remains:
 - multi-issue summary;
 - focused location.
 
-If presentation uses ready/warning/blocking severity styling, that styling is driven by authoritative preflight issue data and does not define a new game outcome. Optional target misses must not look like general clear failure.
+If presentation uses ready/warning/blocking severity styling, that styling is driven by authoritative preflight issue data and does not define a new game outcome. Optional target misses must not look like general run failure.
 
 ## 7. VFX design
 
