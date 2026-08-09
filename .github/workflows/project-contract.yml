@@ -21,6 +21,8 @@ jobs:
         run: python tools/validate_project_contract.py
       - name: Validate local tooling and asset-vault reconciliation
         run: python tests/python/test_local_tooling_reconciliation.py -v
+      - name: Validate Hera repo adoption recovery
+        run: python -m pytest tests/python/test_hera_repo_adoption_reconciliation.py -q
       - name: Reject local-only vault tracking expansion
         run: python tools/validate_local_tooling_reconciliation.py
       - name: Validate Base v9.4 AI operations adoption
