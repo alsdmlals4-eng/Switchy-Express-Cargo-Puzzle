@@ -14,8 +14,9 @@ WORKFLOW = ROOT / ".github/workflows/validate-godot-live-editor-pilot.yml"
 LEGACY_EDITOR_PLUGINS = [
     "res://addons/godot_ai/plugin.cfg",
     "res://addons/gut/plugin.cfg",
+    "res://addons/hera_agent_godot/plugin.cfg",
 ]
-LEGACY_AUTOLOADS = ["_mcp_game_helper"]
+LEGACY_AUTOLOADS = ["_mcp_game_helper", "HeraGameInspector"]
 ALLOWED_PATHS = {
     ".godot-live-editor/project-pilot.json",
     "docs/GODOT_LIVE_EDITOR_ADOPTION.md",
@@ -88,13 +89,19 @@ def test_project_baseline_matches_declared_pilot_assumptions() -> None:
         in project
     )
     assert (
+        'HeraGameInspector="*res://addons/hera_agent_godot/runtime/game_inspector.gd"'
+        in project
+    )
+    assert (
         'enabled=PackedStringArray("res://addons/godot_ai/plugin.cfg", '
-        '"res://addons/gut/plugin.cfg")'
+        '"res://addons/gut/plugin.cfg", '
+        '"res://addons/hera_agent_godot/plugin.cfg")'
         in project
     )
     for resource_path in LEGACY_EDITOR_PLUGINS:
         assert (ROOT / resource_path.removeprefix("res://")).is_file()
     assert (ROOT / "addons/godot_ai/runtime/game_helper.gd").is_file()
+    assert (ROOT / "addons/hera_agent_godot/runtime/game_inspector.gd").is_file()
     assert (ROOT / "game/main/main.tscn").is_file()
     assert (ROOT / "tests/run_tests.gd").is_file()
 
