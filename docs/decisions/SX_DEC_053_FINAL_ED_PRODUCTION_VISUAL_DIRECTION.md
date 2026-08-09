@@ -1,9 +1,11 @@
 # SX-DEC-053 · Final E+D Production Visual Direction
 
-**Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · DISPOSITION_31_COMPLETE · IMPORT_SAFE_31_PROMOTED · HERO_CONTROLS_RECOVERED · CONTROL_NORMAL_BYTE_INTEGRITY_REPAIRED · RUNTIME_POC_DEFERRED`  
+**Status:** `USER_APPROVED · DISPOSITION_31_COMPLETE · IMPORT_SAFE_39_PROMOTED · AUTHORITATIVE_SLICE_BATCH_1_PROMOTED · HERO_CONTROLS_RECOVERED · CONTROL_NORMAL_BYTE_INTEGRITY_REPAIRED · SEMANTIC_SPLITS_PARTIAL · BATCH_1_EXACT_HEAD_VALIDATION_PENDING · RUNTIME_POC_DEFERRED`  
 **Date:** 2026-08-09 KST  
 **Baseline main:** `95dda145b518ce29bead78a5cbf5566cfa675419`  
-**Product merge/main:** `57dbdd9be2cc70e0c9b973d502f57bd725b045cb` · PR `#122`
+**Product merge/main:** `57dbdd9be2cc70e0c9b973d502f57bd725b045cb` · PR `#122`  
+**Prior canonical closure/main:** `9db05c0cc9866eb3e4a7f014a1cfe289aa4447bd` · PR `#123`  
+**Current continuation baseline:** `24d2e1121be7f967dfdd5246e1070cde4214772c`
 
 ## Decision
 
@@ -34,7 +36,7 @@ The candidate package remains intact for provenance. The two `REPLACE` sources a
 
 Product root: `art/product_assets/ed_hybrid_v1/`
 
-Current promoted asset count: **31**.
+Current promoted asset count in continuation batch: **39**.
 
 Promoted/recovered groups:
 
@@ -50,9 +52,11 @@ Promoted/recovered groups:
 - cost-HUD primitive;
 - seven reusable blue control states: normal / hover / pressed / selected / disabled / locked / focus, recovered from the exact approved E+D UI reference;
 - text-safe success/failure result shells;
-- text-safe progress/meta primitive.
+- text-safe progress/meta primitive;
+- four Stack HUD slices whose names and crop bounds were already registered by `SX-DEC-051`;
+- four BUILD placement/port slices whose names and crop bounds were already registered by `SX-DEC-051`.
 
-No new concept board was created for this package. Wagon revisions and switch splits are deterministic transforms of tracked candidate bytes. Locomotive/control recovery uses the exact approved reference sources recorded by SHA-256 in the product manifest.
+No new concept board was created for this continuation. The eight new files are deterministic crops of tracked candidate bytes using only pre-existing candidate-manifest slice names and bounds. No unnamed atlas region is assigned a new meaning.
 
 ## Adversarial promotion findings and recovery
 
@@ -71,16 +75,54 @@ A later recovery commit added the locomotive + seven control PNGs before authori
 
 The promoted `normal` control PNG then exposed an integrity-only container defect. Its exact recovered scanlines were preserved while the PNG zlib/CRC container was re-encoded. The accepted product manifest records Git blob `2ed8efe5911cd93a307aaafcefa713380014a581` and pixel SHA-256 `9c1e434448915882a11589d1a9dc067d296e3613d67245512a9623055a1804bc`; no pixel redesign was performed.
 
+## Authoritative semantic slice batch 1
+
+This continuation resolves only the portion of the semantic-split backlog that is already unambiguous in the immutable `SX-DEC-051` candidate manifest.
+
+### RUN · Stack HUD
+
+Promoted as independent product PNGs:
+
+- `run_stack_empty_v01` from `[70,74,44,18]`;
+- `run_stack_32plus_v01` from `[70,16,42,18]`;
+- `run_stack_unloading_v01` from `[69,44,45,18]`;
+- `run_stack_top_highlight_v01` from `[10,8,42,25]`.
+
+The source name `run_stack_unloading_v01` is retained exactly. This continuation does **not** reinterpret that crop as the distinct predicted next-unload-group state; the latter remains a separate semantic requirement until authority proves the mapping.
+
+### BUILD · Placement preview
+
+Promoted as independent product PNGs:
+
+- `build_track_straight_valid_ghost_v01` from `[4,4,36,30]`;
+- `build_track_straight_invalid_ghost_v01` from `[46,4,36,30]`;
+- `build_track_curve_valid_ghost_v01` from `[88,4,36,30]`;
+- `build_port_marker_left_v01` from `[6,53,30,26]`.
+
+These are not reported as full BUILD state coverage. Rotate/replacement/placed semantics plus palette and complete preflight states remain separate.
+
+### Contract boundary
+
+Each of the eight records carries `authoritative_slice_name`. The static validator binds that name back to the exact source candidate record and rejects:
+
+- a missing/unknown named slice;
+- product filename drift from the named source slice;
+- any crop-bound drift;
+- dimension drift from the authoritative bounds;
+- a partial batch count other than 0 or 8.
+
+This locks provenance without inventing additional UI/domain semantics.
+
 ## Explicit pending semantic splits
 
-Healthy source but still pending because the current source does not safely prove the complete product semantics:
+Healthy source or approved component requirement, but still pending because complete atlas-to-state meaning is not sufficiently authoritative:
 
-- stack HUD semantic split, including a distinct next-unload-group state;
+- remaining Stack HUD coverage beyond the four named slices, especially distinct predicted next-unload-group readability plus compact/intermediate/paused states;
 - remaining selected switch directions beyond the explicitly documented left-selected crop;
 - train-cargo-strip composite after smaller-wagon hierarchy reconciliation;
-- load-mode on/off naming because panel meaning is not authoritative enough to guess;
-- BUILD placement/palette/preflight complete state split;
-- VFX causal state split.
+- load-mode atlas mapping: approved component states exist (`manual-idle`, `manual-held`, `auto-off`, `auto-on`, `paused-disabled`, `input-received`) but current source atlas regions are not authoritatively mapped to those names;
+- remaining BUILD placement states plus track-palette and complete preflight state split;
+- VFX causal state split and Reduced Motion equivalents.
 
 These are not reported as complete.
 
@@ -97,9 +139,10 @@ These are not reported as complete.
 - every physical product PNG is manifested exactly once;
 - recovered locomotive and controls are registered as `REPLACE` and carry exact approved-reference SHA-256 provenance;
 - wagon visual scale remains in `0.70..0.75` with centered-scale provenance;
+- the eight batch-1 crop records exactly match their pre-existing `SX-DEC-051` named slices and bounds;
 - runtime integration remains false.
 
-## Exact-head and merged-main verification
+## Prior exact-head and merged-main verification
 
 PR `#122` was reviewed on the final implementation identity:
 
@@ -108,15 +151,22 @@ PR `#122` was reviewed on the final implementation identity:
 - `test_merge_sha`: `fd9e72f2fde02d0126e57c5fe86d573a4cf6cffd`;
 - no PR-triggered workflow runs existed on the test-merge commit, so `ci_validation_target_sha` remained the exact review head;
 - Project Contract `31316685124`: **PASS**, including `Validate final E+D product asset promotion`;
-- GUT 9.7.1 `31316685079`: **PASS**, including JUnit discovery and protected-production-tree mutation guard;
+- GUT 9.7.1 `31316685079`: **PASS**;
 - Godot Tests `31316685077`: **PASS**;
 - Validate Thin Adapter Migration `31316685080`: **PASS**;
 - Windows Demo Export `31316685064`: **PASS**;
 - unresolved review threads: **0**.
 
-The approved scope was squash-merged without reapproval as PR `#122`, producing main commit `57dbdd9be2cc70e0c9b973d502f57bd725b045cb`. Main readback confirms the merge commit is the current project main and contains the product package, manifest, static contract, Decision, and `SX-AUD-040` audit.
+The approved scope was squash-merged without reapproval as PR `#122`, producing main commit `57dbdd9be2cc70e0c9b973d502f57bd725b045cb`. A same-ID canonical closure followed in PR `#123`, producing `9db05c0cc9866eb3e4a7f014a1cfe289aa4447bd`.
 
-The merge commit itself has no separate PR-triggered workflow run. This is not reused as a new runtime/device claim; the exact reviewed PR head remains the technical merge evidence, and the merged main readback is the repository-delivery evidence.
+The merge commits themselves do not create new runtime/device evidence. Exact reviewed PR heads remain the technical evidence, and merged-main readback is repository-delivery evidence.
+
+## Batch 1 validation state
+
+Current implementation branch: `agent/sx-dec-053-authoritative-slice-batch-1`  
+Baseline: `24d2e1121be7f967dfdd5246e1070cde4214772c`
+
+The eight-file semantic slice continuation is **not yet reported as merged or exact-head PASS in this document**. Those claims require the implementation PR's final exact HEAD, CI result set, review-thread check, merge, merged-main readback, and a same-ID closure update.
 
 ## Boundaries
 
@@ -132,4 +182,4 @@ Still deferred / NOT_RUN:
 - `.asset-vault` legacy untrack pending local preservation evidence;
 - release cutover.
 
-Google Sheet synchronization is intentionally performed only after this same-ID merged-main closure is itself merged, so the Sheet can point at the final canonical main SHA rather than a closure branch SHA.
+Google Sheet synchronization remains post-merge/post-closure only, so the Sheet can point at final canonical main evidence rather than an implementation branch SHA.
