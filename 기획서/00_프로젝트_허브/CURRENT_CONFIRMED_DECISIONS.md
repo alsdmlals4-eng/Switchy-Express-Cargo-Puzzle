@@ -156,7 +156,7 @@ cargo_pickup_visibility:
   closure_main: cb6b69360f4ba865cd103573d2a2c22d5c16a1cd
 finite_visual_planning:
   pr: 112
-  merge_main: 827c5b9ffe2a9170ec099083cdd2a2c22d5c16a1cd
+  merge_main: 827c5b9ffe2a9170ec099083cdd2a6942dff97f8
 production_candidates:
   pr: 113
   closure_pr: 114
