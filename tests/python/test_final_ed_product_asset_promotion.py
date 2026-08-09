@@ -1,5 +1,7 @@
 import importlib.util
 import json
+import struct
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -9,9 +11,10 @@ PRODUCT_ROOT = ROOT / "art" / "product_assets" / "ed_hybrid_v1"
 PRODUCT_MANIFEST = PRODUCT_ROOT / "manifest.json"
 CANDIDATE_MANIFEST = ROOT / "art" / "production_candidates" / "ed_hybrid_v1" / "manifest.json"
 VALIDATOR_PATH = ROOT / "tools" / "validate_final_ed_product_asset_promotion.py"
+LOCOMOTIVE_SOURCE = "art/production_candidates/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png"
+LOCOMOTIVE_PRODUCT = "art/product_assets/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png"
 
 CORE_PRODUCT_PATHS = {
-    "art/product_assets/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png",
     "art/product_assets/ed_hybrid_v1/core/core_wagon_cargo_red_normal_v02.png",
     "art/product_assets/ed_hybrid_v1/core/core_wagon_cargo_blue_normal_v02.png",
     "art/product_assets/ed_hybrid_v1/core/core_wagon_cargo_yellow_normal_v02.png",
@@ -28,6 +31,13 @@ CORE_PRODUCT_PATHS = {
     "art/product_assets/ed_hybrid_v1/core/core_marker_start_normal_v01.png",
     "art/product_assets/ed_hybrid_v1/core/core_marker_route_end_normal_v01.png",
 }
+
+
+def _load_validator():
+    spec = importlib.util.spec_from_file_location("final_ed_promotion_validator", VALIDATOR_PATH)
+    validator = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(validator)
+    return validator
 
 
 class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
@@ -57,11 +67,17 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
             {"PROMOTE_AS_IS", "PROMOTE_AFTER_REVISION", "REPLACE"},
         )
 
-    def test_first_core_product_batch_is_promoted_with_smaller_wagons(self):
+    def test_first_import_safe_core_batch_keeps_corrupt_locomotive_pending(self):
         data = json.loads(PRODUCT_MANIFEST.read_text(encoding="utf-8"))
         assets = {record["path"]: record for record in data["assets"]}
+        dispositions = {
+            record["source_candidate"]: record for record in data["source_candidate_dispositions"]
+        }
         self.assertLessEqual(CORE_PRODUCT_PATHS, set(assets))
-        self.assertEqual(1.0, assets["art/product_assets/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png"]["visual_scale"])
+        self.assertNotIn(LOCOMOTIVE_PRODUCT, assets)
+        locomotive = dispositions[LOCOMOTIVE_SOURCE]
+        self.assertEqual("PROMOTE_AFTER_REVISION", locomotive["disposition"])
+        self.assertIn("Godot", locomotive["reason"])
         for color in ("red", "blue", "yellow"):
             wagon = assets[f"art/product_assets/ed_hybrid_v1/core/core_wagon_cargo_{color}_normal_v02.png"]
             self.assertEqual("centered_scale", wagon["transform"]["kind"])
@@ -69,14 +85,39 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
             self.assertGreaterEqual(wagon["visual_scale"], 0.70)
             self.assertLessEqual(wagon["visual_scale"], 0.75)
 
+    def test_palette_png_with_trns_is_alpha_capable(self):
+        validator = _load_validator()
+        station = PRODUCT_ROOT / "core" / "core_station_red_normal_v01.png"
+        info = validator._png_info(station)
+        self.assertTrue(info[-1], "palette PNG with tRNS must count as alpha-capable")
+
+    def test_png_parser_rejects_corrupted_idat_stream(self):
+        validator = _load_validator()
+        source = PRODUCT_ROOT / "core" / "core_wagon_cargo_blue_normal_v02.png"
+        raw = bytearray(source.read_bytes())
+        pos = 8
+        corrupted = False
+        while pos + 12 <= len(raw):
+            length = struct.unpack(">I", raw[pos:pos + 4])[0]
+            chunk_type = bytes(raw[pos + 4:pos + 8])
+            if chunk_type == b"IDAT" and length > 8:
+                raw[pos + 8 + length // 2] ^= 0x01
+                corrupted = True
+                break
+            pos += 12 + length
+        self.assertTrue(corrupted)
+        with tempfile.TemporaryDirectory() as temp_dir:
+            bad = Path(temp_dir) / "corrupt.png"
+            bad.write_bytes(raw)
+            with self.assertRaises(ValueError):
+                validator._png_info(bad)
+
     def test_static_validator_accepts_promoted_batch(self):
         self.assertTrue(
             VALIDATOR_PATH.is_file(),
             f"missing static promotion validator: {VALIDATOR_PATH.relative_to(ROOT)}",
         )
-        spec = importlib.util.spec_from_file_location("final_ed_promotion_validator", VALIDATOR_PATH)
-        validator = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(validator)
+        validator = _load_validator()
         self.assertEqual(0, validator.validate())
 
 
