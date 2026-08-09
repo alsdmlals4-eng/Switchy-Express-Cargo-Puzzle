@@ -1,347 +1,112 @@
 # Final E+D Product Asset Promotion Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+**Decision:** `SX-DEC-053`  
+**Execution mode:** `[연속작업] · Inline Execution`  
+**Baseline main:** `95dda145b518ce29bead78a5cbf5566cfa675419`
 
-**Goal:** Promote the approved SX-DEC-053 E+D visual direction into a bounded first product-asset batch while preserving all 31 SX-DEC-051 candidate sources and keeping Godot runtime integration deferred.
+## Goal
 
-**Architecture:** Add a product-asset manifest that records one disposition for every candidate source, plus a promoted-asset list. `PROMOTE_AS_IS` files reuse the exact candidate blob; deterministic splits/resizes may create versioned derived files with explicit source transform metadata. Product assets live under `art/product_assets/ed_hybrid_v1/`; candidate sources remain unchanged under `art/production_candidates/ed_hybrid_v1/`.
+Promote the approved E+D visual direction into a bounded product-asset package using existing SX-DEC-051 candidate bytes and deterministic transforms only. Keep runtime integration deferred.
 
-**Tech Stack:** GitHub object/contents API, PNG assets, Python 3.12 standard-library validator/tests, existing GitHub Actions Project Contract/GUT/Godot/Thin/Pilot regressions.
+## Constraints
 
-## Global Constraints
+- candidate source root remains immutable for provenance;
+- blue locomotive remains hero design authority;
+- trailing wagons use 70–75% visual hierarchy; current deterministic v02 uses `0.74`;
+- no new concept-board/image generation;
+- no gameplay, Scene, Resource, Theme, Animation, signal, `project.godot`, plugin-state, or `.asset-vault` mutation;
+- uncertain semantic states remain pending rather than guessed.
 
-- Decision: `SX-DEC-053`.
-- Art direction: `E+D HYBRID · NEO-ARCADE READABILITY`.
-- Blue locomotive remains hero anchor.
-- Trailing cargo wagons target approximately 70–75% of locomotive visual size; domain collision/route geometry is unchanged.
-- Candidate source root remains `art/production_candidates/ed_hybrid_v1/` and is never deleted or overwritten.
-- Product root is `art/product_assets/ed_hybrid_v1/`.
-- Every one of the 31 source candidates gets exactly one disposition: `PROMOTE_AS_IS`, `PROMOTE_AFTER_REVISION`, or `REPLACE`.
-- Runtime/Scene/Resource/Theme/Animation/signal hookup remains deferred.
-- No localized text is baked into promoted PNGs.
-- No new concept-board/image generation is part of this plan.
+## Task 1 · CI-consumed promotion contract — COMPLETE
 
----
+RED head `8930a9543b90711328e2210372d18a3fdcdf07ab`: Project Contract `31310286681` expected FAIL because product manifest did not exist.
 
-### Task 1: Add a CI-consumed promotion contract (RED)
+Implemented focused contract in `tests/python/test_final_ed_product_asset_promotion.py` and wired it into Project Contract.
 
-**Files:**
-- Create: `tests/python/test_final_ed_product_asset_promotion.py`
-- Create: `tools/validate_final_ed_product_asset_promotion.py`
-- Modify: `.github/workflows/project-contract.yml`
+## Task 2 · 31-candidate disposition ledger + validator — COMPLETE
 
-**Interfaces:**
-- Consumes: candidate manifest `art/production_candidates/ed_hybrid_v1/manifest.json` with `candidate_count == 31`.
-- Produces: `validate() -> int` where `0` means product manifest/assets satisfy SX-DEC-053 static contract.
+- 31/31 candidates have exactly one disposition;
+- product root and manifest created;
+- validator created and strengthened to deep PNG validation;
+- validator-missing RED: `491ce03b8964f16a7beae5e2daac8f13653af23d`, Contract `31310521719` expected FAIL;
+- GREEN: `1a5fa3fe798451509c5f727ebbb005c737808c08`, Contract `31310592671` PASS.
 
-- [ ] **Step 1: Write the failing contract test**
+Final disposition totals after adversarial source-health review:
 
-The test must assert:
+- `PROMOTE_AS_IS`: 18;
+- `PROMOTE_AFTER_REVISION`: 13;
+- `REPLACE`: 0.
 
-```python
-ROOT = Path(__file__).resolve().parents[2]
-PRODUCT_ROOT = ROOT / "art" / "product_assets" / "ed_hybrid_v1"
-PRODUCT_MANIFEST = PRODUCT_ROOT / "manifest.json"
-CANDIDATE_MANIFEST = ROOT / "art" / "production_candidates" / "ed_hybrid_v1" / "manifest.json"
+## Task 3 · First core product batch — COMPLETE AS BOUNDED PARTIAL
 
-assert PRODUCT_MANIFEST.is_file()
-data = json.loads(PRODUCT_MANIFEST.read_text(encoding="utf-8"))
-assert data["decision_id"] == "SX-DEC-053"
-assert data["art_direction"] == "E+D HYBRID · NEO-ARCADE READABILITY"
-assert data["runtime_integrated"] is False
-assert data["source_candidate_count"] == 31
-assert len(data["source_candidate_dispositions"]) == 31
-assert {r["disposition"] for r in data["source_candidate_dispositions"]} <= {
-    "PROMOTE_AS_IS", "PROMOTE_AFTER_REVISION", "REPLACE"
-}
-assert validator.validate() == 0
-```
+Core-absent RED: `e6e03ee5921548251f6013ad53cbce411629c541`, Contract `31310641256` expected FAIL.
 
-The contract also requires unique candidate source paths, promoted assets to point to a candidate source, and all promoted PNGs to be alpha-capable.
+Initial promotion exposed hidden defects:
 
-- [ ] **Step 2: Hook the focused test into Project Contract before implementation**
+- palette + `tRNS` transparency false-negative in validator;
+- first red/yellow wagon transport bytes differed from verified deterministic outputs;
+- source locomotive PNG IDAT is corrupt and Godot rejects it.
 
-Add:
+Recovery tests were added before fixes. Import-safe recovery head `3cda0e3dbb1064899f9a25cb840b7a7ed82edf71` passed Contract/GUT/Godot/Thin and Windows subsequently passed.
 
-```yaml
-      - name: Validate final E+D product asset promotion
-        run: python tests/python/test_final_ed_product_asset_promotion.py -v
-```
+Core result:
 
-- [ ] **Step 3: Run CI and record expected RED**
+- three wagon v02 assets promoted at `0.74` centered scale;
+- stars/stations/rails/markers promoted where source bytes are healthy;
+- locomotive remains `PROMOTE_AFTER_REVISION`, not falsely promoted.
 
-Expected failure reason: `art/product_assets/ed_hybrid_v1/manifest.json` does not exist yet. Do not accept an environment/tooling failure as the RED evidence.
+## Task 4 · RUN/control/support split — COMPLETE AS BOUNDED PARTIAL
 
-- [ ] **Step 4: Commit the RED contract**
+Source health scan found exactly two corrupt candidates: locomotive and controls atlas. All other sources pass deep PNG stream validation.
 
-Commit message: `test: define final E+D product asset promotion contract`.
+Promoted only proven states:
 
----
+- switch `left_selected` documented crop;
+- switch `locked` documented crop;
+- combo static;
+- ghost route;
+- cost HUD;
+- success/failure shells;
+- progress/meta primitive.
 
-### Task 2: Record all 31 candidate dispositions and product manifest skeleton
+Deliberately pending:
 
-**Files:**
-- Create: `art/product_assets/ed_hybrid_v1/README.md`
-- Create: `art/product_assets/ed_hybrid_v1/manifest.json`
-- Modify: `tools/validate_final_ed_product_asset_promotion.py`
+- controls seven states because source atlas is corrupt;
+- stack next-unload-group and complete stack split;
+- remaining switch selected directions not explicitly proven by source;
+- train cargo strip smaller-wagon reconciliation;
+- load-mode on/off naming because semantics are ambiguous;
+- BUILD placement/palette/preflight full split;
+- VFX causal split.
 
-**Interfaces:**
-- Consumes: all 31 candidate records from SX-DEC-051.
-- Produces: complete disposition ledger plus an initially bounded promoted asset set.
+Product-root completeness RED head `132da08d3cdd3195d1101baa5fd4e73e80b0b5ad`: Contract `31313108286` expected FAIL while GUT/Godot/Thin/Windows PASS. After manifest registration, head `c47b05a6dbe869d2ed6f3142e1eecaab92efda84` passed Contract/GUT/Godot/Thin/Windows.
 
-- [ ] **Step 1: Build the disposition ledger**
+## Task 5 · Adversarial review / canonical docs / merge — IN PROGRESS
 
-Use these source-level defaults from the approved spec/checklist:
+Final implementation candidate before canonical documentation: `fc886198cebde08f6c57e04de46e8c1b07530d2d`.
 
-```text
-PROMOTE_AS_IS:
-  locomotive, cargo stars, stations, committed rails, start marker, route-end marker,
-  combo static candidate, ghost-route candidate, cost-HUD candidate,
-  success/failure blank shells, progress/meta primitive
+Fresh PASS:
 
-PROMOTE_AFTER_REVISION:
-  three cargo wagons,
-  stack HUD atlas,
-  switch-direction atlas,
-  train-cargo-strip atlas,
-  load-mode atlas,
-  build placement atlas,
-  build track palette,
-  build preflight candidate,
-  controls atlas,
-  VFX feedback atlas
-
-REPLACE:
-  none unless adversarial visual inspection finds a role that cannot be safely derived/reused
-```
-
-Every ledger record contains:
+- Project Contract `31313421289`;
+- GUT `31313421335`;
+- Godot Tests `31313421291`;
+- Thin Adapter `31313421305`;
+- Windows Demo Export `31313421296`.
 
-```json
-{
-  "source_candidate": "art/production_candidates/ed_hybrid_v1/...png",
-  "source_decision_id": "SX-DEC-051",
-  "disposition": "PROMOTE_AS_IS",
-  "reason": "bounded inspection result"
-}
-```
-
-- [ ] **Step 2: Implement validator invariants**
+Current static product result:
 
-`validate()` must reject:
+- 31/31 dispositions complete;
+- 23 product PNGs manifested and import-safe;
+- candidate provenance preserved;
+- locomotive + controls corruption explicitly isolated;
+- runtime integration still false.
 
-```text
-missing/duplicate source records
-source_candidate_count != 31
-unknown disposition values
-promoted assets outside art/product_assets/ed_hybrid_v1/
-promoted asset without source candidate
-runtime_integrated != false
-missing SX-DEC-053 decision ID
-PNG signature/dimension/alpha-capability failure
-cargo wagon promoted without visual_scale in [0.70, 0.75]
-missing seven reusable UI button states once controls are marked promoted
-```
-
-- [ ] **Step 3: Run focused contract**
-
-Expected: ledger/schema checks pass; product-file checks may remain RED until Task 3/4 assets are added.
-
-- [ ] **Step 4: Commit**
-
-Commit message: `feat: record final E+D asset dispositions`.
-
----
-
-### Task 3: Promote first-batch core assets without new image generation
-
-**Files:**
-- Create/reuse exact candidate blobs under `art/product_assets/ed_hybrid_v1/core/` and `board/`.
-- Update: `art/product_assets/ed_hybrid_v1/manifest.json`
-
-**Interfaces:**
-- Consumes: candidate core/board PNGs.
-- Produces: product core assets and provenance entries.
-
-- [ ] **Step 1: Promote AS-IS core/board bytes by exact blob reuse**
-
-Promote:
-
-```text
-core_train_locomotive_blue_normal_v01.png
-core_cargo_star_red_normal_v01.png
-core_cargo_star_blue_normal_v01.png
-core_cargo_star_yellow_normal_v01.png
-core_station_red_normal_v01.png
-core_station_blue_normal_v01.png
-core_station_yellow_normal_v01.png
-core_rail_straight_normal_v01.png (target may map from board_rail_straight_normal_v01.png)
-core_rail_curve_normal_v01.png
-core_rail_crossing_normal_v01.png
-core_rail_switch_three_way_normal_v01.png
-core_marker_start_normal_v01.png
-core_marker_route_end_normal_v01.png
-```
-
-For renamed product files, keep `source_candidate` and `source_blob_sha` in manifest.
-
-- [ ] **Step 2: Derive three smaller wagon v02 assets deterministically**
-
-Do not generate new art. Use the approved candidate wagon pixels as source and apply a deterministic centered scale transform. Preserve transparent canvas and record:
-
-```json
-{
-  "transform": "centered_scale",
-  "visual_scale": 0.74,
-  "source_version": "v01",
-  "product_version": "v02"
-}
-```
-
-Target filenames:
-
-```text
-core_wagon_cargo_red_normal_v02.png
-core_wagon_cargo_blue_normal_v02.png
-core_wagon_cargo_yellow_normal_v02.png
-```
-
-- [ ] **Step 3: Verify visual hierarchy contract statically**
-
-Validator checks each promoted wagon has `0.70 <= visual_scale <= 0.75` and locomotive has `visual_scale == 1.0`. Runtime collision remains explicitly absent from the manifest.
-
-- [ ] **Step 4: Commit**
-
-Commit message: `feat: promote final E+D core world assets`.
-
----
-
-### Task 4: Split deterministic RUN and control states
-
-**Files:**
-- Create: `art/product_assets/ed_hybrid_v1/run/*.png`
-- Create: `art/product_assets/ed_hybrid_v1/ui/*.png`
-- Update: `art/product_assets/ed_hybrid_v1/manifest.json`
-
-**Interfaces:**
-- Consumes: documented SX-DEC-051 atlas slice bounds.
-- Produces: independent semantic-state PNGs with transform provenance.
-
-- [ ] **Step 1: Split documented stack states**
-
-From `run_stack_hud_states_v01.png`, use exact documented bounds for:
-
-```text
-run_stack_empty_v01
-run_stack_top_highlight_v01
-run_stack_plus_n_v01 (source slice run_stack_32plus_v01)
-run_stack_unloading_v01
-```
-
-Keep `run_stack_next_group_v01` unpromoted if no distinct approved visual can be derived without inventing a new state; its source atlas remains `PROMOTE_AFTER_REVISION`.
-
-- [ ] **Step 2: Split/derive switch states**
-
-Use documented `run_switch_arrow_left_selected_v01` slice as selected-state source. Deterministic rotation may produce center/right selected states only if the arrow remains semantically correct; record rotation degrees in manifest. Use the documented locked slice for `run_switch_locked_v01`. If rotation inspection fails, leave center/right as pending revision rather than fabricating art.
-
-- [ ] **Step 3: Split load mode only if state boundary is unambiguous**
-
-Inspect the source atlas. If two clean semantic halves exist, export `run_load_mode_off_v01.png` and `run_load_mode_on_v01.png` and record exact crop bounds. Otherwise keep the atlas `PROMOTE_AFTER_REVISION` and do not guess slice bounds.
-
-- [ ] **Step 4: Split all seven control states from documented bounds**
-
-Export:
-
-```text
-ui_button_frame_square_blue_normal_v01.png
-ui_button_frame_square_blue_hover_v01.png
-ui_button_frame_square_blue_pressed_v01.png
-ui_button_frame_square_blue_selected_v01.png
-ui_button_frame_square_blue_disabled_v01.png
-ui_button_frame_square_blue_locked_v01.png
-ui_button_frame_square_blue_focus_v01.png
-```
-
-Use the SX-DEC-051 slice bounds exactly.
-
-- [ ] **Step 5: Keep train-cargo-strip pending if shrinking wagons inside the composite requires semantic repaint**
-
-Do not use generative art. Mark the source `PROMOTE_AFTER_REVISION` and preserve the blocker in manifest/audit if a safe deterministic transform cannot isolate wagon elements.
-
-- [ ] **Step 6: Run focused validator**
-
-Expected: all actually promoted files pass PNG/provenance/naming checks; pending revision assets remain explicitly pending and do not falsely count as promoted.
-
-- [ ] **Step 7: Commit**
-
-Commit message: `feat: split final E+D RUN and control assets`.
-
----
-
-### Task 5: Adversarial review, canonical docs, and exact-head merge
-
-**Files:**
-- Modify: `docs/decisions/SX_DEC_053_FINAL_ED_PRODUCTION_VISUAL_DIRECTION.md`
-- Modify: `기획서/40_표현/FINAL_PRODUCT_ASSET_LIST_V1.md`
-- Create: `기획서/50_제작_검증/SX_AUD_040_FINAL_ED_PRODUCT_ASSET_PROMOTION.md`
-- Update PR #122 and Google Sheet using the same `SX-DEC-053`.
-
-**Interfaces:**
-- Consumes: exact promoted manifest and CI results.
-- Produces: canonical promotion status without claiming runtime/device/human evidence.
-
-- [ ] **Step 1: Adversarial diff review**
-
-Reject the batch if it mutates gameplay, `.tscn`, Resource, Theme, Animation, signal, `project.godot`, Godot plugin state, or `.asset-vault` bytes.
-
-- [ ] **Step 2: Run exact-head gates**
-
-Require fresh success for:
-
-```text
-Project Contract
-GUT 9.7.1 Tests
-Godot Tests
-Validate Thin Adapter Migration
-```
-
-Also inspect Windows/Pilot if triggered; failures are investigated, not ignored.
-
-- [ ] **Step 3: Update canonical status from actual evidence**
-
-Use statuses such as:
-
-```text
-FINAL_DIRECTION_APPROVED
-DISPOSITION_31_COMPLETE
-FIRST_PRODUCT_ASSET_BATCH_PARTIAL_OR_COMPLETE
-STATIC_PROMOTION_VALIDATION_PASS
-RUNTIME_POC_DEFERRED
-```
-
-Never claim missing RUN states as complete.
-
-- [ ] **Step 4: Move PR #122 Draft → Ready and merge under inherited continuous-work authority only after exact-head green**
-
-Use expected-head protection and no force update.
-
-- [ ] **Step 5: Read back merged main and post-merge regressions**
-
-Record the actual merge SHA and automated results.
-
-- [ ] **Step 6: Sync Google Sheet using `SX-DEC-053`**
-
-Update Hub, Decision row, VIS-FINITE rows as applicable, Audit, and Production verification. Preserve:
-
-```text
-ASSET_VAULT_UNTRACK_DEFERRED_EXTERNAL_EXECUTOR
-RUNTIME_POC_DEFERRED
-WINDOWS_PHYSICAL_NOT_RUN
-ANDROID_DEVICE_NOT_RUN
-CONNECTED_PHYSICAL_EDITOR_NOT_RUN
-HUMAN_NOT_RUN
-```
-
-- [ ] **Step 7: Final readback**
-
-Verify GitHub main/open PR state and Sheet values agree on the same final SHA and Decision ID.
+Remaining execution:
+
+- attach Decision/checklist/README/audit updates;
+- receive fresh exact-head PR test-merge validation on that documentation-inclusive head;
+- adversarial diff review;
+- move PR #122 Draft → Ready and expected-head squash merge;
+- merged-main readback/regression;
+- docs-only canonical closure if required by final-head wording;
+- same-ID Google Sheet synchronization and final readback.
