@@ -41,6 +41,49 @@ CORE_PRODUCT_PATHS = {
     "art/product_assets/ed_hybrid_v1/core/core_marker_route_end_normal_v01.png",
 }
 
+AUTHORITATIVE_SLICE_PRODUCTS = {
+    "art/product_assets/ed_hybrid_v1/run/run_stack_empty_v01.png": (
+        "art/production_candidates/ed_hybrid_v1/run/run_stack_hud_states_v01.png",
+        "run_stack_empty_v01",
+        [70, 74, 44, 18],
+    ),
+    "art/product_assets/ed_hybrid_v1/run/run_stack_32plus_v01.png": (
+        "art/production_candidates/ed_hybrid_v1/run/run_stack_hud_states_v01.png",
+        "run_stack_32plus_v01",
+        [70, 16, 42, 18],
+    ),
+    "art/product_assets/ed_hybrid_v1/run/run_stack_unloading_v01.png": (
+        "art/production_candidates/ed_hybrid_v1/run/run_stack_hud_states_v01.png",
+        "run_stack_unloading_v01",
+        [69, 44, 45, 18],
+    ),
+    "art/product_assets/ed_hybrid_v1/run/run_stack_top_highlight_v01.png": (
+        "art/production_candidates/ed_hybrid_v1/run/run_stack_hud_states_v01.png",
+        "run_stack_top_highlight_v01",
+        [10, 8, 42, 25],
+    ),
+    "art/product_assets/ed_hybrid_v1/build/build_track_straight_valid_ghost_v01.png": (
+        "art/production_candidates/ed_hybrid_v1/build/build_placement_preview_states_v01.png",
+        "build_track_straight_valid_ghost_v01",
+        [4, 4, 36, 30],
+    ),
+    "art/product_assets/ed_hybrid_v1/build/build_track_straight_invalid_ghost_v01.png": (
+        "art/production_candidates/ed_hybrid_v1/build/build_placement_preview_states_v01.png",
+        "build_track_straight_invalid_ghost_v01",
+        [46, 4, 36, 30],
+    ),
+    "art/product_assets/ed_hybrid_v1/build/build_track_curve_valid_ghost_v01.png": (
+        "art/production_candidates/ed_hybrid_v1/build/build_placement_preview_states_v01.png",
+        "build_track_curve_valid_ghost_v01",
+        [88, 4, 36, 30],
+    ),
+    "art/product_assets/ed_hybrid_v1/build/build_port_marker_left_v01.png": (
+        "art/production_candidates/ed_hybrid_v1/build/build_placement_preview_states_v01.png",
+        "build_port_marker_left_v01",
+        [6, 53, 30, 26],
+    ),
+}
+
 
 def _load_validator():
     spec = importlib.util.spec_from_file_location("final_ed_promotion_validator", VALIDATOR_PATH)
@@ -67,8 +110,36 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
         self.assertFalse(data["runtime_integrated"])
         self.assertEqual(31, data["source_candidate_count"])
         self.assertEqual(31, len(data["source_candidate_dispositions"]))
+        self.assertEqual(39, data["promoted_asset_count"])
         dispositions = {r["disposition"] for r in data["source_candidate_dispositions"]}
         self.assertLessEqual(dispositions, {"PROMOTE_AS_IS", "PROMOTE_AFTER_REVISION", "REPLACE"})
+
+    def test_authoritative_slice_batch_matches_candidate_manifest_exactly(self):
+        candidate = json.loads(CANDIDATE_MANIFEST.read_text(encoding="utf-8"))
+        product = json.loads(PRODUCT_MANIFEST.read_text(encoding="utf-8"))
+        candidate_by_path = {record["path"]: record for record in candidate["assets"]}
+        product_by_path = {record["path"]: record for record in product["assets"]}
+
+        self.assertLessEqual(set(AUTHORITATIVE_SLICE_PRODUCTS), set(product_by_path))
+        self.assertEqual(
+            8,
+            sum(1 for record in product["assets"] if record.get("authoritative_slice_name")),
+        )
+
+        for product_path, (source_path, slice_name, bounds) in AUTHORITATIVE_SLICE_PRODUCTS.items():
+            source_slices = {
+                item["name"]: item["bounds"]
+                for item in candidate_by_path[source_path].get("slices", [])
+            }
+            self.assertEqual(bounds, source_slices[slice_name])
+            record = product_by_path[product_path]
+            self.assertEqual(source_path, record["source_candidate"])
+            self.assertEqual("PROMOTE_AFTER_REVISION", record["disposition"])
+            self.assertEqual(slice_name, record["authoritative_slice_name"])
+            self.assertEqual("crop", record["transform"]["kind"])
+            self.assertEqual(bounds, record["transform"]["bounds"])
+            self.assertEqual(bounds[2:4], record["dimensions"])
+            self.assertTrue((ROOT / product_path).is_file())
 
     def test_import_safe_hero_and_controls_recover_from_exact_approved_references(self):
         data = json.loads(PRODUCT_MANIFEST.read_text(encoding="utf-8"))

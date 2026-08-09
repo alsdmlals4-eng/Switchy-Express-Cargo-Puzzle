@@ -98,6 +98,9 @@ def validate():
 
     candidate_paths = [record["path"] for record in candidate.get("assets", [])]
     candidate_path_set = set(candidate_paths)
+    candidate_by_path = {
+        record["path"]: record for record in candidate.get("assets", [])
+    }
     ledger = product.get("source_candidate_dispositions", [])
     ledger_paths = [record.get("source_candidate") for record in ledger]
 
@@ -136,6 +139,7 @@ def validate():
             errors.append(f"PROMOTE_AS_IS source PNG is corrupt: {source} · {detail}")
 
     seen_product_paths = set()
+    authoritative_slice_count = 0
     for asset in product.get("assets", []):
         rel = asset.get("path", "")
         source = asset.get("source_candidate", "")
@@ -170,6 +174,36 @@ def validate():
             if transform.get("kind") != "centered_scale" or transform.get("scale") != scale:
                 errors.append(f"wagon centered_scale provenance mismatch: {rel}")
 
+        slice_name = asset.get("authoritative_slice_name")
+        if slice_name:
+            authoritative_slice_count += 1
+            source_record = candidate_by_path.get(source, {})
+            source_slices = {
+                item.get("name"): item
+                for item in source_record.get("slices", [])
+                if item.get("name")
+            }
+            source_slice = source_slices.get(slice_name)
+            if source_slice is None:
+                errors.append(f"unknown authoritative source slice: {rel} · {slice_name}")
+            else:
+                transform = asset.get("transform", {})
+                bounds = source_slice.get("bounds")
+                if Path(rel).stem != slice_name:
+                    errors.append(f"authoritative slice filename mismatch: {rel} · {slice_name}")
+                if transform.get("kind") != "crop":
+                    errors.append(f"authoritative slice must use crop transform: {rel}")
+                if transform.get("bounds") != bounds:
+                    errors.append(f"authoritative slice bounds drift: {rel}")
+                if isinstance(bounds, list) and len(bounds) == 4:
+                    if asset.get("dimensions") != bounds[2:4]:
+                        errors.append(f"authoritative slice dimensions drift: {rel}")
+
+    if authoritative_slice_count not in {0, 8}:
+        errors.append(
+            "SX-DEC-053 authoritative slice batch must be absent or complete at 8 records"
+        )
+
     actual_product_paths = {
         path.relative_to(ROOT).as_posix()
         for path in PRODUCT_ROOT.rglob("*.png")
@@ -199,6 +233,7 @@ def validate():
     print(
         "final E+D product asset promotion: PASS · "
         f"dispositions={len(ledger)} · promoted={len(product.get('assets', []))} · "
+        f"authoritative_slices={authoritative_slice_count} · "
         f"pending_corrupt_sources={len(pending_corrupt)} · runtime_integrated=false"
     )
     return 0
