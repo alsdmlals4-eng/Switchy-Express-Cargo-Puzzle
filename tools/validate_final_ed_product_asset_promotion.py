@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 import struct
+import zlib
 from pathlib import Path
 
 
@@ -16,12 +17,55 @@ def _png_info(path: Path):
     raw = path.read_bytes()
     if not raw.startswith(PNG_SIGNATURE) or len(raw) < 33:
         raise ValueError(f"invalid PNG signature/header: {path.relative_to(ROOT)}")
-    if raw[12:16] != b"IHDR":
+
+    pos = len(PNG_SIGNATURE)
+    width = height = bit_depth = color_type = None
+    has_trns = False
+    idat = bytearray()
+    saw_iend = False
+
+    while pos + 12 <= len(raw):
+        length = struct.unpack(">I", raw[pos:pos + 4])[0]
+        chunk_type = raw[pos + 4:pos + 8]
+        data_start = pos + 8
+        data_end = data_start + length
+        crc_end = data_end + 4
+        if crc_end > len(raw):
+            raise ValueError(f"truncated PNG chunk: {path.relative_to(ROOT)}")
+        chunk_data = raw[data_start:data_end]
+        expected_crc = struct.unpack(">I", raw[data_end:crc_end])[0]
+        actual_crc = zlib.crc32(chunk_type)
+        actual_crc = zlib.crc32(chunk_data, actual_crc) & 0xFFFFFFFF
+        if expected_crc != actual_crc:
+            raise ValueError(f"PNG CRC mismatch: {path.relative_to(ROOT)} · {chunk_type.decode('ascii', 'replace')}")
+
+        if chunk_type == b"IHDR":
+            if length != 13:
+                raise ValueError(f"invalid PNG IHDR length: {path.relative_to(ROOT)}")
+            width, height, bit_depth, color_type = struct.unpack(">IIBB", chunk_data[:10])
+        elif chunk_type == b"tRNS":
+            has_trns = True
+        elif chunk_type == b"IDAT":
+            idat.extend(chunk_data)
+        elif chunk_type == b"IEND":
+            saw_iend = True
+            break
+        pos = crc_end
+
+    if width is None or height is None or color_type is None:
         raise ValueError(f"missing PNG IHDR: {path.relative_to(ROOT)}")
-    width, height, bit_depth, color_type = struct.unpack(">IIBB", raw[16:26])
     if width <= 0 or height <= 0:
         raise ValueError(f"invalid PNG dimensions: {path.relative_to(ROOT)}")
-    alpha_capable = color_type in {4, 6}
+    if not idat:
+        raise ValueError(f"missing PNG IDAT: {path.relative_to(ROOT)}")
+    if not saw_iend:
+        raise ValueError(f"missing PNG IEND: {path.relative_to(ROOT)}")
+    try:
+        zlib.decompress(bytes(idat))
+    except zlib.error as exc:
+        raise ValueError(f"corrupt PNG IDAT stream: {path.relative_to(ROOT)} · {exc}") from exc
+
+    alpha_capable = color_type in {4, 6} or has_trns
     return width, height, bit_depth, color_type, alpha_capable
 
 
