@@ -1,8 +1,9 @@
 # SX-DEC-053 · Final E+D Production Visual Direction
 
-**Status:** `USER_APPROVED · FINAL_DIRECTION_APPROVED · DISPOSITION_31_COMPLETE · IMPORT_SAFE_31_PROMOTED · HERO_CONTROLS_RECOVERED · FINAL_HEAD_RECHECK_REQUIRED · RUNTIME_POC_DEFERRED`  
+**Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · DISPOSITION_31_COMPLETE · IMPORT_SAFE_31_PROMOTED · HERO_CONTROLS_RECOVERED · CONTROL_NORMAL_BYTE_INTEGRITY_REPAIRED · RUNTIME_POC_DEFERRED`  
 **Date:** 2026-08-09 KST  
-**Baseline main:** `95dda145b518ce29bead78a5cbf5566cfa675419`
+**Baseline main:** `95dda145b518ce29bead78a5cbf5566cfa675419`  
+**Product merge/main:** `57dbdd9be2cc70e0c9b973d502f57bd725b045cb` · PR `#122`
 
 ## Decision
 
@@ -68,6 +69,8 @@ Two wagon uploads also exposed a transport-integrity error during implementation
 
 A later recovery commit added the locomotive + seven control PNGs before authority metadata was updated. The CI-consumed promotion contract correctly failed because eight physical product PNGs were unmanifested. The fix updates only manifest/canonical metadata; the recovery PNG bytes are preserved unchanged.
 
+The promoted `normal` control PNG then exposed an integrity-only container defect. Its exact recovered scanlines were preserved while the PNG zlib/CRC container was re-encoded. The accepted product manifest records Git blob `2ed8efe5911cd93a307aaafcefa713380014a581` and pixel SHA-256 `9c1e434448915882a11589d1a9dc067d296e3613d67245512a9623055a1804bc`; no pixel redesign was performed.
+
 ## Explicit pending semantic splits
 
 Healthy source but still pending because the current source does not safely prove the complete product semantics:
@@ -96,6 +99,25 @@ These are not reported as complete.
 - wagon visual scale remains in `0.70..0.75` with centered-scale provenance;
 - runtime integration remains false.
 
+## Exact-head and merged-main verification
+
+PR `#122` was reviewed on the final implementation identity:
+
+- `review_head_sha`: `e7a4f2e81355991cde632f0581baf62b6eb45a46`;
+- `base_sha`: `95dda145b518ce29bead78a5cbf5566cfa675419`;
+- `test_merge_sha`: `fd9e72f2fde02d0126e57c5fe86d573a4cf6cffd`;
+- no PR-triggered workflow runs existed on the test-merge commit, so `ci_validation_target_sha` remained the exact review head;
+- Project Contract `31316685124`: **PASS**, including `Validate final E+D product asset promotion`;
+- GUT 9.7.1 `31316685079`: **PASS**, including JUnit discovery and protected-production-tree mutation guard;
+- Godot Tests `31316685077`: **PASS**;
+- Validate Thin Adapter Migration `31316685080`: **PASS**;
+- Windows Demo Export `31316685064`: **PASS**;
+- unresolved review threads: **0**.
+
+The approved scope was squash-merged without reapproval as PR `#122`, producing main commit `57dbdd9be2cc70e0c9b973d502f57bd725b045cb`. Main readback confirms the merge commit is the current project main and contains the product package, manifest, static contract, Decision, and `SX-AUD-040` audit.
+
+The merge commit itself has no separate PR-triggered workflow run. This is not reused as a new runtime/device claim; the exact reviewed PR head remains the technical merge evidence, and the merged main readback is the repository-delivery evidence.
+
 ## Boundaries
 
 Still deferred / NOT_RUN:
@@ -109,3 +131,5 @@ Still deferred / NOT_RUN:
 - human comprehension/playtest validation;
 - `.asset-vault` legacy untrack pending local preservation evidence;
 - release cutover.
+
+Google Sheet synchronization is intentionally performed only after this same-ID merged-main closure is itself merged, so the Sheet can point at the final canonical main SHA rather than a closure branch SHA.
