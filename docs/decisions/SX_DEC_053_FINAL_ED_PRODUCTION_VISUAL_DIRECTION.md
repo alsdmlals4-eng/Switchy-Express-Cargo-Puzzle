@@ -1,6 +1,6 @@
 # SX-DEC-053 · Final E+D Production Visual Direction
 
-**Status:** `USER_APPROVED · FINAL_DIRECTION_APPROVED · DISPOSITION_31_COMPLETE · FIRST_PRODUCT_ASSET_BATCH_PARTIAL · IMPORT_SAFE_23_PROMOTED · LOCOMOTIVE_CONTROLS_REVISION_PENDING · FINAL_HEAD_RECHECK_REQUIRED · RUNTIME_POC_DEFERRED`  
+**Status:** `USER_APPROVED · FINAL_DIRECTION_APPROVED · DISPOSITION_31_COMPLETE · IMPORT_SAFE_31_PROMOTED · HERO_CONTROLS_RECOVERED · FINAL_HEAD_RECHECK_REQUIRED · RUNTIME_POC_DEFERRED`  
 **Date:** 2026-08-09 KST  
 **Baseline main:** `95dda145b518ce29bead78a5cbf5566cfa675419`
 
@@ -21,22 +21,23 @@ Source package: `art/production_candidates/ed_hybrid_v1/`
 Source Decision: `SX-DEC-051`  
 Source candidate count: **31**
 
-Every source now has exactly one promotion disposition:
+Every source has exactly one promotion disposition:
 
 - `PROMOTE_AS_IS`: **18**;
-- `PROMOTE_AFTER_REVISION`: **13**;
-- `REPLACE`: **0**.
+- `PROMOTE_AFTER_REVISION`: **11**;
+- `REPLACE`: **2**.
 
-The candidate package remains intact for provenance.
+The candidate package remains intact for provenance. The two `REPLACE` sources are the corrupt locomotive candidate and corrupt controls atlas; neither is overwritten.
 
-## First product-asset batch
+## Product-asset package
 
 Product root: `art/product_assets/ed_hybrid_v1/`
 
-Current promoted asset count: **23**.
+Current promoted asset count: **31**.
 
-Promoted groups:
+Promoted/recovered groups:
 
+- import-safe blue locomotive hero recovered from the exact approved E+D locomotive reference;
 - three deterministic smaller wagon v02 assets at `0.74` visual scale;
 - cargo stars red/blue/yellow;
 - stations red/blue/yellow;
@@ -46,27 +47,28 @@ Promoted groups:
 - Reduced Motion-compatible combo primitive;
 - ghost-route primitive;
 - cost-HUD primitive;
+- seven reusable blue control states: normal / hover / pressed / selected / disabled / locked / focus, recovered from the exact approved E+D UI reference;
 - text-safe success/failure result shells;
 - text-safe progress/meta primitive.
 
-No new concept board or generative image was created for this batch. Wagon revisions and switch splits are deterministic transforms of tracked candidate bytes.
+No new concept board was created for this package. Wagon revisions and switch splits are deterministic transforms of tracked candidate bytes. Locomotive/control recovery uses the exact approved reference sources recorded by SHA-256 in the product manifest.
 
-## Adversarial promotion findings
+## Adversarial promotion findings and recovery
 
-Deep PNG validation was intentionally strengthened from signature/dimension checks to chunk CRC + concatenated IDAT zlib validation.
+Deep PNG validation was strengthened from signature/dimension checks to chunk CRC + concatenated IDAT zlib validation.
 
 Exactly two SX-DEC-051 candidate sources were found to have corrupt PNG streams:
 
 1. `core/core_train_locomotive_blue_normal_v01.png`;
 2. `ui/ui_button_controls_states_v01.png`.
 
-The locomotive was initially reused into the product root and Godot correctly rejected it with `ERR_FILE_CORRUPT`. The promotion was reverted without touching the source candidate. Its disposition is now `PROMOTE_AFTER_REVISION` and it requires an import-safe revision while preserving the approved hero design.
+The source candidates remain immutable provenance. Their final dispositions are `REPLACE`, and the product root contains import-safe recovery assets derived from the corresponding exact approved E+D references. The recovery records retain reference filename and SHA-256 instead of pretending the corrupt candidate bytes were usable.
 
-The controls atlas is also `PROMOTE_AFTER_REVISION`; seven button-state extraction is blocked until an import-safe re-encode/replacement exists. It was not promoted as broken product art.
+Two wagon uploads also exposed a transport-integrity error during implementation: the first red/yellow Git blobs differed from the locally verified deterministic outputs. They were replaced by exact blobs matching the verified v02 bytes before acceptance.
 
-Two wagon uploads also exposed a transport-integrity error during implementation: the first red/yellow Git blobs differed from the locally verified deterministic outputs. They were replaced by exact blobs matching the verified v02 bytes before the batch was accepted.
+A later recovery commit added the locomotive + seven control PNGs before authority metadata was updated. The CI-consumed promotion contract correctly failed because eight physical product PNGs were unmanifested. The fix updates only manifest/canonical metadata; the recovery PNG bytes are preserved unchanged.
 
-## Explicit pending states
+## Explicit pending semantic splits
 
 Healthy source but still pending because the current source does not safely prove the complete product semantics:
 
@@ -77,7 +79,7 @@ Healthy source but still pending because the current source does not safely prov
 - BUILD placement/palette/preflight complete state split;
 - VFX causal state split.
 
-These are not reported as promoted or complete.
+These are not reported as complete.
 
 ## Static contract
 
@@ -90,6 +92,7 @@ These are not reported as promoted or complete.
 - promoted PNGs pass signature, chunk CRC, IDAT decompression, dimensions, and transparency checks;
 - palette PNG + `tRNS` counts as alpha-capable;
 - every physical product PNG is manifested exactly once;
+- recovered locomotive and controls are registered as `REPLACE` and carry exact approved-reference SHA-256 provenance;
 - wagon visual scale remains in `0.70..0.75` with centered-scale provenance;
 - runtime integration remains false.
 
@@ -97,9 +100,7 @@ These are not reported as promoted or complete.
 
 Still deferred / NOT_RUN:
 
-- locomotive import-safe final revision;
-- controls seven-state import-safe revision;
-- remaining pending state splits listed above;
+- remaining semantic state splits listed above;
 - Godot Scene/Resource/Theme/Animation/signal hookup;
 - runtime sprite/HUD integration and POC;
 - Windows physical runtime;
