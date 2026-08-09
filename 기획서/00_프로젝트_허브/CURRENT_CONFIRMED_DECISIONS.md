@@ -2,24 +2,24 @@
 
 Last updated: `2026-08-10 KST`
 
-This file is the compact current-status registry for the finite delivery puzzle. Detailed rule text, implementation evidence, provenance, and audit reasoning remain in each registered owner document and the configured Google Sheet. The prior bounded `SX-AUD-035` authority repair remains closed; this update registers the newly user-approved `SX-DEC-054` semantic-asset completion strategy without widening any runtime claim.
+This file is the compact current-status registry for the finite delivery puzzle. Detailed rule text, implementation evidence, provenance, and audit reasoning remain in each registered owner document and the configured Google Sheet. The prior bounded `SX-AUD-035` authority repair remains closed; this update records the merged `SX-DEC-054` RUN Batch 2A semantic package and its `SX-AUD-041` audit without widening any runtime claim.
 
 ```yaml
 current_product_baseline: FINITE_DELIVERY_PUZZLE_BASELINE
 current_decision_span: SX-DEC-027~054
 superseded_decision: SX-DEC-047 -> SX-DEC-048
-authority_snapshot_through_main: de302e7cfd56a23d53a6ec97509195564e36749d
+authority_snapshot_through_main: 35b93f3a15f35780b12cd4e8887c8e06f8ade72b
 authority_refresh_audit: SX-AUD-035
 latest_visual_asset_authority: SX-DEC-053
 latest_visual_semantic_strategy: SX-DEC-054
 latest_tooling_authority: SX-DEC-052
-latest_visual_asset_audit: SX-AUD-040
+latest_visual_asset_audit: SX-AUD-041
 base_reference_at_refresh: 2a6ced23f6d6de1fb6e0a281c7138beb03f1a13b
 current_android_evidence: EV-FP-APK-001
 correct_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
 wrong_sheet: 19Ff... · DO_NOT_MODIFY
 product_runtime_state: FINITE_CORE_AUTOMATED_PASS · ROUTE_END_USER_CURRENT_MAIN_F5_PASS · SWITCH_DIRECTION_USER_CURRENT_MAIN_F5_PASS · CARGO_PICKUP_RETRY_USER_F5_PASS · FULL_PC_MANUAL_GATE_NOT_CLOSED
-visual_asset_state: ED_HYBRID_FINAL_DIRECTION · 39_IMPORT_SAFE_PRODUCT_ASSETS · AUTHORITATIVE_SLICE_BATCH_1_8 · SX-DEC-054_SEMANTIC_COMPLETION_STRATEGY_APPROVED · SEMANTIC_IMPLEMENTATION_PENDING · RUNTIME_POC_DEFERRED
+visual_asset_state: ED_HYBRID_FINAL_DIRECTION · SX-DEC-053_39_PRODUCT_ASSETS · SX-DEC-054_RUN_2A_20_SEMANTIC_ASSETS · 59_TOTAL_PRODUCT_PNGS · RUN_BATCH_2A_MERGED_MAIN_VERIFIED · BUILD_VFX_PENDING · RUNTIME_POC_DEFERRED
 tooling_state: GODOT_AI_3_1_3_SYNCED · GUT_9_7_1_PRESERVED · HERA_TRACKED_V1_0_0_USER_ADOPTED · CONNECTED_PHYSICAL_EDITOR_NOT_RUN
 asset_vault_state: LEGACY_14_TRACKED_PRESERVED · UNTRACK_DEFERRED_PENDING_LOCAL_PRESERVATION_ATTESTATION
 physical_validation_ceiling: WINDOWS_PHYSICAL_RUNTIME_NOT_RUN · ANDROID_DEVICE_NOT_RUN · CONNECTED_PHYSICAL_EDITOR_NOT_RUN · BROADER_HUMAN_NOT_RUN
@@ -74,7 +74,7 @@ The hard constraints remain LIFO, cargo/station color+shape readability, save/ru
 | SX-DEC-051 | E+D Hybrid Production Asset Pack | 31개 production-candidate와 provenance/P0 역할 범위를 추적 | MERGED_MAIN_VERIFIED · 31_CANDIDATES · PROVENANCE_SOURCE_FOR_SX-DEC-053 · NOT_RUNTIME_INTEGRATED |
 | SX-DEC-052 | Local Tooling & Asset-Vault Reconciliation | Godot AI 3.1.3·GUT 9.7.1·Hera v1.0.0 tracked authority와 local-only vault를 비파괴 정합화 | MERGED_MAIN_VERIFIED · HEADLESS_COMPAT_PASS · PILOT_ADOPTION_RECONCILED · VAULT_UNTRACK_DEFERRED |
 | SX-DEC-053 | Final E+D Production Visual Direction | E+D HYBRID 최종 방향, 파란 기관차 hero, 뒤 화물칸 0.74 비율, 39개 import-safe product asset, authoritative slice batch 1 | MERGED_MAIN_VERIFIED · DISPOSITION_31_COMPLETE · IMPORT_SAFE_39_PROMOTED · AUTHORITATIVE_SLICE_BATCH_1_8 · SEMANTIC_SPLITS_PARTIAL · RUNTIME_POC_DEFERRED |
-| SX-DEC-054 | Semantic Asset Completion Strategy | 애매한 legacy atlas는 provenance로 보존하고 승인된 component-state 계약으로 독립 semantic product asset을 완성 | USER_APPROVED · DESIGN_SPEC_TRACKED · IMPLEMENTATION_PENDING · RUNTIME_POC_DEFERRED |
+| SX-DEC-054 | Semantic Asset Completion Strategy | 애매한 legacy atlas는 provenance로 보존하고 승인된 component-state 계약으로 독립 semantic product asset을 완성 | MERGED_MAIN_VERIFIED · RUN_BATCH_2A_20_SEMANTIC_ASSETS · 59_TOTAL_PRODUCT_PNGS · BUILD_VFX_PENDING · RUNTIME_POC_DEFERRED |
 
 ## Current Runtime Evidence Boundary
 
@@ -103,7 +103,7 @@ A hosted Windows Demo Export PASS is build/package evidence only and is not phys
 
 ## Current Visual Asset Authority
 
-`SX-DEC-053` remains the latest final visual/product-asset authority and `SX-DEC-051` remains its immutable provenance source. `SX-DEC-054` is the latest approved semantic-completion strategy and does not itself claim additional product PNGs or runtime integration.
+`SX-DEC-053` remains the final E+D direction and baseline product-asset authority, and `SX-DEC-051` remains its immutable provenance source. `SX-DEC-054` now owns the separately manifested RUN Batch 2A semantic package; it still does not claim runtime integration.
 
 ```yaml
 direction: E+D HYBRID · NEO-ARCADE READABILITY
@@ -112,15 +112,17 @@ source_dispositions:
   PROMOTE_AS_IS: 18
   PROMOTE_AFTER_REVISION: 11
   REPLACE: 2
-product_assets: 39
+sx_dec_053_product_assets: 39
+sx_dec_054_run_2a_semantic_assets: 20
+product_assets_total: 59
 authoritative_slice_batch_1: 8
 authoritative_stack_slices: 4
 authoritative_build_placement_slices: 4
 blue_locomotive: HERO_ANCHOR
 trailing_wagons_visual_scale: 0.74
-semantic_split_state: PARTIAL
+semantic_split_state: RUN_2A_COMPLETE · BUILD_VFX_PENDING
 semantic_completion_strategy: SX-DEC-054 · SEMANTIC_FIRST_INDEPENDENT_ASSETS
-semantic_implementation_state: PENDING
+semantic_implementation_state: RUN_2A_MERGED_MAIN_VERIFIED
 runtime_integrated: false
 ```
 
@@ -131,15 +133,21 @@ Completed bounded semantic extraction in batch 1:
 
 `run_stack_unloading_v01` remains the source-authoritative `unloading` state and is not relabeled as the distinct predicted next-unload-group state.
 
-`SX-DEC-054` now fixes the completion method for the remaining semantic product work:
+Completed `SX-DEC-054` RUN Batch 2A semantic package:
 
-- preserve ambiguous historical atlases as provenance/reference instead of assigning guessed state names;
-- create explicit semantic assets/compositions for remaining Stack HUD coverage, switch presentation, train cargo strip, load mode, BUILD placement/palette/preflight, and causal VFX;
-- reuse current product primitives where this avoids duplicate state cross-products;
-- require Reduced Motion information-equivalent presentation for meaning-bearing VFX;
-- keep runtime integration/POC as a separate later gate.
+- Stack HUD: `compact`, `8plus`, `16plus`, distinct predicted `unload_group`, `paused`;
+- train cargo strip: `empty`, `tokens_1_3`, `compressed_plus_n`, `unload_transition` compositions;
+- load mode: `manual_idle`, `manual_held`, `auto_off`, `auto_on`, `paused_disabled`, `input_received` compositions;
+- switch presentation: `three_visible`, `selected`, `unselected`, `occupied_locked`, `inactive`, with directional geometry retained under `SX-DEC-042 · SX-DEC-046 · VIS-014`;
+- ambiguous historical atlases remain provenance/reference only and are not assigned guessed state names.
 
-The remaining semantic work is therefore `IMPLEMENTATION_PENDING`, not a request for additional atlas-to-state product interpretation.
+Remaining semantic work under the same approved strategy:
+
+- BUILD placement/palette/preflight completion;
+- causal VFX split plus Reduced Motion information-equivalent presentation;
+- runtime integration/POC as a separate later gate.
+
+The remaining semantic work is therefore `BUILD_VFX_PENDING`; RUN Batch 2A is merged-main verified.
 
 ## Current Tooling Authority
 
@@ -190,6 +198,11 @@ semantic_slice_batch_1:
   product_merge: b02649dddc88a5340695cfd18ea5a54ffe0540f0
   closure_pr: 126
   closure_main: 2023f5c62afacfebd894010d3838880e6b7acf73
+semantic_run_batch_2a:
+  product_pr: 129
+  product_merge: 35b93f3a15f35780b12cd4e8887c8e06f8ade72b
+  exact_review_head: 34ab2b907190f69775ace8e89c32f689ba17bc35
+  audit: SX-AUD-041
 ```
 
 These anchors identify delivery history. Individual technical PASS claims remain bounded by their exact-head workflow evidence in the corresponding decision/audit documents.
@@ -227,8 +240,8 @@ This does not close the current Android landscape device-smoke gate. PC entrypoi
 ## Current Execution Authority
 
 ```text
-1. SX-DEC-054의 written spec review gate를 닫는다.
-2. 승인된 SEMANTIC_FIRST_INDEPENDENT_ASSETS 전략으로 RUN → BUILD → VFX semantic asset batches를 구현한다.
+1. SX-DEC-054 RUN Batch 2A merged-main 상태를 기준선으로 유지한다.
+2. 같은 승인 전략으로 BUILD Batch 2B → VFX Batch 2C semantic asset 작업을 진행한다.
 3. legacy atlas의 unnamed region은 새 상태 권위로 사용하지 않는다.
 4. 각 구현 batch는 static contract / exact-head CI / merged-main readback / same-ID Sheet sync를 거친다.
 5. 그 후 별도 runtime integration / POC gate로 이동한다.
