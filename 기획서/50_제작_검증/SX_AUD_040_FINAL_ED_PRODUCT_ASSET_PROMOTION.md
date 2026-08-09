@@ -3,8 +3,9 @@
 **Date:** 2026-08-09 KST  
 **Decision:** `SX-DEC-053`  
 **Baseline main:** `95dda145b518ce29bead78a5cbf5566cfa675419`  
-**PR:** `#122`  
-**Status:** `IMPLEMENTATION_CANDIDATE · DISPOSITION_31_COMPLETE · IMPORT_SAFE_31_PROMOTED · HERO_CONTROLS_RECOVERED · CONTROL_NORMAL_BYTE_INTEGRITY_REPAIRED · FINAL_HEAD_RECHECK_REQUIRED · RUNTIME_POC_DEFERRED`
+**Product PR:** `#122`  
+**Product merge/main:** `57dbdd9be2cc70e0c9b973d502f57bd725b045cb`  
+**Status:** `MERGED_MAIN_VERIFIED · DISPOSITION_31_COMPLETE · IMPORT_SAFE_31_PROMOTED · HERO_CONTROLS_RECOVERED · CONTROL_NORMAL_BYTE_INTEGRITY_REPAIRED · RUNTIME_POC_DEFERRED`
 
 ## Scope
 
@@ -20,7 +21,7 @@ Legitimate RED/GREEN evidence was produced throughout PR #122:
 - source-health recovery established PNG signature/chunk CRC/IDAT decompression/dimensions/transparency checks;
 - the 23-asset intermediate batch passed Contract/GUT/Godot/Thin/Windows at `fc886198cebde08f6c57e04de46e8c1b07530d2d` before later hero/control recovery expanded the physical product set.
 
-Earlier passing heads are historical evidence only and are not reused as the final merge gate.
+Earlier passing heads remain historical TDD/regression evidence only. The final merge gate used the final exact PR head described below.
 
 ## Source-health result
 
@@ -87,9 +88,28 @@ The 31 promoted files are the current bounded product-asset batch, not a claim t
 
 These remain `PROMOTE_AFTER_REVISION` work and do not justify inventing ambiguous semantics from the current atlases.
 
+## Final exact-head validation
+
+Final PR validation identity:
+
+- `review_head_sha`: `e7a4f2e81355991cde632f0581baf62b6eb45a46`;
+- `base_sha`: `95dda145b518ce29bead78a5cbf5566cfa675419`;
+- `test_merge_sha`: `fd9e72f2fde02d0126e57c5fe86d573a4cf6cffd`;
+- no PR-triggered workflow runs existed on the test-merge commit, therefore `ci_validation_target_sha = e7a4f2e81355991cde632f0581baf62b6eb45a46`.
+
+Final exact-head results:
+
+- Project Contract `31316685124`: **PASS**; focused `Validate final E+D product asset promotion` step **PASS**;
+- GUT 9.7.1 `31316685079`: **PASS**; JUnit discovery and protected production tree verification **PASS**;
+- Godot Tests `31316685077`: **PASS**;
+- Validate Thin Adapter Migration `31316685080`: **PASS**;
+- Windows Demo Export `31316685064`: **PASS**;
+- unresolved review threads: **0**;
+- PR Ready / mergeable at final check: **PASS**.
+
 ## Adversarial scope check
 
-PR #122 must not mutate:
+The final 41-file PR diff was re-read before merge. It did not mutate:
 
 - gameplay/domain code;
 - `.tscn` scenes;
@@ -100,12 +120,27 @@ PR #122 must not mutate:
 
 The Project Contract workflow change only makes the focused `SX-DEC-053` static contract an active CI consumer. No new concept image generation is part of this batch.
 
+The PR description was also corrected before merge so its documented final scope matched the actual 41-file implementation rather than the historical three-file Draft scope. This metadata correction did not change the reviewed HEAD.
+
+## Merge and main readback
+
+PR `#122` was squash-merged with exact-head protection against `e7a4f2e81355991cde632f0581baf62b6eb45a46`.
+
+- merge commit: `57dbdd9be2cc70e0c9b973d502f57bd725b045cb`;
+- merged at: `2026-08-09T13:57:33Z`;
+- GitHub main readback: **PASS**;
+- current main contains the 31-product package, manifest, focused contract/validator, SX-DEC-053 canon, and this SX-AUD-040 audit.
+
+The squash merge commit itself has no separate PR-triggered workflow run. That absence is not converted into a runtime/device success claim; the final PR-head CI remains the technical merge evidence and merged-main ancestry/readback is the repository delivery evidence.
+
 ## Deferred gates
 
 Preserved:
 
 `ASSET_VAULT_UNTRACK_DEFERRED_EXTERNAL_EXECUTOR · VAULT_LOCAL_STATE_UNVERIFIED · RUNTIME_POC_DEFERRED · WINDOWS_PHYSICAL_NOT_RUN · ANDROID_DEVICE_NOT_RUN · CONNECTED_PHYSICAL_EDITOR_NOT_RUN · HUMAN_NOT_RUN`
 
-## Finalization rule
+## Closure and Sheet rule
 
-The current branch must receive fresh PR test-merge validation after the integrity and canon corrections. Only the current validation identity may be used for merge. Earlier green heads are historical TDD/regression evidence, not final approval evidence.
+This same-ID closure changes only `SX-DEC-053` and `SX-AUD-040` documentation to replace `FINAL_HEAD_RECHECK_REQUIRED` with the verified merged-main evidence above. It does not reopen the approved visual direction and does not mutate product assets or runtime surfaces.
+
+Google Sheet synchronization is intentionally performed after this closure is merged, using the closure merge/main SHA as the Sheet's final canonical commit reference. The Sheet must preserve the same `SX-DEC-053` and `SX-AUD-040` IDs and must not claim runtime/device/human validation that was not run.
