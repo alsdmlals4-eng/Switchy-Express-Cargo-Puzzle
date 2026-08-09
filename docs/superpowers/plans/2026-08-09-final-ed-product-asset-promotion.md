@@ -6,14 +6,14 @@
 
 ## Goal
 
-Promote the approved E+D visual direction into a bounded product-asset package using existing SX-DEC-051 candidate bytes and deterministic transforms only. Keep runtime integration deferred.
+Promote the approved E+D visual direction into a bounded product-asset package using existing SX-DEC-051 candidate bytes, deterministic transforms, and exact approved-reference recovery where corrupt source candidates prevent safe reuse. Keep runtime integration deferred.
 
 ## Constraints
 
 - candidate source root remains immutable for provenance;
 - blue locomotive remains hero design authority;
 - trailing wagons use 70–75% visual hierarchy; current deterministic v02 uses `0.74`;
-- no new concept-board/image generation;
+- no new concept-board generation;
 - no gameplay, Scene, Resource, Theme, Animation, signal, `project.godot`, plugin-state, or `.asset-vault` mutation;
 - uncertain semantic states remain pending rather than guessed.
 
@@ -31,13 +31,15 @@ Implemented focused contract in `tests/python/test_final_ed_product_asset_promot
 - validator-missing RED: `491ce03b8964f16a7beae5e2daac8f13653af23d`, Contract `31310521719` expected FAIL;
 - GREEN: `1a5fa3fe798451509c5f727ebbb005c737808c08`, Contract `31310592671` PASS.
 
-Final disposition totals after adversarial source-health review:
+Final disposition totals after source-health recovery:
 
 - `PROMOTE_AS_IS`: 18;
-- `PROMOTE_AFTER_REVISION`: 13;
-- `REPLACE`: 0.
+- `PROMOTE_AFTER_REVISION`: 11;
+- `REPLACE`: 2.
 
-## Task 3 · First core product batch — COMPLETE AS BOUNDED PARTIAL
+The two `REPLACE` records are the corrupt locomotive candidate and corrupt controls atlas. Their source bytes remain unchanged.
+
+## Task 3 · Core product batch — COMPLETE
 
 Core-absent RED: `e6e03ee5921548251f6013ad53cbce411629c541`, Contract `31310641256` expected FAIL.
 
@@ -47,19 +49,20 @@ Initial promotion exposed hidden defects:
 - first red/yellow wagon transport bytes differed from verified deterministic outputs;
 - source locomotive PNG IDAT is corrupt and Godot rejects it.
 
-Recovery tests were added before fixes. Import-safe recovery head `3cda0e3dbb1064899f9a25cb840b7a7ed82edf71` passed Contract/GUT/Godot/Thin and Windows subsequently passed.
+Recovery tests were added before fixes. Earlier import-safe recovery head `3cda0e3dbb1064899f9a25cb840b7a7ed82edf71` passed Contract/GUT/Godot/Thin and Windows subsequently passed.
 
 Core result:
 
 - three wagon v02 assets promoted at `0.74` centered scale;
 - stars/stations/rails/markers promoted where source bytes are healthy;
-- locomotive remains `PROMOTE_AFTER_REVISION`, not falsely promoted.
+- import-safe locomotive recovered from the exact approved E+D reference and registered with `REPLACE` provenance;
+- corrupt locomotive candidate remains preserved under SX-DEC-051.
 
-## Task 4 · RUN/control/support split — COMPLETE AS BOUNDED PARTIAL
+## Task 4 · RUN/control/support split — COMPLETE AS BOUNDED PACKAGE
 
 Source health scan found exactly two corrupt candidates: locomotive and controls atlas. All other sources pass deep PNG stream validation.
 
-Promoted only proven states:
+Promoted or recovered only proven states:
 
 - switch `left_selected` documented crop;
 - switch `locked` documented crop;
@@ -67,11 +70,11 @@ Promoted only proven states:
 - ghost route;
 - cost HUD;
 - success/failure shells;
-- progress/meta primitive.
+- progress/meta primitive;
+- seven control states (normal/hover/pressed/selected/disabled/locked/focus) recovered from the exact approved E+D UI reference and registered as `REPLACE` provenance.
 
-Deliberately pending:
+Deliberately pending semantic work:
 
-- controls seven states because source atlas is corrupt;
 - stack next-unload-group and complete stack split;
 - remaining switch selected directions not explicitly proven by source;
 - train cargo strip smaller-wagon reconciliation;
@@ -81,32 +84,44 @@ Deliberately pending:
 
 Product-root completeness RED head `132da08d3cdd3195d1101baa5fd4e73e80b0b5ad`: Contract `31313108286` expected FAIL while GUT/Godot/Thin/Windows PASS. After manifest registration, head `c47b05a6dbe869d2ed6f3142e1eecaab92efda84` passed Contract/GUT/Godot/Thin/Windows.
 
-## Task 5 · Adversarial review / canonical docs / merge — IN PROGRESS
+## Task 5 · Hero/control recovery metadata TDD — COMPLETE, FRESH CI PENDING
 
-Final implementation candidate before canonical documentation: `fc886198cebde08f6c57e04de46e8c1b07530d2d`.
+Test-first contract required the recovered locomotive and seven controls to exist in the product manifest and required the two corrupt candidates to be classified `REPLACE`.
 
-Fresh PASS:
+Recovery asset head `e15f97b64e8f23efce7a281586ceae983682da0f` added the eight import-safe PNGs. Its PR test merge `804196b73a01a4640ba1e126504faed59a73add9` correctly failed the focused promotion contract because the newly added physical PNGs had not yet been registered in manifest authority.
 
-- Project Contract `31313421289`;
-- GUT `31313421335`;
-- Godot Tests `31313421291`;
-- Thin Adapter `31313421305`;
-- Windows Demo Export `31313421296`.
+Observed failure was exact and bounded:
 
-Current static product result:
+- 8 unmanifested product PNGs;
+- recovered locomotive/control product records missing from manifest;
+- static validator failed for the same mismatch.
 
-- 31/31 dispositions complete;
-- 23 product PNGs manifested and import-safe;
+Root cause: recovery asset bytes and authority metadata were committed in the wrong order. No image regeneration was required.
+
+Minimal correction:
+
+- product manifest now declares 31 promoted PNGs;
+- locomotive and controls candidate dispositions are `REPLACE`;
+- recovered asset records carry product Git blob, source-candidate Git blob, exact approved-reference filename/SHA-256, dimensions, and `approved_reference_recovery` transform;
+- README, Decision, and final asset list are synchronized to the recovered state.
+
+## Task 6 · Exact-head review / merge / same-ID closure — IN PROGRESS
+
+Current intended result before final CI:
+
+- 31/31 candidate dispositions complete;
+- 31 physical product PNGs manifested;
+- 18 `PROMOTE_AS_IS` / 11 `PROMOTE_AFTER_REVISION` / 2 `REPLACE`;
 - candidate provenance preserved;
-- locomotive + controls corruption explicitly isolated;
-- runtime integration still false.
+- hero + seven controls import-safe recovery registered;
+- runtime integration remains false;
+- remaining semantic splits stay explicitly deferred.
 
-Remaining execution:
+Remaining execution is mechanical under the approved scope:
 
-- attach Decision/checklist/README/audit updates;
-- receive fresh exact-head PR test-merge validation on that documentation-inclusive head;
-- adversarial diff review;
-- move PR #122 Draft → Ready and expected-head squash merge;
-- merged-main readback/regression;
-- docs-only canonical closure if required by final-head wording;
-- same-ID Google Sheet synchronization and final readback.
+- receive fresh PR #122 exact-current-head/test-merge validation;
+- adversarial full-diff review and review-thread check;
+- expected-head squash merge when all required checks pass;
+- merged-main readback and regression;
+- same-ID Google Sheet synchronization to merged main;
+- post-merge adversarial review and safe branch-cleanup decision.
