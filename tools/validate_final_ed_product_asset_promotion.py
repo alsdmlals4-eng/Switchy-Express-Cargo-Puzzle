@@ -36,6 +36,7 @@ def validate():
         return 1
 
     candidate_paths = [record["path"] for record in candidate.get("assets", [])]
+    candidate_path_set = set(candidate_paths)
     ledger = product.get("source_candidate_dispositions", [])
     ledger_paths = [record.get("source_candidate") for record in ledger]
 
@@ -55,7 +56,7 @@ def validate():
         errors.append("source_candidate_count must be 31")
     if len(ledger) != 31 or len(set(ledger_paths)) != 31:
         errors.append("disposition ledger must contain 31 unique source candidates")
-    if set(ledger_paths) != set(candidate_paths):
+    if set(ledger_paths) != candidate_path_set:
         errors.append("disposition ledger must exactly cover candidate manifest paths")
 
     for record in ledger:
@@ -76,7 +77,7 @@ def validate():
         if rel in seen_product_paths:
             errors.append(f"duplicate product asset path: {rel}")
         seen_product_paths.add(rel)
-        if source not in set(candidate_paths):
+        if source not in candidate_path_set:
             errors.append(f"product asset has unknown candidate source: {rel}")
         path = ROOT / rel
         if not path.is_file():
@@ -91,6 +92,15 @@ def validate():
             errors.append(f"dimension metadata mismatch: {rel}")
         if asset.get("transparent") is True and not alpha_capable:
             errors.append(f"transparent asset is not alpha-capable: {rel}")
+        if "core_train_locomotive" in rel and asset.get("visual_scale") != 1.0:
+            errors.append(f"locomotive visual_scale must be 1.0: {rel}")
+        if "core_wagon_cargo_" in rel:
+            scale = asset.get("visual_scale")
+            if not isinstance(scale, (int, float)) or not (0.70 <= scale <= 0.75):
+                errors.append(f"wagon visual_scale must be within 0.70..0.75: {rel}")
+            transform = asset.get("transform", {})
+            if transform.get("kind") != "centered_scale" or transform.get("scale") != scale:
+                errors.append(f"wagon centered_scale provenance mismatch: {rel}")
 
     if errors:
         print("final E+D product asset promotion: FAIL")
