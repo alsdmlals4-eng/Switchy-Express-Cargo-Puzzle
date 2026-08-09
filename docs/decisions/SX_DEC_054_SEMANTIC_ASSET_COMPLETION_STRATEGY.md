@@ -1,8 +1,9 @@
 # SX-DEC-054 · Semantic Asset Completion Strategy
 
-**Status:** `USER_APPROVED · DESIGN_SPEC_TRACKED · IMPLEMENTATION_PENDING`  
+**Status:** `USER_APPROVED · DESIGN_SPEC_MERGED · RUN_BATCH_2A_IMPLEMENTED_VALIDATION_PENDING`  
 **Date:** 2026-08-10 KST  
 **Baseline main:** `de302e7cfd56a23d53a6ec97509195564e36749d`  
+**Implementation baseline:** `bf0146bf51eb6b7a54d1ac219b021a6a41225c4c`  
 **Source visual authority:** `SX-DEC-053`  
 **Source component authority:** `SX-DEC-050`
 
@@ -145,6 +146,23 @@ Each meaning-bearing effect requires a Reduced Motion information-equivalent pre
 - Runtime/domain collision and route geometry remain unchanged.
 - Existing candidates and existing product files are never silently overwritten.
 
+## RUN Batch 2A implementation status
+
+The approved first implementation batch now exists on `agent/sx-dec-054-run-semantic-batch-2a` and remains pre-merge until final exact-head validation completes.
+
+- dedicated sidecar: `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054.json`;
+- `SX-DEC-053` ownership preserved at **39** product PNGs;
+- `SX-DEC-054` RUN Batch 2A ownership: **20** independent semantic PNG primitives;
+- total physical product PNGs in the shared product root: **59**, with disjoint manifest ownership;
+- Stack HUD coverage added: `compact`, `8plus`, `16plus`, `unload_group`, `paused`;
+- train cargo strip composition coverage: `empty`, `tokens_1_3`, `compressed_plus_n`, `unload_transition`;
+- load-mode composition coverage: `manual_idle`, `manual_held`, `auto_off`, `auto_on`, `paused_disabled`, `input_received`;
+- switch presentation coverage: `three_visible`, `selected`, `unselected`, `occupied_locked`, `inactive`, while direction geometry remains procedural under `SX-DEC-042 · SX-DEC-046 · VIS-014`;
+- ambiguous train-strip/load-mode/switch atlases remain `PRESERVE_REFERENCE_ONLY_NO_STATE_MAPPING`;
+- `runtime_integrated=false` globally and per Batch 2A asset/composition.
+
+The implementation has already passed an intermediate exact-head CI cycle after correcting the legacy `SX-DEC-053` test assumption that every PNG in the shared product root had a single 053 owner. Final merge evidence is intentionally not recorded here until the PR's final exact head is stable.
+
 ## Acceptance contract before implementation merge
 
 The implementation plan must add focused static verification that proves:
@@ -173,4 +191,4 @@ Still `NOT_RUN` / deferred:
 
 ## Delivery rule
 
-Implementation is a later branch/PR after the written design spec review gate. After an implementation PR is exact-head validated and merged, update this same Decision ID on GitHub and in the configured Google Sheet with the final merged-main evidence. Do not create a replacement Decision ID merely for technical closure.
+After the implementation PR is exact-head validated and merged, update this same Decision ID on GitHub and in the configured Google Sheet with the final merged-main evidence. Do not create a replacement Decision ID merely for technical closure.

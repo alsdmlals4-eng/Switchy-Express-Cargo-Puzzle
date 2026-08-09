@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT_ROOT = ROOT / "art" / "product_assets" / "ed_hybrid_v1"
 PRODUCT_MANIFEST = PRODUCT_ROOT / "manifest.json"
+SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054.json"
 CANDIDATE_MANIFEST = ROOT / "art" / "production_candidates" / "ed_hybrid_v1" / "manifest.json"
 VALIDATOR_PATH = ROOT / "tools" / "validate_final_ed_product_asset_promotion.py"
 LOCOMOTIVE_SOURCE = "art/production_candidates/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png"
@@ -208,12 +209,16 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
                 failures.append(f"{record['source_candidate']}: {exc}")
         self.assertEqual([], failures)
 
-    def test_every_product_png_is_manifested_exactly_once(self):
-        data = json.loads(PRODUCT_MANIFEST.read_text(encoding="utf-8"))
+    def test_every_product_png_has_exactly_one_manifest_owner(self):
+        base = json.loads(PRODUCT_MANIFEST.read_text(encoding="utf-8"))
+        semantic = json.loads(SEMANTIC_MANIFEST.read_text(encoding="utf-8"))
         actual = {path.relative_to(ROOT).as_posix() for path in PRODUCT_ROOT.rglob("*.png")}
-        recorded = [record["path"] for record in data["assets"]]
-        self.assertEqual(len(recorded), len(set(recorded)))
-        self.assertEqual(actual, set(recorded))
+        base_recorded = [record["path"] for record in base["assets"]]
+        semantic_recorded = [record["path"] for record in semantic["semantic_assets"]]
+        self.assertEqual(len(base_recorded), len(set(base_recorded)))
+        self.assertEqual(len(semantic_recorded), len(set(semantic_recorded)))
+        self.assertTrue(set(base_recorded).isdisjoint(semantic_recorded))
+        self.assertEqual(actual, set(base_recorded) | set(semantic_recorded))
 
     def test_static_validator_accepts_promoted_batch(self):
         validator = _load_validator()
