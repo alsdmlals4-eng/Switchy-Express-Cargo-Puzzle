@@ -112,6 +112,20 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
             with self.assertRaises(ValueError):
                 validator._png_info(bad)
 
+    def test_every_promote_as_is_source_is_png_decodable(self):
+        validator = _load_validator()
+        data = json.loads(PRODUCT_MANIFEST.read_text(encoding="utf-8"))
+        failures = []
+        for record in data["source_candidate_dispositions"]:
+            if record["disposition"] != "PROMOTE_AS_IS":
+                continue
+            source = ROOT / record["source_candidate"]
+            try:
+                validator._png_info(source)
+            except ValueError as exc:
+                failures.append(f"{record['source_candidate']}: {exc}")
+        self.assertEqual([], failures, "PROMOTE_AS_IS candidates must be valid decodable PNG sources")
+
     def test_static_validator_accepts_promoted_batch(self):
         self.assertTrue(
             VALIDATOR_PATH.is_file(),
