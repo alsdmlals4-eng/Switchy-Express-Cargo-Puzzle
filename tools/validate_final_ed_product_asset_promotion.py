@@ -115,6 +115,8 @@ def validate():
         errors.append("runtime_integrated must remain false")
     if product.get("source_candidate_count") != 31:
         errors.append("source_candidate_count must be 31")
+    if product.get("promoted_asset_count") != len(product.get("assets", [])):
+        errors.append("promoted_asset_count must equal manifest assets length")
     if len(ledger) != 31 or len(set(ledger_paths)) != 31:
         errors.append("disposition ledger must contain 31 unique source candidates")
     if set(ledger_paths) != candidate_path_set:
@@ -167,6 +169,18 @@ def validate():
             transform = asset.get("transform", {})
             if transform.get("kind") != "centered_scale" or transform.get("scale") != scale:
                 errors.append(f"wagon centered_scale provenance mismatch: {rel}")
+
+    actual_product_paths = {
+        path.relative_to(ROOT).as_posix()
+        for path in PRODUCT_ROOT.rglob("*.png")
+    }
+    if actual_product_paths != seen_product_paths:
+        missing_from_manifest = sorted(actual_product_paths - seen_product_paths)
+        missing_from_tree = sorted(seen_product_paths - actual_product_paths)
+        if missing_from_manifest:
+            errors.append(f"unmanifested product PNGs: {missing_from_manifest}")
+        if missing_from_tree:
+            errors.append(f"manifested product PNGs missing from tree: {missing_from_tree}")
 
     pending_corrupt = [
         (source, detail)
