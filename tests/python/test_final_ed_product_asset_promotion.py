@@ -13,8 +13,17 @@ CANDIDATE_MANIFEST = ROOT / "art" / "production_candidates" / "ed_hybrid_v1" / "
 VALIDATOR_PATH = ROOT / "tools" / "validate_final_ed_product_asset_promotion.py"
 LOCOMOTIVE_SOURCE = "art/production_candidates/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png"
 LOCOMOTIVE_PRODUCT = "art/product_assets/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png"
+CONTROLS_SOURCE = "art/production_candidates/ed_hybrid_v1/ui/ui_button_controls_states_v01.png"
+APPROVED_LOCOMOTIVE_REFERENCE_SHA256 = "edd9b76558755e1fa603d5d3c373be57e9325055a2a1f5c92ff0b0bda88f5b8d"
+APPROVED_CONTROLS_REFERENCE_SHA256 = "34f4fefeabdd0030b0689868899cd71e4cf694e475f12280bb75ea61aa25d6d7"
+
+CONTROL_PRODUCT_PATHS = {
+    f"art/product_assets/ed_hybrid_v1/ui/ui_button_frame_square_blue_{state}_v01.png"
+    for state in ("normal", "hover", "pressed", "selected", "disabled", "locked", "focus")
+}
 
 CORE_PRODUCT_PATHS = {
+    LOCOMOTIVE_PRODUCT,
     "art/product_assets/ed_hybrid_v1/core/core_wagon_cargo_red_normal_v02.png",
     "art/product_assets/ed_hybrid_v1/core/core_wagon_cargo_blue_normal_v02.png",
     "art/product_assets/ed_hybrid_v1/core/core_wagon_cargo_yellow_normal_v02.png",
@@ -42,10 +51,7 @@ def _load_validator():
 
 class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
     def test_product_manifest_exists_for_approved_promotion(self):
-        self.assertTrue(
-            PRODUCT_MANIFEST.is_file(),
-            f"missing approved product asset manifest: {PRODUCT_MANIFEST.relative_to(ROOT)}",
-        )
+        self.assertTrue(PRODUCT_MANIFEST.is_file())
 
     def test_candidate_source_remains_complete_and_unmodified_in_authority(self):
         data = json.loads(CANDIDATE_MANIFEST.read_text(encoding="utf-8"))
@@ -62,22 +68,27 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
         self.assertEqual(31, data["source_candidate_count"])
         self.assertEqual(31, len(data["source_candidate_dispositions"]))
         dispositions = {r["disposition"] for r in data["source_candidate_dispositions"]}
-        self.assertLessEqual(
-            dispositions,
-            {"PROMOTE_AS_IS", "PROMOTE_AFTER_REVISION", "REPLACE"},
-        )
+        self.assertLessEqual(dispositions, {"PROMOTE_AS_IS", "PROMOTE_AFTER_REVISION", "REPLACE"})
 
-    def test_first_import_safe_core_batch_keeps_corrupt_locomotive_pending(self):
+    def test_import_safe_hero_and_controls_recover_from_exact_approved_references(self):
         data = json.loads(PRODUCT_MANIFEST.read_text(encoding="utf-8"))
         assets = {record["path"]: record for record in data["assets"]}
-        dispositions = {
-            record["source_candidate"]: record for record in data["source_candidate_dispositions"]
-        }
-        self.assertLessEqual(CORE_PRODUCT_PATHS, set(assets))
-        self.assertNotIn(LOCOMOTIVE_PRODUCT, assets)
-        locomotive = dispositions[LOCOMOTIVE_SOURCE]
-        self.assertEqual("PROMOTE_AFTER_REVISION", locomotive["disposition"])
-        self.assertIn("Godot", locomotive["reason"])
+        dispositions = {record["source_candidate"]: record for record in data["source_candidate_dispositions"]}
+
+        self.assertLessEqual(CORE_PRODUCT_PATHS | CONTROL_PRODUCT_PATHS, set(assets))
+        self.assertEqual("REPLACE", dispositions[LOCOMOTIVE_SOURCE]["disposition"])
+        self.assertEqual("REPLACE", dispositions[CONTROLS_SOURCE]["disposition"])
+
+        locomotive = assets[LOCOMOTIVE_PRODUCT]
+        self.assertEqual(1.0, locomotive["visual_scale"])
+        self.assertEqual("approved_reference_recovery", locomotive["transform"]["kind"])
+        self.assertEqual(APPROVED_LOCOMOTIVE_REFERENCE_SHA256, locomotive["recovery_reference"]["sha256"])
+
+        for path in CONTROL_PRODUCT_PATHS:
+            control = assets[path]
+            self.assertEqual("approved_reference_recovery", control["transform"]["kind"])
+            self.assertEqual(APPROVED_CONTROLS_REFERENCE_SHA256, control["recovery_reference"]["sha256"])
+
         for color in ("red", "blue", "yellow"):
             wagon = assets[f"art/product_assets/ed_hybrid_v1/core/core_wagon_cargo_{color}_normal_v02.png"]
             self.assertEqual("centered_scale", wagon["transform"]["kind"])
@@ -89,7 +100,7 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
         validator = _load_validator()
         station = PRODUCT_ROOT / "core" / "core_station_red_normal_v01.png"
         info = validator._png_info(station)
-        self.assertTrue(info[-1], "palette PNG with tRNS must count as alpha-capable")
+        self.assertTrue(info[-1])
 
     def test_png_parser_rejects_corrupted_idat_stream(self):
         validator = _load_validator()
@@ -124,23 +135,16 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
                 validator._png_info(source)
             except ValueError as exc:
                 failures.append(f"{record['source_candidate']}: {exc}")
-        self.assertEqual([], failures, "PROMOTE_AS_IS candidates must be valid decodable PNG sources")
+        self.assertEqual([], failures)
 
     def test_every_product_png_is_manifested_exactly_once(self):
         data = json.loads(PRODUCT_MANIFEST.read_text(encoding="utf-8"))
-        actual = {
-            path.relative_to(ROOT).as_posix()
-            for path in PRODUCT_ROOT.rglob("*.png")
-        }
+        actual = {path.relative_to(ROOT).as_posix() for path in PRODUCT_ROOT.rglob("*.png")}
         recorded = [record["path"] for record in data["assets"]]
-        self.assertEqual(len(recorded), len(set(recorded)), "product manifest paths must be unique")
-        self.assertEqual(actual, set(recorded), "every product PNG must be represented in the product manifest")
+        self.assertEqual(len(recorded), len(set(recorded)))
+        self.assertEqual(actual, set(recorded))
 
     def test_static_validator_accepts_promoted_batch(self):
-        self.assertTrue(
-            VALIDATOR_PATH.is_file(),
-            f"missing static promotion validator: {VALIDATOR_PATH.relative_to(ROOT)}",
-        )
         validator = _load_validator()
         self.assertEqual(0, validator.validate())
 
