@@ -1,26 +1,26 @@
 # Current Confirmed Decisions
 
-Last updated: `2026-08-08`
+Last updated: `2026-08-09 KST`
+
+This file is the compact current-status registry for the finite delivery puzzle. Detailed rule text, implementation evidence, provenance, and audit reasoning remain in each registered owner document and the configured Google Sheet. This refresh is the bounded `SX-AUD-035` authority repair; it does not create a new product decision or widen any runtime claim.
 
 ```yaml
 current_product_baseline: FINITE_DELIVERY_PUZZLE_BASELINE
-current_decision_batch: GMB-003
-current_product_decisions: SX-DEC-027~036
-current_demo_decisions: SX-DEC-037 · SX-DEC-038 · SX-DEC-039 · SX-DEC-040 · SX-DEC-041 · SX-DEC-042
-current_execution_authority: FP-DOR-001 · EV-USER-021 · EV-USER-022 · EV-USER-023 · EV-USER-024 · EV-USER-025 · EV-USER-026 · EV-USER-027 · EV-USER-028 · EV-USER-029 · SX-DEC-044 · SX-DEC-046
-current_android_evidence: EV-FP-APK-001
-current_audit: SX-AUD-031
-planning_state: APPROVED · IMPLEMENTED_AND_MERGED
-implementation_state: FINITE_CORE_PASS · PC_VERTICAL_SLICE_AUTOMATED_PASS · RECOMMENDED_ROUTE_AUTOMATED_PASS · ROUTE_CONTROL_AUTOMATED_PASS · CURVE_RENDER_PORT_PARITY_PASS · ONE_SIDED_STATION_TERMINAL_PASS · MID_RUN_EXIT_AUTOMATED_PASS · DEFAULT_PROJECT_PLAY_BOOT_PASS · WINDOWS_EXPORT_PASS · ROUTE_END_AND_SWITCH_DIRECTION_MERGED_MAIN_VERIFIED
-verified_code_main: 12d1ef9b5c49e401d32dfc283db11a12574b5da3
-verified_implementation_head: 9f5aeb626c7e81e9d90232f84971c13211e808b1
-verified_pr_head: 9c884e85efa9b60cbba21253fc71db034cc753d0
-manual_gate_state: TITLE_EXIT_VISIBLE_PASS · SUCCESS_RESULT_VISIBLE_PASS · RED_ONE_SIDED_STATION_USER_PASS · BLUE_ONE_SIDED_STATION_USER_FAIL_STALE_RUNTIME_EVIDENCE · PC_LOCAL_ROUTE_AND_MID_RUN_RETEST_REQUIRED · WINDOWS_ARTIFACT_RUNTIME_NOT_RUN · ANDROID_NOT_RUN · CONNECTED_HIGODOT_NOT_RUN · HUMAN_NOT_RUN
-cutover_state: BLOCKED
-next_pc_gate: MAIN_FETCH_PULL → GODOT_REOPEN → F5_BLUE_TERMINAL_ROUTE_END_SWITCH_ARROW_RETEST → WINDOWS_RUNTIME_VISUAL_AUDIO_SMOKE
-next_android_gate: ANDROID_DEVICE_SMOKE → FIVE_PERSON_COMPREHENSION
+current_decision_span: SX-DEC-027~053
+superseded_decision: SX-DEC-047 -> SX-DEC-048
+authority_snapshot_through_main: 9db05c0cc9866eb3e4a7f014a1cfe289aa4447bd
+authority_refresh_audit: SX-AUD-035
+latest_visual_asset_authority: SX-DEC-053
+latest_tooling_authority: SX-DEC-052
+latest_visual_asset_audit: SX-AUD-040
+base_reference_at_refresh: 2a6ced23f6d6de1fb6e0a281c7138beb03f1a13b
 correct_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
-wrong_sheet: 19Ff... · DO_NOT_MODIFY
+product_runtime_state: FINITE_CORE_AUTOMATED_PASS · ROUTE_END_USER_CURRENT_MAIN_F5_PASS · SWITCH_DIRECTION_USER_CURRENT_MAIN_F5_PASS · CARGO_PICKUP_RETRY_USER_F5_PASS · FULL_PC_MANUAL_GATE_NOT_CLOSED
+visual_asset_state: ED_HYBRID_FINAL_DIRECTION · 31_IMPORT_SAFE_PRODUCT_ASSETS · RUNTIME_POC_DEFERRED · SEMANTIC_SPLITS_PENDING
+tooling_state: GODOT_AI_3_1_3_SYNCED · GUT_9_7_1_PRESERVED · HERA_TRACKED_V1_0_0_USER_ADOPTED · CONNECTED_PHYSICAL_EDITOR_NOT_RUN
+asset_vault_state: LEGACY_14_TRACKED_PRESERVED · UNTRACK_DEFERRED_PENDING_LOCAL_PRESERVATION_ATTESTATION
+physical_validation_ceiling: WINDOWS_PHYSICAL_RUNTIME_NOT_RUN · ANDROID_DEVICE_NOT_RUN · CONNECTED_PHYSICAL_EDITOR_NOT_RUN · BROADER_HUMAN_NOT_RUN
+production_cutover: BLOCKED_DEFERRED
 ```
 
 ## Current Core Fun Authority
@@ -35,209 +35,170 @@ wrong_sheet: 19Ff... · DO_NOT_MODIFY
 → 사용하지 않는 열린 노선 끝과 색상 대칭 한쪽 연결 종착역 허용
 → 배송 완료 전 이동 불가 시 ROUTE_END 게임 오버
 → 필요 시 메뉴에서 현재 플레이를 안전하게 종료
-→ 후속 재설계
+→ 결과를 보고 같은 조건 재도전 또는 후속 재설계
 ```
+
+The hard constraints remain LIFO, cargo/station color+shape readability, save/ruleset compatibility discipline, and no unapproved core-product widening.
 
 ## Current Decision Registry
 
-| Decision ID | 분야 | 현재 결정 | 상태 |
+| Decision ID | 분야 | 현재 결정 / 권위 | 현재 상태 |
 |---|---|---|---|
-| SX-DEC-027 | 제품 핵심 | 제한 시간 안에 모든 고정 화물을 배송하는 유한 수작업 퍼즐 | PASS |
-| SX-DEC-028 | 건설 | 자유 선로 건설·비용·전액 환급·추천 비용 | PASS |
-| SX-DEC-029 | 운행·판정 | 구조 검사·제한 시간·성공/실패·pause | PASS |
-| SX-DEC-030 | 선로 | 직선·곡선·분기·교차 | PASS |
-| SX-DEC-031 | 적재·LIFO | 수동 hold·auto toggle·무제한 stack·TOP 그룹 하역 | PASS |
-| SX-DEC-032 | Combo | 하역 그룹과 최대 1초 표시 | PASS |
-| SX-DEC-033 | 별·랭킹 | 신속·절약·점수 별과 leaderboard | NOT_STARTED |
-| SX-DEC-034 | 캠페인 | tutorial·theme chapter | NOT_STARTED |
-| SX-DEC-035 | 반복 도전 | 일일·주간 fixed-seed challenge | NOT_RUN |
+| SX-DEC-027 | 제품 핵심 | 제한 시간 안에 모든 고정 화물을 배송하는 유한 수작업 퍼즐 | CURRENT · PASS |
+| SX-DEC-028 | 건설 | 자유 선로 건설·비용·전액 환급·추천 비용 | CURRENT · PASS |
+| SX-DEC-029 | 운행·판정 | 구조 검사·제한 시간·성공/실패·pause | CURRENT · PASS |
+| SX-DEC-030 | 선로 | 직선·곡선·분기·교차 | CURRENT · PASS |
+| SX-DEC-031 | 적재·LIFO | 수동 hold·auto toggle·무제한 stack·TOP 그룹 하역 | CURRENT · PASS |
+| SX-DEC-032 | Combo | 하역 그룹과 최대 1초 표시 | CURRENT · PASS |
+| SX-DEC-033 | 별·랭킹 | 신속·절약·점수 별과 leaderboard | APPROVED · NOT_STARTED |
+| SX-DEC-034 | 캠페인 | tutorial·theme chapter | APPROVED · NOT_STARTED |
+| SX-DEC-035 | 반복 도전 | 일일·주간 fixed-seed challenge | APPROVED · NOT_RUN |
 | SX-DEC-036 | 공정성 | cosmetic-only, power progression·타인 route 공개 금지 | CURRENT |
-| SX-DEC-037 | PC Vertical Slice | 마우스+키보드, touch 보존, 대표 스테이지, F5 기본 Project Play, Windows Demo, Android validation 보존 | AUTOMATED_PASS · LOCAL_RETEST_REQUIRED |
-| SX-DEC-038 | Demo Route Refinement | 권장 배치, 15×11 균형 맵, 열린 종착, 한쪽 연결 종착역, 운행 중 분기·교차 표시·전환, 화면/판정 포트 동등성 | AUTOMATED_PASS · STATION_TERMINAL_PASS · LOCAL_RETEST_REQUIRED |
-| SX-DEC-039 | Mid-Run Exit | BUILD·RUN 상시 메뉴에서 Pause→종료 확인→타이틀 복귀, 취소 시 동일 플레이 유지, shell input lock | AUTOMATED_PASS · TITLE_EXIT_VISIBLE_PASS · MID_RUN_RETEST_REQUIRED |
-| SX-DEC-040 | Station Color Parity | 모든 역 색상은 reciprocal 이웃 1개 이상이면 동일하게 한쪽 연결 종착역으로 인정 | AUTOMATED_PASS · LOCAL_BLUE_RETEST_REQUIRED |
-| SX-DEC-041 | Route-End Failure | 배송·하역 판정 뒤 이동 불가면 FAILURE/ROUTE_END, 마지막 배송 SUCCESS 우선 | MERGED_MAIN_VERIFIED · AUTOMATED_PASS · LOCAL_F5_RETEST_REQUIRED |
-| SX-DEC-042 | Switch Direction Arrows | 분기의 세 연결 방향을 화살표로 표시·직접 선택하며 진입 방향 선택 시 U턴 허용 | MERGED_MAIN_VERIFIED · AUTOMATED_PASS · LOCAL_VISUAL_TOUCH_RETEST_REQUIRED |
+| SX-DEC-037 | PC Vertical Slice | F5 one-click Title→Briefing→BUILD→RUN→Result 제품형 데모 | IMPLEMENTED · AUTOMATED_CORE_PASS · FULL_PC_LOCAL_FLOW_NOT_CLOSED |
+| SX-DEC-038 | Demo Route Refinement | 15×11 대표 맵·권장 배치·열린 종착·운행 중 경로 전환·한쪽 연결 역 | IMPLEMENTED · AUTOMATED_ROUTE/PARITY_PASS · REMAINING_PHYSICAL_GATES_OPEN |
+| SX-DEC-039 | Mid-Run Exit | BUILD/RUN 메뉴→pause/확인→타이틀 복귀, 취소 시 동일 플레이 유지 | IMPLEMENTED · TITLE_EXIT_USER_LOCAL_PASS · FULL_BUILD/RUN_FLOW_RETEST_REQUIRED |
+| SX-DEC-040 | Station Color Parity | cargo color와 무관하게 reciprocal 이웃 1개 이상인 역을 같은 한쪽 연결 종착역 규칙으로 판정 | CURRENT · AUTOMATED_PARITY_PASS |
+| SX-DEC-041 | Route-End Failure | 접촉·하역 뒤 이동 불가면 FAILURE/ROUTE_END, 마지막 필수 배송 SUCCESS 우선 | MERGED_MAIN_VERIFIED · AUTOMATED_PASS · USER_CURRENT_MAIN_F5_PASS |
+| SX-DEC-042 | Switch Direction Arrows | reciprocal 세 방향 표시·직접 선택·진입 방향 U턴·점유 잠금 | MERGED_MAIN_VERIFIED · AUTOMATED_PASS · USER_CURRENT_MAIN_F5_PASS |
+| SX-DEC-043 | v4.3 Entry Gate | 작업 전 Decision Ledger·미확정 목록·Sheet·merged main을 증거로 재판정 | APPROVED_GOVERNANCE · ORIGINAL_ENTRY_BLOCK_IS_HISTORICAL |
+| SX-DEC-044 | GUT 9.7.1 Formal Authority | GUT 9.7.1을 정식 RED/GREEN/JUnit 테스트 권위로 사용 | MERGED_MAIN_VERIFIED · CURRENT_TEST_AUTHORITY |
+| SX-DEC-045 | Single Godot Authoring Authority | Scene·Node·Resource·Theme·Animation·signal wiring·project settings는 단일 Godot authoring authority 경계로 관리 | APPROVED_AUTHORITY_BOUNDARY · CURRENT_TOOL_VERSION_RECONCILED_BY_SX-DEC-052 · CONNECTED_PHYSICAL_AUTHORING_NOT_RUN |
+| SX-DEC-046 | Focused Visual/Audio Component | RouteControlOverlay 절차 화살표를 안전 확장, 새 binary visual/audio 불필요 | MERGED_MAIN_VERIFIED · PROCEDURAL_COMPONENT_AUTOMATED_PASS · USER_CURRENT_MAIN_F5_PASS · NO_NEW_BINARY_ASSET |
+| SX-DEC-047 | Validation Execution Fallback | Windows/WSL local exact-HEAD fallback 제안 | SUPERSEDED_NOT_MERGED_BY_SX-DEC-048 |
+| SX-DEC-048 | Standard Hosted Actions Authority | 공개 저장소의 표준 GitHub-hosted runner를 exact-HEAD 검증 권위로 사용 | MERGED_MAIN_VERIFIED · CURRENT_VALIDATION_EXECUTION_AUTHORITY |
+| SX-DEC-049 | Cargo Pickup Marker Visibility | 적재한 맵 화물 마커는 즉시 숨기고 Retry/새 실행에서 원위치 복원 | MERGED_MAIN_VERIFIED · AUTOMATED_EXACT_HEAD_PASS · USER_PHYSICAL_F5_PICKUP_RETRY_PASS |
+| SX-DEC-050 | Finite Visual Planning Package | VIS-FINITE-01/02/03 요구사항·컴포넌트·탐색 패키지를 runtime보다 먼저 확정 | PLANNING_PACKAGE_MERGED · RUNTIME_POC_DEFERRED |
+| SX-DEC-051 | E+D Hybrid Production Asset Pack | 31개 production-candidate와 provenance/P0 역할 범위를 추적 | MERGED_MAIN_VERIFIED · 31_CANDIDATES · PROVENANCE_SOURCE_FOR_SX-DEC-053 · NOT_RUNTIME_INTEGRATED |
+| SX-DEC-052 | Local Tooling & Asset-Vault Reconciliation | Godot AI 3.1.3·GUT 9.7.1·Hera v1.0.0 tracked authority와 local-only vault를 비파괴 정합화 | MERGED_MAIN_VERIFIED · HEADLESS_COMPAT_PASS · PILOT_ADOPTION_RECONCILED · VAULT_UNTRACK_DEFERRED |
+| SX-DEC-053 | Final E+D Production Visual Direction | E+D HYBRID 최종 방향, 파란 기관차 hero, 뒤 화물칸 0.74 비율, 31개 import-safe product asset | MERGED_MAIN_VERIFIED · DISPOSITION_31_COMPLETE · IMPORT_SAFE_31_PROMOTED · RUNTIME_POC_DEFERRED |
 
-## SX-DEC-037 One-click Direction
+## Current Runtime Evidence Boundary
 
-- 기본 `project.godot`의 `run/main_scene`은 `res://game/main/main.tscn`이다.
-- `game/main/main.tscn`은 `VerticalSliceDemo`를 직접 포함해 Project Play(F5 / ▶)로 대표 데모를 부트한다.
-- 사용자는 별도 Scene 선택이나 editor 설정 없이 Title → Briefing → BUILD → RUN → Result → Retry/Edit/Title을 진행한다.
-- Android Validation feature override·package ID·canonical APK evidence는 변경하지 않는다.
+Current evidence must remain feature-scoped.
 
-## SX-DEC-038 Current Route Direction
+Confirmed user/local evidence recorded in the configured Sheet:
 
-- 대표 맵 권위는 `VS_DEMO_01@2`, 보드는 `15×11`, 제한시간은 `150초`다.
-- 역·화물 마커는 넓은 가로·세로 범위를 사용하며 해당 칸 선로는 설치·회전·철거 대상이다.
-- `권장 배치`는 경고 0개이며 실제 완주 가능한 노선을 설치한다.
-- 모든 필수 화물을 적재·하역하면 사용하지 않는 열린 종착선은 허용한다.
-- 역 칸은 시작점에서 도달 가능하고 상호 연결된 이웃 선로가 한쪽 이상이면 연결된 역으로 판정한다.
-- 역은 반대편까지 관통하는 두 번째 연결을 요구하지 않으며 최종 종착역으로 사용할 수 있다.
-- 마지막 필수 화물을 한쪽 연결 역에서 하역하면 선로 끝 실패보다 하역·성공 판정을 먼저 확정한다.
-- 화물 칸과 일반 선로의 기존 연결 규칙은 완화하지 않는다.
-- 중간 종착역에서의 자동 반전은 이번 결정에 포함하지 않는다.
-- 분기·교차는 운행 중 상태를 표시하고 클릭으로 전환하되 열차 점유 중에는 잠근다.
-- 화면 렌더러의 직선·곡선·분기·교차 포트는 권위 모델 `TrackPiece.ports()`와 같은 회전 의미를 사용한다.
-- 새 맵·권장 노선·선로 표현·종착역 규칙은 자동 완주 또는 포트·연결 동등성 테스트 후 구현한다.
+- `SX-DEC-041`: current-main Godot 4.7.1 F5 — BLUE no-cargo route end resolves `FAILURE/ROUTE_END` without the old assertion/process termination; final required delivery keeps SUCCESS priority.
+- `SX-DEC-042` / `SX-DEC-046`: current-main Godot 4.7.1 F5 — three direction arrows visible, direct selection PASS, incoming-direction U-turn PASS, occupied-switch lock PASS.
+- `SX-DEC-049`: user F5 pickup/retry scenarios 3/3 PASS; the feature-specific physical gate is closed.
+- `SX-DEC-039`: title exit visibility has user-local PASS, but the complete BUILD/RUN cancel/confirm preservation flow is not promoted to full manual PASS here.
 
-## SX-DEC-039 Mid-Run Exit Direction
+Historical `SX-AUD-033` recorded a stale-local failure fingerprint before the later current-main F5 evidence above. The dedicated GitHub audit file remains historical evidence; this `SX-AUD-035` refresh records the later same-ID Sheet evidence rather than inventing a nonexistent replacement PR or rewriting the historical observation.
 
-- Product HUD 상단의 `메뉴`는 BUILD·RUN·UNLOADING·PAUSED에서 접근 가능하다.
-- BUILD에서는 finite phase를 `BUILD`로 유지하고 Shell만 일시정지한다.
-- RUNNING·UNLOADING에서는 공용 finite `PAUSE` 명령을 사용한다.
-- `현재 플레이 종료`는 별도 확인 화면을 열고 초기 포커스는 `계속 플레이`다.
-- 취소는 동일 gameplay instance와 진행 상태를 유지한다.
-- 확정은 현재 gameplay instance와 stale result를 폐기하고 TITLE로 돌아간다.
-- Pause·Exit Confirmation·Result 중에는 제품 키보드 입력을 잠근다.
-- 현재 플레이 종료와 애플리케이션 종료를 분리한다.
-- 사용자가 타이틀 화면의 종료 표시를 확인했으므로 `TITLE_EXIT_VISIBLE_PASS`다.
-- BUILD/RUN 메뉴의 취소·확정 전체 흐름은 별도 로컬 재검수 전까지 PASS로 확대하지 않는다.
-
-## SX-DEC-040 Station Color Parity Direction
-
-- 역 연결 판정은 cargo type과 색상에 무관하다.
-- RED_STAR와 BLUE_DIAMOND는 같은 선로 구조에서 같은 Preflight·하역 결과를 가져야 한다.
-- 자동 GUT parity는 RED_STAR와 BLUE_DIAMOND 양쪽 한쪽 연결 종착역 성공을 통과했다.
-- 과거 사용자 BLUE 실패는 병합 main을 로컬 Fetch/Pull 후 재검수하기 전까지 stale runtime evidence로 유지한다.
-
-## SX-DEC-041 Route-End Failure Direction
-
-- RUNNING 중 현재 칸의 접촉·하역 처리를 마친 뒤 합법적인 다음 칸이 없으면 `FAILURE · ROUTE_END`다.
-- 마지막 필수 배송의 pending SUCCESS는 같은 위치의 ROUTE_END보다 우선한다.
-- 비최종 하역 중 노선 끝에 도달하면 하역 연출 완료 후 ROUTE_END를 확정한다.
-- 제한 시간 실패는 `TIME_EXPIRED`로 구분한다.
-- 동일 배치 재시도와 편집 복구를 유지한다.
-
-Merged implementation evidence:
-- product merge: `12d1ef9b5c49e401d32dfc283db11a12574b5da3` · PR #106.
-- reviewed final PR head: `9c884e85efa9b60cbba21253fc71db034cc753d0`.
-- implementation code head: `9f5aeb626c7e81e9d90232f84971c13211e808b1`.
-- implementation GUT run `31226403455`: route outcome ordering 6/6; full 18/18 PASS.
-- implementation Godot run `31226403396`: 92 cases / 11,494 assertions / 0 failures.
-- final PR head checks: GUT `31226750561`, Godot `31226750559`, Project Contract `31226750577`, Thin Adapter `31226750563`, Windows Demo Export `31226750575` all PASS.
-
-## SX-DEC-042 Switch Direction Arrow Direction
-
-- SWITCH의 reciprocal 세 연결 방향을 모두 절차적 화살표로 표시한다.
-- 선택 방향은 굵기·채움으로 강조하고 나머지 방향도 계속 보인다.
-- 원하는 화살표를 직접 클릭·터치해 선택하며 진입 방향 선택은 U턴을 의미한다.
-- 분기 점유 중 잠금과 BUILD/RUN 권위는 유지한다.
-- CROSSING의 기존 STRAIGHT/RIGHT/LEFT 모드는 이번 배치에서 변경하지 않는다.
-- 새 바이너리 자산은 필요하지 않으며 기존 RouteControlOverlay를 안전하게 확장한다.
-
-Merged implementation evidence:
-- `FiniteTrackSwitch` three-port cycle/direct connected-port selection and U-turn merged in PR #106.
-- `FiniteTrackGraph.select_switch_exit()` preserves occupied lock and exposes `available_exits`.
-- `RouteControlOverlay` uses procedural targets and queued pointer intent only in RUNNING/UNLOADING.
-- `ProductFiniteSlice` consumes the queue through the existing `BOARD_CELL` command boundary; no new signal wiring.
-- implementation GUT run `31226403455`: switch 5/5, overlay 3/3, state 2/2 PASS.
-- final PR head exact checks all PASS before merge.
-
-## Latest Automated Evidence
-
-```yaml
-verified_code_main: 12d1ef9b5c49e401d32dfc283db11a12574b5da3
-verified_pr_head: 9c884e85efa9b60cbba21253fc71db034cc753d0
-implementation_head: 9f5aeb626c7e81e9d90232f84971c13211e808b1
-implementation_evidence:
-  gut_run: 31226403455
-  gut_result: PASS_18_OF_18_129_ASSERTS
-  godot_run: 31226403396
-  godot_result: PASS_92_CASES_11494_ASSERTS_0_FAILURES
-  project_contract: 31226403440_PASS
-  thin_adapter: 31226403397_PASS
-  windows_export: 31226403496_PASS_PACKAGE_HASH_ONLY
-final_pr_head_checks:
-  gut: 31226750561_PASS
-  godot: 31226750559_PASS
-  project_contract: 31226750577_PASS
-  thin_adapter: 31226750563_PASS
-  windows_demo_export: 31226750575_PASS
-product_merge:
-  pr: 106
-  sha: 12d1ef9b5c49e401d32dfc283db11a12574b5da3
-live_editor_pilot:
-  result: PASS_AUTOMATED
-  production_adapter_ready: false
-```
+Still not validated as physical/user completion:
 
 ```text
-PC AUTOMATED CORE: PASS
-DEFAULT PROJECT PLAY BOOT: PASS · AUTOMATED
-RECOMMENDED ROUTE: PASS · AUTOMATED
-ROUTE CONTROL UI/DOMAIN SYNC: PASS · AUTOMATED
-CURVE RENDER/DOMAIN PORT PARITY: PASS · AUTOMATED
-ONE-SIDED STATION COLOR PARITY: PASS · AUTOMATED
-ROUTE-END FAILURE ORDERING: PASS · AUTOMATED · MERGED
-SWITCH THREE-DIRECTION/DIRECT SELECT/U-TURN: PASS · AUTOMATED · MERGED
-PROCEDURAL DIRECTION TARGET CONTRACT: PASS · AUTOMATED · MERGED
-MID-RUN EXIT: PASS · AUTOMATED
-TITLE EXIT VISIBLE: PASS · USER LOCAL
-WINDOWS DEMO EXPORT: PASS · PACKAGE/HASH ONLY
-PC LOCAL ROUTE/MID-RUN/ARROW FLOW: RETEST_REQUIRED
-PC WINDOWS ARTIFACT RUNTIME: NOT_RUN
-CONNECTED HIGODOT AUTHORING SESSION: NOT_RUN
-ANDROID DEVICE SMOKE: NOT_RUN
-FIVE-PERSON COMPREHENSION: NOT_RUN
-PRODUCTION CUTOVER: BLOCKED
+Windows exported artifact physical runtime / visual / audio / physical input: NOT_RUN
+Android landscape device smoke: NOT_RUN
+Connected physical Godot/Hera authoring session: NOT_RUN
+Broader human / five-person comprehension: NOT_RUN
+Production cutover: BLOCKED_DEFERRED
 ```
 
-## Current Manual Runtime Boundary
+A hosted Windows Demo Export PASS is build/package evidence only and is not physical Windows runtime evidence.
 
-사용자 실기동에서 확인된 과거 문제와 수동 증거는 자동 테스트 성공으로 소급 변경하지 않는다.
+## Current Visual Asset Authority
 
-PR #106의 hosted/headless PASS와 Windows Demo Export PASS는 로컬 화면·실제 포인터/터치 가독성·Windows artifact 실행·Android 기기·connected HiGodot·사람 이해도 PASS로 확대하지 않는다.
-
-`main → Fetch origin → Pull origin → Godot reopen → F5`로 한쪽 연결 역, ROUTE_END 문구, 분기 세 방향 화살표·직접 선택·U턴, BUILD/RUN 종료 흐름을 재검수하기 전에는 해당 수동 Gate를 PASS로 올리지 않는다.
-
-## Canonical Android Evidence
+`SX-DEC-053` is the latest final visual/product-asset authority; `SX-DEC-051` remains its immutable provenance source.
 
 ```yaml
-source_commit: 536911449018a3caf3511bc64e7bf1a66edf2016
-workflow_run_id: 31011620357
-apk_sha256: eb49225ab4062e5cf863f79a0d17f85d339ea176d7f0bb6f04096ed8a07559ea
-package_id: com.alsdmlals4.switchyexpress.validation
+direction: E+D HYBRID · NEO-ARCADE READABILITY
+source_candidates: 31
+source_dispositions:
+  PROMOTE_AS_IS: 18
+  PROMOTE_AFTER_REVISION: 11
+  REPLACE: 2
+product_assets: 31
+blue_locomotive: HERO_ANCHOR
+trailing_wagons_visual_scale: 0.74
+runtime_integrated: false
 ```
 
-PC 기본 진입점과 Android validation feature override의 증거를 섞지 않는다.
+Pending semantic product splits are explicitly not complete:
 
-## Open Gates
+- stack HUD, including next-unload-group state;
+- remaining selected switch directions;
+- train cargo strip after smaller-wagon hierarchy reconciliation;
+- load-mode on/off semantics;
+- BUILD placement / palette / preflight full state split;
+- causal VFX state split.
 
-- Red one-sided station runtime: `PASS · USER LOCAL · EV-USER-028`
-- Blue one-sided station runtime: `FAIL · USER LOCAL · EV-USER-028 · STALE_RUNTIME_EVIDENCE · ROOT_CAUSE_UNVERIFIED`
-- One-sided station color parity: `PASS · AUTOMATED · MERGED`
-- SUCCESS result visibility: `PASS · USER LOCAL · EV-USER-029`
-- Route-end game over: `PASS · AUTOMATED · MERGED · LOCAL_F5_RETEST_REQUIRED`
-- Switch three-direction arrows and U-turn: `PASS · AUTOMATED · MERGED · LOCAL_VISUAL_TOUCH_RETEST_REQUIRED`
-- PC local route and mid-run retest: `RETEST_REQUIRED`
-- Windows artifact runtime·visual·audio·physical input smoke: `NOT_RUN`
-- Connected HiGodot authoring session: `NOT_RUN`
-- Android landscape device smoke: `NOT_RUN`
-- five-person comprehension: `NOT_RUN`
-- production cutover: `BLOCKED`
+After those bounded asset semantics are complete, runtime integration/POC remains a separate later gate.
+
+## Current Tooling Authority
+
+`SX-DEC-052` is the current tooling reconciliation authority.
+
+```yaml
+Godot_AI: 3.1.3 · TRACKED/SYNCED
+GUT: 9.7.1 · TRACKED/PRESERVED
+Hera: v1.0.0 provenance base · TRACKED/ENABLED/USER_ADOPTED
+Hera_headless_compat: PASS
+Godot_live_editor_pilot_reconciliation: PASS_AUTOMATED
+connected_physical_editor_validation: NOT_RUN
+legacy_asset_vault_tracked_paths: 14 · PRESERVED
+asset_vault_untrack: DEFERRED_PENDING_LOCAL_HASH_VERIFIED_PRESERVATION
+```
+
+The tooling decision does not authorize gameplay changes or treat automated Pilot/headless checks as a connected physical-editor PASS.
+
+## Latest Delivery Anchors
+
+```yaml
+route_end_and_switch_product_merge:
+  pr: 106
+  sha: 12d1ef9b5c49e401d32dfc283db11a12574b5da3
+cargo_pickup_visibility:
+  feature_pr: 110
+  physical_closure_pr: 111
+  closure_main: cb6b69360f4ba865cd103573d2a2c22d5c16a1cd
+finite_visual_planning:
+  pr: 112
+  merge_main: 827c5b9ffe2a9170ec099083cdd2a6942dff97f8
+production_candidates:
+  pr: 113
+  closure_pr: 114
+  closure_main: 60f7834659b026494fa927c1b5aa5c9c41a2e489
+local_tooling_and_hera:
+  product_recovery_pr: 119
+  pilot_reconciliation_pr: 120
+  closure_pr: 121
+  closure_main: 95dda145b518ce29bead78a5cbf5566cfa675419
+final_product_assets:
+  product_pr: 122
+  product_merge: 57dbdd9be2cc70e0c9b973d502f57bd725b045cb
+  closure_pr: 123
+  closure_main: 9db05c0cc9866eb3e4a7f014a1cfe289aa4447bd
+```
+
+These anchors identify delivery history. Individual technical PASS claims remain bounded by their exact-head workflow evidence in the corresponding decision/audit documents.
 
 ## Preserved Decisions
 
-- SX-DEC-001: 정식 제목 `Switchy Express: Cargo Puzzle`
-- SX-DEC-008: LIFO와 TOP 연속 동일 종류 그룹 하역
-- SX-DEC-011: 프리미엄 캐주얼 3D 카툰·토끼 기관사
-- SX-DEC-012: Godot 4.7.1·GDScript·PC/Android 가로형
-- SX-DEC-014: 한 역 도착의 연속 동일 화물 하역 수가 Combo
-- SX-DEC-015: rear/TOP을 읽는 compact token 의미
-- SX-DEC-019: cosmetic-only 공정성
-- SX-DEC-023: 같은 조건 재도전과 immutable identity
+- `SX-DEC-001`: 정식 제목 `Switchy Express: Cargo Puzzle`
+- `SX-DEC-008`: LIFO와 TOP 연속 동일 종류 그룹 하역
+- `SX-DEC-011`: 프리미엄 캐주얼 3D 카툰·토끼 기관사
+- `SX-DEC-012`: Godot 4.7.1·GDScript·PC/Android 가로형
+- `SX-DEC-014`: 한 역 도착의 연속 동일 화물 하역 수가 Combo
+- `SX-DEC-015`: rear/TOP을 읽는 compact token 의미
+- `SX-DEC-019`: cosmetic-only 공정성
+- `SX-DEC-023`: 같은 조건 재도전과 immutable identity
 
 ## Historical Boundary
 
-무한 생존, fuel, BOOST, capacity 8, cargo slowdown, pickup respawn, switch auto-reset은 현재 제품 권위가 아니다.
+무한 생존, fuel, BOOST, capacity 8, cargo slowdown, pickup respawn, switch auto-reset은 현재 finite puzzle 제품 권위가 아니다.
+
+`SX-DEC-047`은 승인 이력이 있으나 `SX-DEC-048`에 의해 superseded 되었고 main에 병합되지 않았다.
 
 ## Current Execution Authority
 
 ```text
-PC: main 12d1ef9b product merge → Fetch origin → Pull origin → Godot reopen → F5 → 파란 한쪽 연결 역 → ROUTE_END 실패 문구 → 분기 세 방향 화살표·직접 선택·U턴 → 마지막 배송 SUCCESS 우선순위 → Windows runtime visual/audio/input smoke
-Android: canonical APK export PASS → Android device smoke → Five-person Comprehension
-Both: 별도 production cutover review
+1. SX-DEC-053의 남은 semantic asset splits를 승인된 범위 안에서 완결한다.
+2. 그 후 별도 runtime integration / POC gate로 이동한다.
+3. Windows physical runtime / visual / audio / physical input smoke를 별도 검증한다.
+4. Android landscape device smoke를 별도 검증한다.
+5. broader human / comprehension validation을 별도 수행한다.
+6. .asset-vault legacy untrack은 local hash-verified preservation attestation 이후 별도 실행한다.
 ```
 
-수동 증거 전에는 해당 Gate를 PASS로 표시하지 않는다.
+수동·물리 증거가 없는 Gate를 자동 테스트로 PASS로 확대하지 않는다. 새 gameplay/product 방향이 필요해지는 순간에는 새 사용자 결정이 선행되어야 한다.
