@@ -1,9 +1,10 @@
 # SX-DEC-054 · Semantic Asset Completion Strategy
 
-**Status:** `USER_APPROVED · DESIGN_SPEC_MERGED · RUN_BATCH_2A_IMPLEMENTED_VALIDATION_PENDING`  
+**Status:** `USER_APPROVED · DESIGN_SPEC_MERGED · RUN_BATCH_2A_MERGED_MAIN_VERIFIED · BUILD_VFX_PENDING · RUNTIME_POC_DEFERRED`  
 **Date:** 2026-08-10 KST  
 **Baseline main:** `de302e7cfd56a23d53a6ec97509195564e36749d`  
 **Implementation baseline:** `bf0146bf51eb6b7a54d1ac219b021a6a41225c4c`  
+**RUN Batch 2A merge/main:** `35b93f3a15f35780b12cd4e8887c8e06f8ade72b`  
 **Source visual authority:** `SX-DEC-053`  
 **Source component authority:** `SX-DEC-050`
 
@@ -146,10 +147,14 @@ Each meaning-bearing effect requires a Reduced Motion information-equivalent pre
 - Runtime/domain collision and route geometry remain unchanged.
 - Existing candidates and existing product files are never silently overwritten.
 
-## RUN Batch 2A implementation status
+## RUN Batch 2A merged-main status
 
-The approved first implementation batch now exists on `agent/sx-dec-054-run-semantic-batch-2a` and remains pre-merge until final exact-head validation completes.
+RUN Batch 2A was implemented and squash-merged through PR `#129`.
 
+- implementation branch: `agent/sx-dec-054-run-semantic-batch-2a`;
+- implementation baseline: `bf0146bf51eb6b7a54d1ac219b021a6a41225c4c`;
+- final exact review head: `34ab2b907190f69775ace8e89c32f689ba17bc35`;
+- merge/main: `35b93f3a15f35780b12cd4e8887c8e06f8ade72b`;
 - dedicated sidecar: `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054.json`;
 - `SX-DEC-053` ownership preserved at **39** product PNGs;
 - `SX-DEC-054` RUN Batch 2A ownership: **20** independent semantic PNG primitives;
@@ -161,24 +166,35 @@ The approved first implementation batch now exists on `agent/sx-dec-054-run-sema
 - ambiguous train-strip/load-mode/switch atlases remain `PRESERVE_REFERENCE_ONLY_NO_STATE_MAPPING`;
 - `runtime_integrated=false` globally and per Batch 2A asset/composition.
 
-The implementation has already passed an intermediate exact-head CI cycle after correcting the legacy `SX-DEC-053` test assumption that every PNG in the shared product root had a single 053 owner. Final merge evidence is intentionally not recorded here until the PR's final exact head is stable.
+Final exact-head validation for `34ab2b907190f69775ace8e89c32f689ba17bc35`:
+
+- Project Contract `31342194367`: **PASS**;
+- GUT 9.7.1 `31342194376`: **PASS**;
+- Godot Tests `31342194392`: **PASS**;
+- Validate Thin Adapter Migration `31342194374`: **PASS**;
+- Windows Demo Export `31342194375`: **PASS**;
+- unresolved review threads: **0**;
+- final compare: behind **0**, mergeable **true**.
+
+Hosted Windows export is packaging evidence only. It is not Windows physical runtime evidence.
 
 ## Acceptance contract before implementation merge
 
-The implementation plan must add focused static verification that proves:
+The implementation plan added focused static verification that proves:
 
 - every new file has a registered `SX-DEC-054` semantic role/state;
 - no new record claims an unnamed `SX-DEC-051` atlas crop as authority;
-- existing 39 `SX-DEC-053` assets remain manifested and byte-preserved unless an explicitly documented versioned repair occurs;
-- required semantic state coverage is complete for the implementation batch;
+- existing 39 `SX-DEC-053` assets remain separately manifested and owned;
+- required semantic state coverage is complete for RUN Batch 2A;
 - filenames, PNG integrity, dimensions, alpha capability, and manifest↔physical-file agreement pass;
-- Reduced Motion equivalents exist for meaning-bearing VFX states in scope;
 - runtime integration remains false;
-- no `.tscn`, `project.godot`, gameplay/domain, Resource/Theme/Animation/signal, plugin, or `.asset-vault` bytes change in the semantic-asset-only batch.
+- no `.tscn`, `project.godot`, gameplay/domain, Resource/Theme/Animation/signal, plugin, or `.asset-vault` bytes changed in Batch 2A.
+
+Reduced Motion meaning-equivalent verification remains applicable to the later VFX batch; no meaning-bearing VFX assets were added in RUN Batch 2A.
 
 ## Verification boundary
 
-Automated/static verification may establish product-asset package correctness only.
+Automated/static verification establishes product-asset package correctness only.
 
 Still `NOT_RUN` / deferred:
 - Godot runtime hookup and POC;
@@ -191,4 +207,4 @@ Still `NOT_RUN` / deferred:
 
 ## Delivery rule
 
-After the implementation PR is exact-head validated and merged, update this same Decision ID on GitHub and in the configured Google Sheet with the final merged-main evidence. Do not create a replacement Decision ID merely for technical closure.
+RUN Batch 2A is merged and technically closed under this same `SX-DEC-054` Decision ID. Remaining authorized semantic production continues as BUILD Batch 2B and VFX Batch 2C under the same strategy. Runtime integration/POC remains a later separate gate. The configured Google Sheet must use this same Decision ID and preserve the deferred physical/runtime boundaries.
