@@ -37,7 +37,9 @@ def _png_info(path: Path):
         actual_crc = zlib.crc32(chunk_type)
         actual_crc = zlib.crc32(chunk_data, actual_crc) & 0xFFFFFFFF
         if expected_crc != actual_crc:
-            raise ValueError(f"PNG CRC mismatch: {path.relative_to(ROOT)} · {chunk_type.decode('ascii', 'replace')}")
+            raise ValueError(
+                f"PNG CRC mismatch: {path.relative_to(ROOT)} · {chunk_type.decode('ascii', 'replace')}"
+            )
 
         if chunk_type == b"IHDR":
             if length != 13:
@@ -67,6 +69,21 @@ def _png_info(path: Path):
 
     alpha_capable = color_type in {4, 6} or has_trns
     return width, height, bit_depth, color_type, alpha_capable
+
+
+def scan_candidate_health(product):
+    disposition_by_source = {
+        record["source_candidate"]: record["disposition"]
+        for record in product.get("source_candidate_dispositions", [])
+    }
+    corrupt = []
+    for source, disposition in sorted(disposition_by_source.items()):
+        path = ROOT / source
+        try:
+            _png_info(path)
+        except (OSError, ValueError) as exc:
+            corrupt.append((source, disposition, str(exc)))
+    return corrupt
 
 
 def validate():
@@ -111,6 +128,11 @@ def validate():
         if not str(record.get("reason", "")).strip():
             errors.append(f"missing disposition reason: {record.get('source_candidate')}")
 
+    corrupt_sources = scan_candidate_health(product)
+    for source, disposition, detail in corrupt_sources:
+        if disposition == "PROMOTE_AS_IS":
+            errors.append(f"PROMOTE_AS_IS source PNG is corrupt: {source} · {detail}")
+
     seen_product_paths = set()
     for asset in product.get("assets", []):
         rel = asset.get("path", "")
@@ -146,6 +168,14 @@ def validate():
             if transform.get("kind") != "centered_scale" or transform.get("scale") != scale:
                 errors.append(f"wagon centered_scale provenance mismatch: {rel}")
 
+    pending_corrupt = [
+        (source, detail)
+        for source, disposition, detail in corrupt_sources
+        if disposition != "PROMOTE_AS_IS"
+    ]
+    for source, detail in pending_corrupt:
+        print(f"candidate source deferred for revision: {source} · {detail}")
+
     if errors:
         print("final E+D product asset promotion: FAIL")
         for error in errors:
@@ -154,7 +184,8 @@ def validate():
 
     print(
         "final E+D product asset promotion: PASS · "
-        f"dispositions={len(ledger)} · promoted={len(product.get('assets', []))} · runtime_integrated=false"
+        f"dispositions={len(ledger)} · promoted={len(product.get('assets', []))} · "
+        f"pending_corrupt_sources={len(pending_corrupt)} · runtime_integrated=false"
     )
     return 0
 
