@@ -10,6 +10,25 @@ PRODUCT_MANIFEST = PRODUCT_ROOT / "manifest.json"
 CANDIDATE_MANIFEST = ROOT / "art" / "production_candidates" / "ed_hybrid_v1" / "manifest.json"
 VALIDATOR_PATH = ROOT / "tools" / "validate_final_ed_product_asset_promotion.py"
 
+CORE_PRODUCT_PATHS = {
+    "art/product_assets/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png",
+    "art/product_assets/ed_hybrid_v1/core/core_wagon_cargo_red_normal_v02.png",
+    "art/product_assets/ed_hybrid_v1/core/core_wagon_cargo_blue_normal_v02.png",
+    "art/product_assets/ed_hybrid_v1/core/core_wagon_cargo_yellow_normal_v02.png",
+    "art/product_assets/ed_hybrid_v1/core/core_cargo_star_red_normal_v01.png",
+    "art/product_assets/ed_hybrid_v1/core/core_cargo_star_blue_normal_v01.png",
+    "art/product_assets/ed_hybrid_v1/core/core_cargo_star_yellow_normal_v01.png",
+    "art/product_assets/ed_hybrid_v1/core/core_station_red_normal_v01.png",
+    "art/product_assets/ed_hybrid_v1/core/core_station_blue_normal_v01.png",
+    "art/product_assets/ed_hybrid_v1/core/core_station_yellow_normal_v01.png",
+    "art/product_assets/ed_hybrid_v1/core/core_rail_straight_normal_v01.png",
+    "art/product_assets/ed_hybrid_v1/core/core_rail_curve_normal_v01.png",
+    "art/product_assets/ed_hybrid_v1/core/core_rail_crossing_normal_v01.png",
+    "art/product_assets/ed_hybrid_v1/core/core_rail_switch_three_way_normal_v01.png",
+    "art/product_assets/ed_hybrid_v1/core/core_marker_start_normal_v01.png",
+    "art/product_assets/ed_hybrid_v1/core/core_marker_route_end_normal_v01.png",
+}
+
 
 class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
     def test_product_manifest_exists_for_approved_promotion(self):
@@ -37,6 +56,18 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
             dispositions,
             {"PROMOTE_AS_IS", "PROMOTE_AFTER_REVISION", "REPLACE"},
         )
+
+    def test_first_core_product_batch_is_promoted_with_smaller_wagons(self):
+        data = json.loads(PRODUCT_MANIFEST.read_text(encoding="utf-8"))
+        assets = {record["path"]: record for record in data["assets"]}
+        self.assertLessEqual(CORE_PRODUCT_PATHS, set(assets))
+        self.assertEqual(1.0, assets["art/product_assets/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png"]["visual_scale"])
+        for color in ("red", "blue", "yellow"):
+            wagon = assets[f"art/product_assets/ed_hybrid_v1/core/core_wagon_cargo_{color}_normal_v02.png"]
+            self.assertEqual("centered_scale", wagon["transform"]["kind"])
+            self.assertAlmostEqual(0.74, wagon["visual_scale"], places=6)
+            self.assertGreaterEqual(wagon["visual_scale"], 0.70)
+            self.assertLessEqual(wagon["visual_scale"], 0.75)
 
     def test_static_validator_accepts_promoted_batch(self):
         self.assertTrue(
