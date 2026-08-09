@@ -55,6 +55,7 @@ class LocalToolingReconciliationContractTests(unittest.TestCase):
         self.assertIn('version="9.7.1"', gut)
         self.assertIn('res://addons/godot_ai/plugin.cfg', project)
         self.assertIn('res://addons/gut/plugin.cfg', project)
+        self.assertIn('res://addons/hera_agent_godot/plugin.cfg', project)
 
     def test_authority_files_record_bounded_state(self) -> None:
         self.assertTrue(ALLOWLIST_FILE.is_file(), "legacy allowlist must exist")
@@ -76,12 +77,36 @@ class LocalToolingReconciliationContractTests(unittest.TestCase):
         self.assertEqual("9.7.1", state["gut"]["repo_version"])
         self.assertTrue(state["gut"]["repo_enabled"])
         self.assertTrue(state["gut"]["user_enabled_approved"])
-        self.assertEqual("NotNull92/hera-agent-godot", state["hera"]["identity"])
-        self.assertEqual("1.0.0", state["hera"]["stable_upstream_version"])
-        self.assertTrue(state["hera"]["user_enabled_approved"])
-        self.assertIsNone(state["hera"]["local_version"])
-        self.assertFalse(state["hera"]["repo_tracked"])
-        self.assertEqual("LOCAL_VERSION_UNVERIFIED", state["hera"]["status"])
+
+        hera = state["hera"]
+        self.assertEqual("NotNull92/hera-agent-godot", hera["identity"])
+        self.assertEqual("1.0.0", hera["stable_upstream_version"])
+        self.assertTrue(hera["user_enabled_approved"])
+        self.assertIsNone(hera["local_version"])
+        self.assertTrue(hera["repo_tracked"])
+        self.assertTrue(hera["repo_enabled"])
+        self.assertEqual("1.0.0", hera["repo_version"])
+        self.assertEqual("v1.0.0", hera["upstream_tag"])
+        self.assertEqual(
+            "10f245ddae9e7a5d569150302acbde0d78f2aa03",
+            hera["upstream_commit"],
+        )
+        self.assertEqual(
+            "6cb87ac8ba768de1d924447f385fba6d80bcde68",
+            hera["upstream_addon_tree_sha"],
+        )
+        self.assertEqual(
+            "614fbdce2b1517b8ef34eadb156bf058ecf59b1d",
+            hera["user_adoption_commit"],
+        )
+        self.assertEqual(
+            ["addons/hera_agent_godot/hera_agent_plugin.gd:HEADLESS_EARLY_RETURN"],
+            hera["project_compatibility_patches"],
+        )
+        self.assertEqual(
+            "REPO_TRACKED_V1_0_0_USER_ADOPTED_HEADLESS_COMPAT_PATCHED",
+            hera["status"],
+        )
 
     def test_validator_rejects_local_only_expansion(self) -> None:
         self.assertTrue(VALIDATOR_FILE.is_file(), "validator must exist")
