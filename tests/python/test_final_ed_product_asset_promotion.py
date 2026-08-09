@@ -126,6 +126,16 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
                 failures.append(f"{record['source_candidate']}: {exc}")
         self.assertEqual([], failures, "PROMOTE_AS_IS candidates must be valid decodable PNG sources")
 
+    def test_every_product_png_is_manifested_exactly_once(self):
+        data = json.loads(PRODUCT_MANIFEST.read_text(encoding="utf-8"))
+        actual = {
+            path.relative_to(ROOT).as_posix()
+            for path in PRODUCT_ROOT.rglob("*.png")
+        }
+        recorded = [record["path"] for record in data["assets"]]
+        self.assertEqual(len(recorded), len(set(recorded)), "product manifest paths must be unique")
+        self.assertEqual(actual, set(recorded), "every product PNG must be represented in the product manifest")
+
     def test_static_validator_accepts_promoted_batch(self):
         self.assertTrue(
             VALIDATOR_PATH.is_file(),
