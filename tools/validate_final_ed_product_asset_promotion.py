@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CANDIDATE_MANIFEST = ROOT / "art" / "production_candidates" / "ed_hybrid_v1" / "manifest.json"
 PRODUCT_ROOT = ROOT / "art" / "product_assets" / "ed_hybrid_v1"
 PRODUCT_MANIFEST = PRODUCT_ROOT / "manifest.json"
+SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054.json"
 ALLOWED_DISPOSITIONS = {"PROMOTE_AS_IS", "PROMOTE_AFTER_REVISION", "REPLACE"}
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 
@@ -95,6 +96,19 @@ def validate():
     except (OSError, json.JSONDecodeError) as exc:
         print(f"final E+D product asset promotion: FAIL · {exc}")
         return 1
+
+    semantic_product_paths = set()
+    if SEMANTIC_MANIFEST.is_file():
+        try:
+            semantic = json.loads(SEMANTIC_MANIFEST.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            errors.append(f"invalid SX-DEC-054 sidecar manifest: {exc}")
+            semantic = {}
+        if semantic.get("decision_id") != "SX-DEC-054":
+            errors.append("semantic sidecar decision must be SX-DEC-054")
+        semantic_product_paths = {
+            record.get("path") for record in semantic.get("semantic_assets", []) if record.get("path")
+        }
 
     candidate_paths = [record["path"] for record in candidate.get("assets", [])]
     candidate_path_set = set(candidate_paths)
@@ -204,17 +218,21 @@ def validate():
             "SX-DEC-053 authoritative slice batch must be absent or complete at 8 records"
         )
 
+    if seen_product_paths.intersection(semantic_product_paths):
+        errors.append("SX-DEC-053 and SX-DEC-054 product ownership must be disjoint")
+
     actual_product_paths = {
         path.relative_to(ROOT).as_posix()
         for path in PRODUCT_ROOT.rglob("*.png")
     }
-    if actual_product_paths != seen_product_paths:
-        missing_from_manifest = sorted(actual_product_paths - seen_product_paths)
-        missing_from_tree = sorted(seen_product_paths - actual_product_paths)
+    actual_sx_dec_053_paths = actual_product_paths - semantic_product_paths
+    if actual_sx_dec_053_paths != seen_product_paths:
+        missing_from_manifest = sorted(actual_sx_dec_053_paths - seen_product_paths)
+        missing_from_tree = sorted(seen_product_paths - actual_sx_dec_053_paths)
         if missing_from_manifest:
-            errors.append(f"unmanifested product PNGs: {missing_from_manifest}")
+            errors.append(f"unmanifested SX-DEC-053 product PNGs: {missing_from_manifest}")
         if missing_from_tree:
-            errors.append(f"manifested product PNGs missing from tree: {missing_from_tree}")
+            errors.append(f"manifested SX-DEC-053 product PNGs missing from tree: {missing_from_tree}")
 
     pending_corrupt = [
         (source, detail)
@@ -234,6 +252,7 @@ def validate():
         "final E+D product asset promotion: PASS · "
         f"dispositions={len(ledger)} · promoted={len(product.get('assets', []))} · "
         f"authoritative_slices={authoritative_slice_count} · "
+        f"sx_dec_054_owned={len(semantic_product_paths)} · "
         f"pending_corrupt_sources={len(pending_corrupt)} · runtime_integrated=false"
     )
     return 0
