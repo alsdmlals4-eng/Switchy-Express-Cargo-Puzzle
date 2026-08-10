@@ -1,5 +1,7 @@
 # Development Gates
 
+현재 제품/실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 우선한다. 이 문서는 제품·PC·Android·Base 검증 Gate의 관계와 역사 증거를 책임지며, 저장된 commit/PR/run 값은 해당 시점의 증거다.
+
 ## Active Gate Chains
 
 ### PC Vertical Slice chain
@@ -10,7 +12,7 @@ PC0 SX-DEC-037~042 AUTHORITY: PASS · GMB-003 PLAN
 → PC2 DEFAULT PROJECT PLAY BOOT: PASS · AUTOMATED
 → PC3 PR #83/#99/#100 MERGE: PASS
 → PC4 ROUTE·TERMINAL·MID-RUN AUTOMATED REGRESSION: PASS
-→ PC4A COLOR PARITY·ROUTE-END·SWITCH ARROW IMPLEMENTATION: PENDING
+→ PC4A COLOR PARITY·ROUTE-END·SWITCH ARROW IMPLEMENTATION: MERGED_MAIN_VERIFIED · AUTOMATED_PASS · USER_FEATURE_F5_PASS
 → PC5 LOCAL ROUTE·MID-RUN RETEST: RETEST_REQUIRED
 → PC6 WINDOWS DEBUG EXPORT·INTEGRITY: PASS
 → PC7 WINDOWS ARTIFACT RUNTIME·VISUAL·AUDIO SMOKE: NOT_RUN
@@ -138,6 +140,8 @@ godot_failures: 0
 one_sided_station_assertions: 20
 ```
 
+이 값은 당시 자동화 제품 증거이며 현재 default branch HEAD를 고정하지 않는다.
+
 ## PC2 — DEFAULT PROJECT PLAY BOOT
 
 Status: `PASS · AUTOMATED`
@@ -178,23 +182,21 @@ Status: `PASS`
 
 ## PC4A — COLOR PARITY·ROUTE-END·SWITCH ARROW IMPLEMENTATION
 
-Status: `PENDING · SX-AUD-026`
+Status: `MERGED_MAIN_VERIFIED · AUTOMATED_PASS · USER_FEATURE_F5_PASS`
 
-- RED_STAR/BLUE_DIAMOND one-sided station parity
-- final delivery SUCCESS priority over route end
-- no legal next cell → FAILURE/ROUTE_END without assertion
-- switch reciprocal three-direction selection including incoming-direction Uturn
-- all switch directions visible as procedural arrows
-- occupied lock and BUILD input pass-through
+- `SX-DEC-040`: RED_STAR/BLUE_DIAMOND one-sided station parity · automated parity PASS
+- `SX-DEC-041`: final delivery SUCCESS priority + no legal next cell → FAILURE/ROUTE_END · merged/automated/user current-main F5 PASS
+- `SX-DEC-042`: reciprocal three-direction switch selection including incoming-direction U-turn + occupied lock · merged/automated/user current-main F5 PASS
+- `SX-DEC-046`: procedural direction-arrow component reinforcement · merged/user current-main F5 PASS
 
-자동 구현 증거 전에는 PASS로 올리지 않는다.
+이 feature-scoped 증거는 **full PC local flow PASS가 아니다**. PC5 전체 BUILD/RUN retest, PC7 Windows artifact physical runtime, Android device, connected physical editor, broader human/comprehension은 각각 별도 Gate로 남는다.
 
 ## PC5 — LOCAL ROUTE·MID-RUN RETEST
 
 Status: `RETEST_REQUIRED`
 
 ```text
-main 확인
+LIVE_GITHUB_DEFAULT_BRANCH 확인
 → Fetch origin
 → Pull origin
 → Godot 완전 종료 후 reopen
@@ -208,7 +210,7 @@ main 확인
 → 종료 확정·Title 복귀
 ```
 
-사용자가 실제로 확인하기 전에는 PASS로 변경하지 않는다.
+사용자가 실제 전체 흐름을 확인하기 전에는 PC5를 PASS로 변경하지 않는다.
 
 ## PC6 — WINDOWS DEBUG EXPORT·INTEGRITY
 
@@ -239,7 +241,7 @@ Status: `PASS`
 
 Status: `PASS · NOT_ADOPTED_AS_RELEASE`
 
-최신 Base main의 선택적 Godot addon 사용과 HiGodot 단일 저작 권위 정책을 확인했다. 현 프로젝트는 검증된 실제 소비 경로 없이 새 addon·Pilot을 자동 도입하지 않는다.
+최신 Base main은 비교·학습 reference다. 현 프로젝트는 검증된 실제 소비 경로와 별도 채택 근거 없이 새 Base 동작·addon·Pilot을 자동 도입하지 않는다.
 
 ## B2 — PR #94 CANDIDATE PILOT
 
@@ -265,15 +267,18 @@ Status: `NOT_RUN`
 ## Current Transition
 
 ```text
-PC: main Fetch/Pull → F5 one-sided station + mid-run exit retest → Windows artifact smoke
+Current state owner: CURRENT_CONFIRMED_DECISIONS + ACTIVE_CONTEXT
+PC: LIVE_GITHUB_DEFAULT_BRANCH → PC5 full local route/mid-run retest → PC7 Windows artifact physical runtime smoke
+Presentation/runtime: SX-DEC-055 SPEC/DoR APPROVED · USER_DEFERRED_AFTER_DOR · IMPLEMENTATION_NOT_STARTED
 Android: canonical APK device smoke → Five-person Comprehension
-Base: PR #94 archived → merged immutable candidate가 생길 때 새 bounded adoption
-Both: separate production cutover review
+Base: v9.4.3 pin 유지 · upstream main은 reference-only
+Production: separate cutover review · BLOCKED_DEFERRED
 ```
 
 ## 금지
 
 - 이미 병합된 PR #83을 Draft·MAIN_PENDING·merge blocked로 표시
+- PC4A를 구현 전 상태로 되돌려 이미 완료된 SX-DEC-041/042/046 작업을 반복
 - 폐기된 feature branch를 사용자 실행 경로로 안내
 - 자동·export PASS를 수동 runtime PASS로 확대
 - PC 증거를 Android·HUMAN 증거로 대체
