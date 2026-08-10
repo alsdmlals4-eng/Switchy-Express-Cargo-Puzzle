@@ -15,18 +15,22 @@ Last updated: `2026-08-10 KST`
 | 최신 runtime semantic 권위 | `SX-DEC-055 · Runtime Semantic POC` |
 | SX-DEC-055 상태 | `USER_APPROVED · SPEC_APPROVED · IMPLEMENTATION_DOR_READY · USER_DEFERRED_AFTER_DOR` |
 | Runtime semantic 구현 | `NOT_STARTED · runtime_integrated=false` |
-| 현재 작업 모드 | `HANDOFF / CONTINUATION STATE REFRESH` |
+| 현재 작업 모드 | `HANDOFF_CLOSED / WAIT_FOR_EXPLICIT_RESUME` |
 | 재개 시 첫 작업 | `SX-DEC-055 implementation plan · Task 1 · Step 1.1 RED` |
-| 프로젝트 main 관측점 | `6cd14324a3de1a1b2a9898aaee1e9535c87c8fdc` |
-| 열린 프로젝트 PR | `0` at handoff refresh start |
+| 현재 project main source | `LIVE_GITHUB_DEFAULT_BRANCH` |
+| PR #137 post-merge 관측점 | `32a0d6c154188f36bdefdefe96e62bc2a4718565` · historical integration observation |
+| 열린 프로젝트 PR 관측 | `0` after PR #137 merge |
 | Base 채택 pin | `v9.4.3` |
-| 최신 Base main 관측 | `637dad32c773c56a27d44d847518580848dee493` · reference only, no repin |
+| 최신 Base main 관측 | `16af66ff51027f74193b60469e7c20281a1cade6` · reference only, no repin |
+| Base project evidence | `BCP - Switchy Express: Cargo Puzzle` · Base PR #245 `MERGED` · canonical owner `BCP-2026-013` |
 | Windows physical runtime | `NOT_RUN` |
 | Android landscape device | `NOT_RUN` |
 | Connected physical editor | `NOT_RUN` |
 | Broader human/comprehension | `NOT_RUN` |
 | Production cutover | `BLOCKED_DEFERRED` |
 | Sheet | `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo` |
+
+`PR #137 post-merge 관측점`은 현재 main을 영구 고정하는 값이 아니다. 새 세션은 반드시 GitHub default branch를 다시 읽는다.
 
 ## 한 문장
 
@@ -37,14 +41,15 @@ Last updated: `2026-08-10 KST`
 새 채팅·새 에이전트·Codex는 과거 대화보다 현재 저장소를 우선하며 다음 순서로 읽는다.
 
 1. 루트 `AGENTS.md`
-2. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
-3. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
-4. `docs/decisions/SX_DEC_055_RUNTIME_SEMANTIC_POC.md`
-5. `docs/superpowers/specs/2026-08-10-runtime-semantic-poc-design.md`
-6. `docs/superpowers/plans/2026-08-10-sx-dec-055-runtime-semantic-poc.md`
-7. `기획서/00_프로젝트_허브/ROADMAP.md`
-8. configured Google Sheet `SX-DEC-055` row and current audit rows
-9. implementation을 재개할 때만 plan이 지목한 실제 Godot/GDScript/test/manifests를 current main에서 재조회
+2. 현재 GitHub `main` / open PR / latest commit
+3. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
+4. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
+5. `docs/decisions/SX_DEC_055_RUNTIME_SEMANTIC_POC.md`
+6. `docs/superpowers/specs/2026-08-10-runtime-semantic-poc-design.md`
+7. `docs/superpowers/plans/2026-08-10-sx-dec-055-runtime-semantic-poc.md`
+8. `기획서/00_프로젝트_허브/ROADMAP.md`
+9. configured Google Sheet `SX-DEC-055` row and current audit rows
+10. implementation을 재개할 때만 plan이 지목한 실제 Godot/GDScript/test/manifests를 current main에서 재조회
 
 `ACTIVE_CONTEXT.md`는 재개용 locator다. 저장된 SHA나 PR 상태보다 현재 GitHub main/open PR/실제 파일이 우선한다.
 
@@ -100,30 +105,56 @@ Base current structure/latest main 확인
 
 동일 승인 범위 재개에는 새 승인 질문이 필요하지 않다. 다만 새 gameplay/product 방향, 새로운 semantic 의미, 승인 범위 확대, P0/P1 blocker가 생기면 `USER_DECISION_REQUIRED`다.
 
-## 최신 자동화 증거 경계
+## 최신 handoff 자동화 증거 경계
 
-`SX-DEC-055` DoR docs closure PR #136 exact head `d3cb8c9a681b3c9839c8e06acec3ecc8daaf0b27`:
+PR #137 exact head `7be35adf4fa98bb915616a1e6a89f67dcb19a4ca`:
 
-- Project Contract `31351253902`: PASS
-- GUT 9.7.1 `31351253900`: PASS
-- Godot Tests `31351253898`: PASS
-- Validate Thin Adapter Migration `31351253899`: PASS
+- Project Contract `31354096765`: PASS
+- GUT 9.7.1 `31354096767`: PASS
+- Godot Tests `31354096757`: PASS
+- Validate Thin Adapter Migration `31354096769`: PASS
+- Windows Demo Export `31354096778`: PASS
 - unresolved review threads: 0
-- docs-only change: 3 files
-- merge/main at DoR close: `6cd14324a3de1a1b2a9898aaee1e9535c87c8fdc`
+- exact changed files: 5
+- squash merge observation: `32a0d6c154188f36bdefdefe96e62bc2a4718565`
 
-이 증거는 **DoR 문서/회귀 증거**이며 `SX-DEC-055` runtime implementation PASS가 아니다.
+이 증거는 **handoff/canonical-freshness 문서·회귀 증거**이며 `SX-DEC-055` runtime implementation PASS가 아니다.
+
+PR #137 merge commit에 대한 별도 default-branch push CI는 당시 즉시 조회에서 관측되지 않았으므로 `UNVERIFIED`로 남긴다.
+
+## Base project evidence
+
+사용자 명명 규칙:
+
+```text
+BCP - 프로젝트 이름
+```
+
+Switchy는 새 canonical proposal을 중복 생성하지 않고 기존 BCP-013에 프로젝트 evidence를 연결했다.
+
+```yaml
+project_evidence_name: "BCP - Switchy Express: Cargo Puzzle"
+canonical_owner: BCP-2026-013-post-merge-continuation-state-reconciliation
+evidence_path: "[수정제안서]/BCP-2026-013-post-merge-continuation-state-reconciliation/evidence/BCP-Switchy-Express-Cargo-Puzzle.md"
+base_pr_245_exact_head: 828ee41eb16c74d571497f063a0380b9fa3e6860
+base_pr_245_ci_gate: PASS
+base_pr_245_merge_main_observed: 16af66ff51027f74193b60469e7c20281a1cade6
+new_registry_entry: false
+active_base_behavior_changed: false
+```
 
 ## 별도 열린 검증 Gate
 
 다음은 보류/미실행 상태를 유지하며 `SX-DEC-055` 자동화 증거로 대체하지 않는다.
 
+- `CANONICAL MAIN APK EXPORT · PASS`: packaging/hash evidence only
 - Windows exported artifact physical runtime / visual / audio / physical input: `NOT_RUN`
 - Android landscape device smoke: `NOT_RUN`
 - Connected physical Godot/Hera authoring session: `NOT_RUN`
 - Broader human / comprehension: `NOT_RUN`
+- `FIVE-PERSON COMPREHENSION`: `NOT_RUN`
 - `.asset-vault` legacy untrack: `DEFERRED_PENDING_LOCAL_PRESERVATION_ATTESTATION`
-- Production cutover: `BLOCKED_DEFERRED`
+- `PRODUCTION CUTOVER`: `BLOCKED_DEFERRED`
 
 ## 현재 중요한 경계
 
