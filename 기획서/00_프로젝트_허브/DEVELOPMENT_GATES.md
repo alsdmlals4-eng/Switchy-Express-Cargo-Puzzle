@@ -1,8 +1,19 @@
 # Development Gates
 
-현재 제품/실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 우선한다. 이 문서는 제품·PC·Android·Base 검증 Gate의 관계와 역사 증거를 책임지며, 저장된 commit/PR/run 값은 해당 시점의 증거다.
+현재 제품/실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 우선한다. 이 문서는 제품·PC·Android·human·Base 검증 Gate의 관계와 역사 증거를 책임지며, 저장된 commit/PR/run 값은 해당 시점의 증거다.
 
 ## Active Gate Chains
+
+### v4.5 planning/build chain
+
+```text
+A0 PHASE A GPT CHAT PLANNING: IN_PROGRESS · SX-AUD-044
+→ A1 READY_FOR_USER_PLANNING_COMPLETE_GATE: NOT_YET
+→ A2 explicit user "기획 완료": NOT_GRANTED
+→ A3 PHASE B FINAL PLANNING REVIEW: NOT_RUN
+→ A4 BUILD AUTHORITY: BLOCKED
+→ only after A3 PASS: SX-DEC-055 Task 1 / Step 1.1 RED
+```
 
 ### PC Vertical Slice chain
 
@@ -18,17 +29,23 @@ PC0 SX-DEC-037~042 AUTHORITY: PASS · GMB-003 PLAN
 → PC7 WINDOWS ARTIFACT RUNTIME·VISUAL·AUDIO SMOKE: NOT_RUN
 ```
 
-### Product·Android chain
+### Product·Android·human chain
 
 ```text
 G0 PROJECT_IDENTIFIED: PASS
 → G1 FINITE_PRODUCT_AUTHORITY: PASS
 → G2 AUTOMATED_CORE: PASS
 → G3 VALIDATION_PREPARATION: PASS
-→ G4 CANONICAL MAIN APK EXPORT: PASS
-→ G5 ANDROID DEVICE SMOKE: NOT_RUN
-→ G6 FIVE-PERSON COMPREHENSION: NOT_RUN · BLOCKED_BY_G5
-→ G7 PRODUCTION CUTOVER REVIEW: BLOCKED_BY_G5_G6
+→ G4 CANONICAL MAIN APK EXPORT: PASS · HISTORICAL VALIDATION-HARNESS PACKAGING EVIDENCE
+→ G5 HISTORICAL ANDROID VALIDATION-HARNESS DEVICE SMOKE: NOT_RUN · OPTIONAL DIAGNOSTIC LANE
+
+Current acceptance lane:
+A4 BUILD AUTHORITY
+→ G5A SX-DEC-055 MERGED AUTOMATED POC: NOT_STARTED
+→ G5B POST-POC ACCEPTANCE BUILD IDENTITY: UNASSIGNED
+→ G5C POST-POC ACCEPTANCE BUILD PHYSICAL SMOKE: NOT_READY / NOT_RUN
+→ G6 FIVE-PERSON COMPREHENSION: NOT_RUN · BLOCKED_BY_G5C
+→ G7 PRODUCTION CUTOVER REVIEW: BLOCKED_BY_REQUIRED_PHYSICAL_HUMAN_EVIDENCE
 ```
 
 ### Base integration chain
@@ -40,7 +57,7 @@ B0 BASE v9.4.3 RELEASE PIN: PASS
 → B3 MERGED IMMUTABLE PIN + SUCCESSFUL PILOT + SINGLE_AUTHORITY REVIEW: NOT_RUN
 ```
 
-PC Gate는 Android·HUMAN Gate를 대체하지 않는다. Base 후보 Pilot은 제품 수동 Gate를 대체하지 않는다.
+PC Gate는 Android·human Gate를 대체하지 않는다. historical Android harness는 future post-POC acceptance build를 대체하지 않는다. Base 후보 Pilot은 제품 수동 Gate를 대체하지 않는다.
 
 ## G0 — PROJECT_IDENTIFIED
 
@@ -54,9 +71,9 @@ Status: `PASS`
 
 ## G1 — FINITE_PRODUCT_AUTHORITY
 
-Status: `PASS · GMB-003 · SX-DEC-027~042`
+Status: `PASS · GMB-003 · SX-DEC-027~055`
 
-현재 권위는 유한 authored delivery puzzle, 자유 선로 건설, preflight, 수동/자동 적재, unlimited LIFO, persistent branch·crossing, TOP 그룹 하역, 제한 시간 성공·실패, 색상 대칭 한쪽 연결 최종 종착역, 배송 전 노선 끝 ROUTE_END, 분기 세 방향 화살표·U턴, same-layout retry, mid-run exit다.
+현재 권위는 유한 authored delivery puzzle, 자유 선로 건설, preflight, 수동/자동 적재, unlimited LIFO, persistent branch·crossing, TOP 그룹 하역, 제한 시간 성공·실패, 한쪽 연결 최종 종착역, ROUTE_END, 분기 세 방향 화살표·U턴·점유 잠금, same-layout retry, mid-run exit와 승인된 semantic presentation 방향이다.
 
 무한 생존·fuel·BOOST·capacity 8·pickup respawn·switch auto-reset은 역사 계약이며 현재 제품 권위가 아니다.
 
@@ -68,24 +85,22 @@ Status: `PASS`
 - cargo field·manual/auto load·unlimited LIFO
 - delivery·pause·result·retry·identity
 - recommended route full delivery
-- curve renderer/domain port parity
-- one-sided final station unload success
-- mid-run menu·pause·confirm·input lock contract
+- route-end / switch-direction / pickup regression evidence
 
 ## G3 — VALIDATION_PREPARATION
 
-Status: `PASS · SX-AUD-018`
+Status: `PASS · HISTORICAL VALIDATION-HARNESS PREPARATION`
 
 - isolated Android validation launcher
 - `PROOF / STACK 8 / STACK 16 / STACK 32`
 - on-device Selector·Back
 - validation feature override와 isolated package ID
 
-기본 PC Project Play 변경은 validation feature override를 제거하지 않는다.
+기본 product entrypoint와 이 historical validation-harness launcher를 혼동하지 않는다.
 
 ## G4 — CANONICAL MAIN APK EXPORT
 
-Status: `PASS · SX-AUD-019 · EV-FP-APK-001`
+Status: `PASS · SX-AUD-019 · EV-FP-APK-001 · HISTORICAL_PACKAGING_EVIDENCE`
 
 ```yaml
 source_commit: 536911449018a3caf3511bc64e7bf1a66edf2016
@@ -93,27 +108,73 @@ apk_sha256: eb49225ab4062e5cf863f79a0d17f85d339ea176d7f0bb6f04096ed8a07559ea
 package_id: com.alsdmlals4.switchyexpress.validation
 ```
 
-APK export PASS는 device·HUMAN·production PASS가 아니다.
+APK export PASS는 device·human·production PASS가 아니다. 이 pre-SX-DEC-055 artifact는 post-POC 사람 이해도 build가 아니다.
 
-## G5 — ANDROID DEVICE SMOKE
+## G5 — HISTORICAL ANDROID VALIDATION-HARNESS DEVICE SMOKE
 
-Status: `NOT_RUN`
+Status: `NOT_RUN · OPTIONAL_DIAGNOSTIC_LANE`
 
-- full canonical APK SHA-256 match
-- physical Android landscape device
-- AND-01~20
-- BUILD→RUN→pause/resume→result→retry/edit
-- LOAD hold·auto-load·branch direct tap
-- safe area·touch target·clipping·overlap
-- crash·ANR·script error·심각한 frame 저하 없음
+Authority:
+
+- `ANDROID_DEVICE_SMOKE_RUNBOOK.md`
+- `ANDROID_DEVICE_SMOKE_EVIDENCE_TEMPLATE.md`
+
+이 fixed-hash lane은 AND-01~20과 STACK 8/16/32 diagnostic을 보존한다. 실행한다면 해당 historical artifact의 device evidence만 생성하며 G5C 또는 G6을 자동 통과시키지 않는다.
+
+## G5A — SX-DEC-055 MERGED AUTOMATED POC
+
+Status: `NOT_STARTED · BLOCKED_BY_A2_A3`
+
+선행 조건:
+
+1. Phase A planning readiness
+2. explicit user `기획 완료`
+3. Phase B final planning review PASS
+4. 기존 SX-DEC-055 exact-file RED-first plan 실행
+5. exact-head automated regression + merge/readback
+
+## G5B — POST-POC ACCEPTANCE BUILD IDENTITY
+
+Status: `UNASSIGNED`
+
+```yaml
+source_commit: UNASSIGNED
+artifact_sha256: UNASSIGNED
+package_identity: UNASSIGNED
+assignment_rule: ONLY_AFTER_AUTHORIZED_SX_DEC_055_IMPLEMENTATION_MERGE
+```
+
+현재 Phase A에서 future hash/SHA를 발명하지 않는다.
+
+## G5C — POST-POC ACCEPTANCE BUILD PHYSICAL SMOKE
+
+Status: `NOT_READY · NOT_RUN`
+
+- exact G5B build identity 확인
+- actual product entrypoint/representative flow
+- relevant input/readability/safe-area/stability
+- semantic stack/load/preflight/switch/event presentation 확인
+- visual feedback이 gameplay authority를 바꾸지 않는지 관찰
+- evidence를 exact source/artifact identity에 연결
+
+PC physical evidence는 진단에 사용할 수 있지만 Android-oriented human Gate를 PC-only evidence로 대체하지 않는다.
 
 ## G6 — FIVE-PERSON COMPREHENSION
 
-Status: `NOT_RUN · BLOCKED_BY_G5`
+Status: `NOT_RUN · BLOCKED_BY_G5C`
+
+Authority: `기획서/50_제작_검증/PLAYTEST_PLAN.md`
+
+- minimum analyzable first-contact sessions = 5
+- recruit target = 6 `TEST_VALUE`
+- behavior/prediction/transfer first
+- neutral moderator prompts
+- same exact accepted build identity as G5C
+- unresolved P0/P1 comprehension/accessibility finding = 0 for PASS
 
 ## G7 — PRODUCTION CUTOVER REVIEW
 
-Status: `BLOCKED_BY_G5_G6`
+Status: `BLOCKED_BY_REQUIRED_PHYSICAL_HUMAN_EVIDENCE`
 
 ## PC0 — SX-DEC-037~042 AUTHORITY
 
@@ -124,7 +185,7 @@ Status: `PASS`
 - 한쪽 reciprocal 연결 최종 종착역
 - BUILD·RUN 중 현재 플레이 종료 확인
 - Windows debug export
-- Android validation evidence 보존
+- historical Android validation evidence 보존
 
 ## PC1 — AUTOMATED VERTICAL SLICE
 
@@ -137,7 +198,6 @@ godot_tests: 853 · PASS
 godot_cases: 92
 godot_assertions: 11457
 godot_failures: 0
-one_sided_station_assertions: 20
 ```
 
 이 값은 당시 자동화 제품 증거이며 현재 default branch HEAD를 고정하지 않는다.
@@ -150,10 +210,7 @@ Status: `PASS · AUTOMATED`
 project.godot
 → res://game/main/main.tscn
 → VerticalSliceDemo
-→ TITLE
-→ BRIEFING
-→ GAMEPLAY
-→ HUD·BUILD toolbar visible
+→ TITLE → BRIEFING → GAMEPLAY
 ```
 
 ## PC3 — PR #83 MERGE
@@ -166,7 +223,7 @@ merged_at: 2026-08-06T04:43:25Z
 merge_commit: 4189cd13bebc34649cdca39aa78bfd045805b7c8
 ```
 
-PR #83 병합 여부는 더 이상 수동 runtime Gate의 선행 차단점이 아니다. 병합 후 실제 로컬 검수는 PC5가 소유한다.
+PR #83 병합 여부는 더 이상 수동 runtime Gate의 차단점이 아니다.
 
 ## PC4 — ROUTE·TERMINAL·MID-RUN AUTOMATED REGRESSION
 
@@ -174,51 +231,37 @@ Status: `PASS`
 
 - 15×11 권장 배치 full delivery
 - 분기·교차 runtime control
-- curve render/domain port parity
 - one-sided station Preflight PASS
-- final unload before terminal-end failure
-- mid-run menu·cancel/confirm state contract
-- title exit visibility와 mid-run flow의 수동 범위 분리
+- final unload success priority
+- mid-run menu state contract
 
 ## PC4A — COLOR PARITY·ROUTE-END·SWITCH ARROW IMPLEMENTATION
 
 Status: `MERGED_MAIN_VERIFIED · AUTOMATED_PASS · USER_FEATURE_F5_PASS`
 
-- `SX-DEC-040`: RED_STAR/BLUE_DIAMOND one-sided station parity · automated parity PASS
-- `SX-DEC-041`: final delivery SUCCESS priority + no legal next cell → FAILURE/ROUTE_END · merged/automated/user current-main F5 PASS
-- `SX-DEC-042`: reciprocal three-direction switch selection including incoming-direction U-turn + occupied lock · merged/automated/user current-main F5 PASS
-- `SX-DEC-046`: procedural direction-arrow component reinforcement · merged/user current-main F5 PASS
+- `SX-DEC-040`: one-sided station parity automated PASS
+- `SX-DEC-041`: SUCCESS priority + FAILURE/ROUTE_END merged/automated/user F5 PASS
+- `SX-DEC-042`: three-direction direct select/U-turn/occupied lock merged/automated/user F5 PASS
+- `SX-DEC-046`: procedural direction-arrow reinforcement merged/user F5 PASS
 
-이 feature-scoped 증거는 **full PC local flow PASS가 아니다**. PC5 전체 BUILD/RUN retest, PC7 Windows artifact physical runtime, Android device, connected physical editor, broader human/comprehension은 각각 별도 Gate로 남는다.
+이 feature-scoped 증거는 full PC local flow PASS가 아니다.
 
 ## PC5 — LOCAL ROUTE·MID-RUN RETEST
 
 Status: `RETEST_REQUIRED`
 
 ```text
-LIVE_GITHUB_DEFAULT_BRANCH 확인
-→ Fetch origin
-→ Pull origin
-→ Godot 완전 종료 후 reopen
-→ F5
-→ 권장 배치 또는 재현용 배치
-→ 파란 한쪽 연결 종착역 판정
-→ 배송 전 노선 끝 FAILURE/ROUTE_END
-→ 분기 세 화살표·진입 방향 U턴·점유 잠금
-→ 마지막 하역 SUCCESS 우선순위
-→ BUILD/RUN 메뉴 취소·상태 보존
-→ 종료 확정·Title 복귀
+LIVE_GITHUB_DEFAULT_BRANCH
+→ Fetch/Pull
+→ F5 product entrypoint
+→ representative route/build/run
+→ route-end/switch/load/station/result/retry-edit
+→ crash/script-error observation
 ```
-
-사용자가 실제 전체 흐름을 확인하기 전에는 PC5를 PASS로 변경하지 않는다.
 
 ## PC6 — WINDOWS DEBUG EXPORT·INTEGRITY
 
-Status: `PASS`
-
-- Windows preset isolated
-- EXE/PCK non-empty
-- SHA-256 contract PASS
+Status: `PASS · HISTORICAL_PACKAGE_EVIDENCE`
 
 ## PC7 — WINDOWS ARTIFACT RUNTIME·VISUAL·AUDIO SMOKE
 
@@ -228,7 +271,7 @@ Status: `NOT_RUN`
 - 전체 제품 흐름
 - mouse·keyboard physical input
 - clipping·overlap·readability
-- audio cue·train loop·pause·success/failure
+- audio cue·pause·success/failure
 - crash·script error·심각한 frame 저하 없음
 
 ## B0 — BASE v9.4.3 RELEASE PIN
@@ -241,46 +284,39 @@ Status: `PASS`
 
 Status: `PASS · NOT_ADOPTED_AS_RELEASE`
 
-최신 Base main은 비교·학습 reference다. 현 프로젝트는 검증된 실제 소비 경로와 별도 채택 근거 없이 새 Base 동작·addon·Pilot을 자동 도입하지 않는다.
-
 ## B2 — PR #94 CANDIDATE PILOT
 
 Status: `CLOSED · ARCHIVED · NOT_MERGED`
-
-- PR 설명은 Base C0.2를 말하지만 실제 diff는 C0.3 candidate SHA를 고정
-- candidate SHA는 현재 Base main과 분기됨
-- 핵심 Pilot workflow 실패
-- merged immutable release pin 아님
-- HiGodot 단일 저작 권위와 역할 경계 재검토 필요
 
 ## B3 — MERGED IMMUTABLE PIN + SUCCESSFUL PILOT + SINGLE_AUTHORITY REVIEW
 
 Status: `NOT_RUN`
 
-다음 네 조건이 모두 충족되어야 새 Pilot adoption을 merge-ready로 판단한다.
-
-1. Base의 승인·병합된 immutable SHA
-2. 프로젝트 adoption contract와 descriptor의 동일 SHA
-3. Pilot과 전체 제품 회귀의 성공
-4. HiGodot 또는 다른 Godot mutation authority와 중복되지 않는 실제 소비 경로
-
 ## Current Transition
 
 ```text
-Current state owner: CURRENT_CONFIRMED_DECISIONS + ACTIVE_CONTEXT
-PC: LIVE_GITHUB_DEFAULT_BRANCH → PC5 full local route/mid-run retest → PC7 Windows artifact physical runtime smoke
-Presentation/runtime: SX-DEC-055 SPEC/DoR APPROVED · USER_DEFERRED_AFTER_DOR · IMPLEMENTATION_NOT_STARTED
-Android: canonical APK device smoke → Five-person Comprehension
-Base: v9.4.3 pin 유지 · upstream main은 reference-only
-Production: separate cutover review · BLOCKED_DEFERRED
+Current state owner: CURRENT_CONFIRMED_DECISIONS + ACTIVE_CONTEXT + PHASE_A_PLANNING_COMPLETION_GATE
+Planning: SX-AUD-044 → READY_FOR_USER_PLANNING_COMPLETE_GATE
+→ explicit user "기획 완료"
+→ Phase B final planning review
+→ only after Phase B PASS: SX-DEC-055 RED-first implementation
+→ merged automated POC
+→ exact post-POC acceptance build identity
+→ G5C physical acceptance smoke
+→ G6 Five-person Comprehension
+→ separate production cutover review
 ```
 
 ## 금지
 
+- prior approval/continuous-work를 user `기획 완료` Gate로 해석
+- Phase A/Phase B 전에 SX-DEC-055 BUILD 시작
 - 이미 병합된 PR #83을 Draft·MAIN_PENDING·merge blocked로 표시
-- PC4A를 구현 전 상태로 되돌려 이미 완료된 SX-DEC-041/042/046 작업을 반복
-- 폐기된 feature branch를 사용자 실행 경로로 안내
-- 자동·export PASS를 수동 runtime PASS로 확대
-- PC 증거를 Android·HUMAN 증거로 대체
-- 실패한 미병합 Base candidate를 release pin으로 승격
+- PC4A를 PENDING으로 되돌림
+- historical validation APK를 post-POC human acceptance build로 자동 사용
+- future build SHA/hash를 Phase A에서 발명
+- 자동·export PASS를 physical/human PASS로 확대
+- Five-person gate를 six-person mandatory product rule로 변경
+- PC 증거를 Android-oriented human evidence로 대체
+- Base candidate를 release pin으로 자동 승격
 - legacy endless·fuel·BOOST 보호 규칙 재활성화
