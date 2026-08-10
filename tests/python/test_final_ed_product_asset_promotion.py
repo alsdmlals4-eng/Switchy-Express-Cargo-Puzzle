@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 PRODUCT_ROOT = ROOT / "art" / "product_assets" / "ed_hybrid_v1"
 PRODUCT_MANIFEST = PRODUCT_ROOT / "manifest.json"
 SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054.json"
+BUILD_SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054_build_2b.json"
 CANDIDATE_MANIFEST = ROOT / "art" / "production_candidates" / "ed_hybrid_v1" / "manifest.json"
 VALIDATOR_PATH = ROOT / "tools" / "validate_final_ed_product_asset_promotion.py"
 LOCOMOTIVE_SOURCE = "art/production_candidates/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png"
@@ -211,14 +212,28 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
 
     def test_every_product_png_has_exactly_one_manifest_owner(self):
         base = json.loads(PRODUCT_MANIFEST.read_text(encoding="utf-8"))
-        semantic = json.loads(SEMANTIC_MANIFEST.read_text(encoding="utf-8"))
+        run_semantic = json.loads(SEMANTIC_MANIFEST.read_text(encoding="utf-8"))
+        build_semantic = json.loads(BUILD_SEMANTIC_MANIFEST.read_text(encoding="utf-8"))
         actual = {path.relative_to(ROOT).as_posix() for path in PRODUCT_ROOT.rglob("*.png")}
         base_recorded = [record["path"] for record in base["assets"]]
-        semantic_recorded = [record["path"] for record in semantic["semantic_assets"]]
+        run_recorded = [record["path"] for record in run_semantic["semantic_assets"]]
+        build_recorded = [record["path"] for record in build_semantic["semantic_assets"]]
+
+        self.assertEqual(39, len(base_recorded))
+        self.assertEqual(20, len(run_recorded))
+        self.assertEqual(8, len(build_recorded))
         self.assertEqual(len(base_recorded), len(set(base_recorded)))
-        self.assertEqual(len(semantic_recorded), len(set(semantic_recorded)))
-        self.assertTrue(set(base_recorded).isdisjoint(semantic_recorded))
-        self.assertEqual(actual, set(base_recorded) | set(semantic_recorded))
+        self.assertEqual(len(run_recorded), len(set(run_recorded)))
+        self.assertEqual(len(build_recorded), len(set(build_recorded)))
+
+        base_paths = set(base_recorded)
+        run_paths = set(run_recorded)
+        build_paths = set(build_recorded)
+        self.assertTrue(base_paths.isdisjoint(run_paths))
+        self.assertTrue(base_paths.isdisjoint(build_paths))
+        self.assertTrue(run_paths.isdisjoint(build_paths))
+        self.assertEqual(67, len(base_paths | run_paths | build_paths))
+        self.assertEqual(actual, base_paths | run_paths | build_paths)
 
     def test_static_validator_accepts_promoted_batch(self):
         validator = _load_validator()

@@ -1,10 +1,11 @@
 # SX-DEC-054 · Semantic Asset Completion Strategy
 
-**Status:** `USER_APPROVED · DESIGN_SPEC_MERGED · RUN_BATCH_2A_MERGED_MAIN_VERIFIED · BUILD_VFX_PENDING · RUNTIME_POC_DEFERRED`  
+**Status:** `USER_APPROVED · DESIGN_SPEC_MERGED · RUN_BATCH_2A_MERGED_MAIN_VERIFIED · BUILD_BATCH_2B_IMPLEMENTED_VALIDATION_PENDING · VFX_2C_PENDING · RUNTIME_POC_DEFERRED`  
 **Date:** 2026-08-10 KST  
 **Baseline main:** `de302e7cfd56a23d53a6ec97509195564e36749d`  
-**Implementation baseline:** `bf0146bf51eb6b7a54d1ac219b021a6a41225c4c`  
+**RUN implementation baseline:** `bf0146bf51eb6b7a54d1ac219b021a6a41225c4c`  
 **RUN Batch 2A merge/main:** `35b93f3a15f35780b12cd4e8887c8e06f8ade72b`  
+**BUILD Batch 2B baseline:** `fb229b2ef522fb29c70f43787549fb2e20bf89b0`  
 **Source visual authority:** `SX-DEC-053`  
 **Source component authority:** `SX-DEC-050`
 
@@ -141,6 +142,7 @@ Each meaning-bearing effect requires a Reduced Motion information-equivalent pre
 - Product root remains `art/product_assets/ed_hybrid_v1/`.
 - New files use lowercase snake_case and the existing versioned naming contract.
 - One semantic state per exported file where pixels encode the state; shared neutral primitives/overlays are allowed when they prevent duplicate state cross-products.
+- Dedicated semantic-completion sidecars may be used to preserve already-verified batch manifests without reserializing or widening their ownership records.
 - Localized copy is never baked into PNGs.
 - Color-only state communication is forbidden.
 - Cargo/station identity retains color+shape redundancy.
@@ -158,11 +160,11 @@ RUN Batch 2A was implemented and squash-merged through PR `#129`.
 - dedicated sidecar: `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054.json`;
 - `SX-DEC-053` ownership preserved at **39** product PNGs;
 - `SX-DEC-054` RUN Batch 2A ownership: **20** independent semantic PNG primitives;
-- total physical product PNGs in the shared product root: **59**, with disjoint manifest ownership;
-- Stack HUD coverage added: `compact`, `8plus`, `16plus`, `unload_group`, `paused`;
-- train cargo strip composition coverage: `empty`, `tokens_1_3`, `compressed_plus_n`, `unload_transition`;
-- load-mode composition coverage: `manual_idle`, `manual_held`, `auto_off`, `auto_on`, `paused_disabled`, `input_received`;
-- switch presentation coverage: `three_visible`, `selected`, `unselected`, `occupied_locked`, `inactive`, while direction geometry remains procedural under `SX-DEC-042 · SX-DEC-046 · VIS-014`;
+- total physical product PNGs after RUN 2A: **59**, with disjoint manifest ownership;
+- Stack HUD coverage: `compact`, `8plus`, `16plus`, `unload_group`, `paused`;
+- train cargo strip coverage: `empty`, `tokens_1_3`, `compressed_plus_n`, `unload_transition`;
+- load-mode coverage: `manual_idle`, `manual_held`, `auto_off`, `auto_on`, `paused_disabled`, `input_received`;
+- switch coverage: `three_visible`, `selected`, `unselected`, `occupied_locked`, `inactive`, with direction geometry procedural under `SX-DEC-042 · SX-DEC-046 · VIS-014`;
 - ambiguous train-strip/load-mode/switch atlases remain `PRESERVE_REFERENCE_ONLY_NO_STATE_MAPPING`;
 - `runtime_integrated=false` globally and per Batch 2A asset/composition.
 
@@ -178,19 +180,49 @@ Final exact-head validation for `34ab2b907190f69775ace8e89c32f689ba17bc35`:
 
 Hosted Windows export is packaging evidence only. It is not Windows physical runtime evidence.
 
+## BUILD Batch 2B implementation status
+
+BUILD Batch 2B is implemented on `agent/sx-dec-054-build-semantic-batch-2b` and remains pre-merge until the final exact-head gate completes.
+
+- implementation baseline: `fb229b2ef522fb29c70f43787549fb2e20bf89b0`;
+- product PR: `#131`;
+- dedicated sidecar extension: `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054_build_2b.json`;
+- the verified RUN 2A sidecar remains unchanged and continues to own exactly **20** RUN semantic PNGs;
+- BUILD Batch 2B owns exactly **8** new independent semantic PNG primitives;
+- expected shared product-root ownership after merge: `SX-DEC-053 39 + RUN 2A 20 + BUILD 2B 8 = 67` physical PNGs;
+- placement coverage: `valid`, `invalid`, `rotate_preview`, `replacement_preview` using four state overlays and committed core rail form authority;
+- track palette coverage: straight/curve/switch/crossing × idle/selected/unavailable/keyboard-focus/touch-pressed = **20 semantic compositions with zero new form×interaction PNGs**;
+- palette form identity reuses the four committed core rail products; interaction presentation reuses existing normal/selected/disabled/focus/pressed UI frames;
+- preflight coverage: `clear`, `primary_issue`, `multi_issue_summary`, `focused_location` using a neutral shell plus three meaning-bearing markers;
+- `build_placement_preview_states_v01.png` policy: `PRESERVE_NAMED_SLICES_ONLY_NO_NEW_STATE_MAPPING`;
+- `build_track_palette_v01.png` policy: `PRESERVE_REFERENCE_ONLY_NO_STATE_MAPPING`;
+- no new BUILD record claims `authoritative_slice_name` or crop bounds;
+- `runtime_integrated=false` globally and per BUILD asset/composition.
+
+TDD lineage:
+
+- initial RED head `7d10ed2289e57fd1644c8a4c5bcf84bb86aff47b`: Windows Python contracts failed because the BUILD package did not exist;
+- architecture was tightened to a separate BUILD semantic-completion sidecar so the verified RUN 2A sidecar did not need reserialization;
+- final-architecture RED head `7444886f5aa3ecfe91977778d430c227d7f083a2`: Windows Python contracts again failed on BUILD sidecar absence;
+- intermediate GREEN head `b68bae4ea153eb066261db4da7f2ddbad70aac98`: Project Contract, GUT, Godot, Thin and Python-contract/headless steps passed; final exact-head evidence is intentionally deferred until the documentation head is stable.
+
 ## Acceptance contract before implementation merge
 
-The implementation plan added focused static verification that proves:
+Static verification must prove:
 
 - every new file has a registered `SX-DEC-054` semantic role/state;
 - no new record claims an unnamed `SX-DEC-051` atlas crop as authority;
 - existing 39 `SX-DEC-053` assets remain separately manifested and owned;
-- required semantic state coverage is complete for RUN Batch 2A;
-- filenames, PNG integrity, dimensions, alpha capability, and manifest↔physical-file agreement pass;
+- RUN Batch 2A remains exactly 20 separately owned assets;
+- BUILD Batch 2B remains exactly 8 separately owned assets;
+- the three ownership sets are pairwise disjoint and their union equals every physical product PNG;
+- BUILD placement, palette, and preflight state coverage exactly matches the approved component contracts;
+- filenames, PNG signature/chunk CRC/IDAT decode, dimensions, alpha capability, SHA-256, and manifest↔physical-file agreement pass;
+- track palette reuses existing rail/frame products rather than creating an unnecessary binary cross product;
 - runtime integration remains false;
-- no `.tscn`, `project.godot`, gameplay/domain, Resource/Theme/Animation/signal, plugin, or `.asset-vault` bytes changed in Batch 2A.
+- no `.tscn`, `project.godot`, gameplay/domain, Resource/Theme/Animation/signal, plugin, or `.asset-vault` bytes change in Batch 2B.
 
-Reduced Motion meaning-equivalent verification remains applicable to the later VFX batch; no meaning-bearing VFX assets were added in RUN Batch 2A.
+Reduced Motion meaning-equivalent verification remains applicable to the later VFX batch; no meaning-bearing VFX assets are added in BUILD Batch 2B.
 
 ## Verification boundary
 
@@ -207,4 +239,4 @@ Still `NOT_RUN` / deferred:
 
 ## Delivery rule
 
-RUN Batch 2A is merged and technically closed under this same `SX-DEC-054` Decision ID. Remaining authorized semantic production continues as BUILD Batch 2B and VFX Batch 2C under the same strategy. Runtime integration/POC remains a later separate gate. The configured Google Sheet must use this same Decision ID and preserve the deferred physical/runtime boundaries.
+RUN Batch 2A is merged and technically closed under this same `SX-DEC-054` Decision ID. BUILD Batch 2B remains implementation-complete but merge-pending until one unchanged exact head passes the full PR gate. After BUILD 2B merges, record the final merge/main under this same Decision ID, synchronize the configured Google Sheet, then continue to VFX Batch 2C. Runtime integration/POC remains a later separate gate.
