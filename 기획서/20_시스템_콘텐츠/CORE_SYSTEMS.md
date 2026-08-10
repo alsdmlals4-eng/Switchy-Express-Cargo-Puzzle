@@ -2,7 +2,7 @@
 
 상태: `CURRENT_CANON · GMB-002 · AUTOMATED_CORE_PASS`
 
-세부 제품 규칙은 `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`가 책임진다. 구현·검증 상태는 `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`와 `기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md`가 책임진다.
+세부 제품 규칙은 `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`가 책임진다. 현재 실행·검증 상태는 `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`와 `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`를 우선하며, 아래 과거 자동화·APK 증거는 당시 검증 사실로 보존한다.
 
 ## 시스템 위계
 
@@ -196,7 +196,9 @@ UI는 비용·preflight 문제·시간·stack·TOP·입력 상태·결과를 읽
 
 구형 구현은 당시 동작·migration 참고로 보존하지만 current product 또는 next-work authority가 아니다.
 
-## 구현·자동 증거
+## 역사적 구현·자동 증거 스냅샷
+
+아래 값은 유한 코어·제품 표면·통합 증명·validation preparation·APK export가 당시 자동화/패키징 기준에서 통과했다는 **역사 증거**다. 현재 실행 순서나 physical/device/human PASS를 정의하지 않는다.
 
 ```text
 FINITE AUTOMATED CORE: PASS
@@ -206,7 +208,7 @@ VALIDATION PREPARATION: PASS
 CANONICAL MAIN APK EXPORT: PASS
 ```
 
-Canonical validation APK:
+Canonical validation APK 역사 증거:
 
 ```yaml
 source_commit: 536911449018a3caf3511bc64e7bf1a66edf2016
@@ -216,10 +218,16 @@ package_id: com.alsdmlals4.switchyexpress.validation
 
 ## 다음 검증 Gate
 
+현재 실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 책임진다. 이 heading은 Android canonical-freshness consumer가 사용하는 안정 compatibility anchor로 유지한다.
+
 ```text
-ANDROID DEVICE SMOKE: NOT_RUN · CURRENT
-→ FIVE-PERSON COMPREHENSION: NOT_RUN · BLOCKED_BY_ANDROID
-→ PRODUCTION CUTOVER: BLOCKED
+CURRENT EXECUTION AUTHORITY: CURRENT_CONFIRMED_DECISIONS + ACTIVE_CONTEXT
+SX-DEC-055: SPEC/DoR APPROVED · USER_DEFERRED_AFTER_DOR · IMPLEMENTATION_NOT_STARTED
+WINDOWS PHYSICAL RUNTIME: NOT_RUN
+ANDROID DEVICE SMOKE: NOT_RUN
+CONNECTED PHYSICAL EDITOR: NOT_RUN
+BROADER HUMAN / COMPREHENSION: NOT_RUN
+PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
 
-다음 작업은 동일 APK 전체 hash를 확인하고 물리 Android landscape 기기에서 `ANDROID_DEVICE_SMOKE_RUNBOOK.md`의 AND-01~20을 실행하는 것이다. Android reviewed PASS 전에는 사람 이해도 검증과 production cutover를 진행하지 않는다.
+Android Device Smoke와 Five-person Comprehension은 여전히 유효한 후속 검증 Gate지만, 자동화/APK 역사 증거만으로 즉시 현재 작업으로 승격하거나 PASS로 확대하지 않는다. 프로젝트의 실제 다음 실행 지점은 current authority locator에서 다시 판정한다.

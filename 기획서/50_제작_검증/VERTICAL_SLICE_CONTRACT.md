@@ -1,18 +1,23 @@
 # Finite Delivery First Vertical Slice Contract
 
 ```yaml
-status: PC_AUTOMATED_AND_PACKAGE_PASS · LOCAL_PROJECT_PLAY_RETEST_REQUIRED · ANDROID_APK_EXPORT_PASS
+status: FIRST_SLICE_CONTRACT_CURRENT · HISTORICAL_AUTOMATED_PACKAGE_EVIDENCE_PRESERVED
+current_execution_state_owner: CURRENT_CONFIRMED_DECISIONS + ACTIVE_CONTEXT
+current_runtime_semantic_state: SX-DEC-055 · SPEC/DoR_APPROVED · USER_DEFERRED_AFTER_DOR · IMPLEMENTATION_NOT_STARTED
+historical_snapshot_status: PC_AUTOMATED_AND_PACKAGE_PASS · LOCAL_PROJECT_PLAY_RETEST_REQUIRED · ANDROID_APK_EXPORT_PASS
 product_authority: GMB-002 · SX-DEC-027~036
 pc_demo_authority: SX-DEC-037 · EV-USER-023
-current_audits: SX-AUD-019 · SX-AUD-020
-latest_verified_commit: 8807cdbdd670a0cb67948e97f922c9bd9700e1a7
+historical_first_slice_audits: SX-AUD-019 · SX-AUD-020
+historical_latest_verified_commit: 8807cdbdd670a0cb67948e97f922c9bd9700e1a7
 default_entrypoint: PRODUCT_VERTICAL_SLICE_BOOTSTRAP
-pc_local_runtime: FAIL · RETEST_REQUIRED
+full_pc_local_flow: NOT_CLOSED · RETEST_REQUIRED
 windows_artifact_runtime: NOT_RUN
-next_pc_gate: LOCAL_PROJECT_PLAY_RETEST → WINDOWS_ARTIFACT_RUNTIME_SMOKE
-next_android_gate: ANDROID_DEVICE_SMOKE → FIVE_PERSON_COMPREHENSION
-cutover_status: BLOCKED
+android_device_smoke: NOT_RUN
+human_comprehension: NOT_RUN
+cutover_status: BLOCKED_DEFERRED
 ```
+
+이 문서는 첫 Vertical Slice의 제품·수동 검증 계약과 역사 증거를 책임진다. **현재 프로젝트 실행 순서·최신 main·열린 PR·SX-DEC-055 상태는 `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`를 우선한다.** 아래 저장된 commit/run/PR 값은 당시 증거이며 현재 default branch HEAD를 고정하지 않는다.
 
 ## 1. 목적
 
@@ -88,34 +93,36 @@ project.godot
 - 서로 다른 successful solution 2개
 - `fp_core_proof_01.json` 불변
 
-## 5. Automated Evidence
+## 5. 역사적 Automated Evidence Snapshot
+
+아래 표는 첫 Vertical Slice 제작 당시 자동화·package 증거를 보존한다. 최신 branch exact-head 검증이나 현재 SX-DEC-055 runtime POC 구현 증거가 아니다.
 
 | Gate | 상태 | 증거 |
 |---|---|---|
-| FINITE AUTOMATED CORE | PASS | current regression |
+| FINITE AUTOMATED CORE | PASS | historical regression snapshot |
 | DEFAULT PROJECT PLAY BOOT | PASS · AUTOMATED | `Main/VerticalSliceDemo`, TITLE→BRIEFING→GAMEPLAY, HUD/tool visible |
 | PC VERTICAL SLICE AUTOMATED | PASS | Godot Tests #757 · `85 cases · 11,284 assertions` |
 | PROJECT CONTRACT | PASS | #822 |
 | THIN ADAPTER | PASS | #82 |
 | ASSET RIGHTS | PASS | #47 |
 | WINDOWS DEBUG EXPORT | PASS | #40 |
-| PC LOCAL PROJECT PLAY | FAIL · RETEST_REQUIRED | user observed missing HUD/input on earlier local commit |
+| PC LOCAL PROJECT PLAY | HISTORICAL FAIL · RETEST_REQUIRED | user observed missing HUD/input on earlier local commit |
 | WINDOWS ARTIFACT RUNTIME | NOT_RUN | actual Windows execution required |
-| ANDROID APK EXPORT | PASS | canonical Android evidence |
+| ANDROID APK EXPORT | PASS | canonical Android packaging evidence |
 | ANDROID DEVICE | NOT_RUN | physical landscape device required |
 | HUMAN | NOT_RUN | first-contact 5명 |
 | PRODUCTION CUTOVER | BLOCKED | manual Gates and separate approval required |
 
-## 6. Runtime Failure and Fix Contract
+## 6. Historical Runtime Failure and Fix Evidence
 
-사용자 관찰:
+당시 사용자 관찰:
 
 ```yaml
 finding: HUD_AND_INTERACTION_SURFACE_MISSING_AFTER_BUILD_ENTRY
-status: FAIL · RETEST_REQUIRED
+status: HISTORICAL_FAIL · RETEST_REQUIRED_FOR_FULL_PC_FLOW
 ```
 
-수정:
+당시 수정:
 
 - HUD full anchors
 - HUD `z_index=10`
@@ -124,7 +131,7 @@ status: FAIL · RETEST_REQUIRED
 - 기존 성공·실패·Retry/Edit E2E 유지
 - CI test timeout 60초
 
-사용자가 최신 Branch를 Fetch/Pull하고 F5로 다시 완주하기 전에는 수동 Gate를 PASS로 올리지 않는다.
+이 과거 failure는 현재 feature-scoped F5 PASS를 무효화하지 않는다. 반대로 feature-scoped PASS만으로 full PC local flow를 PASS로 승격하지도 않는다. 전체 로컬 흐름 검증은 `DEVELOPMENT_GATES.md`의 PC5가 소유한다.
 
 ## 7. Canonical Android Contract
 
@@ -134,14 +141,15 @@ apk_sha256: eb49225ab4062e5cf863f79a0d17f85d339ea176d7f0bb6f04096ed8a07559ea
 package_id: com.alsdmlals4.switchyexpress.validation
 ```
 
-Android preset은 `validation_harness` feature override로 전용 launcher를 사용한다. 일반 PC Project Play 변경은 이 launcher·package ID·APK 증거를 대체하지 않는다.
+Android preset은 `validation_harness` feature override로 전용 launcher를 사용한다. 일반 PC Project Play 변경은 이 launcher·package ID·APK 증거를 대체하지 않는다. APK export/hash PASS는 Android physical device PASS가 아니다.
 
-## 8. User Handoff Contract
+## 8. Current User Handoff Contract
 
 ```yaml
 repository: alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
-branch: agent/pc-vertical-slice-demo-design
-minimum_verified_commit: 8807cdbdd670a0cb67948e97f922c9bd9700e1a7
+branch: main
+current_main_source: LIVE_GITHUB_DEFAULT_BRANCH
+historical_minimum_verified_product_commit: 8807cdbdd670a0cb67948e97f922c9bd9700e1a7
 update:
   - Fetch origin
   - Pull origin
@@ -149,16 +157,17 @@ update:
 project_file: project.godot
 default_action: Project Play(F5 / ▶)
 expected_first_screen: SWITCHY EXPRESS title
-manual_status: FAIL · RETEST_REQUIRED
+full_pc_local_flow: NOT_CLOSED · RETEST_REQUIRED
+runtime_semantic_poc: SX-DEC-055 · USER_DEFERRED_AFTER_DOR · IMPLEMENTATION_NOT_STARTED
 ```
 
-Fetch만 수행하면 로컬 파일은 최신 상태가 아닐 수 있다.
+Fetch만 수행하면 로컬 파일은 최신 상태가 아닐 수 있다. 폐기된 feature branch를 현재 사용자 실행 경로로 사용하지 않는다.
 
 ## 9. Manual Gate Contracts
 
 ### PC Local Project Play Retest
 
-- [ ] 최신 Branch·commit 적용
+- [ ] 최신 `main`·commit 적용
 - [ ] 별도 Scene 선택 없이 F5
 - [ ] Title/Briefing/BUILD
 - [ ] HUD·BUILD toolbar·TOP panel 표시
@@ -184,27 +193,31 @@ Fetch만 수행하면 로컬 파일은 최신 상태가 아닐 수 있다.
 
 ## 10. Merge·Cutover Conditions
 
-PR #83은 현재 Draft다. 다음 전에는 Ready·merge로 전환하지 않는다.
+PR #83은 **역사적으로 병합 완료**된 Vertical Slice PR이며 현재 Draft/merge blocker가 아니다.
 
-1. PC Local Project Play retest PASS
-2. Windows artifact runtime smoke PASS 또는 명시적 별도 승인
-3. Critical/Important 결함 0
-4. unresolved review thread 0
-5. GitHub 정본·correct Google Sheet sync
+향후 제품·runtime 변경 PR은 해당 작업의 승인 범위와 current authority에 따라 최소 다음을 만족해야 한다.
 
-PR merge는 store production cutover가 아니다. Android Device Smoke, Five-person Comprehension, release signing·store evidence는 별도 Gate다.
+1. 해당 PR exact head의 적용 required checks PASS
+2. Critical/Important 결함 0
+3. unresolved review thread 0
+4. GitHub 정본·correct Google Sheet sync
+5. 실행하지 않은 physical/device/human Gate를 PASS로 확대하지 않음
+
+PR merge는 store production cutover가 아니다. Windows physical runtime, Android Device Smoke, Five-person Comprehension, release signing·store evidence는 별도 Gate다.
 
 ## 11. Current Conclusion
 
 ```text
 FINITE CORE: PASS
-PC VERTICAL SLICE AUTOMATED: PASS
+PC VERTICAL SLICE AUTOMATED: PASS · HISTORICAL/BOUNDED EVIDENCE
 DEFAULT PROJECT PLAY BOOT: PASS · AUTOMATED
-WINDOWS EXPORT·INTEGRITY: PASS
-PC LOCAL PROJECT PLAY: FAIL · RETEST_REQUIRED
+WINDOWS EXPORT·INTEGRITY: PASS · PACKAGING EVIDENCE
+PC FULL LOCAL FLOW: NOT_CLOSED · RETEST_REQUIRED
 WINDOWS ARTIFACT RUNTIME: NOT_RUN
-ANDROID APK EXPORT: PASS
+ANDROID APK EXPORT: PASS · PACKAGING/HASH EVIDENCE
 ANDROID DEVICE SMOKE: NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
-PRODUCTION CUTOVER: BLOCKED
+SX-DEC-055 RUNTIME SEMANTIC POC: SPEC/DoR APPROVED · USER_DEFERRED_AFTER_DOR · IMPLEMENTATION_NOT_STARTED
+CONNECTED PHYSICAL EDITOR: NOT_RUN
+PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
