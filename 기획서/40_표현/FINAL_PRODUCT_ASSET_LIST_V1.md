@@ -2,7 +2,7 @@
 
 Decisions: `SX-DEC-053` · `SX-DEC-054`  
 Direction: `E+D HYBRID · NEO-ARCADE READABILITY`  
-Status: `053_39 · RUN_2A_20 · BUILD_2B_8 · VFX_2C_6 · 73_TOTAL_PRODUCT_PNGS · VFX_2C_IMPLEMENTED_VALIDATION_PENDING · RUNTIME_NOT_INTEGRATED`
+Status: `053_39 · RUN_2A_20 · BUILD_2B_8 · VFX_2C_6 · 73_TOTAL_PRODUCT_PNGS · SEMANTIC_ASSET_PRODUCTION_COMPLETE · RUNTIME_NOT_INTEGRATED`
 
 ## Production hierarchy
 
@@ -22,20 +22,13 @@ The shared root `art/product_assets/ed_hybrid_v1/` is partitioned into four pair
 - `semantic_manifest_sx_dec_054_build_2b.json` → BUILD Batch 2B: **8** PNGs;
 - `semantic_manifest_sx_dec_054_vfx_2c.json` → VFX Batch 2C: **6** PNGs.
 
-Expected physical total after VFX product merge: **73** PNGs.
+Merged physical total: **73** PNGs.
 
 Shared static ownership validation requires every owner list to be unique, all four sets pairwise disjoint, and their union equal every physical PNG under the product root.
 
 ## Baseline product package
 
-`SX-DEC-053` remains the 39-asset E+D baseline with:
-- blue locomotive hero recovery;
-- three 0.74 trailing wagons;
-- cargo/station color+shape products;
-- committed rail and route-marker products;
-- recovered 7-state UI controls;
-- 8 exact manifest-authoritative named crops;
-- exact source/disposition/recovery/integrity provenance.
+`SX-DEC-053` remains the 39-asset E+D baseline with blue locomotive hero recovery, three 0.74 trailing wagons, cargo/station color+shape products, committed rail and route-marker products, recovered 7-state UI controls, 8 exact manifest-authoritative named crops, and exact source/disposition/recovery/integrity provenance.
 
 No `SX-DEC-054` batch weakens these 053 checks.
 
@@ -83,9 +76,7 @@ Product PR #131:
 - merge/main `77276ec9b60aa91afd13f994ded8e0925e68be08`;
 - Contract/GUT/Godot/Thin/Windows: PASS.
 
-## VFX Batch 2C · implementation complete / exact-head validation pending
-
-### Required event semantics
+## VFX Batch 2C · merged-main verified
 
 Eight information events:
 - `cargo_pickup`;
@@ -123,28 +114,29 @@ For each event:
 - `standard` → same information glyph with `RUNTIME_ANIMATION_OPTIONAL_LATER`;
 - `reduced_motion` → same information glyph with `STATIC_INFORMATION_EQUIVALENT`.
 
-The two modes share the same `information_key` and primary product input. Therefore Reduced Motion preserves meaning rather than merely disabling an effect.
-
-Every composition records:
-- `DO_NOT_COVER_NEXT_CRITICAL_BRANCH_OR_CARGO_TARGET`;
-- `mute_independent=true`;
-- `runtime_integrated=false`.
+The two modes share the same `information_key` and primary product input. Every composition records `DO_NOT_COVER_NEXT_CRITICAL_BRANCH_OR_CARGO_TARGET`, `mute_independent=true`, and `runtime_integrated=false`.
 
 `standard_runtime_animation_authored=false`: this package does not author Godot Animation/Scene/Resource runtime behavior.
 
 ### VFX source preservation
 
-`art/production_candidates/ed_hybrid_v1/vfx/vfx_feedback_static_states_v01.png` remains:
-`PRESERVE_REFERENCE_ONLY_NO_STATE_MAPPING`.
+`art/production_candidates/ed_hybrid_v1/vfx/vfx_feedback_static_states_v01.png` remains `PRESERVE_REFERENCE_ONLY_NO_STATE_MAPPING`. It has no authoritative named semantic slices and is never used as pixel/crop authority for the six new VFX assets.
 
-It has no authoritative named semantic slices and is never used as pixel/crop authority for the six new VFX assets.
+### VFX product evidence
 
-### VFX TDD lineage
+Product PR #133:
+- RED head `5f2bd865bce5ca2934419e7533546984c051f680`;
+- atomic package `cbfc99e25335cc5ddbcc5c6be392b75a32b7d783`;
+- exact review head `603a1a0330d651b4d7068487c17e88ef1657a009`;
+- merge/main `13db4ddd991bdb3162884c1b85fdc3d20e3eee8a`;
+- Project Contract `31345334561`: PASS;
+- GUT `31345334543`: PASS;
+- Godot `31345334535`: PASS;
+- Thin `31345334542`: PASS;
+- Windows Demo Export `31345334553`: PASS;
+- review threads: **0**.
 
-- RED head `5f2bd865bce5ca2934419e7533546984c051f680`: Python contracts failed because VFX package/validator was absent;
-- atomic package commit `cbfc99e25335cc5ddbcc5c6be392b75a32b7d783`: six PNGs + VFX sidecar exposed together;
-- ownership widened from 39/20/8 to 39/20/8/6 without weakening baseline checks;
-- final exact-head workflow evidence is recorded only after the owner documents stop changing.
+Hosted Windows Demo Export is package/build evidence only, not physical Windows runtime evidence.
 
 ## Counts
 
@@ -157,7 +149,7 @@ It has no authoritative named semantic slices and is never used as pixel/crop au
 - RUN Batch 2A ownership: **20**
 - BUILD Batch 2B ownership: **8**
 - VFX Batch 2C ownership: **6**
-- expected physical product PNG total after VFX merge: **73**
+- physical product PNG total: **73**
 - BUILD Batch 2B compositions: **28**
 - VFX Batch 2C event identities: **8**
 - VFX Batch 2C compositions: **16**
@@ -167,7 +159,7 @@ It has no authoritative named semantic slices and is never used as pixel/crop au
 
 ## Remaining gate after semantic production
 
-After VFX Batch 2C product merge + docs closure + same-ID Sheet synchronization, the approved semantic asset-production backlog under `SX-DEC-054` is complete.
+The approved semantic asset-production backlog under `SX-DEC-054` is complete.
 
 The next gate is **not** another asset-splitting batch. It is the separately deferred runtime integration/POC boundary, including later Godot Scene/Resource/Theme/Animation/signal wiring and actual runtime occlusion/motion validation only if/when that gate is authorized.
 
