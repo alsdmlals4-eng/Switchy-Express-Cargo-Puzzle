@@ -1,27 +1,32 @@
 # Current Confirmed Decisions
 
-Last updated: `2026-08-10 KST`
+Last updated: `2026-08-11 KST`
 
-This is the compact current-status registry for the finite delivery puzzle. Detailed rule text, provenance, CI evidence, and audit reasoning remain in each registered owner document and the configured Google Sheet. `SX-AUD-035` remains the bounded registry-authority repair mechanism. This refresh records the user-approved and merged `SX-DEC-055` runtime semantic POC spec without claiming that Godot runtime implementation has started or completed.
+This is the compact current-status registry for the finite delivery puzzle. Detailed rule text, provenance, CI evidence, and audit reasoning remain in each registered owner document and the configured Google Sheet. `SX-AUD-035` remains the bounded registry-authority repair mechanism; `SX-AUD-044` owns the distinct first-session comprehension / Phase A planning-gate audit. No new product Decision ID is introduced by that audit.
 
 ```yaml
 current_product_baseline: FINITE_DELIVERY_PUZZLE_BASELINE
 current_decision_span: SX-DEC-027~055
 superseded_decision: SX-DEC-047 -> SX-DEC-048
-authority_snapshot_through_main: 34624a5d2a93306cd2b3c72dee6ce0035b751279
+authority_snapshot_through_main: 398be2f12c6d279c83001bf36bfdd3ecb7f72a08
 authority_refresh_audit: SX-AUD-035
+current_planning_validation_audit: SX-AUD-044
 latest_visual_asset_authority: SX-DEC-053
 latest_visual_semantic_strategy: SX-DEC-054
 latest_runtime_semantic_poc_authority: SX-DEC-055
 latest_visual_asset_audit: SX-AUD-043
 latest_tooling_authority: SX-DEC-052
 project_base_pin: 9.4.3
-upstream_base_observed_at_refresh: 53e63f7ebefbb5b2fc0dc528e335252692801421
+upstream_base_observed_at_refresh: 315c66eea9614c284b9c11c4d522141065dfa4b0
 correct_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
 product_runtime_state: FINITE_CORE_AUTOMATED_PASS · ROUTE_END_USER_CURRENT_MAIN_F5_PASS · SWITCH_DIRECTION_USER_CURRENT_MAIN_F5_PASS · CARGO_PICKUP_RETRY_USER_F5_PASS · FULL_PC_MANUAL_GATE_NOT_CLOSED
-visual_asset_state: ED_HYBRID_FINAL_DIRECTION · SX-DEC-053_39_PRODUCT_ASSETS · SX-DEC-054_RUN_2A_20 · SX-DEC-054_BUILD_2B_8 · SX-DEC-054_VFX_2C_6 · 73_TOTAL_PRODUCT_PNGS · SEMANTIC_ASSET_PRODUCTION_COMPLETE · SX-DEC-055_RUNTIME_POC_SPEC_APPROVED · IMPLEMENTATION_NOT_STARTED
+visual_asset_state: ED_HYBRID_FINAL_DIRECTION · 73_TOTAL_PRODUCT_PNGS · SEMANTIC_ASSET_PRODUCTION_COMPLETE · SX-DEC-055_RUNTIME_POC_SPEC_APPROVED · IMPLEMENTATION_NOT_STARTED
 tooling_state: GODOT_AI_3_1_3_SYNCED · GUT_9_7_1_PRESERVED · HERA_TRACKED_V1_0_0_USER_ADOPTED · CONNECTED_PHYSICAL_EDITOR_NOT_RUN
 asset_vault_state: LEGACY_14_TRACKED_PRESERVED · UNTRACK_DEFERRED_PENDING_LOCAL_PRESERVATION_ATTESTATION
+phase_a_state: GPT_CHAT_PLANNING · SX-AUD-044_IN_PROGRESS
+user_planning_complete_gate: NOT_GRANTED
+phase_b_final_planning_review: NOT_RUN
+build_authority: BLOCKED
 physical_validation_ceiling: WINDOWS_PHYSICAL_RUNTIME_NOT_RUN · ANDROID_DEVICE_NOT_RUN · CONNECTED_PHYSICAL_EDITOR_NOT_RUN · BROADER_HUMAN_NOT_RUN
 production_cutover: BLOCKED_DEFERRED
 ```
@@ -110,7 +115,7 @@ Completed semantic production remains unchanged:
 - VFX 2C: eight events with standard/reduced information-equivalent pairs;
 - legacy unnamed atlas regions remain reference-only/non-authoritative.
 
-`SX-DEC-055` now authorizes a bounded runtime POC consuming this package. It does not retroactively change the historical `runtime_integrated=false` provenance recorded in SX-DEC-053/054 manifests and does not mean runtime implementation is already complete.
+`SX-DEC-055` authorizes a bounded runtime POC consuming this package. It does not retroactively change the historical `runtime_integrated=false` provenance in SX-DEC-053/054 manifests and does not mean runtime implementation is complete.
 
 ## SX-DEC-055 Runtime POC Boundary
 
@@ -134,7 +139,7 @@ Approved representative proof:
 Implementation plan:
 `docs/superpowers/plans/2026-08-10-sx-dec-055-runtime-semantic-poc.md`
 
-Per `AGENTS.md`, actual Godot/GDScript/test modification is a Codex execution responsibility after the DoR is closed.
+The exact-file plan provides the implementation function decomposition, interfaces, dependencies, protected surfaces, RED/GREEN cycles, automated regression, merge protection, and same-ID closure blueprint. This planning coverage is reused; it is not duplicated by SX-AUD-044.
 
 ## Current Runtime Evidence Boundary
 
@@ -151,6 +156,8 @@ Still not validated as physical/user completion:
 ```text
 Windows exported artifact physical runtime / visual / audio / physical input: NOT_RUN
 Android landscape device smoke: NOT_RUN
+Post-POC acceptance-build physical smoke: NOT_READY · NOT_RUN
+Five-person Comprehension: NOT_RUN
 Connected physical Godot/Hera authoring session: NOT_RUN
 Broader human / comprehension: NOT_RUN
 Production cutover: BLOCKED_DEFERRED
@@ -179,25 +186,31 @@ semantic_asset_closure:
 runtime_semantic_poc_spec:
   decision: SX-DEC-055
   spec_pr: 135
-  exact_approved_head: 383937ffe898d45b42d68cf21ef46d61981e4e09
   spec_merge_main: 34624a5d2a93306cd2b3c72dee6ce0035b751279
-  project_contract_run: 31350446399
-  gut_run: 31350446400
-  godot_run: 31350446412
-  thin_run: 31350446401
+phase_a_freshness_closure:
+  audit: SX-AUD-035
+  pr: 140
+  merge_main: 398be2f12c6d279c83001bf36bfdd3ecb7f72a08
+current_planning_validation:
+  audit: SX-AUD-044
+  state: IN_PROGRESS
 ```
 
 ## Current Execution Authority
 
 ```text
 1. SX-DEC-054 semantic asset production is complete at 73 physical product PNGs.
-2. SX-DEC-055 separately authorizes a bounded manifest-backed runtime semantic POC; its spec is approved and merged.
-3. The POC must be implemented from the RED-first exact-file plan and must preserve domain/gameplay authority.
-4. No new gameplay/domain signal may be introduced solely for combo VFX; absent an existing presentation-readable seam, combo trigger remains deferred.
-5. Historical semantic/product manifests stay immutable provenance records; do not flip their runtime_integrated field merely because a later POC consumes assets.
-6. Windows physical runtime, Android landscape device, connected editor, and broader human validation remain separate gates.
-7. `.asset-vault` untrack remains deferred until local hash-verified preservation attestation.
-8. Actual Godot/GDScript/test changes execute through Codex after DoR per AGENTS.md.
+2. SX-DEC-055 separately authorizes a bounded manifest-backed runtime semantic POC; its spec and exact-file DoR plan are approved.
+3. The project is currently in PHASE A GPT CHAT PLANNING under v4.5.
+4. Prior approval, DoR, explicit resume language, or continuous-work language does NOT grant BUILD authority.
+5. Current Phase A must close first-session comprehension / acceptance-build / function-dependency-validation coverage and exact-head planning verification.
+6. Only after the user explicitly declares "기획 완료" may PHASE B final planning review begin.
+7. Only after PHASE B PASS may PowerShell/Codex/Godot execute SX-DEC-055 Task 1 / Step 1.1 RED.
+8. The POC must preserve domain/gameplay authority; no new gameplay/domain signal may be introduced solely for combo VFX.
+9. Historical semantic/product manifests stay immutable provenance records; do not flip their runtime_integrated field merely because a later POC consumes assets.
+10. Historical Android validation APK remains a separate validation-harness artifact; the post-POC human acceptance build identity is currently UNASSIGNED.
+11. Windows physical runtime, Android physical/device evidence, connected editor, and human validation remain separate gates.
+12. `.asset-vault` untrack remains deferred until local hash-verified preservation attestation.
 ```
 
 수동·물리 증거가 없는 Gate를 자동 테스트로 PASS로 확대하지 않는다. 새 gameplay/product 방향이 필요해지는 순간에는 새 사용자 결정이 선행되어야 한다.
