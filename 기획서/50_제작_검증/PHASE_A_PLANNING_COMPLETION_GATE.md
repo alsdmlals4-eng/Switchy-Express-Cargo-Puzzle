@@ -1,7 +1,7 @@
 # Phase A Planning Completion Gate
 
 ```yaml
-status: IN_PROGRESS
+status: IN_PROGRESS · PR_VERIFICATION_PENDING
 work_mode: GPT_CHAT_PLANNING
 product_decision_span: SX-DEC-027~055
 planning_audit: SX-AUD-044
@@ -27,18 +27,18 @@ PHASE A planning evidence complete
 
 | ID | 계획 요구 | 책임 근거 | 현재 상태 | 통과 조건 |
 |---|---|---|---|---|
-| PA-01 | Base/project/Sheet current authority refresh | Base current main + project main + configured Sheet | PASS · live read 2026-08-11 | branch/PR 직전에도 재조회 |
+| PA-01 | Base/project/Sheet current authority refresh | Base current main + project main + configured Sheet | PASS · live read 2026-08-11 | PR/merge 직전 재조회 |
 | PA-02 | 제품 코어·승인 결정 안정성 | GMB-002 · SX-DEC-027~055 | PASS | 새 product conflict 0 |
 | PA-03 | 기능 분해 | SX-DEC-055 implementation plan Tasks 1~10 | PASS · PLANNED | exact files/interfaces/tasks 존재 |
 | PA-04 | 함수·데이터·상태 의존성 | SemanticAssetCatalog → SemanticRuntimeState → presenter/model → HUD/board/route/VFX | PASS · PLANNED | domain/presentation 경계와 consumers 명시 |
 | PA-05 | 보호 영역·금지 변경 | SX-DEC-055 spec/plan Global Constraints | PASS · PLANNED | route/LIFO/save/map/manifest/Base pin 등 보호 |
 | PA-06 | 구현 blueprint + RED/GREEN | SX-DEC-055 exact-file plan | PASS · PLANNED | 각 production task의 focused RED/GREEN/commit 존재 |
 | PA-07 | 자동 회귀·merge 검증 | plan Task 9/10 | PASS · PLANNED | exact-head Project Contract/GUT/Godot/Thin/Windows when applicable |
-| PA-08 | physical/device/human validation sequence | First-session design + PLAYTEST_PLAN + Development Gates | IN_PROGRESS | post-POC exact acceptance build → physical smoke → human gate canonical |
-| PA-09 | first-session comprehension contract | `PLAYTEST_PLAN.md` + first-session design | IN_PROGRESS | behavior/prediction/transfer + severity + build identity canonical |
-| PA-10 | current-owner v4.5 sequencing | ACTIVE_CONTEXT + Roadmap/Gates | IN_PROGRESS | direct resume→RED shortcut 0 |
-| PA-11 | GitHub/Sheet current routing | 00/01/02/04/05/50 current surfaces | IN_PROGRESS | same Decision/Audit IDs + readback |
-| PA-12 | adversarial planning review | SX-AUD-044 + PR exact-head review | IN_PROGRESS | unresolved P0/P1 planning conflict 0 |
+| PA-08 | physical/device/human validation sequence | first-session design + PLAYTEST_PLAN + DEVELOPMENT_GATES | PASS · PLANNED | post-POC exact acceptance build → physical smoke → human gate canonical |
+| PA-09 | first-session comprehension contract | `PLAYTEST_PLAN.md` + first-session design | PASS · PLANNED | behavior/prediction/transfer + severity + build identity canonical |
+| PA-10 | current-owner v4.5 sequencing | ACTIVE_CONTEXT + CURRENT_CONFIRMED_DECISIONS + ROADMAP + DEVELOPMENT_GATES | PASS · BRANCH_READBACK | direct resume→RED shortcut removed from current owners |
+| PA-11 | GitHub/Sheet current routing | 00/01/02/04/05/50 current surfaces | PASS · PRE_PR_READBACK | same Decision/Audit IDs + CURRENT-12/SX-AUD-044/current validation row verified |
+| PA-12 | adversarial planning review | SX-AUD-044 + branch diff/consumer compatibility review | PASS · PRE_PR | product conflict 0 · docs-only scope · historical hash/consumer anchors preserved |
 | PA-13 | exact-head planning PR verification | current Phase A PR | NOT_RUN | required checks PASS + review threads 0 + merge/readback |
 | PA-14 | explicit user planning-complete Gate | user literal/explicit declaration | NOT_GRANTED | user says `기획 완료` |
 | PA-15 | Phase B final planning review | post-user-gate review | NOT_RUN | Phase B verdict PASS |
@@ -95,6 +95,23 @@ Phase A를 통과해도 다음은 자동 승인되지 않는다.
 - physical/device/human PASS
 - production cutover
 
+## Pre-PR Adversarial Result
+
+```text
+Git diff: 10 docs/planning files only
+runtime/code/test/workflow/product asset/manifest changes: 0
+new product Decision ID: 0
+old validation APK hash: preserved as historical evidence
+post-POC acceptance build: UNASSIGNED
+Five-person minimum: preserved
+recruit target 6: TEST_VALUE buffer only
+questionnaire-only PASS: rejected
+moderator solution coaching: rejected
+current owner direct resume→RED shortcut: removed
+physical/device/human PASS inflation: 0
+Base repin: 0
+```
+
 ## Gate Verdict Rules
 
 ### `IN_PROGRESS`
@@ -115,8 +132,8 @@ PA-14가 granted이고 Phase B 검토를 시작할 수 있다.
 ## Current Conclusion
 
 ```text
-PHASE A: IN_PROGRESS
-CURRENT GAP: PA-08/09/10/11/12/13
+PHASE A: IN_PROGRESS · ONLY PA-13 PR VERIFICATION/POST-MERGE READBACK REMAINS
+CURRENT GAP: PA-13
 USER "기획 완료" GATE: NOT_GRANTED
 PHASE B: NOT_RUN
 BUILD: BLOCKED
