@@ -53,7 +53,10 @@ class TestAndroidSmokeCanonicalFreshness(unittest.TestCase):
         self.assertNotIn("IMPLEMENTATION_REPLAN_REQUIRED", baseline)
 
         self.assertIn("CANONICAL MAIN APK EXPORT · PASS", roadmap)
-        self.assertIn("ANDROID DEVICE SMOKE · CURRENT", roadmap)
+        self.assertIn("SX-DEC-055 Runtime Semantic POC", roadmap)
+        self.assertIn("USER_DEFERRED_AFTER_DOR", roadmap)
+        self.assertIn("Android Device Smoke · OPEN_NOT_RUN", roadmap)
+        self.assertNotIn("ANDROID DEVICE SMOKE · CURRENT", roadmap)
         self.assertNotIn("implementation replan required", roadmap)
         self.assertNotIn("## FP-M0 — 새 Definition of Ready", roadmap)
 
