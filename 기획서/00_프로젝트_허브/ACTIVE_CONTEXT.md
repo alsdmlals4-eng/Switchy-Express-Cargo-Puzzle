@@ -18,7 +18,7 @@ baseline:
   language: GDScript
   primary_platform: Android landscape
   base_pin: 9.4.3
-  upstream_base_main_observed: 3ff790116bc08f49e126cd286ec453bf6e46376e
+  upstream_base_main_observed: fbc0abd117066f45200b5cb440801cdd8f0c80a0
   configured_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
 
 authority:
@@ -72,6 +72,10 @@ verification:
     handoff_pr_137_initial_red:
       exact_head: cccf58ef0dfc484b0e53f18b0dba46fff1f96a7a
       project_contract: FAIL · stale Android-immediate canonical-freshness assertion
+    handoff_pr_137_android_freshness_green_post_merge_red:
+      exact_head: 81ef7d12023c13a60c16ca38072b98ee0d890bac
+      android_smoke_canonical_freshness: PASS
+      post_merge_canonical_freshness: FAIL · literal legacy consumer shape
   ci:
     project_contract_31351253902: PASS
     gut_31351253900: PASS
@@ -82,9 +86,14 @@ verification:
     pr_137_initial_gut_31352205262: PASS
     pr_137_initial_godot_31352205245: PASS
     pr_137_initial_thin_31352205251: PASS
+    pr_137_android_freshness_green_project_contract_31353855964: FAIL_POST_MERGE_CANONICAL_FRESHNESS
+    pr_137_android_freshness_green_gut_31353855958: IN_PROGRESS_AT_OBSERVATION
+    pr_137_android_freshness_green_godot_31353855960: IN_PROGRESS_AT_OBSERVATION
+    pr_137_android_freshness_green_thin_31353855980: PASS
   tests:
     sx_dec_055_runtime_poc_tests: NOT_RUN
-    android_smoke_canonical_freshness: RED_ON_PR137_INITIAL_HEAD · MINIMAL_FIX_IN_PROGRESS
+    android_smoke_canonical_freshness: PASS_ON_81ef7d12023c13a60c16ca38072b98ee0d890bac
+    post_merge_canonical_freshness: RED_ON_81ef7d12023c13a60c16ca38072b98ee0d890bac · SEMANTIC_CONTRACT_FIX_IN_PROGRESS
   human_qa: NOT_RUN for SX-DEC-055
   runtime_qa: NOT_RUN for SX-DEC-055
   not_run:
@@ -99,29 +108,36 @@ changes:
     - handoff refresh only: START_HERE.md
     - handoff refresh only: ACTIVE_CONTEXT.md
     - handoff refresh only: ROADMAP.md
-    - canonical-freshness regression only: tests/python/test_android_smoke_canonical_freshness_contract.py
+    - canonical-freshness regression: tests/python/test_android_smoke_canonical_freshness_contract.py
+    - post-merge semantic regression: tests/test_post_merge_canon_freshness.py
   product_or_runtime_bytes_changed_by_handoff: false
   project_skill_or_workflow_changes: none
   project_only_improvements:
     - reuse existing project hub owners instead of adding a duplicate HANDOFF file
     - remove stale current-task routing from cold-start documents
     - keep Android device/human validation open while removing its superseded immediate-task authority
+    - validate post-merge freshness by semantic consumer contract instead of fossilized literal field spelling
   base_candidates:
-    - BCP-2026-013-post-merge-continuation-state-reconciliation: REUSE_EXISTING_BCP
+    - bcp-Switchy-Express-Cargo-Puzzle: PROJECT_NAMED_RECORD · REUSE_EXISTING_BCP-2026-013
   base_proposal_ids:
-    - BCP-2026-013-post-merge-continuation-state-reconciliation
+    - bcp-Switchy-Express-Cargo-Puzzle
+    - BCP-2026-013-post-merge-continuation-state-reconciliation · canonical related proposal
   base_concurrency:
     source_project: Switchy Express: Cargo Puzzle
-    base_main_seen: 3ff790116bc08f49e126cd286ec453bf6e46376e
-    proposal_id: BCP-2026-013-post-merge-continuation-state-reconciliation
-    proposal_branch: none · owned by another project and already merged
-    proposal_pr: alsdmlals4-eng/Base#235 · MERGED
+    base_main_seen: fbc0abd117066f45200b5cb440801cdd8f0c80a0
+    proposal_id: bcp-Switchy-Express-Cargo-Puzzle
+    proposal_path: "[수정제안서]/bcp-Switchy-Express-Cargo-Puzzle"
+    proposal_branch: docs/bcp-Switchy-Express-Cargo-Puzzle
+    proposal_pr: alsdmlals4-eng/Base#238 · DRAFT_CONCURRENT_REGISTRY_BLOCKED
     same_goal_state: REUSE_EXISTING_BCP
-    last_registry_recheck: Base main 3ff790116bc08f49e126cd286ec453bf6e46376e
+    canonical_related_proposal: BCP-2026-013-post-merge-continuation-state-reconciliation
+    canonical_related_pr: alsdmlals4-eng/Base#235 · MERGED
+    concurrent_registry_pr: alsdmlals4-eng/Base#237 · OTHER_PROJECT · DO_NOT_OVERWRITE
+    last_registry_recheck: Base main fbc0abd117066f45200b5cb440801cdd8f0c80a0
     other_project_changes_preserved: true
-    proposal_status: SUBMITTED
+    proposal_status: DRAFT_CONCURRENT_REGISTRY_BLOCKED
     proposal_storage_merge_authority: GRANTED_BY_CURRENT_SINGLE_FILE_INSTRUCTION
-    proposal_storage_action: REUSED_ALREADY_MERGED_PROPOSAL_NO_SWITCHY_BASE_WRITE
+    proposal_storage_action: CREATED_PROJECT_NAMED_PROPOSAL_RECORD
     base_implementation_authority: NOT_GRANTED_IN_THIS_STAGE
     implementation_status: NOT_STARTED_IN_THIS_STAGE
     implementation_boundary: SEPARATE_FOLLOWUP_STAGE
@@ -134,7 +150,8 @@ review:
     - project PR #135: MERGED · SX-DEC-055 decision/spec
     - project PR #136: MERGED · SX-DEC-055 DoR/plan/registry
     - Base PR #215/#216/#217: historical merged handoff owner/routing evidence
-    - Base PR #235: MERGED · BCP-2026-013 post-merge continuation-state reconciliation · REUSE_EXISTING_BCP
+    - Base PR #235: MERGED · BCP-2026-013 canonical reusable proposal
+    - Base PR #238: DRAFT · bcp-Switchy-Express-Cargo-Puzzle project-named evidence record
   stale_or_reference_only_items:
     - old ACTIVE_CONTEXT SHA/PR queue: SUPERSEDED_BY_THIS_CONTEXT_REFRESH
     - old Android-device-immediate START_HERE/ROADMAP routing: SUPERSEDED_AS_IMMEDIATE_TASK, gate itself remains open
@@ -193,11 +210,12 @@ runtime_integrated: false
 ## Base 경계
 
 - 프로젝트 채택 release pin은 Base `v9.4.3`이다.
-- handoff refresh 중 최신 upstream Base main은 `3ff790116bc08f49e126cd286ec453bf6e46376e`로 재관측됐다.
+- handoff refresh 중 최신 upstream Base main은 `fbc0abd117066f45200b5cb440801cdd8f0c80a0`로 재관측됐다.
 - 최신 Base는 `maintaining-project-context-and-handoff` owner와 on-demand handoff routing을 이미 제공하므로 이 프로젝트에 새 broad Handoff/Progress Skill을 추가하지 않는다.
-- 이번 프로젝트에서 발견한 post-merge live continuation-state stale edge는 이미 `BCP-2026-013-post-merge-continuation-state-reconciliation` / Base PR #235로 proposal-only 병합되어 `REUSE_EXISTING_BCP`로 연결한다.
-- BCP-013 status는 `SUBMITTED`; Base 활성 구현 권한은 이번 단계에 없으며 `SEPARATE_FOLLOWUP_STAGE`다.
-- Switchy 실행자는 다른 프로젝트가 소유한 BCP-013 branch/file/Registry entry를 수정하지 않았고, Base 활성 파일도 변경하지 않는다.
+- 사용자의 최신 naming 지시에 따라 Switchy 수정제안서 레코드는 `[수정제안서]/bcp-Switchy-Express-Cargo-Puzzle` / Base PR #238로 생성했다.
+- 이 프로젝트 레코드는 새로운 공용 규칙을 만들지 않고 기존 `BCP-2026-013-post-merge-continuation-state-reconciliation` / Base PR #235를 `REUSE_EXISTING_BCP`로 참조한다.
+- Base PR #237이 다른 프로젝트의 Registry 변경을 포함할 수 있으므로 `PROPOSAL_REGISTRY.json`을 stale snapshot으로 덮어쓰지 않았고 PR #238은 `DRAFT_CONCURRENT_REGISTRY_BLOCKED`로 유지한다.
+- Base 활성 구현 권한은 이번 단계에 없으며 `SEPARATE_FOLLOWUP_STAGE`다.
 - upstream Base 최신 main을 release pin으로 자동 승격하지 않는다.
 
 ## SX-DEC-055 재개 시 첫 RED
