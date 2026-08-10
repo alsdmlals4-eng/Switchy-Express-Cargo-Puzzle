@@ -2,7 +2,7 @@
 
 Decisions: `SX-DEC-053` · `SX-DEC-054`  
 Direction: `E+D HYBRID · NEO-ARCADE READABILITY`  
-Status: `SX-DEC-053_39_PRODUCT_PNGS · SX-DEC-054_RUN_2A_20_SEMANTIC_PNGS · DISJOINT_MANIFEST_OWNERSHIP · RUNTIME_NOT_INTEGRATED`
+Status: `SX-DEC-053_39_PRODUCT_PNGS · SX-DEC-054_RUN_2A_20_SEMANTIC_PNGS · SX-DEC-054_BUILD_2B_8_SEMANTIC_PNGS · 67_TOTAL_PRODUCT_PNGS · DISJOINT_MANIFEST_OWNERSHIP · RUNTIME_NOT_INTEGRATED`
 
 ## Production hierarchy
 
@@ -15,14 +15,15 @@ Status: `SX-DEC-053_39_PRODUCT_PNGS · SX-DEC-054_RUN_2A_20_SEMANTIC_PNGS · DIS
 
 ## Ownership model
 
-The shared product root contains two disjoint owners:
+The shared product root has three pairwise-disjoint owners:
 
 - `art/product_assets/ed_hybrid_v1/manifest.json` → `SX-DEC-053`, exactly **39** product PNGs;
-- `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054.json` → `SX-DEC-054` RUN Batch 2A, exactly **20** semantic PNG primitives.
+- `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054.json` → `SX-DEC-054` RUN Batch 2A, exactly **20** semantic PNG primitives;
+- `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054_build_2b.json` → `SX-DEC-054` BUILD Batch 2B, exactly **8** semantic PNG primitives.
 
-Current physical product PNG total: **59**.
+Expected physical product PNG total after BUILD 2B merge: **67**.
 
-No path is owned by both manifests. Existing 39 `SX-DEC-053` product files remain the baseline product package; the 20 `SX-DEC-054` files are independently authored semantic primitives/composition inputs, not relabeled hidden slices from ambiguous legacy atlases.
+The dedicated BUILD sidecar intentionally preserves the already-verified RUN Batch 2A sidecar without reserialization. Shared ownership validation requires all three sets to be unique, pairwise disjoint, and together equal the physical product-root PNG set.
 
 ## Promotion summary
 
@@ -32,25 +33,24 @@ No path is owned by both manifests. Existing 39 `SX-DEC-053` product files remai
 | 3 cargo wagons | PROMOTED v02 | centered deterministic 0.74 scale |
 | 3 cargo stars | PROMOTED | exact candidate bytes |
 | 3 stations | PROMOTED | exact candidate bytes |
-| 4 committed rails | PROMOTED | exact candidate bytes |
+| 4 committed rails | PROMOTED | exact candidate bytes; also reused as BUILD palette/preview form identity |
 | start / route-end marker | PROMOTED | exact route marker sources |
-| switch direction | BASE + RUN_2A_SEMANTIC | existing left-selected/locked crops remain 053 provenance/product; 054 adds selected/unselected/occupied-locked/inactive state-style overlays and reuses procedural `SX-DEC-042 · SX-DEC-046 · VIS-014` direction authority |
+| switch direction | BASE + RUN_2A_SEMANTIC | existing left-selected/locked crops remain 053 provenance/product; 054 adds selected/unselected/occupied-locked/inactive state-style overlays and reuses procedural direction authority |
 | stack HUD | BASE + RUN_2A_SEMANTIC | 053 retains `empty`, `32plus`, `unloading`, `top_highlight`; 054 adds `compact`, `8plus`, `16plus`, distinct predicted `unload_group`, `paused` |
-| train cargo strip | RUN_2A_SEMANTIC | shell / `+N` badge / unload-transition primitives compose empty, 1–3 token, compressed `+N`, unload-transition states with existing cargo tokens and smaller-wagon hierarchy |
-| load mode | RUN_2A_SEMANTIC | explicit shell/marker/overlay primitives compose `manual_idle`, `manual_held`, `auto_off`, `auto_on`, `paused_disabled`, `input_received`; old atlas remains reference-only |
+| train cargo strip | RUN_2A_SEMANTIC | shell / `+N` badge / unload-transition primitives compose empty, 1–3 token, compressed `+N`, unload-transition states |
+| load mode | RUN_2A_SEMANTIC | shell/marker/overlay primitives compose `manual_idle`, `manual_held`, `auto_off`, `auto_on`, `paused_disabled`, `input_received` |
 | combo static | PROMOTED | Reduced Motion-compatible exact source |
-| BUILD placement preview | PARTIAL_PRODUCT | four candidate-manifest-authoritative slices promoted: straight valid/invalid ghost, curve valid ghost, left port marker; rotate/replacement/placed and broader state coverage remain pending |
-| BUILD track palette / preflight | PENDING_REVISION | complete product state split still needed |
+| BUILD placement preview | BASE + BUILD_2B_SEMANTIC | 053 retains four exact named candidate slices; 054 BUILD adds valid/invalid/rotate/replacement state overlays without assigning meaning to unnamed atlas regions |
+| BUILD track palette | BUILD_2B_COMPOSITION | 4 forms × 5 interaction states = 20 semantic compositions using existing 4 committed rail silhouettes + existing UI interaction frames; **0** new form×interaction PNGs |
+| BUILD preflight | BUILD_2B_SEMANTIC | neutral shell + primary/multi/focused markers compose `clear`, `primary_issue`, `multi_issue_summary`, `focused_location`; no gameplay outcome invented |
 | ghost route | PROMOTED | exact source |
 | cost HUD | PROMOTED | exact source |
-| controls 7 states | RECOVERED / PRODUCT | normal/hover/pressed/selected/disabled/locked/focus recovered from exact approved E+D UI reference; corrupt atlas preserved |
-| VFX atlas | PENDING_REVISION | source healthy; causal role split still needed |
+| controls 7 states | RECOVERED / PRODUCT | normal/hover/pressed/selected/disabled/locked/focus recovered from exact approved E+D UI reference; BUILD palette reuses normal/selected/disabled/focus/pressed |
+| VFX atlas | PENDING_REVISION | source healthy; causal role split pending as VFX Batch 2C |
 | success / failure shells | PROMOTED | text-safe exact sources |
 | progress/meta | PROMOTED | text-safe exact source |
 
 ## SX-DEC-053 authoritative slice batch 1
-
-This batch remains deliberately narrower than semantic completion. It promotes only slices whose names **and crop bounds were already recorded in the immutable `SX-DEC-051` candidate manifest**.
 
 RUN / Stack HUD:
 
@@ -66,7 +66,7 @@ BUILD / Placement preview:
 - `build_track_curve_valid_ghost_v01.png` ← `[88,4,36,30]`;
 - `build_port_marker_left_v01.png` ← `[6,53,30,26]`.
 
-No unnamed region of an atlas is promoted in this batch. `run_stack_unloading_v01` remains source-authoritative `unloading` and is not relabeled as the distinct predicted next-unload-group state.
+No unnamed region of an atlas is promoted or assigned a new semantic name. `run_stack_unloading_v01` remains source-authoritative `unloading`, not the distinct predicted next-unload-group state.
 
 ## SX-DEC-054 RUN Batch 2A semantic package
 
@@ -108,9 +108,52 @@ Compositions: `manual_idle`, `manual_held`, `auto_off`, `auto_on`, `paused_disab
 
 Compositions: `three_visible`, `selected`, `unselected`, `occupied_locked`, `inactive`.
 
-Directional arrow geometry is not duplicated into Batch 2A. The compositions retain `SX-DEC-042 · SX-DEC-046 · VIS-014` as the procedural direction authority.
+Directional arrow geometry is not duplicated into Batch 2A. The compositions retain `SX-DEC-042 · SX-DEC-046 · VIS-014` as procedural direction authority.
 
-The legacy train-strip/load-mode/switch atlases remain explicitly `PRESERVE_REFERENCE_ONLY_NO_STATE_MAPPING` and are not used as unnamed pixel/crop authority for the new semantic meanings.
+## SX-DEC-054 BUILD Batch 2B semantic package
+
+### Placement preview · 4 physical overlays / 4 compositions
+
+- `build_placement_valid_overlay_v01.png`;
+- `build_placement_invalid_overlay_v01.png`;
+- `build_placement_rotate_preview_overlay_v01.png`;
+- `build_placement_replacement_preview_overlay_v01.png`.
+
+Each composition is `preview_only` and accepts the four committed core rail products as form authority. The existing four 053 authoritative placement crops remain preserved as provenance/product assets; the new states do not claim unnamed atlas regions.
+
+### Track palette · 0 new form×interaction PNGs / 20 compositions
+
+Forms:
+- straight;
+- curve;
+- switch;
+- crossing.
+
+Interaction states:
+- idle → existing `normal` UI frame;
+- selected → existing `selected` UI frame;
+- unavailable → existing `disabled` UI frame;
+- keyboard-focus → existing `focus` UI frame;
+- touch-pressed → existing `pressed` UI frame.
+
+The semantic matrix is exactly 4 × 5 = **20** composition records. Form identity comes from existing committed core rail silhouettes. This explicitly avoids a 20-file binary cross product.
+
+`art/production_candidates/ed_hybrid_v1/build/build_track_palette_v01.png` remains `PRESERVE_REFERENCE_ONLY_NO_STATE_MAPPING`.
+
+### Preflight · 4 physical primitives / 4 compositions
+
+- `build_preflight_shell_v01.png`;
+- `build_preflight_primary_issue_marker_v01.png`;
+- `build_preflight_multi_issue_marker_v01.png`;
+- `build_preflight_focused_location_marker_v01.png`.
+
+Compositions:
+- `clear` → shell;
+- `primary_issue` → shell + primary marker;
+- `multi_issue_summary` → shell + multi marker;
+- `focused_location` → shell + focused-location marker.
+
+No ready/warning/blocking gameplay outcome is created, and optional-target/leaderboard misses are not represented as general run failure.
 
 ## Counts
 
@@ -121,7 +164,10 @@ The legacy train-strip/load-mode/switch atlases remain explicitly `PRESERVE_REFE
 - `REPLACE`: **2**
 - SX-DEC-053 product PNG ownership: **39**
 - SX-DEC-054 RUN Batch 2A semantic PNG ownership: **20**
-- current physical product PNG total: **59**
+- SX-DEC-054 BUILD Batch 2B semantic PNG ownership: **8**
+- expected physical product PNG total after BUILD merge: **67**
+- BUILD Batch 2B semantic compositions: **28** = placement 4 + palette 20 + preflight 4
+- BUILD palette new form×interaction physical PNG count: **0**
 - SX-DEC-053 authoritative slice batch 1: **8** product PNGs
 - corrupt source candidates detected by deep PNG health scan: **2** (`locomotive`, `controls atlas`)
 - corrupt source candidates overwritten: **0**
@@ -133,15 +179,15 @@ The legacy train-strip/load-mode/switch atlases remain explicitly `PRESERVE_REFE
 Ownership manifests:
 
 - `art/product_assets/ed_hybrid_v1/manifest.json` — `SX-DEC-053` baseline product ownership;
-- `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054.json` — `SX-DEC-054` RUN Batch 2A semantic ownership/compositions.
+- `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054.json` — `SX-DEC-054` RUN Batch 2A ownership/compositions;
+- `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054_build_2b.json` — `SX-DEC-054` BUILD Batch 2B ownership/compositions.
 
-The validators require disjoint ownership and exact physical-file agreement. `REPLACE` records in the 053 manifest retain corrupt source-candidate provenance plus exact approved-reference recovery provenance. The 054 sidecar records independent semantic derivation and does not claim ambiguous atlas regions as authority.
+Validators require exact physical-file agreement and pairwise-disjoint ownership. The BUILD sidecar references the RUN sidecar but does not rewrite it. `REPLACE` records in the 053 manifest retain corrupt source-candidate provenance plus exact approved-reference recovery provenance.
 
 ## Remaining asset work before later runtime integration
 
-1. complete remaining BUILD placement semantics including rotate/replacement plus track-palette interaction split;
-2. complete BUILD preflight semantic presentation without inventing gameplay outcomes;
-3. complete VFX causal state separation and Reduced Motion information-equivalent presentations;
-4. keep all later Scene/Resource/Theme/Animation/signal/runtime/device/human gates separate.
+1. complete VFX causal state separation for cargo pickup/unload, combo, route selection, success/failure, `ROUTE_END`, `TIME_EXPIRED`;
+2. provide Reduced Motion information-equivalent presentation for every meaning-bearing VFX event;
+3. keep all later Scene/Resource/Theme/Animation/signal/runtime/device/human gates separate.
 
-RUN Batch 2A remains `runtime_integrated=false`. Automated/static validation is product-package evidence only; Windows physical runtime, Android device, connected physical editor, and human comprehension/playtest remain `NOT_RUN`.
+RUN Batch 2A remains merged-main verified. BUILD Batch 2B is implemented and exact-head validation/merge is pending. All semantic packages remain `runtime_integrated=false`; Windows physical runtime, Android device, connected physical editor, and human comprehension/playtest remain `NOT_RUN`.
