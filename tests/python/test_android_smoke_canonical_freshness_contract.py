@@ -20,15 +20,28 @@ def section(text: str, heading: str, next_heading: str) -> str:
 
 
 class TestAndroidSmokeCanonicalFreshness(unittest.TestCase):
-    def test_active_hub_points_to_android_smoke(self) -> None:
+    def test_active_hub_preserves_device_gates_without_making_them_immediate(self) -> None:
         start = read("기획서/00_프로젝트_허브/START_HERE.md")
         active = read("기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md")
         gates = read("기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md")
-        for text in (start, active, gates):
-            self.assertIn("CANONICAL MAIN APK EXPORT", text)
-            self.assertIn("ANDROID DEVICE SMOKE", text)
-            self.assertIn("FIVE-PERSON COMPREHENSION", text)
-            self.assertIn("PRODUCTION CUTOVER", text)
+
+        for text in (start, active):
+            self.assertIn("SX-DEC-055", text)
+            self.assertIn("USER_DEFERRED", text)
+            self.assertIn("NOT_RUN", text)
+        self.assertIn("Android landscape device", start)
+        self.assertIn("Android landscape device smoke", active)
+
+        for token in (
+            "CANONICAL MAIN APK EXPORT",
+            "ANDROID DEVICE SMOKE",
+            "FIVE-PERSON COMPREHENSION",
+            "PRODUCTION CUTOVER",
+        ):
+            self.assertIn(token, gates)
+
+        self.assertNotIn("ANDROID DEVICE SMOKE · CURRENT", start)
+        self.assertNotIn("ANDROID DEVICE SMOKE · CURRENT", active)
         self.assertNotIn("FINITE_PUZZLE_DEFINITION_OF_READY", start)
         self.assertNotIn("current_authorized_package: VS03-03", active)
         self.assertNotIn("current authority is VS03-03 only", gates)
