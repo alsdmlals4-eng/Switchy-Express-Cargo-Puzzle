@@ -11,7 +11,7 @@ FINITE_DELIVERY_PUZZLE_BASELINE · SX-DEC-027~055
 → SX-DEC-053/054 semantic asset production complete: 73 product PNGs
 → SX-DEC-055 Runtime Semantic POC decision/spec/DoR approved and merged
 → USER_DEFERRED_AFTER_DOR · implementation NOT_STARTED
-→ PHASE A GPT CHAT PLANNING
+→ PHASE A PLANNING EVIDENCE COMPLETE · READY_FOR_USER_PLANNING_COMPLETE_GATE
 → explicit user "기획 완료" required
 → PHASE B FINAL PLANNING REVIEW required
 → only after Phase B PASS: BUILD / SX-DEC-055 RED-first execution
@@ -31,8 +31,8 @@ FINITE_DELIVERY_PUZZLE_BASELINE · SX-DEC-027~055
 ## 현재 Phase A 계약
 
 ```yaml
-phase_a: IN_PROGRESS
-planning_audit: SX-AUD-044
+phase_a: READY_FOR_USER_PLANNING_COMPLETE_GATE
+planning_audit: SX-AUD-044 · PR_141_MERGED_MAIN_VERIFIED
 user_planning_complete_gate: NOT_GRANTED
 phase_b_final_planning_review: NOT_RUN
 build_authority: BLOCKED
@@ -43,7 +43,7 @@ sx_dec_055_runtime_implementation: USER_DEFERRED_AFTER_DOR · NOT_STARTED
 runtime_integrated: false
 ```
 
-과거 승인과 `연속작업`은 Phase A 기획을 계속 수행할 권한이며, v4.5의 명시적 `기획 완료` Gate 또는 Phase B PASS를 대신하지 않는다.
+과거 승인과 `연속작업`은 Phase A 기획을 계속 수행할 권한이었으며, v4.5의 명시적 `기획 완료` Gate 또는 Phase B PASS를 대신하지 않는다. 현재 Phase A planning evidence는 PR #141 exact-head 검증과 merge/readback까지 완료됐다.
 
 ## 완료된 기반
 
@@ -127,7 +127,7 @@ Blocked execution:
 
 Status: `USER_DEFERRED_AFTER_DOR · GODOT_IMPLEMENTATION_NOT_STARTED · runtime_integrated=false`.
 
-### M5A — Phase A Planning Completion · IN_PROGRESS
+### M5A — Phase A Planning Completion · READY_FOR_USER_PLANNING_COMPLETE_GATE
 
 Authority:
 
@@ -138,10 +138,12 @@ Authority:
 - [x] existing implementation function/dependency/protection planning audited
 - [x] post-POC acceptance-build architecture selected
 - [x] behavior-first first-session research design authored
-- [ ] current-owner/Sheet/PR exact-head closure
-- [ ] `READY_FOR_USER_PLANNING_COMPLETE_GATE` verdict
+- [x] current-owner/Sheet planning routing authored
+- [x] PR #141 exact-head verification: Project Contract #1172 PASS · GUT #221 PASS · Godot #1103 PASS · Thin #313 PASS · review threads 0
+- [x] PR #141 merge/readback: main `2c9d62c73990c6aeafd55f3bc346d4918289357e` · open PRs 0
+- [x] `READY_FOR_USER_PLANNING_COMPLETE_GATE` verdict
 
-No BUILD occurs in M5A.
+No BUILD occurs in M5A. The next missing gate is the user's explicit `기획 완료` declaration.
 
 ## Validation Lanes
 
@@ -214,7 +216,7 @@ Status: `BLOCKED_DEFERRED`.
 
 ## 후속 제품 Roadmap
 
-다음은 승인된 기존 방향 또는 장기 backlog이며 현재 Phase A/SX-DEC-055와 섞지 않는다.
+다음은 승인된 기존 방향 또는 장기 backlog이며 현재 user Gate/SX-DEC-055와 섞지 않는다.
 
 - `SX-DEC-033`: speed/cost/score stars + leaderboard · `APPROVED · NOT_STARTED`
 - `SX-DEC-034`: tutorial/theme chapter · `APPROVED · NOT_STARTED`
@@ -229,8 +231,7 @@ Status: `BLOCKED_DEFERRED`.
 ## 현재 다음 순서
 
 ```text
-SX-AUD-044 Phase A planning docs + Sheet + exact-head PR closure
-→ READY_FOR_USER_PLANNING_COMPLETE_GATE (only if evidence supports)
+PHASE A: READY_FOR_USER_PLANNING_COMPLETE_GATE
 → await explicit user "기획 완료"
 → PHASE B final planning review
 → only after PHASE B PASS: SX-DEC-055 Task 1 / Step 1.1 RED

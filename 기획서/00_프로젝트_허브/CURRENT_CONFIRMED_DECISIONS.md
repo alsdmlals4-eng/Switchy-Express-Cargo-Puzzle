@@ -8,9 +8,9 @@ This is the compact current-status registry for the finite delivery puzzle. Deta
 current_product_baseline: FINITE_DELIVERY_PUZZLE_BASELINE
 current_decision_span: SX-DEC-027~055
 superseded_decision: SX-DEC-047 -> SX-DEC-048
-authority_snapshot_through_main: 398be2f12c6d279c83001bf36bfdd3ecb7f72a08
+authority_snapshot_through_main: 2c9d62c73990c6aeafd55f3bc346d4918289357e
 authority_refresh_audit: SX-AUD-035
-current_planning_validation_audit: SX-AUD-044
+current_planning_validation_audit: SX-AUD-044 · VERIFIED_READY
 latest_visual_asset_authority: SX-DEC-053
 latest_visual_semantic_strategy: SX-DEC-054
 latest_runtime_semantic_poc_authority: SX-DEC-055
@@ -23,7 +23,7 @@ product_runtime_state: FINITE_CORE_AUTOMATED_PASS · ROUTE_END_USER_CURRENT_MAIN
 visual_asset_state: ED_HYBRID_FINAL_DIRECTION · 73_TOTAL_PRODUCT_PNGS · SEMANTIC_ASSET_PRODUCTION_COMPLETE · SX-DEC-055_RUNTIME_POC_SPEC_APPROVED · IMPLEMENTATION_NOT_STARTED
 tooling_state: GODOT_AI_3_1_3_SYNCED · GUT_9_7_1_PRESERVED · HERA_TRACKED_V1_0_0_USER_ADOPTED · CONNECTED_PHYSICAL_EDITOR_NOT_RUN
 asset_vault_state: LEGACY_14_TRACKED_PRESERVED · UNTRACK_DEFERRED_PENDING_LOCAL_PRESERVATION_ATTESTATION
-phase_a_state: GPT_CHAT_PLANNING · SX-AUD-044_IN_PROGRESS
+phase_a_state: READY_FOR_USER_PLANNING_COMPLETE_GATE
 user_planning_complete_gate: NOT_GRANTED
 phase_b_final_planning_review: NOT_RUN
 build_authority: BLOCKED
@@ -191,9 +191,12 @@ phase_a_freshness_closure:
   audit: SX-AUD-035
   pr: 140
   merge_main: 398be2f12c6d279c83001bf36bfdd3ecb7f72a08
-current_planning_validation:
+phase_a_first_session_planning:
   audit: SX-AUD-044
-  state: IN_PROGRESS
+  pr: 141
+  exact_head: 4aa592d8c086a3d863d736696af4169a886391ad
+  merge_main: 2c9d62c73990c6aeafd55f3bc346d4918289357e
+  state: READY_FOR_USER_PLANNING_COMPLETE_GATE
 ```
 
 ## Current Execution Authority
@@ -201,10 +204,10 @@ current_planning_validation:
 ```text
 1. SX-DEC-054 semantic asset production is complete at 73 physical product PNGs.
 2. SX-DEC-055 separately authorizes a bounded manifest-backed runtime semantic POC; its spec and exact-file DoR plan are approved.
-3. The project is currently in PHASE A GPT CHAT PLANNING under v4.5.
+3. Phase A planning evidence is complete through SX-AUD-044 / PR #141 and the project is READY_FOR_USER_PLANNING_COMPLETE_GATE.
 4. Prior approval, DoR, explicit resume language, or continuous-work language does NOT grant BUILD authority.
-5. Current Phase A must close first-session comprehension / acceptance-build / function-dependency-validation coverage and exact-head planning verification.
-6. Only after the user explicitly declares "기획 완료" may PHASE B final planning review begin.
+5. The next required action is the user's explicit "기획 완료" declaration.
+6. Only after that declaration may PHASE B final planning review begin.
 7. Only after PHASE B PASS may PowerShell/Codex/Godot execute SX-DEC-055 Task 1 / Step 1.1 RED.
 8. The POC must preserve domain/gameplay authority; no new gameplay/domain signal may be introduced solely for combo VFX.
 9. Historical semantic/product manifests stay immutable provenance records; do not flip their runtime_integrated field merely because a later POC consumes assets.

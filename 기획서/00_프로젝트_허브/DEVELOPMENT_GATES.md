@@ -7,8 +7,8 @@
 ### v4.5 planning/build chain
 
 ```text
-A0 PHASE A GPT CHAT PLANNING: IN_PROGRESS · SX-AUD-044
-→ A1 READY_FOR_USER_PLANNING_COMPLETE_GATE: NOT_YET
+A0 PHASE A GPT CHAT PLANNING: COMPLETE · SX-AUD-044
+→ A1 READY_FOR_USER_PLANNING_COMPLETE_GATE: READY
 → A2 explicit user "기획 완료": NOT_GRANTED
 → A3 PHASE B FINAL PLANNING REVIEW: NOT_RUN
 → A4 BUILD AUTHORITY: BLOCKED
@@ -127,11 +127,10 @@ Status: `NOT_STARTED · BLOCKED_BY_A2_A3`
 
 선행 조건:
 
-1. Phase A planning readiness
-2. explicit user `기획 완료`
-3. Phase B final planning review PASS
-4. 기존 SX-DEC-055 exact-file RED-first plan 실행
-5. exact-head automated regression + merge/readback
+1. explicit user `기획 완료`
+2. Phase B final planning review PASS
+3. 기존 SX-DEC-055 exact-file RED-first plan 실행
+4. exact-head automated regression + merge/readback
 
 ## G5B — POST-POC ACCEPTANCE BUILD IDENTITY
 
@@ -296,8 +295,8 @@ Status: `NOT_RUN`
 
 ```text
 Current state owner: CURRENT_CONFIRMED_DECISIONS + ACTIVE_CONTEXT + PHASE_A_PLANNING_COMPLETION_GATE
-Planning: SX-AUD-044 → READY_FOR_USER_PLANNING_COMPLETE_GATE
-→ explicit user "기획 완료"
+Planning: READY_FOR_USER_PLANNING_COMPLETE_GATE
+→ await explicit user "기획 완료"
 → Phase B final planning review
 → only after Phase B PASS: SX-DEC-055 RED-first implementation
 → merged automated POC
@@ -310,7 +309,7 @@ Planning: SX-AUD-044 → READY_FOR_USER_PLANNING_COMPLETE_GATE
 ## 금지
 
 - prior approval/continuous-work를 user `기획 완료` Gate로 해석
-- Phase A/Phase B 전에 SX-DEC-055 BUILD 시작
+- Phase B 전에 SX-DEC-055 BUILD 시작
 - 이미 병합된 PR #83을 Draft·MAIN_PENDING·merge blocked로 표시
 - PC4A를 PENDING으로 되돌림
 - historical validation APK를 post-POC human acceptance build로 자동 사용

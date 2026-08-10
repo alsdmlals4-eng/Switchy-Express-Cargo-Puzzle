@@ -13,9 +13,9 @@ baseline:
   repository: alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
   default_branch: main
   current_main_source: LIVE_GITHUB_DEFAULT_BRANCH
-  repository_main_observed: 398be2f12c6d279c83001bf36bfdd3ecb7f72a08
-  open_project_prs_observed_before_current_phase_a_branch: 0
-  last_merged_project_pr: 140
+  repository_main_observed: 2c9d62c73990c6aeafd55f3bc346d4918289357e
+  open_project_prs_observed_after_pr_141: 0
+  last_merged_project_pr: 141
   project_local_path: C:/Users/user/Documents/GitHub/Ninza/Switchy-Express-Cargo-Puzzle
   godot_project_path: C:/Users/user/Documents/GitHub/Ninza/Switchy-Express-Cargo-Puzzle
   engine: Godot 4.7.1-stable
@@ -27,9 +27,9 @@ baseline:
   configured_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
 
 authority:
-  work_contract: PHASE_A_GPT_CHAT_PLANNING · SX-DEC-055_RUNTIME_IMPLEMENTATION_USER_DEFERRED
+  work_contract: PHASE_A_PLANNING_READY_FOR_USER_GATE · SX-DEC-055_RUNTIME_IMPLEMENTATION_USER_DEFERRED
   decision_span: SX-DEC-027~055
-  current_planning_audit: SX-AUD-044
+  planning_audit: SX-AUD-044 · VERIFIED_READY
   runtime_semantic_decision: SX-DEC-055
   approval_refs:
     - USER_APPROVAL_2026-08-10_RUNTIME_POC
@@ -54,12 +54,12 @@ progress:
     - SX-DEC-053/054 semantic asset production complete at 73 product PNGs
     - SX-DEC-055 decision/spec + exact-file RED-first DoR plan merged
     - PR #140 SX-AUD-035 Phase A canonical-freshness closure merged
-  in_progress:
-    - SX-AUD-044 first-session comprehension + acceptance-build + phase-gate planning
+    - PR #141 SX-AUD-044 first-session/acceptance-build/v4.5 planning package merged and exact-head verified
+  in_progress: []
   ready_next:
-    - finish current Phase A planning package and exact-head verification
-    - synchronize GitHub current owners + configured Sheet
-    - if all planning criteria are satisfied, reach READY_FOR_USER_PLANNING_COMPLETE_GATE
+    - await explicit user "기획 완료" gate
+    - after that gate, run PHASE B final planning review
+    - only if Phase B PASS, execute the already-approved SX-DEC-055 RED-first plan
   not_started:
     - user explicit "기획 완료" gate
     - Phase B final planning review
@@ -72,7 +72,7 @@ progress:
     - Connected physical Godot/Hera authoring validation
     - broader human/comprehension validation
   blocked:
-    - BUILD: BLOCKED_BY_V4_5_SEQUENCE
+    - BUILD: BLOCKED_BY_V4_5_USER_GATE_AND_PHASE_B
     - production cutover: BLOCKED_DEFERRED
     - asset-vault untrack: DEFERRED_PENDING_LOCAL_PRESERVATION_ATTESTATION
 
@@ -85,6 +85,18 @@ verification:
     godot_31434427318: PASS
     thin_31434427328: PASS
     review_threads: 0
+  pr_141:
+    initial_head: 45d6aa6087b737756785f32ee40a434676c85c58
+    initial_project_contract: FAIL · ANDROID_DEVICE_SMOKE_COMPATIBILITY_ANCHOR
+    exact_head: 4aa592d8c086a3d863d736696af4169a886391ad
+    merge_main_observed: 2c9d62c73990c6aeafd55f3bc346d4918289357e
+    project_contract_31436274979: PASS
+    gut_31436274904: PASS
+    godot_31436275078: PASS
+    thin_31436274910: PASS
+    review_threads: 0
+    submitted_reviews: 0
+    changed_files: 10_DOCS_PLANNING_ONLY
   sx_dec_055_runtime_poc_tests: NOT_RUN
   runtime_qa: NOT_RUN
   human_qa: NOT_RUN
@@ -98,7 +110,7 @@ verification:
 
 historical_compatibility_markers:
   legacy_audit_reference: SX-AUD-025
-  repository_main_observed: 398be2f12c6d279c83001bf36bfdd3ecb7f72a08
+  repository_main_observed: 2c9d62c73990c6aeafd55f3bc346d4918289357e
   latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
   pc_local_route_and_mid_run_retest: RETEST_REQUIRED
 
@@ -110,8 +122,7 @@ base_learning:
   base_implementation_authority: NOT_GRANTED_IN_THIS_STAGE
 
 phase_a_sequence:
-  current_step: FIRST_SESSION_COMPREHENSION_AND_ACCEPTANCE_BUILD_PLANNING
-  next_if_current_pr_merges_and_syncs: READY_FOR_USER_PLANNING_COMPLETE_GATE
+  current_step: READY_FOR_USER_PLANNING_COMPLETE_GATE
   required_user_gate_literal: "기획 완료"
   phase_b_after_user_gate: FINAL_PLANNING_REVIEW
   first_build_step_after_phase_b_pass: docs/superpowers/plans/2026-08-10-sx-dec-055-runtime-semantic-poc.md Task 1 / Step 1.1 RED
@@ -142,7 +153,7 @@ sx_dec_055_runtime_implementation: USER_DEFERRED · NOT_STARTED
 runtime_integrated: false
 ```
 
-`SX-DEC-055` 승인과 DoR은 취소되지 않았다. 그러나 현재 v4.5 작업 계약에서는 **승인된 구현 범위가 존재한다는 사실과 BUILD 실행 권한을 분리**한다. 현재는 Phase A 기획을 닫는 중이며, 사용자가 명시적으로 `기획 완료`를 선언한 뒤 Phase B 최종 기획 검수를 통과해야만 기존 RED-first 구현 plan을 실행할 수 있다.
+`SX-DEC-055` 승인과 DoR은 취소되지 않았다. Phase A의 기능 분해·의존성·보호 영역·RED/GREEN blueprint·첫 세션 comprehension·post-POC acceptance-build·validation sequence는 PR #141 exact-head 검증/merge까지 완료되어 **사용자 planning-complete Gate를 받을 준비**가 되었다. 그러나 BUILD 권한은 아직 없다. 사용자가 명시적으로 `기획 완료`를 선언한 뒤 Phase B 최종 기획 검수를 통과해야만 기존 RED-first 구현 plan을 실행할 수 있다.
 
 ## 첫 세션·acceptance build 경계
 
@@ -173,8 +184,8 @@ runtime_integrated: false
 ## 금지
 
 - prior approval 또는 `연속작업`을 v4.5의 명시적 `기획 완료` Gate로 해석
-- Phase A 또는 Phase B 전에 SX-DEC-055 RED/GREEN/Godot 구현 시작
-- 이 planning package를 runtime POC 구현 완료로 보고
+- Phase B 전에 SX-DEC-055 RED/GREEN/Godot 구현 시작
+- planning readiness를 runtime POC 구현 완료로 보고
 - 새 gameplay/domain signal을 combo VFX만을 위해 추가
 - unnamed legacy atlas에 새 의미 부여
 - historical semantic/product manifest의 `runtime_integrated=false` provenance 덮어쓰기

@@ -1,7 +1,7 @@
 # Phase A Planning Completion Gate
 
 ```yaml
-status: IN_PROGRESS · PR_VERIFICATION_PENDING
+status: READY_FOR_USER_PLANNING_COMPLETE_GATE
 work_mode: GPT_CHAT_PLANNING
 product_decision_span: SX-DEC-027~055
 planning_audit: SX-AUD-044
@@ -27,7 +27,7 @@ PHASE A planning evidence complete
 
 | ID | 계획 요구 | 책임 근거 | 현재 상태 | 통과 조건 |
 |---|---|---|---|---|
-| PA-01 | Base/project/Sheet current authority refresh | Base current main + project main + configured Sheet | PASS · live read 2026-08-11 | PR/merge 직전 재조회 |
+| PA-01 | Base/project/Sheet current authority refresh | Base current main + project main + configured Sheet | PASS · live read 2026-08-11 | current readback completed |
 | PA-02 | 제품 코어·승인 결정 안정성 | GMB-002 · SX-DEC-027~055 | PASS | 새 product conflict 0 |
 | PA-03 | 기능 분해 | SX-DEC-055 implementation plan Tasks 1~10 | PASS · PLANNED | exact files/interfaces/tasks 존재 |
 | PA-04 | 함수·데이터·상태 의존성 | SemanticAssetCatalog → SemanticRuntimeState → presenter/model → HUD/board/route/VFX | PASS · PLANNED | domain/presentation 경계와 consumers 명시 |
@@ -36,10 +36,10 @@ PHASE A planning evidence complete
 | PA-07 | 자동 회귀·merge 검증 | plan Task 9/10 | PASS · PLANNED | exact-head Project Contract/GUT/Godot/Thin/Windows when applicable |
 | PA-08 | physical/device/human validation sequence | first-session design + PLAYTEST_PLAN + DEVELOPMENT_GATES | PASS · PLANNED | post-POC exact acceptance build → physical smoke → human gate canonical |
 | PA-09 | first-session comprehension contract | `PLAYTEST_PLAN.md` + first-session design | PASS · PLANNED | behavior/prediction/transfer + severity + build identity canonical |
-| PA-10 | current-owner v4.5 sequencing | ACTIVE_CONTEXT + CURRENT_CONFIRMED_DECISIONS + ROADMAP + DEVELOPMENT_GATES | PASS · BRANCH_READBACK | direct resume→RED shortcut removed from current owners |
-| PA-11 | GitHub/Sheet current routing | 00/01/02/04/05/50 current surfaces | PASS · PRE_PR_READBACK | same Decision/Audit IDs + CURRENT-12/SX-AUD-044/current validation row verified |
-| PA-12 | adversarial planning review | SX-AUD-044 + branch diff/consumer compatibility review | PASS · PRE_PR | product conflict 0 · docs-only scope · historical hash/consumer anchors preserved |
-| PA-13 | exact-head planning PR verification | current Phase A PR | NOT_RUN | required checks PASS + review threads 0 + merge/readback |
+| PA-10 | current-owner v4.5 sequencing | ACTIVE_CONTEXT + CURRENT_CONFIRMED_DECISIONS + ROADMAP + DEVELOPMENT_GATES | PASS · MERGED_READBACK | direct resume→RED shortcut removed from current owners |
+| PA-11 | GitHub/Sheet current routing | 00/01/02/04/05/50 current surfaces | PASS · SAME_ID_RECONCILED | same Decision/Audit IDs + CURRENT-12/SX-AUD-044/current validation row |
+| PA-12 | adversarial planning review | SX-AUD-044 + branch diff/consumer compatibility review | PASS | product conflict 0 · docs-only scope · historical hash/consumer anchors preserved |
+| PA-13 | exact-head planning PR verification | PR #141 | PASS · MERGED_MAIN_VERIFIED | exact head `4aa592d8c086a3d863d736696af4169a886391ad`; Project Contract #1172 PASS; GUT #221 PASS; Godot #1103 PASS; Thin #313 PASS; review threads 0; merge `2c9d62c73990c6aeafd55f3bc346d4918289357e`; post-merge main/open-PR readback PASS |
 | PA-14 | explicit user planning-complete Gate | user literal/explicit declaration | NOT_GRANTED | user says `기획 완료` |
 | PA-15 | Phase B final planning review | post-user-gate review | NOT_RUN | Phase B verdict PASS |
 
@@ -95,22 +95,35 @@ Phase A를 통과해도 다음은 자동 승인되지 않는다.
 - physical/device/human PASS
 - production cutover
 
-## Pre-PR Adversarial Result
+## Exact-Head / Post-Merge Adversarial Result
+
+Initial PR #141 head `45d6aa6087b737756785f32ee40a434676c85c58` exposed one registered compatibility regression: the stable `ANDROID DEVICE SMOKE` token had been renamed while semantics were preserved. The test/workflow was not weakened; the exact compatibility anchor was restored while keeping the historical-harness vs post-POC acceptance split.
+
+Final verified head:
 
 ```text
-Git diff: 10 docs/planning files only
+exact head: 4aa592d8c086a3d863d736696af4169a886391ad
+changed files: 10 docs/planning only
+Project Contract #1172 / 31436274979: PASS
+GUT #221 / 31436274904: PASS
+Godot #1103 / 31436275078: PASS
+Thin #313 / 31436274910: PASS
+review threads: 0
+submitted reviews: 0
+mergeable: true before merge
+merge main: 2c9d62c73990c6aeafd55f3bc346d4918289357e
+post-merge open PRs: 0
 runtime/code/test/workflow/product asset/manifest changes: 0
 new product Decision ID: 0
 old validation APK hash: preserved as historical evidence
 post-POC acceptance build: UNASSIGNED
 Five-person minimum: preserved
 recruit target 6: TEST_VALUE buffer only
-questionnaire-only PASS: rejected
-moderator solution coaching: rejected
-current owner direct resume→RED shortcut: removed
 physical/device/human PASS inflation: 0
 Base repin: 0
 ```
+
+No Windows Demo Export was emitted for the docs/planning head and none is claimed as PASS.
 
 ## Gate Verdict Rules
 
@@ -132,10 +145,12 @@ PA-14가 granted이고 Phase B 검토를 시작할 수 있다.
 ## Current Conclusion
 
 ```text
-PHASE A: IN_PROGRESS · ONLY PA-13 PR VERIFICATION/POST-MERGE READBACK REMAINS
-CURRENT GAP: PA-13
+PHASE A PLANNING EVIDENCE: COMPLETE
+PHASE A VERDICT: READY_FOR_USER_PLANNING_COMPLETE_GATE
+PA-01~13: PASS
 USER "기획 완료" GATE: NOT_GRANTED
 PHASE B: NOT_RUN
 BUILD: BLOCKED
 SX-DEC-055 IMPLEMENTATION: NOT_STARTED
+NEXT ACTION: await explicit user "기획 완료" only; then run Phase B final planning review
 ```
