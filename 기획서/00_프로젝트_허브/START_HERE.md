@@ -37,12 +37,12 @@ Last updated: `2026-08-10 KST`
 새 채팅·새 에이전트·Codex는 과거 대화보다 현재 저장소를 우선하며 다음 순서로 읽는다.
 
 1. 루트 `AGENTS.md`
-2. `CURRENT_CONFIRMED_DECISIONS.md`
-3. `ACTIVE_CONTEXT.md`
-4. `../../../docs/decisions/SX_DEC_055_RUNTIME_SEMANTIC_POC.md`
-5. `../../../docs/superpowers/specs/2026-08-10-runtime-semantic-poc-design.md`
-6. `../../../docs/superpowers/plans/2026-08-10-sx-dec-055-runtime-semantic-poc.md`
-7. `ROADMAP.md`
+2. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
+3. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
+4. `docs/decisions/SX_DEC_055_RUNTIME_SEMANTIC_POC.md`
+5. `docs/superpowers/specs/2026-08-10-runtime-semantic-poc-design.md`
+6. `docs/superpowers/plans/2026-08-10-sx-dec-055-runtime-semantic-poc.md`
+7. `기획서/00_프로젝트_허브/ROADMAP.md`
 8. configured Google Sheet `SX-DEC-055` row and current audit rows
 9. implementation을 재개할 때만 plan이 지목한 실제 Godot/GDScript/test/manifests를 current main에서 재조회
 
