@@ -20,20 +20,21 @@ def section(text: str, heading: str, next_heading: str) -> str:
 
 
 class TestAndroidSmokeCanonicalFreshness(unittest.TestCase):
-    def test_active_hub_preserves_device_gates_without_making_them_immediate(self) -> None:
+    def test_active_hub_preserves_device_gates_after_phase_b(self) -> None:
         start = read("기획서/00_프로젝트_허브/START_HERE.md")
         active = read("기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md")
         gates = read("기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md")
 
         for text in (start, active):
             self.assertIn("SX-DEC-055", text)
-            self.assertIn("USER_DEFERRED", text)
+            self.assertIn("GRANTED", text)
+            self.assertIn("PASS", text)
             self.assertIn("NOT_RUN", text)
-        self.assertIn("Android landscape device", start)
-        self.assertIn("Android landscape device smoke", active)
+        self.assertIn("ANDROID DEVICE SMOKE", start)
+        self.assertIn("ANDROID DEVICE SMOKE", active)
 
         for token in (
-            "CANONICAL MAIN APK EXPORT",
+            "HISTORICAL CANONICAL APK EXPORT",
             "ANDROID DEVICE SMOKE",
             "FIVE-PERSON COMPREHENSION",
             "PRODUCTION CUTOVER",
@@ -54,8 +55,10 @@ class TestAndroidSmokeCanonicalFreshness(unittest.TestCase):
         systems = read("기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md")
         playtest = read("기획서/50_제작_검증/PLAYTEST_PLAN.md")
 
-        self.assertIn("CANONICAL MAIN APK EXPORT: PASS", readme)
+        self.assertIn("SX-DEC-055 RUNTIME POC: NOT_STARTED", readme)
         self.assertIn("ANDROID DEVICE SMOKE: NOT_RUN", readme)
+        self.assertIn("GMB-002", readme)
+        self.assertIn("SX-AUD-047", readme)
         self.assertNotIn("FINITE_PUZZLE_DEFINITION_OF_READY", readme)
         self.assertNotIn("finite delivery runtime not aligned", readme)
 
@@ -65,10 +68,11 @@ class TestAndroidSmokeCanonicalFreshness(unittest.TestCase):
         )
         self.assertNotIn("IMPLEMENTATION_REPLAN_REQUIRED", baseline)
 
-        self.assertIn("CANONICAL MAIN APK EXPORT · PASS", roadmap)
         self.assertIn("SX-DEC-055 Runtime Semantic POC", roadmap)
-        self.assertIn("USER_DEFERRED_AFTER_DOR", roadmap)
-        self.assertIn("Android Device Smoke · OPEN_NOT_RUN", roadmap)
+        self.assertIn("BUILD AUTHORIZED", roadmap)
+        self.assertIn("M6 · Historical Android validation lane", roadmap)
+        self.assertIn("DEVICE SMOKE NOT_RUN", roadmap)
+        self.assertIn("M6A · Post-POC acceptance build", roadmap)
         self.assertNotIn("ANDROID DEVICE SMOKE · CURRENT", roadmap)
         self.assertNotIn("implementation replan required", roadmap)
         self.assertNotIn("## FP-M0 — 새 Definition of Ready", roadmap)
