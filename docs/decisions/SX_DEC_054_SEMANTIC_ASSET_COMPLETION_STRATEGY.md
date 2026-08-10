@@ -1,11 +1,12 @@
 # SX-DEC-054 · Semantic Asset Completion Strategy
 
-**Status:** `USER_APPROVED · DESIGN_SPEC_MERGED · RUN_BATCH_2A_MERGED_MAIN_VERIFIED · BUILD_BATCH_2B_IMPLEMENTED_VALIDATION_PENDING · VFX_2C_PENDING · RUNTIME_POC_DEFERRED`  
+**Status:** `USER_APPROVED · DESIGN_SPEC_MERGED · RUN_BATCH_2A_MERGED_MAIN_VERIFIED · BUILD_BATCH_2B_MERGED_MAIN_VERIFIED · VFX_2C_PENDING · RUNTIME_POC_DEFERRED`  
 **Date:** 2026-08-10 KST  
 **Baseline main:** `de302e7cfd56a23d53a6ec97509195564e36749d`  
 **RUN implementation baseline:** `bf0146bf51eb6b7a54d1ac219b021a6a41225c4c`  
 **RUN Batch 2A merge/main:** `35b93f3a15f35780b12cd4e8887c8e06f8ade72b`  
 **BUILD Batch 2B baseline:** `fb229b2ef522fb29c70f43787549fb2e20bf89b0`  
+**BUILD Batch 2B merge/main:** `77276ec9b60aa91afd13f994ded8e0925e68be08`  
 **Source visual authority:** `SX-DEC-053`  
 **Source component authority:** `SX-DEC-050`
 
@@ -30,102 +31,31 @@ This decision authorizes semantic asset production only. It does not authorize n
 7. Every new semantic product asset must record `decision_id: SX-DEC-054`, source authority, role/state, dimensions, alpha contract, and derivation kind in the product manifest or a dedicated semantic-completion manifest extension.
 8. Runtime integration remains false until a later explicit runtime/POC gate.
 
-## Alternatives considered
-
-### A. Semantic-first independent assets — **APPROVED**
-
-Create explicit assets from approved state contracts and keep ambiguous atlases as provenance only.
-
-Benefits:
-- no invented atlas meaning;
-- filenames and runtime intent become reviewable;
-- state coverage can be statically validated before Godot hookup;
-- preserves prior evidence and provenance.
-
-### B. Reinterpret existing atlas regions — **REJECTED**
-
-Visually infer unnamed regions and assign approved state names.
-
-Rejected because `SX-DEC-053` explicitly records that those mappings are not authoritative. This would convert visual guesswork into product meaning.
-
-### C. Defer all semantic assets until runtime integration — **NOT SELECTED**
-
-Leave the backlog unresolved until Godot UI hookup begins.
-
-Not selected because the component-state authority already exists and can be made implementation-ready without crossing the runtime boundary.
-
 ## Semantic completion scope
 
-### RUN · Stack HUD
+### RUN
 
-Existing `SX-DEC-053` assets remain authoritative:
-- `empty`;
-- `32plus`;
-- `unloading`;
-- `top_highlight`.
+Completed under RUN Batch 2A:
+- Stack HUD: `compact`, `8plus`, `16plus`, distinct predicted `unload_group`, `paused` while preserving 053 `empty`, `32plus`, `unloading`, `top_highlight`;
+- train cargo strip: `empty`, `tokens_1_3`, `compressed_plus_n`, `unload_transition`;
+- load mode: `manual_idle`, `manual_held`, `auto_off`, `auto_on`, `paused_disabled`, `input_received`;
+- switch presentation: `three_visible`, `selected`, `unselected`, `occupied_locked`, `inactive`, with direction geometry retained under `SX-DEC-042 · SX-DEC-046 · VIS-014`.
 
-Complete the approved state model without relabeling `unloading`:
-- `compact`;
-- `8plus`;
-- `16plus`;
-- distinct predicted `unload_group`;
-- `paused`.
+### BUILD
 
-The predicted unload group is derived from the approved contiguous TOP-group concept and must remain visually distinct from the current unloading event state.
+Completed under BUILD Batch 2B:
+- placement: `valid`, `invalid`, `rotate_preview`, `replacement_preview`;
+- track forms: straight / curve / switch / crossing;
+- palette interaction: idle / selected / unavailable / keyboard-focus / touch-pressed;
+- preflight: `clear`, `primary_issue`, `multi_issue_summary`, `focused_location`.
 
-### RUN · Switch direction
+Track Palette avoids a form×interaction binary explosion: 4 committed rail silhouettes and existing normal/selected/disabled/focus/pressed UI frames are reused to define 20 semantic compositions with zero new form×interaction PNGs.
 
-Reuse the existing `RouteControlOverlay` direction authority and interaction semantics. Complete semantic selected/unselected/occupied-locked/inactive presentation for every currently valid reciprocal direction without inventing a new direction coordinate system.
-
-The existing left-selected and locked product assets remain valid provenance/product assets; new variants must not claim they were hidden slices of the old atlas.
-
-### RUN · Train cargo strip
-
-Create semantic presentation for:
-- empty;
-- 1–3 visible recent/TOP tokens;
-- compressed `+N`;
-- unload transition.
-
-Reuse the approved smaller-wagon hierarchy (`visual_scale = 0.74`) and existing cargo token color+shape identity. The strip is a compact world-adjacent representation and never replaces the full Stack HUD.
-
-### RUN · Load mode
-
-Create explicit assets/presentation primitives for the already-approved states:
-- `manual_idle`;
-- `manual_held`;
-- `auto_off`;
-- `auto_on`;
-- `paused_disabled`;
-- `input_received` feedback where the existing owner authority consumes current input state.
-
-Do not map these names onto the old `run_load_mode_states_v01.png` regions without new explicit evidence.
-
-### BUILD · Placement and track palette
-
-Preserve the four batch-1 placement crops.
-
-Complete approved semantic presentation for:
-- placement `valid` / `invalid`;
-- `rotate_preview`;
-- `replacement_preview`;
-- track forms straight / curve / switch / crossing;
-- palette idle / selected / unavailable / keyboard-focus / touch-pressed.
-
-Avoid an unnecessary form×interaction binary explosion: reusable selection/focus/pressed/disabled frames or overlays may be shared when this preserves identical meaning and readability.
-
-Committed/placed rail continues to use committed core rail authority; BUILD preview art must not masquerade as committed track.
-
-### BUILD · Preflight
-
-Reconcile the existing component contract and prior visual promotion language without inventing gameplay outcomes:
-- component presentation states remain `clear`, `primary_issue`, `multi_issue_summary`, `focused_location`;
-- ready/warning/blocking styling, when used, is a presentation/severity layer driven only by authoritative preflight issue data;
-- optional-target misses must never be styled as general run failure.
+Committed/placed rail remains under committed core rail authority; BUILD placement overlays remain preview-only.
 
 ### VFX / feedback
 
-Create causal feedback assets or static equivalents for the already-approved events:
+Still pending as VFX Batch 2C under the same approved strategy:
 - cargo pickup;
 - cargo unload;
 - combo;
@@ -142,87 +72,73 @@ Each meaning-bearing effect requires a Reduced Motion information-equivalent pre
 - Product root remains `art/product_assets/ed_hybrid_v1/`.
 - New files use lowercase snake_case and the existing versioned naming contract.
 - One semantic state per exported file where pixels encode the state; shared neutral primitives/overlays are allowed when they prevent duplicate state cross-products.
-- Dedicated semantic-completion sidecars may be used to preserve already-verified batch manifests without reserializing or widening their ownership records.
+- Dedicated semantic-completion sidecars may preserve already-verified batch manifests without reserializing their ownership records.
 - Localized copy is never baked into PNGs.
 - Color-only state communication is forbidden.
 - Cargo/station identity retains color+shape redundancy.
 - Runtime/domain collision and route geometry remain unchanged.
 - Existing candidates and existing product files are never silently overwritten.
 
-## RUN Batch 2A merged-main status
+## RUN Batch 2A merged-main evidence
 
-RUN Batch 2A was implemented and squash-merged through PR `#129`.
+RUN Batch 2A was squash-merged through PR `#129`.
 
-- implementation branch: `agent/sx-dec-054-run-semantic-batch-2a`;
-- implementation baseline: `bf0146bf51eb6b7a54d1ac219b021a6a41225c4c`;
-- final exact review head: `34ab2b907190f69775ace8e89c32f689ba17bc35`;
+- exact review head: `34ab2b907190f69775ace8e89c32f689ba17bc35`;
 - merge/main: `35b93f3a15f35780b12cd4e8887c8e06f8ade72b`;
-- dedicated sidecar: `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054.json`;
-- `SX-DEC-053` ownership preserved at **39** product PNGs;
-- `SX-DEC-054` RUN Batch 2A ownership: **20** independent semantic PNG primitives;
-- total physical product PNGs after RUN 2A: **59**, with disjoint manifest ownership;
-- Stack HUD coverage: `compact`, `8plus`, `16plus`, `unload_group`, `paused`;
-- train cargo strip coverage: `empty`, `tokens_1_3`, `compressed_plus_n`, `unload_transition`;
-- load-mode coverage: `manual_idle`, `manual_held`, `auto_off`, `auto_on`, `paused_disabled`, `input_received`;
-- switch coverage: `three_visible`, `selected`, `unselected`, `occupied_locked`, `inactive`, with direction geometry procedural under `SX-DEC-042 · SX-DEC-046 · VIS-014`;
-- ambiguous train-strip/load-mode/switch atlases remain `PRESERVE_REFERENCE_ONLY_NO_STATE_MAPPING`;
-- `runtime_integrated=false` globally and per Batch 2A asset/composition.
+- sidecar: `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054.json`;
+- ownership: **20** independent RUN semantic PNGs;
+- Project Contract `31342194367`: PASS;
+- GUT `31342194376`: PASS;
+- Godot `31342194392`: PASS;
+- Thin `31342194374`: PASS;
+- Windows Demo Export `31342194375`: PASS packaging only;
+- unresolved review threads: 0;
+- behind: 0.
 
-Final exact-head validation for `34ab2b907190f69775ace8e89c32f689ba17bc35`:
+## BUILD Batch 2B merged-main evidence
 
-- Project Contract `31342194367`: **PASS**;
-- GUT 9.7.1 `31342194376`: **PASS**;
-- Godot Tests `31342194392`: **PASS**;
-- Validate Thin Adapter Migration `31342194374`: **PASS**;
-- Windows Demo Export `31342194375`: **PASS**;
-- unresolved review threads: **0**;
-- final compare: behind **0**, mergeable **true**.
-
-Hosted Windows export is packaging evidence only. It is not Windows physical runtime evidence.
-
-## BUILD Batch 2B implementation status
-
-BUILD Batch 2B is implemented on `agent/sx-dec-054-build-semantic-batch-2b` and remains pre-merge until the final exact-head gate completes.
+BUILD Batch 2B was squash-merged through PR `#131`.
 
 - implementation baseline: `fb229b2ef522fb29c70f43787549fb2e20bf89b0`;
-- product PR: `#131`;
-- dedicated sidecar extension: `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054_build_2b.json`;
-- the verified RUN 2A sidecar remains unchanged and continues to own exactly **20** RUN semantic PNGs;
-- BUILD Batch 2B owns exactly **8** new independent semantic PNG primitives;
-- expected shared product-root ownership after merge: `SX-DEC-053 39 + RUN 2A 20 + BUILD 2B 8 = 67` physical PNGs;
-- placement coverage: `valid`, `invalid`, `rotate_preview`, `replacement_preview` using four state overlays and committed core rail form authority;
-- track palette coverage: straight/curve/switch/crossing × idle/selected/unavailable/keyboard-focus/touch-pressed = **20 semantic compositions with zero new form×interaction PNGs**;
-- palette form identity reuses the four committed core rail products; interaction presentation reuses existing normal/selected/disabled/focus/pressed UI frames;
-- preflight coverage: `clear`, `primary_issue`, `multi_issue_summary`, `focused_location` using a neutral shell plus three meaning-bearing markers;
-- `build_placement_preview_states_v01.png` policy: `PRESERVE_NAMED_SLICES_ONLY_NO_NEW_STATE_MAPPING`;
-- `build_track_palette_v01.png` policy: `PRESERVE_REFERENCE_ONLY_NO_STATE_MAPPING`;
-- no new BUILD record claims `authoritative_slice_name` or crop bounds;
+- exact review head: `6efe4c71e88799f886f136c98d0c4a4396e58808`;
+- merge/main: `77276ec9b60aa91afd13f994ded8e0925e68be08`;
+- dedicated BUILD sidecar: `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054_build_2b.json`;
+- RUN sidecar remains independently owned at exactly 20 assets;
+- BUILD Batch 2B ownership: exactly **8** new independent semantic PNG primitives;
+- shared physical product root: `SX-DEC-053 39 + RUN 2A 20 + BUILD 2B 8 = 67` PNGs;
+- BUILD compositions: **28** = placement 4 + palette 20 + preflight 4;
+- palette new form×interaction binary count: **0**;
+- placement atlas policy: `PRESERVE_NAMED_SLICES_ONLY_NO_NEW_STATE_MAPPING`;
+- track palette atlas policy: `PRESERVE_REFERENCE_ONLY_NO_STATE_MAPPING`;
 - `runtime_integrated=false` globally and per BUILD asset/composition.
 
 TDD lineage:
+- initial RED `7d10ed2289e57fd1644c8a4c5bcf84bb86aff47b`;
+- final-architecture RED `7444886f5aa3ecfe91977778d430c227d7f083a2` after choosing a dedicated BUILD sidecar;
+- final exact GREEN/merge head `6efe4c71e88799f886f136c98d0c4a4396e58808`.
 
-- initial RED head `7d10ed2289e57fd1644c8a4c5bcf84bb86aff47b`: Windows Python contracts failed because the BUILD package did not exist;
-- architecture was tightened to a separate BUILD semantic-completion sidecar so the verified RUN 2A sidecar did not need reserialization;
-- final-architecture RED head `7444886f5aa3ecfe91977778d430c227d7f083a2`: Windows Python contracts again failed on BUILD sidecar absence;
-- intermediate GREEN head `b68bae4ea153eb066261db4da7f2ddbad70aac98`: Project Contract, GUT, Godot, Thin and Python-contract/headless steps passed; final exact-head evidence is intentionally deferred until the documentation head is stable.
+Final exact-head workflows:
+- Project Contract `31343802460`: **PASS**;
+- GUT 9.7.1 `31343802437`: **PASS**;
+- Godot Tests `31343802472`: **PASS**;
+- Validate Thin Adapter Migration `31343802445`: **PASS**;
+- Windows Demo Export `31343802461`: **PASS**;
+- unresolved review threads: **0**;
+- final compare: behind **0**, mergeable **true**.
 
-## Acceptance contract before implementation merge
+Hosted Windows Demo Export PASS is build/package evidence only and is not Windows physical runtime evidence.
 
-Static verification must prove:
+## Acceptance contract status
 
-- every new file has a registered `SX-DEC-054` semantic role/state;
+Static verification proves:
+- all new BUILD files are registered under `SX-DEC-054` with exact role/state ownership;
 - no new record claims an unnamed `SX-DEC-051` atlas crop as authority;
-- existing 39 `SX-DEC-053` assets remain separately manifested and owned;
-- RUN Batch 2A remains exactly 20 separately owned assets;
-- BUILD Batch 2B remains exactly 8 separately owned assets;
-- the three ownership sets are pairwise disjoint and their union equals every physical product PNG;
-- BUILD placement, palette, and preflight state coverage exactly matches the approved component contracts;
-- filenames, PNG signature/chunk CRC/IDAT decode, dimensions, alpha capability, SHA-256, and manifest↔physical-file agreement pass;
-- track palette reuses existing rail/frame products rather than creating an unnecessary binary cross product;
-- runtime integration remains false;
-- no `.tscn`, `project.godot`, gameplay/domain, Resource/Theme/Animation/signal, plugin, or `.asset-vault` bytes change in Batch 2B.
-
-Reduced Motion meaning-equivalent verification remains applicable to the later VFX batch; no meaning-bearing VFX assets are added in BUILD Batch 2B.
+- existing 39 `SX-DEC-053`, 20 RUN 2A, and 8 BUILD 2B paths are unique and pairwise disjoint;
+- their union equals all **67** physical product PNGs;
+- placement, palette, and preflight state coverage exactly matches approved component contracts;
+- PNG signature/chunk CRC/IDAT decode, dimensions, alpha capability, SHA-256, and physical-file agreement pass;
+- existing 053 disposition/recovery/crop/scale/CRC/zlib checks remain intact;
+- no `.tscn`, `project.godot`, gameplay/domain, Resource/Theme/Animation/signal, plugin, runtime hookup, or `.asset-vault` bytes changed in BUILD Batch 2B.
 
 ## Verification boundary
 
@@ -239,4 +155,4 @@ Still `NOT_RUN` / deferred:
 
 ## Delivery rule
 
-RUN Batch 2A is merged and technically closed under this same `SX-DEC-054` Decision ID. BUILD Batch 2B remains implementation-complete but merge-pending until one unchanged exact head passes the full PR gate. After BUILD 2B merges, record the final merge/main under this same Decision ID, synchronize the configured Google Sheet, then continue to VFX Batch 2C. Runtime integration/POC remains a later separate gate.
+RUN Batch 2A and BUILD Batch 2B are merged and technically closed under this same `SX-DEC-054` Decision ID. Remaining approved semantic production is VFX Batch 2C. After the docs-only merged-main closure and same-ID Google Sheet synchronization, continue VFX Batch 2C; runtime integration/POC remains a later separate gate.
