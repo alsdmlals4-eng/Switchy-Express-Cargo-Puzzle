@@ -4,15 +4,23 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-SEMANTIC_MANIFEST = ROOT / "art" / "product_assets" / "ed_hybrid_v1" / "semantic_manifest_sx_dec_054.json"
+BUILD_MANIFEST = (
+    ROOT
+    / "art"
+    / "product_assets"
+    / "ed_hybrid_v1"
+    / "semantic_manifest_sx_dec_054_build_2b.json"
+)
 VALIDATOR_PATH = ROOT / "tools" / "validate_sx_dec_054_build_semantic_assets.py"
 
 
 def test_sx_dec_054_build_batch_is_declared():
-    semantic = json.loads(SEMANTIC_MANIFEST.read_text(encoding="utf-8"))
-    assert semantic.get("build_batch") == "BUILD_2B"
-    assert semantic.get("build_semantic_assets")
-    assert semantic.get("build_semantic_compositions")
+    assert BUILD_MANIFEST.is_file(), "BUILD Batch 2B semantic sidecar must exist"
+    semantic = json.loads(BUILD_MANIFEST.read_text(encoding="utf-8"))
+    assert semantic.get("decision_id") == "SX-DEC-054"
+    assert semantic.get("batch") == "BUILD_2B"
+    assert semantic.get("semantic_assets")
+    assert semantic.get("semantic_compositions")
 
 
 def test_sx_dec_054_build_semantic_assets_contract():
