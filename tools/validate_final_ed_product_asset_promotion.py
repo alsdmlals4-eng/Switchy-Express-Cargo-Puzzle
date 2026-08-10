@@ -11,6 +11,7 @@ PRODUCT_ROOT = ROOT / "art" / "product_assets" / "ed_hybrid_v1"
 PRODUCT_MANIFEST = PRODUCT_ROOT / "manifest.json"
 SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054.json"
 BUILD_SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054_build_2b.json"
+VFX_SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054_vfx_2c.json"
 ALLOWED_DISPOSITIONS = {"PROMOTE_AS_IS", "PROMOTE_AFTER_REVISION", "REPLACE"}
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 
@@ -102,10 +103,9 @@ def validate():
     for semantic_manifest, expected_batch in (
         (SEMANTIC_MANIFEST, "RUN_2A"),
         (BUILD_SEMANTIC_MANIFEST, "BUILD_2B"),
+        (VFX_SEMANTIC_MANIFEST, "VFX_2C"),
     ):
         if not semantic_manifest.is_file():
-            if semantic_manifest == BUILD_SEMANTIC_MANIFEST:
-                continue
             errors.append(f"missing SX-DEC-054 sidecar manifest: {semantic_manifest.relative_to(ROOT)}")
             continue
         try:
