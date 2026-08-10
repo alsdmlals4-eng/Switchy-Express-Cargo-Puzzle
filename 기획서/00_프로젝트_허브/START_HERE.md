@@ -18,11 +18,11 @@ Last updated: `2026-08-10 KST`
 | 현재 작업 모드 | `HANDOFF_CLOSED / WAIT_FOR_EXPLICIT_RESUME` |
 | 재개 시 첫 작업 | `SX-DEC-055 implementation plan · Task 1 · Step 1.1 RED` |
 | 현재 project main source | `LIVE_GITHUB_DEFAULT_BRANCH` |
-| PR #137 post-merge 관측점 | `32a0d6c154188f36bdefdefe96e62bc2a4718565` · historical integration observation |
-| 열린 프로젝트 PR 관측 | `0` after PR #137 merge |
+| PR #138 post-merge 관측점 | `eb07dcc39b9675a54c675694236f507a8e50e78a` · historical integration observation |
+| 열린 프로젝트 PR 관측 | `0` after PR #138 merge |
 | Base 채택 pin | `v9.4.3` |
-| 최신 Base main 관측 | `16af66ff51027f74193b60469e7c20281a1cade6` · reference only, no repin |
-| Base project evidence | `BCP - Switchy Express: Cargo Puzzle` · Base PR #245 `MERGED` · canonical owner `BCP-2026-013` |
+| 최신 Base main 관측 | `58d5f27a907e28e16d28763c567e6ab5b4377a28` · reference only, no repin |
+| Base project proposal | `BCP - Switchy Express: Cargo Puzzle` · `BCP-2026-016-live-source-handoff-semantic-consumer-reconciliation` · Base PR #249 `MERGED` · Registry `SUBMITTED` |
 | Windows physical runtime | `NOT_RUN` |
 | Android landscape device | `NOT_RUN` |
 | Connected physical editor | `NOT_RUN` |
@@ -30,7 +30,7 @@ Last updated: `2026-08-10 KST`
 | Production cutover | `BLOCKED_DEFERRED` |
 | Sheet | `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo` |
 
-`PR #137 post-merge 관측점`은 현재 main을 영구 고정하는 값이 아니다. 새 세션은 반드시 GitHub default branch를 다시 읽는다.
+`PR #138 post-merge 관측점`은 현재 main을 영구 고정하는 값이 아니다. 새 세션은 반드시 GitHub default branch를 다시 읽는다.
 
 ## 한 문장
 
@@ -82,7 +82,7 @@ runtime_integrated: false
 
 ## 현재 인수인계 체크포인트
 
-사용자 최신 지시:
+사용자 최신 runtime 지시:
 
 ```text
 SX-DEC-055 구현은 지금 시작하지 않는다.
@@ -118,11 +118,22 @@ PR #137 exact head `7be35adf4fa98bb915616a1e6a89f67dcb19a4ca`:
 - exact changed files: 5
 - squash merge observation: `32a0d6c154188f36bdefdefe96e62bc2a4718565`
 
+PR #138 exact head `51dbffef06f274ca319b4d23982d65c8d7753709`:
+
+- Project Contract `31355199653`: PASS
+- GUT 9.7.1 `31355199646`: PASS
+- Godot Tests `31355199665`: PASS
+- Validate Thin Adapter Migration `31355199592`: PASS
+- Windows Demo Export: `NOT_CREATED` for this docs-only head
+- unresolved review threads: 0
+- exact changed files: 2 docs
+- squash merge observation: `eb07dcc39b9675a54c675694236f507a8e50e78a`
+
 이 증거는 **handoff/canonical-freshness 문서·회귀 증거**이며 `SX-DEC-055` runtime implementation PASS가 아니다.
 
-PR #137 merge commit에 대한 별도 default-branch push CI는 당시 즉시 조회에서 관측되지 않았으므로 `UNVERIFIED`로 남긴다.
+PR #138 merge commit에 대한 별도 PR-trigger workflow는 즉시 조회에서 관측되지 않았으므로 `UNVERIFIED`로 남긴다.
 
-## Base project evidence
+## Base project proposal
 
 사용자 명명 규칙:
 
@@ -130,18 +141,28 @@ PR #137 merge commit에 대한 별도 default-branch push CI는 당시 즉시 �
 BCP - 프로젝트 이름
 ```
 
-Switchy는 새 canonical proposal을 중복 생성하지 않고 기존 BCP-013에 프로젝트 evidence를 연결했다.
+Switchy는 프로젝트 출처형 별도 proposal로 등록한다. 이 proposal은 새 broad active owner를 만들지 않고 기존 BCP-013/014에 검증된 project evidence를 제공한다.
 
 ```yaml
-project_evidence_name: "BCP - Switchy Express: Cargo Puzzle"
-canonical_owner: BCP-2026-013-post-merge-continuation-state-reconciliation
-evidence_path: "[수정제안서]/BCP-2026-013-post-merge-continuation-state-reconciliation/evidence/BCP-Switchy-Express-Cargo-Puzzle.md"
-base_pr_245_exact_head: 828ee41eb16c74d571497f063a0380b9fa3e6860
-base_pr_245_ci_gate: PASS
-base_pr_245_merge_main_observed: 16af66ff51027f74193b60469e7c20281a1cade6
-new_registry_entry: false
+project_proposal_name: "BCP - Switchy Express: Cargo Puzzle"
+proposal_id: BCP-2026-016-live-source-handoff-semantic-consumer-reconciliation
+proposal_status: SUBMITTED
+proposal_path: "[수정제안서]/BCP-2026-016-live-source-handoff-semantic-consumer-reconciliation/PROPOSAL.md"
+evidence_path: "[수정제안서]/BCP-2026-016-live-source-handoff-semantic-consumer-reconciliation/evidence/SWITCHY_EXPRESS_HANDOFF_RECONCILIATION_EVIDENCE.md"
+related_existing_proposals:
+  - BCP-2026-013-post-merge-continuation-state-reconciliation
+  - BCP-2026-014-handoff-machine-consumer-compatibility-closeout
+base_pr_249_exact_head: a86c5edb1d4a4e7244088ee78554d3195ca4a711
+base_pr_249_validation: PASS
+base_pr_249_ci_gate: PASS
+base_pr_249_merge_main_observed: 58d5f27a907e28e16d28763c567e6ab5b4377a28
+new_registry_entry: true
 active_base_behavior_changed: false
+base_implementation_authorized: false
+prior_pr_245_evidence_only_placement: SUPERSEDED_HISTORY
 ```
+
+Base PR #249의 정확한 변경 범위는 `[수정제안서]/**` 4개뿐이며 BCP-013/014 proposal 본문과 활성 Base Skill·Method·Template·Test·Tool·Workflow는 바꾸지 않았다.
 
 ## 별도 열린 검증 Gate
 
