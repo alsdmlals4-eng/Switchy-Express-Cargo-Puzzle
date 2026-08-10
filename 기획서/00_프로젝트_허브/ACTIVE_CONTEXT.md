@@ -18,7 +18,7 @@ baseline:
   language: GDScript
   primary_platform: Android landscape
   base_pin: 9.4.3
-  upstream_base_main_observed: 637dad32c773c56a27d44d847518580848dee493
+  upstream_base_main_observed: 3ff790116bc08f49e126cd286ec453bf6e46376e
   configured_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
 
 authority:
@@ -69,14 +69,22 @@ verification:
     sx_dec_055_dor_pr_136:
       exact_head: d3cb8c9a681b3c9839c8e06acec3ecc8daaf0b27
       merge_main: 6cd14324a3de1a1b2a9898aaee1e9535c87c8fdc
+    handoff_pr_137_initial_red:
+      exact_head: cccf58ef0dfc484b0e53f18b0dba46fff1f96a7a
+      project_contract: FAIL · stale Android-immediate canonical-freshness assertion
   ci:
     project_contract_31351253902: PASS
     gut_31351253900: PASS
     godot_31351253898: PASS
     thin_31351253899: PASS
     pr_136_review_threads: 0
+    pr_137_initial_project_contract_31352205255: FAIL_EXPECTED_CANONICAL_FRESHNESS_RED
+    pr_137_initial_gut_31352205262: PASS
+    pr_137_initial_godot_31352205245: PASS
+    pr_137_initial_thin_31352205251: PASS
   tests:
     sx_dec_055_runtime_poc_tests: NOT_RUN
+    android_smoke_canonical_freshness: RED_ON_PR137_INITIAL_HEAD · MINIMAL_FIX_IN_PROGRESS
   human_qa: NOT_RUN for SX-DEC-055
   runtime_qa: NOT_RUN for SX-DEC-055
   not_run:
@@ -91,13 +99,32 @@ changes:
     - handoff refresh only: START_HERE.md
     - handoff refresh only: ACTIVE_CONTEXT.md
     - handoff refresh only: ROADMAP.md
+    - canonical-freshness regression only: tests/python/test_android_smoke_canonical_freshness_contract.py
   product_or_runtime_bytes_changed_by_handoff: false
   project_skill_or_workflow_changes: none
   project_only_improvements:
     - reuse existing project hub owners instead of adding a duplicate HANDOFF file
     - remove stale current-task routing from cold-start documents
-  base_candidates: []
-  base_proposal_ids: []
+    - keep Android device/human validation open while removing its superseded immediate-task authority
+  base_candidates:
+    - BCP-2026-013-post-merge-continuation-state-reconciliation: REUSE_EXISTING_BCP
+  base_proposal_ids:
+    - BCP-2026-013-post-merge-continuation-state-reconciliation
+  base_concurrency:
+    source_project: Switchy Express: Cargo Puzzle
+    base_main_seen: 3ff790116bc08f49e126cd286ec453bf6e46376e
+    proposal_id: BCP-2026-013-post-merge-continuation-state-reconciliation
+    proposal_branch: none · owned by another project and already merged
+    proposal_pr: alsdmlals4-eng/Base#235 · MERGED
+    same_goal_state: REUSE_EXISTING_BCP
+    last_registry_recheck: Base main 3ff790116bc08f49e126cd286ec453bf6e46376e
+    other_project_changes_preserved: true
+    proposal_status: SUBMITTED
+    proposal_storage_merge_authority: GRANTED_BY_CURRENT_SINGLE_FILE_INSTRUCTION
+    proposal_storage_action: REUSED_ALREADY_MERGED_PROPOSAL_NO_SWITCHY_BASE_WRITE
+    base_implementation_authority: NOT_GRANTED_IN_THIS_STAGE
+    implementation_status: NOT_STARTED_IN_THIS_STAGE
+    implementation_boundary: SEPARATE_FOLLOWUP_STAGE
 
 review:
   adversarial_findings_remaining:
@@ -107,6 +134,7 @@ review:
     - project PR #135: MERGED · SX-DEC-055 decision/spec
     - project PR #136: MERGED · SX-DEC-055 DoR/plan/registry
     - Base PR #215/#216/#217: historical merged handoff owner/routing evidence
+    - Base PR #235: MERGED · BCP-2026-013 post-merge continuation-state reconciliation · REUSE_EXISTING_BCP
   stale_or_reference_only_items:
     - old ACTIVE_CONTEXT SHA/PR queue: SUPERSEDED_BY_THIS_CONTEXT_REFRESH
     - old Android-device-immediate START_HERE/ROADMAP routing: SUPERSEDED_AS_IMMEDIATE_TASK, gate itself remains open
@@ -165,8 +193,11 @@ runtime_integrated: false
 ## Base 경계
 
 - 프로젝트 채택 release pin은 Base `v9.4.3`이다.
-- handoff refresh 시 최신 upstream Base main은 `637dad32c773c56a27d44d847518580848dee493`로 관측됐다.
+- handoff refresh 중 최신 upstream Base main은 `3ff790116bc08f49e126cd286ec453bf6e46376e`로 재관측됐다.
 - 최신 Base는 `maintaining-project-context-and-handoff` owner와 on-demand handoff routing을 이미 제공하므로 이 프로젝트에 새 broad Handoff/Progress Skill을 추가하지 않는다.
+- 이번 프로젝트에서 발견한 post-merge live continuation-state stale edge는 이미 `BCP-2026-013-post-merge-continuation-state-reconciliation` / Base PR #235로 proposal-only 병합되어 `REUSE_EXISTING_BCP`로 연결한다.
+- BCP-013 status는 `SUBMITTED`; Base 활성 구현 권한은 이번 단계에 없으며 `SEPARATE_FOLLOWUP_STAGE`다.
+- Switchy 실행자는 다른 프로젝트가 소유한 BCP-013 branch/file/Registry entry를 수정하지 않았고, Base 활성 파일도 변경하지 않는다.
 - upstream Base 최신 main을 release pin으로 자동 승격하지 않는다.
 
 ## SX-DEC-055 재개 시 첫 RED
