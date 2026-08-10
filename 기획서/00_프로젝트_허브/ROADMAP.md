@@ -1,32 +1,64 @@
 # Roadmap
 
-## 현재 제품 권위
+Last updated: `2026-08-10 KST`
+
+## 현재 제품 권위와 실행 오버레이
 
 ```text
-GMB-002 · SX-DEC-027~036
-→ finite delivery track-building puzzle
-→ automated core implemented and verified
-→ validation preparation complete
-→ CANONICAL MAIN APK EXPORT · PASS
-→ ANDROID DEVICE SMOKE · CURRENT
+FINITE_DELIVERY_PUZZLE_BASELINE · SX-DEC-027~055
+→ finite delivery core implemented and automated evidence preserved
+→ route-end / switch direction / cargo pickup later decisions merged with bounded user F5 evidence
+→ SX-DEC-053/054 semantic asset production complete: 73 product PNGs
+→ SX-DEC-055 Runtime Semantic POC decision/spec/DoR approved and merged
+→ USER_DEFERRED_AFTER_DOR
+→ Godot/GDScript runtime semantic implementation NOT_STARTED
 ```
 
 정본:
 
-- `FINITE_DELIVERY_PUZZLE_BASELINE.md`
-- `CURRENT_CONFIRMED_DECISIONS.md`
-- `ACTIVE_CONTEXT.md`
-- `DEVELOPMENT_GATES.md`
-- `../50_제작_검증/VERTICAL_SLICE_CONTRACT.md`
+- `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
+- `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
+- `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
+- `docs/decisions/SX_DEC_055_RUNTIME_SEMANTIC_POC.md`
+- `docs/superpowers/specs/2026-08-10-runtime-semantic-poc-design.md`
+- `docs/superpowers/plans/2026-08-10-sx-dec-055-runtime-semantic-poc.md`
+
+`ACTIVE_CONTEXT.md`가 현재 실행 순서를 소유한다. 이 Roadmap의 오래된 validation lane을 현재 즉시 실행 작업으로 해석하지 않는다.
+
+## 현재 재개 계약
+
+사용자의 2026-08-10 최신 지시에 따라 `SX-DEC-055` runtime POC 구현은 **승인 취소가 아니라 실행 보류**다.
+
+```yaml
+sx_dec_055_decision: APPROVED
+sx_dec_055_spec: APPROVED_AND_MERGED
+sx_dec_055_dor_plan: MERGED
+sx_dec_055_runtime_implementation: USER_DEFERRED_AFTER_DOR · NOT_STARTED
+runtime_integrated: false
+resume_requires_new_approval_for_same_scope: false
+resume_requires_live_authority_refresh: true
+```
+
+사용자가 나중에 재개를 명시하면 다음 순서로 이어간다.
+
+```text
+Base current structure/latest main 재조회
+→ project current main/open PR/latest commit 재조회
+→ configured Sheet SX-DEC-055 재조회
+→ owner docs + actual code/test/manifests 충돌 검사
+→ plan exact-file assumptions 재검증
+→ Task 1 / Step 1.1 RED
+```
+
+새 gameplay/product/semantic 결정이나 승인 범위 확장이 없으면 동일 승인 reference를 재사용한다.
 
 ## 완료된 기반
 
 ### M0 — 제품 기준선·실행 계약 · PASS
 
 - [x] finite delivery product pivot
-- [x] `GMB-002 · SX-DEC-027~036`
+- [x] `SX-DEC-027~036` finite baseline decisions
 - [x] correct Sheet same-ID sync and readback
-- [x] finite Definition of Ready and package plan
 - [x] legacy code inventory and authority separation
 
 ### M1 — 건설 가능한 대표 맵 · PASS
@@ -35,131 +67,139 @@ GMB-002 · SX-DEC-027~036
 - [x] 직선·곡선·분기·교차
 - [x] 비용·철거 전액 환급
 - [x] start·station·cargo reachability
-- [x] dangling edge·crossing·branch exit·permanent trap 검사
 - [x] sealed TrackLayout and graph identity
-
-추천 ghost route와 확장 선로 종류는 후속 범위다.
 
 ### M2 — 유한 배송 코어 · PASS
 
 - [x] 수동 적재와 자동 적재 토글
 - [x] 무제한 CargoStack
 - [x] TOP 연속 그룹 하역
-- [x] 최대 1초 가시 하역
 - [x] 제한 시간 success/failure
 - [x] pause integrity
-- [x] 실패 후 노선 유지와 fresh-runtime retry
-- [x] persistent branch direct tap and occupied lock
+- [x] 실패 후 same-layout retry/fresh runtime
+- [x] persistent branch direct selection and occupied lock
 
-### M3 — 제품 화면·통합 Proof · PASS
+### M3 — PC Vertical Slice / route refinement · IMPLEMENTED_WITH_OPEN_MANUAL_GATES
 
-- [x] landscape BUILD/RUN/PAUSE/RESULT surface
-- [x] preflight 문제와 비용 표시
-- [x] 색상+형상+텍스트 LIFO 표현
-- [x] 최소 48dp 상당 핵심 조작 영역
-- [x] UI command 기반 `A → B → A → A` / `2 → 1 → 1` 자동 proof
+- [x] F5 Title → Briefing → BUILD → RUN → Result flow implemented
+- [x] recommended route automated proof
+- [x] reciprocal one-sided station parity automated proof
+- [x] mid-run exit automated contract
+- [x] ROUTE_END implementation and automated proof
+- [x] three-direction switch arrows/direct select/U-turn/occupied lock implementation and automated proof
+- [x] cargo pickup marker hide/retry restore implementation and bounded user F5 proof
+- [ ] full PC manual flow closure
+- [ ] Windows physical exported-artifact runtime/visual/audio/input smoke
 
-### M4 — Validation 준비 · PASS
+Current detailed decision/evidence status is owned by `CURRENT_CONFIRMED_DECISIONS.md`; do not revive old PR #83~100 pending labels from historical Active Context.
 
-- [x] isolated validation launcher
-- [x] `PROOF / STACK 8 / STACK 16 / STACK 32`
-- [x] on-device Selector and Back
-- [x] fail-closed invalid mode
-- [x] Android validation preset and isolated package
-- [x] production entrypoint invariance
+### M4 — Visual planning and production package · COMPLETE
 
-### M5 — CANONICAL MAIN APK EXPORT · PASS
+- [x] `SX-DEC-050` finite visual component/requirement package
+- [x] `SX-DEC-051` E+D hybrid source candidate package
+- [x] `SX-DEC-053` 39 product assets + authoritative slice batch 1
+- [x] `SX-DEC-054 RUN_2A` 20 semantic assets
+- [x] `SX-DEC-054 BUILD_2B` 8 semantic assets / reusable compositions
+- [x] `SX-DEC-054 VFX_2C` 6 semantic assets / 8 standard+Reduced Motion event pairs
+- [x] total physical product PNGs = 73
+- [x] legacy unnamed atlas regions remain reference-only/non-authoritative
+- [ ] runtime hookup — intentionally separate under SX-DEC-055
 
-```yaml
-workflow_run_id: 31011620357
-source_commit: 536911449018a3caf3511bc64e7bf1a66edf2016
-apk_sha256: eb49225ab4062e5cf863f79a0d17f85d339ea176d7f0bb6f04096ed8a07559ea
-tests: 65 cases · 10,792 assertions · 0 failures
-attestation_id: 39044925
-```
-
-- [x] APK, `.sha256`, manifest and provenance match
-- [x] product default entrypoint remains legacy
-
-## M6 — ANDROID DEVICE SMOKE · CURRENT
+### M5 — SX-DEC-055 Runtime Semantic POC · APPROVED_DOR · USER_DEFERRED
 
 Authority:
 
-- `../50_제작_검증/ANDROID_DEVICE_SMOKE_RUNBOOK.md`
-- `../50_제작_검증/ANDROID_DEVICE_SMOKE_EVIDENCE_TEMPLATE.md`
+- `docs/decisions/SX_DEC_055_RUNTIME_SEMANTIC_POC.md`
+- `docs/superpowers/specs/2026-08-10-runtime-semantic-poc-design.md`
+- `docs/superpowers/plans/2026-08-10-sx-dec-055-runtime-semantic-poc.md`
 
-- [ ] canonical full APK SHA-256 verification
+Completed:
+
+- [x] runtime POC decision approval
+- [x] written spec approval
+- [x] PR #135 decision/spec merge
+- [x] exact-file RED-first implementation plan/DoR
+- [x] PR #136 DoR/registry merge
+
+Deferred, not started:
+
+- [ ] SemanticAssetCatalog RED/GREEN
+- [ ] pure semantic runtime-state resolver RED/GREEN
+- [ ] manual-load actual-state projection
+- [ ] representative HUD/BUILD/route/VFX integration
+- [ ] Reduced Motion runtime information-equivalence proof
+- [ ] exact-head implementation regression/Windows export when applicable
+
+Status: `USER_DEFERRED_AFTER_DOR · GODOT_IMPLEMENTATION_NOT_STARTED · runtime_integrated=false`.
+
+## 별도 검증·출시 Lane
+
+이 Lane들은 여전히 유효하지만 **현재 인수인계 세션의 즉시 실행 작업이 아니다.** 자동화 또는 SX-DEC-055 결과로 PASS를 대체하지 않는다.
+
+### M6 — Android Device Smoke · OPEN_NOT_RUN
+
+Authority:
+
+- `기획서/50_제작_검증/ANDROID_DEVICE_SMOKE_RUNBOOK.md`
+- `기획서/50_제작_검증/ANDROID_DEVICE_SMOKE_EVIDENCE_TEMPLATE.md`
+
 - [ ] physical Android landscape device record
-- [ ] install·first boot·cold reboot
-- [ ] four Selector modes and Back
-- [ ] BUILD·preflight·RUN·pause/resume·result·retry/edit
-- [ ] LOAD hold·auto-load·branch direct tap·occupied lock
-- [ ] 8/16/32 rear/TOP readability
-- [ ] safe area·touch target·clipping·overlap·input omission
-- [ ] crash·ANR·script error·severe frame degradation check
-- [ ] AND-01~20 all item evidence
-- [ ] completeness·privacy·adversarial review
+- [ ] install / first boot / cold reboot
+- [ ] BUILD / preflight / RUN / pause-resume / result / retry-edit
+- [ ] LOAD hold / auto-load / route controls / occupied lock
+- [ ] safe area / touch target / clipping / overlap / input omission
+- [ ] crash / ANR / script error / severe frame degradation check
+- [ ] reviewed evidence closure
 
 Status: `NOT_RUN`.
 
-## M7 — FIVE-PERSON COMPREHENSION
+### M7 — Five-person Comprehension · OPEN_BLOCKED_BY_DEVICE_GATE
 
-Status: `NOT_RUN · BLOCKED_BY_M6`.
+- [ ] first-contact sessions
+- [ ] LIFO TOP comprehension
+- [ ] route revisit comprehension
+- [ ] same-layout retry vs edit comprehension
+- [ ] color-independent shape/text recognition
 
-Same canonical APK hash after reviewed Android PASS:
+Status: `NOT_RUN`.
 
-- [ ] P01~P05 first-contact sessions
-- [ ] 4/5+ identify last-loaded cargo as TOP
-- [ ] 4/5+ explain A-station revisit for `A/B/A/A`
-- [ ] 4/5+ distinguish same-layout retry and edit
-- [ ] shape/text identification without color-only dependence
-- [ ] facilitator coaching and participant evidence separation
+### M8 — Production Cutover Review · BLOCKED_DEFERRED
 
-## M8 — PRODUCTION CUTOVER REVIEW
-
-Status: `BLOCKED_BY_M6_M7`.
-
-- [ ] Android reviewed PASS
-- [ ] Five-person reviewed PASS
+- [ ] required physical/device/human evidence
 - [ ] P0/P1 open finding 0
-- [ ] default entrypoint cutover design and rollback
-- [ ] separate production package/signing evidence
-- [ ] GitHub canon and correct Sheet same-ID closure
+- [ ] production entrypoint/package/signing review
+- [ ] release compliance / asset rights evidence completion
 
-Legacy deletion is not part of cutover and requires a separate migration package.
+Status: `BLOCKED_DEFERRED`.
 
-## 후속 제작 Roadmap
+## 추가 보류 항목
 
-### Core expansion
+- `.asset-vault` legacy untrack: `DEFERRED_PENDING_LOCAL_PRESERVATION_ATTESTATION`
+- connected physical Godot/Hera authoring validation: `NOT_RUN`
+- broader human/comprehension beyond recorded feature-scoped user F5 evidence: `NOT_RUN`
 
-- 가속·저비용·일방통행·회차·터널·교량
-- Combo 가속·점수 tuning
-- 추천 ghost route and cost comparison
-- dominant-strategy simulation
+## 후속 제품 Roadmap
 
-### Campaign·meta
+다음은 승인된 기존 결정 또는 장기 backlog이며 현재 SX-DEC-055 handoff와 섞지 않는다.
 
-- tutorial stages 1~10
-- chapter·bundle·exam
-- speed·cost·score stars and local records
-- result analysis and cosmetic-only rewards
+### Scoring / campaign / challenge
 
-### Production content·online
+- `SX-DEC-033`: speed/cost/score stars + leaderboard · `APPROVED · NOT_STARTED`
+- `SX-DEC-034`: tutorial/theme chapter · `APPROVED · NOT_STARTED`
+- `SX-DEC-035`: daily/weekly fixed-seed challenge · `APPROVED · NOT_RUN`
 
-- 100+ official validated layouts
-- fixed-seed daily/weekly challenge
-- online leaderboards and anti-cheat
-- archive replay
-- UGC editor·publication·moderation·privacy·community
+### Release / content expansion
 
-### Release
+- final production validation and icon/store package
+- localization/accessibility stress
+- official map/content expansion
+- Google Play rating/target audience/store consistency
+- asset-rights/provenance completion
 
-- final art and production icon
-- localization and accessibility stress
-- Google Play rating·target audience·store consistency
-- asset rights and provenance completion
-- release signing and submission
+새로운 구체 콘텐츠·규칙·과금·온라인 범위는 기존 승인 범위를 넘으면 별도 사용자 결정을 요구한다.
 
 ## 역사 경계
 
-기존 endless 생존 흐름과 old `VS03-R1 → VS03-05A → VS03-04 → VS03-05B → VS03-06 → VS03-07` 순서는 `[대체됨 · 역사 증거]`다. 과거 구현·감사·계획은 보존하지만 현재 Roadmap과 다음 작업 권위를 갖지 않는다.
+- endless survival, fuel/fuel-zero, player BOOST, cargo capacity 8, cargo-count slowdown, pickup respawn, switch auto-reset은 `LEGACY_IMPLEMENTATION · HISTORICAL_EVIDENCE`다.
+- old VS03 queue와 과거 Android-immediate Roadmap 표시는 당시 상태 기록일 뿐 현재 next-executable 권위가 아니다.
+- 과거 구현·감사·계획은 계보를 보존하지만 현재 작업 순서는 `ACTIVE_CONTEXT.md`와 최신 사용자 지시가 결정한다.
