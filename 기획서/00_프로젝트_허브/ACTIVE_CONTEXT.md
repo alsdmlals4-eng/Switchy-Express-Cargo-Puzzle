@@ -22,7 +22,7 @@ baseline:
   language: GDScript
   primary_platform: Android landscape
   base_pin: 9.4.3
-  upstream_base_main_last_observed: d5cfcfa96fcf33bf7e01dc617d7f68e8d5bbbeaf
+  upstream_base_main_last_observed: 16af66ff51027f74193b60469e7c20281a1cade6
   upstream_base_main_is_reference_only: true
   configured_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
 
@@ -50,6 +50,7 @@ progress:
     - SX-DEC-055 decision/spec merged via PR #135
     - SX-DEC-055 exact-file RED-first DoR plan merged via PR #136
     - PR #137 handoff/current-task refresh + canonical-freshness consumer migration merged
+    - Base project evidence BCP - Switchy Express: Cargo Puzzle merged via Base PR #245
   in_progress: []
   ready_next:
     - SX-DEC-055 implementation plan Task 1 / Step 1.1 RED, only after explicit user resume
@@ -103,7 +104,11 @@ base_learning:
   canonical_reusable_proposal: BCP-2026-013-post-merge-continuation-state-reconciliation
   existing_solution_verdict: REUSE_BCP_2026_013
   evidence_path: "[수정제안서]/BCP-2026-013-post-merge-continuation-state-reconciliation/evidence/BCP-Switchy-Express-Cargo-Puzzle.md"
-  base_pr: 245 · PROJECT_EVIDENCE_ONLY · verification/merge state must be fresh-read from Base
+  base_pr_245:
+    exact_head: 828ee41eb16c74d571497f063a0380b9fa3e6860
+    ci_gate_31354890150: PASS
+    merge_main_observed: 16af66ff51027f74193b60469e7c20281a1cade6
+    status: MERGED · PROJECT_EVIDENCE_ONLY
   new_registry_entry: false
   new_active_base_behavior: false
   base_implementation_authority: NOT_GRANTED_IN_THIS_STAGE
@@ -160,7 +165,8 @@ runtime_integrated: false
 
 - 프로젝트 채택 release pin은 Base `v9.4.3`이다.
 - upstream Base main은 관측 참고값일 뿐 release pin으로 자동 승격하지 않는다.
-- Switchy 프로젝트 학습은 사용자 명명 규칙에 따라 **`BCP - Switchy Express: Cargo Puzzle`**로 기록하고, canonical BCP ID는 기존 `BCP-2026-013-post-merge-continuation-state-reconciliation`을 재사용한다.
+- Switchy 프로젝트 학습은 사용자 명명 규칙에 따라 **`BCP - Switchy Express: Cargo Puzzle`**로 기록했고 Base PR #245로 proposal evidence만 병합됐다.
+- canonical BCP ID는 기존 `BCP-2026-013-post-merge-continuation-state-reconciliation`을 재사용한다.
 - 새 Registry entry, 새 broad Skill, 활성 Base 구현은 이 단계에 없다.
 
 ## SX-DEC-055 재개 시 첫 RED
