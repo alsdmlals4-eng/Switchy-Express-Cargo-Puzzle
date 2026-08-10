@@ -136,6 +136,8 @@ Status: `USER_DEFERRED_AFTER_DOR · GODOT_IMPLEMENTATION_NOT_STARTED · runtime_
 
 이 Lane들은 여전히 유효하지만 **현재 인수인계 세션의 즉시 실행 작업이 아니다.** 자동화 또는 SX-DEC-055 결과로 PASS를 대체하지 않는다.
 
+`CANONICAL MAIN APK EXPORT · PASS`는 기존 canonical Android 패키징/해시 무결성 증거다. 이 PASS는 물리 Android 실행, 화면, 입력, 성능 또는 사람 이해도 PASS를 의미하지 않는다.
+
 ### M6 — Android Device Smoke · OPEN_NOT_RUN
 
 Authority:
