@@ -10,6 +10,7 @@ CANDIDATE_MANIFEST = ROOT / "art" / "production_candidates" / "ed_hybrid_v1" / "
 PRODUCT_ROOT = ROOT / "art" / "product_assets" / "ed_hybrid_v1"
 PRODUCT_MANIFEST = PRODUCT_ROOT / "manifest.json"
 SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054.json"
+BUILD_SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054_build_2b.json"
 ALLOWED_DISPOSITIONS = {"PROMOTE_AS_IS", "PROMOTE_AFTER_REVISION", "REPLACE"}
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 
@@ -98,17 +99,34 @@ def validate():
         return 1
 
     semantic_product_paths = set()
-    if SEMANTIC_MANIFEST.is_file():
+    for semantic_manifest, expected_batch in (
+        (SEMANTIC_MANIFEST, "RUN_2A"),
+        (BUILD_SEMANTIC_MANIFEST, "BUILD_2B"),
+    ):
+        if not semantic_manifest.is_file():
+            if semantic_manifest == BUILD_SEMANTIC_MANIFEST:
+                continue
+            errors.append(f"missing SX-DEC-054 sidecar manifest: {semantic_manifest.relative_to(ROOT)}")
+            continue
         try:
-            semantic = json.loads(SEMANTIC_MANIFEST.read_text(encoding="utf-8"))
+            semantic = json.loads(semantic_manifest.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError) as exc:
-            errors.append(f"invalid SX-DEC-054 sidecar manifest: {exc}")
-            semantic = {}
+            errors.append(f"invalid SX-DEC-054 sidecar manifest {semantic_manifest.name}: {exc}")
+            continue
         if semantic.get("decision_id") != "SX-DEC-054":
-            errors.append("semantic sidecar decision must be SX-DEC-054")
-        semantic_product_paths = {
-            record.get("path") for record in semantic.get("semantic_assets", []) if record.get("path")
+            errors.append(f"semantic sidecar decision must be SX-DEC-054: {semantic_manifest.name}")
+        if semantic.get("batch") != expected_batch:
+            errors.append(
+                f"semantic sidecar batch must be {expected_batch}: {semantic_manifest.name}"
+            )
+        semantic_paths = {
+            record.get("path")
+            for record in semantic.get("semantic_assets", [])
+            if record.get("path")
         }
+        if semantic_product_paths.intersection(semantic_paths):
+            errors.append(f"SX-DEC-054 sidecar ownership overlaps: {semantic_manifest.name}")
+        semantic_product_paths.update(semantic_paths)
 
     candidate_paths = [record["path"] for record in candidate.get("assets", [])]
     candidate_path_set = set(candidate_paths)
