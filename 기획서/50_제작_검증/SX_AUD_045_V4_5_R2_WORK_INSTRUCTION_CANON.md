@@ -1,22 +1,26 @@
 # SX-AUD-045 — v4.5 r2 Work-Instruction GitHub Canon Replacement
 
 Date: `2026-08-11 KST`
-Status: `IN_PROGRESS · PRE_PR · DOCS/CANON_ONLY · NO_BUILD`
+Status: `CLOSED · PR143_CANON_MERGED_MAIN_VERIFIED · DOCS/CANON_ONLY · NO_BUILD`
 
 ## Audit Question
 
 사용자가 제공한 `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5_r2.md`를 현재 프로젝트의 GitHub 작업지시문 정본으로 교체·등록하면서, 원문 바이트·현재 Phase A Gate·제품 Decision·Base pin·physical/human evidence ceiling을 왜곡 없이 보존할 수 있는가?
 
-## Audit-start authority
+Verdict: `YES`.
+
+## Authority / approval
 
 ```yaml
 project_repository: alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
-project_main_after_noop_recovery: e2e075ffb41ff1f60e22ac369ddc5e8275d98dd6
-project_open_prs_at_work_start: 0
+audit_start_recovery_main: e2e075ffb41ff1f60e22ac369ddc5e8275d98dd6
+canon_merge_main: 87760a37f610184b241edf44afee900207c42016
+project_open_prs_post_merge_readback: 0
 base_main_observed: 315c66eea9614c284b9c11c4d522141065dfa4b0
 base_open_prs_at_work_start: 0
 project_base_pin: v9.4.3
 configured_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
+approval: USER_APPROVED_RECOMMENDED_CONTINUATION_AND_GITHUB_CANON_REPLACEMENT_2026-08-11
 product_decision_span: SX-DEC-027~055
 phase_a_state: READY_FOR_USER_PLANNING_COMPLETE_GATE
 user_planning_complete_gate: NOT_GRANTED
@@ -27,27 +31,7 @@ runtime_integrated: false
 physical_device_human: NOT_RUN
 ```
 
-## User approval scope
-
-```text
-USER_APPROVED_RECOMMENDED_CONTINUATION_AND_GITHUB_CANON_REPLACEMENT_2026-08-11
-```
-
-허용:
-
-- r2 원문을 GitHub current work-instruction canon으로 등록;
-- 필요한 current routing/freshness 문서 교정;
-- Sheet same-audit 동기화;
-- docs-only PR 생성·exact-head 검증·승인 범위 내 자동 병합·post-merge readback.
-
-허용하지 않음:
-
-- 사용자 `기획 완료` Gate 자동 승인;
-- Phase B 자동 실행;
-- PowerShell/Codex/Godot BUILD;
-- 새 제품 Decision/gameplay/domain rule;
-- Base repin;
-- physical/device/human PASS 승격.
+The user approved this documentation/canon replacement and its PR/merge lifecycle. The message did **not** contain the explicit `기획 완료` declaration required for Phase B.
 
 ## Source payload identity
 
@@ -61,19 +45,19 @@ SHA-256: 3f898b7e2749a2e1900e9df48183f02d4fbc735fd0e80297f28bb09317144de4
 Git blob SHA-1: de7c6f818a4c96d2a02edea5eaff33bb1c39e8da
 ```
 
-No tracked `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION*` predecessor was found in the repository at audit start. After merge, earlier chat/upload v4.4/initial-v4.5 copies are historical external evidence; r2 is the GitHub current canon.
+No tracked `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION*` predecessor existed at audit start. Earlier chat/upload v4.4/initial-v4.5 revisions are therefore historical external evidence after this merge; r2 is the GitHub current canon.
 
 ## Canon representation
 
 Selected: `CONTENT_ADDRESSED_MULTIPART_VERBATIM_CANON`.
 
-Root locator:
+Root locator/manifest:
 
 `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5_r2.md`
 
-The manifest registers exact ordered segments under `docs/work-instructions/v4.5_r2/`. Binary concatenation with no inserted separators reconstructs the source payload byte-for-byte.
+The manifest registers exact ordered segments under `docs/work-instructions/v4.5_r2/`. Binary concatenation with no inserted separator reconstructs the source byte-for-byte.
 
-Pre-PR verified segment identities:
+Verified identities on merged main `87760a37...` include:
 
 ```text
 part01  13494 bytes · git 140a1bf3087e4136f22a289d83980e33c232822b
@@ -83,34 +67,41 @@ part04  13463 bytes · git 038c570807473ce4514e4827b1b3d326fa347cde
 part04-eof-lf 1 byte · git 8b137891791fe96927ad78e64b0aad7bded08bdc
 part05  13485 bytes · git e080c88d6d12c18a89de1a1251eaf8eaa2ba624d
 part06  10313 bytes · git 642add5f573c90f5911aec0b021c10d486f3d5fb
-concat 77734 bytes / 2849 LF / SHA-256 3f898b7e2749a2e1900e9df48183f02d4fbc735fd0e80297f28bb09317144de4
+full concat 77734 bytes / 2849 LF / SHA-256 3f898b7e2749a2e1900e9df48183f02d4fbc735fd0e80297f28bb09317144de4
 ```
 
-## Transport findings
+`.gitattributes` marks payload segments `-text`, and `SOURCE_IDENTITY.json` records machine-readable source identity. The directory README prevents treating an individual segment as a complete instruction document.
 
-### F153 · VERIFIED/FIXED — unsafe single-call payload transport rejected
+## Findings and dispositions
 
-The available GitHub connector does not expose a local-file streaming parameter for contents writes. An attempted large manual base64 transport produced an **unlinked** blob whose SHA did not equal the expected full-source Git blob. It was rejected before any branch/tree reference and has no canonical effect.
+### F153 · FIXED — unsafe single-call payload transport rejected
 
-Disposition: use smaller independently addressable segments and verify every segment identity before PR.
+The available GitHub write surface did not expose a safe local-file streaming parameter for one 77KB contents write. A manually assembled large transport probe produced an **unlinked** blob with the wrong identity. It was rejected before any tree/ref authority and has no canonical effect.
 
-### F154 · VERIFIED/FIXED — part-4 EOF LF detected before PR
+Disposition: content-addressed smaller segments with per-segment identity verification.
 
-The first part-4 branch file matched the source except for the final LF. Its observed Git blob `038c5708...` exactly equals the locally calculated source-part-with-final-LF-removed identity. Instead of rewriting a verified 13KB segment, a separate 1-byte LF segment (`8b137891...`) is registered in the manifest. The final concatenation matches the original full SHA.
+### F154 · FIXED — part-4 EOF LF discrepancy
 
-### F155 · MUST_FIX — START_HERE stale direct resume route
+The first part-4 write matched the source except for the final LF. Its observed Git blob exactly matched the locally calculated source-part-with-final-LF-removed identity. A separate one-byte LF segment (`8b137891...`) preserves the missing byte without rewriting the verified large segment. Full concatenation matches the source SHA.
 
-At audit start `START_HERE.md` still advertised `HANDOFF_CLOSED / WAIT_FOR_EXPLICIT_RESUME` and `resume → Task 1 / Step 1.1 RED`, which conflicts with the already-merged Phase A READY state and r2 absolute sequence.
+### F155 · FIXED — stale START_HERE direct resume route
 
-Disposition: reconcile START_HERE to `READY_FOR_USER_PLANNING_COMPLETE_GATE → explicit "기획 완료" → Phase B → BUILD only after PASS`.
+At audit start `START_HERE.md` still contained the obsolete current handoff `explicit resume → Task 1 / Step 1.1 RED`. PR #143 replaced it with:
 
-### F156 · FIXED — no current GitHub instruction-canon discovery
+```text
+READY_FOR_USER_PLANNING_COMPLETE_GATE
+→ explicit user "기획 완료"
+→ PHASE B FINAL PLANNING REVIEW
+→ only after Phase B PASS: SX-DEC-055 RED/BUILD
+```
 
-AGENTS had no r2 work-instruction entry. Disposition: add the root manifest as the current project execution Thin Adapter while keeping product owners separate.
+### F156 · FIXED — no current GitHub work-instruction discovery
+
+`AGENTS.md` and `DESIGN_DOCUMENT_REGISTRY.json` now register the root v4.5 r2 manifest as the current project execution Thin Adapter while product/domain owners remain separate.
 
 ## Accidental main noop recovery
 
-During tool discovery, a `__noop__` file was accidentally created directly on main:
+During tool discovery an unintended empty `__noop__` file was created directly on main:
 
 ```text
 create: 1e439d049cd069ce23c104dda89921dd1c1f878c
@@ -119,14 +110,57 @@ create: 1e439d049cd069ce23c104dda89921dd1c1f878c
 Work stopped immediately. The exact file was fetched and deleted without reset/force/history rewrite:
 
 ```text
-recovery/current-main-at-branch-start: e2e075ffb41ff1f60e22ac369ddc5e8275d98dd6
+recovery: e2e075ffb41ff1f60e22ac369ddc5e8275d98dd6
 ```
 
-Fresh compare from pre-incident `78b8f09a930fdef040b2017fceb427864a15f51b` to recovery `e2e075ff...` reports `files: []`.
+Fresh compare from pre-incident `78b8f09a930fdef040b2017fceb427864a15f51b` to recovery `e2e075ff...` reported `files: []`.
 
 Disposition: `ACCIDENTAL_NOOP_CREATE_DELETE · NET_TREE_DELTA_ZERO · HISTORY_PRESERVED`.
 
-## Protected state
+## PR #143 exact-head evidence
+
+```yaml
+pr: 143
+base_main: e2e075ffb41ff1f60e22ac369ddc5e8275d98dd6
+exact_head: f8dfe698f37f7deb9735338226bc79205b4b1920
+changed_files: 17_DOCS_CANON_ROUTING_ONLY
+project_contract:
+  run: 31440735232
+  number: 1178
+  result: PASS
+gut:
+  run: 31440735231
+  number: 227
+  result: PASS
+godot:
+  run: 31440735234
+  number: 1109
+  result: PASS
+  headless_tests: PASS
+  real_project_live_editor_pilot: PASS
+thin_adapter:
+  run: 31440735233
+  number: 315
+  result: PASS
+platform_release_asset_rights:
+  run: 31440735238
+  number: 58
+  result: PASS
+review_threads: 0
+submitted_reviews: 0
+mergeable_before_merge: true
+merge_method: squash
+merge_main: 87760a37f610184b241edf44afee900207c42016
+post_merge_open_prs: 0
+```
+
+No skipped/non-triggered workflow is claimed as PASS evidence.
+
+## Scope / protection readback
+
+PR #143 changed only work-instruction/docs/canon/routing files. It changed no `.gd`, `.tscn`, `project.godot`, test, workflow, addon, product asset, semantic manifest, or product binary.
+
+Protected state after merge:
 
 ```text
 SX-DEC-027~055: unchanged
@@ -145,25 +179,10 @@ production cutover: BLOCKED_DEFERRED
 Base pin: v9.4.3
 ```
 
-## PR / exact-head evidence
+## Same-audit metadata closure rule
 
-```yaml
-planning_pr: NOT_CREATED
-exact_head: UNASSIGNED
-changed_files: NOT_RUN
-project_contract: NOT_RUN
-GUT: NOT_RUN
-Godot: NOT_RUN
-Thin: NOT_RUN
-review_threads: NOT_RUN
-reviews: NOT_RUN
-mergeability: NOT_RUN
-merge: NOT_RUN
-post_merge_main: NOT_RUN
-```
+This file is promoted to main by a bounded same-audit metadata-only closure after PR #143 evidence exists. That closure's own CI/merge evidence is recorded in the closure PR and configured Sheet rather than creating a self-referential infinite sequence of audit updates.
 
-No PASS may be promoted above until fresh exact-head evidence exists.
+## Final verdict
 
-## Pre-PR verdict
-
-`IN_PROGRESS · PRODUCT_CONFLICT_NONE · DOCS/CANON_ONLY · R2_PAYLOAD_RECONSTRUCTION_VERIFIED · START_HERE/ROUTING_REPAIR_IN_PROGRESS · NO_BUILD`.
+`CLOSED · R2_GITHUB_CANON_ESTABLISHED · SOURCE_IDENTITY_VERIFIED · PR143_EXACT_HEAD_PASS · MERGED_MAIN_READBACK_PASS · PRODUCT_CONFLICT_NONE · NO_BUILD · USER_PLANNING_COMPLETE_GATE_NOT_GRANTED`.
