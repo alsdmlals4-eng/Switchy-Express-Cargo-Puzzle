@@ -2,22 +2,22 @@
 
 Last updated: `2026-08-10 KST`
 
-This is the compact current-status registry for the finite delivery puzzle. Detailed rule text, provenance, CI evidence, and audit reasoning remain in each registered owner document and the configured Google Sheet. `SX-AUD-035` remains the bounded registry-authority repair. This refresh records `SX-DEC-054` RUN Batch 2A and BUILD Batch 2B as merged-main verified without widening runtime or physical-validation claims.
+This is the compact current-status registry for the finite delivery puzzle. Detailed rule text, provenance, CI evidence, and audit reasoning remain in each registered owner document and the configured Google Sheet. `SX-AUD-035` remains the bounded registry-authority repair. This refresh records `SX-DEC-054` RUN Batch 2A, BUILD Batch 2B, and VFX Batch 2C as merged-main verified without widening runtime or physical-validation claims.
 
 ```yaml
 current_product_baseline: FINITE_DELIVERY_PUZZLE_BASELINE
 current_decision_span: SX-DEC-027~054
 superseded_decision: SX-DEC-047 -> SX-DEC-048
-authority_snapshot_through_main: 77276ec9b60aa91afd13f994ded8e0925e68be08
+authority_snapshot_through_product_main: 13db4ddd991bdb3162884c1b85fdc3d20e3eee8a
 authority_refresh_audit: SX-AUD-035
 latest_visual_asset_authority: SX-DEC-053
 latest_visual_semantic_strategy: SX-DEC-054
-latest_visual_asset_audit: SX-AUD-042
+latest_visual_asset_audit: SX-AUD-043
 latest_tooling_authority: SX-DEC-052
 base_reference_at_refresh: 2a6ced23f6d6de1fb6e0a281c7138beb03f1a13b
 correct_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
 product_runtime_state: FINITE_CORE_AUTOMATED_PASS · ROUTE_END_USER_CURRENT_MAIN_F5_PASS · SWITCH_DIRECTION_USER_CURRENT_MAIN_F5_PASS · CARGO_PICKUP_RETRY_USER_F5_PASS · FULL_PC_MANUAL_GATE_NOT_CLOSED
-visual_asset_state: ED_HYBRID_FINAL_DIRECTION · SX-DEC-053_39_PRODUCT_ASSETS · SX-DEC-054_RUN_2A_20 · SX-DEC-054_BUILD_2B_8 · 67_TOTAL_PRODUCT_PNGS · RUN_2A_AND_BUILD_2B_MERGED_MAIN_VERIFIED · VFX_2C_PENDING · RUNTIME_POC_DEFERRED
+visual_asset_state: ED_HYBRID_FINAL_DIRECTION · SX-DEC-053_39_PRODUCT_ASSETS · SX-DEC-054_RUN_2A_20 · SX-DEC-054_BUILD_2B_8 · SX-DEC-054_VFX_2C_6 · 73_TOTAL_PRODUCT_PNGS · SEMANTIC_ASSET_PRODUCTION_COMPLETE · RUNTIME_POC_DEFERRED
 tooling_state: GODOT_AI_3_1_3_SYNCED · GUT_9_7_1_PRESERVED · HERA_TRACKED_V1_0_0_USER_ADOPTED · CONNECTED_PHYSICAL_EDITOR_NOT_RUN
 asset_vault_state: LEGACY_14_TRACKED_PRESERVED · UNTRACK_DEFERRED_PENDING_LOCAL_PRESERVATION_ATTESTATION
 physical_validation_ceiling: WINDOWS_PHYSICAL_RUNTIME_NOT_RUN · ANDROID_DEVICE_NOT_RUN · CONNECTED_PHYSICAL_EDITOR_NOT_RUN · BROADER_HUMAN_NOT_RUN
@@ -72,7 +72,7 @@ The hard constraints remain LIFO, cargo/station color+shape readability, save/ru
 | SX-DEC-051 | E+D Hybrid Production Asset Pack | 31 production-candidate + provenance/P0 범위 | MERGED_MAIN_VERIFIED · 31_CANDIDATES · NOT_RUNTIME_INTEGRATED |
 | SX-DEC-052 | Local Tooling & Asset-Vault Reconciliation | Godot AI 3.1.3·GUT 9.7.1·Hera v1.0.0 정합화 | MERGED_MAIN_VERIFIED · VAULT_UNTRACK_DEFERRED |
 | SX-DEC-053 | Final E+D Production Visual Direction | E+D HYBRID 최종 방향, blue hero, wagon 0.74, 39 import-safe assets, authoritative slice batch 1 | MERGED_MAIN_VERIFIED · 39_PRODUCT_ASSETS · 8_AUTHORITATIVE_SLICES · RUNTIME_POC_DEFERRED |
-| SX-DEC-054 | Semantic Asset Completion Strategy | ambiguous atlas는 provenance로 보존하고 승인 component-state 계약으로 독립 semantic assets 완성 | MERGED_MAIN_VERIFIED · RUN_2A_20 + BUILD_2B_8 · 67_TOTAL_PRODUCT_PNGS · VFX_2C_PENDING · RUNTIME_POC_DEFERRED |
+| SX-DEC-054 | Semantic Asset Completion Strategy | ambiguous atlas는 provenance로 보존하고 승인 component-state 계약으로 독립 semantic assets 완성 | MERGED_MAIN_VERIFIED · RUN_2A_20 + BUILD_2B_8 + VFX_2C_6 · 73_TOTAL_PRODUCT_PNGS · SEMANTIC_ASSET_PRODUCTION_COMPLETE · RUNTIME_POC_DEFERRED |
 
 ## Current Visual Asset Authority
 
@@ -82,15 +82,19 @@ source_candidates: 31
 sx_dec_053_product_assets: 39
 sx_dec_054_run_2a_semantic_assets: 20
 sx_dec_054_build_2b_semantic_assets: 8
-product_assets_total: 67
+sx_dec_054_vfx_2c_semantic_assets: 6
+product_assets_total: 73
 sx_dec_054_build_2b_compositions: 28
+sx_dec_054_vfx_2c_events: 8
+sx_dec_054_vfx_2c_compositions: 16
+sx_dec_054_vfx_reduced_motion_pairs: 8
 track_palette_new_form_state_pngs: 0
 authoritative_slice_batch_1: 8
 blue_locomotive: HERO_ANCHOR
 trailing_wagons_visual_scale: 0.74
-semantic_split_state: RUN_2A_COMPLETE · BUILD_2B_COMPLETE · VFX_2C_PENDING
+semantic_split_state: RUN_2A_COMPLETE · BUILD_2B_COMPLETE · VFX_2C_COMPLETE
 semantic_completion_strategy: SX-DEC-054 · SEMANTIC_FIRST_INDEPENDENT_ASSETS
-semantic_implementation_state: RUN_2A_AND_BUILD_2B_MERGED_MAIN_VERIFIED
+semantic_implementation_state: RUN_2A_BUILD_2B_VFX_2C_MERGED_MAIN_VERIFIED
 runtime_integrated: false
 ```
 
@@ -107,9 +111,13 @@ Completed BUILD Batch 2B:
 - dedicated BUILD sidecar preserves RUN sidecar ownership;
 - unnamed placement/track-palette atlas regions remain non-authoritative.
 
-Remaining under the same approved strategy:
-- VFX Batch 2C causal split + Reduced Motion information-equivalent presentation;
-- runtime integration/POC as a later separate gate.
+Completed VFX Batch 2C:
+- 8 events: pickup, unload, combo, route selection, success, failure, ROUTE_END, TIME_EXPIRED;
+- 6 new independent glyph PNGs plus exact combo/route-selection product reuse;
+- 16 standard/reduced semantic compositions;
+- 8 Reduced Motion information-equivalent pairs;
+- historical unnamed VFX atlas remains reference-only/no-state-mapping;
+- runtime animation/Scene/Resource authoring remains deferred.
 
 ## Current Runtime Evidence Boundary
 
@@ -151,19 +159,30 @@ semantic_build_batch_2b:
   exact_review_head: 6efe4c71e88799f886f136c98d0c4a4396e58808
   product_merge: 77276ec9b60aa91afd13f994ded8e0925e68be08
   audit: SX-AUD-042
+semantic_vfx_batch_2c:
+  product_pr: 133
+  exact_review_head: 603a1a0330d651b4d7068487c17e88ef1657a009
+  product_merge: 13db4ddd991bdb3162884c1b85fdc3d20e3eee8a
+  contract_run: 31345334561
+  gut_run: 31345334543
+  godot_run: 31345334535
+  thin_run: 31345334542
+  windows_export_run: 31345334553
+  audit: SX-AUD-043
 ```
+
+The docs-only closure merge SHA is intentionally not self-referenced before merge. Record the actual closure PR and merge SHA in the configured Sheet after GitHub readback.
 
 ## Current Execution Authority
 
 ```text
-1. SX-DEC-054 BUILD Batch 2B merged-main 상태를 기준선으로 유지한다.
-2. 같은 승인 전략으로 VFX Batch 2C semantic asset 작업을 진행한다.
-3. legacy atlas unnamed region은 새 상태 권위로 사용하지 않는다.
-4. VFX meaning-bearing event마다 Reduced Motion 정보등가 표현을 만든다.
-5. 각 batch는 static contract / exact-head CI / merged-main readback / same-ID Sheet sync를 거친다.
-6. 그 후 별도 runtime integration / POC gate로 이동한다.
-7. Windows physical runtime, Android landscape device, connected editor, broader human validation은 별도 수행한다.
-8. `.asset-vault` untrack은 local hash-verified preservation attestation 이후 별도 수행한다.
+1. SX-DEC-054 semantic asset production is complete at 73 physical product PNGs.
+2. legacy atlas unnamed regions remain non-authoritative.
+3. Reduced Motion meaning equivalence is statically defined for all 8 VFX events.
+4. Do not auto-cross into Godot runtime integration / POC from SX-DEC-054 alone.
+5. The next work package requires a separate runtime integration / POC gate.
+6. Windows physical runtime, Android landscape device, connected editor, broader human validation remain separate.
+7. `.asset-vault` untrack remains deferred until local hash-verified preservation attestation.
 ```
 
 수동·물리 증거가 없는 Gate를 자동 테스트로 PASS로 확대하지 않는다. 새 gameplay/product 방향이 필요해지는 순간에는 새 사용자 결정이 선행되어야 한다.
