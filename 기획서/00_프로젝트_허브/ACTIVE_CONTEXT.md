@@ -2,7 +2,9 @@
 
 Last updated: `2026-08-10 KST`
 
-이 문서는 분야 정본을 복제하는 장문 요약이 아니라 **현재 상태·읽기 순서·미완료 작업·검증 경계·다음 실행 지점**을 연결하는 재개용 locator다. 현재 GitHub main/open PR/실제 파일이 이 문서의 저장된 SHA보다 항상 우선한다.
+이 문서는 분야 정본을 복제하는 장문 요약이 아니라 **현재 상태·읽기 순서·미완료 작업·검증 경계·다음 실행 지점**을 연결하는 재개용 locator다.
+
+중요: 저장된 SHA·PR 상태는 관측 시점의 snapshot이다. **현재 GitHub default branch, open PR, 실제 파일, configured Sheet가 항상 우선**한다. 이 문서 자신의 closure commit SHA를 다시 문서에 무한 추적하지 않는다.
 
 ## Continuation State
 
@@ -10,19 +12,22 @@ Last updated: `2026-08-10 KST`
 baseline:
   repository: alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
   default_branch: main
-  main_sha_observed_at_handoff_start: 6cd14324a3de1a1b2a9898aaee1e9535c87c8fdc
-  open_project_prs_at_handoff_start: 0
+  current_main_source: LIVE_GITHUB_DEFAULT_BRANCH
+  post_merge_main_observed_after_pr_137: 32a0d6c154188f36bdefdefe96e62bc2a4718565
+  post_merge_open_project_prs_observed_after_pr_137: 0
+  integration_pr_137: MERGED
   project_local_path: C:/Users/user/Documents/GitHub/Ninza/Switchy-Express-Cargo-Puzzle
   godot_project_path: C:/Users/user/Documents/GitHub/Ninza/Switchy-Express-Cargo-Puzzle
   engine: Godot 4.7.1-stable
   language: GDScript
   primary_platform: Android landscape
   base_pin: 9.4.3
-  upstream_base_main_observed: fbc0abd117066f45200b5cb440801cdd8f0c80a0
+  upstream_base_main_last_observed: d5cfcfa96fcf33bf7e01dc617d7f68e8d5bbbeaf
+  upstream_base_main_is_reference_only: true
   configured_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
 
 authority:
-  work_contract: HANDOFF_NOW · SX-DEC-055_RUNTIME_IMPLEMENTATION_USER_DEFERRED
+  work_contract: HANDOFF_CLOSED · SX-DEC-055_RUNTIME_IMPLEMENTATION_USER_DEFERRED
   decision_span: SX-DEC-027~055
   runtime_semantic_decision: SX-DEC-055
   approval_refs:
@@ -44,10 +49,10 @@ progress:
     - SX-DEC-054 RUN_2A 20 + BUILD_2B 8 + VFX_2C 6 = 73 total product PNGs
     - SX-DEC-055 decision/spec merged via PR #135
     - SX-DEC-055 exact-file RED-first DoR plan merged via PR #136
-  completed_not_merged: []
+    - PR #137 handoff/current-task refresh + canonical-freshness consumer migration merged
   in_progress: []
   ready_next:
-    - SX-DEC-055 implementation plan Task 1 / Step 1.1 RED, but only after explicit user resume
+    - SX-DEC-055 implementation plan Task 1 / Step 1.1 RED, only after explicit user resume
   not_started:
     - SX-DEC-055 Godot/GDScript/test runtime semantic POC implementation
     - Windows physical runtime/visual/audio/input validation
@@ -57,108 +62,56 @@ progress:
   blocked:
     - production cutover: BLOCKED_DEFERRED
     - asset-vault untrack: DEFERRED_PENDING_LOCAL_PRESERVATION_ATTESTATION
-  superseded:
-    - previous ACTIVE_CONTEXT execution queue ending around PR #83~100 / SX-DEC-042 implementation-pending state
-    - START_HERE/ROADMAP wording that treated Android Device Smoke as the immediate current task
 
 verification:
-  exact_head_evidence:
-    sx_dec_055_spec_pr_135:
-      exact_head: 383937ffe898d45b42d68cf21ef46d61981e4e09
-      merge_main: 34624a5d2a93306cd2b3c72dee6ce0035b751279
-    sx_dec_055_dor_pr_136:
-      exact_head: d3cb8c9a681b3c9839c8e06acec3ecc8daaf0b27
-      merge_main: 6cd14324a3de1a1b2a9898aaee1e9535c87c8fdc
-    handoff_pr_137_initial_red:
-      exact_head: cccf58ef0dfc484b0e53f18b0dba46fff1f96a7a
-      project_contract: FAIL · stale Android-immediate canonical-freshness assertion
-    handoff_pr_137_android_freshness_green_post_merge_red:
-      exact_head: 81ef7d12023c13a60c16ca38072b98ee0d890bac
-      android_smoke_canonical_freshness: PASS
-      post_merge_canonical_freshness: FAIL · literal legacy consumer shape
-  ci:
-    project_contract_31351253902: PASS
-    gut_31351253900: PASS
-    godot_31351253898: PASS
-    thin_31351253899: PASS
-    pr_136_review_threads: 0
-    pr_137_initial_project_contract_31352205255: FAIL_EXPECTED_CANONICAL_FRESHNESS_RED
-    pr_137_initial_gut_31352205262: PASS
-    pr_137_initial_godot_31352205245: PASS
-    pr_137_initial_thin_31352205251: PASS
-    pr_137_android_freshness_green_project_contract_31353855964: FAIL_POST_MERGE_CANONICAL_FRESHNESS
-    pr_137_android_freshness_green_gut_31353855958: IN_PROGRESS_AT_OBSERVATION
-    pr_137_android_freshness_green_godot_31353855960: IN_PROGRESS_AT_OBSERVATION
-    pr_137_android_freshness_green_thin_31353855980: PASS
-  tests:
-    sx_dec_055_runtime_poc_tests: NOT_RUN
-    android_smoke_canonical_freshness: PASS_ON_81ef7d12023c13a60c16ca38072b98ee0d890bac
-    post_merge_canonical_freshness: RED_ON_81ef7d12023c13a60c16ca38072b98ee0d890bac · SEMANTIC_CONTRACT_FIX_IN_PROGRESS
-  human_qa: NOT_RUN for SX-DEC-055
-  runtime_qa: NOT_RUN for SX-DEC-055
-  not_run:
-    - Windows physical runtime
-    - Android landscape device
-    - Connected physical editor
-    - Broader human/comprehension
-  blocked_unverified: []
+  pr_137:
+    exact_head: 7be35adf4fa98bb915616a1e6a89f67dcb19a4ca
+    merge_main_observed: 32a0d6c154188f36bdefdefe96e62bc2a4718565
+    project_contract_31354096765: PASS
+    gut_31354096767: PASS
+    godot_31354096757: PASS
+    thin_31354096769: PASS
+    windows_demo_export_31354096778: PASS
+    review_threads: 0
+    changed_files: 5
+  post_merge_default_branch_ci_for_32a0d6c: NOT_OBSERVED · UNVERIFIED
+  sx_dec_055_runtime_poc_tests: NOT_RUN
+  runtime_qa: NOT_RUN
+  human_qa: NOT_RUN
+  validation_ceiling:
+    CANONICAL MAIN APK EXPORT: PASS · PACKAGING/HASH EVIDENCE ONLY
+    ANDROID DEVICE SMOKE: NOT_RUN
+    FIVE-PERSON COMPREHENSION: NOT_RUN
+    PRODUCTION CUTOVER: BLOCKED_DEFERRED
+
+historical_compatibility_markers:
+  legacy_audit_reference: SX-AUD-025
+  repository_main_observed: 32a0d6c154188f36bdefdefe96e62bc2a4718565
+  latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
+  pc_local_route_and_mid_run_retest: RETEST_REQUIRED
 
 changes:
-  current_changed_files:
-    - handoff refresh only: START_HERE.md
-    - handoff refresh only: ACTIVE_CONTEXT.md
-    - handoff refresh only: ROADMAP.md
-    - canonical-freshness regression: tests/python/test_android_smoke_canonical_freshness_contract.py
-    - post-merge semantic regression: tests/test_post_merge_canon_freshness.py
+  last_merged_handoff_pr: 137
   product_or_runtime_bytes_changed_by_handoff: false
   project_skill_or_workflow_changes: none
-  project_only_improvements:
-    - reuse existing project hub owners instead of adding a duplicate HANDOFF file
-    - remove stale current-task routing from cold-start documents
-    - keep Android device/human validation open while removing its superseded immediate-task authority
-    - validate post-merge freshness by semantic consumer contract instead of fossilized literal field spelling
-  base_candidates:
-    - bcp-Switchy-Express-Cargo-Puzzle: PROJECT_NAMED_RECORD · REUSE_EXISTING_BCP-2026-013
-  base_proposal_ids:
-    - bcp-Switchy-Express-Cargo-Puzzle
-    - BCP-2026-013-post-merge-continuation-state-reconciliation · canonical related proposal
-  base_concurrency:
-    source_project: Switchy Express: Cargo Puzzle
-    base_main_seen: fbc0abd117066f45200b5cb440801cdd8f0c80a0
-    proposal_id: bcp-Switchy-Express-Cargo-Puzzle
-    proposal_path: "[수정제안서]/bcp-Switchy-Express-Cargo-Puzzle"
-    proposal_branch: docs/bcp-Switchy-Express-Cargo-Puzzle
-    proposal_pr: alsdmlals4-eng/Base#238 · DRAFT_CONCURRENT_REGISTRY_BLOCKED
-    same_goal_state: REUSE_EXISTING_BCP
-    canonical_related_proposal: BCP-2026-013-post-merge-continuation-state-reconciliation
-    canonical_related_pr: alsdmlals4-eng/Base#235 · MERGED
-    concurrent_registry_pr: alsdmlals4-eng/Base#237 · OTHER_PROJECT · DO_NOT_OVERWRITE
-    last_registry_recheck: Base main fbc0abd117066f45200b5cb440801cdd8f0c80a0
-    other_project_changes_preserved: true
-    proposal_status: DRAFT_CONCURRENT_REGISTRY_BLOCKED
-    proposal_storage_merge_authority: GRANTED_BY_CURRENT_SINGLE_FILE_INSTRUCTION
-    proposal_storage_action: CREATED_PROJECT_NAMED_PROPOSAL_RECORD
-    base_implementation_authority: NOT_GRANTED_IN_THIS_STAGE
-    implementation_status: NOT_STARTED_IN_THIS_STAGE
-    implementation_boundary: SEPARATE_FOLLOWUP_STAGE
+  canonical_freshness_consumers:
+    - Android immediate-task literal migrated to deferred-runtime + OPEN_NOT_RUN semantics
+    - post-merge consumer migrated from fossilized literal field spelling to semantic current-main/history contract
 
-review:
-  adversarial_findings_remaining:
-    - physical/device/human validation remains open and must stay NOT_RUN
-  unresolved_project_pr_threads: 0 at handoff start
-  same_goal_prs:
-    - project PR #135: MERGED · SX-DEC-055 decision/spec
-    - project PR #136: MERGED · SX-DEC-055 DoR/plan/registry
-    - Base PR #215/#216/#217: historical merged handoff owner/routing evidence
-    - Base PR #235: MERGED · BCP-2026-013 canonical reusable proposal
-    - Base PR #238: DRAFT · bcp-Switchy-Express-Cargo-Puzzle project-named evidence record
-  stale_or_reference_only_items:
-    - old ACTIVE_CONTEXT SHA/PR queue: SUPERSEDED_BY_THIS_CONTEXT_REFRESH
-    - old Android-device-immediate START_HERE/ROADMAP routing: SUPERSEDED_AS_IMMEDIATE_TASK, gate itself remains open
+base_learning:
+  project_evidence_name: "BCP - Switchy Express: Cargo Puzzle"
+  canonical_reusable_proposal: BCP-2026-013-post-merge-continuation-state-reconciliation
+  existing_solution_verdict: REUSE_BCP_2026_013
+  evidence_path: "[수정제안서]/BCP-2026-013-post-merge-continuation-state-reconciliation/evidence/BCP-Switchy-Express-Cargo-Puzzle.md"
+  base_pr: 245 · PROJECT_EVIDENCE_ONLY · verification/merge state must be fresh-read from Base
+  new_registry_entry: false
+  new_active_base_behavior: false
+  base_implementation_authority: NOT_GRANTED_IN_THIS_STAGE
 
 resume:
   trigger: explicit user request to resume SX-DEC-055 runtime semantic POC
-  next_executable_step: re-read current authority, then execute docs/superpowers/plans/2026-08-10-sx-dec-055-runtime-semantic-poc.md Task 1 / Step 1.1 RED
+  first_action: re-read Base structure/main/open PRs + project main/open PRs + configured Sheet
+  next_executable_step: docs/superpowers/plans/2026-08-10-sx-dec-055-runtime-semantic-poc.md Task 1 / Step 1.1 RED
   next_read_order:
     - AGENTS.md
     - 기획서/00_프로젝트_허브/START_HERE.md
@@ -167,17 +120,13 @@ resume:
     - docs/superpowers/specs/2026-08-10-runtime-semantic-poc-design.md
     - docs/superpowers/plans/2026-08-10-sx-dec-055-runtime-semantic-poc.md
     - configured Google Sheet SX-DEC-055 row
-  commands_or_tools_if_canonical:
-    - Godot custom suite: godot --headless --path . --script res://tests/run_tests.gd
-    - semantic validators: validate SX-DEC-053/054 product, RUN, BUILD, VFX manifests before/after implementation
   stop_conditions:
     - current main touches planned exact files and invalidates assumptions
     - GitHub owner docs and Sheet conflict
     - new product/gameplay/semantic decision is required
-    - P0/P1 blocker prevents the approved design from being preserved
+    - P0/P1 blocker prevents approved design preservation
     - required product asset/manifests are missing or corrupted
   user_decision_needed: false for exact approved SX-DEC-055 scope after explicit resume; true for material scope/product changes
-  last_updated: 2026-08-10 KST
 ```
 
 ## 현재 핵심 재미
@@ -205,22 +154,16 @@ sx_dec_055_runtime_implementation: USER_DEFERRED · NOT_STARTED
 runtime_integrated: false
 ```
 
-`SX-DEC-055` 승인과 DoR은 취소되지 않았다. **실행 순서만 사용자의 최신 지시로 나중으로 미뤄졌다.** 따라서 향후 사용자가 재개를 요청하면 동일 승인 범위를 재사용하고, 저장소/Sheet 재조회 후 plan Task 1 RED부터 이어간다.
+`SX-DEC-055` 승인과 DoR은 취소되지 않았다. 실행 순서만 사용자의 최신 지시로 미뤄졌다. 향후 사용자가 재개를 명시하면 동일 승인 범위를 재사용하되, 반드시 최신 저장소/Sheet를 다시 읽고 Task 1 RED부터 이어간다.
 
 ## Base 경계
 
 - 프로젝트 채택 release pin은 Base `v9.4.3`이다.
-- handoff refresh 중 최신 upstream Base main은 `fbc0abd117066f45200b5cb440801cdd8f0c80a0`로 재관측됐다.
-- 최신 Base는 `maintaining-project-context-and-handoff` owner와 on-demand handoff routing을 이미 제공하므로 이 프로젝트에 새 broad Handoff/Progress Skill을 추가하지 않는다.
-- 사용자의 최신 naming 지시에 따라 Switchy 수정제안서 레코드는 `[수정제안서]/bcp-Switchy-Express-Cargo-Puzzle` / Base PR #238로 생성했다.
-- 이 프로젝트 레코드는 새로운 공용 규칙을 만들지 않고 기존 `BCP-2026-013-post-merge-continuation-state-reconciliation` / Base PR #235를 `REUSE_EXISTING_BCP`로 참조한다.
-- Base PR #237이 다른 프로젝트의 Registry 변경을 포함할 수 있으므로 `PROPOSAL_REGISTRY.json`을 stale snapshot으로 덮어쓰지 않았고 PR #238은 `DRAFT_CONCURRENT_REGISTRY_BLOCKED`로 유지한다.
-- Base 활성 구현 권한은 이번 단계에 없으며 `SEPARATE_FOLLOWUP_STAGE`다.
-- upstream Base 최신 main을 release pin으로 자동 승격하지 않는다.
+- upstream Base main은 관측 참고값일 뿐 release pin으로 자동 승격하지 않는다.
+- Switchy 프로젝트 학습은 사용자 명명 규칙에 따라 **`BCP - Switchy Express: Cargo Puzzle`**로 기록하고, canonical BCP ID는 기존 `BCP-2026-013-post-merge-continuation-state-reconciliation`을 재사용한다.
+- 새 Registry entry, 새 broad Skill, 활성 Base 구현은 이 단계에 없다.
 
 ## SX-DEC-055 재개 시 첫 RED
-
-Implementation plan의 첫 미완료 항목은 다음이다.
 
 ```text
 Task 1: manifest-backed SemanticAssetCatalog
@@ -231,7 +174,7 @@ Step 1.1 RED
 → 이후 최소 GREEN 구현
 ```
 
-현재 handoff 단계에서는 위 Godot/GDScript/test 변경을 시작하지 않는다.
+현재 handoff closure에서는 위 Godot/GDScript/test 변경을 시작하지 않는다.
 
 ## 금지
 
