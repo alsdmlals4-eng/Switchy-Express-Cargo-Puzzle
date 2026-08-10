@@ -22,8 +22,11 @@ def read(path: Path) -> str:
 
 
 class PostMergeCanonFreshnessTests(unittest.TestCase):
-    def test_active_canon_uses_main_and_merged_pr_83(self) -> None:
-        combined = "\n".join((read(README), read(ACTIVE), read(GATES)))
+    def test_active_canon_uses_current_main_semantics_and_preserves_pr83_history(self) -> None:
+        readme = read(README)
+        active = read(ACTIVE)
+        gates = read(GATES)
+        combined = "\n".join((readme, active, gates))
 
         for stale_active_state in (
             "branch: agent/pc-vertical-slice-demo-design",
@@ -36,10 +39,14 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         ):
             self.assertNotIn(stale_active_state, combined)
 
+        self.assertIn("default_branch: main", active)
+        self.assertIn("SX-DEC-055_RUNTIME_IMPLEMENTATION_USER_DEFERRED", active)
+        self.assertIn("USER_DEFERRED", active)
+
+        self.assertIn("pr_83: MERGED", readme)
+        self.assertIn("PR #83/#99/#100 MERGE: PASS", gates)
+
         for required in (
-            "branch: main",
-            "pull_request_83: MERGED",
-            "PR #83 MERGE: PASS",
             "SX-AUD-025",
             "repository_main_observed",
             "latest_automated_verified_product_main",
