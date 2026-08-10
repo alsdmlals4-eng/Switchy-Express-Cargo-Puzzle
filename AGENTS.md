@@ -5,18 +5,40 @@
 ## 우선순위
 
 1. 사용자의 최신 지시
-2. 이 `AGENTS.md`
-3. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
-4. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
-5. 등록된 분야 책임 원본
-6. 실제 코드·데이터·Scene·Resource·자산·테스트
-7. 프로젝트에 고정된 Base v9.4.3 기준
-8. 외부 사례·과거 대화·추정
+2. 현재 환경의 system/developer/security 제약
+3. 이 `AGENTS.md`
+4. 현재 작업지시문 정본 `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5_r2.md`
+5. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
+6. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
+7. 등록된 분야 책임 원본
+8. 실제 코드·데이터·Scene·Resource·자산·테스트
+9. 프로젝트에 고정된 Base v9.4.3 기준
+10. Base remote current `main`의 비교·학습 근거
+11. 외부 사례·과거 대화·추정
+
+## 현재 작업지시문 정본 — v4.5 r2
+
+```yaml
+work_instruction_canon: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5_r2.md
+contract_version: 4.5
+revision: 2026-08-11-r2
+source_sha256: 3f898b7e2749a2e1900e9df48183f02d4fbc735fd0e80297f28bb09317144de4
+audit: SX-AUD-045
+representation: CONTENT_ADDRESSED_MULTIPART_VERBATIM_CANON
+```
+
+- 루트 manifest와 등록된 `docs/work-instructions/v4.5_r2/` segment의 binary concatenation이 사용자 제공 r2 원문 정본이다.
+- 이 작업지시문은 프로젝트 **실행 Thin Adapter**이며 제품 gameplay/domain 정본을 대체하지 않는다.
+- 매 작업 시작 시 Base current `main`, 프로젝트 default branch/open PR/latest, configured Google Sheet를 다시 읽는다.
+- 현재 Phase A 기획 증거는 `READY_FOR_USER_PLANNING_COMPLETE_GATE`다.
+- 사용자가 명시적으로 `기획 완료`를 선언하기 전에는 Phase B를 시작하지 않는다.
+- Phase B PASS 전에는 PowerShell/Codex/Godot BUILD를 시작하지 않는다.
+- `권장안대로 승인`, `연속작업 진행`, 과거 DoR/구현 승인만으로 `기획 완료` Gate를 자동 충족시키지 않는다.
 
 ## 역할 분리
 
 - ChatGPT: 핵심 재미, 콘텐츠·맵·규칙 기획, 벤치마킹, 아트·UX 방향, Google Sheets GDD, GitHub 정본·Issue, 적대적 검토, Codex 전달 명세
-- Codex: 사용자 승인과 새 Definition of Ready 이후 실제 Godot/GDScript 코드·테스트 변경
+- Codex: 사용자 `기획 완료` 선언과 Phase B 최종 검수 PASS 이후, 승인된 Definition of Ready 범위에서 실제 Godot/GDScript 코드·테스트 변경
 - 사용자가 명시하지 않은 게임 규칙·세계관·과금·콘텐츠를 임의로 확정하지 않는다.
 - 현재 대화에서 합의된 제품 규칙과 구현 상세를 혼동하지 않는다.
 
@@ -49,6 +71,7 @@
 
 ## 현재 정본
 
+- 작업지시문: `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5_r2.md`
 - 제품 기준선: `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
 - 대체 등록부: `기획서/00_프로젝트_허브/CANON_REPLACEMENT_REGISTER.md`
 - 현재 결정: `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
@@ -77,7 +100,7 @@
 - pickup respawn
 - switch auto-reset after passing
 
-새 DoR 전에는 제품 구현을 이어가지 않는다.
+현재 승인된 SX-DEC-055 DoR이 존재하더라도 **명시적 사용자 `기획 완료` Gate와 Phase B PASS 전에는 제품 BUILD를 이어가지 않는다.**
 
 ## 상태 표기
 
@@ -97,6 +120,7 @@
 - 성능 강화 꾸미기·과금 추가
 - 실행하지 않은 테스트를 통과로 보고
 - 사용자 승인 없이 광고·가챠·에너지·PvP·길드 추가
+- `기획 완료` 또는 Phase B PASS 없이 PowerShell/Codex/Godot BUILD 시작
 
 ## Base v9.4.3 운영 계약
 
@@ -108,6 +132,7 @@ base_pin_finalization_commit: 0b7c94f38d959efc0fc9442274c60b2e268a3c97
 base_registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59
 ```
 
+- 위 pin은 프로젝트 채택 release다. Base remote current `main`은 매 작업마다 비교·학습용으로 다시 읽되 자동 repin하지 않는다.
 - `[모델 추천]`은 실제 설정을 자동 변경하지 않으며 사용자가 checkpoint에서 변경한다.
 - L1 이상 지시문은 `route → first-prompt → contract → clarify`를 거치고 exact approval reference가 있으면 재사용한다.
 - 기획 충돌은 Grill Me 사용자 승인을 요구한다.
@@ -126,4 +151,4 @@ base_registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5
 
 Android·Google Play가 우선이다. 콘텐츠 등급과 target audience를 분리하고 Families, 광고 SDK, 데이터·개인정보, ads/IAP와 cosmetic currency를 함께 검토한다. 원본을 조금 수정하거나 AI로 변환했다는 이유만으로 독립 자산으로 보지 않고 `reference_brief`, `forbidden_expression`, 별도 `final_asset_record`, 유사성 검토를 요구한다.
 
-필수 권리·계약·약관 버전·플랫폼 답변·build/store/questionnaire 일치가 미확인이면 `RELEASE_BLOCKED_UNVERIFIED`다. 사용자 승인 없는 광고·가챠·에너지·성능 과금 금지와 새 DoR 전 제품 구현 중단을 변경하지 않는다.
+필수 권리·계약·약관 버전·플랫폼 답변·build/store/questionnaire 일치가 미확인이면 `RELEASE_BLOCKED_UNVERIFIED`다. 사용자 승인 없는 광고·가챠·에너지·성능 과금 금지와 Phase B PASS 전 제품 BUILD 금지를 변경하지 않는다.
