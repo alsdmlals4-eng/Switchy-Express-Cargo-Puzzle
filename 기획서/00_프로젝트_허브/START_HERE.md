@@ -21,8 +21,8 @@ Last updated: `2026-08-10 KST`
 | PR #137 post-merge 관측점 | `32a0d6c154188f36bdefdefe96e62bc2a4718565` · historical integration observation |
 | 열린 프로젝트 PR 관측 | `0` after PR #137 merge |
 | Base 채택 pin | `v9.4.3` |
-| 최신 Base main 관측 | `d5cfcfa96fcf33bf7e01dc617d7f68e8d5bbbeaf` · reference only, no repin |
-| Base project evidence | `BCP - Switchy Express: Cargo Puzzle` · canonical owner `BCP-2026-013` |
+| 최신 Base main 관측 | `16af66ff51027f74193b60469e7c20281a1cade6` · reference only, no repin |
+| Base project evidence | `BCP - Switchy Express: Cargo Puzzle` · Base PR #245 `MERGED` · canonical owner `BCP-2026-013` |
 | Windows physical runtime | `NOT_RUN` |
 | Android landscape device | `NOT_RUN` |
 | Connected physical editor | `NOT_RUN` |
@@ -130,17 +130,18 @@ PR #137 merge commit에 대한 별도 default-branch push CI는 당시 즉시 �
 BCP - 프로젝트 이름
 ```
 
-Switchy는 새 canonical proposal을 중복 생성하지 않고 기존 BCP-013에 프로젝트 evidence를 연결한다.
+Switchy는 새 canonical proposal을 중복 생성하지 않고 기존 BCP-013에 프로젝트 evidence를 연결했다.
 
 ```yaml
 project_evidence_name: "BCP - Switchy Express: Cargo Puzzle"
 canonical_owner: BCP-2026-013-post-merge-continuation-state-reconciliation
 evidence_path: "[수정제안서]/BCP-2026-013-post-merge-continuation-state-reconciliation/evidence/BCP-Switchy-Express-Cargo-Puzzle.md"
+base_pr_245_exact_head: 828ee41eb16c74d571497f063a0380b9fa3e6860
+base_pr_245_ci_gate: PASS
+base_pr_245_merge_main_observed: 16af66ff51027f74193b60469e7c20281a1cade6
 new_registry_entry: false
 active_base_behavior_changed: false
 ```
-
-Base PR 상태는 이 문서에 고정하지 않고 현재 Base GitHub에서 재조회한다.
 
 ## 별도 열린 검증 Gate
 
