@@ -216,9 +216,9 @@ apk_sha256: eb49225ab4062e5cf863f79a0d17f85d339ea176d7f0bb6f04096ed8a07559ea
 package_id: com.alsdmlals4.switchyexpress.validation
 ```
 
-## 현재 실행·검증 경계
+## 다음 검증 Gate
 
-현재 실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 책임진다.
+현재 실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 책임진다. 이 heading은 Android canonical-freshness consumer가 사용하는 안정 compatibility anchor로 유지한다.
 
 ```text
 CURRENT EXECUTION AUTHORITY: CURRENT_CONFIRMED_DECISIONS + ACTIVE_CONTEXT
