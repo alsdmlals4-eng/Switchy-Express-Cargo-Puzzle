@@ -2,133 +2,149 @@
 
 Decisions: `SX-DEC-053` · `SX-DEC-054`  
 Direction: `E+D HYBRID · NEO-ARCADE READABILITY`  
-Status: `SX-DEC-053_39_PRODUCT_PNGS · SX-DEC-054_RUN_2A_20_SEMANTIC_PNGS · SX-DEC-054_BUILD_2B_8_SEMANTIC_PNGS · 67_TOTAL_PRODUCT_PNGS · RUN_2A_AND_BUILD_2B_MERGED_MAIN_VERIFIED · VFX_2C_PENDING · RUNTIME_NOT_INTEGRATED`
+Status: `053_39 · RUN_2A_20 · BUILD_2B_8 · VFX_2C_6 · 73_TOTAL_PRODUCT_PNGS · VFX_2C_IMPLEMENTED_VALIDATION_PENDING · RUNTIME_NOT_INTEGRATED`
 
 ## Production hierarchy
 
 - Blue locomotive = hero anchor.
-- Red/blue/yellow trailing cargo wagons = `0.74` visual scale in current v02 product assets.
+- Red/blue/yellow trailing cargo wagons = `0.74` visual scale.
 - Domain collision/route geometry is unchanged.
-- Color semantics always retain shape/marker redundancy.
+- Color semantics retain shape/marker redundancy.
 - No localized copy is baked into reusable PNGs.
-- `SX-DEC-054` semantic completion reuses the existing E+D visual language and approved component-state contracts; it does not open a new art direction.
+- `SX-DEC-054` reuses the approved E+D visual language and approved component-state/result authority.
 
-## Ownership model
+## Product ownership
 
-The shared product root has three pairwise-disjoint owners:
+The shared root `art/product_assets/ed_hybrid_v1/` is partitioned into four pairwise-disjoint owners:
 
-- `art/product_assets/ed_hybrid_v1/manifest.json` → `SX-DEC-053`, exactly **39** product PNGs;
-- `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054.json` → `SX-DEC-054` RUN Batch 2A, exactly **20** semantic PNG primitives;
-- `art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054_build_2b.json` → `SX-DEC-054` BUILD Batch 2B, exactly **8** semantic PNG primitives.
+- `manifest.json` → `SX-DEC-053`: **39** PNGs;
+- `semantic_manifest_sx_dec_054.json` → RUN Batch 2A: **20** PNGs;
+- `semantic_manifest_sx_dec_054_build_2b.json` → BUILD Batch 2B: **8** PNGs;
+- `semantic_manifest_sx_dec_054_vfx_2c.json` → VFX Batch 2C: **6** PNGs.
 
-Current physical product PNG total: **67**.
+Expected physical total after VFX product merge: **73** PNGs.
 
-The BUILD sidecar preserves the already-verified RUN sidecar without reserialization. Shared ownership validation proves all three sets are unique, pairwise disjoint, and together equal the physical product-root PNG set.
+Shared static ownership validation requires every owner list to be unique, all four sets pairwise disjoint, and their union equal every physical PNG under the product root.
 
-## Promotion summary
+## Baseline product package
 
-| Group | Current product status | Notes |
-|---|---|---|
-| locomotive | RECOVERED / PRODUCT | import-safe hero recovered from exact approved E+D reference; corrupt candidate preserved as provenance |
-| 3 cargo wagons | PROMOTED v02 | centered deterministic 0.74 scale |
-| 3 cargo stars | PROMOTED | exact candidate bytes |
-| 3 stations | PROMOTED | exact candidate bytes |
-| 4 committed rails | PROMOTED | exact candidate bytes; reused as BUILD palette/preview form identity |
-| start / route-end marker | PROMOTED | exact route marker sources |
-| switch direction | BASE + RUN_2A_SEMANTIC | existing left-selected/locked crops remain 053 provenance/product; 054 adds state-style overlays and keeps procedural direction authority |
-| stack HUD | BASE + RUN_2A_SEMANTIC | 053 retains `empty`, `32plus`, `unloading`, `top_highlight`; 054 adds `compact`, `8plus`, `16plus`, distinct `unload_group`, `paused` |
-| train cargo strip | RUN_2A_SEMANTIC | 3 primitives compose empty, 1–3 token, compressed `+N`, unload-transition states |
-| load mode | RUN_2A_SEMANTIC | 8 primitives compose `manual_idle`, `manual_held`, `auto_off`, `auto_on`, `paused_disabled`, `input_received` |
-| combo static | PROMOTED | Reduced Motion-compatible exact source |
-| BUILD placement preview | BASE + BUILD_2B_SEMANTIC | 053 retains four exact named crops; 054 BUILD adds valid/invalid/rotate/replacement overlays without unnamed atlas mapping |
-| BUILD track palette | BUILD_2B_COMPOSITION | 4 forms × 5 interaction states = 20 compositions using existing committed rails + UI frames; **0** new form×interaction PNGs |
-| BUILD preflight | BUILD_2B_SEMANTIC | neutral shell + issue/focus markers compose the approved four presentation states |
-| ghost route | PROMOTED | exact source |
-| cost HUD | PROMOTED | exact source |
-| controls 7 states | RECOVERED / PRODUCT | normal/hover/pressed/selected/disabled/locked/focus recovered from exact approved E+D UI reference |
-| VFX atlas | PENDING_REVISION | causal role split remains VFX Batch 2C |
-| success / failure shells | PROMOTED | text-safe exact sources |
-| progress/meta | PROMOTED | text-safe exact source |
+`SX-DEC-053` remains the 39-asset E+D baseline with:
+- blue locomotive hero recovery;
+- three 0.74 trailing wagons;
+- cargo/station color+shape products;
+- committed rail and route-marker products;
+- recovered 7-state UI controls;
+- 8 exact manifest-authoritative named crops;
+- exact source/disposition/recovery/integrity provenance.
 
-## SX-DEC-053 authoritative slice batch 1
+No `SX-DEC-054` batch weakens these 053 checks.
 
-RUN / Stack HUD:
-- `run_stack_empty_v01.png` ← `[70,74,44,18]`;
-- `run_stack_32plus_v01.png` ← `[70,16,42,18]`;
-- `run_stack_unloading_v01.png` ← `[69,44,45,18]`;
-- `run_stack_top_highlight_v01.png` ← `[10,8,42,25]`.
-
-BUILD / Placement preview:
-- `build_track_straight_valid_ghost_v01.png` ← `[4,4,36,30]`;
-- `build_track_straight_invalid_ghost_v01.png` ← `[46,4,36,30]`;
-- `build_track_curve_valid_ghost_v01.png` ← `[88,4,36,30]`;
-- `build_port_marker_left_v01.png` ← `[6,53,30,26]`.
-
-No unnamed region of an atlas is promoted or assigned a new semantic name.
-
-## SX-DEC-054 RUN Batch 2A
+## RUN Batch 2A · merged-main verified
 
 Physical semantic assets: **20**.
 
 Coverage:
-- Stack HUD: 5 new primitives;
-- train cargo strip: 3 primitives / 4 compositions;
-- load mode: 8 primitives / 6 compositions;
-- switch presentation: 4 overlays / 5 compositions.
+- Stack HUD remainder;
+- train cargo strip composition;
+- load-mode semantics;
+- switch selected/unselected/occupied-locked/inactive presentation.
 
-Directional switch geometry remains under `SX-DEC-042 · SX-DEC-046 · VIS-014`. Ambiguous historical RUN atlases remain reference-only/no-state-mapping.
+Directional switch geometry remains procedural under `SX-DEC-042 · SX-DEC-046 · VIS-014`.
 
 Product PR #129:
 - exact head `34ab2b907190f69775ace8e89c32f689ba17bc35`;
 - merge/main `35b93f3a15f35780b12cd4e8887c8e06f8ade72b`;
 - exact-head Contract/GUT/Godot/Thin/Windows: PASS.
 
-## SX-DEC-054 BUILD Batch 2B
+## BUILD Batch 2B · merged-main verified
 
-### Placement preview · 4 physical overlays / 4 compositions
+Physical semantic assets: **8**.  
+Semantic compositions: **28**.
 
-- `build_placement_valid_overlay_v01.png`;
-- `build_placement_invalid_overlay_v01.png`;
-- `build_placement_rotate_preview_overlay_v01.png`;
-- `build_placement_replacement_preview_overlay_v01.png`.
+Placement:
+- `valid`;
+- `invalid`;
+- `rotate_preview`;
+- `replacement_preview`.
 
-Each composition is `preview_only` and accepts the four committed core rail products as form authority.
+Track palette:
+- 4 forms × 5 interaction states = **20** semantic compositions;
+- reuses existing committed rail silhouettes and existing normal/selected/disabled/focus/pressed UI frames;
+- new form×interaction PNG count = **0**.
 
-### Track palette · 0 new form×interaction PNGs / 20 compositions
-
-Forms: straight, curve, switch, crossing.
-
-Interaction reuse:
-- idle → existing normal UI frame;
-- selected → existing selected UI frame;
-- unavailable → existing disabled UI frame;
-- keyboard-focus → existing focus UI frame;
-- touch-pressed → existing pressed UI frame.
-
-The semantic matrix is exactly 4 × 5 = **20** composition records. `build_track_palette_v01.png` remains `PRESERVE_REFERENCE_ONLY_NO_STATE_MAPPING`.
-
-### Preflight · 4 physical primitives / 4 compositions
-
-- `build_preflight_shell_v01.png`;
-- `build_preflight_primary_issue_marker_v01.png`;
-- `build_preflight_multi_issue_marker_v01.png`;
-- `build_preflight_focused_location_marker_v01.png`.
-
-States: `clear`, `primary_issue`, `multi_issue_summary`, `focused_location`.
-
-No ready/warning/blocking gameplay outcome is created, and optional-target/leaderboard misses are not represented as general run failure.
+Preflight:
+- `clear`;
+- `primary_issue`;
+- `multi_issue_summary`;
+- `focused_location`.
 
 Product PR #131:
-- baseline `fb229b2ef522fb29c70f43787549fb2e20bf89b0`;
 - exact head `6efe4c71e88799f886f136c98d0c4a4396e58808`;
 - merge/main `77276ec9b60aa91afd13f994ded8e0925e68be08`;
-- Project Contract `31343802460`: PASS;
-- GUT `31343802437`: PASS;
-- Godot `31343802472`: PASS;
-- Thin `31343802445`: PASS;
-- Windows Demo Export `31343802461`: PASS packaging only;
-- review threads 0;
-- behind 0 / mergeable true.
+- Contract/GUT/Godot/Thin/Windows: PASS.
+
+## VFX Batch 2C · implementation complete / exact-head validation pending
+
+### Required event semantics
+
+Eight information events:
+- `cargo_pickup`;
+- `cargo_unload`;
+- `combo`;
+- `route_selection`;
+- `success`;
+- `failure`;
+- `route_end`;
+- `time_expired`.
+
+### Six new physical information glyphs
+
+- `vfx/vfx_cargo_pickup_feedback_v01.png`;
+- `vfx/vfx_cargo_unload_feedback_v01.png`;
+- `vfx/vfx_success_feedback_v01.png`;
+- `vfx/vfx_failure_feedback_v01.png`;
+- `vfx/vfx_route_end_feedback_v01.png`;
+- `vfx/vfx_time_expired_feedback_v01.png`.
+
+All are 64×64 alpha-capable, text-free, shape-distinct, independently authored semantic assets. They do not claim an atlas crop.
+
+### Two exact product reuses
+
+- `combo` reuses `run/run_combo_feedback_static_v01.png`;
+- `route_selection` reuses `run/run_switch_state_selected_overlay_v01.png`.
+
+No redundant duplicate VFX PNG is created for these already-authoritative meanings.
+
+### Standard / Reduced Motion composition
+
+Exactly **16** semantic composition records = 8 events × 2 presentation modes.
+
+For each event:
+- `standard` → same information glyph with `RUNTIME_ANIMATION_OPTIONAL_LATER`;
+- `reduced_motion` → same information glyph with `STATIC_INFORMATION_EQUIVALENT`.
+
+The two modes share the same `information_key` and primary product input. Therefore Reduced Motion preserves meaning rather than merely disabling an effect.
+
+Every composition records:
+- `DO_NOT_COVER_NEXT_CRITICAL_BRANCH_OR_CARGO_TARGET`;
+- `mute_independent=true`;
+- `runtime_integrated=false`.
+
+`standard_runtime_animation_authored=false`: this package does not author Godot Animation/Scene/Resource runtime behavior.
+
+### VFX source preservation
+
+`art/production_candidates/ed_hybrid_v1/vfx/vfx_feedback_static_states_v01.png` remains:
+`PRESERVE_REFERENCE_ONLY_NO_STATE_MAPPING`.
+
+It has no authoritative named semantic slices and is never used as pixel/crop authority for the six new VFX assets.
+
+### VFX TDD lineage
+
+- RED head `5f2bd865bce5ca2934419e7533546984c051f680`: Python contracts failed because VFX package/validator was absent;
+- atomic package commit `cbfc99e25335cc5ddbcc5c6be392b75a32b7d783`: six PNGs + VFX sidecar exposed together;
+- ownership widened from 39/20/8 to 39/20/8/6 without weakening baseline checks;
+- final exact-head workflow evidence is recorded only after the owner documents stop changing.
 
 ## Counts
 
@@ -137,20 +153,22 @@ Product PR #131:
 - `PROMOTE_AS_IS`: **18**
 - `PROMOTE_AFTER_REVISION`: **11**
 - `REPLACE`: **2**
-- SX-DEC-053 product PNG ownership: **39**
-- SX-DEC-054 RUN Batch 2A semantic PNG ownership: **20**
-- SX-DEC-054 BUILD Batch 2B semantic PNG ownership: **8**
-- current physical product PNG total: **67**
-- BUILD Batch 2B semantic compositions: **28** = placement 4 + palette 20 + preflight 4
-- BUILD palette new form×interaction physical PNG count: **0**
-- SX-DEC-053 authoritative slice batch 1: **8** product PNGs
-- corrupt source candidates detected by deep PNG health scan: **2** (`locomotive`, `controls atlas`)
+- SX-DEC-053 baseline PNG ownership: **39**
+- RUN Batch 2A ownership: **20**
+- BUILD Batch 2B ownership: **8**
+- VFX Batch 2C ownership: **6**
+- expected physical product PNG total after VFX merge: **73**
+- BUILD Batch 2B compositions: **28**
+- VFX Batch 2C event identities: **8**
+- VFX Batch 2C compositions: **16**
+- Reduced Motion information-equivalent pairs: **8**
+- runtime Animation resources authored by VFX Batch 2C: **0**
 - corrupt source candidates overwritten: **0**
 
-## Remaining asset work before later runtime integration
+## Remaining gate after semantic production
 
-1. VFX Batch 2C: cargo pickup/unload, combo, route selection, success/failure, `ROUTE_END`, `TIME_EXPIRED`;
-2. Reduced Motion information-equivalent presentation for every meaning-bearing VFX event;
-3. later Scene/Resource/Theme/Animation/signal/runtime/device/human gates remain separate.
+After VFX Batch 2C product merge + docs closure + same-ID Sheet synchronization, the approved semantic asset-production backlog under `SX-DEC-054` is complete.
 
-RUN Batch 2A and BUILD Batch 2B are merged-main verified. All semantic packages remain `runtime_integrated=false`; Windows physical runtime, Android device, connected physical editor, and human comprehension/playtest remain `NOT_RUN`.
+The next gate is **not** another asset-splitting batch. It is the separately deferred runtime integration/POC boundary, including later Godot Scene/Resource/Theme/Animation/signal wiring and actual runtime occlusion/motion validation only if/when that gate is authorized.
+
+Still `NOT_RUN`: Windows physical runtime, Android device, connected physical editor, human comprehension/playtest, and release cutover.
