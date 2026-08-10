@@ -1,8 +1,8 @@
 # SX-DEC-055 · Runtime Semantic POC
 
-**Status:** `USER_APPROVED · SPEC_REVIEW_PENDING · IMPLEMENTATION_NOT_STARTED`  
+**Status:** `USER_APPROVED · SPEC_APPROVED · IMPLEMENTATION_NOT_STARTED`  
 **Date:** 2026-08-10 KST  
-**Approval reference:** `USER_APPROVAL_2026-08-10_RUNTIME_POC`  
+**Approval reference:** `USER_APPROVAL_2026-08-10_RUNTIME_POC · USER_SPEC_APPROVAL_2026-08-10`  
 **Baseline main:** `bcbd98c7e39b10146b22389bebe81a8b7a0a7b13`  
 **Source semantic authority:** `SX-DEC-054`  
 **Source visual authority:** `SX-DEC-053`  
