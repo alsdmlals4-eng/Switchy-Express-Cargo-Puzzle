@@ -9,7 +9,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PRODUCT_ROOT = ROOT / "art" / "product_assets" / "ed_hybrid_v1"
 BASE_MANIFEST = PRODUCT_ROOT / "manifest.json"
-SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054.json"
+RUN_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054.json"
+BUILD_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054_build_2b.json"
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 
 REQUIRED_PLACEMENT = {"valid", "invalid", "rotate_preview", "replacement_preview"}
@@ -78,45 +79,48 @@ def validate():
     errors = []
     try:
         base = json.loads(BASE_MANIFEST.read_text(encoding="utf-8"))
-        semantic = json.loads(SEMANTIC_MANIFEST.read_text(encoding="utf-8"))
+        run_semantic = json.loads(RUN_MANIFEST.read_text(encoding="utf-8"))
+        build_semantic = json.loads(BUILD_MANIFEST.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         print(f"SX-DEC-054 BUILD semantic assets: FAIL · {exc}")
         return 1
 
     if base.get("decision_id") != "SX-DEC-053" or base.get("promoted_asset_count") != 39:
         errors.append("SX-DEC-053 baseline ownership must remain exactly 39 assets")
-    if semantic.get("decision_id") != "SX-DEC-054":
-        errors.append("semantic decision_id must be SX-DEC-054")
-    if semantic.get("source_visual_authority") != "SX-DEC-053":
-        errors.append("source_visual_authority must be SX-DEC-053")
-    if semantic.get("source_component_authority") != "SX-DEC-050":
-        errors.append("source_component_authority must be SX-DEC-050")
-    if semantic.get("batch") != "RUN_2A":
-        errors.append("existing RUN batch identity must remain RUN_2A")
-    if semantic.get("build_batch") != "BUILD_2B":
-        errors.append("build_batch must be BUILD_2B")
-    if semantic.get("completed_batches") != ["RUN_2A", "BUILD_2B"]:
-        errors.append("completed_batches must be RUN_2A then BUILD_2B")
-    if semantic.get("runtime_integrated") is not False:
-        errors.append("runtime_integrated must remain false")
-    if semantic.get("baseline_sx_dec_053_asset_count") != 39:
-        errors.append("baseline_sx_dec_053_asset_count must remain 39")
-
-    run_assets = semantic.get("semantic_assets", [])
+    if run_semantic.get("decision_id") != "SX-DEC-054" or run_semantic.get("batch") != "RUN_2A":
+        errors.append("existing SX-DEC-054 RUN sidecar must remain RUN_2A")
+    run_assets = run_semantic.get("semantic_assets", [])
     if len(run_assets) != 20:
         errors.append(f"RUN Batch 2A ownership must remain exactly 20, got {len(run_assets)}")
     run_paths = {record.get("path") for record in run_assets if record.get("path")}
 
+    if build_semantic.get("decision_id") != "SX-DEC-054":
+        errors.append("BUILD semantic decision_id must be SX-DEC-054")
+    if build_semantic.get("source_visual_authority") != "SX-DEC-053":
+        errors.append("source_visual_authority must be SX-DEC-053")
+    if build_semantic.get("source_component_authority") != "SX-DEC-050":
+        errors.append("source_component_authority must be SX-DEC-050")
+    if build_semantic.get("batch") != "BUILD_2B":
+        errors.append("BUILD sidecar batch must be BUILD_2B")
+    if build_semantic.get("runtime_integrated") is not False:
+        errors.append("BUILD runtime_integrated must remain false")
+    if build_semantic.get("baseline_sx_dec_053_asset_count") != 39:
+        errors.append("baseline_sx_dec_053_asset_count must remain 39")
+    if build_semantic.get("baseline_sx_dec_054_run_2a_asset_count") != 20:
+        errors.append("baseline_sx_dec_054_run_2a_asset_count must remain 20")
+    if build_semantic.get("source_run_semantic_manifest") != "art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054.json":
+        errors.append("BUILD sidecar must explicitly reference the RUN semantic sidecar")
+
     preserved = {
         record.get("path"): record.get("policy")
-        for record in semantic.get("ambiguous_build_atlas_sources_preserved", [])
+        for record in build_semantic.get("ambiguous_atlas_sources_preserved", [])
     }
     if preserved.get(PLACEMENT_ATLAS) != "PRESERVE_NAMED_SLICES_ONLY_NO_NEW_STATE_MAPPING":
         errors.append("placement atlas must preserve named slices only with no new state mapping")
     if preserved.get(TRACK_PALETTE_ATLAS) != "PRESERVE_REFERENCE_ONLY_NO_STATE_MAPPING":
         errors.append("track palette atlas must remain reference-only with no state mapping")
 
-    assets = semantic.get("build_semantic_assets", [])
+    assets = build_semantic.get("semantic_assets", [])
     if len(assets) != 8:
         errors.append(f"BUILD Batch 2B must own exactly 8 physical semantic PNGs, got {len(assets)}")
     paths = [record.get("path") for record in assets]
@@ -124,7 +128,7 @@ def validate():
         errors.append("duplicate BUILD semantic asset paths")
 
     base_paths = {record.get("path") for record in base.get("assets", []) if record.get("path")}
-    build_paths = set(path for path in paths if path)
+    build_paths = {path for path in paths if path}
     if base_paths.intersection(build_paths):
         errors.append("BUILD semantic ownership overlaps SX-DEC-053")
     if run_paths.intersection(build_paths):
@@ -144,9 +148,8 @@ def validate():
         derivation = asset.get("derivation", {})
         if derivation.get("kind") != "independent_semantic_asset":
             errors.append(f"asset must be independently authored: {rel}")
-        source = derivation.get("source", "")
-        if source in {PLACEMENT_ATLAS, TRACK_PALETTE_ATLAS}:
-            errors.append(f"ambiguous/nonnamed atlas used as pixel authority: {rel}")
+        if derivation.get("source") in {PLACEMENT_ATLAS, TRACK_PALETTE_ATLAS}:
+            errors.append(f"atlas used as pixel authority: {rel}")
         if asset.get("authoritative_slice_name") is not None or asset.get("crop_bounds") is not None:
             errors.append(f"new BUILD semantic asset may not claim atlas crop authority: {rel}")
         path = ROOT / rel
@@ -166,7 +169,7 @@ def validate():
             errors.append(f"SHA-256 metadata mismatch: {rel}")
 
     all_known_inputs = base_paths | run_paths | build_paths
-    compositions = semantic.get("build_semantic_compositions", [])
+    compositions = build_semantic.get("semantic_compositions", [])
     placement = [record for record in compositions if record.get("component") == "placement_preview"]
     palette = [record for record in compositions if record.get("component") == "track_palette"]
     preflight = [record for record in compositions if record.get("component") == "preflight_notice"]
@@ -223,6 +226,9 @@ def validate():
         for input_path in record.get("inputs", []):
             if input_path not in all_known_inputs:
                 errors.append(f"unknown BUILD composition input: {component}/{state} · {input_path}")
+
+    if len(compositions) != 28:
+        errors.append(f"BUILD Batch 2B must define exactly 28 semantic compositions, got {len(compositions)}")
 
     if errors:
         print("SX-DEC-054 BUILD semantic assets: FAIL")
