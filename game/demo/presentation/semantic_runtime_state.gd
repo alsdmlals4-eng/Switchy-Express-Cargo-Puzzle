@@ -10,7 +10,7 @@ static func stack_primary_state(model: Dictionary) -> StringName:
 		return &"unloading"
 
 	var tokens: Variant = model.get("stack_tokens", [])
-	var count := tokens.size() if tokens is Array else 0
+	var count: int = tokens.size() if tokens is Array else 0
 	if count <= 0:
 		return &"empty"
 	if count >= 32:
