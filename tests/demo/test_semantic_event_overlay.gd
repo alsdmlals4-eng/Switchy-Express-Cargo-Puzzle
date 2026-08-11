@@ -1,6 +1,7 @@
 extends "res://tests/test_case.gd"
 
 const OVERLAY_PATH := "res://game/demo/presentation/semantic_event_overlay.gd"
+const CatalogScript := preload("res://game/demo/presentation/semantic_asset_catalog.gd")
 const EVENTS: Array[StringName] = [
 	&"cargo_pickup",
 	&"cargo_unload",
@@ -14,6 +15,34 @@ const EVENTS: Array[StringName] = [
 
 
 func run() -> void:
+	var catalog: RefCounted = CatalogScript.new()
+	assert_true(catalog.load_default(), "diagnostic catalog load must succeed")
+	var route_record: Dictionary = catalog.vfx_composition(&"route_selection", false)
+	assert_false(route_record.is_empty(), "diagnostic VFX manifest lookup must succeed before overlay playback")
+	assert_equal(
+		route_record.get("inputs", []),
+		["art/product_assets/ed_hybrid_v1/run/run_switch_state_selected_overlay_v01.png"],
+		"diagnostic route-selection manifest record must keep approved input"
+	)
+	assert_true(
+		ResourceLoader.exists("res://art/product_assets/ed_hybrid_v1/run/run_switch_state_selected_overlay_v01.png"),
+		"diagnostic approved RUN PNG must be visible to ResourceLoader"
+	)
+	assert_true(
+		not catalog.textures_for(route_record).is_empty(),
+		"diagnostic catalog texture resolution must load approved RUN PNG"
+	)
+	var pickup_record: Dictionary = catalog.vfx_composition(&"cargo_pickup", false)
+	assert_false(pickup_record.is_empty(), "diagnostic pickup VFX manifest lookup must succeed")
+	assert_true(
+		ResourceLoader.exists("res://art/product_assets/ed_hybrid_v1/vfx/vfx_cargo_pickup_feedback_v01.png"),
+		"diagnostic approved VFX PNG must be visible to ResourceLoader"
+	)
+	assert_true(
+		not catalog.textures_for(pickup_record).is_empty(),
+		"diagnostic catalog texture resolution must load approved VFX PNG"
+	)
+
 	var exists := ResourceLoader.exists(OVERLAY_PATH, "Script")
 	assert_true(exists, "SemanticEventOverlay production script must exist")
 	if not exists:
