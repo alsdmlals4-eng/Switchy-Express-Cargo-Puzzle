@@ -1,28 +1,31 @@
 # Playtest Plan
 
 ```yaml
-status: CURRENT_CANON · PHASE_A_PLANNING · MANUAL_ACCEPTANCE_NOT_RUN
-product_authority: GMB-002 · SX-DEC-027~055
-planning_audit: SX-AUD-044
+status: CURRENT_CANON · PHASE_B_PASS · BUILD_AUTHORIZED_SX_DEC_055_ONLY · MANUAL_ACCEPTANCE_NOT_RUN
+product_authority: GMB-002 · SX-DEC-027~058
+planning_audit: SX-AUD-049
 acceptance_build_state: UNASSIGNED_UNTIL_AUTHORIZED_IMPLEMENTATION_MERGE
 acceptance_build_source_commit: UNASSIGNED
 acceptance_build_sha256: UNASSIGNED
 physical_acceptance_smoke: NOT_READY
 five_person_comprehension: NOT_RUN · BLOCKED_BY_ACCEPTANCE_BUILD_AND_PHYSICAL_SMOKE
+sx_dec_056_058_implementation: NOT_STARTED · DELTA_DOR_REQUIRED
 production_cutover: BLOCKED_DEFERRED
 ```
 
-이 문서는 **현재 제품의 첫 세션 이해도와 사람 검증 방법**을 책임진다. 실제 사람 증거가 아니라 Phase A의 사전 acceptance contract다.
+이 문서는 **현재 제품의 첫 세션 이해도와 사람 검증 방법**을 책임진다. 실제 사람 증거가 아니라 현재 구현·acceptance 실행 전에 고정된 검증 contract다.
 
 과거 Android validation APK는 별도 역사/진단 증거로 보존한다. post-SX-DEC-055 사람 검증의 active build identity로 자동 승격하지 않는다.
 
 ## 1. 절대 Gate 순서
 
+현재까지 완료된 planning gate와 이후 실행 gate를 한 체인으로 유지한다.
+
 ```text
-PHASE A planning complete
-→ explicit user "기획 완료"
-→ PHASE B final planning review
-→ authorized SX-DEC-055 runtime semantic implementation
+PHASE A planning complete · DONE
+→ explicit user "기획 완료" · GRANTED
+→ PHASE B final planning review · PASS · SX-AUD-047
+→ authorized SX-DEC-055 runtime semantic implementation · AUTHORIZED / NOT_STARTED
 → exact-head automated POC evidence + merge
 → acceptance build identity assignment
 → reviewed physical smoke on that exact acceptance build
@@ -30,6 +33,10 @@ PHASE A planning complete
 → evidence completeness/privacy/adversarial review
 → separate production/cutover decision
 ```
+
+`SX-DEC-056~058`은 Phase B 이후 승인된 additive planning authority이며 위 `SX-DEC-055` 구현 Gate를 자동 확장하지 않는다. 056~058을 실제 player-facing/content/challenge 구현에 넣으려면 각각의 scoped delta DoR/final planning review가 먼저 필요하다.
+
+`SX-DEC-056` 또는 `SX-DEC-057`의 player-facing 변경이 이후 acceptance build에 포함되면 해당 build identity로 physical/human evidence를 새로 연결해야 한다. `SX-DEC-058`의 generator/publication pipeline은 별도 content-pipeline validation을 요구하며 사람 UI evidence를 대신하지 않는다.
 
 자동화 POC, export 생성, Android validation harness, 실제 제품 build 물리 실행, 사람 이해도는 서로 다른 증거다.
 
@@ -51,7 +58,7 @@ role: HISTORICAL_VALIDATION_HARNESS · NOT_POST_POC_HUMAN_ACCEPTANCE_BUILD
 
 ## 3. Post-POC Acceptance Build Identity
 
-현재 Phase A에서는 미래 build를 발명하지 않는다.
+현재 authorized implementation merge 전에는 미래 build를 발명하지 않는다.
 
 ```yaml
 acceptance_build_state: UNASSIGNED_UNTIL_AUTHORIZED_IMPLEMENTATION_MERGE
@@ -66,11 +73,12 @@ human_comprehension: NOT_RUN
 
 ### Identity rules
 
-1. v4.5 user Gate와 Phase B 전에 build identity를 채우지 않는다.
+1. 역사적으로 v4.5 user Gate와 Phase B 전에 build identity를 채우지 않았고, 현재도 구현 merge 전에는 채우지 않는다.
 2. `SX-DEC-055` 구현이 current main에 병합되고 automated POC evidence가 닫힌 뒤 exact source/artifact identity를 지정한다.
 3. 사람 세션은 해당 comprehension round의 reviewed physical smoke와 **동일한 exact acceptance build identity**를 사용한다.
 4. 테스트 대상 학습/UI/input/semantic feedback에 영향을 주는 player-facing 변경이 생기면 이전 사람 증거를 자동 승계하지 않는다.
 5. PC physical smoke는 진단/보조 증거가 될 수 있지만 Android-oriented Five-person Comprehension을 PC-only 증거로 대체하지 않는다.
+6. `SX-DEC-056/057`이 implementation-authorized되어 acceptance build에 들어오면 그 exact merge/build identity를 새 round의 근거로 사용한다.
 
 ## 4. 연구 목적
 
@@ -90,6 +98,15 @@ human_comprehension: NOT_RUN
 10. pickup/unload/route/terminal semantic feedback을 실제 사건과 올바르게 연결하는가?
 11. 한 번 경험한 규칙을 이후 바뀐 stack/route/switch 상태에 독립 적용하는가?
 
+### Conditional questions after SX-DEC-056/057 implementation
+
+이 항목은 056/057이 실제 acceptance build에 포함된 경우에만 활성화한다.
+
+12. request-only Route Probe를 정답 표시가 아니라 `내가 만든 노선의 예상 결과`로 이해하는가?
+13. Debrief의 actual event trace를 보고 실패 원인을 설명하되 정답 노선을 자동으로 기대하지 않는가?
+14. Yard Lab에서 격리 학습한 규칙을 이후 campaign 문제에 새 설명 없이 전이하는가?
+15. Mastery Spur가 optional임을 이해하고 포기 후 core progression으로 자연스럽게 복귀하는가?
+
 ## 5. Learning Model — RULE → NEED → DISCOVER → FEEL → PROVE → TRANSFER
 
 | Target | RULE | NEED / DISCOVER | PROVE | TRANSFER |
@@ -104,6 +121,15 @@ human_comprehension: NOT_RUN
 | Retry/Edit | Retry=같은 layout fresh runtime, Edit=노선 수정 | result choice | 문제 유형에 맞는 선택 | 다른 실패 원인에서 선택 변경 |
 | Redundant identity | 색상 단독 아님 | shape/text/TOP | 색상 없이도 식별 | 뒤의 상태에서도 재식별 |
 | Causal feedback | semantic feedback은 실제 event를 설명 | pickup/unload/route/terminal feedback | 올바른 사건에 귀인 | 장식과 gameplay authority를 혼동하지 않음 |
+
+### Conditional learning targets after SX-DEC-056/057 implementation
+
+| Target | RULE | NEED / DISCOVER | PROVE | TRANSFER |
+|---|---|---|---|---|
+| Route Probe | 현재 선택 상태를 따라 예상 encounter sequence를 보여주며 정답 solver가 아님 | probe 결과와 실제 run 비교 | 다음 encounter를 probe/route에서 설명 | branch 변경 뒤 바뀐 suffix를 예측 |
+| Debrief | 실제 발생 event만 기록 | result trace와 직전 run 비교 | 실패 원인을 실제 state로 설명 | Edit 후 어떤 원인이 사라질지 예측 |
+| Yard Lab transfer | Lab은 기존 rule 격리 연습 | Lab 직후 campaign 적용 | 새 설명 없이 같은 rule 사용 | 다른 topology/stack/switch 상태에서 재사용 |
+| Mastery optionality | Mastery는 progression requirement 아님 | chapter path에서 선택 | 포기/재진입을 스스로 선택 | core progression을 막는다고 오해하지 않음 |
 
 ## 6. 참가자 계약
 
@@ -140,6 +166,8 @@ solution_coaching: PROHIBITED
 - 최적 load mode
 - 분기 정답 방향
 - 실패 뒤 어떤 recovery 선택이 정답인지
+- Route Probe가 보여줄 encounter sequence의 정답 해석
+- Debrief 뒤 다음에 고칠 정답 노선
 
 허용되는 neutral probe:
 
@@ -187,6 +215,18 @@ participant_self_report:
 
 `FS-11`은 새 production map을 요구하지 않는다. 같은 대표 stage 안의 뒤 상태, Retry 또는 Edit로 바뀐 stack/route/switch 상황을 사용한다.
 
+### Conditional Observation Matrix after SX-DEC-056/057 implementation
+
+해당 기능이 acceptance build에 실제 포함되었을 때만 필수화한다.
+
+| ID | Observation | PASS evidence example |
+|---|---|---|
+| FS-13 | Route Probe interpretation | probe를 solution reveal이 아닌 현재 선택 route의 prediction으로 설명 |
+| FS-14 | Probe → actual comparison | probe와 RUN 차이를 branch/load state 변화로 설명 |
+| FS-15 | Debrief causality | actual trace로 실패 원인을 설명하고 존재하지 않은 사건을 귀인하지 않음 |
+| FS-16 | Yard Lab transfer | Lab 뒤 campaign에서 같은 rule을 새 설명 없이 적용 |
+| FS-17 | Mastery optionality | Mastery를 progression requirement로 오해하지 않고 core로 복귀 가능 |
+
 ## 10. Post-task 질문
 
 행동·예측 기록 뒤에만 사용한다.
@@ -202,6 +242,13 @@ participant_self_report:
 9. `방금 나온 시각 효과가 무엇 때문에 발생했다고 생각하나요?`
 10. `이번 성공/실패의 가장 큰 원인은 무엇이라고 생각하나요?`
 
+056/057이 acceptance build에 포함된 경우에만 추가한다.
+
+11. `Route Probe가 무엇을 보여준다고 생각했나요?`
+12. `Probe와 실제 운행이 달랐다면 무엇 때문에 달라졌다고 생각하나요?`
+13. `Debrief에서 어떤 사건이 실패 원인을 가장 잘 설명했나요?`
+14. `Lab에서 배운 것을 다음 campaign 문제에서 어떻게 사용했나요?`
+
 질문 정답률은 행동 증거를 보조하며 대체하지 않는다.
 
 ## 11. 참가자 기록표
@@ -216,6 +263,8 @@ participant_self_report:
 | P06 | UNASSIGNED | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | | NOT_RUN |
 
 상태는 `PASS`, `FAIL`, `BLOCKED`, `NOT_RUN`, `INTERVENTION_CONTAMINATED` 중 하나를 사용한다.
+
+056/057 conditional observations가 활성화된 build에서는 FS-13~17을 별도 companion 기록표로 추가하거나 동일 session record에 확장한다. 기존 FS-01~12 열의 의미를 재정의하지 않는다.
 
 ## 12. 합격 기준
 
@@ -239,6 +288,15 @@ participant_self_report:
 
 모든 필수 build identity·physical-smoke 연결·관찰 기록이 없으면 전체 Gate는 PASS가 아니다.
 
+### Conditional pass additions
+
+`SX-DEC-056/057`이 acceptance build에 포함된 경우:
+
+- FS-13~17 중 해당 build에 구현된 기능의 observation을 같은 threshold 원칙으로 평가한다.
+- Route Probe가 solver/정답 reveal로 오해되어 독립 예측을 대체하면 P1 이상으로 triage한다.
+- Debrief가 실제 사건과 다른 causal attribution을 만들면 P1 이상으로 triage한다.
+- Lab이 campaign transfer를 만들지 못하거나 Mastery가 progression blocker로 오해되면 해당 Decision의 delta acceptance를 PASS로 닫지 않는다.
+
 ## 13. Finding Severity
 
 ### P0 / Critical
@@ -255,6 +313,9 @@ participant_self_report:
 - FS-11 transfer 실패
 - manual/auto/preflight state 반복 오독으로 계획이 지속적으로 탈선
 - semantic feedback이 잘못된 원인을 전달하거나 authoritative text/procedural state와 충돌
+- Route Probe가 정답/solver authority로 인식되어 player prediction을 대체함
+- Debrief가 실제 run과 다른 event/cause를 암시함
+- Yard Lab이 본편 전이를 만들지 못하거나 Mastery가 진행 필수로 오해됨
 
 ### P2 / Medium
 
@@ -272,10 +333,11 @@ PASS:
   + required physical smoke reviewed PASS on that identity
   + minimum 5 analyzable first-contact sessions
   + HUM-01~13 all satisfied
+  + any active SX-DEC-056/057 conditional observations satisfied
   + evidence/privacy/adversarial review complete
 
 FAIL:
-  executable valid study where one or more required HUM criteria fail
+  executable valid study where one or more required HUM/active conditional criteria fail
 
 BLOCKED:
   acceptance build / physical smoke / participant / evidence prerequisite missing
@@ -321,6 +383,9 @@ participant_result: PASS | FAIL | BLOCKED | NOT_RUN | INTERVENTION_CONTAMINATED
 - causal VFX meaning/visibility
 - accessibility signifier/channel
 - representative stage flow materially affecting observed tasks
+- Route Probe / Encounter Strip의 prediction 표현
+- Debrief / Encounter Trace의 causal 표현
+- Yard Lab / Mastery progression·학습 동선
 
 새 acceptance build identity를 지정하고 영향받은 physical/human evidence를 다시 실행한다.
 
@@ -329,18 +394,21 @@ participant_result: PASS | FAIL | BLOCKED | NOT_RUN | INTERVENTION_CONTAMINATED
 - Professional Games User Research: `ADAPT` — observed one-to-one playtest, neutral probing, pragmatic recruit buffer, iterative retest.
 - Xbox Accessibility Guidelines: `ADOPT_AS_VALIDATION_LENS` — objective clarity, UI context, additional signifiers, motion/readability considerations.
 - Competitor puzzle references: `REFERENCE_ONLY` — finite handcrafted learning context only; no mechanic/hint import.
+- `SX-BMK-001`: `ADOPT_APPROVED_SUBSET` — R01~R08은 SX-DEC-056~058로 승격, R09/R10은 post-validation hold.
 
 ## 18. 현재 결론
 
 ```text
-PHASE A PLAYTEST/COMPREHENSION CONTRACT: PLANNING
+PLAYTEST/COMPREHENSION CONTRACT: CURRENT_CANON
 HISTORICAL VALIDATION APK: PRESERVED · NOT CURRENT HUMAN ACCEPTANCE BUILD
+USER "기획 완료" GATE: GRANTED
+PHASE B: PASS · SX-AUD-047
+SX-DEC-055 BUILD AUTHORITY: AUTHORIZED · IMPLEMENTATION NOT_STARTED
+SX-DEC-056~058: USER_APPROVED PLANNING · IMPLEMENTATION NOT_AUTHORIZED UNTIL DELTA_DOR
+BMK-R09/R10: POST_VALIDATION_HOLD · NO_DECISION_ID
 POST-POC ACCEPTANCE BUILD: UNASSIGNED
 PHYSICAL ACCEPTANCE SMOKE: NOT_READY / NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
 P01~P05: NOT_RUN
-USER "기획 완료" GATE: NOT_GRANTED
-PHASE B: NOT_RUN
-SX-DEC-055 IMPLEMENTATION: NOT_STARTED
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
