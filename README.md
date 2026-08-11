@@ -26,6 +26,17 @@ production_cutover: BLOCKED_DEFERRED
 
 `GMB-003`의 route-end/switch implementation package와 과거 `SX-AUD-026` 실행 상태는 역사 증거이며 현재 제품 기준선/실행 라우팅이 아닙니다.
 
+## Historical compatibility breadcrumbs
+
+아래 값은 current execution routing이 아니라 과거 자동/merge evidence를 찾기 위한 호환 표식이다. current 상태를 이 값으로 되돌리지 않는다.
+
+```yaml
+pr_83: MERGED
+historical_canonical_freshness_audit: SX-AUD-025
+repository_main_observed: HISTORICAL_SNAPSHOT_ONLY
+latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
+```
+
 ## 현재 제품 기준선
 
 - 건설 불가 구역을 제외한 자유 선로 건설
