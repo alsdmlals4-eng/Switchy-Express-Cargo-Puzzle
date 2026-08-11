@@ -44,6 +44,7 @@ func show_build(
 	_model["load_enabled"] = false
 	_model["auto_enabled"] = false
 	_model["auto_load_active"] = false
+	_model["manual_load_active"] = false
 	_model["pause_visible"] = false
 	_model["resume_visible"] = false
 	_model["retry_visible"] = false
@@ -58,7 +59,8 @@ func show_run(
 	run_state: Variant,
 	load_order: Array[StringName],
 	auto_load_active: bool,
-	final_cost: int
+	final_cost: int,
+	manual_load_active: bool = false
 ) -> void:
 	var phase: StringName = &"READY"
 	var elapsed := 0.0
@@ -85,6 +87,7 @@ func show_run(
 	_model["load_enabled"] = controls_active
 	_model["auto_enabled"] = controls_active
 	_model["auto_load_active"] = auto_load_active
+	_model["manual_load_active"] = manual_load_active
 	_model["pause_visible"] = phase == &"RUNNING" or phase == &"UNLOADING"
 	_model["resume_visible"] = phase == &"PAUSED"
 	_model["retry_visible"] = false
@@ -146,6 +149,7 @@ func show_result(summary: Variant, final_cost: int) -> void:
 	_model["switch_enabled"] = false
 	_model["load_enabled"] = false
 	_model["auto_enabled"] = false
+	_model["manual_load_active"] = false
 	_model["pause_visible"] = false
 	_model["resume_visible"] = false
 	_model["retry_visible"] = true
@@ -184,6 +188,7 @@ func _reset_model() -> void:
 		"load_enabled": false,
 		"auto_enabled": false,
 		"auto_load_active": false,
+		"manual_load_active": false,
 		"pause_visible": false,
 		"resume_visible": false,
 		"retry_visible": false,
