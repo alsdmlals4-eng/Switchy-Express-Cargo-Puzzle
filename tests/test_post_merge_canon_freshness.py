@@ -22,7 +22,7 @@ def read(path: Path) -> str:
 
 
 class PostMergeCanonFreshnessTests(unittest.TestCase):
-    def test_active_canon_uses_current_main_semantics_and_preserves_pr83_history(self) -> None:
+    def test_active_canon_uses_phase_b_semantics_and_preserves_pr83_history(self) -> None:
         readme = read(README)
         active = read(ACTIVE)
         gates = read(GATES)
@@ -36,12 +36,18 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
             "pr_83: DRAFT",
             "sheet_state: MAIN_PENDING",
             "PR #83 MERGE REVIEW: BLOCKED",
+            "SX-DEC-055_RUNTIME_IMPLEMENTATION_USER_DEFERRED",
+            "USER_DEFERRED_AFTER_DOR",
+            "user_planning_complete_gate: NOT_GRANTED",
+            "phase_b_final_planning_review: NOT_RUN",
         ):
             self.assertNotIn(stale_active_state, combined)
 
         self.assertIn("default_branch: main", active)
-        self.assertIn("SX-DEC-055_RUNTIME_IMPLEMENTATION_USER_DEFERRED", active)
-        self.assertIn("USER_DEFERRED", active)
+        self.assertIn("user_planning_complete_gate: GRANTED", active)
+        self.assertIn("phase_b_final_planning_review: SX-AUD-047 · PASS", active)
+        self.assertIn("build_authority: AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE", active)
+        self.assertIn("sx_dec_055_runtime_implementation: NOT_STARTED", active)
 
         self.assertIn("pr_83: MERGED", readme)
         self.assertIn("PR #83/#99/#100 MERGE: PASS", gates)
