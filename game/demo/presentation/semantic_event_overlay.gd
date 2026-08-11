@@ -14,6 +14,7 @@ var _input_paths: Array[String] = []
 var _textures: Array[Texture2D] = []
 var _remaining: float = 0.0
 var _motion_active: bool = false
+var _event_history: Array[StringName] = []
 
 
 func _init() -> void:
@@ -51,6 +52,7 @@ func play_event(event: StringName) -> bool:
 	_textures.assign(textures)
 	_remaining = EVENT_DURATION
 	_motion_active = not _reduced_motion
+	_event_history.append(event)
 	visible = true
 	set_process(true)
 	queue_redraw()
@@ -89,6 +91,16 @@ func input_paths_for_test() -> Array[String]:
 	var result: Array[String] = []
 	result.assign(_input_paths)
 	return result
+
+
+func event_history_for_test() -> Array[StringName]:
+	var result: Array[StringName] = []
+	result.assign(_event_history)
+	return result
+
+
+func clear_event_history_for_test() -> void:
+	_event_history.clear()
 
 
 func motion_active_for_test() -> bool:
