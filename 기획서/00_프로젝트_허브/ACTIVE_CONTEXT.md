@@ -19,44 +19,62 @@ language: GDScript
 primary_platform: Android landscape
 configured_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
 product_baseline: GMB-002
-current_decisions: SX-DEC-027~055
+current_decisions: SX-DEC-027~058
 work_instruction: v4.5 r2 · 2026-08-11-r2
 phase_a: COMPLETE
 user_planning_complete_gate: GRANTED · 2026-08-11 KST
 phase_b_final_planning_review: SX-AUD-047 · PASS
 build_authority: AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE
+build_authority_scope: SX-DEC-055_ONLY
 sx_dec_055: APPROVED · SPEC_APPROVED · PHASE_B_DOR_PASS
 sx_dec_055_runtime_implementation: NOT_STARTED
+sx_dec_056: USER_APPROVED · PLANNING_CANON · DELTA_DOR_REQUIRED_BEFORE_IMPLEMENTATION
+sx_dec_057: USER_APPROVED · PLANNING_CANON · DELTA_DOR_REQUIRED_BEFORE_IMPLEMENTATION
+sx_dec_058: USER_APPROVED · PLANNING_CANON · DELTA_DOR_REQUIRED_BEFORE_IMPLEMENTATION
 semantic_assets: 73_TOTAL · PRODUCTION_COMPLETE
 runtime_integrated: false
 acceptance_build: UNASSIGNED
 physical_device_human: NOT_RUN
 production_cutover: BLOCKED_DEFERRED
 phase_c_execution_choice: USER_TEMPORARILY_DEFERRED_FOR_CODEX_QUOTA
-active_planning_evidence: SX-BMK-001 · ROUTE_PUZZLE_AND_MINIGAME_BENCHMARK · PROPOSED_ONLY
+benchmark_approval: BMK-R01~R08 APPROVED → SX-DEC-056~058
+benchmark_hold: BMK-R09/R10 · POST_VALIDATION_HOLD · NO_DECISION_ID
 ```
 
 ## Current user-directed planning window
 
-사용자는 `2026-08-11 KST`에 Codex 사용량 제약 때문에 Phase C 구현을 당장 실행하지 않고, 노선·철도·물류 퍼즐과 관련 미니게임을 벤치마킹해 기획을 더 진행하도록 지시했다.
+사용자는 `2026-08-11 KST`에 Codex 사용량 제약 때문에 Phase C 구현을 당장 실행하지 않고, 노선·철도·물류 퍼즐과 관련 미니게임을 벤치마킹해 기획을 더 진행하도록 지시했다. 이어 benchmark recommendation `R01~R08`을 승인하고 진행하도록 지시했다.
 
-이 선택은 다음을 의미한다.
+현재 승인 mapping:
 
-- Phase B `PASS`와 Build Authority `AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE`는 취소되지 않는다.
-- `SX-DEC-055` implementation은 계속 `NOT_STARTED`다.
-- 이번 추가 기획은 새 제품 결정을 자동 승인하지 않는다.
-- benchmark recommendation은 `BMK-Rxx · PROPOSED`로 유지한다.
-- 사용자 승인 후에만 새 Decision ID로 승격한다.
-- Codex/Phase C가 다시 가능해지면 기존 first RED 지점에서 재개한다.
+```text
+BMK-R01/R02/R03/R07 → SX-DEC-056 · Route Causality Learning and Result Feedback
+BMK-R04/R05/R06     → SX-DEC-057 · Yard Labs and Mastery Curriculum
+BMK-R08             → SX-DEC-058 · Fixed-Seed Challenge Quality Policy
+BMK-R09/R10         → POST_VALIDATION_HOLD · NO_DECISION_ID
+```
 
-현재 benchmark dossier:
+Current owners:
 
-`기획서/10_경험/SX_BMK_001_ROUTE_PUZZLE_AND_MINIGAME_BENCHMARK.md`
+- `기획서/10_경험/SX_BMK_001_ROUTE_PUZZLE_AND_MINIGAME_BENCHMARK.md` — pre-approval benchmark snapshot;
+- `기획서/10_경험/SX_BMK_001_APPROVAL_STATUS.md` — current approval overlay;
+- `docs/decisions/SX_DEC_056_ROUTE_CAUSALITY_LEARNING_AND_RESULT_FEEDBACK.md`;
+- `docs/decisions/SX_DEC_057_YARD_LABS_AND_MASTERY_CURRICULUM.md`;
+- `docs/decisions/SX_DEC_058_FIXED_SEED_CHALLENGE_QUALITY_POLICY.md`;
+- three companion design specs under `docs/superpowers/specs/2026-08-11-*`;
+- `기획서/50_제작_검증/SX_AUD_049_BENCHMARK_APPROVAL_AND_POST_PHASE_B_SCOPE_RECONCILIATION.md`.
+
+Important implementation boundary:
+
+- Phase B `PASS` and `build_authority: AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE` remain valid for the exact `SX-DEC-055` package reviewed by `SX-AUD-047`.
+- `SX-DEC-056~058` were approved after that review and do **not** inherit its BUILD authority.
+- Each new package requires a scoped post-Phase-B delta DoR/final planning review before code/content implementation.
+- Codex/Phase C remains temporarily deferred by user choice.
 
 ## What Phase B established
 
 - current finite domain/presentation seams still match the approved `SX-DEC-055` architecture;
-- the DoR closure commit → current main drift check found no changes to planned runtime `.gd/.tscn` target files;
+- the DoR closure commit → Phase-B main drift check found no changes to planned runtime `.gd/.tscn` target files;
 - `FiniteGameplayInputState` already owns manual/auto truth; only read-only projection is missing;
 - `RouteControlOverlay` already owns direction vectors, selected/locked state, cycle count, hit geometry, and input behavior; semantic art may only reinforce them;
 - `ProductFiniteSlice` already exposes the delivery/route/terminal presentation seams needed by the POC;
@@ -85,9 +103,49 @@ Companion plan delta:
 
 `docs/superpowers/plans/2026-08-11-sx-dec-055-phase-b-readiness-amendment.md`
 
+## Post-Phase-B additive planning
+
+### SX-DEC-056
+
+Approved scope:
+
+- internal route-causality feature triage language;
+- request-only BUILD Route Probe / Encounter Strip;
+- actual-event-only Encounter Trace / Debrief;
+- independent Fastest/Cheapest/Highest Score PB records;
+- Route Fingerprint as explanatory metadata, not ranking authority.
+
+Protected boundary: no solver/optimal route/unload answer/auto-build and no new gameplay rule.
+
+### SX-DEC-057
+
+Approved scope:
+
+- Stack Lab after Tutorial Stage 5 candidate unlock;
+- Switch Lab after Stage 6;
+- Builder Lab after Stage 8;
+- Tutorial 1~10 exact order remains owned by SX-DEC-034;
+- optional chapter Mastery Spur, never progression-required;
+- difficulty tagged by Topology Complexity / Stack Entropy / Execution Branching.
+
+Protected boundary: Labs/Mastery use existing rules only and grant no gameplay power.
+
+### SX-DEC-058
+
+Approved scope:
+
+- preserve Daily 1 / Weekly 1 fixed-seed procedural challenge lane;
+- deterministic challenge identity;
+- structural validation + minimum one legal success proof before publication;
+- solver/witness remains offline/internal only;
+- quality screening before publication;
+- launch with base rules only.
+
+Protected boundary: no authored substitution, hidden scoring, exclusive power, or challenge-only gameplay modifier without another Decision.
+
 ## Next legitimate Phase C execution point
 
-Build Authority remains open even while the user intentionally spends the current work window on additional planning.
+Build Authority remains open for `SX-DEC-055` even while the user intentionally spends the current work window on additional planning.
 
 When Phase C resumes:
 
@@ -106,12 +164,14 @@ The original implementation plan remains authoritative:
 
 The readiness amendment adds only Task 9A packaging/export proof; it does not change the first RED step.
 
+Do not insert `SX-DEC-056~058` into that implementation plan. Their implementation begins only after a separate delta DoR/final planning review.
+
 ## Protected scope
 
-Current approved product/runtime implementation scope:
+Current approved `SX-DEC-055` runtime implementation scope:
 
-- no new gameplay/domain rule without explicit approval;
-- no LIFO/cargo eligibility/route topology/cycle/U-turn/lock/time/scoring/failure/save/ruleset/map-content change from benchmark proposals until approved;
+- no new gameplay/domain rule from SX-DEC-056~058 during the existing POC;
+- no LIFO/cargo eligibility/route topology/cycle/U-turn/lock/time/scoring/failure/save/ruleset/map-content change;
 - no new domain signal solely for VFX;
 - no semantic meaning or atlas reinterpretation;
 - no product PNG/semantic sidecar rewrite;
@@ -123,13 +183,14 @@ Current approved product/runtime implementation scope:
 
 Historical endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset contracts remain non-current.
 
-`SX-BMK-001` recommendations are planning evidence only and do not bypass this boundary.
+`BMK-R09/R10` remain hold-only and cannot be implemented or described as current product authority.
 
 ## Validation ceiling
 
 ```text
 FINITE CORE AUTOMATED: PASS
 SX-DEC-055 RUNTIME POC: NOT_STARTED
+SX-DEC-056~058 IMPLEMENTATION: NOT_STARTED · DELTA_DOR_REQUIRED
 HOSTED EXPORT: packaging evidence only
 POST-POC ACCEPTANCE BUILD: UNASSIGNED
 WINDOWS PHYSICAL RUNTIME/VISUAL/AUDIO/INPUT: NOT_RUN
@@ -151,9 +212,10 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 7. this `ACTIVE_CONTEXT.md`
 8. `DEVELOPMENT_GATES.md`
 9. `SX_AUD_047_PHASE_B_FINAL_PLANNING_REVIEW.md`
-10. `기획서/10_경험/SX_BMK_001_ROUTE_PUZZLE_AND_MINIGAME_BENCHMARK.md`
-11. `SX_DEC_055_RUNTIME_SEMANTIC_POC.md`
-12. runtime semantic POC design spec
-13. original implementation plan
-14. Phase B readiness amendment
-15. exact implementation files at current main before writing RED
+10. `기획서/10_경험/SX_BMK_001_APPROVAL_STATUS.md`
+11. `SX_AUD_049_BENCHMARK_APPROVAL_AND_POST_PHASE_B_SCOPE_RECONCILIATION.md`
+12. `SX_DEC_055_RUNTIME_SEMANTIC_POC.md`
+13. runtime semantic POC design spec
+14. original implementation plan
+15. Phase B readiness amendment
+16. exact implementation files at current main before writing RED

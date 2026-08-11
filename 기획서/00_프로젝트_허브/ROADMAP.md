@@ -5,7 +5,7 @@ Last updated: `2026-08-11 KST`
 ## Current execution overlay
 
 ```text
-GMB-002 · SX-DEC-027~055
+GMB-002 · SX-DEC-027~058
 → finite delivery core implemented with automated evidence
 → route-end / switch direction / cargo pickup merged with bounded user F5 evidence
 → SX-DEC-053/054 semantic asset production complete: 73 product PNGs
@@ -14,7 +14,13 @@ GMB-002 · SX-DEC-027~055
 → user explicit "기획 완료" GRANTED · 2026-08-11 KST
 → PHASE B FINAL PLANNING REVIEW PASS · SX-AUD-047
 → PHASE-B CANON/SHEET SYNC
-→ SX-DEC-055 Task 1 / Step 1.1 RED
+→ SX-DEC-055 Task 1 / Step 1.1 RED when Phase C resumes
+
+Post-Phase-B additive planning:
+SX-BMK-001 R01~R08 user-approved
+→ SX-DEC-056 / SX-DEC-057 / SX-DEC-058
+→ each requires separate delta DoR before implementation
+→ R09/R10 POST_VALIDATION_HOLD
 ```
 
 ## Milestones
@@ -25,7 +31,7 @@ GMB-002 · SX-DEC-027~055
 
 - finite handcrafted delivery puzzle
 - current product baseline `GMB-002`
-- decisions `SX-DEC-027~055`
+- decisions `SX-DEC-027~058`
 - historical endless/fuel/BOOST family is non-current.
 
 ### M1 · Representative buildable map
@@ -81,6 +87,7 @@ phase_a: COMPLETE
 user_planning_complete_gate: GRANTED
 phase_b: PASS · SX-AUD-047
 implementation_dor: PASS
+build_authority_scope: SX-DEC-055_ONLY
 first_step: Task 1 / Step 1.1 RED
 ```
 
@@ -104,6 +111,74 @@ Mandatory Phase B amendment before final packaging acceptance:
 Owner:
 `docs/superpowers/plans/2026-08-11-sx-dec-055-phase-b-readiness-amendment.md`
 
+The user is temporarily spending the current work window on additional planning because Codex execution quota is unavailable. This does not cancel M5 authorization.
+
+### M5B · Post-Phase-B approved product-depth planning
+
+`USER_APPROVED · IMPLEMENTATION NOT_AUTHORIZED UNTIL DELTA DOR`
+
+This lane is additive and does **not** enter the already-reviewed `SX-DEC-055` implementation package.
+
+#### SX-DEC-056 · Route Causality Learning and Result Feedback
+
+Approved:
+
+- route-causality feature triage language;
+- request-only Route Probe / Encounter Strip;
+- Prediction → Execution → Debrief;
+- actual-event-only encounter trace;
+- independent Fastest / Cheapest / Highest Score PBs;
+- Route Fingerprint explanatory metadata.
+
+Before implementation:
+
+- define exact seams and persistence schema;
+- prove no solution leakage/solver authority;
+- prove trace is actual-event-derived;
+- close a scoped delta DoR/final review.
+
+#### SX-DEC-057 · Yard Labs and Mastery Curriculum
+
+Approved:
+
+- Stack Lab after Tutorial Stage 5 candidate unlock;
+- Switch Lab after Stage 6;
+- Builder Lab after Stage 8;
+- Tutorial 1~10 exact order remains unchanged;
+- optional Mastery Spur, not progression-required;
+- Topology Complexity / Stack Entropy / Execution Branching authoring model.
+
+Before implementation/content production:
+
+- content schema and allowed-rule validation;
+- progression/reward guardrails;
+- level-design calibration;
+- scoped delta DoR/final review.
+
+#### SX-DEC-058 · Fixed-Seed Challenge Quality Policy
+
+Approved:
+
+- preserve Daily 1 / Weekly 1 fixed-seed procedural contract;
+- deterministic challenge identity;
+- structural validity gate;
+- minimum one legal success proof before publication;
+- offline solver/witness only;
+- quality screening and immutable published identity;
+- base rules only at initial launch.
+
+Before implementation:
+
+- choose solvability algorithm and performance budget;
+- define generated-corpus calibration and TEST_VALUE thresholds;
+- prove witness cannot leak to player-facing runtime;
+- scoped delta DoR/final review.
+
+Held outside current authority:
+
+- BMK-R09 Shareable Route Card — `POST_VALIDATION_HOLD`;
+- BMK-R10 Editor/Workshop/UGC — `POST_VALIDATION_HOLD`.
+
 ### M6 · Historical Android validation lane
 
 `OPTIONAL DIAGNOSTIC · DEVICE SMOKE NOT_RUN`
@@ -124,6 +199,8 @@ exact merged implementation
 → reviewed physical smoke on that exact build
 ```
 
+The presence of approved SX-DEC-056~058 planning does not delay or silently alter this exact SX-DEC-055 acceptance lane unless a later explicit delta review intentionally includes player-facing changes in the tested build.
+
 ### M7 · Five-person Comprehension
 
 `NOT_RUN · BLOCKED BY M6A`
@@ -133,6 +210,8 @@ exact merged implementation
 - FS-01~FS-12
 - behavior → prediction → explanation → transfer
 - unresolved P0/P1 comprehension/accessibility finding = 0 for PASS.
+
+If SX-DEC-056 or SX-DEC-057 is implemented before a future comprehension round, the tested acceptance build must include its exact identity and the test matrix must explicitly measure route-prediction/debrief and Lab transfer behavior. Previous human evidence must not be silently inherited across such player-facing changes.
 
 ### M8 · Production cutover
 
@@ -147,6 +226,9 @@ These approved/future product packages are intentionally outside the current POC
 - `SX-DEC-033` speed/cost/score stars + leaderboard — APPROVED · NOT_STARTED
 - `SX-DEC-034` tutorial/theme chapter — APPROVED · NOT_STARTED
 - `SX-DEC-035` daily/weekly fixed-seed challenge — APPROVED · NOT_RUN
+- `SX-DEC-056` route causality learning/result feedback — APPROVED · DELTA_DOR_REQUIRED
+- `SX-DEC-057` Yard Labs/Mastery curriculum — APPROVED · DELTA_DOR_REQUIRED
+- `SX-DEC-058` fixed-seed challenge publication quality — APPROVED · DELTA_DOR_REQUIRED
 - localization/accessibility stress beyond the bounded POC
 - official map/content expansion
 - Google Play store/rating/target-audience consistency
@@ -157,10 +239,12 @@ They do not block the current authorized runtime semantic POC.
 ## Protected boundaries
 
 - no gameplay/domain widening during M5;
+- no SX-DEC-056~058 implementation without their delta DoR;
 - no new event solely for semantic art;
 - no Base repin;
 - no product PNG/semantic sidecar rewrite;
 - no historical provenance mutation;
 - no `.asset-vault` cleanup;
 - no physical/device/human PASS inflation;
-- no production cutover implication.
+- no production cutover implication;
+- no R09/R10 implementation before post-validation approval.
