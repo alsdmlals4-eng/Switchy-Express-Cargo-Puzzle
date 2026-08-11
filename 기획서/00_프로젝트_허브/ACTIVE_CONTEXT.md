@@ -24,7 +24,7 @@ work_instruction: v4.5 r2 · 2026-08-11-r2
 phase_a: COMPLETE
 user_planning_complete_gate: GRANTED · 2026-08-11 KST
 phase_b_final_planning_review: SX-AUD-047 · PASS
-build_authority: AUTHORIZED
+build_authority: AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE
 sx_dec_055: APPROVED · SPEC_APPROVED · PHASE_B_DOR_PASS
 sx_dec_055_runtime_implementation: NOT_STARTED
 semantic_assets: 73_TOTAL · PRODUCTION_COMPLETE
@@ -42,7 +42,7 @@ active_planning_evidence: SX-BMK-001 · ROUTE_PUZZLE_AND_MINIGAME_BENCHMARK · P
 
 이 선택은 다음을 의미한다.
 
-- Phase B `PASS`와 Build Authority `AUTHORIZED`는 취소되지 않는다.
+- Phase B `PASS`와 Build Authority `AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE`는 취소되지 않는다.
 - `SX-DEC-055` implementation은 계속 `NOT_STARTED`다.
 - 이번 추가 기획은 새 제품 결정을 자동 승인하지 않는다.
 - benchmark recommendation은 `BMK-Rxx · PROPOSED`로 유지한다.
