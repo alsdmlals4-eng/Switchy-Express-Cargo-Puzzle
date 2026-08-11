@@ -19,7 +19,9 @@ GMB-002 · SX-DEC-027~058
 Post-Phase-B additive planning:
 SX-BMK-001 R01~R08 user-approved
 → SX-DEC-056 / SX-DEC-057 / SX-DEC-058
-→ each requires separate delta DoR before implementation
+→ SX-DEC-056A delta DoR planning PASS · implementation not authorized
+→ SX-DEC-056B blocked by authoritative score/combo runtime metrics
+→ SX-DEC-057/058 delta DoR pending
 → R09/R10 POST_VALIDATION_HOLD
 ```
 
@@ -115,13 +117,13 @@ The user is temporarily spending the current work window on additional planning 
 
 ### M5B · Post-Phase-B approved product-depth planning
 
-`USER_APPROVED · IMPLEMENTATION NOT_AUTHORIZED UNTIL DELTA DOR`
+`USER_APPROVED · IMPLEMENTATION AUTHORITY SEPARATE FROM M5`
 
 This lane is additive and does **not** enter the already-reviewed `SX-DEC-055` implementation package.
 
 #### SX-DEC-056 · Route Causality Learning and Result Feedback
 
-Approved:
+Approved product direction:
 
 - route-causality feature triage language;
 - request-only Route Probe / Encounter Strip;
@@ -130,14 +132,42 @@ Approved:
 - independent Fastest / Cheapest / Highest Score PBs;
 - Route Fingerprint explanatory metadata.
 
-Before implementation:
+Delta DoR review: `SX-AUD-051`.
 
-- define exact seams and persistence schema;
-- prove no solution leakage/solver authority;
-- prove trace is actual-event-derived;
-- close a scoped delta DoR/final review.
+Current split:
+
+```yaml
+056A_route_probe: DELTA_DOR_PASS_PLANNING
+056A_actual_trace_debrief: DELTA_DOR_PASS_PLANNING
+056A_fastest_cheapest_pb: DELTA_DOR_PASS_PLANNING
+056A_fingerprint_v1: DELTA_DOR_PASS_PLANNING
+056A_implementation_authority: NOT_GRANTED
+056B_highest_score: BLOCKED_BY_AUTHORITATIVE_SCORE_RUNTIME
+056B_score_max_combo_fingerprint: BLOCKED_BY_AUTHORITATIVE_RUNTIME_METRICS
+```
+
+056A exact implementation-ready contracts now include:
+
+- Probe traversal starts from the first actual next entered cell, not the configured occupied start cell;
+- LOOP = repeated directed `(previous,current)` traversal state;
+- `next_cell == current` = DEAD_END;
+- graph construction failure = ROUTE_INVALID;
+- Probe is ordered cell-step projection, not temporal event trace;
+- station mismatch evidence reuses the existing single `Station.try_unload()` result;
+- route-control change is recorded only when existing `cycle_route_control()` actually accepts the change;
+- fingerprint v1 is score-independent and exact;
+- finite PB store is keyed by map ID + map revision + ruleset version;
+- no-solution-leakage automated contracts are explicit.
+
+Implementation plan:
+
+`docs/superpowers/plans/2026-08-11-sx-dec-056-route-causality-delta.md`
+
+056B cannot invent score/combo calculations. It begins only after existing approved score/combo authority exposes authoritative finite runtime metrics.
 
 #### SX-DEC-057 · Yard Labs and Mastery Curriculum
+
+`USER_APPROVED · DELTA_DOR_PENDING`
 
 Approved:
 
@@ -150,12 +180,16 @@ Approved:
 
 Before implementation/content production:
 
-- content schema and allowed-rule validation;
-- progression/reward guardrails;
-- level-design calibration;
+- exact Lab content schema and allowed-rule whitelist;
+- actual handcrafted Lab puzzle set with learning/failure/transfer objective;
+- unlock/skip/re-entry/progression state;
+- Mastery Spur content template/count/reward guardrails;
+- numeric level-design calibration;
 - scoped delta DoR/final review.
 
 #### SX-DEC-058 · Fixed-Seed Challenge Quality Policy
+
+`USER_APPROVED · DELTA_DOR_PENDING`
 
 Approved:
 
@@ -169,9 +203,13 @@ Approved:
 
 Before implementation:
 
-- choose solvability algorithm and performance budget;
-- define generated-corpus calibration and TEST_VALUE thresholds;
-- prove witness cannot leak to player-facing runtime;
+- exact solvability state/search algorithm boundary;
+- deterministic generator/seed/version identity;
+- generation/solver performance budget;
+- generated-corpus size and calibration thresholds;
+- degenerate/trivial/one-path rejection metrics;
+- timeout/failure publication behavior;
+- witness isolation proof;
 - scoped delta DoR/final review.
 
 Held outside current authority:
@@ -223,13 +261,14 @@ Requires separate decision after implementation + physical/device/human evidence
 
 These approved/future product packages are intentionally outside the current POC implementation scope:
 
-- `SX-DEC-033` speed/cost/score stars + leaderboard — APPROVED · NOT_STARTED
+- `SX-DEC-033` speed/cost/score stars + leaderboard — APPROVED · NOT_STARTED; current finite runtime score field not exposed
 - `SX-DEC-034` tutorial/theme chapter — APPROVED · NOT_STARTED
 - `SX-DEC-035` daily/weekly fixed-seed challenge — APPROVED · NOT_RUN
-- `SX-DEC-056` route causality learning/result feedback — APPROVED · DELTA_DOR_REQUIRED
-- `SX-DEC-057` Yard Labs/Mastery curriculum — APPROVED · DELTA_DOR_REQUIRED
-- `SX-DEC-058` fixed-seed challenge publication quality — APPROVED · DELTA_DOR_REQUIRED
-- localization/accessibility stress beyond the bounded POC
+- `SX-DEC-056A` route causality learning/result feedback — DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
+- `SX-DEC-056B` Highest Score/score+combo extension — BLOCKED_DEPENDENCY
+- `SX-DEC-057` Yard Labs/Mastery curriculum — APPROVED · DELTA_DOR_PENDING
+- `SX-DEC-058` fixed-seed challenge publication quality — APPROVED · DELTA_DOR_PENDING
+- localization/accessibility stress beyond bounded plans
 - official map/content expansion
 - Google Play store/rating/target-audience consistency
 - remaining asset-rights/provenance completion.
@@ -239,7 +278,9 @@ They do not block the current authorized runtime semantic POC.
 ## Protected boundaries
 
 - no gameplay/domain widening during M5;
-- no SX-DEC-056~058 implementation without their delta DoR;
+- no SX-DEC-056A implementation without explicit implementation authority even though its delta DoR planning is complete;
+- no SX-DEC-056B guessed score/combo formula;
+- no SX-DEC-057/058 implementation before their delta DoR;
 - no new event solely for semantic art;
 - no Base repin;
 - no product PNG/semantic sidecar rewrite;
