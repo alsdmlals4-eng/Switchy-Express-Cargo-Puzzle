@@ -104,16 +104,36 @@ jobs:
             2>&1 | tee builds/windows/windows-runtime-json-proof.log
           grep -F 'RUNTIME_JSON_PACK_PROOF: PASS' builds/windows/windows-runtime-json-proof.log
 
+      - name: Prove Android preset runtime JSON payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./Godot_v4.7.1-stable_linux.x86_64 \
+            --headless \
+            --path . \
+            --export-pack "Android Validation" \
+            builds/windows/android-validation-runtime-json-proof.pck
+          test -s builds/windows/android-validation-runtime-json-proof.pck
+          ./Godot_v4.7.1-stable_linux.x86_64 \
+            --headless \
+            --main-pack builds/windows/android-validation-runtime-json-proof.pck \
+            --script res://tools/validation/verify_exported_runtime_json.gd \
+            2>&1 | tee builds/windows/android-validation-runtime-json-proof.log
+          grep -F 'RUNTIME_JSON_PACK_PROOF: PASS' builds/windows/android-validation-runtime-json-proof.log
+
       - name: Verify and hash artifact
         run: |
           test -s builds/windows/SwitchyExpressVerticalSlice.exe
           test -s builds/windows/SwitchyExpressVerticalSlice.pck
           test -s builds/windows/windows-runtime-json-proof.pck
           test -s builds/windows/windows-runtime-json-proof.log
+          test -s builds/windows/android-validation-runtime-json-proof.pck
+          test -s builds/windows/android-validation-runtime-json-proof.log
           sha256sum \
             builds/windows/SwitchyExpressVerticalSlice.exe \
             builds/windows/SwitchyExpressVerticalSlice.pck \
             builds/windows/windows-runtime-json-proof.pck \
+            builds/windows/android-validation-runtime-json-proof.pck \
             > builds/windows/SHA256SUMS.txt
           cat builds/windows/SHA256SUMS.txt
 
@@ -126,6 +146,8 @@ jobs:
             builds/windows/SwitchyExpressVerticalSlice.pck
             builds/windows/windows-runtime-json-proof.pck
             builds/windows/windows-runtime-json-proof.log
+            builds/windows/android-validation-runtime-json-proof.pck
+            builds/windows/android-validation-runtime-json-proof.log
             builds/windows/SHA256SUMS.txt
           if-no-files-found: error
           retention-days: 14
