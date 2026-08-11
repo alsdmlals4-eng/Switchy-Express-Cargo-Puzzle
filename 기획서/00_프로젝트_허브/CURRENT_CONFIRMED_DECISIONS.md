@@ -18,7 +18,7 @@ latest_route_learning_authority: SX-DEC-056
 latest_curriculum_authority: SX-DEC-057
 latest_challenge_quality_authority: SX-DEC-058
 current_phase_b_audit: SX-AUD-047 · PASS
-latest_post_phase_b_scope_audit: SX-AUD-052
+latest_post_phase_b_scope_audit: SX-AUD-053
 project_base_pin: v9.4.3
 upstream_base_observed_at_phase_b: 315c66eea9614c284b9c11c4d522141065dfa4b0 · REFERENCE_ONLY
 phase_b_baseline_project_main: 47df1c60866ae28f5c415cbe6b886d9ee9a87c7a
@@ -33,7 +33,8 @@ sx_dec_056a_planning: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b_planning: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
 sx_dec_057_planning: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_057_attribute_content: BLOCKED_BY_STAGE8_TRACK_ATTRIBUTE_RUNTIME
-sx_dec_058_planning: USER_APPROVED · DELTA_DOR_PENDING
+sx_dec_058_planning: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
+benchmark_approved_planning: R01~R08 · DETAILED_PLANNING_CLOSED
 benchmark_hold: BMK-R09/R10 · POST_VALIDATION_HOLD
 semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
 runtime_integrated: false
@@ -59,9 +60,7 @@ The project remains pinned to Base `v9.4.3`. The newer upstream Base main is obs
 → 결과를 보고 같은 sealed layout 재도전 또는 재설계
 ```
 
-Approved post-Phase-B planning strengthens how the player predicts, learns, practices, and compares routes without changing this core domain promise.
-
-Hard constraints remain LIFO, cargo/station color+shape+text redundancy, save/ruleset identity discipline, and no unapproved core-product widening.
+Approved post-Phase-B planning strengthens how the player predicts, learns, practices, compares routes, and receives fair generated challenges without changing this core domain promise.
 
 ## Current Decision Registry
 
@@ -98,77 +97,52 @@ Hard constraints remain LIFO, cargo/station color+shape+text redundancy, save/ru
 | SX-DEC-055 | Runtime Semantic POC | USER_APPROVED · SPEC_APPROVED · DOCS_MERGED · PHASE_B_DOR_PASS · IMPLEMENTATION_AUTHORIZED_NOT_STARTED |
 | SX-DEC-056 | Route Causality Learning and Result Feedback | USER_APPROVED · 056A DELTA_DOR_PASS_PLANNING / IMPLEMENTATION_NOT_AUTHORIZED · 056B SCORE/COMBO DEPENDENCY BLOCKED |
 | SX-DEC-057 | Yard Labs and Mastery Curriculum | USER_APPROVED · 12-LAB/MASTERY DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED · FAST/CHEAP CONTENT DEPENDENCY GATED |
-| SX-DEC-058 | Fixed-Seed Challenge Quality Policy | USER_APPROVED · PLANNING_CANON · DELTA_DOR_PENDING |
+| SX-DEC-058 | Fixed-Seed Challenge Quality Policy | USER_APPROVED · DETERMINISM/WITNESS/QUALITY/PUBLICATION DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED |
 
-## SX-DEC-055 current architecture
+## Phase B / current execution boundary
 
-```text
-SX-DEC-053/054 product manifests
-→ presentation-owned SemanticAssetCatalog
-→ existing presenter model / render snapshot / existing events
-→ HUD + board + route + semantic event presentation
-```
-
-Approved representative proof:
-
-- RUN Stack/load state from existing presentation/input truth;
-- BUILD placement/preflight from existing snapshot/model data;
-- route semantic reinforcement while procedural direction/cycle/hit/lock authority remains unchanged;
-- pickup/unload/route-selection/terminal feedback from existing presentation seams;
-- Reduced Motion uses the same information key/input with motion removed;
-- combo asset resolves, but no new gameplay/domain signal may be invented solely to trigger it;
-- existing Korean text/procedural presentation remains fallback/redundancy.
-
-## Phase B readiness delta
-
-`SX-AUD-047` found one implementation-readiness P1 not explicit in the original DoR: Godot non-resource JSON files are not covered by the current export presets' empty `include_filter`.
-
-Companion amendment:
-
-`docs/superpowers/plans/2026-08-11-sx-dec-055-phase-b-readiness-amendment.md`
-
-Phase C must add the narrow runtime JSON export contract and exported-pack proof for `data/maps/*.json` and `art/product_assets/ed_hybrid_v1/*.json` before export packaging can satisfy the POC gate.
-
-## Post-Phase-B approved planning
+`SX-AUD-047` remains the Phase B authority for the exact `SX-DEC-055` runtime semantic POC package.
 
 ```text
-BMK-R01/R02/R03/R07 → SX-DEC-056
-BMK-R04/R05/R06     → SX-DEC-057
-BMK-R08             → SX-DEC-058
-BMK-R09/R10         → POST_VALIDATION_HOLD · NO_DECISION_ID
+Build authority = SX-DEC-055_ONLY
+First executable Phase C action = SX-DEC-055 Task 1 / Step 1.1 RED
 ```
 
-### SX-DEC-056
+The Phase B readiness amendment still requires narrow JSON export inclusion/proof before package acceptance.
 
-`SX-AUD-051` closed Route Probe, actual trace/debrief, finite Fastest/Cheapest PB, score-independent Fingerprint v1 and no-solution-leakage contracts.
+## Post-Phase-B planning closure
+
+### SX-DEC-056 · SX-AUD-051
 
 ```text
-056A → DELTA_DOR_PASS_PLANNING · implementation plan written · NOT_AUTHORIZED
-056B → Highest Score + score/max-combo extension BLOCKED until authoritative runtime metrics exist
+056A
+Route Probe + Actual Trace/Debrief + Fastest/Cheapest PB + score-independent Fingerprint v1
+→ DELTA_DOR_PASS_PLANNING
+→ implementation plan written
+→ IMPLEMENTATION_NOT_AUTHORIZED
+
+056B
+Highest Score PB + score/max-combo fingerprint extension
+→ BLOCKED until approved score/combo owners expose authoritative finite runtime metrics
 ```
 
-### SX-DEC-057
+### SX-DEC-057 · SX-AUD-052
 
-`SX-AUD-052` closed the curriculum/content-production contract.
+Launch authoring set:
 
 ```text
-launch Yard Labs: 12 blueprints
-- SL-01~04 after Tutorial Stage 5
-- SW-01~04 after Stage 6
-- BL-01~04 after Stage 8
-
-Lab lane completion: completion mark only
-Lab/campaign progression dependency: NONE
-Mastery: max 1 per chapter
-Mastery unlock: same 2-core threshold as next chapter, independently
-Difficulty rubric: Topology / Stack Entropy / Execution Branching each 0..3
+SL-01~04 · Stack Lab · unlock after Tutorial 5
+SW-01~04 · Switch Lab · unlock after Tutorial 6
+BL-01~04 · Builder Lab · unlock after Tutorial 8
 ```
 
-Current runtime dependency:
-
-- Stack/Switch/basic-geometry Builder blueprints: READY_PLANNING;
-- BL-03 Fast vs Cheap / M-EXPRESS: dependency-gated because current `TrackPiece` lacks authoritative fast/cheap attribute representation;
-- 057 does not define that existing Stage 8 gameplay formula.
+- 12 blueprints complete;
+- Lab completion never gates campaign;
+- completion mark only, no power/currency/leaderboard;
+- Mastery max one per chapter;
+- core clear count >=2 independently unlocks both next chapter and current Mastery;
+- difficulty rubric T/S/E each 0..3;
+- BL-03/M-EXPRESS speed/cheap content dependency-gated because current TrackPiece lacks authoritative attribute representation.
 
 Owners:
 
@@ -178,33 +152,53 @@ Owners:
 - `docs/superpowers/plans/2026-08-11-sx-dec-057-yard-labs-mastery-delta.md`
 - `기획서/50_제작_검증/SX_AUD_052_SX_DEC_057_DELTA_DOR_FINAL_REVIEW.md`
 
-## Current execution authority
+### SX-DEC-058 · SX-AUD-053
+
+Implementation-ready publication-quality planning:
+
+- canonical Daily UTC date / Weekly ISO week identity;
+- `SHA256_COUNTER_V1` deterministic generation stream;
+- `CONSTRUCTIVE_WITNESS_REPLAY_V1` existence proof through legal current finite actions;
+- deterministic operation budgets;
+- at least 2 structural layout alternatives;
+- hard nontriviality gates for cargo types/stack depth/route alternatives;
+- Daily one-primary-axis profile; Weekly multi-axis profile;
+- per-version calibration corpus >=1000 Daily + >=1000 Weekly seeds;
+- >=100 accepted per cadence, deterministic hash parity, duplicate/diversity gates;
+- immutable PUBLISHED identity; optional WITHDRAWN availability state only;
+- runtime receives manifest + map only;
+- witness/generator/private quality artifacts require negative package proof;
+- backend/transport remains separate authority.
+
+Owners:
+
+- `docs/decisions/SX_DEC_058_FIXED_SEED_CHALLENGE_QUALITY_POLICY.md`
+- `docs/superpowers/specs/2026-08-11-fixed-seed-challenge-quality-design.md`
+- `docs/superpowers/plans/2026-08-11-sx-dec-058-fixed-seed-quality-delta.md`
+- `기획서/50_제작_검증/SX_AUD_053_SX_DEC_058_DELTA_DOR_FINAL_REVIEW.md`
+
+## Benchmark-derived planning status
 
 ```text
-1. Phase A planning evidence is complete.
-2. The user explicitly declared "기획 완료" on 2026-08-11 KST.
-3. SX-AUD-047 Phase B Final Planning Review is PASS.
-4. BUILD authority remains active for the exact SX-DEC-055 package reviewed by Phase B.
-5. The first Phase C action remains the existing SX-DEC-055 plan's Task 1 / Step 1.1 RED.
-6. SX-DEC-056A and SX-DEC-057 now have implementation-ready planning but neither has implementation authority.
-7. SX-DEC-056B is blocked by score/combo runtime metrics; SX-DEC-057 attribute content is blocked by Stage 8 track-attribute runtime representation.
-8. SX-DEC-058 remains the next delta DoR planning lane.
-9. BMK-R09/R10 remain POST_VALIDATION_HOLD and have no Decision ID.
-10. Windows physical runtime, Android device, connected physical editor, and Five-person Comprehension remain separate NOT_RUN gates.
-11. Post-POC acceptance build identity remains UNASSIGNED until implementation merge.
-12. Production cutover remains BLOCKED_DEFERRED.
+BMK-R01~R08 → approved and detailed planning closed through SX-AUD-051/052/053
+BMK-R09 Shareable Route Card → POST_VALIDATION_HOLD · NO_DECISION_ID
+BMK-R10 Editor/UGC → POST_VALIDATION_HOLD · NO_DECISION_ID
 ```
+
+Remaining work is implementation/production/validation or explicitly dependency-gated authority work, not another open R01~R08 product-design hole.
+
+## Current execution authority
+
+1. Phase A complete; user planning-complete gate granted.
+2. Phase B PASS via SX-AUD-047.
+3. SX-DEC-055 remains the only implementation-authorized package.
+4. SX-DEC-056A/057/058 have implementation-ready planning but no implementation authority.
+5. SX-DEC-056B and 057 fast/cheap content await authoritative runtime capabilities; they cannot invent formulas/fields.
+6. BMK-R09/R10 remain held until post-validation approval.
+7. Windows physical runtime, Android device, connected physical editor, Five-person Comprehension remain NOT_RUN.
+8. Acceptance build remains UNASSIGNED.
+9. Production cutover remains BLOCKED_DEFERRED.
 
 ## Historical product exclusions
 
-The following remain historical/superseded and must not be reactivated by current implementation:
-
-- endless survival;
-- fuel / fuel-zero game over;
-- player BOOST;
-- cargo capacity 8;
-- cargo-count slowdown;
-- pickup respawn;
-- switch auto-reset.
-
-Current product authority is `GMB-002`.
+Do not reactivate endless survival, fuel/fuel-zero, BOOST, cargo capacity 8, cargo-count slowdown, pickup respawn, or switch auto-reset. Current product authority remains GMB-002.
