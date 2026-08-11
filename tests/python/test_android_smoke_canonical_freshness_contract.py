@@ -66,7 +66,7 @@ class TestAndroidSmokeCanonicalFreshness(unittest.TestCase):
         playtest = read("기획서/50_제작_검증/PLAYTEST_PLAN.md")
 
         for token in (
-            "SX-DEC-055 RUNTIME POC: NOT_STARTED",
+            "SX-DEC-055 RUNTIME POC: MERGED_MAIN_VERIFIED",
             "ANDROID DEVICE SMOKE: NOT_RUN",
             "GMB-002",
             "SX-AUD-047",
@@ -74,6 +74,7 @@ class TestAndroidSmokeCanonicalFreshness(unittest.TestCase):
             require_contains(self, "README", readme, token)
         require_absent(self, "README", readme, "FINITE_PUZZLE_DEFINITION_OF_READY")
         require_absent(self, "README", readme, "finite delivery runtime not aligned")
+        require_absent(self, "README", readme, "SX-DEC-055 RUNTIME POC: NOT_STARTED")
 
         require_contains(
             self,
@@ -90,16 +91,17 @@ class TestAndroidSmokeCanonicalFreshness(unittest.TestCase):
 
         for token in (
             "SX-DEC-055 Runtime Semantic POC",
-            "BUILD AUTHORIZED",
-            "M6 · Historical Android validation lane",
-            "DEVICE SMOKE NOT_RUN",
-            "M6A · Post-POC acceptance build",
+            "IMPLEMENTED · MERGED_MAIN_VERIFIED",
+            "M5A · Post-POC acceptance",
+            "Android device smoke",
+            "M6 · Physical/device/human validation",
         ):
             require_contains(self, "ROADMAP", roadmap, token)
         for stale in (
             "ANDROID DEVICE SMOKE · CURRENT",
             "implementation replan required",
             "## FP-M0 — 새 Definition of Ready",
+            "BUILD AUTHORIZED · IMPLEMENTATION NOT_STARTED",
         ):
             require_absent(self, "ROADMAP", roadmap, stale)
 

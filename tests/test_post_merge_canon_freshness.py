@@ -40,6 +40,7 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
             "USER_DEFERRED_AFTER_DOR",
             "user_planning_complete_gate: NOT_GRANTED",
             "phase_b_final_planning_review: NOT_RUN",
+            "sx_dec_055_runtime_implementation: NOT_STARTED",
         ):
             self.assertNotIn(stale_active_state, combined)
 
@@ -47,7 +48,9 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         self.assertIn("user_planning_complete_gate: GRANTED", active)
         self.assertIn("phase_b_final_planning_review: SX-AUD-047 · PASS", active)
         self.assertIn("build_authority: AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE", active)
-        self.assertIn("sx_dec_055_runtime_implementation: NOT_STARTED", active)
+        self.assertIn("sx_dec_055_runtime_implementation: MERGED_MAIN_VERIFIED", active)
+        self.assertIn("runtime_integrated: true", active)
+        self.assertIn("sx_dec_055_merge_main: 534a7318b349cd3e784a3467125f9ebd23124d8a", active)
 
         self.assertIn("pr_83: MERGED", readme)
         self.assertIn("PR #83/#99/#100 MERGE: PASS", gates)

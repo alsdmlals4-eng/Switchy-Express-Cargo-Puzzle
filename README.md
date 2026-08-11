@@ -10,13 +10,14 @@
 
 ```yaml
 product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
-current_decisions: SX-DEC-027~055
+current_decisions: SX-DEC-027~058
 work_instruction: v4.5 r2 · revision 2026-08-11-r2
 phase_a: COMPLETE
 user_planning_complete_gate: GRANTED · 2026-08-11 KST
 phase_b_final_planning_review: SX-AUD-047 · PASS
-build_authority: AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE
-runtime_semantic_poc: SX-DEC-055 · SPEC/DoR APPROVED · IMPLEMENTATION_NOT_STARTED
+runtime_semantic_poc: SX-DEC-055 · IMPLEMENTED · PR_151_MERGED
+runtime_integrated: true
+sx_dec_055_merge_main: 534a7318b349cd3e784a3467125f9ebd23124d8a
 semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
 base_pin: v9.4.3
 upstream_base_main: REFERENCE_ONLY
@@ -58,24 +59,47 @@ latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
 
 ## 현재 구현 지점
 
-승인된 다음 구현은 `SX-DEC-055 Runtime Semantic POC`입니다.
+`SX-DEC-055 Runtime Semantic POC`는 PR #151로 구현되어 main `534a7318b349cd3e784a3467125f9ebd23124d8a`에 병합되었습니다.
 
 ```text
 SX-DEC-053/054 approved product manifests
 → presentation-owned SemanticAssetCatalog
-→ existing presenter model / render snapshot / existing events
-→ HUD + board + route + semantic event presentation
+→ pure semantic runtime-state mapping
+→ existing presenter/render snapshot/events
+→ HUD + BUILD + route + semantic event presentation
 ```
 
-Phase B는 기존 exact-file RED-first plan을 재검수했고 current runtime target files에 drift가 없음을 확인했습니다. Phase B에서 발견한 non-resource JSON export P1은 companion readiness amendment로 닫았습니다.
+실제 merged runtime 변화:
+
+- Stack/manual-auto/preflight semantic HUD reinforcement;
+- BUILD valid/invalid/rotate/replacement semantic reinforcement;
+- route-control selected/unselected/occupied-locked semantic reinforcement;
+- pickup/unload/route/result semantic event feedback;
+- Reduced Motion에서 동일 정보 identity 유지;
+- 기존 한글 텍스트, controls, touch/hit geometry, gameplay/domain rules, scoring, maps, save authority, product PNG/manifest는 유지.
+
+PR #151 exact head `63b0ed331e043db7d677ca097bdb209003bda4be` 검증:
+
+```text
+Project Contract #1242 PASS
+GUT 9.7.1 #291 PASS
+Godot Tests #1173 PASS
+Thin Adapter #369 PASS
+Windows Demo Export #241 PASS
+custom suite: 97 cases / 0 failed / 11923 assertions
+Windows Demo proof PCK: parsed_json=13
+Android Validation preset proof PCK: parsed_json=13
+review threads: 0
+```
 
 읽을 문서:
 
 - `기획서/50_제작_검증/SX_AUD_047_PHASE_B_FINAL_PLANNING_REVIEW.md`
+- `기획서/50_제작_검증/SX_AUD_054_SX_DEC_055_RUNTIME_POC_POST_MERGE_RECONCILIATION.md`
 - `docs/superpowers/plans/2026-08-10-sx-dec-055-runtime-semantic-poc.md`
 - `docs/superpowers/plans/2026-08-11-sx-dec-055-phase-b-readiness-amendment.md`
 
-첫 Phase C 구현 단계는 기존 plan의 **Task 1 / Step 1.1 RED**이며, 새 product rule이나 새 semantic meaning을 만들지 않습니다.
+Task 1 / Step 1.1 RED는 완료된 TDD 역사이며 현재 next action이 아닙니다.
 
 ## 바로 실행하기
 
@@ -114,7 +138,8 @@ Esc: 취소·뒤로
 
 ```text
 FINITE CORE AUTOMATED: PASS
-SX-DEC-055 RUNTIME POC: NOT_STARTED
+SX-DEC-055 RUNTIME POC: MERGED_MAIN_VERIFIED
+runtime_integrated: true
 POST-POC ACCEPTANCE BUILD: UNASSIGNED
 WINDOWS PHYSICAL RUNTIME: NOT_RUN
 ANDROID DEVICE SMOKE: NOT_RUN
@@ -125,6 +150,20 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 
 기존 Android validation APK와 과거 Windows export는 역사적 packaging/diagnostic evidence이며 post-POC acceptance build를 대신하지 않습니다.
 
+## 다음 유효 작업
+
+```text
+post-merge GitHub/Sheet same-ID reconciliation
+→ exact acceptance build identity when physical validation is prepared
+→ Windows physical smoke
+→ Android device smoke
+→ physical Reduced Motion/readability
+→ Five-person comprehension on the same build
+→ separate production cutover decision
+```
+
+`SX-DEC-056A/057/058`은 상세 planning이 닫혔지만 implementation authority가 별도이며, `SX-DEC-056B`와 057 fast/cheap subset은 authoritative runtime dependency를 기다립니다.
+
 ## 정본 읽기 순서
 
 1. `AGENTS.md`
@@ -134,10 +173,9 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 5. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
 6. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
 7. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
-8. `기획서/50_제작_검증/SX_AUD_047_PHASE_B_FINAL_PLANNING_REVIEW.md`
+8. `기획서/50_제작_검증/SX_AUD_054_SX_DEC_055_RUNTIME_POC_POST_MERGE_RECONCILIATION.md`
 9. `기획서/50_제작_검증/PLAYTEST_PLAN.md`
-10. `SX-DEC-055` decision/spec/plan + Phase B readiness amendment
-11. configured Google Sheet current rows
+10. configured Google Sheet current rows
 
 ## 기술
 
