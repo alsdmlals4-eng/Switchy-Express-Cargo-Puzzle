@@ -31,7 +31,14 @@ func run() -> void:
 		hud.free()
 		return
 
-	hud.apply_model(_model(&"BUILD"))
+	assert_true(hud.has_method("semantic_state_for_test"), "HUD must expose bounded semantic diagnostics")
+	assert_not_null(hud.get_node_or_null("StackPanel/StackLayout/StackSemanticBadge"), "HUD must include Stack semantic badge")
+	assert_not_null(hud.get_node_or_null("RunToolbar/ManualSemanticBadge"), "HUD must include manual-load semantic badge")
+	assert_not_null(hud.get_node_or_null("RunToolbar/AutoSemanticBadge"), "HUD must include auto-load semantic badge")
+	assert_not_null(hud.get_node_or_null("ProblemBanner/ProblemSemanticBadge"), "HUD must include preflight semantic badge")
+
+	var build_model := _model(&"BUILD")
+	hud.apply_model(build_model)
 	assert_equal(hud.get_node("TopStatus/PhaseLabel").text, "건설 단계", "BUILD phase uses Korean copy")
 	assert_equal(hud.get_node("BuildToolbar/StartButton").text, "운행 시작  Space", "start button shows action and shortcut")
 	assert_true(hud.get_node("BuildToolbar").visible, "BUILD toolbar visible during BUILD")
@@ -40,12 +47,73 @@ func run() -> void:
 		(hud.get_node("ProblemBanner/ProblemText") as Label).text.contains("Disconnected route"),
 		"preflight detail must not leak diagnostic English"
 	)
+	if hud.has_method("semantic_state_for_test"):
+		var primary_semantic: Dictionary = hud.semantic_state_for_test()
+		assert_equal(primary_semantic.get("preflight_state", &""), &"primary_issue", "failed BUILD selects primary preflight semantic state")
+		assert_equal(
+			primary_semantic.get("preflight_paths", []),
+			[
+				"art/product_assets/ed_hybrid_v1/build/build_preflight_shell_v01.png",
+				"art/product_assets/ed_hybrid_v1/build/build_preflight_primary_issue_marker_v01.png",
+			],
+			"primary preflight semantic inputs come from BUILD manifest"
+		)
 
-	hud.apply_model(_model(&"RUNNING"))
+	var multi_build := _model(&"BUILD")
+	multi_build["problem_cells"] = [Vector2i(4, 4), Vector2i(5, 4)]
+	hud.apply_model(multi_build)
+	if hud.has_method("semantic_state_for_test"):
+		var multi_semantic: Dictionary = hud.semantic_state_for_test()
+		assert_equal(multi_semantic.get("preflight_state", &""), &"multi_issue_summary", "multiple BUILD issues select multi summary")
+
+	var clear_build := _model(&"BUILD")
+	clear_build["start_enabled"] = true
+	clear_build["problem_cells"] = []
+	hud.apply_model(clear_build)
+	if hud.has_method("semantic_state_for_test"):
+		var clear_semantic: Dictionary = hud.semantic_state_for_test()
+		assert_equal(clear_semantic.get("preflight_state", &""), &"clear", "passed BUILD selects clear preflight semantic state")
+		assert_equal(
+			clear_semantic.get("preflight_paths", []),
+			["art/product_assets/ed_hybrid_v1/build/build_preflight_shell_v01.png"],
+			"clear preflight keeps the approved shell"
+		)
+
+	var running_model := _model(&"RUNNING")
+	running_model["manual_load_active"] = true
+	hud.apply_model(running_model)
 	assert_equal(hud.get_node("TopStatus/PhaseLabel").text, "운행 중", "RUNNING phase uses Korean copy")
 	assert_true(hud.get_node("RunToolbar").visible, "RUN toolbar visible during RUNNING")
 	assert_true(hud.get_node("StackPanel").visible, "stack panel visible during RUNNING")
 	assert_true(hud.get_node("StackPanel/StackLayout/StackTitle").text.contains("화물 TOP"), "stack title explains TOP")
+	if hud.has_method("semantic_state_for_test"):
+		var running_semantic: Dictionary = hud.semantic_state_for_test()
+		assert_equal(running_semantic.get("stack_state", &""), &"compact", "small non-empty stack selects compact semantic state")
+		assert_equal(
+			running_semantic.get("stack_paths", []),
+			["art/product_assets/ed_hybrid_v1/run/run_stack_compact_v01.png"],
+			"compact Stack resolves exact approved semantic asset"
+		)
+		assert_equal(running_semantic.get("manual_state", &""), &"manual_held", "manual hold selects held semantic state")
+		assert_equal(
+			running_semantic.get("manual_paths", []),
+			[
+				"art/product_assets/ed_hybrid_v1/run/run_load_mode_shell_v01.png",
+				"art/product_assets/ed_hybrid_v1/run/run_load_mode_manual_marker_v01.png",
+				"art/product_assets/ed_hybrid_v1/run/run_load_mode_held_marker_v01.png",
+			],
+			"manual held composition preserves manifest order"
+		)
+		assert_equal(running_semantic.get("auto_state", &""), &"auto_on", "active auto load selects auto-on semantic state")
+		assert_equal(
+			running_semantic.get("auto_paths", []),
+			[
+				"art/product_assets/ed_hybrid_v1/run/run_load_mode_shell_v01.png",
+				"art/product_assets/ed_hybrid_v1/run/run_load_mode_on_marker_v01.png",
+				"art/product_assets/ed_hybrid_v1/run/run_load_mode_auto_marker_v01.png",
+			],
+			"auto-on composition preserves approved manifest order"
+		)
 
 	hud.apply_model(_model(&"UNLOADING"))
 	assert_equal(hud.get_node("TopStatus/PhaseLabel").text, "하역 중", "UNLOADING phase uses Korean copy")
@@ -53,6 +121,24 @@ func run() -> void:
 	hud.apply_model(_model(&"PAUSED"))
 	assert_equal(hud.get_node("TopStatus/PhaseLabel").text, "일시정지", "PAUSED phase uses Korean copy")
 	assert_true(hud.get_node("PausePanel").visible, "standalone HUD pause panel remains available")
+	if hud.has_method("semantic_state_for_test"):
+		var paused_semantic: Dictionary = hud.semantic_state_for_test()
+		assert_equal(paused_semantic.get("stack_state", &""), &"paused", "PAUSED selects paused Stack semantic state")
+		assert_equal(
+			paused_semantic.get("stack_paths", []),
+			["art/product_assets/ed_hybrid_v1/run/run_stack_paused_v01.png"],
+			"paused Stack resolves approved asset"
+		)
+		assert_equal(paused_semantic.get("manual_state", &""), &"paused_disabled", "PAUSED disables manual semantic state")
+		assert_equal(paused_semantic.get("auto_state", &""), &"paused_disabled", "PAUSED disables auto semantic state")
+		assert_equal(
+			paused_semantic.get("manual_paths", []),
+			[
+				"art/product_assets/ed_hybrid_v1/run/run_load_mode_shell_v01.png",
+				"art/product_assets/ed_hybrid_v1/run/run_load_mode_disabled_overlay_v01.png",
+			],
+			"paused load semantic composition uses shell plus disabled overlay"
+		)
 
 	hud.apply_model(_model(&"SUCCESS"))
 	assert_equal(hud.get_node("ResultPanel/ResultLayout/ResultTitle").text, "배송 완료", "success uses Korean copy")
@@ -81,7 +167,7 @@ func run() -> void:
 func _model(phase: StringName) -> Dictionary:
 	return {
 		"phase": phase,
-		"start_enabled": true,
+		"start_enabled": false,
 		"editing_enabled": phase == &"BUILD",
 		"primary_reason": &"DISCONNECTED",
 		"status_text": "Disconnected route",
@@ -91,6 +177,7 @@ func _model(phase: StringName) -> Dictionary:
 		"final_cost": 3200,
 		"time_remaining": 75.4,
 		"auto_load_active": true,
+		"manual_load_active": false,
 		"stack_tokens": [
 			{"cargo_type": &"RED_STAR", "top": false},
 			{"cargo_type": &"BLUE_DIAMOND", "top": true},
