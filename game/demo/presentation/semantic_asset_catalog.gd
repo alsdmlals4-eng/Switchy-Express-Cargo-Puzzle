@@ -79,13 +79,32 @@ func textures_for(record: Dictionary) -> Array[Texture2D]:
 
 	for input_path: Variant in inputs:
 		var resource_path := _resource_path(str(input_path))
-		if not ResourceLoader.exists(resource_path):
-			return []
-		var texture := load(resource_path) as Texture2D
+		var texture := _load_texture(resource_path)
 		if texture == null:
 			return []
 		result.append(texture)
 	return result
+
+
+func _load_texture(resource_path: String) -> Texture2D:
+	if ResourceLoader.exists(resource_path):
+		var resource := load(resource_path)
+		if resource is Texture2D:
+			return resource
+
+	# Clean headless runners can see tracked PNG source bytes before Godot has
+	# produced import metadata. Decode those bytes directly as a presentation
+	# fallback. Exported builds still prefer ResourceLoader remaps first.
+	if not FileAccess.file_exists(resource_path):
+		return null
+	var bytes := FileAccess.get_file_as_bytes(resource_path)
+	if bytes.is_empty():
+		return null
+	var image := Image.new()
+	var error := image.load_png_from_buffer(bytes)
+	if error != OK or image.is_empty():
+		return null
+	return ImageTexture.create_from_image(image)
 
 
 func _reset() -> void:
