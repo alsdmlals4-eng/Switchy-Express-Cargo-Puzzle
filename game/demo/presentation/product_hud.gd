@@ -16,12 +16,20 @@ signal edit_requested()
 signal title_requested()
 signal menu_requested()
 
+const SemanticAssetCatalogScript := preload("res://game/demo/presentation/semantic_asset_catalog.gd")
+const SemanticRuntimeStateScript := preload("res://game/demo/presentation/semantic_runtime_state.gd")
+
 @export var use_internal_overlays: bool = true
 
 var _model: Dictionary = {}
+var _catalog: Variant
+var _semantic_state: Dictionary = {}
 
 
 func _ready() -> void:
+	_catalog = SemanticAssetCatalogScript.new()
+	_catalog.load_default()
+
 	_connect_button("TopStatus/MenuButton", func() -> void: menu_requested.emit())
 	_connect_button("BuildToolbar/StraightButton", func() -> void: build_tool_selected.emit(&"STRAIGHT"))
 	_connect_button("BuildToolbar/CurveButton", func() -> void: build_tool_selected.emit(&"CURVE"))
@@ -101,9 +109,91 @@ func apply_model(model: Dictionary) -> void:
 		(get_node("ResultPanel/ResultLayout/RetryButton") as Button).visible = bool(_model.get("retry_visible", true))
 		(get_node("ResultPanel/ResultLayout/EditButton") as Button).visible = bool(_model.get("edit_visible", true))
 
+	_apply_semantic_model()
+
 
 func model_for_test() -> Dictionary:
 	return _model.duplicate(true)
+
+
+func semantic_state_for_test() -> Dictionary:
+	return _semantic_state.duplicate(true)
+
+
+func _apply_semantic_model() -> void:
+	var stack_state: StringName = SemanticRuntimeStateScript.stack_primary_state(_model)
+	var manual_state: StringName = SemanticRuntimeStateScript.manual_load_state(_model)
+	var auto_state: StringName = SemanticRuntimeStateScript.auto_load_state(_model)
+	var preflight_state: StringName = SemanticRuntimeStateScript.preflight_summary_state(_model)
+
+	var stack_record := _stack_record(stack_state)
+	var manual_record: Dictionary = _composition(&"load_mode", manual_state)
+	var auto_record: Dictionary = _composition(&"load_mode", auto_state)
+	var preflight_record: Dictionary = _composition(&"preflight_notice", preflight_state)
+
+	_set_semantic_badge("StackPanel/StackLayout/StackSemanticBadge", stack_record)
+	_set_semantic_badge("RunToolbar/ManualSemanticBadge", manual_record)
+	_set_semantic_badge("RunToolbar/AutoSemanticBadge", auto_record)
+	_set_semantic_badge("ProblemBanner/ProblemSemanticBadge", preflight_record)
+
+	_semantic_state = {
+		"stack_state": stack_state,
+		"stack_paths": _input_paths(stack_record),
+		"manual_state": manual_state,
+		"manual_paths": _input_paths(manual_record),
+		"auto_state": auto_state,
+		"auto_paths": _input_paths(auto_record),
+		"preflight_state": preflight_state,
+		"preflight_paths": _input_paths(preflight_record),
+	}
+
+
+func _stack_record(state: StringName) -> Dictionary:
+	match state:
+		&"empty":
+			return _base_slice_record(&"run_stack_empty_v01")
+		&"32plus":
+			return _base_slice_record(&"run_stack_32plus_v01")
+		&"unloading":
+			return _base_slice_record(&"run_stack_unloading_v01")
+		_:
+			return _composition(&"stack_hud", state)
+
+
+func _base_slice_record(slice_name: StringName) -> Dictionary:
+	if _catalog == null or not _catalog.is_ready():
+		return {}
+	var asset: Dictionary = _catalog.base_asset_by_authoritative_slice(slice_name)
+	var path := str(asset.get("path", ""))
+	if path == "":
+		return {}
+	return {"inputs": [path]}
+
+
+func _composition(component: StringName, state: StringName) -> Dictionary:
+	if _catalog == null or not _catalog.is_ready() or state == &"":
+		return {}
+	return _catalog.composition(component, state)
+
+
+func _set_semantic_badge(path: NodePath, record: Dictionary) -> void:
+	var badge: Variant = get_node_or_null(path)
+	if badge == null or not badge.has_method("set_textures"):
+		return
+	var textures: Array[Texture2D] = []
+	if _catalog != null and _catalog.is_ready():
+		textures = _catalog.textures_for(record)
+	badge.set_textures(textures)
+
+
+static func _input_paths(record: Dictionary) -> Array[String]:
+	var result: Array[String] = []
+	var inputs: Variant = record.get("inputs", [])
+	if not inputs is Array:
+		return result
+	for path: Variant in inputs:
+		result.append(str(path))
+	return result
 
 
 static func _phase_text(phase: StringName) -> String:
