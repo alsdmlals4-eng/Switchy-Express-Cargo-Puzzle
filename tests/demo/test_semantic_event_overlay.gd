@@ -25,8 +25,8 @@ func run() -> void:
 		"diagnostic route-selection manifest record must keep approved input"
 	)
 	assert_true(
-		ResourceLoader.exists("res://art/product_assets/ed_hybrid_v1/run/run_switch_state_selected_overlay_v01.png"),
-		"diagnostic approved RUN PNG must be visible to ResourceLoader"
+		FileAccess.file_exists("res://art/product_assets/ed_hybrid_v1/run/run_switch_state_selected_overlay_v01.png"),
+		"diagnostic approved RUN PNG source bytes must exist on clean runner"
 	)
 	assert_true(
 		not catalog.textures_for(route_record).is_empty(),
@@ -35,8 +35,8 @@ func run() -> void:
 	var pickup_record: Dictionary = catalog.vfx_composition(&"cargo_pickup", false)
 	assert_false(pickup_record.is_empty(), "diagnostic pickup VFX manifest lookup must succeed")
 	assert_true(
-		ResourceLoader.exists("res://art/product_assets/ed_hybrid_v1/vfx/vfx_cargo_pickup_feedback_v01.png"),
-		"diagnostic approved VFX PNG must be visible to ResourceLoader"
+		FileAccess.file_exists("res://art/product_assets/ed_hybrid_v1/vfx/vfx_cargo_pickup_feedback_v01.png"),
+		"diagnostic approved VFX PNG source bytes must exist on clean runner"
 	)
 	assert_true(
 		not catalog.textures_for(pickup_record).is_empty(),
