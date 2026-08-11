@@ -1,8 +1,10 @@
 # SX-DEC-058 · Fixed-Seed Challenge Quality Policy
 
-Status: `USER_APPROVED · PLANNING_CANON · IMPLEMENTATION_NOT_AUTHORIZED_UNTIL_DELTA_DOR`
+Status: `USER_APPROVED · PLANNING_CANON · DELTA_DOR_REVIEWED · IMPLEMENTATION_NOT_AUTHORIZED`
 
 Approved: `2026-08-11 KST`
+
+Delta DoR review: `SX-AUD-053`
 
 Source benchmark: `SX-BMK-001 · BMK-R08`
 
@@ -12,93 +14,305 @@ Existing challenge authority: `SX-DEC-035/036`
 
 ## Decision
 
-기존 `Daily 1개 / Weekly 1개 · fixed-seed procedural · same-period same map/ruleset · unlimited retry · archive practice` 계약을 유지하면서, 공개되는 seed가 수리 가능하고 읽기 쉬운 문제인지 확인하는 publication-quality gate를 추가하는 방향을 승인한다.
+기존 `Daily 1개 / Weekly 1개 · fixed-seed procedural · same-period same map/ruleset · unlimited retry · archive practice` 계약을 유지하면서, 공개 seed가 재현 가능하고 최소 하나의 **합법적 성공 witness**를 가지며 route/LIFO 선택이 퇴화하지 않았다는 publication gate를 통과해야 한다.
 
-이 Decision은 procedural을 authored map으로 바꾸지 않으며, launch 시 challenge-exclusive gameplay modifier나 power를 추가하지 않는다.
+이 Decision은 procedural을 authored map으로 바꾸지 않고, launch 시 challenge-exclusive gameplay modifier/power/hidden score를 추가하지 않는다.
 
 ## 1. Existing contract preserved
 
-다음은 그대로 유지한다.
-
 - Campaign은 handcrafted authored map.
-- Daily는 기간당 1개 fixed-seed procedural map.
-- Weekly는 기간당 1개 fixed-seed procedural map.
-- 같은 기간 모든 플레이어가 같은 seed와 ruleset을 사용한다.
-- unlimited retry를 허용한다.
-- 기간 종료 후 archive practice를 허용한다.
-- 보상은 cosmetic-only 원칙을 유지한다.
+- Daily는 기간당 1개 fixed-seed procedural challenge.
+- Weekly는 기간당 1개 fixed-seed procedural challenge.
+- 동일 기간의 모든 플레이어는 같은 published identity/map/ruleset을 사용.
+- unlimited retry.
+- 기간 종료 후 archive practice.
+- cosmetic-only reward 원칙.
+- base rules only at initial launch.
 
-## 2. Publication gate
+## 2. Challenge identity · exact contract
 
-Daily/Weekly 후보 seed는 공개 전에 다음 검증을 통과해야 한다.
+```text
+ChallengeIdentity
+- challenge_schema_version
+- cadence: DAILY | WEEKLY
+- period_key
+- seed_u64
+- generator_version
+- ruleset_version
+- content_profile_version
+- map_definition_sha256
+- publication_revision
+```
 
-### 2.1 Structural validity
+Canonical period:
 
-- 시작 상태가 유효하다.
-- 필수 cargo/station이 MapDefinition 규칙을 만족한다.
-- preflight 관점에서 필수 지점이 구조적으로 고립되지 않는다.
-- 필수 구간 진입 후 영구 trap이 되도록 생성되지 않는다.
-- seed와 ruleset identity가 동일 입력에서 결정론적으로 재생산된다.
+- DAILY `period_key`: UTC calendar date `YYYY-MM-DD`.
+- WEEKLY `period_key`: ISO week `YYYY-Www`, Monday 00:00 UTC boundary.
+- client local timezone does not create a different challenge identity.
 
-### 2.2 Solvability
+The seed is an explicit published value, not required to be derivable from the period. Same full identity must reproduce a semantically identical MapDefinition and identical map SHA.
 
-공개 seed는 최소 1개의 합법적 성공 해가 존재한다는 자동 증거가 있어야 한다.
+`publication_revision` begins at 1. A published identity is immutable. Emergency withdrawal may mark it unavailable but cannot overwrite map/seed/ruleset bytes under the same identity.
 
-- 검증은 runtime player hint가 아니라 content-publication pipeline의 offline authority다.
-- solver/witness route는 사용자에게 노출하지 않는다.
-- solver/witness는 leaderboard나 PB 비교 기준으로 사용하지 않는다.
-- 성공 해가 증명되지 않은 seed는 공개하지 않는다.
+## 3. Deterministic random source
 
-정확한 solver 구현 방식과 성능 예산은 별도 delta DoR에서 결정한다. 제품 규칙은 `solvability proof required before publication`으로 고정한다.
+Generator randomness uses a versioned counter-based deterministic stream, not engine-global RNG state.
 
-### 2.3 Quality screening
+Initial algorithm contract:
 
-구조적으로 풀 수 있다는 사실만으로 좋은 challenge라고 간주하지 않는다.
+`SHA256_COUNTER_V1`
 
-초기 quality screening은 다음 3축 메타데이터를 사용한다.
+Concept:
+
+```text
+block = SHA256("switchy-challenge|v1|" + seed_u64 + "|" + stream_id + "|" + counter)
+```
+
+- independent named streams for topology, placements, cargo types and layout variants;
+- integer selection uses rejection sampling instead of modulo bias when range does not divide source domain;
+- no dependency on frame time, locale, device clock, hash-table iteration order or global RandomNumberGenerator state;
+- generator version change creates a different identity namespace.
+
+Exact byte interpretation/endian rules belong in the implementation spec/tests and must be stable cross-platform.
+
+## 4. Publication pipeline
+
+```text
+CANDIDATE
+→ deterministic generate MapDefinition + private WitnessPlan + structural alternatives
+→ STRUCTURAL_VALID
+→ legal witness replay
+→ SOLVABLE_PROVED
+→ quality metric extraction
+→ QUALITY_SCREENED
+→ publication manifest/hash freeze
+→ PUBLISHED
+→ ARCHIVED
+```
+
+Any failure rejects the candidate before publication.
+
+## 5. Solvability proof algorithm
+
+Initial proof strategy is fixed to:
+
+`CONSTRUCTIVE_WITNESS_REPLAY_V1`
+
+The generator constructs both:
+
+1. the player-facing MapDefinition candidate;
+2. one private legal WitnessPlan that contains a TrackLayout and legal input/action schedule sufficient to finish that map under the same ruleset.
+
+The verifier does **not** trust a boolean `solvable` flag. It replays the WitnessPlan through current finite domain authority/headless simulation.
+
+Witness may include only legal player actions/state choices:
+
+- TrackLayout pieces permitted by current build rules;
+- initial route-control states;
+- manual/auto load-mode changes and legal pickup decisions;
+- accepted route-control changes at legal times;
+- ordinary run advancement.
+
+Witness may not:
+
+- write stack contents;
+- teleport train;
+- delete cargo;
+- force station unload;
+- bypass time limit;
+- set score/success directly;
+- mutate locked route controls;
+- use a gameplay rule not in the challenge ruleset.
+
+Proof PASS requires current finite success outcome before the current time limit with all required cargo delivered.
+
+No optimality proof is required. Witness proves existence only.
+
+## 6. Deterministic proof budgets
+
+Use deterministic operation limits as the normative budget; wall-clock time is diagnostic only.
+
+Initial bounds:
+
+```text
+generator placement/backtrack attempts per candidate: <= 64
+structural layout alternatives emitted for screening: 2..32
+witness entered-cell/event steps: <= 4096
+witness accepted route-control changes: <= 128
+witness load-mode/input state changes: <= 256
+candidate regeneration attempts after reject for one period selection: <= 256
+```
+
+Exceeding a bound rejects the candidate; it does not publish an unproved seed.
+
+CI/tooling may add a wall-clock safety timeout, but timeout cannot be interpreted as proof of unsolvability. It is `PROOF_INDETERMINATE/REJECT` for publication.
+
+## 7. Structural validity
+
+Before witness replay:
+
+- MapDefinition schema/identity valid;
+- start/incoming/buildable/blocked/placement contract valid;
+- required cargo/station count nonzero;
+- cargo/station types valid and redundant identity-compatible;
+- generator-produced witness TrackLayout passes current build/preflight structural checks;
+- no required segment enters a permanent structural trap in the witness route;
+- at least 2 structurally distinct layout alternatives are emitted by the bounded candidate generator for quality screening.
+
+The last condition prevents the initial public challenge set from degenerating into a single obvious corridor, but does not claim all alternatives are successful or equally good.
+
+## 8. Quality metrics and reject policy
+
+Use the same 0..3 authoring axes as SX-DEC-057 for coherence:
 
 - Topology Complexity
 - Stack Entropy
 - Execution Branching
 
-Daily는 짧은 재도전을 지원하는 범위를 우선하고, Weekly는 더 높은 조합 난이도를 허용한다. 정확한 수치 threshold는 실제 generated-set calibration과 사람 검증 전까지 `TEST_VALUE`로 유지한다.
+Additional publication metrics:
 
-## 3. Launch rule
+```text
+cargo_type_count
+witness_max_stack_depth
+structural_layout_alternative_count
+witness_decision_classes[]
+witness_route_control_change_count
+witness_manual_skip_or_mode_change_count
+witness_revisit_count
+map_hash_duplicate_flag
+```
 
-초기 launch의 Daily/Weekly는 base rules만 사용한다.
+Decision classes:
 
-금지:
+```text
+BUILD_ROUTE_CHOICE
+LOAD_SKIP_OR_MODE
+ROUTE_CONTROL_CHANGE
+REVISIT_LIFO
+```
 
-- challenge-exclusive gameplay power
-- challenge에서만 쓰는 cargo rule
-- challenge에서만 쓰는 switch behavior
-- challenge에서만 쓰는 capacity/fuel/BOOST 계열 규칙
-- main rules와 다른 hidden scoring authority
+### Hard rejects for both Daily and Weekly
 
-향후 modifier를 도입하려면 별도 user approval + Decision이 필요하다.
+- cargo type count < 2;
+- witness max stack depth < 2;
+- structural layout alternative count < 2;
+- solvability witness fails/indeterminate;
+- duplicate published map hash in the active version pool;
+- any exclusive/unapproved gameplay rule;
+- any witness/runtime isolation violation.
 
-## 4. Identity and fairness
+### Daily profile V1
 
-- challenge identity는 `period + seed + ruleset version + map/content version`으로 재현 가능해야 한다.
-- 기간 중 ruleset/content가 바뀌면 같은 challenge identity로 덮어쓰지 않는다.
-- archive practice는 원래 challenge identity를 보존한다.
-- cosmetic reward가 있더라도 gameplay power를 부여하지 않는다.
+- exactly one primary difficulty axis at level 2;
+- other axes each 0..1;
+- at least 1 witness decision class;
+- execution branching may be 0 when BUILD/stack provides the primary planning burden;
+- avoid all-three-axis combined pressure.
 
-## 5. Validation contract
+### Weekly profile V1
 
-구현 승인 전 delta DoR에서 최소 다음을 닫아야 한다.
+- at least two difficulty axes at level 2 or higher;
+- no requirement for all three axes to be 3;
+- at least 2 distinct witness decision classes;
+- expected stack depth/route revisit may be higher than Daily but stays within base rules.
 
-1. deterministic seed reproduction.
-2. structural validity/preflight validation.
-3. offline solvability proof가 최소 한 해를 찾지 못하면 publication reject.
-4. solver/witness가 runtime/UI/result/leaderboard에 노출되지 않는 경계.
-5. same-period same seed/ruleset identity 보존.
-6. archive practice에서 원 challenge identity 재현.
-7. Daily/Weekly quality screening의 TEST_VALUE calibration 계획.
+Quality metrics are publication filters, not player score or ranking metrics.
 
-## 6. Authority boundary
+## 9. Generated-corpus calibration gate
 
-- `SX-DEC-035/036`의 fixed-seed/cosmetic-only 권위는 유지된다.
-- `SX-DEC-058`은 publication-quality gate를 추가하는 refinement Decision이다.
-- `SX-DEC-055`의 현재 Phase B BUILD authority는 이 Decision으로 확대되지 않는다.
-- 실제 generator/solver/challenge pipeline 구현 전 별도 delta DoR / final planning review가 필요하다.
+Before generator version V1 is considered release-ready, run a deterministic calibration corpus:
+
+```text
+Daily profile candidates: 1000 seeds minimum
+Weekly profile candidates: 1000 seeds minimum
+```
+
+Automated release-readiness gates:
+
+- 100% second-run regeneration hash match for every corpus seed;
+- 0 candidate may be accepted without structural PASS + witness replay PASS;
+- at least 100 accepted candidates per cadence/profile from the 1000-seed corpus;
+- 0 duplicate map SHA among the first 100 accepted candidates of each cadence;
+- no single quality signature `(T,S,E,cargo_count,route_control_count bucket)` may exceed 20% of the first 100 accepted candidates;
+- every accepted candidate satisfies its Daily/Weekly profile thresholds;
+- witness operation-budget overrun candidates are rejected, never silently accepted.
+
+The `100 accepted / 1000` and `20%` values are initial V1 quality-engineering thresholds. Changing them after empirical generator validation is a policy/config revision and must be recorded with generator/content-profile versioning; it does not silently mutate a published challenge identity.
+
+## 10. Publication manifest / runtime boundary
+
+Runtime receives only a published manifest and player-facing MapDefinition.
+
+Published manifest may contain:
+
+```text
+ChallengeIdentity
+map path/hash
+cadence/period display metadata
+archive eligibility
+```
+
+Runtime must not receive:
+
+- WitnessPlan;
+- alternate candidate layouts;
+- generator rejection notes;
+- internal quality signatures;
+- developer optimum;
+- solver/search artifacts.
+
+Initial architecture places generator/verifier/witness tooling outside normal runtime data/export paths. Export/package validation must provide **negative proof** that witness artifacts/tool outputs are absent from Windows/Android game packages.
+
+## 11. Publication state machine
+
+```text
+CANDIDATE
+→ STRUCTURAL_VALID
+→ SOLVABLE_PROVED
+→ QUALITY_SCREENED
+→ PUBLISHED
+→ ARCHIVED
+
+PUBLISHED → WITHDRAWN  # emergency availability state only; map identity bytes immutable
+```
+
+No in-place mutation of a PUBLISHED identity. A withdrawn period is allowed to have no active challenge rather than silently replace the same identity with different bytes.
+
+## 12. Archive/fairness
+
+- archive stores/references the original ChallengeIdentity.
+- archive practice loads the same MapDefinition hash and ruleset identity.
+- practice result is not allowed to rewrite historical published identity.
+- client clock/local timezone cannot select a different challenge for the same UTC period key.
+- reward remains cosmetic-only.
+
+## 13. Implementation dependency status
+
+Current main search identifies no current generator/solver/challenge publication runtime owner. Therefore this delta DoR closes the algorithm/data/pipeline design but grants no implementation authority.
+
+Also, because current finite runtime still lacks some approved late gameplay features (for example Stage 8 fast/cheap track attributes), challenge V1 generation profile must use only gameplay mechanics with authoritative runtime representation at the time of implementation. `base rules only` means **implemented current base rules**, not planned-but-missing fields.
+
+## 14. Validation contract
+
+Implementation must prove:
+
+1. same full ChallengeIdentity → identical MapDefinition hash across independent runs;
+2. different generator version namespace cannot masquerade as same identity;
+3. structural-invalid candidate never reaches PUBLISHED;
+4. witness replay performs only legal current actions and reaches real SUCCESS;
+5. witness timeout/budget overrun rejects publication;
+6. quality rejects single-corridor/single-type/trivial candidates per V1 thresholds;
+7. published identity immutable;
+8. archive reproduces map hash/ruleset;
+9. witness/tool/rejection artifacts absent from runtime export/package;
+10. Daily/Weekly each expose at most one selected PUBLISHED identity for a period;
+11. no challenge-exclusive hidden scoring/power/modifier.
+
+## 15. Authority boundary
+
+- `SX-DEC-035/036` fixed-seed/cosmetic-only authority remains.
+- `SX-DEC-058` owns publication-quality and deterministic identity refinement only.
+- no backend/service architecture is authorized here; runtime may consume a packaged or future connected publication manifest, but delivery transport is separate.
+- no generic optimal solver, player hint solver or leaderboard witness authority.
+- no Phase B Build Authority inheritance; SX-DEC-055 remains the only implementation-authorized package.
+- actual generator/verifier/publisher/runtime-consumer implementation requires explicit separate authority.
