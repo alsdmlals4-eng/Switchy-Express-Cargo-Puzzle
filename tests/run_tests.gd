@@ -61,6 +61,7 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/demo/test_semantic_asset_catalog.gd"),
 	preload("res://tests/demo/test_semantic_runtime_state.gd"),
 	preload("res://tests/demo/test_semantic_event_overlay.gd"),
+	preload("res://tests/demo/test_runtime_semantic_poc.gd"),
 	preload("res://tests/demo/test_product_finite_slice_commands.gd"),
 	preload("res://tests/demo/test_recommended_layout_ui.gd"),
 	preload("res://tests/demo/test_route_control_runtime_ui.gd"),
