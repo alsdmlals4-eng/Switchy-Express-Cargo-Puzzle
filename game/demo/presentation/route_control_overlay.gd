@@ -2,11 +2,20 @@ class_name RouteControlOverlay
 extends Control
 
 const Palette := preload("res://game/demo/presentation/demo_palette.gd")
+const SemanticAssetCatalogScript := preload("res://game/demo/presentation/semantic_asset_catalog.gd")
+const SemanticRuntimeStateScript := preload("res://game/demo/presentation/semantic_runtime_state.gd")
 const NO_CELL := Vector2i(-1, -1)
 const MIN_DIRECTION_TARGET := 44.0
 
 var _snapshot: Dictionary = {}
 var _route_selection_requests: Array[Dictionary] = []
+var _catalog: Variant
+
+
+func _init() -> void:
+	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	_catalog = SemanticAssetCatalogScript.new()
+	_catalog.load_default()
 
 
 func _ready() -> void:
@@ -27,6 +36,18 @@ func snapshot_for_test() -> Dictionary:
 
 func direction_targets_for_test() -> Array[Dictionary]:
 	return _direction_targets()
+
+
+func semantic_target_descriptors_for_test() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	for target: Dictionary in _direction_targets():
+		var semantic := target.duplicate(true)
+		var state: StringName = SemanticRuntimeStateScript.route_target_state(target)
+		var record: Dictionary = _semantic_record(state)
+		semantic["semantic_state"] = state
+		semantic["input_paths"] = _input_paths(record)
+		result.append(semantic)
+	return result
 
 
 func consume_route_selection_requests() -> Array[Dictionary]:
@@ -118,6 +139,7 @@ func _draw_switch(
 				2.0,
 				true
 			)
+		_draw_semantic_target(target)
 	draw_circle(center, 5.0, Palette.TRAIN_ACCENT if locked else Palette.BOARD_EDGE)
 
 
@@ -217,6 +239,36 @@ func _direction_targets_for_switch(
 				Vector2(target_size, target_size)
 			),
 		})
+	return result
+
+
+func _draw_semantic_target(target: Dictionary) -> void:
+	var state: StringName = SemanticRuntimeStateScript.route_target_state(target)
+	var record: Dictionary = _semantic_record(state)
+	if record.is_empty() or _catalog == null or not _catalog.is_ready():
+		return
+	var hit_rect: Rect2 = target.get("hit_rect", Rect2())
+	if hit_rect.size == Vector2.ZERO:
+		return
+	var textures: Array[Texture2D] = _catalog.textures_for(record)
+	for texture: Texture2D in textures:
+		if texture != null:
+			draw_texture_rect(texture, hit_rect, false)
+
+
+func _semantic_record(state: StringName) -> Dictionary:
+	if _catalog == null or not _catalog.is_ready() or state == &"":
+		return {}
+	return _catalog.composition(&"switch_direction", state)
+
+
+static func _input_paths(record: Dictionary) -> Array[String]:
+	var result: Array[String] = []
+	var inputs: Variant = record.get("inputs", [])
+	if not inputs is Array:
+		return result
+	for path: Variant in inputs:
+		result.append(str(path))
 	return result
 
 

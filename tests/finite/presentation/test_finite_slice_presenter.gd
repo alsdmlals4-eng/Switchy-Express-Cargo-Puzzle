@@ -83,6 +83,8 @@ func run() -> void:
 	assert_false(initial["start_enabled"], "initial empty build must not start")
 	assert_true(initial["editing_enabled"], "initial build must permit editing")
 	assert_equal(initial["stack_tokens"], [], "initial stack view must be empty")
+	assert_true(initial.has("manual_load_active"), "presenter model must always expose manual load truth")
+	assert_false(initial["manual_load_active"], "initial BUILD manual load must be false")
 
 	var fail_cells: Array[Vector2i] = [Vector2i(2, 3)]
 	var failed_preflight := FakePreflight.new(
@@ -100,6 +102,7 @@ func run() -> void:
 	assert_equal(failed_build["problem_cells"], fail_cells, "failed preflight must highlight problem cells")
 	assert_equal(failed_build["current_cost"], 1200, "build HUD must show current construction cost")
 	assert_equal(failed_build["recommended_cost"], 4500, "build HUD must show recommended estimate")
+	assert_false(failed_build["manual_load_active"], "BUILD must keep manual load false")
 
 	var pass_cells: Array[Vector2i] = []
 	var passed_preflight := FakePreflight.new(true, &"PASS", "route ready", pass_cells)
@@ -109,7 +112,7 @@ func run() -> void:
 	assert_equal(passed_build["primary_reason"], &"PASS", "passed preflight must show PASS")
 
 	var load_order: Array[StringName] = [A, B, A, A]
-	presenter.show_run(FakeRunState.new(&"RUNNING", 12.5, 90.0), load_order, true, 4300)
+	presenter.show_run(FakeRunState.new(&"RUNNING", 12.5, 90.0), load_order, true, 4300, true)
 	var running: Dictionary = presenter.model()
 	assert_equal(running["phase"], &"RUNNING", "running snapshot must enter RUNNING")
 	assert_false(running["editing_enabled"], "RUNNING must disable build editing")
@@ -117,27 +120,30 @@ func run() -> void:
 	assert_true(running["load_enabled"], "RUNNING must enable load hold")
 	assert_true(running["auto_enabled"], "RUNNING must enable auto toggle")
 	assert_true(running["auto_load_active"], "RUNNING must show auto-load state")
+	assert_true(running["manual_load_active"], "RUNNING must project actual manual-load hold independently")
 	assert_equal(running["stack_tokens"].size(), 4, "RUNNING must show every stack token")
 	assert_equal(running["stack_tokens"][3]["top"], true, "latest cargo must be labeled TOP")
 	assert_equal(running["stack_tokens"][0]["top"], false, "bottom cargo must not be labeled TOP")
 
-	presenter.show_run(FakeRunState.new(&"PAUSED", 12.5, 90.0), load_order, true, 4300)
+	presenter.show_run(FakeRunState.new(&"PAUSED", 12.5, 90.0), load_order, true, 4300, false)
 	var paused: Dictionary = presenter.model()
 	assert_false(paused["switch_enabled"], "PAUSED must disable switch input")
 	assert_false(paused["load_enabled"], "PAUSED must disable load hold")
 	assert_false(paused["auto_enabled"], "PAUSED must disable auto toggle")
+	assert_false(paused["manual_load_active"], "PAUSED must project cleared manual hold")
 	assert_true(paused["resume_visible"], "PAUSED must expose Resume")
 
 	var unload_items: Array[StringName] = [A, A]
 	var one_emission: Array[StringName] = [A]
 	presenter.begin_unload_visual(load_order, unload_items)
-	presenter.show_run(FakeRunState.new(&"UNLOADING", 13.0, 90.0), load_order, true, 4300)
+	presenter.show_run(FakeRunState.new(&"UNLOADING", 13.0, 90.0), load_order, true, 4300, true)
 	var unloading: Dictionary = presenter.model()
 	assert_equal(unloading["phase"], &"UNLOADING", "matching station must show UNLOADING")
 	assert_equal(unloading["stack_tokens"].size(), 4, "unload visual must begin from pre-commit stack")
 	assert_true(unloading["switch_enabled"], "UNLOADING must permit branch preconfiguration")
 	assert_true(unloading["load_enabled"], "UNLOADING must preserve held-load preparation")
 	assert_true(unloading["auto_enabled"], "UNLOADING must permit auto-load changes")
+	assert_true(unloading["manual_load_active"], "UNLOADING may preserve actual held-load preparation")
 	presenter.apply_unload_emissions(one_emission)
 	assert_equal(presenter.model()["stack_tokens"].size(), 3, "first emission must remove one visible TOP token")
 	assert_equal(presenter.model()["stack_tokens"][2]["top"], true, "new visual TOP must update after one emission")
@@ -153,6 +159,7 @@ func run() -> void:
 	assert_true(failure["retry_visible"], "FAILURE must show Retry Same Layout")
 	assert_true(failure["edit_visible"], "FAILURE must show Edit Layout")
 	assert_false(failure["completion_visible"], "FAILURE must not show completion success")
+	assert_false(failure["manual_load_active"], "result must clear manual-load presentation truth")
 
 	presenter.show_result(FakeSummary.new(&"FAILURE", 18.0, -1.0, 90.0, &"ROUTE_END"), 4300)
 	var route_end: Dictionary = presenter.model()
@@ -167,6 +174,7 @@ func run() -> void:
 	assert_almost_equal(success["completion_time"], 42.25, 0.000001, "SUCCESS must show presentation completion time")
 	assert_almost_equal(success["commit_time"], 42.13, 0.000001, "SUCCESS must show final domain commit time")
 	assert_equal(success["final_cost"], 4300, "SUCCESS must show final build cost")
+	assert_false(success["manual_load_active"], "success result must keep manual-load false")
 
 	var red_descriptor: Dictionary = presenter.cargo_descriptor(A)
 	var blue_descriptor: Dictionary = presenter.cargo_descriptor(B)

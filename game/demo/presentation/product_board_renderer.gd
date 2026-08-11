@@ -6,15 +6,21 @@ signal cell_secondary_requested(cell: Vector2i)
 signal hover_changed(cell: Vector2i)
 
 const Palette := preload("res://game/demo/presentation/demo_palette.gd")
+const SemanticAssetCatalogScript := preload("res://game/demo/presentation/semantic_asset_catalog.gd")
+const SemanticRuntimeStateScript := preload("res://game/demo/presentation/semantic_runtime_state.gd")
 const NO_CELL := Vector2i(-1, -1)
 
 var _snapshot: Dictionary = {}
 var _hover_cell: Vector2i = NO_CELL
+var _catalog: Variant
 
 
 func _init() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	focus_mode = Control.FOCUS_NONE
+	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	_catalog = SemanticAssetCatalogScript.new()
+	_catalog.load_default()
 
 
 func apply_snapshot(snapshot: Dictionary) -> void:
@@ -28,6 +34,10 @@ func snapshot_for_test() -> Dictionary:
 
 func ghost_descriptor_for_test() -> Dictionary:
 	return _ghost_descriptor()
+
+
+func semantic_build_descriptor_for_test() -> Dictionary:
+	return _semantic_build_descriptor()
 
 
 static func track_ports_for_test(geometry: StringName, rotation: int) -> Array[Vector2i]:
@@ -301,10 +311,13 @@ func _draw_state_overlays(rect: Rect2, board_size: Vector2i) -> void:
 		var selected_rect := _cell_rect(selected, rect, board_size).grow(-3.0)
 		draw_rect(selected_rect, _alpha(Palette.SELECTED, 0.28), true)
 		draw_rect(selected_rect, Palette.SELECTED, false, 4.0)
+	var focus_record := _preflight_focus_record()
 	for value: Variant in _snapshot.get("problem_cells", []):
 		var problem: Vector2i = snapshot_cell(value)
 		if problem != NO_CELL:
-			draw_rect(_cell_rect(problem, rect, board_size).grow(-2.0), Palette.PROBLEM, false, 5.0)
+			var problem_rect := _cell_rect(problem, rect, board_size).grow(-2.0)
+			draw_rect(problem_rect, Palette.PROBLEM, false, 5.0)
+			_draw_semantic_record(focus_record, problem_rect.grow(-3.0))
 
 
 func _draw_ghost(rect: Rect2, board_size: Vector2i) -> void:
@@ -314,7 +327,8 @@ func _draw_ghost(rect: Rect2, board_size: Vector2i) -> void:
 	var valid := bool(descriptor.get("valid", false))
 	var color: Color = Palette.GHOST_VALID if valid else Palette.GHOST_INVALID
 	var cell: Vector2i = descriptor["cell"]
-	draw_rect(_cell_rect(cell, rect, board_size).grow(-5.0), _alpha(color, 0.16), true)
+	var cell_rect := _cell_rect(cell, rect, board_size).grow(-5.0)
+	draw_rect(cell_rect, _alpha(color, 0.16), true)
 	_draw_track_piece(
 		cell,
 		StringName(descriptor["geometry"]),
@@ -324,6 +338,7 @@ func _draw_ghost(rect: Rect2, board_size: Vector2i) -> void:
 		_alpha(color, 0.58),
 		color
 	)
+	_draw_semantic_record(_placement_record(), cell_rect)
 
 
 func _draw_train(rect: Rect2, board_size: Vector2i) -> void:
@@ -354,6 +369,61 @@ func _ghost_descriptor() -> Dictionary:
 		"rotation_quarters": int(_snapshot.get("selected_rotation_quarters", 0)),
 		"valid": (buildable.is_empty() or buildable.has(_hover_cell)) and not blocked.has(_hover_cell),
 	}
+
+
+func _semantic_build_descriptor() -> Dictionary:
+	var placement_state: StringName = SemanticRuntimeStateScript.placement_state(
+		_ghost_descriptor(),
+		_snapshot
+	)
+	var placement_record: Dictionary = {}
+	if placement_state != &"" and _catalog != null and _catalog.is_ready():
+		placement_record = _catalog.composition(&"placement_preview", placement_state)
+	var focus_state: StringName = SemanticRuntimeStateScript.preflight_focus_state(_snapshot)
+	var focus_record := _preflight_focus_record()
+	return {
+		"placement_state": placement_state,
+		"placement_paths": _input_paths(placement_record),
+		"preflight_focus_state": focus_state,
+		"preflight_focus_paths": _input_paths(focus_record),
+	}
+
+
+func _placement_record() -> Dictionary:
+	if _catalog == null or not _catalog.is_ready():
+		return {}
+	var state: StringName = SemanticRuntimeStateScript.placement_state(_ghost_descriptor(), _snapshot)
+	if state == &"":
+		return {}
+	return _catalog.composition(&"placement_preview", state)
+
+
+func _preflight_focus_record() -> Dictionary:
+	if _catalog == null or not _catalog.is_ready():
+		return {}
+	var state: StringName = SemanticRuntimeStateScript.preflight_focus_state(_snapshot)
+	if state == &"":
+		return {}
+	return _catalog.composition(&"preflight_notice", state)
+
+
+func _draw_semantic_record(record: Dictionary, target: Rect2) -> void:
+	if record.is_empty() or _catalog == null or not _catalog.is_ready():
+		return
+	var textures: Array[Texture2D] = _catalog.textures_for(record)
+	for texture: Texture2D in textures:
+		if texture != null:
+			draw_texture_rect(texture, target, false)
+
+
+static func _input_paths(record: Dictionary) -> Array[String]:
+	var result: Array[String] = []
+	var inputs: Variant = record.get("inputs", [])
+	if not inputs is Array:
+		return result
+	for path: Variant in inputs:
+		result.append(str(path))
+	return result
 
 
 func _set_hover(cell: Vector2i) -> void:

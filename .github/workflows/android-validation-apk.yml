@@ -150,6 +150,23 @@ jobs:
             "${APK_PATH}" 2>&1 | tee android-validation-export.log
           test -s builds/switchy-express-validation.apk
 
+      - name: Prove Android preset runtime JSON payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          "./${GODOT_BINARY}" \
+            --headless \
+            --path . \
+            --export-pack "Android Validation" \
+            builds/android-validation-runtime-json-proof.pck
+          test -s builds/android-validation-runtime-json-proof.pck
+          "./${GODOT_BINARY}" \
+            --headless \
+            --main-pack builds/android-validation-runtime-json-proof.pck \
+            --script res://tools/validation/verify_exported_runtime_json.gd \
+            2>&1 | tee builds/android-validation-runtime-json-proof.log
+          grep -F 'RUNTIME_JSON_PACK_PROOF: PASS' builds/android-validation-runtime-json-proof.log
+
       - name: Derive artifact metadata
         id: meta
         shell: bash
@@ -163,8 +180,12 @@ jobs:
           set -euo pipefail
           sha256sum builds/switchy-express-validation.apk \
             | tee builds/switchy-express-validation.apk.sha256
+          sha256sum builds/android-validation-runtime-json-proof.pck \
+            | tee builds/android-validation-runtime-json-proof.pck.sha256
           apk_sha="$(cut -d ' ' -f 1 builds/switchy-express-validation.apk.sha256)"
+          proof_sha="$(cut -d ' ' -f 1 builds/android-validation-runtime-json-proof.pck.sha256)"
           export APK_SHA="${apk_sha}"
+          export PROOF_SHA="${proof_sha}"
           python - <<'PY'
           import json
           import os
@@ -173,10 +194,13 @@ jobs:
 
           source_commit = os.environ["GITHUB_SHA"]
           apk_sha = os.environ["APK_SHA"]
+          proof_sha = os.environ["PROOF_SHA"]
           if re.fullmatch(r"[0-9a-f]{40}", source_commit) is None:
               raise SystemExit("invalid source commit")
           if re.fullmatch(r"[0-9a-f]{64}", apk_sha) is None:
               raise SystemExit("invalid APK SHA-256")
+          if re.fullmatch(r"[0-9a-f]{64}", proof_sha) is None:
+              raise SystemExit("invalid proof-pack SHA-256")
 
           manifest = {
               "schema_version": 1,
@@ -192,6 +216,9 @@ jobs:
               "package_id": "com.alsdmlals4.switchyexpress.validation",
               "apk_filename": "switchy-express-validation.apk",
               "apk_sha256": apk_sha,
+              "runtime_json_proof_pack": "android-validation-runtime-json-proof.pck",
+              "runtime_json_proof_pack_sha256": proof_sha,
+              "runtime_json_pack_proof": "PASS",
               "validation_modes": ["PROOF", "STACK_8", "STACK_16", "STACK_32"],
               "production_main": "res://game/main/main.tscn",
           }
@@ -207,6 +234,8 @@ jobs:
                   f"workflow_run_id={manifest['workflow_run_id']}",
                   f"workflow_run_attempt={manifest['workflow_run_attempt']}",
                   f"apk_sha256={apk_sha}",
+                  f"runtime_json_proof_pack_sha256={proof_sha}",
+                  "runtime_json_pack_proof=PASS",
                   "godot_version=4.7.1-stable",
                   "android_platform=35",
                   "android_build_tools=35.0.1",
@@ -237,6 +266,9 @@ jobs:
           path: |
             builds/switchy-express-validation.apk
             builds/switchy-express-validation.apk.sha256
+            builds/android-validation-runtime-json-proof.pck
+            builds/android-validation-runtime-json-proof.pck.sha256
+            builds/android-validation-runtime-json-proof.log
             builds/validation-build-manifest.json
             builds/validation-build-summary.txt
           retention-days: 14

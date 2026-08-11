@@ -3,6 +3,7 @@ extends "res://tests/test_case.gd"
 const ControllerScript := preload(
 	"res://game/finite/main/finite_slice_session_controller.gd"
 )
+const AlphaScript := preload("res://tests/fixtures/finite/fp_core_solution_alpha.gd")
 
 
 func run() -> void:
@@ -14,6 +15,8 @@ func run() -> void:
 	assert_true(controller.domain_ready(), "controller must expose domain readiness")
 	assert_equal(controller.phase(), &"BUILD", "controller must boot BUILD")
 	assert_equal(controller.model()["phase"], &"BUILD", "model must boot BUILD")
+	assert_true(controller.model().has("manual_load_active"), "controller model must expose manual-load presentation truth")
+	assert_false(controller.model()["manual_load_active"], "BUILD must start with manual-load false")
 
 	var snapshot: Dictionary = controller.render_snapshot()
 	assert_equal(snapshot["map_id"], &"FP_CORE_PROOF_01", "snapshot keeps map identity")
@@ -35,6 +38,27 @@ func run() -> void:
 		&"FP_CORE_PROOF_01",
 		"snapshot copies cannot mutate controller state"
 	)
+
+	assert_true(controller.install_layout_for_test(AlphaScript.pieces()), "alpha layout must install for manual-load projection proof")
+	assert_true(controller.model()["start_enabled"], "alpha layout must pass preflight")
+	controller.request_command(&"START")
+	assert_equal(controller.phase(), &"RUNNING", "manual-load projection proof must enter RUNNING")
+	controller.request_command(&"LOAD_ACTIVE", true)
+	assert_true(
+		controller.active_run_session_for_test().input_state.is_manual_load_active(),
+		"domain input state must accept manual hold"
+	)
+	assert_true(
+		controller.model()["manual_load_active"],
+		"controller must project the existing manual-load getter into presenter model"
+	)
+	controller.request_command(&"PAUSE")
+	assert_equal(controller.phase(), &"PAUSED", "pause must still use existing run-state authority")
+	assert_false(
+		controller.active_run_session_for_test().input_state.is_manual_load_active(),
+		"existing input state clears manual hold on pause"
+	)
+	assert_false(controller.model()["manual_load_active"], "paused presenter model must project cleared manual hold")
 
 	var rotation_controller: RefCounted = ControllerScript.new()
 	assert_true(

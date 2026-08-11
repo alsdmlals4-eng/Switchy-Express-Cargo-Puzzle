@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://game/demo/presentation/product_hud.gd" id="1_hud"]
+[ext_resource type="Script" path="res://game/demo/presentation/semantic_texture_stack.gd" id="2_semantic"]
 
 [node name="ProductHUD" type="Control"]
 layout_mode = 3
@@ -59,6 +60,12 @@ offset_right = -180.0
 offset_bottom = 148.0
 grow_horizontal = 2
 mouse_filter = 2
+
+[node name="ProblemSemanticBadge" type="Control" parent="ProblemBanner"]
+custom_minimum_size = Vector2(112, 48)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_semantic")
 
 [node name="ProblemText" type="Label" parent="ProblemBanner"]
 layout_mode = 2
@@ -152,10 +159,22 @@ custom_minimum_size = Vector2(170, 52)
 layout_mode = 2
 text = "수동 적재  Shift"
 
+[node name="ManualSemanticBadge" type="Control" parent="RunToolbar"]
+custom_minimum_size = Vector2(56, 52)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_semantic")
+
 [node name="AutoButton" type="Button" parent="RunToolbar"]
 custom_minimum_size = Vector2(170, 52)
 layout_mode = 2
 text = "자동 적재 끔  A"
+
+[node name="AutoSemanticBadge" type="Control" parent="RunToolbar"]
+custom_minimum_size = Vector2(56, 52)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_semantic")
 
 [node name="RunSpacer" type="Control" parent="RunToolbar"]
 layout_mode = 2
@@ -196,6 +215,12 @@ theme_override_constants/separation = 12
 layout_mode = 2
 text = "화물 TOP → 마지막 적재"
 horizontal_alignment = 1
+
+[node name="StackSemanticBadge" type="Control" parent="StackPanel/StackLayout"]
+custom_minimum_size = Vector2(64, 24)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_semantic")
 
 [node name="StackText" type="Label" parent="StackPanel/StackLayout"]
 layout_mode = 2

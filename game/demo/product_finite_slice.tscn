@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://game/demo/product_finite_slice.gd" id="1_product"]
 [ext_resource type="Script" path="res://game/demo/presentation/product_board_renderer.gd" id="2_board"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://game/demo/presentation/demo_effects.gd" id="5_effects"]
 [ext_resource type="Script" path="res://game/demo/audio/demo_audio_director.gd" id="6_audio"]
 [ext_resource type="Script" path="res://game/demo/presentation/route_control_overlay.gd" id="7_routes"]
+[ext_resource type="Script" path="res://game/demo/presentation/semantic_event_overlay.gd" id="8_semantic_events"]
 
 [node name="ProductFiniteSlice" type="Control"]
 layout_mode = 3
@@ -44,6 +45,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("7_routes")
+
+[node name="SemanticEventOverlay" type="Control" parent="."]
+z_index = 8
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_semantic_events")
 
 [node name="HUD" parent="." instance=ExtResource("3_hud")]
 z_index = 10
