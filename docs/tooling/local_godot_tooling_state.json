@@ -1,12 +1,13 @@
 {
   "decision_id": "SX-DEC-052",
   "godot_ai": {
-    "user_local_version": "3.1.3",
-    "repo_version": "3.1.3",
-    "upstream_tag": "v3.1.3",
-    "upstream_commit": "22678e5f9b038d7203d6b43b0aae20a5417c500e",
+    "user_local_version": "3.1.4",
+    "repo_version": "3.1.4",
+    "upstream_tag": "v3.1.4",
+    "upstream_commit": "96cc8b8c3d25ce487e24801d01d5214fea150349",
+    "upstream_addon_tree_sha": "69010571e11123dfc4e09483f80cb9e6ca93511a",
     "user_enabled_approved": true,
-    "repository_sync_basis": "FULL_ADDON_TREE_V3_1_2_PARITY_PLUS_UPSTREAM_V3_1_3_PLUGIN_CFG_DELTA"
+    "repository_sync_basis": "EXACT_UPSTREAM_V3_1_4_ADDON_TREE_PARITY"
   },
   "gut": {
     "repo_version": "9.7.1",
