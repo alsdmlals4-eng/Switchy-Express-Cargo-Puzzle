@@ -44,10 +44,10 @@ class LocalToolingReconciliationContractTests(unittest.TestCase):
         self.assertIn(".asset-vault/", lines)
         self.assertIn("assets/_vault_local/", lines)
 
-    def test_godot_ai_repo_manifest_is_3_1_3(self) -> None:
+    def test_godot_ai_repo_manifest_is_3_1_4(self) -> None:
         plugin = (ROOT / "addons/godot_ai/plugin.cfg").read_text(encoding="utf-8")
-        self.assertIn('version="3.1.3"', plugin)
-        self.assertNotIn('version="3.1.2"', plugin)
+        self.assertIn('version="3.1.4"', plugin)
+        self.assertNotIn('version="3.1.3"', plugin)
 
     def test_gut_remains_9_7_1_and_repo_plugins_remain_enabled(self) -> None:
         gut = (ROOT / "addons/gut/plugin.cfg").read_text(encoding="utf-8")
@@ -66,12 +66,20 @@ class LocalToolingReconciliationContractTests(unittest.TestCase):
 
         state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
         self.assertEqual("SX-DEC-052", state["decision_id"])
-        self.assertEqual("3.1.3", state["godot_ai"]["user_local_version"])
-        self.assertEqual("3.1.3", state["godot_ai"]["repo_version"])
-        self.assertEqual("v3.1.3", state["godot_ai"]["upstream_tag"])
+        self.assertEqual("3.1.4", state["godot_ai"]["user_local_version"])
+        self.assertEqual("3.1.4", state["godot_ai"]["repo_version"])
+        self.assertEqual("v3.1.4", state["godot_ai"]["upstream_tag"])
         self.assertEqual(
-            "22678e5f9b038d7203d6b43b0aae20a5417c500e",
+            "96cc8b8c3d25ce487e24801d01d5214fea150349",
             state["godot_ai"]["upstream_commit"],
+        )
+        self.assertEqual(
+            "69010571e11123dfc4e09483f80cb9e6ca93511a",
+            state["godot_ai"]["upstream_addon_tree_sha"],
+        )
+        self.assertEqual(
+            "EXACT_UPSTREAM_V3_1_4_ADDON_TREE_PARITY",
+            state["godot_ai"]["repository_sync_basis"],
         )
         self.assertTrue(state["godot_ai"]["user_enabled_approved"])
         self.assertEqual("9.7.1", state["gut"]["repo_version"])
