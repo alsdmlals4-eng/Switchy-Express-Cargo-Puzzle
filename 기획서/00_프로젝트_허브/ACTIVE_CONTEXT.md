@@ -12,6 +12,7 @@ default_branch: main
 phase_b_baseline_main: 47df1c60866ae28f5c415cbe6b886d9ee9a87c7a
 phase_b_merge_main: f9440b4724a347b3d1f49f4b22f3ddbb86365108
 base_observed_at_phase_b: 315c66eea9614c284b9c11c4d522141065dfa4b0
+base_observed_latest: 069f0c9654a6cde7cea6f3343dd2fa81c6248d5d
 base_pin: v9.4.3
 base_main_is_reference_only: true
 engine: Godot 4.7.1-stable
@@ -26,8 +27,12 @@ user_planning_complete_gate: GRANTED · 2026-08-11 KST
 phase_b_final_planning_review: SX-AUD-047 · PASS
 build_authority: AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE
 build_authority_scope: SX-DEC-055_ONLY
-sx_dec_055: APPROVED · SPEC_APPROVED · PHASE_B_DOR_PASS · IMPLEMENTATION_NOT_STARTED
-sx_dec_055_runtime_implementation: NOT_STARTED
+sx_dec_055: APPROVED · SPEC_APPROVED · PHASE_B_DOR_PASS · IMPLEMENTATION_MERGED
+sx_dec_055_runtime_implementation: MERGED_MAIN_VERIFIED
+sx_dec_055_merge_pr: 151
+sx_dec_055_merge_main: 534a7318b349cd3e784a3467125f9ebd23124d8a
+runtime_integrated: true
+sx_dec_055_export_json_proof: WINDOWS_AND_ANDROID_PRESET_PCK_PASS · 13_JSON_EACH
 sx_dec_056a: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
 sx_dec_057: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
@@ -36,19 +41,47 @@ sx_dec_058: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 benchmark_r01_r08: APPROVED · DETAILED_PLANNING_CLOSED
 benchmark_r09_r10: POST_VALIDATION_HOLD · NO_DECISION_ID
 semantic_assets: 73_TOTAL · PRODUCTION_COMPLETE
-runtime_integrated: false
 acceptance_build: UNASSIGNED
-physical_device_human: NOT_RUN
+windows_physical_runtime: NOT_RUN
+android_device: NOT_RUN
+connected_physical_editor: NOT_RUN
+five_person_comprehension: NOT_RUN
 production_cutover: BLOCKED_DEFERRED
-phase_c_execution_choice: USER_TEMPORARILY_DEFERRED_FOR_CODEX_QUOTA
-latest_post_phase_b_audit: SX-AUD-053
+latest_post_phase_b_audit: SX-AUD-054
 ```
 
-## Current user-directed planning result
+## SX-DEC-055 merged runtime result
 
-사용자는 Codex 사용량 제약 동안 노선·철도·물류 퍼즐 벤치마크를 바탕으로 기획을 계속하도록 지시했고, `BMK-R01~R08`을 승인했다. 그 뒤 남은 세부 기획도 계속 진행하도록 지시했다.
+PR #151 implemented only the already-authorized `SX-DEC-055` runtime semantic POC and merged it to `main` at `534a7318b349cd3e784a3467125f9ebd23124d8a`.
 
-현재 mapping과 상세 기획 상태:
+Player-visible/runtime changes now present in merged main:
+
+- manifest-backed `SemanticAssetCatalog`;
+- semantic Stack/manual-load/auto-load/preflight HUD reinforcement while retaining Korean text and existing controls;
+- BUILD valid/invalid/rotate/replacement ghost semantic reinforcement without taking ownership of procedural placement truth;
+- route-control selected/unselected/occupied-locked semantic reinforcement without changing cycle or hit geometry;
+- bounded semantic event overlay for pickup, unload, accepted route selection, success/failure/route-end/timeout;
+- Reduced Motion information-equivalence using the same semantic identity while removing spatial/scale motion;
+- existing `DemoEffects`, audio, text, touch targets, gameplay rules, scoring, map data, save authority, and semantic product assets preserved;
+- Combo remains catalog-resolvable but no new Combo gameplay trigger was fabricated.
+
+Automated exact-head evidence on PR #151 head `63b0ed331e043db7d677ca097bdb209003bda4be`:
+
+```text
+Project Contract #1242 PASS
+GUT 9.7.1 #291 PASS
+Godot Tests #1173 PASS
+Validate Thin Adapter Migration #369 PASS
+Windows Demo Export #241 PASS
+custom suite: 97 cases · 0 failed · 11923 assertions
+Windows Demo proof PCK: RUNTIME_JSON_PACK_PROOF PASS · parsed_json=13
+Android Validation proof PCK: RUNTIME_JSON_PACK_PROOF PASS · parsed_json=13
+review threads: 0
+```
+
+The export proof is packaging evidence only; it is not physical/device/human evidence.
+
+## Post-Phase-B planning state
 
 ```text
 BMK-R01/R02/R03/R07 → SX-DEC-056 → SX-AUD-051
@@ -57,199 +90,84 @@ BMK-R08             → SX-DEC-058 → SX-AUD-053
 BMK-R09/R10         → POST_VALIDATION_HOLD · NO_DECISION_ID
 ```
 
-`R01~R08`의 제품 방향 + 구현 직전 세부 contract는 현재 planning 기준으로 닫혔다. 남아 있는 것은 explicit implementation authority, dependency-gated upstream runtime capability, content production, runtime build, physical/device/human validation이다.
+### SX-DEC-056
 
-## SX-DEC-056 · Route Causality Learning / Result Feedback
+- 056A Route Probe + Actual Trace/Debrief + Fastest/Cheapest PB + score-independent Fingerprint v1: `DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED`.
+- 056B Highest Score + score/max-combo extension: `BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME`.
+- no solver/recommended route/3-star route leakage.
 
-Owners:
+### SX-DEC-057
 
-- `docs/decisions/SX_DEC_056_ROUTE_CAUSALITY_LEARNING_AND_RESULT_FEEDBACK.md`
-- `docs/superpowers/specs/2026-08-11-route-causality-learning-result-feedback-design.md`
-- `docs/superpowers/plans/2026-08-11-sx-dec-056-route-causality-delta.md`
-- `기획서/50_제작_검증/SX_AUD_051_SX_DEC_056_DELTA_DOR_FINAL_REVIEW.md`
+- Stack Lab SL-01~04 after Tutorial 5;
+- Switch Lab SW-01~04 after Tutorial 6;
+- Builder Lab BL-01~04 after Tutorial 8;
+- optional lanes, completion mark only, Mastery max one/chapter;
+- `BL-03 Fast vs Cheap` and `M-EXPRESS` remain blocked by missing authoritative Stage-8 track attribute runtime;
+- implementation/content production authority is not granted.
 
-Current split:
+### SX-DEC-058
 
-```text
-056A
-Route Probe + Actual Trace/Debrief + Fastest/Cheapest PB + score-independent Fingerprint v1
-→ DELTA_DOR_PASS_PLANNING
-→ IMPLEMENTATION_NOT_AUTHORIZED
+- Daily UTC date / Weekly ISO-week identity;
+- `SHA256_COUNTER_V1` deterministic generation;
+- `CONSTRUCTIVE_WITNESS_REPLAY_V1` private legal-success proof;
+- deterministic quality/calibration/publication contract;
+- runtime receives published identity/manifest + map only;
+- implementation authority is not granted.
 
-056B
-Highest Score + score/max-combo Fingerprint extension
-→ BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
-```
+## Current execution boundary
 
-Exact key contracts:
-
-- Probe consumes duplicate current MapDefinition + TrackLayout and current FiniteTrackGraph truth only.
-- start cell itself is not a predicted encounter; first `next_cell()` entered cell is first step.
-- repeated directed `(previous,current)` = LOOP; `next_cell == current` = DEAD_END; graph failure = ROUTE_INVALID.
-- Probe is spatial cell-step prediction; Trace is actual temporal event history.
-- station mismatch evidence comes from existing one `Station.try_unload()` result; no duplicate unload logic.
-- route-control trace only records existing `cycle_route_control()` accepted=true changes.
-- PB key = map_id + map_revision + ruleset_version; Fastest/Cheapest independent.
-- no solver/recommended route/3-star solution/auto-build leakage.
-
-## SX-DEC-057 · Yard Labs / Mastery Curriculum
-
-Owners:
-
-- `docs/decisions/SX_DEC_057_YARD_LABS_AND_MASTERY_CURRICULUM.md`
-- `docs/superpowers/specs/2026-08-11-yard-labs-mastery-curriculum-design.md`
-- `기획서/20_시스템_콘텐츠/YARD_LAB_AND_MASTERY_CONTENT_CATALOG_V1.md`
-- `docs/superpowers/plans/2026-08-11-sx-dec-057-yard-labs-mastery-delta.md`
-- `기획서/50_제작_검증/SX_AUD_052_SX_DEC_057_DELTA_DOR_FINAL_REVIEW.md`
-
-Launch planning:
+`SX-DEC-055` Phase C implementation is no longer the next build action; it is merged-main verified. The next required work is **acceptance evidence**, not another semantic POC implementation pass.
 
 ```text
-Stage 5 clear → Stack Lab   SL-01~SL-04
-Stage 6 clear → Switch Lab  SW-01~SW-04
-Stage 8 clear → Builder Lab BL-01~BL-04
+merged main 534a7318...
+→ post-merge canon + configured Sheet same-ID reconciliation
+→ assign exact post-POC acceptance build identity when a physical validation run is prepared
+→ Windows physical runtime/visual/audio/input smoke
+→ Android device smoke
+→ Reduced Motion/readability physical evidence
+→ Five-person comprehension when the acceptance build is fixed
+→ separate production cutover decision
 ```
 
-- 12 launch blueprints fixed.
-- lane 내부는 01→04 순차, lane 자체는 optional.
-- Lab clear/failure/skip never gates Tutorial/campaign.
-- all 4 clear → completion mark only; no power/currency/XP/leaderboard.
-- Mastery max 1/chapter.
-- core clear count >=2 independently unlocks both next chapter and current Mastery; Mastery cannot block progression.
-- internal difficulty rubric: Topology / Stack Entropy / Execution Branching each 0..3.
-- request-only hints: rule family → relevant state/location → action class; no exact solution.
-- FS-16/FS-17 only activate if exact acceptance build actually includes 057.
+Do not start SX-DEC-056/057/058 implementation merely because their delta planning is detailed. Their separate implementation authority remains required.
 
-Runtime dependency:
+## Protected boundaries
 
-- Stack/Switch/basic Builder content is READY_PLANNING.
-- `BL-03 Fast vs Cheap` and `M-EXPRESS` are dependency-gated because current TrackPiece has no authoritative fast/cheap attribute field.
-- 057 cannot invent that Stage 8 gameplay formula/runtime representation.
-
-## SX-DEC-058 · Fixed-Seed Challenge Quality
-
-Owners:
-
-- `docs/decisions/SX_DEC_058_FIXED_SEED_CHALLENGE_QUALITY_POLICY.md`
-- `docs/superpowers/specs/2026-08-11-fixed-seed-challenge-quality-design.md`
-- `docs/superpowers/plans/2026-08-11-sx-dec-058-fixed-seed-quality-delta.md`
-- `기획서/50_제작_검증/SX_AUD_053_SX_DEC_058_DELTA_DOR_FINAL_REVIEW.md`
-
-Exact planning contract:
-
-- Daily period key = UTC `YYYY-MM-DD`.
-- Weekly period key = ISO `YYYY-Www`, Monday 00:00 UTC.
-- explicit seed + generator/ruleset/content-profile/map-hash identity.
-- deterministic entropy = `SHA256_COUNTER_V1` with named streams.
-- solvability = `CONSTRUCTIVE_WITNESS_REPLAY_V1`: generator creates private legal witness, independent verifier replays through current finite authority to real SUCCESS.
-- no optimal solver / player hint solver.
-- operation bounds: placement<=64, alternatives 2..32, witness steps<=4096, route changes<=128, load/input changes<=256, candidate rejects<=256.
-- both cadence profiles require >=2 cargo types, witness stack depth>=2, >=2 structural layout alternatives, witness PASS.
-- Daily V1: exactly one T/S/E axis=2, others<=1, >=1 decision class.
-- Weekly V1: >=2 axes>=2, >=2 decision classes.
-- calibration per version: >=1000 Daily + >=1000 Weekly seeds, 100% regeneration hash parity, >=100 accepted each, first100 duplicate SHA=0, one quality signature <=20%.
-- PUBLISHED identity immutable; emergency WITHDRAWN changes availability only.
-- runtime receives published identity/manifest + map only.
-- witness/alternate layouts/rejection reports must have negative proof of absence from Windows/Android packages.
-- backend/transport is separate authority; missing official publication data cannot trigger client-local random replacement.
-
-## Phase B / Phase C boundary
-
-`SX-AUD-047` remains the only current Build Authority review.
-
-```text
-build_authority: AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE
-build_authority_scope: SX-DEC-055_ONLY
-```
-
-The benchmark-derived detailed planning does not silently expand this authority.
-
-When Phase C resumes, the first legitimate build action is unchanged:
-
-```text
-SX-DEC-055
-→ Task 1 / Step 1.1 RED
-→ create tests/demo/test_semantic_asset_catalog.gd
-→ register in tests/run_tests.gd
-→ run custom Godot suite
-→ require genuine RED because SemanticAssetCatalog is missing
-```
-
-Original implementation owner:
-`docs/superpowers/plans/2026-08-10-sx-dec-055-runtime-semantic-poc.md`
-
-Mandatory packaging amendment:
-`docs/superpowers/plans/2026-08-11-sx-dec-055-phase-b-readiness-amendment.md`
-
-Do not insert 056/057/058 tasks into that plan.
-
-## Remaining planning vs non-planning work
-
-### Planning closed now
-
-- GMB-002 core direction;
-- benchmark R01~R08 product direction;
-- 056A exact route/trace/PB/fingerprint contract;
-- 057 initial 12 Lab blueprints, progression, Mastery, difficulty/hints;
-- 058 deterministic identity, witness proof, quality/corpus/publication boundary.
-
-### Intentionally dependency-gated
-
-- 056B Highest Score/score+max-combo until authoritative runtime metrics exist;
-- 057 Fast/Cheap content until Stage 8 track attribute runtime exists.
-
-These are not permission to invent substitute rules.
-
-### Intentionally held until validation
-
-- BMK-R09 Shareable Route Card;
-- BMK-R10 Editor/UGC.
-
-### Not planning-complete evidence
-
-- runtime implementation;
-- actual Lab/map production;
-- actual generator/corpus run;
-- Windows physical runtime;
-- Android device smoke;
-- connected physical editor;
-- Five-person Comprehension;
-- production cutover.
+- current product baseline remains `GMB-002`;
+- no endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset reactivation;
+- no product PNG or semantic manifest provenance rewrite under this reconciliation;
+- route direction/cycle/hit/lock geometry remains procedural authority;
+- existing Korean text/procedural presentation remains redundancy/fallback;
+- no guessed score/combo formula for 056B;
+- no invented fast/cheap TrackPiece field under 057;
+- no challenge optimum/player-hint solver under 058;
+- no BMK-R09/R10 implementation while held;
+- no Base repin; project pin remains `v9.4.3`;
+- automated/export evidence does not imply physical/device/human PASS;
+- production cutover remains separately blocked.
 
 ## Validation ceiling
 
 ```text
 FINITE CORE AUTOMATED: PASS
-SX-DEC-055 RUNTIME POC: NOT_STARTED · IMPLEMENTATION AUTHORIZED
-SX-DEC-056A: DELTA_DOR_PASS_PLANNING · NOT_AUTHORIZED
-SX-DEC-056B: BLOCKED_DEPENDENCY
-SX-DEC-057: DELTA_DOR_PASS_PLANNING · NOT_AUTHORIZED
-SX-DEC-057 FAST/CHEAP CONTENT: BLOCKED_DEPENDENCY
-SX-DEC-058: DELTA_DOR_PASS_PLANNING · NOT_AUTHORIZED
+SX-DEC-055 RUNTIME POC: MERGED_MAIN_VERIFIED · runtime_integrated=true
 POST-POC ACCEPTANCE BUILD: UNASSIGNED
-WINDOWS PHYSICAL: NOT_RUN
+WINDOWS PHYSICAL RUNTIME/VISUAL/AUDIO/INPUT: NOT_RUN
 ANDROID DEVICE SMOKE: NOT_RUN
-CONNECTED PHYSICAL EDITOR: NOT_RUN
+CONNECTED PHYSICAL GODOT/HERA: NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
 
-## Read order on resume
+`TECH_EVIDENCE` and package evidence are present. `HUMAN_USABILITY_EVIDENCE` and `PLAYER_EXPERIENCE_EVIDENCE` remain `NOT_RUN` until actual people are observed on an exact acceptance build.
 
-1. `AGENTS.md`
-2. v4.5 r2 work instruction
-3. fresh Base/project main + open/draft PRs + latest commits
-4. configured Sheet current rows
-5. `기획서/00_프로젝트_허브/START_HERE.md`
-6. `CURRENT_CONFIRMED_DECISIONS.md`
-7. this `ACTIVE_CONTEXT.md`
-8. `SX_AUD_047_PHASE_B_FINAL_PLANNING_REVIEW.md`
-9. `SX_AUD_051_SX_DEC_056_DELTA_DOR_FINAL_REVIEW.md`
-10. `SX_AUD_052_SX_DEC_057_DELTA_DOR_FINAL_REVIEW.md`
-11. `SX_AUD_053_SX_DEC_058_DELTA_DOR_FINAL_REVIEW.md`
-12. 056/057/058 decision + spec + plan owners
-13. SX-DEC-055 decision/spec/original implementation plan + readiness amendment
+## Resume read order
 
-## Protected historical exclusions
-
-Do not reactivate endless survival, fuel/fuel-zero, BOOST, capacity 8, cargo slowdown, pickup respawn, or switch auto-reset. Product baseline remains GMB-002.
+1. fresh Base current main + project default branch/open PR/latest commit;
+2. configured Google Sheet current rows;
+3. `AGENTS.md`;
+4. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5_r2.md`;
+5. `CURRENT_CONFIRMED_DECISIONS.md`;
+6. this `ACTIVE_CONTEXT.md`;
+7. `SX-AUD-054` post-merge reconciliation;
+8. exact Decision/spec/plan owner for whichever separately authorized next package is being worked.
