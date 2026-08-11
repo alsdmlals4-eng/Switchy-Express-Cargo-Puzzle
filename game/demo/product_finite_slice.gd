@@ -12,6 +12,9 @@ const SessionControllerScript := preload(
 const RecommendedLayoutProviderScript := preload(
 	"res://game/demo/recommended_layout_provider.gd"
 )
+const SemanticRuntimeStateScript := preload(
+	"res://game/demo/presentation/semantic_runtime_state.gd"
+)
 
 @export_file("*.json") var map_path := "res://data/maps/vs_demo_01.json"
 @export var recommended_cost := 4500
@@ -23,6 +26,7 @@ var _shell_input_locked: bool = false
 
 @onready var _renderer: Control = $BoardRenderer
 @onready var _route_overlay: Control = $RouteControlOverlay
+@onready var _semantic_events: Control = $SemanticEventOverlay
 @onready var _hud: Control = $HUD
 @onready var _desktop_input: Node = $DesktopInputAdapter
 @onready var _effects: Node = $DemoEffects
@@ -49,6 +53,8 @@ func _process(delta: float) -> void:
 
 
 func _exit_tree() -> void:
+	if is_instance_valid(_semantic_events):
+		_semantic_events.cancel_all()
 	if is_instance_valid(_effects):
 		_effects.cancel_all()
 	if is_instance_valid(_audio):
@@ -66,6 +72,11 @@ func set_shell_input_locked(locked: bool) -> void:
 
 func shell_input_locked_for_test() -> bool:
 	return _shell_input_locked
+
+
+func set_reduced_motion(enabled: bool) -> void:
+	if is_instance_valid(_semantic_events):
+		_semantic_events.set_reduced_motion(enabled)
 
 
 func advance_time(delta_seconds: float) -> void:
@@ -203,6 +214,10 @@ func _dispatch_command(command: StringName, payload: Variant = null) -> void:
 		"selected_cell",
 		Vector2i(-1, -1)
 	)
+	var route_controls_before: Array = []
+	if command == &"BOARD_CELL" and (phase_before == &"RUNNING" or phase_before == &"UNLOADING"):
+		route_controls_before = _controller.render_snapshot().get("route_controls", []).duplicate(true)
+
 	_controller.request_command(command, payload)
 	var layout_changed: bool = _controller.current_layout_signature() != layout_before
 
@@ -215,6 +230,9 @@ func _dispatch_command(command: StringName, payload: Variant = null) -> void:
 				_audio.play_cue(&"build")
 			elif phase_before == &"RUNNING" or phase_before == &"UNLOADING":
 				_audio.play_cue(&"switch")
+				var route_controls_after: Array = _controller.render_snapshot().get("route_controls", [])
+				if route_controls_after != route_controls_before and is_instance_valid(_semantic_events):
+					_semantic_events.play_event(&"route_selection")
 		&"REMOVE":
 			if layout_changed:
 				_effects.play_remove(selected_before)
@@ -252,14 +270,20 @@ func _on_delivery_event_created(event: Variant) -> void:
 	if event == null:
 		return
 	if bool(event.picked_up):
+		if is_instance_valid(_semantic_events):
+			_semantic_events.play_event(&"cargo_pickup")
 		_audio.play_cue(&"pickup")
 	if int(event.unload_count) > 0:
+		if is_instance_valid(_semantic_events):
+			_semantic_events.play_event(&"cargo_unload")
 		_effects.play_unload(int(event.unload_count))
 		_audio.play_cue(&"unload")
 
 
 func _on_terminal_reached(summary: Variant) -> void:
-	var success: bool = summary != null and StringName(summary.outcome) == &"SUCCESS"
+	var outcome: StringName = StringName(summary.outcome) if summary != null else &"FAILURE"
+	var failure_reason: StringName = StringName(summary.failure_reason) if summary != null else &"TIME_EXPIRED"
+	var success: bool = outcome == &"SUCCESS"
 	_audio.set_train_loop_active(false)
 	if success:
 		_effects.play_success()
@@ -267,4 +291,7 @@ func _on_terminal_reached(summary: Variant) -> void:
 	else:
 		_effects.play_failure()
 		_audio.play_cue(&"failure")
+	var semantic_event: StringName = SemanticRuntimeStateScript.terminal_event(outcome, failure_reason)
+	if semantic_event != &"" and is_instance_valid(_semantic_events):
+		_semantic_events.play_event(semantic_event)
 	terminal_reached.emit(summary)
