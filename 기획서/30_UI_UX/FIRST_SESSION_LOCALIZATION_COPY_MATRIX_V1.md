@@ -2,10 +2,11 @@
 
 ```yaml
 owner_decision: SX-DEC-059
-status: COPY_CONTRACT_CURRENT · IMPLEMENTATION_NOT_AUTHORIZED
+status: COPY_CONTRACT_CURRENT · PLANNING_COMPLETE · BUILD_NOT_STARTED
 source_language: ko
-planned_languages: [ko, en, ja, zh]
-exact_zh_locale: DEFER_TO_RELEASE_LOCALIZATION_PROFILE
+planned_languages: [ko, en, ja, zh-Hans]
+exact_zh_locale: zh-Hans
+zh_hant: DEFER_UNTIL_RELEASE_TARGET_REQUIRES
 text_in_png: FORBIDDEN
 ```
 
@@ -17,11 +18,12 @@ text_in_png: FORBIDDEN
 - objective는 2줄 이내, contextual cue는 1줄 이내를 목표로 한다.
 - 정답 경로/정답 분기/최적 적재 순서를 직접 말하지 않는다.
 - 번역은 literal word-for-word가 아니라 동일 행동 의미와 정보량을 유지한다.
-- 실제 Godot locale resource/API 선택은 BUILD 전 localization owner에서 확정한다.
+- 첫 release-near Slice의 중국어 locale은 현재 문안과 일치하는 `zh-Hans`로 고정한다.
+- `zh-Hant`는 출시 대상 지역/스토어 localization profile이 요구할 때 별도 추가하며 현재 지원으로 과장하지 않는다.
 
 ## Core copy
 
-| Key | Context | KO | EN | JA | ZH |
+| Key | Context | KO | EN | JA | ZH-Hans |
 |---|---|---|---|---|---|
 | `SX_FS_START` | Title CTA | 첫 배송 시작 | Start First Delivery | 最初の配送を始める | 开始首次配送 |
 | `SX_T1_TITLE` | Lesson title | 선로 연결 | Connect the Route | 線路をつなぐ | 连接轨道 |
@@ -51,7 +53,7 @@ text_in_png: FORBIDDEN
 
 ## Result copy
 
-| Key | KO | EN | JA | ZH |
+| Key | KO | EN | JA | ZH-Hans |
 |---|---|---|---|---|
 | `SX_RESULT_SUCCESS` | 배송 완료 | Delivery Complete | 配送完了 | 配送完成 |
 | `SX_RESULT_ROUTE_END` | 노선이 끝났습니다. | The route ended. | 線路が途切れました。 | 路线已到尽头。 |
@@ -97,7 +99,7 @@ BUILD/QA에서 최소 확인:
 
 - key missing fallback이 player-facing raw key로 노출되지 않음.
 - bold/control term이 locale별 같은 기능을 지칭.
-- 한/영/일/중에서 버튼 label이 touch target을 넘지 않음.
+- ko/en/ja/zh-Hans에서 버튼 label이 touch target을 넘지 않음.
 - line wrap으로 cargo/stack/switch 상태를 가리지 않음.
 - `TOP`은 네 언어 모두 동일 시스템 용어로 유지하되 첫 등장에 의미 설명.
-- 중국어 locale code와 간체/번체 실제 지원 범위는 출시 localization profile에서 확정.
+- `zh-Hant`는 현재 지원으로 표시하지 않으며, 출시 localization profile이 요구할 때 별도 검증 후 추가한다.
