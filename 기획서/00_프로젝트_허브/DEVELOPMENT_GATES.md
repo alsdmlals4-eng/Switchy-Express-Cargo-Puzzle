@@ -13,13 +13,13 @@ A0 CURRENT AUTHORITY RECOVERY: PASS
 → A3 DETAIL PLAN / VISUAL BRIEF / PLAYTEST DELTA: PASS
 → A4 POST-APPROVAL ADVERSARIAL CLEAN REVIEW: PASS · SX-AUD-063
 → A5 explicit user "기획완료": GRANTED · 2026-08-20 KST
-→ A6 FRESH PHASE-C REVIEW + CANON/NOTION RECONCILIATION: IN_PROGRESS
-→ A7 IMPLEMENTATION PACKAGE DoR: IN_PROGRESS
+→ A6 FRESH PHASE-C REVIEW + CANON/NOTION RECONCILIATION: PASS · SX-AUD-064
+→ A7 IMPLEMENTATION PACKAGE SPEC DoR: PASS
 → A8 USER_REQUESTED_CODEX_HANDOFF: NOT_REQUESTED
-→ A9 FRESH POWERSHELL/CODEX BUILD: NOT_STARTED
+→ A9 FRESH EXECUTION PREFLIGHT / POWERSHELL / CODEX BUILD: NOT_STARTED
 ```
 
-`기획완료`는 승인된 059 계획을 잠그는 Gate다. 실제 Codex 실행은 package DoR + `USER_REQUESTED_CODEX_HANDOFF` 뒤에만 시작한다.
+`기획완료`는 승인된 059 계획을 잠근다. A6/A7은 설계·정본·인계 패키지의 정적 준비 상태이며, 실제 로컬 repo/Godot/addon/baseline GREEN은 A8 뒤 fresh execution preflight에서 확인한다.
 
 ## 2. Historical implemented baseline chain
 
@@ -42,10 +42,10 @@ S0 PLAN: COMPLETE
 → S4 T5 auto-mode content contract: PLAN PASS
 → S5 T6 switch content contract: PLAN PASS
 → S6 VS_DEMO_01 capstone contract: PLAN PASS
-→ S7 FirstSessionDirector/StagePolicy ownership: PLAN PASS
+→ S7 first-session sidecar ownership: PLAN PASS
 → S8 localization/responsive/visual reuse contract: PLAN PASS
 → S9 playtest/evidence contract: PLAN PASS
-→ S10 implementation RED-first package: PREPARING
+→ S10 RED-first implementation package spec: PASS
 → S11 Codex/Godot implementation: NOT_STARTED
 → S12 developer self-run/screen QA: NOT_RUN
 → S13 exact acceptance build physical smoke: NOT_RUN
@@ -55,7 +55,7 @@ S0 PLAN: COMPLETE
 
 ## 4. Planned BUILD task families
 
-Actual production code may start only after S10 DoR + A8 handoff trigger.
+Actual production code may start only after A8 handoff trigger and fresh execution preflight.
 
 ```text
 B1 first-session sequence schema / validator
@@ -67,7 +67,7 @@ B6 MAP-03 T4 selective manual
 B7 MAP-04 T5 manual/auto switching
 B8 MAP-05 T6 switch execution
 B9 progressive HUD/contextual copy/localization
-B10 evidence-safe Result debrief
+B10 evidence-safe Result summary
 B11 VS_DEMO_01 capstone integration without map mutation
 B12 reduced-motion/responsive/accessibility regression
 B13 package/export/clean regression evidence
@@ -117,26 +117,32 @@ Capstone: transfer without new explanation
 HUD button
 keyboard shortcut
 future touch input
+board / route-control request
 → same allowed-command policy
-→ current ProductFiniteSlice dispatch
+→ current ProductFiniteSlice dispatch boundary
 → current finite domain authority
 ```
 
-Hidden system must not remain usable through shortcut bypass.
+Hidden system must not remain usable through shortcut bypass. Stage visibility must survive subsequent HUD `apply_model()` refreshes and may only narrow phase-valid controls.
 
 ## 7. Localization / responsive gate
 
-Minimum planned languages:
+First-slice planned languages:
 
 ```text
 ko
 en
 ja
-zh-*   # exact Hans/Hant target to lock before resource authoring
+zh-Hans
 ```
 
+`zh-Hant` is deferred until a release target requires it.
+
 - copy key/data separation.
+- Lesson Card requires `title_key` + `objective_key`.
+- CTA keys come from `FIRST_SESSION_LOCALIZATION_COPY_ADDENDUM_01.md`.
 - text-in-PNG forbidden.
+- raw localization key player-facing fallback forbidden.
 - CJK glyph/line-break/long string checks.
 
 Responsive meaning targets:
@@ -183,7 +189,7 @@ Detailed station mismatch is a future 056A observation concern and is outside 05
 - Reduced Motion uses same information identity.
 - VFX must not cover next critical cargo/switch target.
 
-## 10. Tooling pre-build gate
+## 10. Tooling / fresh execution preflight gate
 
 ```yaml
 godot: 4.7.1-stable
@@ -194,19 +200,22 @@ upstream_main_observed_commit: 09a1e3311015153d967710fbe6502ac519585a9b
 prior_verified_release_basis: v3.1.3
 project_3_1_4_provenance: REVERIFY_REQUIRED
 local_repo_tree_parity: NOT_RUN
+baseline_custom_suite: NOT_RUN_IN_FRESH_EXECUTION_ENVIRONMENT
 ```
 
-Fresh PowerShell에서 다음을 확인하기 전 persistent authoring을 시작하지 않는다.
+A8 뒤 Fresh PowerShell에서 다음을 확인하기 전 persistent authoring을 시작하지 않는다.
 
-- exact local repo location.
+- exact local repo location resolved by Git remote identity; no guessed hard-coded checkout.
 - clean/dirty state and user changes.
 - exact project `HEAD` and `origin/main` relation.
+- isolated workspace/worktree status.
 - Godot executable version.
 - repo/local Godot AI addon parity/provenance.
 - GUT availability.
-- project HiGodot profile/ports if actually consumed.
-- project CODEX_HOME if configured.
-- Hera only when live QA is applicable; source delta must remain zero.
+- project HiGodot profile/ports only if actually consumed.
+- project CODEX_HOME current value without silent credential/config replacement.
+- Hera only when live QA is applicable; tracked source delta after acceptance must be zero.
+- custom baseline suite GREEN.
 
 ## 11. Concurrency gate
 
@@ -216,13 +225,30 @@ Fresh PowerShell에서 다음을 확인하기 전 persistent authoring을 시작
 
 - no modify/rebase/update/close/merge.
 - no unmerged `game/reuse/*` absorption.
-- if it completes later, new `main` may be reevaluated.
+- if it completes later, new completed `main` may be reevaluated.
 
 ### PR #155 / #156
 
 `CLOSED_UNMERGED · HISTORICAL_ACCIDENT`.
 
-## 12. Automated validation gate
+## 12. Implementation package authority
+
+Binding read order:
+
+```text
+SX_DEC_059_CODEX_HANDOFF_PACKAGE.md
+→ handoff Amendment 01
+→ handoff Amendment 02
+→ parent implementation plan
+→ implementation Amendment 01
+→ implementation Amendment 02
+→ actual current code/tests
+→ Task 1 RED
+```
+
+The amendments override the parent plan's illustrative fixed repo path/API placeholders and add title/CTA/HUD-lifecycle/same-layout regression contracts.
+
+## 13. Automated validation gate
 
 Minimum required before an implementation PR can be called review-ready:
 
@@ -232,12 +258,13 @@ Minimum required before an implementation PR can be called review-ready:
 - Project Contract / relevant static policy check.
 - Thin Adapter validation.
 - Windows export/package proof when applicable.
+- new first-session JSON/localization/tutorial map inclusion proof.
 - no unauthorized change to current core/map/semantic asset owners.
 - no unresolved review thread on exact head.
 
 Hosted CI/package proof is not physical runtime or human evidence.
 
-## 13. Developer self-run gate
+## 14. Developer self-run gate
 
 After automated GREEN and before first-contact human evidence:
 
@@ -263,7 +290,7 @@ unsupported evidence claim 0
 
 This gate is developer usability/technical evidence only.
 
-## 14. Physical / human gate
+## 15. Physical / human gate
 
 ```text
 exact acceptance build identity
@@ -271,7 +298,7 @@ exact acceptance build identity
 → Five-person first-contact comprehension
 ```
 
-Minimum analyzable first-contact sessions remains 5. Use `PLAYTEST_PLAN.md` + `SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`.
+Minimum analyzable first-contact sessions remains 5. Use `PLAYTEST_PLAN_V4_7_CURRENT.md` + `SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`.
 
 Human decision states:
 
@@ -283,7 +310,7 @@ HOLD
 STOP
 ```
 
-## 15. Production cutover
+## 16. Production cutover
 
 `BLOCKED_DEFERRED`.
 
@@ -292,8 +319,8 @@ No merge/build/export result automatically authorizes store release.
 ## Current next action
 
 ```text
-complete A6 fresh Phase-C review + canon/Notion sync
-→ close A7 implementation package DoR
+planning/canon PR validation + merge
+→ post-merge main/Notion readback
 → wait for A8 USER_REQUESTED_CODEX_HANDOFF
 ```
 
