@@ -30,6 +30,14 @@ GMB-002 finite core: AUTOMATED PASS
 → SX-DEC-055 runtime semantic: PR #151 MERGED_MAIN_VERIFIED
 ```
 
+Stable historical merge compatibility locator:
+
+```text
+PR #83/#99/#100 MERGE: PASS
+```
+
+이 literal은 과거 PC Vertical Slice와 후속 정본 병합 완료 사실을 참조하는 post-merge freshness consumer용 anchor다. SX-DEC-059의 새 구현 권한을 의미하지 않는다.
+
 SX-DEC-055는 이미 끝났으므로 과거 `SemanticAssetCatalog RED`를 current next action으로 되살리지 않는다.
 
 ## 3. Stable device / acceptance evidence anchors
