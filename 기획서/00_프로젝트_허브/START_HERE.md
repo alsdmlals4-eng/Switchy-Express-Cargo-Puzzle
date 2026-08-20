@@ -9,11 +9,12 @@ Last updated: `2026-08-20 KST`
 | 제품 기준선 | `GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE` |
 | 결정 범위 | `SX-DEC-027~059` |
 | 작업지시문 | `v4.7 · revision 2026-08-20-r1 · Switchy thin adapter` |
-| SX-DEC-059 방향 | `USER_APPROVED` |
-| SX-DEC-059 planning-complete Gate | `GRANTED · explicit "기획완료" · 2026-08-20 KST` |
-| SX-DEC-059 Phase C | `FINAL REVIEW + IMPLEMENTATION PACKAGE PREP` |
-| SX-DEC-059 BUILD | `NOT_STARTED` |
+| SX-DEC-059 | `USER_APPROVED · PLANNING_COMPLETE_GRANTED` |
+| Phase C | `PASS · SX-AUD-064 · CLEAN_REVIEW_EXIT` |
+| Package spec DoR | `PASS` |
+| Execution preflight | `NOT_RUN · actual handoff 때 필요` |
 | Codex handoff | `NOT_REQUESTED` |
+| BUILD | `NOT_STARTED` |
 | SX-DEC-055 | `IMPLEMENTED · PR #151 MERGED · runtime_integrated=true` |
 | SX-DEC-056A | `PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED` |
 | SX-DEC-056B | `BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME` |
@@ -22,7 +23,7 @@ Last updated: `2026-08-20 KST`
 | semantic product PNG | `73 · PRODUCTION_COMPLETE` |
 | Base pin | `v9.4.3` |
 | Base remote latest observed | `ef0092256be25eaa70a296a76d02f7205934929e · REFERENCE_ONLY` |
-| Project main observed at planning completion | `0a88f707e1e4131ae4372929f2871d2b8a3a74b7` |
+| Project main observed before planning merge | `0a88f707e1e4131ae4372929f2871d2b8a3a74b7` |
 | protected Open/Draft PR | `#154 · READ_ONLY` |
 | acceptance build | `UNASSIGNED` |
 | Windows physical runtime | `NOT_RUN` |
@@ -33,7 +34,7 @@ Last updated: `2026-08-20 KST`
 
 ## One-line product promise
 
-> 노선을 그려 화물 조우 순서를 만들고, 적재 선택으로 LIFO를 설계한 뒤, 운행 중 분기 판단으로 계획을 실행하고 실패·성공 결과를 보고 다시 설계하는 finite cargo puzzle.
+> 노선을 그려 화물 조우 순서를 만들고, 적재 선택으로 LIFO를 설계한 뒤, 운행 중 분기 판단으로 계획을 실행하고 결과를 보고 다시 설계하는 finite cargo puzzle.
 
 ## Mandatory read order
 
@@ -47,8 +48,9 @@ Last updated: `2026-08-20 KST`
 8. `ACTIVE_CONTEXT.md`.
 9. `ROADMAP.md`.
 10. `DEVELOPMENT_GATES.md`.
-11. exact SX-DEC-059 spec/content/UI/visual/playtest owner.
+11. exact SX-DEC-059 content/UI/localization/visual/playtest owner.
 12. actual code/data/Scene/Resource/assets/tests.
+13. implementation/handoff package only when Codex execution is requested.
 
 Google Sheets는 migration-only이며 새 작업의 active input이 아니다.
 
@@ -88,23 +90,25 @@ T6: 운행 중 계획을 실행했다
 Capstone: 새 설명 없이 종합했다
 ```
 
-### Content production boundary
+### Content / architecture boundary
 
 - 5 new tutorial map definitions target.
-- T1/T2 share one map and valid layout.
-- exact coordinates/JSON/witness are not planning facts; create RED-first during BUILD.
-- existing `VS_DEMO_01` is capstone and remains unchanged by default.
-- no tutorial-only gameplay rule.
+- T1/T2 share one map, ProductFiniteSlice instance, and valid layout.
+- exact coordinates/JSON/private witness are RED-first BUILD outputs.
+- existing `VS_DEMO_01` remains unchanged by default.
+- first-session metadata stays outside `FiniteMapDefinition` schema v2.
+- sidecar owners: Definition / StagePolicy / Director / Copy.
+- StagePolicy gates UI + keyboard/touch/board/route commands at ProductFiniteSlice.
+- standalone demo remains compatibility path; main product opts into first-session mode.
 
-## Current visual / UI policy
+## Current visual / localization policy
 
 - E+D Hybrid · Neo-Arcade Readability.
 - current 73 semantic PNGs first.
-- cargo/station = color + shape + text.
-- TOP = position + semantic identity + text.
-- switch = direction + selected/locked state.
-- Reduced Motion keeps same information.
-- no new generated image unless user explicitly requests image generation.
+- no new generated image currently required; image generation not requested.
+- locales: `ko / en / ja / zh-Hans`.
+- `zh-Hant` deferred until a release target requires it.
+- no raw localization key and no localized text in reusable PNG.
 
 ## Current evidence-safe Result
 
@@ -121,14 +125,16 @@ Do not fabricate detailed station mismatch/trace before an authorized observatio
 ## Current execution chain
 
 ```text
-user "기획완료" · GRANTED
-→ fresh Phase-C final review
-→ current canon + Notion reconciliation
-→ RED-first implementation package DoR
+Phase-C PASS
+→ planning/canon PR validation + merge
+→ post-merge main/Notion readback
 → USER_REQUESTED_CODEX_HANDOFF
-→ Fresh PowerShell / Codex / Godot BUILD
+→ Fresh PowerShell · LOCATION FIRST · isolated workspace
+→ baseline GREEN
+→ Codex RED-first BUILD
 → exact-head automated review
-→ physical smoke
+→ developer self-run / screen QA
+→ exact acceptance build physical smoke
 → Five-person first-contact evidence
 → separate product decision
 ```
@@ -140,8 +146,7 @@ Actual BUILD has **not started**.
 - product baseline = GMB-002.
 - no endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset.
 - no implicit 056/057/058 implementation.
-- no score/combo invention.
-- no fast/cheap TrackPiece invention.
+- no score/combo or fast/cheap TrackPiece invention.
 - no player-facing solver.
 - no Base repin.
 - PR #154 is read-only for this workstream.
@@ -152,6 +157,9 @@ Actual BUILD has **not started**.
 - `기획서/20_시스템_콘텐츠/FIRST_SESSION_STAGE_CONTENT_SPEC_V1.md`
 - `기획서/30_UI_UX/FIRST_SESSION_SCREEN_CONTENT_DATA_CONTRACT.md`
 - `기획서/30_UI_UX/FIRST_SESSION_LOCALIZATION_COPY_MATRIX_V1.md`
+- `기획서/30_UI_UX/FIRST_SESSION_LOCALIZATION_COPY_ADDENDUM_01.md`
 - `기획서/40_표현/SX_DEC_059_VISUAL_REQUIREMENT_BRIEFS.md`
 - `기획서/50_제작_검증/SX_DEC_059_RELEASE_NEAR_FIRST_SESSION_VERTICAL_SLICE.md`
+- `기획서/50_제작_검증/PLAYTEST_PLAN_V4_7_CURRENT.md`
 - `기획서/50_제작_검증/SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`
+- `기획서/50_제작_검증/SX_AUD_064_SX_DEC_059_PHASE_C_FINAL_REVIEW.md`
