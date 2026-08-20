@@ -41,6 +41,24 @@ player_experience: NOT_RUN
 production_cutover: BLOCKED_DEFERRED
 ```
 
+## Stable Phase-B / post-merge compatibility aliases
+
+아래 key/literal은 `SX-AUD-025` 이후 post-merge freshness consumer가 사용하는 안정 locator다. **현재 059 상태를 과거로 되돌리는 값이 아니라, 이미 완료된 SX-DEC-055 Phase-B/merge 사실을 보존하는 compatibility aliases**다.
+
+```yaml
+user_planning_complete_gate: GRANTED
+phase_b_final_planning_review: SX-AUD-047 · PASS
+build_authority: AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE
+sx_dec_055_runtime_implementation: MERGED_MAIN_VERIFIED
+runtime_integrated: true
+sx_dec_055_merge_main: 534a7318b349cd3e784a3467125f9ebd23124d8a
+canonical_freshness_audit: SX-AUD-025
+latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
+pc_local_route_and_mid_run_retest: RETEST_REQUIRED
+```
+
+059는 이 완료된 055 이력을 덮어쓰지 않고 이후 player-experience target을 추가한다.
+
 ## Stable acceptance compatibility anchors
 
 아래 literal은 Android/device canonical-freshness consumer가 사용하는 안정 locator다. 059가 새 acceptance target을 추가해도 이름을 제거하거나 다른 표기로만 바꾸지 않는다.
