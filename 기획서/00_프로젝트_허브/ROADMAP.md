@@ -78,6 +78,20 @@ human_comprehension: NOT_RUN
 
 No gameplay/scoring/map/save authority was widened.
 
+## M5A · Post-POC acceptance
+
+`SUPERSEDED_AS_PLAYER_EXPERIENCE_TARGET_BY_SX_DEC_059 · STABLE_DEVICE_GATE_ANCHOR`
+
+The original post-055 acceptance gate remains a stable compatibility locator for device/human evidence. Its evidence has **not** been completed or silently inherited by SX-DEC-059.
+
+```text
+Windows physical runtime: NOT_RUN
+Android device smoke: NOT_RUN
+Five-person comprehension: NOT_RUN
+```
+
+The next meaningful first-contact acceptance build should contain the completed SX-DEC-059 release-near first-session experience. Historical 055 automation/export evidence remains valid only for its bounded implementation/package claims.
+
 ## M5B · Product-depth planning held outside 059
 
 ### SX-DEC-056
@@ -94,7 +108,7 @@ No gameplay/scoring/map/save authority was widened.
 
 R09 Shareable Route Card and R10 Editor/UGC remain `POST_VALIDATION_HOLD`.
 
-## M6 · SX-DEC-059 Release-Near First-Session Vertical Slice
+## M5C · SX-DEC-059 Release-Near First-Session Vertical Slice
 
 `PLANNING COMPLETE · PHASE-C PASS · PACKAGE SPEC READY · BUILD NOT STARTED`
 
@@ -152,42 +166,34 @@ build: NOT_STARTED
 developer_self_run: NOT_RUN
 ```
 
-## M7 · SX-DEC-059 technical / release-near build evidence
-
-`NOT_STARTED`
-
-After explicit Codex handoff request:
-
-```text
-Fresh PowerShell / LOCATION FIRST
-→ isolated workspace
-→ local/tooling/baseline GREEN
-→ RED-first implementation tasks
-→ full automated regression
-→ Windows export/package proof
-→ developer self-run + screen QA
-```
-
-This milestone cannot claim human/player-experience PASS.
-
-## M8 · Physical / first-contact human validation
+## M6 · Physical/device/human validation
 
 `NOT_RUN`
 
+Stable validation sequence:
+
 ```text
-exact acceptance build identity
-→ physical smoke on that build
-→ Five-person first-contact comprehension
+SX-DEC-059 implementation + automated/package GREEN
+→ exact acceptance build identity
+→ Windows physical smoke as applicable
+→ Android device smoke as a separate platform gate
+→ Five-person first-contact comprehension on the exact designated acceptance build
 → EXPAND / REWORK / REPEAT_SLICE / HOLD / STOP
 ```
 
-Android device validation remains separate and is not implied by PC/package evidence.
+```yaml
+ANDROID DEVICE SMOKE: NOT_RUN
+FIVE-PERSON COMPREHENSION: NOT_RUN
+PLAYER EXPERIENCE: NOT_RUN
+```
 
-## M9 · Production cutover
+Android device validation is not implied by PC/package evidence. Human evidence is not implied by developer self-run.
+
+## M7 · Production cutover
 
 `BLOCKED_DEFERRED`
 
-Requires separate decision after release-near evidence. No automatic store cutover is authorized.
+Requires a separate decision after release-near evidence. No merge/build/export result automatically authorizes store release.
 
 ## Holds / exclusions
 
