@@ -44,10 +44,16 @@ class LocalToolingReconciliationContractTests(unittest.TestCase):
         self.assertIn(".asset-vault/", lines)
         self.assertIn("assets/_vault_local/", lines)
 
-    def test_godot_ai_repo_manifest_is_3_1_3(self) -> None:
+    def test_godot_ai_repo_manifest_matches_current_tooling_state(self) -> None:
         plugin = (ROOT / "addons/godot_ai/plugin.cfg").read_text(encoding="utf-8")
-        self.assertIn('version="3.1.3"', plugin)
-        self.assertNotIn('version="3.1.2"', plugin)
+        state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+        self.assertIn('version="3.1.4"', plugin)
+        self.assertNotIn('version="3.1.3"', plugin)
+        self.assertEqual("3.1.4", state["godot_ai"]["repo_version"])
+        self.assertEqual(
+            "addons/godot_ai/plugin.cfg@project-main-0a88f707e1e4131ae4372929f2871d2b8a3a74b7",
+            state["godot_ai"]["repo_version_source"],
+        )
 
     def test_gut_remains_9_7_1_and_repo_plugins_remain_enabled(self) -> None:
         gut = (ROOT / "addons/gut/plugin.cfg").read_text(encoding="utf-8")
@@ -66,14 +72,39 @@ class LocalToolingReconciliationContractTests(unittest.TestCase):
 
         state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
         self.assertEqual("SX-DEC-052", state["decision_id"])
-        self.assertEqual("3.1.3", state["godot_ai"]["user_local_version"])
-        self.assertEqual("3.1.3", state["godot_ai"]["repo_version"])
-        self.assertEqual("v3.1.3", state["godot_ai"]["upstream_tag"])
+
+        godot_ai = state["godot_ai"]
+        self.assertIsNone(godot_ai["user_local_version"])
+        self.assertEqual(
+            "REVERIFY_IN_FRESH_POWERSHELL",
+            godot_ai["user_local_version_status"],
+        )
+        self.assertEqual("3.1.4", godot_ai["repo_version"])
+        self.assertEqual("v3.1.3", godot_ai["upstream_tag"])
         self.assertEqual(
             "22678e5f9b038d7203d6b43b0aae20a5417c500e",
-            state["godot_ai"]["upstream_commit"],
+            godot_ai["upstream_commit"],
         )
-        self.assertTrue(state["godot_ai"]["user_enabled_approved"])
+        self.assertEqual(
+            "LAST_VERIFIED_RELEASE_BASIS_ONLY",
+            godot_ai["upstream_reference_role"],
+        )
+        self.assertEqual(
+            "96cc8b8c3d25ce487e24801d01d5214fea150349",
+            godot_ai["upstream_3_1_4_version_bump_commit"],
+        )
+        self.assertEqual("3.1.5", godot_ai["upstream_main_version_observed"])
+        self.assertEqual(
+            "09a1e3311015153d967710fbe6502ac519585a9b",
+            godot_ai["upstream_main_commit_observed"],
+        )
+        self.assertIn("FULL_TREE_PARITY_UNVERIFIED", godot_ai["provenance_status"])
+        self.assertEqual(
+            "VERIFY_LOCAL_REPO_TREE_PARITY_BEFORE_GODOT_AUTHORING",
+            godot_ai["build_gate"],
+        )
+        self.assertTrue(godot_ai["user_enabled_approved"])
+
         self.assertEqual("9.7.1", state["gut"]["repo_version"])
         self.assertTrue(state["gut"]["repo_enabled"])
         self.assertTrue(state["gut"]["user_enabled_approved"])
