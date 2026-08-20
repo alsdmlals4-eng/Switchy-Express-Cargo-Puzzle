@@ -27,10 +27,21 @@ Last updated: `2026-08-20 KST`
 | protected Open/Draft PR | `#154 · READ_ONLY` |
 | acceptance build | `UNASSIGNED` |
 | Windows physical runtime | `NOT_RUN` |
-| Android device smoke | `NOT_RUN` |
-| Five-person comprehension | `NOT_RUN` |
+| ANDROID DEVICE SMOKE | `NOT_RUN` |
+| FIVE-PERSON COMPREHENSION | `NOT_RUN` |
 | Player experience | `NOT_RUN` |
 | Production cutover | `BLOCKED_DEFERRED` |
+
+## Stable acceptance compatibility anchors
+
+```text
+SX-DEC-055: MERGED_MAIN_VERIFIED
+ANDROID DEVICE SMOKE: NOT_RUN
+FIVE-PERSON COMPREHENSION: NOT_RUN
+PRODUCTION CUTOVER: BLOCKED_DEFERRED
+```
+
+이 literal은 device/human canonical-freshness consumer가 사용하는 안정 locator다. SX-DEC-059가 새 release-near target이 되어도 과거 device gate 이름을 삭제하지 않는다.
 
 ## One-line product promise
 
