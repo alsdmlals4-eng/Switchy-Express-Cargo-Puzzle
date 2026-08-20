@@ -17,7 +17,10 @@ SX-DEC-059
 → release-near first-session Vertical Slice direction approved
 → GM-SX059-01 A approved
 → user explicit "기획완료" GRANTED · 2026-08-20
-→ Phase-C final review / current-canon sync / Codex package preparation
+→ Phase-C final review PASS · SX-AUD-064
+→ current-canon + Notion sync PASS on planning branch
+→ implementation package spec DoR PASS
+→ Codex handoff NOT_REQUESTED
 → BUILD NOT STARTED
 ```
 
@@ -93,7 +96,7 @@ R09 Shareable Route Card and R10 Editor/UGC remain `POST_VALIDATION_HOLD`.
 
 ## M6 · SX-DEC-059 Release-Near First-Session Vertical Slice
 
-`PLANNING COMPLETE · PHASE-C PACKAGE PREP · BUILD NOT STARTED`
+`PLANNING COMPLETE · PHASE-C PASS · PACKAGE SPEC READY · BUILD NOT STARTED`
 
 ### Player promise
 
@@ -120,25 +123,30 @@ T1_T2_shared_map: true
 capstone: VS_DEMO_01_REUSE
 new_core_mechanic: false
 new_generated_visual: false
-localization: ko/en/ja/zh-*
+localization: ko/en/ja/zh-Hans
+zh_Hant: DEFER_UNTIL_RELEASE_TARGET_REQUIRES
 responsive: pc_standard + pc_wide_or_ultrawide + mobile_landscape
 ```
 
 ### Implementation boundary
 
-- `FirstSessionDirector + FirstSessionStagePolicy` onboarding sidecar.
+- `FirstSessionDefinition + FirstSessionStagePolicy + FirstSessionDirector + FirstSessionCopy` sidecar.
 - `FiniteMapDefinition` schema v2 unchanged.
 - existing `ProductFiniteSlice` / finite domain reused.
-- exact map coordinates/JSON/witness authored test-first during BUILD.
-- StagePolicy blocks hidden command bypass across UI/keyboard/touch.
+- exact map coordinates/JSON/private witness authored test-first during BUILD.
+- StagePolicy blocks hidden command bypass across UI/keyboard/touch/board/route requests.
+- standalone demo remains compatibility default; product main opts in.
 - Result uses evidence-safe runtime summary only.
 
 ### Gate state
 
 ```yaml
 user_planning_complete: GRANTED_2026_08_20
-phase_c_final_review: IN_PROGRESS_UNTIL_CANON_SYNC_CLEAN_EXIT
-implementation_package: PREPARING
+phase_c_final_review: PASS_SX_AUD_064
+repository_canon: SYNCED_ON_PLANNING_BRANCH_MERGE_PENDING
+notion_sync: PASS
+implementation_package_spec_dor: PASS
+execution_preflight: NOT_RUN_AT_LOCAL_ENVIRONMENT
 codex_handoff: NOT_REQUESTED
 build: NOT_STARTED
 developer_self_run: NOT_RUN
@@ -148,10 +156,12 @@ developer_self_run: NOT_RUN
 
 `NOT_STARTED`
 
-When Codex handoff is explicitly requested and package DoR is closed:
+After explicit Codex handoff request:
 
 ```text
 Fresh PowerShell / LOCATION FIRST
+→ isolated workspace
+→ local/tooling/baseline GREEN
 → RED-first implementation tasks
 → full automated regression
 → Windows export/package proof
