@@ -8,11 +8,13 @@
     "upstream_tag": "v3.1.3",
     "upstream_commit": "22678e5f9b038d7203d6b43b0aae20a5417c500e",
     "upstream_reference_role": "LAST_VERIFIED_RELEASE_BASIS_ONLY",
+    "upstream_3_1_4_version_bump_commit": "96cc8b8c3d25ce487e24801d01d5214fea150349",
+    "upstream_3_1_4_version_bump_evidence": "hi-godot/godot-ai commit message: Bump version to 3.1.4",
     "upstream_main_version_observed": "3.1.5",
     "upstream_main_commit_observed": "09a1e3311015153d967710fbe6502ac519585a9b",
     "user_enabled_approved": true,
-    "repository_sync_basis": "PROJECT_PLUGIN_CFG_3_1_4_PRESENT_EXACT_PROVENANCE_REVERIFY_REQUIRED",
-    "provenance_status": "PROJECT_REPO_3_1_4_PRESENT_BUT_EXACT_UPSTREAM_ORIGIN_UNVERIFIED",
+    "repository_sync_basis": "PROJECT_PLUGIN_CFG_3_1_4_PRESENT_UPSTREAM_VERSION_BUMP_COMMIT_OBSERVED_EXACT_TREE_PARITY_REVERIFY_REQUIRED",
+    "provenance_status": "PROJECT_REPO_3_1_4_PRESENT_UPSTREAM_VERSION_BUMP_COMMIT_OBSERVED_FULL_TREE_PARITY_UNVERIFIED",
     "build_gate": "VERIFY_LOCAL_REPO_TREE_PARITY_BEFORE_GODOT_AUTHORING"
   },
   "gut": {
