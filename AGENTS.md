@@ -92,8 +92,11 @@ sx_dec_057: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_057_fast_cheap: BLOCKED_BY_STAGE8_TRACK_ATTRIBUTE_RUNTIME
 sx_dec_058: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_059: USER_APPROVED · PLANNING_COMPLETE_GRANTED_2026_08_20
-sx_dec_059_human_evidence: NOT_RUN
+sx_dec_059_phase_c: PASS · SX-AUD-064 · CLEAN_REVIEW_EXIT
+sx_dec_059_package_spec_dor: PASS
+sx_dec_059_codex_handoff: NOT_REQUESTED
 sx_dec_059_build_started: false
+sx_dec_059_human_evidence: NOT_RUN
 ```
 
 `SX-DEC-059`의 현재 승인된 첫 세션:
@@ -122,8 +125,10 @@ GM-SX059-01은 A안으로 승인 완료: T2는 prerequisite action, T4는 select
 - existing `VS_DEMO_01` capstone
 
 ### 신규 sidecar owner 후보
+- `FirstSessionDefinition`
 - `FirstSessionDirector`
 - `FirstSessionStagePolicy`
+- `FirstSessionCopy`
 - first-session sequence/localization data
 - five authored tutorial map definitions, exact bytes created RED-first in BUILD
 
@@ -157,16 +162,28 @@ if it later merges, reevaluate only the new completed main
 godot: 4.7.1-stable
 gut: 9.7.1
 project_godot_ai_plugin_cfg: 3.1.4
+upstream_godot_ai_3_1_4_version_bump: 96cc8b8c3d25ce487e24801d01d5214fea150349
 upstream_godot_ai_main_observed: 3.1.5 @ 09a1e3311015153d967710fbe6502ac519585a9b
 prior_verified_release_basis: v3.1.3 @ 22678e5f9b038d7203d6b43b0aae20a5417c500e
-project_3_1_4_exact_provenance: REVERIFY_REQUIRED_BEFORE_BUILD
+project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED_BEFORE_BUILD
 ```
 
-`docs/tooling/local_godot_tooling_state.json`가 현재 evidence owner다. Fresh PowerShell에서 local/repo tree parity를 다시 확인하기 전 local version을 추정하지 않는다.
+`docs/tooling/local_godot_tooling_state.json`가 현재 evidence owner다. Fresh PowerShell에서 local/repo tree parity를 다시 확인하기 전 **user-local version**을 추정하지 않는다.
 
 Persistent Godot authoring은 프로젝트가 채택한 HiGodot/Godot-authoring authority를 따른다. GUT은 deterministic test authority, Hera는 live QA/observability only이며 acceptance source delta를 남기지 않는다.
 
-## 9. Evidence ceiling
+## 9. Platform / Release / Asset Rights routing
+
+플랫폼·등급·스토어·광고/IAP·권리·출처·reference independence 판단은 다음 프로젝트 정본을 반드시 함께 읽는다.
+
+- `docs/PLATFORM_RELEASE_AND_ASSET_RIGHTS_PROFILE.md`
+- `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`
+- `docs/GAME_RELEASE_COMPLIANCE_EVIDENCE_PACK.md`
+- `기획서/50_제작_검증/PLATFORM_RELEASE_AND_ASSET_RIGHTS_PLAN.md`
+
+이 문서들은 release/platform/asset-rights owner다. 현재 SX-DEC-059 planning/build 준비가 `PLATFORM_SUBMISSION_NOT_RUN`, `LEGAL_REVIEW_NOT_PERFORMED`, 실제 store cutover 같은 별도 evidence gate를 PASS로 승격하지 않는다.
+
+## 10. Evidence ceiling
 
 ```text
 FINITE CORE AUTOMATED: PASS
@@ -182,31 +199,32 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 
 자동화/export/package/self-run은 HUMAN/PLAYER EXPERIENCE PASS가 아니다.
 
-## 10. Codex / Build Gate
+## 11. Codex / Build Gate
 
-사용자 `기획완료`는 2026-08-20에 GRANTED 됐다. 이후에는 fresh Phase-C review와 implementation package DoR를 닫는다.
+사용자 `기획완료`는 2026-08-20에 GRANTED 됐고 Phase-C/package spec 검토도 닫혔다.
 
 실제 Codex 인계/실행은 v4.7의 on-demand rule을 따른다.
 
 ```text
-package DoR closed
+package spec DoR PASS
 AND USER_REQUESTED_CODEX_HANDOFF
 → NEW POWERSHELL
-→ LOCATION FIRST
-→ project/worktree + Godot/HiGodot/CODEX_HOME/Hera preflight
+→ LOCATION FIRST by remote identity
+→ isolated workspace + Godot/HiGodot/CODEX_HOME/Hera preflight as applicable
+→ baseline GREEN
 → codex.cmd -a never -s workspace-write
 → every task RED → expected fail → minimal GREEN → regression
 ```
 
 Codex handoff 요청 전에는 PowerShell/Codex/Godot BUILD를 시작했다고 주장하지 않는다.
 
-## 11. Notion / GitHub sync
+## 12. Notion / GitHub sync
 
 - Notion: 사람용 Project Home / Flow / Visual / Production Handoff.
 - GitHub: structured canon / code / data / Scene / Resource / assets / tests / runtime evidence.
-- 승인 Decision은 같은 의미로 양쪽에 즉시 동기화하고 readback한다.
+- 승인 Decision은 같은 의미로 양쪽에 동기화하고 readback한다.
 
-## 12. 현재 핵심 정본
+## 13. 현재 핵심 정본
 
 - `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`
 - `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
@@ -217,9 +235,11 @@ Codex handoff 요청 전에는 PowerShell/Codex/Godot BUILD를 시작했다고 �
 - `기획서/20_시스템_콘텐츠/FIRST_SESSION_STAGE_CONTENT_SPEC_V1.md`
 - `기획서/30_UI_UX/FIRST_SESSION_SCREEN_CONTENT_DATA_CONTRACT.md`
 - `기획서/30_UI_UX/FIRST_SESSION_LOCALIZATION_COPY_MATRIX_V1.md`
+- `기획서/30_UI_UX/FIRST_SESSION_LOCALIZATION_COPY_ADDENDUM_01.md`
 - `기획서/40_표현/SX_DEC_059_VISUAL_REQUIREMENT_BRIEFS.md`
 - `기획서/50_제작_검증/SX_DEC_059_RELEASE_NEAR_FIRST_SESSION_VERTICAL_SLICE.md`
+- `기획서/50_제작_검증/PLAYTEST_PLAN_V4_7_CURRENT.md`
 - `기획서/50_제작_검증/SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`
-- `기획서/50_제작_검증/PLAYTEST_PLAN.md`
+- `기획서/50_제작_검증/SX_AUD_064_SX_DEC_059_PHASE_C_FINAL_REVIEW.md`
 
 현재 작업의 실행 locator는 `ACTIVE_CONTEXT.md`가 책임진다.
