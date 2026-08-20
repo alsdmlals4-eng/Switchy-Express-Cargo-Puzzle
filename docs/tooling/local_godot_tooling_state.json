@@ -1,12 +1,19 @@
 {
   "decision_id": "SX-DEC-052",
   "godot_ai": {
-    "user_local_version": "3.1.3",
-    "repo_version": "3.1.3",
+    "user_local_version": null,
+    "user_local_version_status": "REVERIFY_IN_FRESH_POWERSHELL",
+    "repo_version": "3.1.4",
+    "repo_version_source": "addons/godot_ai/plugin.cfg@project-main-0a88f707e1e4131ae4372929f2871d2b8a3a74b7",
     "upstream_tag": "v3.1.3",
     "upstream_commit": "22678e5f9b038d7203d6b43b0aae20a5417c500e",
+    "upstream_reference_role": "LAST_VERIFIED_RELEASE_BASIS_ONLY",
+    "upstream_main_version_observed": "3.1.5",
+    "upstream_main_commit_observed": "09a1e3311015153d967710fbe6502ac519585a9b",
     "user_enabled_approved": true,
-    "repository_sync_basis": "FULL_ADDON_TREE_V3_1_2_PARITY_PLUS_UPSTREAM_V3_1_3_PLUGIN_CFG_DELTA"
+    "repository_sync_basis": "PROJECT_PLUGIN_CFG_3_1_4_PRESENT_EXACT_PROVENANCE_REVERIFY_REQUIRED",
+    "provenance_status": "PROJECT_REPO_3_1_4_PRESENT_BUT_EXACT_UPSTREAM_ORIGIN_UNVERIFIED",
+    "build_gate": "VERIFY_LOCAL_REPO_TREE_PARITY_BEFORE_GODOT_AUTHORING"
   },
   "gut": {
     "repo_version": "9.7.1",
