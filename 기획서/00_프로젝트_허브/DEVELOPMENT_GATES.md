@@ -32,7 +32,23 @@ GMB-002 finite core: AUTOMATED PASS
 
 SX-DEC-055는 이미 끝났으므로 과거 `SemanticAssetCatalog RED`를 current next action으로 되살리지 않는다.
 
-## 3. SX-DEC-059 release-near first-session chain
+## 3. Stable device / acceptance evidence anchors
+
+이 literal은 device-smoke canonical-freshness consumer와 과거 evidence locator가 사용하므로 SX-DEC-059가 추가되어도 유지한다.
+
+```text
+HISTORICAL CANONICAL APK EXPORT: PASS · HISTORICAL PACKAGE EVIDENCE
+ANDROID DEVICE SMOKE: NOT_RUN
+FIVE-PERSON COMPREHENSION: NOT_RUN
+PRODUCTION CUTOVER: BLOCKED_DEFERRED
+```
+
+- Historical canonical APK/export evidence is packaging/history evidence, not the future SX-DEC-059 acceptance build.
+- Android device smoke remains an independent platform gate.
+- Five-person comprehension requires a later exact acceptance build and reviewed physical smoke.
+- no automated/package/self-run result upgrades these anchors to PASS.
+
+## 4. SX-DEC-059 release-near first-session chain
 
 ```text
 S0 PLAN: COMPLETE
@@ -53,7 +69,7 @@ S0 PLAN: COMPLETE
 → S15 product decision: NOT_RUN
 ```
 
-## 4. Planned BUILD task families
+## 5. Planned BUILD task families
 
 Actual production code may start only after A8 handoff trigger and fresh execution preflight.
 
@@ -86,7 +102,7 @@ RED
 
 순서를 따른다.
 
-## 5. Content gate
+## 6. Content gate
 
 ### Map policy
 
@@ -109,7 +125,7 @@ T6 new concept: switch execution / occupied lock
 Capstone: transfer without new explanation
 ```
 
-## 6. UI / input gate
+## 7. UI / input gate
 
 `FirstSessionStagePolicy` must gate **both presentation and command path**.
 
@@ -125,7 +141,7 @@ board / route-control request
 
 Hidden system must not remain usable through shortcut bypass. Stage visibility must survive subsequent HUD `apply_model()` refreshes and may only narrow phase-valid controls.
 
-## 7. Localization / responsive gate
+## 8. Localization / responsive gate
 
 First-slice planned languages:
 
@@ -157,7 +173,7 @@ mobile_landscape semantic check
 
 Same pixel layout is not required; same information/action/state meaning is required.
 
-## 8. Result evidence gate
+## 9. Result evidence gate
 
 Current `FiniteRunSummary` supports:
 
@@ -181,7 +197,7 @@ ROUTE_END / TIME_EXPIRED
 
 Detailed station mismatch is a future 056A observation concern and is outside 059.
 
-## 9. Visual / audio gate
+## 10. Visual / audio gate
 
 - existing 73 E+D Hybrid / Neo-Arcade semantic product assets first.
 - existing `DemoEffects`, audio, SemanticEventOverlay first.
@@ -189,16 +205,17 @@ Detailed station mismatch is a future 056A observation concern and is outside 05
 - Reduced Motion uses same information identity.
 - VFX must not cover next critical cargo/switch target.
 
-## 10. Tooling / fresh execution preflight gate
+## 11. Tooling / fresh execution preflight gate
 
 ```yaml
 godot: 4.7.1-stable
 gut: 9.7.1
 project_godot_ai_plugin_cfg: 3.1.4
+upstream_3_1_4_version_bump_commit: 96cc8b8c3d25ce487e24801d01d5214fea150349
 upstream_main_observed_plugin: 3.1.5
 upstream_main_observed_commit: 09a1e3311015153d967710fbe6502ac519585a9b
 prior_verified_release_basis: v3.1.3
-project_3_1_4_provenance: REVERIFY_REQUIRED
+project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED
 local_repo_tree_parity: NOT_RUN
 baseline_custom_suite: NOT_RUN_IN_FRESH_EXECUTION_ENVIRONMENT
 ```
@@ -217,7 +234,7 @@ A8 뒤 Fresh PowerShell에서 다음을 확인하기 전 persistent authoring을
 - Hera only when live QA is applicable; tracked source delta after acceptance must be zero.
 - custom baseline suite GREEN.
 
-## 11. Concurrency gate
+## 12. Concurrency gate
 
 ### PR #154
 
@@ -231,7 +248,7 @@ A8 뒤 Fresh PowerShell에서 다음을 확인하기 전 persistent authoring을
 
 `CLOSED_UNMERGED · HISTORICAL_ACCIDENT`.
 
-## 12. Implementation package authority
+## 13. Implementation package authority
 
 Binding read order:
 
@@ -248,7 +265,7 @@ SX_DEC_059_CODEX_HANDOFF_PACKAGE.md
 
 The amendments override the parent plan's illustrative fixed repo path/API placeholders and add title/CTA/HUD-lifecycle/same-layout regression contracts.
 
-## 13. Automated validation gate
+## 14. Automated validation gate
 
 Minimum required before an implementation PR can be called review-ready:
 
@@ -264,7 +281,7 @@ Minimum required before an implementation PR can be called review-ready:
 
 Hosted CI/package proof is not physical runtime or human evidence.
 
-## 14. Developer self-run gate
+## 15. Developer self-run gate
 
 After automated GREEN and before first-contact human evidence:
 
@@ -290,7 +307,7 @@ unsupported evidence claim 0
 
 This gate is developer usability/technical evidence only.
 
-## 15. Physical / human gate
+## 16. Physical / human gate
 
 ```text
 exact acceptance build identity
@@ -310,7 +327,7 @@ HOLD
 STOP
 ```
 
-## 16. Production cutover
+## 17. Production cutover
 
 `BLOCKED_DEFERRED`.
 
