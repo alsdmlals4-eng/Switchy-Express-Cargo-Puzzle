@@ -41,6 +41,19 @@ player_experience: NOT_RUN
 production_cutover: BLOCKED_DEFERRED
 ```
 
+## Stable acceptance compatibility anchors
+
+아래 literal은 Android/device canonical-freshness consumer가 사용하는 안정 locator다. 059가 새 acceptance target을 추가해도 이름을 제거하거나 다른 표기로만 바꾸지 않는다.
+
+```text
+SX-DEC-055: MERGED_MAIN_VERIFIED
+ANDROID DEVICE SMOKE: NOT_RUN
+FIVE-PERSON COMPREHENSION: NOT_RUN
+PRODUCTION CUTOVER: BLOCKED_DEFERRED
+```
+
+SX-DEC-055의 과거 패키지/자동화 증거와 SX-DEC-059의 미래 release-near acceptance evidence는 서로 다른 층이다.
+
 ## Current product promise
 
 > 선로를 건설해 화물 조우 순서를 설계하고, 적재 선택으로 LIFO를 구성한 뒤, 운행 중 분기 판단으로 계획을 실행하고 결과를 보고 다시 설계하는 finite cargo puzzle.
@@ -130,9 +143,10 @@ Developer self-run or automated tests do not equal player-experience PASS.
 godot: 4.7.1-stable
 gut: 9.7.1
 project_godot_ai_plugin_cfg: 3.1.4
+upstream_godot_ai_3_1_4_version_bump: 96cc8b8c3d25ce487e24801d01d5214fea150349
 upstream_godot_ai_main: 3.1.5 @ 09a1e3311015153d967710fbe6502ac519585a9b
 prior_verified_release_basis: v3.1.3 @ 22678e5f9b038d7203d6b43b0aae20a5417c500e
-project_3_1_4_provenance: REVERIFY_REQUIRED_BEFORE_BUILD
+project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED_BEFORE_BUILD
 local_tool_parity: NOT_RUN
 ```
 
