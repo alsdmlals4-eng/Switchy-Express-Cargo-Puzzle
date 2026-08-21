@@ -10,7 +10,9 @@ Last updated: `2026-08-21 KST`
 repository: alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
 default_branch: main
 project_main_before_implementation: 4b37c154505ed1975735fc305a68b410877a40e0
-implementation_branch: feat/sx-dec-059-first-session
+sx_dec_059_merge_pr: 158
+sx_dec_059_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
+implementation_branch: feat/sx-dec-059-first-session · HISTORICAL_MERGED
 base_pin: v9.4.3
 base_remote_latest_observed: ef0092256be25eaa70a296a76d02f7205934929e · REFERENCE_ONLY
 engine: Godot 4.7.1-stable
@@ -20,12 +22,12 @@ product_baseline: GMB-002
 current_decisions: SX-DEC-027~059
 sx_dec_059_user_planning_complete: GRANTED · 2026-08-20 KST
 sx_dec_059_phase_c: PASS · SX-AUD-064 · CLEAN_REVIEW_EXIT
-sx_dec_059_repository_canon: IMPLEMENTATION_CANON_AUTHORED
-sx_dec_059_notion_sync: POST_MERGE_READBACK_REQUIRED
+sx_dec_059_repository_canon: MERGED_MAIN_VERIFIED
+sx_dec_059_notion_sync: PASS · POST_PR_158_READBACK_COMPLETE
 sx_dec_059_package_spec_dor: PASS
 sx_dec_059_execution_preflight: PASS
 sx_dec_059_codex_handoff: USER_REQUESTED_AND_EXECUTED
-SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED
+SX_DEC_059_IMPLEMENTATION: MERGED_MAIN_VERIFIED
 sx_dec_059_build: RELEASE_NEAR_VERTICAL_SLICE_AUTOMATED_GREEN
 sx_dec_059_adversarial_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-066
 sx_dec_055: MERGED_MAIN_VERIFIED · PR_151
@@ -34,8 +36,9 @@ sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
 sx_dec_057: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_058: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 semantic_assets: 73_TOTAL · PRODUCTION_COMPLETE
-pr_154: "AUDITED · SUPERSEDED_UNMERGED_BY_059"
+pr_154: CLOSED_UNMERGED · SUPERSEDED_BY_059
 acceptance_build: UNASSIGNED
+developer_self_run: NOT_RUN
 windows_physical_runtime: NOT_RUN
 android_device: NOT_RUN
 five_person_comprehension: NOT_RUN
@@ -149,11 +152,12 @@ Use:
 - `SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`
 
 ```text
-AUTOMATED CONTRACT
-→ developer self-run / screen QA
-→ exact acceptance build + physical smoke
-→ Five-person first-contact comprehension
-→ decision gate
+AUTOMATED CONTRACT: PASS · MERGED_MAIN_VERIFIED
+→ developer self-run / screen QA: NOT_RUN
+→ exact acceptance build identity: UNASSIGNED
+→ reviewed physical smoke on that same build: NOT_RUN
+→ Five-person first-contact comprehension: NOT_RUN
+→ decision gate: NOT_RUN
 ```
 
 Developer self-run or automated tests do not equal player-experience PASS.
@@ -167,20 +171,20 @@ project_godot_ai_plugin_cfg: 3.1.4
 upstream_godot_ai_3_1_4_version_bump: 96cc8b8c3d25ce487e24801d01d5214fea150349
 upstream_godot_ai_main: 3.1.5 @ 09a1e3311015153d967710fbe6502ac519585a9b
 prior_verified_release_basis: v3.1.3 @ 22678e5f9b038d7203d6b43b0aae20a5417c500e
-project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED_BEFORE_BUILD
+project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED_BEFORE_FUTURE_AUTHORING
 local_tool_parity: NOT_RUN
 ```
 
-The implementation used an isolated worktree and Godot 4.7.1. Future work must repeat fresh remote/PR/Notion recovery rather than treating this snapshot as live truth.
+The implementation used an isolated worktree and Godot 4.7.1. Future authoring must repeat fresh remote/PR/Notion recovery rather than treating this snapshot as live truth.
 
 ## Current concurrency boundary
 
 ### PR #154
 
-Audited in full and superseded by the product-owned SX-DEC-059 implementation.
+`CLOSED_UNMERGED · SUPERSEDED_BY_SX_DEC_059`.
 
 - no unmerged `game/reuse/*` absorption.
-- close unmerged after the replacement implementation is integrated.
+- do not reopen or re-vendor without a new approved need and fresh evidence.
 
 ### PR #155 / #156
 
@@ -221,15 +225,17 @@ Audited in full and superseded by the product-owned SX-DEC-059 implementation.
 8. this `ACTIVE_CONTEXT.md`.
 9. `DEVELOPMENT_GATES.md`.
 10. 059 content/UI/localization/visual/playtest owners.
-11. implementation/handoff package only when execution is requested.
+11. implementation/handoff package only when historical execution evidence is needed.
 
 ## Current next action
 
 ```text
-implementation PR exact-head CI + merge
-→ close superseded PR #154 unmerged
-→ Notion Project Home/core-system/handoff destination sync + readback
-→ physical Windows/Android + five-person comprehension when authorized/prepared
+developer self-run / screen QA
+→ designate exact acceptance build when physical validation is prepared
+→ Windows physical smoke as applicable
+→ Android device smoke as separate platform gate
+→ Five-person first-contact comprehension on the same build
+→ EXPAND / REWORK / REPEAT_SLICE / HOLD / STOP
 ```
 
-**Automated implementation is complete; physical/device/human validation remains NOT_RUN.**
+**PR #158 merge와 Notion implementation readback은 완료됐고, physical/device/human validation은 여전히 NOT_RUN이다.**

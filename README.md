@@ -18,13 +18,17 @@ phase_b_final_planning_review: SX-AUD-047 · PASS
 runtime_semantic_poc: SX-DEC-055 · IMPLEMENTED · PR_151_MERGED
 runtime_integrated: true
 sx_dec_055_merge_main: 534a7318b349cd3e784a3467125f9ebd23124d8a
-release_near_first_session: SX-DEC-059 · IMPLEMENTED_AUTOMATED
+release_near_first_session: SX-DEC-059 · MERGED_MAIN_VERIFIED
 sx_dec_059_codex_handoff: USER_REQUESTED_AND_EXECUTED
-SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED
+SX_DEC_059_IMPLEMENTATION: MERGED_MAIN_VERIFIED
+sx_dec_059_merge_pr: 158
+sx_dec_059_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
+sx_dec_059_notion_post_merge_readback: PASS
 sx_dec_059_adversarial_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED
 semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
 base_pin: v9.4.3
 upstream_base_main: REFERENCE_ONLY
+developer_self_run: NOT_RUN
 physical_device_human: NOT_RUN
 production_cutover: BLOCKED_DEFERRED
 ```
@@ -63,7 +67,7 @@ latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
 
 ## 현재 구현 지점
 
-`SX-DEC-059`는 기존 finite core를 바꾸지 않는 presentation-sidecar로 구현됐습니다.
+`SX-DEC-059`는 기존 finite core를 바꾸지 않는 presentation-sidecar로 구현되어 PR #158로 `main`에 병합됐습니다.
 
 ```text
 FirstSessionDefinition + StagePolicy + Director + Copy
@@ -158,8 +162,10 @@ Esc: 취소·뒤로
 ```text
 FINITE CORE AUTOMATED: PASS
 SX-DEC-055 RUNTIME POC: MERGED_MAIN_VERIFIED
-runtime_integrated: true
-POST-POC ACCEPTANCE BUILD: UNASSIGNED
+SX-DEC-059 FIRST SESSION: MERGED_MAIN_VERIFIED · PR #158
+SX-DEC-059 NOTION READBACK: PASS
+POST-059 ACCEPTANCE BUILD: UNASSIGNED
+DEVELOPER SELF-RUN / SCREEN QA: NOT_RUN
 WINDOWS PHYSICAL RUNTIME: NOT_RUN
 ANDROID DEVICE SMOKE: NOT_RUN
 CONNECTED PHYSICAL EDITOR: NOT_RUN
@@ -167,12 +173,12 @@ FIVE-PERSON COMPREHENSION: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
 
-기존 Android validation APK와 과거 Windows export는 역사적 packaging/diagnostic evidence이며 post-POC acceptance build를 대신하지 않습니다.
+기존 Android validation APK와 과거 Windows export는 역사적 packaging/diagnostic evidence이며 post-059 acceptance build를 대신하지 않습니다.
 
 ## 다음 유효 작업
 
 ```text
-GitHub exact-head CI / merge + Notion destination readback
+developer self-run / screen QA
 → exact acceptance build identity when physical validation is prepared
 → Windows physical smoke
 → Android device smoke
