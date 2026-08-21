@@ -6,6 +6,9 @@ base_research_contract: 기획서/50_제작_검증/PLAYTEST_PLAN.md
 sx_dec_059_delta: 기획서/50_제작_검증/SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md
 product_authority: GMB-002 · SX-DEC-027~059
 user_planning_complete: GRANTED · 2026-08-20 KST
+sx_dec_059_implementation: MERGED_MAIN_VERIFIED · PR_158
+sx_dec_059_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
+notion_post_merge_readback: PASS
 five_person_gate_changed: false
 human_evidence: NOT_RUN
 ```
@@ -51,7 +54,7 @@ Session replay/replan desire
 ## 3. Evidence sequence
 
 ```text
-AUTOMATED CONTRACT
+AUTOMATED CONTRACT: PASS · MERGED_MAIN_VERIFIED
 → developer self-run / screen QA
 → exact acceptance build identity
 → reviewed physical smoke on that same build
@@ -66,8 +69,9 @@ AUTOMATED CONTRACT
 
 기존 `PLAYTEST_PLAN.md`의 historical Android validation APK와 Android-oriented evidence는 역사/플랫폼 evidence로 보존한다.
 
-SX-DEC-059 implementation의 첫 release-near 제작/내부 검증은 현재 PC Godot production surface에서 진행할 수 있으나:
+SX-DEC-059 implementation은 PR #158로 현재 GitHub `main`에 병합됐지만:
 
+- merged automated evidence는 developer self-run이 아니다.
 - PC self-run은 Android device evidence가 아니다.
 - Android physical smoke는 별도 `NOT_RUN` Gate다.
 - human round의 exact platform/build identity는 실제 테스트 round를 고정할 때 기록한다.
@@ -78,7 +82,10 @@ SX-DEC-059 implementation의 첫 release-near 제작/내부 검증은 현재 PC 
 ## 5. Current status
 
 ```yaml
-sx_dec_059_implementation: NOT_STARTED
+sx_dec_059_implementation: MERGED_MAIN_VERIFIED
+implementation_merge_pr: 158
+implementation_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
+notion_post_merge_readback: PASS
 developer_self_run: NOT_RUN
 acceptance_build: UNASSIGNED
 physical_smoke: NOT_RUN
@@ -87,6 +94,15 @@ android_device: NOT_RUN
 five_person_comprehension: NOT_RUN
 player_experience: NOT_RUN
 production_cutover: BLOCKED_DEFERRED
+```
+
+## 6. Current next action
+
+```text
+developer self-run / screen QA
+→ record exact acceptance build identity when physical validation is prepared
+→ same-build physical smoke
+→ first-contact human round
 ```
 
 No PASS claim may exceed this evidence ceiling.
