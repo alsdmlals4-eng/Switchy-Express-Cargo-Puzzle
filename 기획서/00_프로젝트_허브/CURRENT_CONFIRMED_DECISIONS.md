@@ -14,14 +14,16 @@ work_instruction_source_sha256: 767bbe3d69e9a0acb0e5706321564ad8c04a451f7c54914a
 project_base_pin: v9.4.3
 base_remote_latest_observed: ef0092256be25eaa70a296a76d02f7205934929e · REFERENCE_ONLY
 project_main_before_059_implementation: 4b37c154505ed1975735fc305a68b410877a40e0
+sx_dec_059_merge_pr: 158
+sx_dec_059_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
 sx_dec_059_user_planning_complete_gate: GRANTED · explicit "기획완료" · 2026-08-20 KST
 sx_dec_059_phase_c_final_review: PASS · SX-AUD-064 · CLEAN_REVIEW_EXIT
-sx_dec_059_repository_canon: IMPLEMENTATION_CANON_AUTHORED
-sx_dec_059_notion_sync: POST_MERGE_READBACK_REQUIRED
+sx_dec_059_repository_canon: MERGED_MAIN_VERIFIED
+sx_dec_059_notion_sync: PASS · POST_PR_158_READBACK_COMPLETE
 sx_dec_059_package_spec_dor: PASS
 sx_dec_059_execution_preflight: PASS
 sx_dec_059_codex_handoff: USER_REQUESTED_AND_EXECUTED
-SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED
+SX_DEC_059_IMPLEMENTATION: MERGED_MAIN_VERIFIED
 sx_dec_059_build: RELEASE_NEAR_VERTICAL_SLICE_AUTOMATED_GREEN
 sx_dec_059_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-066
 sx_dec_055_runtime_implementation: MERGED_MAIN_VERIFIED · PR_151
@@ -32,6 +34,7 @@ sx_dec_057_fast_cheap: BLOCKED_BY_STAGE8_TRACK_ATTRIBUTE_RUNTIME
 sx_dec_058: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
 acceptance_build: UNASSIGNED
+developer_self_run: NOT_RUN
 windows_physical_runtime: NOT_RUN
 android_device: NOT_RUN
 five_person_comprehension: NOT_RUN
@@ -87,7 +90,7 @@ production_cutover: BLOCKED_DEFERRED
 | SX-DEC-056 | Route Causality / Result Feedback · 056A implementation unauthorized; 056B blocked |
 | SX-DEC-057 | Yard Labs / Mastery · implementation unauthorized; fast/cheap dependency gated |
 | SX-DEC-058 | Fixed-Seed Challenge Quality · implementation/pipeline unauthorized |
-| **SX-DEC-059** | **Release-Near First Session · IMPLEMENTED_AUTOMATED · FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · PHYSICAL/HUMAN NOT_RUN** |
+| **SX-DEC-059** | **Release-Near First Session · PR #158 MERGED_MAIN_VERIFIED · FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · PHYSICAL/HUMAN NOT_RUN** |
 
 ## SX-DEC-059 confirmed contract
 
@@ -148,10 +151,11 @@ Station mismatch/encounter trace is not inferred. Full SX-DEC-056A is not implic
 `PLAYTEST_PLAN_V4_7_CURRENT.md` + `SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`.
 
 ```text
-AUTOMATED CONTRACT
-→ developer self-run / screen QA
-→ exact acceptance build + physical smoke
-→ Five-person first-contact comprehension
+AUTOMATED CONTRACT: PASS · MERGED_MAIN_VERIFIED
+→ developer self-run / screen QA: NOT_RUN
+→ exact acceptance build: UNASSIGNED
+→ physical smoke: NOT_RUN
+→ Five-person first-contact comprehension: NOT_RUN
 → EXPAND / REWORK / REPEAT_SLICE / HOLD / STOP
 ```
 
@@ -168,7 +172,7 @@ docs/superpowers/plans/2026-08-20-sx-dec-059-first-session-vertical-slice-implem
 → handoff Amendment 02
 ```
 
-The package is implemented. The handoff files remain execution-history/rollback material and must not restart Task 1.
+The package is implemented and merged through PR #158. The handoff files remain execution-history/rollback material and must not restart Task 1.
 
 ## Protected future packages
 
@@ -191,9 +195,11 @@ Phase-C final review PASS
 → isolated workspace / baseline GREEN
 → Codex RED-first BUILD
 → five-pass adversarial review + corrections
-→ implementation PR exact-head CI + merge
-→ Notion destination readback
-→ physical/device/human validation
+→ PR #158 MERGED_MAIN_VERIFIED
+→ Notion post-merge implementation readback PASS
+→ developer self-run / screen QA
+→ exact acceptance build + physical smoke
+→ Five-person first-contact comprehension
 ```
 
-현재 자동화 구현은 완료됐고 physical/device/human 검증은 `NOT_RUN`이다.
+현재 구현·병합·Notion readback은 완료됐고 physical/device/human 검증은 `NOT_RUN`이다.
