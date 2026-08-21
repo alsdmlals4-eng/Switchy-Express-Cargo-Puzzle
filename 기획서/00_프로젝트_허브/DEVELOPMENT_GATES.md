@@ -20,9 +20,11 @@ A0 CURRENT AUTHORITY RECOVERY: PASS
 → A10 SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED
 → A11 FIVE-PASS ADVERSARIAL REVIEW: CLOSED · SX-AUD-066
 → A12 INDEPENDENT CODE REVIEW + RED/GREEN CORRECTION: CLOSED · SX-AUD-066
+→ A13 IMPLEMENTATION PR #158: MERGED_MAIN_VERIFIED · 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
+→ A14 NOTION POST-MERGE IMPLEMENTATION READBACK: PASS
 ```
 
-`기획완료`는 승인된 059 계획을 잠근다. A6/A7은 설계·정본·인계 패키지의 정적 준비 상태이며, 실제 로컬 repo/Godot/addon/baseline GREEN은 A8 뒤 fresh execution preflight에서 확인한다.
+`기획완료`는 승인된 059 계획을 잠근다. A6/A7은 설계·정본·인계 패키지의 정적 준비 상태이며, A8 이후 fresh execution preflight와 RED→GREEN 구현, exact-head 검증, merge/readback까지 완료됐다.
 
 ## 2. Historical implemented baseline chain
 
@@ -76,6 +78,7 @@ S0 PLAN: COMPLETE
 → S11 Codex/Godot implementation: IMPLEMENTED_AUTOMATED
 → S11A custom/GUT/export-pack proof: PASS
 → S11B five-pass adversarial review: CLOSED
+→ S11C PR #158 merge + Notion implementation readback: PASS
 → S12 developer self-run/screen QA: NOT_RUN
 → S13 exact acceptance build physical smoke: NOT_RUN
 → S14 Five-person first-contact comprehension: NOT_RUN
@@ -113,18 +116,18 @@ RED
 → commit
 ```
 
-순서를 따른다.
+순서를 따랐다.
 
 ## 6. Content gate
 
 ### Map policy
 
-- New tutorial map target = 5.
+- New tutorial map target = 5; implementation complete.
 - `FiniteMapDefinition` schema v2 reuse.
 - tutorial metadata is sidecar, not map schema.
-- map coordinates/JSON are BUILD outputs and require deterministic success witness tests.
+- map coordinates/JSON have deterministic success witness tests.
 - no player-facing witness/solver.
-- `VS_DEMO_01` bytes/semantic are immutable by default.
+- `VS_DEMO_01` bytes/semantic remain immutable by default.
 
 ### Learning policy
 
@@ -140,12 +143,12 @@ Capstone: transfer without new explanation
 
 ## 7. UI / input gate
 
-`FirstSessionStagePolicy` must gate **both presentation and command path**.
+`FirstSessionStagePolicy` gates **both presentation and command path**.
 
 ```text
 HUD button
 keyboard shortcut
-future touch input
+touch input
 board / route-control request
 → same allowed-command policy
 → current ProductFiniteSlice dispatch boundary
@@ -156,7 +159,7 @@ Hidden system must not remain usable through shortcut bypass. Stage visibility m
 
 ## 8. Localization / responsive gate
 
-First-slice planned languages:
+First-slice languages:
 
 ```text
 ko
@@ -168,11 +171,11 @@ zh-Hans
 `zh-Hant` is deferred until a release target requires it.
 
 - copy key/data separation.
-- Lesson Card requires `title_key` + `objective_key`.
+- Lesson Card uses `title_key` + `objective_key`.
 - CTA keys come from `FIRST_SESSION_LOCALIZATION_COPY_ADDENDUM_01.md`.
 - text-in-PNG forbidden.
 - raw localization key player-facing fallback forbidden.
-- CJK glyph/line-break/long string checks.
+- CJK glyph/line-break/long string checks are automated; physical readability remains separate.
 
 Responsive meaning targets:
 
@@ -228,33 +231,31 @@ upstream_3_1_4_version_bump_commit: 96cc8b8c3d25ce487e24801d01d5214fea150349
 upstream_main_observed_plugin: 3.1.5
 upstream_main_observed_commit: 09a1e3311015153d967710fbe6502ac519585a9b
 prior_verified_release_basis: v3.1.3
-project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED
+project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED_BEFORE_FUTURE_AUTHORING
 local_repo_tree_parity: NOT_RUN
-baseline_custom_suite: NOT_RUN_IN_FRESH_EXECUTION_ENVIRONMENT
 ```
 
-Future authoring must repeat these checks rather than inheriting this execution snapshot.
+향후 authoring은 과거 implementation preflight를 자동 상속하지 않고 다음을 다시 확인한다.
 
-- exact local repo location resolved by Git remote identity; no guessed hard-coded checkout.
+- exact local repo location resolved by Git remote identity.
 - clean/dirty state and user changes.
 - exact project `HEAD` and `origin/main` relation.
-- isolated workspace/worktree status.
+- isolated workspace/worktree status where implementation is requested.
 - Godot executable version.
 - repo/local Godot AI addon parity/provenance.
 - GUT availability.
 - project HiGodot profile/ports only if actually consumed.
 - project CODEX_HOME current value without silent credential/config replacement.
 - Hera only when live QA is applicable; tracked source delta after acceptance must be zero.
-- custom baseline suite GREEN.
 
 ## 12. Concurrency gate
 
 ### PR #154
 
-`AUDITED · SUPERSEDED_UNMERGED_BY_059`.
+`CLOSED_UNMERGED · SUPERSEDED_BY_SX_DEC_059`.
 
 - no unmerged `game/reuse/*` absorption.
-- close unmerged after the replacement implementation is integrated.
+- do not reopen without a new approved need and fresh evidence.
 
 ### PR #155 / #156
 
@@ -262,7 +263,7 @@ Future authoring must repeat these checks rather than inheriting this execution 
 
 ## 13. Implementation package authority
 
-Binding read order:
+Binding historical read order:
 
 ```text
 SX_DEC_059_CODEX_HANDOFF_PACKAGE.md
@@ -272,22 +273,21 @@ SX_DEC_059_CODEX_HANDOFF_PACKAGE.md
 → implementation Amendment 01
 → implementation Amendment 02
 → actual current code/tests
-→ Task 1 RED
 ```
 
-The amendments override the parent plan's illustrative fixed repo path/API placeholders and add title/CTA/HUD-lifecycle/same-layout regression contracts.
+The package is execution history/rollback material. It must not restart Task 1.
 
 ## 14. Automated validation gate
 
-Minimum required before an implementation PR can be called review-ready:
+The merged PR #158 proved:
 
-- new focused first-session tests.
+- focused first-session tests.
 - existing custom Godot suite.
 - GUT 9.7.1.
-- Project Contract / relevant static policy check.
+- Project Contract / relevant static policy checks.
 - Thin Adapter validation.
-- Windows export/package proof when applicable.
-- new first-session JSON/localization/tutorial map inclusion proof.
+- Windows export/package proof.
+- first-session JSON/localization/tutorial map inclusion proof.
 - no unauthorized change to current core/map/semantic asset owners.
 - no unresolved review thread on exact head.
 
@@ -295,7 +295,7 @@ Hosted CI/package proof is not physical runtime or human evidence.
 
 ## 15. Developer self-run gate
 
-After automated GREEN and before first-contact human evidence:
+Current next executable evidence gate. After merged automated GREEN and before first-contact human evidence:
 
 1. T1→T6→Capstone happy path.
 2. T3 wrong LIFO order → Edit → recovery.
@@ -348,10 +348,12 @@ No merge/build/export result automatically authorizes store release.
 ## Current next action
 
 ```text
-implementation PR exact-head CI + merge
-→ close superseded PR #154 unmerged
-→ Notion destination sync + readback
-→ exact acceptance build physical/device/human gates
+developer self-run / screen QA
+→ designate exact acceptance build when physical validation is prepared
+→ Windows physical smoke as applicable
+→ Android device smoke as separate platform gate
+→ Five-person first-contact comprehension on the same build
+→ product decision
 ```
 
-**Automated BUILD/review is complete; physical/device/human gates remain NOT_RUN.**
+**PR #158 merge와 Notion implementation readback은 완료됐고 physical/device/human gates remain NOT_RUN.**
