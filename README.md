@@ -10,14 +10,17 @@
 
 ```yaml
 product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
-current_decisions: SX-DEC-027~058
-work_instruction: v4.5 r2 · revision 2026-08-11-r2
+current_decisions: SX-DEC-027~059
+work_instruction: v4.7 · revision 2026-08-20-r1 · SWITCHY_THIN_ADAPTER
 phase_a: COMPLETE
-user_planning_complete_gate: GRANTED · 2026-08-11 KST
+user_planning_complete_gate: GRANTED · 2026-08-20 KST
 phase_b_final_planning_review: SX-AUD-047 · PASS
 runtime_semantic_poc: SX-DEC-055 · IMPLEMENTED · PR_151_MERGED
 runtime_integrated: true
 sx_dec_055_merge_main: 534a7318b349cd3e784a3467125f9ebd23124d8a
+release_near_first_session: SX-DEC-059 · PLANNING_COMPLETE
+sx_dec_059_codex_handoff: USER_REQUESTED
+sx_dec_059_implementation: IN_PROGRESS
 semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
 base_pin: v9.4.3
 upstream_base_main: REFERENCE_ONLY
@@ -153,7 +156,10 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ## 다음 유효 작업
 
 ```text
-post-merge GitHub/Sheet same-ID reconciliation
+SX-DEC-059 release-near first-session implementation
+→ automated/GUT/export exact-head verification
+→ five-pass adversarial review and correction
+→ GitHub merge + Notion destination readback
 → exact acceptance build identity when physical validation is prepared
 → Windows physical smoke
 → Android device smoke
@@ -167,19 +173,20 @@ post-merge GitHub/Sheet same-ID reconciliation
 ## 정본 읽기 순서
 
 1. `AGENTS.md`
-2. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5_r2.md`
+2. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`
 3. `기획서/00_프로젝트_허브/START_HERE.md`
 4. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
 5. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
 6. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
 7. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
-8. `기획서/50_제작_검증/SX_AUD_054_SX_DEC_055_RUNTIME_POC_POST_MERGE_RECONCILIATION.md`
-9. `기획서/50_제작_검증/PLAYTEST_PLAN.md`
-10. configured Google Sheet current rows
+8. `기획서/50_제작_검증/SX_DEC_059_RELEASE_NEAR_FIRST_SESSION_VERTICAL_SLICE.md`
+9. `기획서/50_제작_검증/SX_DEC_059_CODEX_HANDOFF_PACKAGE.md`
+10. `기획서/50_제작_검증/PLAYTEST_PLAN_V4_7_CURRENT.md`
 
 ## 기술
 
 - Godot 4.7.1-stable
 - GDScript
 - Windows / Android landscape
-- GitHub 정본 + configured Google Sheet 동기화
+- Notion 사람용 정본 + GitHub 구조화/런타임 정본
+- Google Sheets는 migration-only이며 신규 작업 입력으로 사용하지 않음
