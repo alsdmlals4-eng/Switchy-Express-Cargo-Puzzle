@@ -113,7 +113,8 @@ sx_dec_059_phase_c: PASS · SX-AUD-064 · CLEAN_REVIEW_EXIT
 sx_dec_059_package_spec_dor: PASS
 sx_dec_059_codex_handoff: USER_REQUESTED_AND_EXECUTED
 SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED
-sx_dec_059_build: RELEASE_NEAR_VERTICAL_SLICE_AUTOMATED_GREEN
+sx_dec_059_build: MERGED_MAIN_VERIFIED · PR_158 · main_162e8a0a5e8ddc8472e74a6152e87dc12008e34c
+sx_dec_059_notion_post_merge_readback: PASS
 sx_dec_059_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-066
 sx_dec_059_human_evidence: NOT_RUN
 ```
@@ -164,15 +165,15 @@ GM-SX059-01은 A안으로 승인 완료: T2는 prerequisite action, T4는 select
 
 ## 7. 별도 PR 보호
 
-PR #154 `feat: pilot reusable grid and semantic UI modules`는 전체 diff/CI/소비자를 검토했다. 제품 소유자와 중복되고 실제 consumer가 없으므로 **SX-DEC-059 구현으로 대체하며 병합하지 않는다**.
+PR #154 `feat: pilot reusable grid and semantic UI modules`는 전체 diff/CI/소비자를 검토했고 제품 소유자와 중복되어 **CLOSED_UNMERGED · SUPERSEDED_BY_SX_DEC_059**다.
 
 ```text
 do not vendor game/reuse/*
 preserve only the reusable-module lesson as historical PR evidence
-close unmerged after the replacement implementation PR is integrated
+do not reopen unless a new user-approved need and fresh main evidence require it
 ```
 
-과거 실수로 생성된 PR #155/#156은 CLOSED_UNMERGED 역사 상태이며 current workstream이 아니다.
+과거 실수로 생성된 PR #155/#156도 `CLOSED_UNMERGED · HISTORICAL_ACCIDENT`이며 current workstream이 아니다.
 
 ## 8. Tooling authority
 
@@ -183,7 +184,7 @@ project_godot_ai_plugin_cfg: 3.1.4
 upstream_godot_ai_3_1_4_version_bump: 96cc8b8c3d25ce487e24801d01d5214fea150349
 upstream_godot_ai_main_observed: 3.1.5 @ 09a1e3311015153d967710fbe6502ac519585a9b
 prior_verified_release_basis: v3.1.3 @ 22678e5f9b038d7203d6b43b0aae20a5417c500e
-project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED_BEFORE_BUILD
+project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED_BEFORE_FUTURE_AUTHORING
 ```
 
 `docs/tooling/local_godot_tooling_state.json`가 현재 evidence owner다. Fresh PowerShell에서 local/repo tree parity를 다시 확인하기 전 **user-local version**을 추정하지 않는다.
@@ -199,16 +200,17 @@ Persistent Godot authoring은 프로젝트가 채택한 HiGodot/Godot-authoring 
 - `docs/GAME_RELEASE_COMPLIANCE_EVIDENCE_PACK.md`
 - `기획서/50_제작_검증/PLATFORM_RELEASE_AND_ASSET_RIGHTS_PLAN.md`
 
-이 문서들은 release/platform/asset-rights owner다. 현재 SX-DEC-059 planning/build 준비가 `PLATFORM_SUBMISSION_NOT_RUN`, `LEGAL_REVIEW_NOT_PERFORMED`, 실제 store cutover 같은 별도 evidence gate를 PASS로 승격하지 않는다.
+이 문서들은 release/platform/asset-rights owner다. 현재 SX-DEC-059 구현/병합 완료가 `PLATFORM_SUBMISSION_NOT_RUN`, `LEGAL_REVIEW_NOT_PERFORMED`, 실제 store cutover 같은 별도 evidence gate를 PASS로 승격하지 않는다.
 
 ## 10. Evidence ceiling
 
 ```text
 FINITE CORE AUTOMATED: PASS
 SX-DEC-055 RUNTIME SEMANTIC: MERGED_MAIN_VERIFIED
-SX-DEC-059 IMPLEMENTATION: IMPLEMENTED_AUTOMATED
+SX-DEC-059 IMPLEMENTATION: MERGED_MAIN_VERIFIED · PR #158
 SX-DEC-059 FIVE-PASS ADVERSARIAL REVIEW: CLOSED
 SX-DEC-059 EXPORT-PACK RUNTIME JSON PROOF: PASS
+SX-DEC-059 NOTION POST-MERGE READBACK: PASS
 SX-DEC-059 DEVELOPER SELF-RUN: NOT_RUN
 WINDOWS PHYSICAL RUNTIME/VISUAL/AUDIO/INPUT: NOT_RUN
 ANDROID DEVICE SMOKE: NOT_RUN
@@ -221,19 +223,30 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 
 ## 11. Codex / Build Gate
 
-사용자 `기획완료`는 2026-08-20에 GRANTED 됐고 Phase-C/package spec 검토도 닫혔다.
+사용자 `기획완료`는 2026-08-20에 GRANTED 됐고 Phase-C/package spec 검토도 닫혔다. Codex 인계/실행과 PR #158 병합도 완료됐다.
 
-Codex 인계/실행은 사용자의 2026-08-21 요청으로 수행됐다. 다음 체인은 완료된 실행 기록이며 새 작업은 같은 품질 루프를 다시 적용한다.
+완료 기록:
 
 ```text
 package spec DoR PASS
 AND USER_REQUESTED_CODEX_HANDOFF
-→ NEW POWERSHELL
-→ LOCATION FIRST by remote identity
-→ isolated workspace + Godot/HiGodot/CODEX_HOME/Hera preflight as applicable
+→ isolated workspace + fresh preflight
 → baseline GREEN
 → codex.cmd -a never -s workspace-write
 → every task RED → expected fail → minimal GREEN → regression
+→ five-pass adversarial review + independent review
+→ PR #158 MERGED
+→ Notion destination readback PASS
+```
+
+현재 다음 Gate:
+
+```text
+developer self-run / screen QA
+→ exact acceptance build identity
+→ reviewed physical smoke on the same build
+→ Five-person first-contact comprehension
+→ product decision
 ```
 
 실제 물리 Windows/Android 실행과 사람 이해도 검증은 자동화 구현 완료와 별도다.
@@ -242,7 +255,8 @@ AND USER_REQUESTED_CODEX_HANDOFF
 
 - Notion: 사람용 Project Home / Flow / Visual / Production Handoff.
 - GitHub: structured canon / code / data / Scene / Resource / assets / tests / runtime evidence.
-- 승인 Decision은 같은 의미로 양쪽에 동기화하고 readback한다.
+- PR #158 구현 결과와 Notion post-merge readback은 완료됐다.
+- 이후 player evidence나 제품 결정이 바뀔 때 같은 의미로 양쪽을 다시 동기화한다.
 
 ## 13. 현재 핵심 정본
 
