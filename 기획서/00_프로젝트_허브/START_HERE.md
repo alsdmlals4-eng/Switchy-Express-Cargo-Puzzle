@@ -10,7 +10,9 @@ Last updated: `2026-08-21 KST`
 | 결정 범위 | `SX-DEC-027~059` |
 | 작업지시문 | `v4.7 · revision 2026-08-20-r1 · Switchy thin adapter` |
 | User planning-complete gate | `GRANTED · 2026-08-20 KST` |
-| SX-DEC-059 | `IMPLEMENTED_AUTOMATED · FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED` |
+| SX-DEC-059 | `PR #158 MERGED_MAIN_VERIFIED · FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED` |
+| SX-DEC-059 main | `162e8a0a5e8ddc8472e74a6152e87dc12008e34c` |
+| Notion implementation readback | `PASS · POST_PR_158_READBACK_COMPLETE` |
 | Phase C | `PASS · SX-AUD-064 · CLEAN_REVIEW_EXIT` |
 | Package spec DoR | `PASS` |
 | Execution preflight | `PASS · isolated worktree · Godot 4.7.1` |
@@ -24,8 +26,8 @@ Last updated: `2026-08-21 KST`
 | semantic product PNG | `73 · PRODUCTION_COMPLETE` |
 | Base pin | `v9.4.3` |
 | Base remote latest observed | `ef0092256be25eaa70a296a76d02f7205934929e · REFERENCE_ONLY` |
-| Project main before implementation | `4b37c154505ed1975735fc305a68b410877a40e0` |
-| PR #154 | `AUDITED · SUPERSEDED_UNMERGED_BY_059` |
+| PR #154 | `CLOSED_UNMERGED · SUPERSEDED_BY_059` |
+| developer self-run | `NOT_RUN` |
 | acceptance build | `UNASSIGNED` |
 | Windows physical runtime | `NOT_RUN` |
 | ANDROID DEVICE SMOKE | `NOT_RUN` |
@@ -62,7 +64,7 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 10. `DEVELOPMENT_GATES.md`.
 11. exact SX-DEC-059 content/UI/localization/visual/playtest owner.
 12. actual code/data/Scene/Resource/assets/tests.
-13. implementation/handoff package only when Codex execution is requested.
+13. implementation/handoff package only when historical execution evidence is needed.
 
 Google Sheets는 migration-only이며 새 작업의 active input이 아니다.
 
@@ -143,14 +145,15 @@ Phase-C PASS
 → Codex RED-first BUILD
 → five-pass adversarial review + corrections
 → exact-head automated/package review
-→ GitHub merge + Notion readback
+→ PR #158 MERGED_MAIN_VERIFIED
+→ Notion implementation readback PASS
 → developer self-run / screen QA
 → exact acceptance build physical smoke
 → Five-person first-contact evidence
 → separate product decision
 ```
 
-`SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED`. 물리 실행·사람 이해도 검증은 아직 시작하지 않았다.
+`SX_DEC_059_IMPLEMENTATION: MERGED_MAIN_VERIFIED`. 물리 실행·사람 이해도 검증은 아직 시작하지 않았다.
 
 ## Protected boundaries
 
@@ -160,7 +163,7 @@ Phase-C PASS
 - no score/combo or fast/cheap TrackPiece invention.
 - no player-facing solver.
 - no Base repin.
-- PR #154 code is not absorbed; it is superseded by the product-owned implementation.
+- PR #154 code is not absorbed; it is closed unmerged and superseded by the product-owned implementation.
 - automated/package/self-run evidence does not imply human PASS.
 
 ## Current detail owners
@@ -175,3 +178,11 @@ Phase-C PASS
 - `기획서/50_제작_검증/SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`
 - `기획서/50_제작_검증/SX_AUD_064_SX_DEC_059_PHASE_C_FINAL_REVIEW.md`
 - `기획서/50_제작_검증/SX_AUD_066_SX_DEC_059_IMPLEMENTATION_AND_FIVE_PASS_REVIEW.md`
+
+## Current next action
+
+```text
+developer self-run / screen QA
+→ exact acceptance build identity when physical validation is prepared
+→ physical/device/human evidence sequence
+```
