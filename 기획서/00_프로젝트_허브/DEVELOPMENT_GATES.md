@@ -1,6 +1,6 @@
 # Development Gates
 
-Last updated: `2026-08-20 KST`
+Last updated: `2026-08-21 KST`
 
 현재 실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 우선한다. 과거 commit/PR/run은 역사 evidence이며 current next action을 자동 정의하지 않는다.
 
@@ -15,8 +15,10 @@ A0 CURRENT AUTHORITY RECOVERY: PASS
 → A5 explicit user "기획완료": GRANTED · 2026-08-20 KST
 → A6 FRESH PHASE-C REVIEW + CANON/NOTION RECONCILIATION: PASS · SX-AUD-064
 → A7 IMPLEMENTATION PACKAGE SPEC DoR: PASS
-→ A8 USER_REQUESTED_CODEX_HANDOFF: NOT_REQUESTED
-→ A9 FRESH EXECUTION PREFLIGHT / POWERSHELL / CODEX BUILD: NOT_STARTED
+→ A8 USER_REQUESTED_CODEX_HANDOFF: USER_REQUESTED_AND_EXECUTED
+→ A9 FRESH EXECUTION PREFLIGHT / ISOLATED WORKTREE: PASS
+→ A10 SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED
+→ A11 FIVE-PASS ADVERSARIAL REVIEW: CLOSED · SX-AUD-066
 ```
 
 `기획완료`는 승인된 059 계획을 잠근다. A6/A7은 설계·정본·인계 패키지의 정적 준비 상태이며, 실제 로컬 repo/Godot/addon/baseline GREEN은 A8 뒤 fresh execution preflight에서 확인한다.
@@ -70,16 +72,18 @@ S0 PLAN: COMPLETE
 → S8 localization/responsive/visual reuse contract: PLAN PASS
 → S9 playtest/evidence contract: PLAN PASS
 → S10 RED-first implementation package spec: PASS
-→ S11 Codex/Godot implementation: NOT_STARTED
+→ S11 Codex/Godot implementation: IMPLEMENTED_AUTOMATED
+→ S11A custom/GUT/export-pack proof: PASS
+→ S11B five-pass adversarial review: CLOSED
 → S12 developer self-run/screen QA: NOT_RUN
 → S13 exact acceptance build physical smoke: NOT_RUN
 → S14 Five-person first-contact comprehension: NOT_RUN
 → S15 product decision: NOT_RUN
 ```
 
-## 5. Planned BUILD task families
+## 5. Implemented BUILD task families
 
-Actual production code may start only after A8 handoff trigger and fresh execution preflight.
+The following families were implemented after A8 handoff and fresh preflight.
 
 ```text
 B1 first-session sequence schema / validator
@@ -228,7 +232,7 @@ local_repo_tree_parity: NOT_RUN
 baseline_custom_suite: NOT_RUN_IN_FRESH_EXECUTION_ENVIRONMENT
 ```
 
-A8 뒤 Fresh PowerShell에서 다음을 확인하기 전 persistent authoring을 시작하지 않는다.
+Future authoring must repeat these checks rather than inheriting this execution snapshot.
 
 - exact local repo location resolved by Git remote identity; no guessed hard-coded checkout.
 - clean/dirty state and user changes.
@@ -246,11 +250,10 @@ A8 뒤 Fresh PowerShell에서 다음을 확인하기 전 persistent authoring을
 
 ### PR #154
 
-`READ_ONLY` for SX-DEC-059.
+`AUDITED · SUPERSEDED_UNMERGED_BY_059`.
 
-- no modify/rebase/update/close/merge.
 - no unmerged `game/reuse/*` absorption.
-- if it completes later, new completed `main` may be reevaluated.
+- close unmerged after the replacement implementation is integrated.
 
 ### PR #155 / #156
 
@@ -344,9 +347,10 @@ No merge/build/export result automatically authorizes store release.
 ## Current next action
 
 ```text
-planning/canon PR validation + merge
-→ post-merge main/Notion readback
-→ wait for A8 USER_REQUESTED_CODEX_HANDOFF
+implementation PR exact-head CI + merge
+→ close superseded PR #154 unmerged
+→ Notion destination sync + readback
+→ exact acceptance build physical/device/human gates
 ```
 
-**BUILD is not running.**
+**Automated BUILD/review is complete; physical/device/human gates remain NOT_RUN.**

@@ -20,6 +20,8 @@ Thumbs.db
 # Local tooling
 .env
 *.log
+__pycache__/
+*.pyc
 .worktrees/
 .asset-vault/
 assets/_vault_local/

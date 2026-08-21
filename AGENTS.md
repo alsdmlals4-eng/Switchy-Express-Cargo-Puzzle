@@ -18,6 +18,23 @@
 
 프로젝트 문서와 실제 runtime/code가 충돌하면 숨기지 않는다. 실행하지 않은 test/build/render/physical/human 검증은 PASS라고 쓰지 않는다.
 
+### 작업 목표
+
+모든 프로젝트 작업은 **가장 효율적이고 장기적으로 유지되는 출시 수준에 가까운 버티컬 슬라이스**를 목표로 한다. 빠른 답이나 국소 패치보다 현재 코드·모든 PR·Notion 정본을 먼저 읽고, 공식 자료·동종 제품 벤치마킹·현업 구현 사례를 비교한 뒤 최적의 구조를 선택한다. 시간과 토큰보다 결과 품질, 증거, 회귀 방지, 장기 유지비를 우선한다.
+
+구현·병합 작업은 다음을 기본 완료 조건으로 삼는다.
+
+```text
+fresh authority recovery
+→ benchmark / industry comparison
+→ RED-first implementation
+→ exact automated/package evidence
+→ minimum five-pass adversarial review
+→ corrections and full regression
+→ GitHub merge
+→ Notion destination sync + readback
+```
+
 ## 2. 매 작업 시작 fresh-read
 
 ```text
@@ -94,8 +111,10 @@ sx_dec_058: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_059: USER_APPROVED · PLANNING_COMPLETE_GRANTED_2026_08_20
 sx_dec_059_phase_c: PASS · SX-AUD-064 · CLEAN_REVIEW_EXIT
 sx_dec_059_package_spec_dor: PASS
-sx_dec_059_codex_handoff: NOT_REQUESTED
-sx_dec_059_build_started: false
+sx_dec_059_codex_handoff: USER_REQUESTED_AND_EXECUTED
+SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED
+sx_dec_059_build: RELEASE_NEAR_VERTICAL_SLICE_AUTOMATED_GREEN
+sx_dec_059_implementation_review: FIVE_PASS_CLOSED · SX-AUD-066
 sx_dec_059_human_evidence: NOT_RUN
 ```
 
@@ -124,13 +143,13 @@ GM-SX059-01은 A안으로 승인 완료: T2는 prerequisite action, T4는 select
 - current 73 semantic product PNGs
 - existing `VS_DEMO_01` capstone
 
-### 신규 sidecar owner 후보
+### 구현된 sidecar owner
 - `FirstSessionDefinition`
 - `FirstSessionDirector`
 - `FirstSessionStagePolicy`
 - `FirstSessionCopy`
 - first-session sequence/localization data
-- five authored tutorial map definitions, exact bytes created RED-first in BUILD
+- five authored tutorial map definitions and deterministic success witnesses
 
 ### 금지
 - tutorial metadata를 `FiniteMapDefinition` schema에 집어넣기
@@ -145,13 +164,12 @@ GM-SX059-01은 A안으로 승인 완료: T2는 prerequisite action, T4는 select
 
 ## 7. 별도 PR 보호
 
-현재 사용자 승인 범위에서 **PR #154 `feat: pilot reusable grid and semantic UI modules`는 READ_ONLY**다.
+PR #154 `feat: pilot reusable grid and semantic UI modules`는 전체 diff/CI/소비자를 검토했다. 제품 소유자와 중복되고 실제 consumer가 없으므로 **SX-DEC-059 구현으로 대체하며 병합하지 않는다**.
 
 ```text
-inspect overlap only
-DO NOT modify/rebase/update/close/merge
-DO NOT vendor/absorb its unmerged delta into SX-DEC-059
-if it later merges, reevaluate only the new completed main
+do not vendor game/reuse/*
+preserve only the reusable-module lesson as historical PR evidence
+close unmerged after the replacement implementation PR is integrated
 ```
 
 과거 실수로 생성된 PR #155/#156은 CLOSED_UNMERGED 역사 상태이며 current workstream이 아니다.
@@ -188,7 +206,9 @@ Persistent Godot authoring은 프로젝트가 채택한 HiGodot/Godot-authoring 
 ```text
 FINITE CORE AUTOMATED: PASS
 SX-DEC-055 RUNTIME SEMANTIC: MERGED_MAIN_VERIFIED
-SX-DEC-059 IMPLEMENTATION: NOT_STARTED
+SX-DEC-059 IMPLEMENTATION: IMPLEMENTED_AUTOMATED
+SX-DEC-059 FIVE-PASS ADVERSARIAL REVIEW: CLOSED
+SX-DEC-059 EXPORT-PACK RUNTIME JSON PROOF: PASS
 SX-DEC-059 DEVELOPER SELF-RUN: NOT_RUN
 WINDOWS PHYSICAL RUNTIME/VISUAL/AUDIO/INPUT: NOT_RUN
 ANDROID DEVICE SMOKE: NOT_RUN
@@ -203,7 +223,7 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 
 사용자 `기획완료`는 2026-08-20에 GRANTED 됐고 Phase-C/package spec 검토도 닫혔다.
 
-실제 Codex 인계/실행은 v4.7의 on-demand rule을 따른다.
+Codex 인계/실행은 사용자의 2026-08-21 요청으로 수행됐다. 다음 체인은 완료된 실행 기록이며 새 작업은 같은 품질 루프를 다시 적용한다.
 
 ```text
 package spec DoR PASS
@@ -216,7 +236,7 @@ AND USER_REQUESTED_CODEX_HANDOFF
 → every task RED → expected fail → minimal GREEN → regression
 ```
 
-Codex handoff 요청 전에는 PowerShell/Codex/Godot BUILD를 시작했다고 주장하지 않는다.
+실제 물리 Windows/Android 실행과 사람 이해도 검증은 자동화 구현 완료와 별도다.
 
 ## 12. Notion / GitHub sync
 
@@ -241,5 +261,6 @@ Codex handoff 요청 전에는 PowerShell/Codex/Godot BUILD를 시작했다고 �
 - `기획서/50_제작_검증/PLAYTEST_PLAN_V4_7_CURRENT.md`
 - `기획서/50_제작_검증/SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`
 - `기획서/50_제작_검증/SX_AUD_064_SX_DEC_059_PHASE_C_FINAL_REVIEW.md`
+- `기획서/50_제작_검증/SX_AUD_066_SX_DEC_059_IMPLEMENTATION_AND_FIVE_PASS_REVIEW.md`
 
 현재 작업의 실행 locator는 `ACTIVE_CONTEXT.md`가 책임진다.

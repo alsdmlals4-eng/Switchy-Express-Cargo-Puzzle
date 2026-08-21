@@ -1,0 +1,22 @@
+{
+  "definition_schema_version": 2,
+  "map_id": "TUT_04_SELECTIVE_LOAD",
+  "map_revision": 1,
+  "ruleset_version": "fp_core_v1",
+  "marker_tracks_player_built": true,
+  "allow_open_terminals_after_required": true,
+  "board_size": [10, 9],
+  "start_cell": [1, 4],
+  "incoming_cell": [0, 4],
+  "time_limit_seconds": 90.0,
+  "buildable_rects": [{"minimum": [1, 1], "maximum": [8, 7]}],
+  "blocked_cells": [],
+  "station_placements": [
+    {"cell": [7, 4], "cargo_type": "RED_STAR"},
+    {"cell": [6, 7], "cargo_type": "BLUE_DIAMOND"}
+  ],
+  "cargo_placements": [
+    {"cell": [6, 4], "cargo_type": "RED_STAR"},
+    {"cell": [4, 4], "cargo_type": "BLUE_DIAMOND"}
+  ]
+}

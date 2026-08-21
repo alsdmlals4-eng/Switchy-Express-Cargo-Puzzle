@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "sequence_id": "FIRST_SESSION_V1",
+  "lessons": [
+    {
+      "lesson_id": "T1",
+      "map_path": "res://data/maps/tutorial/tut_01_02.json",
+      "completion_evidence": "PREFLIGHT_PASS",
+      "title_key": "SX_T1_TITLE",
+      "objective_key": "SX_T1_OBJECTIVE",
+      "context_key": "",
+      "share_runtime_with_next": true,
+      "visible_features": ["BOARD", "STRAIGHT", "CURVE", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT"],
+      "allowed_build_tools": ["STRAIGHT", "CURVE"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR"],
+      "allowed_run_commands": []
+    },
+    {
+      "lesson_id": "T2",
+      "map_path": "res://data/maps/tutorial/tut_01_02.json",
+      "completion_evidence": "SUCCESS",
+      "title_key": "SX_T2_TITLE",
+      "objective_key": "SX_T2_OBJECTIVE",
+      "context_key": "SX_T2_LOAD_CUE",
+      "share_runtime_with_next": false,
+      "visible_features": ["BOARD", "LOAD", "CARGO_STATION"],
+      "allowed_build_tools": [],
+      "allowed_build_commands": ["START"],
+      "allowed_run_commands": ["LOAD_ACTIVE", "PAUSE", "RESUME"]
+    },
+    {
+      "lesson_id": "T3",
+      "map_path": "res://data/maps/tutorial/tut_03_lifo.json",
+      "completion_evidence": "SUCCESS",
+      "title_key": "SX_T3_TITLE",
+      "objective_key": "SX_T3_OBJECTIVE",
+      "context_key": "SX_T3_TOP_RULE",
+      "share_runtime_with_next": false,
+      "visible_features": ["BOARD", "STRAIGHT", "CURVE", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "STACK_TOP"],
+      "allowed_build_tools": ["STRAIGHT", "CURVE"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_run_commands": ["LOAD_ACTIVE", "PAUSE", "RESUME"]
+    },
+    {
+      "lesson_id": "T4",
+      "map_path": "res://data/maps/tutorial/tut_04_selective_load.json",
+      "completion_evidence": "SUCCESS",
+      "title_key": "SX_T4_TITLE",
+      "objective_key": "SX_T4_OBJECTIVE",
+      "context_key": "SX_T4_SKIP_CUE",
+      "starter_layout_id": "TUT_04",
+      "share_runtime_with_next": false,
+      "visible_features": ["BOARD", "PREFLIGHT", "LOAD", "STACK_TOP"],
+      "allowed_build_tools": [],
+      "allowed_build_commands": ["START"],
+      "allowed_run_commands": ["LOAD_ACTIVE", "PAUSE", "RESUME"]
+    },
+    {
+      "lesson_id": "T5",
+      "map_path": "res://data/maps/tutorial/tut_05_auto_load.json",
+      "completion_evidence": "SUCCESS",
+      "title_key": "SX_T5_TITLE",
+      "objective_key": "SX_T5_OBJECTIVE",
+      "context_key": "SX_T5_AUTO_ON",
+      "starter_layout_id": "TUT_05",
+      "share_runtime_with_next": false,
+      "visible_features": ["BOARD", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP"],
+      "allowed_build_tools": [],
+      "allowed_build_commands": ["START"],
+      "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "PAUSE", "RESUME"]
+    },
+    {
+      "lesson_id": "T6",
+      "map_path": "res://data/maps/tutorial/tut_06_switch.json",
+      "completion_evidence": "SUCCESS",
+      "title_key": "SX_T6_TITLE",
+      "objective_key": "SX_T6_OBJECTIVE",
+      "context_key": "SX_T6_PRESET_CUE",
+      "share_runtime_with_next": false,
+      "visible_features": ["BOARD", "STRAIGHT", "CURVE", "SWITCH", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE"],
+      "allowed_build_tools": ["STRAIGHT", "CURVE", "SWITCH"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "BOARD_CELL", "SWITCH", "PAUSE", "RESUME"]
+    },
+    {
+      "lesson_id": "CAPSTONE",
+      "map_path": "res://data/maps/vs_demo_01.json",
+      "completion_evidence": "SUCCESS_FINAL",
+      "title_key": "SX_CAPSTONE_TITLE",
+      "objective_key": "SX_CAPSTONE_OBJECTIVE",
+      "context_key": "",
+      "share_runtime_with_next": false,
+      "visible_features": ["BOARD", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
+      "allowed_build_tools": ["STRAIGHT", "CURVE", "SWITCH", "CROSSING"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "BOARD_CELL", "SWITCH", "PAUSE", "RESUME"]
+    }
+  ]
+}

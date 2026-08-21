@@ -1,6 +1,6 @@
 # Switchy Express 프로젝트 허브
 
-Last updated: `2026-08-20 KST`
+Last updated: `2026-08-21 KST`
 
 ## Current State
 
@@ -9,12 +9,13 @@ Last updated: `2026-08-20 KST`
 | 제품 기준선 | `GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE` |
 | 결정 범위 | `SX-DEC-027~059` |
 | 작업지시문 | `v4.7 · revision 2026-08-20-r1 · Switchy thin adapter` |
-| SX-DEC-059 | `USER_APPROVED · PLANNING_COMPLETE_GRANTED` |
+| User planning-complete gate | `GRANTED · 2026-08-20 KST` |
+| SX-DEC-059 | `IMPLEMENTED_AUTOMATED · FIVE_PASS_REVIEW_CLOSED` |
 | Phase C | `PASS · SX-AUD-064 · CLEAN_REVIEW_EXIT` |
 | Package spec DoR | `PASS` |
-| Execution preflight | `NOT_RUN · actual handoff 때 필요` |
-| Codex handoff | `NOT_REQUESTED` |
-| BUILD | `NOT_STARTED` |
+| Execution preflight | `PASS · isolated worktree · Godot 4.7.1` |
+| Codex handoff | `USER_REQUESTED_AND_EXECUTED` |
+| BUILD | `RELEASE_NEAR_VERTICAL_SLICE_AUTOMATED_GREEN` |
 | SX-DEC-055 | `IMPLEMENTED · PR #151 MERGED · runtime_integrated=true` |
 | SX-DEC-056A | `PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED` |
 | SX-DEC-056B | `BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME` |
@@ -23,8 +24,8 @@ Last updated: `2026-08-20 KST`
 | semantic product PNG | `73 · PRODUCTION_COMPLETE` |
 | Base pin | `v9.4.3` |
 | Base remote latest observed | `ef0092256be25eaa70a296a76d02f7205934929e · REFERENCE_ONLY` |
-| Project main observed before planning merge | `0a88f707e1e4131ae4372929f2871d2b8a3a74b7` |
-| protected Open/Draft PR | `#154 · READ_ONLY` |
+| Project main before implementation | `4b37c154505ed1975735fc305a68b410877a40e0` |
+| PR #154 | `AUDITED · SUPERSEDED_UNMERGED_BY_059` |
 | acceptance build | `UNASSIGNED` |
 | Windows physical runtime | `NOT_RUN` |
 | ANDROID DEVICE SMOKE | `NOT_RUN` |
@@ -103,9 +104,9 @@ Capstone: 새 설명 없이 종합했다
 
 ### Content / architecture boundary
 
-- 5 new tutorial map definitions target.
+- 5 tutorial map definitions implemented and packaged.
 - T1/T2 share one map, ProductFiniteSlice instance, and valid layout.
-- exact coordinates/JSON/private witness are RED-first BUILD outputs.
+- exact coordinates/JSON/private witnesses are committed RED-first outputs.
 - existing `VS_DEMO_01` remains unchanged by default.
 - first-session metadata stays outside `FiniteMapDefinition` schema v2.
 - sidecar owners: Definition / StagePolicy / Director / Copy.
@@ -137,20 +138,19 @@ Do not fabricate detailed station mismatch/trace before an authorized observatio
 
 ```text
 Phase-C PASS
-→ planning/canon PR validation + merge
-→ post-merge main/Notion readback
 → USER_REQUESTED_CODEX_HANDOFF
-→ Fresh PowerShell · LOCATION FIRST · isolated workspace
-→ baseline GREEN
+→ isolated workspace + baseline GREEN
 → Codex RED-first BUILD
-→ exact-head automated review
+→ five-pass adversarial review + corrections
+→ exact-head automated/package review
+→ GitHub merge + Notion readback
 → developer self-run / screen QA
 → exact acceptance build physical smoke
 → Five-person first-contact evidence
 → separate product decision
 ```
 
-Actual BUILD has **not started**.
+`SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED`. 물리 실행·사람 이해도 검증은 아직 시작하지 않았다.
 
 ## Protected boundaries
 
@@ -160,7 +160,7 @@ Actual BUILD has **not started**.
 - no score/combo or fast/cheap TrackPiece invention.
 - no player-facing solver.
 - no Base repin.
-- PR #154 is read-only for this workstream.
+- PR #154 code is not absorbed; it is superseded by the product-owned implementation.
 - automated/package/self-run evidence does not imply human PASS.
 
 ## Current detail owners
@@ -174,3 +174,4 @@ Actual BUILD has **not started**.
 - `기획서/50_제작_검증/PLAYTEST_PLAN_V4_7_CURRENT.md`
 - `기획서/50_제작_검증/SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`
 - `기획서/50_제작_검증/SX_AUD_064_SX_DEC_059_PHASE_C_FINAL_REVIEW.md`
+- `기획서/50_제작_검증/SX_AUD_066_SX_DEC_059_IMPLEMENTATION_AND_FIVE_PASS_REVIEW.md`

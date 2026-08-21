@@ -24,6 +24,8 @@ const SemanticRuntimeStateScript := preload("res://game/demo/presentation/semant
 var _model: Dictionary = {}
 var _catalog: Variant
 var _semantic_state: Dictionary = {}
+var _stage_visibility_active: bool = false
+var _stage_features: Dictionary = {}
 
 
 func _ready() -> void:
@@ -110,6 +112,66 @@ func apply_model(model: Dictionary) -> void:
 		(get_node("ResultPanel/ResultLayout/EditButton") as Button).visible = bool(_model.get("edit_visible", true))
 
 	_apply_semantic_model()
+	_apply_stage_visibility_gate()
+
+
+func apply_stage_visibility(visible_features: Array) -> void:
+	_stage_visibility_active = true
+	_stage_features.clear()
+	for value: Variant in visible_features:
+		_stage_features[StringName(value)] = true
+	_apply_stage_visibility_gate()
+
+
+func reset_stage_visibility() -> void:
+	_stage_visibility_active = false
+	_stage_features.clear()
+	for path: NodePath in [
+		"BuildToolbar/StraightButton",
+		"BuildToolbar/CurveButton",
+		"BuildToolbar/SwitchButton",
+		"BuildToolbar/CrossingButton",
+		"BuildToolbar/RecommendButton",
+		"BuildToolbar/RotateButton",
+		"BuildToolbar/RemoveButton",
+		"BuildToolbar/ClearButton",
+		"RunToolbar/LoadButton",
+		"RunToolbar/ManualSemanticBadge",
+		"RunToolbar/AutoButton",
+		"RunToolbar/AutoSemanticBadge",
+		"TopStatus/TimeLabel",
+	]:
+		var item := get_node_or_null(path) as CanvasItem
+		if item != null:
+			item.visible = true
+	apply_model(_model)
+
+
+func _apply_stage_visibility_gate() -> void:
+	if not _stage_visibility_active:
+		return
+	_set_stage_visible("BuildToolbar/StraightButton", &"STRAIGHT")
+	_set_stage_visible("BuildToolbar/CurveButton", &"CURVE")
+	_set_stage_visible("BuildToolbar/SwitchButton", &"SWITCH")
+	_set_stage_visible("BuildToolbar/CrossingButton", &"CROSSING")
+	_set_stage_visible("BuildToolbar/RecommendButton", &"RECOMMENDED_LAYOUT")
+	_set_stage_visible("BuildToolbar/RotateButton", &"ROTATE")
+	_set_stage_visible("BuildToolbar/RemoveButton", &"REMOVE")
+	_set_stage_visible("BuildToolbar/ClearButton", &"CLEAR")
+	_set_stage_visible("RunToolbar/LoadButton", &"LOAD")
+	_set_stage_visible("RunToolbar/ManualSemanticBadge", &"LOAD")
+	_set_stage_visible("RunToolbar/AutoButton", &"AUTO_LOAD")
+	_set_stage_visible("RunToolbar/AutoSemanticBadge", &"AUTO_LOAD")
+	var phase := StringName(_model.get("phase", &"BUILD"))
+	var run_visible: bool = phase == &"RUNNING" or phase == &"UNLOADING" or phase == &"PAUSED"
+	(get_node("StackPanel") as Control).visible = run_visible and _stage_features.has(&"STACK_TOP")
+	(get_node("TopStatus/TimeLabel") as Control).visible = _stage_features.has(&"TIME")
+
+
+func _set_stage_visible(path: NodePath, feature: StringName) -> void:
+	var item := get_node_or_null(path) as CanvasItem
+	if item != null:
+		item.visible = _stage_features.has(feature)
 
 
 func model_for_test() -> Dictionary:

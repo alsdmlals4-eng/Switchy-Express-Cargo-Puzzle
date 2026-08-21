@@ -53,6 +53,8 @@ func show_build(
 	_model["stack_tokens"] = []
 	_model["unload_visual_active"] = false
 	_model["time_remaining"] = 0.0
+	_model["remaining_map_cargo"] = 0
+	_model["stack_size"] = 0
 
 
 func show_run(
@@ -100,6 +102,8 @@ func show_run(
 	_model["time_remaining"] = maxf(limit - elapsed, 0.0)
 	_model["stack_tokens"] = _tokens_for(displayed_stack)
 	_model["unload_visual_active"] = _unload_visual_active
+	_model["remaining_map_cargo"] = 0
+	_model["stack_size"] = load_order.size()
 
 
 func begin_unload_visual(
@@ -161,6 +165,10 @@ func show_result(summary: Variant, final_cost: int) -> void:
 	_model["final_cost"] = maxi(final_cost, 0)
 	_model["current_cost"] = maxi(final_cost, 0)
 	_model["unload_visual_active"] = false
+	_model["remaining_map_cargo"] = (
+		maxi(int(_summary_value(summary, &"remaining_map_cargo", 0)), 0)
+	)
+	_model["stack_size"] = maxi(int(_summary_value(summary, &"stack_size", 0)), 0)
 
 
 func cargo_descriptor(cargo_type: StringName) -> Dictionary:
@@ -202,6 +210,8 @@ func _reset_model() -> void:
 		"time_remaining": 0.0,
 		"stack_tokens": [],
 		"unload_visual_active": false,
+		"remaining_map_cargo": 0,
+		"stack_size": 0,
 	}
 
 
@@ -239,3 +249,12 @@ static func _run_status_text(phase: StringName) -> String:
 			return "Run failed"
 		_:
 			return str(phase)
+
+
+static func _summary_value(summary: Variant, key: StringName, fallback: Variant) -> Variant:
+	if summary == null:
+		return fallback
+	if summary is Dictionary:
+		return summary.get(key, fallback)
+	var value: Variant = summary.get(key)
+	return fallback if value == null else value

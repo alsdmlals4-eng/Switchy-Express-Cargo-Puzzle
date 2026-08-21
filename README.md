@@ -18,9 +18,10 @@ phase_b_final_planning_review: SX-AUD-047 · PASS
 runtime_semantic_poc: SX-DEC-055 · IMPLEMENTED · PR_151_MERGED
 runtime_integrated: true
 sx_dec_055_merge_main: 534a7318b349cd3e784a3467125f9ebd23124d8a
-release_near_first_session: SX-DEC-059 · PLANNING_COMPLETE
-sx_dec_059_codex_handoff: USER_REQUESTED
-sx_dec_059_implementation: IN_PROGRESS
+release_near_first_session: SX-DEC-059 · IMPLEMENTED_AUTOMATED
+sx_dec_059_codex_handoff: USER_REQUESTED_AND_EXECUTED
+SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED
+sx_dec_059_adversarial_review: FIVE_PASS_CLOSED
 semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
 base_pin: v9.4.3
 upstream_base_main: REFERENCE_ONLY
@@ -61,6 +62,21 @@ latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
 폐기된 endless survival, fuel/fuel-zero, player BOOST, capacity-8, cargo slowdown, pickup respawn, switch auto-reset 규칙은 current product가 아닙니다.
 
 ## 현재 구현 지점
+
+`SX-DEC-059`는 기존 finite core를 바꾸지 않는 presentation-sidecar로 구현됐습니다.
+
+```text
+FirstSessionDefinition + StagePolicy + Director + Copy
+→ T1/T2 shared runtime
+→ T3 LIFO
+→ T4 selective revisit fixed scaffold
+→ T5 auto/manual fixed scaffold
+→ T6 one-switch preset selection + occupied lock
+→ unchanged VS_DEMO_01 capstone
+→ evidence-safe Result / Retry / Edit
+```
+
+상세 구현·5회 적대적 검토·패키지 증거는 `기획서/50_제작_검증/SX_AUD_066_SX_DEC_059_IMPLEMENTATION_AND_FIVE_PASS_REVIEW.md`가 소유합니다.
 
 `SX-DEC-055 Runtime Semantic POC`는 PR #151로 구현되어 main `534a7318b349cd3e784a3467125f9ebd23124d8a`에 병합되었습니다.
 
@@ -156,10 +172,7 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ## 다음 유효 작업
 
 ```text
-SX-DEC-059 release-near first-session implementation
-→ automated/GUT/export exact-head verification
-→ five-pass adversarial review and correction
-→ GitHub merge + Notion destination readback
+GitHub exact-head CI / merge + Notion destination readback
 → exact acceptance build identity when physical validation is prepared
 → Windows physical smoke
 → Android device smoke

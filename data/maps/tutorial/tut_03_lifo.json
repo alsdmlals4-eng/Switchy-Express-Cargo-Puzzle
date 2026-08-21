@@ -1,0 +1,22 @@
+{
+  "definition_schema_version": 2,
+  "map_id": "TUT_03_LIFO",
+  "map_revision": 1,
+  "ruleset_version": "fp_core_v1",
+  "marker_tracks_player_built": true,
+  "allow_open_terminals_after_required": true,
+  "board_size": [9, 5],
+  "start_cell": [1, 2],
+  "incoming_cell": [0, 2],
+  "time_limit_seconds": 75.0,
+  "buildable_rects": [{"minimum": [1, 1], "maximum": [8, 3]}],
+  "blocked_cells": [],
+  "station_placements": [
+    {"cell": [5, 2], "cargo_type": "RED_STAR"},
+    {"cell": [7, 2], "cargo_type": "BLUE_DIAMOND"}
+  ],
+  "cargo_placements": [
+    {"cell": [2, 2], "cargo_type": "BLUE_DIAMOND"},
+    {"cell": [3, 2], "cargo_type": "RED_STAR"}
+  ]
+}

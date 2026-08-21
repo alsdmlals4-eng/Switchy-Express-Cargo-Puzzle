@@ -8,8 +8,8 @@ implementation_plan: docs/superpowers/plans/2026-08-20-sx-dec-059-first-session-
 codex_handoff_policy: ON_DEMAND
 codex_handoff_trigger: USER_REQUESTED_CODEX_HANDOFF
 trigger_state: NOT_PRESENT
-build_state: NOT_STARTED
-protected_open_pr: "#154 · READ_ONLY"
+build_state: IMPLEMENTED_AUTOMATED
+pr_154: "AUDITED · SUPERSEDED_UNMERGED_BY_059"
 ```
 
 이 문서는 **사용자가 Codex 인계를 요청했을 때 사용할 실행 패키지**다. 현재 `기획완료`만으로 Codex를 실행하지 않는다.
@@ -38,7 +38,7 @@ Then inspect actual relevant code/tests before editing.
 ## 2. Protected state
 
 ```text
-PR #154: READ_ONLY · do not update/rebase/close/merge/absorb
+PR #154: audited; do not absorb; superseded unmerged by the product-owned implementation
 PR #155/#156: CLOSED_UNMERGED historical accidents
 SX-DEC-056/057/058: no implementation absorption
 VS_DEMO_01: keep bytes/semantic unchanged by default
@@ -187,9 +187,12 @@ Run it only after `USER_REQUESTED_CODEX_HANDOFF` and clean location/worktree/too
 ```text
 PLAN COMPLETE: YES
 IMPLEMENTATION PLAN WRITTEN: YES
-CANON SYNC: IN FINAL REVIEW
-NOTION SYNC: IN FINAL REVIEW
-CODEX HANDOFF REQUESTED: NO
-CODEX EXECUTED: NO
-GODOT BUILD: NOT_STARTED
+CANON SYNC: IMPLEMENTATION_CANON_AUTHORED
+NOTION SYNC: POST_MERGE_READBACK_REQUIRED
+CODEX HANDOFF REQUESTED: YES
+CODEX EXECUTED: YES
+GODOT BUILD: IMPLEMENTED_AUTOMATED
+FIVE-PASS ADVERSARIAL REVIEW: CLOSED · SX-AUD-066
 ```
+
+이 문서는 실행 재개 지시가 아니라 완료된 handoff의 감사/rollback 기록이다. 현재 상태는 `ACTIVE_CONTEXT.md`와 `SX_AUD_066_SX_DEC_059_IMPLEMENTATION_AND_FIVE_PASS_REVIEW.md`를 따른다.
