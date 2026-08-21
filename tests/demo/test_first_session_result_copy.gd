@@ -16,8 +16,12 @@ func run() -> void:
 		&"FAILURE", 18.0, -1.0, 90.0, 2, 1, &"ROUTE_END"
 	)
 	flow.show_result(summary)
-	var body: String = (flow.get_node("ResultOverlay/Panel/Content/Body") as Label).text
-	assert_true(body.contains("노선이 끝났습니다."), "result explains route end from summary truth")
+	var title: String = (flow.get_node("ResultOverlay/Panel/Content/Title") as Label).text
+	var body: String = (
+		flow.get_node("ResultOverlay/Panel/Content/BodyScroll/Body") as Label
+	).text
+	assert_true(title.contains("노선이 끝났습니다."), "result title explains route end from summary truth")
+	assert_false(body.contains(title), "result body must not duplicate the failure title")
 	assert_true(body.contains("맵에 남은 화물: 2"), "result shows remaining map cargo")
 	assert_true(body.contains("열차에 실린 화물: 1"), "result shows stack cargo")
 	var lowered := body.to_lower()
@@ -40,7 +44,9 @@ func run() -> void:
 			break
 		product.advance_time(0.05)
 	assert_equal(retry_flow.state(), &"RESULT", "missing T2 pickup must reach failure result")
-	var edit := retry_flow.get_node("ResultOverlay/Panel/Content/EditButton") as Button
+	var edit := retry_flow.get_node(
+		"ResultOverlay/Panel/Content/Actions/EditButton"
+	) as Button
 	assert_false(edit.visible, "fixed-layout T2 failure must not offer a non-functional edit action")
 	assert_true(
 		retry_flow.dispatch_flow_action_for_test(&"demo_confirm", true),

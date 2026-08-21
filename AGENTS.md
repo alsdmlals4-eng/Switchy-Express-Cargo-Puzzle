@@ -114,7 +114,7 @@ sx_dec_059_package_spec_dor: PASS
 sx_dec_059_codex_handoff: USER_REQUESTED_AND_EXECUTED
 SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED
 sx_dec_059_build: RELEASE_NEAR_VERTICAL_SLICE_AUTOMATED_GREEN
-sx_dec_059_implementation_review: FIVE_PASS_CLOSED · SX-AUD-066
+sx_dec_059_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-066
 sx_dec_059_human_evidence: NOT_RUN
 ```
 

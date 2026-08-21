@@ -5,9 +5,9 @@ const T12 := preload("res://tests/fixtures/first_session/tut_01_02_solution.gd")
 const T3 := preload("res://tests/fixtures/first_session/tut_03_solution.gd")
 const T6 := preload("res://tests/fixtures/first_session/tut_06_solution_driver.gd")
 
-const B_CELL := Vector2i(4, 4)
-const T4_A_CELL := Vector2i(6, 4)
-const T5_A_CELLS: Array[Vector2i] = [Vector2i(5, 4), Vector2i(6, 4)]
+const B_CELL := Vector2i(6, 4)
+const T4_A_CELL := Vector2i(5, 4)
+const T5_A_CELLS: Array[Vector2i] = [Vector2i(4, 4), Vector2i(5, 4)]
 const T6_SWITCH := Vector2i(3, 3)
 
 
@@ -101,13 +101,13 @@ func _run_auto(product: Control) -> void:
 		var visits: int = controller.delivery_history().filter(
 			func(event: Variant) -> bool: return event.cell == B_CELL
 		).size()
-		if target == B_CELL and visits == 0:
-			product.request_command_for_test(&"LOAD_ACTIVE", false)
-		elif T5_A_CELLS.has(target) and not runtime.input_state.is_auto_load_enabled():
+		if T5_A_CELLS.has(target) and not runtime.input_state.is_auto_load_enabled():
 			product.request_command_for_test(&"AUTO_TOGGLE")
-		elif target == B_CELL and visits > 0:
+		elif target == B_CELL and visits == 0:
 			if runtime.input_state.is_auto_load_enabled():
 				product.request_command_for_test(&"AUTO_TOGGLE")
+			product.request_command_for_test(&"LOAD_ACTIVE", false)
+		elif target == B_CELL and visits > 0:
 			product.request_command_for_test(&"LOAD_ACTIVE", true)
 		product.advance_time(0.05)
 

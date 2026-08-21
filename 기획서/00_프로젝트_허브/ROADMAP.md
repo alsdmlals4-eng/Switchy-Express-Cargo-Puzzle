@@ -111,7 +111,7 @@ R09 Shareable Route Card and R10 Editor/UGC remain `POST_VALIDATION_HOLD`.
 
 ## M5C · SX-DEC-059 Release-Near First-Session Vertical Slice
 
-`IMPLEMENTED_AUTOMATED · FIVE_PASS_CLOSED · PHYSICAL/HUMAN GATES OPEN`
+`IMPLEMENTED_AUTOMATED · FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · PHYSICAL/HUMAN GATES OPEN`
 
 ### Player promise
 
@@ -164,7 +164,7 @@ implementation_package_spec_dor: PASS
 execution_preflight: PASS
 codex_handoff: USER_REQUESTED_AND_EXECUTED
 build: IMPLEMENTED_AUTOMATED
-adversarial_review: FIVE_PASS_CLOSED
+adversarial_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED
 developer_self_run: NOT_RUN
 ```
 

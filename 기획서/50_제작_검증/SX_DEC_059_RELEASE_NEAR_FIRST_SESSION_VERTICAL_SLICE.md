@@ -2,7 +2,7 @@
 
 ```yaml
 decision_id: SX-DEC-059
-status: IMPLEMENTED_AUTOMATED · FIVE_PASS_REVIEW_CLOSED
+status: IMPLEMENTED_AUTOMATED · FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED
 planning_complete_date: 2026-08-20 KST
 approval_reference:
   - "권장안 승인,연속작업 진행해"

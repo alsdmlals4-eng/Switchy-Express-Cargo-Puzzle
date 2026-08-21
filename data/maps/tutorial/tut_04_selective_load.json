@@ -1,7 +1,7 @@
 {
   "definition_schema_version": 2,
   "map_id": "TUT_04_SELECTIVE_LOAD",
-  "map_revision": 1,
+  "map_revision": 2,
   "ruleset_version": "fp_core_v1",
   "marker_tracks_player_built": true,
   "allow_open_terminals_after_required": true,
@@ -16,7 +16,7 @@
     {"cell": [6, 7], "cargo_type": "BLUE_DIAMOND"}
   ],
   "cargo_placements": [
-    {"cell": [6, 4], "cargo_type": "RED_STAR"},
-    {"cell": [4, 4], "cargo_type": "BLUE_DIAMOND"}
+    {"cell": [5, 4], "cargo_type": "RED_STAR"},
+    {"cell": [6, 4], "cargo_type": "BLUE_DIAMOND"}
   ]
 }

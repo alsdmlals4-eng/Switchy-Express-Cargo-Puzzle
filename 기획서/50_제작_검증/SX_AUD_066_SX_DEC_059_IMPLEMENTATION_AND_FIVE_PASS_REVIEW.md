@@ -14,6 +14,7 @@ PHYSICAL_WINDOWS: NOT_RUN
 ANDROID_DEVICE: NOT_RUN
 FIVE_PERSON_COMPREHENSION: NOT_RUN
 PLAYER_EXPERIENCE: NOT_RUN
+INDEPENDENT_CODE_REVIEW: CLOSED_AFTER_CORRECTION
 ```
 
 ## 1. Outcome
@@ -115,9 +116,21 @@ Correction A: Windows and Android presets include the new runtime JSON; the moun
 
 Finding B: `all_resources` also shipped `tests/**`, GUT and the Godot AI editor plugin. The proof PCK was 3,555,208 bytes.
 
-Correction B: both release presets exclude tests and editor-only plugins. The verified proof PCK is 807,904 bytes, a 77.3% reduction, while all 26 required/discovered runtime JSON files still parse.
+Correction B: both release presets exclude tests, GUT and the Godot AI editor plugin. The corrected exact-head proof PCK is 808,128 bytes, a 77.3% reduction, while all 26 required/discovered runtime JSON files still parse.
 
 Scope readback: `VS_DEMO_01` SHA-256 is unchanged at `81bd3c5ebc48e1b9f6d6a8cc942cb5dadb4e865c8d281848c2154aaead985fd0`; product-asset diff count is zero; finite build/cargo/delivery/rail/run owners are unchanged. Only the presenter gains truthful `remaining_map_cargo` and `stack_size` fields.
+
+### Independent post-five-pass review · causal counterexamples / real viewport geometry
+
+`INDEPENDENT_REVIEW: CLOSED_AFTER_RED_GREEN_CORRECTION`
+
+Finding A: the first T4/T5 figure-eight placed B before the A cargo and Station A. A player could hold Load from the start or leave Auto enabled, create `[B, A…]`, unload A first and then B, and succeed without making the lesson's claimed choice. The success witnesses proved one intended route but did not falsify the naive alternatives.
+
+Correction A: map revision 2 and the starter scaffold now encounter `A cargo(s) → B → Station A → B revisit → Station B`. T4 load-all and T5 Auto-always-on are explicit negative witnesses and must end in `FAILURE`; selective T4, planned Auto ON/OFF T5 and manual-only T5 remain positive witnesses.
+
+Finding B: the first responsive test checked visibility and configured minimum sizes only at one default viewport. It did not prove actual geometry or Result recovery reachability. A real 960×540 check then exposed the Result action stack below the viewport.
+
+Correction B: the result body now uses a bounded scroll surface and Retry/Edit/Title share one horizontal 56px action row. The regression matrix exercises 1280×720, 1600×900, 1920×1080, 2560×1080 wide PC and 960×540 mobile landscape, checks actual board/HUD/control/panel rectangles, rendered ≥48px buttons, and invokes Retry and Edit at every size. Duplicate failure text was also removed from the Result body.
 
 ## 6. Before / after / expected effect
 
@@ -125,11 +138,12 @@ Scope readback: `VS_DEMO_01` SHA-256 is unchanged at `81bd3c5ebc48e1b9f6d6a8cc94
 |---|---|---|---|
 | Authority | active canon said handoff/build not started | implementation state and five-pass evidence are current | future agents resume from reality instead of restarting planning |
 | Recovery | terminal policy blocked Retry/Edit | retry works; Edit is shown only for editable lessons | no progression dead-end or misleading action |
-| T4/T5 | impossible degree-2 revisit requirement | fixed figure-eight scaffold isolates load choice | teaches selective/auto causality without core-rule scope creep |
+| T4/T5 causality | the first scaffold allowed load-all / Auto-always-on success | revision-2 encounter order plus negative and positive strategy witnesses | the claimed selective/Auto decision is necessary, not optional choreography |
 | T6 | copy promised both routes in one run | one preselection + occupied lock + persistence | smaller, readable first switch lesson that transfers to capstone |
 | Staged UI | hidden controls could remain hidden after policy removal | default HUD/route controls restore deterministically | standalone compatibility and future reuse remain safe |
+| Responsive Result | configured minimum sizes at one viewport; 960×540 actions overflowed | five-size real-geometry matrix; scrollable facts + horizontal 56px recovery row | Retry/Edit/Title remain readable and reachable on standard, wide and mobile-landscape bounds |
 | Package data | first-session JSON not explicitly proven in PCK | 26 runtime JSON parse proof | clean clone/export cannot omit lesson/copy data silently |
-| Package size | tests/editor plugins shipped in product pack | excluded; PCK 3,555,208 → 807,904 bytes | lower download/load surface and cleaner release artifact |
+| Package size | tests/GUT/Godot AI plugin shipped in product pack | excluded; PCK 3,555,208 → 808,128 bytes | lower download/load surface and cleaner release artifact |
 
 ## 7. Automated evidence
 
@@ -137,11 +151,13 @@ Local exact-worktree evidence before remote PR:
 
 ```text
 Godot 4.7.1 clean --import: PASS · no SCRIPT ERROR / ERROR
-custom suite: 110 cases · 0 failed · 12,105 assertions
+custom suite: 110 cases · 0 failed · 12,294 assertions
 formal GUT 9.7.1: 21 tests · 21 passing · 150 assertions
 mounted Windows-preset proof PCK: PASS · parsed_json=26
-proof PCK SHA-256: b7f686522af99f45ea567f9e29569cd431efc9362152c88e062666e6995dd15d
-proof PCK size: 807,904 bytes
+mounted Android-preset proof PCK: PASS · parsed_json=26
+Windows proof PCK SHA-256: 37a90bf3ace45f12c62811cf21e88bb55d015418a14413aaeda4963bda303cdc
+Android proof PCK SHA-256: c2f4e74296270472eea72f933d9e36c9b5ff8e2812740a93f5978d1d5fab9ea1
+proof PCK size: 808,128 bytes per preset
 VS_DEMO_01 protected diff: 0
 73 product PNG protected diff: 0
 finite core owner protected diff: 0

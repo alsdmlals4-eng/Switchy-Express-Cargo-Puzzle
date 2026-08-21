@@ -10,7 +10,7 @@ Last updated: `2026-08-21 KST`
 | 결정 범위 | `SX-DEC-027~059` |
 | 작업지시문 | `v4.7 · revision 2026-08-20-r1 · Switchy thin adapter` |
 | User planning-complete gate | `GRANTED · 2026-08-20 KST` |
-| SX-DEC-059 | `IMPLEMENTED_AUTOMATED · FIVE_PASS_REVIEW_CLOSED` |
+| SX-DEC-059 | `IMPLEMENTED_AUTOMATED · FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED` |
 | Phase C | `PASS · SX-AUD-064 · CLEAN_REVIEW_EXIT` |
 | Package spec DoR | `PASS` |
 | Execution preflight | `PASS · isolated worktree · Godot 4.7.1` |

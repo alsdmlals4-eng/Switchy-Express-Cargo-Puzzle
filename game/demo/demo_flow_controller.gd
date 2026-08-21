@@ -51,9 +51,9 @@ func _ready() -> void:
 		"ExitConfirmOverlay/Panel/Content/ConfirmButton",
 		confirm_exit_to_title
 	)
-	_connect_button("ResultOverlay/Panel/Content/RetryButton", _retry_result)
-	_connect_button("ResultOverlay/Panel/Content/EditButton", _edit_result)
-	_connect_button("ResultOverlay/Panel/Content/TitleButton", return_to_title)
+	_connect_button("ResultOverlay/Panel/Content/Actions/RetryButton", _retry_result)
+	_connect_button("ResultOverlay/Panel/Content/Actions/EditButton", _edit_result)
+	_connect_button("ResultOverlay/Panel/Content/Actions/TitleButton", return_to_title)
 	if first_session_enabled:
 		_setup_first_session()
 	_sync_visibility()
@@ -327,7 +327,7 @@ func _sync_visibility() -> void:
 
 func _update_result_copy(summary: Variant) -> void:
 	var title := get_node_or_null("ResultOverlay/Panel/Content/Title") as Label
-	var body := get_node_or_null("ResultOverlay/Panel/Content/Body") as Label
+	var body := get_node_or_null("ResultOverlay/Panel/Content/BodyScroll/Body") as Label
 	if title == null or body == null:
 		return
 	if first_session_enabled and _first_session_copy != null:
@@ -375,7 +375,6 @@ func _update_first_session_result_copy(summary: Variant, title: Label, body: Lab
 			else _first_session_copy.text(&"SX_RESULT_TIME_EXPIRED", first_session_locale)
 		)
 		body.text = "\n".join([
-			title.text,
 			_first_session_copy.format(
 				&"SX_RESULT_MAP_CARGO", {"count": remaining}, first_session_locale
 			),
@@ -383,8 +382,10 @@ func _update_first_session_result_copy(summary: Variant, title: Label, body: Lab
 				&"SX_RESULT_STACK_CARGO", {"count": stack_size}, first_session_locale
 			),
 		])
-	var retry := get_node_or_null("ResultOverlay/Panel/Content/RetryButton") as Button
-	var edit := get_node_or_null("ResultOverlay/Panel/Content/EditButton") as Button
+	var retry := get_node_or_null(
+		"ResultOverlay/Panel/Content/Actions/RetryButton"
+	) as Button
+	var edit := get_node_or_null("ResultOverlay/Panel/Content/Actions/EditButton") as Button
 	if retry != null:
 		retry.text = _first_session_copy.text(&"SX_RESULT_RETRY", first_session_locale)
 	if edit != null:

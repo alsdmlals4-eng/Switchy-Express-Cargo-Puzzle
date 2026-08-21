@@ -23,7 +23,7 @@ sx_dec_059_execution_preflight: PASS
 sx_dec_059_codex_handoff: USER_REQUESTED_AND_EXECUTED
 SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED
 sx_dec_059_build: RELEASE_NEAR_VERTICAL_SLICE_AUTOMATED_GREEN
-sx_dec_059_review: FIVE_PASS_CLOSED · SX-AUD-066
+sx_dec_059_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-066
 sx_dec_055_runtime_implementation: MERGED_MAIN_VERIFIED · PR_151
 sx_dec_056a: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
@@ -87,7 +87,7 @@ production_cutover: BLOCKED_DEFERRED
 | SX-DEC-056 | Route Causality / Result Feedback · 056A implementation unauthorized; 056B blocked |
 | SX-DEC-057 | Yard Labs / Mastery · implementation unauthorized; fast/cheap dependency gated |
 | SX-DEC-058 | Fixed-Seed Challenge Quality · implementation/pipeline unauthorized |
-| **SX-DEC-059** | **Release-Near First Session · IMPLEMENTED_AUTOMATED · FIVE_PASS_CLOSED · PHYSICAL/HUMAN NOT_RUN** |
+| **SX-DEC-059** | **Release-Near First Session · IMPLEMENTED_AUTOMATED · FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · PHYSICAL/HUMAN NOT_RUN** |
 
 ## SX-DEC-059 confirmed contract
 

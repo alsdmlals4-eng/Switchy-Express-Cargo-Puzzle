@@ -21,7 +21,7 @@ sx_dec_055_merge_main: 534a7318b349cd3e784a3467125f9ebd23124d8a
 release_near_first_session: SX-DEC-059 · IMPLEMENTED_AUTOMATED
 sx_dec_059_codex_handoff: USER_REQUESTED_AND_EXECUTED
 SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED
-sx_dec_059_adversarial_review: FIVE_PASS_CLOSED
+sx_dec_059_adversarial_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED
 semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
 base_pin: v9.4.3
 upstream_base_main: REFERENCE_ONLY
