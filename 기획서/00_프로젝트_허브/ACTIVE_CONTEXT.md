@@ -1,173 +1,232 @@
 # Active Context
 
-Last updated: `2026-08-11 KST`
+Last updated: `2026-08-20 KST`
 
-이 문서는 **현재 상태·읽기 순서·미완료 작업·검증 경계·다음 실행 지점**을 연결하는 재개용 locator다. 저장된 SHA/PR 값은 snapshot이며 현재 GitHub default branch, open PR, 실제 파일, configured Sheet가 항상 우선한다.
+이 문서는 **현재 상태·다음 실행 지점·미검증 경계**를 연결하는 resume locator다. fresh GitHub/Notion/actual runtime이 저장 snapshot보다 우선한다.
 
 ## Continuation State
 
 ```yaml
 repository: alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
 default_branch: main
-phase_b_baseline_main: 47df1c60866ae28f5c415cbe6b886d9ee9a87c7a
-phase_b_merge_main: f9440b4724a347b3d1f49f4b22f3ddbb86365108
-base_observed_at_phase_b: 315c66eea9614c284b9c11c4d522141065dfa4b0
-base_observed_latest: 069f0c9654a6cde7cea6f3343dd2fa81c6248d5d
+project_main_observed: 0a88f707e1e4131ae4372929f2871d2b8a3a74b7
+planning_branch: planning/sx-dec-059-release-near-first-session-slice
 base_pin: v9.4.3
-base_main_is_reference_only: true
+base_remote_latest_observed: ef0092256be25eaa70a296a76d02f7205934929e · REFERENCE_ONLY
 engine: Godot 4.7.1-stable
 language: GDScript
-primary_platform: Android landscape
-configured_sheet: 1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo
+work_instruction: v4.7 · 2026-08-20-r1 · SWITCHY_THIN_ADAPTER
 product_baseline: GMB-002
-current_decisions: SX-DEC-027~058
-work_instruction: v4.5 r2 · 2026-08-11-r2
-phase_a: COMPLETE
-user_planning_complete_gate: GRANTED · 2026-08-11 KST
-phase_b_final_planning_review: SX-AUD-047 · PASS
-build_authority: AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE
-build_authority_scope: SX-DEC-055_ONLY
-sx_dec_055: APPROVED · SPEC_APPROVED · PHASE_B_DOR_PASS · IMPLEMENTATION_MERGED
-sx_dec_055_runtime_implementation: MERGED_MAIN_VERIFIED
-sx_dec_055_merge_pr: 151
-sx_dec_055_merge_main: 534a7318b349cd3e784a3467125f9ebd23124d8a
-runtime_integrated: true
-sx_dec_055_export_json_proof: WINDOWS_AND_ANDROID_PRESET_PCK_PASS · 13_JSON_EACH
-sx_dec_056a: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
+current_decisions: SX-DEC-027~059
+sx_dec_059_user_planning_complete: GRANTED · 2026-08-20 KST
+sx_dec_059_phase_c: PASS · SX-AUD-064 · CLEAN_REVIEW_EXIT
+sx_dec_059_repository_canon: SYNCED_ON_PLANNING_BRANCH · MERGE_PENDING
+sx_dec_059_notion_sync: PASS
+sx_dec_059_package_spec_dor: PASS
+sx_dec_059_execution_preflight: NOT_RUN · REQUIRED_AT_HANDOFF
+sx_dec_059_codex_handoff: NOT_REQUESTED
+sx_dec_059_build: NOT_STARTED
+sx_dec_055: MERGED_MAIN_VERIFIED · PR_151
+sx_dec_056a: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
-sx_dec_057: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
-sx_dec_057_attribute_content: BLOCKED_BY_STAGE8_TRACK_ATTRIBUTE_RUNTIME
-sx_dec_058: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
-benchmark_r01_r08: APPROVED · DETAILED_PLANNING_CLOSED
-benchmark_r09_r10: POST_VALIDATION_HOLD · NO_DECISION_ID
+sx_dec_057: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
+sx_dec_058: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 semantic_assets: 73_TOTAL · PRODUCTION_COMPLETE
+open_protected_pr: "#154 · READ_ONLY · other workstream"
 acceptance_build: UNASSIGNED
 windows_physical_runtime: NOT_RUN
 android_device: NOT_RUN
-connected_physical_editor: NOT_RUN
 five_person_comprehension: NOT_RUN
+player_experience: NOT_RUN
 production_cutover: BLOCKED_DEFERRED
-latest_post_phase_b_audit: SX-AUD-054
 ```
 
-## SX-DEC-055 merged runtime result
+## Stable Phase-B / post-merge compatibility aliases
 
-PR #151 implemented only the already-authorized `SX-DEC-055` runtime semantic POC and merged it to `main` at `534a7318b349cd3e784a3467125f9ebd23124d8a`.
+아래 key/literal은 `SX-AUD-025` 이후 post-merge freshness consumer가 사용하는 안정 locator다. **현재 059 상태를 과거로 되돌리는 값이 아니라, 이미 완료된 SX-DEC-055 Phase-B/merge 사실을 보존하는 compatibility aliases**다.
 
-Player-visible/runtime changes now present in merged main:
-
-- manifest-backed `SemanticAssetCatalog`;
-- semantic Stack/manual-load/auto-load/preflight HUD reinforcement while retaining Korean text and existing controls;
-- BUILD valid/invalid/rotate/replacement ghost semantic reinforcement without taking ownership of procedural placement truth;
-- route-control selected/unselected/occupied-locked semantic reinforcement without changing cycle or hit geometry;
-- bounded semantic event overlay for pickup, unload, accepted route selection, success/failure/route-end/timeout;
-- Reduced Motion information-equivalence using the same semantic identity while removing spatial/scale motion;
-- existing `DemoEffects`, audio, text, touch targets, gameplay rules, scoring, map data, save authority, and semantic product assets preserved;
-- Combo remains catalog-resolvable but no new Combo gameplay trigger was fabricated.
-
-Automated exact-head evidence on PR #151 head `63b0ed331e043db7d677ca097bdb209003bda4be`:
-
-```text
-Project Contract #1242 PASS
-GUT 9.7.1 #291 PASS
-Godot Tests #1173 PASS
-Validate Thin Adapter Migration #369 PASS
-Windows Demo Export #241 PASS
-custom suite: 97 cases · 0 failed · 11923 assertions
-Windows Demo proof PCK: RUNTIME_JSON_PACK_PROOF PASS · parsed_json=13
-Android Validation proof PCK: RUNTIME_JSON_PACK_PROOF PASS · parsed_json=13
-review threads: 0
+```yaml
+user_planning_complete_gate: GRANTED
+phase_b_final_planning_review: SX-AUD-047 · PASS
+build_authority: AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE
+sx_dec_055_runtime_implementation: MERGED_MAIN_VERIFIED
+runtime_integrated: true
+sx_dec_055_merge_main: 534a7318b349cd3e784a3467125f9ebd23124d8a
+canonical_freshness_audit: SX-AUD-025
+latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
+pc_local_route_and_mid_run_retest: RETEST_REQUIRED
 ```
 
-The export proof is packaging evidence only; it is not physical/device/human evidence.
+059는 이 완료된 055 이력을 덮어쓰지 않고 이후 player-experience target을 추가한다.
 
-## Post-Phase-B planning state
+## Stable acceptance compatibility anchors
 
-```text
-BMK-R01/R02/R03/R07 → SX-DEC-056 → SX-AUD-051
-BMK-R04/R05/R06     → SX-DEC-057 → SX-AUD-052
-BMK-R08             → SX-DEC-058 → SX-AUD-053
-BMK-R09/R10         → POST_VALIDATION_HOLD · NO_DECISION_ID
-```
-
-### SX-DEC-056
-
-- 056A Route Probe + Actual Trace/Debrief + Fastest/Cheapest PB + score-independent Fingerprint v1: `DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED`.
-- 056B Highest Score + score/max-combo extension: `BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME`.
-- no solver/recommended route/3-star route leakage.
-
-### SX-DEC-057
-
-- Stack Lab SL-01~04 after Tutorial 5;
-- Switch Lab SW-01~04 after Tutorial 6;
-- Builder Lab BL-01~04 after Tutorial 8;
-- optional lanes, completion mark only, Mastery max one/chapter;
-- `BL-03 Fast vs Cheap` and `M-EXPRESS` remain blocked by missing authoritative Stage-8 track attribute runtime;
-- implementation/content production authority is not granted.
-
-### SX-DEC-058
-
-- Daily UTC date / Weekly ISO-week identity;
-- `SHA256_COUNTER_V1` deterministic generation;
-- `CONSTRUCTIVE_WITNESS_REPLAY_V1` private legal-success proof;
-- deterministic quality/calibration/publication contract;
-- runtime receives published identity/manifest + map only;
-- implementation authority is not granted.
-
-## Current execution boundary
-
-`SX-DEC-055` Phase C implementation is no longer the next build action; it is merged-main verified. The next required work is **acceptance evidence**, not another semantic POC implementation pass.
+아래 literal은 Android/device canonical-freshness consumer가 사용하는 안정 locator다. 059가 새 acceptance target을 추가해도 이름을 제거하거나 다른 표기로만 바꾸지 않는다.
 
 ```text
-merged main 534a7318...
-→ post-merge canon + configured Sheet same-ID reconciliation
-→ assign exact post-POC acceptance build identity when a physical validation run is prepared
-→ Windows physical runtime/visual/audio/input smoke
-→ Android device smoke
-→ Reduced Motion/readability physical evidence
-→ Five-person comprehension when the acceptance build is fixed
-→ separate production cutover decision
-```
-
-Do not start SX-DEC-056/057/058 implementation merely because their delta planning is detailed. Their separate implementation authority remains required.
-
-## Protected boundaries
-
-- current product baseline remains `GMB-002`;
-- no endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset reactivation;
-- no product PNG or semantic manifest provenance rewrite under this reconciliation;
-- route direction/cycle/hit/lock geometry remains procedural authority;
-- existing Korean text/procedural presentation remains redundancy/fallback;
-- no guessed score/combo formula for 056B;
-- no invented fast/cheap TrackPiece field under 057;
-- no challenge optimum/player-hint solver under 058;
-- no BMK-R09/R10 implementation while held;
-- no Base repin; project pin remains `v9.4.3`;
-- automated/export evidence does not imply physical/device/human PASS;
-- production cutover remains separately blocked.
-
-## Validation ceiling
-
-```text
-FINITE CORE AUTOMATED: PASS
-SX-DEC-055 RUNTIME POC: MERGED_MAIN_VERIFIED · runtime_integrated=true
-POST-POC ACCEPTANCE BUILD: UNASSIGNED
-WINDOWS PHYSICAL RUNTIME/VISUAL/AUDIO/INPUT: NOT_RUN
+SX-DEC-055: MERGED_MAIN_VERIFIED
 ANDROID DEVICE SMOKE: NOT_RUN
-CONNECTED PHYSICAL GODOT/HERA: NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
 
-`TECH_EVIDENCE` and package evidence are present. `HUMAN_USABILITY_EVIDENCE` and `PLAYER_EXPERIENCE_EVIDENCE` remain `NOT_RUN` until actual people are observed on an exact acceptance build.
+SX-DEC-055의 과거 패키지/자동화 증거와 SX-DEC-059의 미래 release-near acceptance evidence는 서로 다른 층이다.
+
+## Current product promise
+
+> 선로를 건설해 화물 조우 순서를 설계하고, 적재 선택으로 LIFO를 구성한 뒤, 운행 중 분기 판단으로 계획을 실행하고 결과를 보고 다시 설계하는 finite cargo puzzle.
+
+## SX-DEC-059 · approved first-session
+
+```text
+T1 Track Connection
+→ T2 Cargo/Station + manual pickup prerequisite
+→ T3 LIFO/TOP reverse planning
+→ T4 selective non-load + revisit
+→ T5 Auto ON safe / OFF decision
+→ T6 switch execution
+→ existing VS_DEMO_01 Capstone
+→ Result / Retry / Edit
+```
+
+### Content state
+
+```yaml
+new_tutorial_map_target: 5
+map_01: T1+T2_SHARED
+map_02: T3_LIFO
+map_03: T4_SELECTIVE_MANUAL
+map_04: T5_LOAD_MODE_SWITCHING
+map_05: T6_SWITCH
+capstone: VS_DEMO_01_REUSE
+map_bytes_authored: false
+```
+
+Exact coordinates/map JSON/private witness are BUILD-time RED-first outputs. 계획 단계에서 검증하지 않은 좌표를 정본처럼 발명하지 않는다.
+
+### Architecture state
+
+```text
+FirstSessionDefinition / FirstSessionStagePolicy / FirstSessionDirector / FirstSessionCopy
+→ current ProductFiniteSlice presentation boundary
+→ current finite session/domain authority
+```
+
+- onboarding metadata is sidecar data.
+- `FiniteMapDefinition` schema v2 unchanged.
+- StagePolicy gates visibility + command paths across UI/keyboard/touch/board/route controls.
+- standalone demo keeps `first_session_enabled=false`; product main opts in.
+- T1→T2 preserves the same product instance and layout signature.
+
+### Result evidence state
+
+059 baseline Debrief uses only current `FiniteRunSummary` truth:
+
+```text
+failure_reason: ROUTE_END | TIME_EXPIRED
+remaining_map_cargo
+stack_size
+```
+
+Station mismatch/actual trace is not guessed.
+
+## Visual / localization state
+
+- E+D Hybrid / Neo-Arcade Readability.
+- current 73 product PNG first.
+- image generation: NOT_REQUESTED / NOT_RUN.
+- locales: ko / en / ja / zh-Hans.
+- zh-Hant deferred until a release target requires it.
+- player-facing raw localization key and text-in-PNG are forbidden.
+
+## Playtest / evidence state
+
+Use:
+- `PLAYTEST_PLAN_V4_7_CURRENT.md`
+- `SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`
+
+```text
+AUTOMATED CONTRACT
+→ developer self-run / screen QA
+→ exact acceptance build + physical smoke
+→ Five-person first-contact comprehension
+→ decision gate
+```
+
+Developer self-run or automated tests do not equal player-experience PASS.
+
+## Tooling state
+
+```yaml
+godot: 4.7.1-stable
+gut: 9.7.1
+project_godot_ai_plugin_cfg: 3.1.4
+upstream_godot_ai_3_1_4_version_bump: 96cc8b8c3d25ce487e24801d01d5214fea150349
+upstream_godot_ai_main: 3.1.5 @ 09a1e3311015153d967710fbe6502ac519585a9b
+prior_verified_release_basis: v3.1.3 @ 22678e5f9b038d7203d6b43b0aae20a5417c500e
+project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED_BEFORE_BUILD
+local_tool_parity: NOT_RUN
+```
+
+Fresh PowerShell/Codex handoff must resolve the real checkout by remote identity, preserve user changes, prefer an isolated workspace, then verify local/repo addon parity and baseline tests.
+
+## Current concurrency boundary
+
+### PR #154
+
+Open/Draft, separate workstream, **READ_ONLY** for SX-DEC-059.
+
+- no update/rebase/close/merge.
+- no unmerged `game/reuse/*` absorption.
+- if later completed/merged, reevaluate the new completed `main` only.
+
+### PR #155 / #156
+
+`CLOSED_UNMERGED · HISTORICAL_ACCIDENT`.
+
+## Protected boundaries
+
+- GMB-002 core unchanged.
+- no endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset.
+- no 056/057/058 implementation absorption.
+- no score/combo formula invention.
+- no fast/cheap TrackPiece field invention.
+- no player-facing solver.
+- no Base repin.
+- no generated visual without explicit user image request.
+- no physical/human PASS inflation.
+
+## Implementation package read order
+
+1. `SX_DEC_059_CODEX_HANDOFF_PACKAGE.md`.
+2. `SX_DEC_059_CODEX_HANDOFF_AMENDMENT_01.md`.
+3. `SX_DEC_059_CODEX_HANDOFF_AMENDMENT_02.md`.
+4. parent implementation plan.
+5. implementation Amendment 01.
+6. implementation Amendment 02.
+7. actual current code/tests.
+8. execute Task 1 RED only after explicit handoff and fresh preflight.
 
 ## Resume read order
 
-1. fresh Base current main + project default branch/open PR/latest commit;
-2. configured Google Sheet current rows;
-3. `AGENTS.md`;
-4. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5_r2.md`;
-5. `CURRENT_CONFIRMED_DECISIONS.md`;
-6. this `ACTIVE_CONTEXT.md`;
-7. `SX-AUD-054` post-merge reconciliation;
-8. exact Decision/spec/plan owner for whichever separately authorized next package is being worked.
+1. fresh Base completed `main`.
+2. fresh Project `main`, latest commit, all Open/Draft PR.
+3. exact Project Notion Home.
+4. `AGENTS.md`.
+5. v4.7 Switchy adapter.
+6. `FINITE_DELIVERY_PUZZLE_BASELINE.md`.
+7. `CURRENT_CONFIRMED_DECISIONS.md`.
+8. this `ACTIVE_CONTEXT.md`.
+9. `DEVELOPMENT_GATES.md`.
+10. 059 content/UI/localization/visual/playtest owners.
+11. implementation/handoff package only when execution is requested.
+
+## Current next action
+
+```text
+planning/canon PR validation + merge
+→ post-merge main/Notion readback
+→ wait for USER_REQUESTED_CODEX_HANDOFF
+```
+
+**PowerShell/Codex/Godot BUILD has not started.**

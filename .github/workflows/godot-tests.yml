@@ -34,6 +34,13 @@ jobs:
       - name: Run headless tests
         shell: bash
         run: |
+          # Tracked .import remaps point at generated .godot/imported artifacts.
+          # A clean runner must build that cache before the suite loads scenes.
+          timeout 180s ./Godot_v4.7.1-stable_linux.x86_64 \
+            --headless \
+            --import \
+            --path .
+
           set +e
           # A clean runner may spend over one minute importing the installed
           # editor plugins before tests/run_tests.gd starts its own watchdog.

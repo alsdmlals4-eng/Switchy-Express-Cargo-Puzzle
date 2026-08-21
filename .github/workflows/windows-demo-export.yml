@@ -61,6 +61,11 @@ jobs:
       - name: Run headless tests
         shell: bash
         run: |
+          timeout 180s ./Godot_v4.7.1-stable_linux.x86_64 \
+            --headless \
+            --import \
+            --path .
+
           set +e
           output=$(timeout 45s ./Godot_v4.7.1-stable_linux.x86_64 \
             --headless \

@@ -1,144 +1,176 @@
 # Switchy Express 프로젝트 허브
 
-Last updated: `2026-08-11 KST`
+Last updated: `2026-08-20 KST`
 
 ## Current State
 
 | 항목 | 현재 값 |
 |---|---|
 | 제품 기준선 | `GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE` |
-| 결정 범위 | `SX-DEC-027~058` |
-| 작업지시문 | `v4.5 r2 · revision 2026-08-11-r2` |
-| Phase A | `COMPLETE` |
-| 사용자 planning-complete Gate | `GRANTED · explicit "기획 완료" · 2026-08-11 KST` |
-| Phase B | `SX-AUD-047 · PASS` |
+| 결정 범위 | `SX-DEC-027~059` |
+| 작업지시문 | `v4.7 · revision 2026-08-20-r1 · Switchy thin adapter` |
+| SX-DEC-059 | `USER_APPROVED · PLANNING_COMPLETE_GRANTED` |
+| Phase C | `PASS · SX-AUD-064 · CLEAN_REVIEW_EXIT` |
+| Package spec DoR | `PASS` |
+| Execution preflight | `NOT_RUN · actual handoff 때 필요` |
+| Codex handoff | `NOT_REQUESTED` |
+| BUILD | `NOT_STARTED` |
 | SX-DEC-055 | `IMPLEMENTED · PR #151 MERGED · runtime_integrated=true` |
-| SX-DEC-055 merged main | `534a7318b349cd3e784a3467125f9ebd23124d8a` |
-| SX-DEC-056A | `DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED` |
+| SX-DEC-056A | `PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED` |
 | SX-DEC-056B | `BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME` |
-| SX-DEC-057 | `DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED` |
-| SX-DEC-057 fast/cheap content | `BLOCKED_BY_STAGE8_TRACK_ATTRIBUTE_RUNTIME` |
-| SX-DEC-058 | `DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED` |
-| BMK-R01~R08 | `APPROVED · DETAILED_PLANNING_CLOSED` |
-| BMK-R09/R10 | `POST_VALIDATION_HOLD · NO_DECISION_ID` |
+| SX-DEC-057 | `PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED` |
+| SX-DEC-058 | `PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED` |
 | semantic product PNG | `73 · PRODUCTION_COMPLETE` |
 | Base pin | `v9.4.3` |
-| Base main | fresh-read every session · `REFERENCE_ONLY` |
+| Base remote latest observed | `ef0092256be25eaa70a296a76d02f7205934929e · REFERENCE_ONLY` |
+| Project main observed before planning merge | `0a88f707e1e4131ae4372929f2871d2b8a3a74b7` |
+| protected Open/Draft PR | `#154 · READ_ONLY` |
 | acceptance build | `UNASSIGNED` |
 | Windows physical runtime | `NOT_RUN` |
-| Android device smoke | `NOT_RUN` |
-| connected physical editor | `NOT_RUN` |
-| Five-person comprehension | `NOT_RUN` |
+| ANDROID DEVICE SMOKE | `NOT_RUN` |
+| FIVE-PERSON COMPREHENSION | `NOT_RUN` |
+| Player experience | `NOT_RUN` |
 | Production cutover | `BLOCKED_DEFERRED` |
-| configured Sheet | `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo` |
 
-저장된 SHA·PR은 snapshot이다. 새 작업은 Base current main, project default branch/all Open-Draft PR/latest commit, configured Sheet를 다시 읽는다.
+## Stable acceptance compatibility anchors
+
+```text
+SX-DEC-055: MERGED_MAIN_VERIFIED
+ANDROID DEVICE SMOKE: NOT_RUN
+FIVE-PERSON COMPREHENSION: NOT_RUN
+PRODUCTION CUTOVER: BLOCKED_DEFERRED
+```
+
+이 literal은 device/human canonical-freshness consumer가 사용하는 안정 locator다. SX-DEC-059가 새 release-near target이 되어도 과거 device gate 이름을 삭제하지 않는다.
 
 ## One-line product promise
 
-> 선로를 건설해 화물 조우 순서를 설계하고, 수동·자동 적재로 LIFO 스택을 구성하며, 운행 중 분기 경로를 조절해 제한 시간 안에 모든 필수 배송을 완료하는 퍼즐.
-
-내부 설계 문장:
-
-> 노선을 그리는 순간 화물 스택의 순서가 정해지고, 운행은 그 계획을 실행한다.
+> 노선을 그려 화물 조우 순서를 만들고, 적재 선택으로 LIFO를 설계한 뒤, 운행 중 분기 판단으로 계획을 실행하고 결과를 보고 다시 설계하는 finite cargo puzzle.
 
 ## Mandatory read order
 
-1. `AGENTS.md`
-2. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5_r2.md`
-3. fresh Base/project current state + configured Sheet
-4. `FINITE_DELIVERY_PUZZLE_BASELINE.md`
-5. `CURRENT_CONFIRMED_DECISIONS.md`
-6. `ACTIVE_CONTEXT.md`
-7. `ROADMAP.md`
-8. `기획서/50_제작_검증/SX_AUD_054_SX_DEC_055_RUNTIME_POC_POST_MERGE_RECONCILIATION.md`
-9. exact Decision/spec/plan owner for the separately authorized next package.
+1. fresh Base latest completed `main`.
+2. fresh project `main`, latest commit, all Open/Draft PR.
+3. exact Switchy Notion Project Home.
+4. `AGENTS.md`.
+5. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`.
+6. `FINITE_DELIVERY_PUZZLE_BASELINE.md`.
+7. `CURRENT_CONFIRMED_DECISIONS.md`.
+8. `ACTIVE_CONTEXT.md`.
+9. `ROADMAP.md`.
+10. `DEVELOPMENT_GATES.md`.
+11. exact SX-DEC-059 content/UI/localization/visual/playtest owner.
+12. actual code/data/Scene/Resource/assets/tests.
+13. implementation/handoff package only when Codex execution is requested.
 
-## SX-DEC-055 merged runtime
+Google Sheets는 migration-only이며 새 작업의 active input이 아니다.
 
-PR #151 exact head `63b0ed331e043db7d677ca097bdb209003bda4be` was squash-merged to main `534a7318b349cd3e784a3467125f9ebd23124d8a`.
-
-Player-visible/runtime result:
-
-- semantic Stack/manual-auto/preflight HUD reinforcement;
-- BUILD placement/preflight semantic reinforcement;
-- route-control selected/unselected/occupied-locked semantic reinforcement;
-- pickup/unload/route/result semantic feedback;
-- Reduced Motion information equivalence;
-- existing Korean text, input/hit geometry, gameplay/domain rules, score, maps, save, product PNGs and semantic manifests preserved.
-
-Automated/package evidence:
+## Current core flow
 
 ```text
-Project Contract #1242 PASS
-GUT 9.7.1 #291 PASS
-Godot Tests #1173 PASS
-Thin Adapter #369 PASS
-Windows Demo Export #241 PASS
-custom suite 97 / 0 failed / 11923 assertions
-Windows proof PCK parsed_json=13
-Android Validation preset proof PCK parsed_json=13
-review threads 0
+BUILD: 선로로 조우 순서 설계
+→ RUN: manual/auto로 적재 여부 결정
+→ LIFO TOP으로 배송 가능 순서 형성
+→ switch로 계획 실행
+→ result
+→ Retry same layout 또는 Edit layout
 ```
+
+## SX-DEC-059 · Release-Near First Session
+
+```text
+T1 · Track Connection
+→ T2 · Cargo/Station + basic manual pickup
+→ T3 · LIFO/TOP reverse planning
+→ T4 · selective non-load + revisit
+→ T5 · Auto ON safe / OFF decision
+→ T6 · switch execution
+→ existing VS_DEMO_01 capstone
+→ Result / Retry / Edit
+```
+
+### Confirmed learning progression
+
+```text
+T1: 연결했다
+T2: 실어서 보냈다
+T3: 거꾸로 생각했다
+T4: 안 싣는 것도 선택했다
+T5: 자동을 켜고 끄며 계획했다
+T6: 운행 중 계획을 실행했다
+Capstone: 새 설명 없이 종합했다
+```
+
+### Content / architecture boundary
+
+- 5 new tutorial map definitions target.
+- T1/T2 share one map, ProductFiniteSlice instance, and valid layout.
+- exact coordinates/JSON/private witness are RED-first BUILD outputs.
+- existing `VS_DEMO_01` remains unchanged by default.
+- first-session metadata stays outside `FiniteMapDefinition` schema v2.
+- sidecar owners: Definition / StagePolicy / Director / Copy.
+- StagePolicy gates UI + keyboard/touch/board/route commands at ProductFiniteSlice.
+- standalone demo remains compatibility path; main product opts into first-session mode.
+
+## Current visual / localization policy
+
+- E+D Hybrid · Neo-Arcade Readability.
+- current 73 semantic PNGs first.
+- no new generated image currently required; image generation not requested.
+- locales: `ko / en / ja / zh-Hans`.
+- `zh-Hant` deferred until a release target requires it.
+- no raw localization key and no localized text in reusable PNG.
+
+## Current evidence-safe Result
+
+059 Result can use only existing runtime truth:
+
+```text
+ROUTE_END | TIME_EXPIRED
+remaining_map_cargo
+stack_size
+```
+
+Do not fabricate detailed station mismatch/trace before an authorized observation owner exists.
 
 ## Current execution chain
 
 ```text
-SX-DEC-055 PR #151 MERGED
-→ same-ID current canon + Sheet reconciliation
-→ exact post-POC acceptance build identity when physical validation is prepared
-→ Windows physical runtime/visual/audio/input smoke
-→ Android device smoke
-→ physical Reduced Motion/readability evidence
-→ Five-person comprehension on the same acceptance build
-→ separate production cutover decision
+Phase-C PASS
+→ planning/canon PR validation + merge
+→ post-merge main/Notion readback
+→ USER_REQUESTED_CODEX_HANDOFF
+→ Fresh PowerShell · LOCATION FIRST · isolated workspace
+→ baseline GREEN
+→ Codex RED-first BUILD
+→ exact-head automated review
+→ developer self-run / screen QA
+→ exact acceptance build physical smoke
+→ Five-person first-contact evidence
+→ separate product decision
 ```
 
-The old `SX-DEC-055 Task 1 / Step 1.1 RED` is completed TDD history, not the next action.
-
-## Parallel approved planning
-
-```text
-BMK-R01/R02/R03/R07 → SX-DEC-056 → SX-AUD-051 · detailed planning closed
-BMK-R04/R05/R06     → SX-DEC-057 → SX-AUD-052 · detailed planning closed
-BMK-R08             → SX-DEC-058 → SX-AUD-053 · detailed planning closed
-BMK-R09/R10         → POST_VALIDATION_HOLD
-```
-
-These packages do not inherit SX-DEC-055 implementation authority.
-
-- 056A: planning-ready, implementation not authorized.
-- 056B: waits for authoritative score/combo runtime truth.
-- 057: planning-ready, implementation/content production not authorized; fast/cheap subset waits for Stage-8 track attribute authority.
-- 058: planning-ready, implementation/pipeline authority not granted.
+Actual BUILD has **not started**.
 
 ## Protected boundaries
 
-- current product baseline = `GMB-002`;
-- no endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset;
-- no new gameplay/domain signal solely for VFX;
-- route direction/cycle/hit/lock geometry stays procedural authority;
-- product PNG/semantic provenance rewrite is out of scope;
-- Reduced Motion keeps the same information identity;
-- Korean text/procedural presentation remains redundant fallback;
-- Tutorial 1~10 order, fixed-seed Daily/Weekly, cosmetic-only/no-power fairness remain protected;
-- no 056~058 implementation without separate authority;
-- no guessed score/combo formula, invented fast/cheap field, or player-facing challenge solver;
-- no R09/R10 implementation while held;
-- no Base repin;
-- automated/package evidence does not imply physical/device/human PASS;
-- production cutover remains separate.
+- product baseline = GMB-002.
+- no endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset.
+- no implicit 056/057/058 implementation.
+- no score/combo or fast/cheap TrackPiece invention.
+- no player-facing solver.
+- no Base repin.
+- PR #154 is read-only for this workstream.
+- automated/package/self-run evidence does not imply human PASS.
 
-## Validation ceiling
+## Current detail owners
 
-```text
-FINITE CORE AUTOMATED: PASS
-SX-DEC-055 RUNTIME POC: MERGED_MAIN_VERIFIED
-runtime_integrated: true
-POST-POC ACCEPTANCE BUILD: UNASSIGNED
-WINDOWS PHYSICAL RUNTIME/VISUAL/AUDIO/INPUT: NOT_RUN
-ANDROID DEVICE SMOKE: NOT_RUN
-CONNECTED PHYSICAL GODOT/HERA: NOT_RUN
-FIVE-PERSON COMPREHENSION: NOT_RUN
-PRODUCTION CUTOVER: BLOCKED_DEFERRED
-```
+- `기획서/20_시스템_콘텐츠/FIRST_SESSION_STAGE_CONTENT_SPEC_V1.md`
+- `기획서/30_UI_UX/FIRST_SESSION_SCREEN_CONTENT_DATA_CONTRACT.md`
+- `기획서/30_UI_UX/FIRST_SESSION_LOCALIZATION_COPY_MATRIX_V1.md`
+- `기획서/30_UI_UX/FIRST_SESSION_LOCALIZATION_COPY_ADDENDUM_01.md`
+- `기획서/40_표현/SX_DEC_059_VISUAL_REQUIREMENT_BRIEFS.md`
+- `기획서/50_제작_검증/SX_DEC_059_RELEASE_NEAR_FIRST_SESSION_VERTICAL_SLICE.md`
+- `기획서/50_제작_검증/PLAYTEST_PLAN_V4_7_CURRENT.md`
+- `기획서/50_제작_검증/SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`
+- `기획서/50_제작_검증/SX_AUD_064_SX_DEC_059_PHASE_C_FINAL_REVIEW.md`

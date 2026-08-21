@@ -112,6 +112,11 @@ jobs:
       - name: Run complete headless test suite
         shell: bash
         run: |
+          timeout 180s "./${GODOT_BINARY}" \
+            --headless \
+            --import \
+            --path .
+
           set +e
           output=$(timeout 45s "./${GODOT_BINARY}" \
             --headless \

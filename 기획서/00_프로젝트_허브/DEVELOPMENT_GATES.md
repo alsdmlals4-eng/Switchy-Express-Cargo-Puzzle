@@ -1,136 +1,352 @@
 # Development Gates
 
-현재 제품/실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`, `ACTIVE_CONTEXT.md`, `SX_AUD_047_PHASE_B_FINAL_PLANNING_REVIEW.md`가 우선한다. 저장된 commit/PR/run 값은 해당 시점 증거이며 current GitHub/Sheet를 대체하지 않는다.
+Last updated: `2026-08-20 KST`
 
-## Active Gate Chains
+현재 실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 우선한다. 과거 commit/PR/run은 역사 evidence이며 current next action을 자동 정의하지 않는다.
 
-### v4.5 planning/build chain
-
-```text
-A0 PHASE A GPT CHAT PLANNING: COMPLETE · SX-AUD-044
-→ A1 READY_FOR_USER_PLANNING_COMPLETE_GATE: PASS
-→ A2 explicit user "기획 완료": GRANTED · 2026-08-11 KST
-→ A3 PHASE B FINAL PLANNING REVIEW: PASS · SX-AUD-047
-→ A4 BUILD AUTHORITY: AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE
-→ A5 FIRST BUILD STEP: SX-DEC-055 Task 1 / Step 1.1 RED · NOT_STARTED
-```
-
-Phase B did not execute product/runtime BUILD. It only closed planning/canon readiness and added the JSON export packaging prerequisite.
-
-### PC Vertical Slice chain
+## 1. v4.7 planning / build chain
 
 ```text
-PC0 SX-DEC-037~042 CURRENT FINITE IMPLEMENTATION: PASS · product baseline GMB-002
-→ PC1 AUTOMATED VERTICAL SLICE: PASS
-→ PC2 DEFAULT PROJECT PLAY BOOT: PASS · AUTOMATED
-→ PC3 PR #83/#99/#100 MERGE: PASS · HISTORICAL MERGED-MAIN EVIDENCE
-→ PC4 ROUTE·TERMINAL·MID-RUN AUTOMATED REGRESSION: PASS
-→ PC4A COLOR PARITY·ROUTE-END·SWITCH DIRECTION: MERGED_MAIN_VERIFIED · AUTOMATED_PASS · feature-scoped user F5 evidence
-→ PC5 LOCAL ROUTE·MID-RUN FULL RETEST: RETEST_REQUIRED
-→ PC6 WINDOWS DEBUG EXPORT/PACKAGING: historical PASS evidence
-→ PC7 WINDOWS EXPORTED ARTIFACT PHYSICAL RUNTIME/VISUAL/AUDIO/INPUT: NOT_RUN
+A0 CURRENT AUTHORITY RECOVERY: PASS
+→ A1 SX-DEC-059 DIRECTION: USER_APPROVED
+→ A2 GM-SX059-01 A: USER_APPROVED
+→ A3 DETAIL PLAN / VISUAL BRIEF / PLAYTEST DELTA: PASS
+→ A4 POST-APPROVAL ADVERSARIAL CLEAN REVIEW: PASS · SX-AUD-063
+→ A5 explicit user "기획완료": GRANTED · 2026-08-20 KST
+→ A6 FRESH PHASE-C REVIEW + CANON/NOTION RECONCILIATION: PASS · SX-AUD-064
+→ A7 IMPLEMENTATION PACKAGE SPEC DoR: PASS
+→ A8 USER_REQUESTED_CODEX_HANDOFF: NOT_REQUESTED
+→ A9 FRESH EXECUTION PREFLIGHT / POWERSHELL / CODEX BUILD: NOT_STARTED
 ```
 
-`GMB-003` was a historical route-end/switch implementation package and is not the current finite product baseline.
+`기획완료`는 승인된 059 계획을 잠근다. A6/A7은 설계·정본·인계 패키지의 정적 준비 상태이며, 실제 로컬 repo/Godot/addon/baseline GREEN은 A8 뒤 fresh execution preflight에서 확인한다.
 
-### SX-DEC-055 runtime semantic POC chain
+## 2. Historical implemented baseline chain
 
 ```text
-S0 SX-DEC-053/054 73 PRODUCT PNG PACKAGE: COMPLETE
-→ S1 SX-DEC-055 DECISION/SPEC/DoR: PASS
-→ S2 PHASE B READINESS: PASS · SX-AUD-047
-→ S3 SemanticAssetCatalog RED/GREEN: NOT_STARTED
-→ S4 pure SemanticRuntimeState RED/GREEN: NOT_STARTED
-→ S5 manual-load read projection: NOT_STARTED
-→ S6 HUD/BUILD/route semantic reinforcement: NOT_STARTED
-→ S7 SemanticEventOverlay + Reduced Motion: NOT_STARTED
-→ S8 ProductFiniteSlice existing-seam wiring: NOT_STARTED
-→ S9A NON-RESOURCE JSON EXPORT CONTRACT + EXPORTED-PACK PROOF: NOT_STARTED · MANDATORY
-→ S9B FULL AUTOMATED/EXACT-HEAD/IMMUTABILITY PR GATE: NOT_STARTED
-→ S10 SAME-ID SX-DEC-055 MERGED-MAIN CLOSURE: NOT_STARTED
+GMB-002 finite core: AUTOMATED PASS
+→ PC finite vertical-slice pipeline: IMPLEMENTED / HISTORICAL
+→ SX-DEC-053/054 semantic assets: 73 PRODUCT PNG · COMPLETE
+→ SX-DEC-055 runtime semantic: PR #151 MERGED_MAIN_VERIFIED
 ```
 
-The required Phase B packaging amendment is:
-
-`docs/superpowers/plans/2026-08-11-sx-dec-055-phase-b-readiness-amendment.md`
-
-It requires narrow runtime-owned JSON export inclusion for:
+Stable historical merge compatibility locator:
 
 ```text
-data/maps/*.json
-art/product_assets/ed_hybrid_v1/*.json
+PR #83/#99/#100 MERGE: PASS
 ```
 
-and exported-package proof before export evidence may satisfy the POC gate.
+이 literal은 과거 PC Vertical Slice와 후속 정본 병합 완료 사실을 참조하는 post-merge freshness consumer용 anchor다. SX-DEC-059의 새 구현 권한을 의미하지 않는다.
 
-### Product / Android / human chain
+SX-DEC-055는 이미 끝났으므로 과거 `SemanticAssetCatalog RED`를 current next action으로 되살리지 않는다.
+
+## 3. Stable device / acceptance evidence anchors
+
+이 literal은 device-smoke canonical-freshness consumer와 과거 evidence locator가 사용하므로 SX-DEC-059가 추가되어도 유지한다.
 
 ```text
-G0 PROJECT_IDENTIFIED: PASS
-→ G1 FINITE_PRODUCT_AUTHORITY: PASS · GMB-002 · SX-DEC-027~055
-→ G2 AUTOMATED_CORE: PASS
-→ G3 VALIDATION_PREPARATION: PASS
-→ G4 HISTORICAL CANONICAL APK EXPORT: PASS · packaging/hash evidence only
-→ G5 ANDROID DEVICE SMOKE · HISTORICAL VALIDATION-HARNESS: NOT_RUN · OPTIONAL DIAGNOSTIC LANE
-→ G5A SX-DEC-055 AUTOMATED RUNTIME POC: NOT_STARTED
-→ G5B EXACT POST-POC ACCEPTANCE BUILD IDENTITY: UNASSIGNED
-→ G5C PHYSICAL ACCEPTANCE SMOKE ON THAT EXACT BUILD: NOT_READY · NOT_RUN
-→ G6 FIVE-PERSON COMPREHENSION: NOT_RUN
-→ G7 FINAL PASS/REVISE/PIVOT/STOP: NOT_RUN
-→ G8 PRODUCTION CUTOVER: BLOCKED_DEFERRED
+HISTORICAL CANONICAL APK EXPORT: PASS · HISTORICAL PACKAGE EVIDENCE
+ANDROID DEVICE SMOKE: NOT_RUN
+FIVE-PERSON COMPREHENSION: NOT_RUN
+PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
 
-`ANDROID DEVICE SMOKE` is retained as the canonical machine-readable gate token. The current historical validation-harness lane remains NOT_RUN and does not substitute for the future post-POC acceptance-build physical smoke.
+- Historical canonical APK/export evidence is packaging/history evidence, not the future SX-DEC-059 acceptance build.
+- Android device smoke remains an independent platform gate.
+- Five-person comprehension requires a later exact acceptance build and reviewed physical smoke.
+- no automated/package/self-run result upgrades these anchors to PASS.
 
-## Physical/manual evidence ceiling
+## 4. SX-DEC-059 release-near first-session chain
 
-The following remain explicitly separate from automated/hosted evidence:
+```text
+S0 PLAN: COMPLETE
+→ S1 T1/T2 shared-map contract: PLAN PASS
+→ S2 T3 LIFO content contract: PLAN PASS
+→ S3 T4 selective manual content contract: PLAN PASS
+→ S4 T5 auto-mode content contract: PLAN PASS
+→ S5 T6 switch content contract: PLAN PASS
+→ S6 VS_DEMO_01 capstone contract: PLAN PASS
+→ S7 first-session sidecar ownership: PLAN PASS
+→ S8 localization/responsive/visual reuse contract: PLAN PASS
+→ S9 playtest/evidence contract: PLAN PASS
+→ S10 RED-first implementation package spec: PASS
+→ S11 Codex/Godot implementation: NOT_STARTED
+→ S12 developer self-run/screen QA: NOT_RUN
+→ S13 exact acceptance build physical smoke: NOT_RUN
+→ S14 Five-person first-contact comprehension: NOT_RUN
+→ S15 product decision: NOT_RUN
+```
 
-- Windows exported artifact physical runtime/visual/audio/input: `NOT_RUN`
-- `ANDROID DEVICE SMOKE` · Android landscape actual-device: `NOT_RUN`
-- Connected physical Godot/Hera authoring session: `NOT_RUN`
-- post-POC acceptance-build physical smoke: `NOT_READY · NOT_RUN`
-- Five-person Comprehension: `NOT_RUN`
-- broader human/comprehension: `NOT_RUN`
-- production cutover: `BLOCKED_DEFERRED`
+## 5. Planned BUILD task families
 
-Hosted export success is packaging evidence only. It cannot promote physical/device/human gates.
+Actual production code may start only after A8 handoff trigger and fresh execution preflight.
 
-## Protected gates
+```text
+B1 first-session sequence schema / validator
+B2 FirstSessionStagePolicy command+visibility enforcement
+B3 FirstSessionDirector lesson transition state
+B4 MAP-01 T1/T2 shared lesson
+B5 MAP-02 T3 LIFO
+B6 MAP-03 T4 selective manual
+B7 MAP-04 T5 manual/auto switching
+B8 MAP-05 T6 switch execution
+B9 progressive HUD/contextual copy/localization
+B10 evidence-safe Result summary
+B11 VS_DEMO_01 capstone integration without map mutation
+B12 reduced-motion/responsive/accessibility regression
+B13 package/export/clean regression evidence
+```
 
-Phase C must preserve:
+모든 production behavior task는:
 
-- LIFO and cargo eligibility;
-- route topology/cycle/U-turn/occupied-lock authority;
-- time/scoring/failure/save/ruleset/map content;
-- product PNG and semantic sidecar bytes;
-- historical `runtime_integrated=false` provenance;
-- existing procedural/text fallback/redundancy;
-- Base `v9.4.3` pin;
-- `.asset-vault` deferred state.
+```text
+RED
+→ expected failure verified
+→ minimal GREEN
+→ focused test GREEN
+→ full regression GREEN
+→ commit
+```
 
-No new gameplay/domain signal may be invented solely for semantic feedback or combo VFX.
+순서를 따른다.
 
-## Five-person Comprehension gate
+## 6. Content gate
 
-After an exact post-POC acceptance build exists and physical smoke is reviewed:
+### Map policy
 
-- recruit target: `6` (`TEST_VALUE` buffer)
-- minimum analyzable first-contact sessions: `5`
-- behavior → prediction → explanation → transfer first
-- neutral moderator; no solution-relevant coaching
-- use `PLAYTEST_PLAN.md` FS-01~FS-12
-- unresolved P0/P1 comprehension/accessibility finding must be `0` for PASS.
+- New tutorial map target = 5.
+- `FiniteMapDefinition` schema v2 reuse.
+- tutorial metadata is sidecar, not map schema.
+- map coordinates/JSON are BUILD outputs and require deterministic success witness tests.
+- no player-facing witness/solver.
+- `VS_DEMO_01` bytes/semantic are immutable by default.
+
+### Learning policy
+
+```text
+T1 new concept: track connection
+T2 new concept: cargo/station + manual pickup prerequisite
+T3 new concept: LIFO TOP reverse planning
+T4 new concept: intentional non-load / revisit
+T5 new concept: auto-load mode switching
+T6 new concept: switch execution / occupied lock
+Capstone: transfer without new explanation
+```
+
+## 7. UI / input gate
+
+`FirstSessionStagePolicy` must gate **both presentation and command path**.
+
+```text
+HUD button
+keyboard shortcut
+future touch input
+board / route-control request
+→ same allowed-command policy
+→ current ProductFiniteSlice dispatch boundary
+→ current finite domain authority
+```
+
+Hidden system must not remain usable through shortcut bypass. Stage visibility must survive subsequent HUD `apply_model()` refreshes and may only narrow phase-valid controls.
+
+## 8. Localization / responsive gate
+
+First-slice planned languages:
+
+```text
+ko
+en
+ja
+zh-Hans
+```
+
+`zh-Hant` is deferred until a release target requires it.
+
+- copy key/data separation.
+- Lesson Card requires `title_key` + `objective_key`.
+- CTA keys come from `FIRST_SESSION_LOCALIZATION_COPY_ADDENDUM_01.md`.
+- text-in-PNG forbidden.
+- raw localization key player-facing fallback forbidden.
+- CJK glyph/line-break/long string checks.
+
+Responsive meaning targets:
+
+```text
+1280×720
+1600×900
+1920×1080
+pc_wide_or_ultrawide semantic check
+mobile_landscape semantic check
+```
+
+Same pixel layout is not required; same information/action/state meaning is required.
+
+## 9. Result evidence gate
+
+Current `FiniteRunSummary` supports:
+
+```text
+outcome
+failure_reason
+completion_time
+final_delivery_commit_time
+time_limit_seconds
+remaining_map_cargo
+stack_size
+```
+
+059 Result may use these facts. It may not fabricate station mismatch/actual trace causality.
+
+```text
+ROUTE_END / TIME_EXPIRED
++ map cargo remaining
++ train stack size
+```
+
+Detailed station mismatch is a future 056A observation concern and is outside 059.
+
+## 10. Visual / audio gate
+
+- existing 73 E+D Hybrid / Neo-Arcade semantic product assets first.
+- existing `DemoEffects`, audio, SemanticEventOverlay first.
+- no new image generation is currently required or authorized.
+- Reduced Motion uses same information identity.
+- VFX must not cover next critical cargo/switch target.
+
+## 11. Tooling / fresh execution preflight gate
+
+```yaml
+godot: 4.7.1-stable
+gut: 9.7.1
+project_godot_ai_plugin_cfg: 3.1.4
+upstream_3_1_4_version_bump_commit: 96cc8b8c3d25ce487e24801d01d5214fea150349
+upstream_main_observed_plugin: 3.1.5
+upstream_main_observed_commit: 09a1e3311015153d967710fbe6502ac519585a9b
+prior_verified_release_basis: v3.1.3
+project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED
+local_repo_tree_parity: NOT_RUN
+baseline_custom_suite: NOT_RUN_IN_FRESH_EXECUTION_ENVIRONMENT
+```
+
+A8 뒤 Fresh PowerShell에서 다음을 확인하기 전 persistent authoring을 시작하지 않는다.
+
+- exact local repo location resolved by Git remote identity; no guessed hard-coded checkout.
+- clean/dirty state and user changes.
+- exact project `HEAD` and `origin/main` relation.
+- isolated workspace/worktree status.
+- Godot executable version.
+- repo/local Godot AI addon parity/provenance.
+- GUT availability.
+- project HiGodot profile/ports only if actually consumed.
+- project CODEX_HOME current value without silent credential/config replacement.
+- Hera only when live QA is applicable; tracked source delta after acceptance must be zero.
+- custom baseline suite GREEN.
+
+## 12. Concurrency gate
+
+### PR #154
+
+`READ_ONLY` for SX-DEC-059.
+
+- no modify/rebase/update/close/merge.
+- no unmerged `game/reuse/*` absorption.
+- if it completes later, new completed `main` may be reevaluated.
+
+### PR #155 / #156
+
+`CLOSED_UNMERGED · HISTORICAL_ACCIDENT`.
+
+## 13. Implementation package authority
+
+Binding read order:
+
+```text
+SX_DEC_059_CODEX_HANDOFF_PACKAGE.md
+→ handoff Amendment 01
+→ handoff Amendment 02
+→ parent implementation plan
+→ implementation Amendment 01
+→ implementation Amendment 02
+→ actual current code/tests
+→ Task 1 RED
+```
+
+The amendments override the parent plan's illustrative fixed repo path/API placeholders and add title/CTA/HUD-lifecycle/same-layout regression contracts.
+
+## 14. Automated validation gate
+
+Minimum required before an implementation PR can be called review-ready:
+
+- new focused first-session tests.
+- existing custom Godot suite.
+- GUT 9.7.1.
+- Project Contract / relevant static policy check.
+- Thin Adapter validation.
+- Windows export/package proof when applicable.
+- new first-session JSON/localization/tutorial map inclusion proof.
+- no unauthorized change to current core/map/semantic asset owners.
+- no unresolved review thread on exact head.
+
+Hosted CI/package proof is not physical runtime or human evidence.
+
+## 15. Developer self-run gate
+
+After automated GREEN and before first-contact human evidence:
+
+1. T1→T6→Capstone happy path.
+2. T3 wrong LIFO order → Edit → recovery.
+3. T4 overloading → selective non-load recovery.
+4. T5 Auto ON safe → OFF before decision cargo.
+5. T6 occupied-lock observation + successful route decision.
+6. Capstone Retry same layout.
+7. Capstone Edit layout.
+8. Reduced Motion same-information path.
+
+Must record:
+
+```text
+progression dead-end 0
+hidden-command bypass 0
+raw localization key 0
+player-facing placeholder 0
+crash/script error 0
+unsupported evidence claim 0
+```
+
+This gate is developer usability/technical evidence only.
+
+## 16. Physical / human gate
+
+```text
+exact acceptance build identity
+→ reviewed physical smoke on the same build
+→ Five-person first-contact comprehension
+```
+
+Minimum analyzable first-contact sessions remains 5. Use `PLAYTEST_PLAN_V4_7_CURRENT.md` + `SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`.
+
+Human decision states:
+
+```text
+EXPAND
+REWORK
+REPEAT_SLICE
+HOLD
+STOP
+```
+
+## 17. Production cutover
+
+`BLOCKED_DEFERRED`.
+
+No merge/build/export result automatically authorizes store release.
 
 ## Current next action
 
-After this Phase-B canon-sync is merged and the configured Sheet is reconciled, the only authorized first implementation action is:
-
 ```text
-SX-DEC-055
-Task 1 / Step 1.1 RED
-→ tests/demo/test_semantic_asset_catalog.gd
-→ tests/run_tests.gd registration
-→ custom Godot suite
-→ expected RED must be the missing SemanticAssetCatalog assertion
+planning/canon PR validation + merge
+→ post-merge main/Notion readback
+→ wait for A8 USER_REQUESTED_CODEX_HANDOFF
 ```
+
+**BUILD is not running.**
