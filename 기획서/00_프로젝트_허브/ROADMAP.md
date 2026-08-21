@@ -22,7 +22,9 @@ SX-DEC-059
 → Codex handoff USER_REQUESTED_AND_EXECUTED
 → SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED
 → five-pass adversarial review CLOSED · SX-AUD-066
-→ GitHub merge / Notion post-merge readback gate
+→ PR #158 MERGED_MAIN_VERIFIED · main 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
+→ Notion implementation post-merge readback PASS
+→ developer/physical/device/human evidence gates
 ```
 
 ## M0 · Product baseline
@@ -91,7 +93,7 @@ Android device smoke: NOT_RUN
 Five-person comprehension: NOT_RUN
 ```
 
-The next meaningful first-contact acceptance build should contain the completed SX-DEC-059 release-near first-session experience. Historical 055 automation/export evidence remains valid only for its bounded implementation/package claims.
+The next meaningful first-contact acceptance build contains the merged SX-DEC-059 release-near first-session experience. Historical 055 automation/export evidence remains valid only for its bounded implementation/package claims.
 
 ## M5B · Product-depth planning held outside 059
 
@@ -111,7 +113,7 @@ R09 Shareable Route Card and R10 Editor/UGC remain `POST_VALIDATION_HOLD`.
 
 ## M5C · SX-DEC-059 Release-Near First-Session Vertical Slice
 
-`IMPLEMENTED_AUTOMATED · FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · PHYSICAL/HUMAN GATES OPEN`
+`MERGED_MAIN_VERIFIED · FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · PHYSICAL/HUMAN GATES OPEN`
 
 ### Player promise
 
@@ -148,7 +150,7 @@ responsive: pc_standard + pc_wide_or_ultrawide + mobile_landscape
 - `FirstSessionDefinition + FirstSessionStagePolicy + FirstSessionDirector + FirstSessionCopy` sidecar.
 - `FiniteMapDefinition` schema v2 unchanged.
 - existing `ProductFiniteSlice` / finite domain reused.
-- exact map coordinates/JSON/private witness authored test-first during BUILD.
+- map coordinates/JSON/private witness authored test-first during BUILD.
 - StagePolicy blocks hidden command bypass across UI/keyboard/touch/board/route requests.
 - standalone demo remains compatibility default; product main opts in.
 - Result uses evidence-safe runtime summary only.
@@ -158,24 +160,27 @@ responsive: pc_standard + pc_wide_or_ultrawide + mobile_landscape
 ```yaml
 user_planning_complete: GRANTED_2026_08_20
 phase_c_final_review: PASS_SX_AUD_064
-repository_canon: IMPLEMENTATION_CANON_AUTHORED
-notion_sync: POST_MERGE_READBACK_REQUIRED
+repository_canon: MERGED_MAIN_VERIFIED
+implementation_merge_pr: 158
+implementation_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
+notion_sync: PASS_POST_PR_158_READBACK_COMPLETE
 implementation_package_spec_dor: PASS
 execution_preflight: PASS
 codex_handoff: USER_REQUESTED_AND_EXECUTED
-build: IMPLEMENTED_AUTOMATED
+build: MERGED_MAIN_VERIFIED
 adversarial_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED
 developer_self_run: NOT_RUN
+acceptance_build: UNASSIGNED
 ```
 
 ## M6 · Physical/device/human validation
 
-`NOT_RUN`
+`NOT_RUN · CURRENT_NEXT_PRODUCT_GATE`
 
 Stable validation sequence:
 
 ```text
-SX-DEC-059 implementation + automated/package GREEN
+developer self-run / screen QA
 → exact acceptance build identity
 → Windows physical smoke as applicable
 → Android device smoke as a separate platform gate
@@ -184,6 +189,7 @@ SX-DEC-059 implementation + automated/package GREEN
 ```
 
 ```yaml
+WINDOWS PHYSICAL RUNTIME: NOT_RUN
 ANDROID DEVICE SMOKE: NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
 PLAYER EXPERIENCE: NOT_RUN
@@ -204,5 +210,5 @@ BMK-R09 Shareable Route Card → POST_VALIDATION_HOLD
 BMK-R10 Editor/UGC → POST_VALIDATION_HOLD
 endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset → NON_CURRENT
 Base repin → NOT_AUTHORIZED
-PR #154 unmerged reusable pilot → AUDITED / SUPERSEDED / DO_NOT_ABSORB
+PR #154 reusable pilot → CLOSED_UNMERGED / SUPERSEDED_BY_SX_DEC_059 / DO_NOT_ABSORB
 ```
