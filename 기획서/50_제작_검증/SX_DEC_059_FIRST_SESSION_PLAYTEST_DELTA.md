@@ -6,7 +6,10 @@ base_playtest_authority: 기획서/50_제작_검증/PLAYTEST_PLAN.md
 status: DELTA_CONTRACT_CURRENT · HUMAN_EVIDENCE_NOT_RUN
 new_research_framework: false
 five_person_gate_changed: false
-implementation_authority: NOT_GRANTED
+implementation_authority: EXECUTED · PR_158_MERGED_MAIN_VERIFIED
+acceptance_candidate: SX59-ACCEPT-001 · PREPARED · NOT_YET_ACCEPTANCE_BUILD
+acceptance_candidate_owner: 기획서/50_제작_검증/SX_DEC_059_ACCEPTANCE_CANDIDATE_01.md
+developer_self_run_record: 기획서/50_제작_검증/SX_DEC_059_DEVELOPER_SELF_RUN_RECORD.md
 ```
 
 ## 원칙
@@ -27,18 +30,22 @@ implementation_authority: NOT_GRANTED
 ## 증거 단계
 
 ```text
-AUTOMATED CONTRACT
-→ developer self-run / screen QA
-→ exact acceptance build + physical smoke
-→ first-contact Five-person Comprehension
+AUTOMATED CONTRACT: PASS · MERGED_MAIN_VERIFIED
+→ acceptance candidate integrity preparation: PASS · SX59-ACCEPT-001
+→ developer self-run / screen QA: NOT_RUN
+→ exact acceptance build designation: BLOCKED_BY_SELF_RUN
+→ same-build physical smoke: NOT_RUN
+→ first-contact Five-person Comprehension: NOT_RUN
 → EXPAND / REWORK / REPEAT_SLICE / HOLD / STOP
 ```
 
-자동화와 개발자 self-run은 HUMAN/PLAYER EXPERIENCE PASS가 아니다.
+자동화와 개발자 self-run은 HUMAN/PLAYER EXPERIENCE PASS가 아니다. Acceptance candidate는 실행 전 artifact identity이며 정식 acceptance build가 아니다.
 
 ## Developer self-run gate
 
 외부 first-contact 전에 implementation blocker를 제거하기 위한 내부 검증.
+
+실행 record는 `SX_DEC_059_DEVELOPER_SELF_RUN_RECORD.md`를 사용한다.
 
 최소 시나리오:
 
