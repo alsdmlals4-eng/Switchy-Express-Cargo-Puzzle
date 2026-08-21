@@ -3,14 +3,14 @@
 ```yaml
 owner_decision: SX-DEC-059
 approval_dependency: GM-SX059-01 · CLOSED · A_SELECTED
-status: CONTENT_CONTRACT_LOCKED · MAP_BYTES_NOT_AUTHORED · BUILD_NOT_AUTHORIZED
+status: IMPLEMENTED_AUTOMATED · FIVE_PASS_REVIEW_CLOSED
 product_core: GMB-002
 map_schema: FiniteMapDefinition v2
-new_tutorial_map_count_target: 5
+new_tutorial_map_count: 5_IMPLEMENTED
 capstone: VS_DEMO_01 · REUSE_CURRENT
 ```
 
-이 문서는 **콘텐츠 의도·구조·완료 조건**을 잠근다. 실제 좌표·JSON map bytes·recommended layout은 BUILD의 RED-first map validation에서 작성·검증하며, 여기서 검증하지 않은 좌표를 정본처럼 발명하지 않는다.
+이 문서는 **콘텐츠 의도·구조·완료 조건과 구현 중 검증된 보정**을 잠근다. 실제 좌표·JSON·private witness는 RED-first map validation으로 작성·검증됐다.
 
 ## 공통 제작 규칙
 
@@ -170,11 +170,14 @@ learning_goal: SELECTIVE_MANUAL_LOAD
 completion_evidence: FINITE_SUCCESS
 recommended_time: 60~90s
 new_choice: DO_NOT_LOAD
+runtime_layout: FIXED_FIGURE_EIGHT_STARTER_LAYOUT
 ```
 
 ### 핵심 퍼즐
 
 첫 통과에서 보이는 화물을 모두 싣는 것이 오히려 불리한 상황을 만든다.
+
+구현 보정: 외부 Start에서 진입한 직선/곡선 degree-2 경로만으로는 같은 cargo cell을 재방문할 수 없다. 새 core rule이나 T6 이전 switch 조작을 만들지 않기 위해 first-session sidecar가 검증된 8자형 고정 scaffold를 설치한다. Crossing geometry/control은 이 수업에서 편집·조작 대상으로 노출하지 않고, 플레이어의 선택은 적재/skip에만 집중한다.
 
 권장 인과 패턴:
 
@@ -219,11 +222,14 @@ learning_goal: LOAD_MODE_SWITCHING
 completion_evidence: FINITE_SUCCESS
 recommended_time: 60~90s
 new_tool: AUTO_LOAD_TOGGLE
+runtime_layout: FIXED_FIGURE_EIGHT_STARTER_LAYOUT
 ```
 
 ### 핵심 퍼즐
 
 Auto Load를 manual의 상위호환이 아니라 **안전한 구간에서 반복 입력을 줄이는 편의 도구**로 가르친다.
+
+구현 보정: T4와 같은 위상 제약 때문에 검증된 8자형 고정 scaffold를 사용한다. 선로 도구와 route-control overlay는 숨기고, safe cargo 연속 적재 → Auto OFF → 선택 화물 manual pickup이라는 조작 인과만 노출한다.
 
 권장 구조:
 
@@ -267,22 +273,24 @@ learning_goal: SWITCH_EXECUTION
 completion_evidence: FINITE_SUCCESS
 recommended_time: 75~105s
 new_tool: SWITCH_CONTROL
+shipped_lesson: ONE_SWITCH_PRESET_SELECTION
 ```
 
 ### 핵심 퍼즐
 
-한 개의 Switch로 시작한다.
+한 개의 Switch로 시작하고, 잘못된 initial branch를 읽은 뒤 열차 도착 전에 배송 branch로 바꾼다.
 
 권장 인과:
 
 ```text
-Approach → Switch
-  ├─ Route A: Cargo/Station A
-  └─ Route B: Cargo/Station B
+Approach → Switch(initial wrong branch)
+  ├─ Route A: non-delivery branch
+  └─ Route B: cargo/station delivery branch
 
-첫 방문: A route
-loop back
-두 번째 방문 전 switch → B route
+train arrival 전 Route B preselect
+→ occupied lock rejects change
+→ selection persists
+→ delivery success
 ```
 
 ### 요구
@@ -297,7 +305,7 @@ loop back
 
 ### 완료 신호
 
-player가 route state를 읽고 최소 1회 유효 switch change를 수행하여 두 요구 경로를 모두 사용하고 SUCCESS.
+player가 route state를 읽고 최소 1회 유효 switch change를 수행하여 배송 경로를 선택하고 SUCCESS. 한 run에서 두 branch를 모두 사용하려면 추가 junction/loop와 두 번째 인과를 가르쳐야 하므로 release-near 첫 수업에서는 제외한다.
 
 Player feeling:
 > BUILD가 계획을 만들고, 분기는 운행 중 그 계획을 실행하는 레버다.
@@ -362,7 +370,7 @@ T1 preflight pass
 
 ## Content acceptance gate
 
-BUILD 전 각 tutorial map은 다음 자동 evidence를 갖도록 RED-first plan을 작성한다.
+구현된 각 tutorial map은 다음 자동 evidence를 RED-first 테스트로 보유한다.
 
 ```yaml
 schema_valid: required

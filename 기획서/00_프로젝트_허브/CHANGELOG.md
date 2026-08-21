@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-08-21 — SX-DEC-059 Release-Near First Session · SX-AUD-066
+
+- 사용자 요청에 따라 T1→T6→unchanged `VS_DEMO_01` first-session vertical slice 구현
+- `FirstSessionDefinition / StagePolicy / Director / Copy` sidecar와 5개 tutorial map/localization data 추가
+- T1/T2 same runtime, T3 LIFO, T4/T5 fixed figure-eight scaffold, T6 one-switch preset selection 구현
+- terminal Retry 정책 차단, fixed-layout Edit 노출, pre-T6 route overlay, HUD policy reset 결함 RED→GREEN 교정
+- 독립 코드리뷰에서 T4/T5 load-all·Auto-always-on 우회 성공을 발견; `A→B→A역→B 재방문` revision 2와 negative witness로 인과성 교정
+- 실제 5-size(1280/1600/1920/wide 2560/mobile 960) geometry에서 960×540 Result overflow 발견; scroll facts + horizontal recovery row로 교정
+- first-session JSON export omission 교정, test/GUT/Godot AI editor plugin release-pack 제외
+- corrected exact-head proof PCK `3,555,208 → 808,128 bytes`, Windows/Android mounted runtime JSON 26개 parse PASS
+- custom suite 110 cases / 0 failed / 12,294 assertions, formal GUT 21/21 PASS
+- `VS_DEMO_01`, finite core owners, 73 product PNG unchanged
+- 5회 적대적 검토 + 독립 코드리뷰 교정 CLOSED; Windows physical/Android device/Five-person comprehension는 NOT_RUN
+- PR #154는 전체 검토 후 product consumer 부재/owner 중복으로 superseded-unmerged 처리, code 미흡수
+
 ## 2026-08-05 — Android Device Smoke Canonical Freshness Repair · EV-USER-023
 
 - 사용자 승인 `EV-USER-023`으로 Android Device Smoke 전 canonical-freshness repair 확정

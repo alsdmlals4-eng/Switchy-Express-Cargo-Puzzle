@@ -1,6 +1,6 @@
 # Active Context
 
-Last updated: `2026-08-20 KST`
+Last updated: `2026-08-21 KST`
 
 이 문서는 **현재 상태·다음 실행 지점·미검증 경계**를 연결하는 resume locator다. fresh GitHub/Notion/actual runtime이 저장 snapshot보다 우선한다.
 
@@ -9,8 +9,8 @@ Last updated: `2026-08-20 KST`
 ```yaml
 repository: alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
 default_branch: main
-project_main_observed: 0a88f707e1e4131ae4372929f2871d2b8a3a74b7
-planning_branch: planning/sx-dec-059-release-near-first-session-slice
+project_main_before_implementation: 4b37c154505ed1975735fc305a68b410877a40e0
+implementation_branch: feat/sx-dec-059-first-session
 base_pin: v9.4.3
 base_remote_latest_observed: ef0092256be25eaa70a296a76d02f7205934929e · REFERENCE_ONLY
 engine: Godot 4.7.1-stable
@@ -20,19 +20,21 @@ product_baseline: GMB-002
 current_decisions: SX-DEC-027~059
 sx_dec_059_user_planning_complete: GRANTED · 2026-08-20 KST
 sx_dec_059_phase_c: PASS · SX-AUD-064 · CLEAN_REVIEW_EXIT
-sx_dec_059_repository_canon: SYNCED_ON_PLANNING_BRANCH · MERGE_PENDING
-sx_dec_059_notion_sync: PASS
+sx_dec_059_repository_canon: IMPLEMENTATION_CANON_AUTHORED
+sx_dec_059_notion_sync: POST_MERGE_READBACK_REQUIRED
 sx_dec_059_package_spec_dor: PASS
-sx_dec_059_execution_preflight: NOT_RUN · REQUIRED_AT_HANDOFF
-sx_dec_059_codex_handoff: NOT_REQUESTED
-sx_dec_059_build: NOT_STARTED
+sx_dec_059_execution_preflight: PASS
+sx_dec_059_codex_handoff: USER_REQUESTED_AND_EXECUTED
+SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED
+sx_dec_059_build: RELEASE_NEAR_VERTICAL_SLICE_AUTOMATED_GREEN
+sx_dec_059_adversarial_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-066
 sx_dec_055: MERGED_MAIN_VERIFIED · PR_151
 sx_dec_056a: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
 sx_dec_057: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_058: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 semantic_assets: 73_TOTAL · PRODUCTION_COMPLETE
-open_protected_pr: "#154 · READ_ONLY · other workstream"
+pr_154: "AUDITED · SUPERSEDED_UNMERGED_BY_059"
 acceptance_build: UNASSIGNED
 windows_physical_runtime: NOT_RUN
 android_device: NOT_RUN
@@ -92,17 +94,18 @@ T1 Track Connection
 ### Content state
 
 ```yaml
-new_tutorial_map_target: 5
+new_tutorial_maps_implemented: 5
 map_01: T1+T2_SHARED
 map_02: T3_LIFO
 map_03: T4_SELECTIVE_MANUAL
 map_04: T5_LOAD_MODE_SWITCHING
 map_05: T6_SWITCH
 capstone: VS_DEMO_01_REUSE
-map_bytes_authored: false
+map_bytes_authored: true
+runtime_package_proof: PASS · 26_JSON_PARSED
 ```
 
-Exact coordinates/map JSON/private witness are BUILD-time RED-first outputs. 계획 단계에서 검증하지 않은 좌표를 정본처럼 발명하지 않는다.
+Exact coordinates/map JSON/private witnesses are RED-first implementation outputs. `VS_DEMO_01` bytes and the 73 product PNGs remain unchanged.
 
 ### Architecture state
 
@@ -168,17 +171,16 @@ project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED_BEFORE_BUILD
 local_tool_parity: NOT_RUN
 ```
 
-Fresh PowerShell/Codex handoff must resolve the real checkout by remote identity, preserve user changes, prefer an isolated workspace, then verify local/repo addon parity and baseline tests.
+The implementation used an isolated worktree and Godot 4.7.1. Future work must repeat fresh remote/PR/Notion recovery rather than treating this snapshot as live truth.
 
 ## Current concurrency boundary
 
 ### PR #154
 
-Open/Draft, separate workstream, **READ_ONLY** for SX-DEC-059.
+Audited in full and superseded by the product-owned SX-DEC-059 implementation.
 
-- no update/rebase/close/merge.
 - no unmerged `game/reuse/*` absorption.
-- if later completed/merged, reevaluate the new completed `main` only.
+- close unmerged after the replacement implementation is integrated.
 
 ### PR #155 / #156
 
@@ -205,7 +207,7 @@ Open/Draft, separate workstream, **READ_ONLY** for SX-DEC-059.
 5. implementation Amendment 01.
 6. implementation Amendment 02.
 7. actual current code/tests.
-8. execute Task 1 RED only after explicit handoff and fresh preflight.
+8. use the package as implementation history; do not restart Task 1.
 
 ## Resume read order
 
@@ -224,9 +226,10 @@ Open/Draft, separate workstream, **READ_ONLY** for SX-DEC-059.
 ## Current next action
 
 ```text
-planning/canon PR validation + merge
-→ post-merge main/Notion readback
-→ wait for USER_REQUESTED_CODEX_HANDOFF
+implementation PR exact-head CI + merge
+→ close superseded PR #154 unmerged
+→ Notion Project Home/core-system/handoff destination sync + readback
+→ physical Windows/Android + five-person comprehension when authorized/prepared
 ```
 
-**PowerShell/Codex/Godot BUILD has not started.**
+**Automated implementation is complete; physical/device/human validation remains NOT_RUN.**

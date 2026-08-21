@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: `2026-08-20 KST`
+Last updated: `2026-08-21 KST`
 
 ## Current execution overlay
 
@@ -18,10 +18,11 @@ SX-DEC-059
 → GM-SX059-01 A approved
 → user explicit "기획완료" GRANTED · 2026-08-20
 → Phase-C final review PASS · SX-AUD-064
-→ current-canon + Notion sync PASS on planning branch
 → implementation package spec DoR PASS
-→ Codex handoff NOT_REQUESTED
-→ BUILD NOT STARTED
+→ Codex handoff USER_REQUESTED_AND_EXECUTED
+→ SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED
+→ five-pass adversarial review CLOSED · SX-AUD-066
+→ GitHub merge / Notion post-merge readback gate
 ```
 
 ## M0 · Product baseline
@@ -110,7 +111,7 @@ R09 Shareable Route Card and R10 Editor/UGC remain `POST_VALIDATION_HOLD`.
 
 ## M5C · SX-DEC-059 Release-Near First-Session Vertical Slice
 
-`PLANNING COMPLETE · PHASE-C PASS · PACKAGE SPEC READY · BUILD NOT STARTED`
+`IMPLEMENTED_AUTOMATED · FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · PHYSICAL/HUMAN GATES OPEN`
 
 ### Player promise
 
@@ -132,7 +133,7 @@ T1 Track Connection
 ### Production scope
 
 ```yaml
-new_tutorial_maps: 5_TARGET
+new_tutorial_maps: 5_IMPLEMENTED
 T1_T2_shared_map: true
 capstone: VS_DEMO_01_REUSE
 new_core_mechanic: false
@@ -157,12 +158,13 @@ responsive: pc_standard + pc_wide_or_ultrawide + mobile_landscape
 ```yaml
 user_planning_complete: GRANTED_2026_08_20
 phase_c_final_review: PASS_SX_AUD_064
-repository_canon: SYNCED_ON_PLANNING_BRANCH_MERGE_PENDING
-notion_sync: PASS
+repository_canon: IMPLEMENTATION_CANON_AUTHORED
+notion_sync: POST_MERGE_READBACK_REQUIRED
 implementation_package_spec_dor: PASS
-execution_preflight: NOT_RUN_AT_LOCAL_ENVIRONMENT
-codex_handoff: NOT_REQUESTED
-build: NOT_STARTED
+execution_preflight: PASS
+codex_handoff: USER_REQUESTED_AND_EXECUTED
+build: IMPLEMENTED_AUTOMATED
+adversarial_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED
 developer_self_run: NOT_RUN
 ```
 
@@ -202,5 +204,5 @@ BMK-R09 Shareable Route Card → POST_VALIDATION_HOLD
 BMK-R10 Editor/UGC → POST_VALIDATION_HOLD
 endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset → NON_CURRENT
 Base repin → NOT_AUTHORIZED
-PR #154 unmerged reusable pilot → READ_ONLY FOR SX-DEC-059
+PR #154 unmerged reusable pilot → AUDITED / SUPERSEDED / DO_NOT_ABSORB
 ```

@@ -2,6 +2,13 @@ extends SceneTree
 
 const REQUIRED_FILES: Array[String] = [
 	"res://data/maps/vs_demo_01.json",
+	"res://data/maps/tutorial/tut_01_02.json",
+	"res://data/maps/tutorial/tut_03_lifo.json",
+	"res://data/maps/tutorial/tut_04_selective_load.json",
+	"res://data/maps/tutorial/tut_05_auto_load.json",
+	"res://data/maps/tutorial/tut_06_switch.json",
+	"res://data/first_session/first_session_v1.json",
+	"res://data/localization/first_session_v1.json",
 	"res://art/product_assets/ed_hybrid_v1/manifest.json",
 	"res://art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054.json",
 	"res://art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054_build_2b.json",
@@ -9,6 +16,9 @@ const REQUIRED_FILES: Array[String] = [
 ]
 const JSON_DIRECTORIES: Array[String] = [
 	"res://data/maps",
+	"res://data/maps/tutorial",
+	"res://data/first_session",
+	"res://data/localization",
 	"res://art/product_assets/ed_hybrid_v1",
 ]
 

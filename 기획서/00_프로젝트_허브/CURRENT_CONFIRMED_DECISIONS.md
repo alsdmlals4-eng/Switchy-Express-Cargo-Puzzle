@@ -1,6 +1,6 @@
 # Current Confirmed Decisions
 
-Last updated: `2026-08-20 KST`
+Last updated: `2026-08-21 KST`
 
 이 문서는 Switchy Express의 **현재 승인 Decision과 실행 권위**를 압축한다. 상세 규칙·근거·역사 CI는 각 Decision/Audit owner가 책임진다. Google Sheets는 migration-only이며 active decision authority가 아니다.
 
@@ -13,15 +13,17 @@ work_instruction: v4.7 · 2026-08-20-r1 · SWITCHY_THIN_ADAPTER
 work_instruction_source_sha256: 767bbe3d69e9a0acb0e5706321564ad8c04a451f7c54914a2bbdd7579f642037
 project_base_pin: v9.4.3
 base_remote_latest_observed: ef0092256be25eaa70a296a76d02f7205934929e · REFERENCE_ONLY
-project_main_at_059_planning_complete: 0a88f707e1e4131ae4372929f2871d2b8a3a74b7
+project_main_before_059_implementation: 4b37c154505ed1975735fc305a68b410877a40e0
 sx_dec_059_user_planning_complete_gate: GRANTED · explicit "기획완료" · 2026-08-20 KST
 sx_dec_059_phase_c_final_review: PASS · SX-AUD-064 · CLEAN_REVIEW_EXIT
-sx_dec_059_repository_canon: SYNCED_ON_PLANNING_BRANCH · PR_MERGE_PENDING
-sx_dec_059_notion_sync: PASS
+sx_dec_059_repository_canon: IMPLEMENTATION_CANON_AUTHORED
+sx_dec_059_notion_sync: POST_MERGE_READBACK_REQUIRED
 sx_dec_059_package_spec_dor: PASS
-sx_dec_059_execution_preflight: NOT_RUN · REQUIRED_AT_HANDOFF
-sx_dec_059_codex_handoff: NOT_REQUESTED
-sx_dec_059_build: NOT_STARTED
+sx_dec_059_execution_preflight: PASS
+sx_dec_059_codex_handoff: USER_REQUESTED_AND_EXECUTED
+SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED
+sx_dec_059_build: RELEASE_NEAR_VERTICAL_SLICE_AUTOMATED_GREEN
+sx_dec_059_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-066
 sx_dec_055_runtime_implementation: MERGED_MAIN_VERIFIED · PR_151
 sx_dec_056a: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
@@ -85,7 +87,7 @@ production_cutover: BLOCKED_DEFERRED
 | SX-DEC-056 | Route Causality / Result Feedback · 056A implementation unauthorized; 056B blocked |
 | SX-DEC-057 | Yard Labs / Mastery · implementation unauthorized; fast/cheap dependency gated |
 | SX-DEC-058 | Fixed-Seed Challenge Quality · implementation/pipeline unauthorized |
-| **SX-DEC-059** | **Release-Near First Session · USER APPROVED · PLANNING COMPLETE · PHASE-C PASS · PACKAGE READY · BUILD NOT STARTED** |
+| **SX-DEC-059** | **Release-Near First Session · IMPLEMENTED_AUTOMATED · FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · PHYSICAL/HUMAN NOT_RUN** |
 
 ## SX-DEC-059 confirmed contract
 
@@ -112,7 +114,7 @@ T1 · Track Connection
 
 ### Content / architecture
 
-- 5 new tutorial maps target; exact coordinates/JSON bytes are BUILD-time RED-first outputs.
+- 5 tutorial maps and deterministic witnesses are implemented and included in export proof.
 - T1/T2 share one map and preserve the same valid layout across the lesson boundary.
 - `VS_DEMO_01` is the capstone and remains unchanged by default.
 - Tutorial metadata stays outside `FiniteMapDefinition` schema v2.
@@ -166,7 +168,7 @@ docs/superpowers/plans/2026-08-20-sx-dec-059-first-session-vertical-slice-implem
 → handoff Amendment 02
 ```
 
-Package specification is ready. Fresh local repo/Godot/addon/baseline-test preflight is intentionally deferred to actual Codex handoff.
+The package is implemented. The handoff files remain execution-history/rollback material and must not restart Task 1.
 
 ## Protected future packages
 
@@ -185,11 +187,13 @@ Historical endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-au
 
 ```text
 Phase-C final review PASS
-→ planning/canon PR validation + merge
-→ post-merge readback
-→ wait for USER_REQUESTED_CODEX_HANDOFF
-→ Fresh PowerShell / isolated workspace / baseline GREEN
+→ USER_REQUESTED_CODEX_HANDOFF
+→ isolated workspace / baseline GREEN
 → Codex RED-first BUILD
+→ five-pass adversarial review + corrections
+→ implementation PR exact-head CI + merge
+→ Notion destination readback
+→ physical/device/human validation
 ```
 
-현재 **Codex handoff는 요청되지 않았고 BUILD는 시작하지 않았다.**
+현재 자동화 구현은 완료됐고 physical/device/human 검증은 `NOT_RUN`이다.

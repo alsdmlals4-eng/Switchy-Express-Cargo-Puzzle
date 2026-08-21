@@ -5,6 +5,7 @@ signal terminal_reached(summary: Variant)
 signal title_requested()
 signal pause_changed(paused: bool)
 signal menu_requested()
+signal product_model_changed(model: Dictionary)
 
 const SessionControllerScript := preload(
 	"res://game/finite/main/finite_slice_session_controller.gd"
@@ -23,6 +24,7 @@ const SemanticRuntimeStateScript := preload(
 var _controller: RefCounted
 var _last_pause_state: bool = false
 var _shell_input_locked: bool = false
+var _stage_policy: Variant = null
 
 @onready var _renderer: Control = $BoardRenderer
 @onready var _route_overlay: Control = $RouteControlOverlay
@@ -44,6 +46,7 @@ func _ready() -> void:
 	_desktop_input.command_requested.connect(_on_desktop_command_requested)
 	_controller.initialize(map_path, recommended_cost, base_speed)
 	_apply_model(_controller.model())
+	_apply_stage_policy_to_hud()
 	_on_render_snapshot_changed(_controller.render_snapshot())
 
 
@@ -79,6 +82,11 @@ func set_reduced_motion(enabled: bool) -> void:
 		_semantic_events.set_reduced_motion(enabled)
 
 
+func set_stage_policy(policy: Variant) -> void:
+	_stage_policy = policy
+	_apply_stage_policy_to_hud()
+
+
 func advance_time(delta_seconds: float) -> void:
 	_controller.advance_time(delta_seconds)
 
@@ -104,6 +112,8 @@ func dispatch_action(action: StringName, pressed: bool) -> Dictionary:
 func apply_recommended_layout() -> bool:
 	if _controller.phase() != &"BUILD":
 		return false
+	if _stage_policy != null and not _stage_policy.feature_visible(&"RECOMMENDED_LAYOUT"):
+		return false
 	var map_id := StringName(_controller.render_snapshot().get("map_id", &""))
 	var pieces: Array[Variant] = RecommendedLayoutProviderScript.pieces_for_map(map_id, &"ALPHA")
 	if pieces.is_empty():
@@ -119,6 +129,12 @@ func install_layout_for_test(pieces: Array) -> bool:
 	return _controller.install_layout_for_test(pieces)
 
 
+func apply_first_session_starter_layout(pieces: Array) -> bool:
+	if _stage_policy == null or pieces.is_empty():
+		return false
+	return _controller.replace_layout(pieces)
+
+
 func active_attempt_identity_for_test() -> String:
 	return _controller.active_attempt_identity_for_test()
 
@@ -132,7 +148,7 @@ func dispatch_action_for_test(action: StringName, pressed: bool) -> Dictionary:
 
 
 func _connect_controller() -> void:
-	_controller.model_changed.connect(_apply_model)
+	_controller.model_changed.connect(_on_controller_model_changed)
 	_controller.render_snapshot_changed.connect(_on_render_snapshot_changed)
 	_controller.delivery_event_created.connect(_on_delivery_event_created)
 	_controller.terminal_reached.connect(_on_terminal_reached)
@@ -208,6 +224,8 @@ func _consume_route_selection_requests() -> void:
 
 
 func _dispatch_command(command: StringName, payload: Variant = null) -> void:
+	if not _command_allowed(command, payload):
+		return
 	var phase_before: StringName = _controller.phase()
 	var layout_before: String = _controller.current_layout_signature()
 	var selected_before: Vector2i = _controller.render_snapshot().get(
@@ -241,6 +259,7 @@ func _dispatch_command(command: StringName, payload: Variant = null) -> void:
 
 func _apply_model(model: Dictionary) -> void:
 	_hud.apply_model(model)
+	_apply_stage_policy_to_hud()
 	var phase: StringName = StringName(model.get("phase", &"BUILD"))
 	_desktop_input.set_phase(phase)
 	_refresh_desktop_input_enabled()
@@ -251,6 +270,30 @@ func _apply_model(model: Dictionary) -> void:
 	if paused != _last_pause_state:
 		_last_pause_state = paused
 		pause_changed.emit(paused)
+
+
+func _on_controller_model_changed(model: Dictionary) -> void:
+	_apply_model(model)
+	product_model_changed.emit(model.duplicate(true))
+
+
+func _command_allowed(command: StringName, payload: Variant = null) -> bool:
+	if _stage_policy == null:
+		return true
+	return bool(_stage_policy.allows_command(command, _controller.phase(), payload))
+
+
+func _apply_stage_policy_to_hud() -> void:
+	if not is_instance_valid(_hud):
+		return
+	if _stage_policy == null:
+		_hud.reset_stage_visibility()
+		if is_instance_valid(_route_overlay):
+			_route_overlay.visible = true
+		return
+	_hud.apply_stage_visibility(_stage_policy.visible_features())
+	if is_instance_valid(_route_overlay):
+		_route_overlay.visible = _stage_policy.feature_visible(&"SWITCH_STATE")
 
 
 func _refresh_desktop_input_enabled() -> void:

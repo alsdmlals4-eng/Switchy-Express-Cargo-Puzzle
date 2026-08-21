@@ -2,7 +2,7 @@
 
 ```yaml
 owner_decision: SX-DEC-059
-status: COPY_CONTRACT_CURRENT · PLANNING_COMPLETE · BUILD_NOT_STARTED
+status: COPY_RUNTIME_IMPLEMENTED · FOUR_LOCALES_VALIDATED
 source_language: ko
 planned_languages: [ko, en, ja, zh-Hans]
 exact_zh_locale: zh-Hans
@@ -45,7 +45,7 @@ text_in_png: FORBIDDEN
 | `SX_T5_AUTO_ON` | State cue | 자동 적재 켬 · 지나가는 화물을 모두 싣습니다. | Auto Load ON · all contacted cargo will be loaded. | 自動積載 ON · 接触した貨物をすべて積みます。 | 自动装载开启 · 会装载经过的所有货物。 |
 | `SX_T5_AUTO_OFF_HINT` | Decision cue | 선택이 필요한 구간에서는 자동 적재를 끌 수 있습니다. | Turn Auto Load off when you need to choose what to pick up. | 選んで積みたい区間では自動積載をOFFにできます。 | 需要选择货物时可以关闭自动装载。 |
 | `SX_T6_TITLE` | Lesson title | 분기로 경로 선택 | Choose with Switches | 分岐で進路を選ぶ | 用道岔选择路线 |
-| `SX_T6_OBJECTIVE` | Objective | 분기 방향을 바꿔 두 경로를 모두 이용하세요. | Change the switch so the train uses both routes. | 分岐を切り替え、両方の経路を使ってください。 | 切换道岔，让列车经过两条路线。 |
+| `SX_T6_OBJECTIVE` | Objective | 열차가 오기 전에 분기를 바꿔 배송 경로를 선택하세요. | Set the switch before the train arrives to choose the delivery route. | 列車が来る前に分岐を切り替え、配送経路を選んでください。 | 列车到达前切换道岔，选择配送路线。 |
 | `SX_T6_PRESET_CUE` | Contextual cue | 열차가 오기 전에 분기 방향을 미리 바꿀 수 있습니다. | You can set the switch before the train arrives. | 列車が来る前に分岐を切り替えられます。 | 列车到达前就可以切换道岔。 |
 | `SX_T6_LOCK_CUE` | Occupied state | 열차가 분기 위에 있는 동안에는 변경할 수 없습니다. | The switch is locked while the train is on it. | 列車が分岐上にいる間は切り替えられません。 | 列车位于道岔上时无法切换。 |
 | `SX_CAPSTONE_TITLE` | Capstone | 종합 배송 | Full Delivery | 総合配送 | 综合配送 |

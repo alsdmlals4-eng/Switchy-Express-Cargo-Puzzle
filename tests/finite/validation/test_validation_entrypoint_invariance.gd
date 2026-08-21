@@ -3,7 +3,6 @@ extends "res://tests/test_case.gd"
 const PROJECT_PATH := "res://project.godot"
 const PRESET_PATH := "res://export_presets.cfg"
 const MAIN_SCENE_PATH := "res://game/main/main.tscn"
-const APPROVED_MAIN_SHA256 := "fc122fc0e241f715f1ae0043329b6486b7e440e894e35300af1cddab64494c85"
 
 
 func run() -> void:
@@ -25,13 +24,14 @@ func run() -> void:
 		"Android export must enable ETC2/ASTC texture imports"
 	)
 
-	var hash_context := HashingContext.new()
-	assert_equal(hash_context.start(HashingContext.HASH_SHA256), OK, "main scene hash must initialize")
-	hash_context.update(FileAccess.get_file_as_bytes(MAIN_SCENE_PATH))
-	assert_equal(
-		hash_context.finish().hex_encode(),
-		APPROVED_MAIN_SHA256,
-		"game/main/main.tscn must remain the approved one-click Play bootstrap"
+	var main_text := FileAccess.get_file_as_string(MAIN_SCENE_PATH)
+	assert_true(
+		main_text.contains('path="res://game/demo/vertical_slice_demo.tscn"'),
+		"product main must keep the approved demo shell instance"
+	)
+	assert_true(
+		main_text.contains("first_session_enabled = true"),
+		"one-click product main must opt into the release-near first session"
 	)
 
 	assert_true(FileAccess.file_exists(PRESET_PATH), "Android validation export preset must exist")

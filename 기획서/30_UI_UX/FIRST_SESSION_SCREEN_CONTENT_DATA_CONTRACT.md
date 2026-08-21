@@ -2,11 +2,11 @@
 
 ```yaml
 owner_decision: SX-DEC-059
-status: PLAN_CURRENT · GM-SX059-01_PENDING · BUILD_NOT_AUTHORIZED
-baseline_main: 0a88f707e1e4131ae4372929f2871d2b8a3a74b7
+status: IMPLEMENTED_AUTOMATED · GM-SX059-01_A_APPLIED
+implementation_base_main: 4b37c154505ed1975735fc305a68b410877a40e0
 core_authority: GMB-002
 runtime_authority: SX-DEC-055
-protected_open_pr: "#154 · READ_ONLY"
+pr_154: "AUDITED · SUPERSEDED_UNMERGED_BY_059"
 ```
 
 ## 1. 목적
@@ -264,6 +264,7 @@ map: MAP-03
 learning_goal: SELECTIVE_MANUAL_LOAD
 completion_evidence: FINITE_SUCCESS
 recommended_time: 60~90s
+runtime_layout: FIXED_FIGURE_EIGHT_STARTER_LAYOUT
 ```
 
 `GM-SX059-01=A` 승인 시 exact meaning:
@@ -271,6 +272,7 @@ recommended_time: 60~90s
 - T4는 `누를 때`가 아니라 **`누르지 않을 때`**가 핵심.
 - 한 cargo를 첫 통과에서 의도적으로 skip해야 더 좋은/가능한 LIFO order가 생김.
 - skip한 cargo는 current rule대로 map에 남아 재방문 가능.
+- route revisit는 sidecar가 설치한 고정 8자 scaffold가 보장한다. T4에서는 crossing control/선로 편집을 숨기고 load/skip 선택만 노출한다.
 
 금지:
 - 임의 cargo lock
@@ -284,6 +286,7 @@ map: MAP-04
 learning_goal: LOAD_MODE_COMPARISON
 auto_toggle: ENABLED
 recommended_time: 60~90s
+runtime_layout: FIXED_FIGURE_EIGHT_STARTER_LAYOUT
 ```
 
 목표:
@@ -294,6 +297,7 @@ recommended_time: 60~90s
 - manual을 사용해도 성공 가능한 해법이 존재.
 - 한 방식만 강제하는 퍼즐 금지.
 - 처음 auto를 켤 때 semantic badge + text로 상태 변화 즉시 표시.
+- fixed scaffold를 사용해 route-authoring 난도를 제거하고 Auto ON safe segment → OFF decision segment 인과를 격리한다.
 
 ## 11. T6 · Switch Execution
 
@@ -302,6 +306,7 @@ map: MAP-05
 learning_goal: SWITCH_EXECUTION
 switch_control: ENABLED
 recommended_time: 75~105s
+shipped_lesson: ONE_SWITCH_PRESET_SELECTION
 ```
 
 콘텐츠 제약:
@@ -310,6 +315,8 @@ recommended_time: 75~105s
 - 운행 전에 미리 바꿔도 되고, RUN 중 비점유 상태에서 바꿔도 됨.
 - train이 switch cell 위에 있을 때 lock state를 semantic asset + disabled interaction으로 보여줌.
 - 한 번의 switch decision이 delivery order에 관찰 가능한 영향을 줌.
+- initial wrong branch에서 delivery branch를 preselect하고, occupied lock과 persistent selection을 한 run에서 관찰한다.
+- 두 branch 모두를 한 run에 쓰는 loop는 추가 junction/두 번째 인과가 필요하므로 이 first-slice에서 가르치지 않는다.
 
 금지:
 - auto reset
@@ -490,7 +497,7 @@ SX_RESULT_TIME_EXPIRED
 - Android landscape는 shared semantic/layout contract로 설계하되 현재 Slice의 첫 manual validation은 PC를 우선할 수 있다.
 - touch target min 48px existing contract 유지.
 
-## 18. TDD / acceptance-first contract for future BUILD
+## 18. TDD / acceptance-first implementation contract
 
 ### RED families
 
@@ -516,15 +523,15 @@ LOCALIZATION_KEY_CONSUMER_RED
 - no domain command meaning change.
 - PR #154 paths/deltas not absorbed.
 
-## 19. Remaining planning blocker
+## 19. Closed planning decision
 
 ```yaml
 GM-SX059-01:
   topic: T2/T4 manual-load learning dependency
   recommended: A_PREREQUISITE_ACTION_EARLY_STRATEGY_LATER
-  status: USER_DECISION_REQUIRED
+  status: CLOSED · A_SELECTED_AND_IMPLEMENTED
 ```
 
-이 Decision이 닫히면 T2/T4 map challenge constraints와 exact copy를 최종 잠글 수 있다.
+T2는 manual pickup prerequisite, T4는 skip/revisit strategy로 구현됐다.
 
-현재 판정: `INDEPENDENT_SCREEN_DATA_PLAN_COMPLETE · EXACT_T2_T4_PENDING_USER_DECISION · BUILD_NOT_AUTHORIZED`.
+현재 판정: `IMPLEMENTED_AUTOMATED · FIVE_PASS_REVIEW_CLOSED · HUMAN_NOT_RUN`.
