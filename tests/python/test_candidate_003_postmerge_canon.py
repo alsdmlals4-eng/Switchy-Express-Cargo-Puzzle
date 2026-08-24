@@ -67,11 +67,16 @@ class Candidate003PostmergeCanonTests(unittest.TestCase):
         self.assertIn("current_decision_span: SX-DEC-027~059", text)
         self.assertNotIn("SX-DEC-060", text)
 
-    def test_latest_base_observation_is_fresh_without_repinning_product(self) -> None:
+    def test_live_base_authority_is_dynamic_not_a_stale_current_sha_pin(self) -> None:
         for path in (START, ACTIVE, DECISIONS):
             text = self._text(path)
-            self.assertIn("8820ca9c0d46da0dda3256b52802dfb02d4c4954", text)
             self.assertIn("ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN", text)
+            self.assertIn("base_canon_sync_observation:", text)
+            self.assertIn("AUDIT_EVIDENCE_ONLY", text)
+            self.assertNotIn("base_latest_observed:", text)
+        active = self._text(ACTIVE)
+        self.assertIn("project_live_main_policy: REFRESH_FROM_GITHUB_BEFORE_EXECUTION", active)
+        self.assertNotIn("current_main:", active)
 
 
 if __name__ == "__main__":
