@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "candidate_id": "SX59-POC-ACCEPT-003",
+  "observed_date_kst": "2026-08-24",
+  "supersedes_candidate": "SX59-POC-ACCEPT-002",
+  "supersedes_reason": "PLAYER_VISIBLE_PREFLIGHT_PRESENTATION_BYTES_CHANGED_AFTER_PHYSICAL_P1_FINDINGS",
+  "corrected_runtime": {
+    "pr": 171,
+    "pr_head": "3c871c6ab752492ec706cc3bd81ed4d471d0054f",
+    "merge_main": "9d82b004b2ebf3f7d69d0376c79daae1040e94a4",
+    "tree_sha": "e3b6154a3042808fbc2fc62d5a3c6487e3d2a40f"
+  },
+  "artifact": {
+    "workflow_name": "Windows Demo Export",
+    "workflow_run_id": 32715351609,
+    "workflow_run_number": 351,
+    "workflow_event": "pull_request",
+    "workflow_head_sha": "3c871c6ab752492ec706cc3bd81ed4d471d0054f",
+    "id": 9515705015,
+    "name": "switchy-express-windows-demo-7bdac3980dade58c18f519eedeed54bc973d3fa9",
+    "created_at": "2026-08-24T10:10:57Z",
+    "expires_at": "2026-09-07T10:10:54Z",
+    "retention_days": 14,
+    "api_digest_sha256": "8b4e630c667b5fd88886878e5a07401c1fe6cfd8f1f9d84b2ab39cb8824923d4",
+    "metadata_class": "EPHEMERAL_DELIVERY_METADATA",
+    "name_sha_semantics": "PULL_REQUEST_GITHUB_SHA_MERGE_REF_NOT_PR_HEAD"
+  },
+  "package": {
+    "identity_class": "IMMUTABLE_CONTENT_DIGESTS",
+    "zip_sha256": "8b4e630c667b5fd88886878e5a07401c1fe6cfd8f1f9d84b2ab39cb8824923d4",
+    "windows_exe_sha256": "1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244",
+    "windows_pck_sha256": "2e9634cedd6da49793973f4582e2bd58ea4daae2fec246657edcf58ae360af72",
+    "windows_runtime_json_proof_pck_sha256": "2e9634cedd6da49793973f4582e2bd58ea4daae2fec246657edcf58ae360af72",
+    "android_validation_runtime_json_proof_pck_sha256": "7940f07dfc3fff5f9688045e6adee27b0d26fc9e2d837e7db76b59e713c2b2ac"
+  },
+  "verification": {
+    "artifact_api_digest_equals_downloaded_zip_sha256": true,
+    "artifact_api_readback": "PASS",
+    "independent_zip_hash": "PASS",
+    "inner_sha256sums_matches_downloaded_exe_pck": true,
+    "windows_runtime_json": "PASS · parsed_json=26",
+    "android_validation_runtime_json": "PASS · parsed_json=26",
+    "physical_visual_recheck": "NOT_RUN",
+    "developer_self_run": "NOT_RUN",
+    "windows_physical_runtime_full_scenarios": "NOT_RUN",
+    "audio_perceptual_qa": "NOT_RUN",
+    "android_device": "NOT_RUN",
+    "five_person_comprehension": "NOT_RUN",
+    "player_experience": "NOT_RUN"
+  },
+  "predecessor_physical_evidence": {
+    "candidate": "SX59-POC-ACCEPT-002",
+    "windows_physical_startup_smoke": "PASS",
+    "result": "BLOCKED_BY_CONFIRMED_P1_PREFLIGHT_VISUAL_DEFECTS",
+    "correction_pr": 171
+  }
+}

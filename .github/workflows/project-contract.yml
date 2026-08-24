@@ -49,6 +49,8 @@ jobs:
         run: python tests/python/test_godot_pck_integrity_tool.py -v
       - name: Validate Candidate 002 deep PCK audit
         run: python tests/python/test_candidate_002_pck_deep_audit.py -v
+      - name: Validate current POC candidate pointer
+        run: python tests/python/test_current_poc_candidate_pointer.py -v
       - name: Validate Candidate 002 PowerShell self-run launcher
         run: python tests/python/test_candidate_002_powershell_self_run.py -v
       - name: Validate physical preflight visual contract
