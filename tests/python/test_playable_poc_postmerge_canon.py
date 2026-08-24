@@ -41,6 +41,7 @@ class PlayablePocPostMergeCanonTests(unittest.TestCase):
         text = CANDIDATE.read_text(encoding="utf-8")
         for required in (
             f"candidate_id: {CANDIDATE_ID}",
+            "supersedes_candidate: SX59-ACCEPT-001",
             f"poc_pr_head: {POC_HEAD}",
             f"poc_merge_main: {POC_MAIN}",
             f"poc_tree_sha: {POC_TREE}",
@@ -57,10 +58,12 @@ class PlayablePocPostMergeCanonTests(unittest.TestCase):
         ):
             self.assertIn(required, text)
 
-    def test_old_candidate_is_explicitly_superseded_for_current_poc(self) -> None:
-        old = (ROOT / "기획서/50_제작_검증/SX_DEC_059_ACCEPTANCE_CANDIDATE_01.md").read_text(encoding="utf-8")
-        self.assertIn("SUPERSEDED_FOR_CURRENT_POC", old)
-        self.assertIn(CANDIDATE_ID, old)
+    def test_old_candidate_remains_immutable_history_and_new_candidate_owns_supersession(self) -> None:
+        old = ROOT / "기획서/50_제작_검증/SX_DEC_059_ACCEPTANCE_CANDIDATE_01.md"
+        self.assertTrue(old.is_file(), "historical candidate 001 must remain available")
+        self.assertIn("candidate_id: SX59-ACCEPT-001", old.read_text(encoding="utf-8"))
+        text = CANDIDATE.read_text(encoding="utf-8") if CANDIDATE.is_file() else ""
+        self.assertIn("supersedes_reason: PLAYABLE_POC_RUNTIME_AND_VISUAL_BYTES_CHANGED", text)
 
     def test_self_run_record_is_fail_closed_and_covers_eight_scenarios(self) -> None:
         self.assertTrue(SELF_RUN.is_file())
