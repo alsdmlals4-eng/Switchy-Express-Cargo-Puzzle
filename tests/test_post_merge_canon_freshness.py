@@ -14,7 +14,8 @@ ADAPTER = ROOT / "skills" / "PROJECT_BASE_ADAPTER.json"
 AUDIT = ROOT / "기획서" / "50_제작_검증" / "SX_AUD_025_POST_MERGE_CANON_FRESHNESS_AND_GATE_RECOVERY.md"
 
 HISTORICAL_SHEET_CANON_MAIN = "dff1653738f1eead3cacff303080924d662767e2"
-CURRENT_ADAPTER_PR_BASE = "ae8f4aeae111c5cce4284499b851c0c3f80f6bf3"
+HISTORICAL_INITIAL_ADAPTER_PR_BASE = "ae8f4aeae111c5cce4284499b851c0c3f80f6bf3"
+CURRENT_APPROVED_ADAPTER_PR_BASE = "cf207f29cd4dcabc5796769f0eb0ca6764c2370e"
 VERIFIED_PRODUCT_MAIN = "1339a9467312d0ac680725894a9efb59746ec2cc"
 
 
@@ -92,7 +93,10 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         sheet = adapter["gdd_sheet"]
         baseline = adapter["protected_baseline"]
 
-        self.assertEqual(CURRENT_ADAPTER_PR_BASE, baseline["commit"])
+        self.assertEqual(CURRENT_APPROVED_ADAPTER_PR_BASE, baseline["commit"])
+        self.assertEqual("GITHUB_PR_BASE", baseline["authority_kind"])
+        self.assertEqual("github.event.pull_request.base.sha", baseline["authority_ref"])
+        self.assertNotEqual(HISTORICAL_INITIAL_ADAPTER_PR_BASE, baseline["commit"])
         self.assertEqual(HISTORICAL_SHEET_CANON_MAIN, sheet["decision_commit"])
         self.assertEqual(HISTORICAL_SHEET_CANON_MAIN, sheet["repository_main_observed"])
         self.assertEqual(VERIFIED_PRODUCT_MAIN, sheet["latest_automated_verified_product_main"])
