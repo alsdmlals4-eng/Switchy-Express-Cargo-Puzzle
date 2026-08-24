@@ -70,7 +70,7 @@ class Candidate003PostmergeCanonTests(unittest.TestCase):
     def test_latest_base_observation_is_fresh_without_repinning_product(self) -> None:
         for path in (START, ACTIVE, DECISIONS):
             text = self._text(path)
-            self.assertIn("7a8b1c596f9cf1e8da8d2652be076a0624e0b4a2", text)
+            self.assertIn("8820ca9c0d46da0dda3256b52802dfb02d4c4954", text)
             self.assertIn("ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN", text)
 
 
