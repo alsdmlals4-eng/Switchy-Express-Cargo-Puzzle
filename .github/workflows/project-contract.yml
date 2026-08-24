@@ -39,6 +39,8 @@ jobs:
         run: python tests/python/test_sx_dec_059_implementation_canonical_freshness.py -v
       - name: Validate v4.8 current authority migration
         run: python tests/python/test_v48_current_authority_migration.py -v
+      - name: Validate v4.8 protected canon freshness
+        run: python tests/python/test_v48_protected_canon_freshness.py -v
       - name: Validate Switchy Editor Pilot plugin contract
         run: python tests/python/test_switchy_godot_live_editor_pilot_plugin_contract.py -v
       - name: Validate Switchy Pilot runner contract
