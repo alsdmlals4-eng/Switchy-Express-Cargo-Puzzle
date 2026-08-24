@@ -95,7 +95,7 @@ func apply_model(model: Dictionary) -> void:
 	(get_node("StackPanel/StackLayout/StackText") as Label).text = _stack_text(
 		_model.get("stack_tokens", [])
 	)
-	(get_node("ProblemBanner/ProblemText") as Label).text = _problem_text(
+	(get_node("ProblemBanner/ProblemLayout/ProblemText") as Label).text = _problem_text(
 		StringName(_model.get("primary_reason", &""))
 	)
 
@@ -196,7 +196,7 @@ func _apply_semantic_model() -> void:
 	_set_semantic_badge("StackPanel/StackLayout/StackSemanticBadge", stack_record)
 	_set_semantic_badge("RunToolbar/ManualSemanticBadge", manual_record)
 	_set_semantic_badge("RunToolbar/AutoSemanticBadge", auto_record)
-	_set_semantic_badge("ProblemBanner/ProblemSemanticBadge", preflight_record)
+	_set_semantic_badge("ProblemBanner/ProblemLayout/ProblemSemanticBadge", preflight_record)
 
 	_semantic_state = {
 		"stack_state": stack_state,
