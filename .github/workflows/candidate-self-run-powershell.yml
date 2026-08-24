@@ -1,0 +1,50 @@
+name: Candidate Self-Run PowerShell Contract
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - RUN_SX59_POC_SELF_RUN.ps1
+      - evidence/acceptance/sx59_poc_accept_002_artifact.json
+      - 기획서/50_제작_검증/SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_02.md
+      - tests/python/test_candidate_002_powershell_self_run.py
+      - .github/workflows/candidate-self-run-powershell.yml
+  push:
+    branches: [main]
+    paths:
+      - RUN_SX59_POC_SELF_RUN.ps1
+      - evidence/acceptance/sx59_poc_accept_002_artifact.json
+      - 기획서/50_제작_검증/SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_02.md
+      - tests/python/test_candidate_002_powershell_self_run.py
+      - .github/workflows/candidate-self-run-powershell.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate-powershell:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse PowerShell launcher
+        shell: pwsh
+        run: |
+          $tokens = $null
+          $errors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile(
+            (Join-Path $PWD 'RUN_SX59_POC_SELF_RUN.ps1'),
+            [ref]$tokens,
+            [ref]$errors
+          ) | Out-Null
+          if ($errors.Count -gt 0) {
+            $errors | Format-List | Out-String | Write-Error
+            exit 1
+          }
+          Write-Host 'POWERSHELL_PARSE: PASS'
+
+      - name: Run evidence-only contract check
+        shell: pwsh
+        run: |
+          .\RUN_SX59_POC_SELF_RUN.ps1 -ContractCheck -NoLaunch -NoOpenRecord
