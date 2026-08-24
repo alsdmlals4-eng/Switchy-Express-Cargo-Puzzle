@@ -68,7 +68,6 @@ def inspect_pck(path: str | os.PathLike[str], prefixes: Iterable[str] = ()) -> d
     mismatch_count = 0
     bounds_error_count = 0
     verified_count = 0
-    nonzero_entry_flags = 0
 
     with pck_path.open("rb") as handle:
         if _read_exact(handle, 4, "magic") != MAGIC:
@@ -89,21 +88,21 @@ def inspect_pck(path: str | os.PathLike[str], prefixes: Iterable[str] = ()) -> d
         if pack_flags & PACK_SPARSE_BUNDLE:
             raise PckFormatError("sparse PCK bundles are outside this verifier contract")
 
-        raw_file_base = _u64(handle, "file base")
-        raw_directory_offset = _u64(handle, "directory offset")
+        file_base = _u64(handle, "file base")
+        directory_offset = _u64(handle, "directory offset")
         _read_exact(handle, HEADER_RESERVED_BYTES, "reserved header")
 
-        # This verifier intentionally accepts standalone .pck files only.
-        # For V3/V4 standalone packs, header offsets are relative to PCK start (zero).
-        file_base = raw_file_base
-        directory_offset = raw_directory_offset
-
+        # Standalone PCK only: pck_start_pos is zero. Godot's V3/V4 reader
+        # always resolves each directory entry as file_base + ofs regardless
+        # of whether PACK_REL_FILEBASE is set in the header.
         if directory_offset + 4 > file_size:
             raise PckFormatError(
                 f"directory offset outside PCK: offset={directory_offset} size={file_size}"
             )
-        if file_base > file_size:
-            raise PckFormatError(f"file base outside PCK: file_base={file_base} size={file_size}")
+        if file_base > directory_offset:
+            raise PckFormatError(
+                f"file base must not follow directory: file_base={file_base} directory={directory_offset}"
+            )
 
         handle.seek(directory_offset)
         file_count = _u32(handle, "file count")
@@ -112,9 +111,7 @@ def inspect_pck(path: str | os.PathLike[str], prefixes: Iterable[str] = ()) -> d
         for index in range(file_count):
             path_length = _u32(handle, f"entry[{index}] path length")
             if path_length <= 0 or path_length > MAX_PATH_BYTES:
-                raise PckFormatError(
-                    f"invalid entry[{index}] path length: {path_length}"
-                )
+                raise PckFormatError(f"invalid entry[{index}] path length: {path_length}")
             path_raw = _read_exact(handle, path_length, f"entry[{index}] path")
             try:
                 entry_path = path_raw.rstrip(b"\x00").decode("utf-8")
@@ -126,15 +123,17 @@ def inspect_pck(path: str | os.PathLike[str], prefixes: Iterable[str] = ()) -> d
             expected_md5 = _read_exact(handle, 16, f"entry[{index}] md5").hex()
             entry_flags = _u32(handle, f"entry[{index}] flags")
             if entry_flags:
-                nonzero_entry_flags += 1
+                raise PckFormatError(
+                    f"entry[{index}] uses unsupported file flags 0x{entry_flags:x}: {entry_path}"
+                )
 
-            actual_offset = (
-                file_base + relative_offset
-                if pack_flags & PACK_REL_FILEBASE
-                else relative_offset
-            )
+            actual_offset = file_base + relative_offset
             payload_end = actual_offset + payload_size
-            bounds_ok = actual_offset <= file_size and payload_end <= file_size
+            bounds_ok = (
+                actual_offset >= file_base
+                and actual_offset <= directory_offset
+                and payload_end <= directory_offset
+            )
 
             extension = Path(entry_path).suffix.lower() or "<none>"
             extension_counts[extension] += 1
@@ -154,6 +153,11 @@ def inspect_pck(path: str | os.PathLike[str], prefixes: Iterable[str] = ()) -> d
             )
 
         directory_end = handle.tell()
+        if directory_end > file_size:
+            raise PckFormatError(
+                f"directory extends past PCK: directory_end={directory_end} size={file_size}"
+            )
+        trailing_unverified_bytes = file_size - directory_end
 
         for _entry_path, actual_offset, payload_size, expected_md5, bounds_ok in entries:
             if not bounds_ok:
@@ -169,6 +173,7 @@ def inspect_pck(path: str | os.PathLike[str], prefixes: Iterable[str] = ()) -> d
         mismatch_count == 0
         and bounds_error_count == 0
         and verified_count == file_count
+        and trailing_unverified_bytes == 0
     )
 
     return {
@@ -181,11 +186,12 @@ def inspect_pck(path: str | os.PathLike[str], prefixes: Iterable[str] = ()) -> d
         "file_base": file_base,
         "directory_offset": directory_offset,
         "directory_end": directory_end,
+        "trailing_unverified_bytes": trailing_unverified_bytes,
         "file_count": file_count,
         "verified_entry_count": verified_count,
         "md5_mismatch_count": mismatch_count,
         "bounds_error_count": bounds_error_count,
-        "nonzero_entry_flags_count": nonzero_entry_flags,
+        "nonzero_entry_flags_count": 0,
         "extension_counts": dict(sorted(extension_counts.items())),
         "prefix_counts": prefix_counts,
         "prefix_extension_counts": {
@@ -198,7 +204,7 @@ def inspect_pck(path: str | os.PathLike[str], prefixes: Iterable[str] = ()) -> d
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Fail-closed integrity verifier for standalone Godot 4.x PCK files."
+        description="Fail-closed integrity verifier for standalone Godot V3/V4 PCK files."
     )
     parser.add_argument("pck", type=Path)
     parser.add_argument(
