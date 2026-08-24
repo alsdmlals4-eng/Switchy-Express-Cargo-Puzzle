@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import unittest
 from pathlib import Path
 
@@ -9,10 +10,7 @@ POC_PR = "166"
 POC_HEAD = "159a3a741ef79b6207be290cc284bd63a5979e72"
 POC_MAIN = "1bf798cedf28dffba9185edb62fb1c50c108fe90"
 POC_TREE = "b3fa0ad93721d7f99614fb6f0bf594c7ce068127"
-CANDIDATE_ID = "SX59-POC-ACCEPT-002"
-ZIP_SHA256 = "c0a7856efaeb278ac1501ee5b36ec4af15c088aefd88b759eb15681c7ce4fd42"
-EXE_SHA256 = "90347bb3e5ef28760385777b63a87be5c1572a9e8c3f11e619fac6fabfb44103"
-PCK_SHA256 = "089c9b78bb3e82bbf1accce7fe26b2306700e2800c590cbac1763252b7a2ea7a"
+EVIDENCE = ROOT / "evidence/acceptance/sx59_poc_accept_002_artifact.json"
 
 START_HERE = ROOT / "기획서/00_프로젝트_허브/START_HERE.md"
 ACTIVE_CONTEXT = ROOT / "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md"
@@ -24,13 +22,18 @@ SELF_RUN = ROOT / "기획서/50_제작_검증/SX_DEC_059_POC_DEVELOPER_SELF_RUN_
 AUDIT = ROOT / "기획서/50_제작_검증/SX_AUD_069_PLAYABLE_VISUAL_UX_POC.md"
 
 
+def _evidence() -> dict:
+    return json.loads(EVIDENCE.read_text(encoding="utf-8"))
+
+
 class PlayablePocPostMergeCanonTests(unittest.TestCase):
     def test_resume_owners_record_exact_playable_poc_and_current_candidate(self) -> None:
+        candidate_id = _evidence()["candidate_id"]
         for path in (START_HERE, ACTIVE_CONTEXT):
             text = path.read_text(encoding="utf-8")
             self.assertIn(f"PR #{POC_PR}", text, f"{path} lost POC merge identity")
             self.assertIn(POC_MAIN, text, f"{path} lost POC merged main")
-            self.assertIn(CANDIDATE_ID, text, f"{path} does not route to current POC candidate")
+            self.assertIn(candidate_id, text, f"{path} does not route to current POC candidate")
             self.assertIn("developer self-run", text.lower())
             self.assertIn("NOT_RUN", text)
 
@@ -46,17 +49,35 @@ class PlayablePocPostMergeCanonTests(unittest.TestCase):
         self.assertIn("IMPLEMENTATION_NOT_AUTHORIZED", decisions)
 
     def test_candidate_binds_exact_artifact_and_merged_tree(self) -> None:
-        self.assertTrue(CANDIDATE.is_file())
+        self.assertTrue(EVIDENCE.is_file(), "machine-readable candidate evidence must exist")
+        evidence = _evidence()
+        artifact = evidence["artifact"]
+        package = evidence["package"]
+        candidate_id = evidence["candidate_id"]
+
+        self.assertEqual(artifact["workflow_head_sha"], POC_HEAD)
+        self.assertEqual(
+            artifact["api_digest_sha256"],
+            package["zip_sha256"],
+            "GitHub artifact digest must equal the independently downloaded ZIP digest",
+        )
+        self.assertEqual(artifact["metadata_class"], "EPHEMERAL_DELIVERY_METADATA")
+        self.assertEqual(package["identity_class"], "IMMUTABLE_CONTENT_DIGESTS")
+
         text = CANDIDATE.read_text(encoding="utf-8")
         for required in (
-            f"candidate_id: {CANDIDATE_ID}",
+            f"candidate_id: {candidate_id}",
             "supersedes_candidate: SX59-ACCEPT-001",
             f"poc_pr_head: {POC_HEAD}",
             f"poc_merge_main: {POC_MAIN}",
             f"poc_tree_sha: {POC_TREE}",
-            f"artifact_zip_sha256: {ZIP_SHA256}",
-            f"windows_exe_sha256: {EXE_SHA256}",
-            f"windows_pck_sha256: {PCK_SHA256}",
+            f"artifact_id: {artifact['id']}",
+            f"artifact_name: {artifact['name']}",
+            f"artifact_expires_at: {artifact['expires_at']}",
+            f"artifact_api_digest_sha256: {artifact['api_digest_sha256']}",
+            f"artifact_zip_sha256: {package['zip_sha256']}",
+            f"windows_exe_sha256: {package['windows_exe_sha256']}",
+            f"windows_pck_sha256: {package['windows_pck_sha256']}",
             "merged_tree_matches_artifact_head_tree: PASS",
             "developer_self_run: NOT_RUN",
             "acceptance_build: NOT_YET_DESIGNATED",
@@ -75,15 +96,22 @@ class PlayablePocPostMergeCanonTests(unittest.TestCase):
         self.assertIn("supersedes_reason: PLAYABLE_POC_RUNTIME_AND_VISUAL_BYTES_CHANGED", text)
 
     def test_self_run_record_is_fail_closed_and_covers_eight_scenarios(self) -> None:
+        evidence = _evidence()
+        package = evidence["package"]
         self.assertTrue(SELF_RUN.is_file())
         text = SELF_RUN.read_text(encoding="utf-8")
-        self.assertIn(f"candidate_id: {CANDIDATE_ID}", text)
+        self.assertIn(f"candidate_id: {evidence['candidate_id']}", text)
+        self.assertIn(f"candidate_zip_sha256: {package['zip_sha256']}", text)
         self.assertIn("verdict: NOT_RUN", text)
         self.assertIn("candidate_promotion: BLOCKED_BY_DEVELOPER_SELF_RUN", text)
+        self.assertIn("audio_perceptual_qa: NOT_RUN", text)
         for index in range(1, 9):
             self.assertIn(f"## Scenario {index}", text)
 
     def test_audit_records_visual_scope_and_evidence_ceiling(self) -> None:
+        evidence = _evidence()
+        artifact = evidence["artifact"]
+        package = evidence["package"]
         self.assertTrue(AUDIT.is_file())
         text = AUDIT.read_text(encoding="utf-8")
         for required in (
@@ -93,7 +121,10 @@ class PlayablePocPostMergeCanonTests(unittest.TestCase):
             "Windows Demo Export: PASS",
             "Windows packaged runtime JSON proof: PASS",
             "Android packaged runtime JSON proof: PASS",
+            f"artifact_id: {artifact['id']}",
+            f"artifact_zip_sha256: {package['zip_sha256']}",
             "PHYSICAL_WINDOWS: NOT_RUN",
+            "AUDIO_PERCEPTUAL_QA: NOT_RUN",
             "ANDROID_DEVICE: NOT_RUN",
             "FIVE_PERSON_COMPREHENSION: NOT_RUN",
             "PLAYER_EXPERIENCE: NOT_RUN",

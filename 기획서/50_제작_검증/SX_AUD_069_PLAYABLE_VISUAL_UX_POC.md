@@ -1,7 +1,7 @@
 # SX-AUD-069 · Playable Visual / UX POC
 
-Date: `2026-08-24 KST`
-Status: `MERGED_MAIN_VERIFIED · AUTOMATED_AND_PACKAGE_PASS · MANUAL_GATES_OPEN`
+Date: `2026-08-24 KST`  
+Status: `MERGED_MAIN_VERIFIED · AUTOMATED_AND_PACKAGE_PASS · ARTIFACT_EVIDENCE_RECONCILED · MANUAL_GATES_OPEN`
 
 ## Scope
 
@@ -105,15 +105,38 @@ Retry / Edit action availability
 
 ## Artifact evidence
 
+Machine-readable owner:
+
+`evidence/acceptance/sx59_poc_accept_002_artifact.json`
+
 ```yaml
 candidate: SX59-POC-ACCEPT-002
 workflow_run: 32692759675
-artifact_id: 5439198762
-artifact_name: switchy-express-windows-159a3a741ef79b6207be290cc284bd63a5979e72
-artifact_zip_sha256: c0a7856efaeb278ac1501ee5b36ec4af15c088aefd88b759eb15681c7ce4fd42
-windows_exe_sha256: 90347bb3e5ef28760385777b63a87be5c1572a9e8c3f11e619fac6fabfb44103
-windows_pck_sha256: 089c9b78bb3e82bbf1accce7fe26b2306700e2800c590cbac1763252b7a2ea7a
+artifact_id: 9507816480
+artifact_name: switchy-express-windows-demo-9b70b9ecf62494b049d4e39d173a049a89a907b7
+artifact_expires_at: 2026-09-07T05:15:01Z
+artifact_api_digest_sha256: 16c81f9b42a3391a2a3dabf501cb2d6eb7e011682abdaa3f79eb8b1124836e55
+artifact_zip_sha256: 16c81f9b42a3391a2a3dabf501cb2d6eb7e011682abdaa3f79eb8b1124836e55
+windows_exe_sha256: 1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244
+windows_pck_sha256: d48fe09796954f3b4f836d092b4184cb0ac33bc6f1f3b96f52166e2d6760aa0f
 ```
+
+Fresh GitHub API readback와 artifact 재다운로드를 독립 수행했고 API digest와 ZIP SHA-256은 exact match다. ZIP 내부 `SHA256SUMS.txt`와 독립 EXE/PCK 계산도 일치했다.
+
+## Artifact evidence reconciliation incident · 2026-08-24
+
+기존 audit/candidate/self-run/test에는 같은 run `32692759675`에 대해 다른 artifact ID/name/expiry와 다른 ZIP/EXE/PCK 해시가 하드코딩돼 있었다. 기존 테스트는 live artifact를 읽지 않고 이 복제값끼리만 비교하여 drift를 잡지 못했다.
+
+교정 원칙:
+
+```text
+artifact_id / artifact_name / artifact_expires_at = EPHEMERAL_DELIVERY_METADATA
+artifact/API digest + downloaded ZIP/EXE/PCK SHA-256 = DURABLE_CONTENT_IDENTITY
+```
+
+Workflow 자체가 `switchy-express-windows-demo-${{ github.sha }}` + `retention-days: 14`를 사용하므로 artifact 이름 suffix를 PR HEAD로 해석하거나 장기 만료일을 고정해서는 안 된다. `pull_request` run의 workflow-context `${{ github.sha }}`와 API `head_sha`는 역할이 다를 수 있다.
+
+이 incident는 **evidence bookkeeping defect**다. PR #166 gameplay/image/audio/UI runtime bytes 자체의 변경이나 회귀 증거는 발견되지 않았다.
 
 ## Five-pass adversarial review
 
@@ -131,13 +154,13 @@ PC standard / ultrawide / mobile landscape, touch target, Reduced Motion을 기�
 
 ### PASS 4 · runtime / package
 
-Windows export와 Windows/Android packaged runtime JSON proof를 exact HEAD에서 통과했다. `all_resources` export boundary로 product assets가 package에 포함된다.
+Windows export와 Windows/Android packaged runtime JSON proof를 exact HEAD에서 통과했다. `all_resources` export boundary로 product assets가 package에 포함된다. Artifact evidence는 live API + independent download digest로 다시 닫았다.
 
 ### PASS 5 · product scope / maintenance
 
 새 feature breadth보다 existing approved asset을 실제 gameplay surface에 소비시키는 방식을 채택했다. 056~058은 계속 구현 권한 밖이다.
 
-`CLEAN_REVIEW_EXIT`.
+`CLEAN_REVIEW_EXIT`는 playable POC 구현 자체에 대한 당시 판정이며, 이번 artifact evidence correction은 별도 current-task review에서 다시 검증한다.
 
 ## IRG / evidence ceiling
 
@@ -147,14 +170,16 @@ Windows export와 Windows/Android packaged runtime JSON proof를 exact HEAD에�
 - approved product images가 actual gameplay/UI shell에서 load/consume됨
 - automated T1→T6→Capstone과 UI/UX contract가 GREEN
 - Windows executable package가 생성되고 packaged runtime proof가 PASS
+- Candidate 002 package content digest가 live API + fresh download로 재검증됨
 
 현재 주장 불가:
 
 ```yaml
 PHYSICAL_WINDOWS: NOT_RUN
+AUDIO_PERCEPTUAL_QA: NOT_RUN
 ANDROID_DEVICE: NOT_RUN
 FIVE_PERSON_COMPREHENSION: NOT_RUN
 PLAYER_EXPERIENCE: NOT_RUN
 ```
 
-따라서 다음 제품 Gate는 `SX59-POC-ACCEPT-002` developer self-run이다.
+따라서 다음 제품 Gate는 package identity 확인 후 `SX59-POC-ACCEPT-002` developer self-run이다.
