@@ -9,7 +9,8 @@ Last updated: `2026-08-24 KST`
 ```yaml
 repository: alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
 default_branch: main
-current_main: 2521f3be600ea950f9893ce45940604c2d0ac88a
+project_main_snapshot_before_postmerge_canon: 2521f3be600ea950f9893ce45940604c2d0ac88a
+project_live_main_policy: REFRESH_FROM_GITHUB_BEFORE_EXECUTION
 engine: Godot 4.7.1-stable
 language: GDScript
 product_baseline: GMB-002
