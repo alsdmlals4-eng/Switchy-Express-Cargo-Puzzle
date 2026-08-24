@@ -1,20 +1,20 @@
 # Roadmap
 
-Last updated: `2026-08-24 KST`
+Last updated: `2026-08-25 KST`
 
 ## Current authority
 
 ```yaml
-current_work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER
-work_instruction_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
-v4_8_authority_merge_pr: 164
-v4_8_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
-base_latest_observed: 2828a74f60c1ed09546171040f4178c8848ea686
+current_work_instruction: v4.8 · 2026-08-24-r4 · SWITCHY_THIN_ADAPTER
+work_instruction_source_sha256: 1426c2e5e25e32dc72abccf49e4a0839578e54c14b38ba0de045be426fd63ea6
+historical_v48_r2_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
+v4_8_r2_authority_merge_pr: 164
+v4_8_r2_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 ```
 
-이 authority 갱신은 roadmap 범위를 확장하지 않는다. 현재 제품 게이트는 여전히 SX-DEC-059의 developer/physical/device/human validation이다.
+이 authority 갱신은 roadmap 범위를 확장하지 않는다. 현재 제품 게이트는 여전히 SX-DEC-059의 Candidate 003 developer/physical/device/human validation이다.
 
 ## Current execution overlay
 
@@ -38,7 +38,11 @@ SX-DEC-059
 → five-pass adversarial review CLOSED · SX-AUD-066
 → PR #158 MERGED_MAIN_VERIFIED · main 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
 → Notion implementation post-merge readback PASS
-→ developer/physical/device/human evidence gates
+→ PR #166 playable visual/UX POC MERGED
+→ Candidate 002 actual Windows startup PASS but P1 visual defects blocked acceptance
+→ PR #171 player-visible P1 correction MERGED
+→ Candidate 003 package/pointer proof PASS
+→ Candidate 003 physical/device/human evidence gates remain open
 ```
 
 ## M0 · Product baseline
@@ -99,15 +103,13 @@ No gameplay/scoring/map/save authority was widened.
 
 `SUPERSEDED_AS_PLAYER_EXPERIENCE_TARGET_BY_SX_DEC_059 · STABLE_DEVICE_GATE_ANCHOR`
 
-The original post-055 acceptance gate remains a stable compatibility locator for device/human evidence. Its evidence has **not** been completed or silently inherited by SX-DEC-059.
-
 ```text
 Windows physical runtime: NOT_RUN
 Android device smoke: NOT_RUN
 Five-person comprehension: NOT_RUN
 ```
 
-The next meaningful first-contact acceptance build contains the merged SX-DEC-059 release-near first-session experience. Historical 055 automation/export evidence remains valid only for its bounded implementation/package claims.
+Historical 055 automation/export evidence remains valid only for its bounded implementation/package claims.
 
 ## M5B · Product-depth planning held outside 059
 
@@ -164,52 +166,61 @@ responsive: pc_standard + pc_wide_or_ultrawide + mobile_landscape
 - `FirstSessionDefinition + FirstSessionStagePolicy + FirstSessionDirector + FirstSessionCopy` sidecar.
 - `FiniteMapDefinition` schema v2 unchanged.
 - existing `ProductFiniteSlice` / finite domain reused.
-- map coordinates/JSON/private witness authored test-first during BUILD.
 - StagePolicy blocks hidden command bypass across UI/keyboard/touch/board/route requests.
 - standalone demo remains compatibility default; product main opts in.
 - Result uses evidence-safe runtime summary only.
 
-### Gate state
+## M5D · Playable Visual/UX POC and Candidate transition
 
 ```yaml
-user_planning_complete: GRANTED_2026_08_20
-phase_c_final_review: PASS_SX_AUD_064
-repository_canon: MERGED_MAIN_VERIFIED
-implementation_merge_pr: 158
-implementation_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
-notion_sync: PASS_POST_PR_158_READBACK_COMPLETE
-implementation_package_spec_dor: PASS
-execution_preflight: PASS
-codex_handoff: USER_REQUESTED_AND_EXECUTED
-build: MERGED_MAIN_VERIFIED
-adversarial_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED
-developer_self_run: NOT_RUN
-acceptance_build: UNASSIGNED
+poc_pr: 166
+candidate_002_windows_startup: PASS
+candidate_002_result: BLOCKED_BY_CONFIRMED_P1_PREFLIGHT_VISUAL_DEFECTS
+p1_correction_pr: 171
+current_candidate: SX59-POC-ACCEPT-003
+candidate_003_package_integrity: PASS
+candidate_003_physical_visual_recheck: NOT_RUN
 ```
 
-## M6 · Physical/device/human validation
+Candidate 002의 실제 Windows 기동은 역사 evidence다. 수정된 presentation bytes의 physical appearance를 검증하지 않았으므로 Candidate 003 acceptance는 아직 열려 있다.
+
+## M6 · Candidate 003 physical/device/human validation
 
 `NOT_RUN · CURRENT_NEXT_PRODUCT_GATE`
 
-Stable validation sequence:
+### Candidate 003 Gate 0
 
 ```text
-developer self-run / screen QA
-→ exact acceptance build identity
-→ Windows physical smoke as applicable
-→ Android device smoke as a separate platform gate
-→ Five-person first-contact comprehension on the exact designated acceptance build
+A. physical visual recheck: preflight badge compact + Korean problem copy non-overlap
+B. physical visual recheck: disconnected station/cargo identity visible + problem reinforcement outline only
+```
+
+하나라도 실패하면 `BLOCKED_P1_VISUAL`로 중단한다.
+
+### Current validation sequence
+
+```text
+SX59-POC-ACCEPT-003 · Candidate 003 Gate 0 · physical visual recheck
+→ if PASS, same exact Candidate 003 developer self-run / screen QA · 8 scenarios
+→ audio perceptual QA
+→ exact acceptance build designation
+→ Windows full physical smoke
+→ Android device smoke
+→ Five-person first-contact comprehension
 → EXPAND / REWORK / REPEAT_SLICE / HOLD / STOP
 ```
 
 ```yaml
-WINDOWS PHYSICAL RUNTIME: NOT_RUN
-ANDROID DEVICE SMOKE: NOT_RUN
-FIVE-PERSON COMPREHENSION: NOT_RUN
-PLAYER EXPERIENCE: NOT_RUN
+CANDIDATE_003_PHYSICAL_VISUAL_RECHECK: NOT_RUN
+DEVELOPER_SELF_RUN: NOT_RUN
+AUDIO_PERCEPTUAL_QA: NOT_RUN
+WINDOWS_FULL_PHYSICAL_RUNTIME: NOT_RUN
+ANDROID_DEVICE_SMOKE: NOT_RUN
+FIVE_PERSON_COMPREHENSION: NOT_RUN
+PLAYER_EXPERIENCE: NOT_RUN
 ```
 
-Android device validation is not implied by PC/package evidence. Human evidence is not implied by developer self-run.
+Automated/package/launcher PASS is not physical runtime or human evidence.
 
 ## M7 · Production cutover
 
