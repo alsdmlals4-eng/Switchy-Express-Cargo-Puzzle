@@ -70,6 +70,7 @@ Base SHA snapshots above are history/audit evidence only. 실제 Base 권위는 
 ## Stable compatibility anchors
 
 ```yaml
+SX-DEC-055: MERGED_MAIN_VERIFIED
 user_planning_complete_gate: GRANTED
 phase_b_final_planning_review: SX-AUD-047 · PASS
 sx_dec_055_runtime_implementation: MERGED_MAIN_VERIFIED
