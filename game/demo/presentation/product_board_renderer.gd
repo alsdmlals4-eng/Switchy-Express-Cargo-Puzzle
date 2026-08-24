@@ -362,13 +362,11 @@ func _draw_state_overlays(rect: Rect2, board_size: Vector2i) -> void:
 		var selected_rect := _cell_rect(selected, rect, board_size).grow(-3.0)
 		draw_rect(selected_rect, _alpha(Palette.SELECTED, 0.28), true)
 		draw_rect(selected_rect, Palette.SELECTED, false, 4.0)
-	var focus_record := _preflight_focus_record()
 	for value: Variant in _snapshot.get("problem_cells", []):
 		var problem: Vector2i = snapshot_cell(value)
 		if problem != NO_CELL:
 			var problem_rect := _cell_rect(problem, rect, board_size).grow(-2.0)
 			draw_rect(problem_rect, Palette.PROBLEM, false, 5.0)
-			_draw_semantic_record(focus_record, problem_rect.grow(-3.0))
 
 
 func _draw_ghost(rect: Rect2, board_size: Vector2i) -> void:
