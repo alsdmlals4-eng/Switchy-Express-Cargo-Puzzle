@@ -1,6 +1,6 @@
 # Switchy Express 프로젝트 허브
 
-Last updated: `2026-08-24 KST`
+Last updated: `2026-08-21 KST`
 
 ## Current State
 
@@ -8,7 +8,7 @@ Last updated: `2026-08-24 KST`
 |---|---|
 | 제품 기준선 | `GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE` |
 | 결정 범위 | `SX-DEC-027~059` |
-| 작업지시문 | `v4.8 · revision 2026-08-24-r2 · Switchy thin adapter` |
+| 작업지시문 | `v4.7 · revision 2026-08-20-r1 · Switchy thin adapter` |
 | User planning-complete gate | `GRANTED · 2026-08-20 KST` |
 | SX-DEC-059 | `PR #158 MERGED_MAIN_VERIFIED · FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED` |
 | SX-DEC-059 main | `162e8a0a5e8ddc8472e74a6152e87dc12008e34c` |
@@ -24,9 +24,8 @@ Last updated: `2026-08-24 KST`
 | SX-DEC-057 | `PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED` |
 | SX-DEC-058 | `PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED` |
 | semantic product PNG | `73 · PRODUCTION_COMPLETE` |
-| Base compatibility pin | `v9.4.3 · HISTORICAL_COMPATIBILITY` |
-| Base latest observed for v4.8 adoption | `2828a74f60c1ed09546171040f4178c8848ea686 · REFRESH_EACH_WORK` |
-| Google Sheets | `COMPATIBILITY_ONLY_MIGRATION_SOURCE` |
+| Base pin | `v9.4.3` |
+| Base remote latest observed | `ef0092256be25eaa70a296a76d02f7205934929e · REFERENCE_ONLY` |
 | PR #154 | `CLOSED_UNMERGED · SUPERSEDED_BY_059` |
 | developer self-run | `NOT_RUN` |
 | acceptance build | `UNASSIGNED` |
@@ -53,11 +52,11 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 
 ## Mandatory read order
 
-1. fresh Base latest completed `main` + Base root `AGENTS.md`.
+1. fresh Base latest completed `main`.
 2. fresh project `main`, latest commit, all Open/Draft PR.
 3. exact Switchy Notion Project Home.
 4. `AGENTS.md`.
-5. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`.
+5. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`.
 6. `FINITE_DELIVERY_PUZZLE_BASELINE.md`.
 7. `CURRENT_CONFIRMED_DECISIONS.md`.
 8. `ACTIVE_CONTEXT.md`.
@@ -65,7 +64,7 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 10. `DEVELOPMENT_GATES.md`.
 11. exact SX-DEC-059 content/UI/localization/visual/playtest owner.
 12. actual code/data/Scene/Resource/assets/tests.
-13. historical v4.7 adapter/implementation handoff only when provenance or rollback evidence is needed.
+13. implementation/handoff package only when historical execution evidence is needed.
 
 Google Sheets는 migration-only이며 새 작업의 active input이 아니다.
 
@@ -149,10 +148,8 @@ Phase-C PASS
 → PR #158 MERGED_MAIN_VERIFIED
 → Notion implementation readback PASS
 → developer self-run / screen QA
-→ exact acceptance build identity
-→ Windows physical smoke
-→ Android device smoke as separate platform gate
-→ Five-person first-contact evidence on the same build
+→ exact acceptance build physical smoke
+→ Five-person first-contact evidence
 → separate product decision
 ```
 
@@ -165,7 +162,7 @@ Phase-C PASS
 - no implicit 056/057/058 implementation.
 - no score/combo or fast/cheap TrackPiece invention.
 - no player-facing solver.
-- no Base repin from the historical compatibility pin.
+- no Base repin.
 - PR #154 code is not absorbed; it is closed unmerged and superseded by the product-owned implementation.
 - automated/package/self-run evidence does not imply human PASS.
 
@@ -187,7 +184,5 @@ Phase-C PASS
 ```text
 developer self-run / screen QA
 → exact acceptance build identity when physical validation is prepared
-→ Windows physical smoke
-→ Android device smoke as separate platform gate
-→ Five-person first-contact comprehension on the same build
+→ physical/device/human evidence sequence
 ```
