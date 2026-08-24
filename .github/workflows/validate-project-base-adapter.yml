@@ -3,7 +3,6 @@ name: Validate Project Base Adapter
 on:
   pull_request:
     branches: [main]
-    types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
     paths:
       - .agents/skills/switchy-express-cargo-puzzle-workflow-router/**
       - skills/PROJECT_BASE_ADAPTER.json
@@ -23,6 +22,7 @@ on:
       - tests/test_base_v94_ai_operations_adoption.py
       - tests/python/test_v48_current_authority_migration.py
       - 기획서/**
+    types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
 
 permissions:
   contents: read
