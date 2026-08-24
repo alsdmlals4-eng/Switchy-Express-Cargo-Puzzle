@@ -33,16 +33,24 @@ sx_dec_059_package_spec_dor: PASS
 sx_dec_059_execution_preflight: PASS
 sx_dec_059_codex_handoff: USER_REQUESTED_AND_EXECUTED
 SX_DEC_059_IMPLEMENTATION: MERGED_MAIN_VERIFIED
-sx_dec_059_build: RELEASE_NEAR_VERTICAL_SLICE_AUTOMATED_GREEN
+sx_dec_059_build: PLAYABLE_VISUAL_UX_POC_AUTOMATED_AND_PACKAGE_GREEN
 sx_dec_059_adversarial_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-066
+playable_poc_pr: 166
+playable_poc_pr_head: 159a3a741ef79b6207be290cc284bd63a5979e72
+playable_poc_merge_main: 1bf798cedf28dffba9185edb62fb1c50c108fe90
+playable_poc_tree: b3fa0ad93721d7f99614fb6f0bf594c7ce068127
+playable_poc_audit: SX-AUD-069 · CLEAN_REVIEW_EXIT
+playable_poc_visual_surface: BOARD_HUD_TITLE_LESSON_RESULT_APPROVED_ASSETS
 sx_dec_055: MERGED_MAIN_VERIFIED · PR_151
 sx_dec_056a: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
 sx_dec_057: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_058: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
-semantic_assets: 73_TOTAL · PRODUCTION_COMPLETE
+semantic_assets: 73_TOTAL · PRODUCTION_COMPLETE · PLAYABLE_POC_CONSUMED
 pr_154: CLOSED_UNMERGED · SUPERSEDED_BY_059
-acceptance_build: UNASSIGNED
+historical_candidate: SX59-ACCEPT-001 · SUPERSEDED_FOR_CURRENT_POC
+current_candidate: SX59-POC-ACCEPT-002 · PREPARED · PENDING_DEVELOPER_SELF_RUN
+acceptance_build: NOT_YET_DESIGNATED
 developer_self_run: NOT_RUN
 windows_physical_runtime: NOT_RUN
 android_device: NOT_RUN
@@ -113,7 +121,7 @@ map_bytes_authored: true
 runtime_package_proof: PASS · 26_JSON_PARSED
 ```
 
-Exact coordinates/map JSON/private witnesses are RED-first implementation outputs. `VS_DEMO_01` bytes and the 73 product PNGs remain unchanged.
+Exact coordinates/map JSON/private witnesses are RED-first implementation outputs. `VS_DEMO_01` bytes remain unchanged. 기존 73 product PNG는 PR #166에서 player-visible POC surface에 실제 소비된다.
 
 ### Architecture state
 
@@ -139,13 +147,49 @@ remaining_map_cargo
 stack_size
 ```
 
-Station mismatch/actual trace is not guessed.
+Station mismatch/actual trace is not guessed. PR #166은 이 existing outcome을 presentation-only SUCCESS/FAILURE approved result art에 연결하며 outcome authority를 이동시키지 않는다.
+
+## Playable visual / UX POC state
+
+PR #166은 first-session core를 유지하면서 실제 플레이 화면을 다음처럼 완성했다.
+
+```text
+board
+→ approved train / straight / curve / switch / crossing / station / cargo textures
+HUD
+→ build tool product icons + 기존 text/shortcut cue
+title / lesson
+→ product-art vignette + 1 / 7 lesson progress
+result
+→ SUCCESS / FAILURE approved result art + Retry / Edit
+```
+
+- texture load 실패 시 procedural fallback 유지.
+- cargo/station shape/text cue를 유지해 color-only 판별을 피한다.
+- Objective/Rules는 stable 560px wrap width로 responsive overflow를 방지한다.
+- 960×540 mobile landscape부터 2560×1080 ultrawide까지 기존 의미 보존 regression을 통과했다.
+- visible touch minimum 48px와 Reduced Motion same-information identity를 유지한다.
+
+### Exact-head/package evidence
+
+```yaml
+Project_Contract: PASS
+Thin_Adapter: PASS
+GUT_9_7_1: PASS
+Godot_headless: 111_CASES_PASS
+Windows_Demo_Export: PASS
+Windows_packaged_runtime_json_proof: PASS
+Android_packaged_runtime_json_proof: PASS
+artifact_candidate: SX59-POC-ACCEPT-002
+```
+
+이 증거는 실제 사람이 게임을 플레이했다는 증거가 아니다.
 
 ## Visual / localization state
 
 - E+D Hybrid / Neo-Arcade Readability.
-- current 73 product PNG first.
-- image generation: NOT_REQUESTED / NOT_RUN.
+- current 73 product PNG first; playable POC board/HUD/shell이 핵심 approved asset을 실제 consume한다.
+- image generation: NOT_REQUESTED / NOT_RUN; 기존 승인 자산 재사용으로 POC를 완성했다.
 - locales: ko / en / ja / zh-Hans.
 - zh-Hant deferred until a release target requires it.
 - player-facing raw localization key and text-in-PNG are forbidden.
@@ -155,14 +199,17 @@ Station mismatch/actual trace is not guessed.
 Use:
 - `PLAYTEST_PLAN_V4_7_CURRENT.md`
 - `SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`
+- `SX_DEC_059_POC_ACCEPTANCE_CANDIDATE_02.md`
+- `SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_02.md`
 
 ```text
-AUTOMATED CONTRACT: PASS · MERGED_MAIN_VERIFIED
-→ developer self-run / screen QA: NOT_RUN
-→ exact acceptance build identity: UNASSIGNED
-→ reviewed physical smoke on that same build: NOT_RUN
+PLAYABLE POC AUTOMATED/PACKAGE: PASS · PR #166 MERGED_MAIN_VERIFIED · 1bf798cedf28dffba9185edb62fb1c50c108fe90
+→ SX59-POC-ACCEPT-002 developer self-run / screen QA: NOT_RUN
+→ exact acceptance build identity: NOT_YET_DESIGNATED
+→ reviewed Windows physical smoke on same build: NOT_RUN
+→ Android device smoke: NOT_RUN
 → Five-person first-contact comprehension: NOT_RUN
-→ decision gate: NOT_RUN
+→ player-experience decision gate: NOT_RUN
 ```
 
 Developer self-run or automated tests do not equal player-experience PASS.
@@ -228,21 +275,23 @@ The implementation used an isolated worktree and Godot 4.7.1. Future authoring m
 6. `FINITE_DELIVERY_PUZZLE_BASELINE.md`.
 7. `CURRENT_CONFIRMED_DECISIONS.md`.
 8. this `ACTIVE_CONTEXT.md`.
-9. `DEVELOPMENT_GATES.md`.
-10. 059 content/UI/localization/visual/playtest owners.
-11. implementation/handoff package only when historical execution evidence is needed.
+9. `SX_AUD_069_PLAYABLE_VISUAL_UX_POC.md`.
+10. `SX_DEC_059_POC_ACCEPTANCE_CANDIDATE_02.md` + `SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_02.md` for current manual validation.
+11. `DEVELOPMENT_GATES.md` + `ROADMAP.md`.
+12. 059 content/UI/localization/visual/playtest owners.
+13. implementation/handoff package only when historical execution evidence is needed.
 
 Historical `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`는 provenance/rollback 확인이 필요할 때만 읽는다.
 
 ## Current next action
 
 ```text
-developer self-run / screen QA
-→ designate exact acceptance build when physical validation is prepared
-→ Windows physical smoke as applicable
+SX59-POC-ACCEPT-002 developer self-run / screen QA
+→ if clean, designate exact acceptance build
+→ Windows physical smoke
 → Android device smoke as separate platform gate
 → Five-person first-contact comprehension on the same build
 → EXPAND / REWORK / REPEAT_SLICE / HOLD / STOP
 ```
 
-**PR #158 merge와 Notion implementation readback은 완료됐고, physical/device/human validation은 여전히 NOT_RUN이다.**
+**PR #166 playable visual/UX POC는 main `1bf798cedf28dffba9185edb62fb1c50c108fe90`에 병합됐고 automated/package proof는 PASS다. developer self-run / physical / device / human / player-experience validation은 여전히 NOT_RUN이다.**

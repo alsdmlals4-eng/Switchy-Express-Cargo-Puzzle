@@ -14,23 +14,26 @@ Last updated: `2026-08-24 KST`
 | User planning-complete gate | `GRANTED · 2026-08-20 KST` |
 | SX-DEC-059 | `PR #158 MERGED_MAIN_VERIFIED · FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED` |
 | SX-DEC-059 main | `162e8a0a5e8ddc8472e74a6152e87dc12008e34c` |
+| Playable visual/UX POC | `PR #166 MERGED_MAIN_VERIFIED · main 1bf798cedf28dffba9185edb62fb1c50c108fe90` |
+| POC visual surface | `board/HUD/title/lesson/result · approved E+D assets consumed at runtime` |
+| Current POC candidate | `SX59-POC-ACCEPT-002 · PREPARED · PENDING_DEVELOPER_SELF_RUN` |
 | Notion implementation readback | `PASS · POST_PR_158_READBACK_COMPLETE` |
 | Phase C | `PASS · SX-AUD-064 · CLEAN_REVIEW_EXIT` |
 | Package spec DoR | `PASS` |
 | Execution preflight | `PASS · isolated worktree · Godot 4.7.1` |
 | Codex handoff | `USER_REQUESTED_AND_EXECUTED` |
-| BUILD | `RELEASE_NEAR_VERTICAL_SLICE_AUTOMATED_GREEN` |
+| BUILD | `PLAYABLE_VISUAL_UX_POC_AUTOMATED_AND_PACKAGE_GREEN` |
 | SX-DEC-055 | `IMPLEMENTED · PR #151 MERGED · runtime_integrated=true` |
 | SX-DEC-056A | `PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED` |
 | SX-DEC-056B | `BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME` |
 | SX-DEC-057 | `PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED` |
 | SX-DEC-058 | `PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED` |
-| semantic product PNG | `73 · PRODUCTION_COMPLETE` |
+| semantic product PNG | `73 · PRODUCTION_COMPLETE · PLAYABLE_POC_CONSUMED` |
 | Base compatibility pin | `v9.4.3 · HISTORICAL_COMPATIBILITY` |
 | Base latest observed | `2828a74f60c1ed09546171040f4178c8848ea686 · ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN` |
 | PR #154 | `CLOSED_UNMERGED · SUPERSEDED_BY_059` |
 | developer self-run | `NOT_RUN` |
-| acceptance build | `UNASSIGNED` |
+| acceptance build | `NOT_YET_DESIGNATED` |
 | Windows physical runtime | `NOT_RUN` |
 | ANDROID DEVICE SMOKE | `NOT_RUN` |
 | FIVE-PERSON COMPREHENSION | `NOT_RUN` |
@@ -62,11 +65,13 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 6. `FINITE_DELIVERY_PUZZLE_BASELINE.md`.
 7. `CURRENT_CONFIRMED_DECISIONS.md`.
 8. `ACTIVE_CONTEXT.md`.
-9. `ROADMAP.md`.
-10. `DEVELOPMENT_GATES.md`.
-11. exact SX-DEC-059 content/UI/localization/visual/playtest owner.
-12. actual code/data/Scene/Resource/assets/tests.
-13. implementation/handoff package only when historical execution evidence is needed.
+9. `SX_AUD_069_PLAYABLE_VISUAL_UX_POC.md`.
+10. `SX_DEC_059_POC_ACCEPTANCE_CANDIDATE_02.md` + `SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_02.md` when executing the current manual gate.
+11. `ROADMAP.md`.
+12. `DEVELOPMENT_GATES.md`.
+13. exact SX-DEC-059 content/UI/localization/visual/playtest owner.
+14. actual code/data/Scene/Resource/assets/tests.
+15. implementation/handoff package only when historical execution evidence is needed.
 
 `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`는 2026-08-20~23 작업의 **historical rollback/provenance evidence**이며 current work-instruction authority가 아니다.
 
@@ -119,10 +124,41 @@ Capstone: 새 설명 없이 종합했다
 - StagePolicy gates UI + keyboard/touch/board/route commands at ProductFiniteSlice.
 - standalone demo remains compatibility path; main product opts into first-session mode.
 
+## Current playable visual / UX POC
+
+PR #166은 새 규칙을 추가하지 않고 이미 승인된 E+D Hybrid asset을 실제 player-visible surface에 소비시켰다.
+
+```text
+board
+→ approved train / rail / station / cargo textures
+HUD
+→ straight / curve / switch / crossing product icons
+title / lesson briefing
+→ same product visual language + lesson progress
+result
+→ existing finite outcome에 따라 approved SUCCESS / FAILURE art
+```
+
+절차적 도형·shape/text cue는 texture load 실패 fallback 및 non-color readability 보조로 유지한다.
+
+Exact-head automated/package evidence:
+
+```text
+Project Contract: PASS
+Thin Adapter: PASS
+GUT 9.7.1: PASS
+Godot headless: 111 cases PASS
+Windows Demo Export: PASS
+Windows packaged runtime JSON proof: PASS
+Android packaged runtime JSON proof: PASS
+```
+
+이 증거는 physical/human/player PASS가 아니다.
+
 ## Current visual / localization policy
 
 - E+D Hybrid · Neo-Arcade Readability.
-- current 73 semantic PNGs first.
+- current 73 semantic PNGs first; playable POC가 핵심 board/HUD/shell에서 실제 consume한다.
 - no new generated image currently required; image generation not requested.
 - locales: `ko / en / ja / zh-Hans`.
 - `zh-Hant` deferred until a release target requires it.
@@ -148,16 +184,17 @@ Phase-C PASS
 → isolated workspace + baseline GREEN
 → Codex RED-first BUILD
 → five-pass adversarial review + corrections
-→ exact-head automated/package review
 → PR #158 MERGED_MAIN_VERIFIED
 → Notion implementation readback PASS
+→ PR #166 playable visual/UX POC MERGED_MAIN_VERIFIED
+→ SX59-POC-ACCEPT-002 prepared
 → developer self-run / screen QA
 → exact acceptance build physical smoke
 → Five-person first-contact evidence
 → separate product decision
 ```
 
-`SX_DEC_059_IMPLEMENTATION: MERGED_MAIN_VERIFIED`. 물리 실행·사람 이해도 검증은 아직 시작하지 않았다.
+`SX_DEC_059_IMPLEMENTATION: MERGED_MAIN_VERIFIED`. POC automated/package 증거까지 추가됐지만 물리 실행·사람 이해도 검증은 아직 시작하지 않았다.
 
 ## Protected boundaries
 
@@ -182,11 +219,17 @@ Phase-C PASS
 - `기획서/50_제작_검증/SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`
 - `기획서/50_제작_검증/SX_AUD_064_SX_DEC_059_PHASE_C_FINAL_REVIEW.md`
 - `기획서/50_제작_검증/SX_AUD_066_SX_DEC_059_IMPLEMENTATION_AND_FIVE_PASS_REVIEW.md`
+- `기획서/50_제작_검증/SX_AUD_069_PLAYABLE_VISUAL_UX_POC.md`
+- `기획서/50_제작_검증/SX_DEC_059_POC_ACCEPTANCE_CANDIDATE_02.md`
+- `기획서/50_제작_검증/SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_02.md`
 
 ## Current next action
 
 ```text
-developer self-run / screen QA
-→ exact acceptance build identity when physical validation is prepared
-→ physical/device/human evidence sequence
+SX59-POC-ACCEPT-002 developer self-run / screen QA
+→ if clean, designate exact acceptance build
+→ Windows physical smoke
+→ Android device smoke as separate platform gate
+→ Five-person first-contact comprehension
+→ EXPAND / REWORK / REPEAT_SLICE / HOLD / STOP
 ```
