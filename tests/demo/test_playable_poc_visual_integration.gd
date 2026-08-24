@@ -11,23 +11,24 @@ func run() -> void:
 		renderer.has_method("product_visual_asset_paths_for_test"),
 		"POC board renderer must expose the approved product-art mapping it renders"
 	)
+	var required_board_art: Array[String] = [
+		"train",
+		"rail_straight",
+		"rail_curve",
+		"rail_crossing",
+		"rail_switch",
+		"start_marker",
+		"route_end_marker",
+		"station_red",
+		"station_blue",
+		"station_yellow",
+		"cargo_red",
+		"cargo_blue",
+		"cargo_yellow",
+	]
 	if renderer.has_method("product_visual_asset_paths_for_test"):
 		var paths: Dictionary = renderer.product_visual_asset_paths_for_test()
-		for required: String in [
-			"train",
-			"rail_straight",
-			"rail_curve",
-			"rail_crossing",
-			"rail_switch",
-			"start_marker",
-			"route_end_marker",
-			"station_red",
-			"station_blue",
-			"station_yellow",
-			"cargo_red",
-			"cargo_blue",
-			"cargo_yellow",
-		]:
+		for required: String in required_board_art:
 			assert_true(paths.has(required), "POC board art mapping must contain %s" % required)
 			if paths.has(required):
 				assert_true(
@@ -40,7 +41,7 @@ func run() -> void:
 	)
 	if renderer.has_method("loaded_product_visuals_for_test"):
 		var loaded: Dictionary = renderer.loaded_product_visuals_for_test()
-		for required: String in ["train", "rail_straight", "station_red", "cargo_red"]:
+		for required: String in required_board_art:
 			assert_true(bool(loaded.get(required, false)), "%s product texture must load" % required)
 	renderer.free()
 
@@ -91,6 +92,40 @@ func run() -> void:
 						str(value).begins_with("art/product_assets/ed_hybrid_v1/"),
 						"shell visual must use approved E+D product assets"
 					)
+			if art.has_method("loaded_asset_count_for_test") and art.has_method("asset_paths_for_test"):
+				assert_equal(
+					int(art.loaded_asset_count_for_test()),
+					(art.asset_paths_for_test() as Array).size(),
+					"all shell product-art textures must load"
+				)
+
+	var result_art := shell.get_node_or_null("ResultOverlay/Panel/Content/ResultArt")
+	assert_true(
+		result_art != null and result_art.has_method("set_result_outcome"),
+		"result art must support outcome-specific approved feedback"
+	)
+	if result_art != null and result_art.has_method("set_result_outcome"):
+		result_art.set_result_outcome(&"SUCCESS")
+		var success_paths: Array = result_art.asset_paths_for_test()
+		assert_true(
+			success_paths.has("art/product_assets/ed_hybrid_v1/shells/shell_result_success_candidate_v01.png"),
+			"successful POC result must use approved success result art"
+		)
+		assert_false(
+			success_paths.has("art/product_assets/ed_hybrid_v1/shells/shell_result_failure_candidate_v01.png"),
+			"success result must not show failure result art"
+		)
+		result_art.set_result_outcome(&"FAILURE")
+		var failure_paths: Array = result_art.asset_paths_for_test()
+		assert_true(
+			failure_paths.has("art/product_assets/ed_hybrid_v1/shells/shell_result_failure_candidate_v01.png"),
+			"failed POC result must use approved failure result art"
+		)
+		assert_false(
+			failure_paths.has("art/product_assets/ed_hybrid_v1/shells/shell_result_success_candidate_v01.png"),
+			"failure result must not show success result art"
+		)
+
 	var progress := shell.get_node_or_null("BriefingScreen/Panel/Content/LessonProgress") as Label
 	assert_not_null(progress, "first-session briefing must expose visible lesson progress")
 	if progress != null:
