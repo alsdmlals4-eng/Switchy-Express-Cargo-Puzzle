@@ -1,10 +1,24 @@
 # Development Gates
 
-Last updated: `2026-08-21 KST`
+Last updated: `2026-08-24 KST`
 
 현재 실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 우선한다. 과거 commit/PR/run은 역사 evidence이며 current next action을 자동 정의하지 않는다.
 
-## 1. v4.7 planning / build chain
+## 0. Current authority
+
+```yaml
+current_work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER
+work_instruction_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
+v4_8_authority_merge_pr: 164
+v4_8_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
+base_latest_observed: 2828a74f60c1ed09546171040f4178c8848ea686
+base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
+v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
+```
+
+이 authority 전환은 기획·런타임 범위를 넓히지 않는다. `GMB-002`, `SX-DEC-059` 구현 상태, `SX-DEC-056~058` 권한 경계와 physical/human evidence ceiling은 그대로 유지한다.
+
+## 1. Historical v4.7 planning / build chain
 
 ```text
 A0 CURRENT AUTHORITY RECOVERY: PASS
@@ -24,7 +38,7 @@ A0 CURRENT AUTHORITY RECOVERY: PASS
 → A14 NOTION POST-MERGE IMPLEMENTATION READBACK: PASS
 ```
 
-`기획완료`는 승인된 059 계획을 잠근다. A6/A7은 설계·정본·인계 패키지의 정적 준비 상태이며, A8 이후 fresh execution preflight와 RED→GREEN 구현, exact-head 검증, merge/readback까지 완료됐다.
+`기획완료`는 승인된 059 계획을 잠근다. A6/A7은 설계·정본·인계 패키지의 정적 준비 상태이며, A8 이후 fresh execution preflight와 RED→GREEN 구현, exact-head 검증, merge/readback까지 완료됐다. 이 chain은 v4.7 시기에 실행된 **역사 evidence**이며 현재 작업 방법론은 위 v4.8 authority를 따른다.
 
 ## 2. Historical implemented baseline chain
 
