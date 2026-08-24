@@ -17,6 +17,8 @@
   },
   "pck_integrity": {
     "verifier": "tools/verify_godot_pck_integrity.py",
+    "final_verifier_actual_candidate_invocation": "PASS",
+    "recomputed_windows_pck_sha256": "d48fe09796954f3b4f836d092b4184cb0ac33bc6f1f3b96f52166e2d6760aa0f",
     "pack_format_version": 4,
     "engine_version": "4.7.1",
     "pack_flags": 2,
