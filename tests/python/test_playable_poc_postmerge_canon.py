@@ -14,27 +14,36 @@ ZIP_SHA256 = "c0a7856efaeb278ac1501ee5b36ec4af15c088aefd88b759eb15681c7ce4fd42"
 EXE_SHA256 = "90347bb3e5ef28760385777b63a87be5c1572a9e8c3f11e619fac6fabfb44103"
 PCK_SHA256 = "089c9b78bb3e82bbf1accce7fe26b2306700e2800c590cbac1763252b7a2ea7a"
 
-CURRENT_OWNERS = [
-    ROOT / "기획서/00_프로젝트_허브/START_HERE.md",
-    ROOT / "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
-    ROOT / "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
-    ROOT / "기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md",
-    ROOT / "기획서/00_프로젝트_허브/ROADMAP.md",
-]
+START_HERE = ROOT / "기획서/00_프로젝트_허브/START_HERE.md"
+ACTIVE_CONTEXT = ROOT / "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md"
+CURRENT_DECISIONS = ROOT / "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md"
+DEVELOPMENT_GATES = ROOT / "기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md"
+ROADMAP = ROOT / "기획서/00_프로젝트_허브/ROADMAP.md"
 CANDIDATE = ROOT / "기획서/50_제작_검증/SX_DEC_059_POC_ACCEPTANCE_CANDIDATE_02.md"
 SELF_RUN = ROOT / "기획서/50_제작_검증/SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_02.md"
 AUDIT = ROOT / "기획서/50_제작_검증/SX_AUD_069_PLAYABLE_VISUAL_UX_POC.md"
 
 
 class PlayablePocPostMergeCanonTests(unittest.TestCase):
-    def test_current_owners_record_merged_playable_poc_without_inflating_manual_evidence(self) -> None:
-        for path in CURRENT_OWNERS:
+    def test_resume_owners_record_exact_playable_poc_and_current_candidate(self) -> None:
+        for path in (START_HERE, ACTIVE_CONTEXT):
             text = path.read_text(encoding="utf-8")
             self.assertIn(f"PR #{POC_PR}", text, f"{path} lost POC merge identity")
             self.assertIn(POC_MAIN, text, f"{path} lost POC merged main")
             self.assertIn(CANDIDATE_ID, text, f"{path} does not route to current POC candidate")
             self.assertIn("developer self-run", text.lower())
             self.assertIn("NOT_RUN", text)
+
+    def test_stable_decision_and_gate_owners_do_not_invent_new_product_authority(self) -> None:
+        decisions = CURRENT_DECISIONS.read_text(encoding="utf-8")
+        self.assertIn("current_decision_span: SX-DEC-027~059", decisions)
+        self.assertNotIn("SX-DEC-060", decisions)
+        gates = DEVELOPMENT_GATES.read_text(encoding="utf-8")
+        roadmap = ROADMAP.read_text(encoding="utf-8")
+        for text in (gates, roadmap):
+            self.assertIn("developer self-run", text)
+            self.assertIn("NOT_RUN", text)
+        self.assertIn("IMPLEMENTATION_NOT_AUTHORIZED", decisions)
 
     def test_candidate_binds_exact_artifact_and_merged_tree(self) -> None:
         self.assertTrue(CANDIDATE.is_file())
