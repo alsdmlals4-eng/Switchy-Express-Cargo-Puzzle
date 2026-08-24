@@ -201,7 +201,13 @@ exact current-task head
 
 을 확인한다. `REQUIRED_WORK_REMAINING: 0`은 completion candidate일 뿐 physical/human/player evidence를 대신하지 않는다.
 
-## 10. Historical adapter boundary
+## 10. Superseded PR protection
+
+PR #154 `feat: pilot reusable grid and semantic UI modules`는 `CLOSED_UNMERGED · SUPERSEDED_BY_SX_DEC_059`다. `game/reuse/*`를 다시 vendor하거나 PR #154를 reopen/absorb하지 않는다. 새 user-approved need와 fresh main evidence가 생기기 전까지 historical lesson만 보존한다.
+
+PR #155/#156도 `CLOSED_UNMERGED · HISTORICAL_ACCIDENT`이며 current workstream이 아니다.
+
+## 11. Historical adapter boundary
 
 `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`는 삭제하지 않는다. 해당 파일은 2026-08-20~23 작업의 history/rollback evidence이며 current work-instruction authority가 아니다.
 
