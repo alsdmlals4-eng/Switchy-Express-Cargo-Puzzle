@@ -1,3 +1,5 @@
+#Requires -Version 5.1
+
 [CmdletBinding()]
 param(
     [switch]$ContractCheck,
@@ -17,7 +19,7 @@ $ErrorActionPreference = "Stop"
 $Repository = "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle"
 $RepoRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $EvidencePath = Join-Path $RepoRoot "evidence\acceptance\sx59_poc_accept_002_artifact.json"
-$SelfRunRecord = Join-Path $RepoRoot "기획서\50_제작_검증\SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_02.md"
+$SelfRunRecordName = "SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_02.md"
 
 function Assert-Equal {
     param(
@@ -44,7 +46,7 @@ function Assert-FileHash {
 
     $Actual = (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant()
     Assert-Equal -Actual $Actual -Expected $Expected.ToLowerInvariant() -Label "$Label SHA-256"
-    Write-Host "$Label hash PASS · $Actual" -ForegroundColor Green
+    Write-Host "$Label hash PASS - $Actual" -ForegroundColor Green
     return $Actual
 }
 
@@ -64,9 +66,7 @@ function Resolve-UniqueFile {
 if (-not (Test-Path -LiteralPath $EvidencePath -PathType Leaf)) {
     throw "Canonical artifact evidence is missing: $EvidencePath"
 }
-if (-not (Test-Path -LiteralPath $SelfRunRecord -PathType Leaf)) {
-    throw "Canonical self-run record is missing: $SelfRunRecord"
-}
+$SelfRunRecord = Resolve-UniqueFile -Root $RepoRoot -Name $SelfRunRecordName
 
 $Evidence = Get-Content -LiteralPath $EvidencePath -Raw -Encoding UTF8 | ConvertFrom-Json
 Assert-Equal -Actual ([string]$Evidence.candidate_id) -Expected "SX59-POC-ACCEPT-002" -Label "candidate_id"
@@ -82,7 +82,7 @@ if ([string]::IsNullOrWhiteSpace([string]$Evidence.package.windows_pck_sha256)) 
 }
 
 if ($ContractCheck) {
-    Write-Host "CANDIDATE_SELF_RUN_POWERSHELL_CONTRACT: PASS · $($Evidence.candidate_id)" -ForegroundColor Green
+    Write-Host "CANDIDATE_SELF_RUN_POWERSHELL_CONTRACT: PASS - $($Evidence.candidate_id)" -ForegroundColor Green
     exit 0
 }
 
@@ -124,10 +124,10 @@ if ([bool]$Artifact.expired) {
 }
 
 if ([string]::IsNullOrWhiteSpace($WorkDir)) {
-    $ValidationRoot = if (-not [string]::IsNullOrWhiteSpace($env:LOCALAPPDATA)) {
-        Join-Path $env:LOCALAPPDATA "SwitchyExpress\Validation"
+    if (-not [string]::IsNullOrWhiteSpace($env:LOCALAPPDATA)) {
+        $ValidationRoot = Join-Path $env:LOCALAPPDATA "SwitchyExpress\Validation"
     } else {
-        Join-Path $env:TEMP "SwitchyExpress\Validation"
+        $ValidationRoot = Join-Path $env:TEMP "SwitchyExpress\Validation"
     }
     $WorkDir = Join-Path $ValidationRoot ([string]$Evidence.candidate_id)
 }
@@ -172,12 +172,12 @@ if (-not $ShaSums.ToLowerInvariant().Contains($PckHash)) {
     throw "SHA256SUMS.txt does not contain the verified Windows PCK digest."
 }
 
-Write-Host "" 
+Write-Host ""
 Write-Host "SX59-POC-ACCEPT-002 PACKAGE VERIFICATION: PASS" -ForegroundColor Green
-Write-Host "Artifact archive identity · $LiveDigest"
-Write-Host "EXE · $ExeHash"
-Write-Host "PCK · $PckHash"
-Write-Host "Working directory · $ArtifactDir"
+Write-Host "Artifact archive identity - $LiveDigest"
+Write-Host "EXE - $ExeHash"
+Write-Host "PCK - $PckHash"
+Write-Host "Working directory - $ArtifactDir"
 Write-Host "Physical/audio/human evidence is still NOT_RUN until you actually play and observe it." -ForegroundColor Yellow
 
 if (-not $NoOpenRecord) {
