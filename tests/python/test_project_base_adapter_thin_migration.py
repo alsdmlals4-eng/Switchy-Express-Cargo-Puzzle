@@ -37,11 +37,15 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         self.assertEqual(entry["id"], entry["skill_id"])
         self.assertTrue(all("skill_id" not in item for item in registry["skills"] if item.get("owner") == "base"))
 
-    def test_adapter_uses_canonical_baseline_and_sheet_states(self) -> None:
+    def test_adapter_uses_canonical_baseline_and_migration_only_sheet_state(self) -> None:
         adapter = json.loads(ADAPTER.read_text(encoding="utf-8"))
         self.assertIn(adapter["protected_baseline"]["authority_kind"], {"REMOTE_TRACKING_REF", "GITHUB_PR_BASE"})
         self.assertIn(adapter["protected_baseline"]["policy_source_type"], {"FIRST_MIGRATION_LEGACY_SOURCE", "CANONICAL_ADAPTER_SOURCE"})
-        self.assertEqual("CURRENT", adapter["gdd_sheet"]["sync_status"])
+        self.assertEqual("MIGRATION_ONLY", adapter["gdd_sheet"]["sync_status"])
+        self.assertEqual("HISTORICAL_SYNCED", adapter["gdd_sheet"]["declared_sync_status"])
+        self.assertEqual("COMPATIBILITY_ONLY_MIGRATION_SOURCE", adapter["gdd_sheet"]["role"])
+        self.assertFalse(adapter["gdd_sheet"]["new_input_allowed"])
+        self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", adapter["workspace"]["human_workspace"])
         self.assertEqual("DEC-BASE-20260805-001", json.loads(MIGRATION.read_text(encoding="utf-8"))["decision_id"])
 
     def test_strict_operating_health_preserves_not_run_gates(self) -> None:
