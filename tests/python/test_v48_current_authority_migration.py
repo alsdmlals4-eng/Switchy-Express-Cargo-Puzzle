@@ -14,7 +14,7 @@ PROJECT_SKILL = ROOT / "skills/switchy-express-design/SKILL.md"
 V48_R4_SOURCE_SHA256 = "1426c2e5e25e32dc72abccf49e4a0839578e54c14b38ba0de045be426fd63ea6"
 V48_R2_HISTORICAL_SHA256 = "6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508"
 BASE_MAIN_AT_INITIAL_V48_MIGRATION = "2828a74f60c1ed09546171040f4178c8848ea686"
-PR_BASE_AT_INITIAL_V48_MIGRATION = "ae8f4aeae111c5cce4284499b851c0c3f80f6bf3"
+CURRENT_APPROVED_PROTECTED_BASE = "cf207f29cd4dcabc5796769f0eb0ca6764c2370e"
 
 CURRENT_AUTHORITY_OWNERS = (
     ROOT / "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md",
@@ -67,7 +67,10 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
         adapter = json.loads(PROJECT_ADAPTER.read_text(encoding="utf-8"))
         self.assertEqual(2, adapter["schema_version"])
         self.assertEqual("switchy-express-cargo-puzzle", adapter["project"]["project_id"])
-        self.assertEqual(PR_BASE_AT_INITIAL_V48_MIGRATION, adapter["protected_baseline"]["commit"])
+        protected = adapter["protected_baseline"]
+        self.assertEqual(CURRENT_APPROVED_PROTECTED_BASE, protected["commit"])
+        self.assertEqual("GITHUB_PR_BASE", protected["authority_kind"])
+        self.assertEqual("github.event.pull_request.base.sha", protected["authority_ref"])
         sheet = adapter["gdd_sheet"]
         self.assertEqual("GOOGLE_SHEETS_LEGACY_MIGRATION_SOURCE", sheet["role"])
         self.assertEqual("MIGRATION_COMPATIBILITY_SURFACE", sheet["workspace_status"])
