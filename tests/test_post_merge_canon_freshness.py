@@ -79,11 +79,12 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
             "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo",
             adapter["gdd_sheet"]["spreadsheet_id"],
         )
-        self.assertEqual("SYNCED", adapter["gdd_sheet"]["declared_sync_status"])
-        self.assertEqual("CURRENT", adapter["gdd_sheet"]["sync_status"])
+        self.assertEqual("HISTORICAL_SYNCED", adapter["gdd_sheet"]["declared_sync_status"])
+        self.assertEqual("MIGRATION_ONLY", adapter["gdd_sheet"]["sync_status"])
+        self.assertEqual("COMPATIBILITY_ONLY_MIGRATION_SOURCE", adapter["gdd_sheet"]["role"])
         self.assertNotIn("5e803762f3c4f93b7cb31669312111d708507ef5", serialized_adapter)
 
-    def test_adapter_is_fresh_to_merged_canon_without_expanding_evidence(self) -> None:
+    def test_adapter_preserves_historical_sheet_provenance_without_expanding_authority(self) -> None:
         adapter = json.loads(read(ADAPTER))
         sheet = adapter["gdd_sheet"]
         baseline = adapter["protected_baseline"]
@@ -93,6 +94,9 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         self.assertEqual(MERGED_CANON_MAIN, sheet["repository_main_observed"])
         self.assertEqual(VERIFIED_PRODUCT_MAIN, sheet["latest_automated_verified_product_main"])
         self.assertEqual("SX-AUD-025", sheet["canonical_freshness_audit"])
+        self.assertEqual("HISTORICAL_COMPATIBILITY_EVIDENCE", sheet["provenance_status"])
+        self.assertFalse(sheet["new_input_allowed"])
+        self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", adapter["workspace"]["human_workspace"])
         self.assertIn("python tests/test_post_merge_canon_freshness.py", adapter["validators"])
 
     def test_audit_preserves_manual_evidence_ceiling_and_split_boundary(self) -> None:
