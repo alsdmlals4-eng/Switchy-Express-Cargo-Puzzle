@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "current_candidate_id": "SX59-POC-ACCEPT-003",
+  "artifact_evidence_owner": "evidence/acceptance/sx59_poc_accept_003_artifact.json",
+  "deep_pck_evidence_owner": "evidence/acceptance/sx59_poc_accept_003_pck_deep_audit.json",
+  "acceptance_candidate_document": "기획서/50_제작_검증/SX_DEC_059_POC_ACCEPTANCE_CANDIDATE_03.md",
+  "self_run_record_name": "SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_03.md",
+  "selection_policy": "EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE",
+  "supersedes_current_candidate": "SX59-POC-ACCEPT-002",
+  "supersedes_reason": "CANDIDATE_002_PHYSICAL_STARTUP_FOUND_P1_PREFLIGHT_VISUAL_DEFECTS_FIXED_BY_PR_171",
+  "updated_date_kst": "2026-08-24"
+}
