@@ -1,6 +1,6 @@
 # Active Context
 
-Last updated: `2026-08-21 KST`
+Last updated: `2026-08-24 KST`
 
 이 문서는 **현재 상태·다음 실행 지점·미검증 경계**를 연결하는 resume locator다. fresh GitHub/Notion/actual runtime이 저장 snapshot보다 우선한다.
 
@@ -13,11 +13,16 @@ project_main_before_implementation: 4b37c154505ed1975735fc305a68b410877a40e0
 sx_dec_059_merge_pr: 158
 sx_dec_059_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
 implementation_branch: feat/sx-dec-059-first-session · HISTORICAL_MERGED
-base_pin: v9.4.3
-base_remote_latest_observed: ef0092256be25eaa70a296a76d02f7205934929e · REFERENCE_ONLY
+base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
+base_latest_observed: 2828a74f60c1ed09546171040f4178c8848ea686
+base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 engine: Godot 4.7.1-stable
 language: GDScript
-work_instruction: v4.7 · 2026-08-20-r1 · SWITCHY_THIN_ADAPTER
+work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER
+work_instruction_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
+v4_8_authority_merge_pr: 164
+v4_8_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
+v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 product_baseline: GMB-002
 current_decisions: SX-DEC-027~059
 sx_dec_059_user_planning_complete: GRANTED · 2026-08-20 KST
@@ -215,17 +220,19 @@ The implementation used an isolated worktree and Godot 4.7.1. Future authoring m
 
 ## Resume read order
 
-1. fresh Base completed `main`.
+1. fresh Base completed `main` + Base root `AGENTS.md`.
 2. fresh Project `main`, latest commit, all Open/Draft PR.
 3. exact Project Notion Home.
 4. `AGENTS.md`.
-5. v4.7 Switchy adapter.
+5. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`.
 6. `FINITE_DELIVERY_PUZZLE_BASELINE.md`.
 7. `CURRENT_CONFIRMED_DECISIONS.md`.
 8. this `ACTIVE_CONTEXT.md`.
 9. `DEVELOPMENT_GATES.md`.
 10. 059 content/UI/localization/visual/playtest owners.
 11. implementation/handoff package only when historical execution evidence is needed.
+
+Historical `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`는 provenance/rollback 확인이 필요할 때만 읽는다.
 
 ## Current next action
 
