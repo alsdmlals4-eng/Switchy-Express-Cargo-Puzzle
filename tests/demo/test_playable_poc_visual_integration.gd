@@ -91,8 +91,8 @@ func run() -> void:
 						str(value).begins_with("art/product_assets/ed_hybrid_v1/"),
 						"shell visual must use approved E+D product assets"
 					)
-	assert_not_null(
-		shell.get_node_or_null("BriefingScreen/Panel/Content/LessonProgress"),
-		"first-session briefing must expose visible lesson progress"
-	)
+	var progress := shell.get_node_or_null("BriefingScreen/Panel/Content/LessonProgress") as Label
+	assert_not_null(progress, "first-session briefing must expose visible lesson progress")
+	if progress != null:
+		assert_true(progress.text.contains("1 / 7"), "first-session briefing starts at lesson 1 of 7")
 	shell.free()
