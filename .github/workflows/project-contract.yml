@@ -47,6 +47,8 @@ jobs:
         run: python tests/python/test_acceptance_artifact_evidence_contract.py -v
       - name: Validate Godot PCK integrity verifier
         run: python tests/python/test_godot_pck_integrity_tool.py -v
+      - name: Validate Candidate 002 deep PCK audit
+        run: python tests/python/test_candidate_002_pck_deep_audit.py -v
       - name: Validate Switchy Editor Pilot plugin contract
         run: python tests/python/test_switchy_godot_live_editor_pilot_plugin_contract.py -v
       - name: Validate Switchy Pilot runner contract
