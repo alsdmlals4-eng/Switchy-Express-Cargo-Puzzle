@@ -25,14 +25,19 @@ class BaseV942PlanningFirstAdoptionTests(unittest.TestCase):
         self.assertEqual("APPROVED_PENDING_MERGE", planning["legacy_pre_merge_sheet_state"])
         self.assertEqual("SYNCED_TO_MAIN", planning["legacy_post_merge_sheet_state"])
         self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
+        self.assertEqual("GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME", planning["runtime_structured_authority"])
         self.assertEqual("NOT_RUN", planning["actual_project_batch_execution"])
 
     def test_switchy_product_and_workspace_boundaries_remain_safe(self) -> None:
         adapter = json.loads(ADAPTER.read_text(encoding="utf-8"))
-        self.assertEqual("MIGRATION_ONLY", adapter["gdd_sheet"]["sync_status"])
-        self.assertEqual("HISTORICAL_SYNCED", adapter["gdd_sheet"]["declared_sync_status"])
-        self.assertEqual("COMPATIBILITY_ONLY_MIGRATION_SOURCE", adapter["gdd_sheet"]["role"])
-        self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", adapter["workspace"]["human_workspace"])
+        self.assertEqual(2, adapter["schema_version"])
+        self.assertEqual("switchy-express-cargo-puzzle", adapter["project"]["project_id"])
+        sheet = adapter["gdd_sheet"]
+        self.assertEqual("NOT_CONFIGURED", sheet["sync_status"])
+        self.assertEqual("HISTORICAL_SYNCED", sheet["declared_sync_status"])
+        self.assertEqual("GOOGLE_SHEETS_LEGACY_MIGRATION_SOURCE", sheet["role"])
+        self.assertEqual("MIGRATION_COMPATIBILITY_SURFACE", sheet["workspace_status"])
+        self.assertFalse(sheet["new_input_allowed"])
         self.assertEqual("Godot 4.7.1", adapter["project"]["engine"])
         self.assertEqual("Android", adapter["project"]["platform"])
         self.assertEqual(["project.godot", "game/**", "assets/**", "기획서/**"], adapter["protected_paths"])
