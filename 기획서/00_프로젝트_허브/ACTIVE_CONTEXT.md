@@ -73,6 +73,7 @@ Base SHA snapshots above are history/audit evidence only. 실제 Base 권위는 
 SX-DEC-055: MERGED_MAIN_VERIFIED
 user_planning_complete_gate: GRANTED
 phase_b_final_planning_review: SX-AUD-047 · PASS
+build_authority: AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE
 sx_dec_055_runtime_implementation: MERGED_MAIN_VERIFIED
 runtime_integrated: true
 sx_dec_055_merge_main: 534a7318b349cd3e784a3467125f9ebd23124d8a
