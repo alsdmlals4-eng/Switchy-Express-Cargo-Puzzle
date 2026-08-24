@@ -29,6 +29,16 @@ func current_lesson_id() -> StringName:
 	return _lesson_ids[_index]
 
 
+func current_lesson_number() -> int:
+	if current_lesson_id() == &"":
+		return 0
+	return _index + 1
+
+
+func lesson_count() -> int:
+	return _lesson_ids.size()
+
+
 func current_lesson() -> Dictionary:
 	if _definition == null:
 		return {}

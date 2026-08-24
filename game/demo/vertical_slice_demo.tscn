@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://game/demo/demo_flow_controller.gd" id="1_flow"]
+[ext_resource type="Script" path="res://game/demo/presentation/product_shell_art.gd" id="2_shell_art"]
 
 [node name="VerticalSliceDemo" type="Control"]
 layout_mode = 3
@@ -30,12 +31,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="PanelContainer" parent="TitleScreen"]
-custom_minimum_size = Vector2(520, 420)
+custom_minimum_size = Vector2(520, 500)
 layout_mode = 2
 
 [node name="Content" type="VBoxContainer" parent="TitleScreen/Panel"]
 layout_mode = 2
-theme_override_constants/separation = 18
+theme_override_constants/separation = 14
 
 [node name="Title" type="Label" parent="TitleScreen/Panel/Content"]
 layout_mode = 2
@@ -48,13 +49,19 @@ layout_mode = 2
 text = "화물의 순서를 설계하는 철도 퍼즐"
 horizontal_alignment = 1
 
+[node name="HeroArt" type="Control" parent="TitleScreen/Panel/Content"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_shell_art")
+
 [node name="SliceBadge" type="Label" parent="TitleScreen/Panel/Content"]
 layout_mode = 2
 text = "PC VERTICAL SLICE"
 horizontal_alignment = 1
 
 [node name="Spacer" type="Control" parent="TitleScreen/Panel/Content"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 
 [node name="StartButton" type="Button" parent="TitleScreen/Panel/Content"]
@@ -113,12 +120,18 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="PanelContainer" parent="BriefingScreen"]
-custom_minimum_size = Vector2(680, 420)
+custom_minimum_size = Vector2(680, 520)
 layout_mode = 2
 
 [node name="Content" type="VBoxContainer" parent="BriefingScreen/Panel"]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 8
+
+[node name="LessonProgress" type="Label" parent="BriefingScreen/Panel/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "1 / 7"
+horizontal_alignment = 1
 
 [node name="Title" type="Label" parent="BriefingScreen/Panel/Content"]
 layout_mode = 2
@@ -126,14 +139,27 @@ theme_override_font_sizes/font_size = 32
 text = "대표 배송 — 되돌아오는 별"
 horizontal_alignment = 1
 
-[node name="Objective" type="Label" parent="BriefingScreen/Panel/Content"]
+[node name="LessonArt" type="Control" parent="BriefingScreen/Panel/Content"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_shell_art")
+mode = "LESSON"
+
+[node name="Objective" type="Label" parent="BriefingScreen/Panel/Content"]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+size_flags_horizontal = 3
 text = "제한 시간 안에 모든 화물을 올바른 역으로 배송하세요.\n화물은 마지막에 실은 것부터 내립니다."
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Rules" type="Label" parent="BriefingScreen/Panel/Content"]
+custom_minimum_size = Vector2(560, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "• 선로를 연결한 뒤 운행을 시작합니다.\n• 적재 순서가 하역 순서를 결정합니다.\n• 분기는 운행 중에도 전환할 수 있습니다."
+autowrap_mode = 2
 
 [node name="BeginButton" type="Button" parent="BriefingScreen/Panel/Content"]
 custom_minimum_size = Vector2(0, 56)
@@ -233,12 +259,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="PanelContainer" parent="ResultOverlay"]
-custom_minimum_size = Vector2(560, 440)
+custom_minimum_size = Vector2(560, 500)
 layout_mode = 2
 
 [node name="Content" type="VBoxContainer" parent="ResultOverlay/Panel"]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 
 [node name="Title" type="Label" parent="ResultOverlay/Panel/Content"]
 layout_mode = 2
@@ -246,8 +272,15 @@ theme_override_font_sizes/font_size = 32
 text = "배송 결과"
 horizontal_alignment = 1
 
+[node name="ResultArt" type="Control" parent="ResultOverlay/Panel/Content"]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_shell_art")
+mode = "RESULT"
+
 [node name="BodyScroll" type="ScrollContainer" parent="ResultOverlay/Panel/Content"]
-custom_minimum_size = Vector2(0, 120)
+custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0

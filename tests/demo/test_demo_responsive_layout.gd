@@ -39,7 +39,7 @@ func run() -> void:
 			if control != null:
 				assert_true(
 					_rect_inside(root_rect, control.get_global_rect()),
-					"%s must remain inside %s" % [path, viewport_size]
+					_layout_failure_message(demo, path, control, viewport_size)
 				)
 
 		var product := demo.get_node("GameplayContainer/ProductFiniteSlice") as Control
@@ -63,6 +63,46 @@ func run() -> void:
 			assert_true(button.size.y >= 48.0, "%s rendered height must be at least 48" % button.name)
 
 		demo.free()
+
+
+func _layout_failure_message(
+	demo: Control,
+	path: NodePath,
+	control: Control,
+	viewport_size: Vector2
+) -> String:
+	var message := "%s must remain inside %s · rect=%s · min=%s" % [
+		path,
+		viewport_size,
+		control.get_global_rect(),
+		control.get_combined_minimum_size(),
+	]
+	if str(path) == "BriefingScreen/Panel/Content/BeginButton":
+		var panel := demo.get_node_or_null("BriefingScreen/Panel") as Control
+		var content := demo.get_node_or_null("BriefingScreen/Panel/Content") as Control
+		if panel != null:
+			message += " · panel_rect=%s · panel_min=%s" % [
+				panel.get_global_rect(), panel.get_combined_minimum_size()
+			]
+		if content != null:
+			message += " · content_rect=%s · content_min=%s" % [
+				content.get_global_rect(), content.get_combined_minimum_size()
+			]
+			for child: Node in content.get_children():
+				if child is Control:
+					var child_control := child as Control
+					message += " · child=%s visible=%s rect=%s min=%s hflags=%d vflags=%d" % [
+						child_control.name,
+						child_control.visible,
+						child_control.get_global_rect(),
+						child_control.get_combined_minimum_size(),
+						child_control.size_flags_horizontal,
+						child_control.size_flags_vertical,
+					]
+					if child_control is Label:
+						var label := child_control as Label
+						message += " text_len=%d autowrap=%d" % [label.text.length(), label.autowrap_mode]
+	return message
 
 
 func _assert_single_layout_child(panel: Control, panel_name: String) -> void:
