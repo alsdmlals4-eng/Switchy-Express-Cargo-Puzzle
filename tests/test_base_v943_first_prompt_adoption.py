@@ -49,11 +49,14 @@ class AdoptionTests(unittest.TestCase):
         self.assertEqual("NOT_RUN", first_prompt["actual_project_instruction_execution"])
         self.assertEqual("base-v9.4.3.lock.json", planning["base_release_lock"])
         self.assertEqual(10, planning["max_approved_decisions_per_batch"])
+        self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
 
     def test_boundaries(self) -> None:
         adapter = load()
-        self.assertEqual("CURRENT", adapter["gdd_sheet"]["sync_status"])
-        self.assertEqual("SYNCED", adapter["gdd_sheet"]["declared_sync_status"])
+        self.assertEqual("MIGRATION_ONLY", adapter["gdd_sheet"]["sync_status"])
+        self.assertEqual("HISTORICAL_SYNCED", adapter["gdd_sheet"]["declared_sync_status"])
+        self.assertEqual("COMPATIBILITY_ONLY_MIGRATION_SOURCE", adapter["gdd_sheet"]["role"])
+        self.assertEqual("GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME", adapter["workspace"]["runtime_structured_authority"])
         self.assertEqual(["project.godot", "game/**", "assets/**", "기획서/**"], adapter["protected_paths"])
         self.assertEqual(
             "NOT_RUN",
