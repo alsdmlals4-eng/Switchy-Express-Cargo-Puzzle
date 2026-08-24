@@ -55,6 +55,8 @@ jobs:
         run: python tests/python/test_candidate_002_powershell_self_run.py -v
       - name: Validate physical preflight visual contract
         run: python tests/python/test_physical_preflight_visual_contract.py -v
+      - name: Validate Candidate 003 postmerge canon
+        run: python tests/python/test_candidate_003_postmerge_canon.py -v
       - name: Validate Switchy Editor Pilot plugin contract
         run: python tests/python/test_switchy_godot_live_editor_pilot_plugin_contract.py -v
       - name: Validate Switchy Pilot runner contract
