@@ -23,7 +23,13 @@ def _load_tool():
     return module
 
 
-def _build_test_pck(path: Path, files: dict[str, bytes], flags: int = 2) -> None:
+def _build_test_pck(
+    path: Path,
+    files: dict[str, bytes],
+    pack_flags: int = 2,
+    entry_flags: int = 0,
+    trailing_bytes: bytes = b"",
+) -> None:
     file_base = 112
     data = bytearray()
     records: list[tuple[str, int, int, bytes, int]] = []
@@ -31,12 +37,12 @@ def _build_test_pck(path: Path, files: dict[str, bytes], flags: int = 2) -> None
     for name, payload in files.items():
         offset = len(data)
         data.extend(payload)
-        records.append((name, offset, len(payload), hashlib.md5(payload).digest(), 0))
+        records.append((name, offset, len(payload), hashlib.md5(payload).digest(), entry_flags))
 
     directory_offset = file_base + len(data)
     header = bytearray()
     header.extend(b"GDPC")
-    header.extend(struct.pack("<IIIII", 4, 4, 7, 1, flags))
+    header.extend(struct.pack("<IIIII", 4, 4, 7, 1, pack_flags))
     header.extend(struct.pack("<QQ", file_base, directory_offset))
     header.extend(b"\x00" * 64)
     header.extend(b"\x00" * (file_base - len(header)))
@@ -44,7 +50,7 @@ def _build_test_pck(path: Path, files: dict[str, bytes], flags: int = 2) -> None
         raise AssertionError(f"unexpected synthetic header size: {len(header)}")
 
     directory = bytearray(struct.pack("<I", len(records)))
-    for name, offset, size, md5_digest, entry_flags in records:
+    for name, offset, size, md5_digest, current_entry_flags in records:
         encoded = name.encode("utf-8") + b"\x00"
         padded_length = (len(encoded) + 3) & ~3
         encoded += b"\x00" * (padded_length - len(encoded))
@@ -52,9 +58,9 @@ def _build_test_pck(path: Path, files: dict[str, bytes], flags: int = 2) -> None
         directory.extend(encoded)
         directory.extend(struct.pack("<QQ", offset, size))
         directory.extend(md5_digest)
-        directory.extend(struct.pack("<I", entry_flags))
+        directory.extend(struct.pack("<I", current_entry_flags))
 
-    path.write_bytes(header + data + directory)
+    path.write_bytes(header + data + directory + trailing_bytes)
 
 
 class GodotPckIntegrityToolTests(unittest.TestCase):
@@ -77,6 +83,17 @@ class GodotPckIntegrityToolTests(unittest.TestCase):
         self.assertEqual(summary["verified_entry_count"], 2)
         self.assertEqual(summary["md5_mismatch_count"], 0)
         self.assertEqual(summary["bounds_error_count"], 0)
+        self.assertEqual(summary["trailing_unverified_bytes"], 0)
+
+    def test_v4_reader_uses_file_base_even_when_relative_flag_is_absent(self) -> None:
+        tool = _load_tool()
+        with tempfile.TemporaryDirectory() as tmp:
+            pck = Path(tmp) / "v4-no-rel-flag.pck"
+            _build_test_pck(pck, {"data/example.json": b"abcdef"}, pack_flags=0)
+            summary = tool.inspect_pck(pck)
+
+        self.assertTrue(summary["integrity_pass"])
+        self.assertEqual(summary["verified_entry_count"], 1)
 
     def test_payload_tamper_is_fail_closed(self) -> None:
         tool = _load_tool()
@@ -95,9 +112,27 @@ class GodotPckIntegrityToolTests(unittest.TestCase):
         tool = _load_tool()
         with tempfile.TemporaryDirectory() as tmp:
             pck = Path(tmp) / "encrypted-flag.pck"
-            _build_test_pck(pck, {"data/example.json": b"{}"}, flags=3)
+            _build_test_pck(pck, {"data/example.json": b"{}"}, pack_flags=3)
             with self.assertRaises(tool.PckFormatError):
                 tool.inspect_pck(pck)
+
+    def test_nonzero_file_flags_are_rejected_without_specialized_support(self) -> None:
+        tool = _load_tool()
+        with tempfile.TemporaryDirectory() as tmp:
+            pck = Path(tmp) / "file-flags.pck"
+            _build_test_pck(pck, {"data/example.json": b"{}"}, entry_flags=1)
+            with self.assertRaises(tool.PckFormatError):
+                tool.inspect_pck(pck)
+
+    def test_standalone_pack_rejects_unverified_trailing_bytes(self) -> None:
+        tool = _load_tool()
+        with tempfile.TemporaryDirectory() as tmp:
+            pck = Path(tmp) / "trailing.pck"
+            _build_test_pck(pck, {"data/example.json": b"{}"}, trailing_bytes=b"UNVERIFIED")
+            summary = tool.inspect_pck(pck)
+
+        self.assertEqual(summary["trailing_unverified_bytes"], len(b"UNVERIFIED"))
+        self.assertFalse(summary["integrity_pass"])
 
 
 if __name__ == "__main__":
