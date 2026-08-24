@@ -43,6 +43,10 @@ jobs:
         run: python tests/python/test_v48_protected_canon_freshness.py -v
       - name: Validate playable POC post-merge canon
         run: python tests/python/test_playable_poc_postmerge_canon.py -v
+      - name: Validate current acceptance artifact evidence contract
+        run: python tests/python/test_acceptance_artifact_evidence_contract.py -v
+      - name: Validate Godot PCK integrity verifier
+        run: python tests/python/test_godot_pck_integrity_tool.py -v
       - name: Validate Switchy Editor Pilot plugin contract
         run: python tests/python/test_switchy_godot_live_editor_pilot_plugin_contract.py -v
       - name: Validate Switchy Pilot runner contract
