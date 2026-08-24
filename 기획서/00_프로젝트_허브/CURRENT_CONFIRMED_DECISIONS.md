@@ -1,6 +1,6 @@
 # Current Confirmed Decisions
 
-Last updated: `2026-08-21 KST`
+Last updated: `2026-08-24 KST`
 
 이 문서는 Switchy Express의 **현재 승인 Decision과 실행 권위**를 압축한다. 상세 규칙·근거·역사 CI는 각 Decision/Audit owner가 책임진다. Google Sheets는 migration-only이며 active decision authority가 아니다.
 
@@ -9,10 +9,14 @@ Last updated: `2026-08-21 KST`
 ```yaml
 current_product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
 current_decision_span: SX-DEC-027~059
-work_instruction: v4.7 · 2026-08-20-r1 · SWITCHY_THIN_ADAPTER
-work_instruction_source_sha256: 767bbe3d69e9a0acb0e5706321564ad8c04a451f7c54914a2bbdd7579f642037
-project_base_pin: v9.4.3
-base_remote_latest_observed: ef0092256be25eaa70a296a76d02f7205934929e · REFERENCE_ONLY
+work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER
+work_instruction_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
+v4_8_authority_merge_pr: 164
+v4_8_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
+v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
+project_base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
+base_latest_observed: 2828a74f60c1ed09546171040f4178c8848ea686
+base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 project_main_before_059_implementation: 4b37c154505ed1975735fc305a68b410877a40e0
 sx_dec_059_merge_pr: 158
 sx_dec_059_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
