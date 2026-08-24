@@ -3,6 +3,7 @@ name: Validate Project Base Adapter
 on:
   pull_request:
     branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
     paths:
       - .agents/skills/switchy-express-cargo-puzzle-workflow-router/**
       - skills/PROJECT_BASE_ADAPTER.json
@@ -10,14 +11,18 @@ on:
       - skills/SKILL_REGISTRY.json
       - docs/PROJECT_OPERATING_DASHBOARD.html
       - docs/PROJECT_OPERATING_HEALTH.json
+      - docs/operations/PROJECT_PROTECTED_CHANGE_APPROVAL.json
       - docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_*.json
       - docs/operations/SWITCHY_SHEET_AUTHORITY_EVIDENCE_*.json
+      - .github/workflows/validate-project-base-adapter.yml
+      - tests/test_approved_protected_change_workflow.py
       - tests/python/test_project_base_adapter_thin_migration.py
       - tests/test_base_shared_external_ai_adapter.py
       - tests/test_base_v942_planning_first_adoption.py
       - tests/test_base_v943_first_prompt_adoption.py
       - tests/test_base_v94_ai_operations_adoption.py
       - tests/python/test_v48_current_authority_migration.py
+      - 기획서/**
 
 permissions:
   contents: read
@@ -30,35 +35,86 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
-      - name: Check out current Base validator snapshot
+
+      - name: Check out approved Base validator gate
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: alsdmlals4-eng/Base
           ref: 2828a74f60c1ed09546171040f4178c8848ea686
           path: .base-contract
           fetch-depth: 0
+
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: "3.12"
-      - run: python -m pip install -r .base-contract/.github/validation-requirements.txt
-      - name: Validate adapter against exact PR base
+
+      - name: Install validator dependencies
+        run: python -m pip install -r .base-contract/.github/validation-requirements.txt
+
+      - name: Select trusted protected baseline
         env:
           PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
-          set +e
-          output=$(python .base-contract/tools/check_project_operating_contract.py \
+          set -euo pipefail
+          ADAPTER_PATH="skills/PROJECT_BASE_ADAPTER.json"
+          ADAPTER_CHANGES="$(git diff --name-only "$PR_BASE_SHA"...HEAD -- "$ADAPTER_PATH")"
+          if printf '%s\n' "$ADAPTER_CHANGES" | grep -Fxq "$ADAPTER_PATH"; then
+            PROTECTED_BASE_SHA="$PR_BASE_SHA"
+          else
+            PROTECTED_BASE_SHA="$(
+              git show "$PR_BASE_SHA:$ADAPTER_PATH" |
+                python -c 'import json, sys; payload = json.load(sys.stdin); print(payload["protected_baseline"]["commit"])'
+            )"
+          fi
+          python -c 'import re, sys; value = sys.argv[1]; raise SystemExit(0 if re.fullmatch(r"[0-9a-f]{40}", value) else 1)' "$PROTECTED_BASE_SHA"
+          git cat-file -e "$PROTECTED_BASE_SHA^{commit}"
+          git merge-base --is-ancestor "$PROTECTED_BASE_SHA" "$PR_BASE_SHA"
+          printf 'PROTECTED_BASE_SHA=%s\n' "$PROTECTED_BASE_SHA" >> "$GITHUB_ENV"
+
+      - name: Validate adapter and exact protected change approval
+        env:
+          EXTERNAL_APPROVAL: ${{ contains(github.event.pull_request.labels.*.name, 'approved-protected-change') }}
+        run: |
+          set -euo pipefail
+          APPROVAL_PATH="docs/operations/PROJECT_PROTECTED_CHANGE_APPROVAL.json"
+          APPROVAL_ARGS=()
+          if [ -f "$APPROVAL_PATH" ]; then
+            APPROVAL_ARGS=(--approval "$APPROVAL_PATH")
+          fi
+          python .base-contract/tools/check_approved_project_operating_contract.py \
             --project-root . \
             --base-repository .base-contract \
-            --protected-base "$PR_BASE_SHA" \
-            --check 2>&1)
-          status=$?
-          printf '%s\n' "$output"
-          if [ "$status" -ne 0 ]; then
-            while IFS= read -r line; do
-              escaped=${line//'%'/'%25'}
-              escaped=${escaped//$'\r'/'%0D'}
-              escaped=${escaped//$'\n'/'%0A'}
-              printf '::error file=skills/PROJECT_BASE_ADAPTER.json::%s\n' "$escaped"
-            done <<< "$output"
-          fi
-          exit "$status"
+            --protected-base "$PROTECTED_BASE_SHA" \
+            --external-approval "$EXTERNAL_APPROVAL" \
+            "${APPROVAL_ARGS[@]}" \
+            --check
+
+      - name: Diagnose generated view drift
+        if: failure()
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, str(Path('.base-contract/tools').resolve()))
+          import project_operating_contract as contract
+          from base_release_index import install_release_lock_paths
+          install_release_lock_paths(contract)
+          root = Path('.').resolve()
+          base = Path('.base-contract').resolve()
+          artifacts = contract.build_artifacts(root, base, prevalidated=True)
+          for path, content in artifacts.items():
+              if not path.is_file() or path.read_bytes() != content:
+                  path.parent.mkdir(parents=True, exist_ok=True)
+                  path.write_bytes(content)
+          PY
+          sha256sum skills/PROJECT_BASE_ADAPTER.json
+          git diff -- \
+            skills/PROJECT_SKILL_SNAPSHOT.json \
+            docs/PROJECT_OPERATING_DASHBOARD.html \
+            skills/BASE_V9_ADAPTER.json \
+            skills/PROJECT_BASE_SKILL_ADAPTER.json \
+            .agents/skills/switchy-express-cargo-puzzle-workflow-router/SKILL.md
+
+      - name: Run protected-change workflow regression
+        run: python -m unittest tests.test_approved_protected_change_workflow -v
