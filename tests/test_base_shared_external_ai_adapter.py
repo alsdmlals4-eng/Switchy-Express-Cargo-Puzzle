@@ -49,8 +49,9 @@ class BaseSharedExternalAIAdapterTests(unittest.TestCase):
         self.assertEqual("tools/check_external_ai_worktree_contract.py", override["base_validator_path"])
         self.assertEqual("base-v9.4.1.lock.json", override["base_release_lock"])
         self.assertEqual("NOT_RUN", override["actual_external_ai_worktree_execution"])
-        self.assertEqual("CURRENT", adapter["gdd_sheet"]["sync_status"])
-        self.assertEqual("SYNCED", adapter["gdd_sheet"]["declared_sync_status"])
+        self.assertEqual("MIGRATION_ONLY", adapter["gdd_sheet"]["sync_status"])
+        self.assertEqual("HISTORICAL_SYNCED", adapter["gdd_sheet"]["declared_sync_status"])
+        self.assertEqual("COMPATIBILITY_ONLY_MIGRATION_SOURCE", adapter["gdd_sheet"]["role"])
         self.assertTrue(adapter["protected_paths"])
 
     def test_worktree_parent_is_ignored_by_git(self) -> None:
@@ -60,6 +61,7 @@ class BaseSharedExternalAIAdapterTests(unittest.TestCase):
     def test_project_validation_discovers_adapter_test(self) -> None:
         adapter = load_adapter()
         self.assertIn("python tests/test_base_shared_external_ai_adapter.py", set(adapter["validators"]))
+        self.assertIn("python tests/python/test_v48_current_authority_migration.py -v", set(adapter["validators"]))
 
 
 if __name__ == "__main__":
