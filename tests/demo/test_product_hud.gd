@@ -35,7 +35,16 @@ func run() -> void:
 	assert_not_null(hud.get_node_or_null("StackPanel/StackLayout/StackSemanticBadge"), "HUD must include Stack semantic badge")
 	assert_not_null(hud.get_node_or_null("RunToolbar/ManualSemanticBadge"), "HUD must include manual-load semantic badge")
 	assert_not_null(hud.get_node_or_null("RunToolbar/AutoSemanticBadge"), "HUD must include auto-load semantic badge")
-	assert_not_null(hud.get_node_or_null("ProblemBanner/ProblemSemanticBadge"), "HUD must include preflight semantic badge")
+	var problem_layout := hud.get_node_or_null("ProblemBanner/ProblemLayout") as HBoxContainer
+	var problem_badge := hud.get_node_or_null("ProblemBanner/ProblemLayout/ProblemSemanticBadge") as Control
+	var problem_text := hud.get_node_or_null("ProblemBanner/ProblemLayout/ProblemText") as Label
+	assert_not_null(problem_layout, "preflight banner must use a horizontal layout")
+	assert_not_null(problem_badge, "HUD must include preflight semantic badge")
+	assert_not_null(problem_text, "HUD must include preflight problem text")
+	if problem_badge != null:
+		assert_equal(problem_badge.custom_minimum_size, Vector2(112, 48), "preflight badge keeps native semantic component footprint")
+	if problem_text != null:
+		assert_equal(problem_text.size_flags_horizontal, Control.SIZE_EXPAND_FILL, "preflight text owns remaining banner width")
 
 	var build_model := _model(&"BUILD")
 	hud.apply_model(build_model)
@@ -44,7 +53,7 @@ func run() -> void:
 	assert_true(hud.get_node("BuildToolbar").visible, "BUILD toolbar visible during BUILD")
 	assert_false(hud.get_node("RunToolbar").visible, "RUN toolbar hidden during BUILD")
 	assert_false(
-		(hud.get_node("ProblemBanner/ProblemText") as Label).text.contains("Disconnected route"),
+		(hud.get_node("ProblemBanner/ProblemLayout/ProblemText") as Label).text.contains("Disconnected route"),
 		"preflight detail must not leak diagnostic English"
 	)
 	if hud.has_method("semantic_state_for_test"):
