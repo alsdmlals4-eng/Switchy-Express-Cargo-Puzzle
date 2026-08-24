@@ -1,6 +1,6 @@
 # Active Context
 
-Last updated: `2026-08-24 KST`
+Last updated: `2026-08-21 KST`
 
 이 문서는 **현재 상태·다음 실행 지점·미검증 경계**를 연결하는 resume locator다. fresh GitHub/Notion/actual runtime이 저장 snapshot보다 우선한다.
 
@@ -13,11 +13,11 @@ project_main_before_implementation: 4b37c154505ed1975735fc305a68b410877a40e0
 sx_dec_059_merge_pr: 158
 sx_dec_059_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
 implementation_branch: feat/sx-dec-059-first-session · HISTORICAL_MERGED
-base_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
-base_remote_latest_observed: 2828a74f60c1ed09546171040f4178c8848ea686 · REFRESH_EACH_WORK
+base_pin: v9.4.3
+base_remote_latest_observed: ef0092256be25eaa70a296a76d02f7205934929e · REFERENCE_ONLY
 engine: Godot 4.7.1-stable
 language: GDScript
-work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER
+work_instruction: v4.7 · 2026-08-20-r1 · SWITCHY_THIN_ADAPTER
 product_baseline: GMB-002
 current_decisions: SX-DEC-027~059
 sx_dec_059_user_planning_complete: GRANTED · 2026-08-20 KST
@@ -37,7 +37,6 @@ sx_dec_057: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_058: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 semantic_assets: 73_TOTAL · PRODUCTION_COMPLETE
 pr_154: CLOSED_UNMERGED · SUPERSEDED_BY_059
-acceptance_candidate: SX59-ACCEPT-001 · ARTIFACT_INTEGRITY_PASS
 acceptance_build: UNASSIGNED
 developer_self_run: NOT_RUN
 windows_physical_runtime: NOT_RUN
@@ -149,15 +148,14 @@ Station mismatch/actual trace is not guessed.
 ## Playtest / evidence state
 
 Use:
-- `PLAYTEST_PLAN_V4_7_CURRENT.md` — file name retained as historical compatibility wrapper; its current execution consumers remain valid until separately migrated.
+- `PLAYTEST_PLAN_V4_7_CURRENT.md`
 - `SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`
 
 ```text
 AUTOMATED CONTRACT: PASS · MERGED_MAIN_VERIFIED
 → developer self-run / screen QA: NOT_RUN
 → exact acceptance build identity: UNASSIGNED
-→ Windows physical smoke: NOT_RUN
-→ Android device smoke: NOT_RUN
+→ reviewed physical smoke on that same build: NOT_RUN
 → Five-person first-contact comprehension: NOT_RUN
 → decision gate: NOT_RUN
 ```
@@ -200,7 +198,7 @@ The implementation used an isolated worktree and Godot 4.7.1. Future authoring m
 - no score/combo formula invention.
 - no fast/cheap TrackPiece field invention.
 - no player-facing solver.
-- no Base repin from historical project compatibility state.
+- no Base repin.
 - no generated visual without explicit user image request.
 - no physical/human PASS inflation.
 
@@ -217,24 +215,24 @@ The implementation used an isolated worktree and Godot 4.7.1. Future authoring m
 
 ## Resume read order
 
-1. fresh Base completed `main` + Base root `AGENTS.md`.
+1. fresh Base completed `main`.
 2. fresh Project `main`, latest commit, all Open/Draft PR.
 3. exact Project Notion Home.
 4. `AGENTS.md`.
-5. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`.
+5. v4.7 Switchy adapter.
 6. `FINITE_DELIVERY_PUZZLE_BASELINE.md`.
 7. `CURRENT_CONFIRMED_DECISIONS.md`.
 8. this `ACTIVE_CONTEXT.md`.
 9. `DEVELOPMENT_GATES.md`.
 10. 059 content/UI/localization/visual/playtest owners.
-11. historical v4.7 adapter/implementation-handoff only when rollback/provenance evidence is needed.
+11. implementation/handoff package only when historical execution evidence is needed.
 
 ## Current next action
 
 ```text
 developer self-run / screen QA
 → designate exact acceptance build when physical validation is prepared
-→ Windows physical smoke
+→ Windows physical smoke as applicable
 → Android device smoke as separate platform gate
 → Five-person first-contact comprehension on the same build
 → EXPAND / REWORK / REPEAT_SLICE / HOLD / STOP
