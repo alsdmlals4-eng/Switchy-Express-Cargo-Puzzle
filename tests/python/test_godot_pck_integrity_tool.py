@@ -24,8 +24,7 @@ def _load_tool():
 
 
 def _build_test_pck(path: Path, files: dict[str, bytes], flags: int = 2) -> None:
-    header_size = 112
-    file_base = header_size
+    file_base = 112
     data = bytearray()
     records: list[tuple[str, int, int, bytes, int]] = []
 
@@ -40,7 +39,8 @@ def _build_test_pck(path: Path, files: dict[str, bytes], flags: int = 2) -> None
     header.extend(struct.pack("<IIIII", 4, 4, 7, 1, flags))
     header.extend(struct.pack("<QQ", file_base, directory_offset))
     header.extend(b"\x00" * 64)
-    if len(header) != header_size:
+    header.extend(b"\x00" * (file_base - len(header)))
+    if len(header) != file_base:
         raise AssertionError(f"unexpected synthetic header size: {len(header)}")
 
     directory = bytearray(struct.pack("<I", len(records)))
