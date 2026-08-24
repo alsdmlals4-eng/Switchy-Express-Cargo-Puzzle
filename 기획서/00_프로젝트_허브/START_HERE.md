@@ -16,7 +16,7 @@ Last updated: `2026-08-24 KST`
 | User planning-complete gate | `GRANTED · 2026-08-20 KST` |
 | SX-DEC-059 implementation | `PR #158 MERGED_MAIN_VERIFIED · main 162e8a0a5e8ddc8472e74a6152e87dc12008e34c` |
 | Playable visual/UX POC | `PR #166 MERGED_MAIN_VERIFIED · main 1bf798cedf28dffba9185edb62fb1c50c108fe90` |
-| Candidate 002 physical evidence | `Windows startup smoke PASS · BLOCKED_BY_CONFIRMED_P1_PREFLIGHT_VISUAL_DEFECTS · acceptance promotion PROHIBITED` |
+| Candidate 002 physical evidence | `SX59-POC-ACCEPT-002 · Windows startup smoke PASS · BLOCKED_BY_CONFIRMED_P1_PREFLIGHT_VISUAL_DEFECTS · acceptance promotion PROHIBITED` |
 | Physical P1 correction | `PR #171 MERGED_MAIN_VERIFIED · main 9d82b004b2ebf3f7d69d0376c79daae1040e94a4` |
 | Candidate 003 preparation | `PR #172 MERGED_MAIN_VERIFIED · main 2521f3be600ea950f9893ce45940604c2d0ac88a` |
 | Current POC candidate | `SX59-POC-ACCEPT-003 · PREPARED · PHYSICAL_VISUAL_RECHECK_FIRST` |
@@ -82,7 +82,7 @@ T1 · Track Connection
 
 ## Physical evidence boundary
 
-Candidate 002는 exact package verification 뒤 실제 사용자 Windows 환경에서 Godot 4.7.1/OpenGL Compatibility/NVIDIA GeForce RTX 3050으로 기동했다. 따라서 **Candidate 002 Windows startup smoke는 PASS**다.
+`SX59-POC-ACCEPT-002`는 exact package verification 뒤 실제 사용자 Windows 환경에서 Godot 4.7.1/OpenGL Compatibility/NVIDIA GeForce RTX 3050으로 기동했다. 따라서 **Candidate 002 Windows startup smoke는 PASS**다.
 
 그러나 실제 화면에서 다음 P1이 확인됐다.
 
