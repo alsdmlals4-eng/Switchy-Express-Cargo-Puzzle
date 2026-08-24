@@ -442,10 +442,16 @@ func _apply_lesson_card() -> void:
 	if _first_session_director == null or _first_session_copy == null:
 		return
 	var lesson: Dictionary = _first_session_director.current_lesson()
+	var progress := get_node_or_null("BriefingScreen/Panel/Content/LessonProgress") as Label
 	var title := get_node_or_null("BriefingScreen/Panel/Content/Title") as Label
 	var objective := get_node_or_null("BriefingScreen/Panel/Content/Objective") as Label
 	var rules := get_node_or_null("BriefingScreen/Panel/Content/Rules") as Label
 	var begin := get_node_or_null("BriefingScreen/Panel/Content/BeginButton") as Button
+	if progress != null:
+		progress.text = "%d / %d" % [
+			_first_session_director.current_lesson_number(),
+			_first_session_director.lesson_count(),
+		]
 	if title != null:
 		title.text = _first_session_copy.text(StringName(lesson.get("title_key", &"")), first_session_locale)
 	if objective != null:
