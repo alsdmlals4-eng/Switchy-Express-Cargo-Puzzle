@@ -43,7 +43,7 @@ Last updated: `2026-08-24 KST`
 
 ```yaml
 base_v4_8_authority_time_snapshot: 2828a74f60c1ed09546171040f4178c8848ea686
-base_latest_observed: 7a8b1c596f9cf1e8da8d2652be076a0624e0b4a2
+base_latest_observed: 8820ca9c0d46da0dda3256b52802dfb02d4c4954
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
 ```
