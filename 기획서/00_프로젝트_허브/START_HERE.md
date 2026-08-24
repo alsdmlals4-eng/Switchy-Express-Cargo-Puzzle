@@ -13,6 +13,7 @@ Last updated: `2026-08-24 KST`
 | 작업지시문 | `v4.8 · revision 2026-08-24-r2 · Switchy thin adapter` |
 | 작업지시문 source SHA-256 | `6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508` |
 | v4.8 authority merge | `PR #164 · main 98ed1c65d678bfc262c32084bbf0e59368093c2c` |
+| User planning-complete gate | `GRANTED · 2026-08-20 KST` |
 | SX-DEC-059 implementation | `PR #158 MERGED_MAIN_VERIFIED · main 162e8a0a5e8ddc8472e74a6152e87dc12008e34c` |
 | Playable visual/UX POC | `PR #166 MERGED_MAIN_VERIFIED · main 1bf798cedf28dffba9185edb62fb1c50c108fe90` |
 | Candidate 002 physical evidence | `Windows startup smoke PASS · BLOCKED_BY_CONFIRMED_P1_PREFLIGHT_VISUAL_DEFECTS · acceptance promotion PROHIBITED` |
