@@ -1,16 +1,26 @@
 # SX-DEC-059 · Playable POC Developer Self-Run Record 02
 
-Date: `2026-08-24 KST`
+Date: `2026-08-24 KST`  
 Status: `NOT_RUN · READY_TO_EXECUTE`
 
 ```yaml
 candidate_id: SX59-POC-ACCEPT-002
-candidate_zip_sha256: c0a7856efaeb278ac1501ee5b36ec4af15c088aefd88b759eb15681c7ce4fd42
+artifact_evidence_owner: evidence/acceptance/sx59_poc_accept_002_artifact.json
+candidate_zip_sha256: 16c81f9b42a3391a2a3dabf501cb2d6eb7e011682abdaa3f79eb8b1124836e55
+candidate_exe_sha256: 1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244
+candidate_pck_sha256: d48fe09796954f3b4f836d092b4184cb0ac33bc6f1f3b96f52166e2d6760aa0f
 verdict: NOT_RUN
 candidate_promotion: BLOCKED_BY_DEVELOPER_SELF_RUN
 windows_physical_runtime: NOT_RUN
+audio_perceptual_qa: NOT_RUN
 player_experience: NOT_RUN
 ```
+
+## Evidence reconciliation note
+
+기존 record의 `c0a785...` ZIP anchor는 fresh GitHub Actions API + artifact 재다운로드와 일치하지 않아 폐기했다. 현재 self-run 대상은 machine-readable evidence owner에 고정된 content digest로만 식별한다.
+
+Artifact ID/name/expiry는 retention에 따라 가용성이 달라지는 delivery metadata이며 self-run 판정의 장기 identity가 아니다. 실제 실행 전 확보한 ZIP/EXE/PCK가 위 digest와 모두 일치하지 않으면 **실행하지 않고 BLOCKED_PACKAGE_IDENTITY**로 기록한다.
 
 ## 사용 규칙
 
@@ -19,6 +29,7 @@ player_experience: NOT_RUN
 - 각 Scenario에서 `PASS / FAIL / BLOCKED`와 관찰 사실을 기록한다.
 - 해결법을 미리 보지 않고 first-session이 스스로 안내하는지 확인한다.
 - 이미지 누락, UI clipping, 잘못된 icon/result art도 blocker로 기록한다.
+- 실제 청취에서 cue 식별성·볼륨·반복 피로도를 별도 기록한다. 코드상 audio cue 존재만으로 perceptual audio PASS를 주장하지 않는다.
 
 ## Scenario 1 · T1→T6→Capstone happy path
 
@@ -27,6 +38,7 @@ status: NOT_RUN
 progression_dead_end: NOT_RUN
 visual_readability: NOT_RUN
 input_readability: NOT_RUN
+audio_readability: NOT_RUN
 notes: ""
 ```
 
@@ -109,6 +121,19 @@ notes: ""
 
 확인: motion 감소 상태에서도 cargo/TOP/switch/result의 판단 정보가 유지되는가.
 
+## Audio perceptual QA · cross-scenario
+
+```yaml
+button_build_remove_distinguishable: NOT_RUN
+switch_cue_readable: NOT_RUN
+pickup_unload_distinguishable: NOT_RUN
+success_failure_distinguishable: NOT_RUN
+train_loop_fatigue: NOT_RUN
+speaker_headphone_level_balance: NOT_RUN
+```
+
+현재 runtime에는 generated cue와 train loop가 구현돼 있지만, 위 항목은 실제 청취 없이는 PASS로 승격하지 않는다.
+
 ## POC 공통 blocker 기록
 
 ```yaml
@@ -119,13 +144,14 @@ player_facing_placeholder: NOT_RUN
 crash_or_script_error: NOT_RUN
 critical_image_missing: NOT_RUN
 critical_ui_clipping: NOT_RUN
+critical_audio_ambiguity: NOT_RUN
 unsupported_evidence_claim: NOT_RUN
 p0_p1_blocker_count: NOT_RUN
 ```
 
 ## Promotion rule
 
-8개 Scenario가 모두 실행되고 P0/P1 blocker가 0일 때만 candidate 002를 exact acceptance build로 지정한다.
+8개 Scenario가 모두 실행되고 package identity가 일치하며 P0/P1 blocker가 0일 때만 candidate 002를 exact acceptance build로 지정한다.
 
 ```yaml
 candidate_promotion: BLOCKED_BY_DEVELOPER_SELF_RUN
