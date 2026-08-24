@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://game/demo/presentation/product_hud.gd" id="1_hud"]
 [ext_resource type="Script" path="res://game/demo/presentation/semantic_texture_stack.gd" id="2_semantic"]
+[ext_resource type="Texture2D" path="res://art/product_assets/ed_hybrid_v1/core/core_rail_straight_normal_v01.png" id="3_straight"]
+[ext_resource type="Texture2D" path="res://art/product_assets/ed_hybrid_v1/core/core_rail_curve_normal_v01.png" id="4_curve"]
+[ext_resource type="Texture2D" path="res://art/product_assets/ed_hybrid_v1/core/core_rail_switch_three_way_normal_v01.png" id="5_switch"]
+[ext_resource type="Texture2D" path="res://art/product_assets/ed_hybrid_v1/core/core_rail_crossing_normal_v01.png" id="6_crossing"]
 
 [node name="ProductHUD" type="Control"]
 layout_mode = 3
@@ -93,21 +97,33 @@ mouse_filter = 1
 custom_minimum_size = Vector2(96, 52)
 layout_mode = 2
 text = "직선  1"
+icon = ExtResource("3_straight")
+expand_icon = true
+icon_max_width = 28
 
 [node name="CurveButton" type="Button" parent="BuildToolbar"]
 custom_minimum_size = Vector2(96, 52)
 layout_mode = 2
 text = "곡선  2"
+icon = ExtResource("4_curve")
+expand_icon = true
+icon_max_width = 28
 
 [node name="SwitchButton" type="Button" parent="BuildToolbar"]
 custom_minimum_size = Vector2(96, 52)
 layout_mode = 2
 text = "분기  3"
+icon = ExtResource("5_switch")
+expand_icon = true
+icon_max_width = 28
 
 [node name="CrossingButton" type="Button" parent="BuildToolbar"]
 custom_minimum_size = Vector2(96, 52)
 layout_mode = 2
 text = "교차  4"
+icon = ExtResource("6_crossing")
+expand_icon = true
+icon_max_width = 28
 
 [node name="RecommendButton" type="Button" parent="BuildToolbar"]
 custom_minimum_size = Vector2(116, 52)
