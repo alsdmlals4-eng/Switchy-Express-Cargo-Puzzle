@@ -12,17 +12,24 @@
     "legacy_inputs": {},
     "views": []
   },
+  "workspace": {
+    "human_workspace": "NOTION_DEFAULT_PROJECT_WORKSPACE",
+    "runtime_structured_authority": "GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME",
+    "google_sheets_policy": "COMPATIBILITY_ONLY_MIGRATION_SOURCE_UNTIL_REMOVAL"
+  },
   "gdd_sheet": {
     "canonical_freshness_audit": "SX-AUD-025",
     "decision_commit": "dff1653738f1eead3cacff303080924d662767e2",
-    "declared_sync_status": "SYNCED",
+    "declared_sync_status": "HISTORICAL_SYNCED",
     "latest_automated_verified_product_main": "1339a9467312d0ac680725894a9efb59746ec2cc",
     "repository_main_observed": "dff1653738f1eead3cacff303080924d662767e2",
-    "role": "USER_FACING_GDD_WORKSPACE",
+    "role": "COMPATIBILITY_ONLY_MIGRATION_SOURCE",
     "spreadsheet_id": "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo",
-    "sync_status": "CURRENT",
+    "sync_status": "MIGRATION_ONLY",
     "url": "https://docs.google.com/spreadsheets/d/1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo/edit",
-    "verified_at": "2026-08-06T22:45:31+09:00"
+    "verified_at": "2026-08-06T22:45:31+09:00",
+    "provenance_status": "HISTORICAL_COMPATIBILITY_EVIDENCE",
+    "new_input_allowed": false
   },
   "project": {
     "engine": "Godot 4.7.1",
@@ -162,8 +169,9 @@
         "max_approved_decisions_per_batch": 10,
         "numeric_default_state": "RECOMMENDED_DEFAULT",
         "planning_conflict_state": "GRILL_ME_REQUIRED",
-        "post_merge_sheet_state": "SYNCED_TO_MAIN",
-        "pre_merge_sheet_state": "APPROVED_PENDING_MERGE"
+        "legacy_post_merge_sheet_state": "SYNCED_TO_MAIN",
+        "legacy_pre_merge_sheet_state": "APPROVED_PENDING_MERGE",
+        "current_human_workspace": "NOTION_DEFAULT_PROJECT_WORKSPACE"
       }
     },
     "optimizing-ai-model-and-prompt-costs": {
@@ -212,6 +220,7 @@
     "python tests/test_base_shared_external_ai_adapter.py",
     "python tests/test_base_v942_planning_first_adoption.py",
     "python tests/test_base_v943_first_prompt_adoption.py",
-    "python tests/test_post_merge_canon_freshness.py"
+    "python tests/test_post_merge_canon_freshness.py",
+    "python tests/python/test_v48_current_authority_migration.py -v"
   ]
 }
