@@ -32,12 +32,15 @@ Current project sources remain subordinate to fresh runtime/repository evidence 
 
 ## 3. Problem statement
 
-The project already adopted v4.8 r2 and Candidate 003 post-merge canon, but current entry surfaces still contain two stale authority signals:
+The project already adopted v4.8 r2 and Candidate 003 post-merge canon, but active current-owner surfaces still contain stale authority signals:
 
-1. `AGENTS.md`, `README.md`, and the v4.8 Switchy adapter identify `2026-08-24-r2` as current work-instruction revision.
-2. The v4.8 Switchy adapter still identifies `SX59-ACCEPT-001` and the older post-059 validation sequence, while `ACTIVE_CONTEXT.md` already identifies `SX59-POC-ACCEPT-003` as the current candidate and keeps its physical visual recheck fail-closed.
+1. `AGENTS.md`, `README.md`, the v4.8 Switchy adapter, `START_HERE.md`, `ACTIVE_CONTEXT.md`, `CURRENT_CONFIRMED_DECISIONS.md`, `ROADMAP.md`, and `DEVELOPMENT_GATES.md` still advertise `2026-08-24-r2` as the current work-instruction revision.
+2. The v4.8 Switchy adapter and active `skills/switchy-express-design/SKILL.md` still identify `SX59-ACCEPT-001` or its older post-059 validation sequence as current, while `ACTIVE_CONTEXT.md` and Candidate 003 owners already identify `SX59-POC-ACCEPT-003` as the current target and keep its physical visual recheck fail-closed.
+3. Leaving one of these active consumers stale would allow later AI/Codex routing to regress even if the root adapter were corrected.
 
 The Notion Human Home is structurally correct but can communicate the full game loop more directly. It currently shows the T1→T6 first-session chain, yet the relationship between BUILD, preflight, RUN, LIFO/switch decisions, delivery result, and Retry/Edit can be more explicit for a human reader.
+
+This expanded active-consumer inventory is a `reference-freshness` finding inside the already approved goal. It does not change product scope or require a new gameplay Decision.
 
 ## 4. Protected product meaning
 
@@ -65,6 +68,7 @@ Owns:
 
 - work-instruction identity and project thin adapter;
 - structured current candidate/evidence locator;
+- active project routing/entry owners and the project-specific design Skill;
 - tests that reject stale r2/current-candidate claims;
 - audit record `SX-AUD-070`;
 - actual code/data/Scene/Resource/test/runtime truth.
@@ -93,7 +97,7 @@ A prior plan already implemented the r2 v4.8 migration:
 
 `docs/superpowers/plans/2026-08-24-v48-current-authority-reconciliation.md`
 
-Reuse the existing adapter, regression test, Human Home hierarchy, and Candidate evidence model. Do not create a parallel adapter, dashboard, Sheet workflow, or new project-management surface.
+Reuse the existing adapter, regression test, Human Home hierarchy, Candidate evidence model, and project-specific Switchy Skill. Do not create a parallel adapter, dashboard, Sheet workflow, Skill, or new project-management surface.
 
 Disposition:
 
@@ -101,9 +105,11 @@ Disposition:
 prior_v48_r2_migration: ADAPT
 existing_v48_adapter: REUSE_AND_UPDATE
 existing_v48_regression_test: REUSE_AND_STRENGTHEN
+existing_switchy_skill: REUSE_AND_REFRESH
 existing_notion_home: REUSE_AND_REFINE
 new_gameplay_system: REJECT
 new_dashboard_or_sheet_workspace: REJECT
+new_parallel_skill: REJECT
 ```
 
 ## 7. Trade study
@@ -113,7 +119,7 @@ new_dashboard_or_sheet_workspace: REJECT
 Selected.
 
 - Correct r4/current-candidate authority first.
-- Strengthen executable regression coverage.
+- Strengthen executable regression coverage across all active consumers.
 - Improve the Human Home by projection, not duplication.
 - Keep physical/human validation as the next product gate.
 
@@ -153,23 +159,35 @@ Strengthen `tests/python/test_v48_current_authority_migration.py` so it fails if
 
 - the current project adapter is not `2026-08-24-r4`;
 - the exact r4 source file hash is not recorded;
-- `AGENTS.md` or `README.md` still advertise r2 as current;
-- the current adapter still advertises Candidate 001 instead of Candidate 003;
+- any active current owner still advertises r2 as current;
+- the adapter or active project Skill still advertises Candidate 001 as the current target;
 - the current validation sequence omits Candidate 003 Gate 0 / developer self-run / audio perceptual QA / Windows / Android / five-person evidence separation;
 - any deferred 056~058 package becomes authorized by this migration.
 
-Observed RED must precede the adapter/entry-owner GREEN implementation.
+Observed RED must precede current-owner GREEN implementation.
 
-### 9.2 Current entry owners
+### 9.2 Active current owners
 
-Update only the existing owners:
+Update the existing owners, not historical evidence files:
 
 - `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`
 - `AGENTS.md`
 - `README.md`
-- `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md` only for r4 locator/freshness metadata; preserve Candidate 003 evidence bytes and next physical gate.
+- `기획서/00_프로젝트_허브/START_HERE.md`
+- `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
+- `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
+- `기획서/00_프로젝트_허브/ROADMAP.md`
+- `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
+- `skills/switchy-express-design/SKILL.md`
 
-Historical v4.7 and r2 provenance remains discoverable; do not copy the full r4 contract into the adapter.
+Edits are bounded:
+
+- r4 locator/source identity where the surface declares current authority;
+- Candidate 003 Gate 0 and subsequent current validation sequence where the surface declares current next work;
+- project Skill current read-order/gate targets;
+- no rewriting of historical r2/v4.7 evidence sections merely because they contain old literals.
+
+Historical v4.7/r2 plans, audits, Candidate 001/002 evidence, and old merge records remain discoverable as historical provenance; do not copy the full r4 contract into the adapter or every current owner.
 
 ### 9.3 Audit owner
 
@@ -177,7 +195,7 @@ Create:
 
 `기획서/50_제작_검증/SX_AUD_070_V48_R4_AUTHORITY_AND_HUMAN_FLOW_RECONCILIATION.md`
 
-It records baseline, r4 delta, benchmark disposition, RED/GREEN evidence, IRG ceiling, five-pass adversarial review, PR/merge identity, Notion readback, and remaining physical/human gates.
+It records baseline, r4 delta, active-consumer finding, benchmark disposition, RED/GREEN evidence, IRG ceiling, five-pass adversarial review, PR/merge identity, Notion readback, and remaining physical/human gates.
 
 ## 10. Notion Human Home design
 
@@ -209,9 +227,9 @@ No repository/Notion write is considered complete until destination readback suc
 
 ## 12. Acceptance criteria
 
-- Current project work-instruction locator says `v4.8 · 2026-08-24-r4`.
-- Exact user r4 file SHA-256 `1426c2e5...63ea6` is recorded in the thin adapter/regression contract.
-- Candidate 003 is the current acceptance target everywhere this package touches.
+- Current project work-instruction locator says `v4.8 · 2026-08-24-r4` across all active authority-declaring owners touched by the freshness audit.
+- Exact user r4 file SHA-256 `1426c2e5...63ea6` is recorded in the thin adapter/regression contract and current authority snapshots where an exact source identity is required.
+- Candidate 003 is the current acceptance target in all active current-routing surfaces.
 - Candidate 002 remains historical physical evidence and Candidate 001 remains superseded history where referenced.
 - GMB-002 and 056~058 product authorization states do not change.
 - No `game/**`, Scene, Resource, gameplay data, product image/audio, or runtime behavior changes.
