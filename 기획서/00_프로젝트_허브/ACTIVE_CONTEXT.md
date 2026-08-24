@@ -78,6 +78,7 @@ sx_dec_055_runtime_implementation: MERGED_MAIN_VERIFIED
 runtime_integrated: true
 sx_dec_055_merge_main: 534a7318b349cd3e784a3467125f9ebd23124d8a
 canonical_freshness_audit: SX-AUD-025
+repository_main_observed: dff1653738f1eead3cacff303080924d662767e2 · HISTORICAL_SHEET_COMPATIBILITY_EVIDENCE_ONLY
 latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
 pc_local_route_and_mid_run_retest: RETEST_REQUIRED
 ANDROID DEVICE SMOKE: NOT_RUN
