@@ -22,8 +22,8 @@ v4_8_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
 v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
 base_v4_8_authority_time_snapshot: 2828a74f60c1ed09546171040f4178c8848ea686
-base_latest_observed: 8820ca9c0d46da0dda3256b52802dfb02d4c4954
-base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
+base_canon_sync_observation: 862938478cfea6c9db16691900c9c4fdc464f9ff · AUDIT_EVIDENCE_ONLY
+base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 sx_dec_059_merge_pr: 158
 sx_dec_059_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
 SX_DEC_059_IMPLEMENTATION: MERGED_MAIN_VERIFIED
@@ -64,6 +64,8 @@ sx_dec_057: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_058: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 pr_154: CLOSED_UNMERGED · SUPERSEDED_BY_059
 ```
+
+`base_canon_sync_observation`은 이번 문서 교정 시점의 감사 증거일 뿐 current Base pin이 아니다. 실제 Base 권위는 실행할 때마다 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN`으로 다시 결정한다.
 
 ## Stable Phase-B / post-merge compatibility aliases
 
