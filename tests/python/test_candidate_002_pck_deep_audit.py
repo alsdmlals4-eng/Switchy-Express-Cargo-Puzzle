@@ -30,16 +30,23 @@ class Candidate002PckDeepAuditTests(unittest.TestCase):
         self.assertEqual(identity["windows_pck_sha256"], package["windows_pck_sha256"])
 
     def test_pck_integrity_is_complete_and_fail_closed(self) -> None:
-        _artifact, audit = self._read()
+        artifact, audit = self._read()
         pck = audit["pck_integrity"]
         self.assertTrue(VERIFIER.is_file())
         self.assertEqual(pck["verifier"], "tools/verify_godot_pck_integrity.py")
+        self.assertEqual(pck["final_verifier_actual_candidate_invocation"], "PASS")
+        self.assertEqual(
+            pck["recomputed_windows_pck_sha256"],
+            artifact["package"]["windows_pck_sha256"],
+        )
         self.assertEqual(pck["pack_format_version"], 4)
         self.assertEqual(pck["engine_version"], "4.7.1")
         self.assertEqual(pck["file_count"], 470)
         self.assertEqual(pck["verified_entry_count"], pck["file_count"])
         self.assertEqual(pck["md5_mismatch_count"], 0)
         self.assertEqual(pck["bounds_error_count"], 0)
+        self.assertEqual(pck["nonzero_entry_flags_count"], 0)
+        self.assertEqual(pck["trailing_unverified_bytes"], 0)
         self.assertTrue(pck["integrity_pass"])
 
     def test_product_texture_packaging_has_one_ctex_per_import(self) -> None:
