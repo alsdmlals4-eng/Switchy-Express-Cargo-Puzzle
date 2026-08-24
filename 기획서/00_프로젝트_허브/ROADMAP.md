@@ -184,7 +184,7 @@ candidate_003_physical_visual_recheck: NOT_RUN
 
 Candidate 002의 실제 Windows 기동은 역사 evidence다. 수정된 presentation bytes의 physical appearance를 검증하지 않았으므로 Candidate 003 acceptance는 아직 열려 있다.
 
-## M6 · Candidate 003 physical/device/human validation
+## M6 · Physical/device/human validation · Candidate 003
 
 `NOT_RUN · CURRENT_NEXT_PRODUCT_GATE`
 
