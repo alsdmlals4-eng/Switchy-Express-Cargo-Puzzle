@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "artifact_role": "PROJECT_PROTECTED_CHANGE_APPROVAL",
+  "status": "APPROVED",
+  "protected_base_commit": "cf207f29cd4dcabc5796769f0eb0ca6764c2370e",
+  "decision_ids": [
+    "SX-DEC-059",
+    "SX-AUD-070"
+  ],
+  "approved_paths": [
+    "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
+    "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
+    "기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md",
+    "기획서/00_프로젝트_허브/ROADMAP.md",
+    "기획서/00_프로젝트_허브/START_HERE.md",
+    "기획서/50_제작_검증/SX_AUD_070_V48_R4_AUTHORITY_AND_HUMAN_FLOW_RECONCILIATION.md"
+  ],
+  "approval_source": "USER_CURRENT_SESSION_APPROVAL_2026-08-25",
+  "approval_time": "2026-08-25T08:03:00+09:00",
+  "scope_summary": "User-approved SX-AUD-070 authority/reference-freshness reconciliation for the existing SX-DEC-059 finite first-session product. Exact protected paths only; no gameplay/runtime/asset meaning change."
+}

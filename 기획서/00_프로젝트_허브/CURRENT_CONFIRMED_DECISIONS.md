@@ -1,6 +1,6 @@
 # Current Confirmed Decisions
 
-Last updated: `2026-08-24 KST`
+Last updated: `2026-08-25 KST`
 
 이 문서는 Switchy Express의 **현재 승인 Decision과 실행 권위**를 압축한다. 상세 규칙·근거·역사 CI는 각 Decision/Audit owner가 책임진다. Google Sheets는 migration-only이며 active decision authority가 아니다.
 
@@ -9,13 +9,14 @@ Last updated: `2026-08-24 KST`
 ```yaml
 current_product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
 current_decision_span: SX-DEC-027~059
-work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER
-work_instruction_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
-v4_8_authority_merge_pr: 164
-v4_8_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
+work_instruction: v4.8 · 2026-08-24-r4 · SWITCHY_THIN_ADAPTER
+work_instruction_source_sha256: 1426c2e5e25e32dc72abccf49e4a0839578e54c14b38ba0de045be426fd63ea6
+historical_v48_r2_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
+v4_8_r2_authority_merge_pr: 164
+v4_8_r2_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
 v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 project_base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
-base_v4_8_authority_time_snapshot: 2828a74f60c1ed09546171040f4178c8848ea686
+base_v4_8_initial_authority_snapshot: 2828a74f60c1ed09546171040f4178c8848ea686
 base_canon_sync_observation: 862938478cfea6c9db16691900c9c4fdc464f9ff · AUDIT_EVIDENCE_ONLY
 base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 sx_dec_059_merge_pr: 158
@@ -27,6 +28,7 @@ sx_dec_059_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-066
 playable_visual_ux_poc: MERGED_MAIN_VERIFIED · PR_166 · main_1bf798cedf28dffba9185edb62fb1c50c108fe90
 physical_preflight_visual_correction: MERGED_MAIN_VERIFIED · PR #171 · main_9d82b004b2ebf3f7d69d0376c79daae1040e94a4
 candidate_003_preparation: MERGED_MAIN_VERIFIED · PR #172 · main_2521f3be600ea950f9893ce45940604c2d0ac88a
+candidate_003_postmerge_canon: MERGED_MAIN_VERIFIED · PR #173 · main_cf207f29cd4dcabc5796769f0eb0ca6764c2370e
 current_candidate_pointer: evidence/acceptance/current_poc_candidate.json
 current_candidate: SX59-POC-ACCEPT-003
 candidate_002_windows_physical_startup_smoke: PASS
@@ -54,7 +56,7 @@ sx_dec_058: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
 ```
 
-`base_canon_sync_observation`은 이번 Candidate 003 canon-sync 감사 시점의 evidence다. 실행 권위는 SHA snapshot이 아니라 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN`이며, 작업 시작마다 fresh Base completed main을 다시 읽는다.
+Base snapshot SHA는 history/audit evidence다. 실행 권위는 SHA snapshot이 아니라 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN`이며, 작업 시작마다 fresh Base completed main을 다시 읽는다.
 
 ## Current core promise
 
@@ -180,7 +182,7 @@ evidence/acceptance/current_poc_candidate.json
 기획서/50_제작_검증/SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_03.md
 ```
 
-Historical Candidate 002 docs/evidence는 비교·회귀 증거로만 유지한다.
+Historical Candidate 001/002 docs/evidence는 비교·회귀 증거로만 유지한다.
 
 ## Current execution boundary
 
@@ -190,6 +192,7 @@ PR #158 SX-DEC-059 implementation MERGED_MAIN_VERIFIED
 → Candidate 002 actual Windows startup PASS / P1 visual findings
 → PR #171 physical preflight visual correction MERGED_MAIN_VERIFIED
 → PR #172 Candidate 003 + explicit current pointer MERGED_MAIN_VERIFIED
+→ PR #173 Candidate 003 postmerge canon MERGED_MAIN_VERIFIED
 → Candidate 003 physical visual recheck: NOT_RUN
 → if clean, same exact Candidate 003 developer self-run / screen QA + audio perceptual QA
 → exact acceptance build designation
@@ -201,8 +204,8 @@ PR #158 SX-DEC-059 implementation MERGED_MAIN_VERIFIED
 
 ## Candidate 003 Gate 0
 
-1. preflight semantic badge가 compact lane에 있고 Korean problem copy와 겹치지 않는지 확인.
-2. disconnected station/cargo의 color+shape+text identity가 유지되고 problem reinforcement가 outline만 사용하는지 확인.
+1. **physical visual recheck**: preflight semantic badge가 compact lane에 있고 Korean problem copy와 겹치지 않는지 확인.
+2. **physical visual recheck**: disconnected station/cargo의 color+shape+text identity가 유지되고 problem reinforcement가 outline만 사용하는지 확인.
 
 하나라도 실패하면 `BLOCKED_P1_VISUAL`로 중단한다.
 
@@ -217,4 +220,4 @@ BMK-R09 Shareable Route Card → POST_VALIDATION_HOLD
 BMK-R10 Editor/UGC → POST_VALIDATION_HOLD
 ```
 
-Historical endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset는 current 의미로 재활성화하지 않는다. 현재 Decision span 밖의 새 Decision은 만들지 않는다.
+Historical endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset는 current 의미로 재활성화하지 않는다. 현재 Decision span 밖의 새 gameplay Decision은 만들지 않는다.

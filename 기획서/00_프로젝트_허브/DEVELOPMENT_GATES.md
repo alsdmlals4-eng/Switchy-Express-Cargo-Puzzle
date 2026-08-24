@@ -1,24 +1,25 @@
 # Development Gates
 
-Last updated: `2026-08-24 KST`
+Last updated: `2026-08-25 KST`
 
 현재 실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 우선한다. 과거 commit/PR/run은 역사 evidence이며 current next action을 자동 정의하지 않는다.
 
 ## 0. Current authority
 
 ```yaml
-current_work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER
-work_instruction_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
-v4_8_authority_merge_pr: 164
-v4_8_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
-base_latest_observed: 2828a74f60c1ed09546171040f4178c8848ea686
+current_work_instruction: v4.8 · 2026-08-24-r4 · SWITCHY_THIN_ADAPTER
+work_instruction_source_sha256: 1426c2e5e25e32dc72abccf49e4a0839578e54c14b38ba0de045be426fd63ea6
+historical_v48_r2_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
+v4_8_r2_authority_merge_pr: 164
+v4_8_r2_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
+current_candidate: SX59-POC-ACCEPT-003
 ```
 
 이 authority 전환은 기획·런타임 범위를 넓히지 않는다. `GMB-002`, `SX-DEC-059` 구현 상태, `SX-DEC-056~058` 권한 경계와 physical/human evidence ceiling은 그대로 유지한다.
 
-## 1. Historical v4.7 planning / build chain
+## 1. Historical planning / build chain
 
 ```text
 A0 CURRENT AUTHORITY RECOVERY: PASS
@@ -36,17 +37,23 @@ A0 CURRENT AUTHORITY RECOVERY: PASS
 → A12 INDEPENDENT CODE REVIEW + RED/GREEN CORRECTION: CLOSED · SX-AUD-066
 → A13 IMPLEMENTATION PR #158: MERGED_MAIN_VERIFIED · 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
 → A14 NOTION POST-MERGE IMPLEMENTATION READBACK: PASS
+→ A15 PLAYABLE VISUAL/UX POC PR #166: MERGED_MAIN_VERIFIED
+→ A16 CANDIDATE 002 WINDOWS STARTUP: PASS / ACCEPTANCE_BLOCKED_BY_P1_VISUAL
+→ A17 P1 PRESENTATION CORRECTION PR #171: MERGED
+→ A18 CANDIDATE 003 PREPARATION/POINTER/CANON PR #172/#173: MERGED
 ```
 
-`기획완료`는 승인된 059 계획을 잠근다. A6/A7은 설계·정본·인계 패키지의 정적 준비 상태이며, A8 이후 fresh execution preflight와 RED→GREEN 구현, exact-head 검증, merge/readback까지 완료됐다. 이 chain은 v4.7 시기에 실행된 **역사 evidence**이며 현재 작업 방법론은 위 v4.8 authority를 따른다.
+A0~A18은 완료된 history/evidence다. 현재 작업 방법론은 v4.8 r4 + latest Base owner를 따른다.
 
-## 2. Historical implemented baseline chain
+## 2. Stable implemented baseline chain
 
 ```text
 GMB-002 finite core: AUTOMATED PASS
 → PC finite vertical-slice pipeline: IMPLEMENTED / HISTORICAL
 → SX-DEC-053/054 semantic assets: 73 PRODUCT PNG · COMPLETE
 → SX-DEC-055 runtime semantic: PR #151 MERGED_MAIN_VERIFIED
+→ SX-DEC-059 first session: PR #158 MERGED_MAIN_VERIFIED
+→ playable visual/UX POC: PR #166 MERGED_MAIN_VERIFIED
 ```
 
 Stable historical merge compatibility locator:
@@ -55,13 +62,9 @@ Stable historical merge compatibility locator:
 PR #83/#99/#100 MERGE: PASS
 ```
 
-이 literal은 과거 PC Vertical Slice와 후속 정본 병합 완료 사실을 참조하는 post-merge freshness consumer용 anchor다. SX-DEC-059의 새 구현 권한을 의미하지 않는다.
-
-SX-DEC-055는 이미 끝났으므로 과거 `SemanticAssetCatalog RED`를 current next action으로 되살리지 않는다.
+이 literal은 과거 PC Vertical Slice와 후속 정본 병합 완료 사실을 참조하는 post-merge freshness consumer용 anchor다.
 
 ## 3. Stable device / acceptance evidence anchors
-
-이 literal은 device-smoke canonical-freshness consumer와 과거 evidence locator가 사용하므로 SX-DEC-059가 추가되어도 유지한다.
 
 ```text
 HISTORICAL CANONICAL APK EXPORT: PASS · HISTORICAL PACKAGE EVIDENCE
@@ -70,10 +73,10 @@ FIVE-PERSON COMPREHENSION: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
 
-- Historical canonical APK/export evidence is packaging/history evidence, not the future SX-DEC-059 acceptance build.
-- Android device smoke remains an independent platform gate.
-- Five-person comprehension requires a later exact acceptance build and reviewed physical smoke.
-- no automated/package/self-run result upgrades these anchors to PASS.
+- Historical APK/export는 packaging/history evidence다.
+- Android device smoke는 독립 platform gate다.
+- Five-person comprehension은 같은 exact acceptance build의 별도 human gate다.
+- automated/package/self-run 결과로 위 항목을 PASS로 올리지 않는다.
 
 ## 4. SX-DEC-059 release-near first-session chain
 
@@ -93,15 +96,18 @@ S0 PLAN: COMPLETE
 → S11A custom/GUT/export-pack proof: PASS
 → S11B five-pass adversarial review: CLOSED
 → S11C PR #158 merge + Notion implementation readback: PASS
-→ S12 developer self-run/screen QA: NOT_RUN
-→ S13 exact acceptance build physical smoke: NOT_RUN
-→ S14 Five-person first-contact comprehension: NOT_RUN
-→ S15 product decision: NOT_RUN
+→ S11D playable visual/UX POC: PR #166 MERGED
+→ S11E Candidate 002 physical startup: PASS / P1 BLOCKED
+→ S11F Candidate 003 corrected package/current pointer: PASS
+→ S12 Candidate 003 Gate 0 physical visual recheck: NOT_RUN
+→ S13 same Candidate 003 developer self-run/screen QA + audio perceptual QA: NOT_RUN
+→ S14 exact acceptance build + Windows physical smoke: NOT_RUN
+→ S15 Android device smoke: NOT_RUN
+→ S16 Five-person first-contact comprehension: NOT_RUN
+→ S17 product decision: NOT_RUN
 ```
 
 ## 5. Implemented BUILD task families
-
-The following families were implemented after A8 handoff and fresh preflight.
 
 ```text
 B1 first-session sequence schema / validator
@@ -119,18 +125,7 @@ B12 reduced-motion/responsive/accessibility regression
 B13 package/export/clean regression evidence
 ```
 
-모든 production behavior task는:
-
-```text
-RED
-→ expected failure verified
-→ minimal GREEN
-→ focused test GREEN
-→ full regression GREEN
-→ commit
-```
-
-순서를 따랐다.
+모든 production behavior task는 `RED → expected failure → minimal GREEN → focused regression → full regression → commit` 순서를 따랐다.
 
 ## 6. Content gate
 
@@ -186,22 +181,10 @@ zh-Hans
 
 - copy key/data separation.
 - Lesson Card uses `title_key` + `objective_key`.
-- CTA keys come from `FIRST_SESSION_LOCALIZATION_COPY_ADDENDUM_01.md`.
 - text-in-PNG forbidden.
 - raw localization key player-facing fallback forbidden.
 - CJK glyph/line-break/long string checks are automated; physical readability remains separate.
-
-Responsive meaning targets:
-
-```text
-1280×720
-1600×900
-1920×1080
-pc_wide_or_ultrawide semantic check
-mobile_landscape semantic check
-```
-
-Same pixel layout is not required; same information/action/state meaning is required.
+- same pixel layout is not required; same information/action/state meaning is required.
 
 ## 9. Result evidence gate
 
@@ -217,15 +200,7 @@ remaining_map_cargo
 stack_size
 ```
 
-059 Result may use these facts. It may not fabricate station mismatch/actual trace causality.
-
-```text
-ROUTE_END / TIME_EXPIRED
-+ map cargo remaining
-+ train stack size
-```
-
-Detailed station mismatch is a future 056A observation concern and is outside 059.
+059 Result may use these facts. It may not fabricate station mismatch/actual trace causality. Detailed station mismatch is a future 056A observation concern and is outside 059.
 
 ## 10. Visual / audio gate
 
@@ -234,82 +209,53 @@ Detailed station mismatch is a future 056A observation concern and is outside 05
 - no new image generation is currently required or authorized.
 - Reduced Motion uses same information identity.
 - VFX must not cover next critical cargo/switch target.
+- package/audio-file presence is not `audio perceptual QA`.
 
-## 11. Tooling / fresh execution preflight gate
+## 11. Tooling / fresh execution preflight gate · r4
 
 ```yaml
-godot: 4.7.1-stable
+project_engine: 4.7.1-stable
 gut: 9.7.1
-project_godot_ai_plugin_cfg: 3.1.4
-upstream_3_1_4_version_bump_commit: 96cc8b8c3d25ce487e24801d01d5214fea150349
-upstream_main_observed_plugin: 3.1.5
-upstream_main_observed_commit: 09a1e3311015153d967710fbe6502ac519585a9b
-prior_verified_release_basis: v3.1.3
-project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED_BEFORE_FUTURE_AUTHORING
-local_repo_tree_parity: NOT_RUN
+shared_host_godot_policy: ONE_APPROVED_COMPATIBLE_EXACT_PIN
+shared_host_godot_ai_policy: ONE_APPROVED_EXACT_PIN
+preferred_http_port: 8000
+preferred_ws_port: 9500
+session_isolation: EXACT_PROJECT_PATH_EDITOR_AND_SESSION_ID
+update_policy: OFFICIAL_UPSTREAM_REVIEW_CANARY_ROLLBACK_THEN_EXACT_PIN
+floating_latest: FORBIDDEN
 ```
 
-향후 authoring은 과거 implementation preflight를 자동 상속하지 않고 다음을 다시 확인한다.
+향후 authoring/runtime은 과거 implementation preflight를 자동 상속하지 않고 exact local repo location, dirty/diverged state, fetch/safe reconciliation, official update state, compatible exact pin, Editor/project/session identity를 다시 확인한다.
 
-- exact local repo location resolved by Git remote identity.
-- clean/dirty state and user changes.
-- exact project `HEAD` and `origin/main` relation.
-- isolated workspace/worktree status where implementation is requested.
-- Godot executable version.
-- repo/local Godot AI addon parity/provenance.
-- GUT availability.
-- project HiGodot profile/ports only if actually consumed.
-- project CODEX_HOME current value without silent credential/config replacement.
-- Hera only when live QA is applicable; tracked source delta after acceptance must be zero.
+문서/Notion-only 변경에서 Godot Editor/runtime은 acceptance에 필요하지 않으므로 `NOT_APPLICABLE`; 이를 실행했다고 과장하지 않는다.
 
 ## 12. Concurrency gate
 
-### PR #154
+- PR #154: `CLOSED_UNMERGED · SUPERSEDED_BY_SX_DEC_059`.
+- PR #155/#156: `CLOSED_UNMERGED · HISTORICAL_ACCIDENT`.
+- unrelated open PR은 read-only.
+- 하나의 current-task PR만 current continuation 예외로 exact-head 검증 뒤 merge한다.
 
-`CLOSED_UNMERGED · SUPERSEDED_BY_SX_DEC_059`.
+## 13. Automated validation gate
 
-- no unmerged `game/reuse/*` absorption.
-- do not reopen without a new approved need and fresh evidence.
+기존 merged implementation은 Project Contract, GUT 9.7.1, Godot Tests, Thin Adapter, Windows export/package proof를 통과했다. 이 증거는 current docs-only r4 authority package의 exact-head checks를 대신하지 않으며, current package는 실제 변경 분류에 맞는 workflow를 다시 읽고 검증한다.
 
-### PR #155 / #156
+Hosted CI/package proof는 physical runtime 또는 human evidence가 아니다.
 
-`CLOSED_UNMERGED · HISTORICAL_ACCIDENT`.
-
-## 13. Implementation package authority
-
-Binding historical read order:
+## 14. Candidate 003 Gate 0 · current blocking gate
 
 ```text
-SX_DEC_059_CODEX_HANDOFF_PACKAGE.md
-→ handoff Amendment 01
-→ handoff Amendment 02
-→ parent implementation plan
-→ implementation Amendment 01
-→ implementation Amendment 02
-→ actual current code/tests
+A. physical visual recheck
+   preflight badge compact + Korean problem copy non-overlap
+B. physical visual recheck
+   disconnected station/cargo color+shape+text identity visible + problem reinforcement outline only
 ```
 
-The package is execution history/rollback material. It must not restart Task 1.
+A/B 중 하나라도 실패하면 `BLOCKED_P1_VISUAL`로 중단한다. 둘 다 PASS일 때만 same exact Candidate 003 self-run/audio로 이어간다.
 
-## 14. Automated validation gate
+## 15. Developer self-run / audio gate
 
-The merged PR #158 proved:
-
-- focused first-session tests.
-- existing custom Godot suite.
-- GUT 9.7.1.
-- Project Contract / relevant static policy checks.
-- Thin Adapter validation.
-- Windows export/package proof.
-- first-session JSON/localization/tutorial map inclusion proof.
-- no unauthorized change to current core/map/semantic asset owners.
-- no unresolved review thread on exact head.
-
-Hosted CI/package proof is not physical runtime or human evidence.
-
-## 15. Developer self-run gate
-
-Current next executable evidence gate. After merged automated GREEN and before first-contact human evidence:
+Gate 0 PASS 뒤 same exact Candidate 003으로:
 
 1. T1→T6→Capstone happy path.
 2. T3 wrong LIFO order → Edit → recovery.
@@ -319,6 +265,7 @@ Current next executable evidence gate. After merged automated GREEN and before f
 6. Capstone Retry same layout.
 7. Capstone Edit layout.
 8. Reduced Motion same-information path.
+9. 실제 audio cue의 timing/priority/readability를 별도 perceptual QA로 관찰.
 
 Must record:
 
@@ -331,13 +278,17 @@ crash/script error 0
 unsupported evidence claim 0
 ```
 
-This gate is developer usability/technical evidence only.
+This gate is developer usability/technical/audio-perception evidence, not first-contact human/player evidence.
 
 ## 16. Physical / human gate
 
 ```text
-exact acceptance build identity
-→ reviewed physical smoke on the same build
+Candidate 003 Gate 0 physical visual recheck
+→ developer self-run / screen QA
+→ audio perceptual QA
+→ exact acceptance build identity
+→ Windows full physical smoke
+→ Android device smoke
 → Five-person first-contact comprehension
 ```
 
@@ -362,12 +313,14 @@ No merge/build/export result automatically authorizes store release.
 ## Current next action
 
 ```text
-developer self-run / screen QA
-→ designate exact acceptance build when physical validation is prepared
-→ Windows physical smoke as applicable
-→ Android device smoke as separate platform gate
-→ Five-person first-contact comprehension on the same build
+SX59-POC-ACCEPT-003 · Candidate 003 Gate 0 · physical visual recheck
+→ developer self-run / screen QA
+→ audio perceptual QA
+→ exact acceptance build designation
+→ Windows full physical smoke
+→ Android device smoke
+→ Five-person first-contact comprehension
 → product decision
 ```
 
-**PR #158 merge와 Notion implementation readback은 완료됐고 physical/device/human gates remain NOT_RUN.**
+**PR #158/#166 implementation/visual merge와 Candidate 003 package preparation은 완료됐고 Candidate 003 physical/device/human gates remain NOT_RUN.**

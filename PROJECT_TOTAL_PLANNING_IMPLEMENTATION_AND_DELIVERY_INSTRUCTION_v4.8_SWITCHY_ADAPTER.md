@@ -2,8 +2,9 @@
 contract_name: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION
 contract_version: '4.8'
 status: ACTIVE_PROJECT_THIN_ADAPTER
-revision: '2026-08-24-r2'
-source_v4_8_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
+revision: '2026-08-24-r4'
+source_v4_8_r4_sha256: 1426c2e5e25e32dc72abccf49e4a0839578e54c14b38ba0de045be426fd63ea6
+source_v4_8_r2_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
 base_repository: https://github.com/alsdmlals4-eng/Base
 base_snapshot_observed_when_v4_8_adopted: 2828a74f60c1ed09546171040f4178c8848ea686
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
@@ -16,7 +17,9 @@ google_sheets_policy: COMPATIBILITY_ONLY_MIGRATION_SOURCE_UNTIL_REMOVAL
 
 # Switchy Express · v4.8 project thin adapter
 
-이 문서는 사용자 제공 v4.8 r2 계약을 Switchy Express에 연결하는 **프로젝트 전용 얇은 adapter**다. Base의 Work Mode/Skill/CI/검증 절차를 복사하지 않는다. 매 작업 시작 시 최신 Base completed `main`과 프로젝트 실제 상태를 다시 읽는다.
+이 문서는 사용자 제공 **v4.8 r4** 계약을 Switchy Express에 연결하는 프로젝트 전용 얇은 adapter다. Base의 Work Mode·Skill·CI·검증 절차를 복사하지 않는다. 매 작업 시작 시 최신 Base completed `main`과 프로젝트 실제 상태를 다시 읽는다.
+
+`source_v4_8_r2_sha256`은 2026-08-24 최초 v4.8 도입의 역사 provenance다. 현재 작업지시문 identity는 `2026-08-24-r4` + `source_v4_8_r4_sha256`이다.
 
 ## 1. Project Profile
 
@@ -33,9 +36,10 @@ project_base_pin_role: HISTORICAL_COMPATIBILITY_AND_PROJECT_ADOPTION_EVIDENCE
 base_current_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
 current_decision_span: SX-DEC-027~059
+current_candidate: SX59-POC-ACCEPT-003
 ```
 
-`Base v9.4.3` pin은 이 저장소가 과거 채택한 project compatibility evidence다. 현재 실행 방법론을 그 snapshot으로 고정하지 않으며, v4.8 계약에 따라 최신 Base owner를 progressive-load한다.
+`Base v9.4.3` pin은 이 저장소가 과거 채택한 project compatibility evidence다. 현재 실행 방법론을 그 snapshot으로 고정하지 않으며, v4.8 r4 계약에 따라 최신 Base owner를 progressive-load한다.
 
 ## 2. Authority / domain split
 
@@ -70,7 +74,7 @@ current_decision_span: SX-DEC-027~059
 
 - endless survival / fuel / BOOST / capacity-8 / cargo slowdown / pickup respawn / switch auto-reset을 current 제품으로 되살리지 않는다.
 - UI/presentation은 gameplay outcome, score, save, identity authority를 소유하지 않는다.
-- 이미지 생성은 사용자 explicit request와 text brief 승인 없이는 시작하지 않는다.
+- 이미지 생성·편집은 사용자 explicit request와 text brief 승인 없이는 시작하지 않는다.
 - physical/human/player evidence가 없으면 자동화 결과를 해당 PASS로 올리지 않는다.
 
 ## 4. Current implementation / evidence ceiling
@@ -80,30 +84,49 @@ implementation_execution_state: MERGED_MAIN_VERIFIED
 implementation_merge_pr: 158
 implementation_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
 implementation_notion_readback: PASS
+playable_visual_ux_poc: MERGED_MAIN_VERIFIED · PR_166
+candidate_002: SX59-POC-ACCEPT-002 · HISTORICAL_PHYSICAL_EVIDENCE
+candidate_002_windows_physical_startup_smoke: PASS
+candidate_002_result: BLOCKED_BY_CONFIRMED_P1_PREFLIGHT_VISUAL_DEFECTS
+candidate_002_acceptance_promotion: PROHIBITED
+current_candidate: SX59-POC-ACCEPT-003
+candidate_003_package_integrity: PASS
+candidate_003_pck_integrity: PASS · 472_OF_472
+candidate_003_product_texture_packaging: PASS · 73_OF_73
+candidate_003_physical_visual_recheck: NOT_RUN
 sx_dec_059_developer_self_run: NOT_RUN
-acceptance_candidate: SX59-ACCEPT-001
+audio_perceptual_qa: NOT_RUN
 acceptance_build: NOT_YET_DESIGNATED
-windows_physical_runtime: NOT_RUN
+windows_full_physical_runtime: NOT_RUN
 android_device_smoke: NOT_RUN
 five_person_comprehension: NOT_RUN
 player_experience: NOT_RUN
 production_cutover: BLOCKED_DEFERRED
 ```
 
-PR #154는 `CLOSED_UNMERGED · SUPERSEDED_BY_SX_DEC_059`이며 재흡수하지 않는다. PR #155/#156은 `CLOSED_UNMERGED · HISTORICAL_ACCIDENT`다.
+Candidate 002의 Windows startup PASS는 수정 전 역사 evidence이며 acceptance 승격은 금지된다. player-visible P1 교정 bytes의 현재 검증 대상은 **SX59-POC-ACCEPT-003**이다.
 
-현재 next validation route:
+### Candidate 003 Gate 0
 
 ```text
-developer self-run / screen QA
-→ exact acceptance build identity
-→ Windows physical smoke
-→ Android device smoke as separate platform gate
-→ Five-person first-contact comprehension on the same acceptance build
+A. physical visual recheck — preflight badge가 compact lane에 있고 Korean problem copy와 겹치지 않는가
+B. physical visual recheck — disconnected station/cargo의 color+shape+text identity가 보이고 problem reinforcement는 outline뿐인가
+```
+
+둘 중 하나라도 실패하면 `BLOCKED_P1_VISUAL`이다. 둘 다 PASS일 때만 같은 exact Candidate 003으로 다음을 진행한다.
+
+```text
+Candidate 003 Gate 0 · physical visual recheck
+→ developer self-run / screen QA · 8 scenarios
+→ audio perceptual QA
+→ exact acceptance build designation
+→ Windows full physical smoke
+→ Android device smoke
+→ Five-person first-contact comprehension
 → product decision
 ```
 
-`SX59-ACCEPT-001`의 artifact integrity는 준비 증거일 뿐 acceptance build 지정이나 physical/human PASS가 아니다.
+Automated/package/launcher PASS는 corrected physical appearance, audio perception, device, human comprehension 또는 player experience PASS가 아니다.
 
 ## 5. Deferred package authorization boundary
 
@@ -114,9 +137,30 @@ SX-DEC-057: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 SX-DEC-058: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 ```
 
-v4.8 adoption은 위 package의 구현 권한을 추가하지 않는다. 056A Route Probe/PB/Fingerprint, 056B score/max-combo, 057 Yard Labs/Mastery, 058 challenge generator/pipeline은 별도 승인/의존성 Gate를 유지한다.
+v4.8 r4 authority reconciliation은 위 package의 구현 권한을 추가하지 않는다. 056A Route Probe/PB/Fingerprint, 056B score/max-combo, 057 Yard Labs/Mastery, 058 challenge generator/pipeline은 별도 승인/의존성 Gate를 유지한다.
 
-## 6. Current owner read order
+## 6. r4 host/toolchain overlay
+
+r4의 상세 설치·업데이트 절차는 latest Base owner가 소유한다. 프로젝트 adapter는 다음 경계만 연결한다.
+
+```yaml
+shared_godot_policy: ONE_APPROVED_COMPATIBLE_EXACT_PIN
+shared_godot_ai_policy: ONE_APPROVED_EXACT_PIN
+preferred_godot_ai_http_port: 8000
+preferred_godot_ai_ws_port: 9500
+project_isolation: EXACT_PROJECT_PATH_EDITOR_AND_SESSION_ID
+update_policy: OFFICIAL_UPSTREAM_REVIEW_CANARY_ROLLBACK_THEN_EXACT_PIN
+floating_latest: FORBIDDEN
+per_project_duplicate_binary_or_port: NOT_DEFAULT
+```
+
+- 현재 프로젝트 정본의 engine은 `Godot 4.7.1-stable`이며, shared host pin이 호환되는지는 실제 로컬 bootstrap에서 검증한다.
+- breaking/migration/비용/권한 변경은 자동 업데이트하지 않는다.
+- persistent Godot authoring/runtime 작업은 exact Editor/project/session identity를 확인한다.
+- **문서/Notion-only 작업처럼 Godot authoring/runtime evidence가 acceptance에 필요하지 않으면 Editor를 억지로 실행하지 않는다.**
+- 로컬 toolchain 상태를 이 문서만으로 설치·업데이트 완료라고 주장하지 않는다.
+
+## 7. Current owner read order
 
 1. latest Base completed `main` + Base root `AGENTS.md`.
 2. project `AGENTS.md`.
@@ -124,19 +168,22 @@ v4.8 adoption은 위 package의 구현 권한을 추가하지 않는다. 056A Ro
 4. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`.
 5. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`.
 6. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`.
-7. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`.
-8. current Goal의 exact owner documents.
-9. actual code/data/Scene/Resource/assets/tests/runtime evidence.
-10. historical v4.7 adapter/handoff/audit only when provenance or rollback evidence is needed.
+7. `evidence/acceptance/current_poc_candidate.json`.
+8. `기획서/50_제작_검증/SX_DEC_059_POC_ACCEPTANCE_CANDIDATE_03.md`.
+9. `기획서/50_제작_검증/SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_03.md`.
+10. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md` + `ROADMAP.md`.
+11. current Goal의 exact owner documents.
+12. actual code/data/Scene/Resource/assets/tests/runtime evidence.
+13. historical v4.7/r2 adapter/handoff/audit only when provenance or rollback evidence is needed.
 
-## 7. Current task safety / PR boundary
+## 8. Current task safety / PR boundary
 
 - pre-existing/unrelated Open/Draft/Ready PR: `READ_ONLY`.
 - 사용자가 현재 작업으로 연속 승인한 하나의 current-task PR만 exact-head 검증 뒤 merge 가능.
 - force push/direct-main/ruleset bypass 금지.
-- product runtime scope를 바꾸는 finding은 이 authority-migration package에 흡수하지 않는다.
+- product runtime scope를 바꾸는 finding은 authority/planning reconciliation package에 흡수하지 않는다.
 
-## 8. Verification invariants
+## 9. Verification invariants
 
 현재 계약/정본 수정은 RED → expected failure → minimal GREEN → related regression으로 검증한다.
 
@@ -144,7 +191,7 @@ v4.8 adoption은 위 package의 구현 권한을 추가하지 않는다. 056A Ro
 
 ```text
 exact current-task head
-→ Project Contract / relevant repository checks
+→ repository current applicable checks
 → five full adversarial loops minimum
 → unresolved blocking finding 0
 → merge gate
@@ -154,6 +201,14 @@ exact current-task head
 
 을 확인한다. `REQUIRED_WORK_REMAINING: 0`은 completion candidate일 뿐 physical/human/player evidence를 대신하지 않는다.
 
-## 9. Historical adapter boundary
+## 10. Superseded PR protection
 
-`PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`는 삭제하지 않는다. 해당 파일은 2026-08-20~23 작업의 history/rollback evidence이며 **current work-instruction authority가 아니다**.
+PR #154 `feat: pilot reusable grid and semantic UI modules`는 `CLOSED_UNMERGED · SUPERSEDED_BY_SX_DEC_059`다. `game/reuse/*`를 다시 vendor하거나 PR #154를 reopen/absorb하지 않는다. 새 user-approved need와 fresh main evidence가 생기기 전까지 historical lesson만 보존한다.
+
+PR #155/#156도 `CLOSED_UNMERGED · HISTORICAL_ACCIDENT`이며 current workstream이 아니다.
+
+## 11. Historical adapter boundary
+
+`PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`는 삭제하지 않는다. 해당 파일은 2026-08-20~23 작업의 history/rollback evidence이며 current work-instruction authority가 아니다.
+
+2026-08-24의 v4.8 r2 도입 계획·감사·commit도 history/provenance로 유지하되 current locator로 다시 승격하지 않는다.
