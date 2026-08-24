@@ -3,6 +3,13 @@
   "candidate_id": "SX59-POC-ACCEPT-002",
   "observed_date_kst": "2026-08-24",
   "candidate_evidence_owner": "evidence/acceptance/sx59_poc_accept_002_artifact.json",
+  "format_reference": {
+    "engine": "Godot 4.7.1-stable",
+    "source_commit": "a13da4feb",
+    "reader_path": "core/io/file_access_pack.cpp",
+    "packer_path": "core/io/pck_packer.cpp",
+    "contract": "STANDALONE_PCK_V3_V4 · FAIL_CLOSED_ON_ENCRYPTED_DIRECTORY_SPARSE_BUNDLE_OR_NONZERO_FILE_FLAGS"
+  },
   "package_identity": {
     "zip_sha256": "16c81f9b42a3391a2a3dabf501cb2d6eb7e011682abdaa3f79eb8b1124836e55",
     "windows_exe_sha256": "1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244",
@@ -18,6 +25,7 @@
     "file_base": 112,
     "directory_offset": 770560,
     "directory_end": 816848,
+    "trailing_unverified_bytes": 0,
     "file_count": 470,
     "verified_entry_count": 470,
     "md5_mismatch_count": 0,
