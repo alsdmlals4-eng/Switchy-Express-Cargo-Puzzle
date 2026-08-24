@@ -25,6 +25,7 @@ def base_route_ids(adapter: dict) -> set[str]:
 class BaseSharedExternalAIAdapterTests(unittest.TestCase):
     def test_preserves_current_released_base_identity(self) -> None:
         adapter = load_adapter()
+        self.assertEqual(2, adapter["schema_version"])
         self.assertEqual("9.4.3", adapter["base_release"]["version"])
         self.assertEqual(BASE_RELEASE_COMMIT, adapter["base_release"]["release_commit"])
         self.assertEqual(BASE_RELEASE_EVIDENCE, adapter["base_release"]["release_evidence_commit"])
@@ -49,9 +50,11 @@ class BaseSharedExternalAIAdapterTests(unittest.TestCase):
         self.assertEqual("tools/check_external_ai_worktree_contract.py", override["base_validator_path"])
         self.assertEqual("base-v9.4.1.lock.json", override["base_release_lock"])
         self.assertEqual("NOT_RUN", override["actual_external_ai_worktree_execution"])
-        self.assertEqual("MIGRATION_ONLY", adapter["gdd_sheet"]["sync_status"])
-        self.assertEqual("HISTORICAL_SYNCED", adapter["gdd_sheet"]["declared_sync_status"])
-        self.assertEqual("COMPATIBILITY_ONLY_MIGRATION_SOURCE", adapter["gdd_sheet"]["role"])
+        sheet = adapter["gdd_sheet"]
+        self.assertEqual("NOT_CONFIGURED", sheet["sync_status"])
+        self.assertEqual("HISTORICAL_SYNCED", sheet["declared_sync_status"])
+        self.assertEqual("GOOGLE_SHEETS_LEGACY_MIGRATION_SOURCE", sheet["role"])
+        self.assertEqual("MIGRATION_COMPATIBILITY_SURFACE", sheet["workspace_status"])
         self.assertTrue(adapter["protected_paths"])
 
     def test_worktree_parent_is_ignored_by_git(self) -> None:
