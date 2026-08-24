@@ -20,11 +20,12 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   validate-powershell:
     runs-on: windows-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
 
@@ -48,3 +49,13 @@ jobs:
         shell: pwsh
         run: |
           .\RUN_SX59_POC_SELF_RUN.ps1 -ContractCheck -NoLaunch -NoOpenRecord
+
+      - name: Prove exact Candidate 002 download and package verification on Windows
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          .\RUN_SX59_POC_SELF_RUN.ps1 `
+            -NoLaunch `
+            -NoOpenRecord `
+            -WorkDir (Join-Path $env:RUNNER_TEMP 'sx59-poc-accept-002')
