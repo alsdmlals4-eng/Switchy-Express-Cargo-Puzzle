@@ -1,6 +1,6 @@
 # Switchy Express 프로젝트 허브
 
-Last updated: `2026-08-24 KST`
+Last updated: `2026-08-25 KST`
 
 이 문서는 현재 제품 기준선과 **다음 실행 지점**을 빠르게 찾는 허브다. 실행 전에는 항상 fresh Base completed `main`, fresh project `main`, Open/Draft PR, Notion을 다시 읽는다.
 
@@ -10,9 +10,10 @@ Last updated: `2026-08-24 KST`
 |---|---|
 | 제품 기준선 | `GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE` |
 | 결정 범위 | `SX-DEC-027~059` |
-| 작업지시문 | `v4.8 · revision 2026-08-24-r2 · Switchy thin adapter` |
-| 작업지시문 source SHA-256 | `6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508` |
-| v4.8 authority merge | `PR #164 · main 98ed1c65d678bfc262c32084bbf0e59368093c2c` |
+| 작업지시문 | `v4.8 · revision 2026-08-24-r4 · Switchy thin adapter` |
+| 작업지시문 source SHA-256 | `1426c2e5e25e32dc72abccf49e4a0839578e54c14b38ba0de045be426fd63ea6` |
+| 과거 v4.8 r2 source | `6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508 · HISTORICAL_PROVENANCE` |
+| 최초 v4.8 authority merge | `PR #164 · main 98ed1c65d678bfc262c32084bbf0e59368093c2c · HISTORICAL_R2_ADOPTION` |
 | User planning-complete gate | `GRANTED · 2026-08-20 KST` |
 | SX-DEC-059 implementation | `PR #158 MERGED_MAIN_VERIFIED · main 162e8a0a5e8ddc8472e74a6152e87dc12008e34c` |
 | Playable visual/UX POC | `PR #166 MERGED_MAIN_VERIFIED · main 1bf798cedf28dffba9185edb62fb1c50c108fe90` |
@@ -42,13 +43,13 @@ Last updated: `2026-08-24 KST`
 ## Base authority
 
 ```yaml
-base_v4_8_authority_time_snapshot: 2828a74f60c1ed09546171040f4178c8848ea686
+base_v4_8_authority_time_snapshot: 2828a74f60c1ed09546171040f4178c8848ea686 · HISTORICAL_INITIAL_ADOPTION
 base_canon_sync_observation: 862938478cfea6c9db16691900c9c4fdc464f9ff · AUDIT_EVIDENCE_ONLY
 base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
 ```
 
-`2828a74...`와 `862938...`는 각각 historical compatibility와 이번 canon-sync 감사 시점의 evidence다. **현재 Base SHA를 정본에 고정하지 않는다.** 실제 작업 권위는 항상 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN` 정책에 따라 실행 시점의 fresh Base completed main을 다시 읽는다.
+위 SHA들은 역사/감사 evidence다. **현재 Base SHA를 정본에 고정하지 않는다.** 실제 작업 권위는 항상 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN` 정책에 따라 실행 시점의 fresh Base completed main을 다시 읽는다.
 
 ## Stable acceptance compatibility anchors
 
@@ -109,7 +110,7 @@ PR #171이 이 두 player-visible presentation defect를 교정했다. 따라서
 12. `ROADMAP.md` + `DEVELOPMENT_GATES.md`.
 13. actual code/data/Scene/Resource/assets/tests.
 
-`PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`는 historical rollback/provenance evidence다. Google Sheets는 migration-only다.
+`PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`와 v4.8 r2 도입 자료는 historical rollback/provenance evidence다. Google Sheets는 migration-only다.
 
 ## Current execution entry
 
@@ -122,13 +123,21 @@ powershell -ExecutionPolicy Bypass -File "$repo\RUN_SX59_POC_SELF_RUN.ps1"
 
 Launcher는 `evidence/acceptance/current_poc_candidate.json`이 명시한 candidate만 사용한다. Candidate 번호를 하드코딩하거나 newest build를 추정하지 않는다.
 
+## Candidate 003 Gate 0
+
+```text
+A. physical visual recheck: preflight badge compact / Korean copy non-overlap
+B. physical visual recheck: disconnected station/cargo identity visible / problem outline only
+```
+
+둘 중 하나라도 실패하면 `BLOCKED_P1_VISUAL`이다.
+
 ## Current next action
 
 ```text
-SX59-POC-ACCEPT-003 physical visual recheck
-→ A. preflight badge compact / Korean copy non-overlap
-→ B. disconnected station/cargo identity visible / problem outline only
-→ if both PASS: same exact Candidate 003 developer self-run 8 scenarios + audio perceptual QA
+SX59-POC-ACCEPT-003 · Candidate 003 Gate 0 · physical visual recheck
+→ if both PASS: same exact Candidate 003 developer self-run / screen QA · 8 scenarios
+→ audio perceptual QA
 → if blocker 0: designate exact acceptance build
 → Windows full physical smoke
 → Android device smoke
