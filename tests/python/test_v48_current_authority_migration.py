@@ -13,12 +13,11 @@ PROJECT_SKILL = ROOT / "skills/switchy-express-design/SKILL.md"
 
 V48_SOURCE_SHA256 = "6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508"
 BASE_MAIN_AT_MIGRATION = "2828a74f60c1ed09546171040f4178c8848ea686"
+PR_BASE_AT_MIGRATION = "ae8f4aeae111c5cce4284499b851c0c3f80f6bf3"
 
-CURRENT_OWNER_EXPECTATIONS = {
+UNPROTECTED_CURRENT_OWNER_EXPECTATIONS = {
     ROOT / "AGENTS.md": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md",
-    ROOT / "기획서/00_프로젝트_허브/START_HERE.md": "v4.8 · revision 2026-08-24-r2 · Switchy thin adapter",
-    ROOT / "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md": "work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER",
-    ROOT / "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md": "work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER",
+    ROOT / "README.md": "work_instruction: v4.8 · revision 2026-08-24-r2 · SWITCHY_THIN_ADAPTER",
 }
 
 
@@ -34,20 +33,26 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
         self.assertIn("base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN", text)
         self.assertIn("google_sheets_policy: COMPATIBILITY_ONLY_MIGRATION_SOURCE_UNTIL_REMOVAL", text)
 
-    def test_current_entry_surfaces_route_to_v48(self) -> None:
-        for path, required in CURRENT_OWNER_EXPECTATIONS.items():
+    def test_unprotected_entry_surfaces_route_to_v48(self) -> None:
+        for path, required in UNPROTECTED_CURRENT_OWNER_EXPECTATIONS.items():
             self.assertTrue(path.is_file(), f"missing current owner: {path}")
             text = path.read_text(encoding="utf-8")
             self.assertIn(required, text, f"{path} is not routed to v4.8 current authority")
 
-    def test_google_sheet_adapter_is_compatibility_only_not_current_workspace(self) -> None:
+    def test_project_base_adapter_uses_v2_and_sheet_is_migration_compatibility_only(self) -> None:
         adapter = json.loads(PROJECT_ADAPTER.read_text(encoding="utf-8"))
+        self.assertEqual(2, adapter["schema_version"])
+        self.assertEqual("switchy-express-cargo-puzzle", adapter["project"]["project_id"])
+        self.assertEqual(PR_BASE_AT_MIGRATION, adapter["protected_baseline"]["commit"])
         sheet = adapter["gdd_sheet"]
-        self.assertEqual("COMPATIBILITY_ONLY_MIGRATION_SOURCE", sheet["role"])
-        self.assertEqual("MIGRATION_ONLY", sheet["sync_status"])
+        self.assertEqual("GOOGLE_SHEETS_LEGACY_MIGRATION_SOURCE", sheet["role"])
+        self.assertEqual("MIGRATION_COMPATIBILITY_SURFACE", sheet["workspace_status"])
+        self.assertEqual("NOT_CONFIGURED", sheet["sync_status"])
         self.assertEqual("HISTORICAL_SYNCED", sheet["declared_sync_status"])
-        self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", adapter["workspace"]["human_workspace"])
-        self.assertEqual("GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME", adapter["workspace"]["runtime_structured_authority"])
+        self.assertFalse(sheet["new_input_allowed"])
+        planning = adapter["shared_overrides"]["managing-project-intake-and-work-contract"]["planning_first_governance"]
+        self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
+        self.assertEqual("GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME", planning["runtime_structured_authority"])
 
     def test_project_skill_routes_the_current_sx059_acceptance_sequence(self) -> None:
         text = PROJECT_SKILL.read_text(encoding="utf-8")
