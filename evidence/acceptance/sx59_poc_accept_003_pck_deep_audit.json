@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "candidate_id": "SX59-POC-ACCEPT-003",
+  "observed_date_kst": "2026-08-24",
+  "candidate_evidence_owner": "evidence/acceptance/sx59_poc_accept_003_artifact.json",
+  "format_reference": {
+    "engine": "Godot 4.7.1-stable",
+    "source_commit": "a13da4feb",
+    "reader_path": "core/io/file_access_pack.cpp",
+    "packer_path": "core/io/pck_packer.cpp",
+    "contract": "STANDALONE_PCK_V3_V4 · FAIL_CLOSED_ON_ENCRYPTED_DIRECTORY_SPARSE_BUNDLE_OR_NONZERO_FILE_FLAGS"
+  },
+  "package_identity": {
+    "zip_sha256": "8b4e630c667b5fd88886878e5a07401c1fe6cfd8f1f9d84b2ab39cb8824923d4",
+    "windows_exe_sha256": "1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244",
+    "windows_pck_sha256": "2e9634cedd6da49793973f4582e2bd58ea4daae2fec246657edcf58ae360af72"
+  },
+  "pck_integrity": {
+    "verifier": "tools/verify_godot_pck_integrity.py",
+    "final_verifier_actual_candidate_invocation": "PASS",
+    "recomputed_windows_pck_sha256": "2e9634cedd6da49793973f4582e2bd58ea4daae2fec246657edcf58ae360af72",
+    "pack_format_version": 4,
+    "engine_version": "4.7.1",
+    "pack_flags": 2,
+    "relative_filebase": true,
+    "file_size_bytes": 821956,
+    "file_base": 112,
+    "directory_offset": 775472,
+    "directory_end": 821956,
+    "trailing_unverified_bytes": 0,
+    "file_count": 472,
+    "verified_entry_count": 472,
+    "md5_mismatch_count": 0,
+    "bounds_error_count": 0,
+    "nonzero_entry_flags_count": 0,
+    "integrity_pass": true,
+    "extension_counts": {
+      ".bin": 1,
+      ".binary": 1,
+      ".cfg": 1,
+      ".ctex": 73,
+      ".fontdata": 1,
+      ".gdc": 139,
+      ".import": 74,
+      ".json": 25,
+      ".remap": 148,
+      ".scn": 9
+    }
+  },
+  "product_texture_packaging": {
+    "prefix": "art/product_assets/ed_hybrid_v1/",
+    "prefix_entry_count": 77,
+    "product_png_import_count": 73,
+    "unique_referenced_ctex_count": 73,
+    "missing_ctex_reference_count": 0,
+    "orphan_packed_ctex_count": 0,
+    "packaging_crosscheck": "PASS"
+  },
+  "supplemental_container_observation": {
+    "classification": "SUPPLEMENTAL_NOT_CI_AUTHORITY",
+    "method": "Read the exact Candidate 003 PCK directory, locate each packed CTEX embedded WebP payload, and decode with Pillow.",
+    "packed_ctex_checked": 73,
+    "embedded_webp_decoded": 73,
+    "decode_failure_count": 0,
+    "exact_decoded_pixel_duplicate_groups": 0,
+    "blank_or_near_empty_texture_count": 0,
+    "minimum_nontransparent_pixel_ratio": 0.075439453125,
+    "observation_pass": true
+  },
+  "packaged_runtime_proof": {
+    "windows_runtime_json": "PASS · parsed_json=26",
+    "android_validation_runtime_json": "PASS · parsed_json=26"
+  },
+  "evidence_ceiling": {
+    "package_integrity": "PASS",
+    "packed_product_texture_presence": "PASS",
+    "physical_visual_recheck": "NOT_RUN",
+    "developer_self_run": "NOT_RUN",
+    "windows_physical_runtime_full_scenarios": "NOT_RUN",
+    "audio_perceptual_qa": "NOT_RUN",
+    "android_device": "NOT_RUN",
+    "five_person_comprehension": "NOT_RUN",
+    "player_experience": "NOT_RUN"
+  }
+}
