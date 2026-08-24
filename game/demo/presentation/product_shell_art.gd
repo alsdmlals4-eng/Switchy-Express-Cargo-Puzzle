@@ -3,6 +3,9 @@ extends Control
 
 @export_enum("TITLE", "LESSON", "RESULT") var mode: String = "TITLE"
 
+const RESULT_SUCCESS_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_result_success_candidate_v01.png"
+const RESULT_FAILURE_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_result_failure_candidate_v01.png"
+
 const ART_BY_MODE := {
 	"TITLE": [
 		"art/product_assets/ed_hybrid_v1/core/core_rail_straight_normal_v01.png",
@@ -25,6 +28,7 @@ const ART_BY_MODE := {
 }
 
 var _textures: Array[Texture2D] = []
+var _result_outcome: StringName = &""
 
 
 func _ready() -> void:
@@ -39,8 +43,19 @@ func _notification(what: int) -> void:
 		queue_redraw()
 
 
+func set_result_outcome(outcome: StringName) -> void:
+	if mode != "RESULT":
+		return
+	_result_outcome = &"SUCCESS" if outcome == &"SUCCESS" else &"FAILURE"
+	_load_textures()
+	queue_redraw()
+
+
 func asset_paths_for_test() -> Array[String]:
 	var result: Array[String] = []
+	if mode == "RESULT" and _result_outcome != &"":
+		result.append(RESULT_SUCCESS_PATH if _result_outcome == &"SUCCESS" else RESULT_FAILURE_PATH)
+		return result
 	for value: Variant in ART_BY_MODE.get(mode, ART_BY_MODE["TITLE"]):
 		result.append(str(value))
 	return result
@@ -66,9 +81,8 @@ func _draw() -> void:
 	if available.size.x <= 0.0 or available.size.y <= 0.0:
 		return
 
-	# Reuse the approved product sprites as an explanatory vignette. The shell
-	# never owns gameplay state; it only gives the player a visual preview of
-	# the same train / rail / cargo language used on the board.
+	# Reuse approved product sprites as explanatory/presentational art only.
+	# Gameplay state and outcome authority stay in the finite session model.
 	var slot_width := available.size.x / float(_textures.size())
 	for index: int in range(_textures.size()):
 		var texture: Texture2D = _textures[index]
