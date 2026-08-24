@@ -43,12 +43,12 @@ Last updated: `2026-08-24 KST`
 
 ```yaml
 base_v4_8_authority_time_snapshot: 2828a74f60c1ed09546171040f4178c8848ea686
-base_latest_observed: 8820ca9c0d46da0dda3256b52802dfb02d4c4954
-base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
+base_canon_sync_observation: 862938478cfea6c9db16691900c9c4fdc464f9ff · AUDIT_EVIDENCE_ONLY
+base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
 ```
 
-`2828a74...`는 v4.8 protected-canon migration 당시 호환성 증거다. 실제 작업 권위는 항상 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN` 정책에 따라 fresh Base completed main을 다시 읽는다.
+`2828a74...`와 `862938...`는 각각 historical compatibility와 이번 canon-sync 감사 시점의 evidence다. **현재 Base SHA를 정본에 고정하지 않는다.** 실제 작업 권위는 항상 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN` 정책에 따라 실행 시점의 fresh Base completed main을 다시 읽는다.
 
 ## Stable acceptance compatibility anchors
 
