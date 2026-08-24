@@ -88,6 +88,20 @@ func _layout_failure_message(
 			message += " · content_rect=%s · content_min=%s" % [
 				content.get_global_rect(), content.get_combined_minimum_size()
 			]
+			for child: Node in content.get_children():
+				if child is Control:
+					var child_control := child as Control
+					message += " · child=%s visible=%s rect=%s min=%s hflags=%d vflags=%d" % [
+						child_control.name,
+						child_control.visible,
+						child_control.get_global_rect(),
+						child_control.get_combined_minimum_size(),
+						child_control.size_flags_horizontal,
+						child_control.size_flags_vertical,
+					]
+					if child_control is Label:
+						var label := child_control as Label
+						message += " text_len=%d autowrap=%d" % [label.text.length(), label.autowrap_mode]
 	return message
 
 
