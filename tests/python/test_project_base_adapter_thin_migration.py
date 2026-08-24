@@ -10,6 +10,8 @@ ADAPTER = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
 REGISTRY = ROOT / "skills/SKILL_REGISTRY.json"
 HEALTH = ROOT / "docs/PROJECT_OPERATING_HEALTH.json"
 MIGRATION = ROOT / "docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json"
+CURRENT_APPROVED_PROTECTED_BASE = "cf207f29cd4dcabc5796769f0eb0ca6764c2370e"
+HISTORICAL_INITIAL_V48_PROTECTED_BASE = "ae8f4aeae111c5cce4284499b851c0c3f80f6bf3"
 
 
 class SwitchyThinAdapterMigrationTests(unittest.TestCase):
@@ -37,13 +39,16 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         self.assertEqual(entry["id"], entry["skill_id"])
         self.assertTrue(all("skill_id" not in item for item in registry["skills"] if item.get("owner") == "base"))
 
-    def test_adapter_uses_v2_canonical_baseline_and_migration_only_sheet_state(self) -> None:
+    def test_adapter_uses_v2_approved_pr_base_and_migration_only_sheet_state(self) -> None:
         adapter = json.loads(ADAPTER.read_text(encoding="utf-8"))
         self.assertEqual(2, adapter["schema_version"])
         self.assertEqual("switchy-express-cargo-puzzle", adapter["project"]["project_id"])
-        self.assertEqual("ae8f4aeae111c5cce4284499b851c0c3f80f6bf3", adapter["protected_baseline"]["commit"])
-        self.assertEqual("REMOTE_TRACKING_REF", adapter["protected_baseline"]["authority_kind"])
-        self.assertEqual("CANONICAL_ADAPTER_SOURCE", adapter["protected_baseline"]["policy_source_type"])
+        protected = adapter["protected_baseline"]
+        self.assertEqual(CURRENT_APPROVED_PROTECTED_BASE, protected["commit"])
+        self.assertEqual("GITHUB_PR_BASE", protected["authority_kind"])
+        self.assertEqual("github.event.pull_request.base.sha", protected["authority_ref"])
+        self.assertEqual("CANONICAL_ADAPTER_SOURCE", protected["policy_source_type"])
+        self.assertNotEqual(HISTORICAL_INITIAL_V48_PROTECTED_BASE, protected["commit"])
         sheet = adapter["gdd_sheet"]
         self.assertEqual("NOT_CONFIGURED", sheet["sync_status"])
         self.assertEqual("HISTORICAL_SYNCED", sheet["declared_sync_status"])
