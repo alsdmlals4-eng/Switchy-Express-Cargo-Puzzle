@@ -16,8 +16,8 @@ v4_8_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
 v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 project_base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
 base_v4_8_authority_time_snapshot: 2828a74f60c1ed09546171040f4178c8848ea686
-base_latest_observed: 8820ca9c0d46da0dda3256b52802dfb02d4c4954
-base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
+base_canon_sync_observation: 862938478cfea6c9db16691900c9c4fdc464f9ff · AUDIT_EVIDENCE_ONLY
+base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 sx_dec_059_merge_pr: 158
 sx_dec_059_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
 SX_DEC_059_IMPLEMENTATION: MERGED_MAIN_VERIFIED
@@ -54,7 +54,7 @@ sx_dec_058: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
 ```
 
-`2828a74...`는 v4.8 protected-canon migration 당시 Base snapshot이다. 현재 작업 시에는 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN`에 따라 fresh Base completed main을 다시 읽으며, latest observed는 `8820ca9c0d46da0dda3256b52802dfb02d4c4954`다.
+`base_canon_sync_observation`은 이번 Candidate 003 canon-sync 감사 시점의 evidence다. 실행 권위는 SHA snapshot이 아니라 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN`이며, 작업 시작마다 fresh Base completed main을 다시 읽는다.
 
 ## Current core promise
 
