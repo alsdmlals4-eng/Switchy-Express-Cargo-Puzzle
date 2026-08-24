@@ -330,11 +330,14 @@ func _update_result_copy(summary: Variant) -> void:
 	var body := get_node_or_null("ResultOverlay/Panel/Content/BodyScroll/Body") as Label
 	if title == null or body == null:
 		return
+	var outcome := StringName(_summary_value(summary, &"outcome", &"FAILURE"))
+	var result_art := get_node_or_null("ResultOverlay/Panel/Content/ResultArt")
+	if result_art != null and result_art.has_method("set_result_outcome"):
+		result_art.set_result_outcome(outcome)
 	if first_session_enabled and _first_session_copy != null:
 		_update_first_session_result_copy(summary, title, body)
 		return
 
-	var outcome := StringName(_summary_value(summary, &"outcome", &"FAILURE"))
 	var success: bool = outcome == &"SUCCESS"
 	var completion_time := maxf(float(_summary_value(summary, &"completion_time", 0.0)), 0.0)
 	var time_limit := maxf(float(_summary_value(summary, &"time_limit_seconds", 0.0)), 0.0)
