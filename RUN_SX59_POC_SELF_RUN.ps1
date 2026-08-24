@@ -18,8 +18,7 @@ $ErrorActionPreference = "Stop"
 
 $Repository = "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle"
 $RepoRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
-$EvidencePath = Join-Path $RepoRoot "evidence\acceptance\sx59_poc_accept_002_artifact.json"
-$SelfRunRecordName = "SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_02.md"
+$PointerPath = Join-Path $RepoRoot "evidence\acceptance\current_poc_candidate.json"
 
 function Assert-Equal {
     param(
@@ -63,13 +62,49 @@ function Resolve-UniqueFile {
     return $Matches[0].FullName
 }
 
-if (-not (Test-Path -LiteralPath $EvidencePath -PathType Leaf)) {
-    throw "Canonical artifact evidence is missing: $EvidencePath"
+function Resolve-RepoRelativeFile {
+    param(
+        [Parameter(Mandatory = $true)][string]$RelativePath,
+        [Parameter(Mandatory = $true)][string]$Label
+    )
+
+    if ([string]::IsNullOrWhiteSpace($RelativePath)) {
+        throw "$Label is empty."
+    }
+    $RootFull = [System.IO.Path]::GetFullPath($RepoRoot).TrimEnd('\') + '\'
+    $CandidateFull = [System.IO.Path]::GetFullPath((Join-Path $RepoRoot $RelativePath))
+    if (-not $CandidateFull.StartsWith($RootFull, [System.StringComparison]::OrdinalIgnoreCase)) {
+        throw "$Label escapes repository root: $RelativePath"
+    }
+    if (-not (Test-Path -LiteralPath $CandidateFull -PathType Leaf)) {
+        throw "$Label file is missing: $CandidateFull"
+    }
+    return $CandidateFull
+}
+
+if (-not (Test-Path -LiteralPath $PointerPath -PathType Leaf)) {
+    throw "Current candidate pointer is missing: $PointerPath"
+}
+
+$Pointer = Get-Content -LiteralPath $PointerPath -Raw -Encoding UTF8 | ConvertFrom-Json
+Assert-Equal -Actual ([string]$Pointer.selection_policy) -Expected "EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE" -Label "selection policy"
+$CandidateId = [string]$Pointer.current_candidate_id
+if ([string]::IsNullOrWhiteSpace($CandidateId)) {
+    throw "current_candidate_id is empty."
+}
+
+$EvidencePath = Resolve-RepoRelativeFile -RelativePath ([string]$Pointer.artifact_evidence_owner) -Label "artifact_evidence_owner"
+$SelfRunRecordName = [string]$Pointer.self_run_record_name
+if ([string]::IsNullOrWhiteSpace($SelfRunRecordName)) {
+    throw "self_run_record_name is empty."
+}
+if ([System.IO.Path]::GetFileName($SelfRunRecordName) -ne $SelfRunRecordName) {
+    throw "self_run_record_name must be a filename, not a path."
 }
 $SelfRunRecord = Resolve-UniqueFile -Root $RepoRoot -Name $SelfRunRecordName
 
 $Evidence = Get-Content -LiteralPath $EvidencePath -Raw -Encoding UTF8 | ConvertFrom-Json
-Assert-Equal -Actual ([string]$Evidence.candidate_id) -Expected "SX59-POC-ACCEPT-002" -Label "candidate_id"
+Assert-Equal -Actual ([string]$Evidence.candidate_id) -Expected $CandidateId -Label "candidate_id"
 Assert-Equal -Actual ([bool]$Evidence.verification.artifact_api_digest_equals_downloaded_zip_sha256) -Expected $true -Label "artifact_api_digest_equals_downloaded_zip_sha256"
 Assert-Equal -Actual ([string]$Evidence.package.identity_class) -Expected "IMMUTABLE_CONTENT_DIGESTS" -Label "package identity class"
 Assert-Equal -Actual ([string]$Evidence.artifact.metadata_class) -Expected "EPHEMERAL_DELIVERY_METADATA" -Label "artifact metadata class"
@@ -82,7 +117,7 @@ if ([string]::IsNullOrWhiteSpace([string]$Evidence.package.windows_pck_sha256)) 
 }
 
 if ($ContractCheck) {
-    Write-Host "CANDIDATE_SELF_RUN_POWERSHELL_CONTRACT: PASS - $($Evidence.candidate_id)" -ForegroundColor Green
+    Write-Host "CANDIDATE_SELF_RUN_POWERSHELL_CONTRACT: PASS - $CandidateId" -ForegroundColor Green
     exit 0
 }
 
@@ -103,7 +138,7 @@ $ArtifactId = [string]$Evidence.artifact.id
 $ArtifactEndpoint = "repos/$Repository/actions/artifacts/$ArtifactId"
 $ArtifactJsonLines = @(& gh api $ArtifactEndpoint)
 if ($LASTEXITCODE -ne 0) {
-    throw "gh api failed while reading Candidate 002 artifact metadata."
+    throw "gh api failed while reading current candidate artifact metadata."
 }
 $Artifact = ($ArtifactJsonLines -join "`n") | ConvertFrom-Json
 
@@ -120,7 +155,7 @@ Assert-Equal -Actual $LiveDigest -Expected ([string]$Evidence.artifact.api_diges
 Assert-Equal -Actual $LiveDigest -Expected ([string]$Evidence.package.zip_sha256).ToLowerInvariant() -Label "archive content identity"
 
 if ([bool]$Artifact.expired) {
-    throw "Candidate artifact is expired/unavailable. Do not silently use a newer build; prepare a new exact candidate or a preserved package with matching content digests."
+    throw "Current candidate artifact is expired/unavailable. Do not infer or fall back to another build. Update the explicit current candidate pointer only after preparing a new exact candidate."
 }
 
 if ([string]::IsNullOrWhiteSpace($WorkDir)) {
@@ -129,7 +164,7 @@ if ([string]::IsNullOrWhiteSpace($WorkDir)) {
     } else {
         $ValidationRoot = Join-Path $env:TEMP "SwitchyExpress\Validation"
     }
-    $WorkDir = Join-Path $ValidationRoot ([string]$Evidence.candidate_id)
+    $WorkDir = Join-Path $ValidationRoot $CandidateId
 }
 
 $ArtifactDir = Join-Path $WorkDir "artifact"
@@ -140,7 +175,7 @@ New-Item -ItemType Directory -Path $ArtifactDir -Force | Out-Null
 
 $RunId = [string]$Evidence.artifact.workflow_run_id
 $ArtifactName = [string]$Evidence.artifact.name
-Write-Host "Downloading exact Candidate 002 artifact from workflow run $RunId..." -ForegroundColor Cyan
+Write-Host "Downloading exact $CandidateId artifact from workflow run $RunId..." -ForegroundColor Cyan
 & gh run download $RunId -R $Repository -n $ArtifactName -D $ArtifactDir
 if ($LASTEXITCODE -ne 0) {
     throw "gh run download failed. No fallback to another build is allowed."
@@ -173,12 +208,12 @@ if (-not $ShaSums.ToLowerInvariant().Contains($PckHash)) {
 }
 
 Write-Host ""
-Write-Host "SX59-POC-ACCEPT-002 PACKAGE VERIFICATION: PASS" -ForegroundColor Green
+Write-Host "$CandidateId PACKAGE VERIFICATION: PASS" -ForegroundColor Green
 Write-Host "Artifact archive identity - $LiveDigest"
 Write-Host "EXE - $ExeHash"
 Write-Host "PCK - $PckHash"
 Write-Host "Working directory - $ArtifactDir"
-Write-Host "Physical/audio/human evidence is still NOT_RUN until you actually play and observe it." -ForegroundColor Yellow
+Write-Host "Physical/audio/human evidence is still fail-closed until actually observed on this exact candidate." -ForegroundColor Yellow
 
 if (-not $NoOpenRecord) {
     Start-Process -FilePath "notepad.exe" -ArgumentList @($SelfRunRecord)
@@ -189,5 +224,5 @@ if ($NoLaunch) {
     exit 0
 }
 
-Write-Host "Launching verified SwitchyExpressVerticalSlice.exe..." -ForegroundColor Cyan
+Write-Host "Launching verified SwitchyExpressVerticalSlice.exe for $CandidateId..." -ForegroundColor Cyan
 Start-Process -FilePath $ExePath -WorkingDirectory (Split-Path -Parent $ExePath)
