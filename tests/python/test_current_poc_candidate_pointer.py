@@ -24,6 +24,10 @@ class CurrentPocCandidatePointerTests(unittest.TestCase):
             "evidence/acceptance/sx59_poc_accept_003_artifact.json",
         )
         self.assertEqual(
+            pointer["deep_pck_evidence_owner"],
+            "evidence/acceptance/sx59_poc_accept_003_pck_deep_audit.json",
+        )
+        self.assertEqual(
             pointer["self_run_record_name"],
             "SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_03.md",
         )
@@ -48,6 +52,31 @@ class CurrentPocCandidatePointerTests(unittest.TestCase):
             evidence["package"]["windows_pck_sha256"],
             "2e9634cedd6da49793973f4582e2bd58ea4daae2fec246657edcf58ae360af72",
         )
+        self.assertEqual(evidence["corrected_runtime"]["pr"], 171)
+        self.assertEqual(
+            evidence["corrected_runtime"]["tree_sha"],
+            "e3b6154a3042808fbc2fc62d5a3c6487e3d2a40f",
+        )
+
+    def test_pointer_and_deep_pck_evidence_agree(self) -> None:
+        pointer = self._pointer()
+        deep_path = ROOT / pointer["deep_pck_evidence_owner"]
+        self.assertTrue(deep_path.is_file())
+        deep = json.loads(deep_path.read_text(encoding="utf-8"))
+        self.assertEqual(deep["candidate_id"], pointer["current_candidate_id"])
+        self.assertEqual(
+            deep["package_identity"]["windows_pck_sha256"],
+            "2e9634cedd6da49793973f4582e2bd58ea4daae2fec246657edcf58ae360af72",
+        )
+        self.assertTrue(deep["pck_integrity"]["integrity_pass"])
+        self.assertEqual(deep["pck_integrity"]["file_count"], 472)
+        self.assertEqual(deep["pck_integrity"]["verified_entry_count"], 472)
+        self.assertEqual(deep["pck_integrity"]["md5_mismatch_count"], 0)
+        self.assertEqual(deep["product_texture_packaging"]["product_png_import_count"], 73)
+        self.assertEqual(deep["product_texture_packaging"]["unique_referenced_ctex_count"], 73)
+        self.assertEqual(deep["product_texture_packaging"]["missing_ctex_reference_count"], 0)
+        self.assertEqual(deep["product_texture_packaging"]["orphan_packed_ctex_count"], 0)
+        self.assertEqual(deep["evidence_ceiling"]["physical_visual_recheck"], "NOT_RUN")
 
     def test_launcher_reads_pointer_instead_of_hardcoding_candidate_002_or_003(self) -> None:
         text = LAUNCHER.read_text(encoding="ascii")
