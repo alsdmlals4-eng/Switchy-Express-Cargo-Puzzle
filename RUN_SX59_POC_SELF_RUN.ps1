@@ -1,0 +1,193 @@
+#Requires -Version 5.1
+
+[CmdletBinding()]
+param(
+    [switch]$ContractCheck,
+    [switch]$NoLaunch,
+    [switch]$NoOpenRecord,
+    [string]$WorkDir = ""
+)
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+
+# Normal use:
+#   powershell -ExecutionPolicy Bypass -File .\RUN_SX59_POC_SELF_RUN.ps1
+# CI / verification use:
+#   powershell -ExecutionPolicy Bypass -File .\RUN_SX59_POC_SELF_RUN.ps1 -ContractCheck -NoLaunch -NoOpenRecord
+
+$Repository = "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle"
+$RepoRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
+$EvidencePath = Join-Path $RepoRoot "evidence\acceptance\sx59_poc_accept_002_artifact.json"
+$SelfRunRecordName = "SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_02.md"
+
+function Assert-Equal {
+    param(
+        [Parameter(Mandatory = $true)]$Actual,
+        [Parameter(Mandatory = $true)]$Expected,
+        [Parameter(Mandatory = $true)][string]$Label
+    )
+
+    if ($Actual -ne $Expected) {
+        throw "$Label mismatch. Expected=[$Expected] Actual=[$Actual]"
+    }
+}
+
+function Assert-FileHash {
+    param(
+        [Parameter(Mandatory = $true)][string]$Path,
+        [Parameter(Mandatory = $true)][string]$Expected,
+        [Parameter(Mandatory = $true)][string]$Label
+    )
+
+    if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) {
+        throw "$Label missing: $Path"
+    }
+
+    $Actual = (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant()
+    Assert-Equal -Actual $Actual -Expected $Expected.ToLowerInvariant() -Label "$Label SHA-256"
+    Write-Host "$Label hash PASS - $Actual" -ForegroundColor Green
+    return $Actual
+}
+
+function Resolve-UniqueFile {
+    param(
+        [Parameter(Mandatory = $true)][string]$Root,
+        [Parameter(Mandatory = $true)][string]$Name
+    )
+
+    $Matches = @(Get-ChildItem -LiteralPath $Root -Recurse -File -Filter $Name)
+    if ($Matches.Count -ne 1) {
+        throw "Expected exactly one $Name under $Root, found $($Matches.Count)."
+    }
+    return $Matches[0].FullName
+}
+
+if (-not (Test-Path -LiteralPath $EvidencePath -PathType Leaf)) {
+    throw "Canonical artifact evidence is missing: $EvidencePath"
+}
+$SelfRunRecord = Resolve-UniqueFile -Root $RepoRoot -Name $SelfRunRecordName
+
+$Evidence = Get-Content -LiteralPath $EvidencePath -Raw -Encoding UTF8 | ConvertFrom-Json
+Assert-Equal -Actual ([string]$Evidence.candidate_id) -Expected "SX59-POC-ACCEPT-002" -Label "candidate_id"
+Assert-Equal -Actual ([bool]$Evidence.verification.artifact_api_digest_equals_downloaded_zip_sha256) -Expected $true -Label "artifact_api_digest_equals_downloaded_zip_sha256"
+Assert-Equal -Actual ([string]$Evidence.package.identity_class) -Expected "IMMUTABLE_CONTENT_DIGESTS" -Label "package identity class"
+Assert-Equal -Actual ([string]$Evidence.artifact.metadata_class) -Expected "EPHEMERAL_DELIVERY_METADATA" -Label "artifact metadata class"
+
+if ([string]::IsNullOrWhiteSpace([string]$Evidence.package.windows_exe_sha256)) {
+    throw "Canonical Windows EXE SHA-256 is empty."
+}
+if ([string]::IsNullOrWhiteSpace([string]$Evidence.package.windows_pck_sha256)) {
+    throw "Canonical Windows PCK SHA-256 is empty."
+}
+
+if ($ContractCheck) {
+    Write-Host "CANDIDATE_SELF_RUN_POWERSHELL_CONTRACT: PASS - $($Evidence.candidate_id)" -ForegroundColor Green
+    exit 0
+}
+
+if ($env:OS -ne "Windows_NT") {
+    throw "Physical self-run launcher requires Windows. Current OS=[$($env:OS)]."
+}
+
+if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
+    throw "GitHub CLI (gh) is required. Install gh, authenticate once, then rerun this script."
+}
+
+& gh auth status --hostname github.com *> $null
+if ($LASTEXITCODE -ne 0) {
+    throw "GitHub CLI is not authenticated for github.com. Run: gh auth login"
+}
+
+$ArtifactId = [string]$Evidence.artifact.id
+$ArtifactEndpoint = "repos/$Repository/actions/artifacts/$ArtifactId"
+$ArtifactJsonLines = @(& gh api $ArtifactEndpoint)
+if ($LASTEXITCODE -ne 0) {
+    throw "gh api failed while reading Candidate 002 artifact metadata."
+}
+$Artifact = ($ArtifactJsonLines -join "`n") | ConvertFrom-Json
+
+Assert-Equal -Actual ([string]$Artifact.id) -Expected ([string]$Evidence.artifact.id) -Label "artifact id"
+Assert-Equal -Actual ([string]$Artifact.name) -Expected ([string]$Evidence.artifact.name) -Label "artifact name"
+Assert-Equal -Actual ([string]$Artifact.workflow_run.id) -Expected ([string]$Evidence.artifact.workflow_run_id) -Label "workflow run id"
+
+$LiveDigest = [string]$Artifact.digest
+if ($LiveDigest.StartsWith("sha256:")) {
+    $LiveDigest = $LiveDigest.Substring(7)
+}
+$LiveDigest = $LiveDigest.ToLowerInvariant()
+Assert-Equal -Actual $LiveDigest -Expected ([string]$Evidence.artifact.api_digest_sha256).ToLowerInvariant() -Label "live artifact API digest"
+Assert-Equal -Actual $LiveDigest -Expected ([string]$Evidence.package.zip_sha256).ToLowerInvariant() -Label "archive content identity"
+
+if ([bool]$Artifact.expired) {
+    throw "Candidate artifact is expired/unavailable. Do not silently use a newer build; prepare a new exact candidate or a preserved package with matching content digests."
+}
+
+if ([string]::IsNullOrWhiteSpace($WorkDir)) {
+    if (-not [string]::IsNullOrWhiteSpace($env:LOCALAPPDATA)) {
+        $ValidationRoot = Join-Path $env:LOCALAPPDATA "SwitchyExpress\Validation"
+    } else {
+        $ValidationRoot = Join-Path $env:TEMP "SwitchyExpress\Validation"
+    }
+    $WorkDir = Join-Path $ValidationRoot ([string]$Evidence.candidate_id)
+}
+
+$ArtifactDir = Join-Path $WorkDir "artifact"
+if (Test-Path -LiteralPath $ArtifactDir) {
+    Remove-Item -LiteralPath $ArtifactDir -Recurse -Force
+}
+New-Item -ItemType Directory -Path $ArtifactDir -Force | Out-Null
+
+$RunId = [string]$Evidence.artifact.workflow_run_id
+$ArtifactName = [string]$Evidence.artifact.name
+Write-Host "Downloading exact Candidate 002 artifact from workflow run $RunId..." -ForegroundColor Cyan
+& gh run download $RunId -R $Repository -n $ArtifactName -D $ArtifactDir
+if ($LASTEXITCODE -ne 0) {
+    throw "gh run download failed. No fallback to another build is allowed."
+}
+
+$ExePath = Resolve-UniqueFile -Root $ArtifactDir -Name "SwitchyExpressVerticalSlice.exe"
+$PckPath = Resolve-UniqueFile -Root $ArtifactDir -Name "SwitchyExpressVerticalSlice.pck"
+$WindowsProofLog = Resolve-UniqueFile -Root $ArtifactDir -Name "windows-runtime-json-proof.log"
+$AndroidProofLog = Resolve-UniqueFile -Root $ArtifactDir -Name "android-validation-runtime-json-proof.log"
+$ShaSumsPath = Resolve-UniqueFile -Root $ArtifactDir -Name "SHA256SUMS.txt"
+
+$ExeHash = Assert-FileHash -Path $ExePath -Expected ([string]$Evidence.package.windows_exe_sha256) -Label "Windows EXE"
+$PckHash = Assert-FileHash -Path $PckPath -Expected ([string]$Evidence.package.windows_pck_sha256) -Label "Windows PCK"
+
+$WindowsProof = Get-Content -LiteralPath $WindowsProofLog -Raw -Encoding UTF8
+$AndroidProof = Get-Content -LiteralPath $AndroidProofLog -Raw -Encoding UTF8
+if (-not $WindowsProof.Contains("RUNTIME_JSON_PACK_PROOF: PASS")) {
+    throw "Windows packaged runtime JSON proof is missing PASS."
+}
+if (-not $AndroidProof.Contains("RUNTIME_JSON_PACK_PROOF: PASS")) {
+    throw "Android packaged runtime JSON proof is missing PASS."
+}
+
+$ShaSums = Get-Content -LiteralPath $ShaSumsPath -Raw -Encoding UTF8
+if (-not $ShaSums.ToLowerInvariant().Contains($ExeHash)) {
+    throw "SHA256SUMS.txt does not contain the verified Windows EXE digest."
+}
+if (-not $ShaSums.ToLowerInvariant().Contains($PckHash)) {
+    throw "SHA256SUMS.txt does not contain the verified Windows PCK digest."
+}
+
+Write-Host ""
+Write-Host "SX59-POC-ACCEPT-002 PACKAGE VERIFICATION: PASS" -ForegroundColor Green
+Write-Host "Artifact archive identity - $LiveDigest"
+Write-Host "EXE - $ExeHash"
+Write-Host "PCK - $PckHash"
+Write-Host "Working directory - $ArtifactDir"
+Write-Host "Physical/audio/human evidence is still NOT_RUN until you actually play and observe it." -ForegroundColor Yellow
+
+if (-not $NoOpenRecord) {
+    Start-Process -FilePath "notepad.exe" -ArgumentList @($SelfRunRecord)
+}
+
+if ($NoLaunch) {
+    Write-Host "NoLaunch requested; verified runtime was not started."
+    exit 0
+}
+
+Write-Host "Launching verified SwitchyExpressVerticalSlice.exe..." -ForegroundColor Cyan
+Start-Process -FilePath $ExePath -WorkingDirectory (Split-Path -Parent $ExePath)

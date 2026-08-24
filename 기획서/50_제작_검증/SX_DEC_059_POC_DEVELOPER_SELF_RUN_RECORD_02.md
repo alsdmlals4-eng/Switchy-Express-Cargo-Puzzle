@@ -22,6 +22,25 @@ player_experience: NOT_RUN
 
 Artifact ID/name/expiry는 retention에 따라 가용성이 달라지는 delivery metadata이며 self-run 판정의 장기 identity가 아니다. 실제 실행 전 확보한 ZIP/EXE/PCK가 위 digest와 모두 일치하지 않으면 **실행하지 않고 BLOCKED_PACKAGE_IDENTITY**로 기록한다.
 
+## Repo-native PowerShell 실행
+
+별도 toolkit ZIP을 수동 다운로드하지 않는다. 최신 `main`을 받은 프로젝트 루트에서 다음 한 줄을 실행한다.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\RUN_SX59_POC_SELF_RUN.ps1
+```
+
+Launcher가 자동으로 다음을 수행한다.
+
+1. `evidence/acceptance/sx59_poc_accept_002_artifact.json`을 current package authority로 읽는다.
+2. `gh auth status`로 GitHub CLI 인증을 확인한다.
+3. GitHub Actions의 exact artifact metadata와 API digest를 evidence owner에 대조한다.
+4. `gh run download`로 exact workflow run / artifact만 내려받는다.
+5. EXE/PCK SHA-256과 packaged runtime proof를 재검증한다.
+6. 위 검증을 모두 통과한 경우에만 이 Self-Run Record를 열고 `SwitchyExpressVerticalSlice.exe`를 실행한다.
+
+Artifact가 만료·누락되거나 metadata/hash가 하나라도 다르면 다른 최신 빌드로 자동 대체하지 않고 fail closed한다.
+
 ## 사용 규칙
 
 - 실제 `SwitchyExpressVerticalSlice.exe` 화면을 보면서 수행한다.
