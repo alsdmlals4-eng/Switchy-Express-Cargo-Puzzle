@@ -11,7 +11,7 @@
 ```yaml
 product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
 current_decisions: SX-DEC-027~059
-work_instruction: v4.7 · revision 2026-08-20-r1 · SWITCHY_THIN_ADAPTER
+work_instruction: v4.8 · revision 2026-08-24-r2 · SWITCHY_THIN_ADAPTER
 phase_a: COMPLETE
 user_planning_complete_gate: GRANTED · 2026-08-20 KST
 phase_b_final_planning_review: SX-AUD-047 · PASS
@@ -26,8 +26,9 @@ sx_dec_059_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
 sx_dec_059_notion_post_merge_readback: PASS
 sx_dec_059_adversarial_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED
 semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
-base_pin: v9.4.3
-upstream_base_main: REFERENCE_ONLY
+base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
+base_latest_observed_for_v48: 2828a74f60c1ed09546171040f4178c8848ea686 · REFRESH_EACH_WORK
+google_sheets: COMPATIBILITY_ONLY_MIGRATION_SOURCE
 developer_self_run: NOT_RUN
 physical_device_human: NOT_RUN
 production_cutover: BLOCKED_DEFERRED
@@ -44,6 +45,7 @@ pr_83: MERGED
 historical_canonical_freshness_audit: SX-AUD-025
 repository_main_observed: HISTORICAL_SNAPSHOT_ONLY
 latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
+v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 ```
 
 ## 현재 제품 기준선
@@ -164,12 +166,14 @@ FINITE CORE AUTOMATED: PASS
 SX-DEC-055 RUNTIME POC: MERGED_MAIN_VERIFIED
 SX-DEC-059 FIRST SESSION: MERGED_MAIN_VERIFIED · PR #158
 SX-DEC-059 NOTION READBACK: PASS
+SX59-ACCEPT-001 ARTIFACT INTEGRITY: PASS · PREPARATION_ONLY
 POST-059 ACCEPTANCE BUILD: UNASSIGNED
 DEVELOPER SELF-RUN / SCREEN QA: NOT_RUN
 WINDOWS PHYSICAL RUNTIME: NOT_RUN
 ANDROID DEVICE SMOKE: NOT_RUN
 CONNECTED PHYSICAL EDITOR: NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
+PLAYER EXPERIENCE: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
 
@@ -181,7 +185,7 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 developer self-run / screen QA
 → exact acceptance build identity when physical validation is prepared
 → Windows physical smoke
-→ Android device smoke
+→ Android device smoke as separate platform gate
 → physical Reduced Motion/readability
 → Five-person comprehension on the same build
 → separate production cutover decision
@@ -191,16 +195,17 @@ developer self-run / screen QA
 
 ## 정본 읽기 순서
 
-1. `AGENTS.md`
-2. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`
-3. `기획서/00_프로젝트_허브/START_HERE.md`
-4. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
-5. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
-6. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
-7. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
-8. `기획서/50_제작_검증/SX_DEC_059_RELEASE_NEAR_FIRST_SESSION_VERTICAL_SLICE.md`
-9. `기획서/50_제작_검증/SX_DEC_059_CODEX_HANDOFF_PACKAGE.md`
-10. `기획서/50_제작_검증/PLAYTEST_PLAN_V4_7_CURRENT.md`
+1. latest Base completed `main` + Base root `AGENTS.md`
+2. `AGENTS.md`
+3. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`
+4. `기획서/00_프로젝트_허브/START_HERE.md`
+5. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
+6. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
+7. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
+8. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
+9. `기획서/50_제작_검증/SX_DEC_059_RELEASE_NEAR_FIRST_SESSION_VERTICAL_SLICE.md`
+10. `기획서/50_제작_검증/SX_DEC_059_CODEX_HANDOFF_PACKAGE.md` · history when needed
+11. `기획서/50_제작_검증/PLAYTEST_PLAN_V4_7_CURRENT.md` · compatibility filename, not work-instruction authority
 
 ## 기술
 
