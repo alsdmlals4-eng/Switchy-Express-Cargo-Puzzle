@@ -1,13 +1,21 @@
 ---
 name: switchy-express-design
-description: Use for Switchy Express finite-delivery gameplay, track construction, cargo encounter order, unlimited LIFO, persistent branch, first-session validation, Android device smoke, five-person comprehension, readability, retry, or product validation work.
+description: Use for Switchy Express finite-delivery gameplay, track construction, cargo encounter order, unlimited LIFO, persistent branch, first-session validation, Candidate 003 physical/readability validation, Android device smoke, five-person comprehension, retry, or product validation work.
 ---
 
 # Switchy Express Design and Validation Discipline
 
 ## Purpose
 
-이 Skill은 `Switchy Express: Cargo Puzzle`의 현 finite 제품 기획·검토·검증을 책임진다. 과거 endless 구현, VS03 계획, 오래된 Android-first gate를 현재 제품 권위로 부활시키지 않고, 현재 승인 결정·실제 finite 코드·SX-DEC-059 merged implementation·acceptance evidence를 연결한다.
+이 Skill은 `Switchy Express: Cargo Puzzle`의 현 finite 제품 기획·검토·검증을 책임진다. 과거 endless 구현, VS03 계획, 오래된 Android-first gate 또는 superseded Candidate 001/002를 current target으로 부활시키지 않고, 현재 승인 결정·실제 finite 코드·SX-DEC-059 merged implementation·current Candidate 003 evidence를 연결한다.
+
+Current work-instruction route:
+
+```yaml
+work_instruction: v4.8 · 2026-08-24-r4 · SWITCHY_THIN_ADAPTER
+work_instruction_source_sha256: 1426c2e5e25e32dc72abccf49e4a0839578e54c14b38ba0de045be426fd63ea6
+base_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
+```
 
 ## Read First
 
@@ -18,13 +26,13 @@ description: Use for Switchy Express finite-delivery gameplay, track constructio
 5. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
 6. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
 7. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
-8. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
-9. `기획서/50_제작_검증/SX_DEC_059_RELEASE_NEAR_FIRST_SESSION_VERTICAL_SLICE.md`
-10. `기획서/50_제작_검증/SX_DEC_059_ACCEPTANCE_CANDIDATE_01.md`
-11. `기획서/50_제작_검증/SX_DEC_059_DEVELOPER_SELF_RUN_RECORD.md`
+8. `evidence/acceptance/current_poc_candidate.json`
+9. `기획서/50_제작_검증/SX_DEC_059_POC_ACCEPTANCE_CANDIDATE_03.md`
+10. `기획서/50_제작_검증/SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_03.md`
+11. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md` + `ROADMAP.md`
 12. actual finite code, Scenes, data and tests
 
-`CURRENT_CONFIRMED_DECISIONS.md`가 현재 승인 결정, `ACTIVE_CONTEXT.md`가 현재 상태와 다음 작업, `DEVELOPMENT_GATES.md`가 Gate 차단 관계를 책임진다. 과거 v4.7 adapter, VS03 계획·감사·실행문, 이전 Android APK package는 history/rollback/diagnostic evidence이며 current execution authority가 아니다.
+`CURRENT_CONFIRMED_DECISIONS.md`가 현재 승인 결정, `ACTIVE_CONTEXT.md`가 현재 상태와 다음 작업, `current_poc_candidate.json`가 current candidate pointer, `DEVELOPMENT_GATES.md`가 Gate 차단 관계를 책임진다. 과거 v4.7/r2 adapter, Candidate 001/002 docs, VS03 계획, 이전 Android APK package는 history/rollback/diagnostic evidence이며 current execution authority가 아니다.
 
 ## Current Product Authority
 
@@ -66,28 +74,49 @@ track construction
 ```text
 FINITE AUTOMATED CORE: PASS
 SX-DEC-059 IMPLEMENTATION: MERGED_MAIN_VERIFIED · PR #158
-SX59-ACCEPT-001 ARTIFACT INTEGRITY: PASS · PREPARATION_ONLY
-DEVELOPER SELF-RUN / SCREEN QA: NOT_RUN · CURRENT
+PLAYABLE VISUAL/UX POC: MERGED_MAIN_VERIFIED · PR #166
+CANDIDATE 002 WINDOWS STARTUP: PASS · HISTORICAL_PHYSICAL_EVIDENCE
+CANDIDATE 002 ACCEPTANCE: BLOCKED_BY_CONFIRMED_P1_PREFLIGHT_VISUAL_DEFECTS
+CURRENT CANDIDATE: SX59-POC-ACCEPT-003
+CANDIDATE 003 PACKAGE/PCK/TEXTURE/POINTER: PASS
+CANDIDATE 003 PHYSICAL VISUAL RECHECK: NOT_RUN · CURRENT
+DEVELOPER SELF-RUN / SCREEN QA: NOT_RUN
+AUDIO PERCEPTUAL QA: NOT_RUN
 EXACT ACCEPTANCE BUILD: NOT_YET_DESIGNATED
-WINDOWS PHYSICAL SMOKE: NOT_RUN
+WINDOWS FULL PHYSICAL SMOKE: NOT_RUN
 ANDROID DEVICE SMOKE: NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
 PLAYER EXPERIENCE: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
 
+### Candidate 003 Gate 0
+
+Before the normal self-run matrix, direct physical visual readback of `SX59-POC-ACCEPT-003` must confirm:
+
+```text
+A. physical visual recheck
+   preflight badge compact + Korean problem copy non-overlap
+B. physical visual recheck
+   disconnected station/cargo color+shape+text identity visible + problem reinforcement outline only
+```
+
+If either A or B fails, return `BLOCKED_P1_VISUAL` and do not continue the self-run scenarios. If both PASS, keep the **same exact Candidate 003** for subsequent manual evidence.
+
 Current validation sequence:
 
 ```text
-developer self-run / screen QA
+SX59-POC-ACCEPT-003 · Candidate 003 Gate 0 · physical visual recheck
+→ developer self-run / screen QA · 8 scenarios
+→ audio perceptual QA
 → exact acceptance build
-→ Windows physical smoke
+→ Windows full physical smoke
 → Android device smoke
 → Five-person first-contact comprehension
 → product decision
 ```
 
-`SX59-ACCEPT-001`의 hash/artifact integrity PASS는 acceptance build designation, physical runtime, human comprehension, player experience PASS가 아니다.
+Candidate 002 startup PASS and Candidate 003 package integrity PASS do not imply corrected physical appearance, audio perception, acceptance build designation, device, human comprehension, or player-experience PASS.
 
 ### Historical Android packaging evidence
 
@@ -100,7 +129,7 @@ package_id: com.alsdmlals4.switchyexpress.validation
 status: HISTORICAL_PACKAGING_DIAGNOSTIC_EVIDENCE
 ```
 
-이 binary와 과거 Android runbook은 Android-specific regression/diagnostic reference로 쓸 수 있지만 post-SX-DEC-059 exact acceptance build를 대신하지 않는다.
+이 binary와 과거 Android runbook은 Android-specific regression/diagnostic reference로 쓸 수 있지만 current exact acceptance build를 대신하지 않는다.
 
 ### Android device smoke route
 
@@ -163,7 +192,7 @@ The following are `LEGACY_IMPLEMENTATION · HISTORICAL_EVIDENCE`:
 - old endless score authority
 - old VS03-01/02/03/R1/04/05/06/07 package order
 
-Legacy code and tests may remain for history, migration analysis or isolated regression, but they do not define current product completion, current package authority or future design. Never combine their assertion counts with finite PASS evidence unless the evidence explicitly distinguishes both suites.
+Legacy code and tests may remain for history, migration analysis or isolated regression, but they do not define current product completion, current package authority or future design.
 
 ## Architecture Boundaries
 
@@ -195,41 +224,52 @@ Current validation work must not smuggle Route Probe/PB/Fingerprint, score/max-c
 
 ## Actual Test Contract
 
-Use the repository custom runner:
+Use the repository custom runner when gameplay/runtime verification is relevant:
 
 ```bash
 ./Godot_v4.7.1-stable_linux.x86_64 \
   --headless --path . --script res://tests/run_tests.gd
 ```
 
-Each suite extends `res://tests/test_case.gd` and implements `func run() -> void`. Do not use nonexistent single-suite runners or unsupported test APIs.
-
-Relevant static contracts:
+Relevant static contracts include:
 
 ```bash
 python tools/validate_project_contract.py
 python tests/python/test_v48_current_authority_migration.py -v
 python tests/python/test_sx_dec_059_implementation_canonical_freshness.py -v
+python tests/python/test_candidate_003_postmerge_canon.py -v
+python tests/python/test_current_poc_candidate_pointer.py -v
 python tests/python/test_android_smoke_canonical_freshness_contract.py -v
 python tests/python/test_platform_release_asset_rights_contract.py -v
 ```
 
 Never report an unexecuted command as PASS.
 
+## r4 Toolchain Boundary
+
+- project engine canon is `Godot 4.7.1-stable`.
+- local authoring/runtime uses fresh repo/location/git/update preflight.
+- compatible shared exact Godot/Godot-AI pin + exact project/editor/session identity is preferred over per-project binary/port duplication.
+- default Godot AI host ports are `8000/9500` when healthy; alternate ports are recovery exceptions.
+- official update review + compatibility + rollback + canary + exact installed readback is required before safe auto-update; floating latest is forbidden.
+- docs/Notion-only work does not require Editor/runtime proof.
+
 ## Adversarial Review Lenses
 
 - current finite authority replaced by historical endless assumptions
-- v4.7/current Base authority drift reintroduced
+- v4.7/r2 or stale Base authority drift reintroduced
 - Google Sheets promoted from migration compatibility back to active workspace
-- stale VS03/Android-first package presented as next work
+- stale Candidate 001/002 or Android-first package presented as current next work
+- Candidate 003 Gate 0 bypassed by starting self-run immediately
 - LIFO meaning inverted or reduced to FIFO
 - unlimited stack silently re-capped
 - branch tap or occupied lock mismatch
 - UI or animation becomes outcome authority
 - manual/auto loading state not visible or not applied on next contact
 - same-layout retry reuses stale mutable services
-- acceptance candidate integrity overstated as acceptance build/physical PASS
+- acceptance candidate integrity overstated as physical/human PASS
 - emulator or partial matrix overstated as physical-device PASS
+- package audio presence overstated as audio perceptual PASS
 - color-only cargo/TOP identification
 - safe-area clipping, overlap, missed touch or undersized target
 - pause changes timer, movement, unload commit or stack state
@@ -238,7 +278,7 @@ Never report an unexecuted command as PASS.
 
 ## PR Gate
 
-Every material package requires:
+Every material package requires applicable evidence from:
 
 ```text
 latest main baseline
@@ -246,8 +286,7 @@ approved authority and scope
 TDD RED observed for behavior/contract change
 focused GREEN
 Project Contract success
-Godot Tests success when relevant
-JSON and whitespace checks
+Godot/GUT checks when repository change classification invokes them
 unresolved review threads 0
 REQUEST_CHANGES 0
 protected product file inventory
@@ -262,7 +301,7 @@ For authority/readiness documents, product code, APK bytes, Android export workf
 Depending on the request, produce one or more of:
 
 - finite product design or review
-- developer self-run / acceptance evidence review
+- Candidate 003 Gate 0 / developer self-run / acceptance evidence review
 - Windows/Android physical smoke preparation or evidence review
 - five-person comprehension preparation or evidence review
 - canonical-freshness finding and closure report
