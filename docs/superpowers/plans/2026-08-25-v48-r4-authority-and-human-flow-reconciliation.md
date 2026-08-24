@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Reconcile current project authority from v4.8 r2 to the user-approved v4.8 r4 contract, align current Candidate 003 evidence routing, and refine the Notion Human Home into a full game-flow learning surface without changing gameplay/runtime bytes.
+**Goal:** Reconcile current project authority from v4.8 r2 to the user-approved v4.8 r4 contract, align current Candidate 003 evidence routing across every active consumer, and refine the Notion Human Home into a full game-flow learning surface without changing gameplay/runtime bytes.
 
-**Architecture:** Reuse the existing v4.8 thin adapter and v4.8 migration regression rather than creating a second authority system. Apply RED-first contract changes on one isolated GitHub branch, make minimal current-owner edits, record one `SX-AUD-070` audit, update only the bounded Human Home projection in Notion, then run exact-head checks, minimum five full adversarial loops, merge, and perform GitHub/Notion post-merge readback.
+**Architecture:** Reuse the existing v4.8 thin adapter, migration regression, current-canon owners, and project-specific Switchy Skill rather than creating a second authority system. Apply RED-first contract changes on one isolated GitHub branch, make minimal freshness edits to active owners only, record one `SX-AUD-070` audit, update only the bounded Human Home projection in Notion, then run exact-head checks, minimum five full adversarial loops, merge, and perform GitHub/Notion post-merge readback.
 
 **Tech Stack:** Markdown, Python unittest, GitHub Actions, GitHub connector, Notion project workspace. Godot 4.7.1/GDScript runtime is protected and not modified by this docs-only package.
 
@@ -40,6 +40,7 @@
 - [x] **Step 1: Create isolated GitHub branch from exact project main `cf207f29...`.**
 - [x] **Step 2: Write the approved design with exact source hash, protected boundaries, trade study, benchmark synthesis, IRG, acceptance, and rollback.**
 - [x] **Step 3: Write this implementation plan and self-review for scope/placeholder consistency.**
+- [x] **Step 4: Re-run reference-freshness discovery before RED; expand the active-consumer list to `START_HERE`, `CURRENT_CONFIRMED_DECISIONS`, `ROADMAP`, `DEVELOPMENT_GATES`, and `skills/switchy-express-design/SKILL.md` after confirming they still advertise r2 or Candidate 001/current-old gate.**
 
 ### Task 2: RED — strengthen the v4.8 authority regression contract
 
@@ -47,35 +48,40 @@
 - Modify: `tests/python/test_v48_current_authority_migration.py`
 
 **Interfaces:**
-- Consumes: existing r2 regression test and current Candidate 003 Active Context.
-- Produces: a test that rejects stale r2 and Candidate 001 authority while preserving deferred package/evidence ceilings.
+- Consumes: existing r2 regression test, current Candidate 003 Active Context, and the active-consumer inventory from Task 1.
+- Produces: a test that rejects stale r2/Candidate 001 current routing while preserving historical provenance, deferred package states, and evidence ceilings.
 
 - [ ] **Step 1: Change current expected revision from `2026-08-24-r2` to `2026-08-24-r4`.**
-- [ ] **Step 2: Replace the r2 source-hash constant used as current identity with exact supplied r4 file SHA-256 `1426c2e5...63ea6`; keep r2 only as historical provenance assertion if useful.**
-- [ ] **Step 3: Require current entry surfaces to advertise r4.**
-- [ ] **Step 4: Require the adapter to identify `SX59-POC-ACCEPT-003`, Candidate 003 Gate 0 physical visual recheck, developer self-run/screen QA, audio perceptual QA, Windows, Android, and five-person evidence separation.**
+- [ ] **Step 2: Replace the r2 source-hash constant used as current identity with exact supplied r4 file SHA-256 `1426c2e5...63ea6`; retain r2 only as historical provenance assertion.**
+- [ ] **Step 3: Require the current authority snapshots in adapter, AGENTS, README, START_HERE, ACTIVE_CONTEXT, CURRENT_CONFIRMED_DECISIONS, ROADMAP, and DEVELOPMENT_GATES to advertise r4.**
+- [ ] **Step 4: Require both adapter and `skills/switchy-express-design/SKILL.md` to identify `SX59-POC-ACCEPT-003`, Candidate 003 Gate 0 physical visual recheck, developer self-run/screen QA, audio perceptual QA, Windows, Android, and five-person evidence separation.**
 - [ ] **Step 5: Preserve tests that keep 056~058 unauthorized and `player_experience: NOT_RUN`.**
 - [ ] **Step 6: Commit the test-only RED state.**
-- [ ] **Step 7: Open the current-task PR and observe the expected Project Contract/Python failure caused specifically by stale r2/current-candidate content. Do not implement GREEN before the RED is observed.**
+- [ ] **Step 7: Open the current-task PR and observe the expected Project Contract/Python failure caused specifically by stale active current owners. Do not implement GREEN before the RED is observed.**
 
-### Task 3: GREEN — update the existing r4 thin authority path
+### Task 3: GREEN — update the existing r4 thin authority path and active consumers
 
 **Files:**
 - Modify: `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`
 - Modify: `AGENTS.md`
 - Modify: `README.md`
+- Modify: `기획서/00_프로젝트_허브/START_HERE.md`
 - Modify: `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
+- Modify: `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
+- Modify: `기획서/00_프로젝트_허브/ROADMAP.md`
+- Modify: `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
+- Modify: `skills/switchy-express-design/SKILL.md`
 
 **Interfaces:**
 - Consumes: Task 2 failing expectations plus user r4 contract and current Candidate 003 evidence.
-- Produces: one coherent r4 current authority route without duplicating Base procedure.
+- Produces: one coherent r4 current authority route without duplicating Base procedure or rewriting historical evidence.
 
 - [ ] **Step 1: Update adapter front matter to `revision: '2026-08-24-r4'` and record exact `source_v4_8_r4_sha256: 1426c2e5...63ea6`; retain the prior r2 source hash as historical provenance.**
 - [ ] **Step 2: Add only r4 project-relevant invariants: reviewed safe auto-update/exact pin semantics, shared compatible Godot exact pin, default fixed Godot AI ports with exact session routing, and no Editor requirement for docs-only work. Do not copy the full Base/r4 playbook.**
 - [ ] **Step 3: Replace stale adapter Candidate 001 evidence with Candidate 003 as current; preserve Candidate 002 physical startup as historical blocked evidence and keep physical/human PASS fail-closed.**
-- [ ] **Step 4: Update AGENTS current work-instruction locator from r2 to r4 and align Candidate 003 current gate without altering GMB-002 or deferred package states.**
-- [ ] **Step 5: Update README current authority/evidence/next-work sections to r4 + Candidate 003 and remove stale `SX59-ACCEPT-001` as current.**
-- [ ] **Step 6: Update ACTIVE_CONTEXT work-instruction locator from r2 to r4 and exact source hash, leaving Candidate 003 exact artifact evidence and next physical gate unchanged.**
+- [ ] **Step 4: Update AGENTS and README current work-instruction/current-gate sections to r4 + Candidate 003 without altering GMB-002 or deferred package states.**
+- [ ] **Step 5: Update START_HERE, ACTIVE_CONTEXT, CURRENT_CONFIRMED_DECISIONS, ROADMAP, and DEVELOPMENT_GATES only where they declare current authority/current next work; leave deliberately historical r2/v4.7 records untouched.**
+- [ ] **Step 6: Refresh `skills/switchy-express-design/SKILL.md` current read order and gate sequence to use `current_poc_candidate.json` + Candidate 003 owner docs, Gate 0, same exact Candidate 003 self-run/audio, acceptance-build designation, Windows, Android, then five-person comprehension.**
 - [ ] **Step 7: Commit the minimal GREEN implementation.**
 
 ### Task 4: Create the repository audit record
@@ -85,13 +91,14 @@
 
 **Interfaces:**
 - Consumes: Tasks 2–3 diff, benchmark sources, current Notion/Sheet readback.
-- Produces: durable repository evidence for rationale, RED/GREEN, IRG, review and post-merge closure.
+- Produces: durable repository evidence for rationale, active-consumer finding, RED/GREEN, IRG, review and post-merge closure.
 
 - [ ] **Step 1: Record exact baseline/current branch identity, current Base SHA, r4 file SHA, scope and non-goals.**
-- [ ] **Step 2: Record A/B/C trade study and benchmark `ADAPT / REFERENCE_ONLY / REJECT_NOW` conclusions without causal overclaim.**
-- [ ] **Step 3: Record RED evidence and GREEN exact-head checks as they become available.**
-- [ ] **Step 4: Record IRG ceiling: repository/Notion readback can PASS; runtime/device/human/player remains NOT_RUN/NOT_APPLICABLE for this docs-only package.**
-- [ ] **Step 5: Reserve sections for five-pass review and merge/postmerge identity; populate them before completion instead of leaving placeholders.**
+- [ ] **Step 2: Record the discovered stale active-consumer set and why each current-only correction is required.**
+- [ ] **Step 3: Record A/B/C trade study and benchmark `ADAPT / REFERENCE_ONLY / REJECT_NOW` conclusions without causal overclaim.**
+- [ ] **Step 4: Record RED evidence and GREEN exact-head checks as they become available.**
+- [ ] **Step 5: Record IRG ceiling: repository/Notion readback can PASS; runtime/device/human/player remains NOT_RUN/NOT_APPLICABLE for this docs-only package.**
+- [ ] **Step 6: Record five-pass review and merge/postmerge identity before completion; do not leave completion placeholders.**
 
 ### Task 5: Refine the Notion Human Home without creating a second workspace
 
@@ -125,13 +132,13 @@
 - [ ] **Step 2: Observe the v4.8 authority regression GREEN.**
 - [ ] **Step 3: Run/inspect repository workflows applicable to the actual change class. Do not infer required-check names from old docs; discover them from the PR/rules/workflow evidence.**
 - [ ] **Step 4: If any validator fails, use Case Lookup + systematic debugging, fix the root cause without deleting/weakening tests, and rerun.**
-- [ ] **Step 5: Verify no unexpected generated derivative or stale consumer still advertises r2/current Candidate 001; add only minimal freshness correction if a live consumer is found.**
+- [ ] **Step 5: Search current active consumers again for stale r2/current Candidate 001 routing; historical plan/audit/evidence matches may remain if clearly historical. Add only minimal freshness correction for live consumers.**
 
 ### Task 7: Minimum five full adversarial loops
 
 **Files/Surfaces:**
 - Entire current-task PR diff
-- Current Base/project canon
+- Current Base/project canon and all active consumers
 - Notion Home readback
 - Google Sheet migration-only boundary
 - Applicable CI/check evidence
@@ -164,13 +171,13 @@
 - [ ] **Step 2: Verify current PR reviews, unresolved threads, discovered required checks/ruleset and exact HEAD.**
 - [ ] **Step 3: Merge only this current-task PR using a repository-permitted method; no admin/ruleset bypass.**
 - [ ] **Step 4: Fetch new project main and compare retained changes to the approved scope.**
-- [ ] **Step 5: Fetch adapter, AGENTS, README, ACTIVE_CONTEXT and `SX-AUD-070` from new main; verify r4/Candidate 003 authority and preserved evidence ceilings.**
+- [ ] **Step 5: Fetch all active current owners plus `SX-AUD-070` from new main; verify r4/Candidate 003 authority and preserved evidence ceilings.**
 - [ ] **Step 6: Fetch Notion Home and confirm full game flow, learning path, visual-language summary and Domain links persist.**
 - [ ] **Step 7: Complete post-change monitor/correction rescan; if a new valid omission/conflict appears, reopen remaining work and fix through the same owner before completion.**
 
 ## Self-Review
 
-- Spec coverage: r4 authority, exact source identity, Candidate 003 routing, existing-solution reuse, Human Home projection, Sheet migration-only boundary, TDD, IRG, five-pass review, merge/postmerge readback are all mapped.
-- Placeholder scan: no implementation step delegates decisions to `TBD`/`TODO`; the audit file may not retain empty placeholder sections at completion.
-- Scope: one authority/planning reconciliation package; no independent gameplay subsystem is mixed in.
+- Spec coverage: r4 authority, exact source identity, Candidate 003 routing, all discovered active consumers, existing-solution reuse, Human Home projection, Sheet migration-only boundary, TDD, IRG, five-pass review, merge/postmerge readback are all mapped.
+- Placeholder scan: no implementation step delegates decisions to `TBD`/`TODO`; the audit file may not retain empty completion placeholders.
+- Scope: one authority/planning/reference-freshness reconciliation package; no independent gameplay subsystem is mixed in.
 - Interface consistency: the test is RED before current-owner GREEN; the same `SX-AUD-070` identity ties repository and Notion change evidence; exact Candidate 003 physical/human gates remain independent.
