@@ -30,7 +30,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Parse PowerShell launcher
-        shell: pwsh
+        shell: powershell
         run: |
           $tokens = $null
           $errors = $null
@@ -43,15 +43,15 @@ jobs:
             $errors | Format-List | Out-String | Write-Error
             exit 1
           }
-          Write-Host 'POWERSHELL_PARSE: PASS'
+          Write-Host 'POWERSHELL_51_PARSE: PASS'
 
       - name: Run evidence-only contract check
-        shell: pwsh
+        shell: powershell
         run: |
           .\RUN_SX59_POC_SELF_RUN.ps1 -ContractCheck -NoLaunch -NoOpenRecord
 
       - name: Prove exact Candidate 002 download and package verification on Windows
-        shell: pwsh
+        shell: powershell
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
