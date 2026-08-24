@@ -4,14 +4,16 @@
 
 ## 핵심 재미
 
-> 선로가 적재 순서를 만들고, LIFO가 역 방문 순서를 만들며, TOP의 연속 동일 화물 하역이 다음 설계를 낳는다.
+> 선로가 적재 순서를 만들고, LIFO가 역 방문 순서를 만들며, 운행 중 스위치 판단과 결과 피드백이 다음 설계를 낳는다.
 
 ## Current Authority
 
 ```yaml
 product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
 current_decisions: SX-DEC-027~059
-work_instruction: v4.8 · revision 2026-08-24-r2 · SWITCHY_THIN_ADAPTER
+work_instruction: v4.8 · revision 2026-08-24-r4 · SWITCHY_THIN_ADAPTER
+work_instruction_source_sha256: 1426c2e5e25e32dc72abccf49e4a0839578e54c14b38ba0de045be426fd63ea6
+historical_v48_r2_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
 phase_a: COMPLETE
 user_planning_complete_gate: GRANTED · 2026-08-20 KST
 phase_b_final_planning_review: SX-AUD-047 · PASS
@@ -19,33 +21,41 @@ runtime_semantic_poc: SX-DEC-055 · IMPLEMENTED · PR_151_MERGED
 runtime_integrated: true
 sx_dec_055_merge_main: 534a7318b349cd3e784a3467125f9ebd23124d8a
 release_near_first_session: SX-DEC-059 · MERGED_MAIN_VERIFIED
-sx_dec_059_codex_handoff: USER_REQUESTED_AND_EXECUTED
-SX_DEC_059_IMPLEMENTATION: MERGED_MAIN_VERIFIED
 sx_dec_059_merge_pr: 158
 sx_dec_059_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
 sx_dec_059_notion_post_merge_readback: PASS
 sx_dec_059_adversarial_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED
+playable_visual_ux_poc: PR_166_MERGED_MAIN_VERIFIED
+current_candidate: SX59-POC-ACCEPT-003
+candidate_003_package_integrity: PASS
+candidate_003_physical_visual_recheck: NOT_RUN
+developer_self_run: NOT_RUN
+audio_perceptual_qa: NOT_RUN
+windows_full_physical_runtime: NOT_RUN
+android_device_smoke: NOT_RUN
+five_person_comprehension: NOT_RUN
+player_experience: NOT_RUN
 semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
 base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
-base_latest_observed_for_v48: 2828a74f60c1ed09546171040f4178c8848ea686 · REFRESH_EACH_WORK
+base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 google_sheets: COMPATIBILITY_ONLY_MIGRATION_SOURCE
-developer_self_run: NOT_RUN
-physical_device_human: NOT_RUN
 production_cutover: BLOCKED_DEFERRED
 ```
 
-`GMB-003`의 route-end/switch implementation package와 과거 `SX-AUD-026` 실행 상태는 역사 증거이며 현재 제품 기준선/실행 라우팅이 아닙니다.
-
 ## Historical compatibility breadcrumbs
 
-아래 값은 current execution routing이 아니라 과거 자동/merge evidence를 찾기 위한 호환 표식이다. current 상태를 이 값으로 되돌리지 않는다.
+아래 값은 current execution routing이 아니라 과거 자동/merge/physical evidence를 찾기 위한 호환 표식이다. current 상태를 이 값으로 되돌리지 않는다.
 
 ```yaml
+v4_8_r2: HISTORICAL_INITIAL_ADOPTION
+v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 pr_83: MERGED
 historical_canonical_freshness_audit: SX-AUD-025
-repository_main_observed: HISTORICAL_SNAPSHOT_ONLY
 latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
-v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
+candidate_002: SX59-POC-ACCEPT-002 · HISTORICAL_PHYSICAL_EVIDENCE
+candidate_002_windows_startup: PASS
+candidate_002_result: BLOCKED_BY_CONFIRMED_P1_PREFLIGHT_VISUAL_DEFECTS
+candidate_002_acceptance_promotion: PROHIBITED
 ```
 
 ## 현재 제품 기준선
@@ -82,68 +92,68 @@ FirstSessionDefinition + StagePolicy + Director + Copy
 → evidence-safe Result / Retry / Edit
 ```
 
-상세 구현·5회 적대적 검토·패키지 증거는 `기획서/50_제작_검증/SX_AUD_066_SX_DEC_059_IMPLEMENTATION_AND_FIVE_PASS_REVIEW.md`가 소유합니다.
+Playable Visual/UX POC는 PR #166에서 기존 승인 E+D Hybrid 자산을 Board/HUD/Title/Lesson/Result에 실제 연결했습니다. 새 gameplay system이나 새 생성 이미지는 추가하지 않았습니다.
 
-`SX-DEC-055 Runtime Semantic POC`는 PR #151로 구현되어 main `534a7318b349cd3e784a3467125f9ebd23124d8a`에 병합되었습니다.
+Candidate 002를 실제 Windows에서 실행한 뒤 preflight badge/copy overlap과 problem-cell marker obscuration 위험이라는 P1 2건이 확인됐고 PR #171에서 교정했습니다. 수정 bytes를 가진 **SX59-POC-ACCEPT-003**이 현재 검증 대상입니다.
 
-```text
-SX-DEC-053/054 approved product manifests
-→ presentation-owned SemanticAssetCatalog
-→ pure semantic runtime-state mapping
-→ existing presenter/render snapshot/events
-→ HUD + BUILD + route + semantic event presentation
-```
-
-실제 merged runtime 변화:
-
-- Stack/manual-auto/preflight semantic HUD reinforcement;
-- BUILD valid/invalid/rotate/replacement semantic reinforcement;
-- route-control selected/unselected/occupied-locked semantic reinforcement;
-- pickup/unload/route/result semantic event feedback;
-- Reduced Motion에서 동일 정보 identity 유지;
-- 기존 한글 텍스트, controls, touch/hit geometry, gameplay/domain rules, scoring, maps, save authority, product PNG/manifest는 유지.
-
-PR #151 exact head `63b0ed331e043db7d677ca097bdb209003bda4be` 검증:
+## 지금 플레이어가 겪는 전체 흐름
 
 ```text
-Project Contract #1242 PASS
-GUT 9.7.1 #291 PASS
-Godot Tests #1173 PASS
-Thin Adapter #369 PASS
-Windows Demo Export #241 PASS
-custom suite: 97 cases / 0 failed / 11923 assertions
-Windows Demo proof PCK: parsed_json=13
-Android Validation preset proof PCK: parsed_json=13
-review threads: 0
+Title / Briefing
+→ BUILD · 선로 설계
+→ Preflight · 구조 확인
+→ RUN · 자동 운행
+→ Pickup 선택 · LIFO/TOP 구성
+→ Switch 판단 · 계획 실행
+→ Delivery / Terminal
+→ Result
+→ Retry Same Layout 또는 Edit
 ```
 
-읽을 문서:
-
-- `기획서/50_제작_검증/SX_AUD_047_PHASE_B_FINAL_PLANNING_REVIEW.md`
-- `기획서/50_제작_검증/SX_AUD_054_SX_DEC_055_RUNTIME_POC_POST_MERGE_RECONCILIATION.md`
-- `docs/superpowers/plans/2026-08-10-sx-dec-055-runtime-semantic-poc.md`
-- `docs/superpowers/plans/2026-08-11-sx-dec-055-phase-b-readiness-amendment.md`
-
-Task 1 / Step 1.1 RED는 완료된 TDD 역사이며 현재 next action이 아닙니다.
-
-## 바로 실행하기
-
-사용자 로컬 확인은 항상 최신 `main`을 받은 뒤 진행합니다.
-
-1. GitHub Desktop에서 저장소와 `main`을 선택합니다.
-2. `Fetch origin → Pull origin`을 수행합니다.
-3. Godot `4.7.1-stable`에서 저장소 루트의 `project.godot`을 엽니다.
-4. 별도 Scene 선택 없이 **Project Play(F5 / ▶)** 를 사용합니다.
-
-기본 진입점:
+핵심 사고 루프는 다음입니다.
 
 ```text
-project.godot
-→ res://game/main/main.tscn
-→ Title → Briefing → BUILD → RUN → Result
+Plan
+→ Commit
+→ Observe
+→ Diagnose
+→ Re-design
 ```
 
-### 조작
+첫 세션은 이 사고를 T1→T6→Capstone으로 한 단계씩 학습시킵니다.
+
+## 바로 실행하기 · 현재 Candidate 003
+
+사용자 로컬 확인은 항상 최신 `main`을 받은 뒤 current pointer를 사용합니다. Candidate 번호나 newest build를 추정하지 않습니다.
+
+```powershell
+$repo = "C:\Users\user\Documents\GitHub\Ninza\Switchy-Express-Cargo-Puzzle"
+git -C $repo switch main
+git -C $repo pull --ff-only
+powershell -ExecutionPolicy Bypass -File "$repo\RUN_SX59_POC_SELF_RUN.ps1"
+```
+
+`RUN_SX59_POC_SELF_RUN.ps1`는 `evidence/acceptance/current_poc_candidate.json`이 지정한 exact candidate를 검증한 뒤 실행합니다.
+
+### Candidate 003 Gate 0
+
+1. **physical visual recheck A** — preflight badge가 compact lane에 있고 Korean problem copy와 겹치지 않는가.
+2. **physical visual recheck B** — disconnected station/cargo의 color+shape+text identity가 보이고 problem reinforcement는 outline뿐인가.
+
+하나라도 실패하면 `BLOCKED_P1_VISUAL`이며 이후 scenario를 진행하지 않습니다. 둘 다 PASS일 때만 같은 exact Candidate 003으로 이어갑니다.
+
+```text
+Candidate 003 Gate 0 · physical visual recheck
+→ developer self-run / screen QA · 8 scenarios
+→ audio perceptual QA
+→ exact acceptance build designation
+→ Windows full physical smoke
+→ Android device smoke
+→ Five-person first-contact comprehension
+→ EXPAND / REWORK / REPEAT_SLICE / HOLD / STOP
+```
+
+## 조작
 
 ```text
 좌클릭: 설치·선택·분기/교차 전환
@@ -165,33 +175,22 @@ Esc: 취소·뒤로
 FINITE CORE AUTOMATED: PASS
 SX-DEC-055 RUNTIME POC: MERGED_MAIN_VERIFIED
 SX-DEC-059 FIRST SESSION: MERGED_MAIN_VERIFIED · PR #158
-SX-DEC-059 NOTION READBACK: PASS
-SX59-ACCEPT-001 ARTIFACT INTEGRITY: PASS · PREPARATION_ONLY
-POST-059 ACCEPTANCE BUILD: UNASSIGNED
+PLAYABLE VISUAL/UX POC: MERGED_MAIN_VERIFIED · PR #166
+CANDIDATE 002 WINDOWS STARTUP: PASS · HISTORICAL · ACCEPTANCE_BLOCKED
+CURRENT CANDIDATE: SX59-POC-ACCEPT-003
+CANDIDATE 003 PACKAGE/PCK/TEXTURE/POINTER: PASS
+CANDIDATE 003 PHYSICAL VISUAL RECHECK: NOT_RUN
 DEVELOPER SELF-RUN / SCREEN QA: NOT_RUN
-WINDOWS PHYSICAL RUNTIME: NOT_RUN
+AUDIO PERCEPTUAL QA: NOT_RUN
+EXACT ACCEPTANCE BUILD: UNASSIGNED
+WINDOWS FULL PHYSICAL RUNTIME: NOT_RUN
 ANDROID DEVICE SMOKE: NOT_RUN
-CONNECTED PHYSICAL EDITOR: NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
 PLAYER EXPERIENCE: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
 
-기존 Android validation APK와 과거 Windows export는 역사적 packaging/diagnostic evidence이며 post-059 acceptance build를 대신하지 않습니다.
-
-## 다음 유효 작업
-
-```text
-developer self-run / screen QA
-→ exact acceptance build identity when physical validation is prepared
-→ Windows physical smoke
-→ Android device smoke as separate platform gate
-→ physical Reduced Motion/readability
-→ Five-person comprehension on the same build
-→ separate production cutover decision
-```
-
-`SX-DEC-056A/057/058`은 상세 planning이 닫혔지만 implementation authority가 별도이며, `SX-DEC-056B`와 057 fast/cheap subset은 authoritative runtime dependency를 기다립니다.
+기존 Android validation APK와 과거 Windows export는 역사적 packaging/diagnostic evidence이며 current Candidate 003의 physical/human evidence를 대신하지 않습니다.
 
 ## 정본 읽기 순서
 
@@ -202,15 +201,18 @@ developer self-run / screen QA
 5. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
 6. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
 7. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
-8. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
-9. `기획서/50_제작_검증/SX_DEC_059_RELEASE_NEAR_FIRST_SESSION_VERTICAL_SLICE.md`
-10. `기획서/50_제작_검증/SX_DEC_059_CODEX_HANDOFF_PACKAGE.md` · history when needed
-11. `기획서/50_제작_검증/PLAYTEST_PLAN_V4_7_CURRENT.md` · compatibility filename, not work-instruction authority
+8. `evidence/acceptance/current_poc_candidate.json`
+9. `기획서/50_제작_검증/SX_DEC_059_POC_ACCEPTANCE_CANDIDATE_03.md`
+10. `기획서/50_제작_검증/SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_03.md`
+11. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md` + `ROADMAP.md`
+12. `기획서/50_제작_검증/PLAYTEST_PLAN_V4_7_CURRENT.md` · compatibility filename only
 
-## 기술
+## 기술 / 작업공간
 
-- Godot 4.7.1-stable
+- Project engine canon: Godot 4.7.1-stable
 - GDScript
-- Windows / Android landscape
+- Windows / Android landscape validation targets
 - Notion 사람용 정본 + GitHub 구조화/런타임 정본
 - Google Sheets는 migration-only이며 신규 작업 입력으로 사용하지 않음
+- r4 host policy는 프로젝트별 동일 Godot binary/port를 기본 증식하지 않고, 호환되는 shared exact pin + exact project/editor/session identity를 사용함
+- 문서/Notion-only 변경에는 Godot Editor/runtime 실행을 완료 증거로 요구하지 않음
