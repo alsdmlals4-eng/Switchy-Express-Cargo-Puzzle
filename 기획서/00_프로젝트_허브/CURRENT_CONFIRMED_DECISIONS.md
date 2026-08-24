@@ -217,4 +217,4 @@ BMK-R09 Shareable Route Card → POST_VALIDATION_HOLD
 BMK-R10 Editor/UGC → POST_VALIDATION_HOLD
 ```
 
-Historical endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset는 current 의미로 재활성화하지 않는다. 새 `SX-DEC-060`은 존재하지 않는다.
+Historical endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset는 current 의미로 재활성화하지 않는다. 현재 Decision span 밖의 새 Decision은 만들지 않는다.
