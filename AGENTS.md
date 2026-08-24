@@ -1,19 +1,19 @@
 # Switchy Express 공용 AI 작업 규칙
 
-이 저장소는 `alsdmlals4-eng/Base` v9.4.3 프로젝트 pin을 유지하면서, **사용자가 2026-08-20 제공한 v4.7 작업 계약**과 최신 Base completed `main`을 reference evidence로 사용하는 Godot 프로젝트다.
+이 저장소는 `alsdmlals4-eng/Base` v9.4.3 project compatibility pin을 보존하면서, **사용자가 2026-08-24 제공한 v4.8 r2 작업 계약**과 최신 Base completed `main`을 현재 실행 방법론으로 사용하는 Godot 프로젝트다.
 
 ## 1. 권위 순서
 
 1. 사용자의 최신 지시와 승인
 2. 현재 환경 system/developer/security 제약
 3. 이 `AGENTS.md`
-4. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`
+4. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`
 5. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
 6. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
 7. 등록된 분야 책임 원본
 8. 실제 code/data/Scene/Resource/assets/tests/runtime evidence
-9. 프로젝트 Base v9.4.3 pin
-10. Base remote latest completed `main` · REFERENCE_ONLY
+9. 프로젝트가 채택한 compatibility lock/adapter
+10. Base remote latest completed `main`
 11. 외부 사례·과거 대화·추정
 
 프로젝트 문서와 실제 runtime/code가 충돌하면 숨기지 않는다. 실행하지 않은 test/build/render/physical/human 검증은 PASS라고 쓰지 않는다.
@@ -39,11 +39,12 @@ fresh authority recovery
 
 ```text
 Base latest completed main
+→ Base root AGENTS.md
 → Project main/latest commit
 → all Open/Draft PR
 → exact Project Notion Home
 → this AGENTS.md
-→ v4.7 Switchy adapter
+→ v4.8 Switchy adapter
 → CURRENT_CONFIRMED_DECISIONS
 → ACTIVE_CONTEXT
 → exact owner docs
@@ -55,19 +56,20 @@ Google Sheets는 `MIGRATION_ONLY_UNTIL_REMOVAL`이다. 신규 기획 입력·act
 ## 3. 현재 작업지시문 / 엔진
 
 ```yaml
-work_instruction_canon: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md
-contract_version: 4.7
-revision: 2026-08-20-r1
-source_sha256: 767bbe3d69e9a0acb0e5706321564ad8c04a451f7c54914a2bbdd7579f642037
-source_role: USER_PROVIDED_V4_7_CONTRACT
+work_instruction_canon: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md
+contract_version: 4.8
+revision: 2026-08-24-r2
+source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
+source_role: USER_PROVIDED_V4_8_R2_CONTRACT
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 engine: Godot 4.7.1-stable
 language: GDScript
-project_base_pin: v9.4.3
-base_remote_policy: REFETCH_CURRENT_COMPLETED_MAIN_REFERENCE_ONLY
+project_base_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
+base_snapshot_observed_when_v4_8_adopted: 2828a74f60c1ed09546171040f4178c8848ea686
+base_remote_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 ```
 
-v4.5 r2 bundle은 역사·rollback evidence로 보존하며 current work-instruction authority가 아니다.
+v4.7 Switchy adapter와 v4.5 r2 bundle은 역사·rollback evidence로 보존하며 current work-instruction authority가 아니다.
 
 ## 4. 현재 제품 기준선 — GMB-002
 
@@ -244,8 +246,9 @@ AND USER_REQUESTED_CODEX_HANDOFF
 ```text
 developer self-run / screen QA
 → exact acceptance build identity
-→ reviewed physical smoke on the same build
-→ Five-person first-contact comprehension
+→ Windows physical smoke
+→ Android device smoke as separate platform gate
+→ Five-person first-contact comprehension on the same build
 → product decision
 ```
 
@@ -255,12 +258,13 @@ developer self-run / screen QA
 
 - Notion: 사람용 Project Home / Flow / Visual / Production Handoff.
 - GitHub: structured canon / code / data / Scene / Resource / assets / tests / runtime evidence.
+- Google Sheets: compatibility-only migration source; active workspace/decision authority가 아니다.
 - PR #158 구현 결과와 Notion post-merge readback은 완료됐다.
 - 이후 player evidence나 제품 결정이 바뀔 때 같은 의미로 양쪽을 다시 동기화한다.
 
 ## 13. 현재 핵심 정본
 
-- `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`
+- `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`
 - `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
 - `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
 - `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
@@ -277,4 +281,4 @@ developer self-run / screen QA
 - `기획서/50_제작_검증/SX_AUD_064_SX_DEC_059_PHASE_C_FINAL_REVIEW.md`
 - `기획서/50_제작_검증/SX_AUD_066_SX_DEC_059_IMPLEMENTATION_AND_FIVE_PASS_REVIEW.md`
 
-현재 작업의 실행 locator는 `ACTIVE_CONTEXT.md`가 책임진다.
+`PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`는 history/rollback evidence다. 현재 작업의 실행 locator는 `ACTIVE_CONTEXT.md`가 책임진다.

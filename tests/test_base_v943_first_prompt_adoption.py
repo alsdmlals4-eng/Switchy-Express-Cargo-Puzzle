@@ -23,6 +23,7 @@ def base_route_ids(adapter: dict) -> set[str]:
 class AdoptionTests(unittest.TestCase):
     def test_release_and_route(self) -> None:
         adapter = load()
+        self.assertEqual(2, adapter["schema_version"])
         release = adapter["base_release"]
         self.assertEqual(
             ("9.4.3", PAYLOAD, EVIDENCE, FINAL),
@@ -49,11 +50,16 @@ class AdoptionTests(unittest.TestCase):
         self.assertEqual("NOT_RUN", first_prompt["actual_project_instruction_execution"])
         self.assertEqual("base-v9.4.3.lock.json", planning["base_release_lock"])
         self.assertEqual(10, planning["max_approved_decisions_per_batch"])
+        self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
+        self.assertEqual("GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME", planning["runtime_structured_authority"])
 
     def test_boundaries(self) -> None:
         adapter = load()
-        self.assertEqual("CURRENT", adapter["gdd_sheet"]["sync_status"])
-        self.assertEqual("SYNCED", adapter["gdd_sheet"]["declared_sync_status"])
+        sheet = adapter["gdd_sheet"]
+        self.assertEqual("NOT_CONFIGURED", sheet["sync_status"])
+        self.assertEqual("HISTORICAL_SYNCED", sheet["declared_sync_status"])
+        self.assertEqual("GOOGLE_SHEETS_LEGACY_MIGRATION_SOURCE", sheet["role"])
+        self.assertEqual("MIGRATION_COMPATIBILITY_SURFACE", sheet["workspace_status"])
         self.assertEqual(["project.godot", "game/**", "assets/**", "기획서/**"], adapter["protected_paths"])
         self.assertEqual(
             "NOT_RUN",
