@@ -1,6 +1,20 @@
 # Roadmap
 
-Last updated: `2026-08-21 KST`
+Last updated: `2026-08-24 KST`
+
+## Current authority
+
+```yaml
+current_work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER
+work_instruction_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
+v4_8_authority_merge_pr: 164
+v4_8_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
+base_latest_observed: 2828a74f60c1ed09546171040f4178c8848ea686
+base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
+v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
+```
+
+이 authority 갱신은 roadmap 범위를 확장하지 않는다. 현재 제품 게이트는 여전히 SX-DEC-059의 developer/physical/device/human validation이다.
 
 ## Current execution overlay
 
