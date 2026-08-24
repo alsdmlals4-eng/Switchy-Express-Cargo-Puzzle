@@ -1,6 +1,6 @@
 # Current Confirmed Decisions
 
-Last updated: `2026-08-24 KST`
+Last updated: `2026-08-21 KST`
 
 이 문서는 Switchy Express의 **현재 승인 Decision과 실행 권위**를 압축한다. 상세 규칙·근거·역사 CI는 각 Decision/Audit owner가 책임진다. Google Sheets는 migration-only이며 active decision authority가 아니다.
 
@@ -9,10 +9,10 @@ Last updated: `2026-08-24 KST`
 ```yaml
 current_product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
 current_decision_span: SX-DEC-027~059
-work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER
-work_instruction_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
-project_base_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
-base_remote_latest_observed: 2828a74f60c1ed09546171040f4178c8848ea686 · REFRESH_EACH_WORK
+work_instruction: v4.7 · 2026-08-20-r1 · SWITCHY_THIN_ADAPTER
+work_instruction_source_sha256: 767bbe3d69e9a0acb0e5706321564ad8c04a451f7c54914a2bbdd7579f642037
+project_base_pin: v9.4.3
+base_remote_latest_observed: ef0092256be25eaa70a296a76d02f7205934929e · REFERENCE_ONLY
 project_main_before_059_implementation: 4b37c154505ed1975735fc305a68b410877a40e0
 sx_dec_059_merge_pr: 158
 sx_dec_059_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
@@ -33,7 +33,6 @@ sx_dec_057: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_057_fast_cheap: BLOCKED_BY_STAGE8_TRACK_ATTRIBUTE_RUNTIME
 sx_dec_058: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
-acceptance_candidate: SX59-ACCEPT-001 · ARTIFACT_INTEGRITY_PASS
 acceptance_build: UNASSIGNED
 developer_self_run: NOT_RUN
 windows_physical_runtime: NOT_RUN
@@ -151,14 +150,11 @@ Station mismatch/encounter trace is not inferred. Full SX-DEC-056A is not implic
 
 `PLAYTEST_PLAN_V4_7_CURRENT.md` + `SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`.
 
-`PLAYTEST_PLAN_V4_7_CURRENT.md`의 파일명은 historical compatibility wrapper로 유지하며 current work-instruction authority를 뜻하지 않는다.
-
 ```text
 AUTOMATED CONTRACT: PASS · MERGED_MAIN_VERIFIED
 → developer self-run / screen QA: NOT_RUN
 → exact acceptance build: UNASSIGNED
-→ Windows physical smoke: NOT_RUN
-→ Android device smoke: NOT_RUN
+→ physical smoke: NOT_RUN
 → Five-person first-contact comprehension: NOT_RUN
 → EXPAND / REWORK / REPEAT_SLICE / HOLD / STOP
 ```
@@ -202,10 +198,8 @@ Phase-C final review PASS
 → PR #158 MERGED_MAIN_VERIFIED
 → Notion post-merge implementation readback PASS
 → developer self-run / screen QA
-→ exact acceptance build identity
-→ Windows physical smoke
-→ Android device smoke as separate platform gate
-→ Five-person first-contact comprehension on the same build
+→ exact acceptance build + physical smoke
+→ Five-person first-contact comprehension
 ```
 
 현재 구현·병합·Notion readback은 완료됐고 physical/device/human 검증은 `NOT_RUN`이다.
