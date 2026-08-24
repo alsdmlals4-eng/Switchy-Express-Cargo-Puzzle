@@ -1,6 +1,6 @@
 # Active Context
 
-Last updated: `2026-08-24 KST`
+Last updated: `2026-08-25 KST`
 
 이 문서는 **현재 상태·다음 실행 지점·미검증 경계**를 연결하는 resume locator다. fresh GitHub/Notion/actual runtime이 저장 snapshot보다 우선한다.
 
@@ -9,19 +9,19 @@ Last updated: `2026-08-24 KST`
 ```yaml
 repository: alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
 default_branch: main
-project_main_snapshot_before_postmerge_canon: 2521f3be600ea950f9893ce45940604c2d0ac88a
 project_live_main_policy: REFRESH_FROM_GITHUB_BEFORE_EXECUTION
 engine: Godot 4.7.1-stable
 language: GDScript
 product_baseline: GMB-002
 current_decisions: SX-DEC-027~059
-work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER
-work_instruction_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
-v4_8_authority_merge_pr: 164
-v4_8_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
+work_instruction: v4.8 · 2026-08-24-r4 · SWITCHY_THIN_ADAPTER
+work_instruction_source_sha256: 1426c2e5e25e32dc72abccf49e4a0839578e54c14b38ba0de045be426fd63ea6
+historical_v48_r2_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
+v4_8_r2_authority_merge_pr: 164
+v4_8_r2_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
 v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
-base_v4_8_authority_time_snapshot: 2828a74f60c1ed09546171040f4178c8848ea686
+base_v4_8_initial_authority_snapshot: 2828a74f60c1ed09546171040f4178c8848ea686
 base_canon_sync_observation: 862938478cfea6c9db16691900c9c4fdc464f9ff · AUDIT_EVIDENCE_ONLY
 base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 sx_dec_059_merge_pr: 158
@@ -30,14 +30,14 @@ SX_DEC_059_IMPLEMENTATION: MERGED_MAIN_VERIFIED
 sx_dec_059_notion_sync: PASS · POST_PR_158_READBACK_COMPLETE
 sx_dec_059_adversarial_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-066
 playable_poc_pr: 166
-playable_poc_pr_head: 159a3a741ef79b6207be290cc284bd63a5979e72
 playable_poc_merge_main: 1bf798cedf28dffba9185edb62fb1c50c108fe90
-playable_poc_tree: b3fa0ad93721d7f99614fb6f0bf594c7ce068127
 playable_poc_audit: SX-AUD-069 · CLEAN_REVIEW_EXIT
 physical_preflight_visual_correction_pr: 171
 physical_preflight_visual_correction_main: 9d82b004b2ebf3f7d69d0376c79daae1040e94a4
 candidate_003_preparation_pr: 172
 candidate_003_preparation_main: 2521f3be600ea950f9893ce45940604c2d0ac88a
+candidate_003_postmerge_canon_pr: 173
+candidate_003_postmerge_canon_main: cf207f29cd4dcabc5796769f0eb0ca6764c2370e
 current_candidate_pointer: evidence/acceptance/current_poc_candidate.json
 historical_candidate: SX59-ACCEPT-001 · SUPERSEDED_FOR_CURRENT_POC
 candidate_002: SX59-POC-ACCEPT-002 · HISTORICAL_PHYSICAL_EVIDENCE
@@ -65,32 +65,25 @@ sx_dec_058: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 pr_154: CLOSED_UNMERGED · SUPERSEDED_BY_059
 ```
 
-`base_canon_sync_observation`은 이번 문서 교정 시점의 감사 증거일 뿐 current Base pin이 아니다. 실제 Base 권위는 실행할 때마다 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN`으로 다시 결정한다.
+Base SHA snapshots above are history/audit evidence only. 실제 Base 권위는 실행할 때마다 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN`으로 다시 결정한다.
 
-## Stable Phase-B / post-merge compatibility aliases
+## Stable compatibility anchors
 
 ```yaml
 user_planning_complete_gate: GRANTED
 phase_b_final_planning_review: SX-AUD-047 · PASS
-build_authority: AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE
 sx_dec_055_runtime_implementation: MERGED_MAIN_VERIFIED
 runtime_integrated: true
 sx_dec_055_merge_main: 534a7318b349cd3e784a3467125f9ebd23124d8a
 canonical_freshness_audit: SX-AUD-025
 latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
 pc_local_route_and_mid_run_retest: RETEST_REQUIRED
-```
-
-059는 이 완료된 055 이력을 덮어쓰지 않고 이후 player-experience target을 추가한다.
-
-## Stable acceptance compatibility anchors
-
-```text
-SX-DEC-055: MERGED_MAIN_VERIFIED
 ANDROID DEVICE SMOKE: NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
+
+059와 Candidate 003은 이 완료된 역사 증거를 덮어쓰지 않고 이후 player-experience target을 추가한다.
 
 ## Current product promise
 
@@ -113,9 +106,9 @@ T1 Track Connection
 
 ## Playable POC / physical evidence state
 
-PR #166에서 approved E+D Hybrid product assets를 board/HUD/title/lesson/result에 실제 연결했고, automated baseline은 Godot 111 cases와 Windows/Android packaged runtime proof를 통과했다.
+PR #166에서 approved E+D Hybrid product assets를 board/HUD/title/lesson/result에 실제 연결했고 automated baseline은 Godot/Windows/Android packaged proof를 통과했다.
 
-Candidate 002 (`SX59-POC-ACCEPT-002`)는 이후 실제 사용자 Windows 환경에서 exact package verification 뒤 실행됐다.
+Candidate 002 (`SX59-POC-ACCEPT-002`)는 실제 사용자 Windows 환경에서 exact package verification 뒤 실행됐다.
 
 ```yaml
 candidate_002_engine: Godot 4.7.1-stable
@@ -151,53 +144,27 @@ physical_visual_recheck: NOT_RUN
 
 Package integrity와 Windows CI/launcher verification은 corrected **physical appearance PASS가 아니다**.
 
-## Playtest / evidence state
-
-Use current owners:
-- `evidence/acceptance/current_poc_candidate.json`
-- `SX_DEC_059_POC_ACCEPTANCE_CANDIDATE_03.md`
-- `SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_03.md`
-- `PLAYTEST_PLAN_V4_7_CURRENT.md`
-- `SX_DEC_059_FIRST_SESSION_PLAYTEST_DELTA.md`
-
-Historical comparison only:
-- `SX_DEC_059_POC_ACCEPTANCE_CANDIDATE_02.md`
-- `SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_02.md`
-- `SX_AUD_069_PLAYABLE_VISUAL_UX_POC.md`
-
-```text
-Candidate 002 physical startup: PASS → blocked by P1 visual findings
-→ PR #171 correction: MERGED
-→ Candidate 003 package/pointer verification: PASS
-→ Candidate 003 physical visual recheck: NOT_RUN
-→ developer self-run 8 scenarios: NOT_RUN
-→ audio perceptual QA: NOT_RUN
-→ exact acceptance build: NOT_YET_DESIGNATED
-→ Windows full physical smoke: NOT_RUN
-→ Android device smoke: NOT_RUN
-→ Five-person first-contact comprehension: NOT_RUN
-→ player-experience decision gate: NOT_RUN
-```
-
-## Current execution entry
-
-```powershell
-$repo = "C:\Users\user\Documents\GitHub\Ninza\Switchy-Express-Cargo-Puzzle"
-git -C $repo switch main
-git -C $repo pull --ff-only
-powershell -ExecutionPolicy Bypass -File "$repo\RUN_SX59_POC_SELF_RUN.ps1"
-```
-
-Launcher는 `current_poc_candidate.json`을 읽어 exact current candidate를 선택한다. Candidate ID를 하드코딩하거나 newest build를 추론하지 않는다.
-
 ## Candidate 003 Gate 0
 
 ```text
-A. preflight badge가 compact lane에 있고 Korean problem copy와 겹치지 않는가
-B. disconnected station/cargo의 색+shape+text identity가 보이고 problem reinforcement는 outline뿐인가
+A. physical visual recheck — preflight badge가 compact lane에 있고 Korean problem copy와 겹치지 않는가
+B. physical visual recheck — disconnected station/cargo의 색+shape+text identity가 보이고 problem reinforcement는 outline뿐인가
 ```
 
-둘 중 하나라도 실패하면 `BLOCKED_P1_VISUAL`; 이후 Scenario를 진행하지 않는다. 둘 다 PASS일 때만 같은 exact Candidate 003으로 8개 Scenario + actual audio perceptual QA를 계속한다.
+둘 중 하나라도 실패하면 `BLOCKED_P1_VISUAL`; 이후 Scenario를 진행하지 않는다. 둘 다 PASS일 때만 같은 exact Candidate 003으로 8개 Scenario + audio perceptual QA를 계속한다.
+
+## Current validation route
+
+```text
+SX59-POC-ACCEPT-003 · Candidate 003 Gate 0 · physical visual recheck
+→ if PASS, same exact Candidate 003 developer self-run / screen QA · 8 scenarios
+→ audio perceptual QA
+→ if blocker 0, designate exact acceptance build
+→ Windows full physical smoke
+→ Android device smoke
+→ Five-person first-contact comprehension
+→ EXPAND / REWORK / REPEAT_SLICE / HOLD / STOP
+```
 
 ## Protected boundaries
 
@@ -211,9 +178,18 @@ B. disconnected station/cargo의 색+shape+text identity가 보이고 problem re
 - no physical/device/audio-perceptual/human PASS inflation.
 - PR #154 remains `CLOSED_UNMERGED · SUPERSEDED_BY_SX_DEC_059`.
 
+## r4 local/toolchain boundary
+
+- Project engine canon remains `Godot 4.7.1-stable`.
+- Local authoring/runtime work uses fresh location/git/update preflight and a compatible shared exact Godot/Godot-AI pin with exact project/editor/session routing.
+- Preferred Godot AI host ports are `8000/9500` when healthy; per-project duplicate ports are not the default.
+- reviewed safe update means official source + compatibility + rollback + canary + exact installed readback; floating latest is forbidden.
+- docs/Notion-only work does not require Godot Editor/runtime evidence.
+- user-local installed versions and session state remain unverified until the local bootstrap actually reads them.
+
 ## Resume read order
 
-1. fresh Base completed `main` + Base `AGENTS.md`.
+1. fresh Base completed `main` + Base root `AGENTS.md`.
 2. fresh Project `main`, latest commit, all Open/Draft PR.
 3. exact Project Notion Home.
 4. `AGENTS.md`.
@@ -226,13 +202,25 @@ B. disconnected station/cargo의 색+shape+text identity가 보이고 problem re
 11. `DEVELOPMENT_GATES.md` + `ROADMAP.md`.
 12. actual code/tests and 059 content/UI/localization/visual/playtest owners.
 
-Historical `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`는 provenance/rollback용이다.
+Historical v4.8 r2 / v4.7 adapter documents are provenance/rollback only.
+
+## Current execution entry
+
+```powershell
+$repo = "C:\Users\user\Documents\GitHub\Ninza\Switchy-Express-Cargo-Puzzle"
+git -C $repo switch main
+git -C $repo pull --ff-only
+powershell -ExecutionPolicy Bypass -File "$repo\RUN_SX59_POC_SELF_RUN.ps1"
+```
+
+Launcher는 `current_poc_candidate.json`을 읽어 exact current candidate를 선택한다. Candidate ID를 하드코딩하거나 newest build를 추론하지 않는다.
 
 ## Current next action
 
 ```text
 SX59-POC-ACCEPT-003 physical visual recheck
-→ if PASS, same exact Candidate 003 developer self-run / screen QA + audio perceptual QA
+→ Gate 0 A/B 둘 다 PASS
+→ same exact Candidate 003 developer self-run / screen QA + audio perceptual QA
 → if blocker 0, designate exact acceptance build
 → Windows full physical smoke
 → Android device smoke
