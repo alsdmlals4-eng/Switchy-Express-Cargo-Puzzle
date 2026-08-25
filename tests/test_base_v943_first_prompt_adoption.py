@@ -58,10 +58,11 @@ class AdoptionTests(unittest.TestCase):
     def test_boundaries(self) -> None:
         adapter = load()
         sheet = adapter["gdd_sheet"]
-        self.assertEqual("RETIRED", sheet["sync_status"])
+        self.assertEqual("NOT_CONFIGURED", sheet["sync_status"])
         self.assertEqual("HISTORICAL_SYNCED", sheet["declared_sync_status"])
-        self.assertEqual("RETIRED_HISTORICAL_REFERENCE", sheet["role"])
-        self.assertEqual("RETIRED_NO_ACTIVE_USE", sheet["workspace_status"])
+        self.assertEqual("GOOGLE_SHEETS_LEGACY_MIGRATION_SOURCE", sheet["role"])
+        self.assertEqual("MIGRATION_COMPATIBILITY_SURFACE", sheet["workspace_status"])
+        self.assertEqual("RETIRED_NO_ACTIVE_USE", sheet["retirement_state"])
         self.assertFalse(sheet["read_for_normal_work"])
         self.assertNotIn("spreadsheet_id", sheet)
         self.assertNotIn("url", sheet)
