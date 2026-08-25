@@ -1,6 +1,6 @@
 # Switchy Express 공용 AI 작업 규칙
 
-이 저장소는 `alsdmlals4-eng/Base` v9.4.3 project compatibility pin을 보존하면서, **사용자가 2026-08-24 제공한 v4.8 r2 작업 계약**과 최신 Base completed `main`을 현재 실행 방법론으로 사용하는 Godot 프로젝트다.
+이 저장소는 `alsdmlals4-eng/Base` v9.4.3 project compatibility pin을 보존하면서, **사용자가 2026-08-24 제공한 v4.8 r4 작업 계약**과 최신 Base completed `main`을 현재 실행 방법론으로 사용하는 Godot 프로젝트다.
 
 ## 1. 권위 순서
 
@@ -58,18 +58,20 @@ Google Sheets는 `MIGRATION_ONLY_UNTIL_REMOVAL`이다. 신규 기획 입력·act
 ```yaml
 work_instruction_canon: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md
 contract_version: 4.8
-revision: 2026-08-24-r2
-source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
-source_role: USER_PROVIDED_V4_8_R2_CONTRACT
+revision: 2026-08-24-r4
+source_role: USER_PROVIDED_V4_8_R4_CONTRACT
+historical_r2_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
+historical_r2_hash_is_not_r4_hash: true
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 engine: Godot 4.7.1-stable
 language: GDScript
 project_base_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
-base_snapshot_observed_when_v4_8_adopted: 2828a74f60c1ed09546171040f4178c8848ea686
 base_remote_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
+current_validation_locator: 기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md
+current_acceptance_candidate: SX59-POC-ACCEPT-003
 ```
 
-v4.7 Switchy adapter와 v4.5 r2 bundle은 역사·rollback evidence로 보존하며 current work-instruction authority가 아니다.
+v4.7 Switchy adapter, v4.5 r2 bundle, v4.8 r2 hash는 역사·rollback/provenance evidence로 보존하며 current work-instruction authority가 아니다. r4의 fresh-shell/update/shared-Godot 상세는 thin adapter와 최신 Base owner를 progressive-load한다.
 
 ## 4. 현재 제품 기준선 — GMB-002
 
@@ -191,7 +193,7 @@ project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED_BEFORE_FUTURE_AUTHORING
 
 `docs/tooling/local_godot_tooling_state.json`가 현재 evidence owner다. Fresh PowerShell에서 local/repo tree parity를 다시 확인하기 전 **user-local version**을 추정하지 않는다.
 
-Persistent Godot authoring은 프로젝트가 채택한 HiGodot/Godot-authoring authority를 따른다. GUT은 deterministic test authority, Hera는 live QA/observability only이며 acceptance source delta를 남기지 않는다.
+Persistent Godot authoring은 프로젝트가 채택한 HiGodot/Godot-authoring authority를 따른다. GUT은 deterministic test authority, Hera는 live QA/observability only이며 acceptance source delta를 남기지 않는다. r4의 shared exact pin/fixed default port/session-isolation 규칙은 실제 Godot 작업에서 최신 Base owner와 thin adapter를 함께 읽어 적용한다.
 
 ## 9. Platform / Release / Asset Rights routing
 
@@ -213,15 +215,19 @@ SX-DEC-059 IMPLEMENTATION: MERGED_MAIN_VERIFIED · PR #158
 SX-DEC-059 FIVE-PASS ADVERSARIAL REVIEW: CLOSED
 SX-DEC-059 EXPORT-PACK RUNTIME JSON PROOF: PASS
 SX-DEC-059 NOTION POST-MERGE READBACK: PASS
+CURRENT POC CANDIDATE: SX59-POC-ACCEPT-003
+CANDIDATE 003 PACKAGE/PCK/TEXTURE POINTER VERIFICATION: PASS
+CANDIDATE 003 PHYSICAL VISUAL RECHECK: NOT_RUN
 SX-DEC-059 DEVELOPER SELF-RUN: NOT_RUN
-WINDOWS PHYSICAL RUNTIME/VISUAL/AUDIO/INPUT: NOT_RUN
+AUDIO PERCEPTUAL QA: NOT_RUN
+WINDOWS FULL PHYSICAL RUNTIME/VISUAL/AUDIO/INPUT: NOT_RUN
 ANDROID DEVICE SMOKE: NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
 PLAYER EXPERIENCE: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
 
-자동화/export/package/self-run은 HUMAN/PLAYER EXPERIENCE PASS가 아니다.
+자동화/export/package/self-run은 HUMAN/PLAYER EXPERIENCE PASS가 아니다. Candidate 002의 startup PASS도 Candidate 003의 corrected physical appearance PASS로 승격하지 않는다.
 
 ## 11. Codex / Build Gate
 
@@ -244,9 +250,11 @@ AND USER_REQUESTED_CODEX_HANDOFF
 현재 다음 Gate:
 
 ```text
-developer self-run / screen QA
+Candidate 003 physical visual recheck
+→ same exact Candidate 003 developer self-run / screen QA
+→ audio perceptual QA
 → exact acceptance build identity
-→ Windows physical smoke
+→ Windows full physical smoke
 → Android device smoke as separate platform gate
 → Five-person first-contact comprehension on the same build
 → product decision
