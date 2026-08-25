@@ -11,15 +11,19 @@ V48_ADAPTER = ROOT / "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUC
 AGENTS = ROOT / "AGENTS.md"
 BASE_RULES = ROOT / "docs/BASE_RULES_VERSION.md"
 MIGRATION_STATE = ROOT / "docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json"
+BASE_ADAPTER_WORKFLOW = ROOT / ".github/workflows/validate-project-base-adapter.yml"
 
 
 class GoogleSheetRetirementTests(unittest.TestCase):
     def test_active_adapter_has_no_sheet_workspace_or_sync_route(self) -> None:
         adapter = json.loads(PROJECT_ADAPTER.read_text(encoding="utf-8"))
         sheet = adapter["gdd_sheet"]
-        self.assertEqual("RETIRED_HISTORICAL_REFERENCE", sheet["role"])
-        self.assertEqual("RETIRED_NO_ACTIVE_USE", sheet["workspace_status"])
-        self.assertEqual("RETIRED", sheet["sync_status"])
+        # These three values remain schema-v2 compatibility labels until Base
+        # publishes retirement enums. retirement_state is the active semantic.
+        self.assertEqual("GOOGLE_SHEETS_LEGACY_MIGRATION_SOURCE", sheet["role"])
+        self.assertEqual("MIGRATION_COMPATIBILITY_SURFACE", sheet["workspace_status"])
+        self.assertEqual("NOT_CONFIGURED", sheet["sync_status"])
+        self.assertEqual("RETIRED_NO_ACTIVE_USE", sheet["retirement_state"])
         self.assertFalse(sheet["new_input_allowed"])
         self.assertFalse(sheet["read_for_normal_work"])
         self.assertNotIn("spreadsheet_id", sheet)
@@ -50,6 +54,11 @@ class GoogleSheetRetirementTests(unittest.TestCase):
         self.assertTrue(legacy["spreadsheet_id"])
         self.assertTrue(legacy["url"])
         self.assertEqual("NONE", state["google_sheet_mutation"])
+
+    def test_stale_protected_approval_manifest_is_not_injected_without_label(self) -> None:
+        workflow = BASE_ADAPTER_WORKFLOW.read_text(encoding="utf-8")
+        self.assertIn('if [ -f "$APPROVAL_PATH" ] && [ "$EXTERNAL_APPROVAL" = "true" ]; then', workflow)
+        self.assertNotIn('if [ -f "$APPROVAL_PATH" ]; then\n            APPROVAL_ARGS=', workflow)
 
 
 if __name__ == "__main__":
