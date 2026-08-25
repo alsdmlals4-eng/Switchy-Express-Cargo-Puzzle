@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import unittest
 from pathlib import Path
@@ -7,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 PROJECT_ADAPTER = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
+PROJECT_SNAPSHOT = ROOT / "skills/PROJECT_SKILL_SNAPSHOT.json"
 V48_ADAPTER = ROOT / "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md"
 AGENTS = ROOT / "AGENTS.md"
 BASE_RULES = ROOT / "docs/BASE_RULES_VERSION.md"
@@ -59,6 +61,11 @@ class GoogleSheetRetirementTests(unittest.TestCase):
         workflow = BASE_ADAPTER_WORKFLOW.read_text(encoding="utf-8")
         self.assertIn('if [ -f "$APPROVAL_PATH" ] && [ "$EXTERNAL_APPROVAL" = "true" ]; then', workflow)
         self.assertNotIn('if [ -f "$APPROVAL_PATH" ]; then\n            APPROVAL_ARGS=', workflow)
+
+    def test_generated_snapshot_tracks_current_adapter_raw_bytes(self) -> None:
+        snapshot = json.loads(PROJECT_SNAPSHOT.read_text(encoding="utf-8"))
+        actual = hashlib.sha256(PROJECT_ADAPTER.read_bytes()).hexdigest()
+        self.assertEqual(actual, snapshot["source_registry"]["sha256"])
 
 
 if __name__ == "__main__":
