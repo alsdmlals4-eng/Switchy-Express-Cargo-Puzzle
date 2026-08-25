@@ -11,6 +11,7 @@ ACTIVE = ROOT / "기획서" / "00_프로젝트_허브" / "ACTIVE_CONTEXT.md"
 GATES = ROOT / "기획서" / "00_프로젝트_허브" / "DEVELOPMENT_GATES.md"
 BASE_RULES = ROOT / "docs" / "BASE_RULES_VERSION.md"
 ADAPTER = ROOT / "skills" / "PROJECT_BASE_ADAPTER.json"
+MIGRATION = ROOT / "docs" / "operations" / "SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json"
 AUDIT = ROOT / "기획서" / "50_제작_검증" / "SX_AUD_025_POST_MERGE_CANON_FRESHNESS_AND_GATE_RECOVERY.md"
 
 HISTORICAL_SHEET_CANON_MAIN = "dff1653738f1eead3cacff303080924d662767e2"
@@ -74,23 +75,26 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         self.assertIn("SX-DEC-037~039", rules)
         self.assertIn("Base v9.4.3 release pin은 유지", rules)
         self.assertIn("현재 제품 보호 권위가 아니다", rules)
+        self.assertIn("GOOGLE_SHEETS: RETIRED_NO_ACTIVE_USE", rules)
 
         self.assertEqual(2, adapter["schema_version"])
         self.assertEqual("9.4.3", adapter["base_release"]["version"])
-        self.assertEqual(
-            "1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo",
-            adapter["gdd_sheet"]["spreadsheet_id"],
-        )
-        self.assertEqual("HISTORICAL_SYNCED", adapter["gdd_sheet"]["declared_sync_status"])
-        self.assertEqual("NOT_CONFIGURED", adapter["gdd_sheet"]["sync_status"])
-        self.assertEqual("GOOGLE_SHEETS_LEGACY_MIGRATION_SOURCE", adapter["gdd_sheet"]["role"])
-        self.assertEqual("MIGRATION_COMPATIBILITY_SURFACE", adapter["gdd_sheet"]["workspace_status"])
+        sheet = adapter["gdd_sheet"]
+        self.assertEqual("HISTORICAL_SYNCED", sheet["declared_sync_status"])
+        self.assertEqual("RETIRED", sheet["sync_status"])
+        self.assertEqual("RETIRED_HISTORICAL_REFERENCE", sheet["role"])
+        self.assertEqual("RETIRED_NO_ACTIVE_USE", sheet["workspace_status"])
+        self.assertFalse(sheet["read_for_normal_work"])
+        self.assertNotIn("spreadsheet_id", sheet)
+        self.assertNotIn("url", sheet)
         self.assertNotIn("5e803762f3c4f93b7cb31669312111d708507ef5", serialized_adapter)
 
-    def test_adapter_baseline_is_current_while_sheet_provenance_stays_historical(self) -> None:
+    def test_adapter_baseline_is_current_while_sheet_provenance_moves_to_history(self) -> None:
         adapter = json.loads(read(ADAPTER))
+        migration = json.loads(read(MIGRATION))
         sheet = adapter["gdd_sheet"]
         baseline = adapter["protected_baseline"]
+        legacy_sheet = migration["legacy_gdd_sheet"]
 
         self.assertEqual(CURRENT_ADAPTER_PR_BASE, baseline["commit"])
         self.assertEqual(HISTORICAL_SHEET_CANON_MAIN, sheet["decision_commit"])
@@ -99,6 +103,10 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         self.assertEqual("SX-AUD-025", sheet["canonical_freshness_audit"])
         self.assertEqual("HISTORICAL_COMPATIBILITY_EVIDENCE", sheet["provenance_status"])
         self.assertFalse(sheet["new_input_allowed"])
+        self.assertFalse(sheet["read_for_normal_work"])
+        self.assertTrue(legacy_sheet["spreadsheet_id"])
+        self.assertTrue(legacy_sheet["url"])
+        self.assertEqual("NONE", migration["google_sheet_mutation"])
         planning = adapter["shared_overrides"]["managing-project-intake-and-work-contract"]["planning_first_governance"]
         self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
         self.assertIn("python tests/test_post_merge_canon_freshness.py", adapter["validators"])
