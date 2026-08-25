@@ -174,6 +174,11 @@ v4.8 r4 adoption은 위 package의 구현 권한을 추가하지 않는다. 056A
 - force push/direct-main/ruleset bypass 금지.
 - product runtime scope를 바꾸는 finding은 authority/planning package에 흡수하지 않는다.
 
+Historical concurrency closure:
+
+- PR #154 `feat: pilot reusable grid and semantic UI modules` = **CLOSED_UNMERGED · SUPERSEDED_BY_SX_DEC_059**; do not reopen or absorb `game/reuse/*` without a new approved need and fresh evidence.
+- PR #155/#156 = `CLOSED_UNMERGED · HISTORICAL_ACCIDENT`.
+
 ## 9. Verification invariants / Implementation Reality Gate
 
 현재 계약/정본 수정은 RED → expected failure → minimal GREEN → related regression으로 검증한다.
