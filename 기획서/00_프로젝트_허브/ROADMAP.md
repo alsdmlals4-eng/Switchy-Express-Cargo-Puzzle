@@ -1,20 +1,21 @@
 # Roadmap
 
-Last updated: `2026-08-24 KST`
+Last updated: `2026-08-25 KST`
 
 ## Current authority
 
 ```yaml
-current_work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER
-work_instruction_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
-v4_8_authority_merge_pr: 164
-v4_8_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
-base_latest_observed: 2828a74f60c1ed09546171040f4178c8848ea686
+current_work_instruction: v4.8 · 2026-08-24-r4 · SWITCHY_THIN_ADAPTER
+work_instruction_role: USER_PROVIDED_V4_8_R4_CONTRACT
+historical_r2_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
+historical_r2_hash_is_not_r4_hash: true
+v4_8_r2_authority_merge_pr: 164
+v4_8_r2_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 ```
 
-이 authority 갱신은 roadmap 범위를 확장하지 않는다. 현재 제품 게이트는 여전히 SX-DEC-059의 developer/physical/device/human validation이다.
+이 authority 갱신은 roadmap 범위를 확장하지 않는다. 현재 제품 게이트는 여전히 SX-DEC-059의 Candidate 003 physical/developer/device/human validation이다.
 
 ## Current execution overlay
 
@@ -38,7 +39,7 @@ SX-DEC-059
 → five-pass adversarial review CLOSED · SX-AUD-066
 → PR #158 MERGED_MAIN_VERIFIED · main 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
 → Notion implementation post-merge readback PASS
-→ developer/physical/device/human evidence gates
+→ Candidate 003 physical visual recheck / developer / device / human evidence gates
 ```
 
 ## M0 · Product baseline
@@ -183,6 +184,9 @@ execution_preflight: PASS
 codex_handoff: USER_REQUESTED_AND_EXECUTED
 build: MERGED_MAIN_VERIFIED
 adversarial_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED
+current_candidate: SX59-POC-ACCEPT-003
+candidate_003_package_pointer: PASS
+candidate_003_physical_visual_recheck: NOT_RUN
 developer_self_run: NOT_RUN
 acceptance_build: UNASSIGNED
 ```
@@ -194,22 +198,26 @@ acceptance_build: UNASSIGNED
 Stable validation sequence:
 
 ```text
-developer self-run / screen QA
+Candidate 003 Gate 0 physical visual recheck
+→ same exact Candidate 003 developer self-run / screen QA
+→ audio perceptual QA
 → exact acceptance build identity
-→ Windows physical smoke as applicable
+→ Windows full physical smoke
 → Android device smoke as a separate platform gate
 → Five-person first-contact comprehension on the exact designated acceptance build
 → EXPAND / REWORK / REPEAT_SLICE / HOLD / STOP
 ```
 
 ```yaml
+CANDIDATE 003 PHYSICAL VISUAL RECHECK: NOT_RUN
+DEVELOPER SELF-RUN: NOT_RUN
 WINDOWS PHYSICAL RUNTIME: NOT_RUN
 ANDROID DEVICE SMOKE: NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
 PLAYER EXPERIENCE: NOT_RUN
 ```
 
-Android device validation is not implied by PC/package evidence. Human evidence is not implied by developer self-run.
+Android device validation is not implied by PC/package evidence. Human evidence is not implied by developer self-run. Candidate 002 startup PASS is not Candidate 003 corrected visual PASS.
 
 ## M7 · Production cutover
 

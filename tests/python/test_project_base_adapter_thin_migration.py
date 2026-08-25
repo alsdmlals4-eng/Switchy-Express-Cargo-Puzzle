@@ -10,6 +10,7 @@ ADAPTER = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
 REGISTRY = ROOT / "skills/SKILL_REGISTRY.json"
 HEALTH = ROOT / "docs/PROJECT_OPERATING_HEALTH.json"
 MIGRATION = ROOT / "docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json"
+CURRENT_PROTECTED_BASELINE = "cf207f29cd4dcabc5796769f0eb0ca6764c2370e"
 
 
 class SwitchyThinAdapterMigrationTests(unittest.TestCase):
@@ -41,8 +42,9 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         adapter = json.loads(ADAPTER.read_text(encoding="utf-8"))
         self.assertEqual(2, adapter["schema_version"])
         self.assertEqual("switchy-express-cargo-puzzle", adapter["project"]["project_id"])
-        self.assertEqual("ae8f4aeae111c5cce4284499b851c0c3f80f6bf3", adapter["protected_baseline"]["commit"])
-        self.assertEqual("REMOTE_TRACKING_REF", adapter["protected_baseline"]["authority_kind"])
+        self.assertEqual(CURRENT_PROTECTED_BASELINE, adapter["protected_baseline"]["commit"])
+        self.assertEqual("GITHUB_PR_BASE", adapter["protected_baseline"]["authority_kind"])
+        self.assertEqual("github.event.pull_request.base.sha", adapter["protected_baseline"]["authority_ref"])
         self.assertEqual("CANONICAL_ADAPTER_SOURCE", adapter["protected_baseline"]["policy_source_type"])
         sheet = adapter["gdd_sheet"]
         self.assertEqual("NOT_CONFIGURED", sheet["sync_status"])

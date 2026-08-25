@@ -36,9 +36,9 @@
     "root": "."
   },
   "protected_baseline": {
-    "authority_kind": "REMOTE_TRACKING_REF",
-    "authority_ref": "refs/remotes/origin/main",
-    "commit": "ae8f4aeae111c5cce4284499b851c0c3f80f6bf3",
+    "authority_kind": "GITHUB_PR_BASE",
+    "authority_ref": "github.event.pull_request.base.sha",
+    "commit": "cf207f29cd4dcabc5796769f0eb0ca6764c2370e",
     "policy_sha256": "51b3ca7e05165069666d1235413d3277580646c63008b472f15df4fb4db9f0ca",
     "policy_source_path": "skills/PROJECT_BASE_ADAPTER.json",
     "policy_source_type": "CANONICAL_ADAPTER_SOURCE",

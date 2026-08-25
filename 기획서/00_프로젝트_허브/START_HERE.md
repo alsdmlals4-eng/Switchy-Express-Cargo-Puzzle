@@ -1,6 +1,6 @@
 # Switchy Express 프로젝트 허브
 
-Last updated: `2026-08-24 KST`
+Last updated: `2026-08-25 KST`
 
 이 문서는 현재 제품 기준선과 **다음 실행 지점**을 빠르게 찾는 허브다. 실행 전에는 항상 fresh Base completed `main`, fresh project `main`, Open/Draft PR, Notion을 다시 읽는다.
 
@@ -10,9 +10,10 @@ Last updated: `2026-08-24 KST`
 |---|---|
 | 제품 기준선 | `GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE` |
 | 결정 범위 | `SX-DEC-027~059` |
-| 작업지시문 | `v4.8 · revision 2026-08-24-r2 · Switchy thin adapter` |
-| 작업지시문 source SHA-256 | `6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508` |
-| v4.8 authority merge | `PR #164 · main 98ed1c65d678bfc262c32084bbf0e59368093c2c` |
+| 작업지시문 | `v4.8 · revision 2026-08-24-r4 · Switchy thin adapter` |
+| r4 source role | `USER_PROVIDED_V4_8_R4_CONTRACT` |
+| historical r2 SHA-256 | `6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508 · NOT_R4_HASH` |
+| historical v4.8 r2 authority merge | `PR #164 · main 98ed1c65d678bfc262c32084bbf0e59368093c2c` |
 | User planning-complete gate | `GRANTED · 2026-08-20 KST` |
 | SX-DEC-059 implementation | `PR #158 MERGED_MAIN_VERIFIED · main 162e8a0a5e8ddc8472e74a6152e87dc12008e34c` |
 | Playable visual/UX POC | `PR #166 MERGED_MAIN_VERIFIED · main 1bf798cedf28dffba9185edb62fb1c50c108fe90` |
@@ -42,13 +43,28 @@ Last updated: `2026-08-24 KST`
 ## Base authority
 
 ```yaml
-base_v4_8_authority_time_snapshot: 2828a74f60c1ed09546171040f4178c8848ea686
 base_canon_sync_observation: 862938478cfea6c9db16691900c9c4fdc464f9ff · AUDIT_EVIDENCE_ONLY
 base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
 ```
 
-`2828a74...`와 `862938...`는 각각 historical compatibility와 이번 canon-sync 감사 시점의 evidence다. **현재 Base SHA를 정본에 고정하지 않는다.** 실제 작업 권위는 항상 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN` 정책에 따라 실행 시점의 fresh Base completed main을 다시 읽는다.
+과거 Base SHA는 compatibility/audit evidence다. **현재 Base SHA를 정본에 고정하지 않는다.** 실제 작업 권위는 항상 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN` 정책에 따라 실행 시점의 fresh Base completed main을 다시 읽는다.
+
+## r4 local execution overlay
+
+Godot authoring/runtime이 실제 acceptance에 필요한 경우에만 최신 Base owner와 thin adapter의 r4 overlay를 적용한다.
+
+```text
+fresh shell
+→ exact LOCATION
+→ fetch/prune + safe ff-only reconciliation when clean
+→ official upstream update check
+→ reviewed safe update only with compatibility + rollback + canary PASS
+→ exact Godot Editor/project/session identity
+→ authoring/test/runtime/readback
+```
+
+compatible host에서는 프로젝트마다 동일 Godot binary나 전용 포트를 기본 증식하지 않고 shared approved exact pins + provider default fixed ports + exact session routing을 우선한다.
 
 ## Stable acceptance compatibility anchors
 
@@ -109,7 +125,7 @@ PR #171이 이 두 player-visible presentation defect를 교정했다. 따라서
 12. `ROADMAP.md` + `DEVELOPMENT_GATES.md`.
 13. actual code/data/Scene/Resource/assets/tests.
 
-`PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`는 historical rollback/provenance evidence다. Google Sheets는 migration-only다.
+`PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`와 v4.8 r2 hash/merge는 historical rollback/provenance evidence다. Google Sheets는 migration-only다.
 
 ## Current execution entry
 
