@@ -74,11 +74,13 @@ Base 적용·Adapter 갱신·회귀 테스트가 위 항목을 현재 규칙으�
 - `assets/**`
 - `기획서/**`
 
-이 경로의 제품 의미를 바꾸는 변경은 현재 Decision·Evidence·감사·Google Sheet 동기화 없이 진행하지 않는다.
+이 경로의 제품 의미를 바꾸는 변경은 현재 Decision·Evidence·감사와 GitHub/Notion 정본 경계를 확인한 뒤 진행한다. Google Sheet 동기화는 더 이상 current gate가 아니다.
 
 ## 데이터·증거 경계
 
-- 올바른 Google Sheet: `1EpQ8j5XN6EjMhb5DG4DxPl_kNr0EqinK7HtP05IhoIo`
-- wrong `19Ff...` Sheet: `DO_NOT_MODIFY`
+`GOOGLE_SHEETS: RETIRED_NO_ACTIVE_USE`
+
+- 기존 Google Sheet는 일반 작업에서 읽기·쓰기·동기화·결정 입력에 사용하지 않는다.
+- 과거 Sheet ID/URL/sync 기록은 `docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json` 같은 historical migration evidence에만 보존한다.
 - 자동·export PASS는 Android 실기기·Windows 물리 입력·사람 이해 PASS가 아니다.
 - Android Device Smoke·Five-person Comprehension·Production Cutover는 각각 별도 Gate다.

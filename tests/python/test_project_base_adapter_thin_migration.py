@@ -10,7 +10,7 @@ ADAPTER = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
 REGISTRY = ROOT / "skills/SKILL_REGISTRY.json"
 HEALTH = ROOT / "docs/PROJECT_OPERATING_HEALTH.json"
 MIGRATION = ROOT / "docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json"
-CURRENT_PROTECTED_BASELINE = "cf207f29cd4dcabc5796769f0eb0ca6764c2370e"
+CURRENT_PROTECTED_BASELINE = "f34995228ef58ec00fffd60f7c53951bfc631f7c"
 
 
 class SwitchyThinAdapterMigrationTests(unittest.TestCase):
@@ -38,7 +38,7 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         self.assertEqual(entry["id"], entry["skill_id"])
         self.assertTrue(all("skill_id" not in item for item in registry["skills"] if item.get("owner") == "base"))
 
-    def test_adapter_uses_v2_canonical_baseline_and_migration_only_sheet_state(self) -> None:
+    def test_adapter_uses_v2_canonical_baseline_and_retired_sheet_state(self) -> None:
         adapter = json.loads(ADAPTER.read_text(encoding="utf-8"))
         self.assertEqual(2, adapter["schema_version"])
         self.assertEqual("switchy-express-cargo-puzzle", adapter["project"]["project_id"])
@@ -51,7 +51,11 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         self.assertEqual("HISTORICAL_SYNCED", sheet["declared_sync_status"])
         self.assertEqual("GOOGLE_SHEETS_LEGACY_MIGRATION_SOURCE", sheet["role"])
         self.assertEqual("MIGRATION_COMPATIBILITY_SURFACE", sheet["workspace_status"])
+        self.assertEqual("RETIRED_NO_ACTIVE_USE", sheet["retirement_state"])
         self.assertFalse(sheet["new_input_allowed"])
+        self.assertFalse(sheet["read_for_normal_work"])
+        self.assertNotIn("spreadsheet_id", sheet)
+        self.assertNotIn("url", sheet)
         planning = adapter["shared_overrides"]["managing-project-intake-and-work-contract"]["planning_first_governance"]
         self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
         self.assertEqual("DEC-BASE-20260805-001", json.loads(MIGRATION.read_text(encoding="utf-8"))["decision_id"])

@@ -55,6 +55,11 @@ class BaseSharedExternalAIAdapterTests(unittest.TestCase):
         self.assertEqual("HISTORICAL_SYNCED", sheet["declared_sync_status"])
         self.assertEqual("GOOGLE_SHEETS_LEGACY_MIGRATION_SOURCE", sheet["role"])
         self.assertEqual("MIGRATION_COMPATIBILITY_SURFACE", sheet["workspace_status"])
+        self.assertEqual("RETIRED_NO_ACTIVE_USE", sheet["retirement_state"])
+        self.assertFalse(sheet["new_input_allowed"])
+        self.assertFalse(sheet["read_for_normal_work"])
+        self.assertNotIn("spreadsheet_id", sheet)
+        self.assertNotIn("url", sheet)
         self.assertTrue(adapter["protected_paths"])
 
     def test_worktree_parent_is_ignored_by_git(self) -> None:
@@ -65,6 +70,7 @@ class BaseSharedExternalAIAdapterTests(unittest.TestCase):
         adapter = load_adapter()
         self.assertIn("python tests/test_base_shared_external_ai_adapter.py", set(adapter["validators"]))
         self.assertIn("python tests/python/test_v48_current_authority_migration.py -v", set(adapter["validators"]))
+        self.assertIn("python tests/python/test_google_sheet_retirement.py -v", set(adapter["validators"]))
 
 
 if __name__ == "__main__":
