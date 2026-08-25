@@ -16,7 +16,7 @@
       "static": [
         {
           "id": "SX-BASE-RULES-STATIC",
-          "sha256": "1b733feb2003f184745cae9ecf39665348f33559ab32182e69eae98486521b97",
+          "sha256": "28c4ea874e1f6a2649099edf2230eb9b2cabde5828756145f759dc58bed44dae",
           "source": "docs/BASE_RULES_VERSION.md"
         }
       ]
