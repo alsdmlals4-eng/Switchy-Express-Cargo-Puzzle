@@ -52,14 +52,19 @@ class AdoptionTests(unittest.TestCase):
         self.assertEqual(10, planning["max_approved_decisions_per_batch"])
         self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
         self.assertEqual("GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME", planning["runtime_structured_authority"])
+        self.assertNotIn("legacy_pre_merge_sheet_state", planning)
+        self.assertNotIn("legacy_post_merge_sheet_state", planning)
 
     def test_boundaries(self) -> None:
         adapter = load()
         sheet = adapter["gdd_sheet"]
-        self.assertEqual("NOT_CONFIGURED", sheet["sync_status"])
+        self.assertEqual("RETIRED", sheet["sync_status"])
         self.assertEqual("HISTORICAL_SYNCED", sheet["declared_sync_status"])
-        self.assertEqual("GOOGLE_SHEETS_LEGACY_MIGRATION_SOURCE", sheet["role"])
-        self.assertEqual("MIGRATION_COMPATIBILITY_SURFACE", sheet["workspace_status"])
+        self.assertEqual("RETIRED_HISTORICAL_REFERENCE", sheet["role"])
+        self.assertEqual("RETIRED_NO_ACTIVE_USE", sheet["workspace_status"])
+        self.assertFalse(sheet["read_for_normal_work"])
+        self.assertNotIn("spreadsheet_id", sheet)
+        self.assertNotIn("url", sheet)
         self.assertEqual(["project.godot", "game/**", "assets/**", "기획서/**"], adapter["protected_paths"])
         self.assertEqual(
             "NOT_RUN",
