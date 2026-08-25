@@ -38,7 +38,7 @@
   "protected_baseline": {
     "authority_kind": "REMOTE_TRACKING_REF",
     "authority_ref": "refs/remotes/origin/main",
-    "commit": "ae8f4aeae111c5cce4284499b851c0c3f80f6bf3",
+    "commit": "cf207f29cd4dcabc5796769f0eb0ca6764c2370e",
     "policy_sha256": "51b3ca7e05165069666d1235413d3277580646c63008b472f15df4fb4db9f0ca",
     "policy_source_path": "skills/PROJECT_BASE_ADAPTER.json",
     "policy_source_type": "CANONICAL_ADAPTER_SOURCE",
@@ -53,85 +53,25 @@
   "routing": {
     "aliases": [],
     "base_routes": [
-      {
-        "route_id": "analyzing-and-refining-game-concepts",
-        "skill_id": "analyzing-and-refining-game-concepts",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "auditing-and-refining-ui-art",
-        "skill_id": "auditing-and-refining-ui-art",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "auditing-canonical-reference-freshness",
-        "skill_id": "auditing-canonical-reference-freshness",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "designing-vertical-slices",
-        "skill_id": "designing-vertical-slices",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "maintaining-long-running-task-continuity",
-        "skill_id": "maintaining-long-running-task-continuity",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "maintaining-project-context-and-handoff",
-        "skill_id": "maintaining-project-context-and-handoff",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "managing-design-documents",
-        "skill_id": "managing-design-documents",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "managing-game-project-operating-system",
-        "skill_id": "managing-game-project-operating-system",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "managing-project-intake-and-work-contract",
-        "skill_id": "managing-project-intake-and-work-contract",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "optimizing-ai-model-and-prompt-costs",
-        "skill_id": "optimizing-ai-model-and-prompt-costs",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "orchestrating-deepseek-worktrees",
-        "skill_id": "orchestrating-deepseek-worktrees",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "reviewing-and-validating-project-changes",
-        "skill_id": "reviewing-and-validating-project-changes",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "running-adversarial-review-and-refinement",
-        "skill_id": "running-adversarial-review-and-refinement",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "synchronizing-local-and-github-state",
-        "skill_id": "synchronizing-local-and-github-state",
-        "status": "ACTIVE"
-      }
+      {"route_id": "analyzing-and-refining-game-concepts", "skill_id": "analyzing-and-refining-game-concepts", "status": "ACTIVE"},
+      {"route_id": "auditing-and-refining-ui-art", "skill_id": "auditing-and-refining-ui-art", "status": "ACTIVE"},
+      {"route_id": "auditing-canonical-reference-freshness", "skill_id": "auditing-canonical-reference-freshness", "status": "ACTIVE"},
+      {"route_id": "designing-vertical-slices", "skill_id": "designing-vertical-slices", "status": "ACTIVE"},
+      {"route_id": "maintaining-long-running-task-continuity", "skill_id": "maintaining-long-running-task-continuity", "status": "ACTIVE"},
+      {"route_id": "maintaining-project-context-and-handoff", "skill_id": "maintaining-project-context-and-handoff", "status": "ACTIVE"},
+      {"route_id": "managing-design-documents", "skill_id": "managing-design-documents", "status": "ACTIVE"},
+      {"route_id": "managing-game-project-operating-system", "skill_id": "managing-game-project-operating-system", "status": "ACTIVE"},
+      {"route_id": "managing-project-intake-and-work-contract", "skill_id": "managing-project-intake-and-work-contract", "status": "ACTIVE"},
+      {"route_id": "optimizing-ai-model-and-prompt-costs", "skill_id": "optimizing-ai-model-and-prompt-costs", "status": "ACTIVE"},
+      {"route_id": "orchestrating-deepseek-worktrees", "skill_id": "orchestrating-deepseek-worktrees", "status": "ACTIVE"},
+      {"route_id": "reviewing-and-validating-project-changes", "skill_id": "reviewing-and-validating-project-changes", "status": "ACTIVE"},
+      {"route_id": "running-adversarial-review-and-refinement", "skill_id": "running-adversarial-review-and-refinement", "status": "ACTIVE"},
+      {"route_id": "synchronizing-local-and-github-state", "skill_id": "synchronizing-local-and-github-state", "status": "ACTIVE"}
     ],
     "inactive_routes": [],
     "precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
     "project_routes": [
-      {
-        "route_id": "switchy-express-design",
-        "skill_id": "switchy-express-design",
-        "status": "ACTIVE"
-      }
+      {"route_id": "switchy-express-design", "skill_id": "switchy-express-design", "status": "ACTIVE"}
     ]
   },
   "schema_version": 2,
@@ -144,17 +84,8 @@
         "base_release_finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
         "base_release_lock": "base-v9.4.3.lock.json",
         "direction_anchor_reference": "skills/managing-project-intake-and-work-contract/references/first-prompt-direction-anchoring.md",
-        "instruction_flow": [
-          "route",
-          "first-prompt",
-          "contract",
-          "clarify"
-        ],
-        "l0_exceptions": [
-          "TYPO",
-          "OBVIOUS_FORMAT",
-          "IDENTICAL_VALIDATION_RERUN"
-        ],
+        "instruction_flow": ["route", "first-prompt", "contract", "clarify"],
+        "l0_exceptions": ["TYPO", "OBVIOUS_FORMAT", "IDENTICAL_VALIDATION_RERUN"],
         "unconfirmed_state": "AWAITING_USER_CONFIRMATION"
       },
       "planning_first_governance": {
@@ -173,20 +104,12 @@
       }
     },
     "optimizing-ai-model-and-prompt-costs": {
-      "modes": [
-        "route-model-and-effort",
-        "design-cacheable-prefix",
-        "estimate-cost",
-        "measure-actual-usage",
-        "recalibrate"
-      ],
+      "modes": ["route-model-and-effort", "design-cacheable-prefix", "estimate-cost", "measure-actual-usage", "recalibrate"],
       "provider_measurement_status": "NOT_RUN"
     },
     "orchestrating-deepseek-worktrees": {
       "actual_external_ai_worktree_execution": "NOT_RUN",
-      "allowed_write_roots": [
-        "drafts/external-ai/**"
-      ],
+      "allowed_write_roots": ["drafts/external-ai/**"],
       "base_contract_source": "skills/orchestrating-deepseek-worktrees/SKILL.md",
       "base_release_lock": "base-v9.4.1.lock.json",
       "base_validator_adoption": "ADOPTED_FROM_BASE_V9_4_1",
