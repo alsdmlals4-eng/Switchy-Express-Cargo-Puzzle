@@ -12,7 +12,7 @@ adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 project_repository: https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
 human_workspace: NOTION_DEFAULT_PROJECT_WORKSPACE
 runtime_structured_authority: GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME
-google_sheets_policy: COMPATIBILITY_ONLY_MIGRATION_SOURCE_UNTIL_REMOVAL
+google_sheets_policy: RETIRED_NO_ACTIVE_USE
 fresh_shell_bootstrap_policy: LOCATION_THEN_GIT_FETCH_SAFE_FF_PULL_THEN_UPDATE_THEN_EDITOR
 update_freshness_policy: CHECK_OFFICIAL_UPSTREAM_BEFORE_LOCAL_BUILD_AND_RUNTIME
 safe_auto_update_policy: REVIEW_CANARY_ROLLBACK_THEN_AUTO_APPLY_AND_EXACT_PIN
@@ -58,7 +58,7 @@ current_decision_span: SX-DEC-027~059
 
 - **Notion**: 사람용 Project Home, Flow, Visual, 핵심 시스템 설명, 사람이 비교·수정하는 기획 표면.
 - **GitHub/runtime**: structured canon, code, data, Scene/Resource, tracked assets, tests, CI, runtime truth.
-- **Google Sheets**: 과거 고유 미이관 자료를 위한 compatibility-only migration source. 신규 입력면이나 current GDD workspace가 아니다.
+- **Google Sheets**: `GOOGLE_SHEETS: RETIRED_NO_ACTIVE_USE`. 일반 작업에서 읽기·쓰기·동기화·결정 입력·기본 탐색에 사용하지 않는다. 과거 ID/URL/sync 기록이 필요한 감사·provenance만 legacy migration evidence에서 확인한다.
 
 ## 3. Protected product baseline
 
@@ -166,6 +166,8 @@ v4.8 r4 adoption은 위 package의 구현 권한을 추가하지 않는다. 056A
 9. current Goal의 exact owner documents.
 10. actual code/data/Scene/Resource/assets/tests/runtime evidence.
 11. historical v4.7/r2 adapter/handoff/audit only when provenance or rollback evidence is needed.
+
+Google Sheet는 이 current owner read order에 포함하지 않는다.
 
 ## 8. Current task safety / PR boundary
 
