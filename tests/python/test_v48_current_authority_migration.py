@@ -32,7 +32,7 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
         self.assertIn(f"historical_r2_sha256: {HISTORICAL_R2_SHA256}", text)
         self.assertIn("historical_r2_hash_is_not_r4_hash: true", text)
         self.assertIn("base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN", text)
-        self.assertIn("google_sheets_policy: COMPATIBILITY_ONLY_MIGRATION_SOURCE_UNTIL_REMOVAL", text)
+        self.assertIn("google_sheets_policy: RETIRED_NO_ACTIVE_USE", text)
         self.assertNotIn("revision: '2026-08-24-r2'", text)
         self.assertNotIn("source_v4_8_sha256:", text)
 
@@ -62,17 +62,20 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
             self.assertIn(required, text)
         self.assertNotIn("floating latest", text.lower())
 
-    def test_project_base_adapter_uses_v2_and_sheet_is_migration_compatibility_only(self) -> None:
+    def test_project_base_adapter_uses_v2_and_sheet_is_retired(self) -> None:
         adapter = json.loads(PROJECT_ADAPTER.read_text(encoding="utf-8"))
         self.assertEqual(2, adapter["schema_version"])
         self.assertEqual("switchy-express-cargo-puzzle", adapter["project"]["project_id"])
         self.assertEqual(PR_BASE_AT_MIGRATION, adapter["protected_baseline"]["commit"])
         sheet = adapter["gdd_sheet"]
-        self.assertEqual("GOOGLE_SHEETS_LEGACY_MIGRATION_SOURCE", sheet["role"])
-        self.assertEqual("MIGRATION_COMPATIBILITY_SURFACE", sheet["workspace_status"])
-        self.assertEqual("NOT_CONFIGURED", sheet["sync_status"])
+        self.assertEqual("RETIRED_HISTORICAL_REFERENCE", sheet["role"])
+        self.assertEqual("RETIRED_NO_ACTIVE_USE", sheet["workspace_status"])
+        self.assertEqual("RETIRED", sheet["sync_status"])
         self.assertEqual("HISTORICAL_SYNCED", sheet["declared_sync_status"])
         self.assertFalse(sheet["new_input_allowed"])
+        self.assertFalse(sheet["read_for_normal_work"])
+        self.assertNotIn("spreadsheet_id", sheet)
+        self.assertNotIn("url", sheet)
         planning = adapter["shared_overrides"]["managing-project-intake-and-work-contract"]["planning_first_governance"]
         self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
         self.assertEqual("GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME", planning["runtime_structured_authority"])
