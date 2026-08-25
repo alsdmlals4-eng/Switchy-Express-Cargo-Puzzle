@@ -1,17 +1,18 @@
 # Development Gates
 
-Last updated: `2026-08-24 KST`
+Last updated: `2026-08-25 KST`
 
 현재 실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 우선한다. 과거 commit/PR/run은 역사 evidence이며 current next action을 자동 정의하지 않는다.
 
 ## 0. Current authority
 
 ```yaml
-current_work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER
-work_instruction_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
-v4_8_authority_merge_pr: 164
-v4_8_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
-base_latest_observed: 2828a74f60c1ed09546171040f4178c8848ea686
+current_work_instruction: v4.8 · 2026-08-24-r4 · SWITCHY_THIN_ADAPTER
+work_instruction_role: USER_PROVIDED_V4_8_R4_CONTRACT
+historical_r2_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
+historical_r2_hash_is_not_r4_hash: true
+v4_8_r2_authority_merge_pr: 164
+v4_8_r2_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 ```
@@ -38,7 +39,7 @@ A0 CURRENT AUTHORITY RECOVERY: PASS
 → A14 NOTION POST-MERGE IMPLEMENTATION READBACK: PASS
 ```
 
-`기획완료`는 승인된 059 계획을 잠근다. A6/A7은 설계·정본·인계 패키지의 정적 준비 상태이며, A8 이후 fresh execution preflight와 RED→GREEN 구현, exact-head 검증, merge/readback까지 완료됐다. 이 chain은 v4.7 시기에 실행된 **역사 evidence**이며 현재 작업 방법론은 위 v4.8 authority를 따른다.
+`기획완료`는 승인된 059 계획을 잠근다. A6/A7은 설계·정본·인계 패키지의 정적 준비 상태이며, A8 이후 fresh execution preflight와 RED→GREEN 구현, exact-head 검증, merge/readback까지 완료됐다. 이 chain은 v4.7 시기에 실행된 **역사 evidence**이며 현재 작업 방법론은 위 v4.8 r4 authority를 따른다.
 
 ## 2. Historical implemented baseline chain
 
@@ -93,10 +94,11 @@ S0 PLAN: COMPLETE
 → S11A custom/GUT/export-pack proof: PASS
 → S11B five-pass adversarial review: CLOSED
 → S11C PR #158 merge + Notion implementation readback: PASS
-→ S12 developer self-run/screen QA: NOT_RUN
-→ S13 exact acceptance build physical smoke: NOT_RUN
-→ S14 Five-person first-contact comprehension: NOT_RUN
-→ S15 product decision: NOT_RUN
+→ S12 Candidate 003 Gate 0 physical visual recheck: NOT_RUN
+→ S13 same exact Candidate 003 developer self-run/screen QA + audio perceptual QA: NOT_RUN
+→ S14 exact acceptance build physical/device smoke: NOT_RUN
+→ S15 Five-person first-contact comprehension: NOT_RUN
+→ S16 product decision: NOT_RUN
 ```
 
 ## 5. Implemented BUILD task families
@@ -237,30 +239,31 @@ Detailed station mismatch is a future 056A observation concern and is outside 05
 
 ## 11. Tooling / fresh execution preflight gate
 
+Current project-local observed state remains evidence, not a floating latest pin:
+
 ```yaml
-godot: 4.7.1-stable
+godot_project_baseline: 4.7.1-stable
 gut: 9.7.1
 project_godot_ai_plugin_cfg: 3.1.4
-upstream_3_1_4_version_bump_commit: 96cc8b8c3d25ce487e24801d01d5214fea150349
-upstream_main_observed_plugin: 3.1.5
-upstream_main_observed_commit: 09a1e3311015153d967710fbe6502ac519585a9b
-prior_verified_release_basis: v3.1.3
-project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED_BEFORE_FUTURE_AUTHORING
-local_repo_tree_parity: NOT_RUN
+project_local_tree_parity: REVERIFY_REQUIRED_BEFORE_FUTURE_AUTHORING
 ```
 
-향후 authoring은 과거 implementation preflight를 자동 상속하지 않고 다음을 다시 확인한다.
+향후 authoring/runtime 작업은 r4와 최신 Base owner에 따라 과거 implementation preflight를 자동 상속하지 않고 다음을 다시 확인한다.
 
-- exact local repo location resolved by Git remote identity.
-- clean/dirty state and user changes.
-- exact project `HEAD` and `origin/main` relation.
-- isolated workspace/worktree status where implementation is requested.
-- Godot executable version.
-- repo/local Godot AI addon parity/provenance.
-- GUT availability.
-- project HiGodot profile/ports only if actually consumed.
-- project CODEX_HOME current value without silent credential/config replacement.
-- Hera only when live QA is applicable; tracked source delta after acceptance must be zero.
+```text
+fresh shell
+→ exact local repo/project LOCATION
+→ clean/dirty/diverged state
+→ fetch/prune + safe ff-only reconciliation only when safe
+→ official upstream update check
+→ compatibility + rollback + canary를 통과한 reviewed safe update only
+→ exact pin readback
+→ exact Godot Editor/project/session identity
+→ GUT / adopted tooling readiness
+→ authoring/test/runtime/readback
+```
+
+compatible host에서는 프로젝트별 동일 Godot binary·전용 port 증식을 기본 경로로 사용하지 않는다. shared approved exact pins + provider default fixed ports + exact session routing을 우선한다. breaking/migration/비용/권한 확대는 자동 승인하지 않는다.
 
 ## 12. Concurrency gate
 
@@ -307,9 +310,16 @@ The merged PR #158 proved:
 
 Hosted CI/package proof is not physical runtime or human evidence.
 
-## 15. Developer self-run gate
+## 15. Candidate 003 physical / developer self-run gate
 
-Current next executable evidence gate. After merged automated GREEN and before first-contact human evidence:
+Current next executable evidence gate begins with Candidate 003 Gate 0, because Candidate 002 found physical P1 presentation defects and Candidate 003 contains corrected bytes.
+
+Gate 0:
+
+1. preflight badge compact lane / Korean copy non-overlap.
+2. disconnected station/cargo identity visible / problem reinforcement outline only.
+
+If both PASS, continue on the **same exact Candidate 003**:
 
 1. T1→T6→Capstone happy path.
 2. T3 wrong LIFO order → Edit → recovery.
@@ -319,6 +329,7 @@ Current next executable evidence gate. After merged automated GREEN and before f
 6. Capstone Retry same layout.
 7. Capstone Edit layout.
 8. Reduced Motion same-information path.
+9. audio perceptual QA.
 
 Must record:
 
@@ -337,7 +348,8 @@ This gate is developer usability/technical evidence only.
 
 ```text
 exact acceptance build identity
-→ reviewed physical smoke on the same build
+→ reviewed Windows physical smoke on the same build
+→ Android device smoke as separate platform gate
 → Five-person first-contact comprehension
 ```
 
@@ -362,12 +374,13 @@ No merge/build/export result automatically authorizes store release.
 ## Current next action
 
 ```text
-developer self-run / screen QA
+Candidate 003 physical visual recheck
+→ same exact Candidate 003 developer self-run / screen QA + audio perceptual QA
 → designate exact acceptance build when physical validation is prepared
-→ Windows physical smoke as applicable
+→ Windows full physical smoke
 → Android device smoke as separate platform gate
 → Five-person first-contact comprehension on the same build
 → product decision
 ```
 
-**PR #158 merge와 Notion implementation readback은 완료됐고 physical/device/human gates remain NOT_RUN.**
+**PR #158 merge와 Notion implementation readback은 완료됐고 Candidate 003 physical/developer/device/human gates remain NOT_RUN.**
