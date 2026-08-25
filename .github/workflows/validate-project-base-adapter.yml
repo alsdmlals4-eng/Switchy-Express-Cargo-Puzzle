@@ -22,6 +22,7 @@ on:
       - tests/python/test_v48_current_authority_migration.py
       - tests/test_post_merge_canon_freshness.py
       - tests/python/test_v48_protected_canon_freshness.py
+      - tests/python/test_google_sheet_retirement.py
       - .github/workflows/validate-project-base-adapter.yml
 
 permissions:
@@ -72,7 +73,7 @@ jobs:
           set -euo pipefail
           APPROVAL_PATH="docs/operations/PROJECT_PROTECTED_CHANGE_APPROVAL.json"
           APPROVAL_ARGS=()
-          if [ -f "$APPROVAL_PATH" ]; then
+          if [ -f "$APPROVAL_PATH" ] && [ "$EXTERNAL_APPROVAL" = "true" ]; then
             APPROVAL_ARGS=(--approval "$APPROVAL_PATH")
           fi
           python .base-contract/tools/check_approved_project_operating_contract.py \
