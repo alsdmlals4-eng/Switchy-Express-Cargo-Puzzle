@@ -1,6 +1,6 @@
 # Active Context
 
-Last updated: `2026-08-24 KST`
+Last updated: `2026-08-25 KST`
 
 이 문서는 **현재 상태·다음 실행 지점·미검증 경계**를 연결하는 resume locator다. fresh GitHub/Notion/actual runtime이 저장 snapshot보다 우선한다.
 
@@ -9,19 +9,20 @@ Last updated: `2026-08-24 KST`
 ```yaml
 repository: alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
 default_branch: main
-project_main_snapshot_before_postmerge_canon: 2521f3be600ea950f9893ce45940604c2d0ac88a
+project_main_snapshot_before_r4_reconciliation: cf207f29cd4dcabc5796769f0eb0ca6764c2370e
 project_live_main_policy: REFRESH_FROM_GITHUB_BEFORE_EXECUTION
 engine: Godot 4.7.1-stable
 language: GDScript
 product_baseline: GMB-002
 current_decisions: SX-DEC-027~059
-work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER
-work_instruction_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
-v4_8_authority_merge_pr: 164
-v4_8_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
+work_instruction: v4.8 · 2026-08-24-r4 · SWITCHY_THIN_ADAPTER
+work_instruction_role: USER_PROVIDED_V4_8_R4_CONTRACT
+historical_r2_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
+historical_r2_hash_is_not_r4_hash: true
+v4_8_r2_authority_merge_pr: 164
+v4_8_r2_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
 v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
-base_v4_8_authority_time_snapshot: 2828a74f60c1ed09546171040f4178c8848ea686
 base_canon_sync_observation: 862938478cfea6c9db16691900c9c4fdc464f9ff · AUDIT_EVIDENCE_ONLY
 base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 sx_dec_059_merge_pr: 158
@@ -65,7 +66,23 @@ sx_dec_058: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 pr_154: CLOSED_UNMERGED · SUPERSEDED_BY_059
 ```
 
-`base_canon_sync_observation`은 이번 문서 교정 시점의 감사 증거일 뿐 current Base pin이 아니다. 실제 Base 권위는 실행할 때마다 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN`으로 다시 결정한다.
+`base_canon_sync_observation`은 과거 감사 증거일 뿐 current Base pin이 아니다. 실제 Base 권위는 실행할 때마다 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN`으로 다시 결정한다. `historical_r2_source_sha256` 역시 r2 provenance이며 r4 hash가 아니다.
+
+## r4 execution overlay
+
+r4의 Godot/local bootstrap은 실제 authoring/runtime 작업에서만 적용한다.
+
+```text
+fresh shell
+→ exact LOCATION
+→ git fetch/prune + safe ff-only reconciliation when clean
+→ official upstream update check
+→ compatibility/rollback/canary를 통과한 safe update만 exact pin으로 적용
+→ exact Godot Editor/project/session identity
+→ authoring/test/runtime/readback
+```
+
+동일 Godot binary·프로젝트별 전용 포트를 기본적으로 증식시키지 않는다. compatible host에서는 shared approved exact pins와 provider default fixed ports를 사용하고 exact project/editor/session identity로 격리한다. 세부 절차는 최신 Base owner와 project thin adapter가 소유한다.
 
 ## Stable Phase-B / post-merge compatibility aliases
 
@@ -226,7 +243,7 @@ B. disconnected station/cargo의 색+shape+text identity가 보이고 problem re
 11. `DEVELOPMENT_GATES.md` + `ROADMAP.md`.
 12. actual code/tests and 059 content/UI/localization/visual/playtest owners.
 
-Historical `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`는 provenance/rollback용이다.
+Historical `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`와 v4.8 r2 provenance는 rollback/history용이다.
 
 ## Current next action
 
