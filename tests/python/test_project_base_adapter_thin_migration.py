@@ -43,7 +43,8 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         self.assertEqual(2, adapter["schema_version"])
         self.assertEqual("switchy-express-cargo-puzzle", adapter["project"]["project_id"])
         self.assertEqual(CURRENT_PROTECTED_BASELINE, adapter["protected_baseline"]["commit"])
-        self.assertEqual("REMOTE_TRACKING_REF", adapter["protected_baseline"]["authority_kind"])
+        self.assertEqual("GITHUB_PR_BASE", adapter["protected_baseline"]["authority_kind"])
+        self.assertEqual("github.event.pull_request.base.sha", adapter["protected_baseline"]["authority_ref"])
         self.assertEqual("CANONICAL_ADAPTER_SOURCE", adapter["protected_baseline"]["policy_source_type"])
         sheet = adapter["gdd_sheet"]
         self.assertEqual("NOT_CONFIGURED", sheet["sync_status"])
