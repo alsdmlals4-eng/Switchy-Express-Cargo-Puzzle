@@ -9,10 +9,8 @@ ROOT = Path(__file__).resolve().parents[2]
 PROJECT_ADAPTER = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
 V48_ADAPTER = ROOT / "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md"
 AGENTS = ROOT / "AGENTS.md"
-START_HERE = ROOT / "기획서/00_프로젝트_허브/START_HERE.md"
-CURRENT_DECISIONS = ROOT / "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md"
-ACTIVE_CONTEXT = ROOT / "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md"
 BASE_RULES = ROOT / "docs/BASE_RULES_VERSION.md"
+MIGRATION_STATE = ROOT / "docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json"
 
 
 class GoogleSheetRetirementTests(unittest.TestCase):
@@ -33,9 +31,9 @@ class GoogleSheetRetirementTests(unittest.TestCase):
         self.assertNotIn("legacy_post_merge_sheet_state", planning)
         self.assertNotIn("legacy_pre_merge_sheet_state", planning)
 
-    def test_current_human_and_execution_owners_mark_sheet_retired(self) -> None:
+    def test_current_entry_surfaces_mark_sheet_retired(self) -> None:
         expected = "GOOGLE_SHEETS: RETIRED_NO_ACTIVE_USE"
-        for path in (AGENTS, START_HERE, CURRENT_DECISIONS, ACTIVE_CONTEXT, BASE_RULES):
+        for path in (AGENTS, BASE_RULES):
             text = path.read_text(encoding="utf-8")
             self.assertIn(expected, text, f"{path} does not retire Google Sheets from active work")
 
@@ -44,6 +42,14 @@ class GoogleSheetRetirementTests(unittest.TestCase):
         self.assertIn("google_sheets_policy: RETIRED_NO_ACTIVE_USE", text)
         self.assertIn("GOOGLE_SHEETS: RETIRED_NO_ACTIVE_USE", text)
         self.assertNotIn("COMPATIBILITY_ONLY_MIGRATION_SOURCE_UNTIL_REMOVAL", text)
+
+    def test_historical_migration_state_keeps_sheet_provenance(self) -> None:
+        state = json.loads(MIGRATION_STATE.read_text(encoding="utf-8"))
+        legacy = state["legacy_gdd_sheet"]
+        self.assertEqual("USER_FACING_GDD_WORKSPACE", legacy["role"])
+        self.assertTrue(legacy["spreadsheet_id"])
+        self.assertTrue(legacy["url"])
+        self.assertEqual("NONE", state["google_sheet_mutation"])
 
 
 if __name__ == "__main__":
