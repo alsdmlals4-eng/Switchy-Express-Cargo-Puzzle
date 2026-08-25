@@ -38,7 +38,7 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         self.assertEqual(entry["id"], entry["skill_id"])
         self.assertTrue(all("skill_id" not in item for item in registry["skills"] if item.get("owner") == "base"))
 
-    def test_adapter_uses_v2_canonical_baseline_and_migration_only_sheet_state(self) -> None:
+    def test_adapter_uses_v2_canonical_baseline_and_retired_sheet_state(self) -> None:
         adapter = json.loads(ADAPTER.read_text(encoding="utf-8"))
         self.assertEqual(2, adapter["schema_version"])
         self.assertEqual("switchy-express-cargo-puzzle", adapter["project"]["project_id"])
@@ -47,11 +47,14 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         self.assertEqual("github.event.pull_request.base.sha", adapter["protected_baseline"]["authority_ref"])
         self.assertEqual("CANONICAL_ADAPTER_SOURCE", adapter["protected_baseline"]["policy_source_type"])
         sheet = adapter["gdd_sheet"]
-        self.assertEqual("NOT_CONFIGURED", sheet["sync_status"])
+        self.assertEqual("RETIRED", sheet["sync_status"])
         self.assertEqual("HISTORICAL_SYNCED", sheet["declared_sync_status"])
-        self.assertEqual("GOOGLE_SHEETS_LEGACY_MIGRATION_SOURCE", sheet["role"])
-        self.assertEqual("MIGRATION_COMPATIBILITY_SURFACE", sheet["workspace_status"])
+        self.assertEqual("RETIRED_HISTORICAL_REFERENCE", sheet["role"])
+        self.assertEqual("RETIRED_NO_ACTIVE_USE", sheet["workspace_status"])
         self.assertFalse(sheet["new_input_allowed"])
+        self.assertFalse(sheet["read_for_normal_work"])
+        self.assertNotIn("spreadsheet_id", sheet)
+        self.assertNotIn("url", sheet)
         planning = adapter["shared_overrides"]["managing-project-intake-and-work-contract"]["planning_first_governance"]
         self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
         self.assertEqual("DEC-BASE-20260805-001", json.loads(MIGRATION.read_text(encoding="utf-8"))["decision_id"])
