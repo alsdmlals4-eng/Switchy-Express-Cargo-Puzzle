@@ -7,9 +7,15 @@ WORKFLOW = ROOT / ".github/workflows/validate-project-base-adapter.yml"
 
 
 class ProjectBaseAdapterWorkflowScopeTest(unittest.TestCase):
-    def test_adapter_validator_is_not_global_to_every_pull_request(self) -> None:
+    def test_adapter_validator_remains_scoped_and_refreshes_on_label_changes(self) -> None:
         text = WORKFLOW.read_text(encoding="utf-8")
-        self.assertIn("pull_request:\n    branches: [main]\n    paths:", text)
+        for required in (
+            "pull_request:",
+            "types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]",
+            "branches: [main]",
+            "paths:",
+        ):
+            self.assertIn(required, text)
         self.assertNotIn("pull_request:\n\n", text)
 
     def test_authoritative_adapter_paths_trigger_validation(self) -> None:
