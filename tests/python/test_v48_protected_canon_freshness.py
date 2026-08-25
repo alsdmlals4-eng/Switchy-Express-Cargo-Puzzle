@@ -6,8 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 V48_ADAPTER = "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md"
-V48_SOURCE_SHA256 = "6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508"
-BASE_MAIN = "2828a74f60c1ed09546171040f4178c8848ea686"
+HISTORICAL_R2_SHA256 = "6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508"
 
 OWNERS = {
     "start_here": ROOT / "기획서/00_프로젝트_허브/START_HERE.md",
@@ -24,14 +23,20 @@ class V48ProtectedCanonFreshnessTests(unittest.TestCase):
         self.assertTrue(path.is_file(), f"missing protected current owner: {path}")
         return path.read_text(encoding="utf-8")
 
-    def test_current_protected_entry_owners_name_v48_as_current(self) -> None:
-        for key in ("start_here", "active_context", "current_decisions"):
+    def test_current_protected_entry_owners_name_r4_as_current(self) -> None:
+        for key in OWNERS:
             text = self._read(key)
             self.assertIn("v4.8", text, f"{key} does not identify v4.8 current authority")
+            self.assertIn("2026-08-24-r4", text, f"{key} does not identify r4 current authority")
             self.assertNotIn(
-                "work_instruction: v4.7 · 2026-08-20-r1 · SWITCHY_THIN_ADAPTER",
+                "work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER",
                 text,
-                f"{key} still advertises v4.7 as current work instruction",
+                f"{key} still advertises r2 as current work instruction",
+            )
+            self.assertNotIn(
+                "current_work_instruction: v4.8 · 2026-08-24-r2 · SWITCHY_THIN_ADAPTER",
+                text,
+                f"{key} still advertises r2 as current work instruction",
             )
 
     def test_start_here_routes_to_v48_adapter(self) -> None:
@@ -39,18 +44,18 @@ class V48ProtectedCanonFreshnessTests(unittest.TestCase):
         self.assertIn(V48_ADAPTER, text)
         self.assertIn("v4.7", text, "historical v4.7 provenance should remain discoverable")
 
-    def test_decision_and_active_context_bind_v48_source_and_current_base(self) -> None:
+    def test_decision_and_active_context_keep_r2_hash_as_history_and_current_base_dynamic(self) -> None:
         for key in ("active_context", "current_decisions"):
             text = self._read(key)
-            self.assertIn(V48_SOURCE_SHA256, text)
-            self.assertIn(BASE_MAIN, text)
+            self.assertIn(HISTORICAL_R2_SHA256, text)
+            self.assertIn("historical_r2_hash_is_not_r4_hash", text)
             self.assertIn("ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN", text)
 
-    def test_gate_and_roadmap_expose_current_v48_authority_without_changing_product_gate(self) -> None:
+    def test_gate_and_roadmap_expose_candidate_003_without_changing_product_gate(self) -> None:
         for key in ("development_gates", "roadmap"):
             text = self._read(key)
-            self.assertIn("v4.8", text, f"{key} lacks current v4.8 authority locator")
-            self.assertIn("developer self-run", text)
+            self.assertIn("SX59-POC-ACCEPT-003", text)
+            self.assertIn("physical visual recheck", text)
             self.assertIn("NOT_RUN", text)
 
     def test_deferred_packages_and_human_evidence_remain_closed(self) -> None:
