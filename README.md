@@ -11,7 +11,9 @@
 ```yaml
 product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
 current_decisions: SX-DEC-027~059
-work_instruction: v4.8 · revision 2026-08-24-r2 · SWITCHY_THIN_ADAPTER
+work_instruction: v4.8 · revision 2026-08-24-r4 · SWITCHY_THIN_ADAPTER
+work_instruction_role: USER_PROVIDED_V4_8_R4_CONTRACT
+historical_r2_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508 · NOT_R4_HASH
 phase_a: COMPLETE
 user_planning_complete_gate: GRANTED · 2026-08-20 KST
 phase_b_final_planning_review: SX-AUD-047 · PASS
@@ -27,8 +29,11 @@ sx_dec_059_notion_post_merge_readback: PASS
 sx_dec_059_adversarial_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED
 semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
 base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
-base_latest_observed_for_v48: 2828a74f60c1ed09546171040f4178c8848ea686 · REFRESH_EACH_WORK
+base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 google_sheets: COMPATIBILITY_ONLY_MIGRATION_SOURCE
+current_candidate: SX59-POC-ACCEPT-003
+candidate_003_package_pointer: PASS
+candidate_003_physical_visual_recheck: NOT_RUN
 developer_self_run: NOT_RUN
 physical_device_human: NOT_RUN
 production_cutover: BLOCKED_DEFERRED
@@ -46,6 +51,7 @@ historical_canonical_freshness_audit: SX-AUD-025
 repository_main_observed: HISTORICAL_SNAPSHOT_ONLY
 latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
 v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
+v4_8_r2_authority_merge: PR_164 · 98ed1c65d678bfc262c32084bbf0e59368093c2c
 ```
 
 ## 현재 제품 기준선
@@ -128,14 +134,16 @@ Task 1 / Step 1.1 RED는 완료된 TDD 역사이며 현재 next action이 아닙
 
 ## 바로 실행하기
 
-사용자 로컬 확인은 항상 최신 `main`을 받은 뒤 진행합니다.
+사용자 로컬 확인은 항상 최신 `main`을 받은 뒤 진행합니다. r4 기준으로 실제 Godot authoring/runtime 작업에서는 fresh shell → exact location → fetch/safe reconcile → official update check → safe reviewed update/exact pin → exact editor/session 순서를 적용합니다.
 
-1. GitHub Desktop에서 저장소와 `main`을 선택합니다.
-2. `Fetch origin → Pull origin`을 수행합니다.
-3. Godot `4.7.1-stable`에서 저장소 루트의 `project.godot`을 엽니다.
-4. 별도 Scene 선택 없이 **Project Play(F5 / ▶)** 를 사용합니다.
+현재 Candidate 003 self-run launcher를 사용할 때는 저장소 current pointer가 exact candidate를 선택하게 하며, 임의 latest build나 hard-coded candidate를 사용하지 않습니다.
 
-기본 진입점:
+1. GitHub Desktop 또는 fresh PowerShell에서 저장소와 `main`을 확인합니다.
+2. `Fetch origin → Pull origin` 또는 clean 상태에서 동등한 `fetch` + safe `--ff-only` reconciliation을 수행합니다.
+3. current candidate 검증에는 저장소 루트 `RUN_SX59_POC_SELF_RUN.ps1`을 사용합니다.
+4. 일반 editor 검수는 exact project의 Godot Editor/session identity를 확인한 뒤 진행합니다.
+
+기본 제품 진입점:
 
 ```text
 project.godot
@@ -166,10 +174,13 @@ FINITE CORE AUTOMATED: PASS
 SX-DEC-055 RUNTIME POC: MERGED_MAIN_VERIFIED
 SX-DEC-059 FIRST SESSION: MERGED_MAIN_VERIFIED · PR #158
 SX-DEC-059 NOTION READBACK: PASS
-SX59-ACCEPT-001 ARTIFACT INTEGRITY: PASS · PREPARATION_ONLY
+CURRENT POC CANDIDATE: SX59-POC-ACCEPT-003
+CANDIDATE 003 PACKAGE/PCK/TEXTURE/POINTER VERIFICATION: PASS
+CANDIDATE 003 PHYSICAL VISUAL RECHECK: NOT_RUN
 POST-059 ACCEPTANCE BUILD: UNASSIGNED
 DEVELOPER SELF-RUN / SCREEN QA: NOT_RUN
-WINDOWS PHYSICAL RUNTIME: NOT_RUN
+AUDIO PERCEPTUAL QA: NOT_RUN
+WINDOWS FULL PHYSICAL RUNTIME: NOT_RUN
 ANDROID DEVICE SMOKE: NOT_RUN
 CONNECTED PHYSICAL EDITOR: NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
@@ -177,14 +188,15 @@ PLAYER EXPERIENCE: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
 
-기존 Android validation APK와 과거 Windows export는 역사적 packaging/diagnostic evidence이며 post-059 acceptance build를 대신하지 않습니다.
+Candidate 002 Windows startup smoke는 historical physical evidence지만 P1 visual defects 때문에 acceptance 승격이 금지됐습니다. 기존 Android validation APK와 과거 Windows export도 역사적 packaging/diagnostic evidence이며 Candidate 003 acceptance build를 대신하지 않습니다.
 
 ## 다음 유효 작업
 
 ```text
-developer self-run / screen QA
+Candidate 003 Gate 0 physical visual recheck
+→ same exact Candidate 003 developer self-run / screen QA + audio perceptual QA
 → exact acceptance build identity when physical validation is prepared
-→ Windows physical smoke
+→ Windows full physical smoke
 → Android device smoke as separate platform gate
 → physical Reduced Motion/readability
 → Five-person comprehension on the same build
@@ -202,14 +214,15 @@ developer self-run / screen QA
 5. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
 6. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
 7. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
-8. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
-9. `기획서/50_제작_검증/SX_DEC_059_RELEASE_NEAR_FIRST_SESSION_VERTICAL_SLICE.md`
-10. `기획서/50_제작_검증/SX_DEC_059_CODEX_HANDOFF_PACKAGE.md` · history when needed
-11. `기획서/50_제작_검증/PLAYTEST_PLAN_V4_7_CURRENT.md` · compatibility filename, not work-instruction authority
+8. `evidence/acceptance/current_poc_candidate.json` when acceptance identity matters
+9. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
+10. `기획서/50_제작_검증/SX_DEC_059_RELEASE_NEAR_FIRST_SESSION_VERTICAL_SLICE.md`
+11. `기획서/50_제작_검증/SX_DEC_059_CODEX_HANDOFF_PACKAGE.md` · history when needed
+12. `기획서/50_제작_검증/PLAYTEST_PLAN_V4_7_CURRENT.md` · compatibility filename, not work-instruction authority
 
 ## 기술
 
-- Godot 4.7.1-stable
+- Godot 4.7.1-stable project baseline; latest/safe host toolchain must be rechecked before future authoring/runtime work
 - GDScript
 - Windows / Android landscape
 - Notion 사람용 정본 + GitHub 구조화/런타임 정본
