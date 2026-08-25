@@ -54,7 +54,7 @@ class V48ProtectedCanonFreshnessTests(unittest.TestCase):
     def test_gate_and_roadmap_expose_candidate_003_without_changing_product_gate(self) -> None:
         for key in ("development_gates", "roadmap"):
             text = self._read(key)
-            self.assertIn("SX59-POC-ACCEPT-003", text)
+            self.assertIn("Candidate 003", text)
             self.assertIn("physical visual recheck", text)
             self.assertIn("NOT_RUN", text)
 
