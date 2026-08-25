@@ -51,7 +51,9 @@ Base latest completed main
 → actual code/data/Scene/Resource/assets/tests
 ```
 
-Google Sheets는 `MIGRATION_ONLY_UNTIL_REMOVAL`이다. 신규 기획 입력·active workspace로 사용하지 않는다. Figma, external HTML, Tool Hub, QA Evidence Studio도 기본/필수 프로젝트 경로가 아니다.
+`GOOGLE_SHEETS: RETIRED_NO_ACTIVE_USE`
+
+사용자 2026-08-25 지시에 따라 기존 Google Sheet는 **일반 작업에서 읽기·쓰기·동기화·결정 입력 대상으로 사용하지 않는다.** 과거 Sheet ID·URL·sync 기록은 역사/감사 provenance가 필요한 경우에만 legacy migration evidence에서 확인하며, active workspace나 기본 탐색면으로 되살리지 않는다. Figma, external HTML, Tool Hub, QA Evidence Studio도 기본/필수 프로젝트 경로가 아니다.
 
 ## 3. 현재 작업지시문 / 엔진
 
@@ -266,9 +268,9 @@ Candidate 003 physical visual recheck
 
 - Notion: 사람용 Project Home / Flow / Visual / Production Handoff.
 - GitHub: structured canon / code / data / Scene / Resource / assets / tests / runtime evidence.
-- Google Sheets: compatibility-only migration source; active workspace/decision authority가 아니다.
+- Google Sheets: `RETIRED_NO_ACTIVE_USE`; 일반 작업에서 읽기·쓰기·sync·결정 입력에 사용하지 않으며 과거 provenance만 legacy evidence에 보존한다.
 - PR #158 구현 결과와 Notion post-merge readback은 완료됐다.
-- 이후 player evidence나 제품 결정이 바뀔 때 같은 의미로 양쪽을 다시 동기화한다.
+- 이후 player evidence나 제품 결정이 바뀔 때 Notion과 GitHub/runtime의 같은 의미를 다시 동기화한다.
 
 ## 13. 현재 핵심 정본
 
