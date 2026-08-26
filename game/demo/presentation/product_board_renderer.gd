@@ -8,6 +8,8 @@ signal hover_changed(cell: Vector2i)
 const Palette := preload("res://game/demo/presentation/demo_palette.gd")
 const SemanticAssetCatalogScript := preload("res://game/demo/presentation/semantic_asset_catalog.gd")
 const SemanticRuntimeStateScript := preload("res://game/demo/presentation/semantic_runtime_state.gd")
+const FiniteTrackGraphScript := preload("res://game/finite/rail/finite_track_graph.gd")
+const TrackPieceScript := preload("res://game/finite/build/track_piece.gd")
 const NO_CELL := Vector2i(-1, -1)
 
 const PRODUCT_VISUAL_ASSET_PATHS := {
@@ -71,6 +73,28 @@ func loaded_product_visuals_for_test() -> Dictionary:
 
 func station_service_descriptors_for_test() -> Array[Dictionary]:
 	return _station_service_descriptors(_snapshot)
+
+
+func route_visual_descriptors_for_test() -> Array[Dictionary]:
+	return _route_visual_descriptors(_snapshot)
+
+
+func route_visual_widths_for_test(viewport: Vector2, board_size: Vector2i) -> Dictionary:
+	if viewport.x <= 0.0 or viewport.y <= 0.0 or board_size.x <= 0 or board_size.y <= 0:
+		return {}
+	var board_extent := Vector2(
+		maxf(viewport.x - Palette.BOARD_PADDING * 2.0, 0.0),
+		maxf(viewport.y - Palette.BOARD_PADDING * 2.0, 0.0)
+	)
+	var cell_size := Vector2(
+		board_extent.x / float(board_size.x),
+		board_extent.y / float(board_size.y)
+	)
+	return {
+		&"SELECTED": _route_visual_width(&"SELECTED", cell_size),
+		&"UNSELECTED": _route_visual_width(&"UNSELECTED", cell_size),
+		&"OCCUPIED_LOCKED": _route_visual_width(&"OCCUPIED_LOCKED", cell_size),
+	}
 
 
 static func track_ports_for_test(geometry: StringName, rotation: int) -> Array[Vector2i]:
@@ -139,6 +163,7 @@ func _draw() -> void:
 	_draw_blocked(rect, board_size)
 	_draw_fixed_tracks(rect, board_size)
 	_draw_layout(rect, board_size)
+	_draw_route_visual_overlays(rect, board_size)
 	_draw_station_service_ranges(rect, board_size)
 	_draw_fixed_markers(rect, board_size)
 	_draw_start_marker(rect, board_size)
@@ -200,6 +225,224 @@ func _draw_layout(rect: Rect2, board_size: Vector2i) -> void:
 			Palette.RAIL_BED,
 			Palette.RAIL_METAL
 		)
+
+
+func _draw_route_visual_overlays(rect: Rect2, board_size: Vector2i) -> void:
+	for descriptor: Dictionary in _route_visual_descriptors(_snapshot):
+		var state := StringName(descriptor.get("state", &"INACTIVE"))
+		if state == &"INACTIVE":
+			continue
+		var cell := snapshot_cell(descriptor.get("cell", NO_CELL))
+		if cell == NO_CELL:
+			continue
+		var color := _route_visual_color(state)
+		var cell_size := _cell_size(rect, board_size)
+		var width := _route_visual_width(state, cell_size)
+		var center := _cell_rect(cell, rect, board_size).get_center()
+		var half := cell_size * 0.42
+		for port_value: Variant in descriptor.get("ports", []):
+			var port := snapshot_cell(port_value)
+			if port == NO_CELL or port == Vector2i.ZERO:
+				continue
+			var endpoint := center + Vector2(port) * half
+			draw_line(center, endpoint, _alpha(Palette.BOARD_EDGE, 0.72), width + 4.0, true)
+			draw_line(center, endpoint, color, width, true)
+		if state == &"SELECTED":
+			_draw_route_direction_cue(center, descriptor.get("outgoing_port", Vector2i.ZERO), half, color)
+		elif state == &"OCCUPIED_LOCKED":
+			draw_circle(center, maxf(width * 0.72, 6.0), Palette.BOARD_EDGE)
+			draw_circle(center, maxf(width * 0.48, 4.0), color)
+
+
+func _draw_route_direction_cue(
+	center: Vector2,
+	outgoing_value: Variant,
+	half: Vector2,
+	color: Color
+) -> void:
+	var outgoing := snapshot_cell(outgoing_value)
+	if outgoing == NO_CELL or outgoing == Vector2i.ZERO:
+		return
+	var direction := Vector2(outgoing).normalized()
+	var cue_center := center + direction * minf(half.x, half.y) * 0.48
+	var perpendicular := Vector2(-direction.y, direction.x)
+	var tip := cue_center + direction * 7.0
+	var base := cue_center - direction * 5.0
+	draw_colored_polygon(
+		PackedVector2Array([
+			tip,
+			base + perpendicular * 4.5,
+			base - perpendicular * 4.5,
+		]),
+		color
+	)
+
+
+static func _route_visual_color(state: StringName) -> Color:
+	match state:
+		&"SELECTED":
+			return Palette.ROUTE_SELECTED
+		&"UNSELECTED":
+			return Palette.ROUTE_UNSELECTED
+		&"OCCUPIED_LOCKED":
+			return Palette.ROUTE_LOCKED
+		_:
+			return Palette.ROUTE_INACTIVE
+
+
+static func _route_visual_width(state: StringName, cell_size: Vector2) -> float:
+	var base := clampf(minf(cell_size.x, cell_size.y) * 0.15, 5.0, 12.0)
+	match state:
+		&"SELECTED":
+			return base
+		&"OCCUPIED_LOCKED":
+			return maxf(base * 0.86, 5.0)
+		&"UNSELECTED":
+			return maxf(base * 0.58, 4.0)
+		_:
+			return maxf(base * 0.45, 3.0)
+
+
+static func _route_visual_descriptors(snapshot: Dictionary) -> Array[Dictionary]:
+	var phase := StringName(snapshot.get("phase", &"BUILD"))
+	if not _route_visual_phase(phase):
+		return []
+	var graph: Variant = _route_visual_graph(snapshot)
+	if graph == null:
+		return []
+	var route: Array[Dictionary] = _selected_route_segments(graph, snapshot)
+	var selected_by_cell: Dictionary = {}
+	for segment: Dictionary in route:
+		selected_by_cell[segment["cell"]] = segment
+	var locked_cells := _locked_route_control_cells(snapshot)
+	var result: Array[Dictionary] = []
+	for cell: Vector2i in graph.all_cells():
+		var piece: Variant = graph.piece_at(cell)
+		if piece == null:
+			continue
+		var descriptor := {
+			"cell": cell,
+			"state": &"UNSELECTED",
+			"ports": piece.ports(),
+			"outgoing_port": Vector2i.ZERO,
+		}
+		if locked_cells.has(cell):
+			descriptor["state"] = &"OCCUPIED_LOCKED"
+		elif selected_by_cell.has(cell):
+			var segment: Dictionary = selected_by_cell[cell]
+			descriptor["state"] = &"SELECTED"
+			descriptor["ports"] = segment["ports"]
+			descriptor["outgoing_port"] = segment["outgoing_port"]
+		result.append(descriptor)
+	return result
+
+
+static func _route_visual_phase(phase: StringName) -> bool:
+	return phase == &"RUNNING" or phase == &"UNLOADING" or phase == &"PAUSED" or phase == &"SUCCESS" or phase == &"FAILURE"
+
+
+static func _route_visual_graph(snapshot: Dictionary) -> Variant:
+	var pieces: Array[Variant] = []
+	for descriptor: Dictionary in fixed_track_descriptors(snapshot):
+		_append_route_visual_piece(pieces, descriptor)
+	for value: Variant in snapshot.get("layout_pieces", []):
+		if value is Dictionary:
+			_append_route_visual_piece(pieces, value)
+	if pieces.is_empty():
+		return null
+	var graph: Variant = FiniteTrackGraphScript.new(pieces)
+	_apply_route_control_selection(graph, snapshot.get("route_controls", []))
+	return graph
+
+
+static func _append_route_visual_piece(pieces: Array[Variant], descriptor: Dictionary) -> void:
+	var cell := snapshot_cell(descriptor.get("cell", NO_CELL))
+	var geometry := StringName(descriptor.get("geometry", &""))
+	if cell == NO_CELL or geometry == &"":
+		return
+	for existing: Variant in pieces:
+		if existing != null and existing.cell == cell:
+			return
+	var piece: Variant = TrackPieceScript.create(
+		cell,
+		geometry,
+		int(descriptor.get("rotation_quarters", 0)),
+		snapshot_cell(descriptor.get("switch_initial_exit", Vector2i.ZERO))
+	)
+	if piece != null:
+		pieces.append(piece)
+
+
+static func _apply_route_control_selection(graph: Variant, states: Variant) -> void:
+	if graph == null or not states is Array:
+		return
+	for value: Variant in states:
+		if not value is Dictionary:
+			continue
+		var state: Dictionary = value
+		var cell := snapshot_cell(state.get("cell", NO_CELL))
+		if cell == NO_CELL:
+			continue
+		if StringName(state.get("kind", &"")) == &"SWITCH":
+			graph.select_switch_exit(cell, snapshot_cell(state.get("selected_exit", Vector2i.ZERO)))
+		elif StringName(state.get("kind", &"")) == &"CROSSING":
+			var desired_mode := StringName(state.get("mode", &"STRAIGHT"))
+			for _index: int in range(3):
+				var current := _route_control_state_at(graph.route_control_states(), cell)
+				if StringName(current.get("mode", &"STRAIGHT")) == desired_mode:
+					break
+				graph.cycle_route_control(cell)
+
+
+static func _route_control_state_at(states: Array, cell: Vector2i) -> Dictionary:
+	for value: Variant in states:
+		if value is Dictionary and snapshot_cell(value.get("cell", NO_CELL)) == cell:
+			return value
+	return {}
+
+
+static func _selected_route_segments(graph: Variant, snapshot: Dictionary) -> Array[Dictionary]:
+	var start := snapshot_cell(snapshot.get("start_cell", NO_CELL))
+	var incoming := snapshot_cell(snapshot.get("incoming_cell", NO_CELL))
+	if graph == null or start == NO_CELL or incoming == NO_CELL or not graph.has_cell(start):
+		return []
+	var result: Array[Dictionary] = []
+	var seen: Dictionary = {}
+	var current := start
+	var previous := incoming
+	for _step: int in range(maxi(graph.all_cells().size() * 2, 1)):
+		var state_key := "%d,%d:%d,%d" % [current.x, current.y, previous.x, previous.y]
+		if seen.has(state_key):
+			break
+		seen[state_key] = true
+		var incoming_port := previous - current
+		var next: Vector2i = graph.next_cell(current, previous)
+		var outgoing_port := next - current if next != current else Vector2i.ZERO
+		var ports: Array[Vector2i] = []
+		if incoming_port != Vector2i.ZERO:
+			ports.append(incoming_port)
+		if outgoing_port != Vector2i.ZERO and not ports.has(outgoing_port):
+			ports.append(outgoing_port)
+		result.append({
+			"cell": current,
+			"ports": ports,
+			"outgoing_port": outgoing_port,
+		})
+		if next == current:
+			break
+		previous = current
+		current = next
+	return result
+
+
+static func _locked_route_control_cells(snapshot: Dictionary) -> Dictionary:
+	var result: Dictionary = {}
+	for value: Variant in snapshot.get("route_controls", []):
+		if value is Dictionary and bool(value.get("locked", false)):
+			var cell := snapshot_cell(value.get("cell", NO_CELL))
+			if cell != NO_CELL:
+				result[cell] = true
+	return result
 
 
 func _draw_station_service_ranges(rect: Rect2, board_size: Vector2i) -> void:

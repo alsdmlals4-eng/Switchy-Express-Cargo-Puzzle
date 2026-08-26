@@ -241,6 +241,23 @@ POST_060_HUMAN_NOT_RUN
 NEW_BITMAP_ASSETS_0
 ```
 
+## Runtime route readability correction · GitHub Issue #197
+
+```yaml
+status: IMPLEMENTED_AWAITING_PR_REVIEW
+scope: PRESENTATION_ONLY
+runtime_consumers:
+  - ProductBoardRenderer
+  - RouteControlOverlay
+new_bitmap_assets: 0
+```
+
+- 실제 RUN board에서 rail art가 단일 중립색으로 보여 selected/unselected/occupied state를 빠르게 읽기 어려웠다.
+- route trace는 current finite render snapshot과 route-control state를 재구성해 결정하며 domain, map, station/cargo, LIFO/TOP, preflight 의미를 바꾸지 않는다.
+- selected = 녹색/굵은 trace + 방향 cue; unselected = 청색/얇은 trace; occupied/locked = 적색 trace + existing lock overlay.
+- SUCCESS/FAILURE에도 selected route trace가 유지된다.
+- 1280×720 live runtime screenshot/diagnostics와 960×540·1280×720·1920×1080 deterministic width hierarchy checks가 필요한 evidence다. Physical human comprehension remains NOT_RUN.
+
 ## Protected boundaries
 
 - GMB-002 finite cargo/LIFO/switch identity remains; only the explicit SX-DEC-060 amendment changes station/preflight meaning.
