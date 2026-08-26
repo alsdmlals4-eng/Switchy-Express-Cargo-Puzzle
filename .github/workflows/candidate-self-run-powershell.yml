@@ -28,6 +28,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   validate-powershell:
@@ -63,6 +64,17 @@ jobs:
         shell: powershell
         run: |
           .\RUN_SX59_POC_SELF_RUN.ps1 -HistoricalEvidenceOnly -ContractCheck -NoLaunch -NoOpenRecord
+
+      - name: Verify historical pre-SX-DEC-060 Candidate 003 exact bytes
+        shell: powershell
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          .\RUN_SX59_POC_SELF_RUN.ps1 `
+            -HistoricalEvidenceOnly `
+            -NoLaunch `
+            -NoOpenRecord `
+            -WorkDir (Join-Path $env:RUNNER_TEMP 'switchy-historical-candidate-003')
 
       - name: Prove no post-060 candidate is launched before one exists
         shell: powershell

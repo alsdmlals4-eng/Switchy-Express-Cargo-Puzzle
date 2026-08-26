@@ -49,7 +49,7 @@ sx_dec_060_implementation_plan: docs/superpowers/plans/2026-08-26-cardinal-stati
 sx_dec_060_codex_handoff: 기획서/50_제작_검증/SX_DEC_060_CODEX_HANDOFF_PACKAGE.md
 sx_dec_060_runtime_implementation: NOT_RUN
 sx_dec_060_automated_regression: NOT_RUN
-post_sx_dec_060_candidate: NOT_CREATED
+post_sx_dec_060_candidate_status: NOT_CREATED
 windows_physical_post_060: NOT_RUN
 android_device_post_060: NOT_RUN
 five_person_post_060: NOT_RUN

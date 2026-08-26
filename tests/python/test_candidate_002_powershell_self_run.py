@@ -26,6 +26,36 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertIn("HISTORICAL_EVIDENCE_ONLY", text)
         self.assertIn("gh run download", text)
 
+    def test_historical_launcher_retains_exact_byte_verification_without_literal_duplication(self) -> None:
+        text = HISTORICAL_LAUNCHER.read_text(encoding="ascii")
+        for required in (
+            "gh auth status",
+            "gh api",
+            "gh run download",
+            "Get-FileHash",
+            "Assert-FileHash",
+            "artifact_api_digest_equals_downloaded_zip_sha256",
+            "EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE",
+            "SwitchyExpressVerticalSlice.exe",
+            "-NoLaunch",
+            "No fallback to another build is allowed",
+        ):
+            self.assertIn(required, text)
+        historical_pointer = json.loads(
+            (ROOT / "evidence/acceptance/current_poc_candidate.json").read_text(encoding="utf-8")
+        )
+        evidence = json.loads(
+            (ROOT / historical_pointer["artifact_evidence_owner"]).read_text(encoding="utf-8")
+        )
+        for value in (
+            str(evidence["artifact"]["id"]),
+            evidence["artifact"]["name"],
+            evidence["package"]["zip_sha256"],
+            evidence["package"]["windows_exe_sha256"],
+            evidence["package"]["windows_pck_sha256"],
+        ):
+            self.assertNotIn(value, text, f"historical launcher duplicated immutable evidence literal: {value}")
+
     def test_post_060_launcher_reads_only_the_post_060_fail_closed_pointer(self) -> None:
         self.assertTrue(POST_060_LAUNCHER.is_file(), "post-060 launcher is required")
         text = POST_060_LAUNCHER.read_text(encoding="ascii")
@@ -66,8 +96,10 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertIn("HistoricalEvidenceOnly -ContractCheck", text)
         self.assertIn("POST_SX_DEC_060_CANDIDATE_NOT_CREATED", text)
         self.assertIn("shell: powershell", text)
+        self.assertIn("Verify historical pre-SX-DEC-060 Candidate 003 exact bytes", text)
+        self.assertIn("GH_TOKEN: ${{ github.token }}", text)
+        self.assertIn("switchy-historical-candidate-003", text)
         self.assertNotIn("Prove current candidate download", text)
-        self.assertNotIn("gh run download", text)
 
 
 if __name__ == "__main__":

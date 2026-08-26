@@ -38,9 +38,32 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
             "8b4e630c667b5fd88886878e5a07401c1fe6cfd8f1f9d84b2ab39cb8824923d4",
         )
         self.assertEqual(
+            evidence["package"]["windows_exe_sha256"],
+            "1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244",
+        )
+        self.assertEqual(
+            evidence["package"]["windows_pck_sha256"],
+            "2e9634cedd6da49793973f4582e2bd58ea4daae2fec246657edcf58ae360af72",
+        )
+        self.assertEqual(evidence["artifact"]["workflow_run_id"], 32715351609)
+        self.assertEqual(evidence["corrected_runtime"]["pr"], 171)
+        self.assertEqual(
+            evidence["corrected_runtime"]["tree_sha"],
+            "e3b6154a3042808fbc2fc62d5a3c6487e3d2a40f",
+        )
+        self.assertEqual(
             deep["package_identity"]["windows_pck_sha256"],
             "2e9634cedd6da49793973f4582e2bd58ea4daae2fec246657edcf58ae360af72",
         )
+        self.assertTrue(deep["pck_integrity"]["integrity_pass"])
+        self.assertEqual(deep["pck_integrity"]["file_count"], 472)
+        self.assertEqual(deep["pck_integrity"]["verified_entry_count"], 472)
+        self.assertEqual(deep["pck_integrity"]["md5_mismatch_count"], 0)
+        self.assertEqual(deep["product_texture_packaging"]["product_png_import_count"], 73)
+        self.assertEqual(deep["product_texture_packaging"]["unique_referenced_ctex_count"], 73)
+        self.assertEqual(deep["product_texture_packaging"]["missing_ctex_reference_count"], 0)
+        self.assertEqual(deep["product_texture_packaging"]["orphan_packed_ctex_count"], 0)
+        self.assertEqual(deep["evidence_ceiling"]["physical_visual_recheck"], "NOT_RUN")
 
     def test_historical_pointer_retains_record_identity_and_evidence_classes(self) -> None:
         pointer = self._json(HISTORICAL_POINTER)
