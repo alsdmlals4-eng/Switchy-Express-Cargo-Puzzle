@@ -88,6 +88,8 @@ func create_attempt(attempt_serial: int = -1) -> Dictionary:
 		cargo_stack,
 		stations
 	)
+	if not delivery_loop.is_valid():
+		return _failed(&"STATION_SERVICE_INVALID", "station service ownership must be unambiguous")
 	var run_controller: Variant = FiniteRunControllerScript.new()
 	run_controller.configure(
 		train,

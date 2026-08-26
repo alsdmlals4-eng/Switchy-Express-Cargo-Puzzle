@@ -9,6 +9,14 @@
     "SX-DEC-060"
   ],
   "approved_paths": [
+    "game/demo/presentation/product_board_renderer.gd",
+    "game/finite/build/preflight_validator.gd",
+    "game/finite/delivery/finite_delivery_loop.gd",
+    "game/finite/map/finite_map_definition.gd",
+    "game/finite/map/finite_map_loader.gd",
+    "game/finite/rail/finite_track_graph_builder.gd",
+    "game/finite/run/finite_run_session_factory.gd",
+    "game/station/station.gd",
     "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
     "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
     "기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md",
@@ -23,5 +31,5 @@
   ],
   "approval_source": "USER_EXPLICIT_VIS_SX_059_05_AND_SX_DEC_060_APPROVAL_2026-08-26",
   "approval_time": "2026-08-26T20:27:39+09:00",
-  "scope_summary": "User-approved protected documentation/context reconciliation for VIS-SX-059-05 and SX-DEC-060: preserve the compact LIFO visual and Candidate 003 historical exact-byte ceiling; define cardinal off-track station service, unchanged cargo Manual/Auto and unlimited LIFO/TOP meaning, start-reachable preflight, and zero-new-bitmap consumer-first rule. No runtime/product asset/unauthorized 056-058 implementation is approved by this manifest."
+  "scope_summary": "User-approved SX-DEC-060 implementation: preserve the compact LIFO visual and Candidate 003 historical exact-byte ceiling; implement cardinal off-track station service, unchanged cargo Manual/Auto and unlimited LIFO/TOP meaning, start-reachable preflight, active map/tutorial migration, and zero-new-bitmap consumer-first procedural presentation. No product asset generation or unauthorized 056-058 implementation is approved by this manifest."
 }

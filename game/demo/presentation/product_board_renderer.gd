@@ -69,6 +69,10 @@ func loaded_product_visuals_for_test() -> Dictionary:
 	return result
 
 
+func station_service_descriptors_for_test() -> Array[Dictionary]:
+	return _station_service_descriptors(_snapshot)
+
+
 static func track_ports_for_test(geometry: StringName, rotation: int) -> Array[Vector2i]:
 	return _track_ports(geometry, rotation)
 
@@ -135,6 +139,7 @@ func _draw() -> void:
 	_draw_blocked(rect, board_size)
 	_draw_fixed_tracks(rect, board_size)
 	_draw_layout(rect, board_size)
+	_draw_station_service_ranges(rect, board_size)
 	_draw_fixed_markers(rect, board_size)
 	_draw_start_marker(rect, board_size)
 	_draw_state_overlays(rect, board_size)
@@ -195,6 +200,15 @@ func _draw_layout(rect: Rect2, board_size: Vector2i) -> void:
 			Palette.RAIL_BED,
 			Palette.RAIL_METAL
 		)
+
+
+func _draw_station_service_ranges(rect: Rect2, board_size: Vector2i) -> void:
+	for descriptor: Dictionary in _station_service_descriptors(_snapshot):
+		var color: Color = Palette.cargo_color(StringName(descriptor["cargo_type"]))
+		for service_cell: Vector2i in descriptor["service_cells"]:
+			var target := _cell_rect(service_cell, rect, board_size).grow(-7.0)
+			draw_rect(target, _alpha(Palette.TEXT_LIGHT, 0.18), false, 1.5)
+			draw_rect(target.grow(-2.0), _alpha(color, 0.28), false, 2.0)
 
 
 func _draw_track_piece(
@@ -602,6 +616,39 @@ static func fixed_track_descriptors(snapshot: Dictionary) -> Array[Dictionary]:
 	_append_authored_tracks(result, snapshot.get("station_placements", []), &"STATION")
 	_append_authored_tracks(result, snapshot.get("cargo_placements", []), &"CARGO")
 	return result
+
+
+static func _station_service_descriptors(snapshot: Dictionary) -> Array[Dictionary]:
+	var board_size := snapshot_cell(snapshot.get("board_size", NO_CELL))
+	var result: Array[Dictionary] = []
+	var directions: Array[Vector2i] = [
+		Vector2i.UP,
+		Vector2i.RIGHT,
+		Vector2i.DOWN,
+		Vector2i.LEFT,
+	]
+	for value: Variant in snapshot.get("station_placements", []):
+		if not value is Dictionary:
+			continue
+		var placement: Dictionary = value
+		var station_cell := snapshot_cell(placement.get("cell", NO_CELL))
+		if station_cell == NO_CELL:
+			continue
+		var service_cells: Array[Vector2i] = []
+		for direction: Vector2i in directions:
+			var candidate := station_cell + direction
+			if _is_board_cell(candidate, board_size):
+				service_cells.append(candidate)
+		result.append({
+			"station_cell": station_cell,
+			"cargo_type": StringName(placement.get("cargo_type", &"")),
+			"service_cells": service_cells,
+		})
+	return result
+
+
+static func _is_board_cell(cell: Vector2i, board_size: Vector2i) -> bool:
+	return cell.x >= 0 and cell.y >= 0 and cell.x < board_size.x and cell.y < board_size.y
 
 
 static func start_marker_descriptor(snapshot: Dictionary) -> Dictionary:

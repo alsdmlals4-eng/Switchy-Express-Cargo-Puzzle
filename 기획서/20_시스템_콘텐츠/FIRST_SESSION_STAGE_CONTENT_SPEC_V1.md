@@ -5,7 +5,7 @@ owner_decision: SX-DEC-059 · AMENDED_BY_SX_DEC_060
 approval_dependency: GM-SX059-01 · CLOSED · A_SELECTED
 status: IMPLEMENTED_AUTOMATED · FIVE_PASS_REVIEW_CLOSED
 product_core: GMB-002
-map_schema: FiniteMapDefinition v2 historical bytes · schema v3 migration required for SX-DEC-060 runtime
+map_schema: FiniteMapDefinition v2 historical bytes preserved · active first-session maps migrated to schema v3 for SX-DEC-060 runtime
 new_tutorial_map_count: 5_IMPLEMENTED
 capstone: VS_DEMO_01 · REUSE_CURRENT
 ```

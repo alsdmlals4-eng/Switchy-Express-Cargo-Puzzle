@@ -1,8 +1,8 @@
 {
-  "definition_schema_version": 2,
+  "definition_schema_version": 3,
   "map_id": "TUT_01_02",
-  "map_revision": 1,
-  "ruleset_version": "fp_core_v1",
+  "map_revision": 2,
+  "ruleset_version": "fp_core_v2",
   "marker_tracks_player_built": true,
   "allow_open_terminals_after_required": true,
   "board_size": [7, 5],
@@ -11,6 +11,6 @@
   "time_limit_seconds": 60.0,
   "buildable_rects": [{"minimum": [1, 1], "maximum": [6, 3]}],
   "blocked_cells": [],
-  "station_placements": [{"cell": [5, 3], "cargo_type": "RED_STAR"}],
+  "station_placements": [{"cell": [5, 2], "cargo_type": "RED_STAR"}],
   "cargo_placements": [{"cell": [3, 2], "cargo_type": "RED_STAR"}]
 }

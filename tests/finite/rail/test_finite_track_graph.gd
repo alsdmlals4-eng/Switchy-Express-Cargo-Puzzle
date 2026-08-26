@@ -23,7 +23,7 @@ func run() -> void:
 	var layout_script: Script = load(LAYOUT_PATH)
 	var builder_script: Script = load(BUILDER_PATH)
 	var definition: Variant = definition_script.create({
-		"definition_schema_version": 2,
+		"definition_schema_version": 3,
 		"map_id": "FP_GRAPH_TEST",
 		"map_revision": 1,
 		"ruleset_version": "fp_core_v1",
@@ -38,7 +38,6 @@ func run() -> void:
 		"station_placements": [{
 			"cell": [8, 7],
 			"cargo_type": "RED_STAR",
-			"rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 0},
 		}],
 		"cargo_placements": [{
 			"cell": [9, 7],
@@ -67,6 +66,7 @@ func run() -> void:
 
 	assert_true(graph.has_cell(Vector2i(3, 3)), "crossing cell must exist")
 	assert_true(graph.has_cell(Vector2i(6, 3)), "switch cell must exist")
+	assert_false(graph.has_cell(Vector2i(8, 7)), "v3 station footprint must stay off the rail graph")
 	assert_true(graph.neighbors(Vector2i(3, 3)).has(Vector2i(2, 3)), "crossing must expose west physical neighbor")
 	assert_true(graph.neighbors(Vector2i(3, 3)).has(Vector2i(3, 2)), "crossing must expose north physical neighbor")
 

@@ -13,7 +13,7 @@ base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
 current_decisions: SX-DEC-027~060
-current_product_gate: SX_DEC_060_IMPLEMENTATION
+current_product_gate: SX_DEC_060_EXACT_HEAD_REVIEW_CI_MERGE
 ```
 
 ## 1. Stable historical implementation evidence
@@ -101,7 +101,7 @@ Actual GDScript/Scene/Resource/map/runtime work is owned by `CODEX_GODOT_PRODUCT
 
 ## 5. SX-DEC-060 RED→GREEN runtime chain
 
-All items below are `NOT_RUN` until Codex executes them from fresh merged main.
+S60-1~S60-9 implementation/regression are complete on the pending exact PR head. S60-10 and merge/readback remain open; package and physical gates remain `NOT_RUN`.
 
 ```text
 S60-1 schema-v3 + service-cell definition RED/GREEN

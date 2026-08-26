@@ -116,13 +116,24 @@ class SXDec060CanonicalFreshnessTests(unittest.TestCase):
     def test_runtime_and_human_evidence_remain_fail_closed(self) -> None:
         combined = "\n".join(self._read_current(key) for key in CURRENT_OWNERS)
         for required in (
-            "RUNTIME_NOT_RUN",
+            "POST_060_PACKAGE_NOT_RUN",
             "NOT_CREATED",
             "NOT_RUN",
             "IMPLEMENTATION_NOT_AUTHORIZED",
             "READ_ONLY",
         ):
             self.assertIn(required, combined)
+
+    def test_active_owners_record_automated_runtime_delivery_without_promoting_human_evidence(self) -> None:
+        for key in ("current_decisions", "active_context"):
+            text = self._read_current(key)
+            self.assertIn("sx_dec_060_runtime_implementation: IMPLEMENTED_AUTOMATED", text)
+            self.assertIn("sx_dec_060_automated_regression: PASS", text)
+            self.assertTrue(
+                "windows_physical" in text or "windows_full_physical" in text,
+                f"{key} must retain the physical evidence boundary",
+            )
+            self.assertIn("NOT_RUN", text)
 
     def test_consumer_first_visual_contract_requires_zero_new_bitmap(self) -> None:
         combined = "\n".join(

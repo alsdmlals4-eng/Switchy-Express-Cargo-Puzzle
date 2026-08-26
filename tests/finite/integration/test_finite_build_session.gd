@@ -29,10 +29,10 @@ func run() -> void:
 		return
 
 	assert_equal(definition.validation_errors(), [], "proof map definition must validate")
-	assert_equal(definition.definition_schema_version, 2, "proof map schema must be v2")
+	assert_equal(definition.definition_schema_version, 3, "proof map schema must be v3")
 	assert_equal(definition.map_id, &"FP_CORE_PROOF_01", "proof map id must be exact")
-	assert_equal(definition.map_revision, 1, "proof map revision must be exact")
-	assert_equal(definition.ruleset_version, &"fp_core_v1", "proof ruleset must be exact")
+	assert_equal(definition.map_revision, 2, "proof map revision must be exact")
+	assert_equal(definition.ruleset_version, &"fp_core_v2", "proof ruleset must be exact")
 	assert_equal(definition.board_size, Vector2i(11, 9), "proof board size must be exact")
 	assert_equal(definition.start_cell, Vector2i(1, 4), "proof start must be exact")
 	assert_equal(definition.incoming_cell, Vector2i(0, 4), "proof incoming must be exact")
@@ -40,11 +40,11 @@ func run() -> void:
 	assert_equal(definition.blocked_cells, [Vector2i(4, 3), Vector2i(6, 3), Vector2i(4, 5), Vector2i(6, 5)], "corrected blocked cells must be canonical y,x order")
 	assert_equal(definition.station_placements.size(), 2, "proof map must contain two stations")
 	assert_equal(definition.cargo_placements.size(), 4, "proof map must contain four fixed cargo points")
-	assert_equal(_placement_cells(definition.station_placements), [Vector2i(8, 5), Vector2i(10, 7)], "station cells must match correction")
-	assert_equal(_placement_cells(definition.cargo_placements), [Vector2i(9, 4), Vector2i(10, 5), Vector2i(10, 6), Vector2i(9, 7)], "cargo order cells must match correction")
+	assert_equal(_placement_cells(definition.station_placements), [Vector2i(9, 5), Vector2i(10, 8)], "station cells must match cardinal service migration")
+	assert_equal(_placement_cells(definition.cargo_placements), [Vector2i(10, 4), Vector2i(10, 5), Vector2i(10, 6), Vector2i(9, 7)], "cargo order cells must match correction")
 	assert_equal(_placement_types(definition.cargo_placements), [A, B, A, A], "proof cargo encounter contract must be A/B/A/A")
-	assert_true(definition.buildable_cells.has(Vector2i(10, 8)), "corrected inclusive rect must reach x10,y8")
-	for excluded: Vector2i in definition.required_anchor_cells() + definition.blocked_cells:
+	assert_true(definition.buildable_cells.has(Vector2i(9, 8)), "corrected inclusive rect must reach x9,y8")
+	for excluded: Vector2i in definition.required_anchor_cells() + _placement_cells(definition.station_placements) + definition.blocked_cells:
 		assert_false(definition.buildable_cells.has(excluded), "fixed and blocked cells must not be buildable")
 	assert_equal(definition.buildable_cells, _sorted_unique(definition.buildable_cells), "expanded buildable cells must be canonical")
 
@@ -71,7 +71,7 @@ func run() -> void:
 		assert_true(preflight.passed, "%s must pass structural preflight" % fixture_path)
 		assert_equal(session.phase(), &"RUN", "successful preflight must seal RUN phase")
 		var snapshot: Dictionary = session.sealed_snapshot()
-		assert_equal(snapshot["definition_identity"], "FP_CORE_PROOF_01@1", "snapshot must bind map identity")
+		assert_equal(snapshot["definition_identity"], "FP_CORE_PROOF_01@2", "snapshot must bind map identity")
 		assert_equal(snapshot["layout_signature"], signature_before, "snapshot must bind layout identity")
 		assert_equal(snapshot["construction_cost"], cost_before, "snapshot must bind final construction cost")
 		assert_not_null(snapshot["graph"], "snapshot must carry the validated graph")
@@ -108,7 +108,7 @@ func _trace_proof(definition: Variant, graph: Variant, step_limit: int) -> Dicti
 		if cargo_by_cell.has(current) and not collected_cells.has(current):
 			collected_cells[current] = true
 			first_cargo_types.append(cargo_by_cell[current])
-		if current == station_a_cell:
+		if definition.station_service_cells(station_a_cell).has(current):
 			station_a_visits += 1
 		SwitchDriver.select_for_trace(graph, previous, current, branch_targets)
 		var next: Vector2i = graph.next_cell(current, previous)

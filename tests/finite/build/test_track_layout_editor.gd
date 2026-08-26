@@ -20,7 +20,7 @@ func run() -> void:
 	var layout_script: Script = load(LAYOUT_PATH)
 	var editor_script: Script = load(EDITOR_PATH)
 	var definition: Variant = definition_script.create({
-		"definition_schema_version": 2,
+		"definition_schema_version": 3,
 		"map_id": "FP_EDITOR_TEST",
 		"map_revision": 1,
 		"ruleset_version": "fp_core_v1",
@@ -32,7 +32,6 @@ func run() -> void:
 		"station_placements": [{
 			"cell": [5, 1],
 			"cargo_type": "RED_STAR",
-			"rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 0},
 		}],
 		"cargo_placements": [{
 			"cell": [3, 1],

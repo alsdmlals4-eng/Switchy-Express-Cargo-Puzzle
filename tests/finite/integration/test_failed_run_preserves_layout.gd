@@ -42,7 +42,7 @@ func run() -> void:
 	assert_true(first.graph.cycle_switch(switch_cell), "second cycle must reach alternate branch")
 	assert_equal(first.graph.next_cell(switch_cell, switch_approach), Vector2i(3, 3), "second cycle must select alternate branch")
 
-	var collected: StringName = first.cargo_field.collect(Vector2i(9, 4))
+	var collected: StringName = first.cargo_field.collect(Vector2i(10, 4))
 	assert_equal(collected, A, "first attempt must expose authored cargo")
 	assert_true(first.cargo_stack.push(collected), "first attempt stack must accept collected cargo")
 	assert_true(first.input_state.toggle_auto_load(), "first attempt input must be mutable")

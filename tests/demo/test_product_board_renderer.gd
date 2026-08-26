@@ -74,6 +74,23 @@ func run() -> void:
 		Vector2i(1, 4),
 		"start marker must point at the authored start cell"
 	)
+	renderer.apply_snapshot({
+		"board_size": Vector2i(7, 7),
+		"station_placements": [{"cell": [3, 3], "cargo_type": "RED_STAR"}],
+	})
+	assert_equal(
+		renderer.station_service_descriptors_for_test(),
+		[{
+			"station_cell": Vector2i(3, 3),
+			"cargo_type": &"RED_STAR",
+			"service_cells": [Vector2i(3, 2), Vector2i(4, 3), Vector2i(3, 4), Vector2i(2, 3)],
+		}],
+		"station service descriptor must expose only cardinal service cells"
+	)
+	assert_false(
+		renderer.product_visual_asset_paths_for_test().has("station_service_range"),
+		"cardinal service visualization must not require a new bitmap asset"
+	)
 
 	var source: Dictionary = {
 		"map_id": &"VS_DEMO_01",

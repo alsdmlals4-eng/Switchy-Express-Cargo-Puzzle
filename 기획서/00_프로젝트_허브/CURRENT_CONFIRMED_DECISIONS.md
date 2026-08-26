@@ -45,8 +45,9 @@ candidate_003_powershell_51_live_download: PASS · HISTORICAL_PRE_SX_DEC_060
 candidate_003_physical_visual_recheck: NOT_RUN
 sx_dec_060_user_rule: APPROVED
 sx_dec_060_design: RECORDED
-sx_dec_060_runtime_implementation: NOT_RUN
-sx_dec_060_automated_regression: NOT_RUN
+sx_dec_060_runtime_implementation: IMPLEMENTED_AUTOMATED · PR_PENDING
+sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · PR_PENDING
+sx_dec_060_implementation_review: FIVE_PASS_CLEAN · SX_AUD_071 · PR_PENDING
 sx_dec_060_post_change_candidate: NOT_CREATED
 sx_dec_060_notion_sync: PENDING_THIS_CHANGESET
 developer_self_run: NOT_RUN_POST_SX_DEC_060
@@ -118,7 +119,7 @@ sx_dec_060_new_bitmap_assets_required: 0
 | SX-DEC-057 | Yard Labs / Mastery · implementation unauthorized |
 | SX-DEC-058 | Fixed-Seed Challenge Quality · implementation/pipeline unauthorized |
 | SX-DEC-059 | Release-Near First Session · implementation/playable POC merged · pre-060 Candidate 003 historical after SX-DEC-060 |
-| **SX-DEC-060** | **Cardinal Station Service + Reachable Network · USER_APPROVED_CORE_DELTA · DESIGN_RECORDED · RUNTIME_NOT_RUN** |
+| **SX-DEC-060** | **Cardinal Station Service + Reachable Network · USER_APPROVED_CORE_DELTA · IMPLEMENTED_AUTOMATED · PR_PENDING** |
 
 ## SX-DEC-059 retained first-session contract
 
@@ -178,7 +179,7 @@ renderer: EXISTING_STATION_PNG + PROCEDURAL_SERVICE_INDICATOR
 new_bitmap_assets: 0
 ```
 
-Runtime implementation, automated regression, package, physical, device, human, and player-experience evidence are all still `NOT_RUN` for SX-DEC-060.
+SX-DEC-060 runtime implementation and the full headless automated regression are complete on the pending PR head (111 cases / 13,461 assertions). Package, physical, device, human, and player-experience evidence remain `NOT_RUN`.
 
 ## Physical evidence and Candidate transition
 
@@ -231,9 +232,7 @@ PR #158 implementation → PR #166 playable POC → PR #171 visual correction �
 current:
 SX-DEC-060 user rule APPROVED
 → decision/spec/TDD plan/Codex handoff canon sync
-→ Codex Godot runtime implementation from merged current main
-→ schema v3 + map/tutorial migration
-→ full automated regression + five-pass adversarial review
+→ PR #185 exact-head review/CI + merge/readback
 → new exact post-060 packaged candidate
 → Windows physical smoke
 → Android device smoke

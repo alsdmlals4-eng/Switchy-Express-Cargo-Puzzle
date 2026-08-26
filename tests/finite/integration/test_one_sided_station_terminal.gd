@@ -9,7 +9,7 @@ const FiniteRunSessionFactoryScript := preload("res://game/finite/run/finite_run
 
 func run() -> void:
 	var definition: Variant = FiniteMapDefinitionScript.create({
-		"definition_schema_version": 2,
+		"definition_schema_version": 3,
 		"map_id": "ONE_SIDED_STATION_TERMINAL",
 		"map_revision": 1,
 		"ruleset_version": "fp_core_v1",
@@ -21,7 +21,7 @@ func run() -> void:
 		"buildable_cells": [[2, 1], [3, 1], [4, 1], [5, 1]],
 		"blocked_cells": [],
 		"station_placements": [{
-			"cell": [5, 1],
+			"cell": [5, 0],
 			"cargo_type": "RED_STAR",
 		}],
 		"cargo_placements": [{
@@ -54,12 +54,9 @@ func run() -> void:
 	if not preflight.passed or preflight.graph == null:
 		return
 
-	var station_cell := Vector2i(5, 1)
-	assert_equal(
-		preflight.graph.neighbors(station_cell),
-		[Vector2i(4, 1)],
-		"terminal station must have exactly one reciprocal rail connection"
-	)
+	var station_cell := Vector2i(5, 0)
+	assert_false(preflight.graph.has_cell(station_cell), "station footprint must remain off the rail graph")
+	assert_true(preflight.graph.has_cell(Vector2i(5, 1)), "cardinal service track must remain traversable")
 
 	var snapshot := {
 		"definition_identity": definition.identity_key(),

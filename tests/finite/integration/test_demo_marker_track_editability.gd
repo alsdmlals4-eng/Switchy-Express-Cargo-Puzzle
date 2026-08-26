@@ -24,22 +24,26 @@ func run() -> void:
 		"station and cargo tracks must be player-built in the product demo"
 	)
 
-	var marker_cells: Array[Vector2i] = _marker_cells(definition)
-	assert_equal(marker_cells.size(), 6, "demo map must expose six station and cargo cells")
+	var station_cells: Array[Vector2i] = _placement_cells(definition.station_placements)
+	var cargo_cells: Array[Vector2i] = _placement_cells(definition.cargo_placements)
+	assert_equal(station_cells.size(), 2, "demo map must expose two station service objects")
+	assert_equal(cargo_cells.size(), 4, "demo map must expose four cargo contact cells")
 	for placement: Dictionary in definition.station_placements:
 		assert_false(placement.has("rail_anchor"), "stations must not carry prelaid track data")
 	for placement: Dictionary in definition.cargo_placements:
 		assert_false(placement.has("rail_anchor"), "cargo must not carry prelaid track data")
-	for cell: Vector2i in marker_cells:
-		assert_true(definition.buildable_cells.has(cell), "every marker cell must be buildable")
+	for cell: Vector2i in station_cells:
+		assert_false(definition.buildable_cells.has(cell), "station footprints must be off-track and non-buildable")
+	for cell: Vector2i in cargo_cells:
+		assert_true(definition.buildable_cells.has(cell), "cargo contact cells must remain buildable")
 
 	var complete_layout: Array[Variant] = AlphaSolutionScript.pieces()
 	var marker_pieces: Array[Variant] = []
 	for piece: Variant in complete_layout:
-		if marker_cells.has(piece.cell):
+		if cargo_cells.has(piece.cell):
 			marker_pieces.append(piece)
-	assert_equal(marker_pieces.size(), 6, "authored solution must include six marker-cell tracks")
-	if marker_pieces.size() != 6:
+	assert_equal(marker_pieces.size(), 4, "authored solution must include four cargo-cell tracks")
+	if marker_pieces.size() != 4:
 		return
 
 	var edit_session: Variant = BuildSessionScript.new(definition)
@@ -47,19 +51,19 @@ func run() -> void:
 		var place_result: Variant = edit_session.place_piece(piece)
 		assert_true(
 			place_result != null and bool(place_result.success),
-			"every station and cargo cell must accept player track placement"
+			"every cargo contact cell must accept player track placement"
 		)
 
 	var edit_cell: Vector2i = marker_pieces[0].cell
 	var rotate_result: Variant = edit_session.rotate_piece(edit_cell, 1)
 	assert_true(
 		rotate_result != null and bool(rotate_result.success),
-		"a player track on a station or cargo cell must rotate"
+		"a player track on a cargo contact cell must rotate"
 	)
 	var remove_result: Variant = edit_session.remove_piece(edit_cell)
 	assert_true(
 		remove_result != null and bool(remove_result.success),
-		"a player track on a station or cargo cell must be removable"
+		"a player track on a cargo contact cell must be removable"
 	)
 	var restore_result: Variant = edit_session.place_piece(marker_pieces[0])
 	assert_true(
@@ -99,11 +103,9 @@ func run() -> void:
 		)
 
 
-static func _marker_cells(definition: Variant) -> Array[Vector2i]:
+static func _placement_cells(placements: Array[Dictionary]) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
-	for placement: Dictionary in definition.station_placements:
-		result.append(_read_cell(placement.get("cell", [])))
-	for placement: Dictionary in definition.cargo_placements:
+	for placement: Dictionary in placements:
 		result.append(_read_cell(placement.get("cell", [])))
 	return result
 

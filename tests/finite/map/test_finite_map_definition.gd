@@ -1,6 +1,7 @@
 extends "res://tests/test_case.gd"
 
 const DEFINITION_PATH := "res://game/finite/map/finite_map_definition.gd"
+const LOADER_PATH := "res://game/finite/map/finite_map_loader.gd"
 
 
 func run() -> void:
@@ -11,7 +12,7 @@ func run() -> void:
 
 	var definition_script: Script = load(DEFINITION_PATH)
 	var definition: Variant = definition_script.create({
-		"definition_schema_version": 2,
+		"definition_schema_version": 3,
 		"map_id": "FP_TEST",
 		"map_revision": 1,
 		"ruleset_version": "fp_core_v1",
@@ -23,7 +24,6 @@ func run() -> void:
 		"station_placements": [{
 			"cell": [5, 1],
 			"cargo_type": "RED_STAR",
-			"rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 0},
 		}],
 		"cargo_placements": [{
 			"cell": [3, 1],
@@ -34,17 +34,98 @@ func run() -> void:
 	})
 	assert_equal(definition.validation_errors(), [], "valid authored definition must pass")
 	assert_equal(definition.identity_key(), "FP_TEST@1", "map identity must exclude player layout")
-	assert_equal(definition.definition_schema_version, 2, "finite pipeline must require schema v2")
-	assert_equal(definition.required_anchor_cells().size(), 4, "start, incoming, station, and cargo anchors are required")
-
-	var legacy: Variant = definition_script.create({"definition_schema_version": 1})
-	assert_true(
-		legacy.validation_errors().has("definition_schema_version must equal 2"),
-		"schema v1 must not be silently upgraded"
+	assert_equal(definition.definition_schema_version, 3, "finite pipeline must require schema v3")
+	assert_equal(definition.required_cargo_cells(), [Vector2i(3, 1)], "only cargo requires exact contact")
+	assert_equal(
+		definition.station_service_cells(Vector2i(5, 1)),
+		[Vector2i(5, 0), Vector2i(6, 1), Vector2i(5, 2), Vector2i(4, 1)],
+		"station service cells must be deterministic cardinal neighbors"
+	)
+	assert_equal(
+		definition.station_service_cells(Vector2i(0, 0)),
+		[Vector2i(1, 0), Vector2i(0, 1)],
+		"station service cells must clip at board edges"
 	)
 
+	var legacy: Variant = definition_script.create({"definition_schema_version": 2})
+	assert_true(
+		legacy.validation_errors().has("definition_schema_version must equal 3"),
+		"schema v2 must not be silently reinterpreted as v3"
+	)
+
+	var anchored_station: Variant = definition_script.create({
+		"definition_schema_version": 3,
+		"map_id": "FP_ANCHORED_STATION",
+		"map_revision": 1,
+		"ruleset_version": "fp_core_v2",
+		"board_size": [7, 5],
+		"start_cell": [1, 2],
+		"incoming_cell": [0, 2],
+		"buildable_cells": [[2, 2]],
+		"blocked_cells": [],
+		"station_placements": [{
+			"cell": [5, 1],
+			"cargo_type": "RED_STAR",
+			"rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 0},
+		}],
+		"cargo_placements": [],
+		"time_limit_seconds": 90.0,
+	})
+	assert_true(
+		anchored_station.validation_errors().has("station placement rail_anchor is forbidden"),
+		"v3 stations must remain off-track even when legacy anchor data is supplied"
+	)
+
+	var overlapping_services: Variant = definition_script.create({
+		"definition_schema_version": 3,
+		"map_id": "FP_OVERLAP",
+		"map_revision": 1,
+		"ruleset_version": "fp_core_v2",
+		"board_size": [7, 5],
+		"start_cell": [1, 2],
+		"incoming_cell": [0, 2],
+		"buildable_cells": [[2, 2]],
+		"blocked_cells": [],
+		"station_placements": [
+			{"cell": [3, 2], "cargo_type": "RED_STAR"},
+			{"cell": [5, 2], "cargo_type": "BLUE_DIAMOND"},
+		],
+		"cargo_placements": [],
+		"time_limit_seconds": 90.0,
+	})
+	assert_true(
+		overlapping_services.validation_errors().has("station service cells must not overlap"),
+		"station service ownership must fail closed"
+	)
+
+	var loader_exists := ResourceLoader.exists(LOADER_PATH, "Script")
+	assert_true(loader_exists, "finite map loader must exist")
+	if loader_exists:
+		var loader_script: Script = load(LOADER_PATH)
+		var loaded: Variant = loader_script.load_from_dictionary({
+			"definition_schema_version": 3,
+			"map_id": "FP_LOADER_V3",
+			"map_revision": 1,
+			"ruleset_version": "fp_core_v2",
+			"board_size": [7, 5],
+			"start_cell": [1, 2],
+			"incoming_cell": [0, 2],
+			"marker_tracks_player_built": true,
+			"buildable_rects": [{"minimum": [0, 0], "maximum": [6, 4]}],
+			"blocked_cells": [],
+			"station_placements": [{"cell": [4, 2], "cargo_type": "RED_STAR"}],
+			"cargo_placements": [{
+				"cell": [3, 2],
+				"cargo_type": "BLUE_DIAMOND",
+				"rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 0},
+			}],
+			"time_limit_seconds": 90.0,
+		})
+		assert_false(loaded.buildable_cells.has(Vector2i(4, 2)), "v3 station footprint must be non-buildable")
+		assert_true(loaded.buildable_cells.has(Vector2i(3, 2)), "cargo contact cell must stay buildable")
+
 	var invalid: Variant = definition_script.create({
-		"definition_schema_version": 2,
+		"definition_schema_version": 3,
 		"map_id": "FP_INVALID",
 		"map_revision": 1,
 		"ruleset_version": "fp_core_v1",
@@ -63,7 +144,7 @@ func run() -> void:
 	assert_true(errors.has("time_limit_seconds must be positive"), "non-positive time limit must fail")
 
 	var missing_cell: Variant = definition_script.create({
-		"definition_schema_version": 2,
+		"definition_schema_version": 3,
 		"map_id": "FP_MISSING_CELL",
 		"map_revision": 1,
 		"ruleset_version": "fp_core_v1",
@@ -74,7 +155,6 @@ func run() -> void:
 		"blocked_cells": [],
 		"station_placements": [{
 			"cargo_type": "RED_STAR",
-			"rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 0},
 		}],
 		"cargo_placements": [],
 		"time_limit_seconds": 90.0,
@@ -85,7 +165,7 @@ func run() -> void:
 	)
 
 	var fractional: Variant = definition_script.create({
-		"definition_schema_version": 2,
+		"definition_schema_version": 3,
 		"map_id": "FP_FRACTIONAL",
 		"map_revision": 1,
 		"ruleset_version": "fp_core_v1",
@@ -97,7 +177,6 @@ func run() -> void:
 		"station_placements": [{
 			"cell": [5, 1],
 			"cargo_type": "RED_STAR",
-			"rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 1.5},
 		}],
 		"cargo_placements": [],
 		"time_limit_seconds": 90.0,
@@ -107,13 +186,9 @@ func run() -> void:
 		fractional_errors.has("start_cell is required"),
 		"fractional coordinates must not be truncated into valid cells"
 	)
-	assert_true(
-		fractional_errors.has("station placement rail_anchor rotation_quarters must be an integer"),
-		"fractional rotations must not be truncated into valid rotations"
-	)
 
 	var fractional_metadata: Variant = definition_script.create({
-		"definition_schema_version": 2.5,
+		"definition_schema_version": 3.5,
 		"map_id": "FP_FRACTIONAL_META",
 		"map_revision": 1.5,
 		"ruleset_version": "fp_core_v1",

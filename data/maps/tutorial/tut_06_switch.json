@@ -1,8 +1,8 @@
 {
-  "definition_schema_version": 2,
+  "definition_schema_version": 3,
   "map_id": "TUT_06_SWITCH",
-  "map_revision": 1,
-  "ruleset_version": "fp_core_v1",
+  "map_revision": 2,
+  "ruleset_version": "fp_core_v2",
   "marker_tracks_player_built": true,
   "allow_open_terminals_after_required": true,
   "board_size": [9, 7],
@@ -11,6 +11,6 @@
   "time_limit_seconds": 75.0,
   "buildable_rects": [{"minimum": [1, 1], "maximum": [7, 5]}],
   "blocked_cells": [],
-  "station_placements": [{"cell": [6, 3], "cargo_type": "RED_STAR"}],
+  "station_placements": [{"cell": [6, 2], "cargo_type": "RED_STAR"}],
   "cargo_placements": [{"cell": [4, 3], "cargo_type": "RED_STAR"}]
 }

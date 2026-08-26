@@ -21,7 +21,7 @@ func run() -> void:
 
 func _definition_data(start_cell: Array, incoming_cell: Array) -> Dictionary:
 	return {
-		"definition_schema_version": 2,
+		"definition_schema_version": 3,
 		"map_id": "FP_START_DIRECTION",
 		"map_revision": 1,
 		"ruleset_version": "fp_core_v1",

@@ -31,7 +31,7 @@ func run() -> void:
 	var first_result: Dictionary = factory.create_attempt(1)
 	assert_true(first_result["success"], "factory must own copies of configured inputs")
 	var first: Variant = first_result["session"]
-	assert_equal(first.map_identity(), "FP_CORE_PROOF_01@1", "caller definition mutation must not alter factory map identity")
+	assert_equal(first.map_identity(), "FP_CORE_PROOF_01@2", "caller definition mutation must not alter factory map identity")
 	assert_equal(first.definition_snapshot().to_dictionary(), original_definition, "factory must preserve configured definition value")
 	assert_equal(first.layout_snapshot().layout_signature(), original_signature, "caller layout mutation must not alter factory solution")
 
@@ -40,7 +40,7 @@ func run() -> void:
 	var leaked_definition: Variant = first.definition_snapshot()
 	leaked_definition.map_revision = 77
 	assert_equal(first.layout_snapshot().layout_signature(), original_signature, "session layout snapshots must be independent copies")
-	assert_equal(first.definition_snapshot().map_revision, 1, "session definition snapshots must be independent copies")
+	assert_equal(first.definition_snapshot().map_revision, 2, "session definition snapshots must be independent copies")
 
 	var retry_result: Dictionary = factory.retry(first)
 	assert_true(retry_result["success"], "valid session must retry")
