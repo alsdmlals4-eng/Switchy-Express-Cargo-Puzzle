@@ -1,14 +1,15 @@
 # SX-DEC-059 · Visual Requirement Briefs
 
 ```yaml
-status: BRIEF_ONLY · NO_IMAGE_GENERATED
+status: USER_APPROVED_VISUAL_REFERENCES_ACTIVE · NOT_RUNTIME_PROOF
 owner_decision: SX-DEC-059
-visual_generation_authority: NOT_REQUESTED
+visual_generation_authority: USER_REQUESTED_AND_APPROVED_REFERENCE_WORK
 existing_asset_direction: E+D HYBRID · NEO-ARCADE READABILITY
 existing_product_assets: 73
+latest_visual_decision: VIS-SX-059-05 · CARGO_STACK_SILHOUETTE
 ```
 
-이미지는 아직 생성하지 않는다. 이 문서는 실제 current UI와 73개 semantic product asset을 먼저 재사용하기 위한 visual brief다.
+이 문서는 실제 current UI와 73개 semantic product asset을 우선 재사용하면서, 사용자 승인 visual reference를 구현 가이드로 관리한다. 생성 reference는 product asset이나 runtime/physical evidence로 자동 승격하지 않는다.
 
 ## 공통 원칙
 
@@ -205,16 +206,60 @@ Capstone full surface
 
 그러나 01 Flow + 02 RUN + 03 Result로 implementation ambiguity가 해소되면 만들지 않는다.
 
+## VIS-SX-059-05 · Cargo Stack Silhouette
+
+```yaml
+type: VISUAL_SEMANTIC_RULE
+decision_status: USER_APPROVED · 2026-08-26
+question_supported: >
+  cargo count가 늘어날 때 긴 freight tail이 아니라 compact LIFO stack으로 읽히고,
+  가장 위 cargo가 TOP / next unload candidate로 즉시 보이는가?
+visual_reference_role: IMPLEMENTATION_GUIDE · NOT_RUNTIME_PROOF
+```
+
+### 사용자 승인 방향
+
+화물은 열차 뒤에 cargo별 wagon을 계속 붙여 긴 꼬리를 만드는 방식보다, **짧은 열차 위 또는 직결 적재부에 수직으로 쌓이는 LIFO 탑 실루엣**을 기본 표현으로 사용한다.
+
+### 핵심 의미
+
+- cargo count 증가 → train horizontal length 증가가 아니라 `stack height / compact stack mass` 증가.
+- 가장 위 cargo = `TOP`이며 next unload candidate로 가장 먼저 읽혀야 한다.
+- locomotive와 cargo stack은 하나의 짧고 강한 silhouette로 읽힌다.
+- unlimited LIFO 규칙을 시각화하되, 실제 capacity limit이 있는 것처럼 보이는 고정 slot/wagon count는 만들지 않는다.
+
+### 표현 규칙
+
+1. locomotive는 이동 주체의 전방 anchor.
+2. cargo stack은 locomotive 바로 뒤 또는 직결 적재 플랫폼 위의 compact vertical tower.
+3. TOP cargo는 가장 높은 위치 + strongest outline/brightness/state cue.
+4. cargo identity는 color뿐 아니라 shape/icon/outline/위치로 중복 전달.
+5. stack가 높아져도 route, switch, station 등 board의 다음 판단 대상을 과도하게 가리지 않는다.
+6. isometric/perspective에서도 위→아래 stack order가 명확히 읽혀야 한다.
+7. Success/Failure Result의 stack summary와 RUN의 실제 train silhouette이 같은 LIFO 의미를 사용한다.
+
+### 금지
+
+- cargo마다 독립 wagon을 붙여 train tail이 길어지는 표현.
+- snake/train-tail처럼 cargo count를 수평 길이에 직접 대응.
+- TOP을 color-only로 표시.
+- capacity 제한을 암시하는 고정 wagon/slot 수.
+- tall stack가 board의 switch/station/critical cargo target을 가리는 구도.
+
+### 적용 범위
+
+향후 Success/Failure Result, Capstone RUN, Tutorial, BUILD-related visual reference에서 cargo-loaded train을 그릴 때 `VIS-SX-059-05`를 기본 visual semantic rule로 적용한다.
+
 ## 이미지 생성 Gate
 
-이미지를 실제 생성하려면:
+새 visual reference를 실제 생성하려면:
 
-1. GM-SX059-01 등 content blocker를 먼저 닫음.
-2. 현재 73 asset으로 해결되지 않는 visual question인지 Delete Test.
-3. user에게 다음 1개 visual brief 설명.
+1. current content/runtime authority를 fresh-read.
+2. 현재 73 asset + 승인 reference로 해결되지 않는 visual question인지 Delete Test.
+3. user에게 next visual brief를 설명.
 4. user가 이미지 생성을 명시 승인.
-5. exactly one result 생성.
+5. 요청한 cardinality대로 독립 결과를 생성.
 6. visual QA + user result approval.
-7. Notion attach/readback.
+7. Notion attach/readback + 승인 Decision ID를 GitHub/Notion 양쪽에 동기화.
 
-현재 상태: `BRIEFS_READY · IMAGE_GENERATION_NOT_REQUESTED`.
+현재 상태: `USER_APPROVED_VISUAL_REFERENCES_ACTIVE · VIS-SX-059-05 CURRENT · NOT_RUNTIME_PROOF`.
