@@ -199,9 +199,9 @@ POST_060_CANDIDATE: PREPARED_PACKAGE_VERIFIED
 
 ## M6R · Runtime route readability correction
 
-`IMPLEMENTED_AWAITING_PR_REVIEW · GitHub Issue #197`
+`MERGED_MAIN_VERIFIED_LOCAL_EVIDENCE · GitHub Issue #197 · PR #198 · main a8eee4f875a95e8da69802c4e60452df3535fe0e`
 
-The approved E+D Hybrid/Neo-Arcade route-visibility direction is now a runtime presentation correction, not reference-only guidance. It keeps selected route, unselected route, occupied/locked control, and result-route context legible with procedural overlays only; no finite-gameplay rule, map byte, or bitmap asset changes.
+The approved E+D Hybrid/Neo-Arcade route-visibility direction is now a runtime presentation correction, not reference-only guidance. It keeps selected route, unselected route, occupied/locked control, and result-route context legible with procedural overlays only; no finite-gameplay rule, map byte, or bitmap asset changes. Exact-head local checks passed; GitHub CI remained queued without jobs and the user explicitly authorized the merge bypass, so remote CI GREEN remains unclaimed.
 
 ## M6A · Post-060 physical/device/human validation
 

@@ -294,7 +294,7 @@ new generated image without concrete game consumer → OUT_OF_SCOPE
 
 ## 15. Runtime route readability gate · GitHub Issue #197
 
-`IMPLEMENTED_AWAITING_PR_REVIEW`
+`MERGED_MAIN_VERIFIED_LOCAL_EVIDENCE · PR #198 · main a8eee4f875a95e8da69802c4e60452df3535fe0e`
 
 ```text
 actual finite render snapshot + route-control state
@@ -305,5 +305,7 @@ actual finite render snapshot + route-control state
 → live 1280×720 screenshot/diagnostics
 → five-pass review + Notion readback
 ```
+
+Official headless runner (112 cases / 13,480 assertions), Project Contract, GUT, and Godot 4.7.1 headless parse passed on the exact PR head. GitHub CI runs stayed queued without jobs, so the user explicitly authorized this merge bypass; remote CI GREEN and human/device acceptance remain unclaimed.
 
 No bitmap asset is created: this gate is an existing `ProductBoardRenderer`/`RouteControlOverlay` consumer correction. It must not change station service, cargo contact, LIFO/TOP, preflight reachability, or PR #174.
