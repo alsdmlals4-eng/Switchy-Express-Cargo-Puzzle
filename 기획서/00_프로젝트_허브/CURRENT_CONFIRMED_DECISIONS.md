@@ -7,8 +7,8 @@ Last updated: `2026-08-26 KST`
 ## Current authority snapshot
 
 ```yaml
-current_product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
-current_decision_span: SX-DEC-027~059
+current_product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060
+current_decision_span: SX-DEC-027~060
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
@@ -24,30 +24,36 @@ base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
 sx_dec_059_merge_pr: 158
 sx_dec_059_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
-SX_DEC_059_IMPLEMENTATION: MERGED_MAIN_VERIFIED
+SX_DEC_059_IMPLEMENTATION: MERGED_MAIN_VERIFIED · PRE_SX_DEC_060_RUNTIME
 sx_dec_059_repository_canon: MERGED_MAIN_VERIFIED
 sx_dec_059_notion_sync: PASS · POST_PR_158_READBACK_COMPLETE
 sx_dec_059_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-066
 playable_visual_ux_poc: MERGED_MAIN_VERIFIED · PR_166 · main_1bf798cedf28dffba9185edb62fb1c50c108fe90
 physical_preflight_visual_correction: MERGED_MAIN_VERIFIED · PR #171 · main_9d82b004b2ebf3f7d69d0376c79daae1040e94a4
 candidate_003_preparation: MERGED_MAIN_VERIFIED · PR #172 · main_2521f3be600ea950f9893ce45940604c2d0ac88a
-current_candidate_pointer: evidence/acceptance/current_poc_candidate.json
-current_candidate: SX59-POC-ACCEPT-003
+pre_sx_dec_060_candidate_pointer: evidence/acceptance/current_poc_candidate.json
+pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_AFTER_SX_DEC_060
 candidate_002_windows_physical_startup_smoke: PASS
 candidate_002_result: BLOCKED_BY_CONFIRMED_P1_PREFLIGHT_VISUAL_DEFECTS
 candidate_002_acceptance_promotion: PROHIBITED
-candidate_003_package_integrity: PASS
-candidate_003_pck_integrity: PASS · 472_OF_472
-candidate_003_product_textures: PASS · 73_OF_73
-candidate_003_powershell_51_live_download: PASS
+candidate_003_package_integrity: PASS · HISTORICAL_PRE_SX_DEC_060
+candidate_003_pck_integrity: PASS · 472_OF_472 · HISTORICAL_PRE_SX_DEC_060
+candidate_003_product_textures: PASS · 73_OF_73 · HISTORICAL_PRE_SX_DEC_060
+candidate_003_powershell_51_live_download: PASS · HISTORICAL_PRE_SX_DEC_060
 candidate_003_physical_visual_recheck: NOT_RUN
-developer_self_run: NOT_RUN
-acceptance_build: NOT_YET_DESIGNATED
-windows_full_physical_runtime: NOT_RUN
-audio_perceptual_qa: NOT_RUN
-android_device: NOT_RUN
-five_person_comprehension: NOT_RUN
-player_experience: NOT_RUN
+sx_dec_060_user_rule: APPROVED
+sx_dec_060_design: RECORDED
+sx_dec_060_runtime_implementation: NOT_RUN
+sx_dec_060_automated_regression: NOT_RUN
+sx_dec_060_post_change_candidate: NOT_CREATED
+sx_dec_060_notion_sync: PENDING_THIS_CHANGESET
+developer_self_run: NOT_RUN_POST_SX_DEC_060
+acceptance_build: NOT_YET_DESIGNATED_POST_SX_DEC_060
+windows_full_physical_runtime: NOT_RUN_POST_SX_DEC_060
+audio_perceptual_qa: NOT_RUN_POST_SX_DEC_060
+android_device: NOT_RUN_POST_SX_DEC_060
+five_person_comprehension: NOT_RUN_POST_SX_DEC_060
+player_experience: NOT_RUN_POST_SX_DEC_060
 production_cutover: BLOCKED_DEFERRED
 sx_dec_055_runtime_implementation: MERGED_MAIN_VERIFIED · PR_151
 sx_dec_056a: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
@@ -56,21 +62,22 @@ sx_dec_057: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_057_fast_cheap: BLOCKED_BY_STAGE8_TRACK_ATTRIBUTE_RUNTIME
 sx_dec_058: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
+sx_dec_060_new_bitmap_assets_required: 0
 ```
 
-`base_canon_sync_observation`은 과거 canon-sync 감사 시점의 evidence다. 실행 권위는 SHA snapshot이 아니라 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN`이며, 작업 시작마다 fresh Base completed main과 current Skill Registry/generated map을 다시 읽는다. `source_r5_4_sha256`은 이번 사용자 계약 exact identity이고, r4/r2 값은 predecessor/provenance로만 유지한다. r5.4 adoption은 새로운 제품 Decision을 만들거나 056~058 구현 권한을 넓히지 않는다.
+`base_canon_sync_observation`은 과거 canon-sync 감사 시점의 evidence다. 실행 권위는 SHA snapshot이 아니라 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN`이며, 작업 시작마다 fresh Base completed main과 current Skill Registry/generated map을 다시 읽는다. `source_r5_4_sha256`은 이번 사용자 계약 exact identity이고, r4/r2 값은 predecessor/provenance로만 유지한다. r5.4 adoption은 056~058 구현 권한을 넓히지 않는다.
 
 ## Current core promise
 
 ```text
-선로 건설로 화물 조우 순서를 설계
+선로 건설로 필요한 RUN 경로와 화물 조우 순서를 설계
 → 수동/자동 적재로 unlimited LIFO 스택 구성
 → 운행 중 분기 경로를 실행
-→ TOP 연속 동일 화물 하역
+→ 역의 상·하·좌·우 1칸 서비스 셀을 지나며 TOP 연속 동일 화물 하역
 → 결과를 보고 같은 노선 재도전 또는 재설계
 ```
 
-핵심 차별점은 **노선을 그리는 행위가 곧 화물 스택의 순서를 설계하는 행위**라는 점이다.
+핵심 차별점은 **노선을 그리는 행위가 곧 화물 스택의 순서를 설계하는 행위**라는 점이다. 모든 배치 선로를 하나의 전역 네트워크로 연결하는 것 자체는 목표가 아니며, 실제 RUN 가능한 start-reachable network가 필수 화물과 역 서비스 범위를 충족하는지가 중요하다.
 
 ## Current Decision Registry
 
@@ -78,9 +85,9 @@ semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
 |---|---|
 | SX-DEC-027 | 유한 고정 화물 배송 퍼즐 · CURRENT |
 | SX-DEC-028 | 자유 선로 건설·비용·전액 환급·추천 비용 · CURRENT |
-| SX-DEC-029 | 구조 검사·제한 시간·성공/실패·pause · CURRENT |
+| SX-DEC-029 | 구조 검사·제한 시간·성공/실패·pause · CURRENT · SX-DEC-060 reachable-network amendment 적용 |
 | SX-DEC-030 | 직선·곡선·분기·교차 · CURRENT |
-| SX-DEC-031 | manual hold·auto toggle·unlimited LIFO·TOP 그룹 하역 · CURRENT |
+| SX-DEC-031 | manual hold·auto toggle·unlimited LIFO·TOP 그룹 하역 · CURRENT · SX-DEC-060 station-service amendment 적용 |
 | SX-DEC-032 | 하역 그룹 feedback · CURRENT; score/max-combo metric은 미확정 |
 | SX-DEC-033 | 별·랭킹 · APPROVED · NOT_STARTED |
 | SX-DEC-034 | Tutorial 1~10 + 2-of-3 progression · APPROVED |
@@ -108,9 +115,10 @@ semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
 | SX-DEC-056 | Route Causality / Result Feedback · 056A implementation unauthorized; 056B blocked |
 | SX-DEC-057 | Yard Labs / Mastery · implementation unauthorized |
 | SX-DEC-058 | Fixed-Seed Challenge Quality · implementation/pipeline unauthorized |
-| **SX-DEC-059** | **Release-Near First Session · implementation/playable POC merged · Candidate 003 current · physical/human acceptance open** |
+| SX-DEC-059 | Release-Near First Session · implementation/playable POC merged · pre-060 Candidate 003 historical after SX-DEC-060 |
+| **SX-DEC-060** | **Cardinal Station Service + Reachable Network · USER_APPROVED_CORE_DELTA · DESIGN_RECORDED · RUNTIME_NOT_RUN** |
 
-## SX-DEC-059 confirmed contract
+## SX-DEC-059 retained first-session contract
 
 ```text
 T1 · Track Connection
@@ -123,17 +131,52 @@ T1 · Track Connection
 → evidence-safe Result / Retry / Edit
 ```
 
+SX-DEC-060는 이 단계 수를 늘리지 않는다. T2의 station mental model만 `station exact-cell arrival`에서 `cardinal adjacent service`로 교정한다.
+
 ### Architecture / evidence boundaries
 
 - T1/T2 share one product instance and valid layout.
-- `VS_DEMO_01` remains the capstone.
-- tutorial metadata stays outside `FiniteMapDefinition` schema v2.
-- `FirstSessionDefinition + FirstSessionStagePolicy + FirstSessionDirector + FirstSessionCopy` are sidecar owners.
+- `VS_DEMO_01` remains the capstone but post-060 map bytes/identity require explicit migration and revalidation.
+- SX-DEC-059 historical tutorial metadata stays outside its historical `FiniteMapDefinition` schema v2.
+- SX-DEC-060 implementation target is explicit `FiniteMapDefinition` schema v3; v2 semantics are not silently reinterpreted.
+- `FirstSessionDefinition + FirstSessionStagePolicy + FirstSessionDirector + FirstSessionCopy` remain sidecar owners.
 - `ProductFiniteSlice` remains the command convergence boundary.
-- Result uses current runtime truth only: `ROUTE_END / TIME_EXPIRED + remaining_map_cargo + stack_size`.
+- Result uses runtime truth only: `ROUTE_END / TIME_EXPIRED + remaining_map_cargo + stack_size`.
 - no station mismatch/actual trace fabrication before an authorized observation owner exists.
-- existing 73 semantic product assets first; no new generated image is required for the current gate.
+- existing 73 semantic product assets first; SX-DEC-060 requires zero new bitmap assets at design time.
 - locales: `ko / en / ja / zh-Hans`; `zh-Hant` deferred.
+
+## SX-DEC-060 confirmed contract
+
+Canonical owner: `docs/decisions/SX_DEC_060_CARDINAL_STATION_SERVICE_AND_REACHABLE_NETWORK.md`
+
+```text
+station delivery service = Manhattan distance exactly 1
+→ UP / RIGHT / DOWN / LEFT only
+→ diagonal excluded
+→ station footprint itself is not the delivery contact
+
+cargo pickup = existing exact-cell Manual / Auto contact
+LIFO/TOP = unchanged
+
+preflight = start-reachable RUN component
+→ every required cargo reachable
+→ every required station has >=1 reachable cardinal service cell
+→ irrelevant disconnected rail island does not block RUN
+```
+
+Technical implementation default:
+
+```yaml
+map_schema_target: 3
+station_role: OFF_TRACK_SERVICE_OBJECT
+station_cell_player_track: FORBIDDEN
+station_service_overlap: FAIL_CLOSED
+renderer: EXISTING_STATION_PNG + PROCEDURAL_SERVICE_INDICATOR
+new_bitmap_assets: 0
+```
+
+Runtime implementation, automated regression, package, physical, device, human, and player-experience evidence are all still `NOT_RUN` for SX-DEC-060.
 
 ## Physical evidence and Candidate transition
 
@@ -152,11 +195,11 @@ acceptance_promotion: PROHIBITED
 
 실제 화면에서 preflight badge/text overlap과 problem-cell target identity obscuration risk가 확인됐고, PR #171이 player-visible presentation bytes를 교정했다.
 
-### Candidate 003 · current validation target
+### Candidate 003 · historical pre-SX-DEC-060 exact evidence
 
 ```yaml
 candidate_id: SX59-POC-ACCEPT-003
-current_pointer: evidence/acceptance/current_poc_candidate.json
+historical_pointer: evidence/acceptance/current_poc_candidate.json
 corrected_runtime_pr: 171
 artifact_workflow_run_id: 32715351609
 artifact_zip_sha256: 8b4e630c667b5fd88886878e5a07401c1fe6cfd8f1f9d84b2ab39cb8824923d4
@@ -172,43 +215,31 @@ audio_perceptual_qa: NOT_RUN
 android_device: NOT_RUN
 five_person_comprehension: NOT_RUN
 player_experience: NOT_RUN
+role_after_sx_dec_060: HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY
 ```
 
-Automated/package/launcher PASS는 corrected physical appearance 또는 player-experience PASS가 아니다.
-
-## Current manual validation owners
-
-```text
-evidence/acceptance/current_poc_candidate.json
-기획서/50_제작_검증/SX_DEC_059_POC_ACCEPTANCE_CANDIDATE_03.md
-기획서/50_제작_검증/SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_03.md
-```
-
-Historical Candidate 002 docs/evidence는 비교·회귀 증거로만 유지한다.
+Automated/package/launcher PASS는 corrected physical appearance 또는 player-experience PASS가 아니다. SX-DEC-060가 gameplay bytes를 변경하므로 Candidate 003을 post-060 acceptance로 승격할 수 없다.
 
 ## Current execution boundary
 
 ```text
-PR #158 SX-DEC-059 implementation MERGED_MAIN_VERIFIED
-→ PR #166 playable visual/UX POC MERGED_MAIN_VERIFIED
-→ Candidate 002 actual Windows startup PASS / P1 visual findings
-→ PR #171 physical preflight visual correction MERGED_MAIN_VERIFIED
-→ PR #172 Candidate 003 + explicit current pointer MERGED_MAIN_VERIFIED
-→ Candidate 003 physical visual recheck: NOT_RUN
-→ if clean, same exact Candidate 003 developer self-run / screen QA + audio perceptual QA
-→ exact acceptance build designation
-→ Windows full physical smoke
+pre-SX-DEC-060:
+PR #158 implementation → PR #166 playable POC → PR #171 visual correction → PR #172 Candidate 003
+
+current:
+SX-DEC-060 user rule APPROVED
+→ decision/spec/TDD plan/Codex handoff canon sync
+→ Codex Godot runtime implementation from merged current main
+→ schema v3 + map/tutorial migration
+→ full automated regression + five-pass adversarial review
+→ new exact post-060 packaged candidate
+→ Windows physical smoke
 → Android device smoke
 → Five-person first-contact comprehension
 → EXPAND / REWORK / REPEAT_SLICE / HOLD / STOP
 ```
 
-## Candidate 003 Gate 0
-
-1. preflight semantic badge가 compact lane에 있고 Korean problem copy와 겹치지 않는지 확인.
-2. disconnected station/cargo의 color+shape+text identity가 유지되고 problem reinforcement가 outline만 사용하는지 확인.
-
-하나라도 실패하면 `BLOCKED_P1_VISUAL`로 중단한다.
+Candidate 003 Gate 0 is retained as historical pre-060 validation instructions but is no longer the next efficient product gate after the user-approved gameplay change.
 
 ## Protected future packages
 
@@ -221,4 +252,4 @@ BMK-R09 Shareable Route Card → POST_VALIDATION_HOLD
 BMK-R10 Editor/UGC → POST_VALIDATION_HOLD
 ```
 
-Historical endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset는 current 의미로 재활성화하지 않는다. 현재 Decision span 밖의 새 Decision은 만들지 않는다.
+Historical endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset는 current 의미로 재활성화하지 않는다. SX-DEC-060 이외의 새 제품 Decision은 별도 사용자 승인 없이 만들지 않는다.
