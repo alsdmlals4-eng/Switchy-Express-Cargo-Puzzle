@@ -1,19 +1,22 @@
 # Development Gates
 
-Last updated: `2026-08-25 KST`
+Last updated: `2026-08-26 KST`
 
 현재 실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 우선한다. 과거 commit/PR/run은 역사 evidence이며 current next action을 자동 정의하지 않는다.
 
 ## 0. Current authority
 
 ```yaml
-current_work_instruction: v4.8 · 2026-08-24-r4 · SWITCHY_THIN_ADAPTER
-work_instruction_role: USER_PROVIDED_V4_8_R4_CONTRACT
+current_work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
+work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
+source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
+historical_r4_revision: 2026-08-24-r4
+historical_r4_role: USER_PROVIDED_V4_8_R4_CONTRACT
 historical_r2_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
-historical_r2_hash_is_not_r4_hash: true
 v4_8_r2_authority_merge_pr: 164
 v4_8_r2_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
+fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
 v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 ```
 
@@ -39,7 +42,7 @@ A0 CURRENT AUTHORITY RECOVERY: PASS
 → A14 NOTION POST-MERGE IMPLEMENTATION READBACK: PASS
 ```
 
-`기획완료`는 승인된 059 계획을 잠근다. A6/A7은 설계·정본·인계 패키지의 정적 준비 상태이며, A8 이후 fresh execution preflight와 RED→GREEN 구현, exact-head 검증, merge/readback까지 완료됐다. 이 chain은 v4.7 시기에 실행된 **역사 evidence**이며 현재 작업 방법론은 위 v4.8 r4 authority를 따른다.
+`기획완료`는 승인된 059 계획을 잠근다. A6/A7은 설계·정본·인계 패키지의 정적 준비 상태이며, A8 이후 fresh execution preflight와 RED→GREEN 구현, exact-head 검증, merge/readback까지 완료됐다. 이 chain은 v4.7 시기에 실행된 **역사 evidence**이며 현재 작업 방법론은 위 v4.8 r5.4 authority와 최신 Base owner를 따른다.
 
 ## 2. Historical implemented baseline chain
 
@@ -248,7 +251,7 @@ project_godot_ai_plugin_cfg: 3.1.4
 project_local_tree_parity: REVERIFY_REQUIRED_BEFORE_FUTURE_AUTHORING
 ```
 
-향후 authoring/runtime 작업은 r4와 최신 Base owner에 따라 과거 implementation preflight를 자동 상속하지 않고 다음을 다시 확인한다.
+향후 authoring/runtime 작업은 r5.4와 최신 Base owner에 따라 과거 implementation preflight를 자동 상속하지 않고 다음을 다시 확인한다.
 
 ```text
 fresh shell
@@ -263,7 +266,7 @@ fresh shell
 → authoring/test/runtime/readback
 ```
 
-compatible host에서는 프로젝트별 동일 Godot binary·전용 port 증식을 기본 경로로 사용하지 않는다. shared approved exact pins + provider default fixed ports + exact session routing을 우선한다. breaking/migration/비용/권한 확대는 자동 승인하지 않는다.
+compatible host에서는 프로젝트별 동일 Godot binary·전용 port 증식을 기본 경로로 사용하지 않는다. shared approved exact pins + provider default fixed ports + exact session routing을 우선한다. breaking/migration/비용/권한 확대는 자동 승인하지 않는다. PowerShell은 local Codex launcher가 아니며, 새 Godot 제품 구현은 필요할 때만 `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF`를 사용한다.
 
 ## 12. Concurrency gate
 
@@ -277,6 +280,13 @@ compatible host에서는 프로젝트별 동일 Godot binary·전용 port 증식
 ### PR #155 / #156
 
 `CLOSED_UNMERGED · HISTORICAL_ACCIDENT`.
+
+### PR #174
+
+`PRE_EXISTING_DRAFT · READ_ONLY`.
+
+- r5.4 current-task PR에서 수정·rebase·merge·흡수하지 않는다.
+- 별도 명시 승인 없이는 historical r4 workstream으로 유지한다.
 
 ## 13. Implementation package authority
 
@@ -292,7 +302,7 @@ SX_DEC_059_CODEX_HANDOFF_PACKAGE.md
 → actual current code/tests
 ```
 
-The package is execution history/rollback material. It must not restart Task 1.
+The package is execution history/rollback material. It must not restart Task 1. 과거 local Codex 실행 기록은 history이며 current r5.4 실행 route가 아니다.
 
 ## 14. Automated validation gate
 
