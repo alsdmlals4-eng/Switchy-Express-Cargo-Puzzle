@@ -1,30 +1,30 @@
 # Switchy Express 유한 배송 퍼즐 제품 기준선
 
-상태: `CURRENT_CANON · USER_APPROVED · AUTOMATED_CORE_PASS · MANUAL_ACCEPTANCE_NOT_RUN`
+상태: `CURRENT_CANON · USER_APPROVED · AMENDED_BY_SX_DEC_060 · POST_060_RUNTIME_NOT_RUN`
 
-결정 묶음: `GMB-002 · SX-DEC-027~036`
-근거: `EV-USER-019 · 2026-08-04 승인 대화 종합`
+결정 묶음: `GMB-002 · SX-DEC-027~036 · SX-DEC-060 AMENDMENT`
+근거: `EV-USER-019 · 2026-08-04 승인 대화 종합` + `SX-DEC-060 · 2026-08-26 사용자 승인`
 제품 기준선 감사: `SX-AUD-012`
-현재 실행 증거: `SX-AUD-019 · EV-FP-APK-001`
+현재 상세 변경 owner: `docs/decisions/SX_DEC_060_CARDINAL_STATION_SERVICE_AND_REACHABLE_NETWORK.md`
 
-이 문서는 기존 무한 생존·연료·BOOST 제품 기준선을 대체하는 현재 제품 정본이다. 기존 구현과 감사 증거는 역사적 사실로 보존하지만, 새 제품 의미의 구현 완료 증거로 재사용하지 않는다.
+이 문서는 기존 무한 생존·연료·BOOST 제품 기준선을 대체하는 현재 제품 정본이다. 기존 구현과 감사 증거는 역사적 사실로 보존하지만, 새 제품 의미의 구현 완료 증거로 재사용하지 않는다. `SX-DEC-060`은 GMB-002의 finite/LIFO 정체성을 유지하면서 **역 접촉과 preflight 연결성 의미만 현재 규칙으로 수정**한다.
 
 ## 1. 제품 한 문장
 
-> 플레이어가 제한 없는 화물칸에 화물을 만난 순서대로 쌓고, 마지막 화물부터 내리는 LIFO 규칙을 역산해 선로를 건설·전환하며, 제한 시간 안에 모든 화물을 배송하는 비용·속도·콤보 최적화 퍼즐.
+> 플레이어가 제한 없는 화물칸에 화물을 만난 순서대로 쌓고, 마지막 화물부터 내리는 LIFO 규칙을 역산해 필요한 선로망을 건설·전환하며, 역의 상·하·좌·우 인접 서비스 셀을 지나 제한 시간 안에 모든 화물을 배송하는 비용·속도·콤보 최적화 퍼즐.
 
 ## 2. 핵심 재미 위계
 
 ```text
 화물 배치·역 위치 읽기
-→ 선로 건설로 화물 조우 순서 설계
+→ 필요한 RUN 선로망으로 화물 조우 순서 설계
 → 수동/자동 적재로 LIFO 스택 구성
-→ 분기 전환으로 역 방문 순서 실행
+→ 분기 전환으로 역 서비스 순서 실행
 → 같은 화물 연속 하역 Combo 만들기
 → 시간·건설비·점수 중 목표에 맞춰 재설계
 ```
 
-핵심은 단순 최단거리 건설이 아니다. 선로가 적재 순서를 만들고, LIFO가 역 방문 순서를 만들며, Combo가 같은 종류를 묶어 운송할 이유를 만든다.
+핵심은 단순 최단거리 건설이나 모든 선로 조각의 전역 연결이 아니다. 실제 RUN 가능한 경로가 적재 순서를 만들고, LIFO가 역 서비스 순서를 만들며, Combo가 같은 종류를 묶어 운송할 이유를 만든다.
 
 ## 3. 플레이 단계
 
@@ -33,23 +33,28 @@
 - 시간은 흐르지 않는다.
 - 건설 가능 지점에는 자유롭게 선로를 설치한다.
 - 맵이 지정한 건설 불가 지점에는 설치할 수 없다.
+- `SX-DEC-060` 기준 역 footprint는 off-track service object이며 해당 역 셀에는 player rail을 설치하지 않는다.
+- 화물은 기존처럼 열차가 직접 해당 셀을 통과해 접촉하는 적재 오브젝트다.
 - 선로 설치마다 비용이 현재 건설비에 반영된다.
 - 일반 클리어에는 건설비 상한이 없다.
 - 철거 시 비용을 전액 환급한다.
 - 추천 노선은 반투명 설계도로 표시하며 실제 연결·비용·운행에는 포함하지 않는다.
 - 추천 노선 총비용과 남은 예상 비용을 표시한다.
 - 추천 노선은 안전한 기본 해법이며 랭킹 최적해가 아니어야 한다.
+- 플레이어가 배치한 모든 선로를 하나의 전역 연결망으로 만들 필요는 없다. 사용하지 않는 분리 선로 섬은 그 자체로 RUN 차단 사유가 아니다.
 
 ### 시작 검사
 
-운행 시작은 다음을 만족할 때만 가능하다.
+운행 시작은 **start에서 실제 RUN 가능한 reachable component**가 다음을 만족할 때만 가능하다.
 
-- 시작점에서 모든 역까지 실제 주행 가능
-- 시작점에서 모든 화물 지점까지 실제 주행 가능
-- 일방통행·분기·회차 방향을 반영해 필수 지점이 구조적으로 고립되지 않음
-- 필수 구간 진입 후 열차가 영구적으로 갇히지 않음
+- 시작점 진입 상태가 실제 주행 가능한 네트워크를 형성
+- 모든 필수 화물 지점이 start-reachable RUN component에 포함
+- 모든 필수 역마다 상·하·좌·우 1칸 중 최소 한 서비스 셀이 start-reachable RUN component에 포함
+- 대각선 셀은 역 서비스 도달로 인정하지 않음
+- 실제 RUN에서 도달 가능한 일방통행·분기·교차·회차 상태가 구조적으로 유효
+- 필수 reachable 구간 진입 후 열차가 current route-end/trap contract를 위반하지 않음
 
-시스템은 구조적 불가능만 차단한다. LIFO 해답, 분기 타이밍, 제한 시간 내 성공 여부는 플레이어가 해결한다.
+start에서 완전히 도달할 수 없고 필수 화물/역 서비스에 쓰이지 않는 player-built rail island는 RUN을 막지 않는다. 시스템은 **실제 RUN 구조의 불가능**만 차단한다. LIFO 해답, 분기 타이밍, 제한 시간 내 성공 여부는 플레이어가 해결한다.
 
 ### 운행 단계
 
@@ -81,17 +86,20 @@
 ```text
 조우 순서: A → B → A → A
 스택: [A][B][A][A TOP]
-A역: 뒤쪽 A 2개 하역 · 2 Combo
-B역: B 1개 하역
-A역 재방문: 남은 A 1개 하역
+A역 서비스 셀: 뒤쪽 A 2개 하역 · 2 Combo
+B역 서비스 셀: B 1개 하역
+A역 서비스 셀 재방문: 남은 A 1개 하역
 ```
 
 ## 5. 역·하역·Combo
 
-- 역 도착 시 LIFO 최상단 화물이 역 종류와 같으면 자동 정차한다.
+- 역의 배송 서비스 범위는 **상·하·좌·우 정확히 1칸**이다.
+- 공식 판정은 `abs(train_x - station_x) + abs(train_y - station_y) == 1`이다.
+- 대각선, 역 footprint 자체, 거리 2칸 이상은 배송 서비스로 인정하지 않는다.
+- 열차가 matching station의 서비스 셀에 진입했을 때 LIFO 최상단 화물이 역 종류와 같으면 자동 정차한다.
 - 최상단부터 같은 종류가 연속되는 동안만 자동 하역한다.
-- 최상단이 다른 종류면 감속·정차 없이 역을 통과한다.
-- 한 번의 역 도착에서 하역한 연속 동일 화물 수가 Combo다.
+- 최상단이 다른 종류면 감속·정차 없이 서비스 셀을 통과한다.
+- 한 번의 역 서비스에서 하역한 연속 동일 화물 수가 Combo다.
 - 하역 총 정차 시간은 화물 수와 무관하게 최대 1초다.
 - 화물이 많을수록 개당 하역 연출이 빨라지며 모든 화물이 실제로 내려가는 모습은 보여준다.
 - 2 Combo 이상은 일시적 가속과 점수 보너스를 제공한다.
@@ -99,6 +107,8 @@ A역 재방문: 남은 A 1개 하역
 - 새 Combo 가속은 누적하지 않고 `현재 남은 시간`과 `새 지속시간` 중 큰 값으로 갱신한다.
 - 가속 시간은 하역 완료 후 출발 순간부터 감소한다.
 - 가속 선로와 중첩할 수 있으나 최종 속도는 기본 속도의 `2.0× TEST_VALUE`를 상한으로 둔다.
+
+`SX-DEC-060` 구현에서 같은 rail cell이 두 역의 서비스 셀로 겹치는 authored content는 우선순위를 임의로 만들지 않고 fail-closed validation 대상으로 취급한다.
 
 ## 6. 성공·실패
 
@@ -180,7 +190,7 @@ A역 재방문: 남은 A 1개 하역
 ### 1~10 튜토리얼
 
 1. 기본 선로 연결
-2. 화물과 대응 역·자동 하역
+2. 화물 직접 통과 적재 + 역 상·하·좌·우 1칸 자동 하역
 3. LIFO
 4. 수동 적재
 5. 자동 적재 전환
@@ -237,6 +247,9 @@ A역 재방문: 남은 A 1개 하역
 - 첫 무한 run 하나로 모든 규칙을 가르치는 온보딩
 - 화물 capacity 8 제품 규칙
 - 분기 통과 후 기본 방향 자동 복귀 규칙
+- 역 footprint 자체를 delivery contact로 요구하는 pre-SX-DEC-060 의미
+- 모든 필수 station footprint를 rail anchor로 취급하는 pre-SX-DEC-060 의미
+- 사용하지 않는 disconnected rail island 자체를 RUN 차단 사유로 취급하는 해석
 
 ### 폐기
 
@@ -252,26 +265,35 @@ A역 재방문: 남은 A 1개 하역
 - 환적역
 - 다중 열차·신호 자동화
 - 반복 도전의 변형 규칙
+- arbitrary station radius / diagonal service / per-station service shape
 
 ## 13. 구현·증거 상태
 
-- finite automated core, product surface와 integrated proof는 현재 제품 의미로 구현·자동 검증됐다.
-- validation launcher는 `PROOF / STACK 8 / STACK 16 / STACK 32` 모드와 production entrypoint 불변성을 검증한다.
-- canonical main APK export는 `SX-AUD-019 · EV-FP-APK-001`로 PASS했으며, APK 전체 SHA-256은 `eb49225ab4062e5cf863f79a0d17f85d339ea176d7f0bb6f04096ed8a07559ea`다.
+pre-SX-DEC-060 finite automated core, product surface, playable POC와 Candidate 003 package proof는 해당 **정확한 변경 전 bytes**에 대한 역사적 증거로 보존한다.
+
+- pre-060 finite automated core와 integrated proof는 기존 의미로 구현·자동 검증됐다.
+- Candidate 003 package/PCK/73 product texture/PowerShell 5.1 live download proof는 역사적 PASS다.
+- Candidate 003 physical visual recheck와 이후 human/device evidence는 실행되지 않았다.
+- `SX-DEC-060`는 station contact/preflight/map semantics를 변경하므로 post-060 runtime은 아직 구현·자동 검증되지 않았다.
+- 구현 target은 `FiniteMapDefinition` schema v3, cardinal service, start-reachable preflight, current map/tutorial migration이다.
+- 기존 station PNG는 실제 `ProductBoardRenderer` consumer가 있으므로 재사용한다. service 범위는 procedural projection이 기본이며 `NEW_BITMAP_ASSETS_REQUIRED = 0`이다.
 - fuel·BOOST·capacity 8·cargo respawn·endless difficulty 구현은 `LEGACY_IMPLEMENTATION`이며 현재 제품 권위가 아니다.
 - Combo 가속·점수 tuning, 확장 선로, 캠페인·기록·온라인 기능은 후속 제작 범위이며 현재 Slice 완료를 의미하지 않는다.
-- Android Device Smoke와 Five-person Comprehension은 실제 물리 기기·사람 증거가 없어 `NOT_RUN`이다.
+- post-060 Android Device Smoke와 Five-person Comprehension은 실제 물리 기기·사람 증거가 없어 `NOT_RUN`이다.
 
 현재 상태:
 
 ```text
-FINITE_AUTOMATED_CORE_PASS
-PRODUCT_SURFACE_PASS
-VALIDATION_PREPARATION_PASS
-CANONICAL_MAIN_APK_EXPORT_PASS
-ANDROID_DEVICE_SMOKE_NOT_RUN
-FIVE_PERSON_COMPREHENSION_NOT_RUN
-DEFAULT_ENTRYPOINT_LEGACY
+GMB_002_CURRENT_AMENDED_BY_SX_DEC_060
+SX_DEC_060_USER_RULE_APPROVED
+SX_DEC_060_DESIGN_RECORDED
+SX_DEC_060_RUNTIME_NOT_RUN
+SX_DEC_060_AUTOMATED_REGRESSION_NOT_RUN
+POST_060_ACCEPTANCE_CANDIDATE_NOT_CREATED
+PRE_060_CANDIDATE_003_HISTORICAL_EXACT_EVIDENCE
+NEW_BITMAP_ASSETS_REQUIRED_0
+WINDOWS_PHYSICAL_POST_060_NOT_RUN
+ANDROID_DEVICE_POST_060_NOT_RUN
+FIVE_PERSON_POST_060_NOT_RUN
 PRODUCTION_CUTOVER_BLOCKED
-BALANCE/ONLINE_NOT_RUN
 ```
