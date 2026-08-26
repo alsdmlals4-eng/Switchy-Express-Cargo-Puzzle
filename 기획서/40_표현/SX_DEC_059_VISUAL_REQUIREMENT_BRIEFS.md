@@ -99,7 +99,9 @@ VFX 2C:
 ### Runtime route readability extension · GitHub Issue #197
 
 ```yaml
-status: IMPLEMENTED_AWAITING_MERGE
+status: MERGED_MAIN_VERIFIED_LOCAL_EVIDENCE
+merge: PR_198 · main_a8eee4f875a95e8da69802c4e60452df3535fe0e
+remote_ci: QUEUED_WITHOUT_JOBS · USER_AUTHORIZED_BYPASS
 runtime_consumer: ProductBoardRenderer + RouteControlOverlay
 new_bitmap_assets: 0
 source_of_truth: actual finite render snapshot / FiniteTrackGraph route-control state
@@ -111,6 +113,7 @@ source_of_truth: actual finite render snapshot / FiniteTrackGraph route-control 
 - Result에서도 선택 route trace를 유지한다. 결과 panel은 context를 가리는 이유가 되지 않는다.
 - 기존 rail/station/cargo PNG 위에 procedural trace만 겹친다. 이 변경의 실제 bitmap consumer는 없으므로 새 이미지를 생성하지 않는다.
 - 공식 headless runner에는 `test_product_board_route_clarity.gd`를 등록해 state descriptor·result 유지·960×540/1280×720/1920×1080 두께 위계를 회귀 검증한다.
+- exact-head local 검증은 통과했지만 GitHub CI는 job 없이 queued로 남아 있다. 사용자가 병합을 명시 승인했으므로 remote CI GREEN이나 human/device PASS로 해석하지 않는다.
 
 ### 금지
 

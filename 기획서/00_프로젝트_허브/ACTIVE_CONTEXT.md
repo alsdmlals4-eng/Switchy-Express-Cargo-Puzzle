@@ -244,7 +244,9 @@ NEW_BITMAP_ASSETS_0
 ## Runtime route readability correction · GitHub Issue #197
 
 ```yaml
-status: IMPLEMENTED_AWAITING_PR_REVIEW
+status: MERGED_MAIN_VERIFIED_LOCAL_EVIDENCE
+merge: PR_198 · main_a8eee4f875a95e8da69802c4e60452df3535fe0e
+remote_ci: QUEUED_WITHOUT_JOBS · USER_AUTHORIZED_BYPASS
 scope: PRESENTATION_ONLY
 runtime_consumers:
   - ProductBoardRenderer
@@ -257,6 +259,7 @@ new_bitmap_assets: 0
 - selected = 녹색/굵은 trace + 방향 cue; unselected = 청색/얇은 trace; occupied/locked = 적색 trace + existing lock overlay.
 - SUCCESS/FAILURE에도 selected route trace가 유지된다.
 - 1280×720 live runtime screenshot/diagnostics와 960×540·1280×720·1920×1080 deterministic width hierarchy checks가 필요한 evidence다. Physical human comprehension remains NOT_RUN.
+- exact PR head의 official headless suite 112 cases / 13,480 assertions, Project Contract, GUT, Godot 4.7.1 headless parse는 local PASS다. 원격 CI 4개는 job 없이 queued로 남아 사용자가 병합 우회를 승인했으며, CI GREEN은 아니다.
 
 ## Protected boundaries
 
