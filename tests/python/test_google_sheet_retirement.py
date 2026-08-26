@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -71,6 +72,31 @@ class GoogleSheetRetirementTests(unittest.TestCase):
         snapshot = json.loads(PROJECT_SNAPSHOT.read_text(encoding="utf-8"))
         actual = hashlib.sha256((ROOT / "skills/SKILL_REGISTRY.json").read_bytes()).hexdigest()
         self.assertEqual(actual, snapshot["project_registry"]["sha256"])
+
+    def test_hash_authority_files_use_lf_checkout(self) -> None:
+        result = subprocess.run(
+            [
+                "git",
+                "check-attr",
+                "eol",
+                "--",
+                "skills/PROJECT_BASE_ADAPTER.json",
+                "skills/PROJECT_SKILL_SNAPSHOT.json",
+                "skills/SKILL_REGISTRY.json",
+            ],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(
+            [
+                "skills/PROJECT_BASE_ADAPTER.json: eol: lf",
+                "skills/PROJECT_SKILL_SNAPSHOT.json: eol: lf",
+                "skills/SKILL_REGISTRY.json: eol: lf",
+            ],
+            result.stdout.splitlines(),
+        )
 
 
 if __name__ == "__main__":

@@ -207,7 +207,7 @@
     "project": {
       "hash_definition": "RAW_FILE_BYTES_SHA256",
       "path": "skills/SKILL_REGISTRY.json",
-      "sha256": "0b5f76638709ea774ce43e0b756c484eb47188637eea0e6c59f76cc9f63abafa"
+      "sha256": "048896cee3879a384cea4eb46442ea0cedd52317163d67fd885bba9d6dd58787"
     }
   },
   "validators": [
