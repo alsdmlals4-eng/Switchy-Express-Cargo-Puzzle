@@ -13,6 +13,7 @@ BASE_RULES = ROOT / "docs" / "BASE_RULES_VERSION.md"
 ADAPTER = ROOT / "skills" / "PROJECT_BASE_ADAPTER.json"
 MIGRATION = ROOT / "docs" / "operations" / "SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json"
 AUDIT = ROOT / "기획서" / "50_제작_검증" / "SX_AUD_025_POST_MERGE_CANON_FRESHNESS_AND_GATE_RECOVERY.md"
+VERTICAL_SLICE_CONTRACT = ROOT / "기획서" / "50_제작_검증" / "VERTICAL_SLICE_CONTRACT.md"
 
 HISTORICAL_SHEET_CANON_MAIN = "dff1653738f1eead3cacff303080924d662767e2"
 CURRENT_ADAPTER_PR_BASE = "f34995228ef58ec00fffd60f7c53951bfc631f7c"
@@ -24,7 +25,7 @@ def read(path: Path) -> str:
 
 
 class PostMergeCanonFreshnessTests(unittest.TestCase):
-    def test_active_canon_uses_phase_b_semantics_and_preserves_pr83_history(self) -> None:
+    def test_active_canon_routes_sx_dec_060_and_preserves_pr83_history(self) -> None:
         readme = read(README)
         active = read(ACTIVE)
         gates = read(GATES)
@@ -43,27 +44,33 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
             "user_planning_complete_gate: NOT_GRANTED",
             "phase_b_final_planning_review: NOT_RUN",
             "sx_dec_055_runtime_implementation: NOT_STARTED",
+            "current_candidate: SX59-POC-ACCEPT-003",
         ):
             self.assertNotIn(stale_active_state, combined)
 
         self.assertIn("default_branch: main", active)
-        self.assertIn("user_planning_complete_gate: GRANTED", active)
-        self.assertIn("phase_b_final_planning_review: SX-AUD-047 · PASS", active)
-        self.assertIn("build_authority: AUTHORIZED_AFTER_PHASE_B_CANON_SYNC_MERGE", active)
-        self.assertIn("sx_dec_055_runtime_implementation: MERGED_MAIN_VERIFIED", active)
-        self.assertIn("runtime_integrated: true", active)
-        self.assertIn("sx_dec_055_merge_main: 534a7318b349cd3e784a3467125f9ebd23124d8a", active)
+        self.assertIn("product_baseline: GMB-002 · AMENDED_BY_SX_DEC_060", active)
+        self.assertIn("current_decisions: SX-DEC-027~060", active)
+        self.assertIn("sx_dec_059_implementation: MERGED_MAIN_VERIFIED · PRE_SX_DEC_060_RUNTIME", active)
+        self.assertIn("pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003", active)
+        self.assertIn("candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY", active)
+        self.assertIn("sx_dec_060_user_rule: APPROVED", active)
+        self.assertIn("sx_dec_060_runtime_implementation: NOT_RUN", active)
+        self.assertIn("post_sx_dec_060_candidate: NOT_CREATED", active)
+        self.assertIn("PR #174 remains", active)
+        self.assertIn("READ_ONLY", active)
 
-        self.assertIn("pr_83: MERGED", readme)
-        self.assertIn("PR #83/#99/#100 MERGE: PASS", gates)
+        self.assertIn("PR #83 is merged", read(AUDIT))
+        self.assertIn("PR #83은 **역사적으로 병합 완료**", read(VERTICAL_SLICE_CONTRACT))
 
+        historical = read(AUDIT)
         for required in (
             "SX-AUD-025",
             "repository_main_observed",
             "latest_automated_verified_product_main",
             "RETEST_REQUIRED",
         ):
-            self.assertIn(required, combined)
+            self.assertIn(required, historical)
 
     def test_base_release_pin_and_finite_protection_are_truthful(self) -> None:
         rules = read(BASE_RULES)

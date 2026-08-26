@@ -1,5 +1,7 @@
 # Switchy Express r5.4 Authority Reconciliation Implementation Plan
 
+> **Historical / superseded for current-gate use:** This plan records the pre-SX-DEC-060 r5.4 reconciliation. Its Candidate 003 next-gate language applies only to those exact pre-change bytes; current execution follows `SX-DEC-060` and its post-change fail-closed candidate locator.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Promote the user-provided v4.8 `2026-08-26-r5.4-superset-final` contract into Switchy Express active routing without changing GMB-002 gameplay, SX-DEC-027~059 product meaning, Candidate 003 identity, or physical/human evidence ceilings.

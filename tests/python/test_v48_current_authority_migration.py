@@ -30,20 +30,20 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
         self.assertTrue(V48_ADAPTER.is_file(), "current v4.8 project thin adapter is missing")
         self.assertTrue(V47_ADAPTER.is_file(), "v4.7 rollback/history adapter must be retained")
         text = V48_ADAPTER.read_text(encoding="utf-8")
-        self.assertIn("contract_version: '4.8'", text)
-        self.assertIn(f"revision: '{CURRENT_R54_REVISION}'", text)
-        self.assertIn(f"current_user_contract_role: {CURRENT_R54_ROLE}", text)
-        self.assertIn(f"source_r5_4_sha256: {CURRENT_R54_SHA256}", text)
-        self.assertIn(f"historical_r4_revision: {HISTORICAL_R4_REVISION}", text)
-        self.assertIn(f"historical_r2_sha256: {HISTORICAL_R2_SHA256}", text)
-        self.assertIn("base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN", text)
-        self.assertIn("google_sheets_policy: RETIRED_NO_ACTIVE_USE", text)
-        self.assertIn("fresh_read_bootstrap_policy: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED", text)
-        self.assertIn("gpt_local_codex_orchestration_policy: RETIRED", text)
-        self.assertIn(
+        for required in (
+            "contract_version: '4.8'",
+            f"revision: '{CURRENT_R54_REVISION}'",
+            f"current_user_contract_role: {CURRENT_R54_ROLE}",
+            f"source_r5_4_sha256: {CURRENT_R54_SHA256}",
+            f"historical_r4_revision: {HISTORICAL_R4_REVISION}",
+            f"historical_r2_sha256: {HISTORICAL_R2_SHA256}",
+            "base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN",
+            "google_sheets_policy: RETIRED_NO_ACTIVE_USE",
+            "fresh_read_bootstrap_policy: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED",
+            "gpt_local_codex_orchestration_policy: RETIRED",
             "skill_coverage_policy: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT",
-            text,
-        )
+        ):
+            self.assertIn(required, text)
         self.assertNotIn("revision: '2026-08-24-r2'", text)
         self.assertNotIn("current_user_contract_role: USER_PROVIDED_V4_8_R4_CONTRACT", text)
 
@@ -54,14 +54,16 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
             self.assertIn(required, text, f"{path} is not routed to v4.8 r5.4 current authority")
             self.assertIn(CURRENT_R54_ROLE, text)
 
-    def test_current_validation_routes_to_candidate_003(self) -> None:
+    def test_current_validation_routes_candidate_003_to_prechange_history(self) -> None:
         adapter = V48_ADAPTER.read_text(encoding="utf-8")
         active = ACTIVE_CONTEXT.read_text(encoding="utf-8")
         for text in (adapter, active):
             self.assertIn("SX59-POC-ACCEPT-003", text)
-            self.assertIn("candidate_003_physical_visual_recheck: NOT_RUN", text)
-        self.assertNotIn("acceptance_candidate: SX59-ACCEPT-001", adapter)
-        self.assertIn("historical_candidate: SX59-ACCEPT-001 · SUPERSEDED_FOR_CURRENT_POC", active)
+            self.assertIn("NOT_CREATED", text)
+            self.assertIn("SX-DEC-060", text)
+            self.assertNotIn("current_candidate: SX59-POC-ACCEPT-003", text)
+        self.assertIn("HISTORICAL", adapter)
+        self.assertIn("candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY", active)
 
     def test_r54_execution_overlay_keeps_safe_exact_pin_and_retired_local_codex(self) -> None:
         text = V48_ADAPTER.read_text(encoding="utf-8")
@@ -95,17 +97,18 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
         self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
         self.assertEqual("GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME", planning["runtime_structured_authority"])
 
-    def test_project_skill_routes_the_current_sx059_acceptance_sequence(self) -> None:
+    def test_project_skill_routes_current_sx060_implementation_sequence(self) -> None:
         text = PROJECT_SKILL.read_text(encoding="utf-8")
+        current = text.split("### Current Gate authority", 1)[1].split("## SX-DEC-060 station / preflight contract", 1)[0]
         for required in (
-            "developer self-run / screen QA",
-            "exact acceptance build",
+            "SX-DEC-060 Codex runtime implementation",
+            "POST-060 EXACT CANDIDATE: NOT_CREATED",
             "Windows physical smoke",
             "Android device smoke",
             "Five-person first-contact comprehension",
         ):
-            self.assertIn(required, text)
-        self.assertNotIn("FIVE-PERSON COMPREHENSION: NOT_RUN · BLOCKED_BY_ANDROID", text)
+            self.assertIn(required, current)
+        self.assertNotIn("Candidate 003 physical visual recheck", current)
         self.assertNotIn("DEFAULT ENTRYPOINT: LEGACY", text)
 
     def test_migration_does_not_authorize_deferred_product_packages(self) -> None:

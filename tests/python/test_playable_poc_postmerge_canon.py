@@ -6,13 +6,12 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-POC_PR = "166"
 POC_HEAD = "159a3a741ef79b6207be290cc284bd63a5979e72"
 POC_MAIN = "1bf798cedf28dffba9185edb62fb1c50c108fe90"
 POC_TREE = "b3fa0ad93721d7f99614fb6f0bf594c7ce068127"
+PRE_060_CANDIDATE = "SX59-POC-ACCEPT-003"
 EVIDENCE = ROOT / "evidence/acceptance/sx59_poc_accept_002_artifact.json"
 
-START_HERE = ROOT / "기획서/00_프로젝트_허브/START_HERE.md"
 ACTIVE_CONTEXT = ROOT / "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md"
 CURRENT_DECISIONS = ROOT / "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md"
 DEVELOPMENT_GATES = ROOT / "기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md"
@@ -27,26 +26,26 @@ def _evidence() -> dict:
 
 
 class PlayablePocPostMergeCanonTests(unittest.TestCase):
-    def test_resume_owners_record_exact_playable_poc_and_current_candidate(self) -> None:
-        candidate_id = _evidence()["candidate_id"]
-        for path in (START_HERE, ACTIVE_CONTEXT):
+    def test_resume_owners_preserve_playable_poc_as_pre_060_history(self) -> None:
+        for path in (ACTIVE_CONTEXT, CURRENT_DECISIONS):
             text = path.read_text(encoding="utf-8")
-            self.assertIn(f"PR #{POC_PR}", text, f"{path} lost POC merge identity")
-            self.assertIn(POC_MAIN, text, f"{path} lost POC merged main")
-            self.assertIn(candidate_id, text, f"{path} does not route to current POC candidate")
-            self.assertIn("developer self-run", text.lower())
-            self.assertIn("NOT_RUN", text)
+            self.assertIn(POC_MAIN, text, f"{path} lost POC merged-main identity")
+            self.assertIn(PRE_060_CANDIDATE, text, f"{path} lost historical Candidate 003 identity")
+            self.assertIn("SX-DEC-060", text)
+            self.assertIn("HISTORICAL", text)
+            self.assertIn("NOT_CREATED", text)
+            self.assertNotIn("current_candidate: SX59-POC-ACCEPT-003", text)
 
-    def test_stable_decision_and_gate_owners_do_not_invent_new_product_authority(self) -> None:
+    def test_current_decision_and_gates_route_post_060_work(self) -> None:
         decisions = CURRENT_DECISIONS.read_text(encoding="utf-8")
-        self.assertIn("current_decision_span: SX-DEC-027~059", decisions)
-        self.assertNotIn("SX-DEC-060", decisions)
-        gates = DEVELOPMENT_GATES.read_text(encoding="utf-8")
-        roadmap = ROADMAP.read_text(encoding="utf-8")
-        for text in (gates, roadmap):
-            self.assertIn("developer self-run", text)
+        self.assertIn("current_decision_span: SX-DEC-027~060", decisions)
+        self.assertIn("SX-DEC-060", decisions)
+        self.assertNotIn("current_decision_span: SX-DEC-027~059", decisions)
+        for path in (DEVELOPMENT_GATES, ROADMAP):
+            text = path.read_text(encoding="utf-8")
+            self.assertIn("SX-DEC-060", text)
             self.assertIn("NOT_RUN", text)
-        self.assertIn("IMPLEMENTATION_NOT_AUTHORIZED", decisions)
+            self.assertIn("post-060", text.lower())
 
     def test_candidate_binds_exact_artifact_and_merged_tree(self) -> None:
         self.assertTrue(EVIDENCE.is_file(), "machine-readable candidate evidence must exist")

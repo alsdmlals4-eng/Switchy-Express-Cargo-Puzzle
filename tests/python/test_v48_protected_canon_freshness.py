@@ -38,11 +38,6 @@ class V48ProtectedCanonFreshnessTests(unittest.TestCase):
                 text,
                 f"{key} still advertises r4 as current work instruction",
             )
-            self.assertNotIn(
-                "current_work_instruction: v4.8 · 2026-08-24-r4 · SWITCHY_THIN_ADAPTER",
-                text,
-                f"{key} still advertises r4 as current work instruction",
-            )
 
     def test_start_here_routes_to_v48_adapter_and_preserves_history(self) -> None:
         text = self._read("start_here")
@@ -58,12 +53,16 @@ class V48ProtectedCanonFreshnessTests(unittest.TestCase):
             self.assertIn(HISTORICAL_R2_SHA256, text)
             self.assertIn("ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN", text)
 
-    def test_gate_and_roadmap_expose_candidate_003_without_changing_product_gate(self) -> None:
+    def test_gate_and_roadmap_bound_candidate_003_as_history(self) -> None:
         for key in ("development_gates", "roadmap"):
             text = self._read(key)
             self.assertIn("Candidate 003", text)
-            self.assertIn("physical visual recheck", text)
             self.assertIn("NOT_RUN", text)
+            self.assertTrue(
+                "physical visual recheck" in text or "physical_visual_recheck" in text,
+                f"{key} lost Candidate 003 historical evidence locator",
+            )
+            self.assertIn("SX-DEC-060", text)
 
     def test_deferred_packages_and_human_evidence_remain_closed(self) -> None:
         combined = "\n".join(self._read(key) for key in OWNERS)

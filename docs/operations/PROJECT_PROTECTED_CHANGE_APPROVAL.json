@@ -5,17 +5,23 @@
   "protected_base_commit": "f34995228ef58ec00fffd60f7c53951bfc631f7c",
   "decision_ids": [
     "USER-APPROVAL-2026-08-26-R5.4-AUTHORITY-RECONCILIATION",
-    "VIS-SX-059-05"
+    "VIS-SX-059-05",
+    "SX-DEC-060"
   ],
   "approved_paths": [
     "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
     "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
     "기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md",
+    "기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md",
     "기획서/00_프로젝트_허브/ROADMAP.md",
     "기획서/00_프로젝트_허브/START_HERE.md",
-    "기획서/40_표현/SX_DEC_059_VISUAL_REQUIREMENT_BRIEFS.md"
+    "기획서/10_경험/CORE_GAMEPLAY.md",
+    "기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md",
+    "기획서/20_시스템_콘텐츠/FIRST_SESSION_STAGE_CONTENT_SPEC_V1.md",
+    "기획서/40_표현/SX_DEC_059_VISUAL_REQUIREMENT_BRIEFS.md",
+    "기획서/50_제작_검증/SX_DEC_060_CODEX_HANDOFF_PACKAGE.md"
   ],
-  "approval_source": "USER_EXPLICIT_VISUAL_DIRECTION_APPROVAL_2026-08-26",
-  "approval_time": "2026-08-26T12:33:00+09:00",
-  "scope_summary": "User-approved VIS-SX-059-05 cargo stack silhouette: represent loaded cargo as a compact vertical LIFO tower attached to a short train rather than a long horizontal freight tail; preserve GMB-002 unlimited LIFO semantics, Candidate 003 evidence ceilings, and all gameplay/runtime authority."
+  "approval_source": "USER_EXPLICIT_VIS_SX_059_05_AND_SX_DEC_060_APPROVAL_2026-08-26",
+  "approval_time": "2026-08-26T20:27:39+09:00",
+  "scope_summary": "User-approved protected documentation/context reconciliation for VIS-SX-059-05 and SX-DEC-060: preserve the compact LIFO visual and Candidate 003 historical exact-byte ceiling; define cardinal off-track station service, unchanged cargo Manual/Auto and unlimited LIFO/TOP meaning, start-reachable preflight, and zero-new-bitmap consumer-first rule. No runtime/product asset/unauthorized 056-058 implementation is approved by this manifest."
 }
