@@ -65,7 +65,7 @@ class SxDec059ImplementationCanonicalFreshnessTests(unittest.TestCase):
         )
         for required in (
             "SX-DEC-060",
-            "SX60-POC-ACCEPT-001 physical self-run",
+            "SX60-POC-ACCEPT-001 human physical self-run",
             "PREPARED_PACKAGE_VERIFIED",
             "NOT_RUN",
         ):

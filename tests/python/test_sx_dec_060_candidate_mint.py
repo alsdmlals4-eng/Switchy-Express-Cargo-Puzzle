@@ -34,6 +34,10 @@ class SXDec060CandidateMintTests(unittest.TestCase):
 
     def test_candidate_does_not_promote_physical_or_human_evidence(self) -> None:
         artifact = self._json(ARTIFACT)
+        self.assertEqual(
+            artifact["verification"]["windows_physical_startup_and_build_entry_automation_observed"],
+            "PASS · 2026-08-26 · title screen rendered and Demo Start reached the build board",
+        )
         for key in (
             "developer_self_run",
             "windows_physical_runtime_full_scenarios",

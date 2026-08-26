@@ -260,7 +260,7 @@ Any finding is fixed and the affected full loop is repeated. `CLEAN_REVIEW_EXIT`
 Blocked until S60-1~10 are complete.
 
 ```text
-SX60-POC-ACCEPT-001 physical self-run
+SX60-POC-ACCEPT-001 human physical self-run
 → Windows full physical smoke
 → audio perceptual QA
 → Android device smoke

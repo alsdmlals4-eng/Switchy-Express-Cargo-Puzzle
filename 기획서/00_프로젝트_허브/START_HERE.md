@@ -23,9 +23,9 @@ Last updated: `2026-08-26 KST`
 | image requirement | `0 new bitmap · reuse existing station PNG consumers + procedural service overlay` |
 | pre-060 Candidate 003 | `SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY after SX-DEC-060` |
 | post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · SX60-POC-ACCEPT-001 · PREPARED_PACKAGE_VERIFIED` |
-| post-060 candidate | `SX60-POC-ACCEPT-001 · PACKAGE_VERIFIED · physical gates NOT_RUN` |
+| post-060 candidate | `SX60-POC-ACCEPT-001 · PACKAGE_VERIFIED · human physical gates NOT_RUN` |
 | post-060 automated regression | `PASS · 111 cases / 13,461 assertions · CI 7 GREEN · SX-AUD-071 CLOSED` |
-| post-060 Windows physical | `NOT_RUN` |
+| post-060 Windows physical | `INITIAL_TITLE_AND_BUILD_ENTRY_PASS_AUTOMATION_OBSERVED · full human/runtime gate NOT_RUN` |
 | post-060 Android device | `NOT_RUN` |
 | post-060 five-person | `NOT_RUN` |
 | Player experience | `NOT_RUN` |
@@ -143,7 +143,7 @@ Historical v4.7/r2/r4 adapter/reconciliation materials (including v4.8 `2026-08-
 ## Current next action
 
 ```text
-SX60-POC-ACCEPT-001 physical self-run
+SX60-POC-ACCEPT-001 human physical self-run
 → Windows physical smoke
 → Android device smoke
 → Five-person first-contact comprehension

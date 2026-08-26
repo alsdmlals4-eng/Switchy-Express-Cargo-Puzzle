@@ -3,19 +3,23 @@
   "godot_ai": {
     "user_local_version": null,
     "user_local_version_status": "REVERIFY_IN_FRESH_POWERSHELL",
-    "repo_version": "3.1.4",
-    "repo_version_source": "addons/godot_ai/plugin.cfg@project-main-0a88f707e1e4131ae4372929f2871d2b8a3a74b7",
-    "upstream_tag": "v3.1.3",
-    "upstream_commit": "22678e5f9b038d7203d6b43b0aae20a5417c500e",
-    "upstream_reference_role": "LAST_VERIFIED_RELEASE_BASIS_ONLY",
-    "upstream_3_1_4_version_bump_commit": "96cc8b8c3d25ce487e24801d01d5214fea150349",
-    "upstream_3_1_4_version_bump_evidence": "hi-godot/godot-ai commit message: Bump version to 3.1.4",
-    "upstream_main_version_observed": "3.1.5",
-    "upstream_main_commit_observed": "09a1e3311015153d967710fbe6502ac519585a9b",
+    "repo_version": "3.2.0",
+    "repo_version_source": "addons/godot_ai/plugin.cfg@project-main-5ee7d03c73c3ae2c3253ad0165c5ea9284ecbb6a",
+    "repo_addon_tree_sha": "66a9df59a92f0029efcd35c22fea355c93e8fe49",
+    "adoption_authority": "USER_APPROVED_GODOT_AI_3_2_0_2026_08_26",
     "user_enabled_approved": true,
-    "repository_sync_basis": "PROJECT_PLUGIN_CFG_3_1_4_PRESENT_UPSTREAM_VERSION_BUMP_COMMIT_OBSERVED_EXACT_TREE_PARITY_REVERIFY_REQUIRED",
-    "provenance_status": "PROJECT_REPO_3_1_4_PRESENT_UPSTREAM_VERSION_BUMP_COMMIT_OBSERVED_FULL_TREE_PARITY_UNVERIFIED",
-    "build_gate": "VERIFY_LOCAL_REPO_TREE_PARITY_BEFORE_GODOT_AUTHORING"
+    "repository_sync_basis": "USER_APPROVED_PROJECT_COMMIT_5EE7D03_EXACT_ADDON_TREE_RECORDED",
+    "provenance_status": "PROJECT_REPO_3_2_0_EXACT_TREE_RECORDED_EXTERNAL_UPSTREAM_PARITY_UNVERIFIED",
+    "build_gate": "VERIFY_LOCAL_REPO_TREE_PARITY_BEFORE_GODOT_AUTHORING",
+    "historical_pre_3_2_project_state": {
+      "repo_version": "3.1.4",
+      "project_main_observed": "0a88f707e1e4131ae4372929f2871d2b8a3a74b7",
+      "upstream_tag": "v3.1.3",
+      "upstream_commit": "22678e5f9b038d7203d6b43b0aae20a5417c500e",
+      "upstream_3_1_4_version_bump_commit": "96cc8b8c3d25ce487e24801d01d5214fea150349",
+      "upstream_main_version_observed": "3.1.5",
+      "upstream_main_commit_observed": "09a1e3311015153d967710fbe6502ac519585a9b"
+    }
   },
   "gut": {
     "repo_version": "9.7.1",
