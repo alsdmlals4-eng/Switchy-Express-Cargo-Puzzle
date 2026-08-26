@@ -246,8 +246,9 @@ Do not modify, rebase, merge, close, or absorb it without separate explicit auth
 ```yaml
 godot: 4.7.1-stable
 gut: 9.7.1
-project_godot_ai_plugin_cfg: 3.1.4
-project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED_BEFORE_FUTURE_AUTHORING
+project_godot_ai_plugin_cfg: 3.2.0
+project_3_2_0_project_tree: 66a9df59a92f0029efcd35c22fea355c93e8fe49
+project_3_2_0_external_upstream_parity: UNVERIFIED
 ```
 
 `docs/tooling/local_godot_tooling_state.json` is evidence owner. Fresh local authoring must re-check repo/project identity, dirty/diverged state, exact tool pins, and runtime session before mutation.

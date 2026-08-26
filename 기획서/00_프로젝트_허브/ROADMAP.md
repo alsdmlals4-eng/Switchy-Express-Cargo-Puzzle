@@ -186,7 +186,7 @@ Stable sequence:
 
 ```text
 post-merge package proof
-→ SX60-POC-ACCEPT-001 physical self-run
+→ SX60-POC-ACCEPT-001 human physical self-run
 ```
 
 ```yaml

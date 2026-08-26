@@ -51,7 +51,8 @@ sx_dec_060_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-
 sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-001 · PREPARED_PACKAGE_VERIFIED
 sx_dec_060_notion_sync: PASS · POST_PR_188_READBACK_COMPLETE
 developer_self_run: NOT_RUN_POST_SX_DEC_060
-acceptance_build: SX60-POC-ACCEPT-001 · PACKAGE_VERIFIED_PENDING_PHYSICAL_SELF_RUN
+windows_physical_startup_and_build_entry_automation_observed: PASS
+acceptance_build: SX60-POC-ACCEPT-001 · PACKAGE_VERIFIED · HUMAN_PHYSICAL_SELF_RUN_PENDING
 windows_full_physical_runtime: NOT_RUN_POST_SX_DEC_060
 audio_perceptual_qa: NOT_RUN_POST_SX_DEC_060
 android_device: NOT_RUN_POST_SX_DEC_060
@@ -231,7 +232,7 @@ PR #158 implementation → PR #166 playable POC → PR #171 visual correction �
 
 current:
 SX-DEC-060 merged main PR #188
-→ SX60-POC-ACCEPT-001 physical self-run
+→ SX60-POC-ACCEPT-001 human physical self-run
 → Windows physical smoke
 → Android device smoke
 → Five-person first-contact comprehension

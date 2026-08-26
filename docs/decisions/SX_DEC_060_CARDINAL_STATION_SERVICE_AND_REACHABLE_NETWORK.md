@@ -178,7 +178,7 @@ sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREE
 sx_dec_060_five_pass_review: CLOSED · SX-AUD-071
 sx_dec_060_notion_readback: PASS
 sx_dec_060_packaged_runtime: PASS · SX60-POC-ACCEPT-001
-sx_dec_060_windows_physical: NOT_RUN
+sx_dec_060_windows_physical: INITIAL_TITLE_AND_BUILD_ENTRY_PASS_AUTOMATION_OBSERVED · FULL_HUMAN_GATE_NOT_RUN
 sx_dec_060_android_device: NOT_RUN
 sx_dec_060_five_person_comprehension: NOT_RUN
 sx_dec_060_player_experience: NOT_RUN
@@ -206,6 +206,6 @@ The implementation must not absorb:
 Actual GDScript / Scene / Resource / map-data / runtime test work is merged-main verified by PR #188 under the active r5.4 project contract.
 
 ```text
-SX60-POC-ACCEPT-001 physical self-run
+SX60-POC-ACCEPT-001 human physical self-run
 → physical/device/human evidence gates
 ```

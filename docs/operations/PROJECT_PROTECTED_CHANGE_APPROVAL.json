@@ -6,7 +6,8 @@
   "decision_ids": [
     "USER-APPROVAL-2026-08-26-R5.4-AUTHORITY-RECONCILIATION",
     "VIS-SX-059-05",
-    "SX-DEC-060"
+    "SX-DEC-060",
+    "USER-APPROVAL-2026-08-26-GODOT-AI-3.2.0"
   ],
   "approved_paths": [
     "game/demo/presentation/product_board_renderer.gd",
@@ -17,6 +18,7 @@
     "game/finite/rail/finite_track_graph_builder.gd",
     "game/finite/run/finite_run_session_factory.gd",
     "game/station/station.gd",
+    "game/demo/presentation/product_shell_art.gd.uid",
     "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
     "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
     "기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md",
@@ -28,10 +30,11 @@
     "기획서/20_시스템_콘텐츠/FIRST_SESSION_STAGE_CONTENT_SPEC_V1.md",
     "기획서/40_표현/SX_DEC_059_VISUAL_REQUIREMENT_BRIEFS.md",
     "기획서/50_제작_검증/SX_DEC_060_CODEX_HANDOFF_PACKAGE.md",
+    "기획서/50_제작_검증/SX_AUD_071_SX_DEC_060_IMPLEMENTATION_FIVE_PASS_REVIEW.md",
     "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_01.md",
     "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_01.md"
   ],
   "approval_source": "USER_EXPLICIT_VIS_SX_059_05_AND_SX_DEC_060_APPROVAL_2026-08-26",
   "approval_time": "2026-08-26T20:27:39+09:00",
-  "scope_summary": "User-approved SX-DEC-060 implementation: preserve the compact LIFO visual and Candidate 003 historical exact-byte ceiling; implement cardinal off-track station service, unchanged cargo Manual/Auto and unlimited LIFO/TOP meaning, start-reachable preflight, active map/tutorial migration, and zero-new-bitmap consumer-first procedural presentation. No product asset generation or unauthorized 056-058 implementation is approved by this manifest."
+  "scope_summary": "User-approved SX-DEC-060 implementation: preserve the compact LIFO visual and Candidate 003 historical exact-byte ceiling; implement cardinal off-track station service, unchanged cargo Manual/Auto and unlimited LIFO/TOP meaning, start-reachable preflight, active map/tutorial migration, and zero-new-bitmap consumer-first procedural presentation. User also approved adoption of the exact project Godot AI 3.2.0 tree at main commit 5ee7d03c73c3ae2c3253ad0165c5ea9284ecbb6a; its reconciliation records provenance without inferring external upstream parity. No product asset generation or unauthorized 056-058 implementation is approved by this manifest."
 }

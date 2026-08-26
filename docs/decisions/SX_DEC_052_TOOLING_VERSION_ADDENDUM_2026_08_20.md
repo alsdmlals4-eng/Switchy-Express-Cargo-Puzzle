@@ -4,12 +4,25 @@
 parent_decision: SX-DEC-052_LOCAL_TOOLING_ASSET_VAULT_RECONCILIATION
 status: CURRENT_EVIDENCE_ADDENDUM
 historical_parent_state: GODOT_AI_3_1_3_SYNCED_AT_2026_08_09_CLOSURE
-current_project_repo_plugin: 3.1.4
+current_project_repo_plugin: 3.2.0
 current_user_local_version: UNVERIFIED
 build_gate: VERIFY_LOCAL_REPO_TREE_PARITY_BEFORE_GODOT_AUTHORING
 ```
 
-`SX_DEC_052_LOCAL_TOOLING_ASSET_VAULT_RECONCILIATION.md`의 3.1.3 기록은 **2026-08-09 당시 병합/검증된 역사 증거**로 보존한다. 이 addendum은 그 역사 기록을 삭제하지 않고, 이후 프로젝트 main이 실제로 3.1.4 plugin manifest를 포함하게 된 현재 상태만 덧붙인다.
+`SX_DEC_052_LOCAL_TOOLING_ASSET_VAULT_RECONCILIATION.md`의 3.1.3 기록과 이 addendum의 3.1.4 관찰은 역사 증거로 보존한다. 2026-08-26 사용자가 프로젝트의 Godot AI 3.2.0 채택을 명시 승인했으며, 현재 권위는 그 승인된 프로젝트 tree다.
+
+## 2026-08-26 · user-approved 3.2.0 project adoption
+
+```yaml
+project_plugin_cfg_version: 3.2.0
+project_adoption_commit: 5ee7d03c73c3ae2c3253ad0165c5ea9284ecbb6a
+project_addon_tree_sha: 66a9df59a92f0029efcd35c22fea355c93e8fe49
+adoption_authority: USER_APPROVED_GODOT_AI_3_2_0_2026_08_26
+external_upstream_tree_parity: UNVERIFIED
+local_repo_tree_parity: REVERIFY_REQUIRED_BEFORE_GODOT_AUTHORING
+```
+
+This adopts the repository's exact 3.2.0 tree. It does not infer an upstream tag, commit, or user-local parity from the version string.
 
 ## Current observed repository evidence
 

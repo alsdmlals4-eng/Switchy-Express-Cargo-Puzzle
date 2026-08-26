@@ -52,7 +52,7 @@ sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_notion_readback: PASS
 post_sx_dec_060_candidate_status: PREPARED_PACKAGE_VERIFIED · SX60-POC-ACCEPT-001
-windows_physical_post_060: NOT_RUN
+windows_physical_post_060: PASS_AUTOMATION_OBSERVED_INITIAL_TITLE_AND_BUILD_ENTRY
 android_device_post_060: NOT_RUN
 five_person_post_060: NOT_RUN
 player_experience_post_060: NOT_RUN
@@ -211,7 +211,7 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 ## Current next action
 
 ```text
-SX60-POC-ACCEPT-001 physical self-run
+SX60-POC-ACCEPT-001 human physical self-run
 → Windows physical smoke
 → Android device smoke
 → Five-person comprehension
@@ -228,7 +228,7 @@ CODEX_HANDOFF_EXECUTED
 RUNTIME_MERGED_MAIN_VERIFIED_PR_188
 AUTOMATED_REGRESSION_PASS_111_CASES_13461_ASSERTIONS
 POST_060_PACKAGE_VERIFIED_SX60_POC_ACCEPT_001
-POST_060_PHYSICAL_NOT_RUN
+POST_060_INITIAL_WINDOWS_RENDER_PASS_AUTOMATION_OBSERVED
 POST_060_DEVICE_NOT_RUN
 POST_060_HUMAN_NOT_RUN
 NEW_BITMAP_ASSETS_0

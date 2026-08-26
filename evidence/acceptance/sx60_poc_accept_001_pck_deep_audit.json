@@ -42,6 +42,7 @@
   },
   "evidence_ceiling": {
     "package_integrity": "PASS",
+    "windows_physical_startup_and_build_entry_automation_observed": "PASS · title screen and build board only",
     "physical_visual_recheck": "NOT_RUN",
     "developer_self_run": "NOT_RUN",
     "windows_physical_runtime_full_scenarios": "NOT_RUN",
