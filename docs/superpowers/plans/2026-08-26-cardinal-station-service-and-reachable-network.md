@@ -1,5 +1,9 @@
 # SX-DEC-060 Cardinal Station Service and Reachable Network Implementation Plan
 
+**Status:** `HISTORICAL_EXECUTION_PROVENANCE · IMPLEMENTATION_MERGED_MAIN_VERIFIED · PR #188`
+
+> The task instructions below preserve the approved pre-execution plan. They are not the current next action: PR #188 merged to `main` at `740b4b9312fa27289fd62baab8dda54c68ead3a7`; the next gate is a new exact post-060 package candidate and its physical/human validation.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Implement exact four-direction, one-cell station delivery service and start-reachable-network preflight while preserving Switchy Express LIFO/cargo/switch semantics and requiring no new bitmap assets.
@@ -601,6 +605,14 @@ After merge, re-fetch project `main`, current Decision owners, and Notion before
 - Type consistency: station service helper names and `Vector2i` contracts are consistent between design and tasks. `handle_cell_entered()` remains the runtime contact boundary.
 - YAGNI check: arbitrary range/diagonal/multi-station priority/new bitmap remain excluded.
 
-## Execution handoff
+## Execution outcome
 
-Implementation is ready for the project Codex Godot product implementation route after this canon package is merged and Notion readback is synchronized. Codex must fresh-read merged `main` and the exact project Notion Home before executing Task 1.
+The project Codex route executed this plan in PR #188. The merged `main` commit is `740b4b9312fa27289fd62baab8dda54c68ead3a7`; the recorded automated regression is `111 cases / 13,461 assertions`, all seven PR checks are green, and the five-pass implementation review closed as `SX-AUD-071`.
+
+```text
+PACKAGED_RUNTIME_NOT_RUN
+PHYSICAL_NOT_RUN
+HUMAN_NOT_RUN
+```
+
+This does not promote package, physical-device, audio, or human evidence: a new exact post-060 package candidate remains required before those gates.

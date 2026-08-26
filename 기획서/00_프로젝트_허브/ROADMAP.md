@@ -140,7 +140,7 @@ role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY
 
 ## M5C · SX-DEC-060 Cardinal Station Service + Reachable Network
 
-`CURRENT · IMPLEMENTED_AUTOMATED_PR_PENDING`
+`CURRENT · MERGED_MAIN_VERIFIED · PR #188`
 
 ### User-approved rule
 
@@ -175,32 +175,30 @@ docs/superpowers/plans/2026-08-26-cardinal-station-service-and-reachable-network
 기획서/50_제작_검증/SX_DEC_060_CODEX_HANDOFF_PACKAGE.md
 ```
 
-Actual Godot product implementation owner is `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF`.
+Actual Godot product implementation is merged-main verified by PR #188; the package/human evidence gates remain separate.
 
 ## M6 · SX-DEC-060 implementation / automated / package gate
 
-`CURRENT_NEXT_PRODUCT_GATE · PR_REVIEW_CI_MERGE_READBACK`
+`CURRENT_NEXT_PRODUCT_GATE · POST_MERGE_PACKAGE_PROOF_AND_CANDIDATE`
 
 Stable sequence:
 
 ```text
-Full Godot regression PASS (111 cases / 13,461 assertions)
-→ five-pass adversarial review
-→ exact-head PR checks
-→ merge/readback
+post-merge package proof
 → new exact post-060 package candidate
 ```
 
 ```yaml
-SX_DEC_060_RUNTIME: IMPLEMENTED_AUTOMATED · PR_PENDING
-FULL_AUTOMATED_REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · PR_PENDING
+SX_DEC_060_RUNTIME: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
+FULL_AUTOMATED_REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
+FIVE_PASS_REVIEW: CLOSED · SX-AUD-071
 POST_060_PACKAGE: NOT_RUN
 POST_060_CANDIDATE: NOT_CREATED
 ```
 
 ## M6A · Post-060 physical/device/human validation
 
-`BLOCKED_BY_M6`
+`BLOCKED_BY_POST_060_PACKAGE_CANDIDATE`
 
 After a new exact post-060 candidate exists:
 

@@ -13,7 +13,7 @@ base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
 current_decisions: SX-DEC-027~060
-current_product_gate: SX_DEC_060_EXACT_HEAD_REVIEW_CI_MERGE
+current_product_gate: SX_DEC_060_POST_MERGE_PACKAGE_PROOF_AND_CANDIDATE
 ```
 
 ## 1. Stable historical implementation evidence
@@ -86,7 +86,7 @@ new_bitmap_assets: 0
 
 ## 4. SX-DEC-060 planning / handoff gate
 
-`PASS · PREPARED`
+`PASS · EXECUTED_AND_MERGED_MAIN_VERIFIED · PR #188`
 
 Binding owners:
 
@@ -97,11 +97,11 @@ docs/superpowers/plans/2026-08-26-cardinal-station-service-and-reachable-network
 기획서/50_제작_검증/SX_DEC_060_CODEX_HANDOFF_PACKAGE.md
 ```
 
-Actual GDScript/Scene/Resource/map/runtime work is owned by `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF` after canon merge + Notion sync.
+Actual GDScript/Scene/Resource/map/runtime work is merged-main verified by PR #188; this handoff package remains implementation provenance.
 
 ## 5. SX-DEC-060 RED→GREEN runtime chain
 
-S60-1~S60-9 implementation/regression are complete on the pending exact PR head. S60-10 and merge/readback remain open; package and physical gates remain `NOT_RUN`.
+S60-1~S60-10 implementation, regression, review, merge, and Notion readback are complete on `main` PR #188. Package and physical gates remain `NOT_RUN`.
 
 ```text
 S60-1 schema-v3 + service-cell definition RED/GREEN
@@ -260,7 +260,7 @@ Any finding is fixed and the affected full loop is repeated. `CLEAN_REVIEW_EXIT`
 Blocked until S60-1~10 are complete.
 
 ```text
-new exact post-060 candidate
+new exact post-060 package candidate
 → Windows full physical smoke
 → audio perceptual QA
 → Android device smoke

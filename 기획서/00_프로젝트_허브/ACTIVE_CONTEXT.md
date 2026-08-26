@@ -47,9 +47,10 @@ sx_dec_060_decision_owner: docs/decisions/SX_DEC_060_CARDINAL_STATION_SERVICE_AN
 sx_dec_060_design_spec: docs/superpowers/specs/2026-08-26-cardinal-station-service-and-reachable-network-design.md
 sx_dec_060_implementation_plan: docs/superpowers/plans/2026-08-26-cardinal-station-service-and-reachable-network.md
 sx_dec_060_codex_handoff: 기획서/50_제작_검증/SX_DEC_060_CODEX_HANDOFF_PACKAGE.md
-sx_dec_060_implementation_review: FIVE_PASS_CLEAN · SX_AUD_071 · PR_PENDING
-sx_dec_060_runtime_implementation: IMPLEMENTED_AUTOMATED · PR_PENDING
-sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · PR_PENDING
+sx_dec_060_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
+sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
+sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
+sx_dec_060_notion_readback: PASS
 post_sx_dec_060_candidate_status: NOT_CREATED
 windows_physical_post_060: NOT_RUN
 android_device_post_060: NOT_RUN
@@ -210,10 +211,7 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 ## Current next action
 
 ```text
-PR #185 exact-head review + CI
-→ safe merge
-→ main + Notion readback
-→ new exact post-060 package candidate
+new exact post-060 package candidate
 → Windows physical smoke
 → Android device smoke
 → Five-person comprehension
@@ -227,7 +225,7 @@ USER_RULE_APPROVED
 DESIGN_RECORDED
 TDD_PLAN_RECORDED
 CODEX_HANDOFF_EXECUTED
-RUNTIME_IMPLEMENTED_AUTOMATED
+RUNTIME_MERGED_MAIN_VERIFIED_PR_188
 AUTOMATED_REGRESSION_PASS_111_CASES_13461_ASSERTIONS
 POST_060_PACKAGE_NOT_RUN
 POST_060_PHYSICAL_NOT_RUN

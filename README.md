@@ -21,7 +21,7 @@ fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
 google_sheets: RETIRED_NO_ACTIVE_USE
 sx_dec_060_user_rule: APPROVED
 sx_dec_060_design_tdd_handoff: PREPARED
-sx_dec_060_runtime: IMPLEMENTED_AUTOMATED · PR_PENDING
+sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 post_sx_dec_060_candidate: NOT_CREATED
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY
 windows_physical_post_060: NOT_RUN
@@ -140,22 +140,12 @@ docs/superpowers/plans/2026-08-26-cardinal-station-service-and-reachable-network
 기획서/50_제작_검증/SX_DEC_060_CODEX_HANDOFF_PACKAGE.md
 ```
 
-Actual GDScript/Scene/Resource/map/runtime implementation owner is `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF` after this canon package is merged and Notion is synchronized.
+Actual GDScript/Scene/Resource/map/runtime implementation is merged-main verified by PR #188; the package/human evidence gates remain separate.
 
 ## Current Next Work
 
 ```text
-verify merged SX-DEC-060 canon + current Notion sync
-→ Codex fresh-read merged main + exact Notion Home
-→ RED schema/service tests
-→ FiniteMapDefinition v3
-→ cardinal station delivery
-→ start-reachable preflight
-→ active map/tutorial migration + deterministic witnesses
-→ existing station PNG + procedural service indication
-→ full automated/static/package regression
-→ five-pass adversarial review
-→ new exact post-060 candidate
+→ new exact post-060 package candidate
 → Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person comprehension
@@ -188,4 +178,4 @@ Enter: 타이틀·브리핑 확인
 Esc: 취소·뒤로
 ```
 
-SX-DEC-060 runtime은 schema v3/cardinal service/start-reachable preflight로 구현됐고 headless regression 111 cases / 13,461 assertions가 통과했습니다. 이는 PR pending automated evidence이며 실제 Windows/Android/사람 검증이나 post-060 package candidate를 뜻하지 않습니다.
+SX-DEC-060 runtime은 schema v3/cardinal service/start-reachable preflight로 구현되어 PR #188로 병합됐고, headless regression 111 cases / 13,461 assertions와 exact-head CI 7개가 통과했습니다. 이는 자동 검증 증거이며 실제 Windows/Android/사람 검증이나 post-060 package candidate를 뜻하지 않습니다.

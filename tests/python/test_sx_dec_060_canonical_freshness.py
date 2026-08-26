@@ -124,10 +124,17 @@ class SXDec060CanonicalFreshnessTests(unittest.TestCase):
         ):
             self.assertIn(required, combined)
 
+    def test_current_gate_starts_with_post_merge_package_candidate_work(self) -> None:
+        for key in ("readme", "roadmap", "development_gates"):
+            text = self._read_current(key)
+            self.assertIn("new exact post-060 package candidate", text)
+            self.assertNotIn("SX_DEC_060_EXACT_HEAD_REVIEW_CI_MERGE", text)
+            self.assertNotIn("PR_REVIEW_CI_MERGE_READBACK", text)
+
     def test_active_owners_record_automated_runtime_delivery_without_promoting_human_evidence(self) -> None:
         for key in ("current_decisions", "active_context"):
             text = self._read_current(key)
-            self.assertIn("sx_dec_060_runtime_implementation: IMPLEMENTED_AUTOMATED", text)
+            self.assertIn("sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188", text)
             self.assertIn("sx_dec_060_automated_regression: PASS", text)
             self.assertTrue(
                 "windows_physical" in text or "windows_full_physical" in text,
@@ -155,6 +162,28 @@ class SXDec060CanonicalFreshnessTests(unittest.TestCase):
         for key, path in PACKAGE_OWNERS.items():
             text = self._read_path(path)
             self.assertIn("SX-DEC-060", text, f"{key} does not share Decision ID")
+
+    def test_implementation_package_records_merged_state_without_promoting_physical_evidence(self) -> None:
+        decision = self._read_path(PACKAGE_OWNERS["decision"])
+        design = self._read_path(PACKAGE_OWNERS["design"])
+        plan = self._read_path(PACKAGE_OWNERS["plan"])
+        handoff = self._read_path(PACKAGE_OWNERS["handoff"])
+
+        self.assertIn("MERGED_MAIN_VERIFIED · PR #188", decision)
+        self.assertIn("IMPLEMENTATION_MERGED_MAIN_VERIFIED · PR #188", design)
+        self.assertIn("HISTORICAL_EXECUTION_PROVENANCE · IMPLEMENTATION_MERGED_MAIN_VERIFIED · PR #188", plan)
+        self.assertIn("EXECUTED_MERGED_MAIN_VERIFIED", handoff)
+        self.assertIn("godot_product_implementation: MERGED_MAIN_VERIFIED · PR_188", handoff)
+        self.assertIn("automated_regression: PASS · 111_CASES_13461_ASSERTIONS", handoff)
+        self.assertIn("implementation_five_pass_review: CLOSED · SX-AUD-071", handoff)
+        self.assertNotIn("IMPLEMENTATION_NOT_YET_EXECUTED", decision)
+        self.assertNotIn("IMPLEMENTATION_NOT_YET_EXECUTED", design)
+        self.assertNotIn("PREPARED_NOT_EXECUTED", handoff)
+        self.assertNotIn("Implementation is ready for a Codex agent to execute", plan)
+
+        for text in (design, plan, handoff):
+            self.assertIn("PHYSICAL_NOT_RUN", text)
+            self.assertIn("HUMAN_NOT_RUN", text)
 
     def test_protected_future_packages_and_pr_174_stay_closed(self) -> None:
         combined = "\n".join(self._read_current(key) for key in CURRENT_OWNERS)

@@ -104,7 +104,7 @@ current_decision_span: SX-DEC-027~060
 - An irrelevant disconnected rail island is allowed; reachable malformed rail remains fail-closed.
 - The implementation target is FiniteMapDefinition schema v3 with off-track, player-non-buildable station cells.
 - Existing station PNG consumers plus a procedural service indicator are the default; new bitmap assets: 0.
-- This is a user-approved design contract only. SX-DEC-060 runtime, regression, package, physical, device, and human evidence remain NOT_RUN.
+- SX-DEC-060 runtime and automated regression are merged-main verified by PR #188 (`740b4b9312fa27289fd62baab8dda54c68ead3a7`); package, physical, device, and human evidence remain NOT_RUN.
 
 ## 4. Current implementation / evidence ceiling
 
@@ -124,8 +124,10 @@ pre_sx_dec_060_candidate_003_powershell_51_live_download: PASS
 pre_sx_dec_060_candidate_003_physical_visual_recheck: NOT_RUN
 sx_dec_060_user_rule: APPROVED
 sx_dec_060_design_tdd_handoff: PREPARED
-sx_dec_060_runtime: NOT_RUN
-sx_dec_060_automated_regression: NOT_RUN
+sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
+sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
+sx_dec_060_five_pass_review: CLOSED · SX-AUD-071
+sx_dec_060_notion_readback: PASS
 post_sx_dec_060_candidate: NOT_CREATED
 windows_physical_post_060: NOT_RUN
 android_device_post_060: NOT_RUN
@@ -139,12 +141,7 @@ Candidate 002의 Windows startup PASS는 역사적 physical evidence지만 P1 vi
 현재 post-060 implementation route:
 
 ```text
-verify the SX-DEC-060 canon is merged and Notion readback is current
-→ CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF from fresh merged main
-→ RED/GREEN schema-v3, cardinal delivery, and start-reachable preflight
-→ active map/tutorial migration plus deterministic witnesses
-→ full automated/static/package evidence
-→ a new exact post-060 candidate
+mint a new exact post-060 candidate after package proof
 → Windows physical smoke and audio perceptual QA
 → Android device smoke as a separate platform gate
 → Five-person first-contact comprehension on that post-060 build

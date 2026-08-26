@@ -152,8 +152,12 @@ sx_dec_058: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_059: MERGED_MAIN_VERIFIED · PRE_SX_DEC_060_RUNTIME
 sx_dec_059_build: PR_158 · main_162e8a0a5e8ddc8472e74a6152e87dc12008e34c
 sx_dec_059_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-066
-sx_dec_060: USER_APPROVED_CORE_DELTA · DESIGN_RECORDED
-sx_dec_060_runtime: IMPLEMENTED_AUTOMATED · PR_PENDING
+sx_dec_060: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
+sx_dec_060_runtime: MERGED_MAIN_VERIFIED · schema_v3/cardinal_service/reachable_preflight
+sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS
+sx_dec_060_ci: PASS · 7_REQUIRED_CHECKS
+sx_dec_060_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
+sx_dec_060_notion_readback: PASS
 sx_dec_060_post_change_candidate: NOT_CREATED
 ```
 
@@ -273,8 +277,10 @@ CANDIDATE 003 PACKAGE/PCK/TEXTURE POINTER: PASS · HISTORICAL_PRE_SX_DEC_060
 CANDIDATE 003 PHYSICAL VISUAL RECHECK: NOT_RUN
 SX-DEC-060 USER RULE: APPROVED
 SX-DEC-060 DESIGN/TDD/HANDOFF: PREPARED
-SX-DEC-060 RUNTIME: IMPLEMENTED_AUTOMATED · PR_PENDING
-SX-DEC-060 AUTOMATED REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · PR_PENDING
+SX-DEC-060 RUNTIME: MERGED_MAIN_VERIFIED · PR #188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
+SX-DEC-060 AUTOMATED REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
+SX-DEC-060 FIVE-PASS REVIEW: CLOSED · SX-AUD-071
+SX-DEC-060 NOTION READBACK: PASS
 POST-060 CANDIDATE: NOT_CREATED
 WINDOWS PHYSICAL POST-060: NOT_RUN
 AUDIO PERCEPTUAL POST-060: NOT_RUN
@@ -291,20 +297,7 @@ Automated/export/package/self-run does not imply HUMAN/PLAYER EXPERIENCE PASS. P
 Current next gate:
 
 ```text
-merge/sync SX-DEC-060 canon
-→ Notion same Decision ID + readback
-→ CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF
-→ fresh main/Notion/code/data/test read
-→ RED→GREEN schema v3
-→ cardinal service delivery
-→ start-reachable preflight
-→ active map/tutorial migration + deterministic witnesses
-→ existing station PNG + procedural service overlay
-→ copy/localization update
-→ full automated/static/package regression
-→ minimum five-pass adversarial review
-→ exact-head PR merge/readback
-→ new post-060 candidate
+new exact post-060 package candidate
 → physical/device/human gates
 ```
 
