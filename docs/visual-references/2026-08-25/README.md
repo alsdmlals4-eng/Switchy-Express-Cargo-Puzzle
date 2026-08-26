@@ -16,6 +16,10 @@ The durable human-facing pixel owner is Notion:
 
 The first GitHub JPG transport attempt was removed after byte-level corruption was discovered. GitHub keeps provenance, purpose, quality rules and source hashes; it does not act as a second pixel canon for this batch.
 
+### Future approved-image storage policy
+
+The historical transport limitation above remains specific to this 2026-08-25 batch. For every image approved after the user's 2026-08-26 decision, preserve both a Notion-owned attachment or durable preview with destination readback and a tracked project-local source/reference file with SHA-256 and provenance. Store runtime product assets under the appropriate `art/**` path and non-runtime visual references under `docs/visual-references/**`; record the role and consumer status in `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`. A Notion-only or repository-only image is `INCOMPLETE`, not fully approved preservation.
+
 ## Deliverables
 
 1. `01 · Before / After Route Visibility`
