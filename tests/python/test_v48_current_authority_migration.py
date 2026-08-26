@@ -12,35 +12,47 @@ PROJECT_ADAPTER = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
 PROJECT_SKILL = ROOT / "skills/switchy-express-design/SKILL.md"
 ACTIVE_CONTEXT = ROOT / "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md"
 
+CURRENT_R54_REVISION = "2026-08-26-r5.4-superset-final"
+CURRENT_R54_ROLE = "USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT"
+CURRENT_R54_SHA256 = "fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0"
+HISTORICAL_R4_REVISION = "2026-08-24-r4"
 HISTORICAL_R2_SHA256 = "6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508"
 PR_BASE_AT_MIGRATION = "f34995228ef58ec00fffd60f7c53951bfc631f7c"
 
 UNPROTECTED_CURRENT_OWNER_EXPECTATIONS = {
-    ROOT / "AGENTS.md": "revision: 2026-08-24-r4",
-    ROOT / "README.md": "work_instruction: v4.8 · revision 2026-08-24-r4 · SWITCHY_THIN_ADAPTER",
+    ROOT / "AGENTS.md": f"revision: {CURRENT_R54_REVISION}",
+    ROOT / "README.md": f"work_instruction: v4.8 · revision {CURRENT_R54_REVISION} · SWITCHY_THIN_ADAPTER",
 }
 
 
 class V48CurrentAuthorityMigrationTests(unittest.TestCase):
-    def test_v48_thin_adapter_binds_r4_without_deleting_history(self) -> None:
+    def test_v48_thin_adapter_binds_r54_without_deleting_history(self) -> None:
         self.assertTrue(V48_ADAPTER.is_file(), "current v4.8 project thin adapter is missing")
         self.assertTrue(V47_ADAPTER.is_file(), "v4.7 rollback/history adapter must be retained")
         text = V48_ADAPTER.read_text(encoding="utf-8")
         self.assertIn("contract_version: '4.8'", text)
-        self.assertIn("revision: '2026-08-24-r4'", text)
-        self.assertIn("current_user_contract_role: USER_PROVIDED_V4_8_R4_CONTRACT", text)
+        self.assertIn(f"revision: '{CURRENT_R54_REVISION}'", text)
+        self.assertIn(f"current_user_contract_role: {CURRENT_R54_ROLE}", text)
+        self.assertIn(f"source_r5_4_sha256: {CURRENT_R54_SHA256}", text)
+        self.assertIn(f"historical_r4_revision: {HISTORICAL_R4_REVISION}", text)
         self.assertIn(f"historical_r2_sha256: {HISTORICAL_R2_SHA256}", text)
-        self.assertIn("historical_r2_hash_is_not_r4_hash: true", text)
         self.assertIn("base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN", text)
         self.assertIn("google_sheets_policy: RETIRED_NO_ACTIVE_USE", text)
+        self.assertIn("fresh_read_bootstrap_policy: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED", text)
+        self.assertIn("gpt_local_codex_orchestration_policy: RETIRED", text)
+        self.assertIn(
+            "skill_coverage_policy: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT",
+            text,
+        )
         self.assertNotIn("revision: '2026-08-24-r2'", text)
-        self.assertNotIn("source_v4_8_sha256:", text)
+        self.assertNotIn("current_user_contract_role: USER_PROVIDED_V4_8_R4_CONTRACT", text)
 
-    def test_unprotected_entry_surfaces_route_to_r4(self) -> None:
+    def test_unprotected_entry_surfaces_route_to_r54(self) -> None:
         for path, required in UNPROTECTED_CURRENT_OWNER_EXPECTATIONS.items():
             self.assertTrue(path.is_file(), f"missing current owner: {path}")
             text = path.read_text(encoding="utf-8")
-            self.assertIn(required, text, f"{path} is not routed to v4.8 r4 current authority")
+            self.assertIn(required, text, f"{path} is not routed to v4.8 r5.4 current authority")
+            self.assertIn(CURRENT_R54_ROLE, text)
 
     def test_current_validation_routes_to_candidate_003(self) -> None:
         adapter = V48_ADAPTER.read_text(encoding="utf-8")
@@ -51,13 +63,15 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
         self.assertNotIn("acceptance_candidate: SX59-ACCEPT-001", adapter)
         self.assertIn("historical_candidate: SX59-ACCEPT-001 · SUPERSEDED_FOR_CURRENT_POC", active)
 
-    def test_r4_toolchain_overlay_is_routed_without_floating_latest(self) -> None:
+    def test_r54_execution_overlay_keeps_safe_exact_pin_and_retired_local_codex(self) -> None:
         text = V48_ADAPTER.read_text(encoding="utf-8")
         for required in (
             "LOCATION_THEN_GIT_FETCH_SAFE_FF_PULL_THEN_UPDATE_THEN_EDITOR",
             "REVIEW_CANARY_ROLLBACK_THEN_AUTO_APPLY_AND_EXACT_PIN",
             "SHARED_APPROVED_EXACT_PIN_DEFAULT_NO_PER_PROJECT_DUPLICATE_BINARY",
             "FIXED_DEFAULT_PORTS_WITH_EXACT_SESSION_ROUTING",
+            "GPT_LOCAL_CODEX_ORCHESTRATION_RETIRED",
+            "CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF",
         ):
             self.assertIn(required, text)
         self.assertNotIn("floating latest", text.lower())
