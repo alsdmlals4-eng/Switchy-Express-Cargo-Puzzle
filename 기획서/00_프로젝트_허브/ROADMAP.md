@@ -32,8 +32,9 @@ SX-DEC-059
 
 SX-DEC-060 · CURRENT
 → cardinal one-cell station service + start-reachable network rule approved
-→ decision/design/TDD/Codex handoff canon prepared
-→ runtime implementation NOT_RUN
+→ decision/design/TDD/Codex handoff executed
+→ runtime implementation merged/main verified · PR #188
+→ full automated regression PASS · 111 cases / 13,461 assertions · CI 7 GREEN
 → post-060 candidate NOT_CREATED
 ```
 
@@ -45,13 +46,13 @@ Finite handcrafted delivery puzzle. Historical endless/fuel/BOOST family remains
 
 ## M1 · Representative buildable map
 
-`PASS_PRE_SX_DEC_060 · MIGRATION_REQUIRED_FOR_POST_060`
+`PASS_POST_SX_DEC_060 · SCHEMA_V3_MAP_WITNESSES_MIGRATED`
 
-Current product already proves finite buildable-map infrastructure. SX-DEC-060 requires explicit schema-v3/map-witness migration rather than silently reinterpreting v2 map bytes.
+Current product proves finite buildable-map infrastructure. SX-DEC-060 schema-v3/map-witness migration is implemented and regression-verified; v2 bytes remain historical semantics and were not silently reinterpreted.
 
 ## M2 · Finite delivery core
 
-`PASS_PRE_SX_DEC_060 · CARDINAL_SERVICE_DELTA_NOT_RUN`
+`PASS_POST_SX_DEC_060 · CARDINAL_SERVICE_IMPLEMENTED`
 
 Stable core retained:
 
@@ -155,7 +156,7 @@ not every placed rail piece must join one global network
 ### Implementation contract
 
 ```yaml
-map_schema_target: 3
+map_schema_current: 3
 station_role: OFF_TRACK_SERVICE_OBJECT
 station_cell_player_track: FORBIDDEN
 cargo_contact: EXACT_CELL_UNCHANGED
