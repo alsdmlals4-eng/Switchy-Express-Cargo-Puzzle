@@ -7,7 +7,8 @@
     "USER-APPROVAL-2026-08-26-R5.4-AUTHORITY-RECONCILIATION",
     "VIS-SX-059-05",
     "SX-DEC-060",
-    "USER-APPROVAL-2026-08-26-GODOT-AI-3.2.0"
+    "USER-APPROVAL-2026-08-26-GODOT-AI-3.2.0",
+    "USER-APPROVAL-2026-08-26-AUTOMATIC-CONSUMER-IMAGE-POLICY"
   ],
   "approved_paths": [
     "game/demo/presentation/product_board_renderer.gd",
@@ -36,5 +37,5 @@
   ],
   "approval_source": "USER_EXPLICIT_VIS_SX_059_05_AND_SX_DEC_060_APPROVAL_2026-08-26",
   "approval_time": "2026-08-26T20:27:39+09:00",
-  "scope_summary": "User-approved SX-DEC-060 implementation: preserve the compact LIFO visual and Candidate 003 historical exact-byte ceiling; implement cardinal off-track station service, unchanged cargo Manual/Auto and unlimited LIFO/TOP meaning, start-reachable preflight, active map/tutorial migration, and zero-new-bitmap consumer-first procedural presentation. User also approved adoption of the exact project Godot AI 3.2.0 tree at main commit 5ee7d03c73c3ae2c3253ad0165c5ea9284ecbb6a; its reconciliation records provenance without inferring external upstream parity. No product asset generation or unauthorized 056-058 implementation is approved by this manifest."
+  "scope_summary": "User-approved SX-DEC-060 implementation: preserve the compact LIFO visual and Candidate 003 historical exact-byte ceiling; implement cardinal off-track station service, unchanged cargo Manual/Auto and unlimited LIFO/TOP meaning, start-reachable preflight, active map/tutorial migration, and zero-new-bitmap consumer-first procedural presentation. User also approved adoption of the exact project Godot AI 3.2.0 tree at main commit 5ee7d03c73c3ae2c3253ad0165c5ea9284ecbb6a; its reconciliation records provenance without inferring external upstream parity. User further approved automatic generation only for a verified concrete game consumer, with dual preservation in the tracked project-local asset path and Notion Visual/Asset destination while retaining the existing E+D Hybrid / Neo-Arcade visual language. Unauthorized 056-058 implementation remains excluded."
 }

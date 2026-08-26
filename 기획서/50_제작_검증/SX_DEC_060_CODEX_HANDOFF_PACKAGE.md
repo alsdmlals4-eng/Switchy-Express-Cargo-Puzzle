@@ -78,7 +78,8 @@ cargo_role: DIRECT_CONTACT
 preflight_scope: START_REACHABLE_RUN_COMPONENT
 irrelevant_disconnected_track_island: ALLOWED
 station_service_overlap: FAIL_CLOSED_CONTENT_ERROR
-new_image_assets: FORBIDDEN_WITHOUT_CONCRETE_RUNTIME_CONSUMER_AND_APPROVAL
+new_image_assets_for_sx_dec_060: 0
+new_image_assets_for_future_work: FORBIDDEN_WITHOUT_CONCRETE_RUNTIME_CONSUMER
 ```
 
 Do not generalize this into arbitrary radii or service shapes.
@@ -137,7 +138,15 @@ Therefore this implementation must:
 - add no new PNG/bitmap/image key for SX-DEC-060;
 - never ask an image generator to create an explanation board or concept sheet for this implementation.
 
-If procedural service indication is demonstrably insufficient, stop and submit a separate consumer-first asset proposal containing the exact node/key/path/size/state contract. Do not generate the image inside this implementation task.
+PR #188 completed this SX-DEC-060 implementation with no new bitmap, so that historical fact remains unchanged. For a later verified consumer that proves a missing bitmap slot, the current user policy is:
+
+```yaml
+automatic_consumer_image_policy: USER_APPROVED_2026_08_26
+approved_image_dual_storage: PROJECT_LOCAL_AND_NOTION
+visual_continuity: existing E+D Hybrid / Neo-Arcade visual language
+```
+
+Generate only the required bitmap without a separate per-image approval request; preserve the tracked project-local asset and Notion Visual/Asset record with provenance/SHA-256/readback. A real node/key/path consumer remains required.
 
 ## 6. TDD execution contract
 
@@ -212,7 +221,7 @@ Do not modify or absorb:
 - SX-DEC-058 challenge generation/pipeline;
 - legacy endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset;
 - Base current authority/pin;
-- existing 73 production PNG bytes unless a separate approved asset task exists;
+- existing 73 production PNG bytes in this historic SX-DEC-060 implementation; a later verified missing consumer slot follows the automatic consumer-image policy above rather than a separate per-image approval;
 - score formulas or player-facing solver behavior.
 
 If implementation requires one of these, stop that local task and return a scoped change proposal instead of expanding authority.
@@ -291,7 +300,7 @@ Technical default:
 - scope structural preflight checks to the start-reachable RUN component;
 - use existing station PNG consumers and a procedural service overlay; create zero new bitmap assets.
 
-Use the implementation plan task-by-task with RED→GREEN TDD. Do not modify PR #174, implement SX-DEC-056~058, invent score/combo, repin Base, revive legacy endless mechanics, or generate images. Preserve Candidate 003 as historical pre-060 evidence and mint a new candidate only from actual post-060 packaged output.
+Use the implementation plan task-by-task with RED→GREEN TDD. Do not modify PR #174, implement SX-DEC-056~058, invent score/combo, repin Base, revive legacy endless mechanics, or generate images without a concrete runtime consumer. Preserve Candidate 003 as historical pre-060 evidence and mint a new candidate only from actual post-060 packaged output.
 
 Run focused and full regression from exact head, then five complete adversarial loops. Never elevate package/CI evidence to physical/device/human/player PASS.
 ```

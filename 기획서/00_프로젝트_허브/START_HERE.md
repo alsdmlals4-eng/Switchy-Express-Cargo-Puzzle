@@ -104,7 +104,14 @@ Current `ProductBoardRenderer` already consumes approved station textures. There
 actual node/key/path consumer
 → existing asset reuse check
 → procedural solution check
-→ only then a separately approved missing bitmap asset
+→ only then, if a concrete slot is still missing, automatically generate the required bitmap
+→ preserve it in the tracked project-local asset path and Notion Visual/Asset destination
+→ retain the existing E+D Hybrid / Neo-Arcade visual language
+```
+
+```yaml
+automatic_consumer_image_policy: USER_APPROVED_2026_08_26
+approved_image_dual_storage: PROJECT_LOCAL_AND_NOTION
 ```
 
 ## Candidate evidence boundary

@@ -137,6 +137,16 @@ Therefore:
 
 `NEW_BITMAP_ASSETS_REQUIRED_BY_SX_DEC_060 = 0` at design time.
 
+The merged SX-DEC-060 implementation keeps that exact zero-new-bitmap fact. For a later verified runtime consumer, the current user policy is:
+
+```yaml
+automatic_consumer_image_policy: USER_APPROVED_2026_08_26
+approved_image_dual_storage: PROJECT_LOCAL_AND_NOTION
+visual_continuity: existing E+D Hybrid / Neo-Arcade visual language
+```
+
+Generate only the required bitmap, preserve the tracked project-local file and Notion Visual/Asset record with provenance/SHA-256/readback, and do not request a separate per-image approval.
+
 ## 8. Benchmark / trade study
 
 Three materially different approaches were compared:
@@ -197,7 +207,7 @@ The implementation must not absorb:
 - SX-DEC-058 challenge generator/pipeline;
 - arbitrary station radius or diagonal service;
 - solver / optimal route reveal;
-- new generated image assets without an actual runtime consumer and separate approval;
+- new generated image assets without an actual runtime consumer;
 - Base repin;
 - changes to pre-existing Draft PR #174.
 

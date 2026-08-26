@@ -174,6 +174,26 @@ class SXDec060CanonicalFreshnessTests(unittest.TestCase):
             "current owners do not make the no-new-bitmap contract explicit",
         )
 
+    def test_user_approved_automatic_consumer_image_policy_is_current(self) -> None:
+        combined = "\n".join(
+            self._read_current(key)
+            for key in ("agents", "active_context", "development_gates", "project_skill")
+        )
+        self.assertIn("automatic_consumer_image_policy: USER_APPROVED_2026_08_26", combined)
+        self.assertIn("approved_image_dual_storage: PROJECT_LOCAL_AND_NOTION", combined)
+        self.assertIn("existing E+D Hybrid / Neo-Arcade visual language", combined)
+        self.assertNotIn(
+            "new generated image without concrete game consumer + separate user approval",
+            combined,
+        )
+        for key in ("decision", "handoff"):
+            package_text = self._read_path(PACKAGE_OWNERS[key])
+            self.assertIn(
+                "automatic_consumer_image_policy: USER_APPROVED_2026_08_26",
+                package_text,
+            )
+            self.assertNotIn("CONCRETE_RUNTIME_CONSUMER_AND_APPROVAL", package_text)
+
     def test_decision_design_plan_and_handoff_exist_and_share_id(self) -> None:
         for key, path in PACKAGE_OWNERS.items():
             text = self._read_path(path)

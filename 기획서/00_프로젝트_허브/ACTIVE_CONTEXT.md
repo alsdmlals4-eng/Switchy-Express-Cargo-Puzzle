@@ -156,7 +156,14 @@ The user's current production-image rule is consumer-first:
 actual runtime node/key/path consumer exists
 → reuse existing asset if possible
 → procedural drawing if sufficient
-→ new bitmap only if a concrete missing texture slot remains and is separately approved
+→ if a concrete missing texture slot remains, generate the required bitmap automatically
+→ preserve the generated bitmap in the tracked project-local path and Notion Visual/Asset destination
+→ retain the existing E+D Hybrid / Neo-Arcade visual language
+```
+
+```yaml
+automatic_consumer_image_policy: USER_APPROVED_2026_08_26
+approved_image_dual_storage: PROJECT_LOCAL_AND_NOTION
 ```
 
 Current renderer already consumes:
@@ -242,7 +249,7 @@ NEW_BITMAP_ASSETS_0
 - no score/combo formula invention.
 - no player-facing solver.
 - no Base repin.
-- no new generated image without a concrete game consumer and separate user approval.
+- no new generated image without a concrete game consumer.
 - no physical/device/audio-perceptual/human PASS inflation.
 - PR #174 remains `PRE_EXISTING_DRAFT · READ_ONLY`.
 - historical SX-DEC-059/Candidate 003 files remain provenance, not post-060 current-runtime proof.
