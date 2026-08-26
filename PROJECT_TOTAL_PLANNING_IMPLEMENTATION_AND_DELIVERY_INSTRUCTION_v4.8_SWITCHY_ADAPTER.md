@@ -2,10 +2,12 @@
 contract_name: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION
 contract_version: '4.8'
 status: ACTIVE_PROJECT_THIN_ADAPTER
-revision: '2026-08-24-r4'
-current_user_contract_role: USER_PROVIDED_V4_8_R4_CONTRACT
+revision: '2026-08-26-r5.4-superset-final'
+current_user_contract_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
+source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
+historical_r4_revision: 2026-08-24-r4
+historical_r4_role: USER_PROVIDED_V4_8_R4_CONTRACT
 historical_r2_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
-historical_r2_hash_is_not_r4_hash: true
 base_repository: https://github.com/alsdmlals4-eng/Base
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
@@ -13,18 +15,27 @@ project_repository: https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzz
 human_workspace: NOTION_DEFAULT_PROJECT_WORKSPACE
 runtime_structured_authority: GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME
 google_sheets_policy: RETIRED_NO_ACTIVE_USE
+fresh_read_bootstrap_policy: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
+past_conversation_dependency_policy: NOT_REQUIRED_FOR_NEW_CHAT_RESUME
+context_drift_policy: RECHECK_BEFORE_MUTATION
+skill_coverage_policy: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT
+gpt_local_codex_orchestration_policy: RETIRED
+codex_execution_policy: INDEPENDENT_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF_ONLY
+powershell_policy: LOCAL_GODOT_OR_VALIDATION_ONLY_NOT_CODEX_LAUNCHER
 fresh_shell_bootstrap_policy: LOCATION_THEN_GIT_FETCH_SAFE_FF_PULL_THEN_UPDATE_THEN_EDITOR
 update_freshness_policy: CHECK_OFFICIAL_UPSTREAM_BEFORE_LOCAL_BUILD_AND_RUNTIME
 safe_auto_update_policy: REVIEW_CANARY_ROLLBACK_THEN_AUTO_APPLY_AND_EXACT_PIN
 shared_godot_runtime_policy: SHARED_APPROVED_EXACT_PIN_DEFAULT_NO_PER_PROJECT_DUPLICATE_BINARY
 shared_godot_ai_port_policy: FIXED_DEFAULT_PORTS_WITH_EXACT_SESSION_ROUTING
+slice_delivery_policy: PLAYABLE_MEANINGFUL_SLICE_INCREMENTAL_DELIVERY
+requirement_traceability_policy: REQUIREMENT_TO_OWNER_IMPLEMENTATION_EVIDENCE_COMPLETION_REQUIRED
 ---
 
-# Switchy Express · v4.8 r4 project thin adapter
+# Switchy Express · v4.8 r5.4 project thin adapter
 
-이 문서는 사용자가 2026-08-24 제공한 v4.8 revision r4 계약을 Switchy Express에 연결하는 **프로젝트 전용 얇은 adapter**다. Base의 Work Mode·Skill·CI·검증·Godot 운영 playbook을 다시 복사하지 않는다. 매 작업 시작 시 최신 Base completed `main`, 프로젝트 실제 상태, 현재 Notion Home을 다시 읽는다.
+이 문서는 사용자가 2026-08-26 제공한 v4.8 revision `r5.4-superset-final` 계약을 Switchy Express에 연결하는 **프로젝트 전용 얇은 adapter**다. Base의 Work Mode·Skill·CI·검증·Godot 운영 playbook을 다시 복사하지 않는다. 매 작업 시작 시 최신 Base completed `main`, current Skill Registry/generated map, 프로젝트 실제 상태, 현재 Notion Home을 다시 읽는다.
 
-`historical_r2_sha256`은 과거 r2 계약의 provenance다. **r4 파일 자체의 hash라고 주장하지 않는다.**
+`source_r5_4_sha256`은 이번 사용자 제공 계약 파일의 exact identity다. `historical_r4_revision`과 `historical_r2_sha256`은 각각 이전 r4/r2 계약 provenance이며 current authority가 아니다.
 
 ## 1. Project Profile
 
@@ -60,6 +71,8 @@ current_decision_span: SX-DEC-027~059
 - **GitHub/runtime**: structured canon, code, data, Scene/Resource, tracked assets, tests, CI, runtime truth.
 - **Google Sheets**: `GOOGLE_SHEETS: RETIRED_NO_ACTIVE_USE`. 일반 작업에서 읽기·쓰기·동기화·결정 입력·기본 탐색에 사용하지 않는다. 과거 ID/URL/sync 기록이 필요한 감사·provenance만 legacy migration evidence에서 확인한다.
 
+새 채팅은 과거 대화를 필수 입력으로 사용하지 않고 exact Project GitHub + Notion Home에서 `project identity → current goal → current quality/stage → protected scope → next safe action → evidence ceiling`을 재구성한다. GitHub↔Notion 의미가 충돌하면 `CONTEXT_DRIFT_RECHECK_REQUIRED`로 mutation 전에 되돌린다.
+
 ## 3. Protected product baseline
 
 현재 제품은 `GMB-002` finite delivery cargo puzzle이다.
@@ -80,6 +93,7 @@ current_decision_span: SX-DEC-027~059
 - UI/presentation은 gameplay outcome, score, save, identity authority를 소유하지 않는다.
 - 이미지 생성은 사용자 explicit request와 text brief 승인 없이는 시작하지 않는다.
 - physical/human/player evidence가 없으면 automated/package evidence를 해당 PASS로 올리지 않는다.
+- r5.4 authority adoption은 새로운 gameplay/UX/economy/content authorization이 아니다.
 
 ## 4. Current implementation / evidence ceiling
 
@@ -121,7 +135,7 @@ Candidate 003 physical visual recheck
 → product decision
 ```
 
-## 5. r4 local bootstrap / toolchain overlay
+## 5. r5.4 execution / toolchain overlay
 
 Godot authoring·runtime이 실제 acceptance에 필요한 작업에서만 최신 Base의 Godot/fresh-shell owner를 progressive-load한다.
 
@@ -140,6 +154,8 @@ fresh shell
 
 프로젝트별 동일 Godot binary나 전용 포트를 기본적으로 증식시키지 않는다. compatible host에서는 shared approved exact Godot/Godot-AI pin과 provider default fixed ports를 사용하고, project isolation은 exact path/editor/session identity로 보장한다. 충돌·breaking migration·추가 비용·권한 확대가 있으면 자동 update하지 않는다.
 
+`GPT_LOCAL_CODEX_ORCHESTRATION_RETIRED`: 사용자 PowerShell이나 GPT one-shot launcher로 local Codex를 띄우는 경로는 사용하지 않는다. 실제 Godot 제품 구현이 새로 필요할 때만 `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF`로 전환하고 Codex가 Project GitHub+Notion을 독립 fresh-read한 뒤 자신의 구현환경에서 구현/test/runtime evidence를 만든다.
+
 이 섹션은 Base의 상세 Godot 운영 계약을 복제하지 않는다. 실제 실행 시 current Base owner와 프로젝트 `docs/tooling/local_godot_tooling_state.json`을 다시 읽는다.
 
 ## 6. Deferred package authorization boundary
@@ -151,21 +167,23 @@ SX-DEC-057: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 SX-DEC-058: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 ```
 
-v4.8 r4 adoption은 위 package의 구현 권한을 추가하지 않는다. 056A Route Probe/PB/Fingerprint, 056B score/max-combo, 057 Yard Labs/Mastery, 058 challenge generator/pipeline은 별도 승인/의존성 Gate를 유지한다.
+v4.8 r5.4 adoption은 위 package의 구현 권한을 추가하지 않는다. 056A Route Probe/PB/Fingerprint, 056B score/max-combo, 057 Yard Labs/Mastery, 058 challenge generator/pipeline은 별도 승인/의존성 Gate를 유지한다.
 
 ## 7. Current owner read order
 
 1. latest Base completed `main` + Base root `AGENTS.md`.
-2. project `AGENTS.md`.
-3. `기획서/00_프로젝트_허브/START_HERE.md`.
-4. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`.
-5. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`.
-6. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`.
-7. `evidence/acceptance/current_poc_candidate.json` when acceptance identity matters.
-8. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`.
-9. current Goal의 exact owner documents.
-10. actual code/data/Scene/Resource/assets/tests/runtime evidence.
-11. historical v4.7/r2 adapter/handoff/audit only when provenance or rollback evidence is needed.
+2. Base `skills/SKILL_REGISTRY.json` + `docs/generated/BASE_ACTIVE_SKILLS.md` trigger coverage.
+3. project `AGENTS.md`.
+4. exact Project Notion Home.
+5. `기획서/00_프로젝트_허브/START_HERE.md`.
+6. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`.
+7. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`.
+8. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`.
+9. `evidence/acceptance/current_poc_candidate.json` when acceptance identity matters.
+10. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`.
+11. current Goal의 exact owner documents.
+12. actual code/data/Scene/Resource/assets/tests/runtime evidence.
+13. historical v4.7/r2/r4 adapter/handoff/audit only when provenance or rollback evidence is needed.
 
 Google Sheet는 이 current owner read order에 포함하지 않는다.
 
@@ -180,6 +198,7 @@ Historical concurrency closure:
 
 - PR #154 `feat: pilot reusable grid and semantic UI modules` = **CLOSED_UNMERGED · SUPERSEDED_BY_SX_DEC_059**; do not reopen or absorb `game/reuse/*` without a new approved need and fresh evidence.
 - PR #155/#156 = `CLOSED_UNMERGED · HISTORICAL_ACCIDENT`.
+- PR #174 = pre-existing r4 Draft workstream; `READ_ONLY` for this r5.4 reconciliation.
 
 ## 9. Verification invariants / Implementation Reality Gate
 
@@ -209,4 +228,4 @@ exact current-task head
 
 ## 10. Historical adapter boundary
 
-`PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`와 과거 v4.8 r2 provenance는 삭제하지 않는다. history/rollback evidence이며 **current work-instruction authority가 아니다**.
+`PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`, 과거 v4.8 r2 provenance, 2026-08-24 r4 reconciliation plan/spec/audit는 삭제하지 않는다. history/rollback evidence이며 **current work-instruction authority가 아니다**.
