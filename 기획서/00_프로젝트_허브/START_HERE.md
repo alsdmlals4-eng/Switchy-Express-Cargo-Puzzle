@@ -1,8 +1,8 @@
 # Switchy Express 프로젝트 허브
 
-Last updated: `2026-08-25 KST`
+Last updated: `2026-08-26 KST`
 
-이 문서는 현재 제품 기준선과 **다음 실행 지점**을 빠르게 찾는 허브다. 실행 전에는 항상 fresh Base completed `main`, fresh project `main`, Open/Draft PR, Notion을 다시 읽는다.
+이 문서는 현재 제품 기준선과 **다음 실행 지점**을 빠르게 찾는 허브다. 실행 전에는 항상 fresh Base completed `main`, current Skill Registry/generated map, fresh project `main`, Open/Draft PR, exact Project Notion Home을 다시 읽는다.
 
 ## Current State
 
@@ -10,9 +10,11 @@ Last updated: `2026-08-25 KST`
 |---|---|
 | 제품 기준선 | `GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE` |
 | 결정 범위 | `SX-DEC-027~059` |
-| 작업지시문 | `v4.8 · revision 2026-08-24-r4 · Switchy thin adapter` |
-| r4 source role | `USER_PROVIDED_V4_8_R4_CONTRACT` |
-| historical r2 SHA-256 | `6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508 · NOT_R4_HASH` |
+| 작업지시문 | `v4.8 · revision 2026-08-26-r5.4-superset-final · Switchy thin adapter` |
+| r5.4 source role | `USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT` |
+| r5.4 source SHA-256 | `fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0` |
+| historical r4 predecessor | `2026-08-24-r4 · USER_PROVIDED_V4_8_R4_CONTRACT` |
+| historical r2 SHA-256 | `6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508` |
 | historical v4.8 r2 authority merge | `PR #164 · main 98ed1c65d678bfc262c32084bbf0e59368093c2c` |
 | User planning-complete gate | `GRANTED · 2026-08-20 KST` |
 | SX-DEC-059 implementation | `PR #158 MERGED_MAIN_VERIFIED · main 162e8a0a5e8ddc8472e74a6152e87dc12008e34c` |
@@ -39,6 +41,16 @@ Last updated: `2026-08-25 KST`
 | SX-DEC-058 | `PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED` |
 | semantic product PNG | `73 · PRODUCTION_COMPLETE · PLAYABLE_POC_CONSUMED` |
 | PR #154 | `CLOSED_UNMERGED · SUPERSEDED_BY_059` |
+| PR #174 | `PRE_EXISTING_DRAFT · READ_ONLY` |
+
+## Fresh-read bootstrap
+
+```text
+past conversation not required
+→ exact Project GitHub + this Notion Home
+→ reconstruct project identity / current goal / current quality-stage / protected scope / next safe action / evidence ceiling
+→ GitHub↔Notion mismatch => CONTEXT_DRIFT_RECHECK_REQUIRED before mutation
+```
 
 ## Base authority
 
@@ -46,13 +58,14 @@ Last updated: `2026-08-25 KST`
 base_canon_sync_observation: 862938478cfea6c9db16691900c9c4fdc464f9ff · AUDIT_EVIDENCE_ONLY
 base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
+skill_coverage: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT
 ```
 
 과거 Base SHA는 compatibility/audit evidence다. **현재 Base SHA를 정본에 고정하지 않는다.** 실제 작업 권위는 항상 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN` 정책에 따라 실행 시점의 fresh Base completed main을 다시 읽는다.
 
-## r4 local execution overlay
+## r5.4 local execution overlay
 
-Godot authoring/runtime이 실제 acceptance에 필요한 경우에만 최신 Base owner와 thin adapter의 r4 overlay를 적용한다.
+Godot authoring/runtime이 실제 acceptance에 필요한 경우에만 최신 Base owner와 thin adapter의 r5.4 overlay를 적용한다.
 
 ```text
 fresh shell
@@ -64,7 +77,7 @@ fresh shell
 → authoring/test/runtime/readback
 ```
 
-compatible host에서는 프로젝트마다 동일 Godot binary나 전용 포트를 기본 증식하지 않고 shared approved exact pins + provider default fixed ports + exact session routing을 우선한다.
+PowerShell은 local Codex launcher로 사용하지 않는다. 실제 Godot 제품 구현이 새로 필요해지면 `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF` 뒤 Codex가 GitHub+Notion을 독립 fresh-read한다. compatible host에서는 프로젝트마다 동일 Godot binary나 전용 포트를 기본 증식하지 않고 shared approved exact pins + provider default fixed ports + exact session routing을 우선한다.
 
 ## Stable acceptance compatibility anchors
 
@@ -112,20 +125,21 @@ PR #171이 이 두 player-visible presentation defect를 교정했다. 따라서
 ## Mandatory read order
 
 1. fresh Base completed `main` + Base root `AGENTS.md`.
-2. fresh Project `main`, latest commit, all Open/Draft PR.
-3. exact Switchy Notion Project Home.
-4. `AGENTS.md`.
-5. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`.
-6. `FINITE_DELIVERY_PUZZLE_BASELINE.md`.
-7. `CURRENT_CONFIRMED_DECISIONS.md`.
-8. `ACTIVE_CONTEXT.md`.
-9. `evidence/acceptance/current_poc_candidate.json`.
-10. `SX_DEC_059_POC_ACCEPTANCE_CANDIDATE_03.md` + `SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_03.md` for the current manual gate.
-11. `SX_AUD_069_PLAYABLE_VISUAL_UX_POC.md` and Candidate 002 evidence when historical comparison is needed.
-12. `ROADMAP.md` + `DEVELOPMENT_GATES.md`.
-13. actual code/data/Scene/Resource/assets/tests.
+2. Base `skills/SKILL_REGISTRY.json` + `docs/generated/BASE_ACTIVE_SKILLS.md`.
+3. fresh Project `main`, latest commit, all Open/Draft PR.
+4. exact Switchy Notion Project Home.
+5. `AGENTS.md`.
+6. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`.
+7. `FINITE_DELIVERY_PUZZLE_BASELINE.md`.
+8. `CURRENT_CONFIRMED_DECISIONS.md`.
+9. `ACTIVE_CONTEXT.md`.
+10. `evidence/acceptance/current_poc_candidate.json`.
+11. `SX_DEC_059_POC_ACCEPTANCE_CANDIDATE_03.md` + `SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_03.md` for the current manual gate.
+12. `SX_AUD_069_PLAYABLE_VISUAL_UX_POC.md` and Candidate 002 evidence when historical comparison is needed.
+13. `ROADMAP.md` + `DEVELOPMENT_GATES.md`.
+14. actual code/data/Scene/Resource/assets/tests.
 
-`PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`와 v4.8 r2 hash/merge는 historical rollback/provenance evidence다. Google Sheets는 migration-only다.
+`PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`, v4.8 r2 hash/merge, 2026-08-24 r4 reconciliation 자료는 historical rollback/provenance evidence다. Google Sheets는 migration-only다.
 
 ## Current execution entry
 
@@ -136,7 +150,7 @@ git -C $repo pull --ff-only
 powershell -ExecutionPolicy Bypass -File "$repo\RUN_SX59_POC_SELF_RUN.ps1"
 ```
 
-Launcher는 `evidence/acceptance/current_poc_candidate.json`이 명시한 candidate만 사용한다. Candidate 번호를 하드코딩하거나 newest build를 추정하지 않는다.
+Launcher는 `evidence/acceptance/current_poc_candidate.json`이 명시한 candidate만 사용한다. Candidate 번호를 하드코딩하거나 newest build를 추론하지 않는다.
 
 ## Current next action
 
