@@ -17,7 +17,7 @@ func test_blue_diamond_one_sided_station_finishes_successfully() -> void:
 
 func _assert_one_sided_station_success(cargo_type: StringName) -> void:
 	var definition: Variant = FiniteMapDefinitionScript.create({
-		"definition_schema_version": 2,
+		"definition_schema_version": 3,
 		"map_id": "GUT_ONE_SIDED_%s" % cargo_type,
 		"map_revision": 1,
 		"ruleset_version": "fp_core_v1",
@@ -28,7 +28,7 @@ func _assert_one_sided_station_success(cargo_type: StringName) -> void:
 		"incoming_cell": [0, 1],
 		"buildable_cells": [[2, 1], [3, 1], [4, 1], [5, 1]],
 		"blocked_cells": [],
-		"station_placements": [{"cell": [5, 1], "cargo_type": cargo_type}],
+		"station_placements": [{"cell": [5, 0], "cargo_type": cargo_type}],
 		"cargo_placements": [{"cell": [3, 1], "cargo_type": cargo_type}],
 		"time_limit_seconds": 20.0,
 	})
@@ -53,11 +53,8 @@ func _assert_one_sided_station_success(cargo_type: StringName) -> void:
 	assert_true(preflight.passed, "%s one-sided station must pass preflight" % cargo_type)
 	if not preflight.passed or preflight.graph == null:
 		return
-	assert_eq(
-		preflight.graph.neighbors(Vector2i(5, 1)),
-		[Vector2i(4, 1)],
-		"station must have exactly one reciprocal rail connection"
-	)
+	assert_false(preflight.graph.has_cell(Vector2i(5, 0)), "station footprint must stay off the rail graph")
+	assert_true(preflight.graph.has_cell(Vector2i(5, 1)), "cardinal service track must remain traversable")
 
 	var snapshot := {
 		"definition_identity": definition.identity_key(),

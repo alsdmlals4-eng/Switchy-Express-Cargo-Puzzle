@@ -7,7 +7,8 @@ const PreflightResultScript := preload("res://game/finite/build/preflight_result
 const EMPTY_LAYOUT: StringName = &"EMPTY_LAYOUT"
 const INVALID_START: StringName = &"INVALID_START"
 const DANGLING_EDGE: StringName = &"DANGLING_EDGE"
-const DISCONNECTED_REQUIRED_POINT: StringName = &"DISCONNECTED_REQUIRED_POINT"
+const UNREACHABLE_CARGO: StringName = &"UNREACHABLE_CARGO"
+const UNREACHABLE_STATION_SERVICE: StringName = &"UNREACHABLE_STATION_SERVICE"
 const INVALID_CROSSING: StringName = &"INVALID_CROSSING"
 const INVALID_SWITCH_EXIT: StringName = &"INVALID_SWITCH_EXIT"
 const PERMANENT_TRAP: StringName = &"PERMANENT_TRAP"
@@ -26,25 +27,32 @@ func validate(definition: Variant, layout: Variant) -> Variant:
 		return _failed(INVALID_START, [definition.start_cell], "start must lead into the player network")
 
 	var product_route: bool = _allows_open_terminals(definition)
+	var search: Dictionary = _search_reachable_states(definition, graph, product_route)
 	if not product_route:
-		var dangling_cells := _dangling_cells(definition, graph)
+		var dangling_cells := _dangling_cells(definition, graph, search["reachable_cells"])
 		if not dangling_cells.is_empty():
 			return _failed(DANGLING_EDGE, dangling_cells, "ordinary track ports must connect reciprocally")
 
-	var search: Dictionary = _search_reachable_states(definition, graph, product_route)
-	var disconnected_cells := _disconnected_required_cells(definition, search["reachable_cells"])
-	if not disconnected_cells.is_empty():
+	var unreachable_cargo := _unreachable_cargo_cells(definition, search["reachable_cells"])
+	if not unreachable_cargo.is_empty():
 		return _failed(
-			DISCONNECTED_REQUIRED_POINT,
-			disconnected_cells,
-			"start must reach every station and cargo anchor"
+			UNREACHABLE_CARGO,
+			unreachable_cargo,
+			"start must reach every required cargo cell"
+		)
+	var unserviceable_stations := _unserviceable_station_cells(definition, search["reachable_cells"])
+	if not unserviceable_stations.is_empty():
+		return _failed(
+			UNREACHABLE_STATION_SERVICE,
+			unserviceable_stations,
+			"start must reach a cardinal service cell for every station"
 		)
 
-	var invalid_crossings := _invalid_crossing_cells(graph)
+	var invalid_crossings := _invalid_crossing_cells(graph, search["reachable_cells"])
 	if not invalid_crossings.is_empty():
 		return _failed(INVALID_CROSSING, invalid_crossings, "crossings require four reciprocal ports")
 
-	var invalid_switches := _invalid_switch_cells(graph, product_route)
+	var invalid_switches := _invalid_switch_cells(graph, product_route, search["reachable_cells"])
 	if not invalid_switches.is_empty():
 		return _failed(INVALID_SWITCH_EXIT, invalid_switches, "every switch exit must remain structurally usable")
 
@@ -64,10 +72,16 @@ func _has_valid_start(definition: Variant, graph: Variant) -> bool:
 	return graph.next_cell(definition.start_cell, definition.incoming_cell) != definition.start_cell
 
 
-func _dangling_cells(definition: Variant, graph: Variant) -> Array[Vector2i]:
+func _dangling_cells(
+	definition: Variant,
+	graph: Variant,
+	reachable_cells: Dictionary
+) -> Array[Vector2i]:
 	var problem_cells: Array[Vector2i] = []
 	var external_incoming_port: Vector2i = definition.incoming_cell - definition.start_cell
 	for cell: Vector2i in graph.all_cells():
+		if not reachable_cells.has(cell):
+			continue
 		var piece: Variant = graph.piece_at(cell)
 		if piece == null or piece.geometry == &"CROSSING" or piece.geometry == &"SWITCH":
 			continue
@@ -79,31 +93,53 @@ func _dangling_cells(definition: Variant, graph: Variant) -> Array[Vector2i]:
 	return _sorted_unique(problem_cells)
 
 
-func _disconnected_required_cells(
+func _unreachable_cargo_cells(
 	definition: Variant,
 	reachable_cells: Dictionary
 ) -> Array[Vector2i]:
 	var problem_cells: Array[Vector2i] = []
-	for cell: Vector2i in definition.required_anchor_cells():
-		if cell == definition.incoming_cell:
-			continue
+	for cell: Vector2i in definition.required_cargo_cells():
 		if not reachable_cells.has(cell):
 			problem_cells.append(cell)
 	return _sorted_unique(problem_cells)
 
 
-func _invalid_crossing_cells(graph: Variant) -> Array[Vector2i]:
+func _unserviceable_station_cells(
+	definition: Variant,
+	reachable_cells: Dictionary
+) -> Array[Vector2i]:
+	var problem_cells: Array[Vector2i] = []
+	for placement: Dictionary in definition.station_placements:
+		var is_serviceable := false
+		for service_cell: Vector2i in definition.station_service_cells_for_placement(placement):
+			if reachable_cells.has(service_cell):
+				is_serviceable = true
+				break
+		if not is_serviceable:
+			problem_cells.append(_placement_cell(placement))
+	return _sorted_unique(problem_cells)
+
+
+func _invalid_crossing_cells(graph: Variant, reachable_cells: Dictionary) -> Array[Vector2i]:
 	var problem_cells: Array[Vector2i] = []
 	for cell: Vector2i in graph.all_cells():
+		if not reachable_cells.has(cell):
+			continue
 		var piece: Variant = graph.piece_at(cell)
 		if piece != null and piece.geometry == &"CROSSING" and graph.neighbors(cell).size() != 4:
 			problem_cells.append(cell)
 	return _sorted_unique(problem_cells)
 
 
-func _invalid_switch_cells(graph: Variant, interactive_routes: bool) -> Array[Vector2i]:
+func _invalid_switch_cells(
+	graph: Variant,
+	interactive_routes: bool,
+	reachable_cells: Dictionary
+) -> Array[Vector2i]:
 	var problem_cells: Array[Vector2i] = []
 	for cell: Vector2i in graph.switch_cells():
+		if not reachable_cells.has(cell):
+			continue
 		var piece: Variant = graph.piece_at(cell)
 		if piece == null or graph.neighbors(cell).size() != 3:
 			problem_cells.append(cell)
@@ -210,6 +246,17 @@ static func _allows_open_terminals(definition: Variant) -> bool:
 		and definition.has_method("allows_open_terminals_after_required")
 		and bool(definition.allows_open_terminals_after_required())
 	)
+
+
+static func _placement_cell(placement: Dictionary) -> Vector2i:
+	var raw: Variant = placement.get("cell", [])
+	if raw is Vector2i:
+		return raw
+	if raw is Array and raw.size() == 2:
+		return Vector2i(int(raw[0]), int(raw[1]))
+	if raw is Dictionary and raw.has("x") and raw.has("y"):
+		return Vector2i(int(raw.get("x", 0)), int(raw.get("y", 0)))
+	return Vector2i.ZERO
 
 
 static func _state_key(previous: Vector2i, current: Vector2i) -> String:

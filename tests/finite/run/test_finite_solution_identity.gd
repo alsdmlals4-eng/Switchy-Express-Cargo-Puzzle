@@ -70,7 +70,7 @@ func run() -> void:
 func _definition(revision: int, ruleset: StringName) -> Variant:
 	var definition_script: Script = load(DEFINITION_PATH)
 	return definition_script.create({
-		"definition_schema_version": 2,
+		"definition_schema_version": 3,
 		"map_id": "FP_ID_TEST",
 		"map_revision": revision,
 		"ruleset_version": str(ruleset),

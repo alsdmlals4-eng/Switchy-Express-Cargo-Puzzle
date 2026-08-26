@@ -11,7 +11,7 @@ func run() -> void:
 	if definition == null:
 		return
 
-	assert_equal(definition.identity_key(), "VS_DEMO_01@2", "demo map has revised independent identity")
+	assert_equal(definition.identity_key(), "VS_DEMO_01@3", "demo map has revised independent identity")
 	assert_equal(definition.board_size, Vector2i(15, 11), "demo board uses the expanded playfield")
 	assert_equal(definition.time_limit_seconds, 150.0, "expanded route keeps a learnable time limit")
 	assert_equal(definition.cargo_placements.size(), 4, "demo map has four authored cargo")

@@ -8,7 +8,8 @@ const FiniteDeliveryEventScript := preload("res://game/finite/delivery/finite_de
 var _cargo_field: Variant
 var _input_state: Variant
 var _cargo_stack: Variant
-var _stations_by_cell: Dictionary = {}
+var _stations_by_service_cell: Dictionary = {}
+var _configuration_errors: Array[String] = []
 
 
 func _init(
@@ -21,8 +22,7 @@ func _init(
 	_input_state = input_state
 	_cargo_stack = cargo_stack
 	for station: Variant in stations:
-		if station != null:
-			_stations_by_cell[station.cell] = station
+		_index_station(station)
 
 
 func handle_cell_entered(cell: Vector2i, event_time: float) -> Variant:
@@ -43,8 +43,8 @@ func handle_cell_entered(cell: Vector2i, event_time: float) -> Variant:
 			pickup_type = _cargo_field.collect(cell)
 			picked_up = pickup_type != &""
 
-	if _stations_by_cell.has(cell) and _cargo_stack != null:
-		var unload_result: Dictionary = _stations_by_cell[cell].try_unload(_cargo_stack)
+	if _stations_by_service_cell.has(cell) and _cargo_stack != null:
+		var unload_result: Dictionary = _stations_by_service_cell[cell].try_unload(_cargo_stack)
 		for item: Variant in unload_result.get("items", []):
 			unloaded_items.append(StringName(item))
 		stop_requested = not unloaded_items.is_empty()
@@ -82,6 +82,25 @@ func cargo_stack() -> Variant:
 
 func input_state() -> Variant:
 	return _input_state
+
+
+func validation_errors() -> Array[String]:
+	return _configuration_errors.duplicate()
+
+
+func is_valid() -> bool:
+	return _configuration_errors.is_empty()
+
+
+func _index_station(station: Variant) -> void:
+	if station == null or not station.has_method("service_cells"):
+		_configuration_errors.append("station service owner is invalid")
+		return
+	for service_cell: Vector2i in station.service_cells():
+		if _stations_by_service_cell.has(service_cell):
+			_configuration_errors.append("station service cells must not overlap")
+			return
+		_stations_by_service_cell[service_cell] = station
 
 
 func _remaining_map_cargo() -> int:

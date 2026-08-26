@@ -21,7 +21,7 @@ fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
 google_sheets: RETIRED_NO_ACTIVE_USE
 sx_dec_060_user_rule: APPROVED
 sx_dec_060_design_tdd_handoff: PREPARED
-sx_dec_060_runtime: RUNTIME_NOT_RUN
+sx_dec_060_runtime: IMPLEMENTED_AUTOMATED · PR_PENDING
 post_sx_dec_060_candidate: NOT_CREATED
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY
 windows_physical_post_060: NOT_RUN
@@ -188,4 +188,4 @@ Enter: 타이틀·브리핑 확인
 Esc: 취소·뒤로
 ```
 
-현재 저장소 제품 runtime은 아직 pre-SX-DEC-060입니다. 위 새 station/preflight 규칙은 `RUNTIME_NOT_RUN`이며 Codex 구현 전에는 실제 게임에서 동작한다고 간주하지 않습니다.
+SX-DEC-060 runtime은 schema v3/cardinal service/start-reachable preflight로 구현됐고 headless regression 111 cases / 13,461 assertions가 통과했습니다. 이는 PR pending automated evidence이며 실제 Windows/Android/사람 검증이나 post-060 package candidate를 뜻하지 않습니다.

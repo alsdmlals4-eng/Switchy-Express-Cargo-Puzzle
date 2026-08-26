@@ -140,7 +140,7 @@ role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY
 
 ## M5C · SX-DEC-060 Cardinal Station Service + Reachable Network
 
-`CURRENT · DESIGN/HANDOFF_READY · RUNTIME_NOT_RUN`
+`CURRENT · IMPLEMENTED_AUTOMATED_PR_PENDING`
 
 ### User-approved rule
 
@@ -179,20 +179,12 @@ Actual Godot product implementation owner is `CODEX_GODOT_PRODUCT_IMPLEMENTATION
 
 ## M6 · SX-DEC-060 implementation / automated / package gate
 
-`CURRENT_NEXT_PRODUCT_GATE · NOT_RUN`
+`CURRENT_NEXT_PRODUCT_GATE · PR_REVIEW_CI_MERGE_READBACK`
 
 Stable sequence:
 
 ```text
-Codex fresh-read merged main + exact Project Notion Home
-→ RED map/schema/service tests
-→ FiniteMapDefinition v3
-→ cardinal delivery runtime
-→ start-reachable preflight
-→ active map/tutorial migration + deterministic witnesses
-→ existing station PNG + procedural service overlay
-→ first-session copy/localization update
-→ full Godot/static regression
+Full Godot regression PASS (111 cases / 13,461 assertions)
 → five-pass adversarial review
 → exact-head PR checks
 → merge/readback
@@ -200,8 +192,8 @@ Codex fresh-read merged main + exact Project Notion Home
 ```
 
 ```yaml
-SX_DEC_060_RUNTIME: NOT_RUN
-FULL_AUTOMATED_REGRESSION: NOT_RUN
+SX_DEC_060_RUNTIME: IMPLEMENTED_AUTOMATED · PR_PENDING
+FULL_AUTOMATED_REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · PR_PENDING
 POST_060_PACKAGE: NOT_RUN
 POST_060_CANDIDATE: NOT_CREATED
 ```

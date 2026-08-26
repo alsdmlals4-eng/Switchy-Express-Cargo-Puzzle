@@ -8,11 +8,16 @@ const CASES: Array[Dictionary] = [
 	{"name": &"empty_layout", "code": &"EMPTY_LAYOUT"},
 	{"name": &"invalid_start", "code": &"INVALID_START"},
 	{"name": &"dangling_edge", "code": &"DANGLING_EDGE"},
-	{"name": &"disconnected_required_point", "code": &"DISCONNECTED_REQUIRED_POINT"},
+	{"name": &"disconnected_required_point", "code": &"UNREACHABLE_CARGO"},
 	{"name": &"crossing_turned_as_junction", "code": &"INVALID_CROSSING"},
 	{"name": &"switch_exit_dead_end", "code": &"INVALID_SWITCH_EXIT"},
 	{"name": &"reachable_degree_one", "code": &"PERMANENT_TRAP"},
 	{"name": &"closed_valid_network", "code": &"PASS"},
+	{"name": &"station_service_cardinal_reachable", "code": &"PASS"},
+	{"name": &"station_service_diagonal_only", "code": &"UNREACHABLE_STATION_SERVICE"},
+	{"name": &"unreachable_cargo", "code": &"UNREACHABLE_CARGO"},
+	{"name": &"disconnected_unused_island", "code": &"PASS"},
+	{"name": &"invalid_unreachable_island", "code": &"PASS"},
 ]
 
 
@@ -21,8 +26,19 @@ static func cases() -> Array[Dictionary]:
 
 
 static func make(case_name: StringName) -> Dictionary:
+	if case_name == &"station_service_cardinal_reachable":
+		return _linear_service_fixture(false, false, false)
+	if case_name == &"station_service_diagonal_only":
+		return _linear_service_fixture(true, false, false)
+	if case_name == &"unreachable_cargo":
+		return _linear_service_fixture(false, true, false)
+	if case_name == &"disconnected_unused_island":
+		return _linear_service_fixture(false, false, true)
+	if case_name == &"invalid_unreachable_island":
+		return _linear_service_fixture(false, false, true, true)
+
 	var specs: Array[Dictionary] = _base_specs()
-	var station_cell := Vector2i(5, 4)
+	var station_cell := Vector2i(5, 3)
 	var cargo_cell := Vector2i(9, 4)
 	var expected_cells: Array[Vector2i] = []
 
@@ -34,7 +50,7 @@ static func make(case_name: StringName) -> Dictionary:
 			expected_cells = [Vector2i(1, 4)]
 		&"dangling_edge":
 			_remove_cells(specs, [Vector2i(4, 2)])
-			expected_cells = [Vector2i(3, 2), Vector2i(5, 2)]
+			expected_cells = [Vector2i(3, 2)]
 		&"disconnected_required_point":
 			cargo_cell = Vector2i(1, 6)
 			specs.append(_spec(Vector2i(9, 4), &"STRAIGHT", 0))
@@ -74,7 +90,7 @@ static func make(case_name: StringName) -> Dictionary:
 	buildable_cells.sort_custom(_cell_precedes)
 
 	var definition: Variant = FiniteMapDefinitionScript.create({
-		"definition_schema_version": 2,
+		"definition_schema_version": 3,
 		"map_id": "PREFLIGHT_%s" % str(case_name).to_upper(),
 		"map_revision": 1,
 		"ruleset_version": "fp_core_v1",
@@ -86,7 +102,6 @@ static func make(case_name: StringName) -> Dictionary:
 		"station_placements": [{
 			"cell": [station_cell.x, station_cell.y],
 			"cargo_type": "RED_STAR",
-			"rail_anchor": {"geometry": "STRAIGHT", "rotation_quarters": 0},
 		}],
 		"cargo_placements": [{
 			"cell": [cargo_cell.x, cargo_cell.y],
@@ -113,11 +128,68 @@ static func make(case_name: StringName) -> Dictionary:
 	}
 
 
+static func _linear_service_fixture(
+	diagonal_only: bool,
+	unreachable_cargo: bool,
+	include_unused_island: bool,
+	invalid_unused_island: bool = false
+) -> Dictionary:
+	var specs: Array[Dictionary] = [
+		_spec(Vector2i(2, 2), &"STRAIGHT", 0),
+		_spec(Vector2i(3, 2), &"STRAIGHT", 0),
+	]
+	if not diagonal_only:
+		specs.append(_spec(Vector2i(4, 2), &"STRAIGHT", 0))
+	if include_unused_island:
+		if invalid_unused_island:
+			specs.append(_spec(Vector2i(6, 5), &"CROSSING", 0))
+		else:
+			specs.append(_spec(Vector2i(6, 5), &"STRAIGHT", 0))
+			specs.append(_spec(Vector2i(7, 5), &"STRAIGHT", 0))
+	var cargo_cell := Vector2i(5, 2) if unreachable_cargo else Vector2i(2, 2)
+	var buildable_cells: Array[Vector2i] = []
+	for spec: Dictionary in specs:
+		var cell: Vector2i = spec["cell"]
+		if not buildable_cells.has(cell):
+			buildable_cells.append(cell)
+	buildable_cells.sort_custom(_cell_precedes)
+	var definition: Variant = FiniteMapDefinitionScript.create({
+		"definition_schema_version": 3,
+		"map_id": "PREFLIGHT_LINEAR",
+		"map_revision": 1,
+		"ruleset_version": "fp_core_v2",
+		"marker_tracks_player_built": true,
+		"allow_open_terminals_after_required": true,
+		"board_size": [8, 7],
+		"start_cell": [1, 2],
+		"incoming_cell": [0, 2],
+		"buildable_cells": _cells_to_arrays(buildable_cells),
+		"blocked_cells": [],
+		"station_placements": [{"cell": [4, 3], "cargo_type": "RED_STAR"}],
+		"cargo_placements": [{"cell": [cargo_cell.x, cargo_cell.y], "cargo_type": "BLUE_DIAMOND"}],
+		"time_limit_seconds": 90.0,
+	})
+	var layout: Variant = TrackLayoutScript.new()
+	for spec: Dictionary in specs:
+		var piece: Variant = TrackPieceScript.create(
+			spec["cell"], spec["geometry"], spec["rotation"], spec["initial_exit"]
+		)
+		if piece != null:
+			layout.put_piece(piece)
+	var expected_cells: Array[Vector2i] = []
+	if diagonal_only:
+		expected_cells = [Vector2i(4, 3)]
+	elif unreachable_cargo:
+		expected_cells = [cargo_cell]
+	return {"definition": definition, "layout": layout, "expected_cells": expected_cells}
+
+
 static func _base_specs() -> Array[Dictionary]:
 	return [
 		_spec(Vector2i(2, 4), &"STRAIGHT", 0),
 		_spec(Vector2i(3, 4), &"SWITCH", 0, Vector2i.RIGHT),
 		_spec(Vector2i(4, 4), &"STRAIGHT", 0),
+		_spec(Vector2i(5, 4), &"STRAIGHT", 0),
 		_spec(Vector2i(6, 4), &"STRAIGHT", 0),
 		_spec(Vector2i(7, 4), &"CROSSING", 0),
 		_spec(Vector2i(8, 4), &"SWITCH", 2, Vector2i.LEFT),

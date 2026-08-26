@@ -20,7 +20,7 @@ func run() -> void:
 
 	var snapshot: Dictionary = controller.render_snapshot()
 	assert_equal(snapshot["map_id"], &"FP_CORE_PROOF_01", "snapshot keeps map identity")
-	assert_equal(snapshot["map_revision"], 1, "snapshot keeps map revision")
+	assert_equal(snapshot["map_revision"], 2, "snapshot keeps map revision")
 	assert_equal(snapshot["board_size"], Vector2i(11, 9), "snapshot exposes board size")
 	assert_equal(snapshot["start_cell"], Vector2i(1, 4), "snapshot exposes start cell")
 	assert_equal(snapshot["incoming_cell"], Vector2i(0, 4), "snapshot exposes incoming cell")

@@ -29,6 +29,10 @@ func run() -> void:
 	assert_true(copy.format(&"SX_RESULT_MAP_CARGO", {"count": 3}, "en").contains("3"), "format replaces count")
 	for locale: String in LOCALES:
 		assert_true(copy.text(&"SX_T3_TOP_RULE", locale).contains("TOP"), "TOP remains literal in %s" % locale)
+		assert_false(copy.text(&"SX_T2_OBJECTIVE", locale).is_empty(), "T2 must explain the changed contact in %s" % locale)
+		assert_false(copy.text(&"SX_T2_UNLOAD_NOTE", locale).is_empty(), "T2 must exclude non-cardinal service in %s" % locale)
+	assert_true(copy.text(&"SX_T2_OBJECTIVE", "en").contains("beside"), "T2 English must distinguish adjacent station service")
+	assert_true(copy.text(&"SX_T2_UNLOAD_NOTE", "en").contains("Diagonals"), "T2 English must exclude diagonals")
 	var t6_objectives := {
 		"ko": "열차가 오기 전에 분기를 바꿔 배송 경로를 선택하세요.",
 		"en": "Set the switch before the train arrives to choose the delivery route.",

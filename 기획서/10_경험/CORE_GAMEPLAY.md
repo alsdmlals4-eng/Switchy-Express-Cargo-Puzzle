@@ -1,6 +1,6 @@
 # Core Gameplay
 
-상태: `CURRENT_CANON · GMB-002 · AMENDED_BY_SX_DEC_060 · RUNTIME_NOT_RUN`
+상태: `CURRENT_CANON · GMB-002 · AMENDED_BY_SX_DEC_060 · IMPLEMENTED_AUTOMATED_PR_PENDING`
 
 세부 제품 정본은 `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`다. 이 문서는 플레이어가 실제로 이해해야 하는 **현재 gameplay mental model**을 압축한다.
 
@@ -52,7 +52,7 @@ DELIVER_SERVICEABLE iff distance == 1
 - matching station에서만 현재 contiguous same-type TOP group이 내려간다.
 - TOP 종류가 다르면 하역하지 않는다.
 
-기술 구현 기본값은 station을 **off-track/non-buildable service object**로 두는 `FiniteMapDefinition schema v3`이다. 현재 runtime은 아직 pre-SX-DEC-060이므로 `RUNTIME_NOT_RUN`이다.
+기술 구현은 station을 **off-track/non-buildable service object**로 두는 `FiniteMapDefinition schema v3`로 완료됐다. headless automated regression은 통과했고, PR merge 및 물리·사람 검증은 아직 별도다.
 
 ## 건설 단계
 

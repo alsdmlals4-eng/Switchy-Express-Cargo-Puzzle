@@ -4,12 +4,18 @@ extends RefCounted
 const CargoTypeScript := preload("res://game/cargo/cargo_type.gd")
 const SELF_SCRIPT_PATH := "res://game/finite/map/finite_map_definition.gd"
 
-const SCHEMA_VERSION := 2
+const SCHEMA_VERSION := 3
 const VALID_ANCHOR_GEOMETRIES: Array[StringName] = [
 	&"STRAIGHT",
 	&"CURVE",
 	&"SWITCH",
 	&"CROSSING",
+]
+const CARDINAL_DIRECTIONS: Array[Vector2i] = [
+	Vector2i.UP,
+	Vector2i.RIGHT,
+	Vector2i.DOWN,
+	Vector2i.LEFT,
 ]
 
 var definition_schema_version: int = 0
@@ -65,10 +71,7 @@ func allows_open_terminals_after_required() -> bool:
 
 func required_anchor_cells() -> Array[Vector2i]:
 	var result: Array[Vector2i] = [start_cell, incoming_cell]
-	for placement: Dictionary in station_placements:
-		result.append(_read_cell(placement.get("cell", [])))
-	for placement: Dictionary in cargo_placements:
-		result.append(_read_cell(placement.get("cell", [])))
+	result.append_array(required_cargo_cells())
 	return result
 
 
@@ -76,17 +79,34 @@ func fixed_anchor_cells() -> Array[Vector2i]:
 	var result: Array[Vector2i] = [start_cell, incoming_cell]
 	if marker_tracks_player_built:
 		return result
-	for placement: Dictionary in station_placements:
-		result.append(_read_cell(placement.get("cell", [])))
+	result.append_array(required_cargo_cells())
+	return result
+
+
+func required_cargo_cells() -> Array[Vector2i]:
+	var result: Array[Vector2i] = []
 	for placement: Dictionary in cargo_placements:
 		result.append(_read_cell(placement.get("cell", [])))
 	return result
 
 
+func station_service_cells(station_cell: Vector2i) -> Array[Vector2i]:
+	var result: Array[Vector2i] = []
+	for direction: Vector2i in CARDINAL_DIRECTIONS:
+		var candidate := station_cell + direction
+		if _inside_board(candidate):
+			result.append(candidate)
+	return result
+
+
+func station_service_cells_for_placement(placement: Dictionary) -> Array[Vector2i]:
+	return station_service_cells(_read_cell(placement.get("cell", [])))
+
+
 func validation_errors() -> Array[String]:
 	var errors: Array[String] = _source_errors.duplicate()
 	if definition_schema_version != SCHEMA_VERSION:
-		errors.append("definition_schema_version must equal 2")
+		errors.append("definition_schema_version must equal 3")
 	if map_id == &"":
 		errors.append("map_id is required")
 	if map_revision <= 0:
@@ -103,10 +123,12 @@ func validation_errors() -> Array[String]:
 		errors.append("incoming_cell must be immediately left of start_cell")
 
 	_validate_surface(errors)
-	_validate_placements(station_placements, "station", errors)
-	_validate_placements(cargo_placements, "cargo", errors)
+	_validate_station_placements(errors)
+	_validate_cargo_placements(errors)
 	_validate_required_anchor_uniqueness(errors)
 	_validate_fixed_anchor_surface_exclusion(errors)
+	_validate_station_surface_exclusion(errors)
+	_validate_station_service_ownership(errors)
 	return errors
 
 
@@ -154,7 +176,38 @@ func _validate_surface(errors: Array[String]) -> void:
 			errors.append("buildable_cells and blocked_cells must not overlap")
 
 
-func _validate_placements(
+func _validate_station_placements(errors: Array[String]) -> void:
+	_validate_placement_cells(station_placements, "station", errors)
+	for placement: Dictionary in station_placements:
+		var cargo_type := StringName(placement.get("cargo_type", &""))
+		if not CargoTypeScript.is_valid(cargo_type):
+			errors.append("station placement cargo_type must be valid")
+		if placement.has("rail_anchor") and placement.get("rail_anchor") != null:
+			errors.append("station placement rail_anchor is forbidden")
+
+
+func _validate_cargo_placements(errors: Array[String]) -> void:
+	_validate_placement_cells(cargo_placements, "cargo", errors)
+	for placement: Dictionary in cargo_placements:
+		var cargo_type := StringName(placement.get("cargo_type", &""))
+		if not CargoTypeScript.is_valid(cargo_type):
+			errors.append("cargo placement cargo_type must be valid")
+
+		var anchor: Variant = placement.get("rail_anchor", null)
+		if marker_tracks_player_built and anchor == null:
+			continue
+		if not anchor is Dictionary:
+			errors.append("cargo placement rail_anchor is required")
+			continue
+		var geometry := StringName(anchor.get("geometry", &""))
+		if not VALID_ANCHOR_GEOMETRIES.has(geometry):
+			errors.append("cargo placement rail_anchor geometry must be valid")
+		var rotation := int(anchor.get("rotation_quarters", -1))
+		if rotation < 0 or rotation > 3:
+			errors.append("cargo placement rail_anchor rotation_quarters must be 0..3")
+
+
+func _validate_placement_cells(
 	placements: Array[Dictionary],
 	placement_kind: String,
 	errors: Array[String]
@@ -167,24 +220,6 @@ func _validate_placements(
 		if seen_cells.has(cell):
 			errors.append("%s placements must not contain duplicate cells" % placement_kind)
 		seen_cells[cell] = true
-
-		var cargo_type := StringName(placement.get("cargo_type", &""))
-		if not CargoTypeScript.is_valid(cargo_type):
-			errors.append("%s placement cargo_type must be valid" % placement_kind)
-
-		var anchor: Variant = placement.get("rail_anchor", null)
-		if marker_tracks_player_built and anchor == null:
-			continue
-		if not anchor is Dictionary:
-			errors.append("%s placement rail_anchor is required" % placement_kind)
-			continue
-		var geometry := StringName(anchor.get("geometry", &""))
-		if not VALID_ANCHOR_GEOMETRIES.has(geometry):
-			errors.append("%s placement rail_anchor geometry must be valid" % placement_kind)
-		var rotation := int(anchor.get("rotation_quarters", -1))
-		if rotation < 0 or rotation > 3:
-			errors.append("%s placement rail_anchor rotation_quarters must be 0..3" % placement_kind)
-
 
 func _validate_required_anchor_uniqueness(errors: Array[String]) -> void:
 	var seen: Dictionary = {}
@@ -211,6 +246,26 @@ func _validate_fixed_anchor_surface_exclusion(errors: Array[String]) -> void:
 		if blocked.has(cell):
 			errors.append("fixed anchor cells must not be blocked")
 			break
+
+
+func _validate_station_surface_exclusion(errors: Array[String]) -> void:
+	var buildable: Dictionary = {}
+	for cell: Vector2i in buildable_cells:
+		buildable[cell] = true
+	for placement: Dictionary in station_placements:
+		if buildable.has(_read_cell(placement.get("cell", []))):
+			errors.append("station cells must not be buildable")
+			return
+
+
+func _validate_station_service_ownership(errors: Array[String]) -> void:
+	var owners: Dictionary = {}
+	for placement: Dictionary in station_placements:
+		for service_cell: Vector2i in station_service_cells_for_placement(placement):
+			if owners.has(service_cell):
+				errors.append("station service cells must not overlap")
+				return
+			owners[service_cell] = true
 
 
 func _inside_board(cell: Vector2i) -> bool:

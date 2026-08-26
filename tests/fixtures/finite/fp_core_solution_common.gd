@@ -12,7 +12,8 @@ static func pieces(first_exit: Vector2i) -> Array[Variant]:
 		_spec(Vector2i(6, 4), &"STRAIGHT", 0),
 		_spec(Vector2i(7, 4), &"CROSSING", 0),
 		_spec(Vector2i(8, 4), &"SWITCH", 2, Vector2i.LEFT),
-		_spec(Vector2i(10, 4), &"CURVE", 2),
+		_spec(Vector2i(9, 4), &"STRAIGHT", 0),
+		_spec(Vector2i(8, 5), &"STRAIGHT", 1),
 		_spec(Vector2i(8, 7), &"SWITCH", 1, Vector2i.DOWN),
 		_spec(Vector2i(8, 6), &"STRAIGHT", 1),
 		_spec(Vector2i(3, 3), &"STRAIGHT", 1),
@@ -27,6 +28,7 @@ static func pieces(first_exit: Vector2i) -> Array[Variant]:
 		_spec(Vector2i(7, 7), &"STRAIGHT", 1),
 		_spec(Vector2i(7, 8), &"CURVE", 0),
 		_spec(Vector2i(8, 8), &"CURVE", 3),
+		_spec(Vector2i(10, 7), &"CURVE", 3),
 	]
 	var result: Array[Variant] = []
 	for spec: Dictionary in specs:

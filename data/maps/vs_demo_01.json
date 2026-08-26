@@ -1,8 +1,8 @@
 {
-  "definition_schema_version": 2,
+  "definition_schema_version": 3,
   "map_id": "VS_DEMO_01",
-  "map_revision": 2,
-  "ruleset_version": "fp_core_v1",
+  "map_revision": 3,
+  "ruleset_version": "fp_core_v2",
   "marker_tracks_player_built": true,
   "allow_open_terminals_after_required": true,
   "board_size": [15, 11],
@@ -14,8 +14,8 @@
   ],
   "blocked_cells": [[5, 3], [7, 3], [11, 3], [5, 7], [7, 7], [11, 7]],
   "station_placements": [
-    {"cell": [8, 9], "cargo_type": "RED_STAR"},
-    {"cell": [4, 9], "cargo_type": "BLUE_DIAMOND"}
+    {"cell": [8, 8], "cargo_type": "RED_STAR"},
+    {"cell": [4, 8], "cargo_type": "BLUE_DIAMOND"}
   ],
   "cargo_placements": [
     {"cell": [6, 5], "cargo_type": "RED_STAR"},

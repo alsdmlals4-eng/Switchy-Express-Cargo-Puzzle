@@ -47,8 +47,9 @@ sx_dec_060_decision_owner: docs/decisions/SX_DEC_060_CARDINAL_STATION_SERVICE_AN
 sx_dec_060_design_spec: docs/superpowers/specs/2026-08-26-cardinal-station-service-and-reachable-network-design.md
 sx_dec_060_implementation_plan: docs/superpowers/plans/2026-08-26-cardinal-station-service-and-reachable-network.md
 sx_dec_060_codex_handoff: 기획서/50_제작_검증/SX_DEC_060_CODEX_HANDOFF_PACKAGE.md
-sx_dec_060_runtime_implementation: NOT_RUN
-sx_dec_060_automated_regression: NOT_RUN
+sx_dec_060_implementation_review: FIVE_PASS_CLEAN · SX_AUD_071 · PR_PENDING
+sx_dec_060_runtime_implementation: IMPLEMENTED_AUTOMATED · PR_PENDING
+sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · PR_PENDING
 post_sx_dec_060_candidate_status: NOT_CREATED
 windows_physical_post_060: NOT_RUN
 android_device_post_060: NOT_RUN
@@ -99,9 +100,9 @@ new_bitmap_assets_required: 0
 
 This is a core gameplay amendment. It does not authorize arbitrary station radius, diagonal service, 056–058, or new image generation.
 
-## Why current runtime is not yet evidence
+## Implemented automated runtime evidence
 
-Fresh-read of current implementation before SX-DEC-060 showed:
+Before SX-DEC-060, the runtime had the following old semantics:
 
 ```text
 FiniteDeliveryLoop
@@ -119,7 +120,7 @@ ProductBoardRenderer
 → already consumes approved station_red / station_blue / station_yellow PNGs
 ```
 
-Therefore SX-DEC-060 is not a one-line visual change. Data/schema, delivery, preflight, graph/content, tutorial copy, and presentation must move together.
+The implementation now moves data/schema, delivery, preflight, graph/content, tutorial copy, and presentation together. The complete headless Godot suite passed 111 cases / 13,461 assertions. This is automated runtime evidence only; it does not create a package candidate or physical/human evidence.
 
 ## First-session continuity
 
@@ -209,16 +210,9 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 ## Current next action
 
 ```text
-if PR #180 remains open: close exact-head CI and merge/sync it; otherwise use merged main
-→ Codex fresh-read merged main + exact Project Notion Home
-→ RED schema/service tests
-→ FiniteMapDefinition v3 + off-track station semantics
-→ cardinal service delivery
-→ start-reachable preflight
-→ active map/tutorial migration + witnesses
-→ procedural service overlay using existing station PNGs
-→ full regression
-→ five-pass adversarial review
+PR #185 exact-head review + CI
+→ safe merge
+→ main + Notion readback
 → new exact post-060 package candidate
 → Windows physical smoke
 → Android device smoke
@@ -232,9 +226,9 @@ if PR #180 remains open: close exact-head CI and merge/sync it; otherwise use me
 USER_RULE_APPROVED
 DESIGN_RECORDED
 TDD_PLAN_RECORDED
-CODEX_HANDOFF_READY
-RUNTIME_NOT_RUN
-AUTOMATED_REGRESSION_NOT_RUN
+CODEX_HANDOFF_EXECUTED
+RUNTIME_IMPLEMENTED_AUTOMATED
+AUTOMATED_REGRESSION_PASS_111_CASES_13461_ASSERTIONS
 POST_060_PACKAGE_NOT_RUN
 POST_060_PHYSICAL_NOT_RUN
 POST_060_DEVICE_NOT_RUN
