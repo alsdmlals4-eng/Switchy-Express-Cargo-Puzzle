@@ -191,7 +191,7 @@
   "project_registry": {
     "hash_definition": "RAW_FILE_BYTES_SHA256",
     "path": "skills/SKILL_REGISTRY.json",
-    "sha256": "048896cee3879a384cea4eb46442ea0cedd52317163d67fd885bba9d6dd58787"
+    "sha256": "0b5f76638709ea774ce43e0b756c484eb47188637eea0e6c59f76cc9f63abafa"
   },
   "project_routes": [
     {
@@ -204,6 +204,6 @@
   "source_registry": {
     "hash_definition": "RAW_FILE_BYTES_SHA256",
     "path": "skills/PROJECT_BASE_ADAPTER.json",
-    "sha256": "fd3a8c61706149c056b58de87d98f1bb1b16580ed39f9ba63b37a30eb6783830"
+    "sha256": "fc1e264543ac7ac7e6f3cf66b489f62a8c14809311e7c5a2e14799492787ba54"
   }
 }
