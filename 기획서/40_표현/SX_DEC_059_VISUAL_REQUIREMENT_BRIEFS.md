@@ -263,6 +263,6 @@ visual_reference_role: IMPLEMENTATION_GUIDE · NOT_RUNTIME_PROOF
 4. user가 이미지 생성을 명시 승인.
 5. 요청한 cardinality대로 독립 결과를 생성.
 6. visual QA + user result approval.
-7. Notion attach/readback + 승인 Decision ID를 GitHub/Notion 양쪽에 동기화.
+7. Notion attach/readback + 프로젝트 로컬 추적 파일/SHA-256/provenance + 승인 Decision ID를 GitHub/Notion 양쪽에 동기화.
 
 현재 상태: `USER_APPROVED_VISUAL_REFERENCES_ACTIVE · VIS-SX-059-05 CURRENT · NOT_RUNTIME_PROOF`.
