@@ -1,6 +1,6 @@
 # Switchy Express 공용 AI 작업 규칙
 
-이 저장소는 `alsdmlals4-eng/Base` v9.4.3 project compatibility pin을 보존하면서, **사용자가 2026-08-24 제공한 v4.8 r4 작업 계약**과 최신 Base completed `main`을 현재 실행 방법론으로 사용하는 Godot 프로젝트다.
+이 저장소는 `alsdmlals4-eng/Base` v9.4.3 project compatibility pin을 보존하면서, **사용자가 2026-08-26 제공한 v4.8 r5.4 Superset Final 작업 계약**과 최신 Base completed `main`을 현재 실행 방법론으로 사용하는 Godot 프로젝트다.
 
 ## 1. 권위 순서
 
@@ -40,6 +40,7 @@ fresh authority recovery
 ```text
 Base latest completed main
 → Base root AGENTS.md
+→ Base current Skill Registry + generated active map
 → Project main/latest commit
 → all Open/Draft PR
 → exact Project Notion Home
@@ -51,6 +52,8 @@ Base latest completed main
 → actual code/data/Scene/Resource/assets/tests
 ```
 
+새 채팅은 과거 대화를 필수 입력으로 사용하지 않는다. Project GitHub + Notion에서 current identity / goal / quality-stage / protected scope / next safe action / evidence ceiling을 재구성하고, GitHub↔Notion이 충돌하면 mutation 전에 `CONTEXT_DRIFT_RECHECK_REQUIRED`로 되돌린다.
+
 `GOOGLE_SHEETS: RETIRED_NO_ACTIVE_USE`
 
 사용자 2026-08-25 지시에 따라 기존 Google Sheet는 **일반 작업에서 읽기·쓰기·동기화·결정 입력 대상으로 사용하지 않는다.** 과거 Sheet ID·URL·sync 기록은 역사/감사 provenance가 필요한 경우에만 legacy migration evidence에서 확인하며, active workspace나 기본 탐색면으로 되살리지 않는다. Figma, external HTML, Tool Hub, QA Evidence Studio도 기본/필수 프로젝트 경로가 아니다.
@@ -60,20 +63,25 @@ Base latest completed main
 ```yaml
 work_instruction_canon: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md
 contract_version: 4.8
-revision: 2026-08-24-r4
-source_role: USER_PROVIDED_V4_8_R4_CONTRACT
+revision: 2026-08-26-r5.4-superset-final
+source_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
+source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
+historical_r4_revision: 2026-08-24-r4
+historical_r4_role: USER_PROVIDED_V4_8_R4_CONTRACT
 historical_r2_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
-historical_r2_hash_is_not_r4_hash: true
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 engine: Godot 4.7.1-stable
 language: GDScript
 project_base_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
 base_remote_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
+fresh_read_bootstrap_policy: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
+skill_coverage_policy: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT
+gpt_local_codex_orchestration_policy: RETIRED
 current_validation_locator: 기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md
 current_acceptance_candidate: SX59-POC-ACCEPT-003
 ```
 
-v4.7 Switchy adapter, v4.5 r2 bundle, v4.8 r2 hash는 역사·rollback/provenance evidence로 보존하며 current work-instruction authority가 아니다. r4의 fresh-shell/update/shared-Godot 상세는 thin adapter와 최신 Base owner를 progressive-load한다.
+v4.7 Switchy adapter, v4.5 r2 bundle, v4.8 r2 provenance와 2026-08-24 r4 전환 자료는 역사·rollback/provenance evidence로 보존하며 current work-instruction authority가 아니다. r5.4의 fresh-read/Skill coverage/복구/Godot 상세는 thin adapter와 최신 Base owner를 progressive-load한다.
 
 ## 4. 현재 제품 기준선 — GMB-002
 
@@ -179,7 +187,7 @@ preserve only the reusable-module lesson as historical PR evidence
 do not reopen unless a new user-approved need and fresh main evidence require it
 ```
 
-과거 실수로 생성된 PR #155/#156도 `CLOSED_UNMERGED · HISTORICAL_ACCIDENT`이며 current workstream이 아니다.
+과거 실수로 생성된 PR #155/#156도 `CLOSED_UNMERGED · HISTORICAL_ACCIDENT`이며 current workstream이 아니다. 기존 Draft PR #174도 현재 r5.4 작업과 분리된 pre-existing workstream이므로 `READ_ONLY`다.
 
 ## 8. Tooling authority
 
@@ -195,7 +203,9 @@ project_3_1_4_exact_tree_parity: REVERIFY_REQUIRED_BEFORE_FUTURE_AUTHORING
 
 `docs/tooling/local_godot_tooling_state.json`가 현재 evidence owner다. Fresh PowerShell에서 local/repo tree parity를 다시 확인하기 전 **user-local version**을 추정하지 않는다.
 
-Persistent Godot authoring은 프로젝트가 채택한 HiGodot/Godot-authoring authority를 따른다. GUT은 deterministic test authority, Hera는 live QA/observability only이며 acceptance source delta를 남기지 않는다. r4의 shared exact pin/fixed default port/session-isolation 규칙은 실제 Godot 작업에서 최신 Base owner와 thin adapter를 함께 읽어 적용한다.
+Persistent Godot authoring은 프로젝트가 채택한 HiGodot/Godot-authoring authority를 따른다. GUT은 deterministic test authority, Hera는 live QA/observability only이며 acceptance source delta를 남기지 않는다. r5.4의 shared exact pin/fixed default port/session-isolation 규칙은 실제 Godot 작업에서 최신 Base owner와 thin adapter를 함께 읽어 적용한다.
+
+현재 역할 경계는 `GPT_LOCAL_CODEX_ORCHESTRATION_RETIRED`다. GPT가 PowerShell로 local Codex launcher를 띄우지 않는다. 실제 Godot 제품 구현이 새로 필요해질 때만 `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF`로 전환하고, Codex가 프로젝트 GitHub+Notion을 독립 fresh-read한 뒤 자신의 구현환경에서 제품 구현/test/runtime evidence를 만든다.
 
 ## 9. Platform / Release / Asset Rights routing
 
@@ -235,7 +245,7 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 
 사용자 `기획완료`는 2026-08-20에 GRANTED 됐고 Phase-C/package spec 검토도 닫혔다. Codex 인계/실행과 PR #158 병합도 완료됐다.
 
-완료 기록:
+아래는 **역사적 059 구현 당시 실행 기록**이며 current r5.4에서 local Codex launcher를 재사용하라는 지시가 아니다.
 
 ```text
 package spec DoR PASS
@@ -291,4 +301,4 @@ Candidate 003 physical visual recheck
 - `기획서/50_제작_검증/SX_AUD_064_SX_DEC_059_PHASE_C_FINAL_REVIEW.md`
 - `기획서/50_제작_검증/SX_AUD_066_SX_DEC_059_IMPLEMENTATION_AND_FIVE_PASS_REVIEW.md`
 
-`PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`는 history/rollback evidence다. 현재 작업의 실행 locator는 `ACTIVE_CONTEXT.md`가 책임진다.
+`PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`와 2026-08-24 r4 reconciliation 자료는 history/rollback evidence다. 현재 작업의 실행 locator는 `ACTIVE_CONTEXT.md`가 책임진다.
