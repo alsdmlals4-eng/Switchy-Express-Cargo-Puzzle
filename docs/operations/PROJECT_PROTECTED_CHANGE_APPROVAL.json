@@ -4,16 +4,18 @@
   "status": "APPROVED",
   "protected_base_commit": "f34995228ef58ec00fffd60f7c53951bfc631f7c",
   "decision_ids": [
-    "USER-APPROVAL-2026-08-26-R5.4-AUTHORITY-RECONCILIATION"
+    "USER-APPROVAL-2026-08-26-R5.4-AUTHORITY-RECONCILIATION",
+    "VIS-SX-059-05"
   ],
   "approved_paths": [
     "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
     "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
     "기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md",
     "기획서/00_프로젝트_허브/ROADMAP.md",
-    "기획서/00_프로젝트_허브/START_HERE.md"
+    "기획서/00_프로젝트_허브/START_HERE.md",
+    "기획서/40_표현/SX_DEC_059_VISUAL_REQUIREMENT_BRIEFS.md"
   ],
-  "approval_source": "USER_EXPLICIT_CONTINUATION_APPROVAL_2026-08-26",
-  "approval_time": "2026-08-26T11:29:00+09:00",
-  "scope_summary": "User-approved v4.8 r5.4 Superset Final authority reconciliation only; GMB-002, SX-DEC-027~059 product meaning, Candidate 003 identity, deferred 056~058 implementation boundaries, and physical/device/human/player evidence ceilings remain unchanged."
+  "approval_source": "USER_EXPLICIT_VISUAL_DIRECTION_APPROVAL_2026-08-26",
+  "approval_time": "2026-08-26T12:33:00+09:00",
+  "scope_summary": "User-approved VIS-SX-059-05 cargo stack silhouette: represent loaded cargo as a compact vertical LIFO tower attached to a short train rather than a long horizontal freight tail; preserve GMB-002 unlimited LIFO semantics, Candidate 003 evidence ceilings, and all gameplay/runtime authority."
 }
