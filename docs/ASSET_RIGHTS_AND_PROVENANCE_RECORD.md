@@ -63,13 +63,13 @@ reference_similarity_status:
 
 공개 저장소에는 원계약서·신분증·서명·주소·계좌·결제·세금·개인정보를 넣지 않는다. `secure_original_location`, 최소 metadata, hash와 적법한 redacted excerpt만 기록한다.
 
-## Approved image dual-preservation policy · 2026-08-26
+## User-approved automatic consumer-image dual-preservation policy · 2026-08-26
 
-사용자 승인 이미지의 미래 보존은 Notion과 프로젝트 로컬 저장소를 모두 요구한다. 이 정책은 image generation 또는 product-asset promotion 자체를 승인하지 않는다.
+실제 game runtime consumer가 확인된 필요한 이미지는 별도 이미지별 승인 없이 자동 생성할 수 있다. 생성 이미지는 Notion과 프로젝트 로컬 저장소에 모두 보존해야 하며, 기존 E+D Hybrid / Neo-Arcade 시각 언어를 유지한다. Runtime consumer가 없는 이미지 생성이나 runtime promotion은 이 권한에 포함되지 않는다.
 
 ```yaml
 approved_image_record:
-  approval_source: user decision or approved decision id
+  creation_authority: USER_APPROVED_2026_08_26_AUTOMATIC_CONSUMER_IMAGE_POLICY | specific decision id
   visual_role: RUNTIME_PRODUCT_ASSET | VISUAL_REFERENCE | NOT_RUNTIME_PROOF
   notion_owner_page: 03 · Visual · UX · Assets or the approved Asset Library destination
   notion_attachment_or_preview: durable attachment/preview identifier
@@ -82,7 +82,7 @@ approved_image_record:
   dual_preservation_status: APPROVED_DUAL_PRESERVED | INCOMPLETE
 ```
 
-`APPROVED_DUAL_PRESERVED`은 Notion destination readback, 프로젝트 로컬 추적 파일, SHA-256, 승인·권리 provenance가 모두 있는 경우에만 사용한다. Runtime consumer가 확인되지 않은 이미지는 `VISUAL_REFERENCE` 또는 `NOT_RUNTIME_PROOF`로 남기며, 실제 게임 product asset으로 승격하지 않는다. 이 규칙은 역사적 transport/corruption batch를 소급 변경하지 않는다.
+`APPROVED_DUAL_PRESERVED`은 Notion destination readback, 프로젝트 로컬 추적 파일, SHA-256, 생성 권한·권리 provenance가 모두 있는 경우에만 사용한다. Runtime consumer가 확인되지 않은 이미지는 `VISUAL_REFERENCE` 또는 `NOT_RUNTIME_PROOF`로 남기며, 실제 게임 product asset으로 승격하지 않는다. 이 규칙은 역사적 transport/corruption batch를 소급 변경하지 않는다.
 
 ## VS-DEMO-PRESENTATION-001 · In-engine board and UI shapes
 

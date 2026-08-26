@@ -213,11 +213,19 @@ Actual GDScript/Scene/Resource/map/runtime implementation must use `CODEX_GODOT_
 - multi-station priority invention
 - new solver/optimal route reveal
 - Base repin
-- new generated image without concrete game consumer + separate user approval
+- new generated image without a concrete game consumer
 
 ## 7. Consumer-first image rule
 
 Production image work is allowed only when a real game consumer exists.
+
+```yaml
+automatic_consumer_image_policy: USER_APPROVED_2026_08_26
+approved_image_dual_storage: PROJECT_LOCAL_AND_NOTION
+visual_continuity: existing E+D Hybrid / Neo-Arcade visual language
+```
+
+When a verified runtime node/key/path has a genuinely missing bitmap slot, generate only the required image without a per-image approval request. Preserve it in the tracked project-local asset path and the Notion Visual/Asset destination, record provenance and SHA-256, then read the Notion destination back. Reuse the existing E+D Hybrid / Neo-Arcade visual language; a concrete consumer remains mandatory.
 
 Current `ProductBoardRenderer` already consumes station texture paths for red/blue/yellow stations, so SX-DEC-060 must:
 

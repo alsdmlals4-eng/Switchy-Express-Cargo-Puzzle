@@ -210,6 +210,14 @@ The indicator must not obscure:
 
 Explanation sheets/full-screen concept images are not production assets.
 
+```yaml
+automatic_consumer_image_policy: USER_APPROVED_2026_08_26
+approved_image_dual_storage: PROJECT_LOCAL_AND_NOTION
+visual_continuity: existing E+D Hybrid / Neo-Arcade visual language
+```
+
+When a verified runtime node/key/path proves a missing bitmap slot, generate only that required image automatically, save it in the tracked project-local asset path and the Notion Visual/Asset destination, record provenance/SHA-256, and read the Notion destination back. A per-image approval is not required; a concrete consumer and the existing visual language remain mandatory.
+
 ## 10. First-session / localization gate
 
 Current flow remains T1→T6→Capstone. T2 changes mental model:
@@ -281,5 +289,5 @@ SX-DEC-058 → IMPLEMENTATION_NOT_AUTHORIZED
 endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset → NON_CURRENT
 Base repin → NOT_AUTHORIZED
 arbitrary station radius/diagonal/multi-station priority → OUT_OF_SCOPE
-new generated image without concrete game consumer + separate approval → OUT_OF_SCOPE
+new generated image without concrete game consumer → OUT_OF_SCOPE
 ```

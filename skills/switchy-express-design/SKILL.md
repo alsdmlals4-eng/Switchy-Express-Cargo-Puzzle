@@ -161,7 +161,15 @@ existing station PNG consumer
 → ZERO new bitmap assets
 ```
 
-Do not produce explanation sheets, full-screen mockups, or decorative images without a real runtime node/key/path consumer. If a future concrete bitmap slot is proven necessary, stop and obtain separate approval for that exact asset contract.
+Do not produce explanation sheets, full-screen mockups, or decorative images without a real runtime node/key/path consumer. When a future concrete bitmap slot is proven necessary, the user-approved automatic policy applies:
+
+```yaml
+automatic_consumer_image_policy: USER_APPROVED_2026_08_26
+approved_image_dual_storage: PROJECT_LOCAL_AND_NOTION
+visual_continuity: existing E+D Hybrid / Neo-Arcade visual language
+```
+
+Generate only the required bitmap, keep the existing E+D Hybrid / Neo-Arcade visual language, save the tracked local asset plus the Notion Visual/Asset record, record provenance/SHA-256, and read the Notion destination back. No per-image approval request is needed.
 
 ## First-session authority
 
@@ -305,7 +313,7 @@ Before merging a current-task implementation PR:
 1. refresh Base completed main + project main + exact Notion Home + all Open/Draft PRs;
 2. verify only approved SX-DEC-060 scope changed;
 3. verify PR #174 untouched;
-4. verify no new bitmap unless separately approved with concrete runtime consumer;
+4. verify every new bitmap has a concrete runtime consumer and is preserved in both the tracked project-local path and Notion;
 5. observe RED→GREEN evidence for production behavior;
 6. run full exact-head Godot/static/package checks;
 7. run minimum five adversarial loops and fix findings;
