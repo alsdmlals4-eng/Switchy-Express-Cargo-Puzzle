@@ -35,7 +35,7 @@ SX-DEC-060 · CURRENT
 → decision/design/TDD/Codex handoff executed
 → runtime implementation merged/main verified · PR #188
 → full automated regression PASS · 111 cases / 13,461 assertions · CI 7 GREEN
-→ post-060 candidate NOT_CREATED
+→ SX60-POC-ACCEPT-001 prepared package candidate
 ```
 
 ## M0 · Product baseline
@@ -186,15 +186,15 @@ Stable sequence:
 
 ```text
 post-merge package proof
-→ new exact post-060 package candidate
+→ SX60-POC-ACCEPT-001 physical self-run
 ```
 
 ```yaml
 SX_DEC_060_RUNTIME: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 FULL_AUTOMATED_REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 FIVE_PASS_REVIEW: CLOSED · SX-AUD-071
-POST_060_PACKAGE: NOT_RUN
-POST_060_CANDIDATE: NOT_CREATED
+POST_060_PACKAGE: PASS · SX60-POC-ACCEPT-001
+POST_060_CANDIDATE: PREPARED_PACKAGE_VERIFIED
 ```
 
 ## M6A · Post-060 physical/device/human validation

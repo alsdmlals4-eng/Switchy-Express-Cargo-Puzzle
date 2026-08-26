@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "candidate_id": "SX60-POC-ACCEPT-001",
+  "candidate_evidence_owner": "evidence/acceptance/sx60_poc_accept_001_artifact.json",
+  "package_identity": {
+    "zip_sha256": "6565b3df60faee924a744eb7ef8c37840ebb0d31d8d214ed41f2dcc1d2e383a9",
+    "windows_exe_sha256": "1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244",
+    "windows_pck_sha256": "da0ec17fd55f5406bc68c2717666ec70a610087324c195a9a208cf67cc3a4920"
+  },
+  "pck_integrity": {
+    "verifier": "tools/verify_godot_pck_integrity.py",
+    "final_verifier_actual_candidate_invocation": "PASS",
+    "recomputed_windows_pck_sha256": "da0ec17fd55f5406bc68c2717666ec70a610087324c195a9a208cf67cc3a4920",
+    "pack_format_version": 4,
+    "engine_version": "4.7.1",
+    "pack_flags": 2,
+    "relative_filebase": true,
+    "file_size_bytes": 835820,
+    "file_base": 112,
+    "directory_offset": 788864,
+    "directory_end": 835820,
+    "trailing_unverified_bytes": 0,
+    "file_count": 477,
+    "verified_entry_count": 477,
+    "md5_mismatch_count": 0,
+    "bounds_error_count": 0,
+    "nonzero_entry_flags_count": 0,
+    "integrity_pass": true
+  },
+  "product_texture_packaging": {
+    "prefix": "art/product_assets/ed_hybrid_v1/",
+    "prefix_entry_count": 77,
+    "product_png_import_count": 73,
+    "unique_referenced_ctex_count": 73,
+    "missing_ctex_reference_count": 0,
+    "orphan_packed_ctex_count": 0,
+    "packaging_crosscheck": "PASS"
+  },
+  "packaged_runtime_proof": {
+    "windows_runtime_json": "PASS · parsed_json=26",
+    "android_validation_runtime_json": "PASS · parsed_json=26"
+  },
+  "evidence_ceiling": {
+    "package_integrity": "PASS",
+    "physical_visual_recheck": "NOT_RUN",
+    "developer_self_run": "NOT_RUN",
+    "windows_physical_runtime_full_scenarios": "NOT_RUN",
+    "audio_perceptual_qa": "NOT_RUN",
+    "android_device": "NOT_RUN",
+    "five_person_comprehension": "NOT_RUN",
+    "player_experience": "NOT_RUN"
+  }
+}

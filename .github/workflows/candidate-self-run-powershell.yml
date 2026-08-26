@@ -9,9 +9,13 @@ on:
       - evidence/acceptance/current_poc_candidate.json
       - evidence/acceptance/post_sx_dec_060_candidate.json
       - evidence/acceptance/sx59_poc_accept_*_artifact.json
+      - evidence/acceptance/sx60_poc_accept_*_artifact.json
       - 기획서/50_제작_검증/SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_*.md
+      - 기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_*.md
+      - 기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_*.md
       - tests/python/test_candidate_002_powershell_self_run.py
       - tests/python/test_current_poc_candidate_pointer.py
+      - tests/python/test_sx_dec_060_candidate_mint.py
       - .github/workflows/candidate-self-run-powershell.yml
   push:
     branches: [main]
@@ -21,9 +25,13 @@ on:
       - evidence/acceptance/current_poc_candidate.json
       - evidence/acceptance/post_sx_dec_060_candidate.json
       - evidence/acceptance/sx59_poc_accept_*_artifact.json
+      - evidence/acceptance/sx60_poc_accept_*_artifact.json
       - 기획서/50_제작_검증/SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_*.md
+      - 기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_*.md
+      - 기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_*.md
       - tests/python/test_candidate_002_powershell_self_run.py
       - tests/python/test_current_poc_candidate_pointer.py
+      - tests/python/test_sx_dec_060_candidate_mint.py
       - .github/workflows/candidate-self-run-powershell.yml
 
 permissions:
@@ -55,7 +63,7 @@ jobs:
           }
           Write-Host 'POWERSHELL_51_PARSE: PASS'
 
-      - name: Run post-060 fail-closed contract check
+      - name: Run post-060 explicit-candidate contract check
         shell: powershell
         run: |
           .\RUN_SX60_POC_SELF_RUN.ps1 -ContractCheck -NoLaunch -NoOpenRecord
@@ -76,15 +84,12 @@ jobs:
             -NoOpenRecord `
             -WorkDir (Join-Path $env:RUNNER_TEMP 'switchy-historical-candidate-003')
 
-      - name: Prove no post-060 candidate is launched before one exists
+      - name: Verify exact post-060 package candidate without launch
         shell: powershell
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          try {
-            .\RUN_SX60_POC_SELF_RUN.ps1 -NoLaunch -NoOpenRecord
-            throw 'Expected post-060 candidate launcher to fail closed.'
-          } catch {
-            if ($_.Exception.Message -notlike '*POST_SX_DEC_060_CANDIDATE_NOT_CREATED*') {
-              throw
-            }
-          }
-          Write-Host 'POST_SX_DEC_060_CANDIDATE_NOT_CREATED: PASS'
+          .\RUN_SX60_POC_SELF_RUN.ps1 `
+            -NoLaunch `
+            -NoOpenRecord `
+            -WorkDir (Join-Path $env:TEMP 'switchy-post-060-candidate')

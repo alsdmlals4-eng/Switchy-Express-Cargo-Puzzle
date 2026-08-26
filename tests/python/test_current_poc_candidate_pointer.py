@@ -78,12 +78,12 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
         self.assertEqual(evidence["package"]["identity_class"], "IMMUTABLE_CONTENT_DIGESTS")
         self.assertEqual(evidence["artifact"]["metadata_class"], "EPHEMERAL_DELIVERY_METADATA")
 
-    def test_post_060_pointer_is_explicitly_not_created_and_fail_closed(self) -> None:
+    def test_post_060_pointer_selects_only_the_explicit_minted_candidate(self) -> None:
         pointer = self._json(POST_060_POINTER)
         self.assertEqual(pointer["schema_version"], 1)
         self.assertEqual(pointer["decision_id"], "SX-DEC-060")
-        self.assertEqual(pointer["candidate_status"], "NOT_CREATED")
-        self.assertIsNone(pointer["current_candidate_id"])
+        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-001")
         self.assertEqual(
             pointer["selection_policy"],
             "EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE",
@@ -100,8 +100,8 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
             pointer["historical_predecessor"]["role"],
             "HISTORICAL_EXACT_BYTES_ONLY",
         )
-        self.assertNotIn("artifact_evidence_owner", pointer)
-        self.assertNotIn("deep_pck_evidence_owner", pointer)
+        self.assertEqual(pointer["artifact_evidence_owner"], "evidence/acceptance/sx60_poc_accept_001_artifact.json")
+        self.assertEqual(pointer["deep_pck_evidence_owner"], "evidence/acceptance/sx60_poc_accept_001_pck_deep_audit.json")
 
     def test_post_060_pointer_requires_actual_post_change_candidate_minting(self) -> None:
         pointer = self._json(POST_060_POINTER)
@@ -119,13 +119,13 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
         text = POST_060_LAUNCHER.read_text(encoding="ascii")
         self.assertIn("post_sx_dec_060_candidate.json", text)
         self.assertIn("candidate_status", text)
-        self.assertIn("NOT_CREATED", text)
-        self.assertIn("POST_SX_DEC_060_CANDIDATE_NOT_CREATED", text)
+        self.assertIn("PREPARED_PACKAGE_VERIFIED", text)
+        self.assertIn("POST_SX_DEC_060_CANDIDATE_CONTRACT", text)
         self.assertIn("throw", text)
         self.assertNotIn("SX59-POC-ACCEPT-003", text)
         self.assertNotIn("current_poc_candidate.json", text)
-        self.assertNotIn("Start-Process", text)
-        self.assertNotIn("gh run download", text)
+        self.assertIn("Start-Process", text)
+        self.assertIn("gh run download", text)
 
     def test_historical_launcher_requires_explicit_history_only_opt_in(self) -> None:
         self.assertTrue(HISTORICAL_LAUNCHER.is_file())

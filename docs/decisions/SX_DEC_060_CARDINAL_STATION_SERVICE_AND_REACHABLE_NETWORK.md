@@ -170,14 +170,14 @@ References:
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
 candidate_003_role_after_decision: HISTORICAL_PRE_SX_DEC_060_PHYSICAL_TARGET
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: NOT_CREATED · FAIL_CLOSED_NO_LAUNCH
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-001 · PREPARED_PACKAGE_VERIFIED
 candidate_003_package_integrity: PRESERVED_HISTORICAL_PASS
 candidate_003_physical_visual_recheck: NOT_RUN
 sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_five_pass_review: CLOSED · SX-AUD-071
 sx_dec_060_notion_readback: PASS
-sx_dec_060_packaged_runtime: NOT_RUN
+sx_dec_060_packaged_runtime: PASS · SX60-POC-ACCEPT-001
 sx_dec_060_windows_physical: NOT_RUN
 sx_dec_060_android_device: NOT_RUN
 sx_dec_060_five_person_comprehension: NOT_RUN
@@ -206,6 +206,6 @@ The implementation must not absorb:
 Actual GDScript / Scene / Resource / map-data / runtime test work is merged-main verified by PR #188 under the active r5.4 project contract.
 
 ```text
-new exact post-060 package candidate
+SX60-POC-ACCEPT-001 physical self-run
 → physical/device/human evidence gates
 ```
