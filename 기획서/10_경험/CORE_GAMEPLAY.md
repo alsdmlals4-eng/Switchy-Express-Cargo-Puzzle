@@ -1,54 +1,96 @@
 # Core Gameplay
 
-상태: `CURRENT_CANON · GMB-002`
+상태: `CURRENT_CANON · GMB-002 · AMENDED_BY_SX_DEC_060 · RUNTIME_NOT_RUN`
 
-이 문서는 기존 무한 생존·연료·BOOST 플레이 루프를 `[대체됨]`으로 처리한다. 세부 정본은 `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`다.
+세부 제품 정본은 `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`다. 이 문서는 플레이어가 실제로 이해해야 하는 **현재 gameplay mental model**을 압축한다.
 
 ## 플레이어 약속
 
-> 선로를 건설해 화물을 원하는 순서로 만나고, 마지막에 실은 화물부터 내리는 LIFO를 역산해 역 방문과 Combo를 설계한다.
+> 필요한 선로망을 건설해 화물을 원하는 순서로 만나고, 마지막에 실은 화물부터 내리는 LIFO를 역산한 뒤, 운행 중 분기와 역 인접 배송으로 계획을 실행한다.
 
 ## 뾰족한 재미
 
 ```text
-선로가 적재 순서를 만든다
+선로가 화물 조우 순서를 만든다
 + LIFO가 하역 순서를 강제한다
-+ 분기가 실행 판단을 만든다
-+ Combo가 같은 종류를 묶을 이유를 만든다
-+ 시간·비용·점수가 서로 다른 최적해를 만든다
++ 분기가 운행 중 실행 판단을 만든다
++ 역의 상·하·좌·우 서비스 범위가 노선 기하를 배송 계획으로 바꾼다
++ 결과가 다음 재설계 가설을 만든다
 ```
+
+모든 선로 조각을 하나의 전역 connected network로 만드는 것은 목표가 아니다. **start-reachable RUN network가 필요한 화물 조우와 station service를 만족하는지**가 중요하다.
 
 ## 핵심 루프
 
 ```text
-맵·화물·역·별 목표 확인
-→ 자유 선로 건설과 비용 비교
-→ 모든 역·화물 구조적 도달 가능성 확인
+맵·화물·역 읽기
+→ 필요한 RUN 선로망과 비용 비교
+→ Preflight: start-reachable required coverage 확인
 → 운행 시작
 → 수동 적재 또는 자동 적재 전환
 → 분기 사전 전환
-→ LIFO TOP 연속 동일 화물 하역
-→ Combo 가속·점수
-→ 모든 배송 성공 또는 제한 시간 실패
-→ 노선을 유지한 채 수정·재도전
+→ 화물 셀 직접 통과로 LIFO 적재
+→ 역의 상·하·좌·우 인접 셀을 지나 TOP 연속 동일 화물 하역
+→ 성공/실패 결과 확인
+→ Retry Same Layout 또는 Edit Layout
 ```
+
+## SX-DEC-060 · Station Service
+
+공식 판정:
+
+```text
+distance = abs(train_x - station_x) + abs(train_y - station_y)
+DELIVER_SERVICEABLE iff distance == 1
+```
+
+- 상·하·좌·우 정확히 1칸만 station service cell이다.
+- 대각선은 service가 아니다.
+- station footprint 자체도 service가 아니다.
+- 거리 2칸 이상도 service가 아니다.
+- Cargo는 기존처럼 cargo cell을 직접 통과할 때만 적재 판정을 한다.
+- matching station에서만 현재 contiguous same-type TOP group이 내려간다.
+- TOP 종류가 다르면 하역하지 않는다.
+
+기술 구현 기본값은 station을 **off-track/non-buildable service object**로 두는 `FiniteMapDefinition schema v3`이다. 현재 runtime은 아직 pre-SX-DEC-060이므로 `RUNTIME_NOT_RUN`이다.
 
 ## 건설 단계
 
 - 운행 시간 정지
 - 건설 불가 구역 외 자유 설치
+- station footprint는 post-060 schema v3에서 non-buildable/off-track
 - 선로 조각별 비용
 - 철거 전액 환급
 - 반투명 추천 설계도와 예상 비용
 - 추천은 안전한 기본 해법이지 별·랭킹 정답이 아님
-- 모든 역·화물의 구조적 도달 가능성 충족 전 운행 시작 불가
+- 사용하지 않는 disconnected rail island는 그 자체로 RUN 차단 사유가 아님
+
+### Preflight가 확인하는 것
+
+```text
+start/incoming에서 실제 RUN 가능한 reachable states 계산
+→ 모든 필수 cargo cell reachable
+→ 모든 필수 station마다 상·하·좌·우 service cell 중 최소 1개 reachable
+→ reachable switch/crossing/route state 유효
+→ applicable reachable trap/route-end contract 유효
+```
+
+start에서 완전히 도달할 수 없고 required cargo/station service에 쓰이지 않는 disconnected rail island는 허용한다. 반대로 실제 RUN component가 required cargo나 station service를 충족하지 못하면 출발을 막는다.
+
+Preflight가 풀어주지 않는 것:
+
+- 정확한 LIFO 해답
+- 수동/자동 적재 타이밍
+- 분기 조작 순서
+- 제한 시간 성공 해답
+- 최소 비용·최대 Combo 해답
 
 ## 운행 조작
 
 | 입력 | 행동 |
 |---|---|
-| 적재 홀드 | 누르고 있는 동안 통과한 화물 적재 |
-| 자동 적재 토글 | 활성 중 통과한 모든 화물 적재 |
+| 적재 홀드 | 누르고 있는 동안 통과한 cargo 직접 접촉 시 적재 |
+| 자동 적재 토글 | 활성 중 통과한 모든 cargo 직접 접촉 시 적재 |
 | 분기 탭 | 선택 방향 변경, 다시 조작할 때까지 유지 |
 | 일시정지 | 시간 정지·상태 확인, 운행 조작 금지 |
 
@@ -57,91 +99,72 @@
 ## 적재·LIFO
 
 - 화물 지점당 1개
+- cargo cell 직접 통과 시에만 적재 판정
 - 적재 정차 없음
-- 화물칸 수량 제한 없음
-- 먼저 적재한 화물은 안쪽, 마지막 적재 화물은 `TOP`
-- 역에서는 TOP부터 해당 종류가 연속되는 동안만 자동 하역
-- TOP 종류가 역과 다르면 정차하지 않고 통과
+- 화물칸 domain 수량 제한 없음
+- 먼저 적재한 화물은 bottom, 마지막 적재 화물은 `TOP`
+- station service cell 통과 시 TOP부터 station 종류와 연속 일치하는 동안만 자동 하역
+- TOP 종류가 다르면 정차·하역 없이 통과
 
 ```text
 조우 A → B → A → A
 스택 [A][B][A][A TOP]
-A역: A 2개 · 2 Combo
-B역: B 1개
-A역 재방문: A 1개
+A역 service: A 2개
+B역 service: B 1개
+A역 service 재방문: A 1개
 ```
-
-## Combo
-
-- 한 번의 역 도착에서 연속 하역한 같은 종류 수
-- 1개는 일반 하역
-- 2개 이상은 일시 가속과 점수 보너스
-- 하역 총 정차는 최대 1초
-- 모든 화물의 하역 움직임은 보임
-- Combo 가속은 출발 후 시작
-- 지속시간은 누적하지 않고 더 긴 시간으로 갱신
-- 최종 속도 `2× TEST_VALUE` 상한
-
-Combo는 의도적으로 밀어주는 전략이지만 시간·비용 최적화를 완전히 대체해서는 안 된다.
 
 ## 성공·실패·재도전
 
-- 운행 시작부터 제한 시간 진행
-- 마지막 화물 하역 완료 즉시 성공
+- RUN 시작부터 제한 시간 진행
+- 마지막 필수 화물 delivery commit 완료 즉시 성공
 - 제한 시간 종료 시 미배송 화물 1개 이상이면 실패
+- current route-end contract에 따른 실패 유지
 - 복귀·종착지 조건 없음
-- 실패 후 건설 노선 유지
-- 열차·화물·시간·분기 상태 초기화
-- 노선 전체 초기화는 별도 버튼
+- 실패 후 sealed TrackLayout 유지
+- train/cargo/time/switch mutable state는 fresh attempt로 초기화
+- `Retry Same Layout`과 `Edit Layout`을 구분
 
-## 목표와 반복
+## First Session
 
-### 맵별 별
+```text
+T1 Track Connection
+→ T2 Cargo direct contact + Station cardinal-adjacent service
+→ T3 LIFO/TOP reverse planning
+→ T4 selective non-load + revisit
+→ T5 Auto ON safe / OFF decision
+→ T6 switch execution
+→ VS_DEMO_01 capstone
+```
 
-- 신속
-- 절약
-- 점수
+T2에서 반드시 구분한다.
 
-여러 시도에서 누적한다. 세 별을 획득하면 해당 맵의 속도·가격·점수 리더보드 등록을 개방한다.
-
-### 캠페인
-
-- 1~10 튜토리얼
-- 11+ 테마 챕터
-- 3개 중 2개 클리어 시 다음 묶음
-- 챕터 시험은 새 규칙 없이 배운 규칙 종합
-
-### 반복 도전
-
-- 일일 1개·주간 1개
-- 동일 기간 동일 고정 시드
-- 무제한 재도전
-- 미학습 기믹 사전 설명
-- 종료 후 기록 보관소에서 연습 가능
+```text
+Cargo = 그 셀을 직접 통과해 적재
+Station = 상·하·좌·우 1칸을 통과해 배송
+Diagonal = 배송 안 됨
+```
 
 ## 핵심 재미 Guardrails
 
+- station footprint 위에 rail을 깔아야만 배송되는 의미가 남으면 실패
+- 대각선에서도 배송되면 실패
+- 모든 player rail을 전역 연결해야만 RUN 가능한 구조로 되돌아가면 실패
+- irrelevant disconnected island의 dangling 구조가 active RUN을 무조건 막으면 실패
+- required cargo/station service가 unreachable인데 RUN이 시작되면 실패
 - 추천 설계도를 따라가기만 하면 별 3개가 되면 실패
-- 가격 순위가 모든 구간 저비용 선로로 고정되면 실패
-- 속도 순위가 모든 허용 비용을 가속 선로에 쓰는 정답 하나로 고정되면 실패
-- Combo만 키우는 우회가 시간·비용을 무시하고 점수 최적이면 실패
 - 수동 적재가 짧은 반응속도 판정으로 느껴지면 실패
 - 무제한 화물 때문에 TOP과 다음 연속 그룹을 읽지 못하면 실패
-- 분기 조작보다 일시정지 반복이 실제 실행을 완전히 대체하면 실패
-- 꾸미기·리더보드가 노선 재설계보다 주된 동기가 되면 실패
+- 분기 조작보다 pause 반복이 실제 실행을 완전히 대체하면 실패
 
-## 관찰 지표
+## Visual / Asset Guardrail
 
-- 적재 스택 종류 전환 수
-- TOP blocked 시간
-- 역 재방문 횟수
-- Combo 1/2/3/4/5+ 분포
-- 가속·저비용·일반 선로 사용 비중
-- 추천 설계도 사용·수정 비율
-- 별별 평균 도전 횟수
-- 속도·가격·점수 상위 노선 다양성
-- pause 횟수와 pause 후 분기/적재 실수
-- 8/16/32개 스택에서 TOP 인지율
+Station PNG는 이미 `ProductBoardRenderer`의 실제 consumer가 있다. SX-DEC-060 service range는 기존 station PNG + procedural indicator를 먼저 사용한다.
+
+```yaml
+new_bitmap_assets_required: 0
+explanation_sheet_without_runtime_consumer: OUT_OF_SCOPE
+```
 
 ## 구형 루프 상태
 
@@ -150,5 +173,7 @@ Combo는 의도적으로 밀어주는 전략이지만 시간·비용 최적화�
 - BOOST 홀드: `[폐기]`
 - 화물 적재량 감속: `[폐기]`
 - pickup respawn: `[폐기]`
-- first endless run onboarding: `[대체됨]`
-- 기존 구현·테스트: `[역사 증거 · 부분 재사용 후보]`
+- switch auto-reset: `[대체됨]`
+- pre-SX-DEC-060 exact-station delivery: `[대체됨]`
+- global-all-rail-connected interpretation: `[대체됨]`
+- 기존 구현·테스트·Candidate 003: `[역사 증거 · post-060 acceptance 아님]`
