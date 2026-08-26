@@ -15,7 +15,7 @@ Last updated: `2026-08-26 KST`
 | current project adapter | `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md` |
 | historical v4.8 r4 predecessor | `2026-08-24-r4 · PROVENANCE_ONLY` |
 | SX-DEC-059 implementation | `MERGED_MAIN_VERIFIED · PRE_SX_DEC_060_RUNTIME` |
-| SX-DEC-060 | `USER_APPROVED_CORE_DELTA · IMPLEMENTED_AUTOMATED · PR_PENDING` |
+| SX-DEC-060 | `MERGED_MAIN_VERIFIED · PR #188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7` |
 | station service | `UP/RIGHT/DOWN/LEFT exactly 1 tile · diagonal excluded` |
 | network preflight | `START_REACHABLE_RUN_COMPONENT · irrelevant disconnected rail island allowed` |
 | map schema target | `FiniteMapDefinition v3` |
@@ -24,7 +24,7 @@ Last updated: `2026-08-26 KST`
 | pre-060 Candidate 003 | `SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY after SX-DEC-060` |
 | post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · NOT_CREATED · FAIL_CLOSED_NO_LAUNCH` |
 | post-060 candidate | `NOT_CREATED` |
-| post-060 automated regression | `PASS · 111 cases / 13,461 assertions · PR_PENDING` |
+| post-060 automated regression | `PASS · 111 cases / 13,461 assertions · CI 7 GREEN · SX-AUD-071 CLOSED` |
 | post-060 Windows physical | `NOT_RUN` |
 | post-060 Android device | `NOT_RUN` |
 | post-060 five-person | `NOT_RUN` |
@@ -143,21 +143,11 @@ Historical v4.7/r2/r4 adapter/reconciliation materials (including v4.8 `2026-08-
 ## Current next action
 
 ```text
-verify merged SX-DEC-060 canon sync
-→ synchronize Notion with the same Decision ID
-→ Codex fresh-read merged main + exact Notion Home
-→ RED tests
-→ schema v3 + station off-track service semantics
-→ cardinal delivery + start-reachable preflight
-→ map/tutorial migration + deterministic witnesses
-→ procedural station service projection using existing station PNGs
-→ full automated regression
-→ five-pass adversarial review
-→ new exact post-060 candidate
+new exact post-060 candidate
 → Windows physical smoke
 → Android device smoke
 → Five-person first-contact comprehension
 → product decision
 ```
 
-Current evidence ceiling is `DESIGN/HANDOFF_READY`. Runtime, package, physical, device, human, and player-experience PASS for SX-DEC-060 are not yet available.
+Current evidence ceiling is `RUNTIME_MERGED_MAIN_VERIFIED / AUTOMATED_PASS / FIVE_PASS_REVIEW_CLOSED`. Package, physical, device, human, and player-experience PASS for SX-DEC-060 are not yet available.

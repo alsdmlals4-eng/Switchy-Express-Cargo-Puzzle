@@ -1,6 +1,6 @@
 # Core Gameplay
 
-상태: `CURRENT_CANON · GMB-002 · AMENDED_BY_SX_DEC_060 · IMPLEMENTED_AUTOMATED_PR_PENDING`
+상태: `CURRENT_CANON · GMB-002 · AMENDED_BY_SX_DEC_060 · MERGED_MAIN_VERIFIED · PR_188`
 
 세부 제품 정본은 `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`다. 이 문서는 플레이어가 실제로 이해해야 하는 **현재 gameplay mental model**을 압축한다.
 

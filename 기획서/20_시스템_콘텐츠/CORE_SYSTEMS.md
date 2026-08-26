@@ -1,6 +1,6 @@
 # Core Systems
 
-상태: `CURRENT_CANON · GMB-002 · AMENDED_BY_SX_DEC_060 · IMPLEMENTED_AUTOMATED_PR_PENDING`
+상태: `CURRENT_CANON · GMB-002 · AMENDED_BY_SX_DEC_060 · MERGED_MAIN_VERIFIED · PR_188`
 
 세부 제품 규칙은 `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`가 책임진다. 현재 실행·검증 상태는 `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`와 `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`를 우선하며, 아래 과거 자동화·APK 증거는 당시 검증 사실로 보존한다.
 
@@ -73,7 +73,7 @@ current_build_cost = 운행 시작 시 존재하는 최종 TrackLayout 비용 �
 
 ## SX-DEC-060 · 역 서비스
 
-이 절은 post-060 구현 계약을 정의한다. runtime은 schema v3/cardinal service/start-reachable preflight로 구현됐으며, 자동 회귀만 통과한 PR-pending 상태다.
+이 절은 post-060 구현 계약을 정의한다. runtime은 schema v3/cardinal service/start-reachable preflight로 구현되어 PR #188로 병합됐고, 자동 회귀와 CI 증거는 완료됐으며 package·물리·사람 증거는 별도다.
 
 - 역 서비스는 역 중심에서 상·하·좌·우 정확히 1칸인 service cell에서만 일어난다.
 - 대각선, 거리 2칸 이상, 역 footprint 자체는 배송 접촉이 아니다.
@@ -238,7 +238,7 @@ CURRENT EXECUTION AUTHORITY: CURRENT_CONFIRMED_DECISIONS + ACTIVE_CONTEXT
 PRE-SX-DEC-055 RUNTIME POC: MERGED_MAIN_VERIFIED · HISTORICAL
 PRE-SX-DEC-059 RELEASE-NEAR FIRST SESSION: MERGED_MAIN_VERIFIED · HISTORICAL
 SX-DEC-060 USER RULE / DESIGN / HANDOFF: APPROVED / RECORDED / PREPARED
-SX-DEC-060 RUNTIME / AUTOMATED: IMPLEMENTED_AUTOMATED / PASS_111_CASES_13461_ASSERTIONS · PR_PENDING
+SX-DEC-060 RUNTIME / AUTOMATED: MERGED_MAIN_VERIFIED · PR_188 / PASS_111_CASES_13461_ASSERTIONS · CI_7_GREEN
 SX-DEC-060 PACKAGE: NOT_RUN
 POST-060 CANDIDATE: NOT_CREATED
 WINDOWS PHYSICAL RUNTIME: NOT_RUN

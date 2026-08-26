@@ -97,11 +97,11 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
         self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
         self.assertEqual("GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME", planning["runtime_structured_authority"])
 
-    def test_project_skill_routes_current_sx060_implementation_sequence(self) -> None:
+    def test_project_skill_routes_current_sx060_candidate_sequence(self) -> None:
         text = PROJECT_SKILL.read_text(encoding="utf-8")
         current = text.split("### Current Gate authority", 1)[1].split("## SX-DEC-060 station / preflight contract", 1)[0]
         for required in (
-            "SX-DEC-060 Codex runtime implementation",
+            "new exact post-060 package candidate",
             "POST-060 EXACT CANDIDATE: NOT_CREATED",
             "Windows physical smoke",
             "Android device smoke",

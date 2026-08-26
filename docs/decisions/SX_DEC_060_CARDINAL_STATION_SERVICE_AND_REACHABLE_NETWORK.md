@@ -1,6 +1,6 @@
 # SX-DEC-060 · Cardinal Station Service and Reachable Network
 
-Status: `USER_APPROVED_CORE_DELTA · DESIGN_RECORDED · IMPLEMENTATION_NOT_YET_EXECUTED`
+Status: `USER_APPROVED_CORE_DELTA · DESIGN_RECORDED · MERGED_MAIN_VERIFIED · PR #188`
 Decision date: `2026-08-26 KST`
 Project baseline: `GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE`
 Supersedes only the conflicting station-contact / all-required-anchor reachability semantics of the pre-SX-DEC-060 finite runtime. It does not reactivate legacy endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset behavior.
@@ -173,8 +173,10 @@ post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate
 post_sx_dec_060_candidate: NOT_CREATED · FAIL_CLOSED_NO_LAUNCH
 candidate_003_package_integrity: PRESERVED_HISTORICAL_PASS
 candidate_003_physical_visual_recheck: NOT_RUN
-sx_dec_060_runtime_implementation: NOT_RUN
-sx_dec_060_automated_regression: NOT_RUN
+sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
+sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
+sx_dec_060_five_pass_review: CLOSED · SX-AUD-071
+sx_dec_060_notion_readback: PASS
 sx_dec_060_packaged_runtime: NOT_RUN
 sx_dec_060_windows_physical: NOT_RUN
 sx_dec_060_android_device: NOT_RUN
@@ -201,17 +203,9 @@ The implementation must not absorb:
 
 ## 11. Implementation owner and next gate
 
-Actual GDScript / Scene / Resource / map-data / runtime test work is owned by `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF` under the active r5.4 project contract.
+Actual GDScript / Scene / Resource / map-data / runtime test work is merged-main verified by PR #188 under the active r5.4 project contract.
 
 ```text
-SX-DEC-060 canon sync
-→ Codex fresh-read from merged main + exact Notion Home
-→ RED tests for cardinal-only service, off-track station data, reachable-component preflight
-→ minimal runtime implementation
-→ map/tutorial migration + witnesses
-→ renderer procedural service indication using existing station PNGs
-→ full Godot + static regression
-→ minimum five-pass adversarial review
-→ exact packaged candidate
+new exact post-060 package candidate
 → physical/device/human evidence gates
 ```

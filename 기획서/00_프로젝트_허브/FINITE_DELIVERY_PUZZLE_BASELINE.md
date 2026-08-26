@@ -1,6 +1,6 @@
 # Switchy Express 유한 배송 퍼즐 제품 기준선
 
-상태: `CURRENT_CANON · USER_APPROVED · AMENDED_BY_SX_DEC_060 · IMPLEMENTED_AUTOMATED_PR_PENDING`
+상태: `CURRENT_CANON · USER_APPROVED · AMENDED_BY_SX_DEC_060 · MERGED_MAIN_VERIFIED · PR_188`
 
 결정 묶음: `GMB-002 · SX-DEC-027~036 · SX-DEC-060 AMENDMENT`
 근거: `EV-USER-019 · 2026-08-04 승인 대화 종합` + `SX-DEC-060 · 2026-08-26 사용자 승인`
@@ -274,7 +274,7 @@ pre-SX-DEC-060 finite automated core, product surface, playable POC와 Candidate
 - pre-060 finite automated core와 integrated proof는 기존 의미로 구현·자동 검증됐다.
 - Candidate 003 package/PCK/73 product texture/PowerShell 5.1 live download proof는 역사적 PASS다.
 - Candidate 003 physical visual recheck와 이후 human/device evidence는 실행되지 않았다.
-- `SX-DEC-060` runtime은 `FiniteMapDefinition` schema v3, cardinal service, start-reachable preflight, current map/tutorial migration으로 구현됐고 headless regression 111 cases / 13,461 assertions가 통과했다. PR merge, package, physical/device/human evidence는 별도다.
+- `SX-DEC-060` runtime은 `FiniteMapDefinition` schema v3, cardinal service, start-reachable preflight, current map/tutorial migration으로 구현되어 PR #188로 병합됐고 headless regression 111 cases / 13,461 assertions 및 CI 7개가 통과했다. package, physical/device/human evidence는 별도다.
 - 기존 station PNG는 실제 `ProductBoardRenderer` consumer가 있으므로 재사용한다. service 범위는 procedural projection이 기본이며 `NEW_BITMAP_ASSETS_REQUIRED = 0`이다.
 - fuel·BOOST·capacity 8·cargo respawn·endless difficulty 구현은 `LEGACY_IMPLEMENTATION`이며 현재 제품 권위가 아니다.
 - Combo 가속·점수 tuning, 확장 선로, 캠페인·기록·온라인 기능은 후속 제작 범위이며 현재 Slice 완료를 의미하지 않는다.
@@ -286,7 +286,7 @@ pre-SX-DEC-060 finite automated core, product surface, playable POC와 Candidate
 GMB_002_CURRENT_AMENDED_BY_SX_DEC_060
 SX_DEC_060_USER_RULE_APPROVED
 SX_DEC_060_DESIGN_RECORDED
-SX_DEC_060_RUNTIME_IMPLEMENTED_AUTOMATED_PR_PENDING
+SX_DEC_060_RUNTIME_MERGED_MAIN_VERIFIED_PR_188
 SX_DEC_060_AUTOMATED_REGRESSION_PASS_111_CASES_13461_ASSERTIONS
 POST_060_ACCEPTANCE_CANDIDATE_NOT_CREATED
 PRE_060_CANDIDATE_003_HISTORICAL_EXACT_EVIDENCE

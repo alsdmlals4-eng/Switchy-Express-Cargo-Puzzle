@@ -48,7 +48,7 @@ class SxDec059ImplementationCanonicalFreshnessTests(unittest.TestCase):
             f"pre_sx_dec_060_implementation_merge_main: {IMPLEMENTATION_MERGE_MAIN}",
             "pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003",
             "HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY",
-            "sx_dec_060_runtime: NOT_RUN",
+            "sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7",
             "post_sx_dec_060_candidate: NOT_CREATED",
         ):
             self.assertIn(required, adapter)
@@ -57,7 +57,7 @@ class SxDec059ImplementationCanonicalFreshnessTests(unittest.TestCase):
             self.assertIn(IMPLEMENTATION_MERGE_MAIN, text, f"{path} lost PR #158 merge identity")
             self.assertIn("PRE_SX_DEC_060", text, f"{path} lost historical scope label")
 
-    def test_current_next_action_is_post_060_implementation_not_old_candidate_validation(self) -> None:
+    def test_current_next_action_is_new_post_060_candidate_not_old_candidate_validation(self) -> None:
         adapter = ADAPTER.read_text(encoding="utf-8")
         combined = "\n".join(
             path.read_text(encoding="utf-8")
@@ -65,7 +65,7 @@ class SxDec059ImplementationCanonicalFreshnessTests(unittest.TestCase):
         )
         for required in (
             "SX-DEC-060",
-            "CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF",
+            "new exact post-060 package candidate",
             "NOT_CREATED",
             "NOT_RUN",
         ):

@@ -2,7 +2,7 @@
 
 ```yaml
 owner_decision: SX-DEC-060
-status: PREPARED_NOT_EXECUTED
+status: EXECUTED_MERGED_MAIN_VERIFIED
 prepared_on: 2026-08-26 KST
 planning_branch: docs/sx-dec-060-cardinal-station-service-20260826
 planning_base_main: d4b3ce5454c6a30ce4f004136f91f26c7e099d44
@@ -10,13 +10,19 @@ work_instruction: v4.8 · 2026-08-26-r5.4-superset-final
 implementation_plan: docs/superpowers/plans/2026-08-26-cardinal-station-service-and-reachable-network.md
 design_spec: docs/superpowers/specs/2026-08-26-cardinal-station-service-and-reachable-network-design.md
 decision_owner: docs/decisions/SX_DEC_060_CARDINAL_STATION_SERVICE_AND_REACHABLE_NETWORK.md
-godot_product_implementation: NOT_RUN
+implementation_merge_pr: 188
+implementation_merge_main: 740b4b9312fa27289fd62baab8dda54c68ead3a7
+godot_product_implementation: MERGED_MAIN_VERIFIED · PR_188
+automated_regression: PASS · 111_CASES_13461_ASSERTIONS
+ci: PASS · 7_GREEN
+implementation_five_pass_review: CLOSED · SX-AUD-071
+notion_post_merge_readback: PASS
 physical_runtime: NOT_RUN
 human_validation: NOT_RUN
 new_bitmap_assets_required: 0
 ```
 
-This package is the execution bridge from GPT-owned planning/canon work to Codex-owned Godot product implementation. It is not runtime evidence.
+This package is the historical execution bridge from GPT-owned planning/canon work to Codex-owned Godot product implementation. PR #188 executed it and merged to `main` at `740b4b9312fa27289fd62baab8dda54c68ead3a7`. Its automated evidence is recorded above; package, physical-runtime, audio, and human evidence remain separate and not run.
 
 ## 1. Required fresh-read before any edit
 
@@ -296,10 +302,13 @@ Run focused and full regression from exact head, then five complete adversarial 
 USER_RULE: APPROVED
 DESIGN: COMPLETE
 IMPLEMENTATION_PLAN: COMPLETE
-CODEX_HANDOFF: READY
-CODEX_EXECUTION: NOT_RUN
-GODOT_RUNTIME_CHANGE: NOT_RUN
+CODEX_HANDOFF: EXECUTED
+CODEX_EXECUTION: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
+GODOT_RUNTIME_CHANGE: IMPLEMENTED_AUTOMATED · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
+FIVE_PASS_REVIEW: CLOSED · SX-AUD-071
+NOTION_POST_MERGE_READBACK: PASS
 NEW_BITMAP_IMAGE: 0
 POST_060_ACCEPTANCE_CANDIDATE: NOT_CREATED
-PHYSICAL_DEVICE_HUMAN: NOT_RUN
+PHYSICAL_NOT_RUN
+HUMAN_NOT_RUN
 ```
