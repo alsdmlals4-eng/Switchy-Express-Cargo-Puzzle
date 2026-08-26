@@ -51,7 +51,7 @@ project_base_compatibility_pin: v9.4.3
 project_base_pin_role: HISTORICAL_COMPATIBILITY_AND_PROJECT_ADOPTION_EVIDENCE
 base_current_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
-current_decision_span: SX-DEC-027~059
+current_decision_span: SX-DEC-027~060
 ```
 
 `Base v9.4.3` pin은 과거 project compatibility evidence일 뿐 current Base 실행 방법론 pin이 아니다.
@@ -95,43 +95,59 @@ current_decision_span: SX-DEC-027~059
 - physical/human/player evidence가 없으면 automated/package evidence를 해당 PASS로 올리지 않는다.
 - r5.4 authority adoption은 새로운 gameplay/UX/economy/content authorization이 아니다.
 
+## 3A. SX-DEC-060 current amendment
+
+- Station delivery is exactly one cardinal tile from the station: UP, RIGHT, DOWN, or LEFT.
+- Diagonal cells and the station footprint itself never trigger delivery.
+- Cargo stays an exact-cell Manual / Auto contact; unlimited LIFO and contiguous matching TOP-group delivery stay unchanged.
+- Preflight validates the start-reachable RUN component, including required cargo and at least one cardinal service cell per required station.
+- An irrelevant disconnected rail island is allowed; reachable malformed rail remains fail-closed.
+- The implementation target is FiniteMapDefinition schema v3 with off-track, player-non-buildable station cells.
+- Existing station PNG consumers plus a procedural service indicator are the default; new bitmap assets: 0.
+- This is a user-approved design contract only. SX-DEC-060 runtime, regression, package, physical, device, and human evidence remain NOT_RUN.
+
 ## 4. Current implementation / evidence ceiling
 
-현재 validation locator의 세부 exact evidence는 `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`와 `evidence/acceptance/current_poc_candidate.json`이 소유한다.
+현재 post-060 validation locator의 세부 exact state는 `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`와 `evidence/acceptance/post_sx_dec_060_candidate.json`이 소유한다. `evidence/acceptance/current_poc_candidate.json`은 Candidate 003의 pre-060 historical exact-byte pointer일 뿐 current acceptance locator가 아니다.
 
 ```yaml
-implementation_execution_state: MERGED_MAIN_VERIFIED
-implementation_merge_pr: 158
-implementation_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
-implementation_notion_readback: PASS
-current_candidate: SX59-POC-ACCEPT-003
-candidate_003_package_integrity: PASS
-candidate_003_pck_integrity: PASS · 472_OF_472
-candidate_003_product_texture_packaging: PASS · 73_OF_73
-candidate_003_powershell_51_live_download: PASS
-candidate_003_physical_visual_recheck: NOT_RUN
-sx_dec_059_developer_self_run: NOT_RUN
-audio_perceptual_qa: NOT_RUN
-acceptance_build: NOT_YET_DESIGNATED
-windows_full_physical_runtime: NOT_RUN
-android_device_smoke: NOT_RUN
-five_person_comprehension: NOT_RUN
+pre_sx_dec_060_implementation_execution_state: MERGED_MAIN_VERIFIED
+pre_sx_dec_060_implementation_merge_pr: 158
+pre_sx_dec_060_implementation_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
+pre_sx_dec_060_implementation_notion_readback: PASS
+pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
+pre_sx_dec_060_candidate_role: HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY
+pre_sx_dec_060_candidate_003_package_integrity: PASS
+pre_sx_dec_060_candidate_003_pck_integrity: PASS · 472_OF_472
+pre_sx_dec_060_candidate_003_product_texture_packaging: PASS · 73_OF_73
+pre_sx_dec_060_candidate_003_powershell_51_live_download: PASS
+pre_sx_dec_060_candidate_003_physical_visual_recheck: NOT_RUN
+sx_dec_060_user_rule: APPROVED
+sx_dec_060_design_tdd_handoff: PREPARED
+sx_dec_060_runtime: NOT_RUN
+sx_dec_060_automated_regression: NOT_RUN
+post_sx_dec_060_candidate: NOT_CREATED
+windows_physical_post_060: NOT_RUN
+android_device_post_060: NOT_RUN
+five_person_post_060: NOT_RUN
 player_experience: NOT_RUN
 production_cutover: BLOCKED_DEFERRED
 ```
 
-Candidate 002의 Windows startup PASS는 역사적 physical evidence지만 P1 visual defect 때문에 acceptance 승격이 금지됐다. Candidate 003 package integrity는 corrected physical appearance PASS가 아니다.
+Candidate 002의 Windows startup PASS는 역사적 physical evidence지만 P1 visual defect 때문에 acceptance 승격이 금지됐다. Candidate 003 package integrity와 남은 physical visual recheck도 pre-SX-DEC-060 exact bytes의 역사 evidence이며 post-060 acceptance를 증명하지 않는다.
 
-현재 next validation route:
+현재 post-060 implementation route:
 
 ```text
-Candidate 003 physical visual recheck
-→ same exact Candidate 003 developer self-run / screen QA
-→ audio perceptual QA
-→ exact acceptance build identity
-→ Windows full physical smoke
-→ Android device smoke as separate platform gate
-→ Five-person first-contact comprehension on the same build
+verify the SX-DEC-060 canon is merged and Notion readback is current
+→ CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF from fresh merged main
+→ RED/GREEN schema-v3, cardinal delivery, and start-reachable preflight
+→ active map/tutorial migration plus deterministic witnesses
+→ full automated/static/package evidence
+→ a new exact post-060 candidate
+→ Windows physical smoke and audio perceptual QA
+→ Android device smoke as a separate platform gate
+→ Five-person first-contact comprehension on that post-060 build
 → product decision
 ```
 
@@ -179,11 +195,12 @@ v4.8 r5.4 adoption은 위 package의 구현 권한을 추가하지 않는다. 05
 6. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`.
 7. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`.
 8. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`.
-9. `evidence/acceptance/current_poc_candidate.json` when acceptance identity matters.
+9. `evidence/acceptance/post_sx_dec_060_candidate.json` when post-060 acceptance identity matters.
 10. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`.
 11. current Goal의 exact owner documents.
 12. actual code/data/Scene/Resource/assets/tests/runtime evidence.
-13. historical v4.7/r2/r4 adapter/handoff/audit only when provenance or rollback evidence is needed.
+13. `evidence/acceptance/current_poc_candidate.json` only when Candidate 003 pre-060 provenance is needed.
+14. historical v4.7/r2/r4 adapter/handoff/audit only when provenance or rollback evidence is needed.
 
 Google Sheet는 이 current owner read order에 포함하지 않는다.
 

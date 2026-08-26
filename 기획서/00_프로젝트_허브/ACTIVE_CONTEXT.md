@@ -17,6 +17,9 @@ current_decisions: SX-DEC-027~060
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
+historical_r4_revision: 2026-08-24-r4
+historical_r4_role: USER_PROVIDED_V4_8_R4_CONTRACT
+historical_r2_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
 base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
 skill_coverage: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT
@@ -32,6 +35,8 @@ candidate_003_preparation_pr: 172
 candidate_003_preparation_main: 2521f3be600ea950f9893ce45940604c2d0ac88a
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
 candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY
+post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
+post_sx_dec_060_candidate: NOT_CREATED · EXPLICIT_FAIL_CLOSED_NO_LAUNCH
 candidate_003_package_integrity: PASS
 candidate_003_pck_integrity: PASS · 472_OF_472
 candidate_003_product_texture_packaging: PASS · 73_OF_73
@@ -204,7 +209,7 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 ## Current next action
 
 ```text
-merge/sync SX-DEC-060 canon package
+if PR #180 remains open: close exact-head CI and merge/sync it; otherwise use merged main
 → Codex fresh-read merged main + exact Project Notion Home
 → RED schema/service tests
 → FiniteMapDefinition v3 + off-track station semantics

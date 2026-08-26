@@ -226,6 +226,8 @@ its recorded NOT_RUN physical/human fields
 
 Do not call it the acceptance candidate for post-060 runtime. A changed gameplay build requires a new candidate identity and fresh evidence.
 
+The current post-060 candidate locator is `evidence/acceptance/post_sx_dec_060_candidate.json`; it is `NOT_CREATED` and fail-closed. `RUN_SX60_POC_SELF_RUN.ps1` must not download or launch any pre-060 candidate.
+
 Allowed implementation completion claims depend on actual results. Never infer:
 
 ```text

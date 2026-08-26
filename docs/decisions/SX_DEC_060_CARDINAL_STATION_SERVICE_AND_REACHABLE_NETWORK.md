@@ -169,6 +169,8 @@ References:
 ```yaml
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
 candidate_003_role_after_decision: HISTORICAL_PRE_SX_DEC_060_PHYSICAL_TARGET
+post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
+post_sx_dec_060_candidate: NOT_CREATED · FAIL_CLOSED_NO_LAUNCH
 candidate_003_package_integrity: PRESERVED_HISTORICAL_PASS
 candidate_003_physical_visual_recheck: NOT_RUN
 sx_dec_060_runtime_implementation: NOT_RUN

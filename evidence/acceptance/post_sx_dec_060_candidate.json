@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "decision_id": "SX-DEC-060",
+  "candidate_status": "NOT_CREATED",
+  "current_candidate_id": null,
+  "selection_policy": "EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE",
+  "historical_predecessor": {
+    "candidate_id": "SX59-POC-ACCEPT-003",
+    "pointer": "evidence/acceptance/current_poc_candidate.json",
+    "role": "HISTORICAL_EXACT_BYTES_ONLY"
+  },
+  "mint_after": [
+    "SX-DEC-060 runtime implementation",
+    "automated regression and package proof",
+    "new exact post-change build identity"
+  ],
+  "updated_date_kst": "2026-08-26"
+}

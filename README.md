@@ -145,7 +145,7 @@ Actual GDScript/Scene/Resource/map/runtime implementation owner is `CODEX_GODOT_
 ## Current Next Work
 
 ```text
-SX-DEC-060 canon PR + Notion sync
+verify merged SX-DEC-060 canon + current Notion sync
 → Codex fresh-read merged main + exact Notion Home
 → RED schema/service tests
 → FiniteMapDefinition v3

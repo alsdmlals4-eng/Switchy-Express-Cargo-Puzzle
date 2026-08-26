@@ -11,6 +11,9 @@ Last updated: `2026-08-26 KST`
 | 제품 기준선 | `GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060` |
 | 결정 범위 | `SX-DEC-027~060` |
 | 작업지시문 | `v4.8 · revision 2026-08-26-r5.4-superset-final · Switchy thin adapter` |
+| 작업지시문 역할 | `USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT` |
+| current project adapter | `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md` |
+| historical v4.8 r4 predecessor | `2026-08-24-r4 · PROVENANCE_ONLY` |
 | SX-DEC-059 implementation | `MERGED_MAIN_VERIFIED · PRE_SX_DEC_060_RUNTIME` |
 | SX-DEC-060 | `USER_APPROVED_CORE_DELTA · DESIGN_RECORDED · RUNTIME_NOT_RUN` |
 | station service | `UP/RIGHT/DOWN/LEFT exactly 1 tile · diagonal excluded` |
@@ -19,6 +22,7 @@ Last updated: `2026-08-26 KST`
 | station representation | `OFF_TRACK_SERVICE_OBJECT · station cell player rail forbidden` |
 | image requirement | `0 new bitmap · reuse existing station PNG consumers + procedural service overlay` |
 | pre-060 Candidate 003 | `SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY after SX-DEC-060` |
+| post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · NOT_CREATED · FAIL_CLOSED_NO_LAUNCH` |
 | post-060 candidate | `NOT_CREATED` |
 | post-060 automated regression | `NOT_RUN` |
 | post-060 Windows physical | `NOT_RUN` |
@@ -126,7 +130,7 @@ Actual GDScript/Scene/Resource/map/runtime implementation is owned by `CODEX_GOD
 2. Base `skills/SKILL_REGISTRY.json` + `docs/generated/BASE_ACTIVE_SKILLS.md`.
 3. fresh Project `main`, latest commit, all Open/Draft PRs.
 4. exact Switchy Notion Project Home.
-5. Project `AGENTS.md` + current r5.4 thin adapter.
+5. Project `AGENTS.md` + `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`.
 6. `FINITE_DELIVERY_PUZZLE_BASELINE.md`.
 7. `CURRENT_CONFIRMED_DECISIONS.md`.
 8. `ACTIVE_CONTEXT.md`.
@@ -134,12 +138,12 @@ Actual GDScript/Scene/Resource/map/runtime implementation is owned by `CODEX_GOD
 10. `ROADMAP.md` + `DEVELOPMENT_GATES.md`.
 11. actual code/data/Scene/Resource/assets/tests.
 
-Historical v4.7/r2/r4 adapter/reconciliation materials and pre-060 Candidate records are rollback/provenance evidence. Google Sheets is migration-only.
+Historical v4.7/r2/r4 adapter/reconciliation materials (including v4.8 `2026-08-24-r4`) and pre-060 Candidate records are rollback/provenance evidence. Google Sheets is migration-only.
 
 ## Current next action
 
 ```text
-complete/merge SX-DEC-060 canon sync
+verify merged SX-DEC-060 canon sync
 → synchronize Notion with the same Decision ID
 → Codex fresh-read merged main + exact Notion Home
 → RED tests

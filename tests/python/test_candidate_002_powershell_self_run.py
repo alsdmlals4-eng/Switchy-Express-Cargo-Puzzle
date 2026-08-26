@@ -6,82 +6,45 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-LAUNCHER = ROOT / "RUN_SX59_POC_SELF_RUN.ps1"
-POINTER = ROOT / "evidence/acceptance/current_poc_candidate.json"
+HISTORICAL_LAUNCHER = ROOT / "RUN_SX59_POC_SELF_RUN.ps1"
+POST_060_LAUNCHER = ROOT / "RUN_SX60_POC_SELF_RUN.ps1"
+POST_060_POINTER = ROOT / "evidence/acceptance/post_sx_dec_060_candidate.json"
 OLD_EVIDENCE = ROOT / "evidence/acceptance/sx59_poc_accept_002_artifact.json"
 WINDOWS_CONTRACT = ROOT / ".github/workflows/candidate-self-run-powershell.yml"
 
 
-class CurrentCandidatePowerShellSelfRunTests(unittest.TestCase):
-    def _pointer(self) -> dict:
-        self.assertTrue(POINTER.is_file())
-        return json.loads(POINTER.read_text(encoding="utf-8"))
+class CandidatePowerShellSelfRunTests(unittest.TestCase):
+    def _post_060_pointer(self) -> dict:
+        self.assertTrue(POST_060_POINTER.is_file())
+        return json.loads(POST_060_POINTER.read_text(encoding="utf-8"))
 
-    def _current_evidence(self) -> dict:
-        pointer = self._pointer()
-        path = ROOT / pointer["artifact_evidence_owner"]
-        self.assertTrue(path.is_file())
-        return json.loads(path.read_text(encoding="utf-8"))
-
-    def test_repo_root_launcher_uses_explicit_current_pointer(self) -> None:
-        self.assertTrue(LAUNCHER.is_file(), "repo-root PowerShell launcher is required")
-        text = LAUNCHER.read_text(encoding="ascii")
+    def test_historical_launcher_is_not_a_default_current_route(self) -> None:
+        self.assertTrue(HISTORICAL_LAUNCHER.is_file())
+        text = HISTORICAL_LAUNCHER.read_text(encoding="ascii")
         self.assertIn("current_poc_candidate.json", text)
-        self.assertIn("artifact_evidence_owner", text)
-        self.assertIn("self_run_record_name", text)
-        self.assertIn("ConvertFrom-Json", text)
-        self.assertIn("current_candidate_id", text)
-        self.assertNotIn("sx59_poc_accept_002_artifact.json", text)
-        self.assertNotIn("SX59-POC-ACCEPT-002", text)
+        self.assertIn("[switch]$HistoricalEvidenceOnly", text)
+        self.assertIn("HISTORICAL_EVIDENCE_ONLY", text)
+        self.assertIn("gh run download", text)
+
+    def test_post_060_launcher_reads_only_the_post_060_fail_closed_pointer(self) -> None:
+        self.assertTrue(POST_060_LAUNCHER.is_file(), "post-060 launcher is required")
+        text = POST_060_LAUNCHER.read_text(encoding="ascii")
+        self.assertIn("post_sx_dec_060_candidate.json", text)
+        self.assertIn("EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE", text)
+        self.assertIn("POST_SX_DEC_060_CANDIDATE_NOT_CREATED", text)
+        self.assertNotIn("current_poc_candidate.json", text)
         self.assertNotIn("SX59-POC-ACCEPT-003", text)
+        self.assertNotIn("gh api", text)
+        self.assertNotIn("gh run download", text)
+        self.assertNotIn("Start-Process", text)
 
-    def test_launcher_does_not_duplicate_current_ephemeral_or_content_identity(self) -> None:
-        evidence = self._current_evidence()
-        text = LAUNCHER.read_text(encoding="ascii")
-        forbidden_literals = (
-            str(evidence["artifact"]["id"]),
-            evidence["artifact"]["name"],
-            evidence["package"]["zip_sha256"],
-            evidence["package"]["windows_exe_sha256"],
-            evidence["package"]["windows_pck_sha256"],
-        )
-        for value in forbidden_literals:
-            self.assertNotIn(value, text, f"launcher duplicated canonical evidence literal: {value}")
-
-    def test_launcher_downloads_with_gh_and_fails_closed_before_launch(self) -> None:
-        text = LAUNCHER.read_text(encoding="ascii")
-        for required in (
-            "gh auth status",
-            "gh api",
-            "gh run download",
-            "Get-FileHash",
-            "Assert-Equal",
-            "Assert-FileHash",
-            "artifact_api_digest_equals_downloaded_zip_sha256",
-            "EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE",
-            "Start-Process",
-            "SwitchyExpressVerticalSlice.exe",
-            "-NoLaunch",
-        ):
-            self.assertIn(required, text)
-        self.assertIn("throw", text)
-        self.assertIn("No fallback to another build is allowed", text)
-
-    def test_launcher_is_ascii_safe_for_windows_powershell_51(self) -> None:
-        raw = LAUNCHER.read_bytes()
-        text = raw.decode("ascii")
-        self.assertIn("#Requires -Version 5.1", text)
-        self.assertNotIn("기획서", text)
-
-    def test_launcher_opens_pointer_selected_self_run_record(self) -> None:
-        pointer = self._pointer()
-        record_name = pointer["self_run_record_name"]
-        matches = list(ROOT.rglob(record_name))
-        self.assertEqual(len(matches), 1)
-        text = LAUNCHER.read_text(encoding="ascii")
-        self.assertIn("self_run_record_name", text)
-        self.assertIn("Resolve-UniqueFile", text)
-        self.assertNotIn("switchy_candidate002_self_run_toolkit", text)
+    def test_post_060_pointer_has_no_candidate_or_live_artifact_identity(self) -> None:
+        pointer = self._post_060_pointer()
+        self.assertEqual(pointer["candidate_status"], "NOT_CREATED")
+        self.assertIsNone(pointer["current_candidate_id"])
+        self.assertNotIn("artifact_evidence_owner", pointer)
+        self.assertNotIn("deep_pck_evidence_owner", pointer)
+        self.assertNotIn("self_run_record_name", pointer)
 
     def test_candidate_002_evidence_is_preserved_as_history(self) -> None:
         self.assertTrue(OLD_EVIDENCE.is_file())
@@ -92,18 +55,19 @@ class CurrentCandidatePowerShellSelfRunTests(unittest.TestCase):
             "16c81f9b42a3391a2a3dabf501cb2d6eb7e011682abdaa3f79eb8b1124836e55",
         )
 
-    def test_windows_contract_tracks_pointer_and_live_verifies_current_candidate(self) -> None:
+    def test_windows_contract_checks_post_060_fail_closed_state(self) -> None:
         self.assertTrue(WINDOWS_CONTRACT.is_file(), "Windows PowerShell contract workflow is required")
         text = WINDOWS_CONTRACT.read_text(encoding="utf-8")
         self.assertIn("runs-on: windows-latest", text)
-        self.assertIn("RUN_SX59_POC_SELF_RUN.ps1", text)
-        self.assertIn("current_poc_candidate.json", text)
+        self.assertIn("RUN_SX60_POC_SELF_RUN.ps1", text)
+        self.assertIn("post_sx_dec_060_candidate.json", text)
         self.assertIn("System.Management.Automation.Language.Parser", text)
         self.assertIn("-ContractCheck", text)
+        self.assertIn("HistoricalEvidenceOnly -ContractCheck", text)
+        self.assertIn("POST_SX_DEC_060_CANDIDATE_NOT_CREATED", text)
         self.assertIn("shell: powershell", text)
-        self.assertIn("Prove current candidate download and package verification on Windows", text)
-        self.assertIn("GH_TOKEN: ${{ github.token }}", text)
-        self.assertNotIn("Candidate 002 download", text)
+        self.assertNotIn("Prove current candidate download", text)
+        self.assertNotIn("gh run download", text)
 
 
 if __name__ == "__main__":

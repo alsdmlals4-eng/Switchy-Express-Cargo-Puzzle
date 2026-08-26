@@ -5,20 +5,25 @@ param(
     [switch]$ContractCheck,
     [switch]$NoLaunch,
     [switch]$NoOpenRecord,
-    [string]$WorkDir = ""
+    [string]$WorkDir = "",
+    [switch]$HistoricalEvidenceOnly
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-# Normal use:
-#   powershell -ExecutionPolicy Bypass -File .\RUN_SX59_POC_SELF_RUN.ps1
-# CI / verification use:
-#   powershell -ExecutionPolicy Bypass -File .\RUN_SX59_POC_SELF_RUN.ps1 -ContractCheck -NoLaunch -NoOpenRecord
+# Historical evidence-only use (pre-SX-DEC-060 bytes only):
+#   powershell -ExecutionPolicy Bypass -File .\RUN_SX59_POC_SELF_RUN.ps1 -HistoricalEvidenceOnly
+# Historical contract verification:
+#   powershell -ExecutionPolicy Bypass -File .\RUN_SX59_POC_SELF_RUN.ps1 -HistoricalEvidenceOnly -ContractCheck -NoLaunch -NoOpenRecord
 
 $Repository = "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle"
 $RepoRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $PointerPath = Join-Path $RepoRoot "evidence\acceptance\current_poc_candidate.json"
+
+if (-not $HistoricalEvidenceOnly) {
+    throw "HISTORICAL_EVIDENCE_ONLY: this launcher is limited to pre-SX-DEC-060 Candidate 003 exact bytes. It is not a post-060 acceptance route. Use RUN_SX60_POC_SELF_RUN.ps1 for the current fail-closed post-060 candidate state."
+}
 
 function Assert-Equal {
     param(

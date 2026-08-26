@@ -1,6 +1,6 @@
 # Core Systems
 
-상태: `CURRENT_CANON · GMB-002 · AUTOMATED_CORE_PASS`
+상태: `CURRENT_CANON · GMB-002 · AMENDED_BY_SX_DEC_060 · POST_060_RUNTIME_NOT_RUN`
 
 세부 제품 규칙은 `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`가 책임진다. 현재 실행·검증 상태는 `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`와 `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`를 우선하며, 아래 과거 자동화·APK 증거는 당시 검증 사실로 보존한다.
 
@@ -71,20 +71,32 @@ current_build_cost = 운행 시작 시 존재하는 최종 TrackLayout 비용 �
 - 열차가 분기 위에 있을 때만 변경 잠금
 - 운행 중 선로 건설·회전·교체·철거 금지
 
+## SX-DEC-060 · 역 서비스
+
+이 절은 post-060 구현 target을 정의한다. 현재 runtime은 pre-SX-DEC-060 semantics이므로 RUNTIME_NOT_RUN이다.
+
+- 역 서비스는 역 중심에서 상·하·좌·우 정확히 1칸인 service cell에서만 일어난다.
+- 대각선, 거리 2칸 이상, 역 footprint 자체는 배송 접촉이 아니다.
+- Cargo는 계속 cargo exact-cell을 통과할 때만 Manual / Auto로 적재한다.
+- matching station service 시 TOP부터 연속된 같은 종류 그룹만 자동 하역한다. unlimited LIFO/TOP 의미는 바뀌지 않는다.
+- schema v3 target에서 station은 off-track/non-buildable service object이며 station cell 위 player rail은 금지된다.
+
 ## 시작 전 검사
 
 검사함:
 
 - 시작 연결과 유효 incoming 방향
-- 모든 역 도달 가능
-- 모든 화물 지점 도달 가능
+- start-reachable RUN component의 모든 required cargo exact-cell 도달 가능
+- 각 required station의 상·하·좌·우 service cell 중 최소 1개 도달 가능
 - dangling edge와 잘못된 연결
 - crossing lane 독립
 - branch exit 유효성
 - 필수 지점 진입 뒤 탈출 불가능한 permanent trap
+- 실제 RUN component가 진입할 수 있는 malformed rail/route 구조
 
 검사하지 않음:
 
+- required cargo/station service에 쓰이지 않는 irrelevant disconnected rail island 자체
 - 정확한 LIFO 해답
 - 수동/자동 적재 타이밍
 - 분기 조작 순서
@@ -129,6 +141,7 @@ combo_count = unload_count
 
 - `unload_count == 0`: 정차 없이 통과
 - `unload_count >= 1`: domain delivery commit과 가시 하역
+- station footprint 또는 diagonal 통과는 station service가 아니므로 `unload_count`를 만들지 않는다.
 - 총 가시 하역 시간 최대 1초
 - 모든 domain commit이 presentation보다 먼저 확정
 - 2개 이상 그룹의 가속·점수 보상은 후속 tuning 범위
@@ -222,11 +235,13 @@ package_id: com.alsdmlals4.switchyexpress.validation
 
 ```text
 CURRENT EXECUTION AUTHORITY: CURRENT_CONFIRMED_DECISIONS + ACTIVE_CONTEXT
-SX-DEC-055 RUNTIME POC: MERGED_MAIN_VERIFIED
-SX-DEC-059 RELEASE-NEAR FIRST SESSION: USER_REQUESTED_CODEX_HANDOFF · IMPLEMENTATION_IN_PROGRESS
+PRE-SX-DEC-055 RUNTIME POC: MERGED_MAIN_VERIFIED · HISTORICAL
+PRE-SX-DEC-059 RELEASE-NEAR FIRST SESSION: MERGED_MAIN_VERIFIED · HISTORICAL
+SX-DEC-060 USER RULE / DESIGN / HANDOFF: APPROVED / RECORDED / PREPARED
+SX-DEC-060 RUNTIME / AUTOMATED / PACKAGE: NOT_RUN
+POST-060 CANDIDATE: NOT_CREATED
 WINDOWS PHYSICAL RUNTIME: NOT_RUN
 ANDROID DEVICE SMOKE: NOT_RUN
-CONNECTED PHYSICAL EDITOR: NOT_RUN
 BROADER HUMAN / COMPREHENSION: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```

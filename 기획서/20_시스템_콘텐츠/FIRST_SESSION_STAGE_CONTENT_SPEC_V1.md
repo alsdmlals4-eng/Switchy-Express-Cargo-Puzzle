@@ -1,11 +1,11 @@
 # First Session Stage Content Spec V1
 
 ```yaml
-owner_decision: SX-DEC-059
+owner_decision: SX-DEC-059 · AMENDED_BY_SX_DEC_060
 approval_dependency: GM-SX059-01 · CLOSED · A_SELECTED
 status: IMPLEMENTED_AUTOMATED · FIVE_PASS_REVIEW_CLOSED
 product_core: GMB-002
-map_schema: FiniteMapDefinition v2
+map_schema: FiniteMapDefinition v2 historical bytes · schema v3 migration required for SX-DEC-060 runtime
 new_tutorial_map_count: 5_IMPLEMENTED
 capstone: VS_DEMO_01 · REUSE_CURRENT
 ```
@@ -47,7 +47,8 @@ new_tools: STRAIGHT + CURVE
 - Cargo A 1개.
 - Station A 1개.
 - 하나의 짧은 굽은 경로가 필요하도록 배치.
-- player는 start→cargo→station을 모두 연결해야 preflight PASS.
+- player는 start-reachable RUN component로 cargo exact-cell과 Station A의 상·하·좌·우 service cell 중 하나를 덮어야 preflight PASS. 역 footprint 자체로 진입하거나 대각선으로 배송하지 않는다.
+- required cargo/station service에 쓰이지 않는 disconnected rail island는 이 lesson의 preflight blocker가 아니다.
 - straight만으로는 자연스럽게 완성되지 않으며 curve 1회 이상 사용 가치가 보여야 한다.
 - Switch/Crossing은 사용하지 않는다.
 - `권장 배치`는 숨긴다.
@@ -94,7 +95,7 @@ T1의 same map / same valid layout을 그대로 사용한다.
 Run order의 단순 목표:
 
 ```text
-Start → Cargo A → Station A → terminal/open end
+Start → Cargo A → Station A cardinal service cell → terminal/open end
 ```
 
 ### 학습
@@ -102,7 +103,8 @@ Start → Cargo A → Station A → terminal/open end
 - Cargo A 접근 전 1회 contextual cue: `적재` 입력.
 - player가 직접 current manual-load action을 수행해야 pickup.
 - Cargo A가 Stack에 들어가는 것을 시맨틱 feedback으로 관찰.
-- Station A에서 current automatic unload를 관찰.
+- Station A의 상·하·좌·우 정확히 1칸 service cell을 통과할 때 current automatic unload를 관찰한다.
+- Station footprint 직접 통과와 대각선 통과는 배송이 아니라는 것을 같은 cue에서 명시한다.
 - 이 stage에서는 cargo를 일부러 skip할 이유가 없다.
 
 ### 완료
@@ -110,7 +112,15 @@ Start → Cargo A → Station A → terminal/open end
 current finite SUCCESS.
 
 Player feeling:
-> 화물을 싣고 같은 표시의 역에 가면 내려간다.
+> 화물 칸을 직접 지나 싣고, 같은 표시 역의 상·하·좌·우 한 칸을 지나면 내려간다.
+
+### SX-DEC-060 T2 continuity
+
+T2의 stage 수, Manual pickup prerequisite, LIFO 이후 학습 순서는 바꾸지 않는다. post-060 schema v3/map migration 뒤에는 다음 한 가지 mental model만 current로 사용한다.
+
+- Cargo: exact-cell Manual / Auto contact.
+- Station: 상·하·좌·우 정확히 1칸 service.
+- Diagonal / station footprint: no delivery.
 
 ---
 

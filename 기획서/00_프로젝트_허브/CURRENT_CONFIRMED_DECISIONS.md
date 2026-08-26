@@ -33,6 +33,8 @@ physical_preflight_visual_correction: MERGED_MAIN_VERIFIED · PR #171 · main_9d
 candidate_003_preparation: MERGED_MAIN_VERIFIED · PR #172 · main_2521f3be600ea950f9893ce45940604c2d0ac88a
 pre_sx_dec_060_candidate_pointer: evidence/acceptance/current_poc_candidate.json
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_AFTER_SX_DEC_060
+post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
+post_sx_dec_060_candidate: NOT_CREATED · EXPLICIT_FAIL_CLOSED_NO_LAUNCH
 candidate_002_windows_physical_startup_smoke: PASS
 candidate_002_result: BLOCKED_BY_CONFIRMED_P1_PREFLIGHT_VISUAL_DEFECTS
 candidate_002_acceptance_promotion: PROHIBITED
