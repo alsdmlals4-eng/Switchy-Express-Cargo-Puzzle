@@ -51,6 +51,9 @@ ADVERSARIAL_CODES = {
     "expired_approval_code": "APPROVAL_EXPIRED",
     "approval_binding_code": "APPROVAL_BINDING_MISMATCH",
 }
+EDITOR_PLUGIN_ENABLED_PATTERN = re.compile(
+    r"(?m)^enabled=PackedStringArray\([^\r\n]*\)$"
+)
 
 
 def _load_module(path: Path, name: str):
@@ -180,12 +183,59 @@ def _environment(workspace: Path) -> dict[str, str]:
     return environment
 
 
+def _run_captured(
+    command: Sequence[str],
+    *,
+    timeout: int,
+    env: dict[str, str] | None = None,
+) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        command,
+        check=False,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="strict",
+        timeout=timeout,
+        env=env,
+    )
+
+
 def _restore_source_project_configuration(project: Path) -> None:
     source_project = ROOT / "project.godot"
     target_project = project / "project.godot"
     if not source_project.is_file() or not target_project.is_file():
         raise FileNotFoundError("project.godot unavailable for Pilot cleanup")
     target_project.write_bytes(source_project.read_bytes())
+
+
+def _disable_editor_plugins(project_file: Path) -> None:
+    """Disable every editor plugin for the isolated project's initial import only."""
+    text = project_file.read_text(encoding="utf-8")
+    section_match = re.search(r"(?m)^\[editor_plugins\]\r?$", text)
+    disabled_plugins = "enabled=PackedStringArray()"
+    if section_match is None:
+        suffix = "" if not text or text.endswith(("\n", "\r")) else "\n"
+        project_file.write_text(
+            text + suffix + "\n[editor_plugins]\n\n" + disabled_plugins + "\n",
+            encoding="utf-8",
+        )
+        return
+
+    section_start = section_match.end()
+    next_section = re.search(r"(?m)^\[[^\]]+\]\r?$", text[section_start:])
+    section_end = (
+        section_start + next_section.start() if next_section is not None else len(text)
+    )
+    section = text[section_start:section_end]
+    if EDITOR_PLUGIN_ENABLED_PATTERN.search(section):
+        section = EDITOR_PLUGIN_ENABLED_PATTERN.sub(disabled_plugins, section, count=1)
+    else:
+        separator = "" if section.endswith(("\n", "\r")) else "\n"
+        section = section + separator + "\n" + disabled_plugins + "\n"
+    project_file.write_text(
+        text[:section_start] + section + text[section_end:], encoding="utf-8"
+    )
 
 
 def run_pilot(
@@ -204,13 +254,7 @@ def run_pilot(
         return 1, _failure("GODOT_BIN_NOT_FOUND")
 
     try:
-        version_run = subprocess.run(
-            [str(godot), "--version"],
-            check=False,
-            capture_output=True,
-            text=True,
-            timeout=30,
-        )
+        version_run = _run_captured([str(godot), "--version"], timeout=30)
     except subprocess.TimeoutExpired:
         return 2, _failure("RUNTIME_TIMEOUT", detail="Godot version timeout")
     version = version_run.stdout.strip()
@@ -236,9 +280,42 @@ def run_pilot(
         ) // 1000
 
         environment = _environment(workspace)
+        project_file = project / "project.godot"
+        try:
+            pilot_project_config = project_file.read_bytes()
+            _disable_editor_plugins(project_file)
+        except OSError as error:
+            return 1, _failure("SOURCE_INTEGRITY_FAILURE", detail=str(error))
+        try:
+            imported = _run_captured(
+                [
+                    str(godot),
+                    "--headless",
+                    "--import",
+                    "--path",
+                    str(project),
+                ],
+                timeout=180,
+                env=environment,
+            )
+        except subprocess.TimeoutExpired:
+            return 2, _failure("RUNTIME_TIMEOUT", detail="Pilot project import timeout")
+        import_output = imported.stdout + "\n" + imported.stderr
+        if imported.returncode != 0 or _contains_godot_error(
+            imported.stdout, imported.stderr
+        ):
+            return 1, _failure(
+                "RUNTIME_RESULT_INVALID",
+                detail=f"isolated project import failed\n{import_output[-4000:]}",
+            )
+        try:
+            project_file.write_bytes(pilot_project_config)
+        except OSError as error:
+            return 1, _failure("SOURCE_INTEGRITY_FAILURE", detail=str(error))
+
         editor_started = time.perf_counter_ns()
         try:
-            editor = subprocess.run(
+            editor = _run_captured(
                 [
                     str(godot),
                     "--editor",
@@ -248,9 +325,6 @@ def run_pilot(
                     "--quit-after",
                     "900",
                 ],
-                check=False,
-                capture_output=True,
-                text=True,
                 timeout=240,
                 env=environment,
             )
@@ -309,7 +383,7 @@ def run_pilot(
 
         regression_started = time.perf_counter_ns()
         try:
-            regression = subprocess.run(
+            regression = _run_captured(
                 [
                     str(godot),
                     "--headless",
@@ -318,9 +392,6 @@ def run_pilot(
                     "--script",
                     "res://tests/run_tests.gd",
                 ],
-                check=False,
-                capture_output=True,
-                text=True,
                 timeout=180,
                 env=environment,
             )

@@ -140,15 +140,17 @@ class GutPhaseBGuardTests(unittest.TestCase):
             (local / "gut.gd").write_text("extends RefCounted\n", encoding="utf-8")
 
             report = compare_vendor(local, official)
+            local_bytes = (local / "gut.gd").read_bytes()
+            official_bytes = (official / "gut.gd").read_bytes()
 
             self.assertEqual(report["source_divergence"], ["gut.gd"])
             self.assertEqual(
                 report["divergence_evidence"]["gut.gd"],
                 {
-                    "local_sha256": "c73d1366ec40d23336ad7ae26fe2a73a3126c6110a121774ff3c2dd068216a14",
-                    "official_sha256": "006c373933f8e49903c974a70b81864df932f34b72076a11916696e4577e804a",
-                    "local_size": 19,
-                    "official_size": 13,
+                    "local_sha256": hashlib.sha256(local_bytes).hexdigest(),
+                    "official_sha256": hashlib.sha256(official_bytes).hexdigest(),
+                    "local_size": len(local_bytes),
+                    "official_size": len(official_bytes),
                 },
             )
 

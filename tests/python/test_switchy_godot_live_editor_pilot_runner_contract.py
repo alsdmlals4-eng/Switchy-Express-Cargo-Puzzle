@@ -48,6 +48,33 @@ class SwitchyGodotLiveEditorPilotRunnerContractTests(unittest.TestCase):
             with self.subTest(marker=marker):
                 self.assertIn(marker, source)
 
+    def test_runner_imports_the_isolated_project_before_starting_the_editor_pilot(self) -> None:
+        source = RUNNER.read_text(encoding="utf-8")
+        self.assertIn('"--import"', source)
+        self.assertIn("_disable_editor_plugins(project_file)", source)
+        self.assertIn("pilot_project_config = project_file.read_bytes()", source)
+        self.assertIn("project_file.write_bytes(pilot_project_config)", source)
+        self.assertLess(
+            source.index("_disable_editor_plugins(project_file)"),
+            source.index('"--import"'),
+            "all editor plugins must stay disabled during the first import",
+        )
+        self.assertLess(
+            source.index('"--import"'),
+            source.index('"--editor"'),
+            "the isolated project must finish its first import before stability is sampled",
+        )
+        self.assertLess(
+            source.index('"--import"'),
+            source.index("project_file.write_bytes(pilot_project_config)"),
+            "the full materialized editor-plugin configuration must be restored only after import",
+        )
+        self.assertLess(
+            source.index("project_file.write_bytes(pilot_project_config)"),
+            source.index('"--editor"'),
+            "the full materialized editor-plugin configuration must be restored before the actual Pilot editor run",
+        )
+
     def test_runner_restores_source_project_configuration_before_regression(self) -> None:
         self.assertTrue(RUNNER.is_file(), f"missing {RUNNER.relative_to(ROOT)}")
         source = RUNNER.read_text(encoding="utf-8")
