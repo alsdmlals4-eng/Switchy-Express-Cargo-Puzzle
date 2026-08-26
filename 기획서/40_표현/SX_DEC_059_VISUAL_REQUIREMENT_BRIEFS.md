@@ -227,6 +227,7 @@ visual_reference_role: IMPLEMENTATION_GUIDE · NOT_RUNTIME_PROOF
 - 가장 위 cargo = `TOP`이며 next unload candidate로 가장 먼저 읽혀야 한다.
 - locomotive와 cargo stack은 하나의 짧고 강한 silhouette로 읽힌다.
 - unlimited LIFO 규칙을 시각화하되, 실제 capacity limit이 있는 것처럼 보이는 고정 slot/wagon count는 만들지 않는다.
+- world/train silhouette은 LIFO를 빠르게 읽히게 하는 presentation cue이며, **정확한 전체 stack order의 authority는 기존 Stack HUD**가 유지한다.
 
 ### 표현 규칙
 
@@ -235,8 +236,9 @@ visual_reference_role: IMPLEMENTATION_GUIDE · NOT_RUNTIME_PROOF
 3. TOP cargo는 가장 높은 위치 + strongest outline/brightness/state cue.
 4. cargo identity는 color뿐 아니라 shape/icon/outline/위치로 중복 전달.
 5. stack가 높아져도 route, switch, station 등 board의 다음 판단 대상을 과도하게 가리지 않는다.
-6. isometric/perspective에서도 위→아래 stack order가 명확히 읽혀야 한다.
-7. Success/Failure Result의 stack summary와 RUN의 실제 train silhouette이 같은 LIFO 의미를 사용한다.
+6. **unlimited LIFO display boundary:** 표시 안전 높이를 넘으면 world silhouette의 layer spacing/scale을 압축하거나 `+N`/count 보조를 사용할 수 있다. 이것은 시각 압축일 뿐 capacity 제한이나 cargo 삭제를 의미하지 않으며, exact full order는 Stack HUD에서 보존한다.
+7. isometric/perspective에서도 위→아래 stack order와 현재 TOP이 명확히 읽혀야 한다.
+8. Success/Failure Result의 stack summary와 RUN의 실제 train silhouette이 같은 LIFO 의미를 사용한다.
 
 ### 금지
 
@@ -245,6 +247,7 @@ visual_reference_role: IMPLEMENTATION_GUIDE · NOT_RUNTIME_PROOF
 - TOP을 color-only로 표시.
 - capacity 제한을 암시하는 고정 wagon/slot 수.
 - tall stack가 board의 switch/station/critical cargo target을 가리는 구도.
+- visual compression을 실제 cargo loss/capacity로 오해하게 만드는 표현.
 
 ### 적용 범위
 
