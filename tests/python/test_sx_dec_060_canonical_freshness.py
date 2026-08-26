@@ -131,6 +131,22 @@ class SXDec060CanonicalFreshnessTests(unittest.TestCase):
             self.assertNotIn("SX_DEC_060_EXACT_HEAD_REVIEW_CI_MERGE", text)
             self.assertNotIn("PR_REVIEW_CI_MERGE_READBACK", text)
 
+    def test_roadmap_does_not_reopen_merged_sx060_implementation(self) -> None:
+        roadmap = self._read_current("roadmap")
+        for required in (
+            "runtime implementation merged/main verified · PR #188",
+            "schema-v3/map-witness migration is implemented and regression-verified",
+            "PASS_POST_SX_DEC_060 · CARDINAL_SERVICE_IMPLEMENTED",
+        ):
+            self.assertIn(required, roadmap)
+
+        for stale in (
+            "→ runtime implementation NOT_RUN",
+            "MIGRATION_REQUIRED_FOR_POST_060",
+            "CARDINAL_SERVICE_DELTA_NOT_RUN",
+        ):
+            self.assertNotIn(stale, roadmap)
+
     def test_active_owners_record_automated_runtime_delivery_without_promoting_human_evidence(self) -> None:
         for key in ("current_decisions", "active_context"):
             text = self._read_current(key)
