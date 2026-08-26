@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -21,6 +22,40 @@ def _load_runner():
 
 
 class SwitchyGodotLiveEditorPilotRunnerErrorTests(unittest.TestCase):
+    def test_disable_editor_plugins_preserves_non_plugin_project_configuration(self) -> None:
+        runner = _load_runner()
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            project_file = Path(temporary_directory) / "project.godot"
+            project_file.write_text(
+                "config_version=5\n\n"
+                "[editor_plugins]\n\n"
+                'enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/hera_agent_godot/plugin.cfg")\n\n'
+                "[display]\n\n"
+                "window/size/viewport_width=1280\n",
+                encoding="utf-8",
+            )
+
+            runner._disable_editor_plugins(project_file)
+
+            result = project_file.read_text(encoding="utf-8")
+            self.assertIn("enabled=PackedStringArray()", result)
+            self.assertNotIn("addons/gut", result)
+            self.assertNotIn("addons/hera_agent_godot", result)
+            self.assertIn("window/size/viewport_width=1280", result)
+
+    def test_captured_process_decodes_utf8_godot_style_output_independent_of_windows_codepage(self) -> None:
+        runner = _load_runner()
+        result = runner._run_captured(
+            [
+                sys.executable,
+                "-c",
+                "import sys; sys.stdout.buffer.write('한글 로그'.encode('utf-8'))",
+            ],
+            timeout=10,
+        )
+        self.assertEqual(0, result.returncode)
+        self.assertEqual("한글 로그", result.stdout)
+
     def test_exact_headless_dummy_thumbnail_error_is_classified_separately(self) -> None:
         runner = _load_runner()
         output = "\n".join(
