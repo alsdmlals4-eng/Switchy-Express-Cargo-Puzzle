@@ -23,6 +23,9 @@ ALLOWED_PATHS = {
     "tests/test_godot_live_editor_adoption.py",
     ".github/workflows/validate-godot-live-editor-pilot.yml",
 }
+PILOT_CONFIGURATION_PATHS = ALLOWED_PATHS - {
+    "tests/test_godot_live_editor_adoption.py",
+}
 
 
 def _required_text(path: Path) -> str:
@@ -46,6 +49,13 @@ def _changed_paths_from_main() -> set[str]:
         text=True,
     ).stdout
     return {line.strip() for line in output.splitlines() if line.strip()}
+
+
+def _assert_pilot_change_surface(changed: set[str]) -> None:
+    if changed & PILOT_CONFIGURATION_PATHS:
+        assert changed <= ALLOWED_PATHS, (
+            f"forbidden Pilot adoption changes: {sorted(changed - ALLOWED_PATHS)}"
+        )
 
 
 def test_descriptor_is_exact_current_project_contract() -> None:
@@ -162,6 +172,27 @@ def test_pull_request_trigger_is_scoped_to_adoption_surface() -> None:
         assert f"      - {path}\n" in text
 
 
+def test_non_pilot_documentation_changes_do_not_trip_pilot_scope_guard() -> None:
+    _assert_pilot_change_surface(
+        {
+            "docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md",
+            "docs/visual-references/2026-08-25/README.md",
+        }
+    )
+
+
+def test_pilot_configuration_change_rejects_unrelated_paths() -> None:
+    try:
+        _assert_pilot_change_surface(
+            {
+                ".godot-live-editor/project-pilot.json",
+                "docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md",
+            }
+        )
+    except AssertionError:
+        return
+    raise AssertionError("expected unrelated paths to be rejected with Pilot configuration")
+
+
 def test_change_surface_is_bounded_to_four_adoption_files() -> None:
-    changed = _changed_paths_from_main()
-    assert changed <= ALLOWED_PATHS, f"forbidden changed paths: {sorted(changed - ALLOWED_PATHS)}"
+    _assert_pilot_change_surface(_changed_paths_from_main())
