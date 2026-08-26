@@ -33,7 +33,7 @@ class PlayablePocPostMergeCanonTests(unittest.TestCase):
             self.assertIn(PRE_060_CANDIDATE, text, f"{path} lost historical Candidate 003 identity")
             self.assertIn("SX-DEC-060", text)
             self.assertIn("HISTORICAL", text)
-            self.assertIn("NOT_CREATED", text)
+            self.assertIn("SX60-POC-ACCEPT-001", text)
             self.assertNotIn("current_candidate: SX59-POC-ACCEPT-003", text)
 
     def test_current_decision_and_gates_route_post_060_work(self) -> None:

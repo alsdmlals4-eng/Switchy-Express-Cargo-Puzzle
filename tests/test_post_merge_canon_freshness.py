@@ -57,7 +57,7 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         self.assertIn("sx_dec_060_user_rule: APPROVED", active)
         self.assertIn("sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7", active)
         self.assertIn("sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN", active)
-        self.assertIn("post_sx_dec_060_candidate: NOT_CREATED", active)
+        self.assertIn("post_sx_dec_060_candidate: SX60-POC-ACCEPT-001 · PREPARED_PACKAGE_VERIFIED", active)
         self.assertIn("PR #174 remains", active)
         self.assertIn("READ_ONLY", active)
 

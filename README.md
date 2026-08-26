@@ -22,7 +22,7 @@ google_sheets: RETIRED_NO_ACTIVE_USE
 sx_dec_060_user_rule: APPROVED
 sx_dec_060_design_tdd_handoff: PREPARED
 sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
-post_sx_dec_060_candidate: NOT_CREATED
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-001 · PREPARED_PACKAGE_VERIFIED
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY
 windows_physical_post_060: NOT_RUN
 android_device_post_060: NOT_RUN
@@ -145,7 +145,7 @@ Actual GDScript/Scene/Resource/map/runtime implementation is merged-main verifie
 ## Current Next Work
 
 ```text
-→ new exact post-060 package candidate
+→ SX60-POC-ACCEPT-001 physical self-run
 → Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person comprehension

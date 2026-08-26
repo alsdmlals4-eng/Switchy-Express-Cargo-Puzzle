@@ -36,7 +36,7 @@ candidate_003_preparation_main: 2521f3be600ea950f9893ce45940604c2d0ac88a
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
 candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: NOT_CREATED · EXPLICIT_FAIL_CLOSED_NO_LAUNCH
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-001 · PREPARED_PACKAGE_VERIFIED
 candidate_003_package_integrity: PASS
 candidate_003_pck_integrity: PASS · 472_OF_472
 candidate_003_product_texture_packaging: PASS · 73_OF_73
@@ -51,7 +51,7 @@ sx_dec_060_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-
 sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_notion_readback: PASS
-post_sx_dec_060_candidate_status: NOT_CREATED
+post_sx_dec_060_candidate_status: PREPARED_PACKAGE_VERIFIED · SX60-POC-ACCEPT-001
 windows_physical_post_060: NOT_RUN
 android_device_post_060: NOT_RUN
 five_person_post_060: NOT_RUN
@@ -211,7 +211,7 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 ## Current next action
 
 ```text
-new exact post-060 package candidate
+SX60-POC-ACCEPT-001 physical self-run
 → Windows physical smoke
 → Android device smoke
 → Five-person comprehension
@@ -227,7 +227,7 @@ TDD_PLAN_RECORDED
 CODEX_HANDOFF_EXECUTED
 RUNTIME_MERGED_MAIN_VERIFIED_PR_188
 AUTOMATED_REGRESSION_PASS_111_CASES_13461_ASSERTIONS
-POST_060_PACKAGE_NOT_RUN
+POST_060_PACKAGE_VERIFIED_SX60_POC_ACCEPT_001
 POST_060_PHYSICAL_NOT_RUN
 POST_060_DEVICE_NOT_RUN
 POST_060_HUMAN_NOT_RUN

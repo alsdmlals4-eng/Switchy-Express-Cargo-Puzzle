@@ -232,7 +232,7 @@ its recorded NOT_RUN physical/human fields
 
 Do not call it the acceptance candidate for post-060 runtime. A changed gameplay build requires a new candidate identity and fresh evidence.
 
-The current post-060 candidate locator is `evidence/acceptance/post_sx_dec_060_candidate.json`; it is `NOT_CREATED` and fail-closed. `RUN_SX60_POC_SELF_RUN.ps1` must not download or launch any pre-060 candidate.
+The current post-060 candidate locator is `evidence/acceptance/post_sx_dec_060_candidate.json`; it names `SX60-POC-ACCEPT-001` as `PREPARED_PACKAGE_VERIFIED`. `RUN_SX60_POC_SELF_RUN.ps1` may verify and launch only that explicitly pinned post-060 package; it must not download or launch any pre-060 candidate.
 
 Allowed implementation completion claims depend on actual results. Never infer:
 
@@ -308,7 +308,7 @@ GODOT_RUNTIME_CHANGE: IMPLEMENTED_AUTOMATED · 111_CASES_13461_ASSERTIONS · CI_
 FIVE_PASS_REVIEW: CLOSED · SX-AUD-071
 NOTION_POST_MERGE_READBACK: PASS
 NEW_BITMAP_IMAGE: 0
-POST_060_ACCEPTANCE_CANDIDATE: NOT_CREATED
+POST_060_ACCEPTANCE_CANDIDATE: SX60-POC-ACCEPT-001 · PREPARED_PACKAGE_VERIFIED
 PHYSICAL_NOT_RUN
 HUMAN_NOT_RUN
 ```

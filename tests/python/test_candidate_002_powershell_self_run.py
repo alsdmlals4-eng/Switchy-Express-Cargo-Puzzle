@@ -56,25 +56,26 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         ):
             self.assertNotIn(value, text, f"historical launcher duplicated immutable evidence literal: {value}")
 
-    def test_post_060_launcher_reads_only_the_post_060_fail_closed_pointer(self) -> None:
+    def test_post_060_launcher_verifies_only_the_explicit_post_change_candidate(self) -> None:
         self.assertTrue(POST_060_LAUNCHER.is_file(), "post-060 launcher is required")
         text = POST_060_LAUNCHER.read_text(encoding="ascii")
         self.assertIn("post_sx_dec_060_candidate.json", text)
         self.assertIn("EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE", text)
-        self.assertIn("POST_SX_DEC_060_CANDIDATE_NOT_CREATED", text)
+        self.assertIn("POST_SX_DEC_060_CANDIDATE_CONTRACT", text)
         self.assertNotIn("current_poc_candidate.json", text)
         self.assertNotIn("SX59-POC-ACCEPT-003", text)
-        self.assertNotIn("gh api", text)
-        self.assertNotIn("gh run download", text)
-        self.assertNotIn("Start-Process", text)
+        self.assertIn("gh api", text)
+        self.assertIn("gh run download", text)
+        self.assertIn("Start-Process", text)
+        self.assertIn("WorkDir must be a direct child of TEMP", text)
 
-    def test_post_060_pointer_has_no_candidate_or_live_artifact_identity(self) -> None:
+    def test_post_060_pointer_has_an_explicit_post_change_candidate_identity(self) -> None:
         pointer = self._post_060_pointer()
-        self.assertEqual(pointer["candidate_status"], "NOT_CREATED")
-        self.assertIsNone(pointer["current_candidate_id"])
-        self.assertNotIn("artifact_evidence_owner", pointer)
-        self.assertNotIn("deep_pck_evidence_owner", pointer)
-        self.assertNotIn("self_run_record_name", pointer)
+        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-001")
+        self.assertIn("artifact_evidence_owner", pointer)
+        self.assertIn("deep_pck_evidence_owner", pointer)
+        self.assertIn("self_run_record_name", pointer)
 
     def test_candidate_002_evidence_is_preserved_as_history(self) -> None:
         self.assertTrue(OLD_EVIDENCE.is_file())
@@ -85,7 +86,7 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
             "16c81f9b42a3391a2a3dabf501cb2d6eb7e011682abdaa3f79eb8b1124836e55",
         )
 
-    def test_windows_contract_checks_post_060_fail_closed_state(self) -> None:
+    def test_windows_contract_checks_the_explicit_post_060_candidate(self) -> None:
         self.assertTrue(WINDOWS_CONTRACT.is_file(), "Windows PowerShell contract workflow is required")
         text = WINDOWS_CONTRACT.read_text(encoding="utf-8")
         self.assertIn("runs-on: windows-latest", text)
@@ -94,12 +95,17 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertIn("System.Management.Automation.Language.Parser", text)
         self.assertIn("-ContractCheck", text)
         self.assertIn("HistoricalEvidenceOnly -ContractCheck", text)
-        self.assertIn("POST_SX_DEC_060_CANDIDATE_NOT_CREATED", text)
+        self.assertIn("Verify exact post-060 package candidate without launch", text)
+        self.assertIn("evidence/acceptance/sx60_poc_accept_*_artifact.json", text)
+        self.assertIn("SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_*.md", text)
+        self.assertIn("SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_*.md", text)
+        self.assertIn("tests/python/test_sx_dec_060_candidate_mint.py", text)
+        self.assertIn("Join-Path $env:TEMP 'switchy-post-060-candidate'", text)
         self.assertIn("shell: powershell", text)
         self.assertIn("Verify historical pre-SX-DEC-060 Candidate 003 exact bytes", text)
         self.assertIn("GH_TOKEN: ${{ github.token }}", text)
         self.assertIn("switchy-historical-candidate-003", text)
-        self.assertNotIn("Prove current candidate download", text)
+        self.assertIn("switchy-post-060-candidate", text)
 
 
 if __name__ == "__main__":

@@ -34,7 +34,7 @@ candidate_003_preparation: MERGED_MAIN_VERIFIED · PR #172 · main_2521f3be600ea
 pre_sx_dec_060_candidate_pointer: evidence/acceptance/current_poc_candidate.json
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_AFTER_SX_DEC_060
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: NOT_CREATED · EXPLICIT_FAIL_CLOSED_NO_LAUNCH
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-001 · PREPARED_PACKAGE_VERIFIED
 candidate_002_windows_physical_startup_smoke: PASS
 candidate_002_result: BLOCKED_BY_CONFIRMED_P1_PREFLIGHT_VISUAL_DEFECTS
 candidate_002_acceptance_promotion: PROHIBITED
@@ -48,10 +48,10 @@ sx_dec_060_design: RECORDED
 sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
-sx_dec_060_post_change_candidate: NOT_CREATED
+sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-001 · PREPARED_PACKAGE_VERIFIED
 sx_dec_060_notion_sync: PASS · POST_PR_188_READBACK_COMPLETE
 developer_self_run: NOT_RUN_POST_SX_DEC_060
-acceptance_build: NOT_YET_DESIGNATED_POST_SX_DEC_060
+acceptance_build: SX60-POC-ACCEPT-001 · PACKAGE_VERIFIED_PENDING_PHYSICAL_SELF_RUN
 windows_full_physical_runtime: NOT_RUN_POST_SX_DEC_060
 audio_perceptual_qa: NOT_RUN_POST_SX_DEC_060
 android_device: NOT_RUN_POST_SX_DEC_060
@@ -231,7 +231,7 @@ PR #158 implementation → PR #166 playable POC → PR #171 visual correction �
 
 current:
 SX-DEC-060 merged main PR #188
-→ new exact post-060 packaged candidate
+→ SX60-POC-ACCEPT-001 physical self-run
 → Windows physical smoke
 → Android device smoke
 → Five-person first-contact comprehension
