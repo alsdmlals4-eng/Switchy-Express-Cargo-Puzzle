@@ -1,8 +1,8 @@
 # Active Context
 
-Last updated: `2026-08-25 KST`
+Last updated: `2026-08-26 KST`
 
-이 문서는 **현재 상태·다음 실행 지점·미검증 경계**를 연결하는 resume locator다. fresh GitHub/Notion/actual runtime이 저장 snapshot보다 우선한다.
+이 문서는 **현재 상태·다음 실행 지점·미검증 경계**를 연결하는 resume locator다. fresh GitHub/Notion/actual runtime이 저장 snapshot보다 우선한다. 새 채팅은 과거 대화를 필수 입력으로 요구하지 않고 Project GitHub + Notion에서 상태를 다시 재구성한다.
 
 ## Continuation State
 
@@ -15,16 +15,21 @@ engine: Godot 4.7.1-stable
 language: GDScript
 product_baseline: GMB-002
 current_decisions: SX-DEC-027~059
-work_instruction: v4.8 · 2026-08-24-r4 · SWITCHY_THIN_ADAPTER
-work_instruction_role: USER_PROVIDED_V4_8_R4_CONTRACT
+work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
+work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
+source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
+historical_r4_revision: 2026-08-24-r4
+historical_r4_role: USER_PROVIDED_V4_8_R4_CONTRACT
 historical_r2_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
-historical_r2_hash_is_not_r4_hash: true
 v4_8_r2_authority_merge_pr: 164
 v4_8_r2_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
 v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
 base_canon_sync_observation: 862938478cfea6c9db16691900c9c4fdc464f9ff · AUDIT_EVIDENCE_ONLY
 base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
+fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
+skill_coverage: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT
+gpt_local_codex_orchestration: RETIRED
 sx_dec_059_merge_pr: 158
 sx_dec_059_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
 SX_DEC_059_IMPLEMENTATION: MERGED_MAIN_VERIFIED
@@ -64,13 +69,14 @@ sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
 sx_dec_057: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_058: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 pr_154: CLOSED_UNMERGED · SUPERSEDED_BY_059
+pr_174: PRE_EXISTING_DRAFT · READ_ONLY
 ```
 
-`base_canon_sync_observation`은 과거 감사 증거일 뿐 current Base pin이 아니다. 실제 Base 권위는 실행할 때마다 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN`으로 다시 결정한다. `historical_r2_source_sha256` 역시 r2 provenance이며 r4 hash가 아니다.
+`base_canon_sync_observation`은 과거 감사 증거일 뿐 current Base pin이 아니다. 실제 Base 권위는 실행할 때마다 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN`으로 다시 결정한다. `source_r5_4_sha256`은 현재 사용자 계약 identity이고 r4/r2 값은 predecessor/provenance다.
 
-## r4 execution overlay
+## r5.4 execution overlay
 
-r4의 Godot/local bootstrap은 실제 authoring/runtime 작업에서만 적용한다.
+r5.4의 Godot/local bootstrap은 실제 authoring/runtime 작업에서만 적용한다.
 
 ```text
 fresh shell
@@ -82,7 +88,7 @@ fresh shell
 → authoring/test/runtime/readback
 ```
 
-동일 Godot binary·프로젝트별 전용 포트를 기본적으로 증식시키지 않는다. compatible host에서는 shared approved exact pins와 provider default fixed ports를 사용하고 exact project/editor/session identity로 격리한다. 세부 절차는 최신 Base owner와 project thin adapter가 소유한다.
+동일 Godot binary·프로젝트별 전용 포트를 기본적으로 증식시키지 않는다. compatible host에서는 shared approved exact pins와 provider default fixed ports를 사용하고 exact project/editor/session identity로 격리한다. PowerShell은 local Codex launcher로 사용하지 않는다. 실제 Godot 제품 구현이 새로 필요해지면 `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF`로 전환한다. 세부 절차는 최신 Base owner와 project thin adapter가 소유한다.
 
 ## Stable Phase-B / post-merge compatibility aliases
 
@@ -227,23 +233,25 @@ B. disconnected station/cargo의 색+shape+text identity가 보이고 problem re
 - no generated visual without explicit user image request.
 - no physical/device/audio-perceptual/human PASS inflation.
 - PR #154 remains `CLOSED_UNMERGED · SUPERSEDED_BY_SX_DEC_059`.
+- PR #174 remains `PRE_EXISTING_DRAFT · READ_ONLY` unless explicitly authorized by number and action.
 
 ## Resume read order
 
 1. fresh Base completed `main` + Base `AGENTS.md`.
-2. fresh Project `main`, latest commit, all Open/Draft PR.
-3. exact Project Notion Home.
-4. `AGENTS.md`.
-5. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`.
-6. `FINITE_DELIVERY_PUZZLE_BASELINE.md`.
-7. `CURRENT_CONFIRMED_DECISIONS.md`.
-8. this `ACTIVE_CONTEXT.md`.
-9. `evidence/acceptance/current_poc_candidate.json`.
-10. `SX_DEC_059_POC_ACCEPTANCE_CANDIDATE_03.md` + `SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_03.md`.
-11. `DEVELOPMENT_GATES.md` + `ROADMAP.md`.
-12. actual code/tests and 059 content/UI/localization/visual/playtest owners.
+2. Base `skills/SKILL_REGISTRY.json` + `docs/generated/BASE_ACTIVE_SKILLS.md`.
+3. fresh Project `main`, latest commit, all Open/Draft PR.
+4. exact Project Notion Home.
+5. `AGENTS.md`.
+6. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`.
+7. `FINITE_DELIVERY_PUZZLE_BASELINE.md`.
+8. `CURRENT_CONFIRMED_DECISIONS.md`.
+9. this `ACTIVE_CONTEXT.md`.
+10. `evidence/acceptance/current_poc_candidate.json`.
+11. `SX_DEC_059_POC_ACCEPTANCE_CANDIDATE_03.md` + `SX_DEC_059_POC_DEVELOPER_SELF_RUN_RECORD_03.md`.
+12. `DEVELOPMENT_GATES.md` + `ROADMAP.md`.
+13. actual code/tests and 059 content/UI/localization/visual/playtest owners.
 
-Historical `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`와 v4.8 r2 provenance는 rollback/history용이다.
+Historical `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`, v4.8 r2 provenance, 2026-08-24 r4 reconciliation 자료는 rollback/history용이다.
 
 ## Current next action
 

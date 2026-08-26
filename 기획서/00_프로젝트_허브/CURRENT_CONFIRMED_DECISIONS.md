@@ -1,6 +1,6 @@
 # Current Confirmed Decisions
 
-Last updated: `2026-08-25 KST`
+Last updated: `2026-08-26 KST`
 
 이 문서는 Switchy Express의 **현재 승인 Decision과 실행 권위**를 압축한다. 상세 규칙·근거·역사 CI는 각 Decision/Audit owner가 책임진다. Google Sheets는 migration-only이며 active decision authority가 아니다.
 
@@ -9,16 +9,19 @@ Last updated: `2026-08-25 KST`
 ```yaml
 current_product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
 current_decision_span: SX-DEC-027~059
-work_instruction: v4.8 · 2026-08-24-r4 · SWITCHY_THIN_ADAPTER
-work_instruction_role: USER_PROVIDED_V4_8_R4_CONTRACT
+work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
+work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
+source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
+historical_r4_revision: 2026-08-24-r4
+historical_r4_role: USER_PROVIDED_V4_8_R4_CONTRACT
 historical_r2_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
-historical_r2_hash_is_not_r4_hash: true
 v4_8_r2_authority_merge_pr: 164
 v4_8_r2_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
 v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 project_base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
 base_canon_sync_observation: 862938478cfea6c9db16691900c9c4fdc464f9ff · AUDIT_EVIDENCE_ONLY
 base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
+fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
 sx_dec_059_merge_pr: 158
 sx_dec_059_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
 SX_DEC_059_IMPLEMENTATION: MERGED_MAIN_VERIFIED
@@ -55,7 +58,7 @@ sx_dec_058: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
 ```
 
-`base_canon_sync_observation`은 과거 canon-sync 감사 시점의 evidence다. 실행 권위는 SHA snapshot이 아니라 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN`이며, 작업 시작마다 fresh Base completed main을 다시 읽는다. `historical_r2_source_sha256`은 r2 provenance로만 유지하고 r4 hash로 승격하지 않는다.
+`base_canon_sync_observation`은 과거 canon-sync 감사 시점의 evidence다. 실행 권위는 SHA snapshot이 아니라 `ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN`이며, 작업 시작마다 fresh Base completed main과 current Skill Registry/generated map을 다시 읽는다. `source_r5_4_sha256`은 이번 사용자 계약 exact identity이고, r4/r2 값은 predecessor/provenance로만 유지한다. r5.4 adoption은 새로운 제품 Decision을 만들거나 056~058 구현 권한을 넓히지 않는다.
 
 ## Current core promise
 

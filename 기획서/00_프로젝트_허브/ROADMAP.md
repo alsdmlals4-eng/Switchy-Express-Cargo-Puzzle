@@ -1,21 +1,24 @@
 # Roadmap
 
-Last updated: `2026-08-25 KST`
+Last updated: `2026-08-26 KST`
 
 ## Current authority
 
 ```yaml
-current_work_instruction: v4.8 · 2026-08-24-r4 · SWITCHY_THIN_ADAPTER
-work_instruction_role: USER_PROVIDED_V4_8_R4_CONTRACT
+current_work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
+work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
+source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
+historical_r4_revision: 2026-08-24-r4
+historical_r4_role: USER_PROVIDED_V4_8_R4_CONTRACT
 historical_r2_source_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
-historical_r2_hash_is_not_r4_hash: true
 v4_8_r2_authority_merge_pr: 164
 v4_8_r2_authority_merge_main: 98ed1c65d678bfc262c32084bbf0e59368093c2c
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
+fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
 v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 ```
 
-이 authority 갱신은 roadmap 범위를 확장하지 않는다. 현재 제품 게이트는 여전히 SX-DEC-059의 Candidate 003 physical/developer/device/human validation이다.
+이 authority 갱신은 roadmap 범위를 확장하지 않는다. 현재 제품 게이트는 여전히 SX-DEC-059의 Candidate 003 physical/developer/device/human validation이다. r5.4 adoption은 제품 Decision 추가나 056~058 구현 승인이 아니다.
 
 ## Current execution overlay
 
@@ -34,7 +37,7 @@ SX-DEC-059
 → user explicit "기획완료" GRANTED · 2026-08-20
 → Phase-C final review PASS · SX-AUD-064
 → implementation package spec DoR PASS
-→ Codex handoff USER_REQUESTED_AND_EXECUTED
+→ historical Codex handoff USER_REQUESTED_AND_EXECUTED
 → SX_DEC_059_IMPLEMENTATION: IMPLEMENTED_AUTOMATED
 → five-pass adversarial review CLOSED · SX-AUD-066
 → PR #158 MERGED_MAIN_VERIFIED · main 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
@@ -181,7 +184,7 @@ implementation_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
 notion_sync: PASS_POST_PR_158_READBACK_COMPLETE
 implementation_package_spec_dor: PASS
 execution_preflight: PASS
-codex_handoff: USER_REQUESTED_AND_EXECUTED
+codex_handoff: USER_REQUESTED_AND_EXECUTED · HISTORICAL_EXECUTION_RECORD
 build: MERGED_MAIN_VERIFIED
 adversarial_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED
 current_candidate: SX59-POC-ACCEPT-003
@@ -233,4 +236,5 @@ BMK-R10 Editor/UGC → POST_VALIDATION_HOLD
 endless/fuel/BOOST/capacity-8/cargo-slowdown/pickup-respawn/switch-auto-reset → NON_CURRENT
 Base repin → NOT_AUTHORIZED
 PR #154 reusable pilot → CLOSED_UNMERGED / SUPERSEDED_BY_SX_DEC_059 / DO_NOT_ABSORB
+PR #174 r4 draft → PRE_EXISTING_DRAFT / READ_ONLY
 ```
