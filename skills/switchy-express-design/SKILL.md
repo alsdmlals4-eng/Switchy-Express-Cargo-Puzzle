@@ -1,40 +1,42 @@
 ---
 name: switchy-express-design
-description: Use for Switchy Express finite-delivery gameplay, track construction, cargo encounter order, unlimited LIFO, persistent branch, first-session validation, Android device smoke, five-person comprehension, readability, retry, or product validation work.
+description: Use for Switchy Express finite-delivery gameplay, track construction, cargo encounter order, cardinal station service, reachable-network preflight, unlimited LIFO, persistent branch, first-session validation, Android device smoke, five-person comprehension, readability, retry, or product validation work.
 ---
 
 # Switchy Express Design and Validation Discipline
 
 ## Purpose
 
-이 Skill은 `Switchy Express: Cargo Puzzle`의 현 finite 제품 기획·검토·검증을 책임진다. 과거 endless 구현, VS03 계획, 오래된 Android-first gate를 현재 제품 권위로 부활시키지 않고, 현재 승인 결정·실제 finite 코드·SX-DEC-059 merged implementation·acceptance evidence를 연결한다.
+이 Skill은 `Switchy Express: Cargo Puzzle`의 현 finite 제품 기획·검토·검증을 책임진다. 과거 endless 구현, VS03 계획, 오래된 Android-first gate, pre-SX-DEC-060 exact-station delivery를 current 제품 권위로 부활시키지 않고, 현재 승인 결정·실제 finite code·post-change evidence를 연결한다.
 
 ## Read First
 
 1. fresh Base latest completed `main` + Base root `AGENTS.md`
-2. `AGENTS.md`
-3. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`
-4. `기획서/00_프로젝트_허브/START_HERE.md`
-5. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
-6. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
-7. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
-8. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
-9. `기획서/50_제작_검증/SX_DEC_059_RELEASE_NEAR_FIRST_SESSION_VERTICAL_SLICE.md`
-10. `기획서/50_제작_검증/SX_DEC_059_ACCEPTANCE_CANDIDATE_01.md`
-11. `기획서/50_제작_검증/SX_DEC_059_DEVELOPER_SELF_RUN_RECORD.md`
-12. actual finite code, Scenes, data and tests
+2. Base current `skills/SKILL_REGISTRY.json` + generated active map
+3. fresh project `main`, latest commit, all Open/Draft PRs
+4. exact Project Notion Home
+5. project `AGENTS.md`
+6. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`
+7. `기획서/00_프로젝트_허브/START_HERE.md`
+8. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
+9. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
+10. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
+11. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
+12. current Decision owner; for current product work read `docs/decisions/SX_DEC_060_CARDINAL_STATION_SERVICE_AND_REACHABLE_NETWORK.md`
+13. actual finite code, Scenes, data and tests
 
-`CURRENT_CONFIRMED_DECISIONS.md`가 현재 승인 결정, `ACTIVE_CONTEXT.md`가 현재 상태와 다음 작업, `DEVELOPMENT_GATES.md`가 Gate 차단 관계를 책임진다. 과거 v4.7 adapter, VS03 계획·감사·실행문, 이전 Android APK package는 history/rollback/diagnostic evidence이며 current execution authority가 아니다.
+`CURRENT_CONFIRMED_DECISIONS.md` owns current approved decisions, `ACTIVE_CONTEXT.md` owns current state/next action, and `DEVELOPMENT_GATES.md` owns gate dependencies. Historical adapters/plans/audits/candidates are rollback/provenance evidence, not automatic current authority.
 
 ## Current Product Authority
 
 ```text
-track construction
-→ cargo encounter order
-→ manual/automatic loading
+build the needed rail network
+→ create cargo encounter order
+→ manual/automatic exact-cell cargo loading
 → unlimited LIFO
 → route and persistent branch execution
-→ TOP contiguous-group unloading
+→ pass one cardinal tile beside a station
+→ unload matching contiguous TOP group
 → finite-time completion
 → evidence-safe result / retry / edit
 ```
@@ -42,9 +44,16 @@ track construction
 ### Current invariants
 
 - authored finite delivery stage
-- free track construction except blocked cells
+- free track construction except blocked/off-track service cells
 - per-piece construction cost and full refund during BUILD
-- structural reachability preflight before RUN
+- preflight validates the start-reachable RUN component
+- not every placed rail piece must join one global connected component
+- every required cargo must be reachable by the active RUN component
+- every required station must have at least one reachable cardinal service cell
+- station service iff `abs(dx) + abs(dy) == 1`
+- only `UP / RIGHT / DOWN / LEFT` one tile count; diagonal and station footprint do not
+- station is an off-track service object in the SX-DEC-060 schema-v3 target
+- cargo pickup remains exact-cell contact
 - automatic train movement
 - manual LOAD hold and auto-load toggle
 - unlimited LIFO cargo stack
@@ -64,89 +73,136 @@ track construction
 ### Current Gate authority
 
 ```text
-FINITE AUTOMATED CORE: PASS
-SX-DEC-059 IMPLEMENTATION: MERGED_MAIN_VERIFIED · PR #158
-SX59-ACCEPT-001 ARTIFACT INTEGRITY: PASS · PREPARATION_ONLY
-DEVELOPER SELF-RUN / SCREEN QA: NOT_RUN · CURRENT
-EXACT ACCEPTANCE BUILD: NOT_YET_DESIGNATED
-WINDOWS PHYSICAL SMOKE: NOT_RUN
-ANDROID DEVICE SMOKE: NOT_RUN
-FIVE-PERSON COMPREHENSION: NOT_RUN
-PLAYER EXPERIENCE: NOT_RUN
+PRE-SX-DEC-060 FINITE AUTOMATED CORE: HISTORICAL PASS
+SX-DEC-059 IMPLEMENTATION: MERGED_MAIN_VERIFIED · PRE-SX-DEC-060
+SX59-POC-ACCEPT-003 PACKAGE/PCK/73 TEXTURES: HISTORICAL PASS
+SX-DEC-060 USER RULE: APPROVED
+SX-DEC-060 DESIGN/TDD/CODEX HANDOFF: PREPARED
+SX-DEC-060 RUNTIME IMPLEMENTATION: NOT_RUN · CURRENT
+SX-DEC-060 FULL AUTOMATED REGRESSION: NOT_RUN
+POST-060 EXACT CANDIDATE: NOT_CREATED
+WINDOWS PHYSICAL POST-060: NOT_RUN
+ANDROID DEVICE POST-060: NOT_RUN
+FIVE-PERSON POST-060: NOT_RUN
+PLAYER EXPERIENCE POST-060: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
 
 Current validation sequence:
 
 ```text
-developer self-run / screen QA
-→ exact acceptance build
-→ Windows physical smoke
+SX-DEC-060 Codex runtime implementation
+→ exact-head automated/static/package evidence
+→ new post-060 candidate
+→ Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person first-contact comprehension
 → product decision
 ```
 
-`SX59-ACCEPT-001`의 hash/artifact integrity PASS는 acceptance build designation, physical runtime, human comprehension, player experience PASS가 아니다.
+Pre-SX-DEC-060 Candidate 003 hashes/integrity remain exact historical evidence and do not transfer to new gameplay bytes.
 
-### Historical Android packaging evidence
+## SX-DEC-060 station / preflight contract
 
-과거 canonical Android validation binary:
+### Station service
 
-```yaml
-source_commit: 536911449018a3caf3511bc64e7bf1a66edf2016
-apk_sha256: eb49225ab4062e5cf863f79a0d17f85d339ea176d7f0bb6f04096ed8a07559ea
-package_id: com.alsdmlals4.switchyexpress.validation
-status: HISTORICAL_PACKAGING_DIAGNOSTIC_EVIDENCE
+```gdscript
+var delta := train_cell - station_cell
+var serviceable := absi(delta.x) + absi(delta.y) == 1
 ```
 
-이 binary와 과거 Android runbook은 Android-specific regression/diagnostic reference로 쓸 수 있지만 post-SX-DEC-059 exact acceptance build를 대신하지 않는다.
+- `UP`, `RIGHT`, `DOWN`, `LEFT`: serviceable.
+- same station cell: not serviceable.
+- diagonals: not serviceable.
+- distance 2+: not serviceable.
+- matching TOP: current contiguous-group unload.
+- mismatched TOP: no unload.
 
-### Android device smoke route
+### Reachable-network preflight
 
-현재 exact acceptance build가 지정되고 Android physical validation을 수행할 때:
+Preflight is RUN safety/required-coverage validation, not a global topology linter.
 
 ```text
-exact acceptance build identity + full hash
-→ physical Android landscape device
-→ current Android smoke matrix
-→ privacy-safe evidence record
-→ item completeness review
-→ adversarial validation
-→ reviewed Gate decision
+start/incoming traversal
+→ compute reachable states/cells
+→ all required cargo reachable
+→ each station has >=1 reachable cardinal service cell
+→ reachable switch/crossing/trap semantics valid
 ```
 
-Rules:
+A fully unreachable rail island with no required cargo/service role does not block RUN. A disconnected component containing required cargo does block RUN. An invalid structure that the train can actually enter remains a blocker.
 
-- emulator-only evidence를 physical-device PASS로 올리지 않는다.
-- partial execution을 full PASS로 올리지 않는다.
-- evidence는 exact acceptance build identity/hash에 bind한다.
-- new build는 inherited device/human evidence를 자동 승계하지 않는다.
-- Android PASS does not imply Five-person or production cutover PASS.
+### Schema / data
 
-### Five-person comprehension route
+- target current map schema after implementation: `FiniteMapDefinition v3`.
+- station placements do not require a rail anchor.
+- station footprints are non-buildable/off-track.
+- cargo retains direct-contact semantics.
+- overlapping station service ownership fails closed until another Decision explicitly defines priority.
+- active maps/witnesses/solution identities must be explicitly migrated; historical schema-v2 bytes are not silently reinterpreted.
 
-Five-person evidence는 같은 acceptance build의 physical validation 상태를 명시한 뒤 별도 human gate로 실행한다.
+## Consumer-first visual asset contract
 
-- five first-contact participants, minimal aliases only
-- no solution or route coaching
-- observe TOP/LIFO explanation, selective non-load/revisit reasoning, failure recovery, Retry/Edit distinction, switch execution
-- require shape/text comprehension without color-only dependence
-- separate participant words, observed actions and facilitator interpretation
-- technical or device PASS를 human/player PASS로 승격하지 않는다.
+Production image work must be justified by an actual game consumer.
 
-### Material user decisions
+Current `ProductBoardRenderer` already consumes approved station assets:
 
-Ask one benchmark-backed Grill Me only when a choice changes:
+```text
+core_station_red_normal_v01.png
+core_station_blue_normal_v01.png
+core_station_yellow_normal_v01.png
+```
+
+For SX-DEC-060:
+
+```text
+existing station PNG consumer
+→ procedural four-cardinal service indicator
+→ deterministic renderer descriptor tests
+→ ZERO new bitmap assets
+```
+
+Do not produce explanation sheets, full-screen mockups, or decorative images without a real runtime node/key/path consumer. If a future concrete bitmap slot is proven necessary, stop and obtain separate approval for that exact asset contract.
+
+## First-session authority
+
+Current flow remains:
+
+```text
+T1 Track Connection
+→ T2 Cargo direct contact + Station cardinal-adjacent delivery
+→ T3 LIFO/TOP reverse planning
+→ T4 selective manual non-load + revisit
+→ T5 Auto ON safe / OFF decision
+→ T6 switch execution
+→ VS_DEMO_01 capstone
+→ Result / Retry / Edit
+```
+
+T2 must distinguish:
+
+```text
+Cargo: pass through its tile to load.
+Station: pass through one of four cardinal adjacent tiles to deliver.
+Diagonal: no delivery.
+```
+
+Keep locales `ko / en / ja / zh-Hans`; `zh-Hant` remains deferred. No raw key or text-in-PNG.
+
+## Material user decisions
+
+Ask only when a choice changes:
 
 - finite core loop or LIFO meaning
 - BUILD/RUN authority
-- loading or unloading semantics
+- cargo loading semantics
+- station service radius/shape beyond approved exact-cardinal rule
+- multi-station overlap priority behavior
 - timer success/failure meaning
-- major UX or accessibility interaction
+- major UX/accessibility interaction
 - content scope, monetization, online policy or production cutover
 
-Do not ask for facts available in canon, code, tests, package evidence or current records. Safe technical/canonical corrections preserving approved meaning do not require a new Decision.
+Do not ask for facts available in canon, code, tests, package evidence, current records, or the already approved exact-cardinal rule.
 
 ## Legacy Implementation Boundary
 
@@ -161,23 +217,30 @@ The following are `LEGACY_IMPLEMENTATION · HISTORICAL_EVIDENCE`:
 - switch auto-reset after passage
 - timed speed/fuel pressure escalation
 - old endless score authority
-- old VS03-01/02/03/R1/04/05/06/07 package order
+- old exact-station-contact semantics where a station footprint itself is a rail/delivery anchor
+- global-connectedness interpretations superseded by SX-DEC-060
 
-Legacy code and tests may remain for history, migration analysis or isolated regression, but they do not define current product completion, current package authority or future design. Never combine their assertion counts with finite PASS evidence unless the evidence explicitly distinguishes both suites.
+Legacy code/tests/docs may remain for history/migration analysis but do not define post-060 product completion.
 
 ## Architecture Boundaries
 
+- `FiniteMapDefinition`: finite map/schema + station service data derivation
+- `FiniteMapLoader`: buildable surface projection
+- `FiniteTrackGraphBuilder`: sealed routing graph; no v3 station footprint rail piece
 - `FiniteBuildSession`: BUILD edits, validation and sealing
 - `TrackLayout`: authored/player track value
 - `FiniteTrackGraph`: sealed routing graph
+- `PreflightValidator`: start-reachable RUN safety + required coverage
 - `FiniteGameplayInputState`: manual/auto loading intent
 - `UnlimitedCargoStack`: finite LIFO authority
 - `FixedCargoField`: non-respawning authored cargo
+- `Station`: cargo-type match + service predicate
 - `FiniteDeliveryLoop`: contact and unload event integration
 - `FiniteRunController`: timer, lifecycle, pause and outcome authority
 - `FiniteRunSessionFactory`: fresh attempt object graph and identity
 - `FiniteSlicePresenter`: read model only
 - `FiniteSliceView`: visual state and input intent only
+- `ProductBoardRenderer`: visual projection only
 - `FirstSessionDefinition/StagePolicy/Director/Copy`: presentation-side onboarding owners
 
 Presentation must not mutate layout, cargo, delivery, timer, result, retry identity or saves except through approved command boundaries.
@@ -191,7 +254,7 @@ SX-DEC-057: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 SX-DEC-058: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 ```
 
-Current validation work must not smuggle Route Probe/PB/Fingerprint, score/max-combo, Yard Labs/Mastery, or fixed-seed challenge pipeline into the product.
+Current implementation must not smuggle Route Probe/PB/Fingerprint, score/max-combo, Yard Labs/Mastery, or fixed-seed challenge pipeline into the product.
 
 ## Actual Test Contract
 
@@ -202,71 +265,51 @@ Use the repository custom runner:
   --headless --path . --script res://tests/run_tests.gd
 ```
 
-Each suite extends `res://tests/test_case.gd` and implements `func run() -> void`. Do not use nonexistent single-suite runners or unsupported test APIs.
+Each suite follows the repository current test harness. Do not invent unsupported single-suite runners or test APIs.
 
-Relevant static contracts:
+Relevant static contracts include:
 
 ```bash
 python tools/validate_project_contract.py
 python tests/python/test_v48_current_authority_migration.py -v
-python tests/python/test_sx_dec_059_implementation_canonical_freshness.py -v
-python tests/python/test_android_smoke_canonical_freshness_contract.py -v
-python tests/python/test_platform_release_asset_rights_contract.py -v
 ```
 
-Never report an unexecuted command as PASS.
+Also run the current SX-DEC-060 canonical freshness/map/witness/package contracts after they exist. Never report an unexecuted command as PASS.
 
 ## Adversarial Review Lenses
 
-- current finite authority replaced by historical endless assumptions
-- v4.7/current Base authority drift reintroduced
-- Google Sheets promoted from migration compatibility back to active workspace
-- stale VS03/Android-first package presented as next work
-- LIFO meaning inverted or reduced to FIFO
-- unlimited stack silently re-capped
-- branch tap or occupied lock mismatch
-- UI or animation becomes outcome authority
-- manual/auto loading state not visible or not applied on next contact
-- same-layout retry reuses stale mutable services
-- acceptance candidate integrity overstated as acceptance build/physical PASS
-- emulator or partial matrix overstated as physical-device PASS
-- color-only cargo/TOP identification
-- safe-area clipping, overlap, missed touch or undersized target
-- pause changes timer, movement, unload commit or stack state
-- device PASS overstated as HUMAN or production readiness
-- historical files deleted instead of reclassified
+- exact-cardinal math accidentally includes diagonals/station cell/distance 2+
+- cargo exact-contact semantics accidentally changed
+- LIFO meaning inverted/reduced to FIFO or stack capped
+- station remains hidden rail anchor under schema v3
+- active maps silently keep v2 semantics
+- global topology lint still blocks irrelevant disconnected islands
+- reachable invalid switch/crossing becomes ignored
+- station service overlap silently overwrites one station
+- renderer becomes gameplay authority
+- new explanatory/non-consumed bitmap slips into production assets
+- service overlay hides rail/cargo/train/switch/preflight state
+- first-session T2 teaches old exact-station contact
+- raw localization key or locale parity drift
+- Candidate 003 historical evidence overstated as post-060 acceptance
+- 056–058 absorbed
+- PR #174 modified
+- Base repinned
+- package/device/human evidence inflated
+
+Run minimum five full-scope loops for substantive implementation and continue until no unresolved current-scope finding remains.
 
 ## PR Gate
 
-Every material package requires:
+Before merging a current-task implementation PR:
 
-```text
-latest main baseline
-approved authority and scope
-TDD RED observed for behavior/contract change
-focused GREEN
-Project Contract success
-Godot Tests success when relevant
-JSON and whitespace checks
-unresolved review threads 0
-REQUEST_CHANGES 0
-protected product file inventory
-rollback documented
-NOT_RUN evidence explicit
-```
-
-For authority/readiness documents, product code, APK bytes, Android export workflow and gameplay/default product entrypoint remain unchanged unless a separate approved package explicitly owns them.
-
-## Output Contract
-
-Depending on the request, produce one or more of:
-
-- finite product design or review
-- developer self-run / acceptance evidence review
-- Windows/Android physical smoke preparation or evidence review
-- five-person comprehension preparation or evidence review
-- canonical-freshness finding and closure report
-- Codex-ready implementation plan
-- Gate decision with PASS/FAIL/BLOCKED/NOT_RUN and exact evidence ceiling
-
-Always report which authority, exact commit/build hash, tests and unresolved risks support the conclusion.
+1. refresh Base completed main + project main + exact Notion Home + all Open/Draft PRs;
+2. verify only approved SX-DEC-060 scope changed;
+3. verify PR #174 untouched;
+4. verify no new bitmap unless separately approved with concrete runtime consumer;
+5. observe RED→GREEN evidence for production behavior;
+6. run full exact-head Godot/static/package checks;
+7. run minimum five adversarial loops and fix findings;
+8. verify current GitHub canon + Notion same Decision ID agree;
+9. preserve evidence ceiling exactly;
+10. merge only when required rulesets/checks/review are clean, then re-read merged main + Notion.
