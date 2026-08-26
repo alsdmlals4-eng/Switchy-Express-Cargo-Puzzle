@@ -11,9 +11,12 @@
 ```yaml
 product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
 current_decisions: SX-DEC-027~059
-work_instruction: v4.8 · revision 2026-08-24-r4 · SWITCHY_THIN_ADAPTER
-work_instruction_role: USER_PROVIDED_V4_8_R4_CONTRACT
-historical_r2_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508 · NOT_R4_HASH
+work_instruction: v4.8 · revision 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
+work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
+source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
+historical_r4_revision: 2026-08-24-r4
+historical_r4_role: USER_PROVIDED_V4_8_R4_CONTRACT
+historical_r2_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
 phase_a: COMPLETE
 user_planning_complete_gate: GRANTED · 2026-08-20 KST
 phase_b_final_planning_review: SX-AUD-047 · PASS
@@ -30,6 +33,7 @@ sx_dec_059_adversarial_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED
 semantic_product_assets: 73_TOTAL · PRODUCTION_COMPLETE
 base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
 base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
+fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
 google_sheets: COMPATIBILITY_ONLY_MIGRATION_SOURCE
 current_candidate: SX59-POC-ACCEPT-003
 candidate_003_package_pointer: PASS
@@ -52,6 +56,7 @@ repository_main_observed: HISTORICAL_SNAPSHOT_ONLY
 latest_automated_verified_product_main: 1339a9467312d0ac680725894a9efb59746ec2cc
 v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 v4_8_r2_authority_merge: PR_164 · 98ed1c65d678bfc262c32084bbf0e59368093c2c
+v4_8_r4_reconciliation: HISTORICAL_PREDECESSOR · 2026-08-24-r4
 ```
 
 ## 현재 제품 기준선
@@ -134,7 +139,7 @@ Task 1 / Step 1.1 RED는 완료된 TDD 역사이며 현재 next action이 아닙
 
 ## 바로 실행하기
 
-사용자 로컬 확인은 항상 최신 `main`을 받은 뒤 진행합니다. r4 기준으로 실제 Godot authoring/runtime 작업에서는 fresh shell → exact location → fetch/safe reconcile → official update check → safe reviewed update/exact pin → exact editor/session 순서를 적용합니다.
+사용자 로컬 확인은 항상 최신 `main`을 받은 뒤 진행합니다. r5.4 기준으로 실제 Godot authoring/runtime 작업에서는 fresh shell → exact location → fetch/safe reconcile → official update check → safe reviewed update/exact pin → exact editor/session 순서를 적용합니다. PowerShell은 local Codex launcher로 사용하지 않습니다.
 
 현재 Candidate 003 self-run launcher를 사용할 때는 저장소 current pointer가 exact candidate를 선택하게 하며, 임의 latest build나 hard-coded candidate를 사용하지 않습니다.
 
@@ -208,17 +213,19 @@ Candidate 003 Gate 0 physical visual recheck
 ## 정본 읽기 순서
 
 1. latest Base completed `main` + Base root `AGENTS.md`
-2. `AGENTS.md`
-3. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`
-4. `기획서/00_프로젝트_허브/START_HERE.md`
-5. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
-6. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
-7. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
-8. `evidence/acceptance/current_poc_candidate.json` when acceptance identity matters
-9. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
-10. `기획서/50_제작_검증/SX_DEC_059_RELEASE_NEAR_FIRST_SESSION_VERTICAL_SLICE.md`
-11. `기획서/50_제작_검증/SX_DEC_059_CODEX_HANDOFF_PACKAGE.md` · history when needed
-12. `기획서/50_제작_검증/PLAYTEST_PLAN_V4_7_CURRENT.md` · compatibility filename, not work-instruction authority
+2. Base `skills/SKILL_REGISTRY.json` + `docs/generated/BASE_ACTIVE_SKILLS.md`
+3. `AGENTS.md`
+4. exact `Switchy Express · Home` Notion page
+5. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`
+6. `기획서/00_프로젝트_허브/START_HERE.md`
+7. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
+8. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
+9. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
+10. `evidence/acceptance/current_poc_candidate.json` when acceptance identity matters
+11. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
+12. `기획서/50_제작_검증/SX_DEC_059_RELEASE_NEAR_FIRST_SESSION_VERTICAL_SLICE.md`
+13. `기획서/50_제작_검증/SX_DEC_059_CODEX_HANDOFF_PACKAGE.md` · history when needed
+14. `기획서/50_제작_검증/PLAYTEST_PLAN_V4_7_CURRENT.md` · compatibility filename, not work-instruction authority
 
 ## 기술
 
