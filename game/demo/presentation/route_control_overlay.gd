@@ -122,7 +122,7 @@ func _draw_switch(
 		var arrow_end := center + direction * minf(cell_rect.size.x, cell_rect.size.y) * 0.39
 		var color := Palette.SWITCH_ACTIVE if selected else Palette.SWITCH_INACTIVE
 		if locked:
-			color = Palette.TRAIN_ACCENT
+			color = Palette.ROUTE_LOCKED
 		var width := 8.0 if selected else 4.0
 		draw_line(center, arrow_end, color, width, true)
 		_draw_arrow(center, arrow_end, color)
@@ -140,7 +140,7 @@ func _draw_switch(
 				true
 			)
 		_draw_semantic_target(target)
-	draw_circle(center, 5.0, Palette.TRAIN_ACCENT if locked else Palette.BOARD_EDGE)
+	draw_circle(center, 5.0, Palette.ROUTE_LOCKED if locked else Palette.BOARD_EDGE)
 
 
 func _draw_crossing(
@@ -151,9 +151,7 @@ func _draw_crossing(
 ) -> void:
 	var cell_rect := _cell_rect(cell, rect, board_size).grow(-8.0)
 	var center := cell_rect.get_center()
-	var color := Palette.SELECTED
-	if bool(descriptor.get("locked", false)):
-		color = Palette.TRAIN_ACCENT
+	var color := crossing_visual_color_for_test(descriptor)
 	draw_circle(center, minf(cell_rect.size.x, cell_rect.size.y) * 0.22, Palette.BOARD_EDGE)
 	draw_circle(center, minf(cell_rect.size.x, cell_rect.size.y) * 0.17, color)
 	var mode := StringName(descriptor.get("mode", &"STRAIGHT"))
@@ -174,6 +172,10 @@ func _draw_crossing(
 		font_size,
 		Palette.TEXT_LIGHT
 	)
+
+
+static func crossing_visual_color_for_test(descriptor: Dictionary) -> Color:
+	return Palette.ROUTE_LOCKED if bool(descriptor.get("locked", false)) else Palette.SELECTED
 
 
 func _direction_targets() -> Array[Dictionary]:

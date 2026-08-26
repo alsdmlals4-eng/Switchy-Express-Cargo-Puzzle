@@ -291,3 +291,19 @@ Base repin → NOT_AUTHORIZED
 arbitrary station radius/diagonal/multi-station priority → OUT_OF_SCOPE
 new generated image without concrete game consumer → OUT_OF_SCOPE
 ```
+
+## 15. Runtime route readability gate · GitHub Issue #197
+
+`IMPLEMENTED_AWAITING_PR_REVIEW`
+
+```text
+actual finite render snapshot + route-control state
+→ procedural selected/unselected/occupied-locked trace
+→ result-state trace retention
+→ official headless-runner descriptor and resolution hierarchy regression
+→ headless full suite + current contract checks
+→ live 1280×720 screenshot/diagnostics
+→ five-pass review + Notion readback
+```
+
+No bitmap asset is created: this gate is an existing `ProductBoardRenderer`/`RouteControlOverlay` consumer correction. It must not change station service, cargo contact, LIFO/TOP, preflight reachability, or PR #174.

@@ -2,6 +2,7 @@ extends "res://tests/test_case.gd"
 
 const PRODUCT_SCENE := preload("res://game/demo/product_finite_slice.tscn")
 const OverlayScript := preload("res://game/demo/presentation/route_control_overlay.gd")
+const Palette := preload("res://game/demo/presentation/demo_palette.gd")
 const CROSSING_CELL := Vector2i(8, 5)
 const SWITCH_CELL := Vector2i(1, 1)
 
@@ -93,6 +94,16 @@ func run() -> void:
 	)
 
 	semantic_overlay.apply_snapshot(_switch_snapshot(true, Vector2i.RIGHT))
+	assert_equal(
+		OverlayScript.crossing_visual_color_for_test({"locked": true}),
+		Palette.ROUTE_LOCKED,
+		"locked crossing must use the same red semantic state as a locked switch"
+	)
+	assert_equal(
+		OverlayScript.crossing_visual_color_for_test({"locked": false}),
+		Palette.SELECTED,
+		"unlocked crossing must retain its selected-state color"
+	)
 	var locked_before: Array[Dictionary] = semantic_overlay.direction_targets_for_test()
 	if semantic_overlay.has_method("semantic_target_descriptors_for_test"):
 		var locked_semantic: Array[Dictionary] = semantic_overlay.semantic_target_descriptors_for_test()

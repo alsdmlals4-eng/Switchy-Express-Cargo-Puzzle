@@ -96,6 +96,22 @@ VFX 2C:
 - cargo_unload
 - route_selection
 
+### Runtime route readability extension · GitHub Issue #197
+
+```yaml
+status: IMPLEMENTED_AWAITING_MERGE
+runtime_consumer: ProductBoardRenderer + RouteControlOverlay
+new_bitmap_assets: 0
+source_of_truth: actual finite render snapshot / FiniteTrackGraph route-control state
+```
+
+- RUN/UNLOADING/PAUSED/SUCCESS/FAILURE에서 현재 선택된 rail route는 굵은 녹색 trace와 진행 방향 cue로 보인다.
+- 선택되지 않은 연결 rail은 얇은 청색 trace로 남겨 선택 경로와 혼동되지 않는다.
+- 점유/잠김 route-control cell은 적색 trace와 기존 lock semantic overlay로 즉시 구별한다.
+- Result에서도 선택 route trace를 유지한다. 결과 panel은 context를 가리는 이유가 되지 않는다.
+- 기존 rail/station/cargo PNG 위에 procedural trace만 겹친다. 이 변경의 실제 bitmap consumer는 없으므로 새 이미지를 생성하지 않는다.
+- 공식 headless runner에는 `test_product_board_route_clarity.gd`를 등록해 state descriptor·result 유지·960×540/1280×720/1920×1080 두께 위계를 회귀 검증한다.
+
 ### 금지
 
 - new decorative panel art that competes with board.
@@ -110,6 +126,7 @@ VFX 2C:
 3. next switch가 locked인지 selected인지 board에서 읽히는가?
 4. event VFX가 다음 조작 target을 가리지 않는가?
 5. Reduced Motion에서도 동일 질문에 답할 수 있는가?
+6. 960×540, 1280×720, 1920×1080에서 selected > occupied/locked > unselected 두께 위계가 유지되는가?
 
 ## VIS-SX-059-03 · Failure Result / Debrief
 

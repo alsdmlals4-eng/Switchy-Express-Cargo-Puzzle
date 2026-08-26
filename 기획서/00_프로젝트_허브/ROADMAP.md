@@ -197,6 +197,12 @@ POST_060_PACKAGE: PASS · SX60-POC-ACCEPT-001
 POST_060_CANDIDATE: PREPARED_PACKAGE_VERIFIED
 ```
 
+## M6R · Runtime route readability correction
+
+`IMPLEMENTED_AWAITING_PR_REVIEW · GitHub Issue #197`
+
+The approved E+D Hybrid/Neo-Arcade route-visibility direction is now a runtime presentation correction, not reference-only guidance. It keeps selected route, unselected route, occupied/locked control, and result-route context legible with procedural overlays only; no finite-gameplay rule, map byte, or bitmap asset changes.
+
 ## M6A · Post-060 physical/device/human validation
 
 `BLOCKED_BY_POST_060_PACKAGE_CANDIDATE`
