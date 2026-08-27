@@ -36,7 +36,8 @@ candidate_003_preparation_main: 2521f3be600ea950f9893ce45940604c2d0ac88a
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
 candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-001 · PREPARED_PACKAGE_VERIFIED
+post_sx_dec_060_candidate: NOT_CREATED · MINIMUM_PRODUCT_SOURCE_MAIN_a8eee4f875a95e8da69802c4e60452df3535fe0e
+sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 candidate_003_package_integrity: PASS
 candidate_003_pck_integrity: PASS · 472_OF_472
 candidate_003_product_texture_packaging: PASS · 73_OF_73
@@ -51,8 +52,8 @@ sx_dec_060_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-
 sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_notion_readback: PASS
-post_sx_dec_060_candidate_status: PREPARED_PACKAGE_VERIFIED · SX60-POC-ACCEPT-001
-windows_physical_post_060: PASS_AUTOMATION_OBSERVED_INITIAL_TITLE_AND_BUILD_ENTRY
+post_sx_dec_060_candidate_status: NOT_CREATED · MINT_REQUIRED_BEFORE_PHYSICAL_DEVICE_HUMAN_TESTS
+windows_physical_post_060: NOT_RUN_CURRENT_EXACT_CANDIDATE
 android_device_post_060: NOT_RUN
 five_person_post_060: NOT_RUN
 player_experience_post_060: NOT_RUN
@@ -218,7 +219,7 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 ## Current next action
 
 ```text
-SX60-POC-ACCEPT-001 human physical self-run
+mint a new exact post-route-readability package candidate (minimum main a8eee4f875a95e8da69802c4e60452df3535fe0e)
 → Windows physical smoke
 → Android device smoke
 → Five-person comprehension
@@ -234,8 +235,8 @@ TDD_PLAN_RECORDED
 CODEX_HANDOFF_EXECUTED
 RUNTIME_MERGED_MAIN_VERIFIED_PR_188
 AUTOMATED_REGRESSION_PASS_111_CASES_13461_ASSERTIONS
-POST_060_PACKAGE_VERIFIED_SX60_POC_ACCEPT_001
-POST_060_INITIAL_WINDOWS_RENDER_PASS_AUTOMATION_OBSERVED
+POST_060_CANDIDATE_NOT_CREATED_AFTER_ROUTE_READABILITY_PRODUCT_CHANGE
+SX60_POC_ACCEPT_001_HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE
 POST_060_DEVICE_NOT_RUN
 POST_060_HUMAN_NOT_RUN
 NEW_BITMAP_ASSETS_0

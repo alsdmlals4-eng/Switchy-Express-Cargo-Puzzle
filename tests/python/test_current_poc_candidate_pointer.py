@@ -78,12 +78,13 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
         self.assertEqual(evidence["package"]["identity_class"], "IMMUTABLE_CONTENT_DIGESTS")
         self.assertEqual(evidence["artifact"]["metadata_class"], "EPHEMERAL_DELIVERY_METADATA")
 
-    def test_post_060_pointer_selects_only_the_explicit_minted_candidate(self) -> None:
+    def test_post_060_pointer_is_fail_closed_until_a_new_route_readability_candidate_is_minted(self) -> None:
         pointer = self._json(POST_060_POINTER)
         self.assertEqual(pointer["schema_version"], 1)
         self.assertEqual(pointer["decision_id"], "SX-DEC-060")
-        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-001")
+        self.assertEqual(pointer["candidate_status"], "NOT_CREATED")
+        self.assertIsNone(pointer["current_candidate_id"])
+        self.assertEqual(pointer["minimum_product_source_main"], "a8eee4f875a95e8da69802c4e60452df3535fe0e")
         self.assertEqual(
             pointer["selection_policy"],
             "EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE",
@@ -100,17 +101,24 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
             pointer["historical_predecessor"]["role"],
             "HISTORICAL_EXACT_BYTES_ONLY",
         )
-        self.assertEqual(pointer["artifact_evidence_owner"], "evidence/acceptance/sx60_poc_accept_001_artifact.json")
-        self.assertEqual(pointer["deep_pck_evidence_owner"], "evidence/acceptance/sx60_poc_accept_001_pck_deep_audit.json")
+        self.assertIsNone(pointer["artifact_evidence_owner"])
+        self.assertIsNone(pointer["deep_pck_evidence_owner"])
+        historical = pointer["historical_superseded_candidate"]
+        self.assertEqual(historical["candidate_id"], "SX60-POC-ACCEPT-001")
+        self.assertEqual(historical["source_main"], "7b7f350345619e870bb94e12954fbe81b1ef9403")
+        self.assertEqual(historical["invalidation_reason"], "PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE")
+        self.assertEqual(historical["invalidated_by_product_source_main"], pointer["minimum_product_source_main"])
+        self.assertEqual(historical["role"], "HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE")
+        self.assertEqual(pointer["tooling_only_non_invalidating_prs"], ["PR #201"])
 
     def test_post_060_pointer_requires_actual_post_change_candidate_minting(self) -> None:
         pointer = self._json(POST_060_POINTER)
         self.assertEqual(
             pointer["mint_after"],
             [
-                "SX-DEC-060 runtime implementation",
-                "automated regression and package proof",
-                "new exact post-change build identity",
+                "exact package source at minimum_product_source_main or an explicitly verified descendant",
+                "automated regression and package proof for that exact source",
+                "new exact post-route-readability candidate identity",
             ],
         )
 
@@ -119,13 +127,23 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
         text = POST_060_LAUNCHER.read_text(encoding="ascii")
         self.assertIn("post_sx_dec_060_candidate.json", text)
         self.assertIn("candidate_status", text)
-        self.assertIn("PREPARED_PACKAGE_VERIFIED", text)
+        self.assertIn("NOT_CREATED", text)
+        self.assertIn("minimum_product_source_main", text)
+        self.assertIn("$Evidence.source_build.main_sha", text)
+        self.assertIn("merge-base --is-ancestor", text)
+        self.assertIn("CANDIDATE_SOURCE_MAIN_NOT_DESCENDANT", text)
         self.assertIn("POST_SX_DEC_060_CANDIDATE_CONTRACT", text)
         self.assertIn("throw", text)
         self.assertNotIn("SX59-POC-ACCEPT-003", text)
         self.assertNotIn("current_poc_candidate.json", text)
         self.assertIn("Start-Process", text)
         self.assertIn("gh run download", text)
+
+    def test_current_entry_docs_do_not_promote_historical_automation_to_current_physical_pass(self) -> None:
+        for relative in ("README.md", "기획서/00_프로젝트_허브/START_HERE.md"):
+            text = (ROOT / relative).read_text(encoding="utf-8")
+            self.assertIn("CURRENT_EXACT_CANDIDATE_NOT_RUN", text, relative)
+            self.assertIn("HISTORICAL_AUTOMATION_OBSERVED", text, relative)
 
     def test_historical_launcher_requires_explicit_history_only_opt_in(self) -> None:
         self.assertTrue(HISTORICAL_LAUNCHER.is_file())

@@ -268,7 +268,7 @@ Any finding is fixed and the affected full loop is repeated. `CLEAN_REVIEW_EXIT`
 Blocked until S60-1~10 are complete.
 
 ```text
-SX60-POC-ACCEPT-001 human physical self-run
+mint a new exact post-route-readability package candidate (minimum main a8eee4f875a95e8da69802c4e60452df3535fe0e)
 → Windows full physical smoke
 → audio perceptual QA
 → Android device smoke
