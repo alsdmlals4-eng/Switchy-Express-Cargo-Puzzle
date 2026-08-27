@@ -26,6 +26,10 @@ EXPECTED_RUNTIME_VISUALS = {
         "art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v01.png",
         "game/demo/vertical_slice_demo.tscn",
     ),
+    "SX-LESSON-HERO-002": (
+        "art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v02.png",
+        "game/demo/vertical_slice_demo.tscn",
+    ),
     "SX-RESULT-SUCCESS-002": (
         "art/product_assets/ed_hybrid_v1/shells/shell_result_success_v02.png",
         "game/demo/vertical_slice_demo.tscn",
@@ -180,7 +184,7 @@ def validate():
             if isinstance(record, dict) and record.get("asset_id")
         }
         if len(records_by_id) != len(records) or set(records_by_id) != set(EXPECTED_RUNTIME_VISUALS):
-            errors.append("in-game runtime visual manifest must own the exact four expected assets")
+            errors.append("in-game runtime visual manifest must own exact active assets")
         for asset_id, (expected_path, consumer_prefix) in EXPECTED_RUNTIME_VISUALS.items():
             record = records_by_id.get(asset_id, {})
             path = record.get("path", "")
@@ -208,6 +212,7 @@ def validate():
                     errors.append(f"in-game runtime visual SHA-256 metadata mismatch: {asset_id}")
             except ValueError as exc:
                 errors.append(str(exc))
+
 
     semantic_product_paths = set()
     for semantic_manifest, expected_batch in (

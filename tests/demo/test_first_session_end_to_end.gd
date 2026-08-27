@@ -25,6 +25,14 @@ func run() -> void:
 	assert_true(t1_product.install_layout_for_test(T12.pieces()), "T1 proof layout installs")
 	assert_equal(flow.current_lesson_id_for_test(), &"T2", "preflight advances T1 to T2")
 	assert_true(flow.gameplay_instance() == t1_product, "T1/T2 preserve gameplay identity")
+	var t2_lesson_art := flow.get_node("BriefingScreen/Panel/Content/LessonArt")
+	assert_true(t2_lesson_art.has_method("asset_paths_for_test"), "T2 lesson art exposes its active asset path")
+	if t2_lesson_art.has_method("asset_paths_for_test"):
+		assert_equal(
+			t2_lesson_art.asset_paths_for_test(),
+			["art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v02.png"],
+			"T2 alone uses the cardinal-station-service HeroArt"
+		)
 
 	flow.begin_build()
 	_run_static_load(flow.gameplay_instance())

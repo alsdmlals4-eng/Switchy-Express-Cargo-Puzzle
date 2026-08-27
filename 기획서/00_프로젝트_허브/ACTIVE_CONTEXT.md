@@ -1,6 +1,6 @@
 # Active Context
 
-Last updated: `2026-08-27 KST`
+Last updated: `2026-08-28 KST`
 
 이 문서는 **현재 상태·다음 실행 지점·미검증 경계**를 연결하는 resume locator다. fresh GitHub/Notion/actual runtime이 저장 snapshot보다 우선한다. 새 채팅은 과거 대화를 필수 입력으로 요구하지 않고 Project GitHub + Notion에서 상태를 다시 재구성한다.
 
@@ -61,6 +61,8 @@ in_game_visual_consistency: MERGED_MAIN_VERIFIED · PR_220 · main_8c603474083c8
 in_game_visual_runtime_assets: SX-INGAME-VISUAL-001 · BUILD_TERRAIN + LESSON_HERO + RESULT_SUCCESS + RESULT_FAILURE
 in_game_visual_runtime_evidence: docs/operations/2026-08-27-ingame-visual-consistency-runtime-verification.md
 in_game_visual_release_rights: CONDITIONAL · SEPARATE_REVIEW_REQUIRED
+t2_cardinal_lesson_hero_v02: BRANCH_STAGED · ISSUE_224 · T1/T3–T6/CAPSTONE_USE_NEUTRAL_V01 · T2_ONLY_USE_V02 · LOCAL_AND_NOTION_PRESERVED
+t2_cardinal_lesson_hero_v02_evidence: docs/operations/2026-08-28-t2-cardinal-lesson-hero-v02.md · HEADLESS_112_CASES_13486_ASSERTIONS_PASS · HERA_T1_AND_T2_CONSUMER_CAPTURE_PASS
 screen_visual_coverage: SX-SCREEN-VISUAL-COVERAGE-001 · Issue_222 · SCREEN_INVENTORY_HANDOFF_READY · P0_GAP_BLOCKING_0 · NO_AUTOMATIC_IMAGE_GENERATION_FROM_GAPS
 base_work_five_phase_receipt: docs/operations/2026-08-27-sx60-work-five-phase-start-receipt.md
 base_work_current_phase: PHASE_5_USER_VERTICAL_SLICE_VALIDATION · BLOCKED_USER_VALIDATION

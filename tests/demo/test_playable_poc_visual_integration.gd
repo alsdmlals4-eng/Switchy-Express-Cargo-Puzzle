@@ -122,8 +122,20 @@ func run() -> void:
 			assert_equal(
 				lesson_art.asset_paths_for_test(),
 				["art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v01.png"],
-				"lesson uses its single scene-scale HeroArt rather than an icon strip"
+				"non-T2 lessons keep the neutral shared HeroArt"
 			)
+			if lesson_art.has_method("set_lesson_id"):
+				lesson_art.set_lesson_id(&"T2")
+				assert_equal(
+					lesson_art.asset_paths_for_test(),
+					["art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v02.png"],
+					"T2 uses the cardinal-station-service HeroArt rather than the shared HeroArt"
+				)
+				assert_equal(
+					int(lesson_art.loaded_asset_count_for_test()),
+					1,
+					"T2 cardinal-station-service HeroArt must load as a Texture2D, not only resolve a path"
+				)
 		result_art.set_result_outcome(&"SUCCESS")
 		var success_paths: Array = result_art.asset_paths_for_test()
 		assert_true(

@@ -84,7 +84,7 @@ All rows have `consumer_kind: GAME_RUNTIME`; their `consumer_surface` is the nam
 | --- | --- | --- | --- | --- | --- |
 | 001 | dark E+D shell panel + title layout | title hero banner | live title/subtitle/buttons | `EXISTING_APPROVED`, `RASTER_IMAGE`, `GODOT_UI`, `TEXT_LAYER`; `TitleScreen/.../HeroArt` | NO_NEW_IMAGE_FILE_REQUIRED |
 | 002, 008, 009 | shared panel/modal hierarchy | none | live labels, buttons, focus/cancel path | `REUSE_PROJECT`, `GODOT_UI`, `TEXT_LAYER` | DO_NOT_GENERATE |
-| 003 | lesson card framing and hierarchy | lesson hero | live progress/title/objective/rules/action | `EXISTING_APPROVED`, `RASTER_IMAGE`, `GODOT_UI`, `TEXT_LAYER`; `BriefingScreen/.../LessonArt` | NO_NEW_IMAGE_FILE_REQUIRED |
+| 003 | lesson card framing and hierarchy | lesson hero | live progress/title/objective/rules/action | `EXISTING_APPROVED`, `RASTER_IMAGE`, `GODOT_UI`, `TEXT_LAYER`; `BriefingScreen/.../LessonArt`, with T2-only cardinal-service Hero v02 | T2 consumer-specific v02 complete; no further image file required |
 | 004 | board terrain under live grid | rails, train, cargo, stations | build tools, cost, preflight badge/problem text | terrain `RASTER_IMAGE`; rail/station/cargo assets `EXISTING_APPROVED`; grid/service/preflight `PROCEDURAL_DRAW`; HUD `GODOT_UI` | NO_NEW_IMAGE_FILE_REQUIRED |
 | 005, 006, 007 | same board; no replacement screen art | train/rails/cargo/stations | route arrow, selected/unselected/locked trace, stack/mode/event feedback | `PROCEDURAL_DRAW`, existing semantic PNGs, `GODOT_UI`, `TEXT_LAYER`; `RouteControlOverlay`, `SemanticEventOverlay` | DO_NOT_GENERATE |
 | 010, 011 | result panel composition | success/failure result art | live title, reason, remaining count, Retry/Edit/Title actions | `EXISTING_APPROVED`, `RASTER_IMAGE`, `GODOT_UI`, `TEXT_LAYER`; `ResultOverlay/.../ResultArt` | NO_NEW_IMAGE_FILE_REQUIRED |
@@ -95,7 +95,8 @@ All rows have `consumer_kind: GAME_RUNTIME`; their `consumer_surface` is the nam
 | --- | --- | --- | --- |
 | `SX-TITLE-HERO-001` | `ProductShellArt::TITLE_HERO_PATH` | 1774×887 PNG; crop within HeroArt rect; text remains a Godot layer | dual-preserved / conditional release rights |
 | `SX-BOARD-TERRAIN-001` (`SX-INGAME-VISUAL-001`) | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[board_terrain]` | 1672×941 backdrop; live grid/rail/cargo/station/HUD remain engine-rendered | dual-preserved / runtime verified |
-| `SX-LESSON-HERO-001` (`SX-INGAME-VISUAL-001`) | `ProductShellArt::LESSON_HERO_PATH` | 1672×941 source-region crop before cover draw; no embedded UI copy | dual-preserved / runtime verified |
+| `SX-LESSON-HERO-001` (`SX-INGAME-VISUAL-001`) | `ProductShellArt::LESSON_HERO_PATH` for T1, T3–T6, CAPSTONE | 1672×941 neutral shared source-region crop before cover draw; no embedded UI copy | dual-preserved / runtime verified |
+| `SX-LESSON-HERO-002` (`SX-INGAME-VISUAL-001`) | `ProductShellArt::T2_LESSON_HERO_PATH` only for T2 | 1672×941 source-region crop before cover draw; off-track station + adjacent rail service; no embedded UI copy | dual-preserved / Notion readback 2026-08-27T21:34:35.550Z |
 | `SX-RESULT-SUCCESS-002` (`SX-INGAME-VISUAL-001`) | `ProductShellArt::RESULT_SUCCESS_PATH` | 1672×941 source-region crop before cover draw; no embedded UI copy | dual-preserved / runtime verified |
 | `SX-RESULT-FAILURE-002` (`SX-INGAME-VISUAL-001`) | `ProductShellArt::RESULT_FAILURE_PATH` | 1672×941 source-region crop before cover draw; no embedded UI copy | dual-preserved / runtime verified |
 | semantic product PNGs | `SemanticAssetCatalog`, `ProductBoardRenderer`, overlays | state-specific component consumption; semantic color is reinforced by shape/text | existing project assets |
