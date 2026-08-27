@@ -111,12 +111,12 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
         self.assertEqual(historical["role"], "HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE")
         self.assertEqual(pointer["tooling_only_non_invalidating_prs"], ["PR #201"])
 
-    def test_post_060_pointer_routes_to_physical_self_run_after_candidate_minting(self) -> None:
+    def test_post_060_pointer_routes_to_isolated_visual_self_run_after_startup_observation(self) -> None:
         pointer = self._json(POST_060_POINTER)
         self.assertEqual(
             pointer["mint_after"],
             [
-                "human physical self-run on the explicit candidate",
+                "isolated visual/input/audio self-run on the explicit candidate",
                 "Windows physical smoke and audio perceptual QA",
                 "Android device smoke and five-person first-contact comprehension",
             ],

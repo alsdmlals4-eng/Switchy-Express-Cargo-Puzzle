@@ -217,6 +217,6 @@ The implementation must not absorb:
 Actual GDScript / Scene / Resource / map-data / runtime test work is merged-main verified by PR #188 under the active r5.4 project contract.
 
 ```text
-SX60-POC-ACCEPT-002 human physical self-run
+SX60-POC-ACCEPT-002 isolated visual/input/audio self-run
 → physical/device/human evidence gates
 ```
