@@ -1,6 +1,6 @@
 # Active Context
 
-Last updated: `2026-08-26 KST`
+Last updated: `2026-08-27 KST`
 
 이 문서는 **현재 상태·다음 실행 지점·미검증 경계**를 연결하는 resume locator다. fresh GitHub/Notion/actual runtime이 저장 snapshot보다 우선한다. 새 채팅은 과거 대화를 필수 입력으로 요구하지 않고 Project GitHub + Notion에서 상태를 다시 재구성한다.
 
@@ -53,6 +53,9 @@ sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_notion_readback: PASS
 post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · ISOLATED_VISUAL_INPUT_OBSERVED · AUDIO_NOT_OBSERVED · PHYSICAL_AUDIO_QA_NEXT
+base_work_five_phase_receipt: docs/operations/2026-08-27-sx60-work-five-phase-start-receipt.md
+base_work_current_phase: PHASE_5_USER_VERTICAL_SLICE_VALIDATION · BLOCKED_USER_VALIDATION
+remaining_machine_executable_required_work: 0
 windows_physical_post_060: NOT_RUN_CURRENT_EXACT_CANDIDATE_002
 android_device_post_060: NOT_RUN
 five_person_post_060: NOT_RUN
