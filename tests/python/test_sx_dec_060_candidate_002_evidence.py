@@ -12,6 +12,7 @@ AUDIT = ROOT / "evidence/acceptance/sx60_poc_accept_002_pck_deep_audit.json"
 CURRENT_DECISIONS = ROOT / "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md"
 ACTIVE_CONTEXT = ROOT / "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md"
 PROTECTED_APPROVAL = ROOT / "docs/operations/PROJECT_PROTECTED_CHANGE_APPROVAL.json"
+FIVE_PHASE_RECEIPT = ROOT / "docs/operations/2026-08-27-sx60-work-five-phase-start-receipt.md"
 
 
 class SXDec060Candidate002EvidenceTests(unittest.TestCase):
@@ -123,6 +124,26 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
             "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_02.md",
             approval["approved_paths"],
         )
+
+    def test_five_phase_receipt_closes_machine_work_without_promoting_user_validation(self) -> None:
+        receipt = FIVE_PHASE_RECEIPT.read_text(encoding="utf-8")
+        active_context = ACTIVE_CONTEXT.read_text(encoding="utf-8")
+
+        for required in (
+            "PHASE_5_USER_VERTICAL_SLICE_VALIDATION",
+            "MACHINE_EXECUTABLE_REQUIRED_WORK_0",
+            "BLOCKED_USER_VALIDATION",
+            "remaining_machine_executable_required_work: 0",
+            "Do not start a new Slice automatically.",
+            "PR #174 remains untouched.",
+        ):
+            self.assertIn(required, receipt)
+
+        self.assertIn(
+            "base_work_current_phase: PHASE_5_USER_VERTICAL_SLICE_VALIDATION · BLOCKED_USER_VALIDATION",
+            active_context,
+        )
+        self.assertIn("remaining_machine_executable_required_work: 0", active_context)
 
 
 if __name__ == "__main__":

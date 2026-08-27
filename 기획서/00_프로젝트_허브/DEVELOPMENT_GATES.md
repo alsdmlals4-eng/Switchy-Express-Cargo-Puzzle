@@ -278,6 +278,8 @@ SX60-POC-ACCEPT-002 isolated title → briefing → build visual/input observati
 
 Each gate is independent. Package/CI does not imply physical. Windows does not imply Android. Device does not imply human/player experience.
 
+Current Base Work mapping: `PHASE_5_USER_VERTICAL_SLICE_VALIDATION · BLOCKED_USER_VALIDATION`. All current Phase 4 machine-executable work is closed; `remaining_machine_executable_required_work: 0`. The receipt is `docs/operations/2026-08-27-sx60-work-five-phase-start-receipt.md`; Phase 5 evidence must not be automated or inferred.
+
 ## 14. Concurrency / protected scope gate
 
 ```text
