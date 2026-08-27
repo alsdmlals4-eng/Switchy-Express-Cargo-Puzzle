@@ -61,6 +61,7 @@ in_game_visual_consistency: MERGED_MAIN_VERIFIED · PR_220 · main_8c603474083c8
 in_game_visual_runtime_assets: SX-INGAME-VISUAL-001 · BUILD_TERRAIN + LESSON_HERO + RESULT_SUCCESS + RESULT_FAILURE
 in_game_visual_runtime_evidence: docs/operations/2026-08-27-ingame-visual-consistency-runtime-verification.md
 in_game_visual_release_rights: CONDITIONAL · SEPARATE_REVIEW_REQUIRED
+screen_visual_coverage: SX-SCREEN-VISUAL-COVERAGE-001 · Issue_222 · SCREEN_INVENTORY_HANDOFF_READY · P0_GAP_BLOCKING_0 · NO_AUTOMATIC_IMAGE_GENERATION_FROM_GAPS
 base_work_five_phase_receipt: docs/operations/2026-08-27-sx60-work-five-phase-start-receipt.md
 base_work_current_phase: PHASE_5_USER_VERTICAL_SLICE_VALIDATION · BLOCKED_USER_VALIDATION
 remaining_machine_executable_required_work: 0

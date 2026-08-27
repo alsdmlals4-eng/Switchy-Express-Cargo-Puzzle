@@ -1,11 +1,11 @@
 # First Session Screen · Content · Data Contract
 
 ```yaml
-owner_decision: SX-DEC-059
-status: IMPLEMENTED_AUTOMATED · GM-SX059-01_A_APPLIED
-implementation_base_main: 4b37c154505ed1975735fc305a68b410877a40e0
+owner_decision: SX-DEC-059 first-session shape · SX-DEC-060 station/preflight semantic amendment
+status: IMPLEMENTED_AUTOMATED · SX-DEC-060 MERGED_MAIN_VERIFIED · first-session presentation remains sidecar-only
+implementation_base_main: 740b4b9312fa27289fd62baab8dda54c68ead3a7 (SX-DEC-060 merge); current state locator: ACTIVE_CONTEXT.md
 core_authority: GMB-002
-runtime_authority: SX-DEC-055
+runtime_authority: SX-DEC-060
 pr_154: "AUDITED · SUPERSEDED_UNMERGED_BY_059"
 ```
 
@@ -41,17 +41,19 @@ FiniteSliceSessionController        # 기존 domain authority
 
 판정: `REUSE`.
 
-### FiniteMapDefinition schema v2
+### FiniteMapDefinition schema v3
 
 현재 map data가 이미 소유:
 
 - map id/revision/ruleset
 - board/start/incoming
 - buildable/blocked cells
-- station/cargo placements
+- off-track station placements + blocked station footprints
+- cargo placements with exact-cell contact
+- cardinal station service cells derived by the runtime
 - time limit
 
-판정: Tutorial map도 **동일 schema v2 사용**. Tutorial metadata를 map schema에 밀어 넣지 않는다.
+판정: active Tutorial map도 **동일 schema v3 사용**. Tutorial metadata를 map schema에 밀어 넣지 않는다. schema v2 bytes는 historical semantics이며 silent reinterpretation 대상이 아니다.
 
 ### Product HUD / Presenter
 
@@ -228,7 +230,9 @@ recommended_time: 45~60s
 공통 확정:
 - cargo 1, station 1, 동일 type.
 - color + shape + text redundancy.
-- station unload는 current domain의 자동 하역만 사용.
+- Cargo는 existing Manual / Auto의 **같은 칸** 접촉으로 적재한다.
+- Station은 역 footprint가 아닌 상·하·좌·우 정확히 1칸의 **cardinal service cell** 통과 시 자동 하역한다. 대각선은 하역하지 않는다.
+- station unload는 matching TOP contiguous group의 current domain 자동 하역만 사용한다.
 - 별도 stop/interaction 버튼 추가 금지.
 
 `GM-SX059-01=A`가 승인되면:
@@ -344,7 +348,7 @@ BUILD
 → manual/auto choice
 → LIFO TOP
 → switch
-→ RED/BLUE delivery
+→ RED/BLUE cardinal-adjacent station delivery
 → success/failure
 → Retry or Edit
 ```
