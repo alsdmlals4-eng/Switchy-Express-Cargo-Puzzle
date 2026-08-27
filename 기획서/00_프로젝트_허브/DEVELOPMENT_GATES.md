@@ -280,6 +280,8 @@ Each gate is independent. Package/CI does not imply physical. Windows does not i
 
 Current Base Work mapping: `PHASE_5_USER_VERTICAL_SLICE_VALIDATION · BLOCKED_USER_VALIDATION`. All current Phase 4 machine-executable work is closed; `remaining_machine_executable_required_work: 0`. The receipt is `docs/operations/2026-08-27-sx60-work-five-phase-start-receipt.md`; Phase 5 evidence must not be automated or inferred.
 
+Fresh-main Godot live machine QA is recorded in `docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md`: exact `main@cf93926` observed title → briefing → build board after machine pointer input, with the official 112-case / 13,480-assertion runner green. This remains machine-runtime evidence only; physical, audio, device, and human gates stay `NOT_RUN`.
+
 ## 14. Concurrency / protected scope gate
 
 ```text
