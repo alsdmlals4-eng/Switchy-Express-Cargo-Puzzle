@@ -116,7 +116,7 @@ secure_original_location: C:/Users/user/.codex/generated_images/01a03dda-4905-7c
 reviewed_by: automated runtime-consumer and validation workflow
 reviewed_at: 2026-08-27
 status: CONDITIONAL
-notes: User-authorized automatic consumer image. Local tracked copy exists; Notion upload/readback remains required before APPROVED_DUAL_PRESERVED.
+notes: User-authorized automatic consumer image. Project-local tracked copy, Notion attachment `file-upload://3c91b237-eb1c-81b3-b06d-00b297b2a323`, SHA-256, runtime consumer, and Notion readback at 2026-08-27T13:00:52.213Z are present; dual preservation status is APPROVED_DUAL_PRESERVED. Release-rights review remains separate.
 ```
 
 ## VS-DEMO-PRESENTATION-001 · In-engine board and UI shapes
