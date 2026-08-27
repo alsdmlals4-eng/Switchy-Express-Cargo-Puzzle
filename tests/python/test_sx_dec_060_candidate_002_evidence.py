@@ -13,6 +13,7 @@ CURRENT_DECISIONS = ROOT / "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_D
 ACTIVE_CONTEXT = ROOT / "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md"
 PROTECTED_APPROVAL = ROOT / "docs/operations/PROJECT_PROTECTED_CHANGE_APPROVAL.json"
 FIVE_PHASE_RECEIPT = ROOT / "docs/operations/2026-08-27-sx60-work-five-phase-start-receipt.md"
+LIVE_MACHINE_QA = ROOT / "docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md"
 
 
 class SXDec060Candidate002EvidenceTests(unittest.TestCase):
@@ -144,6 +145,25 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
             active_context,
         )
         self.assertIn("remaining_machine_executable_required_work: 0", active_context)
+
+    def test_current_main_live_machine_qa_preserves_the_human_evidence_boundary(self) -> None:
+        text = LIVE_MACHINE_QA.read_text(encoding="utf-8")
+        active_context = ACTIVE_CONTEXT.read_text(encoding="utf-8")
+
+        for required in (
+            "cf93926e302d2b7d8ea1492dec3d19c43f7484cd",
+            "112` cases, `13,480` assertions, and `0` failures",
+            "title screen",
+            "build board / HUD",
+            "HUMAN_DEVICE_AUDIO_NOT_RUN",
+            "Windows physical human smoke: NOT_RUN",
+            "audio perceptual QA: NOT_RUN",
+            "Android device: NOT_RUN",
+            "PR #174 remains `READ_ONLY`.",
+        ):
+            self.assertIn(required, text)
+
+        self.assertIn("current_main_live_machine_qa:", active_context)
 
 
 if __name__ == "__main__":
