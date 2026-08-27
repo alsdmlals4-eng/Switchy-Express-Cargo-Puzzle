@@ -16,15 +16,18 @@ class SXDec060CandidateMintTests(unittest.TestCase):
         self.assertTrue(path.is_file(), f"missing evidence owner: {path}")
         return json.loads(path.read_text(encoding="utf-8"))
 
-    def test_exact_main_artifact_is_explicitly_minted_as_the_first_post060_candidate(self) -> None:
+    def test_old_exact_main_artifact_is_preserved_as_historical_evidence_until_a_new_candidate_is_minted(self) -> None:
         pointer = self._json(POINTER)
         artifact = self._json(ARTIFACT)
         audit = self._json(PCK_AUDIT)
 
-        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-001")
-        self.assertEqual(pointer["artifact_evidence_owner"], "evidence/acceptance/sx60_poc_accept_001_artifact.json")
-        self.assertEqual(pointer["deep_pck_evidence_owner"], "evidence/acceptance/sx60_poc_accept_001_pck_deep_audit.json")
+        self.assertEqual(pointer["candidate_status"], "NOT_CREATED")
+        self.assertIsNone(pointer["current_candidate_id"])
+        self.assertEqual(pointer["minimum_product_source_main"], "a8eee4f875a95e8da69802c4e60452df3535fe0e")
+        historical = pointer["historical_superseded_candidate"]
+        self.assertEqual(historical["artifact_evidence_owner"], "evidence/acceptance/sx60_poc_accept_001_artifact.json")
+        self.assertEqual(historical["deep_pck_evidence_owner"], "evidence/acceptance/sx60_poc_accept_001_pck_deep_audit.json")
+        self.assertEqual(historical["invalidation_reason"], "PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE")
         self.assertEqual(artifact["source_build"]["main_sha"], "7b7f350345619e870bb94e12954fbe81b1ef9403")
         self.assertEqual(artifact["artifact"]["id"], 9609930575)
         self.assertEqual(artifact["package"]["windows_pck_sha256"], "da0ec17fd55f5406bc68c2717666ec70a610087324c195a9a208cf67cc3a4920")

@@ -5,6 +5,9 @@ Status: `PACKAGE_VERIFICATION_PASS_NO_LAUNCH · INITIAL_WINDOWS_RENDER_AUTOMATIO
 ```yaml
 candidate_id: SX60-POC-ACCEPT-001
 pointer: evidence/acceptance/post_sx_dec_060_candidate.json
+historical_role: HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE
+invalidation_reason: PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
+invalidated_by_product_source_main: a8eee4f875a95e8da69802c4e60452df3535fe0e
 artifact_evidence_owner: evidence/acceptance/sx60_poc_accept_001_artifact.json
 no_launch_package_verification: PASS · 2026-08-26 · exact artifact re-downloaded and EXE/PCK/proof logs rechecked
 windows_physical_startup_and_build_entry_automation_observed: PASS · 2026-08-26 · title screen rendered; Demo Start reached build board

@@ -26,6 +26,9 @@ function Assert-FileHash([string]$Path, [string]$Expected, [string]$Label) {
 $Pointer = Get-Content -LiteralPath $PointerPath -Raw -Encoding UTF8 | ConvertFrom-Json
 Assert-Equal ([string]$Pointer.decision_id) "SX-DEC-060" "decision id"
 Assert-Equal ([string]$Pointer.selection_policy) "EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE" "selection policy"
+if ([string]$Pointer.candidate_status -eq "NOT_CREATED") {
+    throw "POST_SX_DEC_060_CANDIDATE_CONTRACT: no current candidate. Mint a new exact package at minimum_product_source_main before physical, device, or human testing."
+}
 Assert-Equal ([string]$Pointer.candidate_status) "PREPARED_PACKAGE_VERIFIED" "candidate status"
 $CandidateId = [string]$Pointer.current_candidate_id
 if ([string]::IsNullOrWhiteSpace($CandidateId)) { throw "current_candidate_id is empty." }
@@ -37,6 +40,17 @@ Assert-Equal ([string]$Evidence.candidate_id) $CandidateId "candidate id"
 Assert-Equal ([string]$Audit.candidate_id) $CandidateId "audit candidate id"
 Assert-Equal ([bool]$Evidence.verification.artifact_api_digest_equals_downloaded_zip_sha256) $true "artifact digest evidence"
 Assert-Equal ([bool]$Audit.pck_integrity.integrity_pass) $true "PCK integrity evidence"
+$MinimumSourceMain = [string]$Pointer.minimum_product_source_main
+$CandidateSourceMain = [string]$Evidence.source_build.main_sha
+if ([string]::IsNullOrWhiteSpace($MinimumSourceMain)) { throw "minimum_product_source_main is empty." }
+if ([string]::IsNullOrWhiteSpace($CandidateSourceMain)) { throw "candidate source_build.main_sha is empty." }
+if (-not (Get-Command git -ErrorAction SilentlyContinue)) { throw "Git is required to verify candidate source ancestry." }
+& git -C $RepoRoot cat-file -e "$MinimumSourceMain^{commit}"
+if ($LASTEXITCODE -ne 0) { throw "CANDIDATE_SOURCE_MAIN_UNKNOWN: minimum_product_source_main=$MinimumSourceMain" }
+& git -C $RepoRoot cat-file -e "$CandidateSourceMain^{commit}"
+if ($LASTEXITCODE -ne 0) { throw "CANDIDATE_SOURCE_MAIN_UNKNOWN: candidate_source_main=$CandidateSourceMain" }
+& git -C $RepoRoot merge-base --is-ancestor $MinimumSourceMain $CandidateSourceMain
+if ($LASTEXITCODE -ne 0) { throw "CANDIDATE_SOURCE_MAIN_NOT_DESCENDANT: minimum=$MinimumSourceMain candidate=$CandidateSourceMain" }
 if ($ContractCheck) { Write-Host "POST_SX_DEC_060_CANDIDATE_CONTRACT: PASS - $CandidateId" -ForegroundColor Green; exit 0 }
 if ($env:OS -ne "Windows_NT") { throw "Physical self-run launcher requires Windows." }
 if (-not (Get-Command gh -ErrorAction SilentlyContinue)) { throw "GitHub CLI (gh) is required." }

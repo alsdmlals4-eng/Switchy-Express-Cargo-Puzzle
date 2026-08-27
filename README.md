@@ -22,9 +22,10 @@ google_sheets: RETIRED_NO_ACTIVE_USE
 sx_dec_060_user_rule: APPROVED
 sx_dec_060_design_tdd_handoff: PREPARED
 sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-001 · PREPARED_PACKAGE_VERIFIED
+post_sx_dec_060_candidate: NOT_CREATED · minimum source main a8eee4f875a95e8da69802c4e60452df3535fe0e
+sx60_poc_accept_001: HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY
-windows_physical_post_060: PASS_AUTOMATION_OBSERVED_INITIAL_TITLE_AND_BUILD_ENTRY
+windows_physical_post_060: HISTORICAL_AUTOMATION_OBSERVED_INITIAL_TITLE_AND_BUILD_ENTRY · CURRENT_EXACT_CANDIDATE_NOT_RUN
 android_device_post_060: NOT_RUN
 five_person_post_060: NOT_RUN
 player_experience_post_060: NOT_RUN
@@ -145,7 +146,7 @@ Actual GDScript/Scene/Resource/map/runtime implementation is merged-main verifie
 ## Current Next Work
 
 ```text
-→ SX60-POC-ACCEPT-001 human physical self-run
+→ mint a new exact post-route-readability package candidate (minimum main a8eee4f875a95e8da69802c4e60452df3535fe0e)
 → Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person comprehension

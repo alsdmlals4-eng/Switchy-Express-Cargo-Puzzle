@@ -44,6 +44,8 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Parse historical and post-060 PowerShell launchers
         shell: powershell
@@ -63,10 +65,16 @@ jobs:
           }
           Write-Host 'POWERSHELL_51_PARSE: PASS'
 
-      - name: Run post-060 explicit-candidate contract check
+      - name: Verify post-060 launcher fails closed until a current candidate exists
         shell: powershell
         run: |
-          .\RUN_SX60_POC_SELF_RUN.ps1 -ContractCheck -NoLaunch -NoOpenRecord
+          try {
+            .\RUN_SX60_POC_SELF_RUN.ps1 -ContractCheck -NoLaunch -NoOpenRecord
+            throw 'Expected the launcher to reject a missing current candidate.'
+          } catch {
+            if ($_.Exception.Message -notmatch 'no current candidate') { throw }
+            Write-Host 'POST_SX_DEC_060_CANDIDATE_FAIL_CLOSED: PASS'
+          }
 
       - name: Run historical evidence-only contract check
         shell: powershell
@@ -84,12 +92,13 @@ jobs:
             -NoOpenRecord `
             -WorkDir (Join-Path $env:RUNNER_TEMP 'switchy-historical-candidate-003')
 
-      - name: Verify exact post-060 package candidate without launch
+      - name: Verify missing post-060 candidate blocks package retrieval
         shell: powershell
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
-          .\RUN_SX60_POC_SELF_RUN.ps1 `
-            -NoLaunch `
-            -NoOpenRecord `
-            -WorkDir (Join-Path $env:TEMP 'switchy-post-060-candidate')
+          try {
+            .\RUN_SX60_POC_SELF_RUN.ps1 -NoLaunch -NoOpenRecord
+            throw 'Expected package retrieval to be blocked without a current candidate.'
+          } catch {
+            if ($_.Exception.Message -notmatch 'no current candidate') { throw }
+            Write-Host 'POST_SX_DEC_060_PACKAGE_RETRIEVAL_BLOCKED: PASS'
+          }

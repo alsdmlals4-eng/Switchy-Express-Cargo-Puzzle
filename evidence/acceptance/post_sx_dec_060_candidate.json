@@ -1,22 +1,39 @@
 {
   "schema_version": 1,
   "decision_id": "SX-DEC-060",
-  "candidate_status": "PREPARED_PACKAGE_VERIFIED",
-  "current_candidate_id": "SX60-POC-ACCEPT-001",
+  "candidate_status": "NOT_CREATED",
+  "current_candidate_id": null,
   "selection_policy": "EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE",
-  "artifact_evidence_owner": "evidence/acceptance/sx60_poc_accept_001_artifact.json",
-  "deep_pck_evidence_owner": "evidence/acceptance/sx60_poc_accept_001_pck_deep_audit.json",
-  "acceptance_candidate_document": "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_01.md",
-  "self_run_record_name": "SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_01.md",
+  "minimum_product_source_main": "a8eee4f875a95e8da69802c4e60452df3535fe0e",
+  "artifact_evidence_owner": null,
+  "deep_pck_evidence_owner": null,
+  "acceptance_candidate_document": null,
+  "self_run_record_name": null,
   "historical_predecessor": {
     "candidate_id": "SX59-POC-ACCEPT-003",
     "pointer": "evidence/acceptance/current_poc_candidate.json",
     "role": "HISTORICAL_EXACT_BYTES_ONLY"
   },
-  "mint_after": [
-    "SX-DEC-060 runtime implementation",
-    "automated regression and package proof",
-    "new exact post-change build identity"
+  "historical_superseded_candidate": {
+    "candidate_id": "SX60-POC-ACCEPT-001",
+    "source_main": "7b7f350345619e870bb94e12954fbe81b1ef9403",
+    "candidate_status_at_invalidation": "PREPARED_PACKAGE_VERIFIED",
+    "artifact_evidence_owner": "evidence/acceptance/sx60_poc_accept_001_artifact.json",
+    "deep_pck_evidence_owner": "evidence/acceptance/sx60_poc_accept_001_pck_deep_audit.json",
+    "acceptance_candidate_document": "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_01.md",
+    "self_run_record_name": "SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_01.md",
+    "invalidation_reason": "PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE",
+    "invalidated_by_product_source_main": "a8eee4f875a95e8da69802c4e60452df3535fe0e",
+    "role": "HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE"
+  },
+  "tooling_only_non_invalidating_prs": [
+    "PR #201"
   ],
-  "updated_date_kst": "2026-08-26"
+  "mint_after": [
+    "exact package source at minimum_product_source_main or an explicitly verified descendant",
+    "automated regression and package proof for that exact source",
+    "new exact post-route-readability candidate identity"
+  ],
+  "current_next_action": "MINT_NEW_EXACT_POST_ROUTE_READABILITY_PACKAGE_CANDIDATE_BEFORE_PHYSICAL_DEVICE_HUMAN_TESTS",
+  "updated_date_kst": "2026-08-27"
 }

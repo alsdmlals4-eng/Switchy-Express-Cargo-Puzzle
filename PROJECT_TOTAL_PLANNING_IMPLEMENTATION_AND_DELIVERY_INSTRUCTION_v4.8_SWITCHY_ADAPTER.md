@@ -91,9 +91,74 @@ current_decision_span: SX-DEC-027~060
 
 - endless survival / fuel / BOOST / capacity-8 / cargo slowdown / pickup respawn / switch auto-reset을 current 제품으로 되살리지 않는다.
 - UI/presentation은 gameplay outcome, score, save, identity authority를 소유하지 않는다.
-- 이미지 생성은 사용자 explicit request와 text brief 승인 없이는 시작하지 않는다.
+- 이미지 생성은 verified runtime consumer가 있고 기존 E+D Hybrid / Neo-Arcade visual language를 지킬 때만 자동으로 시작할 수 있으며, 결과는 project-local과 Notion Visual/Asset에 함께 보존·readback한다.
 - physical/human/player evidence가 없으면 automated/package evidence를 해당 PASS로 올리지 않는다.
 - r5.4 authority adoption은 새로운 gameplay/UX/economy/content authorization이 아니다.
+
+## 2A. Mandatory startup reconciliation and execution loop
+
+모든 meaningful task는 mutation 전에 아래 checklist를 실제 GitHub/runtime/Notion evidence로 채운다. 과거 대화·추정·이미지 reference만으로 항목을 PASS 처리하지 않는다.
+
+```yaml
+startup_checklist: CORE_FUN_SYSTEM_SWOT_REMAINING_WORK_ORDER_CHECK
+required_readback:
+  - player_promise_and_core_fun
+  - core_systems_and_protected_product_meaning
+  - task_relevant_swot_risks
+  - exact_main_candidate_and_open_pr_state
+  - ready_deferred_and_high_risk_remaining_work
+  - work_order_and_evidence_ceiling
+```
+
+핵심 재미·핵심 시스템·SWOT·남은 작업·작업 순서가 GitHub current owner, Notion human-facing owner, 실제 runtime evidence 사이에서 충돌하면 `CONTEXT_DRIFT_RECHECK_REQUIRED`로 기록하고 해당 충돌을 교정한 뒤에만 다음 mutation을 한다.
+
+```yaml
+workflow_order: GPT_NON_CODING_PREPARATION → CODEX_SINGLE_IMPLEMENTATION_WINDOW → HUMAN_QA_DEFERRED
+machine_runtime_validation: GODOT_HERA_GUT_REQUIRED; HUMAN_QA_DEFERRED
+```
+
+- GPT 단계는 current slice의 기획·검수·consumer-backed 이미지·사운드 specification·UI/VFX/data/copy·Notion/GitHub production input을 먼저 완결한다.
+- 실제 GDScript/Scene/Resource/map/runtime 구현은 준비된 입력을 하나의 bounded Codex window에서 수행한다. 작은 finding마다 GPT/Codex를 왕복하지 않는다.
+- Human QA는 현재 보류한다. 다만 GPT/Codex는 Godot를 실제 실행하고 Hera, GUT, headless/runtime state, representative screenshots를 사용해 화면·상태·consumer를 확인한다. 이 machine observation은 human/player PASS가 아니다.
+
+## 2B. Delegated routine action and delay recovery
+
+```yaml
+delegated_routine_approval: APPROVED_BY_DEFAULT_UNLESS_DANGEROUS_CHANGE
+bounded_fallback_route: REQUIRED_ON_DELAY_OR_BLOCKER
+```
+
+현재 slice 안의 reversible 기술 선택, 국소 bug fix, test/consumer/reference 교정, bounded asset production, GitHub/Notion 정본 동기화, exact-head CI가 GREEN인 current-task PR merge는 반복 승인 없이 진행한다.
+
+다음은 `HIGH_RISK_DEFERRED`로 분리하며 실행하지 않는다: irreversible data loss, security/permission expansion, new paid cost, legal/rights uncertainty, public release/publication, force/direct-main/admin bypass, broad engine/save migration, core identity/narrative/art-direction replacement.
+
+지연·실패는 한 경로를 무한 반복하지 않는다.
+
+```text
+state readback
+→ root-cause classification
+→ bounded safe retry
+→ approved fallback A
+→ approved fallback B
+→ evidence-equivalent local/manual route
+→ local defer only for the blocked task
+→ continue independent ready work
+```
+
+Fallback은 security, rights, exactness, or validation strength를 낮추는 우회가 될 수 없다.
+
+## 2C. Exact candidate freshness and completion boundary
+
+```yaml
+candidate_freshness_invalidation: PLAYER_FACING_BYTES_CHANGE → INVALIDATE_EXACT_CANDIDATE
+completion_gate: REQUIRED_WORK_REMAINING: 0
+```
+
+candidate가 pin한 exact source 이후 player-facing GDScript, Scene, Resource, map, localization, runtime consumer asset/path, renderer/HUD/route/switch presentation, export/package configuration 중 하나라도 바뀌면 그 candidate는 current acceptance evidence가 아니다. 기존 candidate의 hash/package/provenance는 지우지 않고 `HISTORICAL_SUPERSEDED_BY_PLAYER_FACING_BYTE_CHANGE`로 보존한다.
+
+tooling-only, test-only, documentation-only 변경은 candidate를 무효화하지 않는다. candidate pointer, current GitHub owner, Notion Home/Direction/Production/Visual 중 candidate ID/source/status/next action이 하나라도 다르면 새 candidate 생성이나 physical gate 승격 전에 `CONTEXT_DRIFT_RECHECK_REQUIRED` reconciliation을 완료한다.
+
+종료 전 ready/deferred/high-risk queue를 재계산한다. `REQUIRED_WORK_REMAINING: 0`이 되기 전에는 자동화 가능한 current-slice work를 중단하지 않는다. `0`은 machine-executable work의 종료 조건일 뿐 physical/human/player evidence를 PASS로 승격하지 않는다.
 
 ## 3A. SX-DEC-060 current amendment
 
@@ -128,7 +193,9 @@ sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_five_pass_review: CLOSED · SX-AUD-071
 sx_dec_060_notion_readback: PASS
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-001 · PREPARED_PACKAGE_VERIFIED
+post_sx_dec_060_candidate: NOT_CREATED
+post_sx_dec_060_candidate_minimum_product_source_main: a8eee4f875a95e8da69802c4e60452df3535fe0e
+sx60_poc_accept_001: HISTORICAL_SUPERSEDED_BY_PLAYER_FACING_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 windows_physical_post_060: NOT_RUN
 android_device_post_060: NOT_RUN
 five_person_post_060: NOT_RUN

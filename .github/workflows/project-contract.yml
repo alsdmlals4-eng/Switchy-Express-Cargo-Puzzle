@@ -19,6 +19,8 @@ jobs:
           python-version: '3.12'
       - name: Validate project operating contract
         run: python tools/validate_project_contract.py
+      - name: Validate execution contract and candidate freshness
+        run: python tests/python/test_execution_contract_freshness.py -v
       - name: Validate Hera repo adoption recovery
         run: python tests/python/test_hera_repo_adoption_reconciliation.py -v
       - name: Validate local tooling and asset-vault reconciliation
