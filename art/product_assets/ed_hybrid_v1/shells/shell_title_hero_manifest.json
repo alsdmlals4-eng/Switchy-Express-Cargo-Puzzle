@@ -1,0 +1,30 @@
+{
+  "asset_id": "SX-TITLE-HERO-001",
+  "decision_id": "SX-DEC-060",
+  "issue": "#216",
+  "status": "RUNTIME_INTEGRATED_VERIFIED",
+  "path": "art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png",
+  "dimensions": [1774, 887],
+  "sha256": "ce7fcd3ec380bc8b0840bcf28d56debd0d170bf8ca7681fee208cc8347f2d5dd",
+  "creation_authority": "USER_APPROVED_2026_08_26_AUTOMATIC_CONSUMER_IMAGE_POLICY",
+  "creation_route": "AI_GENERATED",
+  "generator": "OpenAI Image Generation",
+  "generator_created_at": "2026-08-27",
+  "visual_role": "RUNTIME_PRODUCT_ASSET",
+  "art_direction": "E+D HYBRID · NEO-ARCADE READABILITY",
+  "runtime_consumer": "game/demo/vertical_slice_demo.tscn::TitleScreen/Panel/Content/HeroArt via game/demo/presentation/product_shell_art.gd::TITLE_HERO_PATH",
+  "consumer_status": "VERIFIED",
+  "content_constraints": [
+    "text_free",
+    "logo_free",
+    "watermark_free",
+    "no_fake_ui",
+    "no_known_branded_elements"
+  ],
+  "render_policy": "center_crop_cover in ProductShellArt TITLE mode; live title and controls remain Godot UI",
+  "notion_owner_page": "03 · Visual · UX · Assets",
+  "notion_attachment_or_preview": "file-upload://3c91b237-eb1c-81b3-b06d-00b297b2a323",
+  "notion_readback_at": "2026-08-27T13:01:28.132Z",
+  "rights_record": "docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md::SX-TITLE-HERO-001",
+  "dual_preservation_status": "APPROVED_DUAL_PRESERVED"
+}

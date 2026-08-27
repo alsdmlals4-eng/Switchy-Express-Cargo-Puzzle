@@ -12,6 +12,7 @@ PRODUCT_MANIFEST = PRODUCT_ROOT / "manifest.json"
 SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054.json"
 BUILD_SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054_build_2b.json"
 VFX_SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054_vfx_2c.json"
+TITLE_HERO_MANIFEST = PRODUCT_ROOT / "shells" / "shell_title_hero_manifest.json"
 CANDIDATE_MANIFEST = ROOT / "art" / "production_candidates" / "ed_hybrid_v1" / "manifest.json"
 VALIDATOR_PATH = ROOT / "tools" / "validate_final_ed_product_asset_promotion.py"
 LOCOMOTIVE_SOURCE = "art/production_candidates/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png"
@@ -24,6 +25,7 @@ CONTROL_PRODUCT_PATHS = {
     f"art/product_assets/ed_hybrid_v1/ui/ui_button_frame_square_blue_{state}_v01.png"
     for state in ("normal", "hover", "pressed", "selected", "disabled", "locked", "focus")
 }
+TITLE_HERO_PATH = "art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png"
 
 CORE_PRODUCT_PATHS = {
     LOCOMOTIVE_PRODUCT,
@@ -176,6 +178,17 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
         info = validator._png_info(station)
         self.assertTrue(info[-1])
 
+    def test_runtime_title_hero_has_a_separate_consumer_first_manifest(self):
+        data = json.loads(TITLE_HERO_MANIFEST.read_text(encoding="utf-8"))
+        self.assertEqual("SX-TITLE-HERO-001", data["asset_id"])
+        self.assertEqual(TITLE_HERO_PATH, data["path"])
+        self.assertEqual("RUNTIME_INTEGRATED_VERIFIED", data["status"])
+        self.assertEqual("VERIFIED", data["consumer_status"])
+        self.assertEqual("APPROVED_DUAL_PRESERVED", data["dual_preservation_status"])
+        self.assertTrue(data["runtime_consumer"].startswith("game/demo/vertical_slice_demo.tscn"))
+        self.assertEqual([1774, 887], data["dimensions"])
+        self.assertEqual(64, len(data["sha256"]))
+
     def test_png_parser_rejects_corrupted_idat_stream(self):
         validator = _load_validator()
         source = PRODUCT_ROOT / "core" / "core_wagon_cargo_blue_normal_v02.png"
@@ -216,27 +229,37 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
         run_semantic = json.loads(SEMANTIC_MANIFEST.read_text(encoding="utf-8"))
         build_semantic = json.loads(BUILD_SEMANTIC_MANIFEST.read_text(encoding="utf-8"))
         vfx_semantic = json.loads(VFX_SEMANTIC_MANIFEST.read_text(encoding="utf-8"))
+        title_hero = json.loads(TITLE_HERO_MANIFEST.read_text(encoding="utf-8"))
         actual = {path.relative_to(ROOT).as_posix() for path in PRODUCT_ROOT.rglob("*.png")}
         base_recorded = [record["path"] for record in base["assets"]]
         run_recorded = [record["path"] for record in run_semantic["semantic_assets"]]
         build_recorded = [record["path"] for record in build_semantic["semantic_assets"]]
         vfx_recorded = [record["path"] for record in vfx_semantic["semantic_assets"]]
+        title_recorded = [title_hero["path"]]
 
         self.assertEqual(39, len(base_recorded))
         self.assertEqual(20, len(run_recorded))
         self.assertEqual(8, len(build_recorded))
         self.assertEqual(6, len(vfx_recorded))
+        self.assertEqual(1, len(title_recorded))
         self.assertEqual(len(base_recorded), len(set(base_recorded)))
         self.assertEqual(len(run_recorded), len(set(run_recorded)))
         self.assertEqual(len(build_recorded), len(set(build_recorded)))
         self.assertEqual(len(vfx_recorded), len(set(vfx_recorded)))
+        self.assertEqual(len(title_recorded), len(set(title_recorded)))
 
-        owners = [set(base_recorded), set(run_recorded), set(build_recorded), set(vfx_recorded)]
+        owners = [
+            set(base_recorded),
+            set(run_recorded),
+            set(build_recorded),
+            set(vfx_recorded),
+            set(title_recorded),
+        ]
         for index, owner in enumerate(owners):
             for other in owners[index + 1:]:
                 self.assertTrue(owner.isdisjoint(other))
         all_owned = set().union(*owners)
-        self.assertEqual(73, len(all_owned))
+        self.assertEqual(74, len(all_owned))
         self.assertEqual(actual, all_owned)
 
     def test_static_validator_accepts_promoted_batch(self):

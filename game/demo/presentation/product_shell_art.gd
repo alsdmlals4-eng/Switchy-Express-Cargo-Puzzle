@@ -5,14 +5,9 @@ extends Control
 
 const RESULT_SUCCESS_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_result_success_candidate_v01.png"
 const RESULT_FAILURE_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_result_failure_candidate_v01.png"
+const TITLE_HERO_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png"
 
 const ART_BY_MODE := {
-	"TITLE": [
-		"art/product_assets/ed_hybrid_v1/core/core_rail_straight_normal_v01.png",
-		"art/product_assets/ed_hybrid_v1/core/core_rail_switch_three_way_normal_v01.png",
-		"art/product_assets/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png",
-		"art/product_assets/ed_hybrid_v1/core/core_cargo_star_red_normal_v01.png",
-	],
 	"LESSON": [
 		"art/product_assets/ed_hybrid_v1/core/core_marker_start_normal_v01.png",
 		"art/product_assets/ed_hybrid_v1/core/core_rail_curve_normal_v01.png",
@@ -53,10 +48,13 @@ func set_result_outcome(outcome: StringName) -> void:
 
 func asset_paths_for_test() -> Array[String]:
 	var result: Array[String] = []
+	if mode == "TITLE":
+		result.append(TITLE_HERO_PATH)
+		return result
 	if mode == "RESULT" and _result_outcome != &"":
 		result.append(RESULT_SUCCESS_PATH if _result_outcome == &"SUCCESS" else RESULT_FAILURE_PATH)
 		return result
-	for value: Variant in ART_BY_MODE.get(mode, ART_BY_MODE["TITLE"]):
+	for value: Variant in ART_BY_MODE.get(mode, ART_BY_MODE["LESSON"]):
 		result.append(str(value))
 	return result
 
@@ -83,6 +81,9 @@ func _draw() -> void:
 
 	# Reuse approved product sprites as explanatory/presentational art only.
 	# Gameplay state and outcome authority stay in the finite session model.
+	if mode == "TITLE":
+		_draw_texture_cover(_textures[0], available)
+		return
 	var slot_width := available.size.x / float(_textures.size())
 	for index: int in range(_textures.size()):
 		var texture: Texture2D = _textures[index]
@@ -100,6 +101,18 @@ func _draw_texture_contained(texture: Texture2D, target: Rect2) -> void:
 	if texture_size.x <= 0.0 or texture_size.y <= 0.0:
 		return
 	var scale := minf(target.size.x / texture_size.x, target.size.y / texture_size.y)
+	var draw_size := texture_size * scale
+	var draw_rect := Rect2(target.get_center() - draw_size * 0.5, draw_size)
+	draw_texture_rect(texture, draw_rect, false)
+
+
+func _draw_texture_cover(texture: Texture2D, target: Rect2) -> void:
+	if texture == null:
+		return
+	var texture_size := texture.get_size()
+	if texture_size.x <= 0.0 or texture_size.y <= 0.0:
+		return
+	var scale := maxf(target.size.x / texture_size.x, target.size.y / texture_size.y)
 	var draw_size := texture_size * scale
 	var draw_rect := Rect2(target.get_center() - draw_size * 0.5, draw_size)
 	draw_texture_rect(texture, draw_rect, false)

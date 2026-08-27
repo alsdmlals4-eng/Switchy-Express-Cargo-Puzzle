@@ -54,6 +54,9 @@ sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREE
 sx_dec_060_notion_readback: PASS
 post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · ISOLATED_VISUAL_INPUT_OBSERVED · AUDIO_NOT_OBSERVED · PHYSICAL_AUDIO_QA_NEXT
 current_main_live_machine_qa: docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md · MAIN_CF93926 · TITLE_BRIEFING_BUILD_FLOW_OBSERVED · HUMAN_DEVICE_AUDIO_NOT_RUN
+title_hero_runtime_asset: PR_217_DRAFT · HEAD_53d7ef0c4660a8c3bc9cb77f93cbfde914a75c58 · ISSUE_216 · RUNTIME_VERIFIED · DUAL_PRESERVATION_PASS
+title_hero_runtime_evidence: docs/operations/2026-08-27-title-hero-art-runtime-verification.md
+title_hero_release_rights: CONDITIONAL · SEPARATE_REVIEW_REQUIRED
 base_work_five_phase_receipt: docs/operations/2026-08-27-sx60-work-five-phase-start-receipt.md
 base_work_current_phase: PHASE_5_USER_VERTICAL_SLICE_VALIDATION · BLOCKED_USER_VALIDATION
 remaining_machine_executable_required_work: 0
@@ -180,6 +183,18 @@ art/product_assets/ed_hybrid_v1/core/core_station_yellow_normal_v01.png
 ```
 
 So `SX_DEC_060_NEW_BITMAP_ASSETS = 0`. The service range is a procedural board overlay first, not an explanatory sheet or new full-screen mockup.
+
+Separate from SX-DEC-060 rule work, GitHub Issue #216/PR #217 adds one user-authorized title-only product bitmap to an already-existing runtime consumer. It does not alter the SX-DEC-060 station asset policy or gameplay semantics:
+
+```yaml
+asset_id: SX-TITLE-HERO-001
+consumer: TitleScreen/Panel/Content/HeroArt
+local_path: art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png
+notion_visual_attachment: file-upload://3c91b237-eb1c-81b3-b06d-00b297b2a323
+dual_preservation: APPROVED_DUAL_PRESERVED
+runtime_machine_verification: PASS
+release_rights: CONDITIONAL
+```
 
 ## Candidate / evidence transition
 

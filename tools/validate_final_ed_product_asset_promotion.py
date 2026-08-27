@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+import hashlib
 import struct
 import zlib
 from pathlib import Path
@@ -12,6 +13,7 @@ PRODUCT_MANIFEST = PRODUCT_ROOT / "manifest.json"
 SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054.json"
 BUILD_SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054_build_2b.json"
 VFX_SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054_vfx_2c.json"
+TITLE_HERO_MANIFEST = PRODUCT_ROOT / "shells" / "shell_title_hero_manifest.json"
 ALLOWED_DISPOSITIONS = {"PROMOTE_AS_IS", "PROMOTE_AFTER_REVISION", "REPLACE"}
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 
@@ -98,6 +100,45 @@ def validate():
     except (OSError, json.JSONDecodeError) as exc:
         print(f"final E+D product asset promotion: FAIL · {exc}")
         return 1
+
+    runtime_product_paths = set()
+    if not TITLE_HERO_MANIFEST.is_file():
+        errors.append(f"missing runtime consumer asset manifest: {TITLE_HERO_MANIFEST.relative_to(ROOT)}")
+    else:
+        try:
+            title_hero = json.loads(TITLE_HERO_MANIFEST.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            errors.append(f"invalid runtime consumer asset manifest: {exc}")
+            title_hero = {}
+        title_path = title_hero.get("path", "")
+        runtime_product_paths.add(title_path)
+        if title_hero.get("asset_id") != "SX-TITLE-HERO-001":
+            errors.append("runtime title hero asset_id mismatch")
+        if title_hero.get("status") != "RUNTIME_INTEGRATED_VERIFIED":
+            errors.append("runtime title hero must be integration-verified")
+        if title_hero.get("consumer_status") != "VERIFIED":
+            errors.append("runtime title hero consumer must be verified")
+        if title_hero.get("dual_preservation_status") != "APPROVED_DUAL_PRESERVED":
+            errors.append("runtime title hero dual preservation must be complete")
+        if not str(title_hero.get("runtime_consumer", "")).startswith(
+            "game/demo/vertical_slice_demo.tscn"
+        ):
+            errors.append("runtime title hero must name the actual title scene consumer")
+        if not title_path.startswith("art/product_assets/ed_hybrid_v1/shells/"):
+            errors.append(f"runtime title hero path outside shell product root: {title_path}")
+        title_file = ROOT / title_path
+        if not title_file.is_file():
+            errors.append(f"missing runtime title hero PNG: {title_path}")
+        else:
+            try:
+                width, height, _, _, _ = _png_info(title_file)
+                if title_hero.get("dimensions") != [width, height]:
+                    errors.append("runtime title hero dimension metadata mismatch")
+                actual_sha256 = hashlib.sha256(title_file.read_bytes()).hexdigest()
+                if title_hero.get("sha256") != actual_sha256:
+                    errors.append("runtime title hero SHA-256 metadata mismatch")
+            except ValueError as exc:
+                errors.append(str(exc))
 
     semantic_product_paths = set()
     for semantic_manifest, expected_batch in (
@@ -238,12 +279,16 @@ def validate():
 
     if seen_product_paths.intersection(semantic_product_paths):
         errors.append("SX-DEC-053 and SX-DEC-054 product ownership must be disjoint")
+    if seen_product_paths.intersection(runtime_product_paths):
+        errors.append("SX-DEC-053 and runtime consumer asset ownership must be disjoint")
+    if semantic_product_paths.intersection(runtime_product_paths):
+        errors.append("SX-DEC-054 and runtime consumer asset ownership must be disjoint")
 
     actual_product_paths = {
         path.relative_to(ROOT).as_posix()
         for path in PRODUCT_ROOT.rglob("*.png")
     }
-    actual_sx_dec_053_paths = actual_product_paths - semantic_product_paths
+    actual_sx_dec_053_paths = actual_product_paths - semantic_product_paths - runtime_product_paths
     if actual_sx_dec_053_paths != seen_product_paths:
         missing_from_manifest = sorted(actual_sx_dec_053_paths - seen_product_paths)
         missing_from_tree = sorted(seen_product_paths - actual_sx_dec_053_paths)
@@ -271,6 +316,7 @@ def validate():
         f"dispositions={len(ledger)} · promoted={len(product.get('assets', []))} · "
         f"authoritative_slices={authoritative_slice_count} · "
         f"sx_dec_054_owned={len(semantic_product_paths)} · "
+        f"runtime_consumer_owned={len(runtime_product_paths)} · "
         f"pending_corrupt_sources={len(pending_corrupt)} · runtime_integrated=false"
     )
     return 0
