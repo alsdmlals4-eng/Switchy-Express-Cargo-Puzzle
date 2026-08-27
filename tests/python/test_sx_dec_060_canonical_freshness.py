@@ -127,7 +127,7 @@ class SXDec060CanonicalFreshnessTests(unittest.TestCase):
     def test_current_gate_starts_with_post_merge_package_candidate_work(self) -> None:
         for key in ("readme", "roadmap", "development_gates"):
             text = self._read_current(key)
-            self.assertIn("SX60-POC-ACCEPT-002 human physical self-run", text)
+            self.assertIn("SX60-POC-ACCEPT-002 isolated visual/input/audio self-run", text)
             self.assertNotIn("SX_DEC_060_EXACT_HEAD_REVIEW_CI_MERGE", text)
             self.assertNotIn("PR_REVIEW_CI_MERGE_READBACK", text)
 

@@ -39,8 +39,16 @@
     "android_validation_runtime_json": "PASS · parsed_json=26",
     "package_integrity": "PASS",
     "launcher_no_launch_package_verification": "PASS · 2026-08-27 · explicit Candidate 002 NoLaunch PowerShell verification",
-    "windows_physical_startup_and_build_entry_automation_observed": "NOT_RUN",
-    "developer_self_run": "NOT_RUN",
+    "windows_physical_startup_and_build_entry_automation_observed": "PROCESS_STARTUP_OBSERVED_UNVISUALIZED",
+    "developer_self_run": "PROCESS_STARTUP_OBSERVED_UNVISUALIZED",
+    "startup_observation": {
+      "observed_date_kst": "2026-08-27",
+      "method": "explicit_candidate_launcher_live_download_and_start",
+      "exact_exe_sha256": "1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244",
+      "process_observation": "RUNNING_AND_RESPONDING",
+      "visual_input_audio_verdict": "NOT_OBSERVED",
+      "evidence_ceiling": "STARTUP_ONLY_NOT_PHYSICAL_VISUAL_OR_HUMAN_ACCEPTANCE"
+    },
     "windows_physical_runtime_full_scenarios": "NOT_RUN",
     "audio_perceptual_qa": "NOT_RUN",
     "android_device": "NOT_RUN",

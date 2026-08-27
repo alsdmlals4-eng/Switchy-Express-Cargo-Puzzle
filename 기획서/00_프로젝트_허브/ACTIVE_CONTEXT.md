@@ -219,7 +219,7 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 ## Current next action
 
 ```text
-SX60-POC-ACCEPT-002 human physical self-run
+SX60-POC-ACCEPT-002 isolated visual/input/audio self-run
 → Windows physical smoke
 → Android device smoke
 → Five-person comprehension
