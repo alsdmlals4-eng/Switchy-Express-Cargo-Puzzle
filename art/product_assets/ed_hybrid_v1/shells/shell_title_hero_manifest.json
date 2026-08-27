@@ -3,6 +3,7 @@
   "decision_id": "SX-DEC-060",
   "issue": "#216",
   "status": "RUNTIME_INTEGRATED_VERIFIED",
+  "merged_main": "e0044d6c7427a7c199da6bcdcf792e41e2e2f152",
   "path": "art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png",
   "dimensions": [1774, 887],
   "sha256": "ce7fcd3ec380bc8b0840bcf28d56debd0d170bf8ca7681fee208cc8347f2d5dd",

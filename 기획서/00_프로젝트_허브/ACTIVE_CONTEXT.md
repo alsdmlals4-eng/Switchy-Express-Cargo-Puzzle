@@ -54,7 +54,7 @@ sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREE
 sx_dec_060_notion_readback: PASS
 post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · ISOLATED_VISUAL_INPUT_OBSERVED · AUDIO_NOT_OBSERVED · PHYSICAL_AUDIO_QA_NEXT
 current_main_live_machine_qa: docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md · MAIN_CF93926 · TITLE_BRIEFING_BUILD_FLOW_OBSERVED · HUMAN_DEVICE_AUDIO_NOT_RUN
-title_hero_runtime_asset: PR_217_DRAFT · HEAD_53d7ef0c4660a8c3bc9cb77f93cbfde914a75c58 · ISSUE_216 · RUNTIME_VERIFIED · DUAL_PRESERVATION_PASS
+title_hero_runtime_asset: MERGED_MAIN_VERIFIED · PR_217 · main_e0044d6c7427a7c199da6bcdcf792e41e2e2f152 · ISSUE_216 · RUNTIME_VERIFIED · DUAL_PRESERVATION_PASS
 title_hero_runtime_evidence: docs/operations/2026-08-27-title-hero-art-runtime-verification.md
 title_hero_release_rights: CONDITIONAL · SEPARATE_REVIEW_REQUIRED
 base_work_five_phase_receipt: docs/operations/2026-08-27-sx60-work-five-phase-start-receipt.md

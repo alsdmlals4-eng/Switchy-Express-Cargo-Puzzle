@@ -40,6 +40,11 @@ The bitmap contains no title copy, logo, watermark, or UI. Godot continues to ow
 
 This is machine runtime/UI evidence, not human comprehension, physical audio, Android device, or release-rights approval.
 
+## Merge receipt
+
+- PR #217 was squash-merged to `main` as `e0044d6c7427a7c199da6bcdcf792e41e2e2f152` after its exact head `d1aa60aa8f9ca2347d9d31f303f8e9abcafc505c` passed all six GitHub checks.
+- Home, Direction, Production, and Visual Notion owners were updated and read back at the merged-main boundary.
+
 ## Adversarial review summary
 
 1. **Consumer validity:** verified exact scene node and GDScript load path.
