@@ -83,7 +83,7 @@ Preflight가 풀어주지 않는 것:
 - 수동/자동 적재 타이밍
 - 분기 조작 순서
 - 제한 시간 성공 해답
-- 최소 비용·최대 Combo 해답
+- 최소 비용 또는 별도 승인 없는 성과 지표 해답
 
 ## 운행 조작
 
@@ -152,7 +152,7 @@ Diagonal = 배송 안 됨
 - 모든 player rail을 전역 연결해야만 RUN 가능한 구조로 되돌아가면 실패
 - irrelevant disconnected island의 dangling 구조가 active RUN을 무조건 막으면 실패
 - required cargo/station service가 unreachable인데 RUN이 시작되면 실패
-- 추천 설계도를 따라가기만 하면 별 3개가 되면 실패
+- 추천 설계도가 자동 정답·필수 경로·추가 성과 보상처럼 보이면 실패
 - 수동 적재가 짧은 반응속도 판정으로 느껴지면 실패
 - 무제한 화물 때문에 TOP과 다음 연속 그룹을 읽지 못하면 실패
 - 분기 조작보다 pause 반복이 실제 실행을 완전히 대체하면 실패

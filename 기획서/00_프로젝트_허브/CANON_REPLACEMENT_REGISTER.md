@@ -36,7 +36,8 @@
 | SX-DEC-008 중 capacity 8 | 무제한 스택 | SX-DEC-031 |
 | SX-DEC-009~010 | 연료·화물 감속·BOOST | SX-DEC-027/029/032 |
 | SX-DEC-013 중 통과 후 기본 복귀 | 상태 유지 분기 | SX-DEC-029/030 |
-| SX-DEC-016 | 첫 endless run 온보딩 | SX-DEC-034 |
+| SX-DEC-016 | 첫 endless run 온보딩 | SX-DEC-059 first session T1→T6→Capstone |
+| SX-DEC-034의 Tutorial 1~10 | 현재 첫 세션과 단계 수 충돌 | SX-DEC-059 first session T1→T6→Capstone · SX-DEC-060 T2 cardinal service |
 | SX-DEC-017의 연료 0 결과 문맥 | 제한 시간 미배송 실패 분석 | SX-DEC-029/034 |
 | SX-DEC-022 | 시간 pressure·DifficultyDirector 제품 권위 | SX-DEC-029 |
 | `기획서/10_경험/CORE_FUN_SYSTEM_HIERARCHY.md` | 생존·BOOST 위계 | `FINITE_DELIVERY_PUZZLE_BASELINE.md` |

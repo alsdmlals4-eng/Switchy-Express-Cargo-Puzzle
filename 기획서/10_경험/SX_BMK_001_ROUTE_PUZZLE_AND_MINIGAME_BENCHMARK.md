@@ -1,6 +1,8 @@
 # SX-BMK-001 · Route Puzzle / Railway Mini-game Benchmark
 
-상태: `PROPOSED · PLANNING_EVIDENCE_ONLY · NO_NEW_PRODUCT_DECISION`
+상태: `HISTORICAL_PLANNING_EVIDENCE · NO_CURRENT_PRODUCT_DECISION`
+
+> 이 benchmark의 current-decision span, Tutorial 1~10, score/star/leaderboard, and implementation-status claims are historical to 2026-08-11. Current product/visual authority is GMB-002 amended by SX-DEC-060 and SX-DEC-061; this file may be consulted only as discovery evidence.
 
 작성일: `2026-08-11 KST`
 

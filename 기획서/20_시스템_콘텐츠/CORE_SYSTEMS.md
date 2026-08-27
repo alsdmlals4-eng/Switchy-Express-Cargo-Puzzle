@@ -11,7 +11,7 @@ MapDefinition: 지형·시작점·역·화물·건설 가능 영역
 → TrackLayout: 플레이어가 건설한 선로·속성·비용
 → Preflight: 구조적 도달 가능성과 trap 검사
 → Run: 자동 이동·적재·분기·LIFO 하역
-→ Result: 성공/실패·시간·비용·점수 분석
+→ Result: 성공/실패·시간·최종 비용·남은 화물/stack의 사실 기반 복기
 → Retry: 같은 sealed layout·새 mutable runtime
 ```
 
@@ -27,7 +27,7 @@ MapDefinition: 지형·시작점·역·화물·건설 가능 영역
 - 건설 가능·불가 셀
 - 제한 시간
 - 추천 설계도와 추천 비용 metadata
-- 신속·절약·점수 목표 metadata
+- 현재 Slice에서 실제 소비하는 result/preflight metadata
 - map ID·revision·ruleset version
 
 플레이어가 소유하는 것:
@@ -49,7 +49,7 @@ current_build_cost = 운행 시작 시 존재하는 최종 TrackLayout 비용 �
 - 철거·교체 시 기존 조각 비용 전액 환급
 - 과거 설치·철거 누적 비용은 기록하지 않음
 - 일반 클리어 비용 상한 없음
-- 절약 목표와 가격 기록은 최종 비용 사용
+- 최종 비용은 현재 build/result 의미를 설명하는 정보이며, 별·랭킹·점수 보상을 생성하지 않음
 - 상세 수치는 `TEST_VALUE`
 
 첫 Slice 구현값:
@@ -101,7 +101,7 @@ current_build_cost = 운행 시작 시 존재하는 최종 TrackLayout 비용 �
 - 수동/자동 적재 타이밍
 - 분기 조작 순서
 - 제한 시간 성공 해답
-- 최소 비용·최대 Combo 해답
+- 최소 비용 또는 별도 승인 없는 성과 지표 해답
 
 PASS 뒤 map definition·layout·cost·graph를 sealed input으로 사용한다.
 
@@ -144,7 +144,7 @@ combo_count = unload_count
 - station footprint 또는 diagonal 통과는 station service가 아니므로 `unload_count`를 만들지 않는다.
 - 총 가시 하역 시간 최대 1초
 - 모든 domain commit이 presentation보다 먼저 확정
-- 2개 이상 그룹의 가속·점수 보상은 후속 tuning 범위
+- 2개 이상 그룹은 현재 하역 원인·결과를 읽히게 하는 feedback만 사용하며, 가속·점수 보상은 현 범위 밖
 
 첫 Slice는 `A → B → A → A` 적재와 `2 → 1 → 1` 하역, A역 재방문을 자동 증명한다.
 
@@ -178,11 +178,11 @@ combo_count = unload_count
 - SUCCESS
 - FAILURE
 
-UI는 비용·preflight 문제·시간·stack·TOP·입력 상태·결과를 읽기 전용으로 표시한다. View와 animation은 layout, delivery, timer, score, result, retry identity 또는 save의 권위가 아니다.
+UI는 비용·preflight 문제·시간·stack·TOP·입력 상태·결과를 읽기 전용으로 표시한다. View와 animation은 layout, delivery, timer, result, retry identity 또는 save의 권위가 아니다.
 
-## 목표·기록·캠페인 후속
+## Historical / separately approved future directions · not current Slice requirements
 
-승인된 미래 제품 방향:
+아래 항목은 historical 또는 별도 승인 뒤에만 검토할 수 있는 product directions이며, 현재 T1→T6→VS_DEMO_01 Slice의 UI·asset·test·runtime 요구사항이 아니다:
 
 - 신속·절약·점수 별
 - 속도·가격·점수 기록
@@ -190,7 +190,7 @@ UI는 비용·preflight 문제·시간·stack·TOP·입력 상태·결과를 읽
 - fixed-seed daily/weekly challenge
 - cosmetic-only rewards
 
-첫 Slice와 Android Device Smoke의 필수 구현 범위는 아니다. 실제 구현 전까지 `NOT_STARTED` 또는 `NOT_RUN`으로 유지한다.
+현재 구현 권위에 편입되지 않았으며, 실제 구현 전까지 `NOT_STARTED` 또는 `NOT_RUN`으로 유지한다.
 
 ## 구형 시스템 상태
 
