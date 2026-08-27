@@ -39,8 +39,8 @@
     "android_validation_runtime_json": "PASS · parsed_json=26",
     "package_integrity": "PASS",
     "launcher_no_launch_package_verification": "PASS · 2026-08-27 · explicit Candidate 002 NoLaunch PowerShell verification",
-    "windows_physical_startup_and_build_entry_automation_observed": "PROCESS_STARTUP_OBSERVED_UNVISUALIZED",
-    "developer_self_run": "PROCESS_STARTUP_OBSERVED_UNVISUALIZED",
+    "windows_physical_startup_and_build_entry_automation_observed": "ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT_OBSERVED",
+    "developer_self_run": "ISOLATED_VISUAL_INPUT_OBSERVED_AUDIO_NOT_OBSERVED",
     "startup_observation": {
       "observed_date_kst": "2026-08-27",
       "method": "explicit_candidate_launcher_live_download_and_start",
@@ -48,6 +48,16 @@
       "process_observation": "RUNNING_AND_RESPONDING",
       "visual_input_audio_verdict": "NOT_OBSERVED",
       "evidence_ceiling": "STARTUP_ONLY_NOT_PHYSICAL_VISUAL_OR_HUMAN_ACCEPTANCE"
+    },
+    "isolated_window_observation": {
+      "observed_date_kst": "2026-08-27",
+      "method": "targeted_Windows_Graphics_Capture_on_the_exact_returned_candidate_window",
+      "window_identity": "Switchy Express: Cargo Puzzle (DEBUG)",
+      "observed_flow": "title -> briefing -> build board",
+      "input_observed": "Demo Start and Build Start button activation",
+      "visual_verdict": "OBSERVED_ON_EXACT_CANDIDATE_WINDOW",
+      "audio_verdict": "NOT_OBSERVED",
+      "human_or_device_verdict": "NOT_RUN"
     },
     "windows_physical_runtime_full_scenarios": "NOT_RUN",
     "audio_perceptual_qa": "NOT_RUN",
