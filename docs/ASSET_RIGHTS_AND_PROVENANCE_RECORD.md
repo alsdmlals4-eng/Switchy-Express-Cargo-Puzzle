@@ -125,13 +125,14 @@ notes: User-authorized automatic consumer image. Project-local tracked copy, Not
 asset_ids:
   - SX-BOARD-TERRAIN-001
   - SX-LESSON-HERO-001
+  - SX-LESSON-HERO-002
   - SX-RESULT-SUCCESS-002
   - SX-RESULT-FAILURE-002
 category: AI_OUTPUT_MODEL_TERMS
 project: SWITCHY_EXPRESS_CARGO_PUZZLE
 creation_route: AI_GENERATED
 creator_or_vendor: OpenAI Image Generation
-acquired_or_created_at: 2026-08-27
+acquired_or_created_at: 2026-08-27, 2026-08-28
 creation_authority: USER_APPROVED_2026_08_26_AUTOMATIC_CONSUMER_IMAGE_POLICY
 license_or_contract: service output terms must be rechecked for release use
 commercial_use: CONDITIONAL
@@ -140,27 +141,29 @@ raw_source_redistribution: CONDITIONAL
 modification: CONDITIONAL
 attribution: NOT_REQUIRED
 ai_terms_checked_at: NOT_YET_RECHECKED
-ai_input_rights: original text prompts; no reference image or third-party source supplied
-reference_sources: project E+D Hybrid / Neo-Arcade visual-language contract only
+ai_input_rights: original text prompts; project-owned SX-LESSON-HERO-001 used only as an in-project style reference; no third-party source supplied
+reference_sources: project E+D Hybrid / Neo-Arcade visual-language contract and project-owned SX-LESSON-HERO-001 only
 forbidden_expression: branded material, copied game UI, known logos, watermark, localized copy, fake interface
 repository_local_paths:
   - art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png
   - art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v01.png
+  - art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v02.png
   - art/product_assets/ed_hybrid_v1/shells/shell_result_success_v02.png
   - art/product_assets/ed_hybrid_v1/shells/shell_result_failure_v02.png
 runtime_consumers:
   - ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[board_terrain]
   - ProductShellArt::LESSON_HERO_PATH
+  - ProductShellArt::T2_LESSON_HERO_PATH
   - ProductShellArt::RESULT_SUCCESS_PATH
   - ProductShellArt::RESULT_FAILURE_PATH
-proof_reference: GitHub Issue #219 · runtime_visual_manifest.json · live Godot Lesson/BUILD/SUCCESS/FAILURE checks
+proof_reference: GitHub Issues #219, #224 · runtime_visual_manifest.json · live Godot Lesson/BUILD/SUCCESS/FAILURE checks
 notion_owner_page: 03 · Visual · UX · Assets
 notion_readback_at: 2026-08-27T13:57:00.541Z
-dual_preservation_status: APPROVED_DUAL_PRESERVED
+dual_preservation_status: v01 and v02 APPROVED_DUAL_PRESERVED
 reference_similarity_status: NOT_APPLICABLE
 shipping_and_marketing_usage: CONDITIONAL · runtime vertical-slice use; release review remains separate
 status: CONDITIONAL
-notes: All four assets are text-free, logo-free, watermark-free, and attached to the Notion Visual page. The manifest records each exact SHA-256 and attachment identifier. Godot 4.7.1 live runtime shows each real consumer; no game rule, map, HUD semantic color, or SX-DEC-060 behavior changed.
+notes: Both Lesson Heroes and the other active runtime assets are text-free, logo-free, watermark-free. v01 remains the neutral shared hero for T1, T3–T6, and CAPSTONE; v02 is limited to T2. v02 is attached at `file-upload://3c91b237-eb1c-8144-a921-00b221df883d`; Visual-page readback completed at 2026-08-27T21:34:35.550Z. The manifest records exact SHA-256 and attachment identifiers. Godot 4.7.1 runtime verification remains required before promotion; no game rule, map, HUD semantic color, or SX-DEC-060 behavior changes.
 ```
 
 ## VS-DEMO-PRESENTATION-001 · In-engine board and UI shapes

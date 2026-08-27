@@ -450,6 +450,9 @@ func _apply_lesson_card() -> void:
 	var objective := get_node_or_null("BriefingScreen/Panel/Content/Objective") as Label
 	var rules := get_node_or_null("BriefingScreen/Panel/Content/Rules") as Label
 	var begin := get_node_or_null("BriefingScreen/Panel/Content/BeginButton") as Button
+	var lesson_art := get_node_or_null("BriefingScreen/Panel/Content/LessonArt")
+	if lesson_art != null and lesson_art.has_method("set_lesson_id"):
+		lesson_art.set_lesson_id(_first_session_director.current_lesson_id())
 	if progress != null:
 		progress.text = "%d / %d" % [
 			_first_session_director.current_lesson_number(),

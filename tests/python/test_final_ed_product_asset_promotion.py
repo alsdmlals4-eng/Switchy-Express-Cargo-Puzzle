@@ -30,6 +30,7 @@ TITLE_HERO_PATH = "art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.p
 RUNTIME_VISUAL_PATHS = {
     "SX-BOARD-TERRAIN-001": "art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png",
     "SX-LESSON-HERO-001": "art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v01.png",
+    "SX-LESSON-HERO-002": "art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v02.png",
     "SX-RESULT-SUCCESS-002": "art/product_assets/ed_hybrid_v1/shells/shell_result_success_v02.png",
     "SX-RESULT-FAILURE-002": "art/product_assets/ed_hybrid_v1/shells/shell_result_failure_v02.png",
 }
@@ -210,7 +211,6 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
             self.assertTrue(record["runtime_consumer"].startswith("game/demo/"))
             self.assertEqual([1672, 941], record["dimensions"])
             self.assertEqual(64, len(record["sha256"]))
-
     def test_png_parser_rejects_corrupted_idat_stream(self):
         validator = _load_validator()
         source = PRODUCT_ROOT / "core" / "core_wagon_cargo_blue_normal_v02.png"
@@ -266,7 +266,7 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
         self.assertEqual(8, len(build_recorded))
         self.assertEqual(6, len(vfx_recorded))
         self.assertEqual(1, len(title_recorded))
-        self.assertEqual(4, len(runtime_visual_recorded))
+        self.assertEqual(5, len(runtime_visual_recorded))
         self.assertEqual(len(base_recorded), len(set(base_recorded)))
         self.assertEqual(len(run_recorded), len(set(run_recorded)))
         self.assertEqual(len(build_recorded), len(set(build_recorded)))
@@ -286,7 +286,7 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
             for other in owners[index + 1:]:
                 self.assertTrue(owner.isdisjoint(other))
         all_owned = set().union(*owners)
-        self.assertEqual(78, len(all_owned))
+        self.assertEqual(79, len(all_owned))
         self.assertEqual(actual, all_owned)
 
     def test_static_validator_accepts_promoted_batch(self):

@@ -40,6 +40,14 @@ func run() -> void:
 	)
 	first_session.start_demo()
 	assert_equal(first_session.state(), &"BRIEFING", "first-session title opens lesson card")
+	var lesson_art := first_session.get_node("BriefingScreen/Panel/Content/LessonArt")
+	assert_true(lesson_art.has_method("asset_paths_for_test"), "lesson art exposes its active asset path")
+	if lesson_art.has_method("asset_paths_for_test"):
+		assert_equal(
+			lesson_art.asset_paths_for_test(),
+			["art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v01.png"],
+			"T1 keeps the neutral lesson hero instead of showing the T2 station-service illustration"
+		)
 	assert_equal(
 		(first_session.get_node("BriefingScreen/Panel/Content/Title") as Label).text,
 		"선로 연결",

@@ -1,15 +1,15 @@
 {
   "manifest_id": "SX-INGAME-VISUAL-001",
   "decision_id": "SX-DEC-060",
-  "issue": "#219",
+  "issue": "#219, #224",
   "status": "RUNTIME_INTEGRATED_VERIFIED",
   "creation_authority": "USER_APPROVED_2026_08_26_AUTOMATIC_CONSUMER_IMAGE_POLICY",
   "creation_route": "AI_GENERATED",
   "generator": "OpenAI Image Generation",
-  "generator_created_at": "2026-08-27",
+  "generator_created_at": "2026-08-27, 2026-08-28",
   "art_direction": "E+D HYBRID · NEO-ARCADE READABILITY",
   "notion_owner_page": "03 · Visual · UX · Assets",
-  "notion_readback_at": "2026-08-27T13:57:00.541Z",
+  "notion_readback_at": "2026-08-27T21:34:35.550Z",
   "assets": [
     {
       "asset_id": "SX-BOARD-TERRAIN-001",
@@ -31,12 +31,26 @@
       "dimensions": [1672, 941],
       "sha256": "f77f949ecd2936199b2a4e4a3ee3038b6a85a0363f371b7c7a2e0fada57ea1e7",
       "visual_role": "RUNTIME_PRODUCT_ASSET",
-      "runtime_consumer": "game/demo/vertical_slice_demo.tscn::BriefingScreen/Panel/Content/LessonArt via game/demo/presentation/product_shell_art.gd::LESSON_HERO_PATH",
+      "runtime_consumer": "game/demo/vertical_slice_demo.tscn::BriefingScreen/Panel/Content/LessonArt via game/demo/presentation/product_shell_art.gd::LESSON_HERO_PATH for T1, T3–T6, and CAPSTONE",
       "consumer_status": "VERIFIED",
       "content_constraints": ["text_free", "logo_free", "watermark_free", "no_fake_ui", "no_known_branded_elements"],
       "render_policy": "center crop cover in ProductShellArt LESSON mode; live lesson title, objective, and action remain Godot UI",
       "notion_attachment_or_preview": "file-upload://3c91b237-eb1c-8171-8c5a-00b2b9ff3171",
       "rights_record": "docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md::SX-INGAME-VISUAL-001",
+      "dual_preservation_status": "APPROVED_DUAL_PRESERVED"
+    },
+    {
+      "asset_id": "SX-LESSON-HERO-002",
+      "path": "art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v02.png",
+      "dimensions": [1672, 941],
+      "sha256": "a270a91e9d7cbc218a654e94bb0fc13d94f256ea52985679260bca2a31c77753",
+      "visual_role": "RUNTIME_PRODUCT_ASSET",
+      "runtime_consumer": "game/demo/vertical_slice_demo.tscn::BriefingScreen/Panel/Content/LessonArt via game/demo/presentation/product_shell_art.gd::T2_LESSON_HERO_PATH when the active lesson is T2",
+      "consumer_status": "VERIFIED",
+      "content_constraints": ["text_free", "logo_free", "watermark_free", "no_fake_ui", "no_known_branded_elements", "station_off_track", "cardinal_adjacent_rail_service", "cargo_rail_context"],
+      "render_policy": "center crop cover in ProductShellArt LESSON mode; live lesson title, objective, and action remain Godot UI",
+      "notion_attachment_or_preview": "file-upload://3c91b237-eb1c-8144-a921-00b221df883d",
+      "rights_record": "docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md::SX-LESSON-HERO-002",
       "dual_preservation_status": "APPROVED_DUAL_PRESERVED"
     },
     {

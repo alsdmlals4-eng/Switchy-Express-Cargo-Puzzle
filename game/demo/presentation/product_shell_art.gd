@@ -5,6 +5,7 @@ extends Control
 
 const TITLE_HERO_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png"
 const LESSON_HERO_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v01.png"
+const T2_LESSON_HERO_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v02.png"
 const RESULT_SUCCESS_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_result_success_v02.png"
 const RESULT_FAILURE_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_result_failure_v02.png"
 
@@ -25,6 +26,7 @@ const ART_BY_MODE := {
 
 var _textures: Array[Texture2D] = []
 var _result_outcome: StringName = &""
+var _lesson_id: StringName = &""
 
 
 func _ready() -> void:
@@ -47,13 +49,21 @@ func set_result_outcome(outcome: StringName) -> void:
 	queue_redraw()
 
 
+func set_lesson_id(lesson_id: StringName) -> void:
+	if mode != "LESSON" or _lesson_id == lesson_id:
+		return
+	_lesson_id = lesson_id
+	_load_textures()
+	queue_redraw()
+
+
 func asset_paths_for_test() -> Array[String]:
 	var result: Array[String] = []
 	if mode == "TITLE":
 		result.append(TITLE_HERO_PATH)
 		return result
 	if mode == "LESSON":
-		result.append(LESSON_HERO_PATH)
+		result.append(T2_LESSON_HERO_PATH if _lesson_id == &"T2" else LESSON_HERO_PATH)
 		return result
 	if mode == "RESULT" and _result_outcome != &"":
 		result.append(RESULT_SUCCESS_PATH if _result_outcome == &"SUCCESS" else RESULT_FAILURE_PATH)
