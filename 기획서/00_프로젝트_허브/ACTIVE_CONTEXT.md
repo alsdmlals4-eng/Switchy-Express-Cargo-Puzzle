@@ -57,6 +57,10 @@ current_main_live_machine_qa: docs/operations/2026-08-27-sx60-current-main-live-
 title_hero_runtime_asset: MERGED_MAIN_VERIFIED · PR_217 · main_e0044d6c7427a7c199da6bcdcf792e41e2e2f152 · ISSUE_216 · RUNTIME_VERIFIED · DUAL_PRESERVATION_PASS
 title_hero_runtime_evidence: docs/operations/2026-08-27-title-hero-art-runtime-verification.md
 title_hero_release_rights: CONDITIONAL · SEPARATE_REVIEW_REQUIRED
+in_game_visual_consistency: MERGED_MAIN_VERIFIED · PR_220 · main_8c603474083c837f52fe40eae6012427b2ad34ce · ISSUE_219 · RUNTIME_VERIFIED · DUAL_PRESERVATION_PASS
+in_game_visual_runtime_assets: SX-INGAME-VISUAL-001 · BUILD_TERRAIN + LESSON_HERO + RESULT_SUCCESS + RESULT_FAILURE
+in_game_visual_runtime_evidence: docs/operations/2026-08-27-ingame-visual-consistency-runtime-verification.md
+in_game_visual_release_rights: CONDITIONAL · SEPARATE_REVIEW_REQUIRED
 base_work_five_phase_receipt: docs/operations/2026-08-27-sx60-work-five-phase-start-receipt.md
 base_work_current_phase: PHASE_5_USER_VERTICAL_SLICE_VALIDATION · BLOCKED_USER_VALIDATION
 remaining_machine_executable_required_work: 0
@@ -193,6 +197,23 @@ local_path: art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png
 notion_visual_attachment: file-upload://3c91b237-eb1c-81b3-b06d-00b297b2a323
 dual_preservation: APPROVED_DUAL_PRESERVED
 runtime_machine_verification: PASS
+release_rights: CONDITIONAL
+```
+
+Separate from the title-only change, GitHub Issue #219/PR #220 adds four user-authorized images only to verified in-game consumers. This does not alter SX-DEC-060 semantics, station asset policy, map data, HUD semantic colors, or first-session structure:
+
+```yaml
+asset_set: SX-INGAME-VISUAL-001
+manifest: art/product_assets/ed_hybrid_v1/runtime_visual_manifest.json
+main: 8c603474083c837f52fe40eae6012427b2ad34ce
+consumers:
+  - ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[board_terrain]
+  - BriefingScreen/Panel/Content/LessonArt → ProductShellArt::LESSON_HERO_PATH
+  - ResultOverlay/Panel/Content/ResultArt → ProductShellArt::RESULT_SUCCESS_PATH
+  - ResultOverlay/Panel/Content/ResultArt → ProductShellArt::RESULT_FAILURE_PATH
+dual_preservation: APPROVED_DUAL_PRESERVED · local tracked files + Notion Visual attachments
+runtime_machine_verification: PASS · Lesson / BUILD / success result / failure result
+automated_regression: PASS · 112_CASES_13481_ASSERTIONS · CI_6_GREEN
 release_rights: CONDITIONAL
 ```
 
