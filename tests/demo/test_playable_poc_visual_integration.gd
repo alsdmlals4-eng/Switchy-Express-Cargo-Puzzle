@@ -3,6 +3,7 @@ extends "res://tests/test_case.gd"
 const RendererScript := preload("res://game/demo/presentation/product_board_renderer.gd")
 const HUD_SCENE_PATH := "res://game/demo/presentation/product_hud.tscn"
 const SHELL_SCENE_PATH := "res://game/demo/vertical_slice_demo.tscn"
+const TITLE_HERO_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png"
 
 
 func run() -> void:
@@ -98,6 +99,15 @@ func run() -> void:
 					(art.asset_paths_for_test() as Array).size(),
 					"all shell product-art textures must load"
 				)
+
+	var title_art := shell.get_node_or_null("TitleScreen/Panel/Content/HeroArt")
+	assert_not_null(title_art, "title screen must expose its runtime hero-art consumer")
+	if title_art != null and title_art.has_method("asset_paths_for_test"):
+		assert_equal(
+			title_art.asset_paths_for_test(),
+			[TITLE_HERO_PATH],
+			"title hero must load exactly one generated, text-free runtime banner"
+		)
 
 	var result_art := shell.get_node_or_null("ResultOverlay/Panel/Content/ResultArt")
 	assert_true(

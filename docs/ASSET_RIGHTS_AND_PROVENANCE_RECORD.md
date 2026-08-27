@@ -84,6 +84,41 @@ approved_image_record:
 
 `APPROVED_DUAL_PRESERVED`은 Notion destination readback, 프로젝트 로컬 추적 파일, SHA-256, 생성 권한·권리 provenance가 모두 있는 경우에만 사용한다. Runtime consumer가 확인되지 않은 이미지는 `VISUAL_REFERENCE` 또는 `NOT_RUNTIME_PROOF`로 남기며, 실제 게임 product asset으로 승격하지 않는다. 이 규칙은 역사적 transport/corruption batch를 소급 변경하지 않는다.
 
+## SX-TITLE-HERO-001 · Title runtime hero banner
+
+```yaml
+asset_id: SX-TITLE-HERO-001
+category: AI_OUTPUT_MODEL_TERMS
+name: shell_title_hero_v01.png
+project: SWITCHY_EXPRESS_CARGO_PUZZLE
+creation_route: AI_GENERATED
+creator_or_vendor: OpenAI Image Generation
+source_url_or_path: art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png
+acquired_or_created_at: 2026-08-27
+license_or_contract: service output terms must be rechecked for release use
+commercial_use: CONDITIONAL
+distribution_in_game_build: CONDITIONAL
+raw_source_redistribution: CONDITIONAL
+modification: CONDITIONAL
+attribution: NOT_REQUIRED
+ai_model_service_version: OpenAI Image Generation (session-provided)
+ai_terms_checked_at: NOT_YET_RECHECKED
+ai_input_rights: original text prompt; no reference image or third-party source supplied
+ai_output_terms: release-rights review remains separate from runtime integration
+reference_sources: project E+D Hybrid / Neo-Arcade visual-language contract only
+reference_brief: text-free, logo-free, wide miniature railway title banner; blue locomotive, golden switch rail, red star cargo, warm station silhouette
+forbidden_expression: branded material, copied game UI, known logos, watermark, localized copy, fake interface
+final_asset_record: 1774x887 PNG · SHA-256 ce7fcd3ec380bc8b0840bcf28d56debd0d170bf8ca7681fee208cc8347f2d5dd
+reference_similarity_status: NOT_APPLICABLE
+shipping_and_marketing_usage: CONDITIONAL · runtime vertical-slice use; release review still required
+proof_reference: GitHub Issue #216 · ProductShellArt TITLE_HERO_PATH · shell_title_hero_manifest.json
+secure_original_location: C:/Users/user/.codex/generated_images/01a03dda-4905-7c41-b072-bd224e063324/exec-f1f15bd0-fb75-4bf3-b39f-7f1ae9be3438.png
+reviewed_by: automated runtime-consumer and validation workflow
+reviewed_at: 2026-08-27
+status: CONDITIONAL
+notes: User-authorized automatic consumer image. Local tracked copy exists; Notion upload/readback remains required before APPROVED_DUAL_PRESERVED.
+```
+
 ## VS-DEMO-PRESENTATION-001 · In-engine board and UI shapes
 
 ```yaml
