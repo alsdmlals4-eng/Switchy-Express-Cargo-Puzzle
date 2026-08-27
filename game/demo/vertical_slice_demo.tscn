@@ -259,7 +259,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="PanelContainer" parent="ResultOverlay"]
-custom_minimum_size = Vector2(560, 580)
+custom_minimum_size = Vector2(560, 500)
 layout_mode = 2
 
 [node name="Content" type="VBoxContainer" parent="ResultOverlay/Panel"]

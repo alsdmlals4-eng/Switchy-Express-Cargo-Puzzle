@@ -1,0 +1,71 @@
+{
+  "manifest_id": "SX-INGAME-VISUAL-001",
+  "decision_id": "SX-DEC-060",
+  "issue": "#219",
+  "status": "RUNTIME_INTEGRATED_VERIFIED",
+  "creation_authority": "USER_APPROVED_2026_08_26_AUTOMATIC_CONSUMER_IMAGE_POLICY",
+  "creation_route": "AI_GENERATED",
+  "generator": "OpenAI Image Generation",
+  "generator_created_at": "2026-08-27",
+  "art_direction": "E+D HYBRID · NEO-ARCADE READABILITY",
+  "notion_owner_page": "03 · Visual · UX · Assets",
+  "notion_readback_at": "2026-08-27T13:57:00.541Z",
+  "assets": [
+    {
+      "asset_id": "SX-BOARD-TERRAIN-001",
+      "path": "art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png",
+      "dimensions": [1672, 941],
+      "sha256": "68c06fba0f351918f9b1a7ecee2925eb58088b54c04ea59fe98a6e5efe1f8c8b",
+      "visual_role": "RUNTIME_PRODUCT_ASSET",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[board_terrain]",
+      "consumer_status": "VERIFIED",
+      "content_constraints": ["text_free", "logo_free", "watermark_free", "no_fake_ui", "no_known_branded_elements", "open_center_for_live_gameplay"],
+      "render_policy": "terrain backdrop with warm readability veil; live grid, rail, cargo, station, route, and HUD remain Godot-rendered",
+      "notion_attachment_or_preview": "file-upload://3c91b237-eb1c-819a-a0e2-00b2d8a6c0ce",
+      "rights_record": "docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md::SX-INGAME-VISUAL-001",
+      "dual_preservation_status": "APPROVED_DUAL_PRESERVED"
+    },
+    {
+      "asset_id": "SX-LESSON-HERO-001",
+      "path": "art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v01.png",
+      "dimensions": [1672, 941],
+      "sha256": "f77f949ecd2936199b2a4e4a3ee3038b6a85a0363f371b7c7a2e0fada57ea1e7",
+      "visual_role": "RUNTIME_PRODUCT_ASSET",
+      "runtime_consumer": "game/demo/vertical_slice_demo.tscn::BriefingScreen/Panel/Content/LessonArt via game/demo/presentation/product_shell_art.gd::LESSON_HERO_PATH",
+      "consumer_status": "VERIFIED",
+      "content_constraints": ["text_free", "logo_free", "watermark_free", "no_fake_ui", "no_known_branded_elements"],
+      "render_policy": "center crop cover in ProductShellArt LESSON mode; live lesson title, objective, and action remain Godot UI",
+      "notion_attachment_or_preview": "file-upload://3c91b237-eb1c-8171-8c5a-00b2b9ff3171",
+      "rights_record": "docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md::SX-INGAME-VISUAL-001",
+      "dual_preservation_status": "APPROVED_DUAL_PRESERVED"
+    },
+    {
+      "asset_id": "SX-RESULT-SUCCESS-002",
+      "path": "art/product_assets/ed_hybrid_v1/shells/shell_result_success_v02.png",
+      "dimensions": [1672, 941],
+      "sha256": "2b92c89b91fa1b6e533e2ce0d10d2a9609ba745e81bbec5e9a0eb4745c5aa72a",
+      "visual_role": "RUNTIME_PRODUCT_ASSET",
+      "runtime_consumer": "game/demo/vertical_slice_demo.tscn::ResultOverlay/Panel/Content/ResultArt via game/demo/presentation/product_shell_art.gd::RESULT_SUCCESS_PATH",
+      "consumer_status": "VERIFIED",
+      "content_constraints": ["text_free", "logo_free", "watermark_free", "no_fake_ui", "no_known_branded_elements"],
+      "render_policy": "center crop cover in ProductShellArt RESULT success mode; live outcome, copy, and actions remain Godot UI",
+      "notion_attachment_or_preview": "file-upload://3c91b237-eb1c-811f-85bb-00b2655fe47e",
+      "rights_record": "docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md::SX-INGAME-VISUAL-001",
+      "dual_preservation_status": "APPROVED_DUAL_PRESERVED"
+    },
+    {
+      "asset_id": "SX-RESULT-FAILURE-002",
+      "path": "art/product_assets/ed_hybrid_v1/shells/shell_result_failure_v02.png",
+      "dimensions": [1672, 941],
+      "sha256": "e1513ed08d1e8b175ad15ac9747c58f7f464222be97e4cb548ce53f10bf51c68",
+      "visual_role": "RUNTIME_PRODUCT_ASSET",
+      "runtime_consumer": "game/demo/vertical_slice_demo.tscn::ResultOverlay/Panel/Content/ResultArt via game/demo/presentation/product_shell_art.gd::RESULT_FAILURE_PATH",
+      "consumer_status": "VERIFIED",
+      "content_constraints": ["text_free", "logo_free", "watermark_free", "no_fake_ui", "no_known_branded_elements"],
+      "render_policy": "center crop cover in ProductShellArt RESULT failure mode; live reason, remaining cargo, and actions remain Godot UI",
+      "notion_attachment_or_preview": "file-upload://3c91b237-eb1c-8115-b109-00b2a56bd0b5",
+      "rights_record": "docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md::SX-INGAME-VISUAL-001",
+      "dual_preservation_status": "APPROVED_DUAL_PRESERVED"
+    }
+  ]
+}
