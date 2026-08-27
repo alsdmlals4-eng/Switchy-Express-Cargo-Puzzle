@@ -67,10 +67,25 @@ Assert-Equal ([string]$WorkflowRun.head_sha) ([string]$Evidence.artifact.workflo
 Assert-Equal ([string]$WorkflowRun.conclusion) ([string]$Evidence.artifact.workflow_conclusion) "live workflow conclusion"
 if ([bool]$Artifact.expired) { throw "Exact candidate artifact is expired; no fallback is allowed." }
 if ([string]::IsNullOrWhiteSpace($WorkDir)) { $WorkDir = Join-Path $env:TEMP $CandidateId }
-$TempRoot = [System.IO.Path]::GetFullPath($env:TEMP).TrimEnd('\')
+$AllowedTempRoots = @()
+foreach ($CandidateTempRoot in @($env:TEMP, $env:RUNNER_TEMP)) {
+    if (-not [string]::IsNullOrWhiteSpace($CandidateTempRoot)) {
+        $ResolvedTempRoot = [System.IO.Path]::GetFullPath($CandidateTempRoot).TrimEnd('\')
+        if ($AllowedTempRoots -notcontains $ResolvedTempRoot) { $AllowedTempRoots += $ResolvedTempRoot }
+    }
+}
+if ($AllowedTempRoots.Count -eq 0) { throw "No safe TEMP or RUNNER_TEMP root is configured." }
 $WorkDir = [System.IO.Path]::GetFullPath($WorkDir).TrimEnd('\')
-if (-not ([System.IO.Path]::GetDirectoryName($WorkDir).Equals($TempRoot, [System.StringComparison]::OrdinalIgnoreCase))) {
-    throw "WorkDir must be a direct child of TEMP; refusing unsafe target: $WorkDir"
+$WorkDirParent = [System.IO.Path]::GetDirectoryName($WorkDir)
+$IsDirectAllowedTempChild = $false
+foreach ($AllowedTempRoot in $AllowedTempRoots) {
+    if ($WorkDirParent.Equals($AllowedTempRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
+        $IsDirectAllowedTempChild = $true
+        break
+    }
+}
+if (-not $IsDirectAllowedTempChild) {
+    throw "WorkDir must be a direct child of TEMP or RUNNER_TEMP; refusing unsafe target: $WorkDir"
 }
 $ArtifactDir = Join-Path $WorkDir "artifact"
 if (Test-Path -LiteralPath $ArtifactDir) { Remove-Item -LiteralPath $ArtifactDir -Recurse -Force }

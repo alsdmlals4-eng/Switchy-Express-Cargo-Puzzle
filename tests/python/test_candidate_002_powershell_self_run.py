@@ -71,6 +71,7 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertIn("gh run download", text)
         self.assertIn("Start-Process", text)
         self.assertIn("WorkDir must be a direct child of TEMP", text)
+        self.assertIn("RUNNER_TEMP", text)
 
     def test_post_060_pointer_selects_the_minted_route_readability_candidate(self) -> None:
         pointer = self._post_060_pointer()

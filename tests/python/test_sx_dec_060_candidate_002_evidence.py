@@ -10,6 +10,7 @@ POINTER = ROOT / "evidence/acceptance/post_sx_dec_060_candidate.json"
 ARTIFACT = ROOT / "evidence/acceptance/sx60_poc_accept_002_artifact.json"
 AUDIT = ROOT / "evidence/acceptance/sx60_poc_accept_002_pck_deep_audit.json"
 CURRENT_DECISIONS = ROOT / "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md"
+PROTECTED_APPROVAL = ROOT / "docs/operations/PROJECT_PROTECTED_CHANGE_APPROVAL.json"
 
 
 class SXDec060Candidate002EvidenceTests(unittest.TestCase):
@@ -81,6 +82,18 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         self.assertNotIn("candidate_002_windows_physical_startup_smoke: PASS", text)
         self.assertNotIn("candidate_002_result: BLOCKED_BY_CONFIRMED_P1_PREFLIGHT_VISUAL_DEFECTS", text)
         self.assertIn("candidate_002_windows_physical_startup_smoke: NOT_RUN", text)
+
+    def test_user_approval_manifest_covers_only_the_current_candidate_002_protected_records(self) -> None:
+        approval = self._json(PROTECTED_APPROVAL)
+        self.assertIn("SX-DEC-060", approval["decision_ids"])
+        self.assertIn(
+            "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_02.md",
+            approval["approved_paths"],
+        )
+        self.assertIn(
+            "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_02.md",
+            approval["approved_paths"],
+        )
 
 
 if __name__ == "__main__":
