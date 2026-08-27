@@ -421,7 +421,7 @@ def materialize(source_root: Path, output: Path) -> MaterializationReport:
             encoding="utf-8",
         )
 
-        target_hash = contract.sha256_file(output / TARGET_SCENE_RELATIVE)
+        target_hash = contract.canonical_text_sha256_file(output / TARGET_SCENE_RELATIVE)
         baseline = contract.load_json(source_root / PILOT_RELATIVE / "SOURCE_BASELINE.json")
         if target_hash != baseline["target_scene"]["raw_sha256"]:
             raise PilotMaterializationError("COPY_INTEGRITY_MISMATCH")

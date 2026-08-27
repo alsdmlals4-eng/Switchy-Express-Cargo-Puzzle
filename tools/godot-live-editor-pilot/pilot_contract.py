@@ -24,6 +24,12 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def canonical_text_sha256_file(path: Path) -> str:
+    """Hash tracked text after normalizing checkout CRLF to repository LF."""
+    payload = path.read_bytes().replace(b"\r\n", b"\n")
+    return hashlib.sha256(payload).hexdigest()
+
+
 def load_json(path: Path) -> dict[str, Any]:
     value = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(value, dict):
@@ -74,7 +80,7 @@ def validate_base_snapshot(root: Path) -> list[str]:
         if not path.is_file():
             errors.append(f"BASE_SNAPSHOT_FILE_MISSING:{name}")
             continue
-        actual = sha256_file(path)
+        actual = canonical_text_sha256_file(path)
         if actual != expected:
             errors.append(
                 f"BASE_SNAPSHOT_MISMATCH:{name}:expected={expected}:actual={actual}"
@@ -112,7 +118,7 @@ def validate_source_baseline(root: Path) -> list[str]:
         if not path.is_file():
             errors.append(f"SOURCE_BASELINE_FILE_MISSING:{key}:{path}")
             continue
-        actual = sha256_file(path)
+        actual = canonical_text_sha256_file(path)
         if actual != expected:
             errors.append(
                 f"SOURCE_BASELINE_MISMATCH:{key}:expected={expected}:actual={actual}"
@@ -137,6 +143,7 @@ __all__ = [
     "inventory",
     "load_json",
     "protected_inventory",
+    "canonical_text_sha256_file",
     "sha256_file",
     "validate_base_snapshot",
     "validate_source_baseline",

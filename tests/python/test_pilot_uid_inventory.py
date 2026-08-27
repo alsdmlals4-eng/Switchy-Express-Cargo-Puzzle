@@ -35,7 +35,7 @@ class PilotUidInventoryTests(unittest.TestCase):
             source.write_text("@tool\nextends EditorPlugin\n", encoding="utf-8")
             (vendor / "plugin.gd.uid").write_text("uid://generated\n", encoding="utf-8")
             (pilot / "BASE_SOURCE.json").write_text(
-                json.dumps({"files": {"plugin.gd": contract.sha256_file(source)}}),
+                json.dumps({"files": {"plugin.gd": contract.canonical_text_sha256_file(source)}}),
                 encoding="utf-8",
             )
             self.assertEqual([], contract.validate_base_snapshot(root))
