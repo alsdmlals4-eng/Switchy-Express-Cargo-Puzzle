@@ -15,6 +15,8 @@
 | 핵심 플레이는 무엇인가 | `../../10_경험/CORE_GAMEPLAY.md` |
 | finite 선로·화물·LIFO·시간 시스템은 무엇인가 | `../../20_시스템_콘텐츠/CORE_SYSTEMS.md` |
 | 화면과 그림체는 무엇인가 | `../../40_표현/VISUAL_DIRECTION.md` |
+| 현재 Slice의 모든 화면·오버레이와 시각 소비처 coverage는 무엇인가 | `../../40_표현/TARGET_BUILD_SCREEN_SURFACE_AND_VISUAL_COVERAGE.md` |
+| 첫 세션 화면·문구·progressive disclosure가 어떤 runtime 의미를 가리키는가 | `../../30_UI_UX/FIRST_SESSION_SCREEN_CONTENT_DATA_CONTRACT.md` |
 | Vertical Slice 범위와 cutover 경계는 무엇인가 | `../../50_제작_검증/VERTICAL_SLICE_CONTRACT.md` |
 | 플레이테스트와 사람 검증은 어떻게 하는가 | `../../50_제작_검증/PLAYTEST_PLAN.md` |
 | Grill Me 승인 batch를 어떻게 닫는가 | `../../50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md` |

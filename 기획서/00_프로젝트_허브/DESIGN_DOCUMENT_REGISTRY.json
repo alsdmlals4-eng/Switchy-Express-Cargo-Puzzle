@@ -3,9 +3,9 @@
   "project": "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle",
   "documents": [
     {
-      "id": "SX-WORK-INSTRUCTION-V4-5-R2",
+      "id": "SX-WORK-INSTRUCTION-V4-8-R5-4",
       "question": "현재 프로젝트 실행 Thin Adapter 작업지시문 정본은 무엇인가",
-      "source": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5_r2.md",
+      "source": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md",
       "format": "markdown",
       "publication_policy": "source_only",
       "status": "CURRENT"
@@ -118,6 +118,22 @@
       "id": "SX-VISUAL",
       "question": "시각·UI 방향",
       "source": "기획서/40_표현/VISUAL_DIRECTION.md",
+      "format": "markdown",
+      "publication_policy": "milestone_sync",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-SCREEN-VISUAL-COVERAGE-001",
+      "question": "현재 Vertical Slice의 화면·오버레이·전환과 실제 시각 소비처 coverage는 무엇인가",
+      "source": "기획서/40_표현/TARGET_BUILD_SCREEN_SURFACE_AND_VISUAL_COVERAGE.md",
+      "format": "markdown",
+      "publication_policy": "milestone_sync",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-FIRST-SESSION-SCREEN-CONTENT",
+      "question": "첫 세션 화면·문구·progressive disclosure가 현재 finite runtime 의미와 어떻게 연결되는가",
+      "source": "기획서/30_UI_UX/FIRST_SESSION_SCREEN_CONTENT_DATA_CONTRACT.md",
       "format": "markdown",
       "publication_policy": "milestone_sync",
       "status": "CURRENT"
