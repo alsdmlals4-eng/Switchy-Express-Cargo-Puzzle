@@ -16,7 +16,7 @@
       "static": [
         {
           "id": "SX-BASE-RULES-STATIC",
-          "sha256": "28c4ea874e1f6a2649099edf2230eb9b2cabde5828756145f759dc58bed44dae",
+          "sha256": "561c8781552d9fa92990f0caa279334bbf98193ead60567bac6b39b5791ca308",
           "source": "docs/BASE_RULES_VERSION.md"
         }
       ]
@@ -24,7 +24,7 @@
     "operating": [
       {
         "id": "SX-ADAPTER-MIGRATION-20260806",
-        "sha256": "fe19d417bf23b0d7f1d0df2f4f1b44cfa199cae37374323b360f6a7471a763d7",
+        "sha256": "09ef46d2b90ec8d72c008709f11d91c3bba56c0646dbd4efa9c0ea32f508e5b9",
         "source": "docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json"
       }
     ],
@@ -32,7 +32,7 @@
     "sheet": [
       {
         "id": "SX-SHEET-AUTHORITY-20260806",
-        "sha256": "e9d6ea755e319fc6aa9ef50d6c5297cce0818d2c0544047e54bec13ba1875788",
+        "sha256": "eb1b0b512b44a7538601900ef75fd10f5ae450e1c6484c1d144b6d2aa9d49dfc",
         "source": "docs/operations/SWITCHY_SHEET_AUTHORITY_EVIDENCE_2026-08-06.json"
       }
     ]
