@@ -36,8 +36,8 @@ pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_AFTER_SX
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
 post_sx_dec_060_candidate: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_0e882764b837d13282a7642b115948d4e061d163
 sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
-candidate_002_windows_physical_startup_smoke: PROCESS_STARTUP_OBSERVED_UNVISUALIZED_CURRENT_SX60_POC_ACCEPT_002
-candidate_002_result: PROCESS_STARTUP_OBSERVED_UNVISUALIZED_CURRENT_SX60_POC_ACCEPT_002
+candidate_002_windows_physical_startup_smoke: ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT_OBSERVED_CURRENT_SX60_POC_ACCEPT_002
+candidate_002_result: ISOLATED_VISUAL_INPUT_OBSERVED_AUDIO_NOT_OBSERVED_CURRENT_SX60_POC_ACCEPT_002
 candidate_002_acceptance_promotion: PROHIBITED_UNTIL_PHYSICAL_EVIDENCE_EXISTS
 candidate_003_package_integrity: PASS · HISTORICAL_PRE_SX_DEC_060
 candidate_003_pck_integrity: PASS · 472_OF_472 · HISTORICAL_PRE_SX_DEC_060
@@ -51,9 +51,9 @@ sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREE
 sx_dec_060_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
 sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED
 sx_dec_060_notion_sync: PASS · POST_PR_188_READBACK_COMPLETE
-developer_self_run: PROCESS_STARTUP_OBSERVED_UNVISUALIZED_POST_SX_DEC_060
-windows_physical_startup_and_build_entry_automation_observed: CURRENT_SX60_POC_ACCEPT_002_PROCESS_STARTUP_ONLY · HISTORICAL_SX60_POC_ACCEPT_001_AUTOMATION_SEPARATE
-acceptance_build: SX60-POC-ACCEPT-002 · PACKAGE_VERIFIED · ISOLATED_VISUAL_INPUT_AUDIO_SELF_RUN_PENDING
+developer_self_run: ISOLATED_VISUAL_INPUT_OBSERVED_AUDIO_NOT_OBSERVED_POST_SX_DEC_060
+windows_physical_startup_and_build_entry_automation_observed: CURRENT_SX60_POC_ACCEPT_002_ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT · HISTORICAL_SX60_POC_ACCEPT_001_AUTOMATION_SEPARATE
+acceptance_build: SX60-POC-ACCEPT-002 · PACKAGE_VERIFIED · ISOLATED_VISUAL_INPUT_OBSERVED · AUDIO_PERCEPTUAL_QA_NEXT
 windows_full_physical_runtime: NOT_RUN_POST_SX_DEC_060
 audio_perceptual_qa: NOT_RUN_POST_SX_DEC_060
 android_device: NOT_RUN_POST_SX_DEC_060
@@ -233,8 +233,8 @@ PR #158 implementation → PR #166 playable POC → PR #171 visual correction �
 
 current:
 SX-DEC-060 merged main PR #188
-→ SX60-POC-ACCEPT-002 isolated visual/input/audio self-run
-→ Windows physical smoke
+→ SX60-POC-ACCEPT-002 isolated title → briefing → build visual/input observation complete
+→ Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person first-contact comprehension
 → EXPAND / REWORK / REPEAT_SLICE / HOLD / STOP

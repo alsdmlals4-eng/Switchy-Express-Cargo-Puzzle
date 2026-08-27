@@ -125,7 +125,21 @@ Base에는 `N independent deliverables`라는 일반 원칙만 후보로 올린�
 - root AGENTS에 장문 체크리스트를 복제하지 않음.
 - proposal과 active Base implementation은 별도 PR로 분리.
 
-## 8. Evidence ceiling
+## 8. 문제: 전체 데스크톱 캡처가 exact 후보 창을 분리하지 못함
+
+### Incident
+`SX60-POC-ACCEPT-002`의 EXE/PCK 해시와 기동 프로세스는 정확히 검증됐지만, 처음 사용한 전체 데스크톱 캡처에는 다른 창의 픽셀이 섞였다. 따라서 해당 캡처는 후보 앱의 시각·입력·오디오 증거로 사용할 수 없었다.
+
+### Solution
+대상 EXE를 다시 내려받아 동일 해시를 확인한 뒤, 반환된 앱 목록에서 **exact EXE process path + exact window title**이 일치하는 창 하나만 선택했다. 그 단일 창에 대한 targeted capture에서 title → briefing → build board와 `Demo Start`/`Build Start` 버튼 입력을 확인했고, 그 뒤 소유한 프로세스만 종료했다.
+
+### Lesson
+`EXACT_WINDOW_CAPTURE_IDENTITY_GATE` — 패키지 검증 뒤의 시각·입력 증거는 전체 데스크톱 이미지가 아니라, **반환된 단일 window identity를 EXE path와 title로 확인한 targeted capture**에만 귀속한다. 대상 창이 분리되지 않으면 input을 보내지 않고 `NOT_OBSERVED`로 fail-closed한다.
+
+### Base promotion disposition
+`DEFER_PROJECT_EVIDENCE_ONLY` — 이번에는 한 프로젝트의 한 capture failure와 recovery만 확인됐다. Base current policy의 반복·독립 증거 요건을 충족하지 않았으므로 Base owner/registry는 변경하지 않는다. 같은 identity mismatch가 독립 프로젝트나 별도 환경에서 재현될 때만 Base promotion candidate로 재평가한다.
+
+## 9. Evidence ceiling
 
 이번 관찰로 증명 가능한 것:
 - scope drift가 실제 발생했다.

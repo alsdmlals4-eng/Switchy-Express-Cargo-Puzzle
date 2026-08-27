@@ -30,10 +30,10 @@
     "PR #201"
   ],
   "mint_after": [
-    "isolated visual/input/audio self-run on the explicit candidate",
+    "isolated visual/input observation on the explicit candidate (complete; audio remains perceptual QA)",
     "Windows physical smoke and audio perceptual QA",
     "Android device smoke and five-person first-contact comprehension"
   ],
-  "current_next_action": "RUN_ISOLATED_VISUAL_INPUT_AUDIO_SELF_RUN_ON_SX60_POC_ACCEPT_002_BEFORE_DEVICE_OR_HUMAN_COMPREHENSION_TESTS",
+  "current_next_action": "RUN_WINDOWS_PHYSICAL_SMOKE_AND_AUDIO_PERCEPTUAL_QA_ON_SX60_POC_ACCEPT_002_BEFORE_DEVICE_OR_HUMAN_COMPREHENSION_TESTS",
   "updated_date_kst": "2026-08-27"
 }

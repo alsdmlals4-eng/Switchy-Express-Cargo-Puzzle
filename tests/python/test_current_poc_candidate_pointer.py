@@ -116,7 +116,7 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
         self.assertEqual(
             pointer["mint_after"],
             [
-                "isolated visual/input/audio self-run on the explicit candidate",
+                "isolated visual/input observation on the explicit candidate (complete; audio remains perceptual QA)",
                 "Windows physical smoke and audio perceptual QA",
                 "Android device smoke and five-person first-contact comprehension",
             ],

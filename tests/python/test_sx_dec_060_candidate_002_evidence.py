@@ -69,12 +69,20 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         )
         self.assertEqual(
             artifact["verification"]["windows_physical_startup_and_build_entry_automation_observed"],
-            "PROCESS_STARTUP_OBSERVED_UNVISUALIZED",
+            "ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT_OBSERVED",
         )
         self.assertEqual(
             artifact["verification"]["developer_self_run"],
-            "PROCESS_STARTUP_OBSERVED_UNVISUALIZED",
+            "ISOLATED_VISUAL_INPUT_OBSERVED_AUDIO_NOT_OBSERVED",
         )
+        isolated = artifact["verification"]["isolated_window_observation"]
+        self.assertEqual(
+            isolated["window_identity"],
+            "Switchy Express: Cargo Puzzle (DEBUG)",
+        )
+        self.assertEqual(isolated["observed_flow"], "title -> briefing -> build board")
+        self.assertEqual(isolated["audio_verdict"], "NOT_OBSERVED")
+        self.assertEqual(isolated["human_or_device_verdict"], "NOT_RUN")
         for key in (
             "windows_physical_runtime_full_scenarios",
             "audio_perceptual_qa",
@@ -90,16 +98,16 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         self.assertNotIn("candidate_002_windows_physical_startup_smoke: PASS", text)
         self.assertNotIn("candidate_002_result: BLOCKED_BY_CONFIRMED_P1_PREFLIGHT_VISUAL_DEFECTS", text)
         self.assertIn(
-            "candidate_002_windows_physical_startup_smoke: PROCESS_STARTUP_OBSERVED_UNVISUALIZED",
+            "candidate_002_windows_physical_startup_smoke: ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT_OBSERVED",
             text,
         )
-        self.assertIn("acceptance_build: SX60-POC-ACCEPT-002 · PACKAGE_VERIFIED · ISOLATED_VISUAL_INPUT_AUDIO_SELF_RUN_PENDING", text)
+        self.assertIn("acceptance_build: SX60-POC-ACCEPT-002 · PACKAGE_VERIFIED · ISOLATED_VISUAL_INPUT_OBSERVED · AUDIO_PERCEPTUAL_QA_NEXT", text)
 
     def test_active_context_routes_after_startup_observation_to_isolated_self_run(self) -> None:
         text = ACTIVE_CONTEXT.read_text(encoding="utf-8")
 
         self.assertIn(
-            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · PROCESS_STARTUP_OBSERVED_UNVISUALIZED · ISOLATED_VISUAL_INPUT_AUDIO_SELF_RUN_NEXT",
+            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · ISOLATED_VISUAL_INPUT_OBSERVED · AUDIO_NOT_OBSERVED · PHYSICAL_AUDIO_QA_NEXT",
             text,
         )
         self.assertNotIn("HUMAN_PHYSICAL_SELF_RUN_NEXT", text)

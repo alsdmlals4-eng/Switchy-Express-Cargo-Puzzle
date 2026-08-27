@@ -52,7 +52,7 @@ sx_dec_060_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-
 sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_notion_readback: PASS
-post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · PROCESS_STARTUP_OBSERVED_UNVISUALIZED · ISOLATED_VISUAL_INPUT_AUDIO_SELF_RUN_NEXT
+post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · ISOLATED_VISUAL_INPUT_OBSERVED · AUDIO_NOT_OBSERVED · PHYSICAL_AUDIO_QA_NEXT
 windows_physical_post_060: NOT_RUN_CURRENT_EXACT_CANDIDATE_002
 android_device_post_060: NOT_RUN
 five_person_post_060: NOT_RUN
@@ -219,8 +219,8 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 ## Current next action
 
 ```text
-SX60-POC-ACCEPT-002 isolated visual/input/audio self-run
-→ Windows physical smoke
+SX60-POC-ACCEPT-002 isolated title → briefing → build visual/input observation complete
+→ Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person comprehension
 → product decision

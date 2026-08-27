@@ -150,8 +150,8 @@ Historical v4.7/r2/r4 adapter/reconciliation materials (including v4.8 `2026-08-
 ## Current next action
 
 ```text
-SX60-POC-ACCEPT-002 isolated visual/input/audio self-run
-→ Windows physical smoke
+SX60-POC-ACCEPT-002 isolated title → briefing → build visual/input observation complete
+→ Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person first-contact comprehension
 → product decision

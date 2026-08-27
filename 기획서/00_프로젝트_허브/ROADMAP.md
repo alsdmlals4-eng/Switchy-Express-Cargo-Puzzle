@@ -185,8 +185,8 @@ Actual Godot product implementation is merged-main verified by PR #188; the pack
 Stable sequence:
 
 ```text
-SX60-POC-ACCEPT-002 isolated visual/input/audio self-run
-→ physical/device/human gates
+SX60-POC-ACCEPT-002 isolated title → briefing → build visual/input observation complete
+→ audio perceptual QA and physical/device/human gates
 ```
 
 ```yaml

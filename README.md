@@ -146,7 +146,7 @@ Actual GDScript/Scene/Resource/map/runtime implementation is merged-main verifie
 ## Current Next Work
 
 ```text
-→ SX60-POC-ACCEPT-002 isolated visual/input/audio self-run
+→ SX60-POC-ACCEPT-002 isolated visual/input self-run observed (audio remains unobserved)
 → Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person comprehension
