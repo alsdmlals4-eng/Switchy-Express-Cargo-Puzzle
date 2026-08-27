@@ -61,6 +61,7 @@ sx_dec_061_merge: MERGED_MAIN_VERIFIED · PR_229 · main_a8ea00bc70612c4556fc446
 sx_dec_061_notion_home_visual_readback: PASS · 2026-08-28
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
+notion_direction_current_page: 3c91b237-eb1c-8197-bf13-debb96d444c8 · CURRENT_CREATED_READBACK_PASS · 2026-08-28
 post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · ISOLATED_VISUAL_INPUT_OBSERVED · AUDIO_NOT_OBSERVED · PHYSICAL_AUDIO_QA_NEXT
 current_main_live_machine_qa: docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md · MAIN_CF93926 · TITLE_BRIEFING_BUILD_FLOW_OBSERVED · HUMAN_DEVICE_AUDIO_NOT_RUN
 title_hero_runtime_asset: MERGED_MAIN_VERIFIED · PR_217 · main_e0044d6c7427a7c199da6bcdcf792e41e2e2f152 · ISSUE_216 · RUNTIME_VERIFIED · DUAL_PRESERVATION_PASS
@@ -274,6 +275,7 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 SX-DEC-061 planning direction is recorded; it has not changed runtime bytes
 → use the full T1 → T6 → VS_DEMO_01 → Result sequence for the next Phase 5 human-validation design
 → resolve the foreign-project Notion Direction page only after the user authorizes rehome or replacement
+→ use Notion Direction `3c91b237-eb1c-8197-bf13-debb96d444c8` plus the repository owners as current Switchy Direction
 → Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person comprehension

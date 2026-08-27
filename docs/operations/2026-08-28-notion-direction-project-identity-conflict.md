@@ -1,6 +1,6 @@
 # Notion Direction Project-Identity Conflict
 
-Status: `OPEN · NO_FOREIGN_CONTENT_MUTATION · 2026-08-28 KST`
+Status: `PARTIALLY_RESOLVED · CURRENT_OWNER_CREATED · NO_FOREIGN_CONTENT_MUTATION · 2026-08-28 KST`
 
 Tracking: GitHub Issue #230
 
@@ -14,9 +14,10 @@ This is a `CONFLICT`, not historical Switchy material. The title and parent rela
 
 - Did not overwrite, move, delete, archive, or relink the foreign Direction page or its child content.
 - Updated only the confirmed Switchy Home and Visual pages with the merged `SX-DEC-061` state, then performed exact destination readback.
-- Repository owners remain the current Switchy Direction source until a user explicitly authorizes a Notion rehome or replacement.
+- Created the dedicated Switchy Direction page `01 · Direction · Switchy Express · CURRENT` at `3c91b237-eb1c-8197-bf13-debb96d444c8`, linked it from Home, and read both destinations back.
+- Repository owners and that dedicated page are the current Switchy Direction source. The foreign page remains an explicitly non-current child until a user disposes of it.
 
-## Required User Decision
+## Optional Foreign-Page Cleanup Decision
 
 Choose exactly one safe disposition for the foreign Direction page:
 
