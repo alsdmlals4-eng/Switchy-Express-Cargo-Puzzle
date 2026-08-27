@@ -121,6 +121,20 @@ class SwitchyGodotLiveEditorPilotContractTests(unittest.TestCase):
         self.assertNotIn("base_live_editor_adapter", source)
         self.assertNotIn("switchy_live_editor_pilot", source)
 
+    def test_canonical_source_hash_ignores_checkout_line_endings_but_raw_hash_does_not(self) -> None:
+        contract = _load_module(PILOT_ROOT / "pilot_contract.py", "switchy_pilot_contract_line_endings")
+        self.assertIsNotNone(contract, "missing or unloadable pilot_contract.py")
+        with tempfile.TemporaryDirectory() as temporary:
+            lf = Path(temporary) / "lf.txt"
+            crlf = Path(temporary) / "crlf.txt"
+            lf.write_bytes(b"first\nsecond\n")
+            crlf.write_bytes(b"first\r\nsecond\r\n")
+            self.assertNotEqual(contract.sha256_file(lf), contract.sha256_file(crlf))
+            self.assertEqual(
+                contract.canonical_text_sha256_file(lf),
+                contract.canonical_text_sha256_file(crlf),
+            )
+
     def test_base_source_inventory_matches_vendored_bytes(self) -> None:
         inventory_path = PILOT_ROOT / "BASE_SOURCE.json"
         vendor_root = PILOT_ROOT / "vendor/base_live_editor_adapter"
@@ -214,7 +228,7 @@ class SwitchyGodotLiveEditorPilotContractTests(unittest.TestCase):
             baseline = source / "tools/godot-live-editor-pilot/SOURCE_BASELINE.json"
             value = json.loads(baseline.read_text(encoding="utf-8"))
             contract = _load_module(source / "tools/godot-live-editor-pilot/pilot_contract.py", "fixture_contract_plugins")
-            value["project_godot"]["raw_sha256"] = contract.sha256_file(project)
+            value["project_godot"]["raw_sha256"] = contract.canonical_text_sha256_file(project)
             baseline.write_text(json.dumps(value), encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "SOURCE_PLUGIN_ALREADY_ENABLED"):
                 module.materialize(source, Path(temporary) / "output")
@@ -229,7 +243,7 @@ class SwitchyGodotLiveEditorPilotContractTests(unittest.TestCase):
             baseline = source / "tools/godot-live-editor-pilot/SOURCE_BASELINE.json"
             value = json.loads(baseline.read_text(encoding="utf-8"))
             contract = _load_module(source / "tools/godot-live-editor-pilot/pilot_contract.py", "fixture_contract_target")
-            value["target_scene"]["raw_sha256"] = contract.sha256_file(scene)
+            value["target_scene"]["raw_sha256"] = contract.canonical_text_sha256_file(scene)
             baseline.write_text(json.dumps(value), encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "TARGET_SCENE_CONTRACT_MISMATCH"):
                 module.materialize(source, Path(temporary) / "output")
