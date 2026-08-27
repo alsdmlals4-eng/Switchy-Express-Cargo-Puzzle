@@ -88,11 +88,11 @@ class ExecutionContractFreshnessTests(unittest.TestCase):
             "historical SX60 package provenance must remain pinned to its original main",
         )
 
-    def test_post_merge_pointer_requires_no_current_candidate_until_new_exact_main_package(self) -> None:
+    def test_post_merge_pointer_requires_a_new_exact_main_candidate(self) -> None:
         self.assertTrue(POST_060_POINTER.is_file(), "post-060 candidate pointer is missing")
         pointer = json.loads(POST_060_POINTER.read_text(encoding="utf-8"))
-        self.assertEqual(pointer["candidate_status"], "NOT_CREATED")
-        self.assertIn(pointer.get("current_candidate_id"), (None, ""))
+        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-002")
         self.assertEqual(
             pointer.get("minimum_product_source_main"),
             "a8eee4f875a95e8da69802c4e60452df3535fe0e",

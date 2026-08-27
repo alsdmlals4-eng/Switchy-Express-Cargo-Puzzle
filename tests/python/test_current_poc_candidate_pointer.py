@@ -78,12 +78,12 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
         self.assertEqual(evidence["package"]["identity_class"], "IMMUTABLE_CONTENT_DIGESTS")
         self.assertEqual(evidence["artifact"]["metadata_class"], "EPHEMERAL_DELIVERY_METADATA")
 
-    def test_post_060_pointer_is_fail_closed_until_a_new_route_readability_candidate_is_minted(self) -> None:
+    def test_post_060_pointer_selects_only_the_new_route_readability_candidate(self) -> None:
         pointer = self._json(POST_060_POINTER)
         self.assertEqual(pointer["schema_version"], 1)
         self.assertEqual(pointer["decision_id"], "SX-DEC-060")
-        self.assertEqual(pointer["candidate_status"], "NOT_CREATED")
-        self.assertIsNone(pointer["current_candidate_id"])
+        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-002")
         self.assertEqual(pointer["minimum_product_source_main"], "a8eee4f875a95e8da69802c4e60452df3535fe0e")
         self.assertEqual(
             pointer["selection_policy"],
@@ -101,8 +101,8 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
             pointer["historical_predecessor"]["role"],
             "HISTORICAL_EXACT_BYTES_ONLY",
         )
-        self.assertIsNone(pointer["artifact_evidence_owner"])
-        self.assertIsNone(pointer["deep_pck_evidence_owner"])
+        self.assertEqual(pointer["artifact_evidence_owner"], "evidence/acceptance/sx60_poc_accept_002_artifact.json")
+        self.assertEqual(pointer["deep_pck_evidence_owner"], "evidence/acceptance/sx60_poc_accept_002_pck_deep_audit.json")
         historical = pointer["historical_superseded_candidate"]
         self.assertEqual(historical["candidate_id"], "SX60-POC-ACCEPT-001")
         self.assertEqual(historical["source_main"], "7b7f350345619e870bb94e12954fbe81b1ef9403")
@@ -111,14 +111,14 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
         self.assertEqual(historical["role"], "HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE")
         self.assertEqual(pointer["tooling_only_non_invalidating_prs"], ["PR #201"])
 
-    def test_post_060_pointer_requires_actual_post_change_candidate_minting(self) -> None:
+    def test_post_060_pointer_routes_to_physical_self_run_after_candidate_minting(self) -> None:
         pointer = self._json(POST_060_POINTER)
         self.assertEqual(
             pointer["mint_after"],
             [
-                "exact package source at minimum_product_source_main or an explicitly verified descendant",
-                "automated regression and package proof for that exact source",
-                "new exact post-route-readability candidate identity",
+                "human physical self-run on the explicit candidate",
+                "Windows physical smoke and audio perceptual QA",
+                "Android device smoke and five-person first-contact comprehension",
             ],
         )
 
@@ -142,7 +142,7 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
     def test_current_entry_docs_do_not_promote_historical_automation_to_current_physical_pass(self) -> None:
         for relative in ("README.md", "기획서/00_프로젝트_허브/START_HERE.md"):
             text = (ROOT / relative).read_text(encoding="utf-8")
-            self.assertIn("CURRENT_EXACT_CANDIDATE_NOT_RUN", text, relative)
+            self.assertIn("CURRENT_EXACT_CANDIDATE_002_PACKAGE_VERIFIED_HUMAN_PHYSICAL_NOT_RUN", text, relative)
             self.assertIn("HISTORICAL_AUTOMATION_OBSERVED", text, relative)
 
     def test_historical_launcher_requires_explicit_history_only_opt_in(self) -> None:

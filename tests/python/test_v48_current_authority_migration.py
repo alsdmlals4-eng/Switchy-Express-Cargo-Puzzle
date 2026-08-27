@@ -59,7 +59,7 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
         active = ACTIVE_CONTEXT.read_text(encoding="utf-8")
         for text in (adapter, active):
             self.assertIn("SX59-POC-ACCEPT-003", text)
-            self.assertIn("NOT_CREATED", text)
+            self.assertIn("SX60-POC-ACCEPT-002", text)
             self.assertIn("SX-DEC-060", text)
             self.assertNotIn("current_candidate: SX59-POC-ACCEPT-003", text)
         self.assertIn("HISTORICAL", adapter)
@@ -101,8 +101,8 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
         text = PROJECT_SKILL.read_text(encoding="utf-8")
         current = text.split("### Current Gate authority", 1)[1].split("## SX-DEC-060 station / preflight contract", 1)[0]
         for required in (
-            "mint a new exact post-route-readability package candidate",
-            "POST-060 EXACT CANDIDATE: NOT_CREATED",
+            "SX60-POC-ACCEPT-002 human physical self-run",
+            "POST-060 EXACT CANDIDATE: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED",
             "Windows physical smoke",
             "Android device smoke",
             "Five-person first-contact comprehension",

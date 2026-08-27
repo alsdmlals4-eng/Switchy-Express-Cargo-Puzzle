@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "candidate_id": "SX60-POC-ACCEPT-002",
+  "decision_id": "SX-DEC-060",
+  "observed_date_kst": "2026-08-27",
+  "source_build": {
+    "main_sha": "0e882764b837d13282a7642b115948d4e061d163",
+    "identity": "POST_ROUTE_READABILITY_EXACT_MAIN_WORKFLOW_DISPATCH"
+  },
+  "artifact": {
+    "workflow_name": "Windows Demo Export",
+    "workflow_run_id": 33030116761,
+    "workflow_run_number": 483,
+    "workflow_event": "workflow_dispatch",
+    "workflow_head_sha": "0e882764b837d13282a7642b115948d4e061d163",
+    "workflow_conclusion": "success",
+    "id": 9629917429,
+    "name": "switchy-express-windows-demo-0e882764b837d13282a7642b115948d4e061d163",
+    "created_at": "2026-08-27T01:28:12Z",
+    "expires_at": "2026-09-10T01:28:08Z",
+    "retention_days": 14,
+    "api_digest_sha256": "b2602554ec28ba8597cc509c6dc2e1b61a946ca193a31673ed96bf9671c8c8e3",
+    "metadata_class": "EPHEMERAL_DELIVERY_METADATA"
+  },
+  "package": {
+    "identity_class": "IMMUTABLE_CONTENT_DIGESTS",
+    "zip_sha256": "b2602554ec28ba8597cc509c6dc2e1b61a946ca193a31673ed96bf9671c8c8e3",
+    "windows_exe_sha256": "1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244",
+    "windows_pck_sha256": "d360eb70b0182e3409b8c60a18e214e5324dd4af619e97b484d3c9dd9a27cd49",
+    "windows_runtime_json_proof_pck_sha256": "d360eb70b0182e3409b8c60a18e214e5324dd4af619e97b484d3c9dd9a27cd49",
+    "android_validation_runtime_json_proof_pck_sha256": "6ce0af813fc62603fbecb2efacb6e5e4b8944f06a95e262169131a8973a496b6"
+  },
+  "verification": {
+    "artifact_api_digest_equals_downloaded_zip_sha256": true,
+    "artifact_api_readback": "PASS · 2026-08-27",
+    "independent_zip_hash": "PASS · 2026-08-27",
+    "inner_sha256sums_matches_downloaded_exe_pck": true,
+    "windows_runtime_json": "PASS · parsed_json=26",
+    "android_validation_runtime_json": "PASS · parsed_json=26",
+    "package_integrity": "PASS",
+    "launcher_no_launch_package_verification": "PASS · 2026-08-27 · explicit Candidate 002 NoLaunch PowerShell verification",
+    "windows_physical_startup_and_build_entry_automation_observed": "NOT_RUN",
+    "developer_self_run": "NOT_RUN",
+    "windows_physical_runtime_full_scenarios": "NOT_RUN",
+    "audio_perceptual_qa": "NOT_RUN",
+    "android_device": "NOT_RUN",
+    "five_person_comprehension": "NOT_RUN",
+    "player_experience": "NOT_RUN"
+  }
+}

@@ -42,6 +42,8 @@ Assert-Equal ([bool]$Evidence.verification.artifact_api_digest_equals_downloaded
 Assert-Equal ([bool]$Audit.pck_integrity.integrity_pass) $true "PCK integrity evidence"
 $MinimumSourceMain = [string]$Pointer.minimum_product_source_main
 $CandidateSourceMain = [string]$Evidence.source_build.main_sha
+Assert-Equal ([string]$Evidence.artifact.workflow_head_sha) $CandidateSourceMain "artifact evidence workflow head SHA"
+Assert-Equal ([string]$Evidence.artifact.workflow_conclusion) "success" "artifact evidence workflow conclusion"
 if ([string]::IsNullOrWhiteSpace($MinimumSourceMain)) { throw "minimum_product_source_main is empty." }
 if ([string]::IsNullOrWhiteSpace($CandidateSourceMain)) { throw "candidate source_build.main_sha is empty." }
 if (-not (Get-Command git -ErrorAction SilentlyContinue)) { throw "Git is required to verify candidate source ancestry." }
@@ -57,9 +59,12 @@ if (-not (Get-Command gh -ErrorAction SilentlyContinue)) { throw "GitHub CLI (gh
 & gh auth status --hostname github.com *> $null
 if ($LASTEXITCODE -ne 0) { throw "GitHub CLI is not authenticated for github.com." }
 $Artifact = (& gh api "repos/$Repository/actions/artifacts/$($Evidence.artifact.id)" | ConvertFrom-Json)
+$WorkflowRun = (& gh api "repos/$Repository/actions/runs/$($Evidence.artifact.workflow_run_id)" | ConvertFrom-Json)
 $Digest = ([string]$Artifact.digest).Replace("sha256:", "").ToLowerInvariant()
 Assert-Equal ([string]$Artifact.id) ([string]$Evidence.artifact.id) "artifact id"
 Assert-Equal $Digest ([string]$Evidence.package.zip_sha256) "live artifact archive digest"
+Assert-Equal ([string]$WorkflowRun.head_sha) ([string]$Evidence.artifact.workflow_head_sha) "live workflow head SHA"
+Assert-Equal ([string]$WorkflowRun.conclusion) ([string]$Evidence.artifact.workflow_conclusion) "live workflow conclusion"
 if ([bool]$Artifact.expired) { throw "Exact candidate artifact is expired; no fallback is allowed." }
 if ([string]::IsNullOrWhiteSpace($WorkDir)) { $WorkDir = Join-Path $env:TEMP $CandidateId }
 $TempRoot = [System.IO.Path]::GetFullPath($env:TEMP).TrimEnd('\')

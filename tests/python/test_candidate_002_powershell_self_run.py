@@ -65,14 +65,17 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertNotIn("current_poc_candidate.json", text)
         self.assertNotIn("SX59-POC-ACCEPT-003", text)
         self.assertIn("gh api", text)
+        self.assertIn("actions/runs", text)
+        self.assertIn("live workflow head SHA", text)
+        self.assertIn("live workflow conclusion", text)
         self.assertIn("gh run download", text)
         self.assertIn("Start-Process", text)
         self.assertIn("WorkDir must be a direct child of TEMP", text)
 
-    def test_post_060_pointer_is_fail_closed_until_route_readability_candidate_minting(self) -> None:
+    def test_post_060_pointer_selects_the_minted_route_readability_candidate(self) -> None:
         pointer = self._post_060_pointer()
-        self.assertEqual(pointer["candidate_status"], "NOT_CREATED")
-        self.assertIsNone(pointer["current_candidate_id"])
+        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-002")
         self.assertEqual(pointer["minimum_product_source_main"], "a8eee4f875a95e8da69802c4e60452df3535fe0e")
         self.assertEqual(
             pointer["historical_superseded_candidate"]["invalidation_reason"],
@@ -91,7 +94,7 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
             "16c81f9b42a3391a2a3dabf501cb2d6eb7e011682abdaa3f79eb8b1124836e55",
         )
 
-    def test_windows_contract_verifies_missing_post_060_candidate_is_fail_closed(self) -> None:
+    def test_windows_contract_verifies_the_explicit_post_060_candidate(self) -> None:
         self.assertTrue(WINDOWS_CONTRACT.is_file(), "Windows PowerShell contract workflow is required")
         text = WINDOWS_CONTRACT.read_text(encoding="utf-8")
         self.assertIn("runs-on: windows-latest", text)
@@ -101,10 +104,10 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertIn("System.Management.Automation.Language.Parser", text)
         self.assertIn("-ContractCheck", text)
         self.assertIn("HistoricalEvidenceOnly -ContractCheck", text)
-        self.assertIn("Verify post-060 launcher fails closed until a current candidate exists", text)
-        self.assertIn("Verify missing post-060 candidate blocks package retrieval", text)
-        self.assertIn("POST_SX_DEC_060_CANDIDATE_FAIL_CLOSED: PASS", text)
-        self.assertIn("POST_SX_DEC_060_PACKAGE_RETRIEVAL_BLOCKED: PASS", text)
+        self.assertIn("Verify post-060 explicit candidate contract", text)
+        self.assertIn("Verify post-060 candidate package without launch", text)
+        self.assertIn("-ContractCheck", text)
+        self.assertIn("switchy-post-060-candidate-002", text)
         self.assertIn("evidence/acceptance/sx60_poc_accept_*_artifact.json", text)
         self.assertIn("SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_*.md", text)
         self.assertIn("SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_*.md", text)
