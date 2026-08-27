@@ -3,9 +3,10 @@ extends Control
 
 @export_enum("TITLE", "LESSON", "RESULT") var mode: String = "TITLE"
 
-const RESULT_SUCCESS_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_result_success_candidate_v01.png"
-const RESULT_FAILURE_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_result_failure_candidate_v01.png"
 const TITLE_HERO_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png"
+const LESSON_HERO_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v01.png"
+const RESULT_SUCCESS_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_result_success_v02.png"
+const RESULT_FAILURE_PATH := "art/product_assets/ed_hybrid_v1/shells/shell_result_failure_v02.png"
 
 const ART_BY_MODE := {
 	"LESSON": [
@@ -51,6 +52,9 @@ func asset_paths_for_test() -> Array[String]:
 	if mode == "TITLE":
 		result.append(TITLE_HERO_PATH)
 		return result
+	if mode == "LESSON":
+		result.append(LESSON_HERO_PATH)
+		return result
 	if mode == "RESULT" and _result_outcome != &"":
 		result.append(RESULT_SUCCESS_PATH if _result_outcome == &"SUCCESS" else RESULT_FAILURE_PATH)
 		return result
@@ -79,9 +83,9 @@ func _draw() -> void:
 	if available.size.x <= 0.0 or available.size.y <= 0.0:
 		return
 
-	# Reuse approved product sprites as explanatory/presentational art only.
+	# Presentation images support orientation only; live game state remains authoritative.
 	# Gameplay state and outcome authority stay in the finite session model.
-	if mode == "TITLE":
+	if _textures.size() == 1:
 		_draw_texture_cover(_textures[0], available)
 		return
 	var slot_width := available.size.x / float(_textures.size())
@@ -112,7 +116,15 @@ func _draw_texture_cover(texture: Texture2D, target: Rect2) -> void:
 	var texture_size := texture.get_size()
 	if texture_size.x <= 0.0 or texture_size.y <= 0.0:
 		return
-	var scale := maxf(target.size.x / texture_size.x, target.size.y / texture_size.y)
-	var draw_size := texture_size * scale
-	var draw_rect := Rect2(target.get_center() - draw_size * 0.5, draw_size)
-	draw_texture_rect(texture, draw_rect, false)
+	var source := Rect2(Vector2.ZERO, texture_size)
+	var source_ratio := texture_size.x / texture_size.y
+	var target_ratio := target.size.x / target.size.y
+	if source_ratio > target_ratio:
+		var crop_width := texture_size.y * target_ratio
+		source.position.x = (texture_size.x - crop_width) * 0.5
+		source.size.x = crop_width
+	else:
+		var crop_height := texture_size.x / target_ratio
+		source.position.y = (texture_size.y - crop_height) * 0.5
+		source.size.y = crop_height
+	draw_texture_rect_region(texture, target, source)

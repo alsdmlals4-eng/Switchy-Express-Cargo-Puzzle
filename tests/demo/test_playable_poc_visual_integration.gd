@@ -26,6 +26,7 @@ func run() -> void:
 		"cargo_red",
 		"cargo_blue",
 		"cargo_yellow",
+		"board_terrain",
 	]
 	if renderer.has_method("product_visual_asset_paths_for_test"):
 		var paths: Dictionary = renderer.product_visual_asset_paths_for_test()
@@ -115,24 +116,32 @@ func run() -> void:
 		"result art must support outcome-specific approved feedback"
 	)
 	if result_art != null and result_art.has_method("set_result_outcome"):
+		var lesson_art := shell.get_node_or_null("BriefingScreen/Panel/Content/LessonArt")
+		assert_not_null(lesson_art, "lesson must retain its concrete runtime art consumer")
+		if lesson_art != null and lesson_art.has_method("asset_paths_for_test"):
+			assert_equal(
+				lesson_art.asset_paths_for_test(),
+				["art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v01.png"],
+				"lesson uses its single scene-scale HeroArt rather than an icon strip"
+			)
 		result_art.set_result_outcome(&"SUCCESS")
 		var success_paths: Array = result_art.asset_paths_for_test()
 		assert_true(
-			success_paths.has("art/product_assets/ed_hybrid_v1/shells/shell_result_success_candidate_v01.png"),
-			"successful POC result must use approved success result art"
+			success_paths.has("art/product_assets/ed_hybrid_v1/shells/shell_result_success_v02.png"),
+			"successful POC result must use its scene-scale success art"
 		)
 		assert_false(
-			success_paths.has("art/product_assets/ed_hybrid_v1/shells/shell_result_failure_candidate_v01.png"),
+			success_paths.has("art/product_assets/ed_hybrid_v1/shells/shell_result_failure_v02.png"),
 			"success result must not show failure result art"
 		)
 		result_art.set_result_outcome(&"FAILURE")
 		var failure_paths: Array = result_art.asset_paths_for_test()
 		assert_true(
-			failure_paths.has("art/product_assets/ed_hybrid_v1/shells/shell_result_failure_candidate_v01.png"),
-			"failed POC result must use approved failure result art"
+			failure_paths.has("art/product_assets/ed_hybrid_v1/shells/shell_result_failure_v02.png"),
+			"failed POC result must use its scene-scale failure art"
 		)
 		assert_false(
-			failure_paths.has("art/product_assets/ed_hybrid_v1/shells/shell_result_success_candidate_v01.png"),
+			failure_paths.has("art/product_assets/ed_hybrid_v1/shells/shell_result_success_v02.png"),
 			"failure result must not show success result art"
 		)
 

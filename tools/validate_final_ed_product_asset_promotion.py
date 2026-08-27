@@ -14,8 +14,27 @@ SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054.json"
 BUILD_SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054_build_2b.json"
 VFX_SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054_vfx_2c.json"
 TITLE_HERO_MANIFEST = PRODUCT_ROOT / "shells" / "shell_title_hero_manifest.json"
+RUNTIME_VISUAL_MANIFEST = PRODUCT_ROOT / "runtime_visual_manifest.json"
 ALLOWED_DISPOSITIONS = {"PROMOTE_AS_IS", "PROMOTE_AFTER_REVISION", "REPLACE"}
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+EXPECTED_RUNTIME_VISUALS = {
+    "SX-BOARD-TERRAIN-001": (
+        "art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png",
+        "game/demo/presentation/product_board_renderer.gd",
+    ),
+    "SX-LESSON-HERO-001": (
+        "art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v01.png",
+        "game/demo/vertical_slice_demo.tscn",
+    ),
+    "SX-RESULT-SUCCESS-002": (
+        "art/product_assets/ed_hybrid_v1/shells/shell_result_success_v02.png",
+        "game/demo/vertical_slice_demo.tscn",
+    ),
+    "SX-RESULT-FAILURE-002": (
+        "art/product_assets/ed_hybrid_v1/shells/shell_result_failure_v02.png",
+        "game/demo/vertical_slice_demo.tscn",
+    ),
+}
 
 
 def _png_info(path: Path):
@@ -137,6 +156,56 @@ def validate():
                 actual_sha256 = hashlib.sha256(title_file.read_bytes()).hexdigest()
                 if title_hero.get("sha256") != actual_sha256:
                     errors.append("runtime title hero SHA-256 metadata mismatch")
+            except ValueError as exc:
+                errors.append(str(exc))
+
+    if not RUNTIME_VISUAL_MANIFEST.is_file():
+        errors.append(
+            f"missing in-game runtime visual manifest: {RUNTIME_VISUAL_MANIFEST.relative_to(ROOT)}"
+        )
+    else:
+        try:
+            runtime_visuals = json.loads(RUNTIME_VISUAL_MANIFEST.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            errors.append(f"invalid in-game runtime visual manifest: {exc}")
+            runtime_visuals = {}
+        if runtime_visuals.get("manifest_id") != "SX-INGAME-VISUAL-001":
+            errors.append("in-game runtime visual manifest_id mismatch")
+        if runtime_visuals.get("status") != "RUNTIME_INTEGRATED_VERIFIED":
+            errors.append("in-game runtime visuals must be integration-verified")
+        records = runtime_visuals.get("assets", [])
+        records_by_id = {
+            record.get("asset_id"): record
+            for record in records
+            if isinstance(record, dict) and record.get("asset_id")
+        }
+        if len(records_by_id) != len(records) or set(records_by_id) != set(EXPECTED_RUNTIME_VISUALS):
+            errors.append("in-game runtime visual manifest must own the exact four expected assets")
+        for asset_id, (expected_path, consumer_prefix) in EXPECTED_RUNTIME_VISUALS.items():
+            record = records_by_id.get(asset_id, {})
+            path = record.get("path", "")
+            runtime_product_paths.add(path)
+            if path != expected_path:
+                errors.append(f"in-game runtime visual path mismatch: {asset_id}")
+            if record.get("consumer_status") != "VERIFIED":
+                errors.append(f"in-game runtime visual consumer must be verified: {asset_id}")
+            if record.get("dual_preservation_status") != "APPROVED_DUAL_PRESERVED":
+                errors.append(f"in-game runtime visual dual preservation must be complete: {asset_id}")
+            if not str(record.get("runtime_consumer", "")).startswith(consumer_prefix):
+                errors.append(f"in-game runtime visual must name its actual consumer: {asset_id}")
+            if not str(record.get("notion_attachment_or_preview", "")).startswith("file-upload://"):
+                errors.append(f"in-game runtime visual must retain its Notion attachment: {asset_id}")
+            product_file = ROOT / path
+            if not product_file.is_file():
+                errors.append(f"missing in-game runtime visual PNG: {path}")
+                continue
+            try:
+                width, height, _, _, _ = _png_info(product_file)
+                if record.get("dimensions") != [width, height]:
+                    errors.append(f"in-game runtime visual dimensions mismatch: {asset_id}")
+                actual_sha256 = hashlib.sha256(product_file.read_bytes()).hexdigest()
+                if record.get("sha256") != actual_sha256:
+                    errors.append(f"in-game runtime visual SHA-256 metadata mismatch: {asset_id}")
             except ValueError as exc:
                 errors.append(str(exc))
 
@@ -317,7 +386,7 @@ def validate():
         f"authoritative_slices={authoritative_slice_count} · "
         f"sx_dec_054_owned={len(semantic_product_paths)} · "
         f"runtime_consumer_owned={len(runtime_product_paths)} · "
-        f"pending_corrupt_sources={len(pending_corrupt)} · runtime_integrated=false"
+        f"pending_corrupt_sources={len(pending_corrupt)} · runtime_integrated=true"
     )
     return 0
 

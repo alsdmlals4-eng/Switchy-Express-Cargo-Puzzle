@@ -13,6 +13,7 @@ SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054.json"
 BUILD_SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054_build_2b.json"
 VFX_SEMANTIC_MANIFEST = PRODUCT_ROOT / "semantic_manifest_sx_dec_054_vfx_2c.json"
 TITLE_HERO_MANIFEST = PRODUCT_ROOT / "shells" / "shell_title_hero_manifest.json"
+RUNTIME_VISUAL_MANIFEST = PRODUCT_ROOT / "runtime_visual_manifest.json"
 CANDIDATE_MANIFEST = ROOT / "art" / "production_candidates" / "ed_hybrid_v1" / "manifest.json"
 VALIDATOR_PATH = ROOT / "tools" / "validate_final_ed_product_asset_promotion.py"
 LOCOMOTIVE_SOURCE = "art/production_candidates/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png"
@@ -26,6 +27,12 @@ CONTROL_PRODUCT_PATHS = {
     for state in ("normal", "hover", "pressed", "selected", "disabled", "locked", "focus")
 }
 TITLE_HERO_PATH = "art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png"
+RUNTIME_VISUAL_PATHS = {
+    "SX-BOARD-TERRAIN-001": "art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png",
+    "SX-LESSON-HERO-001": "art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v01.png",
+    "SX-RESULT-SUCCESS-002": "art/product_assets/ed_hybrid_v1/shells/shell_result_success_v02.png",
+    "SX-RESULT-FAILURE-002": "art/product_assets/ed_hybrid_v1/shells/shell_result_failure_v02.png",
+}
 
 CORE_PRODUCT_PATHS = {
     LOCOMOTIVE_PRODUCT,
@@ -189,6 +196,21 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
         self.assertEqual([1774, 887], data["dimensions"])
         self.assertEqual(64, len(data["sha256"]))
 
+    def test_runtime_ingame_visuals_have_consumer_first_dual_preservation_records(self):
+        data = json.loads(RUNTIME_VISUAL_MANIFEST.read_text(encoding="utf-8"))
+        self.assertEqual("SX-INGAME-VISUAL-001", data["manifest_id"])
+        self.assertEqual("RUNTIME_INTEGRATED_VERIFIED", data["status"])
+        records = {record["asset_id"]: record for record in data["assets"]}
+        self.assertEqual(set(RUNTIME_VISUAL_PATHS), set(records))
+        for asset_id, expected_path in RUNTIME_VISUAL_PATHS.items():
+            record = records[asset_id]
+            self.assertEqual(expected_path, record["path"])
+            self.assertEqual("VERIFIED", record["consumer_status"])
+            self.assertEqual("APPROVED_DUAL_PRESERVED", record["dual_preservation_status"])
+            self.assertTrue(record["runtime_consumer"].startswith("game/demo/"))
+            self.assertEqual([1672, 941], record["dimensions"])
+            self.assertEqual(64, len(record["sha256"]))
+
     def test_png_parser_rejects_corrupted_idat_stream(self):
         validator = _load_validator()
         source = PRODUCT_ROOT / "core" / "core_wagon_cargo_blue_normal_v02.png"
@@ -230,23 +252,27 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
         build_semantic = json.loads(BUILD_SEMANTIC_MANIFEST.read_text(encoding="utf-8"))
         vfx_semantic = json.loads(VFX_SEMANTIC_MANIFEST.read_text(encoding="utf-8"))
         title_hero = json.loads(TITLE_HERO_MANIFEST.read_text(encoding="utf-8"))
+        runtime_visuals = json.loads(RUNTIME_VISUAL_MANIFEST.read_text(encoding="utf-8"))
         actual = {path.relative_to(ROOT).as_posix() for path in PRODUCT_ROOT.rglob("*.png")}
         base_recorded = [record["path"] for record in base["assets"]]
         run_recorded = [record["path"] for record in run_semantic["semantic_assets"]]
         build_recorded = [record["path"] for record in build_semantic["semantic_assets"]]
         vfx_recorded = [record["path"] for record in vfx_semantic["semantic_assets"]]
         title_recorded = [title_hero["path"]]
+        runtime_visual_recorded = [record["path"] for record in runtime_visuals["assets"]]
 
         self.assertEqual(39, len(base_recorded))
         self.assertEqual(20, len(run_recorded))
         self.assertEqual(8, len(build_recorded))
         self.assertEqual(6, len(vfx_recorded))
         self.assertEqual(1, len(title_recorded))
+        self.assertEqual(4, len(runtime_visual_recorded))
         self.assertEqual(len(base_recorded), len(set(base_recorded)))
         self.assertEqual(len(run_recorded), len(set(run_recorded)))
         self.assertEqual(len(build_recorded), len(set(build_recorded)))
         self.assertEqual(len(vfx_recorded), len(set(vfx_recorded)))
         self.assertEqual(len(title_recorded), len(set(title_recorded)))
+        self.assertEqual(len(runtime_visual_recorded), len(set(runtime_visual_recorded)))
 
         owners = [
             set(base_recorded),
@@ -254,12 +280,13 @@ class FinalEdProductAssetPromotionContractTest(unittest.TestCase):
             set(build_recorded),
             set(vfx_recorded),
             set(title_recorded),
+            set(runtime_visual_recorded),
         ]
         for index, owner in enumerate(owners):
             for other in owners[index + 1:]:
                 self.assertTrue(owner.isdisjoint(other))
         all_owned = set().union(*owners)
-        self.assertEqual(74, len(all_owned))
+        self.assertEqual(78, len(all_owned))
         self.assertEqual(actual, all_owned)
 
     def test_static_validator_accepts_promoted_batch(self):

@@ -120,7 +120,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="PanelContainer" parent="BriefingScreen"]
-custom_minimum_size = Vector2(680, 520)
+custom_minimum_size = Vector2(680, 600)
 layout_mode = 2
 
 [node name="Content" type="VBoxContainer" parent="BriefingScreen/Panel"]
@@ -140,7 +140,7 @@ text = "대표 배송 — 되돌아오는 별"
 horizontal_alignment = 1
 
 [node name="LessonArt" type="Control" parent="BriefingScreen/Panel/Content"]
-custom_minimum_size = Vector2(0, 48)
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("2_shell_art")
@@ -273,7 +273,7 @@ text = "배송 결과"
 horizontal_alignment = 1
 
 [node name="ResultArt" type="Control" parent="ResultOverlay/Panel/Content"]
-custom_minimum_size = Vector2(0, 88)
+custom_minimum_size = Vector2(0, 145)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("2_shell_art")

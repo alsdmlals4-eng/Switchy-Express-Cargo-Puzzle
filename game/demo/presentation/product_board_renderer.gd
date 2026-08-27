@@ -13,6 +13,7 @@ const TrackPieceScript := preload("res://game/finite/build/track_piece.gd")
 const NO_CELL := Vector2i(-1, -1)
 
 const PRODUCT_VISUAL_ASSET_PATHS := {
+	"board_terrain": "art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png",
 	"train": "art/product_assets/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png",
 	"rail_straight": "art/product_assets/ed_hybrid_v1/core/core_rail_straight_normal_v01.png",
 	"rail_curve": "art/product_assets/ed_hybrid_v1/core/core_rail_curve_normal_v01.png",
@@ -159,6 +160,7 @@ func _draw() -> void:
 	var rect := _board_rect()
 	draw_rect(rect.grow(4.0), Palette.BOARD_EDGE, true)
 	draw_rect(rect, Palette.BOARD, true)
+	_draw_board_terrain(rect)
 	_draw_grid(rect, board_size)
 	_draw_blocked(rect, board_size)
 	_draw_fixed_tracks(rect, board_size)
@@ -169,6 +171,14 @@ func _draw() -> void:
 	_draw_start_marker(rect, board_size)
 	_draw_state_overlays(rect, board_size)
 	_draw_train(rect, board_size)
+
+
+func _draw_board_terrain(rect: Rect2) -> void:
+	var terrain := _product_textures.get("board_terrain") as Texture2D
+	if terrain == null:
+		return
+	draw_texture_rect(terrain, rect, false, Palette.BOARD_TERRAIN_TINT)
+	draw_rect(rect, Palette.BOARD_TERRAIN_VEIL, true)
 
 
 func _draw_grid(rect: Rect2, board_size: Vector2i) -> void:
