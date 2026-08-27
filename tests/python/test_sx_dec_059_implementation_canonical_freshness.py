@@ -49,7 +49,7 @@ class SxDec059ImplementationCanonicalFreshnessTests(unittest.TestCase):
             "pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003",
             "HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY",
             "sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7",
-            "post_sx_dec_060_candidate: NOT_CREATED",
+            "post_sx_dec_060_candidate: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED",
         ):
             self.assertIn(required, adapter)
         for path in (ACTIVE_CONTEXT, CURRENT_DECISIONS):
@@ -65,8 +65,8 @@ class SxDec059ImplementationCanonicalFreshnessTests(unittest.TestCase):
         )
         for required in (
             "SX-DEC-060",
-            "mint a new exact post-route-readability package candidate",
-            "NOT_CREATED",
+            "SX60-POC-ACCEPT-002 human physical self-run",
+            "PREPARED_PACKAGE_VERIFIED",
             "NOT_RUN",
         ):
             self.assertIn(required, combined)

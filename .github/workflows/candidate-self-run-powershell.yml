@@ -16,6 +16,7 @@ on:
       - tests/python/test_candidate_002_powershell_self_run.py
       - tests/python/test_current_poc_candidate_pointer.py
       - tests/python/test_sx_dec_060_candidate_mint.py
+      - tests/python/test_sx_dec_060_candidate_002_evidence.py
       - .github/workflows/candidate-self-run-powershell.yml
   push:
     branches: [main]
@@ -32,6 +33,7 @@ on:
       - tests/python/test_candidate_002_powershell_self_run.py
       - tests/python/test_current_poc_candidate_pointer.py
       - tests/python/test_sx_dec_060_candidate_mint.py
+      - tests/python/test_sx_dec_060_candidate_002_evidence.py
       - .github/workflows/candidate-self-run-powershell.yml
 
 permissions:
@@ -65,16 +67,10 @@ jobs:
           }
           Write-Host 'POWERSHELL_51_PARSE: PASS'
 
-      - name: Verify post-060 launcher fails closed until a current candidate exists
+      - name: Verify post-060 explicit candidate contract
         shell: powershell
         run: |
-          try {
-            .\RUN_SX60_POC_SELF_RUN.ps1 -ContractCheck -NoLaunch -NoOpenRecord
-            throw 'Expected the launcher to reject a missing current candidate.'
-          } catch {
-            if ($_.Exception.Message -notmatch 'no current candidate') { throw }
-            Write-Host 'POST_SX_DEC_060_CANDIDATE_FAIL_CLOSED: PASS'
-          }
+          .\RUN_SX60_POC_SELF_RUN.ps1 -ContractCheck -NoLaunch -NoOpenRecord
 
       - name: Run historical evidence-only contract check
         shell: powershell
@@ -92,13 +88,12 @@ jobs:
             -NoOpenRecord `
             -WorkDir (Join-Path $env:RUNNER_TEMP 'switchy-historical-candidate-003')
 
-      - name: Verify missing post-060 candidate blocks package retrieval
+      - name: Verify post-060 candidate package without launch
         shell: powershell
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          try {
-            .\RUN_SX60_POC_SELF_RUN.ps1 -NoLaunch -NoOpenRecord
-            throw 'Expected package retrieval to be blocked without a current candidate.'
-          } catch {
-            if ($_.Exception.Message -notmatch 'no current candidate') { throw }
-            Write-Host 'POST_SX_DEC_060_PACKAGE_RETRIEVAL_BLOCKED: PASS'
-          }
+          .\RUN_SX60_POC_SELF_RUN.ps1 `
+            -NoLaunch `
+            -NoOpenRecord `
+            -WorkDir (Join-Path $env:RUNNER_TEMP 'switchy-post-060-candidate-002')

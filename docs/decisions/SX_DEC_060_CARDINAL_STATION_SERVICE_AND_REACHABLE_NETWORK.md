@@ -180,7 +180,7 @@ References:
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
 candidate_003_role_after_decision: HISTORICAL_PRE_SX_DEC_060_PHYSICAL_TARGET
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: NOT_CREATED · MINIMUM_PRODUCT_SOURCE_MAIN_a8eee4f875a95e8da69802c4e60452df3535fe0e
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_0e882764b837d13282a7642b115948d4e061d163
 sx60_poc_accept_001: HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 candidate_003_package_integrity: PRESERVED_HISTORICAL_PASS
 candidate_003_physical_visual_recheck: NOT_RUN
@@ -188,8 +188,8 @@ sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_five_pass_review: CLOSED · SX-AUD-071
 sx_dec_060_notion_readback: PASS
-sx_dec_060_packaged_runtime: HISTORICAL_SX60_POC_ACCEPT_001_PACKAGE_EVIDENCE_PRESERVED
-sx_dec_060_windows_physical: NOT_RUN_CURRENT_EXACT_CANDIDATE
+sx_dec_060_packaged_runtime: SX60_POC_ACCEPT_002_PREPARED_PACKAGE_VERIFIED · HISTORICAL_SX60_POC_ACCEPT_001_PRESERVED
+sx_dec_060_windows_physical: NOT_RUN_CURRENT_EXACT_CANDIDATE_002
 sx_dec_060_android_device: NOT_RUN
 sx_dec_060_five_person_comprehension: NOT_RUN
 sx_dec_060_player_experience: NOT_RUN
@@ -217,6 +217,6 @@ The implementation must not absorb:
 Actual GDScript / Scene / Resource / map-data / runtime test work is merged-main verified by PR #188 under the active r5.4 project contract.
 
 ```text
-mint a new exact post-route-readability package candidate (minimum main a8eee4f875a95e8da69802c4e60452df3535fe0e)
+SX60-POC-ACCEPT-002 human physical self-run
 → physical/device/human evidence gates
 ```

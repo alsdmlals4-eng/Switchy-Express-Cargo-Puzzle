@@ -185,7 +185,7 @@ Actual Godot product implementation is merged-main verified by PR #188; the pack
 Stable sequence:
 
 ```text
-mint a new exact post-route-readability package candidate (minimum main a8eee4f875a95e8da69802c4e60452df3535fe0e)
+SX60-POC-ACCEPT-002 human physical self-run
 → physical/device/human gates
 ```
 
@@ -193,8 +193,8 @@ mint a new exact post-route-readability package candidate (minimum main a8eee4f8
 SX_DEC_060_RUNTIME: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 FULL_AUTOMATED_REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 FIVE_PASS_REVIEW: CLOSED · SX-AUD-071
-POST_060_PACKAGE: HISTORICAL_SX60_POC_ACCEPT_001_ONLY
-POST_060_CANDIDATE: NOT_CREATED · MINT_REQUIRED_BEFORE_PHYSICAL_DEVICE_HUMAN_TESTS
+POST_060_PACKAGE: SX60_POC_ACCEPT_002_PREPARED_PACKAGE_VERIFIED · HISTORICAL_SX60_POC_ACCEPT_001_PRESERVED
+POST_060_CANDIDATE: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · HUMAN_PHYSICAL_NOT_RUN
 ```
 
 ## M6R · Runtime route readability correction

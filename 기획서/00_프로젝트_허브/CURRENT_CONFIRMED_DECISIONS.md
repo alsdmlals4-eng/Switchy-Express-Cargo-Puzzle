@@ -34,11 +34,11 @@ candidate_003_preparation: MERGED_MAIN_VERIFIED · PR #172 · main_2521f3be600ea
 pre_sx_dec_060_candidate_pointer: evidence/acceptance/current_poc_candidate.json
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_AFTER_SX_DEC_060
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: NOT_CREATED · MINIMUM_PRODUCT_SOURCE_MAIN_a8eee4f875a95e8da69802c4e60452df3535fe0e
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_0e882764b837d13282a7642b115948d4e061d163
 sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
-candidate_002_windows_physical_startup_smoke: PASS
-candidate_002_result: BLOCKED_BY_CONFIRMED_P1_PREFLIGHT_VISUAL_DEFECTS
-candidate_002_acceptance_promotion: PROHIBITED
+candidate_002_windows_physical_startup_smoke: NOT_RUN_CURRENT_SX60_POC_ACCEPT_002
+candidate_002_result: NOT_RUN_CURRENT_SX60_POC_ACCEPT_002
+candidate_002_acceptance_promotion: PROHIBITED_UNTIL_PHYSICAL_EVIDENCE_EXISTS
 candidate_003_package_integrity: PASS · HISTORICAL_PRE_SX_DEC_060
 candidate_003_pck_integrity: PASS · 472_OF_472 · HISTORICAL_PRE_SX_DEC_060
 candidate_003_product_textures: PASS · 73_OF_73 · HISTORICAL_PRE_SX_DEC_060
@@ -49,11 +49,11 @@ sx_dec_060_design: RECORDED
 sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
-sx_dec_060_post_change_candidate: NOT_CREATED · MINT_REQUIRED_AFTER_ROUTE_READABILITY_PRODUCT_CHANGE
+sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED
 sx_dec_060_notion_sync: PASS · POST_PR_188_READBACK_COMPLETE
 developer_self_run: NOT_RUN_POST_SX_DEC_060
 windows_physical_startup_and_build_entry_automation_observed: HISTORICAL_SX60_POC_ACCEPT_001_AUTOMATION_ONLY
-acceptance_build: NOT_CREATED · MINT_NEW_EXACT_POST_ROUTE_READABILITY_PACKAGE_CANDIDATE_FIRST
+acceptance_build: SX60-POC-ACCEPT-002 · PACKAGE_VERIFIED · HUMAN_PHYSICAL_SELF_RUN_PENDING
 windows_full_physical_runtime: NOT_RUN_POST_SX_DEC_060
 audio_perceptual_qa: NOT_RUN_POST_SX_DEC_060
 android_device: NOT_RUN_POST_SX_DEC_060
@@ -233,7 +233,7 @@ PR #158 implementation → PR #166 playable POC → PR #171 visual correction �
 
 current:
 SX-DEC-060 merged main PR #188
-→ mint a new exact post-route-readability package candidate (minimum main a8eee4f875a95e8da69802c4e60452df3535fe0e)
+→ SX60-POC-ACCEPT-002 human physical self-run
 → Windows physical smoke
 → Android device smoke
 → Five-person first-contact comprehension
