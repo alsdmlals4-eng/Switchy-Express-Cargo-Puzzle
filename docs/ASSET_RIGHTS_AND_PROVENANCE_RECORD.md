@@ -219,3 +219,37 @@ reviewed_at: 2026-08-06
 status: APPROVED
 notes: AudioStreamGenerator streams are synthesized from repository-defined frequencies, envelopes and timing. No third-party sample, recording, music file, voice or AI audio output is included.
 ```
+
+## SX-VIS-061-CORE-SCENE-BOARD-EXPLORATION-001 · Planning-only visual board
+
+```yaml
+asset_id: SX-VIS-061-CORE-SCENE-BOARD-EXPLORATION-001
+category: AI_OUTPUT_MODEL_TERMS
+name: PROJECT_CORE_SCENE_VISUAL_BOARD · generated exploration
+project: SWITCHY_EXPRESS_CARGO_PUZZLE
+creation_route: AI_GENERATED
+creator_or_vendor: OpenAI Image Generation
+acquired_or_created_at: 2026-08-28
+creation_authority: SX-DEC-061 · user-approved visual-direction exploration
+visual_role: GENERATED_EXPLORATION · NOT_RUNTIME_PROOF
+source_url_or_path: C:/Users/user/.codex/generated_images/01a04558-94b7-77f3-b4e0-a5ec4bf2a04e/exec-bf7f16f4-f43b-458d-8e37-d01ebc315634.png
+final_asset_record: SHA-256 6aabad5e9834e777cae9124b4279fef0a1bca48ab6b056b3aebd48f901d7fafc
+commercial_use: CONDITIONAL
+distribution_in_game_build: NOT_REQUIRED
+raw_source_redistribution: CONDITIONAL
+modification: CONDITIONAL
+attribution: NOT_REQUIRED
+ai_terms_checked_at: NOT_YET_RECHECKED
+ai_input_rights: original text prompt based on project-owned runtime facts and current visual canon; the user-supplied collage was inspected as reference only and was not supplied as a generation input
+reference_sources: current E+D Hybrid / Neo-Arcade project direction; user-provided comparison collage at C:/Users/user/Desktop/비교샷/카고/19651a96-74d9-4c3f-8930-51f5fcaeca87.png · reference only
+forbidden_expression: reference-layout copying, branded UI, real game logo, pseudo-text as canon, coin/economy/score/save systems, diagonal station service, station-footprint delivery, long cargo train, fuel, BOOST, capacity limit
+runtime_consumer: NOT_APPLICABLE
+consumer_status: NOT_APPLICABLE
+repository_local_path: NOT_CREATED · planning board awaits explicit user artifact approval; no runtime asset is being created
+notion_owner_page: 03 · Visual · UX · Assets · decision text sync required; binary attachment is not approved
+dual_preservation_status: NOT_APPLICABLE_UNTIL_USER_APPROVES_THE_BOARD_AS_A_DURABLE_REFERENCE
+reference_similarity_status: BLOCKED_UNVERIFIED
+shipping_and_marketing_usage: PROHIBITED_PENDING_SEPARATE_RIGHTS_REVIEW
+status: CONDITIONAL
+notes: The board validates AI understanding of Title/T1/T2/T3/T4/T5/T6/Capstone-result flow. Number badges and any generated pictograms are non-canonical; exact meanings live in PROJECT_CORE_SCENE_VISUAL_BOARD.md. It neither changes nor proves Godot runtime UI, assets, human usability, player experience, or release rights.
+```

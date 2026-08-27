@@ -123,6 +123,14 @@
       "status": "CURRENT"
     },
     {
+      "id": "SX-CORE-SCENE-VISUAL-BOARD",
+      "question": "현재 core loop를 검증하는 화면·장면과 planning-only visual board의 정확한 의미는 무엇인가",
+      "source": "기획서/40_표현/PROJECT_CORE_SCENE_VISUAL_BOARD.md",
+      "format": "markdown",
+      "publication_policy": "milestone_sync",
+      "status": "CURRENT"
+    },
+    {
       "id": "SX-SCREEN-VISUAL-COVERAGE-001",
       "question": "현재 Vertical Slice의 화면·오버레이·전환과 실제 시각 소비처 coverage는 무엇인가",
       "source": "기획서/40_표현/TARGET_BUILD_SCREEN_SURFACE_AND_VISUAL_COVERAGE.md",

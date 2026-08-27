@@ -12,7 +12,7 @@ work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~060
+current_decisions: SX-DEC-027~061
 current_product_gate: SX_DEC_060_POST_MERGE_PACKAGE_PROOF_AND_CANDIDATE
 ```
 

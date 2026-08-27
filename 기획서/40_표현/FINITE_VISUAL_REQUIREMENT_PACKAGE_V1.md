@@ -1,6 +1,8 @@
 # Finite Visual Requirement Package V1
 
-상태: `SX-DEC-050 · PLANNING_PACKAGE_DEFINED · RUNTIME_DEFERRED`
+상태: `HISTORICAL_PLANNING_PACKAGE · SX-DEC-050 · SUPERSEDED_FOR_CURRENT_VISUAL_DIRECTION_BY_SX-DEC-061`
+
+> 이 package의 three-star/leaderboard/progression and pre-SX-DEC-060 visual requirements are not current Slice requirements. Current scene/consumer scope is owned by `TARGET_BUILD_SCREEN_SURFACE_AND_VISUAL_COVERAGE.md`, `VISUAL_DIRECTION.md`, and `PROJECT_CORE_SCENE_VISUAL_BOARD.md`.
 
 Base Visual Requirement Gate를 적용해 `VIS-FINITE-01`, `VIS-FINITE-02`, `VIS-FINITE-03`에 필요한 시각 요소만 선정한다. 이 문서는 실제 이미지 파일·Godot Node·Scene·Resource·Theme의 존재를 주장하지 않는다.
 

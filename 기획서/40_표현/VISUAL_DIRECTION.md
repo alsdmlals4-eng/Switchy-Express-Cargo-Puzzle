@@ -1,6 +1,44 @@
 # Visual Direction
 
-상태: `CURRENT_CANON · GMB-002`
+상태: `CURRENT_CANON · GMB-002 · SX-DEC-061`
+
+## SX-DEC-061 active visual lock · read this first
+
+사용자는 `2026-08-28 KST`에 **Board-first Cozy Neo-Arcade** 보정안을 승인했다. 이는 기존 E+D Hybrid / Neo-Arcade의 월드 자산을 폐기하거나 새 게임 시스템을 추가하는 결정이 아니다. 따뜻한 미니어처 철도 세계를 유지하면서, 플레이 중 판단·선택·결과를 하나의 절제된 control-deck UI 언어로 묶는 방향이다.
+
+```yaml
+selected_candidate: BOARD_FIRST_COZY_NEO_ARCADE
+global_style_anchor: cozy miniature railway world + deep-navy/charcoal neo-arcade control deck
+world_anchor: warm grass, rounded rocks, conifers, brass-and-navy locomotive, warm gold practical lights
+ui_anchor: dark framed panels, restrained gold trim, high-contrast state feedback, gameplay board remains dominant
+semantic_state_language:
+  valid_or_selected: lime + direction/shape/brightness
+  invalid_or_route_end: crimson + prohibition/failure icon
+  tutorial_focus: violet + bounded focus treatment
+  cargo_and_station: color + silhouette/shape + Godot text layer when exact meaning is required
+lifo_anchor: compact world token plus Stack HUD; TOP and next unload group remain readable; never lengthen the train horizontally to represent stack size
+camera_anchor: elevated isometric 3/4 board view at actual gameplay readability scale
+keep:
+  - existing E+D Hybrid / Neo-Arcade runtime asset family and verified consumers
+  - text-free artwork with exact copy in Godot/structured text owners
+  - off-track station and cardinal-adjacent service readability
+avoid:
+  - copied reference layouts, logos, UI chrome, branded expression, or pseudo-text
+  - dense economy/dashboard presentation, fake coins, save controls, score, ranking, or unimplemented system states
+  - diagonal station service, station-footprint rail delivery, long cargo trains, fuel, BOOST, capacity limits, or generated asset promotion without a consumer
+do_not_drift:
+  - board first; decorative art may not hide rail, switch, cargo, station, valid/invalid, lock, or TOP meaning
+  - one visual grammar across title, BUILD, lesson, RUN, and result while success/failure keep purposeful variation
+allowed_variation:
+  - crimson may dominate failure; violet may dominate a lesson focus; lime may dominate an active route/valid placement
+  - regions, cargo types, and state severity may vary only within the shared material, silhouette, lighting, and camera grammar
+```
+
+The planning-only scene owner is `기획서/40_표현/PROJECT_CORE_SCENE_VISUAL_BOARD.md`. It owns exact panel/flow meaning; its generated board is not a runtime screenshot, asset, Godot Scene, or human-usability result.
+
+## Supersession boundary
+
+The sections beginning **Base 상호작용 상태 계약** through **구형 표현 상태** are retained as historical design notes. They are not current requirements where they describe score/max-combo, stars/ranking, leaderboards, a 1–10 tutorial/progression, rail performance attributes, tunnels/bridges, or a mascot/character requirement. Current product scope is the implemented T1→T6→VS_DEMO_01 first-session chain in `CURRENT_CONFIRMED_DECISIONS.md`, amended by SX-DEC-060, and the SX-DEC-061 lock above.
 
 ## 유지하는 Visual Pillars
 
@@ -10,9 +48,9 @@
 4. **Cause before spectacle** — 애니메이션은 적재·하역·분기 결과를 설명하며 domain 권위를 대신하지 않음
 5. **LIFO is visible** — 마지막 적재 화물과 다음 연속 하역 그룹을 항상 읽을 수 있음
 
-토끼 기관사와 아늑한 미니어처 철도 세계 방향은 유지한다.
+아늑한 미니어처 철도 세계는 유지한다. 특정 mascot 또는 character는 현재 Slice의 승인된 runtime consumer나 필수 화면 요소가 아니다.
 
-## Base 상호작용 상태 계약
+## Historical pre-SX-DEC-061 interaction and feature notes · non-canon unless a current owner re-approves them
 
 모든 중요 입력·저장·기록·건설 행동은 다음 상태 언어를 유지한다.
 

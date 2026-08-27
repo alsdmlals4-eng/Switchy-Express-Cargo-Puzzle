@@ -1,6 +1,6 @@
 # Current Confirmed Decisions
 
-Last updated: `2026-08-26 KST`
+Last updated: `2026-08-28 KST`
 
 이 문서는 Switchy Express의 **현재 승인 Decision과 실행 권위**를 압축한다. 상세 규칙·근거·역사 CI는 각 Decision/Audit owner가 책임진다. Google Sheets는 migration-only이며 active decision authority가 아니다.
 
@@ -8,7 +8,7 @@ Last updated: `2026-08-26 KST`
 
 ```yaml
 current_product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060
-current_decision_span: SX-DEC-027~060
+current_decision_span: SX-DEC-027~061
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
@@ -51,6 +51,7 @@ sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREE
 sx_dec_060_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
 sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED
 sx_dec_060_notion_sync: PASS · POST_PR_188_READBACK_COMPLETE
+sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 developer_self_run: ISOLATED_VISUAL_INPUT_OBSERVED_AUDIO_NOT_OBSERVED_POST_SX_DEC_060
 windows_physical_startup_and_build_entry_automation_observed: CURRENT_SX60_POC_ACCEPT_002_ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT · HISTORICAL_SX60_POC_ACCEPT_001_AUTOMATION_SEPARATE
 acceptance_build: SX60-POC-ACCEPT-002 · PACKAGE_VERIFIED · ISOLATED_VISUAL_INPUT_OBSERVED · AUDIO_PERCEPTUAL_QA_NEXT
@@ -94,9 +95,9 @@ sx_dec_060_new_bitmap_assets_required: 0
 | SX-DEC-030 | 직선·곡선·분기·교차 · CURRENT |
 | SX-DEC-031 | manual hold·auto toggle·unlimited LIFO·TOP 그룹 하역 · CURRENT · SX-DEC-060 station-service amendment 적용 |
 | SX-DEC-032 | 하역 그룹 feedback · CURRENT; score/max-combo metric은 미확정 |
-| SX-DEC-033 | 별·랭킹 · APPROVED · NOT_STARTED |
-| SX-DEC-034 | Tutorial 1~10 + 2-of-3 progression · APPROVED |
-| SX-DEC-035 | Daily/Weekly fixed seed · APPROVED · NOT_RUN |
+| SX-DEC-033 | 별·랭킹 · HISTORICAL_FUTURE_DIRECTION · NOT_CURRENT_SLICE · NOT_STARTED |
+| SX-DEC-034 | Tutorial 1~10 + 2-of-3 progression · SUPERSEDED_FOR_CURRENT_FIRST_SESSION by SX-DEC-059 T1→T6→Capstone |
+| SX-DEC-035 | Daily/Weekly fixed seed · DEFERRED · NOT_CURRENT_SLICE · NOT_RUN |
 | SX-DEC-036 | cosmetic-only · power progression 금지 · CURRENT |
 | SX-DEC-037 | PC Vertical Slice · IMPLEMENTED · historical automated pass, manual gates open |
 | SX-DEC-038 | Demo Route Refinement · IMPLEMENTED · physical gates open |
@@ -122,6 +123,7 @@ sx_dec_060_new_bitmap_assets_required: 0
 | SX-DEC-058 | Fixed-Seed Challenge Quality · implementation/pipeline unauthorized |
 | SX-DEC-059 | Release-Near First Session · implementation/playable POC merged · pre-060 Candidate 003 historical after SX-DEC-060 |
 | **SX-DEC-060** | **Cardinal Station Service + Reachable Network · MERGED_MAIN_VERIFIED · PR #188** |
+| **SX-DEC-061** | **Board-first Cozy Neo-Arcade visual refinement · APPROVED · documentation/plan board only; runtime unchanged** |
 
 ## SX-DEC-059 retained first-session contract
 
@@ -137,6 +139,19 @@ T1 · Track Connection
 ```
 
 SX-DEC-060는 이 단계 수를 늘리지 않는다. T2의 station mental model만 `station exact-cell arrival`에서 `cardinal adjacent service`로 교정한다.
+
+## SX-DEC-061 confirmed visual/validation contract
+
+Canonical owners: `docs/decisions/SX_DEC_061_BOARD_FIRST_COZY_NEO_ARCADE_VISUAL_REFINEMENT.md`, `기획서/40_표현/VISUAL_DIRECTION.md`, and `기획서/40_표현/PROJECT_CORE_SCENE_VISUAL_BOARD.md`.
+
+```text
+cozy miniature railway world
+→ board-first dark control-deck UI language
+→ visible valid / invalid / tutorial / TOP / lock / cardinal-service state
+→ the full T1 → T6 → VS_DEMO_01 → Result chain is the Phase 5 human-validation unit
+```
+
+This changes neither GMB-002 gameplay, map data, Scene/Resource ownership, the existing 73 runtime PNG consumers, nor the post-SX-DEC-060 evidence ceiling. The generated board is `GENERATED_EXPLORATION · NOT_RUNTIME_PROOF`; Phase 2 runtime/UI/asset work requires a separate consumer-specific approval and implementation gate.
 
 ### Architecture / evidence boundaries
 

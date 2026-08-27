@@ -1,6 +1,8 @@
 # Finite Image Exploration Brief V1
 
-상태: `SX-DEC-050 · IMAGE_EXPLORATION_READY · REFERENCE_ONLY`
+상태: `HISTORICAL_EXPLORATION · SX-DEC-050 · SUPERSEDED_FOR_CURRENT_VISUAL_DIRECTION_BY_SX-DEC-061`
+
+> 이 brief의 mascot, progress, score/star/leaderboard, feature UI 예시는 현재 요구사항이 아니다. 현재 visual direction과 정확한 scene meaning은 `VISUAL_DIRECTION.md`와 `PROJECT_CORE_SCENE_VISUAL_BOARD.md`를 우선한다.
 
 이 문서는 `VIS-FINITE-01/02/03`의 정보 위계와 시각 방향을 빠르게 비교하기 위한 생성형 목업 brief다. 생성 결과는 `GENERATED_EXPLORATION`이며 제품 자산·실제 UI·런타임 증거가 아니다.
 
