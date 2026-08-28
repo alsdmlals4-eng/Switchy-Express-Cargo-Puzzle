@@ -126,7 +126,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
             approval["approved_paths"],
         )
 
-    def test_five_phase_receipt_closes_machine_work_without_promoting_user_validation(self) -> None:
+    def test_five_phase_receipt_preserves_historical_block_while_active_context_tracks_user_authorization(self) -> None:
         receipt = FIVE_PHASE_RECEIPT.read_text(encoding="utf-8")
         active_context = ACTIVE_CONTEXT.read_text(encoding="utf-8")
 
@@ -141,6 +141,10 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
             self.assertIn(required, receipt)
 
         self.assertIn(
+            "base_work_current_phase: PHASE_5_USER_VERTICAL_SLICE_VALIDATION · USER_AUTHORIZED · WINDOWS_PHYSICAL_AUDIO_EXECUTION_PENDING",
+            active_context,
+        )
+        self.assertNotIn(
             "base_work_current_phase: PHASE_5_USER_VERTICAL_SLICE_VALIDATION · BLOCKED_USER_VALIDATION",
             active_context,
         )

@@ -117,6 +117,17 @@ base_promotion: NO_BASE_PROMOTION
 reason: This is a single project profile-to-path drift observation; no general Base rule needs duplication in the project.
 ```
 
+```yaml
+incident_id: SX-INC-062-002
+statement: The Phase 5 receipt test still expected the historical BLOCKED_USER_VALIDATION state after current main recorded user authorization in Active Context.
+classification: STALE_TEST_EXPECTATION
+root_cause: PR #234 advanced the current execution state, but its historical-receipt test assertion was not updated to distinguish historical receipt from current locator.
+solution: Preserve the receipt’s historical blocked evidence and assert the current user-authorized Windows/audio-pending state only in Active Context.
+lesson: State-transition documentation needs a paired test update whenever an immutable receipt and a mutable current locator intentionally diverge.
+base_promotion: NO_BASE_PROMOTION
+reason: This is a project-specific receipt/locator naming and timeline relationship; Base already requires fresh current authority.
+```
+
 ## Required next order
 
 ```text
@@ -166,6 +177,9 @@ merge canonicalization/design/plan/handoff
 checked_state: current task branch before commit
 documentation_runtime_boundary: RUNTIME_UNCHANGED
 checks:
+  - remote CI first observed: FAILED because `test_sx_dec_060_candidate_002_evidence.py` expected a superseded Active Context phase; corrected by SX-INC-062-002 before merge
+  - python -m pytest tests/python/test_sx_dec_060_candidate_002_evidence.py -q: PASS (7 tests)
+  - python -m pytest tests/python -q: PASS (214 passed, 1 skipped)
   - python tests/test_post_merge_canon_freshness.py: PASS (4 tests)
   - python tests/python/test_candidate_003_postmerge_canon.py: PASS (5 tests)
   - python tests/python/test_playable_poc_postmerge_canon.py: PASS (6 tests)
