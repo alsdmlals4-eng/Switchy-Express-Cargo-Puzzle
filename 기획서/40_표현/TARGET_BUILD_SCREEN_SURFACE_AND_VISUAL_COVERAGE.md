@@ -156,6 +156,32 @@ human_evidence: NOT_RUN
 
 Issue #227 is a separate T2-consumer replacement proposal and is `DEFERRED_OUT_OF_SX_DEC_062_SCOPE`; it is neither closed nor absorbed.
 
+## SX-DEC-063 coverage addendum
+
+SX-DEC-063 changes the prior no-new-image disposition only for real consumers already inventoried in this document. It does not change the screen inventory, P0 blocking-gap verdict, finite gameplay, or evidence ceiling.
+
+| Requirement | Applicable screen surfaces | Existing real consumer | Coverage status | Production state |
+| --- | --- | --- | --- | --- |
+| SX-VIS-063-RQ-001 board diorama | SX-SCR-004 BUILD, SX-SCR-005 route control, SX-SCR-006 RUN, SX-SCR-007 semantic events | ProductBoardRenderer product visual asset paths | REQUIREMENT_LINKED | First terrain image brief is ready; no image generated, approved, or integrated. |
+| SX-VIS-063-RQ-002 shell cohesion | SX-SCR-001 title, SX-SCR-003 shared non-T2 lesson, SX-SCR-010 success, SX-SCR-011 failure | ProductShellArt title, shared lesson, success/failure paths | REQUIREMENT_LINKED | Four future versioned candidates, each with a separate one-image approval gate. T2 v02 is COVERED_EXISTING and protected. |
+| SX-VIS-063-RQ-003 deck density | SX-SCR-001, 003, 004, 006, 010, 011 | existing Godot Theme, HUD, shell panels | REQUIREMENT_LINKED | Later code-only integration review; no new control or gameplay state. |
+
+Current disposition:
+
+~~~yaml
+project_relation: SWITCHY_EXPRESS
+decision: SX-DEC-063
+candidate_generation_policy: EXACT_TEXT_BRIEF_THEN_ONE_USER_APPROVED_IMAGE
+actual_consumer_required: true
+approved_runtime_asset_count_from_sx_dec_063: 0
+runtime_integration_from_sx_dec_063: NOT_STARTED
+t2_hero_v02: PROTECTED_EXISTING_CONSUMER
+issue_227: DEFERRED_SEPARATE_SCOPE
+human_device_player_evidence: NOT_RUN
+~~~
+
+The original SX-DEC-062 addendum remains a true record of that implementation's zero-new-bitmap scope. It is not authorization for SX-DEC-063 image production.
+
 ## 6. Codex handoff boundary
 
 ```yaml

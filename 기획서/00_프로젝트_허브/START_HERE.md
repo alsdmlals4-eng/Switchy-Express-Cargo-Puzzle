@@ -1,6 +1,6 @@
 # Switchy Express 프로젝트 허브
 
-Last updated: `2026-08-26 KST`
+Last updated: `2026-08-28 KST`
 
 이 문서는 현재 제품 기준선과 **다음 실행 지점**을 빠르게 찾는 허브다. 실행 전에는 항상 fresh Base completed `main`, current Skill Registry/generated map, fresh project `main`, Open/Draft PR, exact Project Notion Home을 다시 읽는다.
 
@@ -16,7 +16,8 @@ Last updated: `2026-08-26 KST`
 | historical v4.8 r4 predecessor | `2026-08-24-r4 · PROVENANCE_ONLY` |
 | SX-DEC-059 implementation | `MERGED_MAIN_VERIFIED · PRE_SX_DEC_060_RUNTIME` |
 | SX-DEC-060 | `MERGED_MAIN_VERIFIED · PR #188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7` |
-| SX-DEC-062 | `APPROVED · Board-first existing-asset runtime composition contract · implementation not started` |
+| SX-DEC-062 | `MERGED_MAIN_VERIFIED · PR #237 · Board-first existing-asset runtime composition · current package candidate verified` |
+| SX-DEC-063 | `USER_APPROVED_DIRECTION · Hybrid miniature-diorama visual production alignment · Issue #239 · exact first image brief approval pending` |
 | station service | `UP/RIGHT/DOWN/LEFT exactly 1 tile · diagonal excluded` |
 | network preflight | `START_REACHABLE_RUN_COMPONENT · irrelevant disconnected rail island allowed` |
 | map schema target | `FiniteMapDefinition v3` |
@@ -159,13 +160,23 @@ The user approved a board-first composition adjustment that preserves the existi
 
 Historical v4.7/r2/r4 adapter/reconciliation materials (including v4.8 `2026-08-24-r4`) and pre-060 Candidate records are rollback/provenance evidence. Google Sheets is migration-only.
 
+## SX-DEC-063 planning direction
+
+```text
+docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md
+docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production-design.md
+```
+
+The user selected Hybrid Miniature-Diorama Alignment: the rectangular grid and input mapping stay, while only actual consumers receive versioned candidate art after an exact single-image brief is approved. This planning direction protects T2 `shell_lesson_hero_v02.png`, Issue #227, gameplay/data/audio, and the current package evidence. It does not start a Godot integration or an asset batch.
+
 ## Current next action
 
 ```text
-SX-DEC-062 documentation/contract merge and Switchy Notion readback
-→ one CodeX board-first runtime composition implementation from exact main
-→ new exact candidate if packaging succeeds
-→ Phase 5 user-validation continuation
+SX-DEC-063 canonical-document merge and Switchy Notion readback
+→ present the exact first terrain-candidate brief and wait for one explicit image-generation approval
+→ inspect that one generated candidate against the protected hybrid direction
+→ only after the planned candidate set and Phase 2 contract are approved, start a consumer-first Godot implementation
+→ Phase 5 user-validation continuation remains a separate later gate
 → current Playtest authority corrects old 055/059/validation-APK status to historical
 SX60-POC-ACCEPT-003 exact package verified; Candidate 002 observation remains prior-byte evidence only
 → NoLaunch package verification PASS → Windows physical smoke + audio perceptual QA

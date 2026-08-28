@@ -139,6 +139,14 @@
       "status": "CURRENT"
     },
     {
+      "id": "SX-DEC-063-HYBRID-MINIATURE-DIORAMA-VISUAL-PRODUCTION",
+      "question": "기존 사각 BUILD/RUN grid를 보존하면서 miniature-diorama visual grammar를 실제 소비처에 어떻게 안전하게 정렬하는가",
+      "source": "docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md",
+      "format": "markdown",
+      "publication_policy": "milestone_sync",
+      "status": "CURRENT"
+    },
+    {
       "id": "SX-DEC-062-IMPLEMENTATION-CONTRACT",
       "question": "SX-DEC-062 구현의 exact test-first CodeX handoff는 무엇인가",
       "source": "기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md",
