@@ -32,7 +32,7 @@ These remain valid for their exact historical bytes and bounded claims. They do 
 
 ## 1A. SX-DEC-062 composition-contract gate
 
-`PASS · USER_APPROVED_SCOPE · DOCUMENTATION_AND_HANDOFF_READY · RUNTIME_UNCHANGED`
+`PASS · MERGED_MAIN_VERIFIED · PR #237 · EXACT_MAIN_PACKAGE_CANDIDATE_003_VERIFIED · HUMAN_GATES_OPEN`
 
 Binding owners:
 
@@ -45,7 +45,7 @@ docs/superpowers/plans/2026-08-28-board-first-runtime-composition.md
 
 This one presentation slice may modify only the named palette/theme/HUD/shell/board-renderer owners and tests. It preserves all existing raster paths and consumers, including T2 v02. Issue #227, finite data/rules, first-session content, audio, score/economy/progression, Base, and PR #174 are out of scope.
 
-Before physical/human gates resume, the implementation must demonstrate RED→GREEN tests, exact-head static/Godot checks, no-new-asset/no-gameplay-delta review, and a new exact package candidate if packaging is available. `SX60-POC-ACCEPT-002` cannot validate changed bytes.
+The implementation demonstrated RED→GREEN tests, exact-head static/Godot checks, a no-new-asset/no-gameplay-delta review, and an exact-main package candidate. `SX60-POC-ACCEPT-002` cannot validate the changed bytes; `SX60-POC-ACCEPT-003` is current package evidence only and does not pass a physical/human gate.
 
 Stable physical/human anchors remain:
 
@@ -285,8 +285,8 @@ Any finding is fixed and the affected full loop is repeated. `CLEAN_REVIEW_EXIT`
 Blocked until S60-1~10 are complete.
 
 ```text
-SX60-POC-ACCEPT-002 isolated title → briefing → build visual/input observation complete (minimum source main 0e882764b837d13282a7642b115948d4e061d163)
-→ Windows full physical smoke
+SX60-POC-ACCEPT-003 exact package verified (source main 8bce715b5045afebfb04d38108d2e3f7353e1b10)
+→ NoLaunch verification → Windows full physical smoke
 → audio perceptual QA
 → exact post-060 Android APK identity assignment + Android device smoke
 → Five-person first-contact comprehension

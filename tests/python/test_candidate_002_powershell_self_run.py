@@ -73,11 +73,11 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertIn("WorkDir must be a direct child of TEMP", text)
         self.assertIn("RUNNER_TEMP", text)
 
-    def test_post_060_pointer_selects_the_minted_route_readability_candidate(self) -> None:
+    def test_post_060_pointer_selects_the_current_exact_candidate(self) -> None:
         pointer = self._post_060_pointer()
         self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-002")
-        self.assertEqual(pointer["minimum_product_source_main"], "a8eee4f875a95e8da69802c4e60452df3535fe0e")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-003")
+        self.assertEqual(pointer["minimum_product_source_main"], "8bce715b5045afebfb04d38108d2e3f7353e1b10")
         self.assertEqual(
             pointer["historical_superseded_candidate"]["invalidation_reason"],
             "PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE",
@@ -85,6 +85,10 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertIn("artifact_evidence_owner", pointer)
         self.assertIn("deep_pck_evidence_owner", pointer)
         self.assertIn("self_run_record_name", pointer)
+        self.assertEqual(
+            pointer["historical_superseded_after_sx_dec_062"]["candidate_id"],
+            "SX60-POC-ACCEPT-002",
+        )
 
     def test_candidate_002_evidence_is_preserved_as_history(self) -> None:
         self.assertTrue(OLD_EVIDENCE.is_file())

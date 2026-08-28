@@ -23,10 +23,10 @@ Last updated: `2026-08-26 KST`
 | station representation | `OFF_TRACK_SERVICE_OBJECT · station cell player rail forbidden` |
 | image requirement | `0 new bitmap · reuse existing station PNG consumers + procedural service overlay` |
 | pre-060 Candidate 003 | `SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY after SX-DEC-060` |
-| post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · source main 0e882764b837d13282a7642b115948d4e061d163` |
+| post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · source main 8bce715b5045afebfb04d38108d2e3f7353e1b10 · package-only evidence` |
 | SX60 Candidate 001 | `HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE · hashes/PCK preserved` |
 | post-060 automated regression | `PASS · 111 cases / 13,461 assertions · CI 7 GREEN · SX-AUD-071 CLOSED` |
-| post-060 Windows physical | `HISTORICAL_AUTOMATION_OBSERVED_INITIAL_TITLE_AND_BUILD_ENTRY · CURRENT_EXACT_CANDIDATE_002_PACKAGE_VERIFIED_HUMAN_PHYSICAL_NOT_RUN · full human/runtime gate NOT_RUN` |
+| post-060 Windows physical | `HISTORICAL_AUTOMATION_OBSERVED_INITIAL_TITLE_AND_BUILD_ENTRY · CURRENT_EXACT_CANDIDATE_003_PACKAGE_VERIFIED_HUMAN_PHYSICAL_NOT_RUN · full human/runtime gate NOT_RUN` |
 | post-060 Android device | `NOT_RUN` |
 | post-060 five-person | `NOT_RUN` |
 | Player experience | `NOT_RUN` |
@@ -167,8 +167,8 @@ SX-DEC-062 documentation/contract merge and Switchy Notion readback
 → new exact candidate if packaging succeeds
 → Phase 5 user-validation continuation
 → current Playtest authority corrects old 055/059/validation-APK status to historical
-SX60-POC-ACCEPT-002 isolated title → briefing → build visual/input observation complete
-→ Windows physical smoke + audio perceptual QA
+SX60-POC-ACCEPT-003 exact package verified; Candidate 002 observation remains prior-byte evidence only
+→ NoLaunch package verification → Windows physical smoke + audio perceptual QA
 → exact post-060 Android APK identity assignment + Android device smoke
 → Five-person first-contact comprehension
 → product decision

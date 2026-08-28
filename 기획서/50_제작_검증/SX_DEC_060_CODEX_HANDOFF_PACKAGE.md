@@ -241,7 +241,7 @@ its recorded NOT_RUN physical/human fields
 
 Do not call it the acceptance candidate for post-060 runtime. A changed gameplay build requires a new candidate identity and fresh evidence.
 
-The current post-060 candidate locator is `evidence/acceptance/post_sx_dec_060_candidate.json`; it explicitly selects `SX60-POC-ACCEPT-002` as `PREPARED_PACKAGE_VERIFIED` from `0e882764b837d13282a7642b115948d4e061d163`, a verified descendant of `a8eee4f875a95e8da69802c4e60452df3535fe0e`. `SX60-POC-ACCEPT-001` remains immutable historical package evidence for `7b7f350345619e870bb94e12954fbe81b1ef9403`, superseded by `PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE`; it is not launchable as a current acceptance candidate. `PR #201` is tooling-only and non-invalidating.
+The current post-060 candidate locator is `evidence/acceptance/post_sx_dec_060_candidate.json`; it explicitly selects `SX60-POC-ACCEPT-003` as `PREPARED_PACKAGE_VERIFIED` from `8bce715b5045afebfb04d38108d2e3f7353e1b10`, the exact merged SX-DEC-062 main. `SX60-POC-ACCEPT-001` remains immutable historical package evidence for `7b7f350345619e870bb94e12954fbe81b1ef9403`, superseded by `PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE`; Candidate 002 remains immutable prior-byte evidence superseded by `PLAYER_FACING_SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION_CHANGE`. Neither is launchable as the current acceptance candidate. `PR #201` is tooling-only and non-invalidating.
 
 Allowed implementation completion claims depend on actual results. Never infer:
 
@@ -317,7 +317,7 @@ GODOT_RUNTIME_CHANGE: IMPLEMENTED_AUTOMATED · 111_CASES_13461_ASSERTIONS · CI_
 FIVE_PASS_REVIEW: CLOSED · SX-AUD-071
 NOTION_POST_MERGE_READBACK: PASS
 NEW_BITMAP_IMAGE: 0
-POST_060_ACCEPTANCE_CANDIDATE: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED
+POST_060_ACCEPTANCE_CANDIDATE: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · PACKAGE_ONLY
 SX60_POC_ACCEPT_001: HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE
 PHYSICAL_NOT_RUN
 HUMAN_NOT_RUN

@@ -2,13 +2,13 @@
   "schema_version": 1,
   "decision_id": "SX-DEC-060",
   "candidate_status": "PREPARED_PACKAGE_VERIFIED",
-  "current_candidate_id": "SX60-POC-ACCEPT-002",
+  "current_candidate_id": "SX60-POC-ACCEPT-003",
   "selection_policy": "EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE",
-  "minimum_product_source_main": "a8eee4f875a95e8da69802c4e60452df3535fe0e",
-  "artifact_evidence_owner": "evidence/acceptance/sx60_poc_accept_002_artifact.json",
-  "deep_pck_evidence_owner": "evidence/acceptance/sx60_poc_accept_002_pck_deep_audit.json",
-  "acceptance_candidate_document": "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_02.md",
-  "self_run_record_name": "SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_02.md",
+  "minimum_product_source_main": "8bce715b5045afebfb04d38108d2e3f7353e1b10",
+  "artifact_evidence_owner": "evidence/acceptance/sx60_poc_accept_003_artifact.json",
+  "deep_pck_evidence_owner": "evidence/acceptance/sx60_poc_accept_003_pck_deep_audit.json",
+  "acceptance_candidate_document": "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_03.md",
+  "self_run_record_name": "SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_03.md",
   "historical_predecessor": {
     "candidate_id": "SX59-POC-ACCEPT-003",
     "pointer": "evidence/acceptance/current_poc_candidate.json",
@@ -26,14 +26,26 @@
     "invalidated_by_product_source_main": "a8eee4f875a95e8da69802c4e60452df3535fe0e",
     "role": "HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE"
   },
+  "historical_superseded_after_sx_dec_062": {
+    "candidate_id": "SX60-POC-ACCEPT-002",
+    "source_main": "0e882764b837d13282a7642b115948d4e061d163",
+    "candidate_status_at_invalidation": "PREPARED_PACKAGE_VERIFIED",
+    "artifact_evidence_owner": "evidence/acceptance/sx60_poc_accept_002_artifact.json",
+    "deep_pck_evidence_owner": "evidence/acceptance/sx60_poc_accept_002_pck_deep_audit.json",
+    "acceptance_candidate_document": "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_02.md",
+    "self_run_record_name": "SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_02.md",
+    "invalidation_reason": "PLAYER_FACING_SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION_CHANGE",
+    "invalidated_by_product_source_main": "8bce715b5045afebfb04d38108d2e3f7353e1b10",
+    "role": "HISTORICAL_SUPERSEDED_BY_SX_DEC_062_PRODUCT_BYTE_CHANGE"
+  },
   "tooling_only_non_invalidating_prs": [
     "PR #201"
   ],
   "mint_after": [
-    "isolated visual/input observation on the explicit candidate (complete; audio remains perceptual QA)",
+    "NoLaunch package verification on the explicit candidate",
     "Windows physical smoke and audio perceptual QA",
     "Android device smoke and five-person first-contact comprehension"
   ],
-  "current_next_action": "RUN_WINDOWS_PHYSICAL_SMOKE_AND_AUDIO_PERCEPTUAL_QA_ON_SX60_POC_ACCEPT_002_BEFORE_DEVICE_OR_HUMAN_COMPREHENSION_TESTS",
-  "updated_date_kst": "2026-08-27"
+  "current_next_action": "RUN_NO_LAUNCH_PACKAGE_VERIFICATION_AND_USER_WINDOWS_PHYSICAL_SMOKE_ON_SX60_POC_ACCEPT_003_BEFORE_DEVICE_OR_HUMAN_COMPREHENSION_TESTS",
+  "updated_date_kst": "2026-08-28"
 }

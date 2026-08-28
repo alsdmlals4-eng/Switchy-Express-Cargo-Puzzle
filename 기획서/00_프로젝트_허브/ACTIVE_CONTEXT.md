@@ -36,13 +36,13 @@ candidate_003_preparation_main: 2521f3be600ea950f9893ce45940604c2d0ac88a
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
 candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_0e882764b837d13282a7642b115948d4e061d163
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_8bce715b5045afebfb04d38108d2e3f7353e1b10 · PACKAGE_ONLY
 sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
-candidate_003_package_integrity: PASS
-candidate_003_pck_integrity: PASS · 472_OF_472
-candidate_003_product_texture_packaging: PASS · 73_OF_73
-candidate_003_powershell_51_live_download: PASS
-candidate_003_physical_visual_recheck: NOT_RUN
+pre_sx_dec_060_candidate_package_integrity: PASS
+pre_sx_dec_060_candidate_pck_integrity: PASS · 472_OF_472
+pre_sx_dec_060_candidate_product_texture_packaging: PASS · 73_OF_73
+pre_sx_dec_060_candidate_powershell_51_live_download: PASS
+pre_sx_dec_060_candidate_physical_visual_recheck: NOT_RUN
 sx_dec_060_user_rule: APPROVED
 sx_dec_060_decision_owner: docs/decisions/SX_DEC_060_CARDINAL_STATION_SERVICE_AND_REACHABLE_NETWORK.md
 sx_dec_060_design_spec: docs/superpowers/specs/2026-08-26-cardinal-station-service-and-reachable-network-design.md
@@ -59,17 +59,17 @@ sx_dec_061_scene_board_owner: 기획서/40_표현/PROJECT_CORE_SCENE_VISUAL_BOAR
 sx_dec_061_phase5_validation_unit: T1_TO_T6_TO_VS_DEMO_01_TO_RESULT
 sx_dec_061_merge: MERGED_MAIN_VERIFIED · PR_229 · main_a8ea00bc70612c4556fc4460dbc819cef249864d
 sx_dec_061_notion_home_visual_readback: PASS · 2026-08-28
-sx_dec_062_runtime_composition: APPROVED · EXISTING_ASSET_BOARD_FIRST_SCOPE · RUNTIME_UNCHANGED
+sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_SCOPE
 sx_dec_062_decision_owner: docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md
 sx_dec_062_design_spec: docs/superpowers/specs/2026-08-28-board-first-runtime-composition-design.md
 sx_dec_062_implementation_plan: docs/superpowers/plans/2026-08-28-board-first-runtime-composition.md
 sx_dec_062_codex_handoff: 기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md
 sx_dec_062_tracking_issue: GitHub_Issue_235
-sx_dec_062_runtime_status: IMPLEMENTATION_NOT_STARTED
+sx_dec_062_runtime_status: IMPLEMENTED · RED_GREEN_PASS · LOCAL_GODOT_112_CASES_13512_ASSERTIONS · EXACT_HEAD_CI_6_GREEN · NEW_EXACT_CANDIDATE_MINTED
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
 notion_direction_current_page: 3c91b237-eb1c-8197-bf13-debb96d444c8 · CURRENT_CREATED_READBACK_PASS · 2026-08-28
-post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · ISOLATED_VISUAL_INPUT_OBSERVED · AUDIO_NOT_OBSERVED · PHYSICAL_AUDIO_QA_NEXT
+post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_8bce715 · PACKAGE_ONLY · WINDOWS_PHYSICAL_AUDIO_QA_NEXT
 current_main_live_machine_qa: docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md · MAIN_CF93926 · TITLE_BRIEFING_BUILD_FLOW_OBSERVED · HUMAN_DEVICE_AUDIO_NOT_RUN
 title_hero_runtime_asset: MERGED_MAIN_VERIFIED · PR_217 · main_e0044d6c7427a7c199da6bcdcf792e41e2e2f152 · ISSUE_216 · RUNTIME_VERIFIED · DUAL_PRESERVATION_PASS
 title_hero_runtime_evidence: docs/operations/2026-08-27-title-hero-art-runtime-verification.md
@@ -86,7 +86,7 @@ phase5_user_start_authorization: RECORDED · 2026-08-28_KST · GitHub_Issue_233
 phase5_execution_plan: docs/superpowers/plans/2026-08-28-phase5-human-validation.md
 base_work_current_phase: PHASE_5_USER_VERTICAL_SLICE_VALIDATION · USER_AUTHORIZED · WINDOWS_PHYSICAL_AUDIO_EXECUTION_PENDING
 remaining_machine_executable_required_work: 0
-windows_physical_post_060: NOT_RUN_CURRENT_EXACT_CANDIDATE_002
+windows_physical_post_060: NOT_RUN_CURRENT_EXACT_CANDIDATE_003
 android_device_post_060: BLOCKED_UNVERIFIED_NO_EXACT_POST_060_APK_ID
 five_person_post_060: NOT_RUN
 player_experience_post_060: NOT_RUN
@@ -281,9 +281,9 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 ## Current next action
 
 ```text
-SX-DEC-061 visual direction and SX-DEC-062 board-first implementation contract are recorded; runtime bytes remain unchanged
-→ merge/readback the SX-DEC-062 canon package
-→ run the single CodeX Godot implementation contract before spending Phase 5 human evidence on new visual bytes
+SX-DEC-062 board-first runtime composition is merged and package-verified on exact main 8bce715
+→ Candidate 002 is immutable prior-byte evidence; Candidate 003 is the sole current package candidate
+→ run NoLaunch package verification, then Windows physical smoke and audio-perceptual QA before any Phase 5 human evidence claim
 → use the full T1 → T6 → VS_DEMO_01 → Result sequence for the next Phase 5 human-validation design
 → resolve the foreign-project Notion Direction page only after the user authorizes rehome or replacement
 → use Notion Direction `3c91b237-eb1c-8197-bf13-debb96d444c8` plus the repository owners as current Switchy Direction
@@ -302,7 +302,7 @@ TDD_PLAN_RECORDED
 CODEX_HANDOFF_EXECUTED
 RUNTIME_MERGED_MAIN_VERIFIED_PR_188
 AUTOMATED_REGRESSION_PASS_111_CASES_13461_ASSERTIONS
-POST_060_CANDIDATE_SX60_POC_ACCEPT_002_PREPARED_PACKAGE_VERIFIED
+POST_060_CANDIDATE_SX60_POC_ACCEPT_003_PREPARED_PACKAGE_VERIFIED
 SX60_POC_ACCEPT_001_HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE
 POST_060_DEVICE_NOT_RUN
 POST_060_HUMAN_NOT_RUN
