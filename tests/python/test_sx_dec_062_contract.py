@@ -52,12 +52,13 @@ class SxDec062ContractTests(unittest.TestCase):
     def test_current_canon_routes_the_approved_contract(self) -> None:
         active = read(ACTIVE)
         decisions = read(DECISIONS)
-        self.assertIn("current_decisions: SX-DEC-027~063", active)
+        self.assertIn("current_decisions: SX-DEC-027~064", active)
         self.assertIn("sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237", active)
         self.assertIn("SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md", active)
-        self.assertIn("current_decision_span: SX-DEC-027~063", decisions)
+        self.assertIn("current_decision_span: SX-DEC-027~064", decisions)
         self.assertIn("sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237", decisions)
         self.assertIn("SX-DEC-063", decisions)
+        self.assertIn("SX-DEC-064", decisions)
 
         registry = json.loads(read(REGISTRY))
         document_ids = {document["id"] for document in registry["documents"]}
