@@ -24,6 +24,8 @@ This was a documentation/visual-explanation gap. It was not evidence that the im
 - Generated `SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002A`, then rejected it during visual review because the switch panel falsely presented three exits.
 - Generated the corrected `002B` candidate: SHA-256 `6577d7ac5e490b1303af0105ef0573cf5b4be10a52cbdd4ccecb24ec116993bc`, 1672×941 PNG. It keeps one incoming rail, two exits, and an occupied-lock overlay separate from the route geometry.
 - Corrected stale SX-DEC-063 snapshot lines in `START_HERE.md`, `CURRENT_CONFIRMED_DECISIONS.md`, and `ACTIVE_CONTEXT.md`: terrain v02 is already `APPROVED_GITHUB_PRESERVED` via PR #244 and remains runtime-unconnected.
+- The first PR #247 validation run found a top-level canonical-freshness test still requiring the stale SX-DEC-063 `FIRST_CANDIDATE_GENERATED_REVIEW_PENDING` line. The test now rejects that old line and requires the documented terrain-v02 GitHub-preserved state.
+- The protected-change approval record now explicitly cites the user’s 2026-08-29 SX-VIS-061 correction request and includes `START_HERE.md`, which the exact protected-base delta already contained. The required `approved-protected-change` PR label is a normal policy gate, not a bypass.
 
 ## Verification boundary
 

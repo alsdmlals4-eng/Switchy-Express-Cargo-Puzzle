@@ -8,7 +8,8 @@
     "SX-DEC-062",
     "SX-DEC-063",
     "USER-APPROVAL-2026-08-28-SX-VIS-063-TERRAIN-CANDIDATE-001-PROMOTION",
-    "USER-OPERATING-2026-08-28-OFFICIAL_RESEARCH_FEASIBILITY_ADVERSARIAL_LOOP"
+    "USER-OPERATING-2026-08-28-OFFICIAL_RESEARCH_FEASIBILITY_ADVERSARIAL_LOOP",
+    "USER-APPROVAL-2026-08-29-SX-VIS-061-CORE-SYSTEM-BOARD-CORRECTION"
   ],
   "approved_paths": [
     "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
@@ -16,11 +17,12 @@
     "기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md",
     "기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md",
     "기획서/00_프로젝트_허브/ROADMAP.md",
+    "기획서/00_프로젝트_허브/START_HERE.md",
     "기획서/40_표현/PROJECT_CORE_SCENE_VISUAL_BOARD.md",
     "기획서/40_표현/VISUAL_DIRECTION.md",
     "기획서/50_제작_검증/SX_DEC_063_TERRAIN_RUNTIME_INTEGRATION_HANDOFF.md"
   ],
-  "approval_source": "USER_EXPLICIT_SX-VIS-063-CANDIDATE-001_PROMOTION_AND_USER_OPERATING_LOOP_2026-08-28",
-  "approval_time": "2026-08-28T22:57:28+09:00",
-  "scope_summary": "The user explicitly promoted the already reviewed SX-VIS-063 terrain candidate and required current official research, actual implementation-feasibility checks, and adversarial review for meaningful work. This approval records only the candidate preservation, its current runtime-not-connected boundary, current visual/project context, and the terrain-only Phase 2 Godot handoff. It does not authorize a terrain runtime path change in this PR, another asset family, gameplay/data/audio/locale/progression/Base changes, T2/Issue #227 work, PR #174 mutation, or human/player/release evidence promotion."
+  "approval_source": "USER_EXPLICIT_SX-VIS-063-CANDIDATE-001_PROMOTION_AND_USER_OPERATING_LOOP_2026-08-28_PLUS_USER_EXPLICIT_SX-VIS-061_CORE_SYSTEM_BOARD_CORRECTION_2026-08-29",
+  "approval_time": "2026-08-29T00:00:00+09:00",
+  "scope_summary": "The user explicitly promoted the reviewed SX-VIS-063 terrain candidate, required current official research/implementation-feasibility/adversarial review for meaningful work, and explicitly requested correction of the SX-VIS-061 planning board so rail installation, off-track station service, and direct switch commitment are causally legible. This approval records the candidate preservation, its runtime-not-connected boundary, current visual/project context, terrain-only Phase 2 Godot handoff, and the documentation-only SX-VIS-061 correction. It does not authorize a terrain runtime path change in this PR, a production asset family, gameplay/data/audio/locale/progression/Base changes, T2/Issue #227 work, PR #174 mutation, or human/player/release evidence promotion."
 }
