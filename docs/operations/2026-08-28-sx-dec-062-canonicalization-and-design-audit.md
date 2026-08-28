@@ -190,6 +190,7 @@ documentation_runtime_boundary: RUNTIME_UNCHANGED
 checks:
   - remote CI first observed: FAILED because `test_sx_dec_060_candidate_002_evidence.py` expected a superseded Active Context phase; corrected by SX-INC-062-002 before merge
   - protected approval manifest: 47 unique paths; reconciled to the exact remote detected list; final CI requires the existing `approved-protected-change` PR label
+  - GitHub label-triggered protected validation: PASS on the approved PR state; earlier push-triggered runs preserve `EXTERNAL_APPROVAL=false` event metadata and are not runtime/code failures
   - python -m pytest tests/python/test_sx_dec_060_candidate_002_evidence.py -q: PASS (7 tests)
   - python -m pytest tests/python -q: PASS (214 passed, 1 skipped)
   - python tests/test_post_merge_canon_freshness.py: PASS (4 tests)
