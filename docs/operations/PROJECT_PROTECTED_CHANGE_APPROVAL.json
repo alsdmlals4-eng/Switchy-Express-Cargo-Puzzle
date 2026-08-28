@@ -11,7 +11,8 @@
     "USER-APPROVAL-2026-08-28-SX-VIS-063-TERRAIN-CANDIDATE-001-PROMOTION",
     "USER-OPERATING-2026-08-28-OFFICIAL_RESEARCH_FEASIBILITY_ADVERSARIAL_LOOP",
     "USER-APPROVAL-2026-08-29-SX-VIS-061-CORE-SYSTEM-BOARD-CORRECTION",
-    "USER-APPROVAL-2026-08-29-SX-DEC-064-ACTIVE-ROUTE-LIGHTING"
+    "USER-APPROVAL-2026-08-29-SX-DEC-064-ACTIVE-ROUTE-LIGHTING",
+    "USER-APPROVAL-2026-08-29-SX60-POC-ACCEPT-004-VALIDATION"
   ],
   "approved_paths": [
     "game/demo/presentation/product_board_renderer.gd",
@@ -24,9 +25,14 @@
     "기획서/00_프로젝트_허브/START_HERE.md",
     "기획서/40_표현/PROJECT_CORE_SCENE_VISUAL_BOARD.md",
     "기획서/40_표현/VISUAL_DIRECTION.md",
-    "기획서/50_제작_검증/SX_DEC_063_TERRAIN_RUNTIME_INTEGRATION_HANDOFF.md"
+    "기획서/50_제작_검증/SX_DEC_063_TERRAIN_RUNTIME_INTEGRATION_HANDOFF.md",
+    "기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md",
+    "기획서/50_제작_검증/PLAYTEST_PLAN.md",
+    "기획서/50_제작_검증/SX_DEC_060_CODEX_HANDOFF_PACKAGE.md",
+    "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_04.md",
+    "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_04.md"
   ],
-  "approval_source": "USER_EXPLICIT_SX-VIS-063-CANDIDATE-001_PROMOTION_AND_USER_OPERATING_LOOP_2026-08-28_PLUS_USER_EXPLICIT_SX-VIS-061_CORE_SYSTEM_BOARD_CORRECTION_AND_SX-DEC-064_ACTIVE_ROUTE_LIGHTING_2026-08-29",
+  "approval_source": "USER_EXPLICIT_SX-VIS-063-CANDIDATE-001_PROMOTION_AND_USER_OPERATING_LOOP_2026-08-28_PLUS_USER_EXPLICIT_SX-VIS-061_CORE_SYSTEM_BOARD_CORRECTION_AND_SX-DEC-064_ACTIVE_ROUTE_LIGHTING_AND_SX60_POC_ACCEPT_004_VALIDATION_2026-08-29",
   "approval_time": "2026-08-29T00:00:00+09:00",
-  "scope_summary": "The user explicitly promoted the reviewed SX-VIS-063 terrain candidate, required current official research/implementation-feasibility/adversarial review for meaningful work, approved the SX-VIS-061 core-system board as a GitHub planning reference, and approved SX-DEC-064 active-route lighting. SX-DEC-064 adds only a procedural board projection rooted at actual train state: selected deterministic rails glow; alternate rails do not; lock is a separate overlay; terminal states do not predict future route. This approval records the project-local planning reference preservation and the presentation-only route-lighting implementation/test/documentation scope. It does not authorize terrain runtime integration, a production asset family, gameplay/data/audio/locale/progression/Base changes, T2/Issue #227 work, PR #174 mutation, a solver, or human/player/release evidence promotion."
+  "scope_summary": "The user explicitly promoted the reviewed SX-VIS-063 terrain candidate, required current official research/implementation-feasibility/adversarial review for meaningful work, approved the SX-VIS-061 core-system board as a GitHub planning reference, approved SX-DEC-064 active-route lighting, and authorized the exact post-SX-DEC-064 Candidate 004 package validation. SX-DEC-064 adds only a procedural board projection rooted at actual train state: selected deterministic rails glow; alternate rails do not; lock is a separate overlay; terminal states do not predict future route. Candidate 004 records the exact existing product bytes, artifact/PCK integrity, fail-closed no-launch validation, and no physical/human evidence promotion. This approval does not authorize terrain runtime integration, a production asset family, gameplay/data/audio/locale/progression/Base changes, T2/Issue #227 work, PR #174 mutation, a solver, or human/player/release evidence promotion."
 }

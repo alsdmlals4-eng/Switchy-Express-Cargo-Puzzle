@@ -101,8 +101,8 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
         text = PROJECT_SKILL.read_text(encoding="utf-8")
         current = text.split("### Current Gate authority", 1)[1].split("## SX-DEC-060 station / preflight contract", 1)[0]
         for required in (
-            "SX60-POC-ACCEPT-003 NoLaunch package verification",
-            "POST-060 EXACT CANDIDATE: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED",
+            "SX60-POC-ACCEPT-004 package verification",
+            "POST-060 EXACT CANDIDATE: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED",
             "Windows physical smoke",
             "Android device smoke",
             "Five-person first-contact comprehension",

@@ -76,8 +76,8 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
     def test_post_060_pointer_selects_the_current_exact_candidate(self) -> None:
         pointer = self._post_060_pointer()
         self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-003")
-        self.assertEqual(pointer["minimum_product_source_main"], "8bce715b5045afebfb04d38108d2e3f7353e1b10")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-004")
+        self.assertEqual(pointer["minimum_product_source_main"], "58b99f261c3576150ab275bb041d744c69b83538")
         self.assertEqual(
             pointer["historical_superseded_candidate"]["invalidation_reason"],
             "PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE",
@@ -88,6 +88,10 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertEqual(
             pointer["historical_superseded_after_sx_dec_062"]["candidate_id"],
             "SX60-POC-ACCEPT-002",
+        )
+        self.assertEqual(
+            pointer["historical_superseded_after_sx_dec_064"]["candidate_id"],
+            "SX60-POC-ACCEPT-003",
         )
 
     def test_candidate_002_evidence_is_preserved_as_history(self) -> None:

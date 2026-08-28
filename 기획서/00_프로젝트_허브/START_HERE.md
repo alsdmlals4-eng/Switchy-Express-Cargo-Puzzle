@@ -1,6 +1,6 @@
 # Switchy Express 프로젝트 허브
 
-Last updated: `2026-08-28 KST`
+Last updated: `2026-08-29 KST`
 
 이 문서는 현재 제품 기준선과 **다음 실행 지점**을 빠르게 찾는 허브다. 실행 전에는 항상 fresh Base completed `main`, current Skill Registry/generated map, fresh project `main`, Open/Draft PR, current GitHub owners와 actual runtime evidence를 다시 읽는다. Notion의 current structure는 GitHub에 이관됐고 historical audit-only다.
 
@@ -9,7 +9,7 @@ Last updated: `2026-08-28 KST`
 | 항목 | 현재 값 |
 |---|---|
 | 제품 기준선 | `GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060` |
-| 결정 범위 | `SX-DEC-027~063` |
+| 결정 범위 | `SX-DEC-027~064` |
 | 작업지시문 | `v4.8 · revision 2026-08-26-r5.4-superset-final · Switchy thin adapter` |
 | 작업지시문 역할 | `USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT` |
 | current project adapter | `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md` |
@@ -24,10 +24,10 @@ Last updated: `2026-08-28 KST`
 | station representation | `OFF_TRACK_SERVICE_OBJECT · station cell player rail forbidden` |
 | image requirement | `0 new bitmap · reuse existing station PNG consumers + procedural service overlay` |
 | pre-060 Candidate 003 | `SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY after SX-DEC-060` |
-| post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · source main 8bce715b5045afebfb04d38108d2e3f7353e1b10 · package-only evidence` |
+| post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · source main 58b99f261c3576150ab275bb041d744c69b83538 · package-only evidence` |
 | SX60 Candidate 001 | `HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE · hashes/PCK preserved` |
 | post-060 automated regression | `PASS · 111 cases / 13,461 assertions · CI 7 GREEN · SX-AUD-071 CLOSED` |
-| post-060 Windows physical | `HISTORICAL_AUTOMATION_OBSERVED_INITIAL_TITLE_AND_BUILD_ENTRY · CURRENT_EXACT_CANDIDATE_003_PACKAGE_VERIFIED_HUMAN_PHYSICAL_NOT_RUN · full human/runtime gate NOT_RUN` |
+| post-060 Windows physical | `HISTORICAL_AUTOMATION_OBSERVED_INITIAL_TITLE_AND_BUILD_ENTRY · CURRENT_EXACT_CANDIDATE_004_PACKAGE_VERIFIED_HUMAN_PHYSICAL_NOT_RUN · full human/runtime gate NOT_RUN` |
 | post-060 Android device | `NOT_RUN` |
 | post-060 five-person | `NOT_RUN` |
 | Player experience | `NOT_RUN` |
@@ -177,8 +177,8 @@ SX-DEC-063 terrain v02 is GitHub-preserved; v01 remains the live runtime path
 → only after the Phase 2 handoff is executed and validated, interpret a new exact runtime/package candidate
 → Phase 5 user-validation continuation remains a separate later gate
 → current Playtest authority corrects old 055/059/validation-APK status to historical
-SX60-POC-ACCEPT-003 exact package verified; Candidate 002 observation remains prior-byte evidence only
-→ NoLaunch package verification PASS → Windows physical smoke + audio perceptual QA
+SX60-POC-ACCEPT-004 exact package verified; Candidates 002/003 remain prior-byte evidence only
+→ Windows physical smoke + audio perceptual QA
 → exact post-060 Android APK identity assignment + Android device smoke
 → Five-person first-contact comprehension
 → product decision

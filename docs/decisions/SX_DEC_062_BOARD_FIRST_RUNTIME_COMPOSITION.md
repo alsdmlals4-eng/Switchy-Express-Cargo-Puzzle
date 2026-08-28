@@ -37,7 +37,7 @@ The player promise, finite-map rules, station cardinal-service semantics, Manual
 
 4. **Evidence-safe validation transition**
    - `SX60-POC-ACCEPT-002` is immutable pre-SX-DEC-062 package evidence. Its physical/audio/human observations cannot transfer to the new bytes.
-   - `SX60-POC-ACCEPT-003` is the exact merged-main package candidate after implementation. It verifies package/automation only; Windows physical+audio → Android device → five-person → Player Experience gates remain open.
+   - `SX60-POC-ACCEPT-003` is immutable prior-byte package evidence after SX-DEC-062. `SX60-POC-ACCEPT-004` is the current exact merged-main package candidate after SX-DEC-064; it verifies package/automation only, and Windows physical+audio → Android device → five-person → Player Experience gates remain open.
 
 ## Explicit exclusions
 

@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "candidate_id": "SX60-POC-ACCEPT-004",
+  "candidate_evidence_owner": "evidence/acceptance/sx60_poc_accept_004_artifact.json",
+  "package_identity": {
+    "zip_sha256": "04e230e3d62c518b3d76ae4938964d2a1234a82949b7e2f4af4a3a447822f303",
+    "windows_exe_sha256": "1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244",
+    "windows_pck_sha256": "3325f11115fdf3fc57e39bb35c545d115217614eb1e58607934edacf0c6b0839"
+  },
+  "pck_integrity": {
+    "verifier": "tools/verify_godot_pck_integrity.py",
+    "final_verifier_actual_candidate_invocation": "PASS",
+    "recomputed_windows_pck_sha256": "3325f11115fdf3fc57e39bb35c545d115217614eb1e58607934edacf0c6b0839",
+    "pack_format_version": 4,
+    "engine_version": "4.7.1",
+    "pack_flags": 2,
+    "relative_filebase": true,
+    "file_size_bytes": 13315220,
+    "file_base": 112,
+    "directory_offset": 13265712,
+    "directory_end": 13315220,
+    "trailing_unverified_bytes": 0,
+    "file_count": 500,
+    "verified_entry_count": 500,
+    "md5_mismatch_count": 0,
+    "bounds_error_count": 0,
+    "nonzero_entry_flags_count": 0,
+    "integrity_pass": true
+  },
+  "product_texture_packaging": {
+    "prefix": "art/product_assets/ed_hybrid_v1/",
+    "prefix_entry_count": 85,
+    "semantic_product_png_count": 73,
+    "runtime_presentation_png_count": 6,
+    "total_tracked_product_png_count": 79,
+    "product_png_import_count": 79,
+    "unique_referenced_ctex_count": 79,
+    "missing_ctex_reference_count": 0,
+    "orphan_packed_ctex_count": 0,
+    "packaging_crosscheck": "PASS"
+  },
+  "packaged_runtime_proof": {
+    "windows_runtime_json": "PASS · parsed_json=27",
+    "android_validation_runtime_json": "PASS · parsed_json=27"
+  },
+  "scope": {
+    "candidate_mint_changes_gameplay_rule_or_map_data": false,
+    "candidate_mint_changes_image_asset_bytes": false,
+    "candidate_mint_changes_audio_bytes": false,
+    "included_prior_approved_active_route_lighting_runtime_delta": true,
+    "sx_dec_056a_056b_057_058_authorization_changed": false
+  },
+  "evidence_ceiling": {
+    "package_integrity": "PASS",
+    "windows_physical_startup_and_build_entry_automation_observed": "NOT_RUN",
+    "physical_visual_recheck": "NOT_RUN",
+    "developer_self_run": "NOT_RUN",
+    "windows_physical_runtime_full_scenarios": "NOT_RUN",
+    "audio_perceptual_qa": "NOT_RUN",
+    "android_device": "NOT_RUN",
+    "five_person_comprehension": "NOT_RUN",
+    "player_experience": "NOT_RUN"
+  }
+}

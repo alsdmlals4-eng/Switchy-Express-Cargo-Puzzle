@@ -43,8 +43,9 @@ candidate_003_preparation_main: 2521f3be600ea950f9893ce45940604c2d0ac88a
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
 candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · NO_LAUNCH_PACKAGE_VERIFIED · SOURCE_MAIN_8bce715b5045afebfb04d38108d2e3f7353e1b10 · PACKAGE_ONLY
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_58b99f261c3576150ab275bb041d744c69b83538 · PACKAGE_ONLY · SX_DEC_064_ACTIVE_ROUTE_LIGHTING_INCLUDED
 sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
+sx60_poc_accept_003: SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE · PLAYER_FACING_SX_DEC_064_ACTIVE_ROUTE_LIGHTING_CHANGE
 pre_sx_dec_060_candidate_package_integrity: PASS
 pre_sx_dec_060_candidate_pck_integrity: PASS · 472_OF_472
 pre_sx_dec_060_candidate_product_texture_packaging: PASS · 73_OF_73
@@ -82,11 +83,13 @@ sx_dec_064_active_route_lighting: MERGED_MAIN_VERIFIED · GitHub_Issue_248 · PR
 sx_dec_064_decision_owner: docs/decisions/SX_DEC_064_ACTIVE_ROUTE_LIGHTING.md
 sx_dec_064_runtime_owners: game/demo/presentation/product_board_renderer.gd + game/finite/main/finite_slice_session_controller.gd
 sx_dec_064_test_evidence: RED_RECORDED_THEN_GREEN · EXACT_HEAD_CI_7_GREEN · POST_MERGE_MAIN_GODOT_112_CASES_13513_ASSERTIONS · PHYSICAL_AND_HUMAN_NOT_RUN
+sx_dec_064_candidate_004_evidence: SX60-POC-ACCEPT-004 · PACKAGE_VERIFIED · docs/operations/2026-08-29-sx-dec-064-candidate-004-package-freshness.md · PHYSICAL_AND_HUMAN_NOT_RUN
+sx_dec_064_candidate_004_tracking_issue: GitHub_Issue_251
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · 2026-08-28 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
 notion_direction_current_page: 3c91b237-eb1c-8197-bf13-debb96d444c8 · CURRENT_CREATED_READBACK_PASS · 2026-08-28
-post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · NO_LAUNCH_PACKAGE_VERIFIED · SOURCE_MAIN_8bce715 · WINDOWS_PHYSICAL_AUDIO_QA_NEXT
+post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_58b99f2 · WINDOWS_PHYSICAL_AUDIO_QA_NEXT
 current_main_live_machine_qa: docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md · MAIN_CF93926 · TITLE_BRIEFING_BUILD_FLOW_OBSERVED · HUMAN_DEVICE_AUDIO_NOT_RUN
 title_hero_runtime_asset: MERGED_MAIN_VERIFIED · PR_217 · main_e0044d6c7427a7c199da6bcdcf792e41e2e2f152 · ISSUE_216 · RUNTIME_VERIFIED · DUAL_PRESERVATION_PASS
 title_hero_runtime_evidence: docs/operations/2026-08-27-title-hero-art-runtime-verification.md
@@ -103,7 +106,7 @@ phase5_user_start_authorization: RECORDED · 2026-08-28_KST · GitHub_Issue_233
 phase5_execution_plan: docs/superpowers/plans/2026-08-28-phase5-human-validation.md
 base_work_current_phase: PHASE_5_USER_VERTICAL_SLICE_VALIDATION · USER_AUTHORIZED · WINDOWS_PHYSICAL_AUDIO_EXECUTION_PENDING
 remaining_machine_executable_required_work: 0
-windows_physical_post_060: NOT_RUN_CURRENT_EXACT_CANDIDATE_003
+windows_physical_post_060: NOT_RUN_CURRENT_EXACT_CANDIDATE_004
 android_device_post_060: BLOCKED_UNVERIFIED_NO_EXACT_POST_060_APK_ID
 five_person_post_060: NOT_RUN
 player_experience_post_060: NOT_RUN
@@ -299,7 +302,7 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 
 ```text
 SX-DEC-064 active-route-lighting is merged on main through Issue #248 / PR #249 with all 7 exact-head CI checks green
-→ mint a new exact runtime candidate before any physical route-readability claim
+→ Candidate 004 exact package verification is recorded from main 58b99f261c3576150ab275bb041d744c69b83538; no physical route-readability claim has transferred or been made
 → current route glow starts at the actual train cell plus actual previous cell; it falls back to authored start only before a train state exists
 → only the currently selected deterministic route is lime-lit; alternate rails stay unlit, lock is a separate crimson overlay, and terminal phases have no predictive route glow
 → this is not a solver, gameplay, map/data, asset, or Notion change
@@ -307,9 +310,9 @@ SX-DEC-064 active-route-lighting is merged on main through Issue #248 / PR #249 
 → terrain v02 is GitHub-preserved with SHA/provenance; v01 remains the active runtime path
 → preserve the rectangular BUILD/RUN grid, gameplay semantics, actual consumer mapping, T2 v02, and Issue #227
 → next machine-executable visual task: execute the terrain-only Phase 2 runtime handoff with RED→GREEN, same-state viewport comparison, package candidate refresh, and five adversarial loops
-→ SX-DEC-062 board-first runtime composition remains merged and package-verified on exact main 8bce715
-→ Candidate 002 is immutable prior-byte evidence; Candidate 003 is the sole current package candidate
-→ NoLaunch package verification PASS; run Windows physical smoke and audio-perceptual QA before any Phase 5 human evidence claim
+→ SX-DEC-062 board-first runtime composition and SX-DEC-064 active-route lighting are packaged on exact main 58b99f2
+→ Candidates 002 and 003 are immutable prior-byte evidence; Candidate 004 is the sole current package candidate
+→ Windows package verification PASS; run Windows physical smoke and audio-perceptual QA before any Phase 5 human evidence claim
 → use the full T1 → T6 → VS_DEMO_01 → Result sequence for the next Phase 5 human-validation design
 → historical foreign-project Notion Direction page is audit-only and does not block current work
 → use GitHub visual/decision owners as the sole current Switchy Direction
@@ -328,7 +331,7 @@ TDD_PLAN_RECORDED
 CODEX_HANDOFF_EXECUTED
 RUNTIME_MERGED_MAIN_VERIFIED_PR_188
 AUTOMATED_REGRESSION_PASS_111_CASES_13461_ASSERTIONS
-POST_060_CANDIDATE_SX60_POC_ACCEPT_003_PREPARED_PACKAGE_VERIFIED
+POST_060_CANDIDATE_SX60_POC_ACCEPT_004_PREPARED_PACKAGE_VERIFIED
 SX60_POC_ACCEPT_001_HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE
 POST_060_DEVICE_NOT_RUN
 POST_060_HUMAN_NOT_RUN

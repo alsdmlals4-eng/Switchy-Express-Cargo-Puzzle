@@ -1,6 +1,6 @@
 # Development Gates
 
-Last updated: `2026-08-28 KST`
+Last updated: `2026-08-29 KST`
 
 현재 실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 우선한다. 과거 commit/PR/run은 역사 evidence이며 current next action을 자동 정의하지 않는다.
 
@@ -12,8 +12,8 @@ work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~063
-current_product_gate: SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_PLANNING
+current_decisions: SX-DEC-027~064
+current_product_gate: SX_DEC_064_EXACT_PACKAGE_CANDIDATE_VERIFIED · WINDOWS_PHYSICAL_AUDIO_PENDING
 ```
 
 ## 1. Stable historical implementation evidence
@@ -32,7 +32,7 @@ These remain valid for their exact historical bytes and bounded claims. They do 
 
 ## 1A. SX-DEC-062 composition-contract gate
 
-`PASS · MERGED_MAIN_VERIFIED · PR #237 · EXACT_MAIN_PACKAGE_CANDIDATE_003_VERIFIED · HUMAN_GATES_OPEN`
+`PASS · MERGED_MAIN_VERIFIED · PR #237/#249 · EXACT_MAIN_PACKAGE_CANDIDATE_004_VERIFIED · HUMAN_GATES_OPEN`
 
 Binding owners:
 
@@ -45,7 +45,7 @@ docs/superpowers/plans/2026-08-28-board-first-runtime-composition.md
 
 This one presentation slice may modify only the named palette/theme/HUD/shell/board-renderer owners and tests. It preserves all existing raster paths and consumers, including T2 v02. Issue #227, finite data/rules, first-session content, audio, score/economy/progression, Base, and PR #174 are out of scope.
 
-The implementation demonstrated RED→GREEN tests, exact-head static/Godot checks, a no-new-asset/no-gameplay-delta review, and an exact-main package candidate. `SX60-POC-ACCEPT-002` cannot validate the changed bytes; `SX60-POC-ACCEPT-003` is current package evidence only and does not pass a physical/human gate.
+The implementation demonstrated RED→GREEN tests, exact-head static/Godot checks, a no-new-asset/no-gameplay-delta review, and an exact-main package candidate. `SX60-POC-ACCEPT-002` and `SX60-POC-ACCEPT-003` cannot validate the SX-DEC-064 bytes; `SX60-POC-ACCEPT-004` is current package evidence only and does not pass a physical/human gate.
 
 Stable physical/human anchors remain:
 
@@ -71,7 +71,7 @@ docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production
 
 The selected direction adds elevated miniature-diorama depth cues within the existing rectangular BUILD/RUN grid. The user promoted only `SX-VIS-063-CANDIDATE-001` as v02 source art with SHA/provenance and a real future consumer. It does not yet authorize a true isometric conversion, Godot/Scene/Resource runtime integration, a production asset batch, gameplay/data/audio/locale/progression changes, Issue #227 T2 replacement, or a new human/player-evidence claim. The next runtime mutation must follow `SX_DEC_063_TERRAIN_RUNTIME_INTEGRATION_HANDOFF.md`.
 
-## 2. Candidate 003 evidence boundary
+## 2. Candidate 004 evidence boundary
 
 ```yaml
 candidate_id: SX59-POC-ACCEPT-003
@@ -83,7 +83,7 @@ physical_visual_recheck: NOT_RUN
 role_after_sx_dec_060: HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY
 ```
 
-SX-DEC-060 changes gameplay/data bytes. Candidate 003 must not be promoted as the post-change acceptance candidate. Its old Gate 0 instructions remain provenance only.
+SX-DEC-060 and the later player-facing SX-DEC-064 runtime change invalidate older candidate bytes. Candidate 004 must not be promoted beyond package verification. Older Gate 0 instructions remain provenance only.
 
 ## 3. SX-DEC-060 Decision Gate
 
@@ -301,8 +301,8 @@ Any finding is fixed and the affected full loop is repeated. `CLEAN_REVIEW_EXIT`
 Blocked until S60-1~10 are complete.
 
 ```text
-SX60-POC-ACCEPT-003 exact package verified (source main 8bce715b5045afebfb04d38108d2e3f7353e1b10)
-→ NoLaunch verification PASS → Windows full physical smoke
+SX60-POC-ACCEPT-004 exact package verified (source main 58b99f261c3576150ab275bb041d744c69b83538)
+→ package verification PASS → Windows full physical smoke
 → audio perceptual QA
 → exact post-060 Android APK identity assignment + Android device smoke
 → Five-person first-contact comprehension

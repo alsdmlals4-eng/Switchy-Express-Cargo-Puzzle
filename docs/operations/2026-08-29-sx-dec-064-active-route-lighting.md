@@ -16,7 +16,7 @@ The first PR #249 remote validation also found two governance regressions that t
 - The existing dim route-control target stays as an input affordance. Occupied lock is a crimson overlay on the selected rail, not another illuminated route.
 - SUCCESS/FAILURE emits no future-route descriptor.
 - Updated the four canonical-freshness tests to require the new `SX-DEC-027~064` span and `SX-DEC-064` identity.
-- Reduced `PROJECT_PROTECTED_CHANGE_APPROVAL.approved_paths` to the exact 11 protected paths detected against the required protected baseline. Non-protected implementation, test, decision, audit, and planning-reference files remain authorized by the user scope but are intentionally not inserted into that field.
+- Reduced `PROJECT_PROTECTED_CHANGE_APPROVAL.approved_paths` to the exact protected-path set detected against the required protected baseline. Candidate 004 later added its explicitly user-authorized current-canon and validation-record owners; the field remains an exact protected-path list, not an all-changed-file list.
 
 ## Evidence and boundary
 
@@ -35,7 +35,7 @@ The first PR #249 remote validation also found two governance regressions that t
 | 2 · actual-state fidelity | Could the forecast begin from stale authored start after the train has moved? | PASS — snapshot carries `train_previous_cell` and tests assert route root at the active train. |
 | 3 · interaction safety | Could removing blue rail lights also remove the ability to preselect a distant branch? | PASS — `RouteControlOverlay` remains an untouched dim control affordance. |
 | 4 · rule/evidence inflation | Could lock become a new route, or predictive glow imply a solver/terminal movement? | PASS — lock is an overlay, terminal descriptors are empty, and the decision excludes solver/rule change. |
-| 5 · visual/runtime proof and scope | Could headless structural tests be described as an approved gameplay composite or player proof, or could a protected changed path escape the approval record? | PASS after correction — same-state render/physical/human evidence is explicitly `NOT_RUN`; remote contract review showed that `approved_paths` is an exact **protected-path** list, not an all-changed-file list. The record now contains the 11 detected protected paths exactly; the additional scoped docs/tests/reference are deliberately outside that field. |
+| 5 · visual/runtime proof and scope | Could headless structural tests be described as an approved gameplay composite or player proof, or could a protected changed path escape the approval record? | PASS after correction — same-state render/physical/human evidence is explicitly `NOT_RUN`; remote contract review showed that `approved_paths` is an exact **protected-path** list, not an all-changed-file list. Candidate 004's authorized protected owners were later added to that exact list; non-protected scoped docs/tests/reference remain outside it. |
 
 ## Lesson and Base-promotion assessment
 

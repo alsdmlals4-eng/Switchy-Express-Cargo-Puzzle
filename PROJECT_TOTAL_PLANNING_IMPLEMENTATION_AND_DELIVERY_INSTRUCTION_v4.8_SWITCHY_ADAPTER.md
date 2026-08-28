@@ -53,7 +53,7 @@ project_base_compatibility_pin: v9.4.3
 project_base_pin_role: HISTORICAL_COMPATIBILITY_AND_PROJECT_ADOPTION_EVIDENCE
 base_current_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
-current_decision_span: SX-DEC-027~063
+current_decision_span: SX-DEC-027~064
 ```
 
 `Base v9.4.3` pin은 과거 project compatibility evidence일 뿐 current Base 실행 방법론 pin이 아니다.
@@ -199,9 +199,10 @@ sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_five_pass_review: CLOSED · SX-AUD-071
 sx_dec_060_notion_readback: PASS
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · PACKAGE_ONLY
-post_sx_dec_060_candidate_minimum_product_source_main: 8bce715b5045afebfb04d38108d2e3f7353e1b10
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · PACKAGE_ONLY · SX_DEC_064_ACTIVE_ROUTE_LIGHTING_INCLUDED
+post_sx_dec_060_candidate_minimum_product_source_main: 58b99f261c3576150ab275bb041d744c69b83538
 sx60_poc_accept_001: HISTORICAL_SUPERSEDED_BY_PLAYER_FACING_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
+sx60_poc_accept_003: SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE · PLAYER_FACING_SX_DEC_064_ACTIVE_ROUTE_LIGHTING_CHANGE
 windows_physical_post_060: NOT_RUN
 android_device_post_060: NOT_RUN
 five_person_post_060: NOT_RUN
@@ -214,7 +215,7 @@ Candidate 002의 Windows startup PASS는 역사적 physical evidence지만 P1 vi
 현재 post-060 implementation route:
 
 ```text
-NoLaunch verification PASS on SX60-POC-ACCEPT-003, then the exact post-060 candidate physical self-run after package proof
+Package verification PASS on SX60-POC-ACCEPT-004, then the exact post-060 candidate physical self-run after package proof
 → Windows physical smoke and audio perceptual QA
 → Android device smoke as a separate platform gate
 → Five-person first-contact comprehension on that post-060 build

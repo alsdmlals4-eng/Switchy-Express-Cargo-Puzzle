@@ -2,12 +2,12 @@
 
 ```yaml
 status: CURRENT_CANON · PHASE_5_USER_VERTICAL_SLICE_VALIDATION · USER_AUTHORIZATION_RECORDED_2026-08-28 · HUMAN_EVIDENCE_NOT_RUN
-product_authority: GMB-002 · SX-DEC-027~062 · SX-DEC-060_CARDINAL_SERVICE_AMENDMENT · SX-DEC-062_COMPOSITION_CONTRACT
+product_authority: GMB-002 · SX-DEC-027~064 · SX-DEC-060_CARDINAL_SERVICE_AMENDMENT · SX-DEC-062_COMPOSITION_CONTRACT · SX-DEC-064_ACTIVE_ROUTE_LIGHTING
 planning_audit: SX-AUD-049 · HISTORICAL_METHOD_PROVENANCE
-current_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED
-current_candidate_source_main: 8bce715b5045afebfb04d38108d2e3f7353e1b10
+current_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED
+current_candidate_source_main: 58b99f261c3576150ab275bb041d744c69b83538
 current_candidate_windows_exe_sha256: 1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244
-current_candidate_windows_pck_sha256: 10481c5bafbcef32c805245134ba94745c1308cf91b1f633038fbfbef6c253f5
+current_candidate_windows_pck_sha256: 3325f11115fdf3fc57e39bb35c545d115217614eb1e58607934edacf0c6b0839
 windows_physical_and_audio: NOT_RUN · FIRST_EXECUTION_GATE
 android_device: BLOCKED_UNVERIFIED · NO_EXACT_POST_SX_DEC_060_APK_ID_ASSIGNED
 five_person_comprehension: NOT_RUN · BLOCKED_BY_WINDOWS_PHYSICAL_AUDIO_AND_ANDROID_IDENTITY
@@ -23,7 +23,7 @@ production_cutover: BLOCKED_DEFERRED
 이 Section이 현재 실행 상태의 단일 정본이다. 사용자 승인 `2026-08-28 KST`는 Phase 5의 **시작 권한**만 기록한다. Windows physical, audio, Android, five-person, Player Experience, production cutover 중 어느 것도 PASS로 승격하지 않는다.
 
 ```text
-SX60-POC-ACCEPT-003 Windows exact candidate
+SX60-POC-ACCEPT-004 Windows exact candidate
 → Windows full physical smoke + audio perceptual QA
 → exact post-SX-DEC-060 Android APK identity assignment and physical device smoke
 → five-person first-contact comprehension
@@ -32,7 +32,7 @@ SX60-POC-ACCEPT-003 Windows exact candidate
 
 - 현재 검증 단위는 `T1 → T2 → T3 → T4 → T5 → T6 → VS_DEMO_01 → Result / Retry / Edit`다.
 - T2의 필수 구분은 `cargo = same-cell Manual/Auto pickup`, `station = one cardinal-adjacent service cell`, `diagonal / station footprint = no delivery`다.
-- `SX60-POC-ACCEPT-003`에는 Windows artifact identity만 현재 acceptance pointer로 지정돼 있다. Android runtime JSON proof는 APK artifact identity나 physical-device proof가 아니다. 기존 Android validation APK/runbook은 historical이며 post-060 device Gate에 재사용하지 않는다.
+- `SX60-POC-ACCEPT-004`는 current Windows artifact identity와 Android runtime-JSON package proof를 지정한다. Android runtime JSON proof는 APK artifact identity나 physical-device proof가 아니다. 기존 Android validation APK/runbook은 historical이며 post-060 device Gate에 재사용하지 않는다.
 - `SX-DEC-061`은 planning/visual direction lock이며 runtime bytes를 바꾸지 않았다. 화면의 visual grammar는 관찰할 수 있지만 board·generated exploration·machine capture만으로 human usability를 통과 처리하지 않는다.
 - 상세 실행 순서, 기록 규칙, stale correction의 Incident/Solution/Lesson은 `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`를 따른다.
 
@@ -432,8 +432,8 @@ participant_result: PASS | FAIL | BLOCKED | NOT_RUN | INTERVENTION_CONTAMINATED
 PLAYTEST/COMPREHENSION CONTRACT: CURRENT_CANON
 HISTORICAL VALIDATION APK: PRESERVED · NOT CURRENT HUMAN ACCEPTANCE BUILD
 USER PHASE 5 START AUTHORIZATION: RECORDED · 2026-08-28 KST
-CURRENT PRODUCT AUTHORITY: GMB-002 · SX-DEC-027~062 · SX-DEC-060 cardinal station service · SX-DEC-062 board-first composition contract
-CURRENT WINDOWS CANDIDATE: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED
+CURRENT PRODUCT AUTHORITY: GMB-002 · SX-DEC-027~064 · SX-DEC-060 cardinal station service · SX-DEC-062 board-first composition · SX-DEC-064 active-route lighting
+CURRENT WINDOWS CANDIDATE: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED
 WINDOWS PHYSICAL / AUDIO: NOT_RUN
 POST-060 ANDROID APK IDENTITY: UNASSIGNED · DO NOT REUSE HISTORICAL VALIDATION APK
 FIVE-PERSON COMPREHENSION: NOT_RUN
