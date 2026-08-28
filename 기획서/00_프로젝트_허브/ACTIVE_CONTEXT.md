@@ -13,7 +13,7 @@ project_live_main_policy: REFRESH_FROM_GITHUB_BEFORE_EXECUTION
 engine: Godot 4.7.1-stable
 language: GDScript
 product_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~062
+current_decisions: SX-DEC-027~063
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
