@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: `2026-08-28 KST`
+Last updated: `2026-08-29 KST`
 
 ## Current authority
 
@@ -10,7 +10,7 @@ work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~063
+current_decisions: SX-DEC-027~064
 ```
 
 The user-approved SX-DEC-060 gameplay amendment changes the efficient next product gate. Pre-SX-DEC-060 Candidate 003 remains historical exact-byte evidence; it is no longer the build to spend the next human acceptance cycle on.
@@ -199,9 +199,15 @@ POST_060_CANDIDATE: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · HUMAN_PH
 
 ## M6R · Runtime route readability correction
 
-`MERGED_MAIN_VERIFIED_LOCAL_EVIDENCE · GitHub Issue #197 · PR #198 · main a8eee4f875a95e8da69802c4e60452df3535fe0e`
+`HISTORICAL_PRESENTATION_BASELINE · GitHub Issue #197 · PR #198 · main a8eee4f875a95e8da69802c4e60452df3535fe0e · SELECTED/UNSELECTED/TERMINAL-TRACE GRAMMAR SUPERSEDED BY SX-DEC-064`
 
-The approved E+D Hybrid/Neo-Arcade route-visibility direction is now a runtime presentation correction, not reference-only guidance. It keeps selected route, unselected route, occupied/locked control, and result-route context legible with procedural overlays only; no finite-gameplay rule, map byte, or bitmap asset changes. Exact-head local checks passed; GitHub CI remained queued without jobs and the user explicitly authorized the merge bypass, so remote CI GREEN remains unclaimed.
+This historical presentation correction established procedural route feedback without gameplay, map-byte, or bitmap changes. SX-DEC-064 replaces its all-rail blue alternate trace, crimson route replacement, and terminal predictive trace with actual-train-rooted selected-route-only lighting plus a separate lock overlay. Its old remote CI boundary remains historical evidence and does not transfer to SX-DEC-064.
+
+## M6R2 · SX-DEC-064 active-route lighting
+
+`USER_APPROVED · GitHub Issue #248 · IMPLEMENTED_BRANCH_LOCAL · PR_PENDING`
+
+Only the route the train will traverse under **current** selected switch/crossing values receives lime rail glow and direction. The projection begins at actual `train_cell + train_previous_cell`, with an authored-start fallback only before the train state exists. Non-selected branches receive no route-light descriptor; dim route-control targets remain available controls rather than a competing rail state. A crimson occupied-lock cue sits on the selected rail and terminal result phases emit no predictive future-route light. This is procedural-only (`0` bitmap assets), does not solve or change the puzzle, and is locally automated-verified by RED→GREEN plus 112 cases / 13,513 assertions. PR/CI/merged-main, same-state pixel composite, physical, and player evidence remain open.
 
 ## M6S · SX-DEC-062 Board-first runtime composition
 

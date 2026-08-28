@@ -93,8 +93,6 @@ func route_visual_widths_for_test(viewport: Vector2, board_size: Vector2i) -> Di
 	)
 	return {
 		&"SELECTED": _route_visual_width(&"SELECTED", cell_size),
-		&"UNSELECTED": _route_visual_width(&"UNSELECTED", cell_size),
-		&"OCCUPIED_LOCKED": _route_visual_width(&"OCCUPIED_LOCKED", cell_size),
 	}
 
 
@@ -275,9 +273,20 @@ func _draw_route_visual_overlays(rect: Rect2, board_size: Vector2i) -> void:
 			draw_line(center, endpoint, color, width, true)
 		if state == &"SELECTED":
 			_draw_route_direction_cue(center, descriptor.get("outgoing_port", Vector2i.ZERO), half, color)
-		elif state == &"OCCUPIED_LOCKED":
-			draw_circle(center, maxf(width * 0.72, 6.0), Palette.BOARD_EDGE)
-			draw_circle(center, maxf(width * 0.48, 4.0), color)
+			if bool(descriptor.get("locked", false)):
+				_draw_route_lock_cue(center, width)
+
+
+func _draw_route_lock_cue(center: Vector2, route_width: float) -> void:
+	var body_size := maxf(route_width * 0.72, 5.0)
+	var body := Rect2(
+		center + Vector2(-body_size * 0.50, -body_size * 0.08),
+		Vector2(body_size, body_size * 0.74)
+	)
+	draw_circle(center + Vector2(0.0, -body_size * 0.14), body_size * 0.55, Palette.BOARD_EDGE)
+	draw_circle(center + Vector2(0.0, -body_size * 0.14), body_size * 0.36, Palette.ROUTE_LOCKED)
+	draw_rect(body.grow(1.5), Palette.BOARD_EDGE, true)
+	draw_rect(body, Palette.ROUTE_LOCKED, true)
 
 
 func _draw_route_direction_cue(
@@ -308,10 +317,6 @@ static func _route_visual_color(state: StringName) -> Color:
 	match state:
 		&"SELECTED":
 			return Palette.ROUTE_SELECTED
-		&"UNSELECTED":
-			return Palette.ROUTE_UNSELECTED
-		&"OCCUPIED_LOCKED":
-			return Palette.ROUTE_LOCKED
 		_:
 			return Palette.ROUTE_INACTIVE
 
@@ -321,10 +326,6 @@ static func _route_visual_width(state: StringName, cell_size: Vector2) -> float:
 	match state:
 		&"SELECTED":
 			return base
-		&"OCCUPIED_LOCKED":
-			return maxf(base * 0.86, 5.0)
-		&"UNSELECTED":
-			return maxf(base * 0.58, 4.0)
 		_:
 			return maxf(base * 0.45, 3.0)
 
@@ -337,34 +338,26 @@ static func _route_visual_descriptors(snapshot: Dictionary) -> Array[Dictionary]
 	if graph == null:
 		return []
 	var route: Array[Dictionary] = _selected_route_segments(graph, snapshot)
-	var selected_by_cell: Dictionary = {}
-	for segment: Dictionary in route:
-		selected_by_cell[segment["cell"]] = segment
+	if route.is_empty():
+		return []
 	var locked_cells := _locked_route_control_cells(snapshot)
 	var result: Array[Dictionary] = []
-	for cell: Vector2i in graph.all_cells():
-		var piece: Variant = graph.piece_at(cell)
-		if piece == null:
+	for segment: Dictionary in route:
+		var cell := snapshot_cell(segment.get("cell", NO_CELL))
+		if cell == NO_CELL:
 			continue
-		var descriptor := {
+		result.append({
 			"cell": cell,
-			"state": &"UNSELECTED",
-			"ports": piece.ports(),
-			"outgoing_port": Vector2i.ZERO,
-		}
-		if locked_cells.has(cell):
-			descriptor["state"] = &"OCCUPIED_LOCKED"
-		elif selected_by_cell.has(cell):
-			var segment: Dictionary = selected_by_cell[cell]
-			descriptor["state"] = &"SELECTED"
-			descriptor["ports"] = segment["ports"]
-			descriptor["outgoing_port"] = segment["outgoing_port"]
-		result.append(descriptor)
+			"state": &"SELECTED",
+			"ports": segment.get("ports", []),
+			"outgoing_port": segment.get("outgoing_port", Vector2i.ZERO),
+			"locked": locked_cells.has(cell),
+		})
 	return result
 
 
 static func _route_visual_phase(phase: StringName) -> bool:
-	return phase == &"RUNNING" or phase == &"UNLOADING" or phase == &"PAUSED" or phase == &"SUCCESS" or phase == &"FAILURE"
+	return phase == &"RUNNING" or phase == &"UNLOADING" or phase == &"PAUSED"
 
 
 static func _route_visual_graph(snapshot: Dictionary) -> Variant:
@@ -428,9 +421,14 @@ static func _route_control_state_at(states: Array, cell: Vector2i) -> Dictionary
 
 
 static func _selected_route_segments(graph: Variant, snapshot: Dictionary) -> Array[Dictionary]:
-	var start := snapshot_cell(snapshot.get("start_cell", NO_CELL))
-	var incoming := snapshot_cell(snapshot.get("incoming_cell", NO_CELL))
-	if graph == null or start == NO_CELL or incoming == NO_CELL or not graph.has_cell(start):
+	var start := snapshot_cell(snapshot.get("train_cell", NO_CELL))
+	var incoming := snapshot_cell(snapshot.get("train_previous_cell", NO_CELL))
+	if graph == null:
+		return []
+	if start == NO_CELL or incoming == NO_CELL or not graph.has_cell(start):
+		start = snapshot_cell(snapshot.get("start_cell", NO_CELL))
+		incoming = snapshot_cell(snapshot.get("incoming_cell", NO_CELL))
+	if start == NO_CELL or incoming == NO_CELL or not graph.has_cell(start):
 		return []
 	var result: Array[Dictionary] = []
 	var seen: Dictionary = {}

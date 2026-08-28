@@ -94,7 +94,7 @@ fresh_read_bootstrap_policy: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 skill_coverage_policy: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT
 gpt_local_codex_orchestration_policy: RETIRED
 current_validation_locator: 기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md
-current_product_decision: SX-DEC-063 · HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT
+current_product_decision: SX-DEC-063 · HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT + SX-DEC-064 · ACTIVE_ROUTE_LIGHTING
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY
 post_sx_dec_060_candidate: NOT_CREATED
 ```
@@ -161,7 +161,7 @@ switch auto-reset
 ## 5. 현재 Decision / 기획 상태
 
 ```yaml
-current_decision_span: SX-DEC-027~063
+current_decision_span: SX-DEC-027~064
 sx_dec_055_runtime_semantic: MERGED_MAIN_VERIFIED · PR_151
 sx_dec_056a: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
@@ -180,7 +180,8 @@ sx_dec_060_notion_readback: PASS
 sx_dec_060_post_change_candidate: NOT_CREATED
 sx_dec_061: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 sx_dec_062: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION
-sx_dec_063: USER_APPROVED_DIRECTION · FIRST_CANDIDATE_GENERATED_REVIEW_PENDING · RUNTIME_UNCHANGED
+sx_dec_063: USER_APPROVED_DIRECTION · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · RUNTIME_NOT_CONNECTED
+sx_dec_064: USER_APPROVED · ACTIVE_ROUTE_LIGHTING · PROCEDURAL_RUNTIME_DELTA · BRANCH_LOCAL_VERIFIED · PR_PENDING
 ```
 
 Current first-session shape remains:
@@ -328,9 +329,9 @@ Automated/export/package/self-run does not imply HUMAN/PLAYER EXPERIENCE PASS. P
 Current next gate:
 
 ```text
-SX-DEC-063 first terrain candidate final disposition
-→ selected candidate family and Phase 2 Godot implementation contract
-→ new exact post-062 package candidate
+SX-DEC-064 active-route-lighting PR/CI/merge
+→ new exact runtime candidate + physical route-readability inspection
+→ SX-DEC-063 terrain-only Phase 2 implementation contract
 → physical/device/human gates
 ```
 

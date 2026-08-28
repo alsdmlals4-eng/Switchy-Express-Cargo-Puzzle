@@ -7,7 +7,7 @@ historical_notion: AUDIT_ONLY · DO_NOT_READ_OR_WRITE_FOR_CURRENT_WORK
 notion_current_structure_migration: COMPLETE · docs/migrations/2026-08-28-notion-current-workspace-migration.md
 ```
 
-Last updated: `2026-08-28 KST`
+Last updated: `2026-08-29 KST`
 
 이 문서는 **현재 상태·다음 실행 지점·미검증 경계**를 연결하는 resume locator다. fresh GitHub/actual runtime이 저장 snapshot보다 우선한다. 2026-08-28 사용자 결정에 따라 Notion은 `RETIRED_NO_ACTIVE_USE`이며, 새 채팅은 과거 대화나 Notion을 필수 입력으로 요구하지 않고 Project GitHub에서 상태를 다시 재구성한다. Historical Notion readback은 감사 evidence로만 보존한다.
 
@@ -20,7 +20,7 @@ project_live_main_policy: REFRESH_FROM_GITHUB_BEFORE_EXECUTION
 engine: Godot 4.7.1-stable
 language: GDScript
 product_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~063
+current_decisions: SX-DEC-027~064
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
@@ -77,7 +77,11 @@ sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · TERRAIN_V02_APPR
 sx_dec_063_decision_owner: docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md
 sx_dec_063_design_spec: docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production-design.md
 sx_dec_063_first_candidate: SX-VIS-063-CANDIDATE-001 · BOARD_TERRAIN_1672x941 · APPROVED_GITHUB_PRESERVED · SHA_1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d · RUNTIME_NOT_CONNECTED
-sx_vis_061_core_systems_board: SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002B · GENERATED_EXPLORATION_PENDING_USER_FINAL_DISPOSITION · Issue_246 · NO_RUNTIME_CONSUMER · NOT_RUNTIME_PROOF
+sx_vis_061_core_systems_board: SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002B · USER_APPROVED_GITHUB_PRESERVED_PLANNING_REFERENCE · Issue_246 · docs/visual-references/sx-vis-061-core-systems-board-exploration-002b.png · NO_RUNTIME_CONSUMER · NOT_RUNTIME_PROOF
+sx_dec_064_active_route_lighting: USER_APPROVED · GitHub_Issue_248 · PROCEDURAL_RUNTIME_DELTA · BRANCH_LOCAL_VERIFIED · PR_PENDING
+sx_dec_064_decision_owner: docs/decisions/SX_DEC_064_ACTIVE_ROUTE_LIGHTING.md
+sx_dec_064_runtime_owners: game/demo/presentation/product_board_renderer.gd + game/finite/main/finite_slice_session_controller.gd
+sx_dec_064_test_evidence: RED_RECORDED_THEN_GREEN · LOCAL_GODOT_112_CASES_13513_ASSERTIONS · PHYSICAL_AND_HUMAN_NOT_RUN
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · 2026-08-28 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
@@ -294,7 +298,12 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 ## Current next action
 
 ```text
-SX-DEC-063 hybrid miniature-diorama alignment has one user-promoted source asset on Issue #243
+SX-DEC-064 active-route-lighting is branch-local verified on Issue #248
+→ open PR, obtain exact-head CI, safely merge, and mint a new exact runtime candidate before any physical route-readability claim
+→ current route glow starts at the actual train cell plus actual previous cell; it falls back to authored start only before a train state exists
+→ only the currently selected deterministic route is lime-lit; alternate rails stay unlit, lock is a separate crimson overlay, and terminal phases have no predictive route glow
+→ this is not a solver, gameplay, map/data, asset, or Notion change
+→ then resume SX-DEC-063 hybrid miniature-diorama alignment with one user-promoted source asset on Issue #243
 → terrain v02 is GitHub-preserved with SHA/provenance; v01 remains the active runtime path
 → preserve the rectangular BUILD/RUN grid, gameplay semantics, actual consumer mapping, T2 v02, and Issue #227
 → next machine-executable visual task: execute the terrain-only Phase 2 runtime handoff with RED→GREEN, same-state viewport comparison, package candidate refresh, and five adversarial loops
@@ -324,9 +333,12 @@ SX60_POC_ACCEPT_001_HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE
 POST_060_DEVICE_NOT_RUN
 POST_060_HUMAN_NOT_RUN
 NEW_BITMAP_ASSETS_0
+SX_DEC_064_BRANCH_LOCAL_AUTOMATED_PASS_112_CASES_13513_ASSERTIONS
+SX_DEC_064_RENDER_CAPTURE_NOT_RUN
+SX_DEC_064_PHYSICAL_HUMAN_PLAYER_EXPERIENCE_NOT_RUN
 ```
 
-## Runtime route readability correction · GitHub Issue #197
+## Runtime route readability correction · GitHub Issue #197 · superseded presentation grammar
 
 ```yaml
 status: MERGED_MAIN_VERIFIED_LOCAL_EVIDENCE
@@ -339,12 +351,29 @@ runtime_consumers:
 new_bitmap_assets: 0
 ```
 
-- 실제 RUN board에서 rail art가 단일 중립색으로 보여 selected/unselected/occupied state를 빠르게 읽기 어려웠다.
+- 실제 RUN board에서 rail art가 단일 중립색으로 보여 selected/unselected/occupied state를 빠르게 읽기 어려웠다. 이 섹션의 blue-unselected rail trace와 terminal trace 유지 규칙은 SX-DEC-064로 대체된다.
 - route trace는 current finite render snapshot과 route-control state를 재구성해 결정하며 domain, map, station/cargo, LIFO/TOP, preflight 의미를 바꾸지 않는다.
-- selected = 녹색/굵은 trace + 방향 cue; unselected = 청색/얇은 trace; occupied/locked = 적색 trace + existing lock overlay.
-- SUCCESS/FAILURE에도 selected route trace가 유지된다.
+- historical rule: selected = 녹색/굵은 trace + 방향 cue; unselected = 청색/얇은 trace; occupied/locked = 적색 trace + existing lock overlay.
+- historical rule: SUCCESS/FAILURE에도 selected route trace가 유지된다.
 - 1280×720 live runtime screenshot/diagnostics와 960×540·1280×720·1920×1080 deterministic width hierarchy checks가 필요한 evidence다. Physical human comprehension remains NOT_RUN.
 - exact PR head의 official headless suite 112 cases / 13,480 assertions, Project Contract, GUT, Godot 4.7.1 headless parse는 local PASS다. 원격 CI 4개는 job 없이 queued로 남아 사용자가 병합 우회를 승인했으며, CI GREEN은 아니다.
+
+## SX-DEC-064 active-route lighting · GitHub Issue #248
+
+```yaml
+status: USER_APPROVED · IMPLEMENTED_BRANCH_LOCAL · PR_PENDING
+scope: PRESENTATION_ONLY
+runtime_consumers:
+  - ProductBoardRenderer
+  - FiniteSliceSessionController.render_snapshot
+new_bitmap_assets: 0
+```
+
+- RUNNING, UNLOADING, PAUSED에서만 `train_cell + train_previous_cell`에서 시작한 현재 선택값의 결정적 forward route를 lime glow와 방향 cue로 그린다. train state 전에는 authored `start_cell + incoming_cell` fallback만 사용한다.
+- 현재 route에 없는 rail에는 renderer route descriptor를 만들지 않아 점등하지 않는다. `RouteControlOverlay`의 dim alternate control target은 조작 affordance이며 rail light가 아니다.
+- 점유 lock은 selected rail 위의 별도 crimson lock cue다. lock은 대체 route 색이나 세 번째 분기로 보이지 않는다.
+- SUCCESS/FAILURE에는 미래 통과를 주장하는 route light를 남기지 않는다. 이 계산은 현재 선택값을 따라갈 뿐 solver, 최적 경로, auto-selection을 만들지 않는다.
+- RED failure는 passed rail/alternate rail/terminal trace가 잘못 보이는 것을 기록했고, GREEN 뒤 local Godot full suite는 112 cases / 13,513 assertions PASS다. correct Switchy live-editor instance와 standalone render capture가 없으므로 pixel-composite, physical, human, Player Experience evidence는 `NOT_RUN`이다.
 
 ## Protected boundaries
 

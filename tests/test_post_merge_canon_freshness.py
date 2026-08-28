@@ -50,7 +50,7 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
 
         self.assertIn("default_branch: main", active)
         self.assertIn("product_baseline: GMB-002 · AMENDED_BY_SX_DEC_060", active)
-        self.assertIn("current_decisions: SX-DEC-027~063", active)
+        self.assertIn("current_decisions: SX-DEC-027~064", active)
         self.assertIn("sx_dec_059_implementation: MERGED_MAIN_VERIFIED · PRE_SX_DEC_060_RUNTIME", active)
         self.assertIn("pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003", active)
         self.assertIn("candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY", active)
@@ -61,6 +61,7 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         self.assertIn("sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237", active)
         self.assertNotIn("sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · FIRST_CANDIDATE_GENERATED_REVIEW_PENDING · ISSUE_239 · RUNTIME_UNCHANGED", active)
         self.assertIn("sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · PR_244 · main_38d4ac2aac8af35672d43e96f27b2f243aa10a4b · RUNTIME_NOT_CONNECTED", active)
+        self.assertIn("sx_dec_064_active_route_lighting: USER_APPROVED · GitHub_Issue_248", active)
         self.assertIn("post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED", active)
         self.assertIn("PR #174 remains", active)
         self.assertIn("READ_ONLY", active)

@@ -1,6 +1,6 @@
 # Core-system visual board correction · incident / solution / lesson
 
-**Status:** `RESOLVED_DOCUMENTATION_AND_GENERATED_EXPLORATION · GitHub Issue #246 · USER_FINAL_DISPOSITION_PENDING`
+**Status:** `RESOLVED_DOCUMENTATION_AND_USER_APPROVED_GITHUB_PRESERVED_PLANNING_REFERENCE · GitHub Issue #246`
 
 ## Incident
 
@@ -31,7 +31,7 @@ This was a documentation/visual-explanation gap. It was not evidence that the im
 
 - Machine structural verification: PNG decode, 1672×941 dimensions, and SHA-256 match were confirmed for `002B`; `002A` and `002B` SHA values are recorded separately.
 - Semantic visual review: the final panel set was inspected against the structured contract. This review can catch an impossible switch picture, but it is **not** a Godot render test, actual UI composite, accessibility test, physical device test, human-comprehension result, or player-experience PASS.
-- The generated board has no runtime consumer and no Git-tracked binary. It is `GENERATED_EXPLORATION_PENDING_USER_FINAL_DISPOSITION` only.
+- On 2026-08-29 KST the user approved the reviewed `002B` board. Its exact source was reread (SHA-256/dimensions match) and it is preserved as `docs/visual-references/sx-vis-061-core-systems-board-exploration-002b.png`. It remains a planning reference with no runtime consumer and is not runtime, UI, Human, Player Experience, or release proof.
 - The isolated worktree initially lacked its ignored Godot import cache. The source asset bytes were intact; after a headless editor import rebuilt that cache, the unchanged full GUT runner passed. This was environment bootstrap evidence, not a repository or product change.
 
 ## Five-pass adversarial recheck
@@ -48,6 +48,6 @@ This was a documentation/visual-explanation gap. It was not evidence that the im
 
 Every planning board for a system-driven game must show each core system as **player action → visible information → meaningful choice → immediate result → retry learning**, not merely as a named screen. The current Base completed main already requires Player outcome/action/choice in meaningful work slices and system/flow relationships in a storyboard. `NO_BASE_PROMOTION`: the reusable rule already exists; this incident was a project-level application gap.
 
-## Remaining decision
+## Final disposition
 
-The user may now give the final durable-reference disposition for `002B`: keep as a GitHub planning reference, revise, or reject. That disposition does not authorize runtime integration; the Phase 2 terrain-only handoff remains the sole authorized product mutation.
+The user kept `002B` as a GitHub planning reference on 2026-08-29 KST. That disposition does not authorize runtime integration; the separate SX-DEC-064 procedural route-lighting change and the Phase 2 terrain-only handoff each retain their own scope and evidence gates.

@@ -13,16 +13,42 @@ func run() -> void:
 	)
 	if renderer.has_method("route_visual_descriptors_for_test"):
 		var descriptors: Array = renderer.route_visual_descriptors_for_test()
-		assert_equal(_state_at(descriptors, Vector2i(1, 1)), &"SELECTED", "start route must be selected")
-		assert_equal(_state_at(descriptors, Vector2i(2, 1)), &"OCCUPIED_LOCKED", "locked control must outrank selected route")
-		assert_equal(_state_at(descriptors, Vector2i(3, 1)), &"SELECTED", "selected exit must remain selected")
-		assert_equal(_state_at(descriptors, Vector2i(2, 0)), &"UNSELECTED", "alternate exit must remain visibly distinct")
-		var result_snapshot := _running_snapshot()
-		result_snapshot["phase"] = &"SUCCESS"
-		renderer.apply_snapshot(result_snapshot)
-		var result_descriptors: Array = renderer.route_visual_descriptors_for_test()
-		assert_equal(_state_at(result_descriptors, Vector2i(1, 1)), &"SELECTED", "result keeps the selected route trace")
-		assert_equal(_state_at(result_descriptors, Vector2i(3, 1)), &"SELECTED", "result keeps selected exit trace")
+		assert_equal(_state_at(descriptors, Vector2i(1, 1)), &"", "already-passed start rail must not keep its route light")
+		assert_equal(_state_at(descriptors, Vector2i(2, 1)), &"SELECTED", "occupied control keeps its actual selected route light")
+		assert_true(_locked_at(descriptors, Vector2i(2, 1)), "occupied control must retain a separate lock cue")
+		assert_equal(_state_at(descriptors, Vector2i(3, 1)), &"SELECTED", "selected exit must receive the active route light")
+		assert_equal(_state_at(descriptors, Vector2i(2, 0)), &"", "unselected alternate branch must receive no route light")
+		assert_equal(descriptors.size(), 2, "only the train's current deterministic route may emit rail lights")
+
+		for active_phase: StringName in [&"RUNNING", &"UNLOADING", &"PAUSED"]:
+			var active_snapshot := _running_snapshot()
+			active_snapshot["phase"] = active_phase
+			renderer.apply_snapshot(active_snapshot)
+			assert_equal(
+				_state_at(renderer.route_visual_descriptors_for_test(), Vector2i(3, 1)),
+				&"SELECTED",
+				"%s must retain the current active-route light" % active_phase
+			)
+
+		for terminal_phase: StringName in [&"SUCCESS", &"FAILURE"]:
+			var terminal_snapshot := _running_snapshot()
+			terminal_snapshot["phase"] = terminal_phase
+			renderer.apply_snapshot(terminal_snapshot)
+			assert_equal(
+				renderer.route_visual_descriptors_for_test(),
+				[],
+				"%s must not claim that a stopped train will traverse a future route" % terminal_phase
+			)
+
+		var pre_run_snapshot := _running_snapshot()
+		pre_run_snapshot["train_cell"] = Vector2i(-1, -1)
+		pre_run_snapshot["train_previous_cell"] = Vector2i(-1, -1)
+		renderer.apply_snapshot(pre_run_snapshot)
+		assert_equal(
+			_state_at(renderer.route_visual_descriptors_for_test(), Vector2i(1, 1)),
+			&"SELECTED",
+			"before train state exists, the start direction remains the route-light fallback"
+		)
 
 	assert_true(
 		renderer.has_method("route_visual_widths_for_test"),
@@ -32,10 +58,6 @@ func run() -> void:
 		for viewport: Vector2 in [Vector2(960.0, 540.0), Vector2(1280.0, 720.0), Vector2(1920.0, 1080.0)]:
 			var widths: Dictionary = renderer.route_visual_widths_for_test(viewport, Vector2i(11, 9))
 			var selected := float(widths.get(&"SELECTED", 0.0))
-			var locked := float(widths.get(&"OCCUPIED_LOCKED", 0.0))
-			var unselected := float(widths.get(&"UNSELECTED", 0.0))
-			assert_true(selected > locked, "selected route must be thicker than locked route")
-			assert_true(locked > unselected, "locked route must be thicker than unselected route")
 			assert_true(selected >= 5.0, "selected route must remain readable at every supported viewport")
 	renderer.free()
 
@@ -46,6 +68,9 @@ static func _running_snapshot() -> Dictionary:
 		"board_size": Vector2i(5, 3),
 		"incoming_cell": Vector2i(0, 1),
 		"start_cell": Vector2i(1, 1),
+		"train_cell": Vector2i(2, 1),
+		"train_previous_cell": Vector2i(1, 1),
+		"train_next_cell": Vector2i(3, 1),
 		"layout_pieces": [
 			{"cell": Vector2i(2, 1), "geometry": &"SWITCH", "rotation_quarters": 0, "switch_initial_exit": Vector2i.RIGHT},
 			{"cell": Vector2i(3, 1), "geometry": &"STRAIGHT", "rotation_quarters": 0, "switch_initial_exit": Vector2i.ZERO},
@@ -67,3 +92,10 @@ static func _state_at(descriptors: Array, cell: Vector2i) -> StringName:
 		if value is Dictionary and value.get("cell") == cell:
 			return StringName(value.get("state", &""))
 	return &""
+
+
+static func _locked_at(descriptors: Array, cell: Vector2i) -> bool:
+	for value: Variant in descriptors:
+		if value is Dictionary and value.get("cell") == cell:
+			return bool(value.get("locked", false))
+	return false

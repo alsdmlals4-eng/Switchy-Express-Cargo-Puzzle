@@ -300,8 +300,9 @@ creator_or_vendor: OpenAI Image Generation
 acquired_or_created_at: 2026-08-28
 creation_authority: user-authorized regeneration against SX-DEC-061/063 current direction
 tracking_issue: '#246'
-visual_role: GENERATED_EXPLORATION_PENDING_USER_FINAL_DISPOSITION · NOT_RUNTIME_PROOF
+visual_role: USER_APPROVED_GITHUB_PRESERVED_PLANNING_REFERENCE · NOT_RUNTIME_PROOF
 source_url_or_path: C:/Users/user/.codex/generated_images/01a04558-94b7-77f3-b4e0-a5ec4bf2a04e/exec-acc36215-2087-46a2-855e-0f0c3fffaa62.png
+source_checked_at: 2026-08-29 KST · source readable; SHA-256 and dimensions matched
 final_asset_record: SHA-256 6577d7ac5e490b1303af0105ef0573cf5b4be10a52cbdd4ccecb24ec116993bc · 1672x941 PNG
 previous_rejected_exploration: SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002A · SHA-256 591c6799c0202ee70858fd89cd3fc6530bd81e124fc8eeb00bc34436b24e1cf · switch picture exposed three exits
 commercial_use: CONDITIONAL
@@ -315,11 +316,11 @@ reference_sources: current E+D Hybrid / Neo-Arcade direction; user-provided comp
 forbidden_expression: branded/copycat layout, pseudo-text as canon, coin/economy/score/save systems, diagonal station service, station-footprint delivery, long cargo train, fuel, BOOST, capacity limit, three-exit switch depiction, runtime proof claim
 runtime_consumer: NOT_APPLICABLE
 consumer_status: NOT_APPLICABLE
-repository_local_path: NOT_CREATED · final durable-reference disposition is pending; no runtime asset is being created
+repository_local_path: docs/visual-references/sx-vis-061-core-systems-board-exploration-002b.png
 notion_owner_page: RETIRED_NO_ACTIVE_USE · no new Notion read/write/sync
-preservation_status: CODEX_SESSION_PREVIEW_ONLY_UNTIL_USER_FINAL_DISPOSITION
+preservation_status: USER_APPROVED_GITHUB_PRESERVED_PLANNING_REFERENCE · source readback SHA-256/dimensions matched on 2026-08-29 KST
 reference_similarity_status: BLOCKED_UNVERIFIED
 shipping_and_marketing_usage: PROHIBITED_PENDING_SEPARATE_RIGHTS_REVIEW
 status: CONDITIONAL
-notes: The six panels cover build/preflight, exact cargo versus cardinal station service, Manual/Auto LIFO order, direct switch commitment, capstone chain, and factual Retry/Edit recovery. Its structured meaning is owned by PROJECT_CORE_SCENE_VISUAL_BOARD.md. It changes and proves neither Godot runtime UI, assets, human usability, player experience, release rights, nor any product rule.
+notes: The user approved this planning reference on 2026-08-29 KST. The six panels cover build/preflight, exact cargo versus cardinal station service, Manual/Auto LIFO order, direct switch commitment, capstone chain, and factual Retry/Edit recovery. Its structured meaning is owned by PROJECT_CORE_SCENE_VISUAL_BOARD.md. It changes and proves neither Godot runtime UI, assets, human usability, player experience, release rights, nor any product rule.
 ```
