@@ -1,24 +1,77 @@
 # PROJECT_CORE_SCENE_VISUAL_BOARD
 
-Status: `CURRENT_PLANNING_OWNER · SX-DEC-061/063 · GENERATED_EXPLORATION · NOT_RUNTIME_PROOF · SX-DEC-063_TERRAIN_V02_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED`
+Status: `CURRENT_PLANNING_OWNER · SX-DEC-061/063 · SYSTEM_EXPLANATION_CORRECTED · GENERATED_EXPLORATION_PENDING_USER_FINAL_DISPOSITION · NOT_RUNTIME_PROOF · SX-DEC-063_TERRAIN_V02_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED`
 
 This document owns the exact meaning of the planning board. The board image is only an AI-understanding and visual-direction review aid: no panel is a finished runtime asset, Godot screen, Scene, UI implementation, or Human/Player Experience PASS.
 
 ## Artifact boundary
 
 ```yaml
-artifact_id: SX-VIS-061-CORE-SCENE-BOARD-EXPLORATION-001
+artifact_id: SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002
+artifact_revision: B
 visual_direction: BOARD_FIRST_COZY_NEO_ARCADE
-generated_image_sha256: 6aabad5e9834e777cae9124b4279fef0a1bca48ab6b056b3aebd48f901d7fafc
-artifact_status: GENERATED_EXPLORATION
+generated_image_sha256: 6577d7ac5e490b1303af0105ef0573cf5b4be10a52cbdd4ccecb24ec116993bc
+generated_image_dimensions: 1672x941 PNG
+artifact_status: GENERATED_EXPLORATION_PENDING_USER_FINAL_DISPOSITION
 runtime_consumer: NOT_APPLICABLE
 tracked_project_copy: NOT_CREATED
-external_binary_attachment: NOT_APPLICABLE · GITHUB_ONLY_WORKSPACE
-why: user approved the direction, not the generated board binary as a durable project reference
+external_binary_attachment: CODEX_SESSION_PREVIEW_ONLY · GITHUB_ONLY_WORKSPACE
+previous_explorations:
+  - SX-VIS-061-CORE-SCENE-BOARD-EXPLORATION-001 · historical first-flow board
+  - SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002A · rejected after visual review because its switch picture exposed three exits
+why: the user authorized generation before final disposition; this candidate remains a planning preview, not a durable project asset or runtime input
 exact_semantic_owner: this Markdown document and SX-DEC-061
 ```
 
 Generated panel numbers and pictograms are non-canonical. Exact UI wording, statistics, and controls remain owned by the current first-session screen/content and runtime owners; no generated pseudo-text is a requirement.
+
+## 2026-08-28 correction · core systems must be legible as decisions
+
+`SX-VIS-061-CORE-SCENE-BOARD-EXPLORATION-001` covered the first-session order but did not make the decisive systems readable as a connected player model. That is a planning-document defect, not evidence that the Godot systems are missing or a reason to invent new rules.
+
+The replacement exploration must therefore let a viewer answer the following without relying on a long caption:
+
+```text
+Where can I install a rail, and what must preflight prove before RUN?
+Why is an off-track station reached from an adjacent cardinal cell rather than by rail on its footprint?
+Why can one cargo be loaded now, skipped, or auto-loaded later, and how does that change TOP?
+Which branch will the moving train take, when may I change it, and when is it locked?
+What causal result will tell me whether to retry the same layout or return to edit it?
+```
+
+The structured rules remain owned by `FINITE_DELIVERY_PUZZLE_BASELINE.md`, `CORE_GAMEPLAY.md`, `CORE_SYSTEMS.md`, and SX-DEC-060. This board owns only their human-readable scene projection.
+
+## Core-system player contract · required board coverage
+
+| Core system | Player action and what they judge | Meaningful choice / trade-off | Immediate feedback / observable result | Failure learning and next action | Exact authority and actual consumer |
+|---|---|---|---|---|---|
+| `BUILD + PREFLIGHT` | In BUILD, choose a straight, curve, switch, or crossing; place, rotate, replace, or remove it on a buildable cell. Read connected ports, current final cost, the off-track station footprint, and preflight problem cells. | A short route can produce the wrong cargo encounter order or miss a required station service cell. More rail is not automatically better; only the start-reachable RUN component must cover required cargo and at least one cardinal service cell per station. | Placement returns a concrete valid/invalid result; removal refunds the replaced piece's cost. `begin_run` seals only a passed layout and rejects an empty, disconnected-required, malformed, or trapped reachable route. | A preflight reason identifies a repair target, but never supplies the LIFO, manual/Auto, switch, time, or cheapest solution. Repair the relevant route and recheck. | `FiniteBuildSession`, `TrackLayoutEditor`, `PreflightValidator`, `ProductFiniteSlice`, `ProductBoardRenderer`. |
+| `CARGO CONTACT + LIFO` | Drive automatically through a cargo's exact cell while holding Manual Load or with Auto enabled; read the compact world token plus the Stack HUD's ordered `TOP`. | Load now, leave the cargo on the map for a revisit, or use Auto only through a safe sequence. Every pickup changes the future unload order; cargo has no capacity limit and does not slow or stop the train. | A picked cargo leaves the fixed map field and is pushed onto `TOP`; an intentionally skipped cargo stays at its authored cell. The HUD—not a long train—shows the order and next relevant group. | If the wrong kind is on TOP, the player has learned an encounter/load-order error, not failed a reflex check. Revisit a skipped cargo, change Auto state before contact, or edit the route. | `FiniteGameplayInputState`, `FixedCargoField`, `UnlimitedCargoStack`, `FiniteDeliveryLoop`, `StackPanel`. |
+| `OFF-TRACK STATION SERVICE` | Route the train through one of the four cells exactly adjacent to the station; compare station cargo identity with the stack `TOP`. | The station footprint is non-buildable and does not deliver. Diagonal, footprint, and distance-two passages may look nearby but give no service; the route must reserve a true cardinal pass at the right stack moment. | A matching station pops only the contiguous matching `TOP` group and briefly enters unload feedback. A mismatched TOP or invalid proximity passes without unloading. | “Nothing unloaded” points to one of two inspectable causes: wrong cell geometry or wrong TOP. Make the cardinal service route or stack order visible before retrying. | `FiniteMapDefinition` schema v3, `Station`, `FiniteDeliveryLoop`, procedural service indicator in `ProductBoardRenderer`. |
+| `DIRECT SWITCH EXECUTION` | While the train is approaching, tap/select the desired reachable switch exit and read selected direction, alternate branch, and occupied lock. | Commit the branch before the train occupies that control. A late input is rejected; a choice remains until changed rather than auto-resetting after passage. The branch can send the train to a needed cargo, service cell, or a `ROUTE_END`. | Selected route and alternate route remain visually distinct; the occupied control is visibly locked. The graph's selected exit determines the next cell at the junction. | A locked or wrong branch is an execution/timing cause, not hidden randomness. Retry the sealed layout to rehearse the plan, or Edit if the network itself cannot support it. | `FiniteTrackGraph`, `FiniteTrackSwitch`, `RouteControlOverlay`, route descriptors in `ProductBoardRenderer`. |
+| `FINITE OUTCOME + RECOVERY` | Execute the whole route under the running clock; inspect remaining map cargo, stack size, and the factual terminal reason. | Spend remaining time on a correct route rather than chase irrelevant rail. Decide whether the layout is sound enough to retry unchanged or needs a redesign. | All required cargo delivered with an empty stack produces success. `TIME_EXPIRED` or `ROUTE_END` produces failure and freezes domain mutation. | Retry creates a fresh mutable attempt from the same sealed layout; Edit returns to BUILD. No score, economy, progress, solver, or secret trace is implied. | `FiniteRunController`, `FiniteRunSessionFactory`, `ResultOverlay`, result flow controller. |
+
+### Invariants the visual board must make harder to misread
+
+- Cargo load is **exact-cell contact**; station delivery is **cardinal-adjacent service**. They must never share the same visual language.
+- The station is **off track**. Rail through its footprint, diagonal service, arbitrary radius, and a station-centered stop are all non-canonical.
+- `TOP` is an order label. It must not be represented by horizontal train length, capacity bars, or a full-wagon warning.
+- A switch's bright selected branch, dim alternate branch, and occupied lock are three different states. It has no auto-reset after passage.
+- Preflight proves only structural start-reachable coverage/safety. It must not visually claim an optimal route, correct load timing, or a solved puzzle.
+- The planning image may show labelled numeric callouts only. Exact text and state names stay in the structured GitHub owners above.
+
+## Regenerated system-first board brief
+
+`SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002B` is the current generated candidate. It is a **six-panel explanatory storyboard**, not six runtime assets. All panels retain the same rectangular board camera, toy-scale warm miniature materials, navy/charcoal control deck, and colour + shape redundancy. The first generated pass (`002A`) was rejected before this record because a switch appeared to expose three exits; the current candidate shows one incoming rail and exactly two selectable exits, with occupied lock as an overlay rather than a third route.
+
+| Panel / scene_or_screen_id | Required picture | System connection it must reveal | Must not imply |
+|---|---|---|---|
+| A · `BUILD_PREFLIGHT_ROUTE` | A buildable rectangular grid with a straight/curve/switch/crossing tool strip, one lime placement ghost, one crimson forbidden station footprint, and a compact preflight problem marker. | Rail geometry creates cargo encounter and station-service reachability before RUN. | A solved route, global-all-rail requirement, rail on a station, score/currency. |
+| B · `CARGO_EXACT_CELL_STATION_CARDINAL` | One cargo on its own rail cell, one off-track station, four subtle cardinal service-cell cues, and a diagonal crossed out by shape/outline rather than text alone. | Exact pickup and adjacent delivery are deliberately different contacts. | Diagonal/footprint delivery or station-centred rail. |
+| C · `LOAD_ORDER_LIFO_MANUAL_AUTO` | A short locomotive with compact cargo token, a vertical Stack HUD marked `TOP`, a deliberately skipped cargo still on the map, and a bounded Auto state cue. | Encounter order plus Manual/Auto choice produces the future top group. | Long cargo train, capacity limit, automatic best choice, reflex-only loading. |
+| D · `LIVE_SWITCH_COMMITMENT` | The same board scale with a train approaching a switch with exactly one incoming approach and two exits: one bright selected branch, one visibly dim alternate branch, then a separate occupied-lock state. | A preselected persistent branch executes a planned route; timing matters only at occupation. | Auto-reset, hidden route choice, a new switch type, crossing turn behaviour. |
+| E · `CAPSTONE_CHAIN` | One readable finite route linking the build decision, cargo order, cardinal station pass, and switch choice in a single compact run. | The systems form one puzzle rather than independent minigames. | Additional progression, economy, combat, characters, or unimplemented UI. |
+| F · `RESULT_RETRY_OR_EDIT` | A concise factual success/failure debrief with remaining cargo/stack icons and two clearly different recovery paths. | Result feeds a same-layout rehearsal or a build redesign. | Score/combo reward, coins, saving, ranking, fake analytics, or Human/Player Experience PASS. |
 
 ## Screen and scene contract
 
