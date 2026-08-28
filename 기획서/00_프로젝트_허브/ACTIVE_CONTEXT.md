@@ -73,11 +73,12 @@ sx_dec_062_implementation_plan: docs/superpowers/plans/2026-08-28-board-first-ru
 sx_dec_062_codex_handoff: 기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md
 sx_dec_062_tracking_issue: GitHub_Issue_235
 sx_dec_062_runtime_status: IMPLEMENTED · RED_GREEN_PASS · LOCAL_GODOT_112_CASES_13512_ASSERTIONS · EXACT_HEAD_CI_6_GREEN · NEW_EXACT_CANDIDATE_MINTED
-sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · FIRST_CANDIDATE_GENERATED_REVIEW_PENDING · ISSUE_239 · RUNTIME_UNCHANGED
+sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · PR_244 · main_38d4ac2aac8af35672d43e96f27b2f243aa10a4b · RUNTIME_NOT_CONNECTED
 sx_dec_063_decision_owner: docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md
 sx_dec_063_design_spec: docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production-design.md
-sx_dec_063_first_candidate: SX-VIS-063-CANDIDATE-001 · BOARD_TERRAIN_1672x941 · GENERATED_MACHINE_REVIEWED · USER_DISPOSITION_PENDING
-sx_dec_063_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · 2026-08-28 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b
+sx_dec_063_first_candidate: SX-VIS-063-CANDIDATE-001 · BOARD_TERRAIN_1672x941 · APPROVED_GITHUB_PRESERVED · SHA_1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d · RUNTIME_NOT_CONNECTED
+sx_vis_061_core_systems_board: SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002B · GENERATED_EXPLORATION_PENDING_USER_FINAL_DISPOSITION · Issue_246 · NO_RUNTIME_CONSUMER · NOT_RUNTIME_PROOF
+sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · 2026-08-28 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
 notion_direction_current_page: 3c91b237-eb1c-8197-bf13-debb96d444c8 · CURRENT_CREATED_READBACK_PASS · 2026-08-28

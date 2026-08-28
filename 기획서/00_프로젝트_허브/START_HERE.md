@@ -17,7 +17,7 @@ Last updated: `2026-08-28 KST`
 | SX-DEC-059 implementation | `MERGED_MAIN_VERIFIED · PRE_SX_DEC_060_RUNTIME` |
 | SX-DEC-060 | `MERGED_MAIN_VERIFIED · PR #188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7` |
 | SX-DEC-062 | `MERGED_MAIN_VERIFIED · PR #237 · Board-first existing-asset runtime composition · current package candidate verified` |
-| SX-DEC-063 | `USER_APPROVED_DIRECTION · Hybrid miniature-diorama visual production alignment · first terrain candidate generated / review pending · runtime unchanged` |
+| SX-DEC-063 | `USER_APPROVED_DIRECTION · Hybrid miniature-diorama visual production alignment · terrain v02 APPROVED_GITHUB_PRESERVED · PR #244 · runtime unchanged` |
 | station service | `UP/RIGHT/DOWN/LEFT exactly 1 tile · diagonal excluded` |
 | network preflight | `START_REACHABLE_RUN_COMPONENT · irrelevant disconnected rail island allowed` |
 | map schema target | `FiniteMapDefinition v3` |
@@ -171,10 +171,10 @@ The user selected Hybrid Miniature-Diorama Alignment: the rectangular grid and i
 ## Current next action
 
 ```text
-SX-DEC-063 GitHub-only canonicalization and current-Notion structure migration
-→ review the one generated terrain candidate against the protected hybrid direction
-→ obtain only the user’s promotion / revise / reject disposition
-→ only after the planned candidate set and Phase 2 contract are approved, start a consumer-first Godot implementation
+SX-DEC-063 terrain v02 is GitHub-preserved; v01 remains the live runtime path
+→ the only authorized product mutation is the terrain-only Phase 2 runtime handoff
+→ separately, Issue #246 records a planning-only core-system board candidate; it has no runtime consumer or implementation scope
+→ only after the Phase 2 handoff is executed and validated, interpret a new exact runtime/package candidate
 → Phase 5 user-validation continuation remains a separate later gate
 → current Playtest authority corrects old 055/059/validation-APK status to historical
 SX60-POC-ACCEPT-003 exact package verified; Candidate 002 observation remains prior-byte evidence only

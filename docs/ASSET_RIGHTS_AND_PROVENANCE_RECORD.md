@@ -287,3 +287,39 @@ shipping_and_marketing_usage: PROHIBITED_PENDING_SEPARATE_RIGHTS_REVIEW
 status: CONDITIONAL
 notes: The board validates AI understanding of Title/T1/T2/T3/T4/T5/T6/Capstone-result flow. Number badges and any generated pictograms are non-canonical; exact meanings live in PROJECT_CORE_SCENE_VISUAL_BOARD.md. It neither changes nor proves Godot runtime UI, assets, human usability, player experience, or release rights.
 ```
+
+## SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002B · Planning-only core-systems board
+
+```yaml
+asset_id: SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002B
+category: AI_OUTPUT_MODEL_TERMS
+name: PROJECT_CORE_SCENE_VISUAL_BOARD · core-systems explanatory exploration
+project: SWITCHY_EXPRESS_CARGO_PUZZLE
+creation_route: AI_GENERATED
+creator_or_vendor: OpenAI Image Generation
+acquired_or_created_at: 2026-08-28
+creation_authority: user-authorized regeneration against SX-DEC-061/063 current direction
+tracking_issue: '#246'
+visual_role: GENERATED_EXPLORATION_PENDING_USER_FINAL_DISPOSITION · NOT_RUNTIME_PROOF
+source_url_or_path: C:/Users/user/.codex/generated_images/01a04558-94b7-77f3-b4e0-a5ec4bf2a04e/exec-acc36215-2087-46a2-855e-0f0c3fffaa62.png
+final_asset_record: SHA-256 6577d7ac5e490b1303af0105ef0573cf5b4be10a52cbdd4ccecb24ec116993bc · 1672x941 PNG
+previous_rejected_exploration: SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002A · SHA-256 591c6799c0202ee70858fd89cd3fc6530bd81e124fc8eeb00bc34436b24e1cf · switch picture exposed three exits
+commercial_use: CONDITIONAL
+distribution_in_game_build: PROHIBITED
+raw_source_redistribution: CONDITIONAL
+modification: CONDITIONAL
+attribution: NOT_REQUIRED
+ai_terms_checked_at: NOT_YET_RECHECKED
+ai_input_rights: original prompt from project-owned rules, code facts, and current visual canon; the user-provided collage was inspected as reference only and was not a generation input
+reference_sources: current E+D Hybrid / Neo-Arcade direction; user-provided comparison collage at C:/Users/user/Desktop/비교샷/카고/19651a96-74d9-4c3f-8930-51f5fcaeca87.png · reference only
+forbidden_expression: branded/copycat layout, pseudo-text as canon, coin/economy/score/save systems, diagonal station service, station-footprint delivery, long cargo train, fuel, BOOST, capacity limit, three-exit switch depiction, runtime proof claim
+runtime_consumer: NOT_APPLICABLE
+consumer_status: NOT_APPLICABLE
+repository_local_path: NOT_CREATED · final durable-reference disposition is pending; no runtime asset is being created
+notion_owner_page: RETIRED_NO_ACTIVE_USE · no new Notion read/write/sync
+preservation_status: CODEX_SESSION_PREVIEW_ONLY_UNTIL_USER_FINAL_DISPOSITION
+reference_similarity_status: BLOCKED_UNVERIFIED
+shipping_and_marketing_usage: PROHIBITED_PENDING_SEPARATE_RIGHTS_REVIEW
+status: CONDITIONAL
+notes: The six panels cover build/preflight, exact cargo versus cardinal station service, Manual/Auto LIFO order, direct switch commitment, capstone chain, and factual Retry/Edit recovery. Its structured meaning is owned by PROJECT_CORE_SCENE_VISUAL_BOARD.md. It changes and proves neither Godot runtime UI, assets, human usability, player experience, release rights, nor any product rule.
+```
