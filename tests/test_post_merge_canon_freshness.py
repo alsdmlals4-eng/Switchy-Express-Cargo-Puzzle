@@ -65,7 +65,12 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
             "sx_dec_064_active_route_lighting: MERGED_MAIN_VERIFIED · GitHub_Issue_248 · PR_249 · main_2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI_7_GREEN",
             active,
         )
-        self.assertIn("post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED", active)
+        self.assertIn(
+            "post_sx_dec_060_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · "
+            "SOURCE_MAIN_58b99f261c3576150ab275bb041d744c69b83538 · PACKAGE_ONLY · "
+            "SX_DEC_064_ACTIVE_ROUTE_LIGHTING_INCLUDED",
+            active,
+        )
         self.assertIn("PR #174 remains", active)
         self.assertIn("READ_ONLY", active)
 
