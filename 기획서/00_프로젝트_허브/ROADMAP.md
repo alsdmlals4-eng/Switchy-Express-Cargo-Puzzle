@@ -217,6 +217,12 @@ existing E+D assets / shell consumers
 
 GitHub Issue #235 and PR #237 implemented the contract in `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`, its spec/plan, and `SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`. Existing assets and exact consumers remain unchanged; Issue #227 T2 hero replacement remains separate and deferred. Candidate 002 observations are prior-byte evidence. Candidate 003 is the exact `main@8bce715` package route, but it has no physical/human evidence.
 
+## M6T · SX-DEC-063 terrain v02 asset promotion
+
+`APPROVED_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED · GitHub Issue #243 · Phase 2 handoff ready`
+
+The user-promoted `SX-VIS-063-CANDIDATE-001` is stored at `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png` with exact SHA/provenance. It is a versioned source asset for the proven `ProductBoardRenderer.board_terrain` slot; v01 remains the live runtime path. The next only visual mutation is the terrain-only Phase 2 handoff, which must prove RED→GREEN loading, a same-state 1280×720 BUILD comparison, no geometry/input/semantic change, an exact new package candidate when available, and five clean adversarial loops. No other board or shell image is automatically promoted.
+
 ## M6A · Post-060 physical/device/human validation
 
 `PHASE_5_USER_VERTICAL_SLICE_VALIDATION · USER_AUTHORIZED_2026-08-28 · WINDOWS_PHYSICAL_AUDIO_EXECUTION_PENDING`

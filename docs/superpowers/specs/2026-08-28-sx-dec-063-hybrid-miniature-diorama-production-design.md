@@ -1,6 +1,6 @@
 # SX-DEC-063 Hybrid Miniature-Diorama Production Design
 
-**Status:** USER_APPROVED_DIRECTION · FIRST_CANDIDATE_GENERATED_REVIEW_PENDING · GODOT_IMPLEMENTATION_NOT_AUTHORIZED
+**Status:** USER_APPROVED_DIRECTION · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · RUNTIME_INTEGRATION_CONTRACT_READY · GODOT_RUNTIME_UNCHANGED
 **Decision:** SX-DEC-063
 **Issue:** #239
 **Authority:** docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md
@@ -60,10 +60,10 @@ hard_exclusions:
 
 ## Candidate sequence
 
-1. SX-VIS-063-CANDIDATE-001 — board terrain v02, generated and machine-reviewed before the user's final disposition.
-2. Review at the real 1672×941 backdrop crop and 1280×720 BUILD consumer.
+1. SX-VIS-063-CANDIDATE-001 — board terrain v02, generated, machine-reviewed, and user-promoted to `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png` (Issue #243); runtime remains v01.
+2. The approved v02 must be compared at the real 1672×941 backdrop crop and 1280×720 BUILD consumer during the dedicated integration contract.
 3. Each subsequent board or shell candidate receives its own brief, generation, review, GitHub provenance, and promotion/revise/reject disposition.
-4. After the approved production set is complete, prepare one integration-only Codex contract: versioned consumer-path updates, manifest/provenance updates, tests, Godot runtime comparison, package invalidation/new candidate, and five-pass review.
+4. `기획서/50_제작_검증/SX_DEC_063_TERRAIN_RUNTIME_INTEGRATION_HANDOFF.md` owns the one-asset integration-only window: versioned consumer-path update, manifest/provenance status update, tests, Godot runtime comparison, package invalidation/new candidate, and five-pass review.
 
 No candidate sequence step implicitly authorizes the next one.
 

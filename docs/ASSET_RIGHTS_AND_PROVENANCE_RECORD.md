@@ -67,6 +67,40 @@ reference_similarity_status:
 
 > **2026-08-28 active policy:** Notion is `RETIRED_NO_ACTIVE_USE`. Existing Notion attachment/readback fields below are historical provenance and are not erased. New candidate/final image work is GitHub repository only. A candidate may be generated and machine-reviewed without an image-by-image approval; only user-approved promotion creates a tracked final project asset. `APPROVED_GITHUB_PRESERVED` requires a proven consumer, local tracked file, SHA-256, generation authority and rights provenance. It does not prove runtime, UX or release readiness.
 
+## SX-BOARD-TERRAIN-002 · SX-DEC-063 approved terrain v02
+
+```yaml
+asset_id: SX-BOARD-TERRAIN-002
+category: AI_OUTPUT_MODEL_TERMS
+name: board_terrain_playfield_v02.png
+project: SWITCHY_EXPRESS_CARGO_PUZZLE
+creation_route: AI_GENERATED
+creator_or_vendor: OpenAI image generation service
+source_generation_receipt: 01a04558-94b7-77f3-b4e0-a5ec4bf2a04e / exec-2601f225-c29d-40d9-9098-8784dc73961c
+source_checked_at: 2026-08-28 KST
+acquired_or_created_at: 2026-08-28 KST
+license_or_contract: OpenAI Terms of Use / output ownership subject to applicable law; third-party rights must not be infringed
+license_version_or_terms_date: official source rechecked 2026-08-28 · https://openai.com/policies/terms-of-use/
+commercial_use: CONDITIONAL
+distribution_in_game_build: CONDITIONAL
+raw_source_redistribution: CONDITIONAL
+modification: CONDITIONAL
+attribution: NOT_REQUIRED_BY_CURRENT_SERVICE_TERM_EVIDENCE · final release review still required
+ai_model_service_version: NOT_RECORDED_BY_SOURCE_RECEIPT
+ai_input_rights: original project brief and project-owned visual canon only; no third-party layout, logo, asset, or prompt reference supplied
+reference_similarity_status: REVIEWED_NO_BRAND_OR_REFERENCE_LAYOUT_VISIBLE · release review remains separate
+forbidden_expression_check: PASS_MACHINE_AND_VISUAL_REVIEW · no text, UI, rail, train, station, cargo, logo, watermark, score, currency, save, or known brand visible
+repository_local_path: art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png
+sha256: 1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d
+dimensions: 1672x941 RGB · no alpha required by the terrain backdrop consumer
+planned_runtime_consumer: ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[board_terrain]
+runtime_connection_status: NOT_CONNECTED
+tracking_issue: 243
+approval_ref: USER-APPROVAL-2026-08-28-SX-VIS-063-TERRAIN-CANDIDATE-001-PROMOTION
+status: APPROVED_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED
+notes: Existing v01 remains the current runtime path and rollback source. Asset presence, import compatibility, or automated tests do not prove Godot runtime appearance, physical/audio/device/human/Player Experience, release-rights, or production cutover.
+```
+
 실제 game runtime consumer가 확인된 필요한 이미지는 별도 이미지별 승인 없이 자동 생성할 수 있다. 생성 후보는 review-only로 유지하고, 사용자 승인 final만 GitHub tracked project-local asset로 보존하며 기존 E+D Hybrid / Neo-Arcade 시각 언어를 유지한다. Runtime consumer가 없는 이미지 생성이나 runtime promotion은 이 권한에 포함되지 않는다.
 
 ```yaml

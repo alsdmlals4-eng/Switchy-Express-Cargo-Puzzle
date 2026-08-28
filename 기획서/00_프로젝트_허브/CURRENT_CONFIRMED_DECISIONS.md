@@ -132,7 +132,7 @@ sx_dec_060_new_bitmap_assets_required: 0
 | **SX-DEC-060** | **Cardinal Station Service + Reachable Network · MERGED_MAIN_VERIFIED · PR #188** |
 | **SX-DEC-061** | **Board-first Cozy Neo-Arcade visual refinement · APPROVED · documentation/plan board only; runtime unchanged** |
 | **SX-DEC-062** | **Board-first runtime composition · MERGED_MAIN_VERIFIED · PR #237 · exact Candidate 003 package verified · human gates remain open** |
-| **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · USER_APPROVED_DIRECTION · one terrain candidate generated/review pending · runtime unchanged** |
+| **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · terrain v02 APPROVED_GITHUB_PRESERVED · Phase 2 runtime contract ready · runtime unchanged** |
 
 ## SX-DEC-059 retained first-session contract
 
@@ -178,18 +178,18 @@ This contract excludes all bitmap/manifest/hash changes, Issue #227 T2 replaceme
 
 ## SX-DEC-063 confirmed hybrid miniature-diorama visual-production direction
 
-Canonical owners: `docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md`, `docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production-design.md`, `기획서/40_표현/VISUAL_DIRECTION.md`, `기획서/40_표현/PROJECT_CORE_SCENE_VISUAL_BOARD.md`, and GitHub Issue #239.
+Canonical owners: `docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md`, `docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production-design.md`, `docs/superpowers/plans/2026-08-28-sx-dec-063-terrain-runtime-integration.md`, `기획서/40_표현/VISUAL_DIRECTION.md`, `기획서/40_표현/PROJECT_CORE_SCENE_VISUAL_BOARD.md`, `기획서/50_제작_검증/SX_DEC_063_TERRAIN_RUNTIME_INTEGRATION_HANDOFF.md`, and GitHub Issues #239/#243.
 
 ```text
 rectangular BUILD/RUN grid and exact input mapping stay
 → elevated miniature-diorama depth is expressed inside that geometry
 → new visual bytes are limited to named, versioned actual consumers
 → T2 shell_lesson_hero_v02 and Issue #227 remain protected
-→ one terrain candidate may be generated and machine-reviewed; only promotion/revise/reject requires user disposition
-→ no Godot/Scene/Resource/manifest integration occurs in this planning stage
+→ first terrain candidate is user-promoted and stored as exact v02 source with provenance
+→ no Godot/Scene/Resource runtime consumer integration has occurred
 ```
 
-This direction does not authorize a true isometric coordinate conversion, gameplay/data/audio/locale/progression change, runtime integration, or any Human/Player Experience promotion. A generated candidate is an inspection artifact until the user approves promotion, it is traced to an actual consumer, stored in tracked project-local GitHub with provenance/hash, and later passes the separate implementation gate. Notion is retired from this lifecycle by the 2026-08-28 user decision.
+`SX-VIS-063-CANDIDATE-001` is user-promoted at `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png` (SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`). It is `APPROVED_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED`, not a true isometric conversion, gameplay/data/audio/locale/progression change, runtime/package, Human/Player Experience, or release-rights promotion. The only authorized next product mutation is the separate Issue #243 runtime handoff. Notion is retired from this lifecycle by the 2026-08-28 user decision.
 
 ### Architecture / evidence boundaries
 
@@ -287,8 +287,8 @@ PR #158 implementation → PR #166 playable POC → PR #171 visual correction �
 current:
 SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063 user-approved visual-production direction
 → SX60-POC-ACCEPT-003 exact package verified
-→ terrain candidate review and user promotion/revise/reject disposition before any production batch
-→ no runtime bytes are changed by SX-DEC-063 planning
+→ terrain v02 GitHub preservation on Issue #243; existing runtime stays v01
+→ Phase 2 terrain-only runtime contract is ready; no runtime bytes are changed yet
 → NoLaunch verification PASS, then Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person first-contact comprehension

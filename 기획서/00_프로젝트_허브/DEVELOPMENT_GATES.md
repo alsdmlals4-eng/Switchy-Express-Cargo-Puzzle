@@ -57,7 +57,7 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 
 ## 1B. SX-DEC-063 hybrid miniature-diorama visual-production planning gate
 
-`PASS · USER_APPROVED_DIRECTION · ISSUE #239 · FIRST_TERRAIN_CANDIDATE_GENERATED_REVIEW_PENDING · RUNTIME_UNCHANGED`
+`PASS · USER_APPROVED_DIRECTION · ISSUE #239/#243 · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · RUNTIME_UNCHANGED`
 
 Binding owners:
 
@@ -69,7 +69,7 @@ docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production
 기획서/40_표현/TARGET_BUILD_SCREEN_SURFACE_AND_VISUAL_COVERAGE.md
 ```
 
-The selected direction adds elevated miniature-diorama depth cues within the existing rectangular BUILD/RUN grid. It may generate and machine-review only versioned, actual-consumer candidates; the user decides promotion, revision, or rejection after review. It does not authorize a true isometric conversion, Godot/Scene/Resource/manifest integration, a production asset batch, gameplay/data/audio/locale/progression changes, Issue #227 T2 replacement, or a new human/player-evidence claim.
+The selected direction adds elevated miniature-diorama depth cues within the existing rectangular BUILD/RUN grid. The user promoted only `SX-VIS-063-CANDIDATE-001` as v02 source art with SHA/provenance and a real future consumer. It does not yet authorize a true isometric conversion, Godot/Scene/Resource runtime integration, a production asset batch, gameplay/data/audio/locale/progression changes, Issue #227 T2 replacement, or a new human/player-evidence claim. The next runtime mutation must follow `SX_DEC_063_TERRAIN_RUNTIME_INTEGRATION_HANDOFF.md`.
 
 ## 2. Candidate 003 evidence boundary
 

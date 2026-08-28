@@ -106,7 +106,7 @@ arbitrary station radius, diagonal service, station-footprint service, per-stati
 sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · schema_v3/cardinal_service/reachable_preflight
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · EXISTING_ASSET_ONLY
-sx_dec_063: USER_APPROVED_DIRECTION · FIRST_TERRAIN_CANDIDATE_GENERATED_REVIEW_PENDING · RUNTIME_UNCHANGED
+sx_dec_063: TERRAIN_V02_APPROVED_GITHUB_PRESERVED · RUNTIME_NOT_CONNECTED · ISSUE_243_PHASE2_HANDOFF_READY
 post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · PACKAGE_ONLY
 windows_physical_post_060: NOT_RUN
 audio_perceptual_post_060: NOT_RUN

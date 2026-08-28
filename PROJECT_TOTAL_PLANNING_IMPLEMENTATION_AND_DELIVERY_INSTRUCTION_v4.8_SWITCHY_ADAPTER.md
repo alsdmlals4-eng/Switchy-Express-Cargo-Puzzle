@@ -24,6 +24,7 @@ codex_execution_policy: INDEPENDENT_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF_ONLY
 powershell_policy: LOCAL_GODOT_OR_VALIDATION_ONLY_NOT_CODEX_LAUNCHER
 fresh_shell_bootstrap_policy: LOCATION_THEN_GIT_FETCH_SAFE_FF_PULL_THEN_UPDATE_THEN_EDITOR
 update_freshness_policy: CHECK_OFFICIAL_UPSTREAM_BEFORE_LOCAL_BUILD_AND_RUNTIME
+mandatory_preimplementation_evidence_loop: OFFICIAL_RESEARCH_THEN_ACTUAL_CONSUMER_FEASIBILITY_THEN_FIVE_PASS_ADVERSARIAL_REVIEW
 safe_auto_update_policy: REVIEW_CANARY_ROLLBACK_THEN_AUTO_APPLY_AND_EXACT_PIN
 shared_godot_runtime_policy: SHARED_APPROVED_EXACT_PIN_DEFAULT_NO_PER_PROJECT_DUPLICATE_BINARY
 shared_godot_ai_port_policy: FIXED_DEFAULT_PORTS_WITH_EXACT_SESSION_ROUTING
@@ -52,7 +53,7 @@ project_base_compatibility_pin: v9.4.3
 project_base_pin_role: HISTORICAL_COMPATIBILITY_AND_PROJECT_ADOPTION_EVIDENCE
 base_current_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
-current_decision_span: SX-DEC-027~060
+current_decision_span: SX-DEC-027~063
 ```
 
 `Base v9.4.3` pin은 과거 project compatibility evidence일 뿐 current Base 실행 방법론 pin이 아니다.
@@ -147,6 +148,10 @@ state readback
 ```
 
 Fallback은 security, rights, exactness, or validation strength를 낮추는 우회가 될 수 없다.
+
+## 2B-1. User-mandated research, feasibility, and adversarial loop
+
+`2026-08-28` 사용자 지시에 따라 meaningful change에는 현재 공식/1차 internet research, 실제 consumer/import/runtime feasibility check, 그리고 최소 다섯 번의 full-scope adversarial loop를 항상 적용한다. 외부 자료가 현재 결정에 material하지 않으면 조사 생략이 아니라 `NOT_MATERIAL`과 이유를 기록한다. Asset은 source byte·dimension·alpha/import setting·actual Node path·target viewport 합성까지, runtime change는 exact test/runtime path·rollback까지 대조한다. 이 절차는 사람/Player Experience proof를 자동으로 만들지 않는다.
 
 ## 2C. Exact candidate freshness and completion boundary
 

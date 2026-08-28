@@ -37,6 +37,24 @@ fresh authority recovery
 → GitHub post-merge readback
 ```
 
+### 2026-08-28 사용자 지정 사전검증 루프
+
+모든 의미 있는 기획·asset·runtime·운영 변경은 후보를 채택하거나 구현하기 전에 다음 순서를 실제 evidence로 완료한다.
+
+```text
+fresh current owner + actual consumer readback
+→ current official / primary-source internet research (or NOT_MATERIAL with reason)
+→ implementation feasibility check in the actual engine/consumer boundary
+→ minimum five full-scope adversarial review loops
+→ correct every validated in-scope finding
+→ RED→GREEN / regression / evidence-ceiling readback
+```
+
+- 외부 조사 결과는 프로젝트 정본을 덮지 않으며, 현재 결정에 material한 사실만 공식·1차 출처로 기록한다.
+- 구현 가능성은 실제 Node/Scene/Resource/asset path와 supported viewport/import/runtime path를 확인한다. 단순 이미지 미리보기·문서 읽기는 runtime proof가 아니다.
+- 적대적 검토는 기능/소비처 오인, 범위 확장, visual/readability drift, 권리·provenance, import/runtime failure, evidence inflation을 최소한 각각 한 번 공격한다.
+- 다섯 loop 뒤에도 blocking finding이 있으면 해당 범위는 `BLOCKED_UNVERIFIED`로 남기고 우회 PASS를 주장하지 않는다.
+
 ## 2. 매 작업 시작 fresh-read
 
 ```text
