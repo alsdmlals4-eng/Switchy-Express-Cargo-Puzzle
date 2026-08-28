@@ -1,6 +1,6 @@
 # SX-DEC-064 · Active-route lighting
 
-**Status:** `USER_APPROVED · IMPLEMENTED_BRANCH_LOCAL · AUTOMATED_VERIFIED · PR_PENDING`
+**Status:** `MERGED_MAIN_VERIFIED · PR #249 · main 2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI 7 GREEN · AUTOMATED_VERIFIED`
 **Date:** 2026-08-29 KST
 **Tracking:** GitHub Issue #248
 **Predecessors:** SX-DEC-060 finite route controls; SX-DEC-062 board-first composition; SX-DEC-063 visual alignment

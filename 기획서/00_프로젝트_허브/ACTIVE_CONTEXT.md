@@ -78,10 +78,10 @@ sx_dec_063_decision_owner: docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VI
 sx_dec_063_design_spec: docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production-design.md
 sx_dec_063_first_candidate: SX-VIS-063-CANDIDATE-001 · BOARD_TERRAIN_1672x941 · APPROVED_GITHUB_PRESERVED · SHA_1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d · RUNTIME_NOT_CONNECTED
 sx_vis_061_core_systems_board: SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002B · USER_APPROVED_GITHUB_PRESERVED_PLANNING_REFERENCE · Issue_246 · docs/visual-references/sx-vis-061-core-systems-board-exploration-002b.png · NO_RUNTIME_CONSUMER · NOT_RUNTIME_PROOF
-sx_dec_064_active_route_lighting: USER_APPROVED · GitHub_Issue_248 · PROCEDURAL_RUNTIME_DELTA · BRANCH_LOCAL_VERIFIED · PR_PENDING
+sx_dec_064_active_route_lighting: MERGED_MAIN_VERIFIED · GitHub_Issue_248 · PR_249 · main_2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI_7_GREEN · PROCEDURAL_RUNTIME_DELTA
 sx_dec_064_decision_owner: docs/decisions/SX_DEC_064_ACTIVE_ROUTE_LIGHTING.md
 sx_dec_064_runtime_owners: game/demo/presentation/product_board_renderer.gd + game/finite/main/finite_slice_session_controller.gd
-sx_dec_064_test_evidence: RED_RECORDED_THEN_GREEN · LOCAL_GODOT_112_CASES_13513_ASSERTIONS · PHYSICAL_AND_HUMAN_NOT_RUN
+sx_dec_064_test_evidence: RED_RECORDED_THEN_GREEN · EXACT_HEAD_CI_7_GREEN · POST_MERGE_MAIN_GODOT_112_CASES_13513_ASSERTIONS · PHYSICAL_AND_HUMAN_NOT_RUN
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · 2026-08-28 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
@@ -298,8 +298,8 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 ## Current next action
 
 ```text
-SX-DEC-064 active-route-lighting is branch-local verified on Issue #248
-→ open PR, obtain exact-head CI, safely merge, and mint a new exact runtime candidate before any physical route-readability claim
+SX-DEC-064 active-route-lighting is merged on main through Issue #248 / PR #249 with all 7 exact-head CI checks green
+→ mint a new exact runtime candidate before any physical route-readability claim
 → current route glow starts at the actual train cell plus actual previous cell; it falls back to authored start only before a train state exists
 → only the currently selected deterministic route is lime-lit; alternate rails stay unlit, lock is a separate crimson overlay, and terminal phases have no predictive route glow
 → this is not a solver, gameplay, map/data, asset, or Notion change
@@ -333,7 +333,7 @@ SX60_POC_ACCEPT_001_HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE
 POST_060_DEVICE_NOT_RUN
 POST_060_HUMAN_NOT_RUN
 NEW_BITMAP_ASSETS_0
-SX_DEC_064_BRANCH_LOCAL_AUTOMATED_PASS_112_CASES_13513_ASSERTIONS
+SX_DEC_064_MERGED_MAIN_CI_7_GREEN_POST_MERGE_GODOT_112_CASES_13513_ASSERTIONS
 SX_DEC_064_RENDER_CAPTURE_NOT_RUN
 SX_DEC_064_PHYSICAL_HUMAN_PLAYER_EXPERIENCE_NOT_RUN
 ```
@@ -361,7 +361,7 @@ new_bitmap_assets: 0
 ## SX-DEC-064 active-route lighting · GitHub Issue #248
 
 ```yaml
-status: USER_APPROVED · IMPLEMENTED_BRANCH_LOCAL · PR_PENDING
+status: MERGED_MAIN_VERIFIED · PR_249 · main_2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI_7_GREEN
 scope: PRESENTATION_ONLY
 runtime_consumers:
   - ProductBoardRenderer

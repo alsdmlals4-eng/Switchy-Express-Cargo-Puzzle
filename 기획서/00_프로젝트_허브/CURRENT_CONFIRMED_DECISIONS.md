@@ -59,7 +59,7 @@ sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMEN
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION · PACKAGE_VERIFIED
 sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · PR_244 · main_38d4ac2aac8af35672d43e96f27b2f243aa10a4b · RUNTIME_NOT_CONNECTED
 sx_vis_061_core_systems_board: USER_APPROVED_GITHUB_PRESERVED_PLANNING_REFERENCE · ISSUE_246 · docs/visual-references/sx-vis-061-core-systems-board-exploration-002b.png · NO_RUNTIME_CONSUMER · NOT_RUNTIME_PROOF
-sx_dec_064_active_route_lighting: USER_APPROVED · ISSUE_248 · IMPLEMENTED_BRANCH_LOCAL · AUTOMATED_112_CASES_13513_ASSERTIONS_PASS · PR_PENDING
+sx_dec_064_active_route_lighting: MERGED_MAIN_VERIFIED · ISSUE_248 · PR_249 · main_2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI_7_GREEN · POST_MERGE_GODOT_112_CASES_13513_ASSERTIONS_PASS
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · PR_240 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
 developer_self_run: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_VISUAL_INPUT_OBSERVED_AUDIO_NOT_OBSERVED · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_003
 windows_physical_startup_and_build_entry_automation_observed: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_003
@@ -135,7 +135,7 @@ sx_dec_060_new_bitmap_assets_required: 0
 | **SX-DEC-061** | **Board-first Cozy Neo-Arcade visual refinement · APPROVED · documentation/plan board only; runtime unchanged** |
 | **SX-DEC-062** | **Board-first runtime composition · MERGED_MAIN_VERIFIED · PR #237 · exact Candidate 003 package verified · human gates remain open** |
 | **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · terrain v02 APPROVED_GITHUB_PRESERVED · Phase 2 runtime contract ready · runtime unchanged** |
-| **SX-DEC-064** | **Active-route lighting · USER_APPROVED · procedural presentation delta · branch-local automated verification complete · PR pending** |
+| **SX-DEC-064** | **Active-route lighting · MERGED_MAIN_VERIFIED · PR #249 · CI 7 green · procedural presentation delta · physical/player gates remain open** |
 
 ## SX-DEC-059 retained first-session contract
 
@@ -207,7 +207,7 @@ actual train cell + actual approach cell
 → stop predictive route glow at SUCCESS / FAILURE
 ```
 
-This is a `ProductBoardRenderer` presentation projection and `FiniteSliceSessionController.render_snapshot` field addition. It changes no switch-selection, movement, map, station, cargo, LIFO, tutorial, result, asset, locale, audio, score, or solver rule. The renderer reads the actual current selection; it does not compute an optimal route or change a future branch. The branch-local RED→GREEN record and local Godot suite passed (112 cases / 13,513 assertions). Exact-head CI, merged-main, render composite, Windows/device, human, Player Experience, release, and production-cutover evidence remain unclaimed until separately run.
+This is a `ProductBoardRenderer` presentation projection and `FiniteSliceSessionController.render_snapshot` field addition. It changes no switch-selection, movement, map, station, cargo, LIFO, tutorial, result, asset, locale, audio, score, or solver rule. The renderer reads the actual current selection; it does not compute an optimal route or change a future branch. The RED→GREEN record, exact-head CI (7 required checks), and post-merge main Godot suite passed (112 cases / 13,513 assertions); PR #249 merged as main `2b98c0b070f2d8670b6432ac769a130bdd83bc39`. Same-state render composite, Windows/device, human, Player Experience, release, and production-cutover evidence remain unclaimed until separately run.
 
 ### Architecture / evidence boundaries
 
@@ -304,7 +304,7 @@ PR #158 implementation → PR #166 playable POC → PR #171 visual correction �
 
 current:
 SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063 user-approved visual-production direction
-→ SX-DEC-064 active-route lighting branch-local verified; PR/CI/merge pending
+→ SX-DEC-064 active-route lighting merged main PR #249 with exact-head CI 7 green
 → SX60-POC-ACCEPT-003 exact package verified
 → terrain v02 GitHub preservation on Issue #243; existing runtime stays v01
 → Phase 2 terrain-only runtime contract is ready; no runtime bytes are changed yet

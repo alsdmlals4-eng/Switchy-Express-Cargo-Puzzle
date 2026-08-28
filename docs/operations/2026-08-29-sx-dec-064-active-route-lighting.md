@@ -1,12 +1,12 @@
 # SX-DEC-064 active-route lighting · incident / solution / lesson
 
-**Status:** `RESOLVED_BRANCH_LOCAL · GitHub Issue #248 · PR_PENDING`
+**Status:** `MERGED_MAIN_VERIFIED · GitHub Issue #248 · PR #249 · main 2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI_7_GREEN`
 
 ## Incident
 
 The existing route overlay rendered a blue trace on every rail plus a green forecast from the authored start. A player near a switch could therefore see a branch light that the train would not take and could still see a predictive trace after a terminal result. This weakens the intended question: “under my current switch setting, where will this train go now?”
 
-The first PR #249 remote validation also found two governance regressions that the local Godot runner does not own: four retained canonical-freshness tests (three under `tests/python`, one root contract test) still hard-coded the prior `SX-DEC-027~063` span, and the protected-change approval record incorrectly listed all changed files rather than the exact protected-path set required by the Base validator.
+The first PR #249 remote validation also found two governance regressions that the local Godot runner does not own: four retained canonical-freshness tests (three under `tests/python`, one root contract test) still hard-coded the prior `SX-DEC-027~063` span, and the protected-change approval record incorrectly listed all changed files rather than the exact protected-path set required by the Base validator. The first official full Godot test job then reached its 180-second timeout even though it printed the passing summary; the unchanged exact head was re-run once and the job completed green, so the timed-out attempt is not treated as a product PASS.
 
 ## Solution
 
@@ -22,7 +22,8 @@ The first PR #249 remote validation also found two governance regressions that t
 
 - RED test evidence observed the old passed-rail, alternate-rail, and terminal-route behavior; GREEN requires their absence plus the actual train root and fallback.
 - Local headless Godot full suite passed: 112 cases / 13,513 assertions.
-- After the remote failure correction, local Python contracts passed: 220 passed, 1 skipped; the project contract validator passed. Exact-head remote CI remains pending re-run.
+- After the remote failure correction, local Python contracts passed: 220 passed, 1 skipped; the project contract validator passed. The exact-head re-run completed with all 7 required CI checks green, and PR #249 safely squash-merged to main `2b98c0b070f2d8670b6432ac769a130bdd83bc39`.
+- Post-merge main was re-imported before Godot execution. The full suite then passed: 112 cases / 13,513 assertions; formal GUT passed: 21 tests / 152 assertions with JUnit output. A direct first run without the required import cache is excluded as invalid environment evidence, not counted as a product failure.
 - A correct live Switchy editor instance was not available; a headless `Viewport` capture did not provide an eligible same-state pixel composite. Physical device, human comprehension, Player Experience, release, and production evidence remain `NOT_RUN`.
 - There are zero new bitmap assets. The separate planning-board source was hash/dimension reread and GitHub-preserved only after user approval; it is not evidence for this runtime change.
 

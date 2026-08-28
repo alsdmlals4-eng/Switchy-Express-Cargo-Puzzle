@@ -61,7 +61,10 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         self.assertIn("sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237", active)
         self.assertNotIn("sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · FIRST_CANDIDATE_GENERATED_REVIEW_PENDING · ISSUE_239 · RUNTIME_UNCHANGED", active)
         self.assertIn("sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · PR_244 · main_38d4ac2aac8af35672d43e96f27b2f243aa10a4b · RUNTIME_NOT_CONNECTED", active)
-        self.assertIn("sx_dec_064_active_route_lighting: USER_APPROVED · GitHub_Issue_248", active)
+        self.assertIn(
+            "sx_dec_064_active_route_lighting: MERGED_MAIN_VERIFIED · GitHub_Issue_248 · PR_249 · main_2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI_7_GREEN",
+            active,
+        )
         self.assertIn("post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED", active)
         self.assertIn("PR #174 remains", active)
         self.assertIn("READ_ONLY", active)
