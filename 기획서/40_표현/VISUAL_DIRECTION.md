@@ -36,6 +36,20 @@ allowed_variation:
 
 The planning-only scene owner is `기획서/40_표현/PROJECT_CORE_SCENE_VISUAL_BOARD.md`. It owns exact panel/flow meaning; its generated board is not a runtime screenshot, asset, Godot Scene, or human-usability result.
 
+## SX-DEC-062 active implementation-composition boundary
+
+User-approved SX-DEC-062 turns this direction into one bounded **existing-asset runtime composition** contract. It does not replace the E+D asset family or promote the planning board into a runtime asset.
+
+```text
+DemoPalette named state roles
+→ DemoThemeFactory control-deck variants
+→ existing HUD / shell panels use the same material grammar
+→ station-service orientation remains beneath decisive route feedback
+→ existing Title / T2 v02 / Result bitmap consumers remain exact
+```
+
+The contract is `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`. New bitmap assets, `runtime_visual_manifest.json` changes, Issue #227’s separate T2 replacement, game-rule changes, and physical/human claims remain out of scope. Before/after runtime captures and player readability are future evidence, not approved by this text.
+
 ## Supersession boundary
 
 The sections beginning **Base 상호작용 상태 계약** through **구형 표현 상태** are retained as historical design notes. They are not current requirements where they describe score/max-combo, stars/ranking, leaderboards, a 1–10 tutorial/progression, rail performance attributes, tunnels/bridges, or a mascot/character requirement. Current product scope is the implemented T1→T6→VS_DEMO_01 first-session chain in `CURRENT_CONFIRMED_DECISIONS.md`, amended by SX-DEC-060, and the SX-DEC-061 lock above.

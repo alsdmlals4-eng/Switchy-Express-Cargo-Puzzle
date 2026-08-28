@@ -131,6 +131,22 @@
       "status": "CURRENT"
     },
     {
+      "id": "SX-DEC-062-BOARD-FIRST-RUNTIME-COMPOSITION",
+      "question": "Board-first visual direction을 existing runtime consumers에 어떻게 적용하며 무엇을 보존하는가",
+      "source": "docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md",
+      "format": "markdown",
+      "publication_policy": "milestone_sync",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-DEC-062-IMPLEMENTATION-CONTRACT",
+      "question": "SX-DEC-062 구현의 exact test-first CodeX handoff는 무엇인가",
+      "source": "기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "CURRENT"
+    },
+    {
       "id": "SX-SCREEN-VISUAL-COVERAGE-001",
       "question": "현재 Vertical Slice의 화면·오버레이·전환과 실제 시각 소비처 coverage는 무엇인가",
       "source": "기획서/40_표현/TARGET_BUILD_SCREEN_SURFACE_AND_VISUAL_COVERAGE.md",

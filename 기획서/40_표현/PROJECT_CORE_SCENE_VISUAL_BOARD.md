@@ -41,6 +41,19 @@ Generated panel numbers and pictograms are non-canonical. Exact UI wording, stat
 - **LIFO:** world token is compact; Stack HUD owns the exact sequence and count. `TOP` is semantic text, not “front/back.”
 - **Variation:** failure may use more crimson and a tutorial may use more violet, but material language, cargo silhouettes, camera, and UI framing stay shared.
 
+## SX-DEC-062 runtime-composition mapping
+
+This planning owner now maps to one future runtime presentation contract, not an image batch:
+
+| Runtime concern | Existing consumer | SX-DEC-062 change boundary |
+|---|---|---|
+| Board-first action hierarchy | `ProductBoardRenderer`, `RouteControlOverlay`, `ProductFiniteSlice` | Keep route feedback above subtle cardinal service orientation; no gameplay/render snapshot schema change. |
+| Control deck | `DemoPalette`, `DemoThemeFactory`, `ProductHUD` | Use shared named state roles and panel variants; retain stage visibility and 48px controls. |
+| Lesson focus | `BriefingScreen/.../LessonProgress`, current live text | Violet bounded orientation only; T2 v02 asset and exact T2 copy remain. |
+| Result recovery | `ResultOverlay`, `ProductShellArt`, flow controller | Keep runtime-truth Retry/Edit/Title; no score/economy/trace invention. |
+
+`PROJECT_CORE_SCENE_VISUAL_BOARD` remains `GENERATED_EXPLORATION · NOT_RUNTIME_PROOF`. The implementation contract is `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`; it cannot promote the board binary, asset rights, or human-usability evidence.
+
 ## Adversarial review of the generated board
 
 | Check | Result | Correction in this owner |

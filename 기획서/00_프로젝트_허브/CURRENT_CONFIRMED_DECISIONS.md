@@ -8,7 +8,7 @@ Last updated: `2026-08-28 KST`
 
 ```yaml
 current_product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060
-current_decision_span: SX-DEC-027~061
+current_decision_span: SX-DEC-027~062
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
@@ -52,6 +52,7 @@ sx_dec_060_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-
 sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED
 sx_dec_060_notion_sync: PASS · POST_PR_188_READBACK_COMPLETE
 sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
+sx_dec_062_runtime_composition: APPROVED · BOARD_FIRST_EXISTING_ASSET_COMPOSITION · IMPLEMENTATION_CONTRACT_READY · RUNTIME_UNCHANGED
 developer_self_run: ISOLATED_VISUAL_INPUT_OBSERVED_AUDIO_NOT_OBSERVED_POST_SX_DEC_060
 windows_physical_startup_and_build_entry_automation_observed: CURRENT_SX60_POC_ACCEPT_002_ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT · HISTORICAL_SX60_POC_ACCEPT_001_AUTOMATION_SEPARATE
 acceptance_build: SX60-POC-ACCEPT-002 · PACKAGE_VERIFIED · ISOLATED_VISUAL_INPUT_OBSERVED · AUDIO_PERCEPTUAL_QA_NEXT
@@ -124,6 +125,7 @@ sx_dec_060_new_bitmap_assets_required: 0
 | SX-DEC-059 | Release-Near First Session · implementation/playable POC merged · pre-060 Candidate 003 historical after SX-DEC-060 |
 | **SX-DEC-060** | **Cardinal Station Service + Reachable Network · MERGED_MAIN_VERIFIED · PR #188** |
 | **SX-DEC-061** | **Board-first Cozy Neo-Arcade visual refinement · APPROVED · documentation/plan board only; runtime unchanged** |
+| **SX-DEC-062** | **Board-first runtime composition · APPROVED · existing assets preserved · implementation contract ready; runtime unchanged** |
 
 ## SX-DEC-059 retained first-session contract
 
@@ -152,6 +154,20 @@ cozy miniature railway world
 ```
 
 This changes neither GMB-002 gameplay, map data, Scene/Resource ownership, the existing 73 runtime PNG consumers, nor the post-SX-DEC-060 evidence ceiling. The generated board is `GENERATED_EXPLORATION · NOT_RUNTIME_PROOF`; Phase 2 runtime/UI/asset work requires a separate consumer-specific approval and implementation gate.
+
+## SX-DEC-062 confirmed runtime-composition contract
+
+Canonical owners: `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`, `docs/superpowers/specs/2026-08-28-board-first-runtime-composition-design.md`, `docs/superpowers/plans/2026-08-28-board-first-runtime-composition.md`, and `기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`.
+
+```text
+existing E+D assets and exact consumers
+→ BoardRenderer / RouteControl remains the player’s first visual authority
+→ named control-deck tokens align HUD and shell without new art
+→ T2 v02, first-session flow, and result recovery remain exact
+→ a changed runtime requires a new exact candidate and new physical/human evidence
+```
+
+This contract excludes all bitmap/manifest/hash changes, Issue #227 T2 replacement, finite rules/data/locales/audio changes, score/economy/progression, Base repin, and PR #174. It records implementation intent only; no SX-DEC-062 runtime/test/package/human result exists yet.
 
 ### Architecture / evidence boundaries
 

@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: `2026-08-26 KST`
+Last updated: `2026-08-28 KST`
 
 ## Current authority
 
@@ -10,7 +10,7 @@ work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~061
+current_decisions: SX-DEC-027~062
 ```
 
 The user-approved SX-DEC-060 gameplay amendment changes the efficient next product gate. Pre-SX-DEC-060 Candidate 003 remains historical exact-byte evidence; it is no longer the build to spend the next human acceptance cycle on.
@@ -203,11 +203,25 @@ POST_060_CANDIDATE: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · HUMAN_PH
 
 The approved E+D Hybrid/Neo-Arcade route-visibility direction is now a runtime presentation correction, not reference-only guidance. It keeps selected route, unselected route, occupied/locked control, and result-route context legible with procedural overlays only; no finite-gameplay rule, map byte, or bitmap asset changes. Exact-head local checks passed; GitHub CI remained queued without jobs and the user explicitly authorized the merge bypass, so remote CI GREEN remains unclaimed.
 
+## M6S · SX-DEC-062 Board-first runtime composition
+
+`USER_APPROVED · DOCUMENTATION_CONTRACT_READY · RUNTIME_UNCHANGED`
+
+```text
+existing E+D assets / shell consumers
+→ shared named control-deck palette and panel grammar
+→ existing HUD/shell scene variants
+→ station-service orientation below decisive route feedback
+→ no bitmap, gameplay, map/data, first-session-copy, or audio delta
+```
+
+The implementation contract is GitHub Issue #235 plus `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`, its spec/plan, and `SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`. Issue #227 T2 hero replacement remains separate and deferred. Once runtime bytes change, Candidate 002 observations become prior-byte evidence and a new exact candidate is required before Phase 5 physical/human interpretation.
+
 ## M6A · Post-060 physical/device/human validation
 
 `PHASE_5_USER_VERTICAL_SLICE_VALIDATION · USER_AUTHORIZED_2026-08-28 · WINDOWS_PHYSICAL_AUDIO_EXECUTION_PENDING`
 
-After a new exact post-060 candidate exists:
+After the SX-DEC-062 contract is merged, implemented, and a new exact post-change candidate exists:
 
 ```text
 Windows full physical smoke
