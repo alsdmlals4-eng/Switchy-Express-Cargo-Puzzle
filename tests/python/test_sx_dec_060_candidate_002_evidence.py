@@ -27,7 +27,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         audit = self._json(AUDIT)
 
         self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-003")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-004")
         historical = pointer["historical_superseded_after_sx_dec_062"]
         self.assertEqual(historical["candidate_id"], "SX60-POC-ACCEPT-002")
         self.assertEqual(
@@ -98,15 +98,15 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
     def test_current_decisions_preserve_startup_only_evidence_without_physical_promotion(self) -> None:
         text = CURRENT_DECISIONS.read_text(encoding="utf-8")
 
-        self.assertNotIn("SX60-POC-ACCEPT-003 · PHYSICAL_PASS", text)
+        self.assertNotIn("SX60-POC-ACCEPT-004 · PHYSICAL_PASS", text)
         self.assertIn("sx60_poc_accept_002: SX60-POC-ACCEPT-002 · HISTORICAL_SUPERSEDED_BY_SX_DEC_062", text)
-        self.assertIn("acceptance_build: SX60-POC-ACCEPT-003 · PACKAGE_VERIFIED · NO_HUMAN_OR_PHYSICAL_EVIDENCE", text)
+        self.assertIn("acceptance_build: SX60-POC-ACCEPT-004 · PACKAGE_VERIFIED · NO_HUMAN_OR_PHYSICAL_EVIDENCE", text)
 
     def test_active_context_routes_after_startup_observation_to_isolated_self_run(self) -> None:
         text = ACTIVE_CONTEXT.read_text(encoding="utf-8")
 
         self.assertIn(
-            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · NO_LAUNCH_PACKAGE_VERIFIED · SOURCE_MAIN_8bce715 · WINDOWS_PHYSICAL_AUDIO_QA_NEXT",
+            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_58b99f2 · WINDOWS_PHYSICAL_AUDIO_QA_NEXT",
             text,
         )
         self.assertNotIn("HUMAN_PHYSICAL_SELF_RUN_NEXT", text)

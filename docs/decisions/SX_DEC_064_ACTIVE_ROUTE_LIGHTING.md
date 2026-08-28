@@ -49,12 +49,13 @@ The pre-RUN fallback uses authored `start_cell + incoming_cell` only when the ru
 - Official Godot `CanvasItem` documentation confirms `_draw()`/`draw_line()` and `queue_redraw()` for state-driven custom 2D overlays; the existing `ProductBoardRenderer` already uses this supported consumer boundary. [CanvasItem](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html) · [Custom drawing in 2D](https://docs.godotengine.org/en/4.5/tutorials/2d/custom_drawing_in_2d.html)
 - RED first recorded that the old projection incorrectly retained passed/unselected/terminal route descriptors. GREEN tests now require actual train-root prediction, no alternate rail light, separate lock truth, pre-RUN fallback, active phases, and terminal clearing.
 - Local Godot full runner: `112 cases / 13,513 assertions` PASS on the branch.
+- Exact post-064 package candidate: `SX60-POC-ACCEPT-004` from `main@58b99f261c3576150ab275bb041d744c69b83538`; workflow run `33190345143`, PCK 500/500 integrity PASS, and no-launch package verification PASS.
 - No correct live Switchy editor instance was available and headless frame capture did not produce an eligible same-state composite. Pixel composite, Windows/device, audio-perceptual, human comprehension, Player Experience, release, and production-cutover evidence are `NOT_RUN`.
 
 ## Acceptance gates before status promotion
 
 1. Exact-head PR CI and a safe merge must pass before `MERGED_MAIN_VERIFIED` is written.
-2. A new exact candidate must be identified before physical route readability is evaluated.
+2. Satisfied: Candidate 004 is the only exact package candidate; Candidate 003 is historical pre-SX-DEC-064 evidence.
 3. A same-state actual Switchy runtime render at supported gameplay scale must verify that only the current route glows, the dim alternate remains an input target, and the lock does not obscure the selected direction.
 4. No automated/package result may be relabeled as human or Player Experience proof.
 

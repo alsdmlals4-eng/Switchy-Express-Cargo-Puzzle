@@ -8,8 +8,8 @@
 
 ```yaml
 product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~063
-current_product_decision: SX-DEC-063 · VISUAL_DIRECTION_REFINEMENT
+current_decisions: SX-DEC-027~064
+current_product_decision: SX-DEC-063 · HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT + SX-DEC-064 · ACTIVE_ROUTE_LIGHTING
 work_instruction: v4.8 · revision 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
@@ -26,10 +26,10 @@ sx_dec_060_design_tdd_handoff: PREPARED
 sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · existing-asset board-first composition
 sx_dec_063_visual_direction: USER_APPROVED_DIRECTION · FIRST_TERRAIN_CANDIDATE_GENERATED_REVIEW_PENDING · RUNTIME_UNCHANGED
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · source main 8bce715b5045afebfb04d38108d2e3f7353e1b10 · package-only evidence
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · source main 58b99f261c3576150ab275bb041d744c69b83538 · package-only evidence
 sx60_poc_accept_001: HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY
-windows_physical_post_060: HISTORICAL_AUTOMATION_OBSERVED_INITIAL_TITLE_AND_BUILD_ENTRY · CURRENT_EXACT_CANDIDATE_003_PACKAGE_VERIFIED_HUMAN_PHYSICAL_NOT_RUN
+windows_physical_post_060: HISTORICAL_AUTOMATION_OBSERVED_INITIAL_TITLE_AND_BUILD_ENTRY · CURRENT_EXACT_CANDIDATE_004_PACKAGE_VERIFIED_HUMAN_PHYSICAL_NOT_RUN
 android_device_post_060: NOT_RUN
 five_person_post_060: NOT_RUN
 player_experience_post_060: NOT_RUN
@@ -134,7 +134,7 @@ candidate_003_product_textures: PASS · 73/73 · HISTORICAL
 candidate_003_physical_visual_recheck: NOT_RUN
 ```
 
-SX-DEC-060이 gameplay/data semantics를 바꾸므로 Candidate 003을 post-060 acceptance로 승격하지 않습니다. post-060 runtime 구현·자동 검증·패키징 뒤 새 exact candidate가 필요합니다.
+SX-DEC-060 이후 Candidate 003은 historical exact-byte evidence로 유지됩니다. SX-DEC-064까지 포함한 Candidate 004가 현재 exact package candidate이며, package/automation evidence만 갖고 물리·오디오·사람 검증은 별도입니다.
 
 ## Current Implementation Package
 
@@ -150,7 +150,7 @@ Actual GDScript/Scene/Resource/map/runtime implementation is merged-main verifie
 ## Current Next Work
 
 ```text
-→ SX60-POC-ACCEPT-003 exact package verified; no physical visual/input/audio observation has transferred or been run
+→ SX60-POC-ACCEPT-004 exact package verified; no physical visual/input/audio observation has transferred or been run
 → Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person comprehension

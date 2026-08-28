@@ -39,10 +39,11 @@ candidate_003_preparation: MERGED_MAIN_VERIFIED · PR #172 · main_2521f3be600ea
 pre_sx_dec_060_candidate_pointer: evidence/acceptance/current_poc_candidate.json
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_AFTER_SX_DEC_060
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_8bce715b5045afebfb04d38108d2e3f7353e1b10 · PACKAGE_ONLY
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_58b99f261c3576150ab275bb041d744c69b83538 · PACKAGE_ONLY · SX_DEC_064_ACTIVE_ROUTE_LIGHTING_INCLUDED
 sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 sx60_poc_accept_002: SX60-POC-ACCEPT-002 · HISTORICAL_SUPERSEDED_BY_SX_DEC_062 · PRIOR_BYTE_ISOLATED_VISUAL_INPUT_OBSERVATION_DOES_NOT_TRANSFER
-sx60_poc_accept_003: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · PACKAGE_ONLY · PHYSICAL_AUDIO_QA_NEXT
+sx60_poc_accept_003: SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE
+sx60_poc_accept_004: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · PACKAGE_ONLY · PHYSICAL_AUDIO_QA_NEXT
 candidate_003_package_integrity: PASS · HISTORICAL_PRE_SX_DEC_060
 candidate_003_pck_integrity: PASS · 472_OF_472 · HISTORICAL_PRE_SX_DEC_060
 candidate_003_product_textures: PASS · 73_OF_73 · HISTORICAL_PRE_SX_DEC_060
@@ -53,7 +54,7 @@ sx_dec_060_design: RECORDED
 sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
-sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · PACKAGE_ONLY
+sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · PACKAGE_ONLY
 sx_dec_060_notion_sync: PASS · POST_PR_188_READBACK_COMPLETE
 sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION · PACKAGE_VERIFIED
@@ -61,9 +62,9 @@ sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · TERRAIN_V02_APPR
 sx_vis_061_core_systems_board: USER_APPROVED_GITHUB_PRESERVED_PLANNING_REFERENCE · ISSUE_246 · docs/visual-references/sx-vis-061-core-systems-board-exploration-002b.png · NO_RUNTIME_CONSUMER · NOT_RUNTIME_PROOF
 sx_dec_064_active_route_lighting: MERGED_MAIN_VERIFIED · ISSUE_248 · PR_249 · main_2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI_7_GREEN · POST_MERGE_GODOT_112_CASES_13513_ASSERTIONS_PASS
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · PR_240 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
-developer_self_run: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_VISUAL_INPUT_OBSERVED_AUDIO_NOT_OBSERVED · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_003
-windows_physical_startup_and_build_entry_automation_observed: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_003
-acceptance_build: SX60-POC-ACCEPT-003 · PACKAGE_VERIFIED · NO_HUMAN_OR_PHYSICAL_EVIDENCE · WINDOWS_PHYSICAL_AUDIO_QA_NEXT
+developer_self_run: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_VISUAL_INPUT_OBSERVED_AUDIO_NOT_OBSERVED · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_004
+windows_physical_startup_and_build_entry_automation_observed: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_004
+acceptance_build: SX60-POC-ACCEPT-004 · PACKAGE_VERIFIED · NO_HUMAN_OR_PHYSICAL_EVIDENCE · WINDOWS_PHYSICAL_AUDIO_QA_NEXT
 windows_full_physical_runtime: NOT_RUN_POST_SX_DEC_060
 audio_perceptual_qa: NOT_RUN_POST_SX_DEC_060
 android_device: NOT_RUN_POST_SX_DEC_060
@@ -133,7 +134,7 @@ sx_dec_060_new_bitmap_assets_required: 0
 | SX-DEC-059 | Release-Near First Session · implementation/playable POC merged · pre-060 Candidate 003 historical after SX-DEC-060 |
 | **SX-DEC-060** | **Cardinal Station Service + Reachable Network · MERGED_MAIN_VERIFIED · PR #188** |
 | **SX-DEC-061** | **Board-first Cozy Neo-Arcade visual refinement · APPROVED · documentation/plan board only; runtime unchanged** |
-| **SX-DEC-062** | **Board-first runtime composition · MERGED_MAIN_VERIFIED · PR #237 · exact Candidate 003 package verified · human gates remain open** |
+| **SX-DEC-062** | **Board-first runtime composition · MERGED_MAIN_VERIFIED · PR #237 · Candidate 003 is historical after SX-DEC-064; Candidate 004 is current package evidence · human gates remain open** |
 | **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · terrain v02 APPROVED_GITHUB_PRESERVED · Phase 2 runtime contract ready · runtime unchanged** |
 | **SX-DEC-064** | **Active-route lighting · MERGED_MAIN_VERIFIED · PR #249 · CI 7 green · procedural presentation delta · physical/player gates remain open** |
 
@@ -305,7 +306,7 @@ PR #158 implementation → PR #166 playable POC → PR #171 visual correction �
 current:
 SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063 user-approved visual-production direction
 → SX-DEC-064 active-route lighting merged main PR #249 with exact-head CI 7 green
-→ SX60-POC-ACCEPT-003 exact package verified
+→ SX60-POC-ACCEPT-004 exact package verified for merged main 58b99f2
 → terrain v02 GitHub preservation on Issue #243; existing runtime stays v01
 → Phase 2 terrain-only runtime contract is ready; no runtime bytes are changed yet
 → NoLaunch verification PASS, then Windows physical smoke + audio perceptual QA

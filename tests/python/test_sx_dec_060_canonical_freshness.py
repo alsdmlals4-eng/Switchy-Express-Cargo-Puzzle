@@ -116,7 +116,7 @@ class SXDec060CanonicalFreshnessTests(unittest.TestCase):
     def test_runtime_and_human_evidence_remain_fail_closed(self) -> None:
         combined = "\n".join(self._read_current(key) for key in CURRENT_OWNERS)
         for required in (
-            "SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED",
+            "SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED",
             "HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE",
             "NOT_RUN",
             "IMPLEMENTATION_NOT_AUTHORIZED",
@@ -127,7 +127,7 @@ class SXDec060CanonicalFreshnessTests(unittest.TestCase):
     def test_current_gate_starts_with_post_merge_package_candidate_work(self) -> None:
         for key in ("readme", "roadmap", "development_gates"):
             text = self._read_current(key)
-            self.assertIn("SX60-POC-ACCEPT-003", text)
+            self.assertIn("SX60-POC-ACCEPT-004", text)
             self.assertNotIn("isolated visual/input/audio self-run", text)
             self.assertNotIn("SX_DEC_060_EXACT_HEAD_REVIEW_CI_MERGE", text)
             self.assertNotIn("PR_REVIEW_CI_MERGE_READBACK", text)

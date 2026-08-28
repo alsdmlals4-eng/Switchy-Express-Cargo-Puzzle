@@ -185,16 +185,16 @@ Actual Godot product implementation is merged-main verified by PR #188; the pack
 Stable sequence:
 
 ```text
-SX60-POC-ACCEPT-003 exact package verified
-→ NoLaunch verification PASS, then physical/device/human gates
+SX60-POC-ACCEPT-004 exact package verified on main 58b99f2
+→ package proof PASS, then physical/device/human gates
 ```
 
 ```yaml
 SX_DEC_060_RUNTIME: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 FULL_AUTOMATED_REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 FIVE_PASS_REVIEW: CLOSED · SX-AUD-071
-POST_060_PACKAGE: SX60_POC_ACCEPT_003_PREPARED_PACKAGE_VERIFIED · HISTORICAL_SX60_POC_ACCEPT_001_AND_002_PRESERVED
-POST_060_CANDIDATE: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · HUMAN_PHYSICAL_NOT_RUN
+POST_060_PACKAGE: SX60_POC_ACCEPT_004_PREPARED_PACKAGE_VERIFIED · HISTORICAL_SX60_POC_ACCEPT_001_TO_003_PRESERVED
+POST_060_CANDIDATE: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · HUMAN_PHYSICAL_NOT_RUN
 ```
 
 ## M6R · Runtime route readability correction
@@ -221,7 +221,7 @@ existing E+D assets / shell consumers
 → no bitmap, gameplay, map/data, first-session-copy, or audio delta
 ```
 
-GitHub Issue #235 and PR #237 implemented the contract in `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`, its spec/plan, and `SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`. Existing assets and exact consumers remain unchanged; Issue #227 T2 hero replacement remains separate and deferred. Candidate 002 observations are prior-byte evidence. Candidate 003 is the exact `main@8bce715` package route, but it has no physical/human evidence.
+GitHub Issue #235 and PR #237 implemented the contract in `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`, its spec/plan, and `SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`. SX-DEC-064 then changed player-facing active-route lighting. Candidates 002/003 are prior-byte evidence; Candidate 004 is the exact `main@58b99f2` package route and has no physical/human evidence.
 
 ## M6T · SX-DEC-063 terrain v02 asset promotion
 
@@ -233,7 +233,7 @@ The user-promoted `SX-VIS-063-CANDIDATE-001` is stored at `art/product_assets/ed
 
 `PHASE_5_USER_VERTICAL_SLICE_VALIDATION · USER_AUTHORIZED_2026-08-28 · WINDOWS_PHYSICAL_AUDIO_EXECUTION_PENDING`
 
-With the SX-DEC-062 contract merged and Candidate 003 package verified, the next gates are:
+With SX-DEC-062/064 merged and Candidate 004 package verified, the next gates are:
 
 ```text
 Windows full physical smoke

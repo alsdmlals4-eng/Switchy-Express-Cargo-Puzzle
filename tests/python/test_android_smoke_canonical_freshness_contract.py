@@ -38,7 +38,7 @@ class TestAndroidSmokeCanonicalFreshness(unittest.TestCase):
 
         self.assertIn("post-060 candidate", start)
         self.assertIn("HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE", start)
-        self.assertIn("post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED", active)
+        self.assertIn("post_sx_dec_060_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED", active)
         for token in (
             "ANDROID DEVICE SMOKE",
             "FIVE-PERSON COMPREHENSION",
@@ -129,7 +129,7 @@ class TestAndroidSmokeCanonicalFreshness(unittest.TestCase):
             "finite-time completion",
             "Android device smoke",
             "SX-DEC-060",
-            "POST-060 EXACT CANDIDATE: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED",
+            "POST-060 EXACT CANDIDATE: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED",
         ):
             self.assertIn(token, current)
         for stale in (

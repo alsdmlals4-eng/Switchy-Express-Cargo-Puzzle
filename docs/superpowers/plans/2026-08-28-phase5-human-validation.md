@@ -5,12 +5,12 @@
 **Goal:** Validate whether the approved first-session promise is understandable and playable on the current post-SX-DEC-060 product, without changing gameplay, assets, Scenes, Resources, or production scope.
 
 **Issue:** #233
-**Current authority:** `GMB-002 · SX-DEC-027~062`, `SX-DEC-060`, `SX-DEC-061`, `SX-DEC-062`, `기획서/50_제작_검증/PLAYTEST_PLAN.md`
-**Current candidate:** `SX60-POC-ACCEPT-003` from source `8bce715b5045afebfb04d38108d2e3f7353e1b10`
+**Current authority:** `GMB-002 · SX-DEC-027~064`, `SX-DEC-060`, `SX-DEC-061`, `SX-DEC-062`, `SX-DEC-064`, `기획서/50_제작_검증/PLAYTEST_PLAN.md`
+**Current candidate:** `SX60-POC-ACCEPT-004` from source `58b99f261c3576150ab275bb041d744c69b83538`
 **Candidate pointer:** `evidence/acceptance/post_sx_dec_060_candidate.json`
 **Status at plan creation:** `USER_AUTHORIZED · WINDOWS_PHYSICAL_AUDIO_NOT_RUN · ANDROID_ARTIFACT_ID_UNASSIGNED · FIVE_PERSON_NOT_RUN`
 
-> **SX-DEC-062 boundary:** Candidate 002 is immutable prior-byte observation evidence. Candidate 003 is the sole current package candidate after the approved board-first runtime-composition byte change. Carry the same evidence sequence forward without promoting any old physical/audio/human field.
+> **SX-DEC-064 boundary:** Candidates 002 and 003 are immutable prior-byte observation/package evidence. Candidate 004 is the sole current package candidate after active-route-lighting. Carry the same evidence sequence forward without promoting any old physical/audio/human field.
 
 ## Player outcome under test
 
@@ -44,17 +44,17 @@ Out of scope:
 
 ## Task 1 — Freeze the exact Windows candidate before observation
 
-**Read first:** `evidence/acceptance/post_sx_dec_060_candidate.json`, `evidence/acceptance/sx60_poc_accept_003_artifact.json`, `기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_03.md`.
+**Read first:** `evidence/acceptance/post_sx_dec_060_candidate.json`, `evidence/acceptance/sx60_poc_accept_004_artifact.json`, `기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_04.md`.
 
 - [ ] Use the current pointer; never select an artifact by newest timestamp.
-- [ ] Run the existing current-main launcher only if its contract check resolves Candidate 003:
+- [ ] Run the existing current-main launcher only if its contract check resolves Candidate 004:
 
   ```powershell
   powershell -ExecutionPolicy Bypass -File .\RUN_SX60_POC_SELF_RUN.ps1 -ContractCheck
   powershell -ExecutionPolicy Bypass -File .\RUN_SX60_POC_SELF_RUN.ps1
   ```
 
-- [ ] Before recording observation, verify the launched EXE and PCK against the Candidate 003 hashes in `PLAYTEST_PLAN.md`.
+- [ ] Before recording observation, verify the launched EXE and PCK against the Candidate 004 hashes in `PLAYTEST_PLAN.md`.
 - [ ] If the artifact is expired, unavailable, hash-mismatched, or its resolved candidate differs, stop with `BLOCKED_IDENTITY`; do not substitute another package.
 
 **Record:** candidate ID, source SHA, observer alias, date/time, display/audio conditions, and a redacted evidence reference.
@@ -76,7 +76,7 @@ Out of scope:
 
 ## Task 3 — Assign a post-060 Android artifact before device testing
 
-**Current state:** `BLOCKED_UNVERIFIED`. Candidate 003's record has Android runtime-JSON package proof but no exact Android APK artifact ID, APK SHA-256, or package identity. The existing `ANDROID_DEVICE_SMOKE_RUNBOOK.md` and Template are historical validation-APK records, not eligible current artifacts.
+**Current state:** `BLOCKED_UNVERIFIED`. Candidate 004's record has Android runtime-JSON package proof but no exact Android APK artifact ID, APK SHA-256, or package identity. The existing `ANDROID_DEVICE_SMOKE_RUNBOOK.md` and Template are historical validation-APK records, not eligible current artifacts.
 
 - [ ] Do not install or report on the historical APK as Phase 5 evidence.
 - [ ] When an exact post-060 Android artifact is available, record its source commit, artifact ID, APK SHA-256, package ID, and relationship to the current product authority before a device session.
@@ -99,7 +99,7 @@ Out of scope:
 | --- | --- |
 | Incident | `PHASE5_PLAYTEST_IDENTITY_DRIFT_2026-08-28`: active Playtest/Android surfaces still advertised SX-DEC-055/059 or a pre-060 validation APK as current. |
 | Player risk | The wrong build could be tested and incorrectly attributed to the cardinal-service/LIFO first session, making the human evidence unusable. |
-| Solution | Promote the then-current Candidate 002 Windows identity and Phase 5 order; reclassify old wrappers and Android APK materials as historical; add `FS-02A`/`HUM-02A`. Candidate 003 now owns the current post-SX-DEC-062 runtime bytes. |
+| Solution | Promote the then-current Candidate 002 Windows identity and Phase 5 order; reclassify old wrappers and Android APK materials as historical; add `FS-02A`/`HUM-02A`. Candidate 003 later became prior-byte evidence after SX-DEC-064; Candidate 004 now owns the current post-SX-DEC-064 runtime bytes. |
 | Lesson | Acceptance evidence must own both exact artifact identity and current player rule; an Android runtime JSON proof is not an installable device candidate. |
 | Base promotion | `NO_BASE_PROMOTION`: this is project-specific candidate lineage and retained historical artifact topology, not a repeated cross-project workflow finding. |
 

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "candidate_id": "SX60-POC-ACCEPT-004",
+  "decision_id": "SX-DEC-060",
+  "change_decision_ids": [
+    "SX-DEC-062",
+    "SX-DEC-064"
+  ],
+  "observed_date_kst": "2026-08-29",
+  "source_build": {
+    "main_sha": "58b99f261c3576150ab275bb041d744c69b83538",
+    "identity": "SX_DEC_064_EXACT_MAIN_WORKFLOW_DISPATCH"
+  },
+  "artifact": {
+    "workflow_name": "Windows Demo Export",
+    "workflow_run_id": 33190345143,
+    "workflow_run_number": 526,
+    "workflow_event": "workflow_dispatch",
+    "workflow_head_sha": "58b99f261c3576150ab275bb041d744c69b83538",
+    "workflow_conclusion": "success",
+    "id": 9693500347,
+    "name": "switchy-express-windows-demo-58b99f261c3576150ab275bb041d744c69b83538",
+    "created_at": "2026-08-28T16:32:39Z",
+    "expires_at": "2026-09-11T16:32:34Z",
+    "retention_days": 14,
+    "api_digest_sha256": "04e230e3d62c518b3d76ae4938964d2a1234a82949b7e2f4af4a3a447822f303",
+    "metadata_class": "EPHEMERAL_DELIVERY_METADATA"
+  },
+  "package": {
+    "identity_class": "IMMUTABLE_CONTENT_DIGESTS",
+    "zip_sha256": "04e230e3d62c518b3d76ae4938964d2a1234a82949b7e2f4af4a3a447822f303",
+    "windows_exe_sha256": "1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244",
+    "windows_pck_sha256": "3325f11115fdf3fc57e39bb35c545d115217614eb1e58607934edacf0c6b0839",
+    "windows_runtime_json_proof_pck_sha256": "3325f11115fdf3fc57e39bb35c545d115217614eb1e58607934edacf0c6b0839",
+    "android_validation_runtime_json_proof_pck_sha256": "75925bb5f39283c9145bb6525991334f76c44a1a013b483715ae5a983abfbef2"
+  },
+  "verification": {
+    "artifact_api_digest_equals_downloaded_zip_sha256": true,
+    "artifact_api_readback": "PASS · 2026-08-29",
+    "independent_zip_hash": "PASS · 2026-08-29",
+    "inner_sha256sums_matches_downloaded_exe_pck": true,
+    "windows_runtime_json": "PASS · parsed_json=27",
+    "android_validation_runtime_json": "PASS · parsed_json=27",
+    "package_integrity": "PASS",
+    "launcher_contract_check": "PASS · 2026-08-29 · POST_SX_DEC_060_CANDIDATE_CONTRACT: SX60-POC-ACCEPT-004",
+    "launcher_no_launch_package_verification": "PASS · 2026-08-29 · local exact-candidate NoLaunch download/hash/runtime-JSON verification · no game launch",
+    "windows_physical_startup_and_build_entry_automation_observed": "NOT_RUN",
+    "developer_self_run": "NOT_RUN",
+    "windows_physical_runtime_full_scenarios": "NOT_RUN",
+    "audio_perceptual_qa": "NOT_RUN",
+    "android_device": "NOT_RUN",
+    "five_person_comprehension": "NOT_RUN",
+    "player_experience": "NOT_RUN"
+  }
+}

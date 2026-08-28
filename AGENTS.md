@@ -96,7 +96,7 @@ gpt_local_codex_orchestration_policy: RETIRED
 current_validation_locator: 기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md
 current_product_decision: SX-DEC-063 · HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT + SX-DEC-064 · ACTIVE_ROUTE_LIGHTING
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY
-post_sx_dec_060_candidate: NOT_CREATED
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · PACKAGE_ONLY · SOURCE_MAIN_58b99f261c3576150ab275bb041d744c69b83538
 ```
 
 v4.7 Switchy adapter, v4.5 r2 bundle, v4.8 r2 provenance와 2026-08-24 r4 전환 자료는 역사·rollback/provenance evidence로 보존하며 current work-instruction authority가 아니다. r5.4의 fresh-read/Skill coverage/복구/Godot 상세는 thin adapter와 최신 Base owner를 progressive-load한다.
@@ -177,7 +177,7 @@ sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS
 sx_dec_060_ci: PASS · 7_REQUIRED_CHECKS
 sx_dec_060_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
 sx_dec_060_notion_readback: PASS
-sx_dec_060_post_change_candidate: NOT_CREATED
+sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · exact main 58b99f261c3576150ab275bb041d744c69b83538 · package-only evidence
 sx_dec_061: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 sx_dec_062: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION
 sx_dec_063: USER_APPROVED_DIRECTION · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · RUNTIME_NOT_CONNECTED
@@ -313,7 +313,8 @@ SX-DEC-060 RUNTIME: MERGED_MAIN_VERIFIED · PR #188 · main_740b4b9312fa27289fd6
 SX-DEC-060 AUTOMATED REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 SX-DEC-060 FIVE-PASS REVIEW: CLOSED · SX-AUD-071
 SX-DEC-060 NOTION READBACK: PASS
-POST-060 CANDIDATE: NOT_CREATED
+POST-060 CANDIDATE 004 PACKAGE/PCK/TEXTURE POINTER: PASS · exact main 58b99f261c3576150ab275bb041d744c69b83538 · package-only
+POST-060 CANDIDATE 004 PHYSICAL VISUAL RECHECK: NOT_RUN
 WINDOWS PHYSICAL POST-060: NOT_RUN
 AUDIO PERCEPTUAL POST-060: NOT_RUN
 ANDROID DEVICE POST-060: NOT_RUN
@@ -329,8 +330,9 @@ Automated/export/package/self-run does not imply HUMAN/PLAYER EXPERIENCE PASS. P
 Current next gate:
 
 ```text
-SX-DEC-064 active-route-lighting post-merge exact runtime candidate + physical route-readability inspection
-→ SX-DEC-063 terrain-only Phase 2 implementation contract
+SX-DEC-064 Candidate 004 exact package verification complete
+→ physical route-readability and audio-perceptual inspection on Candidate 004
+→ SX-DEC-063 terrain-only Phase 2 implementation contract only after the separate physical gate is recorded
 → physical/device/human gates
 ```
 

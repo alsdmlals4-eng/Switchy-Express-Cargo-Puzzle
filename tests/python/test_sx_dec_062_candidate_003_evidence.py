@@ -24,18 +24,20 @@ class SXDec062Candidate003EvidenceTests(unittest.TestCase):
         audit = self._json(AUDIT)
 
         self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-003")
-        self.assertEqual(pointer["minimum_product_source_main"], "8bce715b5045afebfb04d38108d2e3f7353e1b10")
+        historical = pointer["historical_superseded_after_sx_dec_064"]
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-004")
+        self.assertEqual(historical["candidate_id"], "SX60-POC-ACCEPT-003")
+        self.assertEqual(historical["source_main"], "8bce715b5045afebfb04d38108d2e3f7353e1b10")
         self.assertEqual(
-            pointer["artifact_evidence_owner"],
+            historical["artifact_evidence_owner"],
             "evidence/acceptance/sx60_poc_accept_003_artifact.json",
         )
         self.assertEqual(
-            pointer["deep_pck_evidence_owner"],
+            historical["deep_pck_evidence_owner"],
             "evidence/acceptance/sx60_poc_accept_003_pck_deep_audit.json",
         )
-        self.assertEqual(artifact["candidate_id"], pointer["current_candidate_id"])
-        self.assertEqual(artifact["source_build"]["main_sha"], pointer["minimum_product_source_main"])
+        self.assertEqual(artifact["candidate_id"], historical["candidate_id"])
+        self.assertEqual(artifact["source_build"]["main_sha"], historical["source_main"])
         self.assertEqual(artifact["artifact"]["workflow_run_id"], 33159213393)
         self.assertEqual(artifact["artifact"]["id"], 9680934351)
         self.assertEqual(artifact["artifact"]["workflow_head_sha"], artifact["source_build"]["main_sha"])
@@ -44,7 +46,7 @@ class SXDec062Candidate003EvidenceTests(unittest.TestCase):
             artifact["package"]["zip_sha256"],
             "3ba9f8f79f8a8d011ba6094c184f9643a37251eaa779f1c9ebb8e50ba90086ba",
         )
-        self.assertEqual(audit["candidate_id"], pointer["current_candidate_id"])
+        self.assertEqual(audit["candidate_id"], historical["candidate_id"])
 
     def test_deep_audit_preserves_the_current_asset_count_distinction_and_human_ceiling(self) -> None:
         artifact = self._json(ARTIFACT)
@@ -89,9 +91,9 @@ class SXDec062Candidate003EvidenceTests(unittest.TestCase):
         decisions = CURRENT_DECISIONS.read_text(encoding="utf-8")
         active_context = ACTIVE_CONTEXT.read_text(encoding="utf-8")
 
-        self.assertIn("SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED", decisions)
+        self.assertIn("SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE", decisions)
         self.assertIn("SX60-POC-ACCEPT-002 · HISTORICAL_SUPERSEDED_BY_SX_DEC_062", decisions)
-        self.assertIn("SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED", active_context)
+        self.assertIn("SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED", active_context)
         self.assertNotIn("SX-DEC-062 runtime/test/package/human result exists yet", decisions)
 
 
