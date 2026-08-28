@@ -66,8 +66,8 @@ The player promise, finite-map rules, station cardinal-service semantics, Manual
 ## Canonical destinations
 
 - GitHub decision and implementation contract: this file, the linked spec/plan/handoff, and the current project-hub/visual owners.
-- Notion human-facing destinations: Switchy Direction `3c91b237-eb1c-8197-bf13-debb96d444c8`, Visual/UX/Assets `3c51b237-eb1c-81fa-8d47-d043dae17e11`, Production `3c51b237-eb1c-8183-9ec4-ea913a27b697`, and the Switchy Flow page `3c01b237-eb1c-81a0-8bae-dee2470e0576`.
-- The foreign Notion page identified by Issue #230 is not a destination and must not be changed.
+- Historical Notion destinations remain audit-only history after the 2026-08-28 GitHub-only workspace decision; GitHub decision, project-hub, design, and code/runtime owners are the current destinations.
+- The foreign historical Notion page identified by Issue #230 remains untouched and is not a current destination or blocker.
 
 ## Provenance
 

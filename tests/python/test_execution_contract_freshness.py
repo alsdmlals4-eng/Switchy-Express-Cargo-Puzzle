@@ -64,7 +64,7 @@ class ExecutionContractFreshnessTests(unittest.TestCase):
             "tooling-only changes do not invalidate": "tooling-only, test-only, documentation-only 변경은 candidate를 무효화하지 않는다.",
             "current candidate conflict must be reconciled": "CONTEXT_DRIFT_RECHECK_REQUIRED",
             "generated images require a runtime consumer": "verified runtime consumer",
-            "generated images have dual storage": "project-local과 Notion Visual/Asset",
+            "generated images have GitHub-only preservation": "tracked project-local GitHub path",
             "historical candidate state is explicit": "HISTORICAL_SUPERSEDED_BY_PLAYER_FACING_BYTE_CHANGE",
         }
         missing = {

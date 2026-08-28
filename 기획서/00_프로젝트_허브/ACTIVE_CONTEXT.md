@@ -1,8 +1,15 @@
 # Active Context
 
+```yaml
+project_workspace: GITHUB_ONLY
+notion_active_use: RETIRED_NO_ACTIVE_USE · USER_APPROVED_2026-08-28
+historical_notion: AUDIT_ONLY · DO_NOT_READ_OR_WRITE_FOR_CURRENT_WORK
+notion_current_structure_migration: COMPLETE · docs/migrations/2026-08-28-notion-current-workspace-migration.md
+```
+
 Last updated: `2026-08-28 KST`
 
-이 문서는 **현재 상태·다음 실행 지점·미검증 경계**를 연결하는 resume locator다. fresh GitHub/Notion/actual runtime이 저장 snapshot보다 우선한다. 새 채팅은 과거 대화를 필수 입력으로 요구하지 않고 Project GitHub + Notion에서 상태를 다시 재구성한다.
+이 문서는 **현재 상태·다음 실행 지점·미검증 경계**를 연결하는 resume locator다. fresh GitHub/actual runtime이 저장 snapshot보다 우선한다. 2026-08-28 사용자 결정에 따라 Notion은 `RETIRED_NO_ACTIVE_USE`이며, 새 채팅은 과거 대화나 Notion을 필수 입력으로 요구하지 않고 Project GitHub에서 상태를 다시 재구성한다. Historical Notion readback은 감사 evidence로만 보존한다.
 
 ## Continuation State
 
@@ -21,7 +28,7 @@ historical_r4_revision: 2026-08-24-r4
 historical_r4_role: USER_PROVIDED_V4_8_R4_CONTRACT
 historical_r2_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
 base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
-fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
+fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 skill_coverage: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT
 gpt_local_codex_orchestration: RETIRED
 sx_dec_059_merge_pr: 158
@@ -66,10 +73,10 @@ sx_dec_062_implementation_plan: docs/superpowers/plans/2026-08-28-board-first-ru
 sx_dec_062_codex_handoff: 기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md
 sx_dec_062_tracking_issue: GitHub_Issue_235
 sx_dec_062_runtime_status: IMPLEMENTED · RED_GREEN_PASS · LOCAL_GODOT_112_CASES_13512_ASSERTIONS · EXACT_HEAD_CI_6_GREEN · NEW_EXACT_CANDIDATE_MINTED
-sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · PLANNING_CURRENT · ISSUE_239 · RUNTIME_UNCHANGED
+sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · FIRST_CANDIDATE_GENERATED_REVIEW_PENDING · ISSUE_239 · RUNTIME_UNCHANGED
 sx_dec_063_decision_owner: docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md
 sx_dec_063_design_spec: docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production-design.md
-sx_dec_063_first_candidate: SX-VIS-063-CANDIDATE-001 · BOARD_TERRAIN_1672x941 · EXACT_BRIEF_APPROVAL_PENDING
+sx_dec_063_first_candidate: SX-VIS-063-CANDIDATE-001 · BOARD_TERRAIN_1672x941 · GENERATED_MACHINE_REVIEWED · USER_DISPOSITION_PENDING
 sx_dec_063_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · 2026-08-28 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
@@ -196,13 +203,13 @@ actual runtime node/key/path consumer exists
 → reuse existing asset if possible
 → procedural drawing if sufficient
 → if a concrete missing texture slot remains, generate the required bitmap automatically
-→ preserve the generated bitmap in the tracked project-local path and Notion Visual/Asset destination
+→ preserve the generated bitmap in a tracked project-local GitHub path with SHA-256 provenance
 → retain the existing E+D Hybrid / Neo-Arcade visual language
 ```
 
 ```yaml
 automatic_consumer_image_policy: USER_APPROVED_2026_08_26
-approved_image_dual_storage: PROJECT_LOCAL_AND_NOTION
+approved_image_preservation: PROJECT_LOCAL_GITHUB_ONLY
 ```
 
 Current renderer already consumes:
@@ -271,7 +278,7 @@ Decision/canon
 → design spec
 → implementation plan
 → Codex handoff
-→ GitHub/Notion synchronization
+→ GitHub canonical update and remote readback
 → review/evidence governance
 ```
 
@@ -287,15 +294,15 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 
 ```text
 SX-DEC-063 hybrid miniature-diorama alignment is user-approved for planning on Issue #239
-→ confirm the exact first terrain-candidate brief with the user, then generate and inspect one image only
+→ one terrain candidate has been generated and machine-reviewed; await the user's promotion / revise / reject disposition only
 → preserve the rectangular BUILD/RUN grid, gameplay semantics, actual consumer mapping, T2 v02, and Issue #227
 → do not begin Godot/Scene/Resource/manifest integration or an asset batch in this phase
 → SX-DEC-062 board-first runtime composition remains merged and package-verified on exact main 8bce715
 → Candidate 002 is immutable prior-byte evidence; Candidate 003 is the sole current package candidate
 → NoLaunch package verification PASS; run Windows physical smoke and audio-perceptual QA before any Phase 5 human evidence claim
 → use the full T1 → T6 → VS_DEMO_01 → Result sequence for the next Phase 5 human-validation design
-→ resolve the foreign-project Notion Direction page only after the user authorizes rehome or replacement
-→ use Notion Direction `3c91b237-eb1c-8197-bf13-debb96d444c8` plus the repository owners as current Switchy Direction
+→ historical foreign-project Notion Direction page is audit-only and does not block current work
+→ use GitHub visual/decision owners as the sole current Switchy Direction
 → Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person comprehension
@@ -356,14 +363,13 @@ new_bitmap_assets: 0
 1. fresh Base completed `main` + Base `AGENTS.md`.
 2. Base `skills/SKILL_REGISTRY.json` + generated active map.
 3. fresh Project `main`, latest commit, all Open/Draft PRs.
-4. exact Project Notion Home.
-5. Project `AGENTS.md` + current r5.4 thin adapter.
-6. `CURRENT_CONFIRMED_DECISIONS.md`.
-7. `FINITE_DELIVERY_PUZZLE_BASELINE.md`.
-8. this `ACTIVE_CONTEXT.md`.
-9. `docs/decisions/SX_DEC_060_CARDINAL_STATION_SERVICE_AND_REACHABLE_NETWORK.md`.
-10. SX-DEC-060 design/spec/plan/Codex handoff.
-11. `DEVELOPMENT_GATES.md` + `ROADMAP.md`.
-12. actual finite code/data/tests and first-session/presentation consumers.
+4. Project `AGENTS.md` + current r5.4 thin adapter.
+5. `CURRENT_CONFIRMED_DECISIONS.md`.
+6. `FINITE_DELIVERY_PUZZLE_BASELINE.md`.
+7. this `ACTIVE_CONTEXT.md`.
+8. `docs/decisions/SX_DEC_060_CARDINAL_STATION_SERVICE_AND_REACHABLE_NETWORK.md`.
+9. SX-DEC-060 design/spec/plan/Codex handoff.
+10. `DEVELOPMENT_GATES.md` + `ROADMAP.md`.
+11. actual finite code/data/tests and first-session/presentation consumers.
 
 Fresh-read current truth always outranks this saved locator.

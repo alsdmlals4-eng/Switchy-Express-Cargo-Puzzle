@@ -65,7 +65,7 @@ class TestAndroidSmokeCanonicalFreshness(unittest.TestCase):
         self.assertNotIn("finite delivery runtime not aligned", readme)
 
         self.assertIn(
-            "CURRENT_CANON · USER_APPROVED · AMENDED_BY_SX_DEC_060 · MERGED_MAIN_VERIFIED · PR_188",
+            "CURRENT_CANON · GMB-002 · AMENDED_BY_SX-DEC-060 · RUNTIME_MERGED_MAIN_VERIFIED",
             baseline,
         )
         self.assertNotIn("IMPLEMENTATION_REPLAN_REQUIRED", baseline)

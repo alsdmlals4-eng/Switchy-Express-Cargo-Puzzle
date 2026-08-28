@@ -8,9 +8,9 @@ Last updated: `2026-08-28 KST`
 current_work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
-fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
+fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~062
+current_decisions: SX-DEC-027~063
 ```
 
 The user-approved SX-DEC-060 gameplay amendment changes the efficient next product gate. Pre-SX-DEC-060 Candidate 003 remains historical exact-byte evidence; it is no longer the build to spend the next human acceptance cycle on.

@@ -181,7 +181,7 @@ class SXDec060CanonicalFreshnessTests(unittest.TestCase):
             for key in ("agents", "active_context", "development_gates", "project_skill")
         )
         self.assertIn("automatic_consumer_image_policy: USER_APPROVED_2026_08_26", combined)
-        self.assertIn("approved_image_dual_storage: PROJECT_LOCAL_AND_NOTION", combined)
+        self.assertIn("approved_image_preservation: PROJECT_LOCAL_GITHUB_ONLY", combined)
         self.assertIn("existing E+D Hybrid / Neo-Arcade visual language", combined)
         self.assertNotIn(
             "new generated image without concrete game consumer + separate user approval",

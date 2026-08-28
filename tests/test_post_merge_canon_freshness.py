@@ -16,7 +16,7 @@ AUDIT = ROOT / "기획서" / "50_제작_검증" / "SX_AUD_025_POST_MERGE_CANON_F
 VERTICAL_SLICE_CONTRACT = ROOT / "기획서" / "50_제작_검증" / "VERTICAL_SLICE_CONTRACT.md"
 
 HISTORICAL_SHEET_CANON_MAIN = "dff1653738f1eead3cacff303080924d662767e2"
-CURRENT_ADAPTER_PR_BASE = "f34995228ef58ec00fffd60f7c53951bfc631f7c"
+CURRENT_ADAPTER_PR_BASE = "c20a0b571a066ce07e9e55fa324aa0ff1112b138"
 VERIFIED_PRODUCT_MAIN = "1339a9467312d0ac680725894a9efb59746ec2cc"
 
 
@@ -59,7 +59,7 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         self.assertIn("sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN", active)
         self.assertIn("sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED", active)
         self.assertIn("sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237", active)
-        self.assertIn("sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · PLANNING_CURRENT · ISSUE_239 · RUNTIME_UNCHANGED", active)
+        self.assertIn("sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · FIRST_CANDIDATE_GENERATED_REVIEW_PENDING · ISSUE_239 · RUNTIME_UNCHANGED", active)
         self.assertIn("post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED", active)
         self.assertIn("PR #174 remains", active)
         self.assertIn("READ_ONLY", active)
@@ -121,7 +121,7 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         self.assertTrue(legacy_sheet["url"])
         self.assertEqual("NONE", migration["google_sheet_mutation"])
         planning = adapter["shared_overrides"]["managing-project-intake-and-work-contract"]["planning_first_governance"]
-        self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
+        self.assertEqual("GITHUB_REPOSITORY_ONLY_PROJECT_WORKSPACE", planning["current_human_workspace"])
         self.assertIn("python tests/test_post_merge_canon_freshness.py", adapter["validators"])
 
     def test_audit_preserves_manual_evidence_ceiling_and_split_boundary(self) -> None:

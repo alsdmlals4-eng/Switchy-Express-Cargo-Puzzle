@@ -107,7 +107,7 @@ Out of scope:
 
 - [ ] Run the project contract and current authority migration validators.
 - [ ] Check that `START_HERE`, `ACTIVE_CONTEXT`, `ROADMAP`, `DEVELOPMENT_GATES`, Documentation Map, and Playtest Plan agree on the candidate and evidence ceiling.
-- [ ] Read back the merged `main`, GitHub PR/Issue, and the Switchy Notion Home/Production surface.
+- [ ] Read back the merged `main`, GitHub PR/Issue, and the GitHub project-hub/production owners. Historical Notion pages are not an active validation surface.
 - [ ] Do not claim a human/runtime result until a separately dated session record exists.
 
 ## Rollback

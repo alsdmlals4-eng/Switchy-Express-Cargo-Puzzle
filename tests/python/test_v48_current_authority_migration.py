@@ -17,7 +17,7 @@ CURRENT_R54_ROLE = "USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT"
 CURRENT_R54_SHA256 = "fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0"
 HISTORICAL_R4_REVISION = "2026-08-24-r4"
 HISTORICAL_R2_SHA256 = "6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508"
-PR_BASE_AT_MIGRATION = "f34995228ef58ec00fffd60f7c53951bfc631f7c"
+PR_BASE_AT_MIGRATION = "c20a0b571a066ce07e9e55fa324aa0ff1112b138"
 
 UNPROTECTED_CURRENT_OWNER_EXPECTATIONS = {
     ROOT / "AGENTS.md": f"revision: {CURRENT_R54_REVISION}",
@@ -39,7 +39,7 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
             f"historical_r2_sha256: {HISTORICAL_R2_SHA256}",
             "base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN",
             "google_sheets_policy: RETIRED_NO_ACTIVE_USE",
-            "fresh_read_bootstrap_policy: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED",
+            "fresh_read_bootstrap_policy: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED",
             "gpt_local_codex_orchestration_policy: RETIRED",
             "skill_coverage_policy: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT",
         ):
@@ -94,7 +94,7 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
         self.assertNotIn("spreadsheet_id", sheet)
         self.assertNotIn("url", sheet)
         planning = adapter["shared_overrides"]["managing-project-intake-and-work-contract"]["planning_first_governance"]
-        self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
+        self.assertEqual("GITHUB_REPOSITORY_ONLY_PROJECT_WORKSPACE", planning["current_human_workspace"])
         self.assertEqual("GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME", planning["runtime_structured_authority"])
 
     def test_project_skill_routes_current_sx060_candidate_sequence(self) -> None:

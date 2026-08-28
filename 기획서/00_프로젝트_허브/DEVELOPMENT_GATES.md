@@ -10,7 +10,7 @@ Last updated: `2026-08-28 KST`
 current_work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
-fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
+fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
 current_decisions: SX-DEC-027~063
 current_product_gate: SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_PLANNING
@@ -57,7 +57,7 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 
 ## 1B. SX-DEC-063 hybrid miniature-diorama visual-production planning gate
 
-`PASS · USER_APPROVED_DIRECTION · ISSUE #239 · IMAGE_GENERATION_AWAITING_EXACT_BRIEF_APPROVAL · RUNTIME_UNCHANGED`
+`PASS · USER_APPROVED_DIRECTION · ISSUE #239 · FIRST_TERRAIN_CANDIDATE_GENERATED_REVIEW_PENDING · RUNTIME_UNCHANGED`
 
 Binding owners:
 
@@ -69,7 +69,7 @@ docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production
 기획서/40_표현/TARGET_BUILD_SCREEN_SURFACE_AND_VISUAL_COVERAGE.md
 ```
 
-The selected direction adds elevated miniature-diorama depth cues within the existing rectangular BUILD/RUN grid. It may create only versioned, actual-consumer candidates after the user approves each exact first-generation brief. It does not authorize a true isometric conversion, Godot/Scene/Resource/manifest integration, a production asset batch, gameplay/data/audio/locale/progression changes, Issue #227 T2 replacement, or a new human/player-evidence claim.
+The selected direction adds elevated miniature-diorama depth cues within the existing rectangular BUILD/RUN grid. It may generate and machine-review only versioned, actual-consumer candidates; the user decides promotion, revision, or rejection after review. It does not authorize a true isometric conversion, Godot/Scene/Resource/manifest integration, a production asset batch, gameplay/data/audio/locale/progression changes, Issue #227 T2 replacement, or a new human/player-evidence claim.
 
 ## 2. Candidate 003 evidence boundary
 
@@ -134,7 +134,7 @@ Actual GDScript/Scene/Resource/map/runtime work is merged-main verified by PR #1
 
 ## 5. SX-DEC-060 RED→GREEN runtime chain
 
-S60-1~S60-10 implementation, regression, review, merge, and Notion readback are complete on `main` PR #188. Package and physical gates remain `NOT_RUN`.
+S60-1~S60-10 implementation, regression, review, merge, and historical destination readback are complete on `main` PR #188. Package and physical gates remain `NOT_RUN`.
 
 ```text
 S60-1 schema-v3 + service-cell definition RED/GREEN
@@ -245,11 +245,11 @@ Explanation sheets/full-screen concept images are not production assets.
 
 ```yaml
 automatic_consumer_image_policy: USER_APPROVED_2026_08_26
-approved_image_dual_storage: PROJECT_LOCAL_AND_NOTION
+approved_image_preservation: PROJECT_LOCAL_GITHUB_ONLY
 visual_continuity: existing E+D Hybrid / Neo-Arcade visual language
 ```
 
-When a verified runtime node/key/path proves a missing bitmap slot, generate only that required image automatically, save it in the tracked project-local asset path and the Notion Visual/Asset destination, record provenance/SHA-256, and read the Notion destination back. A per-image approval is not required; a concrete consumer and the existing visual language remain mandatory.
+When a verified runtime node/key/path proves a missing bitmap slot, generate only that required image automatically and preserve it in a tracked project-local GitHub asset path with provenance/SHA-256. A per-image approval is not required; final promotion still requires the user's disposition, and a concrete consumer and the existing visual language remain mandatory.
 
 ## 10. First-session / localization gate
 
@@ -292,7 +292,7 @@ Minimum complete loops after implementation:
 2. reachable topology / station coverage / safety / disconnected-island behavior;
 3. schema-v3 / active map inventory / revisions / identities / witnesses;
 4. renderer / actual asset consumers / localization / accessibility;
-5. governance / current canon / Notion / Candidate 003 history / 056–058 / PR #174 / evidence ceiling.
+5. governance / current GitHub canon / Candidate 003 history / 056–058 / PR #174 / evidence ceiling.
 
 Any finding is fixed and the affected full loop is repeated. `CLEAN_REVIEW_EXIT` is unavailable before all five loops are clean on exact head.
 
@@ -340,7 +340,7 @@ actual finite render snapshot + route-control state
 → official headless-runner descriptor and resolution hierarchy regression
 → headless full suite + current contract checks
 → live 1280×720 screenshot/diagnostics
-→ five-pass review + Notion readback
+→ five-pass review + GitHub remote readback
 ```
 
 Official headless runner (112 cases / 13,480 assertions), Project Contract, GUT, and Godot 4.7.1 headless parse passed on the exact PR head. GitHub CI runs stayed queued without jobs, so the user explicitly authorized this merge bypass; remote CI GREEN and human/device acceptance remain unclaimed.

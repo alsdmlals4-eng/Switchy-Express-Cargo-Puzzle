@@ -38,7 +38,7 @@
   "protected_baseline": {
     "authority_kind": "GITHUB_PR_BASE",
     "authority_ref": "github.event.pull_request.base.sha",
-    "commit": "f34995228ef58ec00fffd60f7c53951bfc631f7c",
+    "commit": "c20a0b571a066ce07e9e55fa324aa0ff1112b138",
     "policy_sha256": "51b3ca7e05165069666d1235413d3277580646c63008b472f15df4fb4db9f0ca",
     "policy_source_path": "skills/PROJECT_BASE_ADAPTER.json",
     "policy_source_type": "CANONICAL_ADAPTER_SOURCE",
@@ -166,7 +166,7 @@
         "max_approved_decisions_per_batch": 10,
         "numeric_default_state": "RECOMMENDED_DEFAULT",
         "planning_conflict_state": "GRILL_ME_REQUIRED",
-        "current_human_workspace": "NOTION_DEFAULT_PROJECT_WORKSPACE",
+        "current_human_workspace": "GITHUB_REPOSITORY_ONLY_PROJECT_WORKSPACE",
         "runtime_structured_authority": "GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME"
       }
     },

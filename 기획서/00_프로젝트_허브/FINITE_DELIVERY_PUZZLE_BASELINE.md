@@ -1,299 +1,134 @@
 # Switchy Express 유한 배송 퍼즐 제품 기준선
 
-상태: `CURRENT_CANON · USER_APPROVED · AMENDED_BY_SX_DEC_060 · MERGED_MAIN_VERIFIED · PR_188`
+상태: `CURRENT_CANON · GMB-002 · AMENDED_BY_SX-DEC-060 · RUNTIME_MERGED_MAIN_VERIFIED`
 
-결정 묶음: `GMB-002 · SX-DEC-027~036 · SX-DEC-060 AMENDMENT`
-근거: `EV-USER-019 · 2026-08-04 승인 대화 종합` + `SX-DEC-060 · 2026-08-26 사용자 승인`
-제품 기준선 감사: `SX-AUD-012`
-현재 상세 변경 owner: `docs/decisions/SX_DEC_060_CARDINAL_STATION_SERVICE_AND_REACHABLE_NETWORK.md`
-
-이 문서는 기존 무한 생존·연료·BOOST 제품 기준선을 대체하는 현재 제품 정본이다. 기존 구현과 감사 증거는 역사적 사실로 보존하지만, 새 제품 의미의 구현 완료 증거로 재사용하지 않는다. `SX-DEC-060`은 GMB-002의 finite/LIFO 정체성을 유지하면서 **역 접촉과 preflight 연결성 의미만 현재 규칙으로 수정**한다.
+이 문서는 현재 출시 전 Vertical Slice의 제품 의미만 소유한다. 과거 점수·경제·랭킹·확장 캠페인·절차 생성·특수 선로·무한 생존 설계는 historical/provenance 문서에 남을 수 있으나 이 기준선의 현재 범위가 아니다.
 
 ## 1. 제품 한 문장
 
-> 플레이어가 제한 없는 화물칸에 화물을 만난 순서대로 쌓고, 마지막 화물부터 내리는 LIFO 규칙을 역산해 필요한 선로망을 건설·전환하며, 역의 상·하·좌·우 인접 서비스 셀을 지나 제한 시간 안에 모든 화물을 배송하는 비용·속도·콤보 최적화 퍼즐.
+> 플레이어가 짧은 선로망으로 화물 조우 순서를 설계하고, Manual/Auto 적재로 unlimited LIFO TOP을 만든 뒤, 자동 운행 중 분기를 조작해 역의 상·하·좌·우 인접 서비스 셀에서 모든 화물을 배송하는 유한 퍼즐.
 
-## 2. 핵심 재미 위계
-
-```text
-화물 배치·역 위치 읽기
-→ 필요한 RUN 선로망으로 화물 조우 순서 설계
-→ 수동/자동 적재로 LIFO 스택 구성
-→ 분기 전환으로 역 서비스 순서 실행
-→ 같은 화물 연속 하역 Combo 만들기
-→ 시간·건설비·점수 중 목표에 맞춰 재설계
-```
-
-핵심은 단순 최단거리 건설이나 모든 선로 조각의 전역 연결이 아니다. 실제 RUN 가능한 경로가 적재 순서를 만들고, LIFO가 역 서비스 순서를 만들며, Combo가 같은 종류를 묶어 운송할 이유를 만든다.
-
-## 3. 플레이 단계
-
-### 건설 단계
-
-- 시간은 흐르지 않는다.
-- 건설 가능 지점에는 자유롭게 선로를 설치한다.
-- 맵이 지정한 건설 불가 지점에는 설치할 수 없다.
-- `SX-DEC-060` 기준 역 footprint는 off-track service object이며 해당 역 셀에는 player rail을 설치하지 않는다.
-- 화물은 기존처럼 열차가 직접 해당 셀을 통과해 접촉하는 적재 오브젝트다.
-- 선로 설치마다 비용이 현재 건설비에 반영된다.
-- 일반 클리어에는 건설비 상한이 없다.
-- 철거 시 비용을 전액 환급한다.
-- 추천 노선은 반투명 설계도로 표시하며 실제 연결·비용·운행에는 포함하지 않는다.
-- 추천 노선 총비용과 남은 예상 비용을 표시한다.
-- 추천 노선은 안전한 기본 해법이며 랭킹 최적해가 아니어야 한다.
-- 플레이어가 배치한 모든 선로를 하나의 전역 연결망으로 만들 필요는 없다. 사용하지 않는 분리 선로 섬은 그 자체로 RUN 차단 사유가 아니다.
-
-### 시작 검사
-
-운행 시작은 **start에서 실제 RUN 가능한 reachable component**가 다음을 만족할 때만 가능하다.
-
-- 시작점 진입 상태가 실제 주행 가능한 네트워크를 형성
-- 모든 필수 화물 지점이 start-reachable RUN component에 포함
-- 모든 필수 역마다 상·하·좌·우 1칸 중 최소 한 서비스 셀이 start-reachable RUN component에 포함
-- 대각선 셀은 역 서비스 도달로 인정하지 않음
-- 실제 RUN에서 도달 가능한 일방통행·분기·교차·회차 상태가 구조적으로 유효
-- 필수 reachable 구간 진입 후 열차가 current route-end/trap contract를 위반하지 않음
-
-start에서 완전히 도달할 수 없고 필수 화물/역 서비스에 쓰이지 않는 player-built rail island는 RUN을 막지 않는다. 시스템은 **실제 RUN 구조의 불가능**만 차단한다. LIFO 해답, 분기 타이밍, 제한 시간 내 성공 여부는 플레이어가 해결한다.
-
-### 운행 단계
-
-- 열차는 자동으로 기본 속도로 운행한다.
-- 플레이어가 직접 가속·감속하지 않는다.
-- 운행 중 선로 설치·철거·속성 변경은 불가능하다.
-- 모든 분기는 열차 위치와 무관하게 미리 전환할 수 있다.
-- 분기 상태는 다시 바꿀 때까지 유지된다.
-- 열차가 분기 위에 있을 때만 해당 분기 조작을 잠근다.
-- 맵 위 분기를 직접 탭해 전환한다.
-- 일시정지는 일반·랭킹 모두 허용한다.
-- 일시정지 중 시간은 멈추지만 분기·적재 모드·선로 조작은 금지한다.
-
-## 4. 화물·적재·LIFO
-
-- 한 화물 지점에는 화물 1개만 배치한다.
-- 화물 지점은 적재 전용, 역은 하역 전용이다.
-- 화물칸 수량 제한은 없다.
-- 먼저 만난 화물은 스택 안쪽, 나중에 만난 화물은 LIFO 최상단에 쌓인다.
-- 기본은 수동 적재 모드다.
-- 수동 적재는 `적재` 버튼을 누르고 있는 동안 통과한 화물만 싣는다.
-- 자동 적재를 운행 중 언제든 켜고 끌 수 있다.
-- 자동 적재 중에는 지나가는 모든 화물을 적재한다.
-- 적재하지 않은 화물은 맵에 남아 재방문할 수 있다.
-- 적재는 정차·감속 없이 발생한다.
-
-예시:
+## 2. Player Promise와 핵심 재미
 
 ```text
-조우 순서: A → B → A → A
-스택: [A][B][A][A TOP]
-A역 서비스 셀: 뒤쪽 A 2개 하역 · 2 Combo
-B역 서비스 셀: B 1개 하역
-A역 서비스 셀 재방문: 남은 A 1개 하역
+선로를 설계한다
+→ 화물을 만나는 순서가 정해진다
+→ 적재할 것과 남길 것을 고른다
+→ LIFO TOP이 다음 배송 가능 여부를 결정한다
+→ 운행 중 분기 선택으로 계획을 실행한다
+→ 성공 또는 사실 기반 실패 원인을 보고 같은 노선을 재시도하거나 편집한다
 ```
 
-## 5. 역·하역·Combo
+차별점은 **노선 설계가 곧 화물 스택 순서 설계**라는 점이다. 단순 최단거리, 전역 연결망, 반사신경 조작, 수송량 최적화는 현재 재미의 중심이 아니다.
 
-- 역의 배송 서비스 범위는 **상·하·좌·우 정확히 1칸**이다.
-- 공식 판정은 `abs(train_x - station_x) + abs(train_y - station_y) == 1`이다.
-- 대각선, 역 footprint 자체, 거리 2칸 이상은 배송 서비스로 인정하지 않는다.
-- 열차가 matching station의 서비스 셀에 진입했을 때 LIFO 최상단 화물이 역 종류와 같으면 자동 정차한다.
-- 최상단부터 같은 종류가 연속되는 동안만 자동 하역한다.
-- 최상단이 다른 종류면 감속·정차 없이 서비스 셀을 통과한다.
-- 한 번의 역 서비스에서 하역한 연속 동일 화물 수가 Combo다.
-- 하역 총 정차 시간은 화물 수와 무관하게 최대 1초다.
-- 화물이 많을수록 개당 하역 연출이 빨라지며 모든 화물이 실제로 내려가는 모습은 보여준다.
-- 2 Combo 이상은 일시적 가속과 점수 보너스를 제공한다.
-- 가속 배율은 초기 `1.25× TEST_VALUE`, 지속시간은 Combo에 따라 증가한다.
-- 새 Combo 가속은 누적하지 않고 `현재 남은 시간`과 `새 지속시간` 중 큰 값으로 갱신한다.
-- 가속 시간은 하역 완료 후 출발 순간부터 감소한다.
-- 가속 선로와 중첩할 수 있으나 최종 속도는 기본 속도의 `2.0× TEST_VALUE`를 상한으로 둔다.
+## 3. 플레이 루프
 
-`SX-DEC-060` 구현에서 같은 rail cell이 두 역의 서비스 셀로 겹치는 authored content는 우선순위를 임의로 만들지 않고 fail-closed validation 대상으로 취급한다.
+### BUILD
 
-## 6. 성공·실패
+- 직선·곡선·분기·교차를 실제 보드 셀에 자유 배치하고, 철거하면 비용은 전액 환급한다.
+- 역은 off-track service object다. 역 footprint에는 플레이어 선로를 놓을 수 없다.
+- start-reachable RUN component만 검사한다. 필수 화물과 각 역의 cardinal service cell 하나 이상이 reachable이어야 한다.
+- 필수 목적과 무관한 disconnected rail island는 RUN을 막지 않는다.
 
-- 운행 시작과 동시에 스테이지 제한 시간이 흐른다.
-- 마지막 화물의 하역 연출이 끝나면 즉시 성공한다.
-- 시작점이나 종착지로 복귀할 필요가 없다.
-- 제한 시간이 끝났을 때 하역되지 않은 화물이 하나라도 있으면 실패한다.
-- 실패 후 열차·화물·시간·분기 상태는 초기화한다.
-- 건설한 노선은 유지하고 편집 가능한 건설 단계로 돌아간다.
-- 별도 `노선 전체 초기화` 기능을 제공한다.
+### RUN
 
-## 7. 선로 체계
+- 열차는 자동으로 이동한다. 운행 중 선로 편집은 할 수 없다.
+- Cargo는 train이 화물과 **같은 cell**을 지날 때만 Manual/Auto로 적재된다.
+- 기본은 Manual이며 Auto는 명시적 ON/OFF 선택이다. 적재하지 않은 화물은 지도에 남아 재방문할 수 있다.
+- cargo stack은 용량 제한 없는 LIFO다. Stack HUD가 정확한 순서·수량·`TOP`을 소유하고, 월드 토큰은 짧고 세로적인 표시만 쓴다.
+- 플레이어는 운행 중 분기를 직접 선택한다. 열차가 점유한 분기는 잠기고, 선택 상태는 바꿀 때까지 유지된다.
 
-형태와 성능 속성을 분리한다.
+### DELIVERY / RESULT
 
-### 기본 형태
+- Station service는 `abs(train_x - station_x) + abs(train_y - station_y) == 1`일 때만 발생한다.
+- 즉 상·우·하·좌 정확히 1칸만 유효하며, diagonal과 station footprint는 배송 접촉이 아니다.
+- 서비스 셀 진입 시 station과 같은 cargo가 TOP에서 연속할 때만 contiguous matching TOP group을 하역한다.
+- 모든 필수 화물을 배송하면 성공한다. 제한 시간 경과 또는 `ROUTE_END`는 실패다.
+- Result는 runtime truth인 outcome, remaining map cargo, stack 상태만 설명한다. Retry는 같은 layout의 fresh runtime을 만들고, Edit은 BUILD로 돌아간다.
 
-- 직선
-- 곡선
-- 분기: 경로가 갈라지고 플레이어가 진행 방향을 선택
-- 교차: 두 노선이 같은 칸에서 교차하지만 서로 진입·회전하지 않음
-
-### 성능 속성
-
-- 일반 선로
-- 가속 선로
-- 저비용 선로
-- 일방통행 설정
-
-### 특수 구조
-
-- 회차 선로: 진행 방향 반전
-- 터널: 지정 지점 사이의 건설 불가 지형 통과
-- 교량: 지정 구간의 강·계곡 통과
-
-터널·교량은 후반 맵 전용이며 건설 불가 지형을 무효화하는 범용 해답이 되어서는 안 된다.
-
-### 초기 시험 비용
-
-| 요소 | 비용·효과 |
-|---|---|
-| 일반 직선·곡선 | `100 TEST_VALUE` |
-| 분기·교차 | `200 TEST_VALUE` |
-| 가속 | `300 TEST_VALUE`, 구간 속도 `1.5×` |
-| 저비용 | `60~70 TEST_VALUE`, 구간 속도 `0.75×` |
-| 일방통행 | `+50 TEST_VALUE` |
-| 회차 | `350 TEST_VALUE` |
-| 교량 | 칸당 `250 TEST_VALUE` |
-| 터널 | 기본 `600+ TEST_VALUE` |
-
-## 8. 별·랭킹·점수
-
-각 맵에는 세 종류 별이 있다.
-
-- 신속 별: 목표 시간 이내 성공
-- 절약 별: 목표 건설비 이내 성공
-- 점수 별: 목표 종합점수 이상
-
-별 목표 수치는 스테이지 시작 전부터 모두 공개한다. 별은 서로 다른 시도에서 누적 획득하며 한 번 획득하면 유지된다. 세 별을 모두 얻으면 해당 맵의 리더보드 등록이 영구 개방된다.
-
-### 리더보드
-
-- 속도: 맵별 최대 비용 이내 가장 빠른 배송
-- 가격: 제한 시간 이내 가장 낮은 최종 건설비
-- 점수: 시간·건설비·Combo를 합산한 점수
-
-동점 보조 기준:
-
-- 속도: 더 낮은 건설비
-- 가격: 더 빠른 완료 시간
-- 점수: 더 빠른 완료 시간, 이후 더 낮은 건설비
-
-점수 초기 비중은 `시간 45% + 비용 45% + Combo 10% TEST_VALUE`다. 별 목표는 고정 맵 기준값이며 참가자 분포에 따라 변하지 않는다.
-
-리더보드는 순위·닉네임·완료 시간·건설비·점수·최대 Combo만 공개한다. 다른 플레이어의 선로·분기 순서·리플레이는 공개하지 않는다.
-
-## 9. 튜토리얼·캠페인
-
-### 1~10 튜토리얼
-
-1. 기본 선로 연결
-2. 화물 직접 통과 적재 + 역 상·하·좌·우 1칸 자동 하역
-3. LIFO
-4. 수동 적재
-5. 자동 적재 전환
-6. 분기 조작
-7. Combo와 출발 가속
-8. 가속·저비용 선로와 비용
-9. 회차 중심 복합 노선
-10. 건설·LIFO·분기·Combo·비용·시간 종합 시험
-
-튜토리얼에서도 실패할 수 있다. 실패 시 남은 화물, 막고 있는 TOP 화물, 문제 분기와 비효율 구간을 보여주되 정답 노선은 자동 제공하지 않는다. 힌트는 요청할 때만 `문제 유형 → 관련 위치 → 행동 방향` 순으로 단계화한다.
-
-10스테이지를 클리어하면 본편과 3종 랭킹을 개방한다.
-
-### 본편
-
-- 11~20: 물류 기초
-- 21~30: 비용 압박
-- 31~40: 복합 교차망
-- 41~50: 특수 지형
-- 51 이후: 종합 물류망
-
-챕터에서는 3개 스테이지를 동시에 열고 2개 클리어 시 다음 묶음을 연다. 챕터 시험은 해당 챕터에서 배운 규칙만 종합하며 새 규칙을 추가하지 않는다.
-
-## 10. 반복 도전·보상
-
-- 캠페인은 수작업 맵이다.
-- 일일 1개·주간 1개 도전은 고정 시드 절차 생성 맵이다.
-- 같은 기간에는 모든 플레이어가 같은 맵과 규칙을 사용한다.
-- 횟수 제한 없이 재도전할 수 있다.
-- 튜토리얼 완료 후 캠페인 해금 여부와 무관하게 모든 도전에 참여할 수 있다.
-- 배우지 않은 선로·규칙은 시작 전에 짧게 설명하고 언제든 다시 볼 수 있다.
-- 출시 초기에는 기본 규칙만 사용하고, 안정화 후 한 도전에 단일 변형 규칙만 추가한다.
-- 첫 성공 참여 보상, 개인 기록 개선 보상, 기간 종료 백분위 보상을 분리한다.
-- 상위 1/10/25/50%와 성공 참가자 구간을 사용한다.
-- 세 부문 보상은 모두 획득 가능하며 꾸미기 재화는 `100%/70%/50% TEST_VALUE`로 감쇠한다.
-- 성능 보상은 금지한다.
-- 종료된 도전은 기록 보관소에 남고 자유 재도전할 수 있으나 공식 순위·기간 보상은 고정된다.
-- 기록 보관소는 날짜·기믹·난도·성적·미클리어·즐겨찾기·추천 필터를 제공한다.
-
-## 11. 꾸미기 진행
-
-- 열차·화물칸·선로·역·하역·Combo 연출·프로필 배지만 제공한다.
-- 속도·비용 할인·시간 증가·Combo 강화 등 성능 보상은 금지한다.
-- 챕터 누적 별 보상 초기 구간은 `10/20/27/30 TEST_VALUE`다.
-- 결과 분석처럼 공략에 필요한 핵심 정보는 보상으로 잠그지 않는다.
-
-## 12. 대체·보류·폐기 규칙
-
-### 대체됨
-
-- 무한 생존을 주 모드로 삼는 제품 기준선
-- 연료 0을 주 실패 조건으로 삼는 기준선
-- 별도 건설 없는 완성형 연결 철도망
-- 첫 무한 run 하나로 모든 규칙을 가르치는 온보딩
-- 화물 capacity 8 제품 규칙
-- 분기 통과 후 기본 방향 자동 복귀 규칙
-- 역 footprint 자체를 delivery contact로 요구하는 pre-SX-DEC-060 의미
-- 모든 필수 station footprint를 rail anchor로 취급하는 pre-SX-DEC-060 의미
-- 사용하지 않는 disconnected rail island 자체를 RUN 차단 사유로 취급하는 해석
-
-### 폐기
-
-- 플레이어 BOOST 홀드 입력
-- 화물 적재량에 따른 속도 감소
-- 시간 경과에 따른 자동 속도·연료 압박
-- 배송을 통한 연료 회복
-- 적재 후 화물 재생성
-
-### 보류
-
-- UGC 맵 제작·게시·커뮤니티 기능
-- 환적역
-- 다중 열차·신호 자동화
-- 반복 도전의 변형 규칙
-- arbitrary station radius / diagonal service / per-station service shape
-
-## 13. 구현·증거 상태
-
-pre-SX-DEC-060 finite automated core, product surface, playable POC와 Candidate 003 package proof는 해당 **정확한 변경 전 bytes**에 대한 역사적 증거로 보존한다.
-
-- pre-060 finite automated core와 integrated proof는 기존 의미로 구현·자동 검증됐다.
-- Candidate 003 package/PCK/73 product texture/PowerShell 5.1 live download proof는 역사적 PASS다.
-- Candidate 003 physical visual recheck와 이후 human/device evidence는 실행되지 않았다.
-- `SX-DEC-060` runtime은 `FiniteMapDefinition` schema v3, cardinal service, start-reachable preflight, current map/tutorial migration으로 구현되어 PR #188로 병합됐고 headless regression 111 cases / 13,461 assertions 및 CI 7개가 통과했다. package, physical/device/human evidence는 별도다.
-- 기존 station PNG는 실제 `ProductBoardRenderer` consumer가 있으므로 재사용한다. service 범위는 procedural projection이 기본이며 `NEW_BITMAP_ASSETS_REQUIRED = 0`이다.
-- fuel·BOOST·capacity 8·cargo respawn·endless difficulty 구현은 `LEGACY_IMPLEMENTATION`이며 현재 제품 권위가 아니다.
-- Combo 가속·점수 tuning, 확장 선로, 캠페인·기록·온라인 기능은 후속 제작 범위이며 현재 Slice 완료를 의미하지 않는다.
-- post-060 Android Device Smoke와 Five-person Comprehension은 실제 물리 기기·사람 증거가 없어 `NOT_RUN`이다.
-
-현재 상태:
+## 4. First Session
 
 ```text
-GMB_002_CURRENT_AMENDED_BY_SX_DEC_060
-SX_DEC_060_USER_RULE_APPROVED
-SX_DEC_060_DESIGN_RECORDED
-SX_DEC_060_RUNTIME_MERGED_MAIN_VERIFIED_PR_188
-SX_DEC_060_AUTOMATED_REGRESSION_PASS_111_CASES_13461_ASSERTIONS
-POST_060_CANDIDATE_SX60_POC_ACCEPT_003_PREPARED_PACKAGE_VERIFIED
-SX60_POC_ACCEPT_001_HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE
-PRE_060_CANDIDATE_003_HISTORICAL_EXACT_EVIDENCE
-NEW_BITMAP_ASSETS_REQUIRED_0
-WINDOWS_PHYSICAL_POST_060_NOT_RUN
-ANDROID_DEVICE_POST_060_NOT_RUN
-FIVE_PERSON_POST_060_NOT_RUN
-PRODUCTION_CUTOVER_BLOCKED
+T1 · Track Connection
+→ T2 · Cargo exact-cell + Station cardinal-adjacent service
+→ T3 · LIFO/TOP reverse planning
+→ T4 · selective non-load + revisit
+→ T5 · Auto ON safe / OFF decision
+→ T6 · direct switch execution
+→ VS_DEMO_01 capstone
+→ Result / Retry / Edit
 ```
+
+- 새 tutorial stage를 추가하지 않는다.
+- T2의 핵심 문장은 다음과 같다.
+
+```text
+Cargo: 화물 칸을 직접 통과해 적재
+Station: 역의 상·하·좌·우 1칸을 통과해 배송
+Diagonal / station footprint: 배송 안 됨
+```
+
+- `ko / en / ja / zh-Hans`가 현재 locale 범위이며 `zh-Hant`는 deferred다.
+
+## 5. 지원 시스템과 금지 범위
+
+| 현재 지원 시스템 | 핵심 재미를 위한 역할 |
+| --- | --- |
+| preflight | 실행 불가능한 노선을 시작 전에 이해시키되, 해답을 제시하지 않는다. |
+| Stack HUD | LIFO TOP과 다음 배송 판단을 읽게 한다. |
+| route control overlay | live switch commitment과 occupied lock을 읽게 한다. |
+| first-session director/copy | 새로운 규칙 하나씩만 노출하고 튜토리얼 전용 규칙을 만들지 않는다. |
+| result recovery | 실패를 factual retry/edit 동기로 바꾼다. |
+
+다음은 현재 Slice에서 금지 또는 별도 승인 대상이다.
+
+```text
+endless survival / fuel / recovery / player BOOST
+cargo capacity 8 / cargo-count slowdown / pickup respawn / switch auto-reset
+score / combo formula / currency / save economy / leaderboards
+new progression, Yard Labs, Daily/Weekly generator, solver/optimal route reveal
+arbitrary station radius, diagonal service, station-footprint service, per-station service shape
+```
+
+`SX-DEC-056A`, `SX-DEC-057`, `SX-DEC-058`은 planning-only 또는 implementation unauthorized이고, `SX-DEC-056B`은 authoritative score/combo runtime이 없어 blocked다.
+
+## 6. Visual / asset boundary
+
+- 현재 visual grammar는 `SX-DEC-061/062/063`: warm toy-scale miniature railway world + rectangular interaction geometry + dark navy/charcoal control deck다.
+- SX-DEC-063은 rectangular grid와 input mapping을 바꾸지 않고, actual consumer 안에서만 controlled 2.5D miniature-diorama material/depth를 정렬한다.
+- T2 `shell_lesson_hero_v02.png`와 Issue #227은 보호한다.
+- production image는 exact Godot node/key/path consumer가 있을 때만 만든다. 후보는 생성·기계 검토할 수 있지만, Git-tracked project asset으로 promotion하거나 runtime에 연결하려면 사용자 최종 disposition과 별도 implementation contract가 필요하다.
+- `SX-VIS-063-CANDIDATE-001`은 1672×941 terrain review candidate이며 아직 repository asset, runtime consumer change, Human/Player Experience evidence가 아니다.
+
+## 7. 구현과 증거 상태
+
+```yaml
+sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · schema_v3/cardinal_service/reachable_preflight
+sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
+sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · EXISTING_ASSET_ONLY
+sx_dec_063: USER_APPROVED_DIRECTION · FIRST_TERRAIN_CANDIDATE_GENERATED_REVIEW_PENDING · RUNTIME_UNCHANGED
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · PACKAGE_ONLY
+windows_physical_post_060: NOT_RUN
+audio_perceptual_post_060: NOT_RUN
+android_device_post_060: NOT_RUN
+five_person_comprehension_post_060: NOT_RUN
+player_experience_post_060: NOT_RUN
+production_cutover: BLOCKED_DEFERRED
+```
+
+Automated tests, package integrity, asset hashes, or generated-image inspection never prove physical usability, audio perception, device compatibility, comprehension, or player enjoyment.
+
+## 8. Current owner map
+
+| Concern | GitHub current owner |
+| --- | --- |
+| decisions / current frontier | `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`, `ACTIVE_CONTEXT.md` |
+| exact station/preflight rule | `docs/decisions/SX_DEC_060_CARDINAL_STATION_SERVICE_AND_REACHABLE_NETWORK.md` |
+| first-session implementation | `game/first_session/**`, `game/demo/**`, first-session content owners |
+| visual direction / scene grammar | `기획서/40_표현/VISUAL_DIRECTION.md`, `PROJECT_CORE_SCENE_VISUAL_BOARD.md`, `docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md` |
+| asset provenance / rights | `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`, asset manifest |
+| production evidence / remaining gates | `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`, `ROADMAP.md`, acceptance evidence |
+
+## 9. Historical boundary
+
+Historical Notion pages and older GitHub planning material are audit/provenance sources only after the 2026-08-28 GitHub-only workspace decision. The current-structure migration map is `docs/migrations/2026-08-28-notion-current-workspace-migration.md`.

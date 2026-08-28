@@ -1,6 +1,6 @@
 # SX-DEC-063 · Hybrid Miniature-Diorama Visual Production Alignment
 
-**Status:** USER_APPROVED_DIRECTION · PLANNING_CURRENT · IMAGE_GENERATION_AWAITING_EXACT_BRIEF_APPROVAL · RUNTIME_UNCHANGED
+**Status:** USER_APPROVED_DIRECTION · PLANNING_CURRENT · FIRST_CANDIDATE_GENERATED_REVIEW_PENDING · RUNTIME_UNCHANGED
 **Date:** 2026-08-28 KST
 **Tracking:** GitHub Issue #239
 **Predecessors:** SX-DEC-061 visual lock, SX-DEC-062 existing-asset runtime composition
@@ -110,16 +110,15 @@ runtime_compare_required: true
 candidate_status: TEXT_BRIEF_READY · NOT_GENERATED
 ~~~
 
-The Image Conversation Approval Gate applies: a future explicit user approval of this exact brief authorizes **one** generation only, followed by candidate review. It does not authorize a batch, approval promotion, asset integration, or the next image automatically.
+**2026-08-28 user workflow amendment:** actual-consumer candidates may be generated and machine-reviewed without a per-image pre-generation approval. The first candidate has been generated for review. The user decides only whether to promote a reviewed candidate to a final project asset. This does not authorize a batch, runtime integration, or the next consumer family automatically.
 
 For every candidate that later passes review:
 
 ~~~text
 generate exactly one candidate
 → review against this decision and actual consumer size
-→ user approval / revision decision
-→ project-local tracked candidate + SHA-256 + provenance
-→ Notion Visual/Asset attachment and destination readback
+→ user approval / revision / rejection decision
+→ if promoted: project-local Git tracked asset + SHA-256 + provenance
 → approved asset only after explicit promotion
 → later Godot integration in one bounded implementation contract
 ~~~
@@ -129,7 +128,7 @@ generate exactly one candidate
 ### In scope now
 
 - visual decision, coverage requirement links, exact candidate briefs, provenance plan, and stale-canon correction;
-- production candidates only after each Image Conversation Approval checkpoint;
+- production candidates may be generated and machine-reviewed under the user-authorized workflow; only final asset promotion requires the user’s disposition;
 - asset review against real consumer dimensions.
 
 ### Deferred until the production set is approved
@@ -149,7 +148,7 @@ generate exactly one candidate
 1. A future implementation preserves the current 960×540, 1280×720, 1600×900, 1920×1080, and 2560×1080 control bounds and 48px minimum targets.
 2. Board art keeps rail ports, cargo/star silhouette, off-track station distinction, cardinal service cue, start/ROUTE_END, selected/alternate/locked routes, and train position readable.
 3. Images contain no canonical text, pseudo-text, unimplemented systems, or copyrighted/branded reference expression.
-4. Every generated asset has a proven consumer, versioned local path, SHA-256, provenance/rights record, correct Notion Visual attachment, and destination readback before it is called dual-preserved.
+4. Every promoted generated asset has a proven consumer, versioned local Git path, SHA-256 and provenance/rights record before it is called `APPROVED_GITHUB_PRESERVED`. Candidate generation alone remains `NOT_RUNTIME_PROOF`.
 5. A later runtime comparison uses the same actual consumer state and viewport as the reference comparison. It checks material cohesion, crop, density, clipping, state readability, and style drift.
 6. Automated/package/runtime evidence does not promote Windows physical/audio, Android, five-person, Player Experience, release-rights, or production-cutover evidence.
 
@@ -158,18 +157,17 @@ generate exactly one candidate
 | Field | Record |
 | --- | --- |
 | Incident | The implemented existing-asset composition satisfied SX-DEC-062 but did not fully satisfy the approved miniature-diorama material/camera grammar. |
-| Solution | Preserve the interaction grid and replace only proven visual consumer families with versioned, cohesion-first candidate art after one-image approval gates. |
+| Solution | Preserve the interaction grid and replace only proven visual consumer families with versioned, cohesion-first candidate art; generate and machine-review candidates before the user’s promotion/revise/reject disposition. |
 | Lesson | A runtime asset loading check is necessary but insufficient for visual-direction verification; compare the approved visual grammar and the real consumer at the same viewport before declaring visual alignment. |
 | Base promotion | NO_BASE_PROMOTION: the diagnosis depends on Switchy's exact board renderer, consumer paths, finite-rule readability, and user-approved direction. Repeated cross-project evidence is absent. |
 
 ## Canonical destinations
 
 - Repository structured canon: this Decision, VISUAL_DIRECTION.md, PROJECT_CORE_SCENE_VISUAL_BOARD.md, TARGET_BUILD_SCREEN_SURFACE_AND_VISUAL_COVERAGE.md, current project-hub owners, and the later implementation contract.
-- Notion human surfaces: Switchy Direction 3c91b237-eb1c-8197-bf13-debb96d444c8, Visual/UX/Assets 3c51b237-eb1c-81fa-8d47-d043dae17e11, Production 3c51b237-eb1c-8183-9ec4-ea913a27b697, Flow 3c01b237-eb1c-81a0-8bae-dee2470e0576.
+- GitHub human-facing surface: `exports/` master GDD and project-hub/design owners. Notion is `RETIRED_NO_ACTIVE_USE`; previously synced pages are history/audit only.
 - Not a destination: the foreign Direction page below Home, and Draft PR #174.
 
 ## Post-merge destination readback
 
 - GitHub: PR #240 squash-merged to `main@f316ee1ba3b641e655facfb3bfaee28b3bc8d64b`; Project Contract, Base Adapter approval, Thin Adapter, GUT, Godot tests, and Windows Demo Export completed successfully on the exact head.
-- Notion: Home `3c41b237-eb1c-8103-9537-ede6dfc5f07e`, Direction `3c91b237-eb1c-8197-bf13-debb96d444c8`, Visual/UX/Assets `3c51b237-eb1c-81fa-8d47-d043dae17e11`, Production `3c51b237-eb1c-8183-9ec4-ea913a27b697`, and Flow `3c01b237-eb1c-81a0-8bae-dee2470e0576` each received the SX-DEC-063 status and were fetched back successfully.
-- No Notion binary asset attachment, runtime asset approval, or Godot integration was created by this readback.
+- Historical Notion sync/readback before the 2026-08-28 retirement remains audit evidence only. No future Notion binary attachment, runtime asset approval, or GitHub completion dependency exists.

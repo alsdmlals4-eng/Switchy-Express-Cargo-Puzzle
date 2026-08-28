@@ -1,5 +1,7 @@
 # Switchy Express 공용 AI 작업 규칙
 
+> **2026-08-28 사용자 권위 변경 - GitHub-only project workspace:** Notion은 active read/write, 결정 입력, asset storage, destination readback, 완료 조건에서 제외한다. 기존 Notion page/attachment/readback은 삭제하지 않는 역사·감사 evidence다. 현재 정본, Decision, asset provenance, human-facing GDD와 검수 기록은 GitHub repository가 단일 owner다. 아래의 Notion 의무 문구가 이 선언과 충돌하면 이 선언이 우선한다.
+
 이 저장소는 `alsdmlals4-eng/Base` v9.4.3 project compatibility pin을 역사적으로 보존하면서, **사용자가 2026-08-26 제공한 v4.8 r5.4 Superset Final 작업 계약**과 최신 Base completed `main`을 현재 실행 방법론으로 사용하는 Godot 프로젝트다.
 
 ## 1. 권위 순서
@@ -20,7 +22,7 @@
 
 ### 작업 목표
 
-모든 프로젝트 작업은 **가장 효율적이고 장기적으로 유지되는 출시 수준에 가까운 버티컬 슬라이스**를 목표로 한다. 빠른 답이나 국소 패치보다 현재 코드·모든 PR·Notion 정본을 먼저 읽고, 공식 자료·동종 제품 벤치마킹·현업 구현 사례를 비교한 뒤 최적의 구조를 선택한다. 시간과 토큰보다 결과 품질, 증거, 회귀 방지, 장기 유지비를 우선한다.
+모든 프로젝트 작업은 **가장 효율적이고 장기적으로 유지되는 출시 수준에 가까운 버티컬 슬라이스**를 목표로 한다. 빠른 답이나 국소 패치보다 현재 코드·모든 PR·GitHub 정본을 먼저 읽고, 공식 자료·동종 제품 벤치마킹·현업 구현 사례를 비교한 뒤 최적의 구조를 선택한다. 시간과 토큰보다 결과 품질, 증거, 회귀 방지, 장기 유지비를 우선한다.
 
 구현·병합 작업은 다음을 기본 완료 조건으로 삼는다.
 
@@ -32,7 +34,7 @@ fresh authority recovery
 → minimum five-pass adversarial review
 → corrections and full regression
 → GitHub merge
-→ Notion destination sync + readback
+→ GitHub post-merge readback
 ```
 
 ## 2. 매 작업 시작 fresh-read
@@ -43,7 +45,6 @@ Base latest completed main
 → Base current Skill Registry + generated active map
 → Project main/latest commit
 → all Open/Draft PR
-→ exact Project Notion Home
 → this AGENTS.md
 → v4.8 Switchy adapter
 → CURRENT_CONFIRMED_DECISIONS
@@ -52,7 +53,7 @@ Base latest completed main
 → actual code/data/Scene/Resource/assets/tests
 ```
 
-새 채팅은 과거 대화를 필수 입력으로 사용하지 않는다. Project GitHub + Notion에서 current identity / goal / quality-stage / protected scope / next safe action / evidence ceiling을 재구성하고, GitHub↔Notion이 충돌하면 mutation 전에 `CONTEXT_DRIFT_RECHECK_REQUIRED`로 되돌린다.
+새 채팅은 과거 대화를 필수 입력으로 사용하지 않는다. Project GitHub에서 current identity / goal / quality-stage / protected scope / next safe action / evidence ceiling을 재구성한다. historical Notion은 explicit audit/migration request가 없는 한 읽거나 쓰지 않는다.
 
 `GOOGLE_SHEETS: RETIRED_NO_ACTIVE_USE`
 
@@ -71,11 +72,11 @@ engine: Godot 4.7.1-stable
 language: GDScript
 project_base_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
 base_remote_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
-fresh_read_bootstrap_policy: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
+fresh_read_bootstrap_policy: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 skill_coverage_policy: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT
 gpt_local_codex_orchestration_policy: RETIRED
 current_validation_locator: 기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md
-current_product_decision: SX-DEC-061 · VISUAL_DIRECTION_REFINEMENT
+current_product_decision: SX-DEC-063 · HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY
 post_sx_dec_060_candidate: NOT_CREATED
 ```
@@ -142,7 +143,7 @@ switch auto-reset
 ## 5. 현재 Decision / 기획 상태
 
 ```yaml
-current_decision_span: SX-DEC-027~062
+current_decision_span: SX-DEC-027~063
 sx_dec_055_runtime_semantic: MERGED_MAIN_VERIFIED · PR_151
 sx_dec_056a: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
@@ -160,7 +161,8 @@ sx_dec_060_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
 sx_dec_060_notion_readback: PASS
 sx_dec_060_post_change_candidate: NOT_CREATED
 sx_dec_061: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
-sx_dec_062: APPROVED · BOARD_FIRST_EXISTING_ASSET_RUNTIME_COMPOSITION · IMPLEMENTATION_CONTRACT_READY · RUNTIME_UNCHANGED
+sx_dec_062: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION
+sx_dec_063: USER_APPROVED_DIRECTION · FIRST_CANDIDATE_GENERATED_REVIEW_PENDING · RUNTIME_UNCHANGED
 ```
 
 Current first-session shape remains:
@@ -203,7 +205,7 @@ docs/superpowers/plans/2026-08-26-cardinal-station-service-and-reachable-network
 기획서/50_제작_검증/SX_DEC_060_CODEX_HANDOFF_PACKAGE.md
 ```
 
-Actual GDScript/Scene/Resource/map/runtime implementation must use `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF` after merged canon + Notion readback.
+Actual GDScript/Scene/Resource/map/runtime implementation must use `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF` after merged GitHub canon readback.
 
 ### Prohibited expansion
 
@@ -223,11 +225,11 @@ Production image work is allowed only when a real game consumer exists.
 
 ```yaml
 automatic_consumer_image_policy: USER_APPROVED_2026_08_26
-approved_image_dual_storage: PROJECT_LOCAL_AND_NOTION
+approved_image_storage: PROJECT_LOCAL_GITHUB_TRACKED
 visual_continuity: existing E+D Hybrid / Neo-Arcade visual language
 ```
 
-When a verified runtime node/key/path has a genuinely missing bitmap slot, generate only the required image without a per-image approval request. Preserve it in the tracked project-local asset path and the Notion Visual/Asset destination, record provenance and SHA-256, then read the Notion destination back. Reuse the existing E+D Hybrid / Neo-Arcade visual language; a concrete consumer remains mandatory.
+When a verified runtime node/key/path has a genuinely missing bitmap slot, generate only the required image without a per-image approval request. Preserve a user-approved final image in a tracked project-local asset path, record provenance and SHA-256 in GitHub, and use the existing E+D Hybrid / Neo-Arcade visual language. A concrete consumer remains mandatory. A generated candidate remains `NOT_RUNTIME_PROOF` until the user decides to promote it.
 
 Current `ProductBoardRenderer` already consumes station texture paths for red/blue/yellow stations, so SX-DEC-060 must:
 
@@ -265,7 +267,7 @@ project_3_2_0_external_upstream_parity: UNVERIFIED
 
 Persistent Godot authoring follows the current adopted authoring authority. GUT is deterministic test authority; live QA/observability does not own acceptance source delta.
 
-`GPT_LOCAL_CODEX_ORCHESTRATION_RETIRED`: GPT does not launch local Codex through PowerShell. New Godot product implementation switches to the Codex handoff route; Codex independently fresh-reads project GitHub + Notion.
+`GPT_LOCAL_CODEX_ORCHESTRATION_RETIRED`: GPT does not launch local Codex through PowerShell. New Godot product implementation switches to the Codex handoff route; Codex independently fresh-reads Project GitHub.
 
 ## 10. Platform / Release / Asset Rights routing
 
@@ -308,21 +310,21 @@ Automated/export/package/self-run does not imply HUMAN/PLAYER EXPERIENCE PASS. P
 Current next gate:
 
 ```text
-SX-DEC-062 GitHub/Notion contract sync
-→ CodeX board-first runtime-composition implementation
+SX-DEC-063 first terrain candidate final disposition
+→ selected candidate family and Phase 2 Godot implementation contract
 → new exact post-062 package candidate
 → physical/device/human gates
 ```
 
 Physical Windows/Android and human comprehension remain separate gates.
 
-## 13. Notion / GitHub sync
+## 13. GitHub-only project workspace
 
-- Notion: human-facing Project Home / Direction / Visual / Production validation.
-- GitHub: structured canon / code / data / Scene / Resource / assets / tests / runtime evidence.
+- GitHub: structured canon / code / data / Scene / Resource / assets / tests / runtime evidence / human-facing GDD.
+- Notion: `RETIRED_NO_ACTIVE_USE`; historical page/attachment/readback only, no new read/write/sync/destination requirement.
 - Google Sheets: `RETIRED_NO_ACTIVE_USE` except legacy provenance/migration evidence.
-- Every approved Decision is recorded with the same Decision ID on required GitHub and Notion surfaces.
-- If GitHub runtime truth and Notion human-facing meaning disagree, use `CONTEXT_DRIFT_RECHECK_REQUIRED` before implementation.
+- Every approved Decision is recorded in required GitHub owners.
+- If historical Notion conflicts with GitHub runtime truth, preserve it as history and correct GitHub canon; do not reactivate a Notion sync path.
 
 ## 14. 현재 핵심 정본
 
@@ -340,6 +342,8 @@ Physical Windows/Android and human comprehension remain separate gates.
 - `docs/superpowers/specs/2026-08-28-board-first-runtime-composition-design.md`
 - `docs/superpowers/plans/2026-08-28-board-first-runtime-composition.md`
 - `기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`
+- `docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md`
+- `docs/design/PROJECT_AI_PRODUCTION_SPEC.md`
 - current first-session content/UI/localization owners
 - current platform/release/asset-rights owners
 

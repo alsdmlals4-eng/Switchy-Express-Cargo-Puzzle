@@ -6,6 +6,8 @@ Last updated: `2026-08-28 KST`
 
 ## Current authority snapshot
 
+> **Workspace amendment, 2026-08-28:** GitHub is the sole active project workspace. Notion is `RETIRED_NO_ACTIVE_USE`; prior page and attachment readbacks remain history/audit provenance and are neither fresh-read input nor write/readback completion criteria.
+
 ```yaml
 current_product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060
 current_decision_span: SX-DEC-027~063
@@ -21,7 +23,10 @@ v4_7_adapter: HISTORICAL_ROLLBACK_EVIDENCE
 project_base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
 base_canon_sync_observation: 862938478cfea6c9db16691900c9c4fdc464f9ff · AUDIT_EVIDENCE_ONLY
 base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
-fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
+fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
+project_workspace: GITHUB_ONLY · USER_APPROVED_2026-08-28
+notion_active_use: RETIRED_NO_ACTIVE_USE · HISTORY_AUDIT_ONLY · NO_NEW_READ_WRITE_SYNC
+notion_current_structure_migration: COMPLETE · docs/migrations/2026-08-28-notion-current-workspace-migration.md
 sx_dec_059_merge_pr: 158
 sx_dec_059_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
 SX_DEC_059_IMPLEMENTATION: MERGED_MAIN_VERIFIED · PRE_SX_DEC_060_RUNTIME
@@ -52,7 +57,7 @@ sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFI
 sx_dec_060_notion_sync: PASS · POST_PR_188_READBACK_COMPLETE
 sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION · PACKAGE_VERIFIED
-sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · PLANNING_CURRENT · ISSUE_239 · IMAGE_GENERATION_AWAITING_EXACT_BRIEF_APPROVAL · RUNTIME_UNCHANGED
+sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · FIRST_CANDIDATE_GENERATED_REVIEW_PENDING · ISSUE_239 · RUNTIME_UNCHANGED
 sx_dec_063_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · PR_240 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b
 developer_self_run: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_VISUAL_INPUT_OBSERVED_AUDIO_NOT_OBSERVED · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_003
 windows_physical_startup_and_build_entry_automation_observed: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_003
@@ -127,7 +132,7 @@ sx_dec_060_new_bitmap_assets_required: 0
 | **SX-DEC-060** | **Cardinal Station Service + Reachable Network · MERGED_MAIN_VERIFIED · PR #188** |
 | **SX-DEC-061** | **Board-first Cozy Neo-Arcade visual refinement · APPROVED · documentation/plan board only; runtime unchanged** |
 | **SX-DEC-062** | **Board-first runtime composition · MERGED_MAIN_VERIFIED · PR #237 · exact Candidate 003 package verified · human gates remain open** |
-| **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · USER_APPROVED_DIRECTION · Issue #239 · exact first image brief approval pending · runtime unchanged** |
+| **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · USER_APPROVED_DIRECTION · one terrain candidate generated/review pending · runtime unchanged** |
 
 ## SX-DEC-059 retained first-session contract
 
@@ -180,11 +185,11 @@ rectangular BUILD/RUN grid and exact input mapping stay
 → elevated miniature-diorama depth is expressed inside that geometry
 → new visual bytes are limited to named, versioned actual consumers
 → T2 shell_lesson_hero_v02 and Issue #227 remain protected
-→ first terrain candidate requires the separate exact text-brief approval
+→ one terrain candidate may be generated and machine-reviewed; only promotion/revise/reject requires user disposition
 → no Godot/Scene/Resource/manifest integration occurs in this planning stage
 ```
 
-This direction does not authorize a true isometric coordinate conversion, gameplay/data/audio/locale/progression change, runtime integration, or any Human/Player Experience promotion. A generated candidate is an inspection artifact until it is approved, traced to an actual consumer, stored locally and in Notion with provenance/hash, and later passes the separate implementation gate.
+This direction does not authorize a true isometric coordinate conversion, gameplay/data/audio/locale/progression change, runtime integration, or any Human/Player Experience promotion. A generated candidate is an inspection artifact until the user approves promotion, it is traced to an actual consumer, stored in tracked project-local GitHub with provenance/hash, and later passes the separate implementation gate. Notion is retired from this lifecycle by the 2026-08-28 user decision.
 
 ### Architecture / evidence boundaries
 
@@ -282,7 +287,7 @@ PR #158 implementation → PR #166 playable POC → PR #171 visual correction �
 current:
 SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063 user-approved visual-production direction
 → SX60-POC-ACCEPT-003 exact package verified
-→ terrain candidate exact brief approval and one-image review before any production batch
+→ terrain candidate review and user promotion/revise/reject disposition before any production batch
 → no runtime bytes are changed by SX-DEC-063 planning
 → NoLaunch verification PASS, then Windows physical smoke + audio perceptual QA
 → Android device smoke

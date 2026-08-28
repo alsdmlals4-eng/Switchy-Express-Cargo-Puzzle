@@ -10,7 +10,7 @@ ADAPTER = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
 REGISTRY = ROOT / "skills/SKILL_REGISTRY.json"
 HEALTH = ROOT / "docs/PROJECT_OPERATING_HEALTH.json"
 MIGRATION = ROOT / "docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json"
-CURRENT_PROTECTED_BASELINE = "f34995228ef58ec00fffd60f7c53951bfc631f7c"
+CURRENT_PROTECTED_BASELINE = "c20a0b571a066ce07e9e55fa324aa0ff1112b138"
 
 
 class SwitchyThinAdapterMigrationTests(unittest.TestCase):
@@ -57,7 +57,7 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         self.assertNotIn("spreadsheet_id", sheet)
         self.assertNotIn("url", sheet)
         planning = adapter["shared_overrides"]["managing-project-intake-and-work-contract"]["planning_first_governance"]
-        self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
+        self.assertEqual("GITHUB_REPOSITORY_ONLY_PROJECT_WORKSPACE", planning["current_human_workspace"])
         self.assertEqual("DEC-BASE-20260805-001", json.loads(MIGRATION.read_text(encoding="utf-8"))["decision_id"])
 
     def test_strict_operating_health_preserves_not_run_gates(self) -> None:
