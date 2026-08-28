@@ -1,6 +1,6 @@
 # SX-VIS-063 CI contract correction · incident / solution / lesson
 
-**Status:** `SECOND_ROOT_CAUSE_CORRECTED_ON_PR_244_HEAD_PENDING_REMOTE_RERUN`
+**Status:** `SECOND_ROOT_CAUSE_RESOLVED_IN_CLEAN_CHECKOUT_PENDING_REMOTE_RERUN`
 
 ## Incident
 
@@ -26,7 +26,7 @@ PR #244 initially failed three remote checks even though local Godot import and 
 
 - Focused historical and migration suites: PASS.
 - Python contracts: `220 passed, 1 skipped`.
-- Base operating-contract validation and project contract validation: PASS locally; the exact clean-checkout rerun remains required after the raw-byte correction.
+- A clean `core.autocrlf=false` checkout of corrected head `6c80d4b` passed the Base operating-contract validation, project contract validation, and Python contracts (`220 passed, 1 skipped`).
 - This record does not alter the terrain runtime boundary; v02 remains `APPROVED_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED`.
 
 ## Lesson and promotion decision
