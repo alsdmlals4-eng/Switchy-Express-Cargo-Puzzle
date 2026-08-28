@@ -293,10 +293,10 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 ## Current next action
 
 ```text
-SX-DEC-063 hybrid miniature-diorama alignment is user-approved for planning on Issue #239
-→ one terrain candidate has been generated and machine-reviewed; await the user's promotion / revise / reject disposition only
+SX-DEC-063 hybrid miniature-diorama alignment has one user-promoted source asset on Issue #243
+→ terrain v02 is GitHub-preserved with SHA/provenance; v01 remains the active runtime path
 → preserve the rectangular BUILD/RUN grid, gameplay semantics, actual consumer mapping, T2 v02, and Issue #227
-→ do not begin Godot/Scene/Resource/manifest integration or an asset batch in this phase
+→ next machine-executable visual task: execute the terrain-only Phase 2 runtime handoff with RED→GREEN, same-state viewport comparison, package candidate refresh, and five adversarial loops
 → SX-DEC-062 board-first runtime composition remains merged and package-verified on exact main 8bce715
 → Candidate 002 is immutable prior-byte evidence; Candidate 003 is the sole current package candidate
 → NoLaunch package verification PASS; run Windows physical smoke and audio-perceptual QA before any Phase 5 human evidence claim

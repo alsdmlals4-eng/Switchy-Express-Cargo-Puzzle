@@ -1,6 +1,6 @@
 # SX-DEC-063 · Hybrid Miniature-Diorama Visual Production Alignment
 
-**Status:** USER_APPROVED_DIRECTION · PLANNING_CURRENT · FIRST_CANDIDATE_GENERATED_REVIEW_PENDING · RUNTIME_UNCHANGED
+**Status:** USER_APPROVED_DIRECTION · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · RUNTIME_INTEGRATION_CONTRACT_READY · RUNTIME_UNCHANGED
 **Date:** 2026-08-28 KST
 **Tracking:** GitHub Issue #239
 **Predecessors:** SX-DEC-061 visual lock, SX-DEC-062 existing-asset runtime composition
@@ -107,10 +107,10 @@ primary_use: warm board terrain backdrop beneath Godot grid, rails, train, cargo
 must_show: calm grass/soil/stone/conifer miniature terrain; open readable central playfield; subdued 3/4 depth cues; warm low-angle practical lighting
 must_not_show: track geometry, station/cargo/train objects, text, UI, coin/score/save elements, branded/logo material, identifiable reference layout
 runtime_compare_required: true
-candidate_status: TEXT_BRIEF_READY · NOT_GENERATED
+candidate_status: USER_APPROVED_FOR_GITHUB_PROMOTION · RUNTIME_NOT_CONNECTED
 ~~~
 
-**2026-08-28 user workflow amendment:** actual-consumer candidates may be generated and machine-reviewed without a per-image pre-generation approval. The first candidate has been generated for review. The user decides only whether to promote a reviewed candidate to a final project asset. This does not authorize a batch, runtime integration, or the next consumer family automatically.
+**2026-08-28 user workflow amendment:** actual-consumer candidates may be generated and machine-reviewed without a per-image pre-generation approval. The user approved promotion of `SX-VIS-063-CANDIDATE-001` on 2026-08-28 KST. It is preserved at `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png` with SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`, Issue #243, and `APPROVED_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED` status. This does not authorize a batch or promote runtime, physical, human, Player Experience, or release evidence.
 
 For every candidate that later passes review:
 
@@ -123,6 +123,10 @@ generate exactly one candidate
 → later Godot integration in one bounded implementation contract
 ~~~
 
+## Terrain v02 transition boundary
+
+The first terrain asset is approved as a project-owned, tracked source binary only. The current `ProductBoardRenderer` path remains v01 until `기획서/50_제작_검증/SX_DEC_063_TERRAIN_RUNTIME_INTEGRATION_HANDOFF.md` is executed via RED → GREEN and an exact new candidate is created. `v01` is preserved for rollback.
+
 ## Production and implementation boundaries
 
 ### In scope now
@@ -133,7 +137,7 @@ generate exactly one candidate
 
 ### Deferred until the production set is approved
 
-- GDScript, Scene, Resource, import, manifest, and consumer-path changes;
+- GDScript, Scene, Resource, import, and consumer-path changes;
 - test additions and a new exact package candidate;
 - physical Windows/audio, Android, five-person, Player Experience, and production-cutover claims.
 

@@ -1,0 +1,20 @@
+{
+  "artifact_role": "SX_DEC_063_APPROVED_PRODUCT_ASSET_MANIFEST",
+  "asset_family": "SWITCHY_HYBRID_MINIATURE_DIORAMA",
+  "status": "APPROVED_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED",
+  "decision_id": "SX-DEC-063",
+  "source_candidate_id": "SX-VIS-063-CANDIDATE-001",
+  "tracking_issue": 243,
+  "user_approval_ref": "USER-APPROVAL-2026-08-28-SX-VIS-063-TERRAIN-CANDIDATE-001-PROMOTION",
+  "assets": [
+    {
+      "asset_id": "SX-BOARD-TERRAIN-002",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
+      "dimensions": [1672, 941],
+      "sha256": "1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d",
+      "visual_role": "APPROVED_PRODUCT_ASSET_PENDING_RUNTIME_INTEGRATION",
+      "planned_runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[board_terrain]",
+      "runtime_connection_status": "NOT_CONNECTED"
+    }
+  ]
+}

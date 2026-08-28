@@ -38,7 +38,7 @@
   "protected_baseline": {
     "authority_kind": "GITHUB_PR_BASE",
     "authority_ref": "github.event.pull_request.base.sha",
-    "commit": "c20a0b571a066ce07e9e55fa324aa0ff1112b138",
+    "commit": "9c3be67cf99221d5007f0332be6935e81a6954bb",
     "policy_sha256": "51b3ca7e05165069666d1235413d3277580646c63008b472f15df4fb4db9f0ca",
     "policy_source_path": "skills/PROJECT_BASE_ADAPTER.json",
     "policy_source_type": "CANONICAL_ADAPTER_SOURCE",

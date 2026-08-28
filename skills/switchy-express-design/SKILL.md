@@ -311,13 +311,13 @@ Run minimum five full-scope loops for substantive implementation and continue un
 
 Before merging a current-task implementation PR:
 
-1. refresh Base completed main + project main + exact Notion Home + all Open/Draft PRs;
+1. refresh Base completed main + project main + GitHub-only current owners + all Open/Draft PRs;
 2. verify only approved SX-DEC-060 scope changed;
 3. verify PR #174 untouched;
-4. verify every new bitmap has a concrete runtime consumer and is preserved in both the tracked project-local path and Notion;
+4. verify every new bitmap has a concrete runtime consumer and is preserved in the tracked project-local GitHub path with SHA-256/provenance;
 5. observe RED→GREEN evidence for production behavior;
 6. run full exact-head Godot/static/package checks;
 7. run minimum five adversarial loops and fix findings;
-8. verify current GitHub canon + Notion same Decision ID agree;
+8. verify current GitHub canon, actual consumer, provenance, and Decision ID agree;
 9. preserve evidence ceiling exactly;
-10. merge only when required rulesets/checks/review are clean, then re-read merged main + Notion.
+10. merge only when required rulesets/checks/review are clean, then re-read merged main and the exact GitHub destinations.

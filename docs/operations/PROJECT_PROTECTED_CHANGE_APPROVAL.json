@@ -2,21 +2,11 @@
   "schema_version": 1,
   "artifact_role": "PROJECT_PROTECTED_CHANGE_APPROVAL",
   "status": "APPROVED",
-  "protected_base_commit": "c20a0b571a066ce07e9e55fa324aa0ff1112b138",
+  "protected_base_commit": "9c3be67cf99221d5007f0332be6935e81a6954bb",
   "decision_ids": [
-    "USER-APPROVAL-2026-08-26-R5.4-AUTHORITY-RECONCILIATION",
-    "VIS-SX-059-05",
-    "SX-DEC-060",
-    "USER-APPROVAL-2026-08-26-GODOT-AI-3.2.0",
-    "USER-APPROVAL-2026-08-26-AUTOMATIC-CONSUMER-IMAGE-POLICY",
-    "SX-DEC-061",
-    "USER-APPROVAL-2026-08-28-SX-DEC-061-VISUAL-CANON",
-    "SX-DEC-062",
-    "USER-APPROVAL-2026-08-28-SX-DEC-062-BOARD-FIRST-RUNTIME-COMPOSITION",
-    "USER-APPROVAL-2026-08-28-SX-DEC-062-PHASE-2-IMPLEMENTATION",
     "SX-DEC-063",
-    "USER-APPROVAL-2026-08-28-SX-DEC-063-HYBRID-MINIATURE-DIORAMA-ALIGNMENT",
-    "USER-APPROVAL-2026-08-28-GITHUB-ONLY-NOTION-CURRENT-WORKSPACE-MIGRATION"
+    "USER-APPROVAL-2026-08-28-SX-VIS-063-TERRAIN-CANDIDATE-001-PROMOTION",
+    "USER-OPERATING-2026-08-28-OFFICIAL_RESEARCH_FEASIBILITY_ADVERSARIAL_LOOP"
   ],
   "approved_paths": [
     "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
@@ -24,12 +14,11 @@
     "기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md",
     "기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md",
     "기획서/00_프로젝트_허브/ROADMAP.md",
-    "기획서/00_프로젝트_허브/START_HERE.md",
     "기획서/40_표현/PROJECT_CORE_SCENE_VISUAL_BOARD.md",
-    "기획서/40_표현/SX_DEC_059_VISUAL_REQUIREMENT_BRIEFS.md",
-    "기획서/40_표현/TARGET_BUILD_SCREEN_SURFACE_AND_VISUAL_COVERAGE.md"
+    "기획서/40_표현/VISUAL_DIRECTION.md",
+    "기획서/50_제작_검증/SX_DEC_063_TERRAIN_RUNTIME_INTEGRATION_HANDOFF.md"
   ],
-  "approval_source": "USER_EXPLICIT_VIS_SX_059_05_AND_SX_DEC_060_APPROVAL_2026-08-26; USER_EXPLICIT_SX_DEC_061_BOARD_FIRST_COZY_NEO_ARCADE_2026-08-28; USER_EXPLICIT_SX_DEC_062_EXISTING_ASSET_BOARD_FIRST_RUNTIME_COMPOSITION_2026-08-28; USER_EXPLICIT_SX_DEC_062_PHASE_2_IMPLEMENTATION_2026-08-28; USER_EXPLICIT_SX_DEC_063_HYBRID_MINIATURE_DIORAMA_ALIGNMENT_2026-08-28; USER_EXPLICIT_GITHUB_ONLY_NOTION_CURRENT_WORKSPACE_MIGRATION_2026-08-28",
-  "approval_time": "2026-08-28T20:19:43+09:00",
-  "scope_summary": "User-approved SX-DEC-060 implementation and automatic consumer-image policy remain preserved. The user explicitly approved SX-DEC-061 Board-first Cozy Neo-Arcade visual refinement, the SX-DEC-062 existing-asset board-first runtime-composition contract and its Phase 2 implementation, SX-DEC-063 Hybrid Miniature-Diorama Alignment, and the GitHub-only migration of the current Notion workspace on 2026-08-28: correct stale current visual/system references; preserve the rectangular BUILD/RUN grid, T2 v02, Issue #227, and all current finite rules; migrate current Notion structure/work products to GitHub while excluding historical/foreign material; generate actual-consumer candidates without per-image preapproval but require the user's final promotion/revise/reject disposition; and make no Godot integration or evidence promotion in this planning stage. This manifest exactly acknowledges all protected paths changed from the current PR base through the PR head. It grants no new consumer, runtime integration, Base repin, or unauthorized 056-058 scope."
+  "approval_source": "USER_EXPLICIT_SX-VIS-063-CANDIDATE-001_PROMOTION_AND_USER_OPERATING_LOOP_2026-08-28",
+  "approval_time": "2026-08-28T22:57:28+09:00",
+  "scope_summary": "The user explicitly promoted the already reviewed SX-VIS-063 terrain candidate and required current official research, actual implementation-feasibility checks, and adversarial review for meaningful work. This approval records only the candidate preservation, its current runtime-not-connected boundary, current visual/project context, and the terrain-only Phase 2 Godot handoff. It does not authorize a terrain runtime path change in this PR, another asset family, gameplay/data/audio/locale/progression/Base changes, T2/Issue #227 work, PR #174 mutation, or human/player/release evidence promotion."
 }

@@ -32,7 +32,7 @@ BUILD a reachable rail route
 | Active visual planning | `SX-DEC-061`, `SX-DEC-062`, `SX-DEC-063` |
 | Engine/language | Godot `4.7`, GDScript |
 | Current runtime composition | `SX-DEC-062` merged main by PR #237; existing-asset composition only |
-| New visual bytes | `SX-DEC-063` planning direction; no current runtime/Scene/Resource/manifest integration |
+| New visual bytes | `SX-DEC-063` user-promoted terrain v02 is Git-tracked with a local manifest and Godot import descriptor; no current runtime/Scene/Resource connection |
 | Protected scope | T2 lesson hero v02 / Issue #227, PR #174, Base pin, finite rules, score/economy/progression, audio and locales |
 | Image workflow amendment | User instruction, 2026-08-28: actual-consumer candidates may be generated and machine-reviewed before a user decision; only **promotion as a project asset** requires user confirmation. Generation is never runtime proof or integration permission. |
 
@@ -253,7 +253,8 @@ Keyboard inputs in `project.godot`: `1–4` tool selection, `R` rotation, primar
 
 | AST ID | Consumer | Current path/size | Status / rule |
 |---|---|---|---|
-| AST-001 | `ProductBoardRenderer.board_terrain` | `art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png`, 1672×941 | current runtime asset; SX-VIS-063 candidate is not connected |
+| AST-001 | `ProductBoardRenderer.board_terrain` | runtime: `art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png`, 1672×941 | v01 remains current runtime asset until Phase 2 |
+| AST-001A | planned `ProductBoardRenderer.board_terrain` successor | `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png`, 1672×941, SHA `1b8c…45d0d` | SX-VIS-063 user-approved project asset; runtime not connected; Issue #243 |
 | AST-002 | train | `core_train_locomotive_blue_normal_v01.png`, 128×96 | current runtime asset |
 | AST-003 | four rail forms | v01 64×64 | current runtime assets, rotate/pivot compatibility protected |
 | AST-004 | start/route-end markers | v01 64×64 | current runtime assets |
