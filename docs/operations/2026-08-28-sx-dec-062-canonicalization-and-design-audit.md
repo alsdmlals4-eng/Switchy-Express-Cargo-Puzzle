@@ -128,6 +128,17 @@ base_promotion: NO_BASE_PROMOTION
 reason: This is a project-specific receipt/locator naming and timeline relationship; Base already requires fresh current authority.
 ```
 
+```yaml
+incident_id: SX-INC-062-003
+statement: Protected-change CI requires both the external approval label and an approval manifest whose path list exactly matches the protected-base delta.
+classification: GOVERNANCE_DRIFT
+root_cause: The existing manifest stopped at 41 paths and SX-DEC-061, while later authorized Phase 5 records and the SX-DEC-062 handoff expanded the protected delta.
+solution: Reconcile the manifest to the exact detected path set, add SX-DEC-062 user-approval provenance, and apply the existing `approved-protected-change` label to the PR.
+lesson: Protected-path approvals are a current-baseline reconciliation artifact, not a one-time historical snapshot; refresh it whenever an approved documentation path enters the protected delta.
+base_promotion: NO_BASE_PROMOTION
+reason: The Base validator already enforces this exact-match mechanism; only this project’s manifest had drifted.
+```
+
 ## Required next order
 
 ```text
@@ -178,6 +189,7 @@ checked_state: current task branch before commit
 documentation_runtime_boundary: RUNTIME_UNCHANGED
 checks:
   - remote CI first observed: FAILED because `test_sx_dec_060_candidate_002_evidence.py` expected a superseded Active Context phase; corrected by SX-INC-062-002 before merge
+  - protected approval manifest: 47 unique paths; reconciled to the exact remote detected list; final CI requires the existing `approved-protected-change` PR label
   - python -m pytest tests/python/test_sx_dec_060_candidate_002_evidence.py -q: PASS (7 tests)
   - python -m pytest tests/python -q: PASS (214 passed, 1 skipped)
   - python tests/test_post_merge_canon_freshness.py: PASS (4 tests)

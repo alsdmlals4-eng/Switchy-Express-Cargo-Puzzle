@@ -114,15 +114,20 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         )
         self.assertNotIn("HUMAN_PHYSICAL_SELF_RUN_NEXT", text)
 
-    def test_user_approval_manifest_covers_only_the_current_candidate_002_protected_records(self) -> None:
+    def test_user_approval_manifest_retains_candidate_002_records_and_current_decision(self) -> None:
         approval = self._json(PROTECTED_APPROVAL)
         self.assertIn("SX-DEC-060", approval["decision_ids"])
+        self.assertIn("SX-DEC-062", approval["decision_ids"])
         self.assertIn(
             "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_02.md",
             approval["approved_paths"],
         )
         self.assertIn(
             "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_02.md",
+            approval["approved_paths"],
+        )
+        self.assertIn(
+            "기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md",
             approval["approved_paths"],
         )
 
