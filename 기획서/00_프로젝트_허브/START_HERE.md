@@ -150,9 +150,11 @@ Historical v4.7/r2/r4 adapter/reconciliation materials (including v4.8 `2026-08-
 ## Current next action
 
 ```text
+Phase 5 user-validation start authorized · 2026-08-28 KST
+→ current Playtest authority corrects old 055/059/validation-APK status to historical
 SX60-POC-ACCEPT-002 isolated title → briefing → build visual/input observation complete
 → Windows physical smoke + audio perceptual QA
-→ Android device smoke
+→ exact post-060 Android APK identity assignment + Android device smoke
 → Five-person first-contact comprehension
 → product decision
 ```

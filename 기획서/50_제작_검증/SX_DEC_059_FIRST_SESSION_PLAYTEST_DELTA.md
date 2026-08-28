@@ -1,9 +1,10 @@
-# SX-DEC-059 · First-Session Playtest Delta
+# SX-DEC-059 · First-Session Playtest Delta · Historical Provenance
 
 ```yaml
 owner_decision: SX-DEC-059
 base_playtest_authority: 기획서/50_제작_검증/PLAYTEST_PLAN.md
-status: DELTA_CONTRACT_CURRENT · HUMAN_EVIDENCE_NOT_RUN
+status: HISTORICAL_PRE_SX_DEC_060_DELTA_CONTRACT · HUMAN_EVIDENCE_NOT_RUN
+current_successor: 기획서/50_제작_검증/PLAYTEST_PLAN.md#current-phase-5-scope--sx-dec-060061
 new_research_framework: false
 five_person_gate_changed: false
 implementation_authority: EXECUTED · PR_158_MERGED_MAIN_VERIFIED
@@ -177,4 +178,4 @@ hint_tier:
 ### STOP
 - 충분한 iteration 뒤에도 핵심 `선로→적재순서→LIFO→재설계` 인과가 반복적으로 이해되지 않거나 매력이 형성되지 않음.
 
-현재 사람 판정: `NOT_RUN`.
+SX-DEC-059 당시 사람 판정: `NOT_RUN`.

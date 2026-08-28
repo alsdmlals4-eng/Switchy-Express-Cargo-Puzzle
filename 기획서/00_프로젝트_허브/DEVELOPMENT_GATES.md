@@ -271,14 +271,14 @@ Blocked until S60-1~10 are complete.
 SX60-POC-ACCEPT-002 isolated title → briefing → build visual/input observation complete (minimum source main 0e882764b837d13282a7642b115948d4e061d163)
 → Windows full physical smoke
 → audio perceptual QA
-→ Android device smoke
+→ exact post-060 Android APK identity assignment + Android device smoke
 → Five-person first-contact comprehension
 → player-experience decision
 ```
 
 Each gate is independent. Package/CI does not imply physical. Windows does not imply Android. Device does not imply human/player experience.
 
-Current Base Work mapping: `PHASE_5_USER_VERTICAL_SLICE_VALIDATION · BLOCKED_USER_VALIDATION`. All current Phase 4 machine-executable work is closed; `remaining_machine_executable_required_work: 0`. The receipt is `docs/operations/2026-08-27-sx60-work-five-phase-start-receipt.md`; Phase 5 evidence must not be automated or inferred.
+Current Base Work mapping: `PHASE_5_USER_VERTICAL_SLICE_VALIDATION · USER_AUTHORIZED_2026-08-28 · WINDOWS_PHYSICAL_AUDIO_EXECUTION_PENDING`. All current Phase 4 machine-executable work is closed; `remaining_machine_executable_required_work: 0`. The receipt is `docs/operations/2026-08-27-sx60-work-five-phase-start-receipt.md` and the current execution plan is `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`; Phase 5 evidence must not be automated or inferred. The historical Android validation APK has no post-060 candidate eligibility; Android remains `BLOCKED_UNVERIFIED` until an exact artifact identity is assigned.
 
 Fresh-main Godot live machine QA is recorded in `docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md`: exact `main@cf93926` observed title → briefing → build board after machine pointer input, with the official 112-case / 13,480-assertion runner green. This remains machine-runtime evidence only; physical, audio, device, and human gates stay `NOT_RUN`.
 
