@@ -25,6 +25,12 @@ const RED_CARGO := Color("d94f49")
 const BLUE_CARGO := Color("3979b7")
 const TEXT_DARK := Color("243038")
 const TEXT_LIGHT := Color("f7f2e8")
+const CONTROL_DECK_RAISED := Color("18363c")
+const CONTROL_DECK_HOVER := Color("24505a")
+const CONTROL_DECK_BORDER := Color("6f806f")
+const CONTROL_DECK_DISABLED := Color("536168")
+const CONTROL_DECK_ACTION := Color("e9ae45")
+const TUTORIAL_FOCUS := Color("9b6bdf")
 const SWITCH_ACTIVE := ROUTE_SELECTED
 const SWITCH_INACTIVE := ROUTE_UNSELECTED
 

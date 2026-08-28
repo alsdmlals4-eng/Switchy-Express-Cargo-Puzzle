@@ -91,6 +91,24 @@ func run() -> void:
 		renderer.product_visual_asset_paths_for_test().has("station_service_range"),
 		"cardinal service visualization must not require a new bitmap asset"
 	)
+	assert_true(
+		renderer.has_method("visual_layer_order_for_test"),
+		"board renderer must expose visual-only layer diagnostics"
+	)
+	if renderer.has_method("visual_layer_order_for_test"):
+		var layer_order: Array = renderer.visual_layer_order_for_test()
+		assert_true(
+			layer_order.find(&"STATION_SERVICE") < layer_order.find(&"ROUTE"),
+			"station service orientation must remain below decisive route feedback"
+		)
+		assert_true(
+			layer_order.find(&"ROUTE") < layer_order.find(&"MARKERS"),
+			"route feedback must remain below cargo and station markers"
+		)
+		assert_true(
+			layer_order.find(&"MARKERS") < layer_order.find(&"STATE"),
+			"markers must remain below state overlays"
+		)
 
 	var source: Dictionary = {
 		"map_id": &"VS_DEMO_01",

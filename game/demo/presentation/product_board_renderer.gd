@@ -98,6 +98,22 @@ func route_visual_widths_for_test(viewport: Vector2, board_size: Vector2i) -> Di
 	}
 
 
+func visual_layer_order_for_test() -> Array[StringName]:
+	return [
+		&"TERRAIN",
+		&"GRID",
+		&"BLOCKED",
+		&"FIXED_TRACK",
+		&"LAYOUT",
+		&"STATION_SERVICE",
+		&"ROUTE",
+		&"MARKERS",
+		&"START",
+		&"STATE",
+		&"TRAIN",
+	]
+
+
 static func track_ports_for_test(geometry: StringName, rotation: int) -> Array[Vector2i]:
 	return _track_ports(geometry, rotation)
 
@@ -165,8 +181,8 @@ func _draw() -> void:
 	_draw_blocked(rect, board_size)
 	_draw_fixed_tracks(rect, board_size)
 	_draw_layout(rect, board_size)
-	_draw_route_visual_overlays(rect, board_size)
 	_draw_station_service_ranges(rect, board_size)
+	_draw_route_visual_overlays(rect, board_size)
 	_draw_fixed_markers(rect, board_size)
 	_draw_start_marker(rect, board_size)
 	_draw_state_overlays(rect, board_size)

@@ -1,16 +1,7 @@
 class_name DemoThemeFactory
 extends RefCounted
 
-const DARK_TEAL := Color("10262b")
-const DARK_TEAL_RAISED := Color("18363c")
-const DARK_TEAL_HOVER := Color("24505a")
-const CREAM := Color("f4ead0")
-const CREAM_MUTED := Color("c9bea2")
-const GOLD := Color("e9ae45")
-const GOLD_PRESSED := Color("c88928")
-const BORDER := Color("6f806f")
-const DISABLED := Color("536168")
-const DANGER := Color("b8544d")
+const Palette := preload("res://game/demo/presentation/demo_palette.gd")
 
 
 static func create_theme() -> Theme:
@@ -20,26 +11,42 @@ static func create_theme() -> Theme:
 
 	result.set_font_size(&"font_size", &"Button", 18)
 	result.set_font_size(&"font_size", &"Label", 18)
-	result.set_color(&"font_color", &"Label", CREAM)
-	result.set_color(&"font_color", &"Button", CREAM)
+	result.set_color(&"font_color", &"Label", Palette.TEXT_LIGHT)
+	result.set_color(&"font_color", &"Button", Palette.TEXT_LIGHT)
 	result.set_color(&"font_hover_color", &"Button", Color.WHITE)
-	result.set_color(&"font_pressed_color", &"Button", DARK_TEAL)
-	result.set_color(&"font_disabled_color", &"Button", Color(CREAM_MUTED, 0.48))
+	result.set_color(&"font_pressed_color", &"Button", Palette.BACKGROUND)
+	result.set_color(&"font_disabled_color", &"Button", Color(Palette.TEXT_LIGHT, 0.48))
 	result.set_color(&"font_focus_color", &"Button", Color.WHITE)
 
 	result.set_stylebox(&"panel", &"PanelContainer", _panel_style())
-	result.set_stylebox(&"normal", &"Button", _button_style(DARK_TEAL_RAISED, BORDER, 1))
-	result.set_stylebox(&"hover", &"Button", _button_style(DARK_TEAL_HOVER, GOLD, 2))
-	result.set_stylebox(&"pressed", &"Button", _button_style(GOLD_PRESSED, GOLD, 2))
-	result.set_stylebox(&"disabled", &"Button", _button_style(DISABLED, BORDER, 1))
+	result.set_stylebox(
+		&"normal", &"Button", _button_style(Palette.CONTROL_DECK_RAISED, Palette.CONTROL_DECK_BORDER, 1)
+	)
+	result.set_stylebox(
+		&"hover", &"Button", _button_style(Palette.CONTROL_DECK_HOVER, Palette.CONTROL_DECK_ACTION, 2)
+	)
+	result.set_stylebox(
+		&"pressed", &"Button", _button_style(Palette.CONTROL_DECK_ACTION.darkened(0.15), Palette.CONTROL_DECK_ACTION, 2)
+	)
+	result.set_stylebox(
+		&"disabled", &"Button", _button_style(Palette.CONTROL_DECK_DISABLED, Palette.CONTROL_DECK_BORDER, 1)
+	)
 	result.set_stylebox(&"focus", &"Button", _focus_style())
+	result.set_type_variation(&"ShellPanel", &"PanelContainer")
+	result.set_stylebox(&"panel", &"ShellPanel", _panel_style())
+	result.set_type_variation(&"StackPanel", &"PanelContainer")
+	result.set_stylebox(&"panel", &"StackPanel", _panel_style())
+	result.set_type_variation(&"PreflightPanel", &"PanelContainer")
+	result.set_stylebox(&"panel", &"PreflightPanel", _panel_style(Palette.PROBLEM))
+	result.set_type_variation(&"LessonFocusLabel", &"Label")
+	result.set_color(&"font_color", &"LessonFocusLabel", Palette.TUTORIAL_FOCUS)
 	return result
 
 
-static func _panel_style() -> StyleBoxFlat:
+static func _panel_style(border_color: Color = Palette.CONTROL_DECK_BORDER) -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color(DARK_TEAL_RAISED, 0.96)
-	style.border_color = BORDER
+	style.bg_color = Color(Palette.CONTROL_DECK_RAISED, 0.96)
+	style.border_color = border_color
 	style.set_border_width_all(2)
 	style.set_corner_radius_all(16)
 	style.content_margin_left = 24.0
@@ -72,7 +79,7 @@ static func _button_style(
 static func _focus_style() -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
 	style.bg_color = Color(0.0, 0.0, 0.0, 0.0)
-	style.border_color = GOLD
+	style.border_color = Palette.CONTROL_DECK_ACTION
 	style.set_border_width_all(3)
 	style.set_corner_radius_all(12)
 	style.expand_margin_left = 3.0

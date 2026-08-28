@@ -77,6 +77,21 @@ func run() -> void:
 	var shell: Control = shell_packed.instantiate()
 	shell.first_session_enabled = true
 	tree.root.add_child(shell)
+	for panel_path: NodePath in [
+		NodePath("TitleScreen/Panel"),
+		NodePath("BriefingScreen/Panel"),
+		NodePath("PauseOverlay/Panel"),
+		NodePath("ExitConfirmOverlay/Panel"),
+		NodePath("ResultOverlay/Panel"),
+	]:
+		var panel := shell.get_node_or_null(panel_path) as PanelContainer
+		assert_not_null(panel, "shell control-deck panel must exist at %s" % panel_path)
+		if panel != null:
+			assert_equal(
+				panel.theme_type_variation,
+				&"ShellPanel",
+				"shell panel must use the shared board-first control-deck variation at %s" % panel_path
+			)
 	for path: NodePath in [
 		"TitleScreen/Panel/Content/HeroArt",
 		"BriefingScreen/Panel/Content/LessonArt",
@@ -161,4 +176,9 @@ func run() -> void:
 	assert_not_null(progress, "first-session briefing must expose visible lesson progress")
 	if progress != null:
 		assert_true(progress.text.contains("1 / 7"), "first-session briefing starts at lesson 1 of 7")
+		assert_equal(
+			progress.theme_type_variation,
+			&"LessonFocusLabel",
+			"lesson progress must use the bounded lesson-focus variation"
+		)
 	shell.free()
