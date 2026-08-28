@@ -1,9 +1,9 @@
 # Android Device Smoke Evidence Template
 
-> Template only. This file is not execution evidence and must remain `NOT_RUN` until completed from a physical-device session.
+> Historical template only. This file is not execution evidence and must remain `NOT_RUN`. Its APK identity is pre-SX-DEC-060 and must not be completed or reused for the current Phase 5 post-060 device gate.
 
 ```yaml
-record_state: TEMPLATE_NOT_EXECUTED
+record_state: HISTORICAL_TEMPLATE_NOT_EXECUTED · NOT_CURRENT_PHASE_5_ARTIFACT
 current_audit: SX-AUD-019
 current_evidence: EV-FP-APK-001
 source_commit: 536911449018a3caf3511bc64e7bf1a66edf2016

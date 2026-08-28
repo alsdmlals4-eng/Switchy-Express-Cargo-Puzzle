@@ -1,23 +1,46 @@
 # Playtest Plan
 
 ```yaml
-status: CURRENT_CANON · PHASE_B_PASS · BUILD_AUTHORIZED_SX_DEC_055_ONLY · MANUAL_ACCEPTANCE_NOT_RUN
-product_authority: GMB-002 · SX-DEC-027~058
-planning_audit: SX-AUD-049
-acceptance_build_state: UNASSIGNED_UNTIL_AUTHORIZED_IMPLEMENTATION_MERGE
-acceptance_build_source_commit: UNASSIGNED
-acceptance_build_sha256: UNASSIGNED
-physical_acceptance_smoke: NOT_READY
-five_person_comprehension: NOT_RUN · BLOCKED_BY_ACCEPTANCE_BUILD_AND_PHYSICAL_SMOKE
-sx_dec_056_058_implementation: NOT_STARTED · DELTA_DOR_REQUIRED
+status: CURRENT_CANON · PHASE_5_USER_VERTICAL_SLICE_VALIDATION · USER_AUTHORIZATION_RECORDED_2026-08-28 · HUMAN_EVIDENCE_NOT_RUN
+product_authority: GMB-002 · SX-DEC-027~061 · SX-DEC-060_CARDINAL_SERVICE_AMENDMENT
+planning_audit: SX-AUD-049 · HISTORICAL_METHOD_PROVENANCE
+current_candidate: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED
+current_candidate_source_main: 0e882764b837d13282a7642b115948d4e061d163
+current_candidate_windows_exe_sha256: 1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244
+current_candidate_windows_pck_sha256: d360eb70b0182e3409b8c60a18e214e5324dd4af619e97b484d3c9dd9a27cd49
+windows_physical_and_audio: NOT_RUN · FIRST_EXECUTION_GATE
+android_device: BLOCKED_UNVERIFIED · NO_EXACT_POST_SX_DEC_060_APK_ID_ASSIGNED
+five_person_comprehension: NOT_RUN · BLOCKED_BY_WINDOWS_PHYSICAL_AUDIO_AND_ANDROID_IDENTITY
+player_experience: NOT_RUN
+sx_dec_056_058_implementation: NOT_AUTHORIZED
 production_cutover: BLOCKED_DEFERRED
 ```
 
 이 문서는 **현재 제품의 첫 세션 이해도와 사람 검증 방법**을 책임진다. 실제 사람 증거가 아니라 현재 구현·acceptance 실행 전에 고정된 검증 contract다.
 
+## Current Phase 5 scope · SX-DEC-060/061
+
+이 Section이 현재 실행 상태의 단일 정본이다. 사용자 승인 `2026-08-28 KST`는 Phase 5의 **시작 권한**만 기록한다. Windows physical, audio, Android, five-person, Player Experience, production cutover 중 어느 것도 PASS로 승격하지 않는다.
+
+```text
+SX60-POC-ACCEPT-002 Windows exact candidate
+→ Windows full physical smoke + audio perceptual QA
+→ exact post-SX-DEC-060 Android APK identity assignment and physical device smoke
+→ five-person first-contact comprehension
+→ player-experience decision
+```
+
+- 현재 검증 단위는 `T1 → T2 → T3 → T4 → T5 → T6 → VS_DEMO_01 → Result / Retry / Edit`다.
+- T2의 필수 구분은 `cargo = same-cell Manual/Auto pickup`, `station = one cardinal-adjacent service cell`, `diagonal / station footprint = no delivery`다.
+- `SX60-POC-ACCEPT-002`에는 Windows artifact identity만 현재 acceptance pointer로 지정돼 있다. Android runtime JSON proof는 APK artifact identity나 physical-device proof가 아니다. 기존 Android validation APK/runbook은 historical이며 post-060 device Gate에 재사용하지 않는다.
+- `SX-DEC-061`은 planning/visual direction lock이며 runtime bytes를 바꾸지 않았다. 화면의 visual grammar는 관찰할 수 있지만 board·generated exploration·machine capture만으로 human usability를 통과 처리하지 않는다.
+- 상세 실행 순서, 기록 규칙, stale correction의 Incident/Solution/Lesson은 `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`를 따른다.
+
+Sections 1–3의 Phase B/055/old Android identity는 방법론·provenance로 보존한다. Sections 4–17의 behavior-first 연구 방법은 이 Section의 current candidate와 current rule을 적용해 사용한다.
+
 과거 Android validation APK는 별도 역사/진단 증거로 보존한다. post-SX-DEC-055 사람 검증의 active build identity로 자동 승격하지 않는다.
 
-## 1. 절대 Gate 순서
+## 1. Historical Phase B Gate Record
 
 현재까지 완료된 planning gate와 이후 실행 gate를 한 체인으로 유지한다.
 
@@ -56,7 +79,7 @@ role: HISTORICAL_VALIDATION_HARNESS · NOT_POST_POC_HUMAN_ACCEPTANCE_BUILD
 - 이 APK는 `SX-DEC-055` runtime semantic POC 이전 presentation이다.
 - 따라서 이 APK로 이후 Five-person Comprehension을 실행해도 post-POC presentation 이해도 PASS가 되지 않는다.
 
-## 3. Post-POC Acceptance Build Identity
+## 3. Historical Post-POC Acceptance Build Identity
 
 현재 authorized implementation merge 전에는 미래 build를 발명하지 않는다.
 
@@ -90,13 +113,14 @@ human_comprehension: NOT_RUN
 2. BUILD·preflight 피드백으로 스스로 노선을 고칠 수 있는가?
 3. 선로가 화물 조우 순서를 만든다는 인과를 이해하는가?
 4. manual/auto load 상태를 의도적으로 선택하고 읽는가?
-5. 마지막 적재 화물을 TOP으로 예측하는가?
-6. TOP부터 연속된 같은 종류만 함께 하역된다고 예측하는가?
-7. 분기에서 선택 방향과 점유 잠금을 올바르게 읽는가?
-8. 실패 원인에 따라 Retry와 Edit를 구분하는가?
-9. 색상을 보지 않아도 shape/text/TOP 신호를 사용해 식별하는가?
-10. pickup/unload/route/terminal semantic feedback을 실제 사건과 올바르게 연결하는가?
-11. 한 번 경험한 규칙을 이후 바뀐 stack/route/switch 상태에 독립 적용하는가?
+5. 화물은 같은 칸 접촉, 역은 상·하·좌·우 한 칸 서비스라는 차이와 diagonal/역 footprint 비배송을 행동과 예측으로 구분하는가?
+6. 마지막 적재 화물을 TOP으로 예측하는가?
+7. TOP부터 연속된 같은 종류만 함께 하역된다고 예측하는가?
+8. 분기에서 선택 방향과 점유 잠금을 올바르게 읽는가?
+9. 실패 원인에 따라 Retry와 Edit를 구분하는가?
+10. 색상을 보지 않아도 shape/text/TOP 신호를 사용해 식별하는가?
+11. pickup/unload/route/terminal semantic feedback을 실제 사건과 올바르게 연결하는가?
+12. 한 번 경험한 규칙을 이후 바뀐 stack/route/switch 상태에 독립 적용하는가?
 
 ### Conditional questions after SX-DEC-056/057 implementation
 
@@ -113,6 +137,7 @@ human_comprehension: NOT_RUN
 |---|---|---|---|---|
 | Objective | 제한 시간 안에 모든 필수 배송 | goal/progress context | 도움 없이 유효한 시도를 시작 | 부분 run 뒤 남은 목표 식별 |
 | Build/preflight | 구조적으로 도달 가능해야 시작 | placement/problem feedback | blocking issue를 스스로 수정 | 뒤의 다른 blocking state도 진단 |
+| Station service | 화물은 같은 칸, 역은 cardinal-adjacent 1칸에서만 배송 | T2 direct-contact와 station service cue 비교 | diagonal/footprint를 배송으로 기대하지 않고 서비스 셀을 선택 | 뒤의 다른 역·route에서 같은 rule을 적용 |
 | Encounter order | 경로가 화물 조우 순서를 결정 | route와 실제 조우 비교 | 다음 조우 화물을 예측 | route/load 선택 변경 후 결과 예측 |
 | LIFO TOP | 마지막 적재가 TOP | stack/TOP presentation | 역 도착 전 다음 하역 후보 예측 | stack 변화 뒤 다시 예측 |
 | Unload group | TOP 연속 동일 종류만 하역 | 하역 후 남은 stack 관찰 | 하역 그룹/수량 예측 | 뒤의 다른 stack 상태에 적용 |
@@ -202,6 +227,7 @@ participant_self_report:
 |---|---|---|
 | FS-01 | objective/progress | 현재 목표·남은 배송을 행동/설명으로 식별 |
 | FS-02 | BUILD + preflight | blocking layout을 해결책 힌트 없이 수정 |
+| FS-02A | cargo contact vs cardinal station service | cargo의 same-cell pickup과 station의 cardinal-adjacent delivery를 예측하고, diagonal/footprint가 배송이 아님을 행동으로 구분 |
 | FS-03 | route → encounter order | 다음 조우 또는 route 변경 결과를 사전 예측 |
 | FS-04 | manual/auto state | 모드를 의도적으로 선택하고 현재 상태를 읽음 |
 | FS-05 | TOP prediction | station 결과 전 next unload cargo를 예측 |
@@ -232,39 +258,40 @@ participant_self_report:
 행동·예측 기록 뒤에만 사용한다.
 
 1. `이번 run에서 가장 중요한 목표가 무엇이라고 생각했나요?`
-2. `다음 역에서 가장 먼저 내려갈 화물을 어떻게 판단했나요?`
-3. `선로를 바꾸면 무엇이 바뀐다고 생각하나요?`
-4. `수동 적재와 자동 적재의 차이를 어떻게 이해했나요?`
-5. `한 역에서 여러 화물이 같이 내려갈 때 어떤 규칙이 있었다고 생각하나요?`
-6. `분기 화살표/잠금 표시는 각각 무엇을 뜻한다고 생각했나요?`
-7. `Retry와 Edit 중 어떤 상황에서 각각 쓰고 싶나요?`
-8. `색상을 제외하면 어떤 표시로 화물·역·TOP을 구분했나요?`
-9. `방금 나온 시각 효과가 무엇 때문에 발생했다고 생각하나요?`
-10. `이번 성공/실패의 가장 큰 원인은 무엇이라고 생각하나요?`
+2. `화물 위를 지날 때와 역 근처를 지날 때는 각각 무엇이 달랐나요? 역 칸이나 대각선에서도 배송될 거라고 생각했나요?`
+3. `다음 역에서 가장 먼저 내려갈 화물을 어떻게 판단했나요?`
+4. `선로를 바꾸면 무엇이 바뀐다고 생각하나요?`
+5. `수동 적재와 자동 적재의 차이를 어떻게 이해했나요?`
+6. `한 역에서 여러 화물이 같이 내려갈 때 어떤 규칙이 있었다고 생각하나요?`
+7. `분기 화살표/잠금 표시는 각각 무엇을 뜻한다고 생각했나요?`
+8. `Retry와 Edit 중 어떤 상황에서 각각 쓰고 싶나요?`
+9. `색상을 제외하면 어떤 표시로 화물·역·TOP을 구분했나요?`
+10. `방금 나온 시각 효과가 무엇 때문에 발생했다고 생각하나요?`
+11. `이번 성공/실패의 가장 큰 원인은 무엇이라고 생각하나요?`
 
 056/057이 acceptance build에 포함된 경우에만 추가한다.
 
-11. `Route Probe가 무엇을 보여준다고 생각했나요?`
-12. `Probe와 실제 운행이 달랐다면 무엇 때문에 달라졌다고 생각하나요?`
-13. `Debrief에서 어떤 사건이 실패 원인을 가장 잘 설명했나요?`
-14. `Lab에서 배운 것을 다음 campaign 문제에서 어떻게 사용했나요?`
+12. `Route Probe가 무엇을 보여준다고 생각했나요?`
+13. `Probe와 실제 운행이 달랐다면 무엇 때문에 달라졌다고 생각하나요?`
+14. `Debrief에서 어떤 사건이 실패 원인을 가장 잘 설명했나요?`
+15. `Lab에서 배운 것을 다음 campaign 문제에서 어떻게 사용했나요?`
 
 질문 정답률은 행동 증거를 보조하며 대체하지 않는다.
 
 ## 11. 참가자 기록표
 
-| Participant | Build ID | FS-01 | FS-02 | FS-03 | FS-04 | FS-05 | FS-06 | FS-07 | FS-08 | FS-09 | FS-10 | FS-11 | FS-12 | 주요 오해 | 상태 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| P01 | UNASSIGNED | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | | NOT_RUN |
-| P02 | UNASSIGNED | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | | NOT_RUN |
-| P03 | UNASSIGNED | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | | NOT_RUN |
-| P04 | UNASSIGNED | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | | NOT_RUN |
-| P05 | UNASSIGNED | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | | NOT_RUN |
-| P06 | UNASSIGNED | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | | NOT_RUN |
+| Participant | Build ID | FS-01 | FS-02 | FS-02A | FS-03 | FS-04 | FS-05 | FS-06 | FS-07 | FS-08 | FS-09 | FS-10 | FS-11 | FS-12 | 주요 오해 | 상태 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| P01 | UNASSIGNED | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | | NOT_RUN |
+| P02 | UNASSIGNED | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | | NOT_RUN |
+| P03 | UNASSIGNED | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | | NOT_RUN |
+| P04 | UNASSIGNED | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | | NOT_RUN |
+| P05 | UNASSIGNED | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | | NOT_RUN |
+| P06 | UNASSIGNED | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN | | NOT_RUN |
 
 상태는 `PASS`, `FAIL`, `BLOCKED`, `NOT_RUN`, `INTERVENTION_CONTAMINATED` 중 하나를 사용한다.
 
-056/057 conditional observations가 활성화된 build에서는 FS-13~17을 별도 companion 기록표로 추가하거나 동일 session record에 확장한다. 기존 FS-01~12 열의 의미를 재정의하지 않는다.
+056/057 conditional observations가 활성화된 build에서는 FS-13~17을 별도 companion 기록표로 추가하거나 동일 session record에 확장한다. 기존 FS-01~12 및 FS-02A 열의 의미를 재정의하지 않는다.
 
 ## 12. 합격 기준
 
@@ -273,6 +300,7 @@ participant_self_report:
 | ID | 기준 |
 |---|---|
 | HUM-01 | FS-01 objective/progress threshold 충족 |
+| HUM-02A | FS-02A cargo exact-contact / station cardinal-service mental model threshold 충족 |
 | HUM-02 | FS-03 route→encounter model threshold 충족 |
 | HUM-03 | FS-05 LIFO TOP prediction threshold 충족 |
 | HUM-04 | FS-06 contiguous unload prediction threshold 충족 |
@@ -304,6 +332,7 @@ participant_self_report:
 - solution-relevant moderator intervention 없이는 진행 불가
 - selected switch direction을 반복적으로 반대로 이해해 core route를 수행할 수 없음
 - color 없이 필수 cargo/station/TOP 식별 불가
+- cargo exact-contact와 cardinal station service를 반복적으로 혼동해 T2 delivery를 수행할 수 없음
 - 의도된 presentation 경험 뒤에도 LIFO/TOP 규칙을 추론할 수 없음
 - acceptance build crash/input loss 등으로 증거가 무효화됨
 
@@ -332,7 +361,7 @@ PASS:
   exact acceptance build identity assigned
   + required physical smoke reviewed PASS on that identity
   + minimum 5 analyzable first-contact sessions
-  + HUM-01~13 all satisfied
+  + HUM-01, HUM-02A, HUM-02~13 all satisfied
   + any active SX-DEC-056/057 conditional observations satisfied
   + evidence/privacy/adversarial review complete
 
@@ -346,7 +375,7 @@ NOT_RUN:
   study has not been executed
 ```
 
-현재 상태는 `NOT_RUN · BLOCKED_BY_ACCEPTANCE_BUILD_AND_PHYSICAL_SMOKE`다.
+현재 상태는 `USER_AUTHORIZATION_RECORDED · WINDOWS_PHYSICAL_AND_AUDIO_NOT_RUN · ANDROID_EXACT_POST_060_ARTIFACT_UNASSIGNED · FIVE_PERSON_NOT_RUN`다.
 
 ## 15. 증거 형식
 
@@ -378,6 +407,7 @@ participant_result: PASS | FAIL | BLOCKED | NOT_RUN | INTERVENTION_CONTAMINATED
 다음 변경이 tested learning target에 영향을 주면 해당 human evidence는 자동 승계하지 않는다.
 
 - stack/TOP/load/preflight/switch semantic presentation
+- cargo exact-contact / station cardinal-service presentation or service-cell visibility
 - target/click/focus/input behavior
 - objective/progress copy or hierarchy
 - causal VFX meaning/visibility
@@ -401,14 +431,13 @@ participant_result: PASS | FAIL | BLOCKED | NOT_RUN | INTERVENTION_CONTAMINATED
 ```text
 PLAYTEST/COMPREHENSION CONTRACT: CURRENT_CANON
 HISTORICAL VALIDATION APK: PRESERVED · NOT CURRENT HUMAN ACCEPTANCE BUILD
-USER "기획 완료" GATE: GRANTED
-PHASE B: PASS · SX-AUD-047
-SX-DEC-055 BUILD AUTHORITY: AUTHORIZED · IMPLEMENTATION NOT_STARTED
-SX-DEC-056~058: USER_APPROVED PLANNING · IMPLEMENTATION NOT_AUTHORIZED UNTIL DELTA_DOR
-BMK-R09/R10: POST_VALIDATION_HOLD · NO_DECISION_ID
-POST-POC ACCEPTANCE BUILD: UNASSIGNED
-PHYSICAL ACCEPTANCE SMOKE: NOT_READY / NOT_RUN
+USER PHASE 5 START AUTHORIZATION: RECORDED · 2026-08-28 KST
+CURRENT PRODUCT AUTHORITY: GMB-002 · SX-DEC-027~061 · SX-DEC-060 cardinal station service
+CURRENT WINDOWS CANDIDATE: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED
+WINDOWS PHYSICAL / AUDIO: NOT_RUN
+POST-060 ANDROID APK IDENTITY: UNASSIGNED · DO NOT REUSE HISTORICAL VALIDATION APK
 FIVE-PERSON COMPREHENSION: NOT_RUN
 P01~P05: NOT_RUN
+PLAYER EXPERIENCE: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```

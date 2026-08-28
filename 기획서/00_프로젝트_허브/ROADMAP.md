@@ -205,19 +205,21 @@ The approved E+D Hybrid/Neo-Arcade route-visibility direction is now a runtime p
 
 ## M6A · Post-060 physical/device/human validation
 
-`PHASE_5_USER_VERTICAL_SLICE_VALIDATION · BLOCKED_USER_VALIDATION`
+`PHASE_5_USER_VERTICAL_SLICE_VALIDATION · USER_AUTHORIZED_2026-08-28 · WINDOWS_PHYSICAL_AUDIO_EXECUTION_PENDING`
 
 After a new exact post-060 candidate exists:
 
 ```text
 Windows full physical smoke
 → audio perceptual QA
-→ Android device smoke
+→ exact post-060 Android APK identity assignment + Android device smoke
 → Five-person first-contact comprehension
 → player-experience decision
 ```
 
-No pre-060 package/physical evidence automatically transfers.
+No pre-060 package/physical evidence automatically transfers. The historical Android validation APK is not an eligible post-060 device artifact.
+
+Current execution plan: `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`.
 
 Base Work five-phase mapping is recorded in `docs/operations/2026-08-27-sx60-work-five-phase-start-receipt.md`: Phase 4 machine closeout is complete with `remaining_machine_executable_required_work: 0`; the remaining gates require actual human/device evidence and do not authorize an automatic next Slice.
 

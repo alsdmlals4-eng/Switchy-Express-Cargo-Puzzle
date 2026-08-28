@@ -10,8 +10,7 @@
 | finite 제품 기준선은 무엇인가 | `FINITE_DELIVERY_PUZZLE_BASELINE.md` |
 | 개발 Gate와 차단 관계는 무엇인가 | `DEVELOPMENT_GATES.md` |
 | 정식 Android Validation APK export 근거는 무엇인가 | `../../50_제작_검증/SX_AUD_019_ANDROID_APK_PIPELINE_PROBE.md` |
-| Android 실기기 Smoke를 어떻게 실행하는가 | `../../50_제작_검증/ANDROID_DEVICE_SMOKE_RUNBOOK.md` |
-| Android 실기기 결과는 어디에 기록하는가 | `../../50_제작_검증/ANDROID_DEVICE_SMOKE_EVIDENCE_TEMPLATE.md` |
+| historical Android validation APK Smoke 절차/Template은 무엇인가 | `../../50_제작_검증/ANDROID_DEVICE_SMOKE_RUNBOOK.md`, `../../50_제작_검증/ANDROID_DEVICE_SMOKE_EVIDENCE_TEMPLATE.md` · `HISTORICAL_NOT_POST_060` |
 | 핵심 플레이는 무엇인가 | `../../10_경험/CORE_GAMEPLAY.md` |
 | finite 선로·화물·LIFO·시간 시스템은 무엇인가 | `../../20_시스템_콘텐츠/CORE_SYSTEMS.md` |
 | 화면과 그림체는 무엇인가 | `../../40_표현/VISUAL_DIRECTION.md` |
@@ -20,6 +19,7 @@
 | 첫 세션 화면·문구·progressive disclosure가 어떤 runtime 의미를 가리키는가 | `../../30_UI_UX/FIRST_SESSION_SCREEN_CONTENT_DATA_CONTRACT.md` |
 | Vertical Slice 범위와 cutover 경계는 무엇인가 | `../../50_제작_검증/VERTICAL_SLICE_CONTRACT.md` |
 | 플레이테스트와 사람 검증은 어떻게 하는가 | `../../50_제작_검증/PLAYTEST_PLAN.md` |
+| 현재 Phase 5 시작·Windows/Android/human 실행 순서는 무엇인가 | `../../../docs/superpowers/plans/2026-08-28-phase5-human-validation.md` |
 | Grill Me 승인 batch를 어떻게 닫는가 | `../../50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md` |
 | 플랫폼 출시·등급·에셋 권리 Profile은 무엇인가 | `../../../docs/PLATFORM_RELEASE_AND_ASSET_RIGHTS_PROFILE.md` |
 | 자산 권리·provenance를 어디에 기록하는가 | `../../../docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md` |
