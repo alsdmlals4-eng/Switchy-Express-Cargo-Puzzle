@@ -64,6 +64,7 @@ offset_right = -180.0
 offset_bottom = 148.0
 grow_horizontal = 2
 mouse_filter = 2
+theme_type_variation = &"PreflightPanel"
 
 [node name="ProblemLayout" type="HBoxContainer" parent="ProblemBanner"]
 layout_mode = 2
@@ -227,6 +228,7 @@ offset_bottom = 120.0
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
+theme_type_variation = &"StackPanel"
 
 [node name="StackLayout" type="VBoxContainer" parent="StackPanel"]
 layout_mode = 2

@@ -24,6 +24,16 @@ func run() -> void:
 	var tree := Engine.get_main_loop() as SceneTree
 	tree.root.add_child(product)
 	var hud := product.get_node("HUD")
+	assert_equal(
+		(hud.get_node("ProblemBanner") as PanelContainer).theme_type_variation,
+		&"PreflightPanel",
+		"preflight explanation must use the bounded control-deck variant"
+	)
+	assert_equal(
+		(hud.get_node("StackPanel") as PanelContainer).theme_type_variation,
+		&"StackPanel",
+		"Stack/TOP information must use the compact control-deck variant"
+	)
 	var running: Dictionary = hud.model_for_test()
 	running["phase"] = &"RUNNING"
 	running["stack_tokens"] = [{"cargo_type": &"RED_STAR", "top": true}]

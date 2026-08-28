@@ -33,6 +33,7 @@ grow_vertical = 2
 [node name="Panel" type="PanelContainer" parent="TitleScreen"]
 custom_minimum_size = Vector2(520, 500)
 layout_mode = 2
+theme_type_variation = &"ShellPanel"
 
 [node name="Content" type="VBoxContainer" parent="TitleScreen/Panel"]
 layout_mode = 2
@@ -122,6 +123,7 @@ grow_vertical = 2
 [node name="Panel" type="PanelContainer" parent="BriefingScreen"]
 custom_minimum_size = Vector2(680, 600)
 layout_mode = 2
+theme_type_variation = &"ShellPanel"
 
 [node name="Content" type="VBoxContainer" parent="BriefingScreen/Panel"]
 layout_mode = 2
@@ -130,6 +132,7 @@ theme_override_constants/separation = 8
 [node name="LessonProgress" type="Label" parent="BriefingScreen/Panel/Content"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
+theme_type_variation = &"LessonFocusLabel"
 text = "1 / 7"
 horizontal_alignment = 1
 
@@ -185,6 +188,7 @@ grow_vertical = 2
 [node name="Panel" type="PanelContainer" parent="PauseOverlay"]
 custom_minimum_size = Vector2(420, 320)
 layout_mode = 2
+theme_type_variation = &"ShellPanel"
 
 [node name="Content" type="VBoxContainer" parent="PauseOverlay/Panel"]
 layout_mode = 2
@@ -222,6 +226,7 @@ grow_vertical = 2
 [node name="Panel" type="PanelContainer" parent="ExitConfirmOverlay"]
 custom_minimum_size = Vector2(520, 340)
 layout_mode = 2
+theme_type_variation = &"ShellPanel"
 
 [node name="Content" type="VBoxContainer" parent="ExitConfirmOverlay/Panel"]
 layout_mode = 2
@@ -261,6 +266,7 @@ grow_vertical = 2
 [node name="Panel" type="PanelContainer" parent="ResultOverlay"]
 custom_minimum_size = Vector2(560, 500)
 layout_mode = 2
+theme_type_variation = &"ShellPanel"
 
 [node name="Content" type="VBoxContainer" parent="ResultOverlay/Panel"]
 layout_mode = 2

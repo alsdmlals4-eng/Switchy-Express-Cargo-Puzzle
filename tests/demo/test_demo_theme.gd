@@ -1,6 +1,7 @@
 extends "res://tests/test_case.gd"
 
 const DemoScene := preload("res://game/demo/vertical_slice_demo.tscn")
+const TUTORIAL_FOCUS := Color("9b6bdf")
 
 
 func run() -> void:
@@ -40,5 +41,39 @@ func run() -> void:
 		start_button.get_theme_color(&"font_disabled_color", &"Button"),
 		"disabled controls must have a distinct state"
 	)
+	assert_equal(
+		demo.theme.get_color(&"font_color", &"Label"),
+		Color("f7f2e8"),
+		"control-deck text must share the board light-text role"
+	)
+	assert_equal(
+		demo.theme.get_color(&"font_color", &"LessonFocusLabel"),
+		TUTORIAL_FOCUS,
+		"lesson focus must use the bounded violet role"
+	)
+	var preflight_style := demo.theme.get_stylebox(&"panel", &"PreflightPanel") as StyleBoxFlat
+	assert_not_null(preflight_style, "preflight variation must own a panel style")
+	if preflight_style != null:
+		assert_equal(
+			preflight_style.border_color,
+			Color("d94f49"),
+			"preflight variation must reserve crimson for a visible problem border"
+		)
+	var stack_style := demo.theme.get_stylebox(&"panel", &"StackPanel") as StyleBoxFlat
+	assert_not_null(stack_style, "Stack/TOP variation must own a panel style")
+	if stack_style != null:
+		assert_equal(
+			stack_style.border_color,
+			Color("6f806f"),
+			"Stack/TOP variation must retain the neutral control-deck border"
+		)
+	var focus_style := start_button.get_theme_stylebox(&"focus", &"Button") as StyleBoxFlat
+	assert_not_null(focus_style, "focused controls must keep an explicit product focus style")
+	if focus_style != null:
+		assert_equal(
+			focus_style.border_color,
+			Color("e9ae45"),
+			"focused controls must use the restrained action trim"
+		)
 
 	demo.free()
