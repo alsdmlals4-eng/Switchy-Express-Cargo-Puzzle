@@ -13,7 +13,7 @@ package_audit_owner: evidence/acceptance/sx60_poc_accept_003_pck_deep_audit.json
 
 The exact-main workflow dispatch completed successfully. Its package integrity and JSON payload proofs are recorded in the machine-readable evidence owners.
 
-`RUN_SX60_POC_SELF_RUN.ps1 -ContractCheck` also passed on 2026-08-28 and resolved only `SX60-POC-ACCEPT-003`. This validates the fail-closed pointer contract; it neither downloaded nor launched the package, so NoLaunch and all physical evidence remain `NOT_RUN`.
+`RUN_SX60_POC_SELF_RUN.ps1 -ContractCheck` also passed on 2026-08-28 and resolved only `SX60-POC-ACCEPT-003`. This validates the fail-closed pointer contract. GitHub Actions Windows runner run `33161335690` then completed its exact Candidate 003 `-NoLaunch` package verification: the package was downloaded and identity-checked, but not launched. Physical evidence remains `NOT_RUN`.
 
 ## Evidence ceiling
 

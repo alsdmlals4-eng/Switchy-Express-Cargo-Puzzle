@@ -26,7 +26,7 @@ Candidate 002's `73/73` record remains historical package evidence for its own e
 
 ## Secondary validation boundary
 
-The local NoLaunch launcher could not run in this task shell because `Get-FileHash` is unavailable there. Independent downloaded ZIP/EXE/PCK hashes and PCK integrity verification succeeded. The Windows GitHub runner remains the valid follow-up execution environment for the launcher; no local launcher PASS is claimed here.
+The local NoLaunch launcher could not run in this task shell because `Get-FileHash` is unavailable there. Independent downloaded ZIP/EXE/PCK hashes and PCK integrity verification succeeded. GitHub Actions Windows runner run `33161335690` then completed exact Candidate 003 `-NoLaunch` verification with `SX60-POC-ACCEPT-003 PACKAGE VERIFICATION: PASS (NoLaunch)`. This resolves the machine gate without creating any physical, audio, Android, or human evidence.
 
 ## Lesson / Base promotion
 

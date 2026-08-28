@@ -37,6 +37,6 @@ The artifact API digest and independently downloaded ZIP SHA-256 match. The down
 
 Candidate 001 remains immutable historical package evidence for pre-route-readability bytes. Candidate 002 remains immutable prior-byte evidence and is superseded by the SX-DEC-062 player-facing runtime-composition change. Candidate 003 is the sole explicit current post-060 package route and is an exact descendant of the required product source.
 
-The following remain `NOT_RUN`: NoLaunch launcher verification; developer self-run; full Windows physical/input scenarios; audio perceptual QA; Android device; five-person comprehension; player experience; production cutover. Package proof does not promote any of them.
+NoLaunch package verification passed on 2026-08-28 in GitHub Actions Windows runner run `33161335690`; the exact Candidate 003 package was downloaded, its identity checked, and not launched. The following remain `NOT_RUN`: developer self-run; full Windows physical/input scenarios; audio perceptual QA; Android device; five-person comprehension; player experience; production cutover. NoLaunch proof does not promote any of them.
 
 PR #174 remains `READ_ONLY`. No bitmap assets were created.

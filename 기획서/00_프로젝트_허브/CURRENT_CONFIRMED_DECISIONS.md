@@ -264,7 +264,7 @@ PR #158 implementation → PR #166 playable POC → PR #171 visual correction �
 current:
 SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237
 → SX60-POC-ACCEPT-003 exact package verified
-→ NoLaunch verification, then Windows physical smoke + audio perceptual QA
+→ NoLaunch verification PASS, then Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person first-contact comprehension
 → EXPAND / REWORK / REPEAT_SLICE / HOLD / STOP

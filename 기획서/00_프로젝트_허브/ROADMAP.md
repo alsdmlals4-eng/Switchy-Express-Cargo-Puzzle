@@ -186,7 +186,7 @@ Stable sequence:
 
 ```text
 SX60-POC-ACCEPT-003 exact package verified
-→ NoLaunch verification, then physical/device/human gates
+→ NoLaunch verification PASS, then physical/device/human gates
 ```
 
 ```yaml

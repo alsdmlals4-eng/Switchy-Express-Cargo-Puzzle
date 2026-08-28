@@ -286,7 +286,7 @@ Blocked until S60-1~10 are complete.
 
 ```text
 SX60-POC-ACCEPT-003 exact package verified (source main 8bce715b5045afebfb04d38108d2e3f7353e1b10)
-→ NoLaunch verification → Windows full physical smoke
+→ NoLaunch verification PASS → Windows full physical smoke
 → audio perceptual QA
 → exact post-060 Android APK identity assignment + Android device smoke
 → Five-person first-contact comprehension

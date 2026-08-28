@@ -41,11 +41,13 @@
   "tooling_only_non_invalidating_prs": [
     "PR #201"
   ],
+  "completed_machine_gates": [
+    "NoLaunch package verification PASS · 2026-08-28 · GitHub Actions Windows runner run 33161335690"
+  ],
   "mint_after": [
-    "NoLaunch package verification on the explicit candidate",
     "Windows physical smoke and audio perceptual QA",
     "Android device smoke and five-person first-contact comprehension"
   ],
-  "current_next_action": "RUN_NO_LAUNCH_PACKAGE_VERIFICATION_AND_USER_WINDOWS_PHYSICAL_SMOKE_ON_SX60_POC_ACCEPT_003_BEFORE_DEVICE_OR_HUMAN_COMPREHENSION_TESTS",
+  "current_next_action": "RUN_USER_WINDOWS_PHYSICAL_SMOKE_AND_AUDIO_PERCEPTUAL_QA_ON_SX60_POC_ACCEPT_003_BEFORE_DEVICE_OR_HUMAN_COMPREHENSION_TESTS",
   "updated_date_kst": "2026-08-28"
 }

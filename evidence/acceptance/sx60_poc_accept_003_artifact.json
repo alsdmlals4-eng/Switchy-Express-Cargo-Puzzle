@@ -42,7 +42,7 @@
     "android_validation_runtime_json": "PASS · parsed_json=27",
     "package_integrity": "PASS",
     "launcher_contract_check": "PASS · 2026-08-28 · POST_SX_DEC_060_CANDIDATE_CONTRACT: SX60-POC-ACCEPT-003",
-    "launcher_no_launch_package_verification": "NOT_RUN",
+    "launcher_no_launch_package_verification": "PASS · 2026-08-28 · GitHub Actions Windows runner run 33161335690 · SX60-POC-ACCEPT-003 PACKAGE VERIFICATION: PASS (NoLaunch)",
     "windows_physical_startup_and_build_entry_automation_observed": "NOT_RUN",
     "developer_self_run": "NOT_RUN",
     "windows_physical_runtime_full_scenarios": "NOT_RUN",

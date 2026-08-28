@@ -208,7 +208,7 @@ Candidate 002의 Windows startup PASS는 역사적 physical evidence지만 P1 vi
 현재 post-060 implementation route:
 
 ```text
-run NoLaunch verification, then the exact post-060 candidate physical self-run after package proof
+NoLaunch verification PASS on SX60-POC-ACCEPT-003, then the exact post-060 candidate physical self-run after package proof
 → Windows physical smoke and audio perceptual QA
 → Android device smoke as a separate platform gate
 → Five-person first-contact comprehension on that post-060 build

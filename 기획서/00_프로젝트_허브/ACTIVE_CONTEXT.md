@@ -36,7 +36,7 @@ candidate_003_preparation_main: 2521f3be600ea950f9893ce45940604c2d0ac88a
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
 candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_8bce715b5045afebfb04d38108d2e3f7353e1b10 · PACKAGE_ONLY
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · NO_LAUNCH_PACKAGE_VERIFIED · SOURCE_MAIN_8bce715b5045afebfb04d38108d2e3f7353e1b10 · PACKAGE_ONLY
 sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 pre_sx_dec_060_candidate_package_integrity: PASS
 pre_sx_dec_060_candidate_pck_integrity: PASS · 472_OF_472
@@ -69,7 +69,7 @@ sx_dec_062_runtime_status: IMPLEMENTED · RED_GREEN_PASS · LOCAL_GODOT_112_CASE
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
 notion_direction_current_page: 3c91b237-eb1c-8197-bf13-debb96d444c8 · CURRENT_CREATED_READBACK_PASS · 2026-08-28
-post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_8bce715 · PACKAGE_ONLY · WINDOWS_PHYSICAL_AUDIO_QA_NEXT
+post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · NO_LAUNCH_PACKAGE_VERIFIED · SOURCE_MAIN_8bce715 · WINDOWS_PHYSICAL_AUDIO_QA_NEXT
 current_main_live_machine_qa: docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md · MAIN_CF93926 · TITLE_BRIEFING_BUILD_FLOW_OBSERVED · HUMAN_DEVICE_AUDIO_NOT_RUN
 title_hero_runtime_asset: MERGED_MAIN_VERIFIED · PR_217 · main_e0044d6c7427a7c199da6bcdcf792e41e2e2f152 · ISSUE_216 · RUNTIME_VERIFIED · DUAL_PRESERVATION_PASS
 title_hero_runtime_evidence: docs/operations/2026-08-27-title-hero-art-runtime-verification.md
@@ -283,7 +283,7 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 ```text
 SX-DEC-062 board-first runtime composition is merged and package-verified on exact main 8bce715
 → Candidate 002 is immutable prior-byte evidence; Candidate 003 is the sole current package candidate
-→ run NoLaunch package verification, then Windows physical smoke and audio-perceptual QA before any Phase 5 human evidence claim
+→ NoLaunch package verification PASS; run Windows physical smoke and audio-perceptual QA before any Phase 5 human evidence claim
 → use the full T1 → T6 → VS_DEMO_01 → Result sequence for the next Phase 5 human-validation design
 → resolve the foreign-project Notion Direction page only after the user authorizes rehome or replacement
 → use Notion Direction `3c91b237-eb1c-8197-bf13-debb96d444c8` plus the repository owners as current Switchy Direction

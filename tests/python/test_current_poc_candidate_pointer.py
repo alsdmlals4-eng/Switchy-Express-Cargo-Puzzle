@@ -117,12 +117,15 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
         )
         self.assertEqual(pointer["tooling_only_non_invalidating_prs"], ["PR #201"])
 
-    def test_post_060_pointer_routes_to_no_launch_then_physical_validation(self) -> None:
+    def test_post_060_pointer_records_no_launch_before_physical_validation(self) -> None:
         pointer = self._json(POST_060_POINTER)
+        self.assertEqual(
+            pointer["completed_machine_gates"],
+            ["NoLaunch package verification PASS · 2026-08-28 · GitHub Actions Windows runner run 33161335690"],
+        )
         self.assertEqual(
             pointer["mint_after"],
             [
-                "NoLaunch package verification on the explicit candidate",
                 "Windows physical smoke and audio perceptual QA",
                 "Android device smoke and five-person first-contact comprehension",
             ],

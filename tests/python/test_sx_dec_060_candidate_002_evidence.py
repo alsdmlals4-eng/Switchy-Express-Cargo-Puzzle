@@ -106,7 +106,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         text = ACTIVE_CONTEXT.read_text(encoding="utf-8")
 
         self.assertIn(
-            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_8bce715 · PACKAGE_ONLY · WINDOWS_PHYSICAL_AUDIO_QA_NEXT",
+            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · NO_LAUNCH_PACKAGE_VERIFIED · SOURCE_MAIN_8bce715 · WINDOWS_PHYSICAL_AUDIO_QA_NEXT",
             text,
         )
         self.assertNotIn("HUMAN_PHYSICAL_SELF_RUN_NEXT", text)

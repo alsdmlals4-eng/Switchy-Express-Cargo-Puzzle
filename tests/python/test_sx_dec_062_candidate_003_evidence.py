@@ -13,7 +13,7 @@ CURRENT_DECISIONS = ROOT / "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_D
 ACTIVE_CONTEXT = ROOT / "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md"
 
 
-class SXDec062Candidate001EvidenceTests(unittest.TestCase):
+class SXDec062Candidate003EvidenceTests(unittest.TestCase):
     def _json(self, path: Path) -> dict:
         self.assertTrue(path.is_file(), f"missing required evidence owner: {path}")
         return json.loads(path.read_text(encoding="utf-8"))
@@ -71,7 +71,11 @@ class SXDec062Candidate001EvidenceTests(unittest.TestCase):
             artifact["verification"]["launcher_contract_check"],
             "PASS · 2026-08-28 · POST_SX_DEC_060_CANDIDATE_CONTRACT: SX60-POC-ACCEPT-003",
         )
-        self.assertEqual(artifact["verification"]["launcher_no_launch_package_verification"], "NOT_RUN")
+        self.assertEqual(
+            artifact["verification"]["launcher_no_launch_package_verification"],
+            "PASS · 2026-08-28 · GitHub Actions Windows runner run 33161335690 · "
+            "SX60-POC-ACCEPT-003 PACKAGE VERIFICATION: PASS (NoLaunch)",
+        )
         for key in (
             "windows_physical_runtime_full_scenarios",
             "audio_perceptual_qa",
