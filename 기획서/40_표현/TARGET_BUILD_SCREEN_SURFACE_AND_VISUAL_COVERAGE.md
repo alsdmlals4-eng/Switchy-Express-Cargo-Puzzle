@@ -137,6 +137,25 @@ No new `RASTER_IMAGE`, `SPRITE_SHEET`, or screen reference is authorized by this
 | SX-VIS-Q-004 | release system screens / store assets | no current runtime or product-distribution consumer/decision | DEFERRED_BY_DECISION · DO_NOT_GENERATE |
 | SX-VIS-Q-005 | optional title-shell composition expansion | current title is a valid, non-clipped runtime surface; a larger landscape identity treatment is a P2 polish choice, not a missing P0/P1 image slot | DEFERRED_BY_DECISION · DO_NOT_GENERATE |
 
+## SX-DEC-062 coverage addendum
+
+`SX-DEC-062` authorizes a single existing-consumer composition refinement, tracked by GitHub Issue #235. It does not change this inventory’s `P0 GAP_BLOCKING = 0` result or create a bitmap queue item.
+
+```yaml
+allowed_runtime_consumers:
+  - DemoPalette / DemoThemeFactory
+  - ProductHUD and existing shell panels
+  - ProductBoardRenderer draw ordering
+protected_runtime_consumers:
+  - ProductShellArt title / lesson / result exact paths
+  - SemanticAssetCatalog and existing 73 product PNGs
+  - FirstSession StagePolicy and current finite domain
+new_image_file: 0
+human_evidence: NOT_RUN
+```
+
+Issue #227 is a separate T2-consumer replacement proposal and is `DEFERRED_OUT_OF_SX_DEC_062_SCOPE`; it is neither closed nor absorbed.
+
 ## 6. Codex handoff boundary
 
 ```yaml

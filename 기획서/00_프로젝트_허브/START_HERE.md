@@ -9,13 +9,14 @@ Last updated: `2026-08-26 KST`
 | 항목 | 현재 값 |
 |---|---|
 | 제품 기준선 | `GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060` |
-| 결정 범위 | `SX-DEC-027~061` |
+| 결정 범위 | `SX-DEC-027~062` |
 | 작업지시문 | `v4.8 · revision 2026-08-26-r5.4-superset-final · Switchy thin adapter` |
 | 작업지시문 역할 | `USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT` |
 | current project adapter | `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md` |
 | historical v4.8 r4 predecessor | `2026-08-24-r4 · PROVENANCE_ONLY` |
 | SX-DEC-059 implementation | `MERGED_MAIN_VERIFIED · PRE_SX_DEC_060_RUNTIME` |
 | SX-DEC-060 | `MERGED_MAIN_VERIFIED · PR #188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7` |
+| SX-DEC-062 | `APPROVED · Board-first existing-asset runtime composition contract · implementation not started` |
 | station service | `UP/RIGHT/DOWN/LEFT exactly 1 tile · diagonal excluded` |
 | network preflight | `START_REACHABLE_RUN_COMPONENT · irrelevant disconnected rail island allowed` |
 | map schema target | `FiniteMapDefinition v3` |
@@ -131,6 +132,17 @@ docs/superpowers/plans/2026-08-26-cardinal-station-service-and-reachable-network
 
 Actual GDScript/Scene/Resource/map/runtime implementation is owned by `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF` under the active r5.4 contract.
 
+## SX-DEC-062 implementation contract
+
+```text
+docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md
+docs/superpowers/specs/2026-08-28-board-first-runtime-composition-design.md
+docs/superpowers/plans/2026-08-28-board-first-runtime-composition.md
+기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md
+```
+
+The user approved a board-first composition adjustment that preserves the existing E+D visual assets and their consumers. It does not authorize a bitmap batch, Issue #227’s separate T2 replacement, gameplay/data/audio change, or human-evidence promotion. Any runtime change requires a new exact package candidate before Phase 5 physical/human evidence is interpreted.
+
 ## Mandatory read order
 
 1. fresh Base completed `main` + Base `AGENTS.md`.
@@ -150,7 +162,10 @@ Historical v4.7/r2/r4 adapter/reconciliation materials (including v4.8 `2026-08-
 ## Current next action
 
 ```text
-Phase 5 user-validation start authorized · 2026-08-28 KST
+SX-DEC-062 documentation/contract merge and Switchy Notion readback
+→ one CodeX board-first runtime composition implementation from exact main
+→ new exact candidate if packaging succeeds
+→ Phase 5 user-validation continuation
 → current Playtest authority corrects old 055/059/validation-APK status to historical
 SX60-POC-ACCEPT-002 isolated title → briefing → build visual/input observation complete
 → Windows physical smoke + audio perceptual QA

@@ -5,10 +5,12 @@
 **Goal:** Validate whether the approved first-session promise is understandable and playable on the current post-SX-DEC-060 product, without changing gameplay, assets, Scenes, Resources, or production scope.
 
 **Issue:** #233
-**Current authority:** `GMB-002 · SX-DEC-027~061`, `SX-DEC-060`, `SX-DEC-061`, `기획서/50_제작_검증/PLAYTEST_PLAN.md`
+**Current authority:** `GMB-002 · SX-DEC-027~062`, `SX-DEC-060`, `SX-DEC-061`, `SX-DEC-062`, `기획서/50_제작_검증/PLAYTEST_PLAN.md`
 **Current candidate:** `SX60-POC-ACCEPT-002` from source `0e882764b837d13282a7642b115948d4e061d163`
 **Candidate pointer:** `evidence/acceptance/post_sx_dec_060_candidate.json`
 **Status at plan creation:** `USER_AUTHORIZED · WINDOWS_PHYSICAL_AUDIO_NOT_RUN · ANDROID_ARTIFACT_ID_UNASSIGNED · FIVE_PERSON_NOT_RUN`
+
+> **SX-DEC-062 boundary:** This remains the exact Candidate 002 observation protocol while its bytes are current. SX-DEC-062 itself has not changed runtime bytes. Once the approved board-first runtime-composition implementation changes bytes, do not use Candidate 002 for new observation: package a new exact candidate and carry this same evidence sequence forward without promoting any old physical/audio/human field.
 
 ## Player outcome under test
 

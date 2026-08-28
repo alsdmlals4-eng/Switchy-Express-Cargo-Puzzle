@@ -1,6 +1,6 @@
 # Development Gates
 
-Last updated: `2026-08-26 KST`
+Last updated: `2026-08-28 KST`
 
 현재 실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 우선한다. 과거 commit/PR/run은 역사 evidence이며 current next action을 자동 정의하지 않는다.
 
@@ -12,8 +12,8 @@ work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~061
-current_product_gate: SX_DEC_060_POST_MERGE_PACKAGE_PROOF_AND_CANDIDATE
+current_decisions: SX-DEC-027~062
+current_product_gate: SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION_CONTRACT
 ```
 
 ## 1. Stable historical implementation evidence
@@ -29,6 +29,23 @@ Candidate 003 preparation: PR #172 MERGED_MAIN_VERIFIED
 ```
 
 These remain valid for their exact historical bytes and bounded claims. They do not prove SX-DEC-060 runtime behavior.
+
+## 1A. SX-DEC-062 composition-contract gate
+
+`PASS · USER_APPROVED_SCOPE · DOCUMENTATION_AND_HANDOFF_READY · RUNTIME_UNCHANGED`
+
+Binding owners:
+
+```text
+docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md
+docs/superpowers/specs/2026-08-28-board-first-runtime-composition-design.md
+docs/superpowers/plans/2026-08-28-board-first-runtime-composition.md
+기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md
+```
+
+This one presentation slice may modify only the named palette/theme/HUD/shell/board-renderer owners and tests. It preserves all existing raster paths and consumers, including T2 v02. Issue #227, finite data/rules, first-session content, audio, score/economy/progression, Base, and PR #174 are out of scope.
+
+Before physical/human gates resume, the implementation must demonstrate RED→GREEN tests, exact-head static/Godot checks, no-new-asset/no-gameplay-delta review, and a new exact package candidate if packaging is available. `SX60-POC-ACCEPT-002` cannot validate changed bytes.
 
 Stable physical/human anchors remain:
 

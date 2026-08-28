@@ -142,7 +142,7 @@ switch auto-reset
 ## 5. 현재 Decision / 기획 상태
 
 ```yaml
-current_decision_span: SX-DEC-027~061
+current_decision_span: SX-DEC-027~062
 sx_dec_055_runtime_semantic: MERGED_MAIN_VERIFIED · PR_151
 sx_dec_056a: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
@@ -160,6 +160,7 @@ sx_dec_060_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
 sx_dec_060_notion_readback: PASS
 sx_dec_060_post_change_candidate: NOT_CREATED
 sx_dec_061: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
+sx_dec_062: APPROVED · BOARD_FIRST_EXISTING_ASSET_RUNTIME_COMPOSITION · IMPLEMENTATION_CONTRACT_READY · RUNTIME_UNCHANGED
 ```
 
 Current first-session shape remains:
@@ -307,7 +308,9 @@ Automated/export/package/self-run does not imply HUMAN/PLAYER EXPERIENCE PASS. P
 Current next gate:
 
 ```text
-new exact post-060 package candidate
+SX-DEC-062 GitHub/Notion contract sync
+→ CodeX board-first runtime-composition implementation
+→ new exact post-062 package candidate
 → physical/device/human gates
 ```
 
@@ -333,6 +336,10 @@ Physical Windows/Android and human comprehension remain separate gates.
 - `docs/superpowers/specs/2026-08-26-cardinal-station-service-and-reachable-network-design.md`
 - `docs/superpowers/plans/2026-08-26-cardinal-station-service-and-reachable-network.md`
 - `기획서/50_제작_검증/SX_DEC_060_CODEX_HANDOFF_PACKAGE.md`
+- `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`
+- `docs/superpowers/specs/2026-08-28-board-first-runtime-composition-design.md`
+- `docs/superpowers/plans/2026-08-28-board-first-runtime-composition.md`
+- `기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`
 - current first-session content/UI/localization owners
 - current platform/release/asset-rights owners
 

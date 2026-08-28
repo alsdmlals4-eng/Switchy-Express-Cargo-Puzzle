@@ -15,6 +15,8 @@
 | finite 선로·화물·LIFO·시간 시스템은 무엇인가 | `../../20_시스템_콘텐츠/CORE_SYSTEMS.md` |
 | 화면과 그림체는 무엇인가 | `../../40_표현/VISUAL_DIRECTION.md` |
 | 현재 core loop의 화면·장면과 planning-only visual board는 무엇을 의미하는가 | `../../40_표현/PROJECT_CORE_SCENE_VISUAL_BOARD.md` |
+| approved Board-first runtime composition은 무엇이며 무엇을 바꾸지 않는가 | `../../../docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md` |
+| SX-DEC-062를 구현할 exact CodeX contract는 무엇인가 | `../../../docs/superpowers/plans/2026-08-28-board-first-runtime-composition.md`, `../../50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md` |
 | 현재 Slice의 모든 화면·오버레이와 시각 소비처 coverage는 무엇인가 | `../../40_표현/TARGET_BUILD_SCREEN_SURFACE_AND_VISUAL_COVERAGE.md` |
 | 첫 세션 화면·문구·progressive disclosure가 어떤 runtime 의미를 가리키는가 | `../../30_UI_UX/FIRST_SESSION_SCREEN_CONTENT_DATA_CONTRACT.md` |
 | Vertical Slice 범위와 cutover 경계는 무엇인가 | `../../50_제작_검증/VERTICAL_SLICE_CONTRACT.md` |

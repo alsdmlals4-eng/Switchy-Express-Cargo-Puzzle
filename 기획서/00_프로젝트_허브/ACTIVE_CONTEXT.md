@@ -13,7 +13,7 @@ project_live_main_policy: REFRESH_FROM_GITHUB_BEFORE_EXECUTION
 engine: Godot 4.7.1-stable
 language: GDScript
 product_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~061
+current_decisions: SX-DEC-027~062
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
@@ -59,6 +59,13 @@ sx_dec_061_scene_board_owner: 기획서/40_표현/PROJECT_CORE_SCENE_VISUAL_BOAR
 sx_dec_061_phase5_validation_unit: T1_TO_T6_TO_VS_DEMO_01_TO_RESULT
 sx_dec_061_merge: MERGED_MAIN_VERIFIED · PR_229 · main_a8ea00bc70612c4556fc4460dbc819cef249864d
 sx_dec_061_notion_home_visual_readback: PASS · 2026-08-28
+sx_dec_062_runtime_composition: APPROVED · EXISTING_ASSET_BOARD_FIRST_SCOPE · RUNTIME_UNCHANGED
+sx_dec_062_decision_owner: docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md
+sx_dec_062_design_spec: docs/superpowers/specs/2026-08-28-board-first-runtime-composition-design.md
+sx_dec_062_implementation_plan: docs/superpowers/plans/2026-08-28-board-first-runtime-composition.md
+sx_dec_062_codex_handoff: 기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md
+sx_dec_062_tracking_issue: GitHub_Issue_235
+sx_dec_062_runtime_status: IMPLEMENTATION_NOT_STARTED
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
 notion_direction_current_page: 3c91b237-eb1c-8197-bf13-debb96d444c8 · CURRENT_CREATED_READBACK_PASS · 2026-08-28
@@ -274,7 +281,9 @@ The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HAND
 ## Current next action
 
 ```text
-SX-DEC-061 planning direction is recorded; it has not changed runtime bytes
+SX-DEC-061 visual direction and SX-DEC-062 board-first implementation contract are recorded; runtime bytes remain unchanged
+→ merge/readback the SX-DEC-062 canon package
+→ run the single CodeX Godot implementation contract before spending Phase 5 human evidence on new visual bytes
 → use the full T1 → T6 → VS_DEMO_01 → Result sequence for the next Phase 5 human-validation design
 → resolve the foreign-project Notion Direction page only after the user authorizes rehome or replacement
 → use Notion Direction `3c91b237-eb1c-8197-bf13-debb96d444c8` plus the repository owners as current Switchy Direction
