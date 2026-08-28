@@ -111,30 +111,20 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         )
         self.assertNotIn("HUMAN_PHYSICAL_SELF_RUN_NEXT", text)
 
-    def test_user_approval_manifest_retains_candidate_002_records_and_current_decision(self) -> None:
+    def test_user_approval_manifest_scopes_current_paths_without_erasing_candidate_history(self) -> None:
         approval = self._json(PROTECTED_APPROVAL)
         self.assertIn("SX-DEC-060", approval["decision_ids"])
         self.assertIn("SX-DEC-062", approval["decision_ids"])
-        self.assertIn(
+        candidate_history = (
             "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_02.md",
-            approval["approved_paths"],
-        )
-        self.assertIn(
             "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_02.md",
-            approval["approved_paths"],
-        )
-        self.assertIn(
             "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_03.md",
-            approval["approved_paths"],
-        )
-        self.assertIn(
             "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_03.md",
-            approval["approved_paths"],
-        )
-        self.assertIn(
             "기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md",
-            approval["approved_paths"],
         )
+        for relative_path in candidate_history:
+            self.assertTrue((ROOT / relative_path).is_file(), relative_path)
+            self.assertNotIn(relative_path, approval["approved_paths"])
 
     def test_five_phase_receipt_preserves_historical_block_while_active_context_tracks_user_authorization(self) -> None:
         receipt = FIVE_PHASE_RECEIPT.read_text(encoding="utf-8")
