@@ -1,6 +1,6 @@
 # PROJECT_CORE_SCENE_VISUAL_BOARD
 
-Status: `CURRENT_PLANNING_OWNER · SX-DEC-061/063 · SYSTEM_EXPLANATION_CORRECTED · GENERATED_EXPLORATION_PENDING_USER_FINAL_DISPOSITION · NOT_RUNTIME_PROOF · SX-DEC-063_TERRAIN_V02_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED`
+Status: `CURRENT_PLANNING_OWNER · SX-DEC-061/063/064 · SYSTEM_EXPLANATION_CORRECTED · USER_APPROVED_GITHUB_PRESERVED_PLANNING_REFERENCE · NOT_RUNTIME_PROOF · SX-DEC-063_TERRAIN_V02_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED`
 
 This document owns the exact meaning of the planning board. The board image is only an AI-understanding and visual-direction review aid: no panel is a finished runtime asset, Godot screen, Scene, UI implementation, or Human/Player Experience PASS.
 
@@ -12,14 +12,14 @@ artifact_revision: B
 visual_direction: BOARD_FIRST_COZY_NEO_ARCADE
 generated_image_sha256: 6577d7ac5e490b1303af0105ef0573cf5b4be10a52cbdd4ccecb24ec116993bc
 generated_image_dimensions: 1672x941 PNG
-artifact_status: GENERATED_EXPLORATION_PENDING_USER_FINAL_DISPOSITION
+artifact_status: USER_APPROVED_GITHUB_PRESERVED_PLANNING_REFERENCE · NOT_RUNTIME_PROOF
 runtime_consumer: NOT_APPLICABLE
-tracked_project_copy: NOT_CREATED
-external_binary_attachment: CODEX_SESSION_PREVIEW_ONLY · GITHUB_ONLY_WORKSPACE
+tracked_project_copy: docs/visual-references/sx-vis-061-core-systems-board-exploration-002b.png
+external_binary_attachment: SOURCE_READBACK_2026-08-29 · SHA256_AND_DIMENSIONS_MATCH
 previous_explorations:
   - SX-VIS-061-CORE-SCENE-BOARD-EXPLORATION-001 · historical first-flow board
   - SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002A · rejected after visual review because its switch picture exposed three exits
-why: the user authorized generation before final disposition; this candidate remains a planning preview, not a durable project asset or runtime input
+why: the user approved the reviewed board as a durable GitHub planning reference; it remains neither a runtime asset nor runtime input
 exact_semantic_owner: this Markdown document and SX-DEC-061
 ```
 
@@ -56,20 +56,20 @@ The structured rules remain owned by `FINITE_DELIVERY_PUZZLE_BASELINE.md`, `CORE
 - Cargo load is **exact-cell contact**; station delivery is **cardinal-adjacent service**. They must never share the same visual language.
 - The station is **off track**. Rail through its footprint, diagonal service, arbitrary radius, and a station-centered stop are all non-canonical.
 - `TOP` is an order label. It must not be represented by horizontal train length, capacity bars, or a full-wagon warning.
-- A switch's bright selected branch, dim alternate branch, and occupied lock are three different states. It has no auto-reset after passage.
+- A switch's active-route rail glow, dim alternate **control target**, and occupied lock are three different states. Only the rail the train will traverse under current selections glows; it has no auto-reset after passage.
 - Preflight proves only structural start-reachable coverage/safety. It must not visually claim an optimal route, correct load timing, or a solved puzzle.
 - The planning image may show labelled numeric callouts only. Exact text and state names stay in the structured GitHub owners above.
 
 ## Regenerated system-first board brief
 
-`SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002B` is the current generated candidate. It is a **six-panel explanatory storyboard**, not six runtime assets. All panels retain the same rectangular board camera, toy-scale warm miniature materials, navy/charcoal control deck, and colour + shape redundancy. The first generated pass (`002A`) was rejected before this record because a switch appeared to expose three exits; the current candidate shows one incoming rail and exactly two selectable exits, with occupied lock as an overlay rather than a third route.
+`SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002B` is the user-approved GitHub-preserved **six-panel explanatory storyboard**, not six runtime assets. All panels retain the same rectangular board camera, toy-scale warm miniature materials, navy/charcoal control deck, and colour + shape redundancy. The first generated pass (`002A`) was rejected before this record because a switch appeared to expose three exits; the current candidate shows one incoming rail and exactly two selectable exits, with occupied lock as an overlay rather than a third route. Its planning meaning is approved; its image still is not runtime, UI, Scene, or Human/Player Experience proof.
 
 | Panel / scene_or_screen_id | Required picture | System connection it must reveal | Must not imply |
 |---|---|---|---|
 | A · `BUILD_PREFLIGHT_ROUTE` | A buildable rectangular grid with a straight/curve/switch/crossing tool strip, one lime placement ghost, one crimson forbidden station footprint, and a compact preflight problem marker. | Rail geometry creates cargo encounter and station-service reachability before RUN. | A solved route, global-all-rail requirement, rail on a station, score/currency. |
 | B · `CARGO_EXACT_CELL_STATION_CARDINAL` | One cargo on its own rail cell, one off-track station, four subtle cardinal service-cell cues, and a diagonal crossed out by shape/outline rather than text alone. | Exact pickup and adjacent delivery are deliberately different contacts. | Diagonal/footprint delivery or station-centred rail. |
 | C · `LOAD_ORDER_LIFO_MANUAL_AUTO` | A short locomotive with compact cargo token, a vertical Stack HUD marked `TOP`, a deliberately skipped cargo still on the map, and a bounded Auto state cue. | Encounter order plus Manual/Auto choice produces the future top group. | Long cargo train, capacity limit, automatic best choice, reflex-only loading. |
-| D · `LIVE_SWITCH_COMMITMENT` | The same board scale with a train approaching a switch with exactly one incoming approach and two exits: one bright selected branch, one visibly dim alternate branch, then a separate occupied-lock state. | A preselected persistent branch executes a planned route; timing matters only at occupation. | Auto-reset, hidden route choice, a new switch type, crossing turn behaviour. |
+| D · `LIVE_SWITCH_COMMITMENT` | The same board scale with a train approaching a switch with exactly one incoming approach and two exits: only the current deterministic path is bright, the alternate is a dim control target without rail glow, then a separate occupied-lock state. | A preselected persistent branch executes a planned route; timing matters only at occupation. | Auto-reset, hidden route choice, a new switch type, crossing turn behaviour, alternate-rail lighting. |
 | E · `CAPSTONE_CHAIN` | One readable finite route linking the build decision, cargo order, cardinal station pass, and switch choice in a single compact run. | The systems form one puzzle rather than independent minigames. | Additional progression, economy, combat, characters, or unimplemented UI. |
 | F · `RESULT_RETRY_OR_EDIT` | A concise factual success/failure debrief with remaining cargo/stack icons and two clearly different recovery paths. | Result feeds a same-layout rehearsal or a build redesign. | Score/combo reward, coins, saving, ranking, fake analytics, or Human/Player Experience PASS. |
 
@@ -83,7 +83,7 @@ The structured rules remain owned by `FINITE_DELIVERY_PUZZLE_BASELINE.md`, `CORE
 | 4 · `T3_LIFO_TOP_REVERSE_PLAN` | Existing T3 stage / Stack HUD / semantic cargo assets | Plan load order backward from the station’s needed TOP group. | Compact stack, TOP, next group, cargo color + shape; no long train representation. | TOP is visible before arrival; correct contiguous matching group unload rewards the plan. | LIFO is implemented; final compact-token/HUD geometry is a Phase 2 UI task. |
 | 5 · `T4_SELECTIVE_NONLOAD_REVISIT` | Existing T4 stage / finite delivery loop | Leave a tempting cargo unloaded and revisit it later. | Current stack order, later cargo value, route revisit possibility. | Untouched cargo remains visible; route and stack make the later correction leg readable. | No new route-visual system is authorized by this board. |
 | 6 · `T5_AUTO_SAFE_OFF_DECISION` | Existing T5 stage / manual load + auto-load toggle | Use Auto only on the safe segment and turn it off when auto-loading would damage the plan. | Exact cargo contact, current auto state, next TOP consequence. | Persistent non-colour mode state plus normal cargo feedback; moves to live switch execution. | Existing manual/auto system only; no new controls or automated policies implied. |
-| 7 · `T6_DIRECT_SWITCH_EXECUTION` | Existing T6 stage / RouteControlOverlay | Directly choose a junction route while the train moves. | Active direction, alternate branch, route preview, occupied lock. | Bright selected route; occupied branch lock; state persists after pass. | Existing direct switch control with occupied lock remains authoritative. |
+| 7 · `T6_DIRECT_SWITCH_EXECUTION` | Existing T6 stage / RouteControlOverlay + ProductBoardRenderer | Directly choose a junction route while the train moves. | Actual current direction, dim alternate control target, selected forward route, occupied lock. | Only the train's current selected forward rail route is bright; lock is overlaid; terminal result does not predict another route. | Existing direct switch control with occupied lock remains authoritative; no solver is introduced. |
 | 8 · `VS_DEMO_01_CAPSTONE_RESULT` | Existing capstone and ResultOverlay / result art | Execute the whole plan, then learn from success or `ROUTE_END`/time failure. | Delivered/remaining map cargo, stack size, one factual failure cause, Retry same layout versus Edit. | Concise causal debrief drives a retrial or redesign. | Runtime result truth only; no fake score, economy, progress, or hidden trace. |
 
 ## Visual grammar across the board

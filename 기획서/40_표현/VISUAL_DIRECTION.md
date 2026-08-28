@@ -1,6 +1,6 @@
 # Visual Direction
 
-상태: `CURRENT_CANON · GMB-002 · SX-DEC-061/062 · SX-DEC-063_TERRAIN_V02_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED`
+상태: `CURRENT_CANON · GMB-002 · SX-DEC-061/062/063/064 · SX-DEC-063_TERRAIN_V02_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED · SX-DEC-064_BRANCH_LOCAL_RUNTIME_DELTA_PR_PENDING`
 
 ## SX-DEC-061 active visual lock · read this first
 
@@ -54,6 +54,10 @@ rectangular BUILD/RUN input stays authoritative
 - **Production status:** `SX-VIS-063-CANDIDATE-001` terrain v02 is user-approved and GitHub-preserved at `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png`; its runtime state is explicitly `NOT_CONNECTED`. No other SX-DEC-063 image is approved, and no SX-DEC-063 image has been verified in Godot.
 
 The authoritative scope, exact consumer slots, first-image brief, candidate lifecycle, rights/provenance requirements, and rollback are in docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md.
+
+## SX-DEC-064 active-route lighting refinement
+
+`ProductBoardRenderer` uses the visual lock's lime state only for the rails the moving train will actually traverse under the current direct-control setting. The glow begins from `train_cell + train_previous_cell` (or authored start/incoming only before a train exists), carries a direction cue, and never becomes a suggested solution. Alternate exits remain dim `RouteControlOverlay` controls, not blue-lit rails; occupied lock is a separate crimson overlay; terminal result phases show no forward route prediction. This is a procedural runtime delta with no new image, and requires an actual Switchy same-state visual composite before physical/human readability is claimed.
 
 ## SX-DEC-062 active implementation-composition boundary
 

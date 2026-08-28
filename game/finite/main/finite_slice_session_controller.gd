@@ -451,6 +451,8 @@ func _build_render_snapshot(current_model: Dictionary) -> Dictionary:
 		var train: Variant = _run_session.train
 		if train != null and train.has_method("current_cell"):
 			snapshot["train_cell"] = train.current_cell()
+		if train != null and train.has_method("previous_cell"):
+			snapshot["train_previous_cell"] = train.previous_cell()
 		if train != null and train.has_method("next_cell"):
 			snapshot["train_next_cell"] = train.next_cell()
 	return snapshot
@@ -541,6 +543,7 @@ static func _empty_render_snapshot() -> Dictionary:
 		"problem_cells": [],
 		"phase": &"BUILD",
 		"train_cell": NO_CELL,
+		"train_previous_cell": NO_CELL,
 		"train_next_cell": NO_CELL,
 		"switch_cells": [],
 		"crossing_cells": [],

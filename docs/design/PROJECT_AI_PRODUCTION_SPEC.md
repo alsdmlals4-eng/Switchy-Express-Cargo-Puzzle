@@ -29,7 +29,7 @@ BUILD a reachable rail route
 | Rule | Current contract |
 |---|---|
 | Product baseline | `GMB-002`, amended by `SX-DEC-060` |
-| Active visual planning | `SX-DEC-061`, `SX-DEC-062`, `SX-DEC-063` |
+| Active visual planning | `SX-DEC-061`, `SX-DEC-062`, `SX-DEC-063`, `SX-DEC-064` |
 | Engine/language | Godot `4.7`, GDScript |
 | Current runtime composition | `SX-DEC-062` merged main by PR #237; existing-asset composition only |
 | New visual bytes | `SX-DEC-063` user-promoted terrain v02 is Git-tracked with a local manifest and Godot import descriptor; no current runtime/Scene/Resource connection |
@@ -202,7 +202,7 @@ flowchart LR
 
 ### SYS-006 — Direct route control
 
-**Why:** Build-time planning remains active while a train is moving. **Input:** player selects a legal direct switch/crossing route before occupancy. **Rule:** selected direction persists; a train occupying the control makes it locked; no auto-reset, hidden timer or reflex gate. **Visible states:** selected lime + direction; alternative blue + lower emphasis; lock crimson + prohibition/disabled state.
+**Why:** Build-time planning remains active while a train is moving, and the player must immediately see where the train will go under the current setting. **Input:** player selects a legal direct switch/crossing route before occupancy. **Rule:** selected direction persists; a train occupying the control makes it locked; no auto-reset, hidden timer or reflex gate. **Visible states:** only the train's current deterministic forward rail route is lime-lit with a direction cue; an alternate remains a dim direct-control target but has no rail light; lock is a separate crimson prohibition overlay on the selected rail; SUCCESS/FAILURE shows no predictive future-route light. The projection roots at actual `train_cell + train_previous_cell`, with authored start/incoming only before train state exists. It reads the current route-control selection and is not an optimal-route solver.
 
 **Owners:** `game/finite/rail/finite_track_graph.gd`, `game/demo/presentation/route_control_overlay.gd`, `ProductBoardRenderer` route visual descriptors. **Test surface:** `tests/finite/rail/test_interactive_route_controls.gd`, `tests/demo/test_route_control_runtime_ui.gd`, `tests/demo/test_product_board_route_clarity.gd`.
 

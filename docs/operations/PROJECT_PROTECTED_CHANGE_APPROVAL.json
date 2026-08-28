@@ -7,9 +7,11 @@
     "SX-DEC-060",
     "SX-DEC-062",
     "SX-DEC-063",
+    "SX-DEC-064",
     "USER-APPROVAL-2026-08-28-SX-VIS-063-TERRAIN-CANDIDATE-001-PROMOTION",
     "USER-OPERATING-2026-08-28-OFFICIAL_RESEARCH_FEASIBILITY_ADVERSARIAL_LOOP",
-    "USER-APPROVAL-2026-08-29-SX-VIS-061-CORE-SYSTEM-BOARD-CORRECTION"
+    "USER-APPROVAL-2026-08-29-SX-VIS-061-CORE-SYSTEM-BOARD-CORRECTION",
+    "USER-APPROVAL-2026-08-29-SX-DEC-064-ACTIVE-ROUTE-LIGHTING"
   ],
   "approved_paths": [
     "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
@@ -20,9 +22,21 @@
     "기획서/00_프로젝트_허브/START_HERE.md",
     "기획서/40_표현/PROJECT_CORE_SCENE_VISUAL_BOARD.md",
     "기획서/40_표현/VISUAL_DIRECTION.md",
-    "기획서/50_제작_검증/SX_DEC_063_TERRAIN_RUNTIME_INTEGRATION_HANDOFF.md"
+    "기획서/50_제작_검증/SX_DEC_063_TERRAIN_RUNTIME_INTEGRATION_HANDOFF.md",
+    "AGENTS.md",
+    "docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md",
+    "docs/decisions/SX_DEC_064_ACTIVE_ROUTE_LIGHTING.md",
+    "docs/design/PROJECT_AI_PRODUCTION_SPEC.md",
+    "docs/operations/2026-08-28-sx-core-system-visual-board-correction.md",
+    "docs/operations/2026-08-29-sx-dec-064-active-route-lighting.md",
+    "docs/operations/PROJECT_PROTECTED_CHANGE_APPROVAL.json",
+    "docs/visual-references/sx-vis-061-core-systems-board-exploration-002b.png",
+    "game/demo/presentation/product_board_renderer.gd",
+    "game/finite/main/finite_slice_session_controller.gd",
+    "tests/demo/test_product_board_route_clarity.gd",
+    "tests/finite/presentation/test_finite_slice_session_controller.gd"
   ],
-  "approval_source": "USER_EXPLICIT_SX-VIS-063-CANDIDATE-001_PROMOTION_AND_USER_OPERATING_LOOP_2026-08-28_PLUS_USER_EXPLICIT_SX-VIS-061_CORE_SYSTEM_BOARD_CORRECTION_2026-08-29",
+  "approval_source": "USER_EXPLICIT_SX-VIS-063-CANDIDATE-001_PROMOTION_AND_USER_OPERATING_LOOP_2026-08-28_PLUS_USER_EXPLICIT_SX-VIS-061_CORE_SYSTEM_BOARD_CORRECTION_AND_SX-DEC-064_ACTIVE_ROUTE_LIGHTING_2026-08-29",
   "approval_time": "2026-08-29T00:00:00+09:00",
-  "scope_summary": "The user explicitly promoted the reviewed SX-VIS-063 terrain candidate, required current official research/implementation-feasibility/adversarial review for meaningful work, and explicitly requested correction of the SX-VIS-061 planning board so rail installation, off-track station service, and direct switch commitment are causally legible. This approval records the candidate preservation, its runtime-not-connected boundary, current visual/project context, terrain-only Phase 2 Godot handoff, and the documentation-only SX-VIS-061 correction. It does not authorize a terrain runtime path change in this PR, a production asset family, gameplay/data/audio/locale/progression/Base changes, T2/Issue #227 work, PR #174 mutation, or human/player/release evidence promotion."
+  "scope_summary": "The user explicitly promoted the reviewed SX-VIS-063 terrain candidate, required current official research/implementation-feasibility/adversarial review for meaningful work, approved the SX-VIS-061 core-system board as a GitHub planning reference, and approved SX-DEC-064 active-route lighting. SX-DEC-064 adds only a procedural board projection rooted at actual train state: selected deterministic rails glow; alternate rails do not; lock is a separate overlay; terminal states do not predict future route. This approval records the project-local planning reference preservation and the presentation-only route-lighting implementation/test/documentation scope. It does not authorize terrain runtime integration, a production asset family, gameplay/data/audio/locale/progression/Base changes, T2/Issue #227 work, PR #174 mutation, a solver, or human/player/release evidence promotion."
 }

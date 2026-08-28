@@ -1,6 +1,6 @@
 # Current Confirmed Decisions
 
-Last updated: `2026-08-28 KST`
+Last updated: `2026-08-29 KST`
 
 이 문서는 Switchy Express의 **현재 승인 Decision과 실행 권위**를 압축한다. 상세 규칙·근거·역사 CI는 각 Decision/Audit owner가 책임진다. Google Sheets는 migration-only이며 active decision authority가 아니다.
 
@@ -10,7 +10,7 @@ Last updated: `2026-08-28 KST`
 
 ```yaml
 current_product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060
-current_decision_span: SX-DEC-027~063
+current_decision_span: SX-DEC-027~064
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
@@ -58,7 +58,8 @@ sx_dec_060_notion_sync: PASS · POST_PR_188_READBACK_COMPLETE
 sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION · PACKAGE_VERIFIED
 sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · PR_244 · main_38d4ac2aac8af35672d43e96f27b2f243aa10a4b · RUNTIME_NOT_CONNECTED
-sx_vis_061_core_systems_board: GENERATED_EXPLORATION_PENDING_USER_FINAL_DISPOSITION · ISSUE_246 · NO_RUNTIME_CONSUMER · NOT_RUNTIME_PROOF
+sx_vis_061_core_systems_board: USER_APPROVED_GITHUB_PRESERVED_PLANNING_REFERENCE · ISSUE_246 · docs/visual-references/sx-vis-061-core-systems-board-exploration-002b.png · NO_RUNTIME_CONSUMER · NOT_RUNTIME_PROOF
+sx_dec_064_active_route_lighting: USER_APPROVED · ISSUE_248 · IMPLEMENTED_BRANCH_LOCAL · AUTOMATED_112_CASES_13513_ASSERTIONS_PASS · PR_PENDING
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · PR_240 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
 developer_self_run: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_VISUAL_INPUT_OBSERVED_AUDIO_NOT_OBSERVED · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_003
 windows_physical_startup_and_build_entry_automation_observed: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_003
@@ -134,6 +135,7 @@ sx_dec_060_new_bitmap_assets_required: 0
 | **SX-DEC-061** | **Board-first Cozy Neo-Arcade visual refinement · APPROVED · documentation/plan board only; runtime unchanged** |
 | **SX-DEC-062** | **Board-first runtime composition · MERGED_MAIN_VERIFIED · PR #237 · exact Candidate 003 package verified · human gates remain open** |
 | **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · terrain v02 APPROVED_GITHUB_PRESERVED · Phase 2 runtime contract ready · runtime unchanged** |
+| **SX-DEC-064** | **Active-route lighting · USER_APPROVED · procedural presentation delta · branch-local automated verification complete · PR pending** |
 
 ## SX-DEC-059 retained first-session contract
 
@@ -161,7 +163,7 @@ cozy miniature railway world
 → the full T1 → T6 → VS_DEMO_01 → Result chain is the Phase 5 human-validation unit
 ```
 
-This changes neither GMB-002 gameplay, map data, Scene/Resource ownership, the existing 73 runtime PNG consumers, nor the post-SX-DEC-060 evidence ceiling. The generated board is `GENERATED_EXPLORATION · NOT_RUNTIME_PROOF`; Phase 2 runtime/UI/asset work requires a separate consumer-specific approval and implementation gate.
+This changes neither GMB-002 gameplay, map data, Scene/Resource ownership, the existing 73 runtime PNG consumers, nor the post-SX-DEC-060 evidence ceiling. `SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002B` is now a user-approved GitHub-preserved planning reference at `docs/visual-references/sx-vis-061-core-systems-board-exploration-002b.png`; it remains `NOT_RUNTIME_PROOF`, has no runtime consumer, and does not authorize a game asset or UI implementation.
 
 ## SX-DEC-062 confirmed runtime-composition contract
 
@@ -191,6 +193,21 @@ rectangular BUILD/RUN grid and exact input mapping stay
 ```
 
 `SX-VIS-063-CANDIDATE-001` is user-promoted at `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png` (SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`). It is `APPROVED_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED`, not a true isometric conversion, gameplay/data/audio/locale/progression change, runtime/package, Human/Player Experience, or release-rights promotion. The only authorized next product mutation is the separate Issue #243 runtime handoff. Notion is retired from this lifecycle by the 2026-08-28 user decision.
+
+## SX-DEC-064 active-route lighting
+
+Canonical owner: `docs/decisions/SX_DEC_064_ACTIVE_ROUTE_LIGHTING.md`. Tracking: GitHub Issue #248.
+
+```text
+actual train cell + actual approach cell
+→ read only the currently selected deterministic graph continuation
+→ lime route glow and direction cue on that route only
+→ preserve dim direct-control targets as non-rail-light interaction affordances
+→ show occupied lock as a separate crimson overlay
+→ stop predictive route glow at SUCCESS / FAILURE
+```
+
+This is a `ProductBoardRenderer` presentation projection and `FiniteSliceSessionController.render_snapshot` field addition. It changes no switch-selection, movement, map, station, cargo, LIFO, tutorial, result, asset, locale, audio, score, or solver rule. The renderer reads the actual current selection; it does not compute an optimal route or change a future branch. The branch-local RED→GREEN record and local Godot suite passed (112 cases / 13,513 assertions). Exact-head CI, merged-main, render composite, Windows/device, human, Player Experience, release, and production-cutover evidence remain unclaimed until separately run.
 
 ### Architecture / evidence boundaries
 
@@ -287,6 +304,7 @@ PR #158 implementation → PR #166 playable POC → PR #171 visual correction �
 
 current:
 SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063 user-approved visual-production direction
+→ SX-DEC-064 active-route lighting branch-local verified; PR/CI/merge pending
 → SX60-POC-ACCEPT-003 exact package verified
 → terrain v02 GitHub preservation on Issue #243; existing runtime stays v01
 → Phase 2 terrain-only runtime contract is ready; no runtime bytes are changed yet

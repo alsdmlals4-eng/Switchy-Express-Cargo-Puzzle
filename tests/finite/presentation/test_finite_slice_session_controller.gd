@@ -43,6 +43,12 @@ func run() -> void:
 	assert_true(controller.model()["start_enabled"], "alpha layout must pass preflight")
 	controller.request_command(&"START")
 	assert_equal(controller.phase(), &"RUNNING", "manual-load projection proof must enter RUNNING")
+	var running_snapshot: Dictionary = controller.render_snapshot()
+	assert_equal(
+		running_snapshot.get("train_previous_cell", Vector2i(-1, -1)),
+		Vector2i(0, 4),
+		"running snapshot must expose the train's actual approach cell for route-light prediction"
+	)
 	controller.request_command(&"LOAD_ACTIVE", true)
 	assert_true(
 		controller.active_run_session_for_test().input_state.is_manual_load_active(),
