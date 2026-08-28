@@ -33,7 +33,7 @@ class GoogleSheetRetirementTests(unittest.TestCase):
         self.assertNotIn("url", sheet)
 
         planning = adapter["shared_overrides"]["managing-project-intake-and-work-contract"]["planning_first_governance"]
-        self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
+        self.assertEqual("GITHUB_REPOSITORY_ONLY_PROJECT_WORKSPACE", planning["current_human_workspace"])
         self.assertEqual("GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME", planning["runtime_structured_authority"])
         self.assertNotIn("legacy_post_merge_sheet_state", planning)
         self.assertNotIn("legacy_pre_merge_sheet_state", planning)
@@ -44,7 +44,7 @@ class GoogleSheetRetirementTests(unittest.TestCase):
             text = path.read_text(encoding="utf-8")
             self.assertIn(expected, text, f"{path} does not retire Google Sheets from active work")
 
-    def test_v48_adapter_routes_only_notion_and_github_for_active_work(self) -> None:
+    def test_v48_adapter_routes_only_github_for_active_work(self) -> None:
         text = V48_ADAPTER.read_text(encoding="utf-8")
         self.assertIn("google_sheets_policy: RETIRED_NO_ACTIVE_USE", text)
         self.assertIn("GOOGLE_SHEETS: RETIRED_NO_ACTIVE_USE", text)

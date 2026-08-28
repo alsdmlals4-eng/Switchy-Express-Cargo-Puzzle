@@ -24,7 +24,7 @@ class BaseV942PlanningFirstAdoptionTests(unittest.TestCase):
         self.assertEqual("GRILL_ME_REQUIRED", planning["planning_conflict_state"])
         self.assertNotIn("legacy_pre_merge_sheet_state", planning)
         self.assertNotIn("legacy_post_merge_sheet_state", planning)
-        self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
+        self.assertEqual("GITHUB_REPOSITORY_ONLY_PROJECT_WORKSPACE", planning["current_human_workspace"])
         self.assertEqual("GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME", planning["runtime_structured_authority"])
         self.assertEqual("NOT_RUN", planning["actual_project_batch_execution"])
 

@@ -293,7 +293,7 @@ Do not commit invented candidate IDs, hashes, test counts, or human evidence.
 **Files:**
 
 - Modify only files required to fix a validated SX-DEC-062 finding.
-- Update current project-hub and Notion owners only after implementation PR merge and exact readback.
+- Update current project-hub and GitHub design/production owners only after implementation PR merge and exact readback. Historical Notion sources are audit-only.
 
 - [ ] **Step 1: Perform at least five full-scope adversarial loops**
 
@@ -317,13 +317,13 @@ Correct only validated in-scope `MUST_FIX` or approved `SHOULD_FIX` findings; re
 
 Create/update the implementation PR against latest `main`; verify exact head, required checks, unresolved review threads, and intended diff. Do not alter PR #174 or Issue #227. Squash merge only when repository rules permit it.
 
-- [ ] **Step 3: Post-merge canonical/Notion readback**
+- [ ] **Step 3: Post-merge canonical/GitHub-owner readback**
 
 Fetch new `main`; compare changed code/Scene/tests to SX-DEC-062. Update/read back only Switchy Direction, Visual/UX/Assets, Production, and Flow destinations. Keep the foreign Direction page untouched. Recalculate remaining work before declaring any completion state.
 
 ## Self-review result
 
-- Spec coverage: board hierarchy, theme-token ownership, HUD/shell grammar, T2 protection, route/service ordering, responsive/accessibility, asset integrity, exact-byte evidence transition, adversarial review, and Notion/GitHub sync have explicit tasks.
+- Spec coverage: board hierarchy, theme-token ownership, HUD/shell grammar, T2 protection, route/service ordering, responsive/accessibility, asset integrity, exact-byte evidence transition, adversarial review, and GitHub-only current-owner sync have explicit tasks.
 - Placeholder scan: candidate IDs/hashes and human verdicts are runtime-produced values, not values to invent.
 - Type/path consistency: planned paths exist on current `main`; each introduced name is declared by its producing task.
 - Scope: all runtime changes form one presentation slice and do not require a gameplay/data project.

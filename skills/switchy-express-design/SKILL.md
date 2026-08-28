@@ -14,7 +14,7 @@ description: Use for Switchy Express finite-delivery gameplay, track constructio
 1. fresh Base latest completed `main` + Base root `AGENTS.md`
 2. Base current `skills/SKILL_REGISTRY.json` + generated active map
 3. fresh project `main`, latest commit, all Open/Draft PRs
-4. exact Project Notion Home
+4. `docs/migrations/2026-08-28-notion-current-workspace-migration.md` (former Notion structure receipt; do not use Notion as an active owner)
 5. project `AGENTS.md`
 6. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`
 7. `기획서/00_프로젝트_허브/START_HERE.md`
@@ -166,11 +166,11 @@ Do not produce explanation sheets, full-screen mockups, or decorative images wit
 
 ```yaml
 automatic_consumer_image_policy: USER_APPROVED_2026_08_26
-approved_image_dual_storage: PROJECT_LOCAL_AND_NOTION
+approved_image_preservation: PROJECT_LOCAL_GITHUB_ONLY
 visual_continuity: existing E+D Hybrid / Neo-Arcade visual language
 ```
 
-Generate only the required bitmap, keep the existing E+D Hybrid / Neo-Arcade visual language, save the tracked local asset plus the Notion Visual/Asset record, record provenance/SHA-256, and read the Notion destination back. No per-image approval request is needed.
+Generate only the required bitmap, keep the existing E+D Hybrid / Neo-Arcade visual language, save the tracked local GitHub asset, record provenance/SHA-256, and confirm the GitHub destination. No pre-generation approval request is needed; final project-asset promotion still requires the user’s disposition.
 
 ## First-session authority
 

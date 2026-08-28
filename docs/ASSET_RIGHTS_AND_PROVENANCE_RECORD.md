@@ -63,26 +63,26 @@ reference_similarity_status:
 
 공개 저장소에는 원계약서·신분증·서명·주소·계좌·결제·세금·개인정보를 넣지 않는다. `secure_original_location`, 최소 metadata, hash와 적법한 redacted excerpt만 기록한다.
 
-## User-approved automatic consumer-image dual-preservation policy · 2026-08-26
+## Historical dual-preservation record and current GitHub-only consumer-image policy · 2026-08-26 / 2026-08-28
 
-실제 game runtime consumer가 확인된 필요한 이미지는 별도 이미지별 승인 없이 자동 생성할 수 있다. 생성 이미지는 Notion과 프로젝트 로컬 저장소에 모두 보존해야 하며, 기존 E+D Hybrid / Neo-Arcade 시각 언어를 유지한다. Runtime consumer가 없는 이미지 생성이나 runtime promotion은 이 권한에 포함되지 않는다.
+> **2026-08-28 active policy:** Notion is `RETIRED_NO_ACTIVE_USE`. Existing Notion attachment/readback fields below are historical provenance and are not erased. New candidate/final image work is GitHub repository only. A candidate may be generated and machine-reviewed without an image-by-image approval; only user-approved promotion creates a tracked final project asset. `APPROVED_GITHUB_PRESERVED` requires a proven consumer, local tracked file, SHA-256, generation authority and rights provenance. It does not prove runtime, UX or release readiness.
+
+실제 game runtime consumer가 확인된 필요한 이미지는 별도 이미지별 승인 없이 자동 생성할 수 있다. 생성 후보는 review-only로 유지하고, 사용자 승인 final만 GitHub tracked project-local asset로 보존하며 기존 E+D Hybrid / Neo-Arcade 시각 언어를 유지한다. Runtime consumer가 없는 이미지 생성이나 runtime promotion은 이 권한에 포함되지 않는다.
 
 ```yaml
 approved_image_record:
   creation_authority: USER_APPROVED_2026_08_26_AUTOMATIC_CONSUMER_IMAGE_POLICY | specific decision id
   visual_role: RUNTIME_PRODUCT_ASSET | VISUAL_REFERENCE | NOT_RUNTIME_PROOF
-  notion_owner_page: 03 · Visual · UX · Assets or the approved Asset Library destination
-  notion_attachment_or_preview: durable attachment/preview identifier
-  notion_readback_at: required
+  historical_notion_reference: optional history-only provenance, never a current completion requirement
   repository_local_path: tracked art/** or docs/visual-references/** path
   repository_sha256: required
   provenance_or_rights_record: required
   runtime_consumer: exact consumer path | NOT_APPLICABLE
   consumer_status: VERIFIED | REFERENCE_ONLY | NOT_APPLICABLE
-  dual_preservation_status: APPROVED_DUAL_PRESERVED | INCOMPLETE
+  preservation_status: APPROVED_GITHUB_PRESERVED | INCOMPLETE
 ```
 
-`APPROVED_DUAL_PRESERVED`은 Notion destination readback, 프로젝트 로컬 추적 파일, SHA-256, 생성 권한·권리 provenance가 모두 있는 경우에만 사용한다. Runtime consumer가 확인되지 않은 이미지는 `VISUAL_REFERENCE` 또는 `NOT_RUNTIME_PROOF`로 남기며, 실제 게임 product asset으로 승격하지 않는다. 이 규칙은 역사적 transport/corruption batch를 소급 변경하지 않는다.
+`APPROVED_GITHUB_PRESERVED`은 프로젝트 로컬 Git tracked file, SHA-256, 생성 권한·권리 provenance와 proven consumer가 모두 있는 경우에만 사용한다. Runtime consumer가 확인되지 않은 이미지는 `VISUAL_REFERENCE` 또는 `NOT_RUNTIME_PROOF`로 남기며, 실제 게임 product asset으로 승격하지 않는다. Historical `APPROVED_DUAL_PRESERVED` entries remain exact historical evidence and are not retroactively renamed.
 
 ## SX-TITLE-HERO-001 · Title runtime hero banner
 

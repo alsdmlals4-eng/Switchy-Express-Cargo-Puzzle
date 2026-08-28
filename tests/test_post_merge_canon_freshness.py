@@ -59,7 +59,7 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         self.assertIn("sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN", active)
         self.assertIn("sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED", active)
         self.assertIn("sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237", active)
-        self.assertIn("sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · PLANNING_CURRENT · ISSUE_239 · RUNTIME_UNCHANGED", active)
+        self.assertIn("sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · FIRST_CANDIDATE_GENERATED_REVIEW_PENDING · ISSUE_239 · RUNTIME_UNCHANGED", active)
         self.assertIn("post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED", active)
         self.assertIn("PR #174 remains", active)
         self.assertIn("READ_ONLY", active)
@@ -121,7 +121,7 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         self.assertTrue(legacy_sheet["url"])
         self.assertEqual("NONE", migration["google_sheet_mutation"])
         planning = adapter["shared_overrides"]["managing-project-intake-and-work-contract"]["planning_first_governance"]
-        self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
+        self.assertEqual("GITHUB_REPOSITORY_ONLY_PROJECT_WORKSPACE", planning["current_human_workspace"])
         self.assertIn("python tests/test_post_merge_canon_freshness.py", adapter["validators"])
 
     def test_audit_preserves_manual_evidence_ceiling_and_split_boundary(self) -> None:

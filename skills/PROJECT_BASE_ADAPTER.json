@@ -166,7 +166,7 @@
         "max_approved_decisions_per_batch": 10,
         "numeric_default_state": "RECOMMENDED_DEFAULT",
         "planning_conflict_state": "GRILL_ME_REQUIRED",
-        "current_human_workspace": "NOTION_DEFAULT_PROJECT_WORKSPACE",
+        "current_human_workspace": "GITHUB_REPOSITORY_ONLY_PROJECT_WORKSPACE",
         "runtime_structured_authority": "GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME"
       }
     },

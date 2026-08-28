@@ -8,8 +8,8 @@
 
 ```yaml
 product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~060
-current_product_decision: SX-DEC-060
+current_decisions: SX-DEC-027~063
+current_product_decision: SX-DEC-063 · VISUAL_DIRECTION_REFINEMENT
 work_instruction: v4.8 · revision 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
@@ -17,11 +17,15 @@ historical_r4_revision: 2026-08-24-r4
 historical_r2_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
 base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
 base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
-fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
+project_workspace: GITHUB_REPOSITORY_ONLY_PROJECT_WORKSPACE
+notion_active_use: RETIRED_NO_ACTIVE_USE · HISTORY_AUDIT_ONLY
+fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 google_sheets: RETIRED_NO_ACTIVE_USE
 sx_dec_060_user_rule: APPROVED
 sx_dec_060_design_tdd_handoff: PREPARED
 sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
+sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · existing-asset board-first composition
+sx_dec_063_visual_direction: USER_APPROVED_DIRECTION · FIRST_TERRAIN_CANDIDATE_GENERATED_REVIEW_PENDING · RUNTIME_UNCHANGED
 post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · source main 8bce715b5045afebfb04d38108d2e3f7353e1b10 · package-only evidence
 sx60_poc_accept_001: HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY
@@ -153,7 +157,7 @@ Actual GDScript/Scene/Resource/map/runtime implementation is merged-main verifie
 → product decision
 ```
 
-`SX-DEC-056A/057/058` implementation remains unauthorized/blocked. Draft PR #174 remains `READ_ONLY`.
+`SX-DEC-056A/057/058` implementation remains unauthorized/blocked. Draft PR #174 remains `READ_ONLY`. Current Notion structures are mapped to GitHub in `docs/migrations/2026-08-28-notion-current-workspace-migration.md`; historical Notion is not an active workspace.
 
 ## 바로 실행하기
 

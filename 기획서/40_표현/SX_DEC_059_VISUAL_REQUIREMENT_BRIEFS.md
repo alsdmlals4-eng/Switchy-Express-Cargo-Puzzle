@@ -29,7 +29,7 @@ latest_visual_decision: VIS-SX-059-05 · CARGO_STACK_SILHOUETTE
 type: FLOW
 priority: P0
 image_generation: NOT_NEEDED_NOW
-current_solution: NOTION_MERMAID
+current_solution: GITHUB_FLOW_OWNER · PROJECT_CORE_SCENE_VISUAL_BOARD
 ```
 
 목적:
@@ -273,16 +273,17 @@ visual_reference_role: IMPLEMENTATION_GUIDE · NOT_RUNTIME_PROOF
 
 향후 Success/Failure Result, Capstone RUN, Tutorial, BUILD-related visual reference에서 cargo-loaded train을 그릴 때 `VIS-SX-059-05`를 기본 visual semantic rule로 적용한다.
 
-## 이미지 생성 Gate
+## 이미지 생성 Gate (2026-08-28 current policy)
 
 새 visual reference를 실제 생성하려면:
 
 1. current content/runtime authority를 fresh-read.
 2. 현재 73 asset + 승인 reference로 해결되지 않는 visual question인지 Delete Test.
-3. user에게 next visual brief를 설명.
-4. user가 이미지 생성을 명시 승인.
+3. next visual brief와 actual consumer를 GitHub 정본에서 확인.
+4. 후보 생성은 별도 이미지별 승인 없이 진행한다.
 5. 요청한 cardinality대로 독립 결과를 생성.
-6. visual QA + user result approval.
-7. Notion attach/readback + 프로젝트 로컬 추적 파일/SHA-256/provenance + 승인 Decision ID를 GitHub/Notion 양쪽에 동기화.
+6. visual QA와 기계 검토를 기록한다.
+7. 사용자에게는 생성 여부가 아니라 최종 disposition(승격 / 수정 / 폐기)만 요청한다.
+8. 승인 final만 프로젝트 로컬 Git-tracked 파일, SHA-256, provenance, Decision ID 및 GitHub 원격 readback으로 보존한다. Notion은 현행 workflow에 사용하지 않는다.
 
 현재 상태: `USER_APPROVED_VISUAL_REFERENCES_ACTIVE · VIS-SX-059-05 CURRENT · NOT_RUNTIME_PROOF`.

@@ -47,8 +47,8 @@ This entire chain, not one attractive still, is the approved Phase 5 human-valid
 ## Scope and proof boundary
 
 - This is a visual-direction and structured-planning decision. It changes no GDScript, Scene, Resource, map, asset consumer, runtime screenshot, test result, acceptance candidate, or human/device evidence.
-- Existing runtime consumers and the 73 existing semantic product PNGs remain the production baseline. Any future runtime visual work requires an exact Godot node/key/path consumer, a separate implementation approval, tracked project-local file plus Notion attachment/readback, SHA-256/provenance, and the relevant runtime/human validation.
-- The generated `PROJECT_CORE_SCENE_VISUAL_BOARD` is `GENERATED_EXPLORATION`, not a runtime asset, approved project asset, or Godot implementation. Its binary is not being promoted or dual-preserved until the user explicitly accepts that specific board as a durable reference.
+- Existing runtime consumers and the 73 existing semantic product PNGs remain the production baseline. Any future runtime visual work requires an exact Godot node/key/path consumer, a separate implementation approval, tracked project-local GitHub file, SHA-256/provenance, and the relevant runtime/human validation.
+- The generated `PROJECT_CORE_SCENE_VISUAL_BOARD` is `GENERATED_EXPLORATION`, not a runtime asset, approved project asset, or Godot implementation. Its binary is not being promoted until the user explicitly accepts that specific board as a durable reference.
 
 ## Validation
 

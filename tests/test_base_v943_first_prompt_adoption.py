@@ -50,7 +50,7 @@ class AdoptionTests(unittest.TestCase):
         self.assertEqual("NOT_RUN", first_prompt["actual_project_instruction_execution"])
         self.assertEqual("base-v9.4.3.lock.json", planning["base_release_lock"])
         self.assertEqual(10, planning["max_approved_decisions_per_batch"])
-        self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
+        self.assertEqual("GITHUB_REPOSITORY_ONLY_PROJECT_WORKSPACE", planning["current_human_workspace"])
         self.assertEqual("GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME", planning["runtime_structured_authority"])
         self.assertNotIn("legacy_pre_merge_sheet_state", planning)
         self.assertNotIn("legacy_post_merge_sheet_state", planning)

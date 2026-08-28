@@ -1,3 +1,7 @@
 /skills/PROJECT_BASE_ADAPTER.json text eol=lf
 /skills/PROJECT_SKILL_SNAPSHOT.json text eol=lf
 /skills/SKILL_REGISTRY.json text eol=lf
+
+# Generated PDF deliverables are binary artifacts.  Their render/metadata checks
+# are recorded separately; never feed their internal streams to text whitespace checks.
+exports/*.pdf -diff

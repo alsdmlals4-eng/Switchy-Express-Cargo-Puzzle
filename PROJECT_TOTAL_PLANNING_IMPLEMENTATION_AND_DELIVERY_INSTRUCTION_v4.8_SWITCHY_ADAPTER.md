@@ -12,10 +12,10 @@ base_repository: https://github.com/alsdmlals4-eng/Base
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 project_repository: https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
-human_workspace: NOTION_DEFAULT_PROJECT_WORKSPACE
+human_workspace: GITHUB_REPOSITORY_ONLY_PROJECT_WORKSPACE
 runtime_structured_authority: GITHUB_REPOSITORY_AND_ACTUAL_RUNTIME
 google_sheets_policy: RETIRED_NO_ACTIVE_USE
-fresh_read_bootstrap_policy: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
+fresh_read_bootstrap_policy: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 past_conversation_dependency_policy: NOT_REQUIRED_FOR_NEW_CHAT_RESUME
 context_drift_policy: RECHECK_BEFORE_MUTATION
 skill_coverage_policy: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT
@@ -33,7 +33,7 @@ requirement_traceability_policy: REQUIREMENT_TO_OWNER_IMPLEMENTATION_EVIDENCE_CO
 
 # Switchy Express · v4.8 r5.4 project thin adapter
 
-이 문서는 사용자가 2026-08-26 제공한 v4.8 revision `r5.4-superset-final` 계약을 Switchy Express에 연결하는 **프로젝트 전용 얇은 adapter**다. Base의 Work Mode·Skill·CI·검증·Godot 운영 playbook을 다시 복사하지 않는다. 매 작업 시작 시 최신 Base completed `main`, current Skill Registry/generated map, 프로젝트 실제 상태, 현재 Notion Home을 다시 읽는다.
+이 문서는 사용자가 2026-08-26 제공한 v4.8 revision `r5.4-superset-final` 계약을 Switchy Express에 연결하는 **프로젝트 전용 얇은 adapter**다. Base의 Work Mode·Skill·CI·검증·Godot 운영 playbook을 다시 복사하지 않는다. 2026-08-28 사용자 결정에 따라 active project workspace는 GitHub repository only이며, 매 작업 시작 시 최신 Base completed `main`, current Skill Registry/generated map, Project GitHub와 실제 상태를 다시 읽는다. Historical Notion은 삭제하지 않지만 active read/write/sync가 아니다.
 
 `source_r5_4_sha256`은 이번 사용자 제공 계약 파일의 exact identity다. `historical_r4_revision`과 `historical_r2_sha256`은 각각 이전 r4/r2 계약 provenance이며 current authority가 아니다.
 
@@ -44,7 +44,8 @@ project_name: Switchy Express: Cargo Puzzle
 project_key: SWITCHY_EXPRESS
 project_repository: alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
 project_default_branch: main
-project_notion_home: Switchy Express · Home
+project_workspace: GITHUB_REPOSITORY_ONLY_PROJECT_WORKSPACE
+historical_notion_policy: AUDIT_ONLY · NO_ACTIVE_READ_WRITE_SYNC
 engine: Godot 4.7.1-stable
 language: GDScript
 project_base_compatibility_pin: v9.4.3
@@ -67,11 +68,11 @@ current_decision_span: SX-DEC-027~060
 → 외부 근거
 ```
 
-- **Notion**: 사람용 Project Home, Flow, Visual, 핵심 시스템 설명, 사람이 비교·수정하는 기획 표면.
-- **GitHub/runtime**: structured canon, code, data, Scene/Resource, tracked assets, tests, CI, runtime truth.
+- **GitHub repository**: 사람용 기획서·Flow·Visual·핵심 시스템 설명과 structured canon, code, data, Scene/Resource, tracked assets, tests, CI, runtime truth의 단일 current owner.
+- **Historical Notion**: 삭제하지 않는 audit/provenance evidence. active decision, fresh-read, image storage, sync 또는 completion source가 아니다.
 - **Google Sheets**: `GOOGLE_SHEETS: RETIRED_NO_ACTIVE_USE`. 일반 작업에서 읽기·쓰기·동기화·결정 입력·기본 탐색에 사용하지 않는다. 과거 ID/URL/sync 기록이 필요한 감사·provenance만 legacy migration evidence에서 확인한다.
 
-새 채팅은 과거 대화를 필수 입력으로 사용하지 않고 exact Project GitHub + Notion Home에서 `project identity → current goal → current quality/stage → protected scope → next safe action → evidence ceiling`을 재구성한다. GitHub↔Notion 의미가 충돌하면 `CONTEXT_DRIFT_RECHECK_REQUIRED`로 mutation 전에 되돌린다.
+새 채팅은 과거 대화를 필수 입력으로 사용하지 않고 exact Project GitHub에서 `project identity → current goal → current quality/stage → protected scope → next safe action → evidence ceiling`을 재구성한다. GitHub owner와 actual runtime evidence가 충돌하면 `CONTEXT_DRIFT_RECHECK_REQUIRED`로 mutation 전에 되돌린다.
 
 ## 3. Protected product baseline
 
@@ -91,13 +92,13 @@ current_decision_span: SX-DEC-027~060
 
 - endless survival / fuel / BOOST / capacity-8 / cargo slowdown / pickup respawn / switch auto-reset을 current 제품으로 되살리지 않는다.
 - UI/presentation은 gameplay outcome, score, save, identity authority를 소유하지 않는다.
-- 이미지 생성은 verified runtime consumer가 있고 기존 E+D Hybrid / Neo-Arcade visual language를 지킬 때만 자동으로 시작할 수 있으며, 결과는 project-local과 Notion Visual/Asset에 함께 보존·readback한다.
+- 이미지 생성은 verified runtime consumer가 있고 기존 E+D Hybrid / Neo-Arcade visual language를 지킬 때만 자동으로 시작할 수 있으며, 결과는 tracked project-local GitHub path와 SHA-256 provenance에 보존·readback한다.
 - physical/human/player evidence가 없으면 automated/package evidence를 해당 PASS로 올리지 않는다.
 - r5.4 authority adoption은 새로운 gameplay/UX/economy/content authorization이 아니다.
 
 ## 2A. Mandatory startup reconciliation and execution loop
 
-모든 meaningful task는 mutation 전에 아래 checklist를 실제 GitHub/runtime/Notion evidence로 채운다. 과거 대화·추정·이미지 reference만으로 항목을 PASS 처리하지 않는다.
+모든 meaningful task는 mutation 전에 아래 checklist를 실제 GitHub/runtime evidence로 채운다. 과거 대화·추정·이미지 reference만으로 항목을 PASS 처리하지 않는다.
 
 ```yaml
 startup_checklist: CORE_FUN_SYSTEM_SWOT_REMAINING_WORK_ORDER_CHECK
@@ -110,14 +111,14 @@ required_readback:
   - work_order_and_evidence_ceiling
 ```
 
-핵심 재미·핵심 시스템·SWOT·남은 작업·작업 순서가 GitHub current owner, Notion human-facing owner, 실제 runtime evidence 사이에서 충돌하면 `CONTEXT_DRIFT_RECHECK_REQUIRED`로 기록하고 해당 충돌을 교정한 뒤에만 다음 mutation을 한다.
+핵심 재미·핵심 시스템·SWOT·남은 작업·작업 순서가 GitHub current owner와 실제 runtime evidence 사이에서 충돌하면 `CONTEXT_DRIFT_RECHECK_REQUIRED`로 기록하고 해당 충돌을 교정한 뒤에만 다음 mutation을 한다.
 
 ```yaml
 workflow_order: GPT_NON_CODING_PREPARATION → CODEX_SINGLE_IMPLEMENTATION_WINDOW → HUMAN_QA_DEFERRED
 machine_runtime_validation: GODOT_HERA_GUT_REQUIRED; HUMAN_QA_DEFERRED
 ```
 
-- GPT 단계는 current slice의 기획·검수·consumer-backed 이미지·사운드 specification·UI/VFX/data/copy·Notion/GitHub production input을 먼저 완결한다.
+- GPT 단계는 current slice의 기획·검수·consumer-backed 이미지·사운드 specification·UI/VFX/data/copy·GitHub production input을 먼저 완결한다.
 - 실제 GDScript/Scene/Resource/map/runtime 구현은 준비된 입력을 하나의 bounded Codex window에서 수행한다. 작은 finding마다 GPT/Codex를 왕복하지 않는다.
 - Human QA는 현재 보류한다. 다만 GPT/Codex는 Godot를 실제 실행하고 Hera, GUT, headless/runtime state, representative screenshots를 사용해 화면·상태·consumer를 확인한다. 이 machine observation은 human/player PASS가 아니다.
 
@@ -128,7 +129,7 @@ delegated_routine_approval: APPROVED_BY_DEFAULT_UNLESS_DANGEROUS_CHANGE
 bounded_fallback_route: REQUIRED_ON_DELAY_OR_BLOCKER
 ```
 
-현재 slice 안의 reversible 기술 선택, 국소 bug fix, test/consumer/reference 교정, bounded asset production, GitHub/Notion 정본 동기화, exact-head CI가 GREEN인 current-task PR merge는 반복 승인 없이 진행한다.
+현재 slice 안의 reversible 기술 선택, 국소 bug fix, test/consumer/reference 교정, bounded asset production, GitHub 정본 교정, exact-head CI가 GREEN인 current-task PR merge는 반복 승인 없이 진행한다.
 
 다음은 `HIGH_RISK_DEFERRED`로 분리하며 실행하지 않는다: irreversible data loss, security/permission expansion, new paid cost, legal/rights uncertainty, public release/publication, force/direct-main/admin bypass, broad engine/save migration, core identity/narrative/art-direction replacement.
 
@@ -156,7 +157,7 @@ completion_gate: REQUIRED_WORK_REMAINING: 0
 
 candidate가 pin한 exact source 이후 player-facing GDScript, Scene, Resource, map, localization, runtime consumer asset/path, renderer/HUD/route/switch presentation, export/package configuration 중 하나라도 바뀌면 그 candidate는 current acceptance evidence가 아니다. 기존 candidate의 hash/package/provenance는 지우지 않고 `HISTORICAL_SUPERSEDED_BY_PLAYER_FACING_BYTE_CHANGE`로 보존한다.
 
-tooling-only, test-only, documentation-only 변경은 candidate를 무효화하지 않는다. candidate pointer, current GitHub owner, Notion Home/Direction/Production/Visual 중 candidate ID/source/status/next action이 하나라도 다르면 새 candidate 생성이나 physical gate 승격 전에 `CONTEXT_DRIFT_RECHECK_REQUIRED` reconciliation을 완료한다.
+tooling-only, test-only, documentation-only 변경은 candidate를 무효화하지 않는다. candidate pointer, current GitHub owner, actual runtime evidence 중 candidate ID/source/status/next action이 하나라도 다르면 새 candidate 생성이나 physical gate 승격 전에 `CONTEXT_DRIFT_RECHECK_REQUIRED` reconciliation을 완료한다.
 
 종료 전 ready/deferred/high-risk queue를 재계산한다. `REQUIRED_WORK_REMAINING: 0`이 되기 전에는 자동화 가능한 current-slice work를 중단하지 않는다. `0`은 machine-executable work의 종료 조건일 뿐 physical/human/player evidence를 PASS로 승격하지 않는다.
 
@@ -234,7 +235,7 @@ fresh shell
 
 프로젝트별 동일 Godot binary나 전용 포트를 기본적으로 증식시키지 않는다. compatible host에서는 shared approved exact Godot/Godot-AI pin과 provider default fixed ports를 사용하고, project isolation은 exact path/editor/session identity로 보장한다. 충돌·breaking migration·추가 비용·권한 확대가 있으면 자동 update하지 않는다.
 
-`GPT_LOCAL_CODEX_ORCHESTRATION_RETIRED`: 사용자 PowerShell이나 GPT one-shot launcher로 local Codex를 띄우는 경로는 사용하지 않는다. 실제 Godot 제품 구현이 새로 필요할 때만 `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF`로 전환하고 Codex가 Project GitHub+Notion을 독립 fresh-read한 뒤 자신의 구현환경에서 구현/test/runtime evidence를 만든다.
+`GPT_LOCAL_CODEX_ORCHESTRATION_RETIRED`: 사용자 PowerShell이나 GPT one-shot launcher로 local Codex를 띄우는 경로는 사용하지 않는다. 실제 Godot 제품 구현이 새로 필요할 때만 `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF`로 전환하고 Codex가 Project GitHub를 독립 fresh-read한 뒤 자신의 구현환경에서 구현/test/runtime evidence를 만든다.
 
 이 섹션은 Base의 상세 Godot 운영 계약을 복제하지 않는다. 실제 실행 시 current Base owner와 프로젝트 `docs/tooling/local_godot_tooling_state.json`을 다시 읽는다.
 
@@ -254,17 +255,16 @@ v4.8 r5.4 adoption은 위 package의 구현 권한을 추가하지 않는다. 05
 1. latest Base completed `main` + Base root `AGENTS.md`.
 2. Base `skills/SKILL_REGISTRY.json` + `docs/generated/BASE_ACTIVE_SKILLS.md` trigger coverage.
 3. project `AGENTS.md`.
-4. exact Project Notion Home.
-5. `기획서/00_프로젝트_허브/START_HERE.md`.
-6. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`.
-7. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`.
-8. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`.
-9. `evidence/acceptance/post_sx_dec_060_candidate.json` when post-060 acceptance identity matters.
-10. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`.
-11. current Goal의 exact owner documents.
-12. actual code/data/Scene/Resource/assets/tests/runtime evidence.
-13. `evidence/acceptance/current_poc_candidate.json` only when Candidate 003 pre-060 provenance is needed.
-14. historical v4.7/r2/r4 adapter/handoff/audit only when provenance or rollback evidence is needed.
+4. `기획서/00_프로젝트_허브/START_HERE.md`.
+5. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`.
+6. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`.
+7. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`.
+8. `evidence/acceptance/post_sx_dec_060_candidate.json` when post-060 acceptance identity matters.
+9. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`.
+10. current Goal의 exact owner documents.
+11. actual code/data/Scene/Resource/assets/tests/runtime evidence.
+12. `evidence/acceptance/current_poc_candidate.json` only when Candidate 003 pre-060 provenance is needed.
+13. historical v4.7/r2/r4 adapter/handoff/audit or Notion records only when provenance or rollback evidence is needed.
 
 Google Sheet는 이 current owner read order에 포함하지 않는다.
 
@@ -302,7 +302,7 @@ exact current-task head
 → unresolved blocking finding 0
 → merge gate
 → new main readback
-→ Notion destination readback
+→ GitHub commit/remote readback
 ```
 
 을 확인한다. `REQUIRED_WORK_REMAINING: 0`은 completion candidate일 뿐 physical/human/player evidence를 대신하지 않는다.

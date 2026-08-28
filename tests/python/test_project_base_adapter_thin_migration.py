@@ -57,7 +57,7 @@ class SwitchyThinAdapterMigrationTests(unittest.TestCase):
         self.assertNotIn("spreadsheet_id", sheet)
         self.assertNotIn("url", sheet)
         planning = adapter["shared_overrides"]["managing-project-intake-and-work-contract"]["planning_first_governance"]
-        self.assertEqual("NOTION_DEFAULT_PROJECT_WORKSPACE", planning["current_human_workspace"])
+        self.assertEqual("GITHUB_REPOSITORY_ONLY_PROJECT_WORKSPACE", planning["current_human_workspace"])
         self.assertEqual("DEC-BASE-20260805-001", json.loads(MIGRATION.read_text(encoding="utf-8"))["decision_id"])
 
     def test_strict_operating_health_preserves_not_run_gates(self) -> None:

@@ -1,6 +1,6 @@
 # PROJECT_CORE_SCENE_VISUAL_BOARD
 
-Status: `CURRENT_PLANNING_OWNER · SX-DEC-061/063 · GENERATED_EXPLORATION · NOT_RUNTIME_PROOF · SX-DEC-063_CANDIDATE_GENERATION_PENDING`
+Status: `CURRENT_PLANNING_OWNER · SX-DEC-061/063 · GENERATED_EXPLORATION · NOT_RUNTIME_PROOF · SX-DEC-063_FIRST_TERRAIN_CANDIDATE_REVIEW_PENDING`
 
 This document owns the exact meaning of the planning board. The board image is only an AI-understanding and visual-direction review aid: no panel is a finished runtime asset, Godot screen, Scene, UI implementation, or Human/Player Experience PASS.
 
@@ -13,7 +13,7 @@ generated_image_sha256: 6aabad5e9834e777cae9124b4279fef0a1bca48ab6b056b3aebd48f9
 artifact_status: GENERATED_EXPLORATION
 runtime_consumer: NOT_APPLICABLE
 tracked_project_copy: NOT_CREATED
-notion_binary_attachment: NOT_CREATED
+external_binary_attachment: NOT_APPLICABLE · GITHUB_ONLY_WORKSPACE
 why: user approved the direction, not the generated board binary as a durable project reference
 exact_semantic_owner: this Markdown document and SX-DEC-061
 ```
@@ -49,8 +49,8 @@ SX-DEC-062 maps to a merged existing-asset presentation contract. SX-DEC-063 map
 
 | Consumer family | Requirement | Current production state |
 | --- | --- | --- |
-| BUILD/RUN board terrain, train, rail, markers, stations, cargo | SX-VIS-063-RQ-001 | 14 proposed versioned slots; first terrain brief ready; no image generated or integrated. |
-| Title, shared non-T2 lesson, success/failure result | SX-VIS-063-RQ-002 | 4 proposed versioned slots; deferred until their own exact candidate briefs and approvals. |
+| BUILD/RUN board terrain, train, rail, markers, stations, cargo | SX-VIS-063-RQ-001 | 14 proposed versioned slots; one terrain candidate generated and review pending; no image integrated. |
+| Title, shared non-T2 lesson, success/failure result | SX-VIS-063-RQ-002 | 4 proposed versioned slots; deferred until their own candidate generation and final promotion disposition. |
 | Control deck density | SX-VIS-063-RQ-003 | Later code-only implementation review; no new control or system. |
 
 T2 Hero v02 remains protected and Issue #227 remains outside this mapping.
@@ -73,4 +73,4 @@ T2 Hero v02 remains protected and Issue #227 remains outside this mapping.
 | Did it imply diagonal or station-footprint delivery? | PARTIAL | Generated imagery cannot prove grid coordinates; T2 is bound to SX-DEC-060 cardinal service text here. |
 | Did it turn a long train into the LIFO representation? | PASS | The approved rule is compact token + Stack HUD; no horizontal capacity signal is adopted. |
 | Is it runtime or usability evidence? | FAIL if claimed | Explicitly `NOT_RUNTIME_PROOF`; Godot and human evidence remain NOT_RUN. |
-| Is it a project asset or production image? | FAIL if claimed | It remains a generated exploration without consumer, tracked copy, or Notion binary attachment. |
+| Is it a project asset or production image? | FAIL if claimed | It remains a generated exploration without consumer-bound tracked copy or user-approved promotion. |

@@ -2,14 +2,14 @@
 
 Last updated: `2026-08-28 KST`
 
-이 문서는 현재 제품 기준선과 **다음 실행 지점**을 빠르게 찾는 허브다. 실행 전에는 항상 fresh Base completed `main`, current Skill Registry/generated map, fresh project `main`, Open/Draft PR, exact Project Notion Home을 다시 읽는다.
+이 문서는 현재 제품 기준선과 **다음 실행 지점**을 빠르게 찾는 허브다. 실행 전에는 항상 fresh Base completed `main`, current Skill Registry/generated map, fresh project `main`, Open/Draft PR, current GitHub owners와 actual runtime evidence를 다시 읽는다. Notion의 current structure는 GitHub에 이관됐고 historical audit-only다.
 
 ## Current State
 
 | 항목 | 현재 값 |
 |---|---|
 | 제품 기준선 | `GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060` |
-| 결정 범위 | `SX-DEC-027~062` |
+| 결정 범위 | `SX-DEC-027~063` |
 | 작업지시문 | `v4.8 · revision 2026-08-26-r5.4-superset-final · Switchy thin adapter` |
 | 작업지시문 역할 | `USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT` |
 | current project adapter | `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md` |
@@ -17,7 +17,7 @@ Last updated: `2026-08-28 KST`
 | SX-DEC-059 implementation | `MERGED_MAIN_VERIFIED · PRE_SX_DEC_060_RUNTIME` |
 | SX-DEC-060 | `MERGED_MAIN_VERIFIED · PR #188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7` |
 | SX-DEC-062 | `MERGED_MAIN_VERIFIED · PR #237 · Board-first existing-asset runtime composition · current package candidate verified` |
-| SX-DEC-063 | `USER_APPROVED_DIRECTION · Hybrid miniature-diorama visual production alignment · Issue #239 · exact first image brief approval pending` |
+| SX-DEC-063 | `USER_APPROVED_DIRECTION · Hybrid miniature-diorama visual production alignment · first terrain candidate generated / review pending · runtime unchanged` |
 | station service | `UP/RIGHT/DOWN/LEFT exactly 1 tile · diagonal excluded` |
 | network preflight | `START_REACHABLE_RUN_COMPONENT · irrelevant disconnected rail island allowed` |
 | map schema target | `FiniteMapDefinition v3` |
@@ -43,9 +43,9 @@ Last updated: `2026-08-28 KST`
 
 ```text
 past conversation not required
-→ exact Project GitHub + exact Notion Home
+→ exact Project GitHub + actual runtime evidence
 → reconstruct identity / current goal / quality-stage / protected scope / next safe action / evidence ceiling
-→ GitHub↔Notion mismatch => CONTEXT_DRIFT_RECHECK_REQUIRED before mutation
+→ GitHub owner↔actual runtime mismatch => CONTEXT_DRIFT_RECHECK_REQUIRED before mutation
 ```
 
 ## Base authority
@@ -107,13 +107,13 @@ actual node/key/path consumer
 → existing asset reuse check
 → procedural solution check
 → only then, if a concrete slot is still missing, automatically generate the required bitmap
-→ preserve it in the tracked project-local asset path and Notion Visual/Asset destination
+→ preserve it in a tracked project-local GitHub asset path with SHA-256 provenance
 → retain the existing E+D Hybrid / Neo-Arcade visual language
 ```
 
 ```yaml
 automatic_consumer_image_policy: USER_APPROVED_2026_08_26
-approved_image_dual_storage: PROJECT_LOCAL_AND_NOTION
+approved_image_preservation: PROJECT_LOCAL_GITHUB_ONLY
 ```
 
 ## Candidate evidence boundary
@@ -149,14 +149,13 @@ The user approved a board-first composition adjustment that preserves the existi
 1. fresh Base completed `main` + Base `AGENTS.md`.
 2. Base `skills/SKILL_REGISTRY.json` + `docs/generated/BASE_ACTIVE_SKILLS.md`.
 3. fresh Project `main`, latest commit, all Open/Draft PRs.
-4. exact Switchy Notion Project Home.
-5. Project `AGENTS.md` + `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`.
-6. `FINITE_DELIVERY_PUZZLE_BASELINE.md`.
-7. `CURRENT_CONFIRMED_DECISIONS.md`.
-8. `ACTIVE_CONTEXT.md`.
-9. SX-DEC-060 decision/spec/plan/Codex handoff.
-10. `ROADMAP.md` + `DEVELOPMENT_GATES.md`.
-11. actual code/data/Scene/Resource/assets/tests.
+4. Project `AGENTS.md` + `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`.
+5. `FINITE_DELIVERY_PUZZLE_BASELINE.md`.
+6. `CURRENT_CONFIRMED_DECISIONS.md`.
+7. `ACTIVE_CONTEXT.md`.
+8. SX-DEC-060 decision/spec/plan/Codex handoff.
+9. `ROADMAP.md` + `DEVELOPMENT_GATES.md`.
+10. actual code/data/Scene/Resource/assets/tests.
 
 Historical v4.7/r2/r4 adapter/reconciliation materials (including v4.8 `2026-08-24-r4`) and pre-060 Candidate records are rollback/provenance evidence. Google Sheets is migration-only.
 
@@ -167,14 +166,14 @@ docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.m
 docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production-design.md
 ```
 
-The user selected Hybrid Miniature-Diorama Alignment: the rectangular grid and input mapping stay, while only actual consumers receive versioned candidate art after an exact single-image brief is approved. This planning direction protects T2 `shell_lesson_hero_v02.png`, Issue #227, gameplay/data/audio, and the current package evidence. It does not start a Godot integration or an asset batch.
+The user selected Hybrid Miniature-Diorama Alignment: the rectangular grid and input mapping stay, while only actual consumers receive versioned candidate art. A candidate may be generated and machine-reviewed before a user decision; only final project-asset promotion requires the user's disposition. This planning direction protects T2 `shell_lesson_hero_v02.png`, Issue #227, gameplay/data/audio, and the current package evidence. It does not start a Godot integration or an asset batch.
 
 ## Current next action
 
 ```text
-SX-DEC-063 canonical-document merge and Switchy Notion readback
-→ present the exact first terrain-candidate brief and wait for one explicit image-generation approval
-→ inspect that one generated candidate against the protected hybrid direction
+SX-DEC-063 GitHub-only canonicalization and current-Notion structure migration
+→ review the one generated terrain candidate against the protected hybrid direction
+→ obtain only the user’s promotion / revise / reject disposition
 → only after the planned candidate set and Phase 2 contract are approved, start a consumer-first Godot implementation
 → Phase 5 user-validation continuation remains a separate later gate
 → current Playtest authority corrects old 055/059/validation-APK status to historical

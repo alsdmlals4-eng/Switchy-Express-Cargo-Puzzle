@@ -51,19 +51,19 @@ All rows have `consumer_kind: GAME_RUNTIME`; their `consumer_surface` is the nam
 
 ### Per-screen reference, routing, and blocker record
 
-| ID | Screen design reference / composition evidence | Variants / technical consumption | Notion destination | Repository destination | Blockers |
+| ID | Screen design reference / composition evidence | Variants / technical consumption | Historical source (audit-only) | Repository destination | Blockers |
 | --- | --- | --- | --- | --- | --- |
-| 001 | `RUNTIME_SCENE_CAPTURE` + existing approved shell composition | 1920×1080 logical, 1280×720 current capture; 1774×887 title crop; pointer/keyboard | Home + Direction + Visual | scene, `product_shell_art.gd`, title manifest | none |
-| 002 | `EXISTING_SCENE_COMPOSITION` + responsive screen tests | Korean live text; close/cancel; pointer/keyboard | Puzzle Systems + Direction | scene, flow controller, responsive tests | none |
-| 003 | `RUNTIME_SCENE_CAPTURE` + live Lesson check | 1672×941 crop; T1–T6/capstone live text; pointer/keyboard | Puzzle Systems + Visual | first-session data/copy/director, scene, shell art | none |
-| 004 | `RUNTIME_SCENE_CAPTURE` + live BUILD check | 1672×941 terrain backdrop; grid/board clipping bound; pointer/keyboard | Puzzle Systems + Visual + Production | board renderer, HUD, map/preflight tests | none |
-| 005 | existing board composition + runtime UI test | selected/unselected/occupied/inactive; procedural arrow, no text-in-image | Puzzle Systems + Visual | route overlay, semantic catalog, tests | no physical readability claim |
-| 006 | existing board composition + finite/semantic tests | manual/auto, TOP, timer, paused; 1920×1080 logical | Puzzle Systems + Visual | slice, HUD, semantic state/catalog | no audio perception claim |
-| 007 | existing board composition + event overlay tests | pickup/unload/route state; timed overlay is non-authoritative presentation | Visual + Production | semantic overlay/effects/audio director | no audio perception claim |
-| 008 | existing modal composition + overlay/exit tests | resume and exit; pointer/keyboard cancel path | Puzzle Systems + Production | scene, flow controller, overlay tests | none |
-| 009 | existing modal composition + mid-run exit tests | continue vs discard; focus returns to continue | Puzzle Systems + Production | scene, flow controller, exit tests | none |
-| 010 | `RUNTIME_SCENE_CAPTURE` + live success consumer check | success art crop; retry/edit/title labels remain UI | Home + Visual + Production | scene, shell art, result-copy tests | no human-result-comprehension claim |
-| 011 | `RUNTIME_SCENE_CAPTURE` + 1280×720 failure capture | time/route-end copy; failure art crop; retry/edit/title | Home + Visual + Production | scene, shell art, result-copy tests | no human-result-comprehension claim |
+| 001 | `RUNTIME_SCENE_CAPTURE` + existing approved shell composition | 1920×1080 logical, 1280×720 current capture; 1774×887 title crop; pointer/keyboard | former Home/Direction/Visual | scene, `product_shell_art.gd`, title manifest | none |
+| 002 | `EXISTING_SCENE_COMPOSITION` + responsive screen tests | Korean live text; close/cancel; pointer/keyboard | former Puzzle Systems/Direction | scene, flow controller, responsive tests | none |
+| 003 | `RUNTIME_SCENE_CAPTURE` + live Lesson check | 1672×941 crop; T1–T6/capstone live text; pointer/keyboard | former Puzzle Systems/Visual | first-session data/copy/director, scene, shell art | none |
+| 004 | `RUNTIME_SCENE_CAPTURE` + live BUILD check | 1672×941 terrain backdrop; grid/board clipping bound; pointer/keyboard | former Puzzle Systems/Visual/Production | board renderer, HUD, map/preflight tests | none |
+| 005 | existing board composition + runtime UI test | selected/unselected/occupied/inactive; procedural arrow, no text-in-image | former Puzzle Systems/Visual | route overlay, semantic catalog, tests | no physical readability claim |
+| 006 | existing board composition + finite/semantic tests | manual/auto, TOP, timer, paused; 1920×1080 logical | former Puzzle Systems/Visual | slice, HUD, semantic state/catalog | no audio perception claim |
+| 007 | existing board composition + event overlay tests | pickup/unload/route state; timed overlay is non-authoritative presentation | former Visual/Production | semantic overlay/effects/audio director | no audio perception claim |
+| 008 | existing modal composition + overlay/exit tests | resume and exit; pointer/keyboard cancel path | former Puzzle Systems/Production | scene, flow controller, overlay tests | none |
+| 009 | existing modal composition + mid-run exit tests | continue vs discard; focus returns to continue | former Puzzle Systems/Production | scene, flow controller, exit tests | none |
+| 010 | `RUNTIME_SCENE_CAPTURE` + live success consumer check | success art crop; retry/edit/title labels remain UI | former Home/Visual/Production | scene, shell art, result-copy tests | no human-result-comprehension claim |
+| 011 | `RUNTIME_SCENE_CAPTURE` + 1280×720 failure capture | time/route-end copy; failure art crop; retry/edit/title | former Home/Visual/Production | scene, shell art, result-copy tests | no human-result-comprehension claim |
 
 ### State-family disposition
 
@@ -93,15 +93,15 @@ All rows have `consumer_kind: GAME_RUNTIME`; their `consumer_surface` is the nam
 
 | Asset set | Existing real consumer | Required technical handling | Status |
 | --- | --- | --- | --- |
-| `SX-TITLE-HERO-001` | `ProductShellArt::TITLE_HERO_PATH` | 1774×887 PNG; crop within HeroArt rect; text remains a Godot layer | dual-preserved / conditional release rights |
-| `SX-BOARD-TERRAIN-001` (`SX-INGAME-VISUAL-001`) | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[board_terrain]` | 1672×941 backdrop; live grid/rail/cargo/station/HUD remain engine-rendered | dual-preserved / runtime verified |
-| `SX-LESSON-HERO-001` (`SX-INGAME-VISUAL-001`) | `ProductShellArt::LESSON_HERO_PATH` for T1, T3–T6, CAPSTONE | 1672×941 neutral shared source-region crop before cover draw; no embedded UI copy | dual-preserved / runtime verified |
-| `SX-LESSON-HERO-002` (`SX-INGAME-VISUAL-001`) | `ProductShellArt::T2_LESSON_HERO_PATH` only for T2 | 1672×941 source-region crop before cover draw; off-track station + adjacent rail service; no embedded UI copy | dual-preserved / Notion readback 2026-08-27T21:34:35.550Z |
-| `SX-RESULT-SUCCESS-002` (`SX-INGAME-VISUAL-001`) | `ProductShellArt::RESULT_SUCCESS_PATH` | 1672×941 source-region crop before cover draw; no embedded UI copy | dual-preserved / runtime verified |
-| `SX-RESULT-FAILURE-002` (`SX-INGAME-VISUAL-001`) | `ProductShellArt::RESULT_FAILURE_PATH` | 1672×941 source-region crop before cover draw; no embedded UI copy | dual-preserved / runtime verified |
+| `SX-TITLE-HERO-001` | `ProductShellArt::TITLE_HERO_PATH` | 1774×887 PNG; crop within HeroArt rect; text remains a Godot layer | Git-tracked / conditional release rights; historical Notion attachment audit-only |
+| `SX-BOARD-TERRAIN-001` (`SX-INGAME-VISUAL-001`) | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[board_terrain]` | 1672×941 backdrop; live grid/rail/cargo/station/HUD remain engine-rendered | Git-tracked / runtime verified; historical Notion attachment audit-only |
+| `SX-LESSON-HERO-001` (`SX-INGAME-VISUAL-001`) | `ProductShellArt::LESSON_HERO_PATH` for T1, T3–T6, CAPSTONE | 1672×941 neutral shared source-region crop before cover draw; no embedded UI copy | Git-tracked / runtime verified; historical Notion attachment audit-only |
+| `SX-LESSON-HERO-002` (`SX-INGAME-VISUAL-001`) | `ProductShellArt::T2_LESSON_HERO_PATH` only for T2 | 1672×941 source-region crop before cover draw; off-track station + adjacent rail service; no embedded UI copy | Git-tracked / runtime verified; historical readback audit-only |
+| `SX-RESULT-SUCCESS-002` (`SX-INGAME-VISUAL-001`) | `ProductShellArt::RESULT_SUCCESS_PATH` | 1672×941 source-region crop before cover draw; no embedded UI copy | Git-tracked / runtime verified; historical Notion attachment audit-only |
+| `SX-RESULT-FAILURE-002` (`SX-INGAME-VISUAL-001`) | `ProductShellArt::RESULT_FAILURE_PATH` | 1672×941 source-region crop before cover draw; no embedded UI copy | Git-tracked / runtime verified; historical Notion attachment audit-only |
 | semantic product PNGs | `SemanticAssetCatalog`, `ProductBoardRenderer`, overlays | state-specific component consumption; semantic color is reinforced by shape/text | existing project assets |
 
-Exact hashes, Notion attachments, and conditional rights are owned by `art/product_assets/ed_hybrid_v1/runtime_visual_manifest.json` and `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`; this document does not duplicate that manifest.
+Exact hashes and conditional rights are owned by `art/product_assets/ed_hybrid_v1/runtime_visual_manifest.json` and `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`; historical Notion attachments remain audit records only.
 
 ## 4. Full family applicability audit
 
@@ -162,8 +162,8 @@ SX-DEC-063 changes the prior no-new-image disposition only for real consumers al
 
 | Requirement | Applicable screen surfaces | Existing real consumer | Coverage status | Production state |
 | --- | --- | --- | --- | --- |
-| SX-VIS-063-RQ-001 board diorama | SX-SCR-004 BUILD, SX-SCR-005 route control, SX-SCR-006 RUN, SX-SCR-007 semantic events | ProductBoardRenderer product visual asset paths | REQUIREMENT_LINKED | First terrain image brief is ready; no image generated, approved, or integrated. |
-| SX-VIS-063-RQ-002 shell cohesion | SX-SCR-001 title, SX-SCR-003 shared non-T2 lesson, SX-SCR-010 success, SX-SCR-011 failure | ProductShellArt title, shared lesson, success/failure paths | REQUIREMENT_LINKED | Four future versioned candidates, each with a separate one-image approval gate. T2 v02 is COVERED_EXISTING and protected. |
+| SX-VIS-063-RQ-001 board diorama | SX-SCR-004 BUILD, SX-SCR-005 route control, SX-SCR-006 RUN, SX-SCR-007 semantic events | ProductBoardRenderer product visual asset paths | REQUIREMENT_LINKED | One terrain candidate generated and machine-reviewed; no approval or integration. |
+| SX-VIS-063-RQ-002 shell cohesion | SX-SCR-001 title, SX-SCR-003 shared non-T2 lesson, SX-SCR-010 success, SX-SCR-011 failure | ProductShellArt title, shared lesson, success/failure paths | REQUIREMENT_LINKED | Four future versioned candidates may be generated/reviewed; user decides their final promotion. T2 v02 is COVERED_EXISTING and protected. |
 | SX-VIS-063-RQ-003 deck density | SX-SCR-001, 003, 004, 006, 010, 011 | existing Godot Theme, HUD, shell panels | REQUIREMENT_LINKED | Later code-only integration review; no new control or gameplay state. |
 
 Current disposition:
@@ -171,7 +171,7 @@ Current disposition:
 ~~~yaml
 project_relation: SWITCHY_EXPRESS
 decision: SX-DEC-063
-candidate_generation_policy: EXACT_TEXT_BRIEF_THEN_ONE_USER_APPROVED_IMAGE
+candidate_generation_policy: USER_AUTHORIZED_GENERATE_THEN_PROMOTION_DECISION
 actual_consumer_required: true
 approved_runtime_asset_count_from_sx_dec_063: 0
 runtime_integration_from_sx_dec_063: NOT_STARTED
@@ -191,8 +191,8 @@ required_before_any_new_visual_asset:
   - exact runtime node/key/path consumer
   - coverage row with consumer_kind, primary_use, validation
   - Visual Requirement Gate / approved decision
-  - latest applicable user image-approval policy (this audit supplies no generation authority)
-  - local tracked path + Notion Visual/Asset destination + SHA-256/provenance + readback
+  - latest applicable user image-promotion policy (this audit supplies no generation authority)
+  - local tracked GitHub path + SHA-256/provenance + remote readback
 never_do:
   - create images from a coverage gap alone
   - turn a screen composition reference into a runtime bitmap
@@ -207,7 +207,7 @@ never_do:
 2. **Player comprehension:** each relevant surface has a single player question; important game meaning remains color + shape + text, not color-only.
 3. **Asset / variant completeness:** title, lesson, terrain, success/failure, semantic components, procedural route/service cues, and state families are separated by their actual consumers.
 4. **Anti-overproduction:** no missing campaign/settings/store screen became an image task; all current rows reuse Godot UI, procedural draw, or existing approved assets.
-5. **Canon/runtime consistency:** exact `main`, scene/controller/HUD/asset manifest, live Godot scene graph, decision boundaries, and Notion destinations were compared. The stale registry reference and first-session semantic wording below are corrected by Issue #222.
+5. **Canon/runtime consistency:** exact `main`, scene/controller/HUD/asset manifest, live Godot scene graph, decision boundaries, and GitHub owners were compared. The stale registry reference and first-session semantic wording below are corrected by Issue #222.
 
 ### Canonical freshness correction
 

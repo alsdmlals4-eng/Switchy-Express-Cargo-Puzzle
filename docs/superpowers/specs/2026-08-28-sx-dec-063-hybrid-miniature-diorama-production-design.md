@@ -1,6 +1,6 @@
 # SX-DEC-063 Hybrid Miniature-Diorama Production Design
 
-**Status:** USER_APPROVED_DIRECTION · DESIGN_READY · IMAGE_GENERATION_PENDING_EXACT_BRIEF_APPROVAL · GODOT_IMPLEMENTATION_NOT_AUTHORIZED
+**Status:** USER_APPROVED_DIRECTION · FIRST_CANDIDATE_GENERATED_REVIEW_PENDING · GODOT_IMPLEMENTATION_NOT_AUTHORIZED
 **Decision:** SX-DEC-063
 **Issue:** #239
 **Authority:** docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md
@@ -60,9 +60,9 @@ hard_exclusions:
 
 ## Candidate sequence
 
-1. SX-VIS-063-CANDIDATE-001 — board terrain v02, one exact image-generation approval.
+1. SX-VIS-063-CANDIDATE-001 — board terrain v02, generated and machine-reviewed before the user's final disposition.
 2. Review at the real 1672×941 backdrop crop and 1280×720 BUILD consumer.
-3. Each subsequent board or shell candidate receives its own brief, one-image approval, review, provenance, and Notion readback.
+3. Each subsequent board or shell candidate receives its own brief, generation, review, GitHub provenance, and promotion/revise/reject disposition.
 4. After the approved production set is complete, prepare one integration-only Codex contract: versioned consumer-path updates, manifest/provenance updates, tests, Godot runtime comparison, package invalidation/new candidate, and five-pass review.
 
 No candidate sequence step implicitly authorizes the next one.
@@ -75,9 +75,9 @@ Create one text-free 1672×941 landscape terrain backdrop for the actual Switchy
 
 ## Validation and evidence ceiling
 
-- Before integration: visual candidate QA, consumer-size crop review, provenance, SHA-256, and Notion destination readback.
+- Before integration: visual candidate QA, consumer-size crop review, GitHub provenance, SHA-256, and GitHub remote readback.
 - During later integration: focused asset path/manifest tests, full Godot suite, all supported viewport hierarchy checks, live runtime screenshots, same-state comparison, package candidate regeneration, and five-pass review.
-- Not proof: image generation, a Notion attachment, source-file presence, or a machine capture alone.
+- Not proof: image generation, source-file presence, or a machine capture alone.
 - Still NOT_RUN until separately performed: Windows physical/audio, Android device, five-person comprehension, Player Experience, release-rights conclusion, production cutover.
 
 ## Rollback
