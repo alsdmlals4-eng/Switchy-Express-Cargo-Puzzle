@@ -6,7 +6,7 @@
 
 The existing route overlay rendered a blue trace on every rail plus a green forecast from the authored start. A player near a switch could therefore see a branch light that the train would not take and could still see a predictive trace after a terminal result. This weakens the intended question: “under my current switch setting, where will this train go now?”
 
-The first PR #249 remote validation also found two governance regressions that the local Godot runner does not own: three retained Python canon tests still hard-coded the prior `SX-DEC-027~063` span, and the protected-change approval record incorrectly listed all changed files rather than the exact protected-path set required by the Base validator.
+The first PR #249 remote validation also found two governance regressions that the local Godot runner does not own: four retained canonical-freshness tests (three under `tests/python`, one root contract test) still hard-coded the prior `SX-DEC-027~063` span, and the protected-change approval record incorrectly listed all changed files rather than the exact protected-path set required by the Base validator.
 
 ## Solution
 
@@ -15,7 +15,7 @@ The first PR #249 remote validation also found two governance regressions that t
 - It emits selected descriptors only for the current deterministic continuation. A non-selected rail has no rail-light descriptor.
 - The existing dim route-control target stays as an input affordance. Occupied lock is a crimson overlay on the selected rail, not another illuminated route.
 - SUCCESS/FAILURE emits no future-route descriptor.
-- Updated the three canonical-freshness tests to require the new `SX-DEC-027~064` span and `SX-DEC-064` identity.
+- Updated the four canonical-freshness tests to require the new `SX-DEC-027~064` span and `SX-DEC-064` identity.
 - Reduced `PROJECT_PROTECTED_CHANGE_APPROVAL.approved_paths` to the exact 11 protected paths detected against the required protected baseline. Non-protected implementation, test, decision, audit, and planning-reference files remain authorized by the user scope but are intentionally not inserted into that field.
 
 ## Evidence and boundary
