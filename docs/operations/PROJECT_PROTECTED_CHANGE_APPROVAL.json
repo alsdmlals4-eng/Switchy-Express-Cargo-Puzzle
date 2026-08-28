@@ -2,7 +2,7 @@
   "schema_version": 1,
   "artifact_role": "PROJECT_PROTECTED_CHANGE_APPROVAL",
   "status": "APPROVED",
-  "protected_base_commit": "f34995228ef58ec00fffd60f7c53951bfc631f7c",
+  "protected_base_commit": "c20a0b571a066ce07e9e55fa324aa0ff1112b138",
   "decision_ids": [
     "USER-APPROVAL-2026-08-26-R5.4-AUTHORITY-RECONCILIATION",
     "VIS-SX-059-05",
@@ -15,7 +15,8 @@
     "USER-APPROVAL-2026-08-28-SX-DEC-062-BOARD-FIRST-RUNTIME-COMPOSITION",
     "USER-APPROVAL-2026-08-28-SX-DEC-062-PHASE-2-IMPLEMENTATION",
     "SX-DEC-063",
-    "USER-APPROVAL-2026-08-28-SX-DEC-063-HYBRID-MINIATURE-DIORAMA-ALIGNMENT"
+    "USER-APPROVAL-2026-08-28-SX-DEC-063-HYBRID-MINIATURE-DIORAMA-ALIGNMENT",
+    "USER-APPROVAL-2026-08-28-GITHUB-ONLY-NOTION-CURRENT-WORKSPACE-MIGRATION"
   ],
   "approved_paths": [
     "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
@@ -70,7 +71,7 @@
     "game/finite/run/finite_run_session_factory.gd",
     "game/station/station.gd"
   ],
-  "approval_source": "USER_EXPLICIT_VIS_SX_059_05_AND_SX_DEC_060_APPROVAL_2026-08-26; USER_EXPLICIT_SX_DEC_061_BOARD_FIRST_COZY_NEO_ARCADE_2026-08-28; USER_EXPLICIT_SX_DEC_062_EXISTING_ASSET_BOARD_FIRST_RUNTIME_COMPOSITION_2026-08-28; USER_EXPLICIT_SX_DEC_062_PHASE_2_IMPLEMENTATION_2026-08-28; USER_EXPLICIT_SX_DEC_063_HYBRID_MINIATURE_DIORAMA_ALIGNMENT_2026-08-28",
+  "approval_source": "USER_EXPLICIT_VIS_SX_059_05_AND_SX_DEC_060_APPROVAL_2026-08-26; USER_EXPLICIT_SX_DEC_061_BOARD_FIRST_COZY_NEO_ARCADE_2026-08-28; USER_EXPLICIT_SX_DEC_062_EXISTING_ASSET_BOARD_FIRST_RUNTIME_COMPOSITION_2026-08-28; USER_EXPLICIT_SX_DEC_062_PHASE_2_IMPLEMENTATION_2026-08-28; USER_EXPLICIT_SX_DEC_063_HYBRID_MINIATURE_DIORAMA_ALIGNMENT_2026-08-28; USER_EXPLICIT_GITHUB_ONLY_NOTION_CURRENT_WORKSPACE_MIGRATION_2026-08-28",
   "approval_time": "2026-08-28T20:19:43+09:00",
-  "scope_summary": "User-approved SX-DEC-060 implementation and automatic consumer-image policy remain preserved. The user explicitly approved SX-DEC-061 Board-first Cozy Neo-Arcade visual refinement, the SX-DEC-062 existing-asset board-first runtime-composition contract and its Phase 2 implementation, and SX-DEC-063 Hybrid Miniature-Diorama Alignment on 2026-08-28: correct stale current visual/system references; preserve the rectangular BUILD/RUN grid, T2 v02, Issue #227, and all current finite rules; restrict future image work to separately approved actual-consumer candidates; and make no Godot integration or evidence promotion in this planning stage. This manifest exactly acknowledges all protected paths changed from the adapter baseline through the PR head, including the Candidate 003 package record and earlier Phase 5 documentation paths whose approval list had drifted. It grants no new consumer, image generation, evidence promotion beyond verified package metadata, Base repin, or unauthorized 056-058 scope."
+  "scope_summary": "User-approved SX-DEC-060 implementation and automatic consumer-image policy remain preserved. The user explicitly approved SX-DEC-061 Board-first Cozy Neo-Arcade visual refinement, the SX-DEC-062 existing-asset board-first runtime-composition contract and its Phase 2 implementation, SX-DEC-063 Hybrid Miniature-Diorama Alignment, and the GitHub-only migration of the current Notion workspace on 2026-08-28: correct stale current visual/system references; preserve the rectangular BUILD/RUN grid, T2 v02, Issue #227, and all current finite rules; migrate current Notion structure/work products to GitHub while excluding historical/foreign material; generate actual-consumer candidates without per-image preapproval but require the user's final promotion/revise/reject disposition; and make no Godot integration or evidence promotion in this planning stage. This manifest exactly acknowledges all protected paths changed from the current PR base through the PR head. It grants no new consumer, runtime integration, Base repin, or unauthorized 056-058 scope."
 }
