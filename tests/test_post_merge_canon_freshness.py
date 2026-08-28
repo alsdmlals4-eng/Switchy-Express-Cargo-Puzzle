@@ -50,7 +50,7 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
 
         self.assertIn("default_branch: main", active)
         self.assertIn("product_baseline: GMB-002 · AMENDED_BY_SX_DEC_060", active)
-        self.assertIn("current_decisions: SX-DEC-027~062", active)
+        self.assertIn("current_decisions: SX-DEC-027~063", active)
         self.assertIn("sx_dec_059_implementation: MERGED_MAIN_VERIFIED · PRE_SX_DEC_060_RUNTIME", active)
         self.assertIn("pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003", active)
         self.assertIn("candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY", active)
@@ -59,6 +59,7 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         self.assertIn("sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN", active)
         self.assertIn("sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED", active)
         self.assertIn("sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237", active)
+        self.assertIn("sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · PLANNING_CURRENT · ISSUE_239 · RUNTIME_UNCHANGED", active)
         self.assertIn("post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED", active)
         self.assertIn("PR #174 remains", active)
         self.assertIn("READ_ONLY", active)
