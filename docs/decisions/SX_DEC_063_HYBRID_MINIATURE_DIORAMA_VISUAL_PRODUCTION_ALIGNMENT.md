@@ -167,3 +167,9 @@ generate exactly one candidate
 - Repository structured canon: this Decision, VISUAL_DIRECTION.md, PROJECT_CORE_SCENE_VISUAL_BOARD.md, TARGET_BUILD_SCREEN_SURFACE_AND_VISUAL_COVERAGE.md, current project-hub owners, and the later implementation contract.
 - Notion human surfaces: Switchy Direction 3c91b237-eb1c-8197-bf13-debb96d444c8, Visual/UX/Assets 3c51b237-eb1c-81fa-8d47-d043dae17e11, Production 3c51b237-eb1c-8183-9ec4-ea913a27b697, Flow 3c01b237-eb1c-81a0-8bae-dee2470e0576.
 - Not a destination: the foreign Direction page below Home, and Draft PR #174.
+
+## Post-merge destination readback
+
+- GitHub: PR #240 squash-merged to `main@f316ee1ba3b641e655facfb3bfaee28b3bc8d64b`; Project Contract, Base Adapter approval, Thin Adapter, GUT, Godot tests, and Windows Demo Export completed successfully on the exact head.
+- Notion: Home `3c41b237-eb1c-8103-9537-ede6dfc5f07e`, Direction `3c91b237-eb1c-8197-bf13-debb96d444c8`, Visual/UX/Assets `3c51b237-eb1c-81fa-8d47-d043dae17e11`, Production `3c51b237-eb1c-8183-9ec4-ea913a27b697`, and Flow `3c01b237-eb1c-81a0-8bae-dee2470e0576` each received the SX-DEC-063 status and were fetched back successfully.
+- No Notion binary asset attachment, runtime asset approval, or Godot integration was created by this readback.

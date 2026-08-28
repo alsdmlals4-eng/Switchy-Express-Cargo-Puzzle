@@ -70,6 +70,7 @@ sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · PLANNING_CURRENT
 sx_dec_063_decision_owner: docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md
 sx_dec_063_design_spec: docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production-design.md
 sx_dec_063_first_candidate: SX-VIS-063-CANDIDATE-001 · BOARD_TERRAIN_1672x941 · EXACT_BRIEF_APPROVAL_PENDING
+sx_dec_063_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · 2026-08-28 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
 notion_direction_current_page: 3c91b237-eb1c-8197-bf13-debb96d444c8 · CURRENT_CREATED_READBACK_PASS · 2026-08-28
