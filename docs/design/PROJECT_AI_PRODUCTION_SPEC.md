@@ -2,7 +2,7 @@
 
 > **Document role:** machine-searchable design and implementation contract. It does not replace source code, map data, tests, or human play evidence.
 >
-> **Canon snapshot:** `origin/main` / `c20a0b571a066ce07e9e55fa324aa0ff1112b138` (`2026-08-28 KST`)
+> **Canon snapshot:** `origin/main` / `9c3be67cf99221d5007f0332be6935e81a6954bb` (`2026-08-28 KST`)
 > **Working branch:** `codex/master-gdd-20260828`
 > **Generated:** `2026-08-28 KST`
 > **Evidence vocabulary:** `DOCUMENTED`, `CONFIRMED`, `IMPLEMENTED`, `AUTOMATED_TEST_PASS`, `RUNTIME_VERIFIED`, `UX_VERIFIED`, `RELEASE_READY`. A later state never follows from an earlier state automatically.
