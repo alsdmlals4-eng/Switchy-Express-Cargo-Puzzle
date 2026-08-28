@@ -36,8 +36,8 @@ The player promise, finite-map rules, station cardinal-service semantics, Manual
    - Result retains only runtime truth and same-layout Retry / Edit / Title recovery. No fabricated analytics, scores, currencies, or trace.
 
 4. **Evidence-safe validation transition**
-   - Current `SX60-POC-ACCEPT-002` remains the exact pre-SX-DEC-062 package candidate. If runtime bytes change, its physical/audio/human observations cannot transfer to the new bytes.
-   - A new exact candidate, automated/package evidence, and the already-open Windows physical+audio → Android device → five-person → Player Experience gates are required after implementation. They are not completed by this decision.
+   - `SX60-POC-ACCEPT-002` is immutable pre-SX-DEC-062 package evidence. Its physical/audio/human observations cannot transfer to the new bytes.
+   - `SX60-POC-ACCEPT-003` is the exact merged-main package candidate after implementation. It verifies package/automation only; Windows physical+audio → Android device → five-person → Player Experience gates remain open.
 
 ## Explicit exclusions
 

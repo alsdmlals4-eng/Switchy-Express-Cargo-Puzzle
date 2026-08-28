@@ -22,10 +22,10 @@ google_sheets: RETIRED_NO_ACTIVE_USE
 sx_dec_060_user_rule: APPROVED
 sx_dec_060_design_tdd_handoff: PREPARED
 sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · source main 0e882764b837d13282a7642b115948d4e061d163
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · source main 8bce715b5045afebfb04d38108d2e3f7353e1b10 · package-only evidence
 sx60_poc_accept_001: HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY
-windows_physical_post_060: HISTORICAL_AUTOMATION_OBSERVED_INITIAL_TITLE_AND_BUILD_ENTRY · CURRENT_EXACT_CANDIDATE_002_PACKAGE_VERIFIED_HUMAN_PHYSICAL_NOT_RUN
+windows_physical_post_060: HISTORICAL_AUTOMATION_OBSERVED_INITIAL_TITLE_AND_BUILD_ENTRY · CURRENT_EXACT_CANDIDATE_003_PACKAGE_VERIFIED_HUMAN_PHYSICAL_NOT_RUN
 android_device_post_060: NOT_RUN
 five_person_post_060: NOT_RUN
 player_experience_post_060: NOT_RUN
@@ -146,7 +146,7 @@ Actual GDScript/Scene/Resource/map/runtime implementation is merged-main verifie
 ## Current Next Work
 
 ```text
-→ SX60-POC-ACCEPT-002 isolated visual/input self-run observed (audio remains unobserved)
+→ SX60-POC-ACCEPT-003 exact package verified; no physical visual/input/audio observation has transferred or been run
 → Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person comprehension

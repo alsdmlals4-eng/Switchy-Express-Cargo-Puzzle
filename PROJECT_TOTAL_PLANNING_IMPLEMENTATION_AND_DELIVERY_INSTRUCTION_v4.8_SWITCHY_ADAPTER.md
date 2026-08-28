@@ -193,8 +193,8 @@ sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_five_pass_review: CLOSED · SX-AUD-071
 sx_dec_060_notion_readback: PASS
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED
-post_sx_dec_060_candidate_minimum_product_source_main: a8eee4f875a95e8da69802c4e60452df3535fe0e
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · PACKAGE_ONLY
+post_sx_dec_060_candidate_minimum_product_source_main: 8bce715b5045afebfb04d38108d2e3f7353e1b10
 sx60_poc_accept_001: HISTORICAL_SUPERSEDED_BY_PLAYER_FACING_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 windows_physical_post_060: NOT_RUN
 android_device_post_060: NOT_RUN
@@ -208,7 +208,7 @@ Candidate 002의 Windows startup PASS는 역사적 physical evidence지만 P1 vi
 현재 post-060 implementation route:
 
 ```text
-run the exact post-060 candidate physical self-run after package proof
+NoLaunch verification PASS on SX60-POC-ACCEPT-003, then the exact post-060 candidate physical self-run after package proof
 → Windows physical smoke and audio perceptual QA
 → Android device smoke as a separate platform gate
 → Five-person first-contact comprehension on that post-060 build

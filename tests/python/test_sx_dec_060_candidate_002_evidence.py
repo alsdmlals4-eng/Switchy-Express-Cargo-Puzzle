@@ -21,23 +21,24 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         self.assertTrue(path.is_file(), f"missing required evidence owner: {path}")
         return json.loads(path.read_text(encoding="utf-8"))
 
-    def test_current_pointer_binds_candidate_002_to_the_exact_successful_export(self) -> None:
+    def test_candidate_002_is_preserved_as_exact_prior_byte_evidence(self) -> None:
         pointer = self._json(POINTER)
         artifact = self._json(ARTIFACT)
         audit = self._json(AUDIT)
 
         self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-002")
-        self.assertEqual(pointer["minimum_product_source_main"], "a8eee4f875a95e8da69802c4e60452df3535fe0e")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-003")
+        historical = pointer["historical_superseded_after_sx_dec_062"]
+        self.assertEqual(historical["candidate_id"], "SX60-POC-ACCEPT-002")
         self.assertEqual(
-            pointer["artifact_evidence_owner"],
+            historical["artifact_evidence_owner"],
             "evidence/acceptance/sx60_poc_accept_002_artifact.json",
         )
         self.assertEqual(
-            pointer["deep_pck_evidence_owner"],
+            historical["deep_pck_evidence_owner"],
             "evidence/acceptance/sx60_poc_accept_002_pck_deep_audit.json",
         )
-        self.assertEqual(artifact["candidate_id"], pointer["current_candidate_id"])
+        self.assertEqual(artifact["candidate_id"], historical["candidate_id"])
         self.assertEqual(artifact["source_build"]["main_sha"], "0e882764b837d13282a7642b115948d4e061d163")
         self.assertEqual(artifact["artifact"]["workflow_run_id"], 33030116761)
         self.assertEqual(artifact["artifact"]["workflow_head_sha"], artifact["source_build"]["main_sha"])
@@ -47,7 +48,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
             artifact["package"]["zip_sha256"],
             "b2602554ec28ba8597cc509c6dc2e1b61a946ca193a31673ed96bf9671c8c8e3",
         )
-        self.assertEqual(audit["candidate_id"], pointer["current_candidate_id"])
+        self.assertEqual(audit["candidate_id"], historical["candidate_id"])
 
     def test_deep_audit_is_package_complete_without_promoting_human_gates(self) -> None:
         artifact = self._json(ARTIFACT)
@@ -97,19 +98,15 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
     def test_current_decisions_preserve_startup_only_evidence_without_physical_promotion(self) -> None:
         text = CURRENT_DECISIONS.read_text(encoding="utf-8")
 
-        self.assertNotIn("candidate_002_windows_physical_startup_smoke: PASS", text)
-        self.assertNotIn("candidate_002_result: BLOCKED_BY_CONFIRMED_P1_PREFLIGHT_VISUAL_DEFECTS", text)
-        self.assertIn(
-            "candidate_002_windows_physical_startup_smoke: ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT_OBSERVED",
-            text,
-        )
-        self.assertIn("acceptance_build: SX60-POC-ACCEPT-002 · PACKAGE_VERIFIED · ISOLATED_VISUAL_INPUT_OBSERVED · AUDIO_PERCEPTUAL_QA_NEXT", text)
+        self.assertNotIn("SX60-POC-ACCEPT-003 · PHYSICAL_PASS", text)
+        self.assertIn("sx60_poc_accept_002: SX60-POC-ACCEPT-002 · HISTORICAL_SUPERSEDED_BY_SX_DEC_062", text)
+        self.assertIn("acceptance_build: SX60-POC-ACCEPT-003 · PACKAGE_VERIFIED · NO_HUMAN_OR_PHYSICAL_EVIDENCE", text)
 
     def test_active_context_routes_after_startup_observation_to_isolated_self_run(self) -> None:
         text = ACTIVE_CONTEXT.read_text(encoding="utf-8")
 
         self.assertIn(
-            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · ISOLATED_VISUAL_INPUT_OBSERVED · AUDIO_NOT_OBSERVED · PHYSICAL_AUDIO_QA_NEXT",
+            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · NO_LAUNCH_PACKAGE_VERIFIED · SOURCE_MAIN_8bce715 · WINDOWS_PHYSICAL_AUDIO_QA_NEXT",
             text,
         )
         self.assertNotIn("HUMAN_PHYSICAL_SELF_RUN_NEXT", text)
@@ -124,6 +121,14 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         )
         self.assertIn(
             "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_02.md",
+            approval["approved_paths"],
+        )
+        self.assertIn(
+            "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_03.md",
+            approval["approved_paths"],
+        )
+        self.assertIn(
+            "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_03.md",
             approval["approved_paths"],
         )
         self.assertIn(

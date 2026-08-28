@@ -185,16 +185,16 @@ Actual Godot product implementation is merged-main verified by PR #188; the pack
 Stable sequence:
 
 ```text
-SX60-POC-ACCEPT-002 isolated title → briefing → build visual/input observation complete
-→ audio perceptual QA and physical/device/human gates
+SX60-POC-ACCEPT-003 exact package verified
+→ NoLaunch verification PASS, then physical/device/human gates
 ```
 
 ```yaml
 SX_DEC_060_RUNTIME: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 FULL_AUTOMATED_REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 FIVE_PASS_REVIEW: CLOSED · SX-AUD-071
-POST_060_PACKAGE: SX60_POC_ACCEPT_002_PREPARED_PACKAGE_VERIFIED · HISTORICAL_SX60_POC_ACCEPT_001_PRESERVED
-POST_060_CANDIDATE: SX60-POC-ACCEPT-002 · PREPARED_PACKAGE_VERIFIED · HUMAN_PHYSICAL_NOT_RUN
+POST_060_PACKAGE: SX60_POC_ACCEPT_003_PREPARED_PACKAGE_VERIFIED · HISTORICAL_SX60_POC_ACCEPT_001_AND_002_PRESERVED
+POST_060_CANDIDATE: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFIED · HUMAN_PHYSICAL_NOT_RUN
 ```
 
 ## M6R · Runtime route readability correction
@@ -205,7 +205,7 @@ The approved E+D Hybrid/Neo-Arcade route-visibility direction is now a runtime p
 
 ## M6S · SX-DEC-062 Board-first runtime composition
 
-`USER_APPROVED · DOCUMENTATION_CONTRACT_READY · RUNTIME_UNCHANGED`
+`MERGED_MAIN_VERIFIED · PR #237 · EXISTING_ASSET_COMPOSITION · PACKAGE_CANDIDATE_003_VERIFIED`
 
 ```text
 existing E+D assets / shell consumers
@@ -215,13 +215,13 @@ existing E+D assets / shell consumers
 → no bitmap, gameplay, map/data, first-session-copy, or audio delta
 ```
 
-The implementation contract is GitHub Issue #235 plus `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`, its spec/plan, and `SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`. Issue #227 T2 hero replacement remains separate and deferred. Once runtime bytes change, Candidate 002 observations become prior-byte evidence and a new exact candidate is required before Phase 5 physical/human interpretation.
+GitHub Issue #235 and PR #237 implemented the contract in `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`, its spec/plan, and `SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`. Existing assets and exact consumers remain unchanged; Issue #227 T2 hero replacement remains separate and deferred. Candidate 002 observations are prior-byte evidence. Candidate 003 is the exact `main@8bce715` package route, but it has no physical/human evidence.
 
 ## M6A · Post-060 physical/device/human validation
 
 `PHASE_5_USER_VERTICAL_SLICE_VALIDATION · USER_AUTHORIZED_2026-08-28 · WINDOWS_PHYSICAL_AUDIO_EXECUTION_PENDING`
 
-After the SX-DEC-062 contract is merged, implemented, and a new exact post-change candidate exists:
+With the SX-DEC-062 contract merged and Candidate 003 package verified, the next gates are:
 
 ```text
 Windows full physical smoke

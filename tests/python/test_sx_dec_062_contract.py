@@ -53,10 +53,10 @@ class SxDec062ContractTests(unittest.TestCase):
         active = read(ACTIVE)
         decisions = read(DECISIONS)
         self.assertIn("current_decisions: SX-DEC-027~062", active)
-        self.assertIn("sx_dec_062_runtime_composition: APPROVED", active)
+        self.assertIn("sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237", active)
         self.assertIn("SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md", active)
         self.assertIn("current_decision_span: SX-DEC-027~062", decisions)
-        self.assertIn("sx_dec_062_runtime_composition: APPROVED", decisions)
+        self.assertIn("sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237", decisions)
 
         registry = json.loads(read(REGISTRY))
         document_ids = {document["id"] for document in registry["documents"]}

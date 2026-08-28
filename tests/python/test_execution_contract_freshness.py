@@ -92,11 +92,11 @@ class ExecutionContractFreshnessTests(unittest.TestCase):
         self.assertTrue(POST_060_POINTER.is_file(), "post-060 candidate pointer is missing")
         pointer = json.loads(POST_060_POINTER.read_text(encoding="utf-8"))
         self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-002")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-003")
         self.assertEqual(
             pointer.get("minimum_product_source_main"),
-            "a8eee4f875a95e8da69802c4e60452df3535fe0e",
-            "a new candidate must be based on the route-readability product merge or newer main",
+            "8bce715b5045afebfb04d38108d2e3f7353e1b10",
+            "a new candidate must be based on the SX-DEC-062 product merge or newer main",
         )
 
     def test_current_owner_docs_do_not_route_historical_sx60_candidate_to_physical_gate(self) -> None:

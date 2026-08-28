@@ -16,7 +16,7 @@ production_cutover: BLOCKED
 
 이 문서는 historical validation APK의 Android 실기기 검증 절차다. Runbook 존재, 자동 테스트, Emulator 실행 또는 화면 녹화만으로 Android Gate를 통과하지 않는다.
 
-> Current Phase 5 notice: 이 runbook의 APK hash/package ID는 pre-SX-DEC-060 validation artifact다. `SX60-POC-ACCEPT-002`는 현재 Windows exact candidate만 지정하며, Android runtime JSON proof가 이 APK를 post-060 human/device candidate로 승격하지 않는다. Current Phase 5 Android Gate는 `PLAYTEST_PLAN.md`와 `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`를 먼저 읽고, exact post-060 Android artifact ID·hash·source를 지정한 뒤 별도 runbook으로 재개한다.
+> Current Phase 5 notice: 이 runbook의 APK hash/package ID는 pre-SX-DEC-060 validation artifact다. `SX60-POC-ACCEPT-003`는 현재 Windows exact candidate만 지정하며, Android runtime JSON proof가 이 APK를 post-060 human/device candidate로 승격하지 않는다. Current Phase 5 Android Gate는 `PLAYTEST_PLAN.md`와 `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`를 먼저 읽고, exact post-060 Android artifact ID·hash·source를 지정한 뒤 별도 runbook으로 재개한다.
 
 ## 1. 검증 경계
 
