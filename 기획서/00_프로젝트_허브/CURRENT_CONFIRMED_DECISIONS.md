@@ -8,7 +8,7 @@ Last updated: `2026-08-28 KST`
 
 ```yaml
 current_product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060
-current_decision_span: SX-DEC-027~062
+current_decision_span: SX-DEC-027~063
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
@@ -52,6 +52,7 @@ sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-003 · PREPARED_PACKAGE_VERIFI
 sx_dec_060_notion_sync: PASS · POST_PR_188_READBACK_COMPLETE
 sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION · PACKAGE_VERIFIED
+sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · PLANNING_CURRENT · ISSUE_239 · IMAGE_GENERATION_AWAITING_EXACT_BRIEF_APPROVAL · RUNTIME_UNCHANGED
 developer_self_run: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_VISUAL_INPUT_OBSERVED_AUDIO_NOT_OBSERVED · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_003
 windows_physical_startup_and_build_entry_automation_observed: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_003
 acceptance_build: SX60-POC-ACCEPT-003 · PACKAGE_VERIFIED · NO_HUMAN_OR_PHYSICAL_EVIDENCE · WINDOWS_PHYSICAL_AUDIO_QA_NEXT
@@ -125,6 +126,7 @@ sx_dec_060_new_bitmap_assets_required: 0
 | **SX-DEC-060** | **Cardinal Station Service + Reachable Network · MERGED_MAIN_VERIFIED · PR #188** |
 | **SX-DEC-061** | **Board-first Cozy Neo-Arcade visual refinement · APPROVED · documentation/plan board only; runtime unchanged** |
 | **SX-DEC-062** | **Board-first runtime composition · MERGED_MAIN_VERIFIED · PR #237 · exact Candidate 003 package verified · human gates remain open** |
+| **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · USER_APPROVED_DIRECTION · Issue #239 · exact first image brief approval pending · runtime unchanged** |
 
 ## SX-DEC-059 retained first-session contract
 
@@ -167,6 +169,21 @@ existing E+D assets and exact consumers
 ```
 
 This contract excludes all bitmap/manifest/hash changes, Issue #227 T2 replacement, finite rules/data/locales/audio changes, score/economy/progression, Base repin, and PR #174. Implementation merged in PR #237 on exact `main@8bce715b5045afebfb04d38108d2e3f7353e1b10`: RED→GREEN visual composition tests, the full local Godot runner (112 cases / 13,512 assertions), six exact-head CI checks, and an exact-main package candidate are verified. Physical, audio, device, human, and player-experience evidence remain `NOT_RUN`.
+
+## SX-DEC-063 confirmed hybrid miniature-diorama visual-production direction
+
+Canonical owners: `docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md`, `docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production-design.md`, `기획서/40_표현/VISUAL_DIRECTION.md`, `기획서/40_표현/PROJECT_CORE_SCENE_VISUAL_BOARD.md`, and GitHub Issue #239.
+
+```text
+rectangular BUILD/RUN grid and exact input mapping stay
+→ elevated miniature-diorama depth is expressed inside that geometry
+→ new visual bytes are limited to named, versioned actual consumers
+→ T2 shell_lesson_hero_v02 and Issue #227 remain protected
+→ first terrain candidate requires the separate exact text-brief approval
+→ no Godot/Scene/Resource/manifest integration occurs in this planning stage
+```
+
+This direction does not authorize a true isometric coordinate conversion, gameplay/data/audio/locale/progression change, runtime integration, or any Human/Player Experience promotion. A generated candidate is an inspection artifact until it is approved, traced to an actual consumer, stored locally and in Notion with provenance/hash, and later passes the separate implementation gate.
 
 ### Architecture / evidence boundaries
 
@@ -262,8 +279,10 @@ pre-SX-DEC-060:
 PR #158 implementation → PR #166 playable POC → PR #171 visual correction → PR #172 Candidate 003
 
 current:
-SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237
+SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063 user-approved visual-production direction
 → SX60-POC-ACCEPT-003 exact package verified
+→ terrain candidate exact brief approval and one-image review before any production batch
+→ no runtime bytes are changed by SX-DEC-063 planning
 → NoLaunch verification PASS, then Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person first-contact comprehension

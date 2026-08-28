@@ -1,6 +1,6 @@
 # Visual Direction
 
-상태: `CURRENT_CANON · GMB-002 · SX-DEC-061`
+상태: `CURRENT_CANON · GMB-002 · SX-DEC-061/062 · SX-DEC-063_PLANNING_CURRENT`
 
 ## SX-DEC-061 active visual lock · read this first
 
@@ -17,7 +17,7 @@ semantic_state_language:
   tutorial_focus: violet + bounded focus treatment
   cargo_and_station: color + silhouette/shape + Godot text layer when exact meaning is required
 lifo_anchor: compact world token plus Stack HUD; TOP and next unload group remain readable; never lengthen the train horizontally to represent stack size
-camera_anchor: elevated isometric 3/4 board view at actual gameplay readability scale
+camera_anchor: rectangular gameplay grid with elevated 3/4 miniature-diorama depth cues inside real asset bounds; no isometric hit-test conversion
 keep:
   - existing E+D Hybrid / Neo-Arcade runtime asset family and verified consumers
   - text-free artwork with exact copy in Godot/structured text owners
@@ -35,6 +35,25 @@ allowed_variation:
 ```
 
 The planning-only scene owner is `기획서/40_표현/PROJECT_CORE_SCENE_VISUAL_BOARD.md`. It owns exact panel/flow meaning; its generated board is not a runtime screenshot, asset, Godot Scene, or human-usability result.
+
+## SX-DEC-063 active production refinement
+
+The user selected **Hybrid Miniature-Diorama Alignment** on 2026-08-28 KST after machine comparison found that the merged SX-DEC-062 runtime composition still mixes a warm terrain backdrop with a different pixel/black-outline object language.
+
+~~~text
+rectangular BUILD/RUN input stays authoritative
+→ versioned art candidates target only current real board and shell consumers
+→ 2.5D depth is painted inside the existing cell bounds
+→ one material / silhouette / lighting grammar replaces the visible mismatch
+→ later integration is deferred until candidates and the final Codex contract are approved
+~~~
+
+- **Keep:** board-first hierarchy, exact live Godot copy, compact LIFO representation, off-track station, color+shape+text state redundancy, T2 Hero v02, and all current finite rules.
+- **Avoid:** universal pure-black pixel outlines, sticker-flat fills, pseudo-text, copied reference composition, invented score/economy/save UI, and diagonal or station-footprint service implication.
+- **Do Not Drift:** warm grass/stone/timber/brass/navy materials; thin dark navy/brown edge separation; shared upper-left warm light; rail-port clarity; compact locomotive; failure/lesson color variation within one family.
+- **Production status:** first terrain candidate brief is ready, but no SX-DEC-063 image has been generated, approved as a project asset, integrated, or verified in Godot.
+
+The authoritative scope, exact consumer slots, first-image brief, candidate lifecycle, rights/provenance requirements, and rollback are in docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md.
 
 ## SX-DEC-062 active implementation-composition boundary
 

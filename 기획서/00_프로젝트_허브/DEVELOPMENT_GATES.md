@@ -12,8 +12,8 @@ work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~062
-current_product_gate: SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION_CONTRACT
+current_decisions: SX-DEC-027~063
+current_product_gate: SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_PLANNING
 ```
 
 ## 1. Stable historical implementation evidence
@@ -54,6 +54,22 @@ ANDROID DEVICE SMOKE: NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
+
+## 1B. SX-DEC-063 hybrid miniature-diorama visual-production planning gate
+
+`PASS · USER_APPROVED_DIRECTION · ISSUE #239 · IMAGE_GENERATION_AWAITING_EXACT_BRIEF_APPROVAL · RUNTIME_UNCHANGED`
+
+Binding owners:
+
+```text
+docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md
+docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production-design.md
+기획서/40_표현/VISUAL_DIRECTION.md
+기획서/40_표현/PROJECT_CORE_SCENE_VISUAL_BOARD.md
+기획서/40_표현/TARGET_BUILD_SCREEN_SURFACE_AND_VISUAL_COVERAGE.md
+```
+
+The selected direction adds elevated miniature-diorama depth cues within the existing rectangular BUILD/RUN grid. It may create only versioned, actual-consumer candidates after the user approves each exact first-generation brief. It does not authorize a true isometric conversion, Godot/Scene/Resource/manifest integration, a production asset batch, gameplay/data/audio/locale/progression changes, Issue #227 T2 replacement, or a new human/player-evidence claim.
 
 ## 2. Candidate 003 evidence boundary
 

@@ -1,6 +1,6 @@
 # PROJECT_CORE_SCENE_VISUAL_BOARD
 
-Status: `CURRENT_PLANNING_OWNER · SX-DEC-061 · GENERATED_EXPLORATION · NOT_RUNTIME_PROOF`
+Status: `CURRENT_PLANNING_OWNER · SX-DEC-061/063 · GENERATED_EXPLORATION · NOT_RUNTIME_PROOF · SX-DEC-063_CANDIDATE_GENERATION_PENDING`
 
 This document owns the exact meaning of the planning board. The board image is only an AI-understanding and visual-direction review aid: no panel is a finished runtime asset, Godot screen, Scene, UI implementation, or Human/Player Experience PASS.
 
@@ -35,15 +35,25 @@ Generated panel numbers and pictograms are non-canonical. Exact UI wording, stat
 
 ## Visual grammar across the board
 
-- **World:** cozy miniature rail diorama, elevated isometric camera, warm world lights.
+- **World:** cozy miniature rail diorama, warm world lights, and elevated 3/4 depth cues inside the actual rectangular gameplay grid; this is not an isometric input-map promise.
 - **Control deck:** dark navy/charcoal frames with limited gold trim; panels support the board rather than replace it.
 - **State redundancy:** lime/crimson/violet never stand alone; shape, outline, icon, direction, brightness, or current Godot text carries the same meaning.
 - **LIFO:** world token is compact; Stack HUD owns the exact sequence and count. `TOP` is semantic text, not “front/back.”
 - **Variation:** failure may use more crimson and a tutorial may use more violet, but material language, cargo silhouettes, camera, and UI framing stay shared.
 
-## SX-DEC-062 runtime-composition mapping
+## SX-DEC-062/063 runtime-composition and production mapping
 
-This planning owner now maps to one future runtime presentation contract, not an image batch:
+SX-DEC-062 maps to a merged existing-asset presentation contract. SX-DEC-063 maps only proven consumers to a candidate-production sequence; neither Decision promotes this planning board binary into a runtime asset:
+
+### SX-DEC-063 actual-consumer refinement
+
+| Consumer family | Requirement | Current production state |
+| --- | --- | --- |
+| BUILD/RUN board terrain, train, rail, markers, stations, cargo | SX-VIS-063-RQ-001 | 14 proposed versioned slots; first terrain brief ready; no image generated or integrated. |
+| Title, shared non-T2 lesson, success/failure result | SX-VIS-063-RQ-002 | 4 proposed versioned slots; deferred until their own exact candidate briefs and approvals. |
+| Control deck density | SX-VIS-063-RQ-003 | Later code-only implementation review; no new control or system. |
+
+T2 Hero v02 remains protected and Issue #227 remains outside this mapping.
 
 | Runtime concern | Existing consumer | SX-DEC-062 change boundary |
 |---|---|---|
