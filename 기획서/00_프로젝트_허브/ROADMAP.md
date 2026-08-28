@@ -205,9 +205,9 @@ This historical presentation correction established procedural route feedback wi
 
 ## M6R2 · SX-DEC-064 active-route lighting
 
-`USER_APPROVED · GitHub Issue #248 · IMPLEMENTED_BRANCH_LOCAL · PR_PENDING`
+`MERGED_MAIN_VERIFIED · GitHub Issue #248 · PR #249 · main 2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI 7 GREEN`
 
-Only the route the train will traverse under **current** selected switch/crossing values receives lime rail glow and direction. The projection begins at actual `train_cell + train_previous_cell`, with an authored-start fallback only before the train state exists. Non-selected branches receive no route-light descriptor; dim route-control targets remain available controls rather than a competing rail state. A crimson occupied-lock cue sits on the selected rail and terminal result phases emit no predictive future-route light. This is procedural-only (`0` bitmap assets), does not solve or change the puzzle, and is locally automated-verified by RED→GREEN plus 112 cases / 13,513 assertions. PR/CI/merged-main, same-state pixel composite, physical, and player evidence remain open.
+Only the route the train will traverse under **current** selected switch/crossing values receives lime rail glow and direction. The projection begins at actual `train_cell + train_previous_cell`, with an authored-start fallback only before the train state exists. Non-selected branches receive no route-light descriptor; dim route-control targets remain available controls rather than a competing rail state. A crimson occupied-lock cue sits on the selected rail and terminal result phases emit no predictive future-route light. This is procedural-only (`0` bitmap assets), does not solve or change the puzzle, and passed RED→GREEN, all 7 required exact-head CI checks, and post-merge main Godot verification (112 cases / 13,513 assertions). Same-state pixel composite, physical, and player evidence remain open.
 
 ## M6S · SX-DEC-062 Board-first runtime composition
 

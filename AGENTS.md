@@ -181,7 +181,7 @@ sx_dec_060_post_change_candidate: NOT_CREATED
 sx_dec_061: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 sx_dec_062: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION
 sx_dec_063: USER_APPROVED_DIRECTION · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · RUNTIME_NOT_CONNECTED
-sx_dec_064: USER_APPROVED · ACTIVE_ROUTE_LIGHTING · PROCEDURAL_RUNTIME_DELTA · BRANCH_LOCAL_VERIFIED · PR_PENDING
+sx_dec_064: MERGED_MAIN_VERIFIED · PR_249 · main_2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI_7_GREEN · PROCEDURAL_RUNTIME_DELTA
 ```
 
 Current first-session shape remains:
@@ -329,8 +329,7 @@ Automated/export/package/self-run does not imply HUMAN/PLAYER EXPERIENCE PASS. P
 Current next gate:
 
 ```text
-SX-DEC-064 active-route-lighting PR/CI/merge
-→ new exact runtime candidate + physical route-readability inspection
+SX-DEC-064 active-route-lighting post-merge exact runtime candidate + physical route-readability inspection
 → SX-DEC-063 terrain-only Phase 2 implementation contract
 → physical/device/human gates
 ```
