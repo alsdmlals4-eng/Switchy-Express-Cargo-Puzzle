@@ -1,19 +1,24 @@
 {
   "manifest_id": "SX-HGB-001-PUBLICATION",
   "blueprint_pair_id": "SX-HGB-001",
-  "revision": "r01",
+  "revision": "r02",
   "source_main": "28619f4",
   "source": "docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT.md",
-  "source_sha256": "08da34524ff371049f1920f2003b7c97523c32f0651c26d845e90e67a08b55a7",
+  "source_sha256": "093c961e2aa4e4dda36dcdbf9bf195ca1d067cebef09eefe05c33f1f2160cd75",
   "generator": "tools/build_human_game_blueprint.py",
-  "output_pdf": "output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260830.pdf",
-  "output_sha256": "7888fdbfb9662e5c9120ecc91ba476faf433765cf1ed9e62efced1ce17cdfec4",
+  "output_pdf": "output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260830_r02.pdf",
+  "output_sha256": "5bf96b40ea3f4838a049e972ca185fc6c1f45af01b43a2ac06e6edf8d174ed35",
   "page_count": 20,
   "asset_inputs": {
     "terrain": {
       "path": "art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png",
       "sha256": "68c06fba0f351918f9b1a7ecee2925eb58088b54c04ea59fe98a6e5efe1f8c8b",
       "use": "existing_runtime_asset_as_human_blueprint_visual_input"
+    },
+    "terrain_v02": {
+      "path": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
+      "sha256": "1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d",
+      "use": "user_approved_planning_reference_not_runtime_capture"
     },
     "title": {
       "path": "art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png",
@@ -59,9 +64,34 @@
       "path": "art/product_assets/ed_hybrid_v1/core/core_station_blue_normal_v01.png",
       "sha256": "8b6268d3c92df31c9e425f681722052314cc15f97bf8e74e187e80e9a773b67f",
       "use": "existing_runtime_asset_as_human_blueprint_visual_input"
+    },
+    "flow_reference": {
+      "path": "docs/visual-references/sx-vis-061-core-systems-board-exploration-002b.png",
+      "sha256": "6577d7ac5e490b1303af0105ef0573cf5b4be10a52cbdd4ccecb24ec116993bc",
+      "use": "user_approved_planning_reference_not_runtime_capture"
+    },
+    "hgb_title": {
+      "path": "docs/visual-references/human-game-blueprint/r02/sx-hgb-vis-001-title-hero-candidate.png",
+      "sha256": "1e2c018bc43d34dee396748b40435aa089d76a2f892eb22688983c708382a887",
+      "use": "generated_document_visual_candidate_not_runtime_asset"
+    },
+    "hgb_build": {
+      "path": "docs/visual-references/human-game-blueprint/r02/sx-hgb-vis-002-build-board-candidate.png",
+      "sha256": "17a55375b696176f7b2761fefe542c65eaacca2b8f6881af09337bc8aeb25fbe",
+      "use": "generated_document_visual_candidate_not_runtime_asset"
+    },
+    "hgb_run": {
+      "path": "docs/visual-references/human-game-blueprint/r02/sx-hgb-vis-003-run-switch-top-candidate.png",
+      "sha256": "76d8758b57c05e3ccb21870c83abbe02e4e260051ddce33aa15610979edc8a41",
+      "use": "generated_document_visual_candidate_not_runtime_asset"
+    },
+    "hgb_rail_station": {
+      "path": "docs/visual-references/human-game-blueprint/r02/sx-hgb-vis-004-rail-station-language-candidate.png",
+      "sha256": "c37839a6a30bf7a2a36eed09f8f8da463ea9bf3c89bffcd2550e29a1e0a505ea",
+      "use": "generated_document_visual_candidate_not_runtime_asset"
     }
   },
-  "visual_status": "existing_runtime_assets_plus_document_diagrams; no_live_runtime_capture",
+  "visual_status": "existing_runtime_assets_plus_user_approved_planning_reference_plus_generated_document_candidates; no_live_runtime_capture",
   "user_final_review": "AWAITING",
   "implementation_authority": "BLOCKED"
 }

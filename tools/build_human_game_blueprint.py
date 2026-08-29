@@ -25,7 +25,7 @@ from reportlab.lib.utils import ImageReader
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE = ROOT / "docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT.md"
-DEFAULT_OUTPUT = ROOT / "output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260830.pdf"
+DEFAULT_OUTPUT = ROOT / "output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260830_r02.pdf"
 DEFAULT_MANIFEST = ROOT / "docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT_PUBLICATION_MANIFEST.json"
 
 PAGE_W, PAGE_H = landscape(A4)
@@ -45,6 +45,7 @@ DARK = HexColor("#25343D")
 
 ASSETS = {
     "terrain": ROOT / "art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png",
+    "terrain_v02": ROOT / "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
     "title": ROOT / "art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png",
     "lesson": ROOT / "art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v02.png",
     "success": ROOT / "art/product_assets/ed_hybrid_v1/shells/shell_result_success_v02.png",
@@ -54,7 +55,18 @@ ASSETS = {
     "cargo_blue": ROOT / "art/product_assets/ed_hybrid_v1/core/core_cargo_star_blue_normal_v01.png",
     "station_red": ROOT / "art/product_assets/ed_hybrid_v1/core/core_station_red_normal_v01.png",
     "station_blue": ROOT / "art/product_assets/ed_hybrid_v1/core/core_station_blue_normal_v01.png",
+    # Human-review visual candidates.  These are deliberately separate from
+    # product asset paths: embedding them in the PDF does not promote them to
+    # runtime art or change any Godot consumer.
+    "flow_reference": ROOT / "docs/visual-references/sx-vis-061-core-systems-board-exploration-002b.png",
+    "hgb_title": ROOT / "docs/visual-references/human-game-blueprint/r02/sx-hgb-vis-001-title-hero-candidate.png",
+    "hgb_build": ROOT / "docs/visual-references/human-game-blueprint/r02/sx-hgb-vis-002-build-board-candidate.png",
+    "hgb_run": ROOT / "docs/visual-references/human-game-blueprint/r02/sx-hgb-vis-003-run-switch-top-candidate.png",
+    "hgb_rail_station": ROOT / "docs/visual-references/human-game-blueprint/r02/sx-hgb-vis-004-rail-station-language-candidate.png",
 }
+
+DOCUMENT_CANDIDATE_KEYS = {"hgb_title", "hgb_build", "hgb_run", "hgb_rail_station"}
+APPROVED_REFERENCE_KEYS = {"flow_reference", "terrain_v02"}
 
 
 def sha256(path: Path) -> str:
@@ -255,7 +267,7 @@ class BlueprintRenderer:
     def draw_cover(self, page: dict) -> None:
         self.c.setFillColor(NAVY)
         self.c.rect(0, 0, PAGE_W, PAGE_H, fill=1, stroke=0)
-        self.draw_asset_cover("title", 0, 0, PAGE_W, PAGE_H)
+        self.draw_asset_cover("hgb_title", 0, 0, PAGE_W, PAGE_H)
         self.c.setFillColor(Color(0.02, 0.07, 0.1, alpha=0.80))
         self.c.rect(0, 0, PAGE_W * 0.58, PAGE_H, fill=1, stroke=0)
         self.c.setFillColor(GOLD)
@@ -393,33 +405,59 @@ class BlueprintRenderer:
 
     def draw_flow(self, page: dict) -> None:
         y = self.header(page["eyebrow"], page["title"], page["claim"])
-        positions = [(68, y - 110), (234, y - 110), (400, y - 110), (566, y - 110), (732, y - 110), (565, y - 255), (400, y - 255), (234, y - 255)]
-        node_w, node_h = 130, 78
-        for index, (node, (x, node_y)) in enumerate(zip(page["nodes"], positions)):
+        image_x, image_y, image_w, image_h = MARGIN, 163, 458, 267
+        self.draw_asset_cover("flow_reference", image_x, image_y, image_w, image_h)
+        self.c.setStrokeColor(GOLD)
+        self.c.setLineWidth(1.25)
+        self.c.roundRect(image_x, image_y, image_w, image_h, 10, fill=0, stroke=1)
+        self.c.setFillColor(MUTED)
+        self.c.setFont("Malgun", 7.3)
+        self.c.drawString(image_x + 8, image_y - 12, "승인된 planning reference 재사용 · 실제 런타임 캡처 아님")
+
+        flow_x, flow_w, node_h = 520, 285, 36
+        self.c.setFillColor(INK)
+        self.c.setFont("MalgunBold", 11)
+        self.c.drawString(flow_x, y - 16, "화면 흐름 · 실제 편집 텍스트")
+        for index, node in enumerate(page["nodes"]):
             number, title, body, state = node
+            node_y = y - 60 - index * 40
             accent = self.color_for(state)
             self.c.setFillColor(white)
             self.c.setStrokeColor(accent)
-            self.c.setLineWidth(1.4)
-            self.c.roundRect(x, node_y, node_w, node_h, 9, fill=1, stroke=1)
+            self.c.setLineWidth(1)
+            self.c.roundRect(flow_x, node_y, flow_w, node_h, 7, fill=1, stroke=1)
             self.c.setFillColor(accent)
-            self.c.circle(x + 17, node_y + 59, 11, fill=1, stroke=0)
+            self.c.circle(flow_x + 16, node_y + 18, 9, fill=1, stroke=0)
             self.c.setFillColor(white)
-            self.c.setFont("MalgunBold", 7)
-            self.c.drawCentredString(x + 17, node_y + 56, number)
+            self.c.setFont("MalgunBold", 6.4)
+            self.c.drawCentredString(flow_x + 16, node_y + 15.5, number)
             self.c.setFillColor(INK)
-            self.c.setFont("MalgunBold", 10)
-            self.c.drawString(x + 34, node_y + 56, title)
-            self.draw_wrapped(body, x + 12, node_y + 34, node_w - 24, 10, MUTED, "Malgun", 8, 2)
-        self.c.setStrokeColor(NAVY)
-        self.c.setLineWidth(1.8)
-        for start, end in [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 6), (6, 7)]:
-            x1, y1 = positions[start]
-            x2, y2 = positions[end]
-            self.arrow(x1 + node_w / 2, y1 + node_h / 2, x2 + node_w / 2, y2 + node_h / 2)
-        branch_y = y - 365
+            self.c.setFont("MalgunBold", 8.5)
+            self.c.drawString(flow_x + 30, node_y + 20, title)
+            self.c.setFillColor(MUTED)
+            self.c.setFont("Malgun", 6.5)
+            self.c.drawRightString(flow_x + flow_w - 8, node_y + 20, body)
+            if index < len(page["nodes"]) - 1:
+                self.c.setStrokeColor(NAVY)
+                self.c.setLineWidth(1.1)
+                self.c.line(flow_x + flow_w / 2, node_y, flow_x + flow_w / 2, node_y - 4)
+        branch_y = 54
         for index, text in enumerate(page["branches"]):
-            self.card(MARGIN + index * 250, branch_y, 235, 76, ["진행", "회복", "종료"][index], text, [LIME, CRIMSON, DARK][index], title_size=10)
+            x, width, height = MARGIN + index * 250, 235, 62
+            accent = [LIME, CRIMSON, DARK][index]
+            self.c.setFillColor(white)
+            self.c.setStrokeColor(accent)
+            self.c.setLineWidth(1.1)
+            self.c.roundRect(x, branch_y, width, height, 8, fill=1, stroke=1)
+            self.c.setFillColor(accent)
+            self.c.roundRect(x + 12, branch_y + height - 22, 48, 11, 5, fill=1, stroke=0)
+            self.c.setFillColor(white)
+            self.c.setFont("MalgunBold", 6.1)
+            self.c.drawCentredString(x + 36, branch_y + height - 18, "흐름")
+            self.c.setFillColor(INK)
+            self.c.setFont("MalgunBold", 9.2)
+            self.c.drawString(x + 12, branch_y + height - 38, ["진행", "회복", "종료"][index])
+            self.draw_wrapped(text, x + 55, branch_y + height - 38, width - 67, 8.5, MUTED, "Malgun", 7.2, 2)
         self.footer()
 
     def arrow(self, x1: float, y1: float, x2: float, y2: float) -> None:
@@ -476,13 +514,11 @@ class BlueprintRenderer:
             x = MARGIN + col * (card_w + 17)
             card_y = y - 185 - row * 184
             number, title, body, asset = card
+            visual_asset = ["hgb_title", "lesson", "hgb_build", "hgb_run", "success", "failure"][index]
             self.c.setFillColor(white)
             self.c.setStrokeColor([SKY, VIOLET, GOLD, LIME, GOLD, CRIMSON][index])
             self.c.roundRect(x, card_y, card_w, card_h, 8, fill=1, stroke=1)
-            if asset == "board":
-                self.board(x + 8, card_y + 51, card_w - 16, 94)
-            else:
-                self.draw_asset_cover(asset, x + 8, card_y + 51, card_w - 16, 94)
+            self.draw_asset_cover(visual_asset, x + 8, card_y + 51, card_w - 16, 94)
             self.c.setFillColor(NAVY)
             self.c.roundRect(x + 10, card_y + 24, 26, 15, 7, fill=1, stroke=0)
             self.c.setFillColor(white)
@@ -547,7 +583,10 @@ class BlueprintRenderer:
 
     def draw_board_layers(self, page: dict) -> None:
         y = self.header(page["eyebrow"], page["title"], page["claim"])
-        self.board(MARGIN, y - 360, 420, 275, markers=True)
+        self.draw_asset_cover("hgb_build", MARGIN, y - 360, 420, 275)
+        self.c.setStrokeColor(GOLD)
+        self.c.setLineWidth(1.2)
+        self.c.roundRect(MARGIN, y - 360, 420, 275, 10, fill=0, stroke=1)
         layer_x = MARGIN + 446
         row_h = 42
         for index, layer in enumerate(page["layers"]):
@@ -577,7 +616,10 @@ class BlueprintRenderer:
 
     def draw_build_board(self, page: dict) -> None:
         y = self.header(page["eyebrow"], page["title"], page["claim"])
-        self.board(MARGIN, 116, 425, 300, markers=True)
+        self.draw_asset_cover("hgb_build", MARGIN, 116, 425, 300)
+        self.c.setStrokeColor(GOLD)
+        self.c.setLineWidth(1.2)
+        self.c.roundRect(MARGIN, 116, 425, 300, 10, fill=0, stroke=1)
         self.c.setFillColor(NAVY)
         self.c.setFont("MalgunBold", 8.8)
         self.c.drawCentredString(MARGIN + 212, 97, page["diagram_label"])
@@ -586,7 +628,17 @@ class BlueprintRenderer:
         self.c.setFont("MalgunBold", 12)
         self.c.drawString(x, y - 12, "RUN 전에 확인하는 조건")
         for index, item in enumerate(page["left"]):
-            self.card(x, y - 72 - index * 61, 315, 49, str(index + 1), item, [SKY, LIME, GOLD, VIOLET][index], title_size=9.2, body_size=8.2)
+            card_y, accent = y - 72 - index * 61, [SKY, LIME, GOLD, VIOLET][index]
+            self.c.setFillColor(white)
+            self.c.setStrokeColor(accent)
+            self.c.setLineWidth(1.15)
+            self.c.roundRect(x, card_y, 315, 49, 8, fill=1, stroke=1)
+            self.c.setFillColor(accent)
+            self.c.circle(x + 19, card_y + 24.5, 12, fill=1, stroke=0)
+            self.c.setFillColor(white)
+            self.c.setFont("MalgunBold", 7.3)
+            self.c.drawCentredString(x + 19, card_y + 21.6, str(index + 1))
+            self.draw_wrapped(item, x + 40, card_y + 31, 262, 9.3, INK, "Malgun", 8.0, 2)
         self.c.setFillColor(INK)
         self.c.setFont("MalgunBold", 12)
         self.c.drawString(x, 183, "플레이어가 설계하는 것")
@@ -734,34 +786,29 @@ class BlueprintRenderer:
 
     def draw_switch(self, page: dict) -> None:
         y = self.header(page["eyebrow"], page["title"], page["claim"])
-        cx, cy = 245, 250
-        self.c.setStrokeColor(DARK)
-        self.c.setLineWidth(13)
-        self.c.line(90, cy, cx, cy)
-        self.c.line(cx, cy, 400, cy + 90)
-        self.c.line(cx, cy, 400, cy - 90)
-        self.c.setStrokeColor(LIME)
-        self.c.setLineWidth(7)
-        self.c.line(90, cy, cx, cy)
-        self.c.line(cx, cy, 400, cy + 90)
-        self.c.setFillColor(NAVY)
-        self.c.circle(cx, cy, 31, fill=1, stroke=0)
-        self.c.setFillColor(white)
-        self.c.setFont("MalgunBold", 10)
-        self.c.drawCentredString(cx, cy - 4, "분기")
-        self.c.setFillColor(LIME)
-        self.c.setFont("MalgunBold", 10)
-        self.c.drawCentredString(355, cy + 117, "현재 행로")
+        self.draw_asset_cover("hgb_run", MARGIN, 132, 394, 269)
+        self.c.setStrokeColor(GOLD)
+        self.c.setLineWidth(1.2)
+        self.c.roundRect(MARGIN, 132, 394, 269, 10, fill=0, stroke=1)
         self.c.setFillColor(MUTED)
-        self.c.drawCentredString(355, cy - 126, "어두운 대안")
-        self.c.setFillColor(CRIMSON)
-        self.c.circle(cx + 73, cy + 47, 16, fill=1, stroke=0)
-        self.c.setFillColor(white)
-        self.c.setFont("MalgunBold", 9)
-        self.c.drawCentredString(cx + 73, cy + 43, "잠금")
+        self.c.setFont("Malgun", 7.4)
+        self.c.drawCentredString(MARGIN + 197, 117, "문서용 RUN 후보 · 선택 행로·대안·잠금 상태의 시각 문법")
         for index, (title, body, tail) in enumerate(page["states"]):
-            self.card(460, y - 66 - index * 86, 305, 71, title, body, [SKY, LIME, CRIMSON, DARK][index], title_size=10.2, body_size=8.4)
-            self.c.setFillColor([SKY, LIME, CRIMSON, DARK][index])
+            card_x, card_y, accent = 460, y - 66 - index * 86, [SKY, LIME, CRIMSON, DARK][index]
+            self.c.setFillColor(white)
+            self.c.setStrokeColor(accent)
+            self.c.setLineWidth(1.2)
+            self.c.roundRect(card_x, card_y, 305, 71, 9, fill=1, stroke=1)
+            self.c.setFillColor(accent)
+            self.c.roundRect(card_x + 14, card_y + 47, 48, 12, 6, fill=1, stroke=0)
+            self.c.setFillColor(white)
+            self.c.setFont("MalgunBold", 6.2)
+            self.c.drawCentredString(card_x + 38, card_y + 51, "핵심")
+            self.c.setFillColor(INK)
+            self.c.setFont("MalgunBold", 10.2)
+            self.c.drawString(card_x + 14, card_y + 31, title)
+            self.draw_wrapped(body, card_x + 14, card_y + 14, 278, 8.7, MUTED, "Malgun", 7.9, 1)
+            self.c.setFillColor(accent)
             self.c.setFont("MalgunBold", 7.8)
             self.c.drawRightString(752, y - 126 - index * 86, tail)
         self.c.setFillColor(HexColor("#F8E4E0"))
@@ -774,7 +821,10 @@ class BlueprintRenderer:
 
     def draw_capstone(self, page: dict) -> None:
         y = self.header(page["eyebrow"], page["title"], page["claim"])
-        self.board(MARGIN, 126, 340, 255, markers=True)
+        self.draw_asset_cover("hgb_run", MARGIN, 126, 340, 255)
+        self.c.setStrokeColor(GOLD)
+        self.c.setLineWidth(1.2)
+        self.c.roundRect(MARGIN, 126, 340, 255, 10, fill=0, stroke=1)
         card_x = 402
         for index, (number, title, body) in enumerate(page["steps"]):
             row, col = divmod(index, 2)
@@ -849,7 +899,7 @@ class BlueprintRenderer:
 
     def draw_visual(self, page: dict) -> None:
         y = self.header(page["eyebrow"], page["title"], page["claim"])
-        self.draw_asset_cover("terrain", MARGIN, 125, 368, 267)
+        self.draw_asset_cover("hgb_rail_station", MARGIN, 125, 368, 267)
         self.c.setStrokeColor(GOLD)
         self.c.setLineWidth(1.4)
         self.c.roundRect(MARGIN, 125, 368, 267, 10, fill=0, stroke=1)
@@ -862,7 +912,7 @@ class BlueprintRenderer:
             self.c.circle(x + 8, y - 42 - index * 43, 7, fill=1, stroke=0)
             self.draw_wrapped(line, x + 23, y - 38 - index * 43, 320, 10, INK, "Malgun", 8.6, 2)
         asset_y = 84
-        for index, asset in enumerate(["title", "lesson", "success", "failure"]):
+        for index, asset in enumerate(["terrain_v02", "hgb_title", "hgb_build", "hgb_run"]):
             self.draw_asset_cover(asset, MARGIN + index * 187, asset_y, 176, 29)
         self.c.setFillColor(MUTED)
         self.c.setFont("Malgun", 7.6)
@@ -970,11 +1020,17 @@ def build(source: Path, output: Path, manifest: Path) -> dict:
             key: {
                 "path": str(path.relative_to(ROOT)).replace("\\", "/"),
                 "sha256": sha256(path),
-                "use": "existing_runtime_asset_as_human_blueprint_visual_input",
+                "use": (
+                    "generated_document_visual_candidate_not_runtime_asset"
+                    if key in DOCUMENT_CANDIDATE_KEYS
+                    else "user_approved_planning_reference_not_runtime_capture"
+                    if key in APPROVED_REFERENCE_KEYS
+                    else "existing_runtime_asset_as_human_blueprint_visual_input"
+                ),
             }
             for key, path in ASSETS.items()
         },
-        "visual_status": "existing_runtime_assets_plus_document_diagrams; no_live_runtime_capture",
+        "visual_status": "existing_runtime_assets_plus_user_approved_planning_reference_plus_generated_document_candidates; no_live_runtime_capture",
         "user_final_review": "AWAITING",
         "implementation_authority": "BLOCKED",
     }

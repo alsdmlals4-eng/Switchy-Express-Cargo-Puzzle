@@ -1,7 +1,7 @@
 # Switchy Express · Human Game Blueprint Editorial Source
 
 > **Document ID:** `SX-HGB-001`
-> **Pair / revision:** `SX-HGB-001 · r01 · 2026-08-30`
+> **Pair / revision:** `SX-HGB-001 · r02 · 2026-08-30`
 > **Role:** 사람용 경험 검수 PDF를 위한 편집 원본이다. 게임 규칙·데이터·테스트의 정본은 아래 upstream owner가 계속 소유한다.
 > **Status:** `사용자 최종 검수 대기` — 이 문서는 새 게임 기능이나 구현 권한을 만들지 않는다.
 
@@ -19,6 +19,8 @@
 
 - `실제 런타임 자산`은 현재 프로젝트에서 실제 소비되는 지형·셸·토큰 이미지다.
 - `구현 기준선 도식`은 현재 맵과 규칙을 사람이 이해하도록 재배열한 문서 도형이다. 실제 화면 캡처나 사용성 증거가 아니다.
+- `SX-HGB-VIS-001~004`는 이번 사람용 블루프린트의 빈 화면을 채우기 위해 생성한 **문서 전용 시각 후보**다. PDF에서는 메인·BUILD·RUN·선로/역 언어를 읽게 하지만, 사용자 승인 전에는 런타임 자산·스프라이트시트·Godot 소비자가 아니다.
+- 시스템 플로우용 `SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002B`는 기존 사용자 승인 planning reference를 재사용한다. 이 역시 실제 런타임 캡처가 아니다.
 - Windows 물리 화면·오디오, Android, 첫 사용자 이해도와 Player Experience는 이 발행본 시점에도 별도 검수 전이다.
 - 기존 `exports/switchy-express-cargo-puzzle_MASTER_PRODUCTION_GDD_20260828.pdf`는 이전 기준의 파생 검수본으로 보존한다. 이 문서는 최신 SX-DEC-064까지 반영하는 새 human blueprint이다.
 
@@ -26,16 +28,16 @@
 
 ```yaml
 blueprint_pair_id: SX-HGB-001
-revision: r01
+revision: r02
 source_main: 28619f4a9269d61cd1ddd7e7a1dded9907997584
-output_pdf: output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260830.pdf
+output_pdf: output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260830_r02.pdf
 publication_manifest: docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT_PUBLICATION_MANIFEST.json
 generator: tools/build_human_game_blueprint.py
 content_review: PASS
 flow_branch_review: PASS
 scene_continuity_review: PASS
 human_language_review: PASS
-visual_render_review: PASS
+visual_render_review: PASS · 20_PAGES_RENDERED · COVER/FLOW/ATLAS/BUILD/SWITCH/VISUAL_SPOT_CHECKED
 user_final_review: AWAITING
 implementation_authority: BLOCKED
 ```
@@ -45,7 +47,7 @@ implementation_authority: BLOCKED
 {
   "project": "Switchy Express: Cargo Puzzle",
   "pair_id": "SX-HGB-001",
-  "revision": "r01",
+  "revision": "r02",
   "date": "2026-08-30",
   "source_main": "28619f4",
   "pages": [
@@ -149,7 +151,7 @@ implementation_authority: BLOCKED
         ["05", "성공", "완성된 하역을 확인", "success"],
         ["06", "실패", "사실을 읽고 다음 시도를 고름", "failure"]
       ],
-      "note": "이미지는 실제 런타임 자산이다. 카드 조합과 설명은 사람용 문서 도식이며, 완성된 게임 화면이나 사용성 통과를 뜻하지 않는다."
+      "note": "제목·BUILD·RUN은 생성한 문서 전용 후보이고, 안내·결과는 기존 런타임 자산을 참조한다. 카드 조합과 설명은 사람용 문서 도식이며, 완성된 게임 화면이나 사용성 통과를 뜻하지 않는다."
     },
     {
       "kind": "scene_contract",
@@ -194,7 +196,7 @@ implementation_authority: BLOCKED
         ["5", "분기와 잠금", "현재 선택·대안·점유 상태", "지금 바꿀 수 있는지"],
         ["6", "결과 피드백", "성공·실패·남은 사실", "다음 시도의 원인"]
       ],
-      "note": "구현 기준선 도식 · 실제 런타임 캡처 아님"
+      "note": "BUILD 문서 후보로 정보 위계를 설명 · 실제 런타임 캡처·구현 지시 아님"
     },
     {
       "kind": "build_board",
@@ -297,7 +299,7 @@ implementation_authority: BLOCKED
       "title": "무엇을 한눈에 기억하게 하는가",
       "claim": "따뜻한 미니어처 철도 세계와 짙은 네이비 조작면의 대비가 ‘편안하지만 정확하게 읽어야 하는 퍼즐’이라는 성격을 만든다.",
       "north_star": ["따뜻한 풀·돌·목재·황동·네이비 기관차", "격자 입력은 사각형을 유지하고, 깊이는 자산 안에서만 표현", "중요 상태는 색만이 아니라 방향·모양·텍스트를 함께 사용", "라임은 유효·현재 행로, 보라색은 안내 집중, 진홍은 금지·위험", "소리는 적재·하역·분기·결과의 원인을 보조하지만 정보를 대체하지 않음"],
-      "boundary": "현재 이미지들은 실제 소비 자산이다. 다만 이 페이지의 조합은 시각 언어 설명이며, 새 자산 승인·런타임 통합·사람 사용성 통과를 의미하지 않는다."
+      "boundary": "이 페이지는 새 선로·역 문서 후보와 기존 지형 V02 후보를 함께 보여 준다. 어떤 이미지도 이 PDF만으로 승인·런타임 통합·사람 사용성 통과가 되지 않으며, 실제 게임 텍스트는 이미지가 아닌 구조화된 Godot 텍스트로 남는다."
     },
     {
       "kind": "review",
@@ -329,7 +331,7 @@ implementation_authority: BLOCKED
 
 ```yaml
 blueprint_pair_id: SX-HGB-001
-revision: r01
+revision: r02
 review_status: 사용자_최종_검수_대기
 approved_scope: []
 excluded_scope:
