@@ -27,6 +27,14 @@
       "status": "CURRENT"
     },
     {
+      "id": "SX-HUMAN-GAME-BLUEPRINT",
+      "question": "처음 보는 사람이 Switchy Express의 플레이어 경험·화면 여정·핵심 판단을 어떻게 검수하는가",
+      "source": "docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT.md",
+      "format": "markdown",
+      "publication_policy": "milestone_sync",
+      "status": "CURRENT"
+    },
+    {
       "id": "SX-ACTIVE-CONTEXT",
       "question": "현재 상태와 다음 정확한 작업은 무엇인가",
       "source": "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",

@@ -5,3 +5,4 @@
 # Generated PDF deliverables are binary artifacts.  Their render/metadata checks
 # are recorded separately; never feed their internal streams to text whitespace checks.
 exports/*.pdf -diff
+output/pdf/*.pdf -diff

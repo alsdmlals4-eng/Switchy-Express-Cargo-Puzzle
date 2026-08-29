@@ -1,0 +1,67 @@
+{
+  "manifest_id": "SX-HGB-001-PUBLICATION",
+  "blueprint_pair_id": "SX-HGB-001",
+  "revision": "r01",
+  "source_main": "28619f4",
+  "source": "docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT.md",
+  "source_sha256": "08da34524ff371049f1920f2003b7c97523c32f0651c26d845e90e67a08b55a7",
+  "generator": "tools/build_human_game_blueprint.py",
+  "output_pdf": "output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260830.pdf",
+  "output_sha256": "7888fdbfb9662e5c9120ecc91ba476faf433765cf1ed9e62efced1ce17cdfec4",
+  "page_count": 20,
+  "asset_inputs": {
+    "terrain": {
+      "path": "art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png",
+      "sha256": "68c06fba0f351918f9b1a7ecee2925eb58088b54c04ea59fe98a6e5efe1f8c8b",
+      "use": "existing_runtime_asset_as_human_blueprint_visual_input"
+    },
+    "title": {
+      "path": "art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png",
+      "sha256": "ce7fcd3ec380bc8b0840bcf28d56debd0d170bf8ca7681fee208cc8347f2d5dd",
+      "use": "existing_runtime_asset_as_human_blueprint_visual_input"
+    },
+    "lesson": {
+      "path": "art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v02.png",
+      "sha256": "a270a91e9d7cbc218a654e94bb0fc13d94f256ea52985679260bca2a31c77753",
+      "use": "existing_runtime_asset_as_human_blueprint_visual_input"
+    },
+    "success": {
+      "path": "art/product_assets/ed_hybrid_v1/shells/shell_result_success_v02.png",
+      "sha256": "2b92c89b91fa1b6e533e2ce0d10d2a9609ba745e81bbec5e9a0eb4745c5aa72a",
+      "use": "existing_runtime_asset_as_human_blueprint_visual_input"
+    },
+    "failure": {
+      "path": "art/product_assets/ed_hybrid_v1/shells/shell_result_failure_v02.png",
+      "sha256": "e1513ed08d1e8b175ad15ac9747c58f7f464222be97e4cb548ce53f10bf51c68",
+      "use": "existing_runtime_asset_as_human_blueprint_visual_input"
+    },
+    "train": {
+      "path": "art/product_assets/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png",
+      "sha256": "fff076f3561c45d600c7a377d9c4d392f10bdfc2a02a62e1987ea2c499970ede",
+      "use": "existing_runtime_asset_as_human_blueprint_visual_input"
+    },
+    "cargo_red": {
+      "path": "art/product_assets/ed_hybrid_v1/core/core_cargo_star_red_normal_v01.png",
+      "sha256": "a452c6cd121cbf7915c0dc2e88fcee54157ba392c5087bfe41136592d1601ac1",
+      "use": "existing_runtime_asset_as_human_blueprint_visual_input"
+    },
+    "cargo_blue": {
+      "path": "art/product_assets/ed_hybrid_v1/core/core_cargo_star_blue_normal_v01.png",
+      "sha256": "8123b8e741e1437cda798182f7952ea8a7dac6d458deac807a11713a3f612274",
+      "use": "existing_runtime_asset_as_human_blueprint_visual_input"
+    },
+    "station_red": {
+      "path": "art/product_assets/ed_hybrid_v1/core/core_station_red_normal_v01.png",
+      "sha256": "fb7e89fc7483d28e7157b2fc7c9cdde1a4dbd4d6e8fd80873c49089c8c5e3653",
+      "use": "existing_runtime_asset_as_human_blueprint_visual_input"
+    },
+    "station_blue": {
+      "path": "art/product_assets/ed_hybrid_v1/core/core_station_blue_normal_v01.png",
+      "sha256": "8b6268d3c92df31c9e425f681722052314cc15f97bf8e74e187e80e9a773b67f",
+      "use": "existing_runtime_asset_as_human_blueprint_visual_input"
+    }
+  },
+  "visual_status": "existing_runtime_assets_plus_document_diagrams; no_live_runtime_capture",
+  "user_final_review": "AWAITING",
+  "implementation_authority": "BLOCKED"
+}
