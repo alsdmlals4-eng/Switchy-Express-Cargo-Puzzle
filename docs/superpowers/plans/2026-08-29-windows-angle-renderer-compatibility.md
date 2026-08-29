@@ -117,10 +117,34 @@ git add project.godot export_presets.cfg tests/python/test_windows_angle_renderi
 git commit -m "fix: prefer ANGLE for Windows compatibility rendering"
 ```
 
-### Task 3: Record the technical decision and create a replacement package candidate
+### Task 3: Record the technical decision and validate pre-merge readiness
 
 **Files:**
 - Create: `docs/decisions/SX_DEC_065_WINDOWS_ANGLE_RENDERER_COMPATIBILITY.md`
+- Modify: `docs/superpowers/specs/2026-08-29-windows-angle-renderer-compatibility-design.md`, `docs/superpowers/plans/2026-08-29-windows-angle-renderer-compatibility.md`
+
+**Interfaces:**
+- The decision record consumes Candidate 004's exact reproduction and produces a bounded change contract for CI and the post-merge candidate task.
+
+- [ ] **Step 1: Write the `SX-DEC-065` decision record before merging**
+
+Include the exact Candidate 004 reproduction, native-versus-ANGLE observation, Windows-only scope, official Godot setting behavior, exclusions, and open evidence fields. State that the result is a compatibility correction, not a gameplay or visual-direction decision.
+
+- [ ] **Step 2: Run the local checks that are independent of the future artifact**
+
+Run: the current project contract, full Python suite, and local Godot regression runner.
+Expected: all local checks pass; no command is represented as a Windows physical/audio result.
+
+- [ ] **Step 3: Commit the decision record with its reviewed implementation contract**
+
+```text
+git add docs/decisions/SX_DEC_065_WINDOWS_ANGLE_RENDERER_COMPATIBILITY.md docs/superpowers/specs/2026-08-29-windows-angle-renderer-compatibility-design.md docs/superpowers/plans/2026-08-29-windows-angle-renderer-compatibility.md
+git commit -m "docs: record Windows ANGLE compatibility decision"
+```
+
+### Task 4: Obtain and verify the replacement package candidate
+
+**Files:**
 - Modify after CI artifact exists: `evidence/acceptance/post_sx_dec_060_candidate.json`, `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`, `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`, `기획서/00_프로젝트_허브/ROADMAP.md`, `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`, `기획서/00_프로젝트_허브/DOCUMENTATION_MAP.md`
 - Create after CI artifact exists: `evidence/acceptance/sx60_poc_accept_005_artifact.json`, `evidence/acceptance/sx60_poc_accept_005_pck_deep_audit.json`, `기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_05.md`
 
@@ -128,25 +152,21 @@ git commit -m "fix: prefer ANGLE for Windows compatibility rendering"
 - Candidate pointer can advance only when source SHA, artifact identity, EXE/PCK hashes, and package audit agree.
 - Candidate 004 remains immutable historical prior-byte evidence once source bytes change.
 
-- [ ] **Step 1: Write the `SX-DEC-065` decision record before merging**
-
-Include the exact Candidate 004 reproduction, native-versus-ANGLE observation, Windows-only scope, official Godot setting behavior, exclusions, and open evidence fields. State that the result is a compatibility correction, not a gameplay or visual-direction decision.
-
-- [ ] **Step 2: Run CI through a pull request before candidate minting**
+- [ ] **Step 1: Run CI through a pull request before candidate minting**
 
 Run: open a PR for Issue #253 and require the current Python, Godot, and Windows Demo Export checks.  
 Expected: every required check is green on the implementation head; CI package evidence is not a physical PASS.
 
-- [ ] **Step 3: Mint Candidate 005 only from the merged source**
+- [ ] **Step 2: Mint Candidate 005 only from the merged source**
 
 Use the repository's candidate-mint procedure to record the source main SHA, Actions artifact ID/name/expiry, independent ZIP/EXE/PCK SHA-256 values, and deep PCK audit. Do not reuse Candidate 004 hashes or the `--rendering-driver` diagnostic command as replacement-candidate evidence.
 
-- [ ] **Step 4: Recheck the replacement candidate with default launch**
+- [ ] **Step 3: Recheck the replacement candidate with default launch**
 
 Run: `RUN_SX60_POC_SELF_RUN.ps1 -ContractCheck`, then launch with no renderer argument.  
 Expected: Title → Briefing → BUILD renders visibly on the same Windows host. Record audio only from actual perception; preserve Android/five-person/player-experience gates.
 
-- [ ] **Step 5: Commit each reviewable evidence set separately**
+- [ ] **Step 4: Commit the candidate evidence separately**
 
 ```text
 git add docs/decisions/SX_DEC_065_WINDOWS_ANGLE_RENDERER_COMPATIBILITY.md docs/superpowers/specs/2026-08-29-windows-angle-renderer-compatibility-design.md docs/superpowers/plans/2026-08-29-windows-angle-renderer-compatibility.md
@@ -158,7 +178,7 @@ git commit -m "docs: mint Windows renderer compatibility candidate"
 
 ## Self-review
 
-- **Spec coverage:** Task 1 locks the settings contract; Task 2 makes the minimal Windows-only delivery change; Task 3 records the decision, re-mints the exact package, and restores the physical-validation chain. No game/content scope is unowned.
+- **Spec coverage:** Task 1 locks the settings contract; Task 2 makes the minimal Windows-only delivery change; Task 3 records the decision and validates the branch; Task 4 creates the exact package and restores the physical-validation chain only after the merged source exists. No game/content scope is unowned.
 - **Placeholder scan:** No undecided implementation value remains: the driver is `opengl3_angle`, native fallback is `true`, and ANGLE export is `1`.
 - **Type consistency:** The test reads literal Godot project/preset string values only; no new runtime API or GDScript type is introduced.
 
@@ -170,4 +190,3 @@ Plan complete and saved to `docs/superpowers/plans/2026-08-29-windows-angle-rend
 2. **Inline Execution:** execute tasks in this session using `superpowers:executing-plans`, with checkpoints.
 
 The user already instructed continued work and approved required actions, so proceed with inline execution unless they redirect the task.
-

@@ -2,7 +2,7 @@
 
 **Decision:** `SX-DEC-065` (proposed technical compatibility correction)  
 **Tracking Issue:** #253  
-**Status:** Implementation-ready after local physical reproduction; no player-evidence promotion
+**Status:** Implementation-ready after local physical reproduction; pre-merge branch validation only; no player-evidence promotion
 
 ## Goal
 
@@ -63,3 +63,8 @@ Godot 4.7 documents `opengl3_angle` as the Windows Compatibility renderer throug
 5. On this host, the new candidate reaches Title → Briefing → BUILD with no `--rendering-driver` override.
 6. All remaining human/device/audio evidence is reported only as observed, not inferred.
 
+## Merge-boundary split
+
+This design deliberately ends at the merge boundary. The branch task may record SX-DEC-065 and run only source-independent local regression: project contract, full Python suite, and the local Godot runner. It must not create Candidate 005, update a candidate pointer/current hub, or imply a physical Windows/audio/device/player result.
+
+After an exact implementation head has passed PR CI and is merged to `main`, a separate post-merge task may obtain the replacement artifact, independently record its EXE/PCK hashes and audit, mint Candidate 005, then perform a default-launch Windows observation. Candidate 004 remains immutable historical prior-byte evidence until then.
