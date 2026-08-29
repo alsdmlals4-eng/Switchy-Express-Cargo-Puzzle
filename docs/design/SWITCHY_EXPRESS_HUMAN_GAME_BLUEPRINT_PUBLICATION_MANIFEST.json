@@ -4,10 +4,10 @@
   "revision": "r02",
   "source_main": "28619f4",
   "source": "docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT.md",
-  "source_sha256": "093c961e2aa4e4dda36dcdbf9bf195ca1d067cebef09eefe05c33f1f2160cd75",
+  "source_sha256": "b06fa5c1c33a26517df1f70256b4e96a0150de8a9ca309982b57b6fbacb4851e",
   "generator": "tools/build_human_game_blueprint.py",
   "output_pdf": "output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260830_r02.pdf",
-  "output_sha256": "5bf96b40ea3f4838a049e972ca185fc6c1f45af01b43a2ac06e6edf8d174ed35",
+  "output_sha256": "3144650259a194154e4f201090adba6351132d0456968e76bf2990c9582d810a",
   "page_count": 20,
   "asset_inputs": {
     "terrain": {
@@ -92,6 +92,6 @@
     }
   },
   "visual_status": "existing_runtime_assets_plus_user_approved_planning_reference_plus_generated_document_candidates; no_live_runtime_capture",
-  "user_final_review": "AWAITING",
+  "user_final_review": "USER_APPROVED_DOCUMENT_VISUAL_R02",
   "implementation_authority": "BLOCKED"
 }

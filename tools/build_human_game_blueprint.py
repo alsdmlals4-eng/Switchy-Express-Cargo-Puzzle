@@ -1031,7 +1031,7 @@ def build(source: Path, output: Path, manifest: Path) -> dict:
             for key, path in ASSETS.items()
         },
         "visual_status": "existing_runtime_assets_plus_user_approved_planning_reference_plus_generated_document_candidates; no_live_runtime_capture",
-        "user_final_review": "AWAITING",
+        "user_final_review": data.get("user_final_review", "AWAITING"),
         "implementation_authority": "BLOCKED",
     }
     manifest.parent.mkdir(parents=True, exist_ok=True)

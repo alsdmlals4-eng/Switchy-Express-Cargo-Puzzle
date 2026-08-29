@@ -1,10 +1,12 @@
 # SX-HGB r02 · generated visual candidate record
 
-> **Status:** `REVIEWED · DOCUMENT_ONLY · NOT_RUNTIME_ASSET · USER_APPROVAL_PENDING`
+> **Status:** `USER_APPROVED_DOCUMENT_VISUAL · CANON_REGISTERED_FOR_HGB_R02 · NOT_RUNTIME_ASSET`
 >
 > **Consumer:** `tools/build_human_game_blueprint.py` → `output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260830_r02.pdf`
 >
 > **Approval reference:** 2026-08-30 current user instruction — the existing bare grid and tiny rail/station sprites are not usable for the main screen, core scenes, or flow map; create new rail and station imagery.
+
+> **User approval:** 2026-08-30 current user message — `승인할게`.
 
 ## Requirement and boundary
 
@@ -36,10 +38,10 @@
 
 | ID | File | Document role | SHA-256 | State |
 | --- | --- | --- | --- | --- |
-| `SX-HGB-VIS-001` | `sx-hgb-vis-001-title-hero-candidate.png` | Cover / main hero with safe left title area | `1e2c018bc43d34dee396748b40435aa089d76a2f892eb22688983c708382a887` | `GENERATED_EXPLORATION` |
-| `SX-HGB-VIS-002` | `sx-hgb-vis-002-build-board-candidate.png` | BUILD board, placement, track, blocked station footprint | `17a55375b696176f7b2761fefe542c65eaacca2b8f6881af09337bc8aeb25fbe` | `GENERATED_EXPLORATION` |
-| `SX-HGB-VIS-003` | `sx-hgb-vis-003-run-switch-top-candidate.png` | RUN, TOP, direct switch, current route, occupied lock, cardinal service | `76d8758b57c05e3ccb21870c83abbe02e4e260051ddce33aa15610979edc8a41` | `GENERATED_EXPLORATION` |
-| `SX-HGB-VIS-004` | `sx-hgb-vis-004-rail-station-language-candidate.png` | Cohesive rail, switch, and off-track station language sheet | `c37839a6a30bf7a2a36eed09f8f8da463ea9bf3c89bffcd2550e29a1e0a505ea` | `GENERATED_EXPLORATION` |
+| `SX-HGB-VIS-001` | `sx-hgb-vis-001-title-hero-candidate.png` | Cover / main hero with safe left title area | `1e2c018bc43d34dee396748b40435aa089d76a2f892eb22688983c708382a887` | `USER_APPROVED_DOCUMENT_VISUAL` |
+| `SX-HGB-VIS-002` | `sx-hgb-vis-002-build-board-candidate.png` | BUILD board, placement, track, blocked station footprint | `17a55375b696176f7b2761fefe542c65eaacca2b8f6881af09337bc8aeb25fbe` | `USER_APPROVED_DOCUMENT_VISUAL` |
+| `SX-HGB-VIS-003` | `sx-hgb-vis-003-run-switch-top-candidate.png` | RUN, TOP, direct switch, current route, occupied lock, cardinal service | `76d8758b57c05e3ccb21870c83abbe02e4e260051ddce33aa15610979edc8a41` | `USER_APPROVED_DOCUMENT_VISUAL` |
+| `SX-HGB-VIS-004` | `sx-hgb-vis-004-rail-station-language-candidate.png` | Cohesive rail, switch, and off-track station language sheet | `c37839a6a30bf7a2a36eed09f8f8da463ea9bf3c89bffcd2550e29a1e0a505ea` | `USER_APPROVED_DOCUMENT_VISUAL` |
 
 ## Generation provenance
 
@@ -73,6 +75,8 @@
 | Runtime implementation evidence | `NOT_RUN / NOT_APPLICABLE` | These files are intentionally outside runtime asset paths and have no Godot consumer. |
 | Rights / release approval | `NOT_APPROVED` | Candidate provenance is recorded, but user review and formal runtime asset review remain separate gates. |
 
-## Review decision requested
+## Approval scope and runtime boundary
 
-The requested human-game-blueprint visual package is now ready for document review. A later runtime-art decision, if wanted, must separately choose which candidate language to adapt into actual slots from the `SX-DEC-063` asset requirement family, define state variants and exact consumers, then validate in Godot.
+The user has approved the r02 document visual package. The four files are now canonical only as **HGB r02 document visuals**: they may be used in the human-review PDF and as the approved direction for future runtime-asset planning.
+
+This approval does **not** promote the flattened presentation images into `art/product_assets`, a Godot texture import, a runtime sprite sheet, or release-approved art. Current `SX-DEC-063` is still terrain-only and `RUNTIME_NOT_CONNECTED`; the active Candidate 004 Windows route-readability and audio inspection remains `NOT_RUN`. A later runtime-art implementation must therefore first pass the current physical gate, then define exact existing consumers, normal/selected/locked state variants, import settings, RED→GREEN tests, and Godot runtime verification.

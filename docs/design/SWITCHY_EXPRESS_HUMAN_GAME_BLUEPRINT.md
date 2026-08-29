@@ -3,7 +3,7 @@
 > **Document ID:** `SX-HGB-001`
 > **Pair / revision:** `SX-HGB-001 · r02 · 2026-08-30`
 > **Role:** 사람용 경험 검수 PDF를 위한 편집 원본이다. 게임 규칙·데이터·테스트의 정본은 아래 upstream owner가 계속 소유한다.
-> **Status:** `사용자 최종 검수 대기` — 이 문서는 새 게임 기능이나 구현 권한을 만들지 않는다.
+> **Status:** `r02 문서 시각 후보 사용자 승인` — 이 문서는 새 게임 기능이나 런타임 구현 권한을 만들지 않는다.
 
 ## Purpose and upstream authority
 
@@ -38,7 +38,7 @@ flow_branch_review: PASS
 scene_continuity_review: PASS
 human_language_review: PASS
 visual_render_review: PASS · 20_PAGES_RENDERED · COVER/FLOW/ATLAS/BUILD/SWITCH/VISUAL_SPOT_CHECKED
-user_final_review: AWAITING
+user_final_review: USER_APPROVED_DOCUMENT_VISUAL_R02
 implementation_authority: BLOCKED
 ```
 
@@ -50,13 +50,14 @@ implementation_authority: BLOCKED
   "revision": "r02",
   "date": "2026-08-30",
   "source_main": "28619f4",
+  "user_final_review": "USER_APPROVED_DOCUMENT_VISUAL_R02",
   "pages": [
     {
       "kind": "cover",
       "title": "Switchy Express\nCargo Puzzle",
       "subtitle": "선로를 놓아 화물의 만남 순서를 만들고,\n움직이는 열차 위에서 TOP을 원하는 역까지 데려가는\n유한형 미니어처 철도 퍼즐.",
       "verbs": ["관찰", "설계", "선택", "실행", "복기"],
-      "status": "사람용 블루프린트 · 사용자 최종 검수 대기"
+      "status": "사람용 블루프린트 · r02 문서 시각 후보 사용자 승인"
     },
     {
       "kind": "vision",
@@ -316,7 +317,7 @@ implementation_authority: BLOCKED
       ],
       "status_rows": [
         ["내용·흐름·장면·문장·렌더 검수", "이 PDF 발행 뒤 내부 검수로 판정"],
-        ["사용자 최종 검수", "대기 · 이 PDF에 대한 수정 또는 범위 승인 필요"],
+        ["사용자 문서 시각 승인", "승인 · r02 문서 후보 한정, 런타임 승격 별도"],
         ["새 게임 구현 권한", "없음 · 이 문서는 파생 검수본"],
         ["실제 플레이 검수", "별도 · Windows/오디오, Android, 첫 사용자 이해도" ]
       ],
@@ -332,8 +333,13 @@ implementation_authority: BLOCKED
 ```yaml
 blueprint_pair_id: SX-HGB-001
 revision: r02
-review_status: 사용자_최종_검수_대기
-approved_scope: []
+review_status: 사용자_승인_문서_시각_후보_R02
+approved_scope:
+  - SX-HGB-VIS-001_title_hero_document_visual
+  - SX-HGB-VIS-002_build_board_document_visual
+  - SX-HGB-VIS-003_run_switch_top_document_visual
+  - SX-HGB-VIS-004_rail_station_language_document_visual
+  - r02_cover_flow_atlas_build_switch_visual_composition
 excluded_scope:
   - new_gameplay_system
   - runtime_asset_promotion
@@ -342,5 +348,5 @@ excluded_scope:
 requested_changes: []
 remaining_risks:
   - Live physical and first-contact evidence remains separate from this document.
-approval_evidence: null
+approval_evidence: '2026-08-30 current user message: 승인할게'
 ```
