@@ -169,9 +169,6 @@ Expected: Title → Briefing → BUILD renders visibly on the same Windows host.
 - [ ] **Step 4: Commit the candidate evidence separately**
 
 ```text
-git add docs/decisions/SX_DEC_065_WINDOWS_ANGLE_RENDERER_COMPATIBILITY.md docs/superpowers/specs/2026-08-29-windows-angle-renderer-compatibility-design.md docs/superpowers/plans/2026-08-29-windows-angle-renderer-compatibility.md
-git commit -m "docs: record Windows ANGLE compatibility decision"
-
 git add evidence/acceptance 기획서/00_프로젝트_허브 기획서/50_제작_검증
 git commit -m "docs: mint Windows renderer compatibility candidate"
 ```

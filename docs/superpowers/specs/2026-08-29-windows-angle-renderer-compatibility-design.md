@@ -1,8 +1,8 @@
 # Windows ANGLE Renderer Compatibility Design
 
-**Decision:** `SX-DEC-065` (proposed technical compatibility correction)  
-**Tracking Issue:** #253  
-**Status:** Implementation-ready after local physical reproduction; pre-merge branch validation only; no player-evidence promotion
+**Decision:** `SX-DEC-065` (approved technical compatibility correction)
+**Tracking Issue:** #253
+**Status:** `APPROVED_IMPLEMENTATION_CONTRACT · PRE_MERGE_LOCAL_VALIDATION_PASS`
 
 ## Goal
 
