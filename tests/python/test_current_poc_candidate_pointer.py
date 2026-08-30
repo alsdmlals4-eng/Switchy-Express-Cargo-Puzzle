@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import unittest
 from pathlib import Path
 
@@ -176,6 +177,34 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
             text = (ROOT / relative).read_text(encoding="utf-8")
             self.assertIn("SX60-POC-ACCEPT-006", text, relative)
             self.assertIn("NOT_RUN", text, relative)
+
+    def test_current_machine_primary_surfaces_route_final_review_to_candidate_006(self) -> None:
+        current_surfaces = (
+            "AGENTS.md",
+            "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md",
+            "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
+            "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
+            "기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md",
+            "기획서/00_프로젝트_허브/ROADMAP.md",
+        )
+        stale_current_claim = re.compile(
+            r"(?:final user review[^.\n]*(?:Candidate[ _-]005|SX60[_-]POC[_-]ACCEPT[_-]005)|"
+            r"(?:Candidate[ _-]005|SX60[_-]POC[_-]ACCEPT[_-]005)[^.\n]*"
+            r"(?:current mapping|MACHINE_PRIMARY_ACCEPTANCE_READY))",
+            re.IGNORECASE,
+        )
+        findings = []
+        for relative in current_surfaces:
+            text = (ROOT / relative).read_text(encoding="utf-8")
+            self.assertIn("SX60-POC-ACCEPT-006", text, relative)
+            for line_number, line in enumerate(text.splitlines(), 1):
+                if stale_current_claim.search(line) and "historical" not in line.lower():
+                    findings.append(f"{relative}:{line_number}: {line.strip()}")
+        self.assertFalse(
+            findings,
+            "Candidate 005 is historical evidence and must not be routed as the current "
+            "machine-primary or final-user-review candidate:\n" + "\n".join(findings),
+        )
 
     def test_historical_launcher_requires_explicit_history_only_opt_in(self) -> None:
         self.assertTrue(HISTORICAL_LAUNCHER.is_file())

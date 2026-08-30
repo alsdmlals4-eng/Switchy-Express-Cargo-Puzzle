@@ -334,7 +334,7 @@ Current next gate:
 ```text
 SX-DEC-065 policy / SX-DEC-066 Candidate 006 machine-primary package verification complete
 → no remaining machine-executable acceptance work
-→ final user review only when requested on unchanged Candidate 005
+→ final user review only when requested on unchanged Candidate 006
 → platform / rights / production-cutover gates remain separate
 ```
 
