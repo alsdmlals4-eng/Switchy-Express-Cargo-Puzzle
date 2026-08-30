@@ -1,6 +1,6 @@
 # Visual Direction
 
-상태: `CURRENT_CANON · GMB-002 · SX-DEC-061/062/063/064 · SX-DEC-063_TERRAIN_V02_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED · SX-DEC-064_MERGED_MAIN_PR249_CI7_GREEN_PROCEDURAL_RUNTIME_DELTA`
+상태: `CURRENT_CANON · GMB-002 · SX-DEC-061/062/063/064/065 · SX-DEC-063_CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED_PR255_RUNTIME_CONSUMERS_CONNECTED · SX-DEC-064_MERGED_MAIN_PR249_CI7_GREEN_PROCEDURAL_RUNTIME_DELTA · SX60_POC_ACCEPT_005_MACHINE_PRIMARY_ACCEPTANCE_READY`
 
 ## SX-DEC-061 active visual lock · read this first
 
@@ -45,13 +45,13 @@ rectangular BUILD/RUN input stays authoritative
 → versioned art candidates target only current real board and shell consumers
 → 2.5D depth is painted inside the existing cell bounds
 → one material / silhouette / lighting grammar replaces the visible mismatch
-→ terrain v02 alone is GitHub-preserved; runtime integration awaits the ready Phase 2 contract
+→ terrain v02, nine non-rail v02 assets, and four v04 rail crops are connected through the existing fourteen-slot renderer map; v01/v02/v03 rail bytes remain rollback/provenance sources
 ~~~
 
 - **Keep:** board-first hierarchy, exact live Godot copy, compact LIFO representation, off-track station, color+shape+text state redundancy, T2 Hero v02, and all current finite rules.
 - **Avoid:** universal pure-black pixel outlines, sticker-flat fills, pseudo-text, copied reference composition, invented score/economy/save UI, and diagonal or station-footprint service implication.
 - **Do Not Drift:** warm grass/stone/timber/brass/navy materials; thin dark navy/brown edge separation; shared upper-left warm light; rail-port clarity; compact locomotive; failure/lesson color variation within one family.
-- **Production status:** `SX-VIS-063-CANDIDATE-001` terrain v02 is user-approved and GitHub-preserved at `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png`; its runtime state is explicitly `NOT_CONNECTED`. No other SX-DEC-063 image is approved, and no SX-DEC-063 image has been verified in Godot.
+- **Production status:** user-approved terrain v02, nine non-rail v02 assets, and four v04 rails are GitHub-tracked and connected to the fourteen `ProductBoardRenderer` slots. PR #255 merged their bounded consumer integration; Candidate 005 records the later exact package and machine-primary evidence. This does not claim a physical, audio, or final-user review.
 
 The authoritative scope, exact consumer slots, first-image brief, candidate lifecycle, rights/provenance requirements, and rollback are in docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md.
 

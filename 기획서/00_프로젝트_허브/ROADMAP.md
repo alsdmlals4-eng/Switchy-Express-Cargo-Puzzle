@@ -223,24 +223,24 @@ existing E+D assets / shell consumers
 → no bitmap, gameplay, map/data, first-session-copy, or audio delta
 ```
 
-GitHub Issue #235 and PR #237 implemented the contract in `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`, its spec/plan, and `SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`. SX-DEC-064 then changed player-facing active-route lighting. Candidates 002/003 are prior-byte evidence; Candidate 004 is the exact `main@58b99f2` package route and has no physical/human evidence.
+GitHub Issue #235 and PR #237 implemented the contract in `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`, its spec/plan, and `SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`. SX-DEC-064 then changed player-facing active-route lighting. Candidates 002–004 are prior-byte evidence; Candidate 005 is the exact `main@a11dfd1` machine-primary package route, with final user review still not run.
 
 ## M6T · SX-DEC-063 terrain v02 asset promotion
 
-`APPROVED_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED · GitHub Issue #243 · Phase 2 handoff ready`
+`CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED · GitHub Issue #243 · PR #255 · main 2cf7bb5595a297955c75e6b4108bc1be6fe9428c · RUNTIME_CONSUMERS_CONNECTED`
 
-The user-promoted `SX-VIS-063-CANDIDATE-001` is stored at `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png` with exact SHA/provenance. It is a versioned source asset for the proven `ProductBoardRenderer.board_terrain` slot; v01 remains the live runtime path. The next only visual mutation is the terrain-only Phase 2 handoff, which must prove RED→GREEN loading, a same-state 1280×720 BUILD comparison, no geometry/input/semantic change, an exact new package candidate when available, and five clean adversarial loops. No other board or shell image is automatically promoted.
+The user-promoted `SX-VIS-063-CANDIDATE-001` is stored at `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png` with exact SHA/provenance. It, the nine v2 non-rail core assets, and the four v04 connected-master rail crops are the live fourteen-slot `ProductBoardRenderer` map. PR #255 verified the bounded visual-only consumer change without changing geometry, input, or finite semantics; Candidate 005 later preserved the exact post-v04 package evidence. v01/v02/v03 rail bytes remain rollback/provenance only. No new visual mutation is queued.
 
 ## M6A · SX-DEC-065 machine-primary validation
 
-`MACHINE_PRIMARY_FINAL_USER_REVIEW · USER_APPROVED_2026-08-30 · EXACT_CANDIDATE_005_MACHINE_EVIDENCE_PENDING`
+`MACHINE_PRIMARY_FINAL_USER_REVIEW · USER_APPROVED_2026-08-30 · SX60_POC_ACCEPT_005_MACHINE_EVIDENCE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN`
 
-The v04 runtime-byte change requires a new exact candidate. The current sequence is:
+The v04 runtime-byte change has an immutable exact Candidate 005. Its completed machine sequence is:
 
 ```text
 immutable exact candidate
 → deterministic/Godot/runtime/export/package/CI machine verification
-→ MACHINE_PRIMARY acceptance decision
+→ MACHINE_PRIMARY_ACCEPTANCE_READY
 → FINAL_USER_REVIEW only when requested
 ```
 

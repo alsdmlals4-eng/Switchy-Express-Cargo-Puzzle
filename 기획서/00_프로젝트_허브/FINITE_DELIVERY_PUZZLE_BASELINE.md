@@ -98,7 +98,7 @@ arbitrary station radius, diagonal service, station-footprint service, per-stati
 - SX-DEC-063은 rectangular grid와 input mapping을 바꾸지 않고, actual consumer 안에서만 controlled 2.5D miniature-diorama material/depth를 정렬한다.
 - T2 `shell_lesson_hero_v02.png`와 Issue #227은 보호한다.
 - production image는 exact Godot node/key/path consumer가 있을 때만 만든다. 후보는 생성·기계 검토할 수 있지만, Git-tracked project asset으로 promotion하거나 runtime에 연결하려면 사용자 최종 disposition과 별도 implementation contract가 필요하다.
-- `SX-VIS-063-CANDIDATE-001`은 1672×941 terrain review candidate이며 아직 repository asset, runtime consumer change, Human/Player Experience evidence가 아니다.
+- `SX-VIS-063-CANDIDATE-001` terrain review source는 사용자 승인 뒤 `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png`로 승격되었고, v2 non-rail 9개 및 v04 rail 4개와 함께 실제 `ProductBoardRenderer` consumer에 연결됐다. 이 구현·자동 검증 사실은 Human/Player Experience evidence가 아니다.
 
 ## 7. 구현과 증거 상태
 
@@ -106,7 +106,7 @@ arbitrary station radius, diagonal service, station-footprint service, per-stati
 sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · schema_v3/cardinal_service/reachable_preflight
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · EXISTING_ASSET_ONLY
-sx_dec_063: TERRAIN_V02_APPROVED_GITHUB_PRESERVED · RUNTIME_NOT_CONNECTED · ISSUE_243_PHASE2_HANDOFF_READY
+sx_dec_063: CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED · PR_255_MAIN_2CF7BB5 · PRODUCT_BOARD_RENDERER_V2_CONSUMERS_CONNECTED · REMOTE_RUNTIME_BYTE_CI_7_GREEN_PR_255_F00DE19
 sx_dec_065_validation_policy: USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW
 post_sx_dec_060_candidate: SX60-POC-ACCEPT-005 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · SX_DEC_063_CORE_BOARD_V04_AND_SX_DEC_064_ACTIVE_ROUTE_LIGHTING_INCLUDED
 windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN

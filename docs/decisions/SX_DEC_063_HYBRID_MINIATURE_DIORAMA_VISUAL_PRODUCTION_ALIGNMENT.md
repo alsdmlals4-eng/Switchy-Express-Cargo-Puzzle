@@ -1,6 +1,6 @@
 # SX-DEC-063 · Hybrid Miniature-Diorama Visual Production Alignment
 
-**Status:** USER_APPROVED_DIRECTION · CORE_BOARD_V04_CENTERED_RAIL_CROPS_LOCAL_IMPLEMENTED · AUTOMATED_RUNTIME_AND_LOCAL_PACKAGE_VERIFIED · REMOTE_EXACT_HEAD_CI_PENDING · PHYSICAL_HUMAN_NOT_RUN
+**Status:** USER_APPROVED_DIRECTION · CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED · PR_255_MAIN_2CF7BB5 · REMOTE_RUNTIME_BYTE_CI_7_GREEN · SX60_POC_ACCEPT_005_MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN
 **Date:** 2026-08-28 KST
 **Tracking:** GitHub Issue #239
 **Predecessors:** SX-DEC-061 visual lock, SX-DEC-062 existing-asset runtime composition
@@ -160,8 +160,8 @@ The four v04 runtime paths are `core_rail_straight_normal_v04.png`, `core_rail_c
 
 ### Deferred after automated runtime verification
 
-- hosted exact-head CI and a new immutable package candidate for the changed player-facing bytes;
-- physical Windows/audio, Android, five-person, Player Experience, release-rights, and production-cutover claims.
+- physical Windows/audio and final-user review claims; each remains separately unrun and cannot be inferred from machine evidence;
+- Android device, five-person, Player Experience, release-rights, and production-cutover claims. Android is not required for machine-primary acceptance; five-person and Player Experience studies are not required by SX-DEC-065; release/cutover remain separate.
 
 ### Out of scope
 

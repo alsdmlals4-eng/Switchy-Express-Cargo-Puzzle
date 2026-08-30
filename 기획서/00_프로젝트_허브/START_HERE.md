@@ -1,6 +1,6 @@
 # Switchy Express 프로젝트 허브
 
-Last updated: `2026-08-29 KST`
+Last updated: `2026-08-30 KST`
 
 이 문서는 현재 제품 기준선과 **다음 실행 지점**을 빠르게 찾는 허브다. 실행 전에는 항상 fresh Base completed `main`, current Skill Registry/generated map, fresh project `main`, Open/Draft PR, current GitHub owners와 actual runtime evidence를 다시 읽는다. Notion의 current structure는 GitHub에 이관됐고 historical audit-only다.
 
@@ -16,13 +16,13 @@ Last updated: `2026-08-29 KST`
 | historical v4.8 r4 predecessor | `2026-08-24-r4 · PROVENANCE_ONLY` |
 | SX-DEC-059 implementation | `MERGED_MAIN_VERIFIED · PRE_SX_DEC_060_RUNTIME` |
 | SX-DEC-060 | `MERGED_MAIN_VERIFIED · PR #188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7` |
-| SX-DEC-062 | `MERGED_MAIN_VERIFIED · PR #237 · Board-first existing-asset runtime composition · current package candidate verified` |
-| SX-DEC-063 | `USER_APPROVED_DIRECTION · Hybrid miniature-diorama visual production alignment · terrain v02 APPROVED_GITHUB_PRESERVED · PR #244 · runtime unchanged` |
+| SX-DEC-062 | `MERGED_MAIN_VERIFIED · PR #237 · Board-first existing-asset runtime composition · historical pre-v04 Candidate 004 preserved` |
+| SX-DEC-063 | `CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED · PR #255 · v2 terrain/non-rail plus v4 rails connected to ProductBoardRenderer · Candidate 005 exact package preserved` |
 | station service | `UP/RIGHT/DOWN/LEFT exactly 1 tile · diagonal excluded` |
 | network preflight | `START_REACHABLE_RUN_COMPONENT · irrelevant disconnected rail island allowed` |
 | map schema target | `FiniteMapDefinition v3` |
 | station representation | `OFF_TRACK_SERVICE_OBJECT · station cell player rail forbidden` |
-| image requirement | `0 new bitmap · reuse existing station PNG consumers + procedural service overlay` |
+| image requirement | `SX-DEC-060 station-service overlay: no new bitmap; SX-DEC-063 core board: user-approved v2/v4 fourteen-slot asset map connected` |
 | pre-060 Candidate 003 | `SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY after SX-DEC-060` |
 | post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · SX60-POC-ACCEPT-005 is the exact-main MACHINE_PRIMARY candidate · Candidate 004 is HISTORICAL_PRE_V04_PRODUCT_BYTES` |
 | SX60 Candidate 001 | `HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE · hashes/PCK preserved` |
@@ -38,7 +38,7 @@ Last updated: `2026-08-29 KST`
 | SX-DEC-056B | `BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME` |
 | SX-DEC-057 | `PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED` |
 | SX-DEC-058 | `PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED` |
-| semantic product PNG | `73 · PRODUCTION_COMPLETE · existing runtime consumers` |
+| semantic product PNG | `73 semantic product PNGs plus the connected fourteen-slot v2/v4 core-board visual map` |
 | PR #174 | `PRE_EXISTING_DRAFT · READ_ONLY` |
 
 ## Fresh-read bootstrap
@@ -122,7 +122,7 @@ approved_image_preservation: PROJECT_LOCAL_GITHUB_ONLY
 
 `SX59-POC-ACCEPT-003` remains exact historical evidence for pre-SX-DEC-060 bytes. Its package/PCK/product-texture/live-download facts stay preserved, but it is no longer the efficient next acceptance target because gameplay semantics have changed.
 
-Do not run its old physical Gate 0 as if it validated the new rule. Post-060 requires a new exact candidate after implementation/regression/package proof.
+Do not run its old physical Gate 0 as if it validated the new rule. The required post-060 candidate is now `SX60-POC-ACCEPT-005`; its machine-primary package evidence is exact-byte-specific.
 
 ## Current implementation package
 
@@ -168,18 +168,14 @@ docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.m
 docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production-design.md
 ```
 
-The user selected Hybrid Miniature-Diorama Alignment: the rectangular grid and input mapping stay, while only actual consumers receive versioned candidate art. A candidate may be generated and machine-reviewed before a user decision; only final project-asset promotion requires the user's disposition. This planning direction protects T2 `shell_lesson_hero_v02.png`, Issue #227, gameplay/data/audio, and the current package evidence. It does not start a Godot integration or an asset batch.
+The user selected Hybrid Miniature-Diorama Alignment: the rectangular grid and input mapping stay, while only actual consumers receive versioned candidate art. The approved terrain, nine non-rail v2 assets, and four v04 rail crops are now connected to the existing `ProductBoardRenderer` fourteen-slot map by PR #255. This bounded implementation protects T2 `shell_lesson_hero_v02.png`, Issue #227, gameplay/data/audio, and the exact Candidate 005 package evidence. The separate planning-board binary remains `NOT_RUNTIME_PROOF`.
 
 ## Current next action
 
 ```text
-SX-DEC-063 terrain v02 is GitHub-preserved; v01 remains the live runtime path
-→ the only authorized product mutation is the terrain-only Phase 2 runtime handoff
-→ separately, Issue #246 records a planning-only core-system board candidate; it has no runtime consumer or implementation scope
-→ only after the Phase 2 handoff is executed and validated, interpret a new exact runtime/package candidate
-→ SX-DEC-065 machine-primary candidate validation is the current gate
-→ current Playtest authority corrects old 055/059/validation-APK status to historical
-SX60-POC-ACCEPT-005 exact package is the current v04 byte candidate; Candidates 002–004 remain prior-byte evidence only
+SX-DEC-063 core-board terrain v02, nine non-rail v02 assets, and four v04 rails are connected to the live fourteen-slot renderer map
+→ Issue #246 planning board remains a no-consumer explanatory asset and is not runtime proof
+→ SX60-POC-ACCEPT-005 exact package is the current v04 byte candidate; Candidates 002–004 remain prior-byte evidence only
 → deterministic/Godot/export/package/CI machine verification complete
 → MACHINE_PRIMARY acceptance ready
 → FINAL_USER_REVIEW only if the user requests final inspection

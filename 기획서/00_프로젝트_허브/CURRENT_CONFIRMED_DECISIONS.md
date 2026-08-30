@@ -137,9 +137,10 @@ sx_dec_060_new_bitmap_assets_required: 0
 | SX-DEC-059 | Release-Near First Session · implementation/playable POC merged · pre-060 Candidate 003 historical after SX-DEC-060 |
 | **SX-DEC-060** | **Cardinal Station Service + Reachable Network · MERGED_MAIN_VERIFIED · PR #188** |
 | **SX-DEC-061** | **Board-first Cozy Neo-Arcade visual refinement · APPROVED · documentation/plan board only; runtime unchanged** |
-| **SX-DEC-062** | **Board-first runtime composition · MERGED_MAIN_VERIFIED · PR #237 · Candidate 003 is historical after SX-DEC-064; Candidate 004 is current package evidence · human gates remain open** |
-| **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · user-directed v04 centred-port crop correction from the approved connected master is locally implemented on the isolated branch, including the reviewed non-square quarter-turn fix · automated, machine runtime, and local package evidence · remote CI/package-candidate/physical/human gates remain open** |
+| **SX-DEC-062** | **Board-first runtime composition · MERGED_MAIN_VERIFIED · PR #237 · Candidates 003/004 are historical prior-byte package evidence** |
+| **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · v2 terrain/non-rail and v04 centred-port rail correction merged main in PR #255, including reviewed non-square quarter-turn fix · remote CI 7 green and Candidate 005 exact package evidence complete** |
 | **SX-DEC-064** | **Active-route lighting · MERGED_MAIN_VERIFIED · PR #249 · CI 7 green · procedural presentation delta · physical/player gates remain open** |
+| **SX-DEC-065** | **Machine-primary final-user-review policy · USER_APPROVED · Candidate 005 is MACHINE_PRIMARY_ACCEPTANCE_READY; five-person/player-experience studies not required** |
 
 ## SX-DEC-059 retained first-session contract
 
@@ -196,7 +197,7 @@ rectangular BUILD/RUN grid and exact input mapping stay
 → the existing fourteen-slot ProductBoardRenderer consumer map is connected; v04 rail textures draw full-cell, pre-swap non-square local bounds for quarter turns, and use no procedural visual seam underlay
 ```
 
-`SX-VIS-063-CANDIDATE-001` terrain plus `SX-VIS-063-CORE-*` are user-promoted at their v02 paths, while user-approved `SX-VIS-063-RAIL-NETWORK-MASTER-003` deterministically supplies the four current v04 rail paths recorded in `art/product_assets/ed_hybrid_v2/manifest.json` (master SHA-256 `f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b`; terrain SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`). The v04 crop rectifies a measured v03 edge-centre mismatch without changing source artwork or gameplay, while the renderer's reviewed non-square quarter-turn fix preserves the target bounds and edge centres after rotation. Its local automated/machine-runtime/local-package evidence and all seven required remote checks for PR #255 runtime-byte head `4d5c5ef09040c36aa064b8b79ddb69443b465877` are recorded; immutable GitHub package candidate, physical Windows/audio, Android device, accessibility, player comprehension, release rights, and cutover remain open. Source master and review captures are excluded from final PCK proofs. It is not a true isometric conversion, gameplay/data/audio/locale/progression change, Human/Player Experience, or release-rights promotion. Notion is retired from this lifecycle by the 2026-08-28 user decision.
+`SX-VIS-063-CANDIDATE-001` terrain plus `SX-VIS-063-CORE-*` are user-promoted at their v02 paths, while user-approved `SX-VIS-063-RAIL-NETWORK-MASTER-003` deterministically supplies the four current v04 rail paths recorded in `art/product_assets/ed_hybrid_v2/manifest.json` (master SHA-256 `f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b`; terrain SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`). The v04 crop rectifies a measured v03 edge-centre mismatch without changing source artwork or gameplay, while the renderer's reviewed non-square quarter-turn fix preserves the target bounds and edge centres after rotation. Its local automated/machine-runtime/local-package evidence and all seven required remote checks for PR #255 runtime-byte head `f00de19ea0ef1db907bf05c8dc847a0180489c35` are recorded; `SX60-POC-ACCEPT-005` later supplies the immutable exact GitHub package candidate. Windows/audio final-user review remains unrun, Android is not required for machine-primary acceptance, and five-person/player-experience studies are not required by SX-DEC-065. Source master and review captures are excluded from final PCK proofs. It is not a true isometric conversion, gameplay/data/audio/locale/progression change, Human/Player Experience, or release-rights promotion. Notion is retired from this lifecycle by the 2026-08-28 user decision.
 
 ## SX-DEC-065 machine-primary validation policy
 
@@ -317,9 +318,9 @@ SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063
 → SX-DEC-064 active-route lighting merged main PR #249 with exact-head CI 7 green
 → SX60-POC-ACCEPT-004 remains historical package evidence for pre-v04 product bytes
 → SX-DEC-065 USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW
-→ mint a new immutable exact candidate and execute deterministic renderer/import/Godot/GUT/export/package/CI evidence
-→ machine acceptance decision
-→ FINAL_USER_REVIEW only on that exact candidate when requested
+→ SX60-POC-ACCEPT-005 minted from exact `main@a11dfd1a063e434ee22e8cfb7b073ebc380aa27a` and machine validation complete
+→ MACHINE_PRIMARY_ACCEPTANCE_READY
+→ FINAL_USER_REVIEW only on unchanged Candidate 005 when requested
 → Android device compatibility only when the Android target is in scope
 → FIVE_PERSON_COMPREHENSION_NOT_REQUIRED / PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED
 ```
