@@ -43,4 +43,6 @@
 - [x] Run contract validation, full custom suite, Python suite, the repository GUT command, headless parse/import, and post-reload Hera diagnostics.
 - [x] Complete five adversarial lenses: topology/input isolation; rotation/seam continuity; visual hierarchy/readability; asset/provenance/no-new-bitmap; and evidence-ceiling accuracy.
 - [x] Update the runtime-verification record with exact command results, screenshots, no-asset-byte-change proof, and remaining physical/device/human gates.
-- [ ] Commit only the bounded renderer/tests/verification-plan/evidence changes, then create a normal PR; do not touch PR #174 or unrelated open PRs.
+- [x] Commit only the bounded renderer/tests/verification-plan/evidence changes and create normal PR #255; do not touch PR #174 or unrelated open PRs.
+- [x] Repair the first exact-head CI findings without changing game scope: route the current SX-DEC-063 state through its canonical freshness test, and provide the downloaded CI Godot binary to the platform-neutral image-resize contract.
+- [ ] Obtain fresh exact-head hosted CI after the CI-repair commit; only then consider review/merge and post-merge readback.
