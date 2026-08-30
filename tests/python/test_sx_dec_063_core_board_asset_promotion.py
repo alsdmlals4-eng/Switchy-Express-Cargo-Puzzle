@@ -246,7 +246,7 @@ class SXDec063CoreBoardAssetPromotionTests(unittest.TestCase):
     def test_v04_rail_family_is_preserved_and_runtime_verified(self) -> None:
         manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
         self.assertEqual(
-            "USER_DIRECTED_APPROVED_MASTER_DERIVATIVE_LOCAL_RUNTIME_AND_PACKAGE_VERIFIED_REMOTE_CI_PENDING",
+            "USER_DIRECTED_APPROVED_MASTER_DERIVATIVE_LOCAL_RUNTIME_AND_PACKAGE_AND_REMOTE_RUNTIME_BYTE_CI_7_GREEN_PR_255_4D5C5EF",
             manifest["status"],
         )
         manifest_assets = {entry["asset_id"]: entry for entry in manifest["assets"]}
