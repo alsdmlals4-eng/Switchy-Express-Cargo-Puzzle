@@ -1,9 +1,10 @@
 # SX-DEC-063 Core Board v02 Asset and Runtime Design
 
-**Status:** `DRAFT_FOR_USER_REVIEW`
+**Status:** `USER_APPROVED_FOR_CANDIDATE_GENERATION`
 **Date:** 2026-08-30 KST
 **Decision baseline:** `SX-DEC-063 · HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT`
 **User direction:** 2026-08-30 — approve the core-board implementation, ask for required images plus Godot integration, and authorize local Godot/Hera activation.
+**Candidate-promotion gate:** Generated images are review candidates only. The user must approve the assembled Core Board v02 pixels before any runtime path changes.
 **Supersedes:** nothing. This is the next bounded implementation package under SX-DEC-063; it does not replace the terrain-only package until its proposed scope is approved and executed.
 
 ## Direction anchor
