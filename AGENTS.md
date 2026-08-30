@@ -96,7 +96,7 @@ gpt_local_codex_orchestration_policy: RETIRED
 current_validation_locator: 기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md
 current_product_decision: SX-DEC-063 · CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED + SX-DEC-064 · ACTIVE_ROUTE_LIGHTING + SX-DEC-065 · MACHINE_PRIMARY_FINAL_USER_REVIEW
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-005 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · SOURCE_MAIN_a11dfd1a063e434ee22e8cfb7b073ebc380aa27a · FINAL_USER_REVIEW_NOT_RUN
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · SOURCE_MAIN_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · FINAL_USER_REVIEW_NOT_RUN · Candidate_005_historical_pre_Route_Book_bytes
 ```
 
 v4.7 Switchy adapter, v4.5 r2 bundle, v4.8 r2 provenance와 2026-08-24 r4 전환 자료는 역사·rollback/provenance evidence로 보존하며 current work-instruction authority가 아니다. r5.4의 fresh-read/Skill coverage/복구/Godot 상세는 thin adapter와 최신 Base owner를 progressive-load한다.
@@ -161,7 +161,7 @@ switch auto-reset
 ## 5. 현재 Decision / 기획 상태
 
 ```yaml
-current_decision_span: SX-DEC-027~065
+current_decision_span: SX-DEC-027~066
 sx_dec_055_runtime_semantic: MERGED_MAIN_VERIFIED · PR_151
 sx_dec_056a: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
@@ -177,7 +177,7 @@ sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS
 sx_dec_060_ci: PASS · 7_REQUIRED_CHECKS
 sx_dec_060_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
 sx_dec_060_notion_readback: PASS
-sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-005 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · exact main a11dfd1a063e434ee22e8cfb7b073ebc380aa27a · package and runtime-JSON evidence
+sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · exact main 9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · Route Book package and runtime-JSON evidence
 sx_dec_061: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 sx_dec_062: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION
 sx_dec_063: CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED · PR_255 · main_2cf7bb5595a297955c75e6b4108bc1be6fe9428c · PRODUCT_BOARD_RENDERER_V2_CONSUMERS_CONNECTED · CI_7_GREEN
@@ -315,8 +315,8 @@ SX-DEC-060 AUTOMATED REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREE
 SX-DEC-060 FIVE-PASS REVIEW: CLOSED · SX-AUD-071
 SX-DEC-060 NOTION READBACK: PASS
 POST-060 CANDIDATE 004: HISTORICAL_PRE_V04_PRODUCT_BYTES · PREPARED_PACKAGE_VERIFIED
-POST-060 CANDIDATE 005 PACKAGE/PCK/RUNTIME-JSON POINTER: PASS · exact main a11dfd1a063e434ee22e8cfb7b073ebc380aa27a · MACHINE_PRIMARY_ACCEPTANCE_READY
-POST-060 CANDIDATE 005 FINAL USER REVIEW: NOT_RUN · exact unchanged candidate required
+POST-060 CANDIDATE 006 PACKAGE/PCK/RUNTIME-JSON POINTER: PASS · exact main 9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · MACHINE_PRIMARY_ACCEPTANCE_READY
+POST-060 CANDIDATE 006 FINAL USER REVIEW: NOT_RUN · exact unchanged candidate required
 WINDOWS PHYSICAL POST-060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 AUDIO PERCEPTUAL POST-060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 ANDROID DEVICE POST-060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
@@ -332,7 +332,7 @@ Automated/export/package/self-run does not imply HUMAN/PLAYER EXPERIENCE PASS. P
 Current next gate:
 
 ```text
-SX-DEC-065 Candidate 005 machine-primary package verification complete
+SX-DEC-065 policy / SX-DEC-066 Candidate 006 machine-primary package verification complete
 → no remaining machine-executable acceptance work
 → final user review only when requested on unchanged Candidate 005
 → platform / rights / production-cutover gates remain separate

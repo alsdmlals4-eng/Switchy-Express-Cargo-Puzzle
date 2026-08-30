@@ -1,6 +1,6 @@
 # SX-DEC-066 · Curated Route Book 01
 
-**Status:** `USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_VERIFIED · NOT_MERGED`
+**Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · SX60-POC-ACCEPT-006_MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN`
 
 **Date:** 2026-08-30 KST
 **Approval source:** The user requested that playable stages be created and then approved the recommended six-stage `Route Book 01` direction with “진행해”.
@@ -8,7 +8,7 @@
 
 ## Decision lifecycle boundary
 
-`SX-DEC-066` moved from approved planning direction to local implementation after the user approved the six-stage recommendation. The implementation commits are `d1d2087` (definition contract) and `49574b249cf4cfa675d4ba804851bfeb5e317dff` (maps, flow, consumers, and tests). Local machine checks now prove the bounded implementation; they do **not** prove a merge to `main`, hosted CI, export/package integrity, a new immutable candidate, physical/device behavior, or final user review. The exact local evidence is recorded in `docs/operations/2026-08-30-sx-dec-066-route-book-01-local-machine-verification.md`.
+`SX-DEC-066` moved from approved planning direction through bounded implementation and normal PR #260 merge. The implementation commits are `d1d2087` (definition contract) and `49574b249cf4cfa675d4ba804851bfeb5e317dff` (maps, flow, consumers, and tests); the exact merged product source is `main@9af5a8c46d29ea6781f9ee06008d7c7d2cde1877`. Hosted CI/export/package evidence minted immutable `SX60-POC-ACCEPT-006`. These machine checks do **not** prove physical/device behavior or final user review. The exact machine record is in `docs/operations/2026-08-30-sx-dec-066-route-book-01-local-machine-verification.md`.
 
 ## Decision
 
@@ -53,7 +53,7 @@ slice_acceptance: "six map contracts, direct selection, recovery, four-locale co
 - Existing product slice, board, HUD, route-control overlay, result recovery, and semantic product assets reused unchanged in purpose.
 - New strings in `ko`, `en`, `ja`, and `zh-Hans`.
 - Stage Book / Next Stage result actions, which are visible only while Route Book is active.
-- Deterministic map, flow, input-policy, responsive-layout, and local regression verification; remote CI, package, and exact-candidate verification remain separately required after review/merge.
+- Deterministic map, flow, input-policy, responsive-layout, exact merged-main CI, package integrity, and Candidate 006 machine verification.
 
 ### Explicitly excluded
 
@@ -103,14 +103,14 @@ No new Godot engine capability, plugin, service, schema version, asset slot, or 
 
 ## Evidence and candidate transition
 
-The current `SX60-POC-ACCEPT-005` remains an immutable, machine-primary candidate for its exact source bytes. Route Book code/data changes make it historical for the changed product, not invalid as historical evidence.
+`SX60-POC-ACCEPT-005` remains immutable historical machine evidence for its exact `main@a11dfd1` source bytes. Route Book code/data changes make it historical for the changed product. `SX60-POC-ACCEPT-006` is the current immutable machine-primary candidate for exact `main@9af5a8c` Route Book bytes.
 
 ```text
 Route Book implementation changes product bytes
 → local deterministic and headless Godot checks pass on exact local implementation commit `49574b249cf4cfa675d4ba804851bfeb5e317dff`
-→ exact CI/export/package verification after review/merge
-→ mint a new immutable candidate using the existing candidate procedure
-→ machine-primary acceptance
+→ PR #260 merged to exact main 9af5a8c
+→ exact CI/export/package verification and Candidate 006 mint complete
+→ machine-primary acceptance ready
 → optional final user review only when requested on that exact candidate
 ```
 
@@ -126,4 +126,4 @@ The feature has no save migration, unlock state, asset mutation, or core-rule ch
 - Technical design: `docs/superpowers/specs/2026-08-30-route-book-01-stage-pack-design.md`
 - Implementation plan: `docs/superpowers/plans/2026-08-30-route-book-01-stage-pack-implementation.md`
 - Local machine evidence: `docs/operations/2026-08-30-sx-dec-066-route-book-01-local-machine-verification.md`.
-- Remote runtime/package evidence: a separate exact-main operation record only after review/merge checks run.
+- Exact-main runtime/package evidence: `evidence/acceptance/sx60_poc_accept_006_artifact.json`, `evidence/acceptance/sx60_poc_accept_006_pck_deep_audit.json`, and Candidate 006 acceptance record.

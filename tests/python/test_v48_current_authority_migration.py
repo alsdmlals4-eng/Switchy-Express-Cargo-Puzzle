@@ -101,7 +101,7 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
         text = PROJECT_SKILL.read_text(encoding="utf-8")
         current = text.split("### Current Gate authority", 1)[1].split("## SX-DEC-060 station / preflight contract", 1)[0]
         for required in (
-            "SX60-POC-ACCEPT-005 machine-primary package verification",
+            "SX60-POC-ACCEPT-006 machine-primary package verification",
             "five-person comprehension and player-experience study are not required gates",
             "final user review is optional, only when requested",
         ):

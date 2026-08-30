@@ -20,7 +20,7 @@ project_live_main_policy: REFRESH_FROM_GITHUB_BEFORE_EXECUTION
 engine: Godot 4.7.1-stable
 language: GDScript
 product_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~065
+current_decisions: SX-DEC-027~066
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
@@ -43,7 +43,7 @@ candidate_003_preparation_main: 2521f3be600ea950f9893ce45940604c2d0ac88a
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
 candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-005 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · SOURCE_MAIN_a11dfd1a063e434ee22e8cfb7b073ebc380aa27a · FINAL_USER_REVIEW_NOT_RUN
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · SOURCE_MAIN_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · FINAL_USER_REVIEW_NOT_RUN
 sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 sx60_poc_accept_003: SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE · PLAYER_FACING_SX_DEC_064_ACTIVE_ROUTE_LIGHTING_CHANGE
 pre_sx_dec_060_candidate_package_integrity: PASS
@@ -91,18 +91,18 @@ sx_dec_064_test_evidence: RED_RECORDED_THEN_GREEN · EXACT_HEAD_CI_7_GREEN · PO
 sx_dec_064_candidate_004_evidence: SX60-POC-ACCEPT-004 · HISTORICAL_PRE_V04_PRODUCT_BYTES · docs/operations/2026-08-29-sx-dec-064-candidate-004-package-freshness.md · PHYSICAL_AND_HUMAN_NOT_RUN
 sx_dec_064_candidate_004_tracking_issue: GitHub_Issue_251
 sx_dec_065_machine_primary_validation: USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW · FIVE_SCOPE_ADVERSARIAL_REVIEW_CLOSED · docs/decisions/SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW_VALIDATION_POLICY.md
-sx_dec_066_curated_route_book_01: USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_VERIFIED · NOT_MERGED · six optional fixed schema-v3 stages · code_49574b249cf4cfa675d4ba804851bfeb5e317dff · docs/decisions/SX_DEC_066_CURATED_ROUTE_BOOK_01.md
+sx_dec_066_curated_route_book_01: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_260 · main_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · SX60-POC-ACCEPT-006_PREPARED_PACKAGE_VERIFIED · six optional fixed schema-v3 stages · docs/decisions/SX_DEC_066_CURATED_ROUTE_BOOK_01.md
 sx_dec_066_content_owner: 기획서/20_시스템_콘텐츠/ROUTE_BOOK_01_STAGE_CONTENT_SPEC.md
 sx_dec_066_design_spec: docs/superpowers/specs/2026-08-30-route-book-01-stage-pack-design.md
 sx_dec_066_implementation_plan: docs/superpowers/plans/2026-08-30-route-book-01-stage-pack-implementation.md
 sx_dec_066_genre_benchmark: RESEARCHED · 12 public developer/publisher/wiki/store product sources · fixed authored-map ADOPT / progression-sandbox REJECT · docs/research/2026-08-30-route-book-01-genre-reverse-engineering.md
 sx_dec_066_local_machine_evidence: PROJECT_CONTRACT_PASS · PYTHON_263_PASSED_1_SKIPPED · GODOT_118_CASES_13791_ASSERTIONS_0_FAILED_NO_EXIT_LEAK_WARNING · docs/operations/2026-08-30-sx-dec-066-route-book-01-local-machine-verification.md
-sx_dec_066_unrun_after_local: NOT_MERGED · HOSTED_CI_NOT_RUN · EXPORT_PACKAGE_NOT_RUN · EXACT_CANDIDATE_NOT_MINTED · PHYSICAL_DEVICE_FINAL_USER_REVIEW_NOT_RUN
+sx_dec_066_unrun_after_machine: WINDOWS_PHYSICAL_AUDIO_ANDROID_DEVICE_FINAL_USER_REVIEW_NOT_RUN · FIVE_PERSON_AND_PLAYER_EXPERIENCE_NOT_REQUIRED_BY_USER_POLICY
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · 2026-08-28 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
 notion_direction_current_page: 3c91b237-eb1c-8197-bf13-debb96d444c8 · CURRENT_CREATED_READBACK_PASS · 2026-08-28
-post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-005 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_a11dfd1 · MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN
+post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_9af5a8c · MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN
 current_main_live_machine_qa: docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md · MAIN_CF93926 · TITLE_BRIEFING_BUILD_FLOW_OBSERVED · HUMAN_DEVICE_AUDIO_NOT_RUN
 title_hero_runtime_asset: MERGED_MAIN_VERIFIED · PR_217 · main_e0044d6c7427a7c199da6bcdcf792e41e2e2f152 · ISSUE_216 · RUNTIME_VERIFIED · DUAL_PRESERVATION_PASS
 title_hero_runtime_evidence: docs/operations/2026-08-27-title-hero-art-runtime-verification.md
@@ -118,9 +118,9 @@ base_work_five_phase_receipt: docs/operations/2026-08-27-sx60-work-five-phase-st
 phase5_user_start_authorization: RECORDED · 2026-08-28_KST · GitHub_Issue_233
 phase5_execution_plan: docs/superpowers/plans/2026-08-28-phase5-human-validation.md · SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW
 validation_strategy: MACHINE_PRIMARY_FINAL_USER_REVIEW
-base_work_current_phase: PHASE_5_MACHINE_PRIMARY_VALIDATION_COMPLETE · SX60_POC_ACCEPT_005
-remaining_machine_executable_required_work: NONE · FINAL_USER_REVIEW_OPTIONAL_ON_UNCHANGED_CANDIDATE_005
-route_book_execution_state: PLAN_REVIEW_REQUIRED_BEFORE_BUILD · Candidate_005_remains_historical_for_any_future_Route_Book_product_byte_change
+base_work_current_phase: PHASE_5_MACHINE_PRIMARY_VALIDATION_COMPLETE · SX60_POC_ACCEPT_006
+remaining_machine_executable_required_work: NONE · FINAL_USER_REVIEW_OPTIONAL_ON_UNCHANGED_CANDIDATE_006
+route_book_execution_state: MERGED_MAIN_MACHINE_VERIFIED · PR_260 · Candidate_006_current · Candidate_005_historical_for_pre_Route_Book_bytes
 windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device_post_060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
 five_person_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY

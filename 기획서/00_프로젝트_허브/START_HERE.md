@@ -24,10 +24,10 @@ Last updated: `2026-08-30 KST`
 | station representation | `OFF_TRACK_SERVICE_OBJECT · station cell player rail forbidden` |
 | image requirement | `SX-DEC-060 station-service overlay: no new bitmap; SX-DEC-063 core board: user-approved v2/v4 fourteen-slot asset map connected` |
 | pre-060 Candidate 003 | `SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY after SX-DEC-060` |
-| post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · SX60-POC-ACCEPT-005 is the exact-main MACHINE_PRIMARY candidate · Candidate 004 is HISTORICAL_PRE_V04_PRODUCT_BYTES` |
+| post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · SX60-POC-ACCEPT-006 is the exact-main MACHINE_PRIMARY candidate after Route Book 01 · Candidate 005 is HISTORICAL_PRE_ROUTE_BOOK_PRODUCT_BYTES` |
 | SX60 Candidate 001 | `HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE · hashes/PCK preserved` |
 | post-060 automated regression | `PASS · 111 cases / 13,461 assertions · CI 7 GREEN · SX-AUD-071 CLOSED` |
-| post-060 Windows physical | `FINAL_USER_REVIEW_ONLY · Candidate 005 · NOT_RUN` |
+| post-060 Windows physical | `FINAL_USER_REVIEW_ONLY · Candidate 006 · NOT_RUN` |
 | post-060 Android device | `NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN` |
 | validation strategy | `SX-DEC-065 · MACHINE_PRIMARY_FINAL_USER_REVIEW` |
 | post-060 five-person | `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` |
@@ -122,7 +122,7 @@ approved_image_preservation: PROJECT_LOCAL_GITHUB_ONLY
 
 `SX59-POC-ACCEPT-003` remains exact historical evidence for pre-SX-DEC-060 bytes. Its package/PCK/product-texture/live-download facts stay preserved, but it is no longer the efficient next acceptance target because gameplay semantics have changed.
 
-Do not run its old physical Gate 0 as if it validated the new rule. The required post-060 candidate is now `SX60-POC-ACCEPT-005`; its machine-primary package evidence is exact-byte-specific.
+Do not run its old physical Gate 0 as if it validated the new rule. The required post-060 candidate is now `SX60-POC-ACCEPT-006`; its machine-primary package evidence is exact-byte-specific.
 
 ## Current implementation package
 
@@ -175,7 +175,7 @@ The user selected Hybrid Miniature-Diorama Alignment: the rectangular grid and i
 ```text
 SX-DEC-063 core-board terrain v02, nine non-rail v02 assets, and four v04 rails are connected to the live fourteen-slot renderer map
 → Issue #246 planning board remains a no-consumer explanatory asset and is not runtime proof
-→ SX60-POC-ACCEPT-005 exact package is the current v04 byte candidate; Candidates 002–004 remain prior-byte evidence only
+→ SX60-POC-ACCEPT-006 exact package is the current Route Book byte candidate; Candidates 002–005 remain prior-byte evidence only
 → deterministic/Godot/export/package/CI machine verification complete
 → MACHINE_PRIMARY acceptance ready
 → FINAL_USER_REVIEW only if the user requests final inspection

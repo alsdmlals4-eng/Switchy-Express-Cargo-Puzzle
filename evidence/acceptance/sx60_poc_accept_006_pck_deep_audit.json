@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "candidate_id": "SX60-POC-ACCEPT-006",
+  "candidate_evidence_owner": "evidence/acceptance/sx60_poc_accept_006_artifact.json",
+  "package_identity": {
+    "zip_sha256": "fd55b69e86114e0b334983be7ae8c241a6f3709fbd9cc6fa9cdf00439fd4b888",
+    "windows_exe_sha256": "1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244",
+    "windows_pck_sha256": "1081187807e7f7a6b31cacf423e44da677d876dd5ad8ed81d3bae54a6b001311"
+  },
+  "pck_integrity": {
+    "verifier": "tools/verify_godot_pck_integrity.py",
+    "final_verifier_actual_candidate_invocation": "PASS",
+    "recomputed_windows_pck_sha256": "1081187807e7f7a6b31cacf423e44da677d876dd5ad8ed81d3bae54a6b001311",
+    "pack_format_version": 4,
+    "engine_version": "4.7.1",
+    "pack_flags": 2,
+    "relative_filebase": true,
+    "file_size_bytes": 16616396,
+    "file_base": 112,
+    "trailing_unverified_bytes": 0,
+    "file_count": 571,
+    "verified_entry_count": 571,
+    "md5_mismatch_count": 0,
+    "bounds_error_count": 0,
+    "nonzero_entry_flags_count": 0,
+    "integrity_pass": true
+  },
+  "product_texture_packaging": {
+    "ed_hybrid_v1_prefix": "art/product_assets/ed_hybrid_v1/",
+    "ed_hybrid_v1_prefix_entry_count": 85,
+    "ed_hybrid_v1_runtime_png_import_count": 79,
+    "ed_hybrid_v2_prefix": "art/product_assets/ed_hybrid_v2/",
+    "ed_hybrid_v2_prefix_entry_count": 23,
+    "ed_hybrid_v2_runtime_png_import_count": 22,
+    "ed_hybrid_v2_manifest_included": true,
+    "ed_hybrid_v2_master_source_excluded_from_package": true,
+    "packaging_crosscheck": "PASS · v1 85 entries plus v2 23 entries in exact candidate PCK"
+  },
+  "route_book_packaging": {
+    "map_prefix": "data/maps/route_book/",
+    "map_json_entry_count": 6,
+    "definition_prefix": "data/route_book/",
+    "definition_json_entry_count": 1,
+    "packaging_crosscheck": "PASS · six authored Route Book maps and one Route Book definition are present in exact candidate PCK"
+  },
+  "packaged_runtime_proof": {
+    "windows_runtime_json": "PASS · parsed_json=30",
+    "android_validation_runtime_json": "PASS · parsed_json=30"
+  },
+  "scope": {
+    "candidate_mint_changes_gameplay_rule_or_map_data": false,
+    "candidate_mint_changes_image_asset_bytes": false,
+    "candidate_mint_changes_audio_bytes": false,
+    "candidate_source_includes_approved_sx_dec_063_core_board_v04_runtime_assets": true,
+    "candidate_source_includes_prior_approved_active_route_lighting_runtime_delta": true,
+    "candidate_source_includes_sx_dec_066_route_book_01": true,
+    "sx_dec_056a_056b_057_058_authorization_changed": false
+  },
+  "evidence_ceiling": {
+    "package_integrity": "PASS",
+    "windows_physical_startup_and_build_entry_automation_observed": "NOT_RUN",
+    "physical_visual_recheck": "NOT_RUN",
+    "developer_self_run": "NOT_RUN",
+    "windows_physical_runtime_full_scenarios": "NOT_RUN",
+    "audio_perceptual_qa": "NOT_RUN",
+    "android_device": "NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN",
+    "five_person_comprehension": "NOT_REQUIRED_BY_USER_VALIDATION_POLICY",
+    "player_experience": "NOT_REQUIRED_BY_USER_VALIDATION_POLICY",
+    "final_user_review": "FINAL_USER_REVIEW · NOT_RUN",
+    "production_cutover": "BLOCKED_DEFERRED"
+  }
+}

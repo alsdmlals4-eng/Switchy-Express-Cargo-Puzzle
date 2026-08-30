@@ -55,7 +55,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
             self.assertIn(required, combined)
 
         active = read("기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md")
-        self.assertIn("current_decisions: SX-DEC-027~065", active)
+        self.assertIn("current_decisions: SX-DEC-027~066", active)
         self.assertIn(
             "five_person_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY",
             active,
@@ -70,11 +70,11 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         gates = read("기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md")
         roadmap = read("기획서/00_프로젝트_허브/ROADMAP.md")
 
-        self.assertIn("current_decision_span: SX-DEC-027~065", adapter)
+        self.assertIn("current_decision_span: SX-DEC-027~066", adapter)
         self.assertNotIn("current_decision_span: SX-DEC-027~064", adapter)
         self.assertIn(
             "current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · "
-            "SX60_POC_ACCEPT_005_MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN",
+            "SX_DEC_066_ROUTE_BOOK_01 · SX60_POC_ACCEPT_006_MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN",
             gates,
         )
         self.assertNotIn("EXACT_CANDIDATE_005_MACHINE_VALIDATION_PENDING", gates)
@@ -99,9 +99,9 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         renderer = read("game/demo/presentation/product_board_renderer.gd")
 
         for text in (agents, decision):
-            self.assertIn("SX60-POC-ACCEPT-005", text)
-            self.assertIn("a11dfd1a063e434ee22e8cfb7b073ebc380aa27a", text)
-        self.assertIn("current_decision_span: SX-DEC-027~065", agents)
+            self.assertIn("SX60-POC-ACCEPT-006", text)
+            self.assertIn("9af5a8c46d29ea6781f9ee06008d7c7d2cde1877", text)
+        self.assertIn("current_decision_span: SX-DEC-027~066", agents)
         self.assertIn("SX-DEC-065", agents)
         self.assertIn("CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED", agents)
         self.assertIn("CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED", baseline)
@@ -109,12 +109,12 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         self.assertIn("CORE_BOARD_V02_V04_RUNTIME_CONNECTED", production_spec)
         self.assertIn("CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED", visual_direction)
         self.assertIn("CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED", visual_board)
-        self.assertIn("SX60-POC-ACCEPT-005", current_decisions)
+        self.assertIn("SX60-POC-ACCEPT-006", current_decisions)
         self.assertIn("MACHINE_PRIMARY_ACCEPTANCE_READY", current_decisions)
-        self.assertIn("SX60-POC-ACCEPT-005", active_context)
+        self.assertIn("SX60-POC-ACCEPT-006", active_context)
         self.assertIn("MACHINE_PRIMARY_ACCEPTANCE_READY", active_context)
         self.assertIn("CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED", start_here)
-        self.assertIn("SX60-POC-ACCEPT-005", start_here)
+        self.assertIn("SX60-POC-ACCEPT-006", start_here)
 
         for required_runtime_path in (
             '"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png"',
@@ -153,7 +153,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         self.assertNotIn("→ five-person first-contact comprehension", current_phase)
         self.assertIn("HISTORICAL_METHOD_REFERENCE_ONLY", playtest)
         self.assertIn(
-            "CURRENT EXACT CANDIDATE: SX60-POC-ACCEPT-005 · SOURCE_MAIN_a11dfd1a063e434ee22e8cfb7b073ebc380aa27a",
+            "CURRENT EXACT CANDIDATE: SX60-POC-ACCEPT-006 · SOURCE_MAIN_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877",
             playtest,
         )
 
@@ -163,7 +163,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         )
 
         self.assertEqual("PREPARED_PACKAGE_VERIFIED", pointer["candidate_status"])
-        self.assertEqual("SX60-POC-ACCEPT-005", pointer["current_candidate_id"])
+        self.assertEqual("SX60-POC-ACCEPT-006", pointer["current_candidate_id"])
         self.assertEqual(
             "SX60-POC-ACCEPT-004",
             pointer["historical_superseded_after_sx_dec_063_core_board_v04"]["candidate_id"],
@@ -191,7 +191,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
             contract_result.returncode,
             contract_result.stdout + contract_result.stderr,
         )
-        self.assertIn("POST_SX_DEC_060_CANDIDATE_CONTRACT: PASS - SX60-POC-ACCEPT-005", contract_result.stdout)
+        self.assertIn("POST_SX_DEC_060_CANDIDATE_CONTRACT: PASS - SX60-POC-ACCEPT-006", contract_result.stdout)
 
     def test_registry_map_and_protected_approval_track_the_new_owner(self) -> None:
         registry = json.loads(read("기획서/00_프로젝트_허브/DESIGN_DOCUMENT_REGISTRY.json"))

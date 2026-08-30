@@ -12,9 +12,9 @@ work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~065
-current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · SX60_POC_ACCEPT_005_MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN
-sx_dec_066_local_unmerged_gate: IMPLEMENTED_LOCAL_MACHINE_VERIFIED · code_49574b249cf4cfa675d4ba804851bfeb5e317dff · hosted_CI_package_candidate_final_user_review_NOT_RUN
+current_decisions: SX-DEC-027~066
+current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · SX_DEC_066_ROUTE_BOOK_01 · SX60_POC_ACCEPT_006_MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN
+sx_dec_066_merged_gate: MERGED_MAIN_VERIFIED · PR_260 · main_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · hosted_CI_package_candidate_complete · final_user_review_NOT_RUN
 ```
 
 ## 1. Stable historical implementation evidence
@@ -46,7 +46,7 @@ docs/superpowers/plans/2026-08-28-board-first-runtime-composition.md
 
 This one presentation slice may modify only the named palette/theme/HUD/shell/board-renderer owners and tests. It preserves all existing raster paths and consumers, including T2 v02. Issue #227, finite data/rules, first-session content, audio, score/economy/progression, Base, and PR #174 are out of scope.
 
-The implementation demonstrated RED→GREEN tests, exact-head static/Godot checks, a no-new-asset/no-gameplay-delta review, and an exact-main package candidate. `SX60-POC-ACCEPT-002` and `SX60-POC-ACCEPT-003` cannot validate the SX-DEC-064 bytes; `SX60-POC-ACCEPT-004` is historical package evidence only and does not pass a physical/human gate. `SX60-POC-ACCEPT-005` is the current machine-primary exact candidate.
+The implementation demonstrated RED→GREEN tests, exact-head static/Godot checks, a no-new-asset/no-gameplay-delta review, and an exact-main package candidate. `SX60-POC-ACCEPT-002` through `SX60-POC-ACCEPT-005` are historical package evidence only and do not pass a physical/human gate. `SX60-POC-ACCEPT-006` is the current Route Book machine-primary exact candidate.
 
 Stable historical physical/human anchors remain:
 
@@ -304,7 +304,7 @@ Any finding is fixed and the affected full loop is repeated. `CLEAN_REVIEW_EXIT`
 Blocked until S60-1~10 are complete.
 
 ```text
-SX60-POC-ACCEPT-005 exact package is the current v04 byte candidate
+SX60-POC-ACCEPT-006 exact package is the current Route Book byte candidate
 → deterministic contract + Godot/runtime/export/package/CI verification complete
 → MACHINE_PRIMARY acceptance ready
 → FINAL_USER_REVIEW on that unchanged exact candidate only when requested

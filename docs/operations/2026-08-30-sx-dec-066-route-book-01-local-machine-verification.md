@@ -1,6 +1,6 @@
 # SX-DEC-066 Route Book 01 local machine verification
 
-**Status:** `IMPLEMENTED_LOCAL_MACHINE_VERIFIED · NOT_MERGED · NO_EXACT_CANDIDATE`
+**Status:** `MERGED_MAIN_MACHINE_VERIFIED · PR_260 · SX60-POC-ACCEPT-006_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN`
 
 **Date:** 2026-08-30 KST
 **Scope owner:** [`SX_DEC_066_CURATED_ROUTE_BOOK_01.md`](../decisions/SX_DEC_066_CURATED_ROUTE_BOOK_01.md)
@@ -8,7 +8,7 @@
 
 ## Purpose and boundary
 
-The user approved the recommended Route Book 01 direction after the twelve-product public-source reverse-engineering record. This operation record proves only the local, isolated implementation branch's machine state. It does not claim that the branch is merged, that GitHub Actions has passed, that an export/PCK is valid, that a new immutable candidate exists, or that a physical device, human/player study, or final user review has happened.
+The user approved the recommended Route Book 01 direction after the twelve-product public-source reverse-engineering record. This operation record retains local machine state and adds normal PR #260 merge plus the exact candidate sequence: Route Book product bytes merged to `main@9af5a8c46d29ea6781f9ee06008d7c7d2cde1877`; exact workflow run `33308989848` passed and minted `SX60-POC-ACCEPT-006`. It does not claim physical device, human/player study, or final user review evidence.
 
 The user-selected validation policy remains machine-primary: five-person comprehension and player-experience studies are not required completion gates. They are not silently relabelled as passed. A final user review is still meaningful only for a named exact post-change candidate.
 
@@ -52,7 +52,7 @@ The initial complete Route Book run exposed `92 ObjectDB` and `20 resource` exit
 | 2 — map/finite semantics | A stage can look valid while violating schema-v3, cargo exact-contact, cardinal service, LIFO, preflight, or occupied-switch lock. | Six JSON map contracts plus actual `FiniteBuildSession` / `FiniteRunSessionFactory` machine witnesses cover success and decision-specific failure counterexamples. **PASS**. |
 | 3 — player flow/readability | Title selection, recovery, or responsive actions can expose an invalid route, a hidden recommendation, or an unreachable action. | Direct title→Stage Book→RB03→Result→RB04 flow and 960×540 / 2560×1080 control-layout tests pass. All Route Book stages omit `RECOMMENDED_LAYOUT`. **PASS_AT_MACHINE_EVIDENCE_CEILING**. |
 | 4 — asset/provenance/import drift | The content pack could pull in an unapproved art, audio, or plugin change. | Intended implementation paths are data, GDScript, scene, localization, and tests only; no production asset, audio, plugin, or Base pin is staged. Godot-generated `.import` cache changes are deliberately excluded from commits. **PASS**. |
-| 5 — evidence inflation | Local automated success could be written as a candidate, physical, player, or release result. | Documentation identifies the two exact local commits and retains `NOT_MERGED`, hosted CI/package/candidate/physical/device/final-user states. Protected PR #174 and PR #254 are untouched. **PASS_WITH_BOUNDARY_RETAINED**. |
+| 5 — evidence inflation | Automated success could be written as physical, player, or release evidence. | Documentation identifies local implementation commits, exact merged main, hosted CI/package Candidate 006, and retains physical/device/final-user states. Protected PR #174 and PR #254 are untouched. **PASS_WITH_BOUNDARY_RETAINED**. |
 
 ## Evidence ceiling and next safe gate
 
@@ -64,10 +64,10 @@ route_book_01_full_headless_godot: PASS_118_CASES_13791_ASSERTIONS
 route_book_01_godot_exit_leak_warning: NOT_PRESENT_IN_FINAL_RUN
 route_book_01_first_session_scope: MACHINE_REGRESSION_PROTECTED
 route_book_01_new_production_assets_or_audio: NONE
-route_book_01_merged_main: NOT_RUN
-route_book_01_hosted_ci: NOT_RUN
-route_book_01_export_and_package_integrity: NOT_RUN
-route_book_01_exact_post_change_candidate: NOT_MINTED
+route_book_01_merged_main: PASS · PR_260 · main_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877
+route_book_01_hosted_ci: PASS · PR_260_HEAD_CHECKS_AND_EXACT_MAIN_READBACK
+route_book_01_export_and_package_integrity: PASS · workflow_33308989848 · PCK_571_OF_571
+route_book_01_exact_post_change_candidate: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED
 route_book_01_windows_physical_and_audio: NOT_RUN
 route_book_01_android_device: NOT_RUN
 route_book_01_five_person_and_player_experience: NOT_REQUIRED_BY_SX_DEC_065
@@ -75,4 +75,4 @@ route_book_01_final_user_review: NOT_RUN
 route_book_01_release_cutover: NOT_RUN
 ```
 
-The next safe step is to review this isolated branch, then create a normal pull request. Only after exact merged-main source and hosted CI/export/package checks can a new Route Book candidate be minted. No merge, candidate promotion, or physical/device claim was performed in this local operation.
+The implementation and machine-primary candidate sequence are complete. The only optional acceptance action is final user review on unchanged Candidate 006. No physical/device claim was performed in this operation.

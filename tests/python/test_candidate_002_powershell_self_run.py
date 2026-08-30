@@ -76,18 +76,18 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
     def test_post_060_pointer_selects_candidate_005_while_preserving_historical_evidence(self) -> None:
         pointer = self._post_060_pointer()
         self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-005")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-006")
         self.assertEqual(
             pointer["current_candidate_role"],
-            "MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN · EXACT_SOURCE_MAIN_a11dfd1a063e434ee22e8cfb7b073ebc380aa27a",
+            "MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN · EXACT_SOURCE_MAIN_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877",
         )
         self.assertEqual(
             pointer["historical_superseded_candidate"]["invalidation_reason"],
             "PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE",
         )
-        self.assertEqual(pointer["artifact_evidence_owner"], "evidence/acceptance/sx60_poc_accept_005_artifact.json")
-        self.assertEqual(pointer["deep_pck_evidence_owner"], "evidence/acceptance/sx60_poc_accept_005_pck_deep_audit.json")
-        self.assertEqual(pointer["self_run_record_name"], "SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_05.md")
+        self.assertEqual(pointer["artifact_evidence_owner"], "evidence/acceptance/sx60_poc_accept_006_artifact.json")
+        self.assertEqual(pointer["deep_pck_evidence_owner"], "evidence/acceptance/sx60_poc_accept_006_pck_deep_audit.json")
+        self.assertEqual(pointer["self_run_record_name"], "SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_06.md")
         self.assertEqual(
             pointer["historical_superseded_after_sx_dec_062"]["candidate_id"],
             "SX60-POC-ACCEPT-002",
