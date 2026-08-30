@@ -22,7 +22,7 @@ class SXDec064Candidate004EvidenceTests(unittest.TestCase):
         audit = self._json(AUDIT)
 
         self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-005")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-006")
         historical = pointer["historical_superseded_after_sx_dec_063_core_board_v04"]
         self.assertEqual(historical["candidate_id"], "SX60-POC-ACCEPT-004")
         self.assertEqual(historical["source_main"], "58b99f261c3576150ab275bb041d744c69b83538")

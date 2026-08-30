@@ -26,7 +26,7 @@ sx_dec_060_design_tdd_handoff: PREPARED
 sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · existing-asset board-first composition
 sx_dec_063_visual_direction: USER_APPROVED_DIRECTION · FIRST_TERRAIN_CANDIDATE_GENERATED_REVIEW_PENDING · RUNTIME_UNCHANGED
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-005 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · source main a11dfd1a063e434ee22e8cfb7b073ebc380aa27a · final user review not run
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · source main 9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · final user review not run
 sx60_poc_accept_001: HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY
 windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
@@ -151,9 +151,9 @@ Actual GDScript/Scene/Resource/map/runtime implementation is merged-main verifie
 ## Current Next Work
 
 ```text
-→ SX60-POC-ACCEPT-005 machine-primary package candidate is exact-main verified
+→ SX60-POC-ACCEPT-006 machine-primary package candidate is exact-main verified after Route Book 01
 → preserve machine/human evidence boundary
-→ final user review only when the user requests it, without changing Candidate 005 bytes
+→ final user review only when the user requests it, without changing Candidate 006 bytes
 ```
 
 `SX-DEC-056A/057/058` implementation remains unauthorized/blocked. Draft PR #174 remains `READ_ONLY`. Current Notion structures are mapped to GitHub in `docs/migrations/2026-08-28-notion-current-workspace-migration.md`; historical Notion is not an active workspace.

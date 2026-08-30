@@ -10,7 +10,7 @@ work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~065
+current_decisions: SX-DEC-027~066
 ```
 
 The user-approved SX-DEC-060 gameplay amendment changes the efficient next product gate. Pre-SX-DEC-060 Candidate 003 remains historical exact-byte evidence; it is no longer the build to spend the next human acceptance cycle on.
@@ -37,7 +37,7 @@ SX-DEC-060 · CURRENT
 → full automated regression PASS · 111 cases / 13,461 assertions · CI 7 GREEN
 → SX60-POC-ACCEPT-001 historical package evidence superseded by player-facing route-readability bytes
 
-SX-DEC-066 · USER_APPROVED
+SX-DEC-066 · MERGED_MAIN_VERIFIED · PR #260 · SX60-POC-ACCEPT-006_MACHINE_PRIMARY_ACCEPTANCE_READY
 → Route Book 01: six optional fixed schema-v3 stages
 → first session and finite rule boundary protected
 → design/spec/implementation plan complete
@@ -137,7 +137,7 @@ SX-DEC-060 changes T2 station meaning to cardinal-adjacent delivery; no extra le
 
 ## M5C · SX-DEC-066 Curated Route Book 01
 
-`USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_VERIFIED · NOT_MERGED`
+`USER_APPROVED · MERGED_MAIN_VERIFIED · PR #260 · SX60-POC-ACCEPT-006_PREPARED_PACKAGE_VERIFIED`
 
 Route Book 01 is a separate optional stage surface: six directly selectable, hand-authored finite maps reuse current Build/Run/cargo/adjacent-station/LIFO/Auto/switch/result consumers. It neither alters nor extends the locked T1→T6→`VS_DEMO_01` first session. It excludes persistence, locks, rewards, score/rank, generated challenges, Yard Labs, Mastery, new assets, and new rules. The approved content owner, technical design, and task-by-task plan are:
 
@@ -148,7 +148,7 @@ docs/superpowers/plans/2026-08-30-route-book-01-stage-pack-implementation.md
 docs/research/2026-08-30-route-book-01-genre-reverse-engineering.md
 ```
 
-Local implementation is committed at `d1d2087` and `49574b249cf4cfa675d4ba804851bfeb5e317dff`: six map contracts, direct selection/recovery, four-locale copy, responsive controls, and full machine regression are verified locally. Hosted CI, package/export, a new exact candidate, physical/device checks, and final user review remain unrun. Candidate 005 remains valid only for its pre-Route-Book exact source bytes.
+Local implementation is committed at `d1d2087` and `49574b249cf4cfa675d4ba804851bfeb5e317dff`: six map contracts, direct selection/recovery, four-locale copy, responsive controls, and full machine regression are verified locally. PR #260 merged at `main@9af5a8c`; hosted CI, export/package integrity, and Candidate 006 are complete. Physical/device checks and final user review remain unrun. Candidate 005 remains valid only for its pre-Route-Book exact source bytes.
 
 Historical Candidate 003:
 
@@ -207,9 +207,9 @@ Actual Godot product implementation is merged-main verified by PR #188; the pack
 Historical package record and current sequence:
 
 ```text
-SX60-POC-ACCEPT-005 exact package verified on main a11dfd1
+SX60-POC-ACCEPT-006 exact package verified on main 9af5a8c after Route Book 01
 → machine-primary deterministic/Godot/runtime/export/package/CI validation complete
-→ final user review only when requested on unchanged Candidate 005
+→ final user review only when requested on unchanged Candidate 006
 ```
 
 ```yaml
@@ -245,7 +245,7 @@ existing E+D assets / shell consumers
 → no bitmap, gameplay, map/data, first-session-copy, or audio delta
 ```
 
-GitHub Issue #235 and PR #237 implemented the contract in `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`, its spec/plan, and `SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`. SX-DEC-064 then changed player-facing active-route lighting. Candidates 002–004 are prior-byte evidence; Candidate 005 is the exact `main@a11dfd1` machine-primary package route, with final user review still not run.
+GitHub Issue #235 and PR #237 implemented the contract in `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`, its spec/plan, and `SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`. SX-DEC-064 then changed player-facing active-route lighting. Candidates 002–005 are prior-byte evidence; Candidate 006 is the exact `main@9af5a8c` Route Book machine-primary package route, with final user review still not run.
 
 ## M6T · SX-DEC-063 terrain v02 asset promotion
 

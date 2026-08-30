@@ -17,35 +17,43 @@ class SXDec065Candidate005MachineEvidenceTests(unittest.TestCase):
         self.assertTrue(path.is_file(), f"missing machine evidence owner: {path}")
         return json.loads(path.read_text(encoding="utf-8"))
 
-    def test_pointer_selects_only_the_exact_machine_verified_candidate(self) -> None:
+    def test_candidate_005_remains_immutable_historical_evidence_after_route_book_bytes_changed(self) -> None:
         pointer = self._json(POINTER)
+        historical = pointer["historical_superseded_after_sx_dec_066_route_book_01"]
 
-        self.assertEqual("PREPARED_PACKAGE_VERIFIED", pointer["candidate_status"])
-        self.assertEqual("SX60-POC-ACCEPT-005", pointer["current_candidate_id"])
+        self.assertEqual("PREPARED_PACKAGE_VERIFIED", historical["candidate_status_at_invalidation"])
+        self.assertEqual("SX60-POC-ACCEPT-005", historical["candidate_id"])
         self.assertEqual(
             "a11dfd1a063e434ee22e8cfb7b073ebc380aa27a",
-            pointer["minimum_product_source_main"],
+            historical["source_main"],
         )
         self.assertEqual(
             "evidence/acceptance/sx60_poc_accept_005_artifact.json",
-            pointer["artifact_evidence_owner"],
+            historical["artifact_evidence_owner"],
         )
         self.assertEqual(
             "evidence/acceptance/sx60_poc_accept_005_pck_deep_audit.json",
-            pointer["deep_pck_evidence_owner"],
+            historical["deep_pck_evidence_owner"],
         )
-        self.assertIn("MACHINE_PRIMARY", pointer["current_candidate_role"])
-        self.assertIn("FINAL_USER_REVIEW_NOT_RUN", pointer["current_candidate_role"])
+        self.assertEqual(
+            "SX_DEC_066_ROUTE_BOOK_01_PLAYER_FACING_RUNTIME_BYTE_CHANGE",
+            historical["invalidation_reason"],
+        )
+        self.assertEqual(
+            "HISTORICAL_SUPERSEDED_BY_SX_DEC_066_ROUTE_BOOK_01_PRODUCT_BYTE_CHANGE",
+            historical["role"],
+        )
 
     def test_artifact_and_deep_pck_audit_bind_every_machine_identity_value(self) -> None:
         pointer = self._json(POINTER)
         artifact = self._json(ARTIFACT)
         audit = self._json(AUDIT)
 
-        self.assertEqual(artifact["candidate_id"], pointer["current_candidate_id"])
+        historical = pointer["historical_superseded_after_sx_dec_066_route_book_01"]
+        self.assertEqual(artifact["candidate_id"], historical["candidate_id"])
         self.assertEqual(
             artifact["source_build"]["main_sha"],
-            pointer["minimum_product_source_main"],
+            historical["source_main"],
         )
         self.assertEqual(33301925424, artifact["artifact"]["workflow_run_id"])
         self.assertEqual(546, artifact["artifact"]["workflow_run_number"])

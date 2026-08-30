@@ -396,7 +396,7 @@ All state changes must preserve the current finite rule boundary. A future save/
 
 ### Final-user-only gate after Candidate 005
 
-1. If the user requests it, inspect only unchanged `SX60-POC-ACCEPT-005` in the named actual board consumer.
+1. If the user requests it, inspect only unchanged `SX60-POC-ACCEPT-006` in the named actual board consumer.
 2. Check cell hit testing, rail ports, cargo/station contrast, cardinal-service cue, selected/alternate/locked routes, TOP HUD, clipping and crop.
 3. Record observations as cause/evidence/impact. This optional review neither upgrades machine evidence to human evidence nor reinstates five-person/player-experience studies.
 
@@ -419,7 +419,7 @@ The active playable slice is `T1 → T2 → T3 → T4 → T5 → T6 → VS_DEMO_
 
 ## 25. USER DECISION REQUIRED
 
-No product decision is required for the connected v2/v4 core board or machine-primary Candidate 005. The only optional user action is a final review of unchanged `SX60-POC-ACCEPT-005`; release, platform, and rights decisions retain their separate owners.
+No product decision is required for the connected v2/v4 core board or machine-primary Candidate 006. The only optional user action is a final review of unchanged `SX60-POC-ACCEPT-006`; release, platform, and rights decisions retain their separate owners.
 
 ## 26. IMPLEMENTATION QUEUE
 
