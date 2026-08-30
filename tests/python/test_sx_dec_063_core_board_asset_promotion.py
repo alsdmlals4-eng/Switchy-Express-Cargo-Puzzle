@@ -22,26 +22,26 @@ EXPECTED_ASSETS = {
         True,
         "train",
     ),
-    "SX-CORE-RAIL-STRAIGHT-002": (
-        "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v02.png",
+    "SX-CORE-RAIL-STRAIGHT-003": (
+        "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v03.png",
         (64, 64),
         True,
         "rail_straight",
     ),
-    "SX-CORE-RAIL-CURVE-002": (
-        "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v02.png",
+    "SX-CORE-RAIL-CURVE-003": (
+        "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v03.png",
         (64, 64),
         True,
         "rail_curve",
     ),
-    "SX-CORE-RAIL-CROSSING-002": (
-        "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v02.png",
+    "SX-CORE-RAIL-CROSSING-003": (
+        "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v03.png",
         (64, 64),
         True,
         "rail_crossing",
     ),
-    "SX-CORE-RAIL-SWITCH-002": (
-        "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v02.png",
+    "SX-CORE-RAIL-SWITCH-003": (
+        "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v03.png",
         (64, 64),
         True,
         "rail_switch",
@@ -113,9 +113,24 @@ V01_ROLLBACK_PATHS = [
     "art/product_assets/ed_hybrid_v1/core/core_cargo_star_yellow_normal_v01.png",
 ]
 
+RAIL_MASTER_SOURCE = {
+    "source_candidate_id": "SX-VIS-063-RAIL-NETWORK-MASTER-003",
+    "source_generation_receipt": "exec-c20ff7f8-a3b4-4b7d-a2d9-4a37d460ca3b.png",
+    "tracked_source_path": "art/product_assets/ed_hybrid_v2/source/core_rail_network_master_v03.png",
+    "dimensions": [1254, 1254],
+    "sha256": "f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b",
+    "derivation_route": "AI_GENERATED_THEN_DETERMINISTIC_RASTER_CROP_AND_RESAMPLE",
+    "crop_rectangles": {
+        "SX-CORE-RAIL-STRAIGHT-003": [0, 316, 256, 256],
+        "SX-CORE-RAIL-CURVE-003": [374, 749, 256, 256],
+        "SX-CORE-RAIL-CROSSING-003": [374, 318, 256, 256],
+        "SX-CORE-RAIL-SWITCH-003": [821, 318, 256, 256],
+    },
+}
+
 
 class SXDec063CoreBoardAssetPromotionTests(unittest.TestCase):
-    def test_v02_family_is_preserved_and_runtime_verified(self) -> None:
+    def test_v03_rail_family_is_preserved_and_runtime_verified(self) -> None:
         manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
         self.assertEqual(
             "APPROVED_GITHUB_PRESERVED_RUNTIME_VERIFIED_AUTOMATED",
@@ -124,6 +139,15 @@ class SXDec063CoreBoardAssetPromotionTests(unittest.TestCase):
         manifest_assets = {entry["asset_id"]: entry for entry in manifest["assets"]}
         self.assertEqual(set(EXPECTED_ASSETS), set(manifest_assets))
         renderer = RENDERER_PATH.read_text(encoding="utf-8")
+
+        self.assertEqual(RAIL_MASTER_SOURCE, manifest["rail_master_source"])
+        master_path = ROOT / RAIL_MASTER_SOURCE["tracked_source_path"]
+        self.assertTrue(master_path.is_file(), "the connected rail master source must be preserved")
+        if master_path.is_file():
+            master_raw = master_path.read_bytes()
+            self.assertEqual(b"\x89PNG\r\n\x1a\n", master_raw[:8])
+            self.assertEqual((1254, 1254), struct.unpack(">II", master_raw[16:24]))
+            self.assertEqual(RAIL_MASTER_SOURCE["sha256"], hashlib.sha256(master_raw).hexdigest())
 
         for asset_id, (relative_path, dimensions, alpha_required, slot) in EXPECTED_ASSETS.items():
             asset_path = ROOT / relative_path

@@ -11,7 +11,6 @@ const SemanticRuntimeStateScript := preload("res://game/demo/presentation/semant
 const FiniteTrackGraphScript := preload("res://game/finite/rail/finite_track_graph.gd")
 const TrackPieceScript := preload("res://game/finite/build/track_piece.gd")
 const NO_CELL := Vector2i(-1, -1)
-const PRODUCT_RAIL_SEAM_OVERLAP := 3.0
 const GHOST_FILL_ALPHA := 0.08
 const GHOST_TRACK_ALPHA := 0.46
 const GHOST_SEMANTIC_BADGE_SCALE := 0.28
@@ -20,10 +19,10 @@ const CARGO_MARKER_SCALE := 0.62
 const PRODUCT_VISUAL_ASSET_PATHS := {
 	"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
 	"train": "art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png",
-	"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v02.png",
-	"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v02.png",
-	"rail_crossing": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v02.png",
-	"rail_switch": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v02.png",
+	"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v03.png",
+	"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v03.png",
+	"rail_crossing": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v03.png",
+	"rail_switch": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v03.png",
 	"start_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png",
 	"route_end_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png",
 	"station_red": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
@@ -79,14 +78,6 @@ func loaded_product_visuals_for_test() -> Dictionary:
 
 func product_rail_seam_descriptor_for_test(geometry: StringName, rotation: int) -> Dictionary:
 	return _product_rail_seam_descriptor(geometry, rotation)
-
-
-func curve_seam_arc_for_test(rotation: int, target: Rect2) -> Dictionary:
-	return _curve_seam_arc_geometry(_track_ports(&"CURVE", rotation), target)
-
-
-func product_rail_seam_target_for_test(geometry: StringName, target: Rect2) -> Rect2:
-	return _product_rail_seam_target(geometry, target)
 
 
 func marker_target_for_test(is_station: bool, cell_rect: Rect2) -> Rect2:
@@ -516,11 +507,9 @@ func _draw_track_piece(
 	bed_color: Color,
 	rail_color: Color
 ) -> void:
-	var target := _cell_rect(cell, rect, board_size).grow(-2.0)
+	var target := _cell_rect(cell, rect, board_size)
 	var asset_key := _track_asset_key(geometry)
 	var has_product_art := asset_key != "" and _product_textures.get(asset_key) is Texture2D
-	if has_product_art:
-		_draw_product_rail_seam_underlay(geometry, rotation, target, bed_color, rail_color)
 	if has_product_art and _draw_product_texture(asset_key, target, rotation, bed_color.a):
 		return
 
@@ -536,149 +525,8 @@ func _draw_track_piece(
 	if geometry == &"SWITCH":
 		draw_circle(center, minf(half.x, half.y) * 0.18, rail_color)
 
-
-func _draw_product_rail_seam_underlay(
-	geometry: StringName,
-	rotation: int,
-	target: Rect2,
-	bed_color: Color,
-	rail_color: Color
-) -> void:
-	var descriptor := _product_rail_seam_descriptor(geometry, rotation)
-	if not bool(descriptor["enabled"]):
-		return
-	var seam_target := _product_rail_seam_target(geometry, target)
-	var ports: Array[Vector2i] = []
-	for direction: Vector2i in descriptor["ports"]:
-		ports.append(direction)
-	if descriptor.get("mode", &"") == &"CURVE_ARC":
-		_draw_curve_rail_seam_arc(
-			_curve_seam_arc_geometry(ports, seam_target),
-			bed_color,
-			rail_color
-		)
-		return
-	var center := seam_target.get_center()
-	var half := seam_target.size * 0.5
-	for direction: Vector2i in ports:
-		var endpoint := center + Vector2(direction.x * half.x, direction.y * half.y)
-		draw_line(
-			center,
-			endpoint,
-			_alpha(bed_color, minf(bed_color.a, 0.34)),
-			maxf(Palette.RAIL_WIDTH * 0.60, 3.0),
-			true
-		)
-		draw_line(
-			center,
-			endpoint,
-			_alpha(rail_color, 0.42),
-			maxf(Palette.RAIL_HIGHLIGHT_WIDTH * 0.60, 2.0),
-			true
-		)
-
-
-func _draw_curve_rail_seam_arc(
-	arc: Dictionary,
-	bed_color: Color,
-	rail_color: Color
-) -> void:
-	if arc.is_empty():
-		return
-	var center: Vector2 = arc["center"]
-	var major_radius := float(arc["major_radius"])
-	var minor_radius := float(arc["minor_radius"])
-	var start_angle := float(arc["start_angle"])
-	var end_angle := float(arc["end_angle"])
-	draw_ellipse_arc(
-		center,
-		major_radius,
-		minor_radius,
-		start_angle,
-		end_angle,
-		24,
-		_alpha(bed_color, minf(bed_color.a, 0.34)),
-		maxf(Palette.RAIL_WIDTH * 0.60, 3.0),
-		true
-	)
-	draw_ellipse_arc(
-		center,
-		major_radius,
-		minor_radius,
-		start_angle,
-		end_angle,
-		24,
-		_alpha(rail_color, 0.42),
-		maxf(Palette.RAIL_HIGHLIGHT_WIDTH * 0.60, 2.0),
-		true
-	)
-
-
 static func _product_rail_seam_descriptor(geometry: StringName, rotation: int) -> Dictionary:
-	match geometry:
-		&"CURVE":
-			return {
-				"enabled": true,
-				"mode": &"CURVE_ARC",
-				"ports": _track_ports(geometry, rotation),
-			}
-		&"SWITCH":
-			return {
-				"enabled": true,
-				"mode": &"PORT_SPOKES",
-				"ports": _track_ports(geometry, rotation),
-			}
-		_:
-			return {"enabled": false, "ports": []}
-
-
-static func _product_rail_seam_target(geometry: StringName, target: Rect2) -> Rect2:
-	if geometry in [&"CURVE", &"SWITCH"]:
-		return target.grow(PRODUCT_RAIL_SEAM_OVERLAP)
-	return target
-
-
-static func _curve_seam_arc_geometry(
-	ports: Array[Vector2i],
-	target: Rect2
-) -> Dictionary:
-	if ports.size() != 2:
-		return {}
-	var first_port := ports[0]
-	var second_port := ports[1]
-	if first_port.x * second_port.x + first_port.y * second_port.y != 0:
-		return {}
-	var major_radius := target.size.x * 0.5
-	var minor_radius := target.size.y * 0.5
-	if major_radius <= 0.0 or minor_radius <= 0.0:
-		return {}
-	var cell_center := target.get_center()
-	var arc_center := cell_center + Vector2(
-		float(first_port.x + second_port.x) * major_radius,
-		float(first_port.y + second_port.y) * minor_radius
-	)
-	var first_endpoint := cell_center + Vector2(
-		float(first_port.x) * major_radius,
-		float(first_port.y) * minor_radius
-	)
-	var second_endpoint := cell_center + Vector2(
-		float(second_port.x) * major_radius,
-		float(second_port.y) * minor_radius
-	)
-	var start_angle := (first_endpoint - arc_center).angle()
-	var end_angle := (second_endpoint - arc_center).angle()
-	var angle_delta := end_angle - start_angle
-	if angle_delta > PI:
-		end_angle -= TAU
-	elif angle_delta < -PI:
-		end_angle += TAU
-	return {
-		"center": arc_center,
-		"major_radius": major_radius,
-		"minor_radius": minor_radius,
-		"start_angle": start_angle,
-		"end_angle": end_angle,
-	}
+	return {"enabled": false, "ports": []}
 
 
 func _draw_fixed_markers(rect: Rect2, board_size: Vector2i) -> void:

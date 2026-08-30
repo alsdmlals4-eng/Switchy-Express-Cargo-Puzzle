@@ -1,6 +1,6 @@
 # SX-DEC-063 · Hybrid Miniature-Diorama Visual Production Alignment
 
-**Status:** USER_APPROVED_DIRECTION · CORE_BOARD_V02_IMPLEMENTED · AUTOMATED_RUNTIME_VERIFIED · PHYSICAL_HUMAN_NOT_RUN
+**Status:** USER_APPROVED_DIRECTION · CORE_BOARD_V03_MASTER_RAILS_IMPLEMENTED · AUTOMATED_RUNTIME_VERIFIED · PHYSICAL_HUMAN_NOT_RUN
 **Date:** 2026-08-28 KST
 **Tracking:** GitHub Issue #239
 **Predecessors:** SX-DEC-061 visual lock, SX-DEC-062 existing-asset runtime composition
@@ -82,7 +82,7 @@ All paths below are **proposed versioned candidate paths**, not created files or
 
 | Requirement | Existing consumer | Candidate family / proposed target | Technical contract |
 | --- | --- | --- | --- |
-| SX-VIS-063-RQ-001 board diorama | ProductBoardRenderer product visual asset paths | terrain v02; locomotive v02; 4 rail v02; start/ROUTE_END markers v02; 3 stations v02; 3 cargo v02 | 14 slots. Terrain: 1672×941 RGB/RGBA backdrop. Train: 128×96 alpha. All remaining core slots: 64×64 alpha. Existing cell rotation/pivot conventions and transparent margins stay compatible. |
+| SX-VIS-063-RQ-001 board diorama | ProductBoardRenderer product visual asset paths | terrain v02; locomotive v02; 4 rail v03 master derivatives; start/ROUTE_END markers v02; 3 stations v02; 3 cargo v02 | 14 slots. Terrain: 1672×941 RGB/RGBA backdrop. Train: 128×96 alpha. All remaining core slots: 64×64 alpha. Existing cell rotation/pivot conventions stay compatible; the rail art deliberately reaches its full cell edge. |
 | SX-VIS-063-RQ-002 shell cohesion | ProductShellArt title, shared non-T2 lesson, success result, failure result | title v02, lesson v03, success v03, failure v03 | Title: 1774×887. Other shells: 1672×941. Text/logo/watermark-free; source-safe center crop for the existing cover draw. |
 | SX-VIS-063-RQ-003 deck density | DemoThemeFactory, existing HUD/shell panels | code-only spacing, panel hierarchy, and CTA emphasis review | No new visible system, text ownership, or interactive control. Requires later implementation contract. |
 
@@ -110,7 +110,7 @@ runtime_compare_required: true
 candidate_status: USER_APPROVED_FOR_GITHUB_PROMOTION · AUTOMATED_RUNTIME_VERIFIED
 ~~~
 
-**2026-08-28/30 user workflow readback:** actual-consumer candidates may be generated and machine-reviewed without a per-image pre-generation approval. Terrain v02 was promoted on 2026-08-28; the user then approved the displayed 13-image Core Board v02 bundle and narrow visual-only curve/switch seam underlay on 2026-08-30. The exact terrain plus 13 core outputs are now preserved under `art/product_assets/ed_hybrid_v2/`, their checksums and generated-source receipts are recorded in the manifest/provenance owners, and the existing `ProductBoardRenderer` 14-slot map loads them. This is `APPROVED_GITHUB_PRESERVED_RUNTIME_VERIFIED_AUTOMATED`, not a physical, human, Player Experience, release-rights, or production-cutover promotion.
+**2026-08-28/30 user workflow readback:** actual-consumer candidates may be generated and machine-reviewed without a per-image pre-generation approval. Terrain v02 was promoted on 2026-08-28; the user then approved the displayed 13-image Core Board v02 bundle and initially approved a narrow visual-only curve/switch seam underlay on 2026-08-30. After inspecting the actual board, the user required connected-master rail art and then approved the reviewed v03 master-derived rail pixels. The exact terrain, nine non-rail v02 core outputs, and four v03 rail derivatives are preserved under `art/product_assets/ed_hybrid_v2/`, their checksums and source receipts are recorded in the manifest/provenance owners, and the existing `ProductBoardRenderer` 14-slot map loads them. This is `APPROVED_GITHUB_PRESERVED_RUNTIME_VERIFIED_AUTOMATED`, not a physical, human, Player Experience, release-rights, or production-cutover promotion.
 
 For every candidate that later passes review:
 
@@ -125,14 +125,27 @@ generate exactly one candidate
 
 ## Core Board v02 transition boundary
 
-The bounded Core Board v02 implementation has replaced only the existing fourteen `ProductBoardRenderer` visual-path values: terrain, locomotive, four rails, two markers, three stations, and three cargo tokens. The generated curve/switch images remain visible art; a renderer-local muted underlay follows the existing authored port list beneath those two textures so cell seams remain aligned. It cannot alter map data, hit testing, routing, service, locks, or train behavior. Every v01 counterpart remains tracked as a rollback source. A local uncommitted Windows debug export plus Windows/Android PCK proof is recorded; a new immutable GitHub exact-head package candidate and physical/human gates remain separately required.
+The bounded Core Board v02 implementation originally replaced only the existing fourteen `ProductBoardRenderer` visual-path values: terrain, locomotive, four rails, two markers, three stations, and three cargo tokens. Its curve/switch underlay was a short-lived renderer correction and is superseded for the four rail slots by the approved v03 rail-master correction below. It never altered map data, hit testing, routing, service, locks, or train behavior. Every v01 counterpart and the v02 rail bytes remain tracked as rollback sources. A local uncommitted Windows debug export plus Windows/Android PCK proof is historical for earlier bytes; a new immutable GitHub exact-head package candidate and physical/human gates remain separately required for the v03 byte set.
+
+## 2026-08-30 rail-master v03 correction
+
+The user rejected disconnected-looking individual rail tiles and directed the project to draw the whole connected rail network first, then cut the actual runtime tiles from that single source. The selected master was inspected in the actual product board and the user approved its recommended runtime result.
+
+~~~text
+one connected 1254×1254 master rail network
+→ deterministic coordinate crop and high-quality resample to four 64×64 runtime PNGs
+→ full-cell texture draw at the existing four renderer slots
+→ no procedural curve or switch seam artwork
+~~~
+
+The tracked reproducibility source is `art/product_assets/ed_hybrid_v2/source/core_rail_network_master_v03.png` (SHA-256 `f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b`). Its deterministic crop rectangles and final output hashes are the manifest owner. The runtime paths are `core_rail_straight_normal_v03.png`, `core_rail_curve_normal_v03.png`, `core_rail_crossing_normal_v03.png`, and `core_rail_switch_three_way_normal_v03.png`; their `64×64` pixels touch the full logical cell boundary. The source master and runtime review captures are Git-tracked but `.gdignore`d reproducibility/evidence material, so neither can become runtime payloads. Rotation remains renderer-owned, while route, lock, station-service, map, click, train, and cargo semantics remain unchanged. The original four v02 rail files are retained rollback/provenance bytes but are no longer runtime-selected. Local Windows export and Windows/Android PCK proofs were re-run after this change; exact GitHub candidate and physical/human gates remain separate.
 
 ## Production and implementation boundaries
 
 ### Implemented in this bounded change
 
-- user-approved v02 terrain plus thirteen core generated sprites, their Godot imports, hashes, provenance, and retained v01 rollback files;
-- the exact existing 14-slot renderer map and a curve/switch-only visual seam underlay;
+- user-approved v02 terrain plus nine non-rail core generated sprites, four v03 rail-master derivatives, their Godot imports, hashes, provenance, and retained v01/v02 rollback files;
+- the exact existing 14-slot renderer map with full-cell master-derived rail textures and no procedural rail seam layer;
 - RED→GREEN renderer/asset contracts, full local Godot runner (`112` cases, `13,534` assertions), live BUILD/RUN captures, and local Windows debug/Windows+Android PCK proof.
 
 ### Deferred after automated runtime verification

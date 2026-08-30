@@ -140,7 +140,40 @@ physical_windows_audio_android_human_player_experience_release: NOT_RUN
 | `SX-CORE-CARGO-BLUE-002` | `exec-382a8f00-8c25-415b-872b-df80c7124ee6.png` | `art/product_assets/ed_hybrid_v2/core/core_cargo_star_blue_normal_v02.png` | `15ada5b6a14038d381e740304a8cf5cbf480f50f45a8c38e14b37a83b787f831` | `cargo_blue` |
 | `SX-CORE-CARGO-YELLOW-002` | `exec-cdee6143-289f-41fe-979f-c9ce33add219.png` | `art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png` | `96f667e507fc0d956fd34070ee1aa36d3ce195b39a208a80a7cd71db8ce9bc8f` | `cargo_yellow` |
 
-Every final binary above is user-approved, GitHub-preserved, and machine-verified only at its actual renderer consumer boundary. The candidate source and its review previews remain outside product paths as evidence; the project ships only the listed deterministic v02 PNGs. `RELEASE_RIGHTS_NOT_APPROVED` and all human/device gates remain separate.
+Every final binary above is user-approved, GitHub-preserved, and machine-verified only at its actual renderer consumer boundary. The candidate source and its review previews remain outside product paths as evidence; the project ships only the listed deterministic v02 PNGs. The four v02 rail binaries remain rollback/provenance bytes after the separate user-approved v03 rail-master correction below. `RELEASE_RIGHTS_NOT_APPROVED` and all human/device gates remain separate.
+
+## SX-DEC-063 Rail Network Master v03 · user-approved runtime-derived rail family
+
+```yaml
+approval_ref: USER-APPROVAL-2026-08-30-RAIL-NETWORK-MASTER-V03
+decision_id: SX-DEC-063
+source_candidate_id: SX-VIS-063-RAIL-NETWORK-MASTER-003
+creation_route: AI_GENERATED_THEN_DETERMINISTIC_RASTER_CROP_AND_RESAMPLE
+creator_or_vendor: OpenAI image generation service
+source_generation_root: C:/Users/user/.codex/generated_images/01a04af4-2ebb-7912-80d3-e4bfa4f1efe0/
+source_generation_receipt: exec-c20ff7f8-a3b4-4b7d-a2d9-4a37d460ca3b.png
+tracked_master_path: art/product_assets/ed_hybrid_v2/source/core_rail_network_master_v03.png
+tracked_master_dimensions: 1254x1254 RGBA
+tracked_master_sha256: f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b
+derivation_operator: deterministic rectangular crop followed by 256x256-to-64x64 high-quality bicubic resample
+ai_input_rights: original project brief and current product-owned visual canon only; no third-party layout, logo, asset, screenshot, or style reference supplied
+reference_similarity_status: REVIEWED_NO_BRAND_OR_REFERENCE_LAYOUT_VISIBLE · release review remains separate
+forbidden_expression_check: MACHINE_AND_VISUAL_CANDIDATE_REVIEW_PASS · no text, logo, watermark, UI panel, score/currency/save cue, station, cargo, train, or gameplay-state expression embedded
+runtime_consumer_owner: game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS
+runtime_connection_status: VERIFIED_AUTOMATED_RUNTIME
+renderer_treatment: four product textures draw at the full cell rectangle; no renderer-local rail seam underlay remains
+v02_rail_rollback: core_rail_*_normal_v02.png remain tracked, but no longer occupy a runtime rail slot
+physical_windows_audio_android_human_player_experience_release: NOT_RUN
+```
+
+| Asset ID | Master crop rectangle `[x, y, width, height]` | Final tracked path | Final SHA-256 | Consumer slot |
+| --- | --- | --- | --- | --- |
+| `SX-CORE-RAIL-STRAIGHT-003` | `[0, 316, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v03.png` | `7f7ab656c5ef16a09cea2dd723c8985dccfb357231b9f2a99772be82e77c32ad` | `rail_straight` |
+| `SX-CORE-RAIL-CURVE-003` | `[374, 749, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v03.png` | `43cb0e419a1f1cca7e81115740c1cee9264d5f0496165ba8578aa7bc520b6d49` | `rail_curve` |
+| `SX-CORE-RAIL-CROSSING-003` | `[374, 318, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v03.png` | `85c176ea41fed46982c1929448854e2b4819495d11cd60dd0cfd851d1952c6da` | `rail_crossing` |
+| `SX-CORE-RAIL-SWITCH-003` | `[821, 318, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v03.png` | `a30dd23d29d6b2158f81120d98a313b3448e1085982bd5fd447d55a12ecc68e9` | `rail_switch` |
+
+The v03 master is a reproducibility source only and is excluded from Godot import/runtime use by its local `.gdignore`; the four derived PNGs are the actual runtime files. The user reviewed the real recommended BUILD layout before approving these final pixels. Automated renderer/import evidence is distinct from remaining package, physical Windows/audio, Android device, accessibility, player-comprehension, release-rights, and production-cutover gates.
 
 실제 game runtime consumer가 확인된 필요한 이미지는 별도 이미지별 승인 없이 자동 생성할 수 있다. 생성 후보는 review-only로 유지하고, 사용자 승인 final만 GitHub tracked project-local asset로 보존하며 기존 E+D Hybrid / Neo-Arcade 시각 언어를 유지한다. Runtime consumer가 없는 이미지 생성이나 runtime promotion은 이 권한에 포함되지 않는다.
 

@@ -139,3 +139,56 @@ visual_readability_repair_android_device: NOT_RUN
 visual_readability_repair_human_accessibility_comprehension_player_experience: NOT_RUN
 visual_readability_repair_release_rights_and_production_cutover: NOT_RUN
 ```
+
+## 2026-08-30 connected rail-master v03 correction
+
+### User direction and bounded implementation
+
+The user found that even the repaired curve/switch seams did not make the rail network read as one connected route. They explicitly directed the team to draw the complete connected rail line first and cut runtime tiles from that image. The selected master was placed in the actual recommended BUILD board and the user approved the displayed result for final promotion.
+
+The approved source is the tracked `1254×1254` RGBA master `art/product_assets/ed_hybrid_v2/source/core_rail_network_master_v03.png` (SHA-256 `f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b`). Four explicit `256×256` crop rectangles are downsampled to the four `64×64` rail textures and recorded in the asset manifest. `ProductBoardRenderer` now uses those four v03 paths at the full cell rectangle; all renderer-local seam drawing was removed. The master source and this directory's runtime review captures are each `.gdignore`d, so reproducibility source and review evidence cannot become an accidental Godot import/export resource. No map, track topology, input, service, route, lock, train, cargo, locale, audio, or progression code changed.
+
+### RED → GREEN contract evidence
+
+- **RED:** after the v03 rail paths, four v03 manifest identities, tracked master source, crop coordinates, and no-seam renderer contract were specified, the focused promotion test failed exactly because the manifest still contained the four v02 rail identities.
+- **GREEN:** after preserving the source and updating the manifest, `tests.python.test_sx_dec_063_core_board_asset_promotion` passed. The pre-existing full Godot runner rail-path contract then passed `112` cases / `0` failed / `13,548` assertions after importing the four new textures.
+- **Live candidate:** the actual `ProductFiniteSlice` scene loaded the recommended layout with no Godot diagnostics errors or warnings. `evidence/runtime/sx_dec_063_core_board_v03/2026-08-30-master-rail-v03-recommended-1280x720.png` and `evidence/runtime/sx_dec_063_core_board_v03/2026-08-30-master-rail-v03-ghost-curve-1280x720.png` are the user-reviewed real-consumer captures; they are not planning compositions.
+
+### Corrected local package proof
+
+The first v03 package attempt exposed that review captures under `evidence/runtime/` could be imported by the broad all-resources preset. That is an evidence-boundary failure, not an accepted package result. The correction added a local `.gdignore` to this v03 capture directory, re-imported, and rebuilt every local package proof. The tracked derivation master already has its own `.gdignore`; both source master and captures have a zero entry count in the final PCKs.
+
+| Check | Result |
+| --- | --- |
+| Windows Debug export | `PASS_UNCOMMITTED_ISOLATED_BRANCH` — `SwitchyExpressVerticalSlice.exe`, 102,982,144 bytes, SHA-256 `1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244`. This is export construction, not a physical Windows run. |
+| Windows Demo runtime-JSON PCK | `PASS_UNCOMMITTED_ISOLATED_BRANCH` — 16,577,076 bytes, SHA-256 `6067ce9e6f5fab74af531b947febd64068e33b65a56d5c84ac7da603d82fedc2`; `RUNTIME_JSON_PACK_PROOF: PASS parsed_json=29`; integrity 551/551 entries, zero bounds or MD5 mismatches. |
+| Android Validation runtime-JSON PCK | `PASS_UNCOMMITTED_ISOLATED_BRANCH` — 16,577,076 bytes, SHA-256 `1951b169d8ca325a4968a4175357242fbf42d0ab6b64dd0d67a88c36cf9fac99`; `RUNTIME_JSON_PACK_PROOF: PASS parsed_json=29`; integrity 551/551 entries, zero bounds or MD5 mismatches. This is not an Android device run or APK claim. |
+| Runtime / evidence inclusion boundary | `PASS` — each PCK contains one `.import` entry for every v03 runtime rail path, zero entries for `core_rail_network_master_v03.png`, and zero entries for `evidence/runtime/sx_dec_063_core_board_v03/`. The full Godot runner separately loaded all four v03 paths as real `Texture2D` consumers. |
+
+### Five full-scope adversarial review loops
+
+Every loop rechecked the same full scope: actual consumer and gameplay boundary, source/asset provenance, import/package behavior, live readability, and evidence-ceiling wording. The separate attack column identifies the assumption challenged in that pass.
+
+| Loop | Attack | Result and correction |
+| --- | --- | --- |
+| 1 | The rail correction changes topology, interaction, or rule semantics rather than pixels. | The diff is limited to four visual paths, full-cell drawing, deletion of renderer seam artwork, four derived PNGs, and documentation/tests. The full Godot runner passed `112` cases / `13,548` assertions. No map, `TrackPiece`, controller, input, route, service, cargo, or train owner changed. **PASS**. |
+| 2 | The tiles are not traceable to one reproducible connected source, or a path/hash/import can silently drift. | A RED manifest identity mismatch was observed, then corrected. The master SHA-256, four exact crop rectangles, output hashes, source receipt, tracked source path, four imports, and renderer slot paths are asserted by the promotion test and passed. **PASS**. |
+| 3 | The rail is mechanically valid but still unreadable, or the old white selection/cargo hierarchy regression returns. | Actual 1280×720 recommended and curve-hover captures show the long route, crossings, right branch, curves, compact cargo, cyan selection border, translucent preview, and compact badge. Godot diagnostics are `0` errors / `0` warnings. The analyzer's bottom-toolbar clipping heuristic remains non-human machine evidence only. **PASS_AT_MACHINE_EVIDENCE_CEILING**. |
+| 4 | Reproducibility or review images ship as runtime payloads, inflating the product package. | The first package attempt found this risk. A v03 evidence `.gdignore` was added, import/export was rerun, and final Windows/Android proof PCKs show zero master/capture entries while retaining each v03 rail import. **CORRECTED_AND_PASS**. |
+| 5 | Documentation or test success is being inflated into hosted, physical, device, human, or release proof. | Project contract, JSON parse, Python regression (`223 passed, 1 skipped`), GUT (`21/21`, 152 assertions), asset validators, runtime, and local PCK evidence all pass at their stated machine ceiling. Hosted exact-head CI, immutable GitHub candidate, physical Windows/audio, Android device, accessibility, player comprehension, release rights, and cutover remain explicitly unrun. **PASS_WITH_BOUNDARY_RETAINED**. |
+
+### Current v03 evidence ceiling
+
+```yaml
+v03_master_source_and_four_derivatives: USER_APPROVED_GITHUB_PRESERVED
+v03_renderer_contract_and_full_headless_godot: PASS_112_CASES_13548_ASSERTIONS
+v03_live_recommended_build_capture: VERIFIED_MACHINE_RUNTIME
+v03_live_curve_hover_capture: VERIFIED_MACHINE_RUNTIME
+v03_godot_diagnostics: CLEAN_0_ERRORS_0_WARNINGS
+v03_local_windows_debug_export: PASS_UNCOMMITTED_ISOLATED_BRANCH
+v03_local_windows_and_android_runtime_json_pck: PASS_UNCOMMITTED_ISOLATED_BRANCH_551_OF_551_ENTRIES
+v03_formal_gut: PASS_21_TESTS_152_ASSERTIONS_JUNIT_VALIDATED
+v03_full_python_regression: PASS_223_PASSED_1_SKIPPED
+v03_hosted_exact_head_ci_and_immutable_package_candidate: NOT_RUN
+v03_windows_physical_audio_android_device_human_player_experience_release: NOT_RUN
+```

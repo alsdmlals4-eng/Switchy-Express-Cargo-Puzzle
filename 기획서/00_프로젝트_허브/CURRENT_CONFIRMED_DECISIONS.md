@@ -58,7 +58,7 @@ sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFI
 sx_dec_060_notion_sync: PASS · POST_PR_188_READBACK_COMPLETE
 sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION · PACKAGE_VERIFIED
-sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · CORE_BOARD_V02_IMPLEMENTED_IN_PR_255 · TERRAIN_PLUS_13_CORE_ASSETS · AUTOMATED_MACHINE_RUNTIME_AND_LOCAL_PACKAGE_VERIFIED · EXACT_GITHUB_CANDIDATE_AND_PHYSICAL_HUMAN_GATES_NOT_RUN
+sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · CORE_BOARD_V03_MASTER_RAILS_IMPLEMENTED_IN_PR_255 · TERRAIN_PLUS_9_NON_RAIL_V02_CORE_ASSETS_PLUS_4_V03_MASTER_DERIVED_RAILS · AUTOMATED_MACHINE_RUNTIME_AND_LOCAL_PACKAGE_VERIFIED · EXACT_GITHUB_CANDIDATE_AND_PHYSICAL_HUMAN_GATES_NOT_RUN
 sx_vis_061_core_systems_board: USER_APPROVED_GITHUB_PRESERVED_PLANNING_REFERENCE · ISSUE_246 · docs/visual-references/sx-vis-061-core-systems-board-exploration-002b.png · NO_RUNTIME_CONSUMER · NOT_RUNTIME_PROOF
 sx_dec_064_active_route_lighting: MERGED_MAIN_VERIFIED · ISSUE_248 · PR_249 · main_2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI_7_GREEN · POST_MERGE_GODOT_112_CASES_13513_ASSERTIONS_PASS
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · PR_240 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
@@ -135,7 +135,7 @@ sx_dec_060_new_bitmap_assets_required: 0
 | **SX-DEC-060** | **Cardinal Station Service + Reachable Network · MERGED_MAIN_VERIFIED · PR #188** |
 | **SX-DEC-061** | **Board-first Cozy Neo-Arcade visual refinement · APPROVED · documentation/plan board only; runtime unchanged** |
 | **SX-DEC-062** | **Board-first runtime composition · MERGED_MAIN_VERIFIED · PR #237 · Candidate 003 is historical after SX-DEC-064; Candidate 004 is current package evidence · human gates remain open** |
-| **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · user-approved Core Board v02 implemented on isolated branch · full automated and machine runtime evidence · package/physical/human gates remain open** |
+| **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · user-approved v03 connected-master rail correction implemented on isolated branch · automated and machine runtime evidence · v03 package/physical/human gates remain open** |
 | **SX-DEC-064** | **Active-route lighting · MERGED_MAIN_VERIFIED · PR #249 · CI 7 green · procedural presentation delta · physical/player gates remain open** |
 
 ## SX-DEC-059 retained first-session contract
@@ -189,11 +189,11 @@ rectangular BUILD/RUN grid and exact input mapping stay
 → elevated miniature-diorama depth is expressed inside that geometry
 → new visual bytes are limited to named, versioned actual consumers
 → T2 shell_lesson_hero_v02 and Issue #227 remain protected
-→ user-approved v02 terrain plus thirteen Core Board sprites are stored as exact source binaries with provenance
-→ the existing fourteen-slot ProductBoardRenderer consumer map is connected; curve/switch use only an approved visual seam underlay
+→ user-approved v02 terrain plus nine non-rail Core Board sprites and four v03 connected-master rail derivatives are stored as exact source binaries with provenance
+→ the existing fourteen-slot ProductBoardRenderer consumer map is connected; v03 rail textures draw full-cell with no procedural visual seam underlay
 ```
 
-`SX-VIS-063-CANDIDATE-001` terrain plus `SX-VIS-063-CORE-*` are user-promoted at the v02 terrain/core paths recorded in `art/product_assets/ed_hybrid_v2/manifest.json` (including terrain SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`). The isolated Core Board v02 implementation is `APPROVED_GITHUB_PRESERVED_RUNTIME_VERIFIED_AUTOMATED` with live machine BUILD/RUN captures and local Windows debug/Windows+Android PCK proof, not a true isometric conversion, gameplay/data/audio/locale/progression change, GitHub exact package candidate, Human/Player Experience, or release-rights promotion. The next required gate is hosted exact-head CI and then an immutable new package candidate, followed by separately recorded physical/human validation. Notion is retired from this lifecycle by the 2026-08-28 user decision.
+`SX-VIS-063-CANDIDATE-001` terrain plus `SX-VIS-063-CORE-*` are user-promoted at their v02 paths, while user-approved `SX-VIS-063-RAIL-NETWORK-MASTER-003` deterministically supplies the four v03 rail paths recorded in `art/product_assets/ed_hybrid_v2/manifest.json` (master SHA-256 `f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b`; terrain SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`). The isolated Core Board v03-rail implementation is `APPROVED_GITHUB_PRESERVED_RUNTIME_VERIFIED_AUTOMATED` at the automated/machine-runtime/local-package ceiling; source master and review captures are excluded from the final local PCK proofs. It is not a true isometric conversion, gameplay/data/audio/locale/progression change, GitHub exact package candidate, Human/Player Experience, or release-rights promotion. The next required gate is hosted exact-head CI and then an immutable new package candidate, followed by separately recorded physical/human validation. Notion is retired from this lifecycle by the 2026-08-28 user decision.
 
 ## SX-DEC-064 active-route lighting
 
@@ -304,11 +304,11 @@ pre-SX-DEC-060:
 PR #158 implementation → PR #166 playable POC → PR #171 visual correction → PR #172 Candidate 003
 
 current:
-SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063 user-approved Core Board v02 isolated implementation
+SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063 user-approved Core Board v03 connected-master rail isolated implementation
 → SX-DEC-064 active-route lighting merged main PR #249 with exact-head CI 7 green
 → SX60-POC-ACCEPT-004 exact package verified for merged main 58b99f2
-→ terrain v02 plus thirteen core v02 bytes are GitHub-preserved in the isolated implementation branch; existing renderer now uses its fourteen v02 paths there
-→ automated renderer/import/Godot tests, formal GUT (21 tests / 152 assertions), live BUILD/RUN machine capture, and local package proof are verified; an immutable GitHub candidate and physical/human evidence are not transferred
+→ terrain v02 plus nine non-rail v02 core bytes and four v03 master-derived rail bytes are GitHub-preserved in the isolated implementation branch; existing renderer now uses the four v03 rail paths with no procedural seam
+→ automated renderer/import/Godot tests, formal GUT, live BUILD/ghost machine capture, and local Windows/Android runtime-JSON package proof are verified for v03; immutable GitHub candidate and physical/human evidence must be re-established for these changed bytes
 → NoLaunch verification PASS, then Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person first-contact comprehension

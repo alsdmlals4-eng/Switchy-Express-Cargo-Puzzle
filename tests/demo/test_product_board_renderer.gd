@@ -147,13 +147,13 @@ func run() -> void:
 	assert_equal(primary_cells, [Vector2i(5, 4)], "primary requests preserve exact cell")
 	assert_equal(secondary_cells, [Vector2i(5, 4)], "secondary requests preserve exact cell")
 
-	var expected_v02_paths := {
+	var expected_product_paths := {
 		"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
 		"train": "art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png",
-		"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v02.png",
-		"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v02.png",
-		"rail_crossing": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v02.png",
-		"rail_switch": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v02.png",
+		"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v03.png",
+		"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v03.png",
+		"rail_crossing": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v03.png",
+		"rail_switch": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v03.png",
 		"start_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png",
 		"route_end_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png",
 		"station_red": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
@@ -165,54 +165,25 @@ func run() -> void:
 	}
 	assert_equal(
 		renderer.product_visual_asset_paths_for_test(),
-		expected_v02_paths,
-		"core board v02 must replace only the existing visual slot paths"
+		expected_product_paths,
+		"core board must retain its existing visual slots while v03 replaces only rail pixels"
 	)
-	for asset_key: String in expected_v02_paths:
+	for asset_key: String in expected_product_paths:
 		assert_true(
 			renderer.loaded_product_visuals_for_test().get(asset_key, false),
-			"core board v02 asset must import as Texture2D: %s" % asset_key
+			"core board asset must import as Texture2D: %s" % asset_key
 		)
 
 	assert_true(
 		renderer.has_method("product_rail_seam_descriptor_for_test"),
-		"curve and switch seam diagnostics must expose their visual-only scope"
+		"master-derived rails must expose their disabled legacy-seam contract"
 	)
 	if renderer.has_method("product_rail_seam_descriptor_for_test"):
-		assert_equal(
-			renderer.product_rail_seam_descriptor_for_test(&"STRAIGHT", 0),
-			{"enabled": false, "ports": []},
-			"straight rail art must not gain a procedural seam layer"
-		)
-		assert_equal(
-			renderer.product_rail_seam_descriptor_for_test(&"CURVE", 0),
-			{
-				"enabled": true,
-				"mode": &"CURVE_ARC",
-				"ports": [Vector2i.UP, Vector2i.RIGHT],
-			},
-			"curve seam must follow the authored quarter-turn instead of center spokes"
-		)
-		assert_equal(
-			renderer.product_rail_seam_descriptor_for_test(&"SWITCH", 0),
-			{
-				"enabled": true,
-				"mode": &"PORT_SPOKES",
-				"ports": [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP],
-			},
-			"switch seam must preserve its authored three radial ports"
-		)
-	assert_true(
-		renderer.has_method("product_rail_seam_target_for_test"),
-		"curve and switch seams must expose the expanded visual target used to bridge tile gaps"
-	)
-	if renderer.has_method("product_rail_seam_target_for_test"):
-		var seam_source := Rect2(0.0, 0.0, 120.0, 60.0)
-		for geometry: StringName in [&"CURVE", &"SWITCH"]:
+		for geometry: StringName in [&"STRAIGHT", &"CURVE", &"CROSSING", &"SWITCH"]:
 			assert_equal(
-				renderer.product_rail_seam_target_for_test(geometry, seam_source),
-				Rect2(-3.0, -3.0, 126.0, 66.0),
-				"%s seam must extend three pixels across both tile edges" % geometry
+				renderer.product_rail_seam_descriptor_for_test(geometry, 0),
+				{"enabled": false, "ports": []},
+				"%s master-derived rail must not receive a procedural seam layer" % geometry
 			)
 
 	assert_true(
@@ -228,71 +199,5 @@ func run() -> void:
 		assert_almost_equal(cargo_target.size.x, cargo_target.size.y, 0.00001, "cargo art must retain its square source aspect")
 		assert_less_equal(cargo_target.size.x, 38.0, "cargo width must be materially smaller than its 100x60 tile")
 		assert_true(cargo_target.size.y < station_target.size.y, "cargo height must be smaller than the station footprint")
-
-	assert_true(
-		renderer.has_method("curve_seam_arc_for_test"),
-		"curve seam must expose the actual quarter-turn geometry used by the renderer"
-	)
-	if renderer.has_method("curve_seam_arc_for_test"):
-		var expected_curve_arcs: Array[Dictionary] = [
-			{
-				"center": Vector2(120.0, 0.0),
-				"major_radius": 60.0,
-				"minor_radius": 30.0,
-				"start_angle": PI,
-				"end_angle": PI * 0.5,
-			},
-			{
-				"center": Vector2(120.0, 60.0),
-				"major_radius": 60.0,
-				"minor_radius": 30.0,
-				"start_angle": -PI * 0.5,
-				"end_angle": -PI,
-			},
-			{
-				"center": Vector2(0.0, 60.0),
-				"major_radius": 60.0,
-				"minor_radius": 30.0,
-				"start_angle": 0.0,
-				"end_angle": -PI * 0.5,
-			},
-			{
-				"center": Vector2(0.0, 0.0),
-				"major_radius": 60.0,
-				"minor_radius": 30.0,
-				"start_angle": PI * 0.5,
-				"end_angle": 0.0,
-			},
-		]
-		for rotation: int in range(4):
-			var actual_arc: Dictionary = renderer.curve_seam_arc_for_test(
-				rotation,
-				Rect2(0.0, 0.0, 120.0, 60.0)
-			)
-			assert_equal(
-				{
-					"center": actual_arc["center"],
-					"major_radius": actual_arc["major_radius"],
-					"minor_radius": actual_arc["minor_radius"],
-				},
-				{
-					"center": expected_curve_arcs[rotation]["center"],
-					"major_radius": expected_curve_arcs[rotation]["major_radius"],
-					"minor_radius": expected_curve_arcs[rotation]["minor_radius"],
-				},
-				"curve rotation %d must preserve its rectangular tile geometry" % rotation
-			)
-			assert_almost_equal(
-				float(actual_arc["start_angle"]),
-				float(expected_curve_arcs[rotation]["start_angle"]),
-				0.00001,
-				"curve rotation %d must start at the first authored port" % rotation
-			)
-			assert_almost_equal(
-				float(actual_arc["end_angle"]),
-				float(expected_curve_arcs[rotation]["end_angle"]),
-				0.00001,
-				"curve rotation %d must take the short 90-degree path to its second port" % rotation
-			)
 
 	renderer.free()
