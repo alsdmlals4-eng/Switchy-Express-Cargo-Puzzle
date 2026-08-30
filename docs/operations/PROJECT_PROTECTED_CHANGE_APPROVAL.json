@@ -15,7 +15,8 @@
     "USER-OPERATING-2026-08-28-OFFICIAL_RESEARCH_FEASIBILITY_ADVERSARIAL_LOOP",
     "USER-APPROVAL-2026-08-29-SX-VIS-061-CORE-SYSTEM-BOARD-CORRECTION",
     "USER-APPROVAL-2026-08-29-SX-DEC-064-ACTIVE-ROUTE-LIGHTING",
-    "USER-APPROVAL-2026-08-29-SX60-POC-ACCEPT-004-VALIDATION"
+    "USER-APPROVAL-2026-08-29-SX60-POC-ACCEPT-004-VALIDATION",
+    "USER-APPROVAL-2026-08-30-SX60-POC-ACCEPT-005-MACHINE-VALIDATION"
   ],
   "approved_paths": [
     "game/demo/presentation/product_board_renderer.gd",
@@ -37,9 +38,11 @@
     "기획서/50_제작_검증/VERTICAL_SLICE_CONTRACT.md",
     "기획서/50_제작_검증/SX_DEC_060_CODEX_HANDOFF_PACKAGE.md",
     "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_04.md",
-    "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_04.md"
+    "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_04.md",
+    "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_05.md",
+    "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_05.md"
   ],
-  "approval_source": "USER_EXPLICIT_SX-VIS-063_CANDIDATE_PROMOTION_AND_OPERATING_LOOP_2026-08-28_PLUS_SX-VIS-061_CORE_SYSTEM_BOARD_SX-DEC-064_AND_CANDIDATE_004_2026-08-29_PLUS_CORE_BOARD_V02_PIXELS_SEAM_UNDERLAY_GODOT_IMPLEMENTATION_VISUAL_READABILITY_REPAIR_AND_RAIL_NETWORK_MASTER_V03_PROMOTION_PLUS_SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW_2026-08-30",
+  "approval_source": "USER_EXPLICIT_SX-VIS-063_CANDIDATE_PROMOTION_AND_OPERATING_LOOP_2026-08-28_PLUS_SX-VIS-061_CORE_SYSTEM_BOARD_SX-DEC-064_AND_CANDIDATE_004_2026-08-29_PLUS_CORE_BOARD_V02_PIXELS_SEAM_UNDERLAY_GODOT_IMPLEMENTATION_VISUAL_READABILITY_REPAIR_AND_RAIL_NETWORK_MASTER_V03_PROMOTION_PLUS_SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW_AND_CANDIDATE_005_MACHINE_VALIDATION_2026-08-30",
   "approval_time": "2026-08-30T00:00:00+09:00",
-  "scope_summary": "The user explicitly promoted the reviewed SX-VIS-063 terrain candidate; required official research, feasibility and adversarial review; approved the SX-VIS-061 board, SX-DEC-064 active-route lighting, Candidate 004 package validation, and on 2026-08-30 the Core Board v02 pixels, Godot implementation, translucent Build preview, smaller cargo marker, the final connected rail-network master v03, and SX-DEC-065. SX-DEC-065 makes deterministic machine verification the primary validation route; five-person comprehension and player-experience studies are not required, while final user review remains separately recorded. This approval permits the exact protected current-canon/evidence owners listed above. It does not authorize gameplay, map/data, audio, locale, progression, Base changes, T2/Issue #227 work, PR #174 mutation, a solver, or human/player/release evidence promotion."
+  "scope_summary": "The user explicitly promoted the reviewed SX-VIS-063 terrain candidate; required official research, feasibility and adversarial review; approved the SX-VIS-061 board, SX-DEC-064 active-route lighting, Candidate 004 package validation, and on 2026-08-30 the Core Board v02 pixels, Godot implementation, translucent Build preview, smaller cargo marker, the final connected rail-network master v03, SX-DEC-065, and Candidate 005 machine validation. SX-DEC-065 makes deterministic machine verification the primary validation route; five-person comprehension and player-experience studies are not required, while final user review remains separately recorded. This approval permits the exact protected current-canon/evidence owners listed above. It does not authorize gameplay, map/data, audio, locale, progression, Base changes, T2/Issue #227 work, PR #174 mutation, a solver, or human/player/release evidence promotion."
 }

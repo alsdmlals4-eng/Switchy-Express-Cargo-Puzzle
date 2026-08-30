@@ -74,8 +74,8 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
             active,
         )
         self.assertIn(
-            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · "
-            "SOURCE_MAIN_58b99f2 · HISTORICAL_PRE_V04_PRODUCT_BYTES · EXACT_CANDIDATE_005_MINT_NEXT",
+            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-005 · PREPARED_PACKAGE_VERIFIED · "
+            "SOURCE_MAIN_a11dfd1 · MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN",
             active,
         )
         self.assertIn(

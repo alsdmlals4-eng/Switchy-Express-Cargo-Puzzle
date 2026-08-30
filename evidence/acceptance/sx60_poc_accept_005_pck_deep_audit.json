@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "candidate_id": "SX60-POC-ACCEPT-005",
+  "candidate_evidence_owner": "evidence/acceptance/sx60_poc_accept_005_artifact.json",
+  "package_identity": {
+    "zip_sha256": "90cb0e60bc0ddaf0124b1307647a155c5a663052673e34560e06dd4f4c1bf0ed",
+    "windows_exe_sha256": "1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244",
+    "windows_pck_sha256": "f826523a976a6a844e3bc8df8e10c24cbd4cfc015c01db282a58a6dfa5a022b6"
+  },
+  "pck_integrity": {
+    "verifier": "tools/verify_godot_pck_integrity.py",
+    "final_verifier_actual_candidate_invocation": "PASS",
+    "recomputed_windows_pck_sha256": "f826523a976a6a844e3bc8df8e10c24cbd4cfc015c01db282a58a6dfa5a022b6",
+    "pack_format_version": 4,
+    "engine_version": "4.7.1",
+    "pack_flags": 2,
+    "relative_filebase": true,
+    "file_size_bytes": 16584128,
+    "file_base": 112,
+    "directory_offset": 16527552,
+    "directory_end": 16584128,
+    "trailing_unverified_bytes": 0,
+    "file_count": 557,
+    "verified_entry_count": 557,
+    "md5_mismatch_count": 0,
+    "bounds_error_count": 0,
+    "nonzero_entry_flags_count": 0,
+    "integrity_pass": true
+  },
+  "product_texture_packaging": {
+    "ed_hybrid_v1_prefix": "art/product_assets/ed_hybrid_v1/",
+    "ed_hybrid_v1_prefix_entry_count": 85,
+    "ed_hybrid_v1_runtime_png_import_count": 79,
+    "ed_hybrid_v2_prefix": "art/product_assets/ed_hybrid_v2/",
+    "ed_hybrid_v2_prefix_entry_count": 23,
+    "ed_hybrid_v2_runtime_png_import_count": 22,
+    "ed_hybrid_v2_manifest_included": true,
+    "ed_hybrid_v2_master_source_excluded_from_package": true,
+    "packaging_crosscheck": "PASS · v1 85 entries plus v2 23 entries in exact candidate PCK"
+  },
+  "packaged_runtime_proof": {
+    "windows_runtime_json": "PASS · parsed_json=29",
+    "android_validation_runtime_json": "PASS · parsed_json=29"
+  },
+  "scope": {
+    "candidate_mint_changes_gameplay_rule_or_map_data": false,
+    "candidate_mint_changes_image_asset_bytes": false,
+    "candidate_mint_changes_audio_bytes": false,
+    "candidate_source_includes_approved_sx_dec_063_core_board_v04_runtime_assets": true,
+    "candidate_source_includes_prior_approved_active_route_lighting_runtime_delta": true,
+    "sx_dec_056a_056b_057_058_authorization_changed": false
+  },
+  "evidence_ceiling": {
+    "package_integrity": "PASS",
+    "windows_physical_startup_and_build_entry_automation_observed": "NOT_RUN",
+    "physical_visual_recheck": "NOT_RUN",
+    "developer_self_run": "NOT_RUN",
+    "windows_physical_runtime_full_scenarios": "NOT_RUN",
+    "audio_perceptual_qa": "NOT_RUN",
+    "android_device": "NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN",
+    "five_person_comprehension": "NOT_REQUIRED_BY_USER_VALIDATION_POLICY",
+    "player_experience": "NOT_REQUIRED_BY_USER_VALIDATION_POLICY",
+    "final_user_review": "FINAL_USER_REVIEW · NOT_RUN",
+    "production_cutover": "BLOCKED_DEFERRED"
+  }
+}

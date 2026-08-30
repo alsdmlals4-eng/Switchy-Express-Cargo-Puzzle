@@ -24,11 +24,11 @@ Last updated: `2026-08-29 KST`
 | station representation | `OFF_TRACK_SERVICE_OBJECT · station cell player rail forbidden` |
 | image requirement | `0 new bitmap · reuse existing station PNG consumers + procedural service overlay` |
 | pre-060 Candidate 003 | `SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY after SX-DEC-060` |
-| post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · SX60-POC-ACCEPT-004 is HISTORICAL_PRE_V04_PRODUCT_BYTES · mint SX60-POC-ACCEPT-005 before MACHINE_PRIMARY acceptance` |
+| post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · SX60-POC-ACCEPT-005 is the exact-main MACHINE_PRIMARY candidate · Candidate 004 is HISTORICAL_PRE_V04_PRODUCT_BYTES` |
 | SX60 Candidate 001 | `HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE · hashes/PCK preserved` |
 | post-060 automated regression | `PASS · 111 cases / 13,461 assertions · CI 7 GREEN · SX-AUD-071 CLOSED` |
-| post-060 Windows physical | `HISTORICAL_AUTOMATION_OBSERVED_INITIAL_TITLE_AND_BUILD_ENTRY · CURRENT_EXACT_CANDIDATE_004_PACKAGE_VERIFIED_HUMAN_PHYSICAL_NOT_RUN · full human/runtime gate NOT_RUN` |
-| post-060 Android device | `NOT_RUN` |
+| post-060 Windows physical | `FINAL_USER_REVIEW_ONLY · Candidate 005 · NOT_RUN` |
+| post-060 Android device | `NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN` |
 | validation strategy | `SX-DEC-065 · MACHINE_PRIMARY_FINAL_USER_REVIEW` |
 | post-060 five-person | `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` |
 | Player experience | `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED` |
@@ -179,11 +179,11 @@ SX-DEC-063 terrain v02 is GitHub-preserved; v01 remains the live runtime path
 → only after the Phase 2 handoff is executed and validated, interpret a new exact runtime/package candidate
 → SX-DEC-065 machine-primary candidate validation is the current gate
 → current Playtest authority corrects old 055/059/validation-APK status to historical
-SX60-POC-ACCEPT-004 exact package is historical for the v04 byte set; Candidates 002/003 remain prior-byte evidence only
-→ new immutable exact candidate + deterministic/Godot/export/package/CI machine verification
-→ MACHINE_PRIMARY acceptance decision
+SX60-POC-ACCEPT-005 exact package is the current v04 byte candidate; Candidates 002–004 remain prior-byte evidence only
+→ deterministic/Godot/export/package/CI machine verification complete
+→ MACHINE_PRIMARY acceptance ready
 → FINAL_USER_REVIEW only if the user requests final inspection
 → FIVE_PERSON_COMPREHENSION_NOT_REQUIRED / PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED
 ```
 
-Current evidence ceiling is `RUNTIME_MERGED_MAIN_VERIFIED / AUTOMATED_PASS / FIVE_PASS_REVIEW_CLOSED`. Package, physical, device, human, and player-experience PASS for SX-DEC-060 are not yet available.
+Current evidence ceiling is `RUNTIME_MERGED_MAIN_VERIFIED / AUTOMATED_PASS / PACKAGE_MACHINE_VERIFIED / FINAL_USER_REVIEW_NOT_RUN`. Machine evidence does not provide physical, device, human, player-experience, or release PASS.
