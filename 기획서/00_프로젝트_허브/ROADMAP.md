@@ -43,6 +43,12 @@ SX-DEC-066 · MERGED_MAIN_VERIFIED · PR #260 · SX60-POC-ACCEPT-006_MACHINE_PRI
 → design/spec/implementation plan complete
 → 12-game public-source genre benchmark complete: fixed authored maps ADOPT; progression/sandbox families REJECT
 → IMPLEMENTED_LOCAL_MACHINE_VERIFIED · NOT_MERGED · remote CI/package/candidate remain separate
+
+SX-DEC-067 · USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_RUNTIME_VERIFIED · NOT_MERGED
+→ Route Book 02: six optional authored wayside/salvage stages, selected before the existing stage list
+→ authored `CAUTION_TRACK` 0.55 departure segments; `WASTE_CRATE` only at cardinal-adjacent `DISPOSAL_YARD`
+→ five modular board-decoration placements per new map and eight runtime-connected generated candidate assets
+→ Godot full local regression PASS · 120 cases / 14,047 assertions; no post-change package/CI/physical/final-user candidate yet
 ```
 
 ## M0 · Product baseline

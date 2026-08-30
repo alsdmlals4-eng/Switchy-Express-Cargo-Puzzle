@@ -1,6 +1,6 @@
 # SX-DEC-067 · Wayside Hazards, Salvage, and Route Book 02
 
-**Status:** `USER_APPROVED · DESIGN_AND_PLAN_RECORDED · IMPLEMENTATION_NOT_STARTED`
+**Status:** `USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_RUNTIME_VERIFIED · NOT_MERGED`
 **Date:** 2026-08-30 KST
 **Approval source:** The user approved the modular board-decoration and Route Book 02 direction, then explicitly approved `CAUTION_TRACK`, `WASTE_CARGO`, and `DISPOSAL_YARD` with “승인”.
 
@@ -60,6 +60,22 @@ Board decorations are non-gameplay data. They may appear only on `blocked_cells`
 ## Evidence boundary
 
 Implementation must use RED-first tests for map validation, speed restoration, disposal/LIFO behavior, retry identity, renderer layer ordering, catalog selection, and each Route Book 02 map witness. A local/CI/runtime/package result is machine evidence only. Five-person comprehension and player-experience studies remain `NOT_REQUIRED_BY_USER_VALIDATION_POLICY`; optional final user review must use one unchanged, named post-change candidate.
+
+## Implementation readback · 2026-08-31 KST
+
+```yaml
+map_schema_fields: IMPLEMENTED_AND_TESTED
+waste_and_disposal_pairing: IMPLEMENTED_AND_TESTED
+caution_segment_speed: IMPLEMENTED_AND_TESTED
+snapshot_and_renderer_layers: IMPLEMENTED_AND_TESTED
+wayside_bitmap_candidates: GENERATED_CANDIDATE · GODOT_IMPORTED · AUTOMATED_RENDERER_TEST_PASS
+wayside_bitmap_pixel_review: USER_REVIEW_PENDING
+route_book_02_catalog_and_maps: IMPLEMENTED_AND_TESTED
+machine_validation_policy: PRIMARY
+five_person_and_player_experience_studies: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+```
+
+The generated bitmap family is intentionally recorded as a runtime-connected candidate rather than as an approved canonical final asset. Its provenance and exact hashes are owned by `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`; the eventual unchanged post-change package candidate remains the only valid target for an optional user visual review.
 
 ## Owners
 

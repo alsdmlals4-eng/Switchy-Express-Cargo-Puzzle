@@ -432,6 +432,8 @@ func _build_render_snapshot(current_model: Dictionary) -> Dictionary:
 		snapshot["incoming_cell"] = _definition.incoming_cell
 		snapshot["buildable_cells"] = _definition.buildable_cells.duplicate()
 		snapshot["blocked_cells"] = _definition.blocked_cells.duplicate()
+		snapshot["caution_track_cells"] = _definition.caution_track_cells.duplicate()
+		snapshot["board_decorations"] = _definition.board_decorations.duplicate(true)
 		snapshot["station_placements"] = _definition.station_placements.duplicate(true)
 		snapshot["cargo_placements"] = _visible_cargo_placements()
 
@@ -534,6 +536,8 @@ static func _empty_render_snapshot() -> Dictionary:
 		"incoming_cell": NO_CELL,
 		"buildable_cells": [],
 		"blocked_cells": [],
+		"caution_track_cells": [],
+		"board_decorations": [],
 		"station_placements": [],
 		"cargo_placements": [],
 		"layout_pieces": [],

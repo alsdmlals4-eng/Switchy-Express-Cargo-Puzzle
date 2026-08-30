@@ -1,0 +1,30 @@
+{
+  "definition_schema_version": 3,
+  "map_id": "RB08_CAUTION_CUT",
+  "map_revision": 1,
+  "ruleset_version": "fp_core_v2",
+  "marker_tracks_player_built": true,
+  "allow_open_terminals_after_required": true,
+  "board_size": [11, 7],
+  "start_cell": [1, 3],
+  "incoming_cell": [0, 3],
+  "time_limit_seconds": 115.0,
+  "buildable_rects": [{"minimum": [1, 1], "maximum": [9, 5]}],
+  "blocked_cells": [[2, 1], [4, 1], [6, 5], [8, 1], [10, 5]],
+  "caution_track_cells": [[3, 3], [4, 3]],
+  "board_decorations": [
+    {"kind": "FOREST_CLUSTER", "cell": [2, 1]},
+    {"kind": "MOSS_BOULDER", "cell": [4, 1]},
+    {"kind": "TIMBER_STACK", "cell": [6, 5]},
+    {"kind": "WATERWAY", "cell": [8, 1]},
+    {"kind": "LANTERN_FENCE", "cell": [10, 5]}
+  ],
+  "station_placements": [
+    {"cell": [7, 1], "cargo_type": "RED_STAR"},
+    {"cell": [9, 5], "cargo_type": "BLUE_DIAMOND"}
+  ],
+  "cargo_placements": [
+    {"cell": [3, 3], "cargo_type": "BLUE_DIAMOND"},
+    {"cell": [5, 3], "cargo_type": "RED_STAR"}
+  ]
+}

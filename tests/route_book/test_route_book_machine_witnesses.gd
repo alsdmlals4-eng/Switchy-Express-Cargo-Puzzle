@@ -12,6 +12,12 @@ const PATHS := {
 	&"RB04_LOAD_WINDOW": "res://data/maps/route_book/rb04_load_window.json",
 	&"RB05_FORK_LOCK": "res://data/maps/route_book/rb05_fork_lock.json",
 	&"RB06_PORT_CIRCUIT": "res://data/maps/route_book/rb06_port_circuit.json",
+	&"RB07_FOREST_RELAY": "res://data/maps/route_book/rb07_forest_relay.json",
+	&"RB08_CAUTION_CUT": "res://data/maps/route_book/rb08_caution_cut.json",
+	&"RB09_SALVAGE_SIDING": "res://data/maps/route_book/rb09_salvage_siding.json",
+	&"RB10_CLEAN_BREAK": "res://data/maps/route_book/rb10_clean_break.json",
+	&"RB11_TURNOUT_UNDER_LOAD": "res://data/maps/route_book/rb11_turnout_under_load.json",
+	&"RB12_LANTERN_LOOP": "res://data/maps/route_book/rb12_lantern_loop.json",
 }
 
 
@@ -91,6 +97,101 @@ func run() -> void:
 		"RB06 wrong branch remains a factual finite failure",
 	)
 
+	var rb07 := _run_manual(fixture.pieces(&"RB07_FOREST_RELAY"), PATHS[&"RB07_FOREST_RELAY"])
+	assert_equal(rb07.get("phase"), &"SUCCESS", "RB07 decorated forest relay witness succeeds")
+	assert_equal(
+		_run_manual(
+			fixture.pieces(&"RB07_FOREST_RELAY"),
+			PATHS[&"RB07_FOREST_RELAY"],
+			func(target: Vector2i, _history: Array, input: Variant, _session: Variant) -> void:
+				input.set_manual_load_active(target == Vector2i(4, 4)),
+		).get("phase"),
+		&"FAILURE",
+		"RB07 leaves the first normal cargo unresolved when its relay order is ignored",
+	)
+
+	var rb08 := _run_manual(fixture.pieces(&"RB08_CAUTION_CUT"), PATHS[&"RB08_CAUTION_CUT"])
+	assert_equal(rb08.get("phase"), &"SUCCESS", "RB08 caution-track witness succeeds")
+	assert_equal(
+		_run_manual(
+			fixture.pieces(&"RB08_CAUTION_CUT"),
+			PATHS[&"RB08_CAUTION_CUT"],
+			func(target: Vector2i, _history: Array, input: Variant, _session: Variant) -> void:
+				input.set_manual_load_active(target == Vector2i(3, 3)),
+		).get("phase"),
+		&"FAILURE",
+		"RB08 still rejects a missing reverse-order cargo after the caution segment",
+	)
+
+	var rb09 := _run_manual(fixture.pieces(&"RB09_SALVAGE_SIDING"), PATHS[&"RB09_SALVAGE_SIDING"])
+	assert_equal(rb09.get("phase"), &"SUCCESS", "RB09 disposal-yard witness succeeds")
+	assert_equal(rb09.get("unloads"), [&"RED_STAR", &"WASTE_CRATE"], "RB09 clears waste only after normal cargo")
+	assert_equal(
+		_run_manual(
+			fixture.pieces(&"RB09_SALVAGE_SIDING"),
+			PATHS[&"RB09_SALVAGE_SIDING"],
+			func(target: Vector2i, _history: Array, input: Variant, _session: Variant) -> void:
+				input.set_manual_load_active(target == Vector2i(3, 3)),
+		).get("phase"),
+		&"FAILURE",
+		"RB09 rejects reaching ordinary service without the normal cargo",
+	)
+
+	var rb10 := _run_manual(
+		fixture.pieces(&"RB10_CLEAN_BREAK"),
+		PATHS[&"RB10_CLEAN_BREAK"],
+		func(target: Vector2i, history: Array, input: Variant, _session: Variant) -> void:
+			var waste_visits := history.filter(
+				func(event: Variant) -> bool: return event.cell == Vector2i(5, 4)
+			).size()
+			input.set_manual_load_active(target == Vector2i(4, 4) or (target == Vector2i(5, 4) and waste_visits > 0))
+	)
+	assert_equal(rb10.get("phase"), &"SUCCESS", "RB10 clean-break revisit witness succeeds")
+	assert_equal(
+		_run_manual(fixture.pieces(&"RB10_CLEAN_BREAK"), PATHS[&"RB10_CLEAN_BREAK"]).get("phase"),
+		&"FAILURE",
+		"RB10 rejects loading waste before its normal-delivery return",
+	)
+
+	var rb11 := _run_rb05(
+		fixture,
+		true,
+		&"RB11_TURNOUT_UNDER_LOAD",
+		PATHS[&"RB11_TURNOUT_UNDER_LOAD"],
+	)
+	assert_equal(rb11.get("phase"), &"SUCCESS", "RB11 disposal turnout witness succeeds")
+	assert_true(bool(rb11.get("occupied_lock_rejected", false)), "RB11 keeps its occupied switch lock")
+	assert_equal(
+		_run_rb05(
+			fixture,
+			false,
+			&"RB11_TURNOUT_UNDER_LOAD",
+			PATHS[&"RB11_TURNOUT_UNDER_LOAD"],
+		).get("phase"),
+		&"FAILURE",
+		"RB11 wrong turnout selection remains a factual failure",
+	)
+
+	var rb12 := _run_rb06(
+		fixture,
+		true,
+		&"RB12_LANTERN_LOOP",
+		PATHS[&"RB12_LANTERN_LOOP"],
+	)
+	assert_equal(rb12.get("phase"), &"SUCCESS", "RB12 composite wayside witness succeeds")
+	assert_true(bool(rb12.get("auto_transition", false)), "RB12 retains a deliberate Auto transition")
+	assert_true(bool(rb12.get("occupied_lock_rejected", false)), "RB12 keeps its occupied switch lock")
+	assert_equal(
+		_run_rb06(
+			fixture,
+			false,
+			&"RB12_LANTERN_LOOP",
+			PATHS[&"RB12_LANTERN_LOOP"],
+		).get("phase"),
+		&"FAILURE",
+		"RB12 wrong turnout selection remains a factual failure",
+	)
+
 
 func _run_rb04(fixture: Script) -> Dictionary:
 	var metrics := {"auto_red_pickups": 0, "auto_disabled_before_blue": false, "manual_blue_pickup": false}
@@ -128,8 +229,13 @@ func _run_rb04(fixture: Script) -> Dictionary:
 	return metrics
 
 
-func _run_rb05(fixture: Script, select_delivery_branch: bool) -> Dictionary:
-	var session: Variant = _create_session(fixture.pieces(&"RB05_FORK_LOCK"), PATHS[&"RB05_FORK_LOCK"])
+func _run_rb05(
+	fixture: Script,
+	select_delivery_branch: bool,
+	stage_id: StringName = &"RB05_FORK_LOCK",
+	map_path: String = PATHS[&"RB05_FORK_LOCK"],
+) -> Dictionary:
+	var session: Variant = _create_session(fixture.pieces(stage_id), map_path)
 	if session == null:
 		return {}
 	var switch_cell := Vector2i(6, 4)
@@ -147,8 +253,13 @@ func _run_rb05(fixture: Script, select_delivery_branch: bool) -> Dictionary:
 	return {"phase": session.run_controller.run_state().phase(), "occupied_lock_rejected": lock_rejected}
 
 
-func _run_rb06(fixture: Script, select_delivery_branch: bool) -> Dictionary:
-	var session: Variant = _create_session(fixture.pieces(&"RB06_PORT_CIRCUIT"), PATHS[&"RB06_PORT_CIRCUIT"])
+func _run_rb06(
+	fixture: Script,
+	select_delivery_branch: bool,
+	stage_id: StringName = &"RB06_PORT_CIRCUIT",
+	map_path: String = PATHS[&"RB06_PORT_CIRCUIT"],
+) -> Dictionary:
+	var session: Variant = _create_session(fixture.pieces(stage_id), map_path)
 	if session == null:
 		return {}
 	var switch_cell := Vector2i(6, 5)

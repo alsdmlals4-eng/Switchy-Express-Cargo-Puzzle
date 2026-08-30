@@ -1,7 +1,7 @@
 # Route Book 02 · Wayside Content Specification
 
 **Decision:** `SX-DEC-067`
-**Status:** `USER_APPROVED · IMPLEMENTATION_NOT_STARTED`
+**Status:** `USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_RUNTIME_VERIFIED · NOT_MERGED`
 
 ## Content promise
 
@@ -11,12 +11,12 @@ Route Book 02 lets the player solve six fixed miniature delivery puzzles in a mo
 
 | Stage | Player observation | Required choice | Failure counterexample |
 | --- | --- | --- | --- |
-| RB07 Forest Relay | A forest siding sits beyond an early ordinary delivery route. | Revisit the siding to place the needed normal cargo on TOP. | Take the direct route and arrive with the wrong TOP. |
-| RB08 Caution Cut | A visibly worn short cut crosses one caution cell; a clean outer loop is longer. | Choose a route that meets the time limit after the 0.55 departure multiplier. | Use the short cut when its total elapsed time expires. |
-| RB09 Salvage Siding | One violet hexagonal waste crate shares a siding with normal deliveries. | Plan waste to be TOP at the disposal-yard service pass. | Reach disposal with a normal TOP cargo and leave waste aboard. |
-| RB10 Clean Break | A caution approach reaches a disposal yard before two normal destinations. | Dispose the waste group, then rebuild the delivery stack. | Deliver normal cargo first so waste blocks the later service pass. |
-| RB11 Turnout Under Load | A branch locks before a caution exit. | Select the correct branch before occupancy and account for the slow departure. | Switch late, take the terminal, or lose the time budget. |
-| RB12 Lantern Loop | A night loop exposes a forest relay, waste siding, caution exit, and one switch. | Combine revisit, Auto off/on, LIFO, disposal, and branch timing. | Auto-load or branch selection creates an unrecoverable TOP/route state. |
+| RB07 Forest Relay | Five blocked landscape modules frame a two-cargo relay. | Load Blue then Red so the Red delivery clears first and Blue remains for the final service pass. | Skip the first cargo and leave it unresolved. |
+| RB08 Caution Cut | Two early cells use the visible 0.55 caution departure multiplier. | Preserve the same reverse load order while the authored slow segment consumes time. | Skip the later Red cargo and end with a required delivery unresolved. |
+| RB09 Salvage Siding | A W-marked crate is paired with an off-track disposal yard. | Load waste first, normal Red second, then clear Red before the waste yard. | Pass the normal cargo and arrive at normal service with no matching TOP cargo. |
+| RB10 Clean Break | A return loop crosses one caution cell before the final disposal service. | Deliver Red, revisit the waste crate, then clear it beside the disposal yard. | Load both cargoes on the first pass so waste blocks the Red service. |
+| RB11 Turnout Under Load | A selected switch feeds a caution departure and a waste disposal endpoint. | Select the delivery branch before occupancy, then preserve the Red-before-waste TOP sequence. | Keep the default branch and take the factual finite failure. |
+| RB12 Lantern Loop | Five decoration kinds frame a waste, Auto-load, caution, and switch composite. | Auto-load the initial waste, manually layer Yellow/Red, then complete Red → Yellow → disposal. | Use the wrong switch selection and end on the finite route failure. |
 
 ## Decoration allocation
 
@@ -25,3 +25,7 @@ Each map has four to seven `board_decorations` entries on blocked cells only. RB
 ## Content exclusions
 
 No extra tutorial, unlock, ranking, map generator, editor, or recommended solution belongs to this book.
+
+## Local machine evidence
+
+All six success witnesses and their factual counterexamples are in `tests/route_book/test_route_book_machine_witnesses.gd`. The current worktree's full Godot result is `PASS · 120 cases · 14,047 assertions`; live Godot inspection confirmed the bounded book selector and RB12 build board. Exact scope and non-claims are recorded in `docs/operations/2026-08-31-sx-dec-067-local-machine-runtime-verification.md`.

@@ -175,5 +175,103 @@
       "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
       "runtime_connection_status": "VERIFIED"
     }
+  ],
+  "generated_candidates": [
+    {
+      "asset_id": "SX-BOARD-DECOR-FOREST-001",
+      "source_candidate_id": "SX-VIS-067-WAYSIDE-FOREST-001",
+      "generation_receipt": "exec-7d018d4d-c24e-416d-8237-e9fdf17d5aa8.png",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_decor_forest_cluster_v01.png",
+      "dimensions": [1254, 1254],
+      "sha256": "304157d64723d590736fa1f2d40fdb9c69eaeefa0e851234b2280027192a36fd",
+      "visual_role": "GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[decoration_forest_cluster]",
+      "consumer_status": "GODOT_IMPORT_AND_AUTOMATED_RENDERER_TEST_PASS",
+      "pixel_review_status": "USER_REVIEW_PENDING"
+    },
+    {
+      "asset_id": "SX-BOARD-DECOR-BOULDER-001",
+      "source_candidate_id": "SX-VIS-067-WAYSIDE-BOULDER-001",
+      "generation_receipt": "exec-680ac749-71e8-4626-b87f-68724cbbad7b.png",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_decor_moss_boulder_v01.png",
+      "dimensions": [1254, 1254],
+      "sha256": "d63bc1ee4c7fc669914ac8414ec4916c34e1a6749ed39a06e4d44b3d3b0eece8",
+      "visual_role": "GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[decoration_moss_boulder]",
+      "consumer_status": "GODOT_IMPORT_AND_AUTOMATED_RENDERER_TEST_PASS",
+      "pixel_review_status": "USER_REVIEW_PENDING"
+    },
+    {
+      "asset_id": "SX-BOARD-DECOR-TIMBER-001",
+      "source_candidate_id": "SX-VIS-067-WAYSIDE-TIMBER-001",
+      "generation_receipt": "exec-3c233b00-b825-4576-b7ed-dccbb27f7c32.png",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_decor_timber_stack_v01.png",
+      "dimensions": [1254, 1254],
+      "sha256": "796822f28e753a6fd1b506fa09b92fc7c8e05a96ea0a72096bcd93049586ecbd",
+      "visual_role": "GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[decoration_timber_stack]",
+      "consumer_status": "GODOT_IMPORT_AND_AUTOMATED_RENDERER_TEST_PASS",
+      "pixel_review_status": "USER_REVIEW_PENDING"
+    },
+    {
+      "asset_id": "SX-BOARD-DECOR-WATERWAY-001",
+      "source_candidate_id": "SX-VIS-067-WAYSIDE-WATERWAY-001",
+      "generation_receipt": "exec-bedded15-d23b-4fe5-a947-b025bdfe59f4.png",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_decor_waterway_v01.png",
+      "dimensions": [1254, 1254],
+      "sha256": "ca0960c3c79e37cb84b2f933f633466b5ffb55c43d33cf08b30188a57d6ef39e",
+      "visual_role": "GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[decoration_waterway]",
+      "consumer_status": "GODOT_IMPORT_AND_AUTOMATED_RENDERER_TEST_PASS",
+      "pixel_review_status": "USER_REVIEW_PENDING"
+    },
+    {
+      "asset_id": "SX-BOARD-DECOR-LANTERN-001",
+      "source_candidate_id": "SX-VIS-067-WAYSIDE-LANTERN-001",
+      "generation_receipt": "exec-50efd37b-986b-4927-a877-475295ffcdc9.png",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_decor_lantern_fence_v01.png",
+      "dimensions": [1254, 1254],
+      "sha256": "eea9f357e2c2e458df1307ccd7ea7b73c8df9ac9a93cd6201705f4e9d0bce39e",
+      "visual_role": "GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[decoration_lantern_fence]",
+      "consumer_status": "GODOT_IMPORT_AND_AUTOMATED_RENDERER_TEST_PASS",
+      "pixel_review_status": "USER_REVIEW_PENDING"
+    },
+    {
+      "asset_id": "SX-BOARD-CAUTION-001",
+      "source_candidate_id": "SX-VIS-067-CAUTION-OVERLAY-001",
+      "generation_receipt": "exec-540f17c3-1bf1-41cb-9705-b24a1ee23be6.png",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_caution_track_overlay_v01.png",
+      "dimensions": [1254, 1254],
+      "sha256": "27dcd822d41bc39e2a21bf796dd99b0e4490ebf696a30d33126874d29f87e499",
+      "visual_role": "GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[caution_track]",
+      "consumer_status": "GODOT_IMPORT_AND_AUTOMATED_RENDERER_TEST_PASS",
+      "pixel_review_status": "USER_REVIEW_PENDING"
+    },
+    {
+      "asset_id": "SX-CORE-CARGO-WASTE-001",
+      "source_candidate_id": "SX-VIS-067-WASTE-CRATE-001",
+      "generation_receipt": "exec-1bad9779-36f6-47d1-a136-a3bea43dc5e9.png",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_cargo_waste_crate_normal_v01.png",
+      "dimensions": [1254, 1254],
+      "sha256": "b60a1e7b4cb2ecb16a0bdc9bbef5baca030f404a38343e1575346d19716c9fbb",
+      "visual_role": "GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[cargo_waste]",
+      "consumer_status": "GODOT_IMPORT_AND_AUTOMATED_RENDERER_TEST_PASS",
+      "pixel_review_status": "USER_REVIEW_PENDING"
+    },
+    {
+      "asset_id": "SX-CORE-DISPOSAL-YARD-001",
+      "source_candidate_id": "SX-VIS-067-DISPOSAL-YARD-001",
+      "generation_receipt": "exec-120a00f7-dc61-4fd0-b713-d8a4a762672f.png",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_disposal_yard_normal_v01.png",
+      "dimensions": [1254, 1254],
+      "sha256": "158d0c5e5af835cbbebf45a7d13c982449c4a4f2db285e30a89b6d01c33a7aef",
+      "visual_role": "GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[station_disposal]",
+      "consumer_status": "GODOT_IMPORT_AND_AUTOMATED_RENDERER_TEST_PASS",
+      "pixel_review_status": "USER_REVIEW_PENDING"
+    }
   ]
 }

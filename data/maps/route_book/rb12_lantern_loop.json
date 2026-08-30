@@ -1,0 +1,32 @@
+{
+  "definition_schema_version": 3,
+  "map_id": "RB12_LANTERN_LOOP",
+  "map_revision": 1,
+  "ruleset_version": "fp_core_v2",
+  "marker_tracks_player_built": true,
+  "allow_open_terminals_after_required": true,
+  "board_size": [15, 11],
+  "start_cell": [1, 5],
+  "incoming_cell": [0, 5],
+  "time_limit_seconds": 190.0,
+  "buildable_rects": [{"minimum": [1, 1], "maximum": [13, 9]}],
+  "blocked_cells": [[6, 3], [8, 3], [6, 7], [8, 7], [13, 9]],
+  "caution_track_cells": [[9, 7]],
+  "board_decorations": [
+    {"kind": "FOREST_CLUSTER", "cell": [6, 3]},
+    {"kind": "MOSS_BOULDER", "cell": [8, 3]},
+    {"kind": "TIMBER_STACK", "cell": [6, 7]},
+    {"kind": "WATERWAY", "cell": [8, 7]},
+    {"kind": "LANTERN_FENCE", "cell": [13, 9]}
+  ],
+  "station_placements": [
+    {"cell": [12, 2], "cargo_type": "RED_STAR"},
+    {"cell": [12, 5], "cargo_type": "YELLOW_TRIANGLE"},
+    {"cell": [12, 8], "cargo_type": "WASTE_CRATE", "destination_kind": "DISPOSAL_YARD"}
+  ],
+  "cargo_placements": [
+    {"cell": [4, 5], "cargo_type": "WASTE_CRATE"},
+    {"cell": [7, 4], "cargo_type": "YELLOW_TRIANGLE"},
+    {"cell": [9, 7], "cargo_type": "RED_STAR"}
+  ]
+}

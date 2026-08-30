@@ -7,7 +7,7 @@ historical_notion: AUDIT_ONLY · DO_NOT_READ_OR_WRITE_FOR_CURRENT_WORK
 notion_current_structure_migration: COMPLETE · docs/migrations/2026-08-28-notion-current-workspace-migration.md
 ```
 
-Last updated: `2026-08-30 KST`
+Last updated: `2026-08-31 KST`
 
 이 문서는 **현재 상태·다음 실행 지점·미검증 경계**를 연결하는 resume locator다. fresh GitHub/actual runtime이 저장 snapshot보다 우선한다. 2026-08-28 사용자 결정에 따라 Notion은 `RETIRED_NO_ACTIVE_USE`이며, 새 채팅은 과거 대화나 Notion을 필수 입력으로 요구하지 않고 Project GitHub에서 상태를 다시 재구성한다. Historical Notion readback은 감사 evidence로만 보존한다.
 
@@ -121,13 +121,15 @@ validation_strategy: MACHINE_PRIMARY_FINAL_USER_REVIEW
 base_work_current_phase: PHASE_5_MACHINE_PRIMARY_VALIDATION_COMPLETE · SX60_POC_ACCEPT_006
 remaining_machine_executable_required_work: NONE · FINAL_USER_REVIEW_OPTIONAL_ON_UNCHANGED_CANDIDATE_006
 route_book_execution_state: MERGED_MAIN_MACHINE_VERIFIED · PR_260 · Candidate_006_current · Candidate_005_historical_for_pre_Route_Book_bytes
-sx_dec_067_wayside_hazards_and_route_book_02: USER_APPROVED · DESIGN_AND_PLAN_RECORDED · IMPLEMENTATION_NOT_STARTED
+sx_dec_067_wayside_hazards_and_route_book_02: USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_RUNTIME_VERIFIED · NOT_MERGED
 sx_dec_067_decision_owner: docs/decisions/SX_DEC_067_WAYSIDE_HAZARDS_SALVAGE_AND_ROUTE_BOOK_02.md
 sx_dec_067_core_design: docs/superpowers/specs/2026-08-30-wayside-hazards-and-salvage-design.md
 sx_dec_067_content_design: docs/superpowers/specs/2026-08-30-route-book-02-surface-content-design.md
 sx_dec_067_core_plan: docs/superpowers/plans/2026-08-30-wayside-hazards-and-salvage-core.md
 sx_dec_067_content_plan: docs/superpowers/plans/2026-08-30-route-book-02-surface-content.md
 sx_dec_067_content_owner: 기획서/20_시스템_콘텐츠/ROUTE_BOOK_02_WAYSIDE_CONTENT_SPEC.md
+sx_dec_067_local_machine_evidence: GODOT_120_CASES_14053_ASSERTIONS_0_FAILED · HERA_ROUTE_BOOK_02_AND_RB12_BUILD_MACHINE_RUNTIME_PASS · docs/operations/2026-08-31-sx-dec-067-local-machine-runtime-verification.md
+sx_dec_067_candidate_assets: EIGHT_GENERATED_CANDIDATES_RUNTIME_CONNECTED_NOT_CANON · USER_PIXEL_REVIEW_PENDING · art/product_assets/ed_hybrid_v2/manifest.json
 sx_dec_067_candidate_status: NOT_MINTED · Candidate_006_is_historical_for_post_SX_DEC_067_product_bytes
 windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device_post_060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN

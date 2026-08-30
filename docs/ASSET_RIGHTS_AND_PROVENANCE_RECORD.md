@@ -225,6 +225,37 @@ approved_image_record:
 
 `APPROVED_GITHUB_PRESERVED`은 프로젝트 로컬 Git tracked file, SHA-256, 생성 권한·권리 provenance와 proven consumer가 모두 있는 경우에만 사용한다. Runtime consumer가 확인되지 않은 이미지는 `VISUAL_REFERENCE` 또는 `NOT_RUNTIME_PROOF`로 남기며, 실제 게임 product asset으로 승격하지 않는다. Historical `APPROVED_DUAL_PRESERVED` entries remain exact historical evidence and are not retroactively renamed.
 
+## SX-DEC-067 · Wayside hazard and salvage runtime-connected candidates
+
+```yaml
+decision_id: SX-DEC-067
+generation_authority: USER_APPROVED_2026_08_26_AUTOMATIC_CONSUMER_IMAGE_POLICY + USER_APPROVED_2026_08_30_SX_DEC_067
+creation_route: OPENAI_IMAGEGEN_BUILT_IN
+creator_or_vendor: OpenAI Image Generation
+input_rights: original text briefs from the project-owned E+D Hybrid / Neo-Arcade visual canon and actual ProductBoardRenderer consumer slots; no third-party image, logo, layout, or character reference supplied
+candidate_lifecycle: GENERATED_CANDIDATE -> GODOT_IMPORTED -> AUTOMATED_RENDERER_TEST_PASS -> USER_PIXEL_REVIEW_PENDING
+visual_role: GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON
+pixel_review_status: USER_REVIEW_PENDING
+reference_similarity_status: NOT_APPLICABLE
+commercial_release_rights: CONDITIONAL_PENDING_SEPARATE_RELEASE_REVIEW
+physical_windows_audio_android_human_player_experience_release: NOT_RUN
+```
+
+The eight files below are intentionally outside the manifest's approved `assets` set and are listed in its `generated_candidates` set instead. Runtime connection is permitted by the standing automatic-consumer policy, but neither generation, Godot import, automated renderer verification, nor this record represents user pixel approval, canonical promotion, physical-device review, or release approval.
+
+| Candidate asset ID | Generation receipt | Tracked candidate path | SHA-256 | Exact runtime consumer slot |
+| --- | --- | --- | --- | --- |
+| `SX-BOARD-DECOR-FOREST-001` | `exec-7d018d4d-c24e-416d-8237-e9fdf17d5aa8.png` | `art/product_assets/ed_hybrid_v2/board/board_decor_forest_cluster_v01.png` | `304157d64723d590736fa1f2d40fdb9c69eaeefa0e851234b2280027192a36fd` | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[decoration_forest_cluster]` |
+| `SX-BOARD-DECOR-BOULDER-001` | `exec-680ac749-71e8-4626-b87f-68724cbbad7b.png` | `art/product_assets/ed_hybrid_v2/board/board_decor_moss_boulder_v01.png` | `d63bc1ee4c7fc669914ac8414ec4916c34e1a6749ed39a06e4d44b3d3b0eece8` | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[decoration_moss_boulder]` |
+| `SX-BOARD-DECOR-TIMBER-001` | `exec-3c233b00-b825-4576-b7ed-dccbb27f7c32.png` | `art/product_assets/ed_hybrid_v2/board/board_decor_timber_stack_v01.png` | `796822f28e753a6fd1b506fa09b92fc7c8e05a96ea0a72096bcd93049586ecbd` | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[decoration_timber_stack]` |
+| `SX-BOARD-DECOR-WATERWAY-001` | `exec-bedded15-d23b-4fe5-a947-b025bdfe59f4.png` | `art/product_assets/ed_hybrid_v2/board/board_decor_waterway_v01.png` | `ca0960c3c79e37cb84b2f933f633466b5ffb55c43d33cf08b30188a57d6ef39e` | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[decoration_waterway]` |
+| `SX-BOARD-DECOR-LANTERN-001` | `exec-50efd37b-986b-4927-a877-475295ffcdc9.png` | `art/product_assets/ed_hybrid_v2/board/board_decor_lantern_fence_v01.png` | `eea9f357e2c2e458df1307ccd7ea7b73c8df9ac9a93cd6201705f4e9d0bce39e` | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[decoration_lantern_fence]` |
+| `SX-BOARD-CAUTION-001` | `exec-540f17c3-1bf1-41cb-9705-b24a1ee23be6.png` | `art/product_assets/ed_hybrid_v2/board/board_caution_track_overlay_v01.png` | `27dcd822d41bc39e2a21bf796dd99b0e4490ebf696a30d33126874d29f87e499` | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[caution_track]` |
+| `SX-CORE-CARGO-WASTE-001` | `exec-1bad9779-36f6-47d1-a136-a3bea43dc5e9.png` | `art/product_assets/ed_hybrid_v2/core/core_cargo_waste_crate_normal_v01.png` | `b60a1e7b4cb2ecb16a0bdc9bbef5baca030f404a38343e1575346d19716c9fbb` | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[cargo_waste]` |
+| `SX-CORE-DISPOSAL-YARD-001` | `exec-120a00f7-dc61-4fd0-b713-d8a4a762672f.png` | `art/product_assets/ed_hybrid_v2/core/core_disposal_yard_normal_v01.png` | `158d0c5e5af835cbbebf45a7d13c982449c4a4f2db285e30a89b6d01c33a7aef` | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[station_disposal]` |
+
+No external asset, copied prompt, user-identifying content, logo, watermark, readable pseudo-text, or third-party visual reference was used in generation. The original generated source receipts remain in the local Codex generation store for audit; only the listed candidate copies are connected to this project worktree.
+
 ## SX-TITLE-HERO-001 · Title runtime hero banner
 
 ```yaml

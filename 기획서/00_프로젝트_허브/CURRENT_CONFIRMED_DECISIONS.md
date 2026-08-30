@@ -1,15 +1,17 @@
 # Current Confirmed Decisions
 
-Last updated: `2026-08-30 KST`
+Last updated: `2026-08-31 KST`
 
 ## SX-DEC-067 · Wayside Hazards, Salvage, and Route Book 02
 
-- **Status:** `USER_APPROVED · DESIGN_AND_PLAN_RECORDED · IMPLEMENTATION_NOT_STARTED`
+- **Status:** `USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_RUNTIME_VERIFIED · NOT_MERGED`
 - **Decision owner:** `docs/decisions/SX_DEC_067_WAYSIDE_HAZARDS_SALVAGE_AND_ROUTE_BOOK_02.md`
 - **Core rule:** authored `CAUTION_TRACK` departure segments use one fixed `0.55` speed multiplier; this is not retired cargo-count slowdown.
 - **Cargo rule:** `WASTE_CRATE` unloads only at an off-track cardinal-adjacent `DISPOSAL_YARD`; LIFO/TOP and ordinary stations remain unchanged.
 - **Content rule:** Route Book 02 contributes six optional authored stages; T1–T6, VS_DEMO_01, Route Book 01, score/progression, generators, and solution reveal remain out of scope.
-- **Evidence:** `NOT_IMPLEMENTED`; no candidate, runtime, device, human, or final-user-review claim transfers from Candidate 006.
+- **Evidence:** local Godot full regression `PASS · 120 cases / 14,047 assertions`; current-worktree Hera runtime observed title → book selector → Route Book 02 and RB12 build board. `docs/operations/2026-08-31-sx-dec-067-local-machine-runtime-verification.md` owns the exact local receipt.
+- **Asset state:** 8 bitmap files are `GENERATED_CANDIDATE · RUNTIME_CONNECTED · NOT_CANON · USER_PIXEL_REVIEW_PENDING`, with SHA-256 and exact consumers in `art/product_assets/ed_hybrid_v2/manifest.json` and `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`.
+- **Ceiling:** Candidate 006 is historical for these changed bytes. No post-change package, remote CI/merge, physical/device/audio, human, final-user-review, or release claim is transferred.
 
 이 문서는 Switchy Express의 **현재 승인 Decision과 실행 권위**를 압축한다. 상세 규칙·근거·역사 CI는 각 Decision/Audit owner가 책임진다. Google Sheets는 migration-only이며 active decision authority가 아니다.
 

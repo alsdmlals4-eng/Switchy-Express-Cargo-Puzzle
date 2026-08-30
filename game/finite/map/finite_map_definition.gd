@@ -11,6 +11,19 @@ const VALID_ANCHOR_GEOMETRIES: Array[StringName] = [
 	&"SWITCH",
 	&"CROSSING",
 ]
+const VALID_BOARD_DECORATION_KINDS: Array[StringName] = [
+	&"FOREST_CLUSTER",
+	&"MOSS_BOULDER",
+	&"TIMBER_STACK",
+	&"WATERWAY",
+	&"LANTERN_FENCE",
+]
+const STATION_DESTINATION_KIND: StringName = &"STATION"
+const DISPOSAL_YARD_DESTINATION_KIND: StringName = &"DISPOSAL_YARD"
+const VALID_DESTINATION_KINDS: Array[StringName] = [
+	STATION_DESTINATION_KIND,
+	DISPOSAL_YARD_DESTINATION_KIND,
+]
 const CARDINAL_DIRECTIONS: Array[Vector2i] = [
 	Vector2i.UP,
 	Vector2i.RIGHT,
@@ -27,6 +40,8 @@ var start_cell: Vector2i = Vector2i.ZERO
 var incoming_cell: Vector2i = Vector2i.ZERO
 var buildable_cells: Array[Vector2i] = []
 var blocked_cells: Array[Vector2i] = []
+var caution_track_cells: Array[Vector2i] = []
+var board_decorations: Array[Dictionary] = []
 var station_placements: Array[Dictionary] = []
 var cargo_placements: Array[Dictionary] = []
 var marker_tracks_player_built: bool = false
@@ -47,6 +62,8 @@ static func create(data: Dictionary) -> Variant:
 	value.incoming_cell = _read_cell(data.get("incoming_cell", []))
 	value.buildable_cells = _read_cells(data.get("buildable_cells", []))
 	value.blocked_cells = _read_cells(data.get("blocked_cells", []))
+	value.caution_track_cells = _read_cells(data.get("caution_track_cells", []))
+	value.board_decorations = _read_placements(data.get("board_decorations", []))
 	value.station_placements = _read_placements(data.get("station_placements", []))
 	value.cargo_placements = _read_placements(data.get("cargo_placements", []))
 	value.marker_tracks_player_built = bool(data.get("marker_tracks_player_built", false))
@@ -123,6 +140,8 @@ func validation_errors() -> Array[String]:
 		errors.append("incoming_cell must be immediately left of start_cell")
 
 	_validate_surface(errors)
+	_validate_caution_track_cells(errors)
+	_validate_board_decorations(errors)
 	_validate_station_placements(errors)
 	_validate_cargo_placements(errors)
 	_validate_required_anchor_uniqueness(errors)
@@ -143,6 +162,8 @@ func to_dictionary() -> Dictionary:
 		"incoming_cell": _cell_to_array(incoming_cell),
 		"buildable_cells": _cells_to_arrays(buildable_cells),
 		"blocked_cells": _cells_to_arrays(blocked_cells),
+		"caution_track_cells": _cells_to_arrays(caution_track_cells),
+		"board_decorations": board_decorations.duplicate(true),
 		"station_placements": station_placements.duplicate(true),
 		"cargo_placements": cargo_placements.duplicate(true),
 		"marker_tracks_player_built": marker_tracks_player_built,
@@ -176,12 +197,64 @@ func _validate_surface(errors: Array[String]) -> void:
 			errors.append("buildable_cells and blocked_cells must not overlap")
 
 
+func _validate_caution_track_cells(errors: Array[String]) -> void:
+	var buildable: Dictionary = {}
+	for cell: Vector2i in buildable_cells:
+		buildable[cell] = true
+
+	var seen: Dictionary = {}
+	for cell: Vector2i in caution_track_cells:
+		if seen.has(cell):
+			errors.append("caution_track_cells must not contain duplicates")
+		seen[cell] = true
+		if not buildable.has(cell):
+			errors.append("caution_track_cells must be buildable")
+
+
+func _validate_board_decorations(errors: Array[String]) -> void:
+	var blocked: Dictionary = {}
+	for cell: Vector2i in blocked_cells:
+		blocked[cell] = true
+
+	var gameplay_cells: Dictionary = {
+		start_cell: true,
+		incoming_cell: true,
+	}
+	for placement: Dictionary in station_placements:
+		gameplay_cells[_read_cell(placement.get("cell", []))] = true
+	for placement: Dictionary in cargo_placements:
+		gameplay_cells[_read_cell(placement.get("cell", []))] = true
+
+	var seen: Dictionary = {}
+	for placement: Dictionary in board_decorations:
+		var kind := StringName(placement.get("kind", &""))
+		if not VALID_BOARD_DECORATION_KINDS.has(kind):
+			errors.append("board decoration kind must be valid")
+		var cell := _read_cell(placement.get("cell", []))
+		if seen.has(cell):
+			errors.append("board decoration cells must not contain duplicates")
+		seen[cell] = true
+		if not blocked.has(cell):
+			errors.append("board decoration cells must be blocked")
+		if gameplay_cells.has(cell):
+			errors.append("board decorations must not overlap gameplay cells")
+
+
 func _validate_station_placements(errors: Array[String]) -> void:
 	_validate_placement_cells(station_placements, "station", errors)
 	for placement: Dictionary in station_placements:
 		var cargo_type := StringName(placement.get("cargo_type", &""))
 		if not CargoTypeScript.is_valid(cargo_type):
 			errors.append("station placement cargo_type must be valid")
+		var destination_kind := StringName(
+			placement.get("destination_kind", STATION_DESTINATION_KIND)
+		)
+		if not VALID_DESTINATION_KINDS.has(destination_kind):
+			errors.append("station placement destination_kind must be valid")
+		elif cargo_type == CargoTypeScript.WASTE_CRATE and destination_kind != DISPOSAL_YARD_DESTINATION_KIND:
+			errors.append("WASTE_CRATE stations must be DISPOSAL_YARD")
+		elif destination_kind == DISPOSAL_YARD_DESTINATION_KIND and cargo_type != CargoTypeScript.WASTE_CRATE:
+			errors.append("DISPOSAL_YARD must accept WASTE_CRATE")
 		if placement.has("rail_anchor") and placement.get("rail_anchor") != null:
 			errors.append("station placement rail_anchor is forbidden")
 
@@ -298,6 +371,8 @@ static func _source_validation_errors(data: Dictionary) -> Array[String]:
 		errors.append("incoming_cell is required")
 	_validate_source_cell_list(data.get("buildable_cells", []), "buildable_cells", errors)
 	_validate_source_cell_list(data.get("blocked_cells", []), "blocked_cells", errors)
+	_validate_source_cell_list(data.get("caution_track_cells", []), "caution_track_cells", errors)
+	_validate_source_placement_list(data.get("board_decorations", []), "board decoration", errors)
 	_validate_source_placement_list(data.get("station_placements", []), "station", errors)
 	_validate_source_placement_list(data.get("cargo_placements", []), "cargo", errors)
 	return errors

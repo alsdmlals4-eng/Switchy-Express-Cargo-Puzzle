@@ -18,6 +18,12 @@ const CARGO_MARKER_SCALE := 0.62
 
 const PRODUCT_VISUAL_ASSET_PATHS := {
 	"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
+	"decoration_forest_cluster": "art/product_assets/ed_hybrid_v2/board/board_decor_forest_cluster_v01.png",
+	"decoration_moss_boulder": "art/product_assets/ed_hybrid_v2/board/board_decor_moss_boulder_v01.png",
+	"decoration_timber_stack": "art/product_assets/ed_hybrid_v2/board/board_decor_timber_stack_v01.png",
+	"decoration_waterway": "art/product_assets/ed_hybrid_v2/board/board_decor_waterway_v01.png",
+	"decoration_lantern_fence": "art/product_assets/ed_hybrid_v2/board/board_decor_lantern_fence_v01.png",
+	"caution_track": "art/product_assets/ed_hybrid_v2/board/board_caution_track_overlay_v01.png",
 	"train": "art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png",
 	"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v04.png",
 	"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v04.png",
@@ -28,9 +34,11 @@ const PRODUCT_VISUAL_ASSET_PATHS := {
 	"station_red": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
 	"station_blue": "art/product_assets/ed_hybrid_v2/core/core_station_blue_normal_v02.png",
 	"station_yellow": "art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png",
+	"station_disposal": "art/product_assets/ed_hybrid_v2/core/core_disposal_yard_normal_v01.png",
 	"cargo_red": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png",
 	"cargo_blue": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_blue_normal_v02.png",
 	"cargo_yellow": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png",
+	"cargo_waste": "art/product_assets/ed_hybrid_v2/core/core_cargo_waste_crate_normal_v01.png",
 }
 
 var _snapshot: Dictionary = {}
@@ -116,11 +124,17 @@ func route_visual_widths_for_test(viewport: Vector2, board_size: Vector2i) -> Di
 	}
 
 
+func wayside_presentation_descriptors_for_test() -> Dictionary:
+	return _wayside_presentation_descriptors(_snapshot)
+
+
 func visual_layer_order_for_test() -> Array[StringName]:
 	return [
 		&"TERRAIN",
+		&"DECORATION",
 		&"GRID",
 		&"BLOCKED",
+		&"CAUTION",
 		&"FIXED_TRACK",
 		&"LAYOUT",
 		&"STATION_SERVICE",
@@ -212,8 +226,10 @@ func _draw() -> void:
 	draw_rect(rect.grow(4.0), Palette.BOARD_EDGE, true)
 	draw_rect(rect, Palette.BOARD, true)
 	_draw_board_terrain(rect)
+	_draw_board_decorations(rect, board_size)
 	_draw_grid(rect, board_size)
 	_draw_blocked(rect, board_size)
+	_draw_caution_tracks(rect, board_size)
 	_draw_fixed_tracks(rect, board_size)
 	_draw_layout(rect, board_size)
 	_draw_station_service_ranges(rect, board_size)
@@ -230,6 +246,22 @@ func _draw_board_terrain(rect: Rect2) -> void:
 		return
 	draw_texture_rect(terrain, rect, false, Palette.BOARD_TERRAIN_TINT)
 	draw_rect(rect, Palette.BOARD_TERRAIN_VEIL, true)
+
+
+func _draw_board_decorations(rect: Rect2, board_size: Vector2i) -> void:
+	for decoration: Dictionary in _wayside_presentation_descriptors(_snapshot)["board_decorations"]:
+		var asset_key := _decoration_asset_key(StringName(decoration["kind"]))
+		if asset_key == "":
+			continue
+		_draw_product_texture(
+			asset_key,
+			_cell_rect(decoration["cell"], rect, board_size).grow(-1.0)
+		)
+
+
+func _draw_caution_tracks(rect: Rect2, board_size: Vector2i) -> void:
+	for cell: Vector2i in _wayside_presentation_descriptors(_snapshot)["caution_track_cells"]:
+		_draw_product_texture("caution_track", _cell_rect(cell, rect, board_size).grow(-2.0))
 
 
 func _draw_grid(rect: Rect2, board_size: Vector2i) -> void:
@@ -554,7 +586,8 @@ func _draw_fixed_markers(rect: Rect2, board_size: Vector2i) -> void:
 			StringName(placement.get("cargo_type", &"")),
 			true,
 			rect,
-			board_size
+			board_size,
+			StringName(placement.get("destination_kind", &"STATION"))
 		)
 	for value: Variant in _snapshot.get("cargo_placements", []):
 		var placement: Dictionary = value
@@ -572,7 +605,8 @@ func _draw_marker(
 	cargo_type: StringName,
 	is_station: bool,
 	rect: Rect2,
-	board_size: Vector2i
+	board_size: Vector2i,
+	destination_kind: StringName = &"STATION"
 ) -> void:
 	var cell := snapshot_cell(cell_value)
 	if cell == NO_CELL:
@@ -580,7 +614,7 @@ func _draw_marker(
 	var cell_rect := _cell_rect(cell, rect, board_size)
 	var marker_rect := _marker_target_rect(is_station, cell_rect)
 	var color: Color = Palette.cargo_color(cargo_type)
-	var asset_key := _marker_asset_key(cargo_type, is_station)
+	var asset_key := _marker_asset_key(cargo_type, is_station, destination_kind)
 	var drew_product_art := _draw_product_texture(asset_key, marker_rect)
 	if not drew_product_art:
 		if is_station:
@@ -659,6 +693,10 @@ func _draw_cargo_shape(center: Vector2, cargo_type: StringName, radius: float, c
 			var length := radius if index % 2 == 0 else radius * 0.46
 			points.append(center + Vector2(cos(angle), sin(angle)) * length)
 		draw_colored_polygon(points, color)
+	elif cargo_type == &"WASTE_CRATE":
+		var square := Rect2(center - Vector2(radius, radius), Vector2(radius * 2.0, radius * 2.0))
+		draw_rect(square, color, true)
+		draw_rect(square, Palette.BOARD_EDGE, false, maxf(radius * 0.22, 1.0))
 	else:
 		draw_colored_polygon(PackedVector2Array([
 			center + Vector2(0.0, -radius),
@@ -814,7 +852,16 @@ static func _track_asset_key(geometry: StringName) -> String:
 			return ""
 
 
-static func _marker_asset_key(cargo_type: StringName, is_station: bool) -> String:
+
+static func _marker_asset_key(
+	cargo_type: StringName,
+	is_station: bool,
+	destination_kind: StringName = &"STATION"
+) -> String:
+	if is_station and destination_kind == &"DISPOSAL_YARD":
+		return "station_disposal"
+	if not is_station and cargo_type == &"WASTE_CRATE":
+		return "cargo_waste"
 	var family := _cargo_family(cargo_type)
 	return ("station_" if is_station else "cargo_") + family
 
@@ -826,6 +873,45 @@ static func _cargo_family(cargo_type: StringName) -> String:
 	if normalized.contains("YELLOW"):
 		return "yellow"
 	return "blue"
+
+
+static func _decoration_asset_key(kind: StringName) -> String:
+	match kind:
+		&"FOREST_CLUSTER":
+			return "decoration_forest_cluster"
+		&"MOSS_BOULDER":
+			return "decoration_moss_boulder"
+		&"TIMBER_STACK":
+			return "decoration_timber_stack"
+		&"WATERWAY":
+			return "decoration_waterway"
+		&"LANTERN_FENCE":
+			return "decoration_lantern_fence"
+		_:
+			return ""
+
+
+static func _wayside_presentation_descriptors(snapshot: Dictionary) -> Dictionary:
+	var caution_track_cells: Array[Vector2i] = []
+	for value: Variant in snapshot.get("caution_track_cells", []):
+		var cell := snapshot_cell(value)
+		if cell != NO_CELL and not caution_track_cells.has(cell):
+			caution_track_cells.append(cell)
+
+	var board_decorations: Array[Dictionary] = []
+	for value: Variant in snapshot.get("board_decorations", []):
+		if not value is Dictionary:
+			continue
+		var placement: Dictionary = value
+		var cell := snapshot_cell(placement.get("cell", NO_CELL))
+		var kind := StringName(placement.get("kind", &""))
+		if cell == NO_CELL or _decoration_asset_key(kind) == "":
+			continue
+		board_decorations.append({"kind": kind, "cell": cell})
+	return {
+		"caution_track_cells": caution_track_cells,
+		"board_decorations": board_decorations,
+	}
 
 
 func _ghost_descriptor() -> Dictionary:

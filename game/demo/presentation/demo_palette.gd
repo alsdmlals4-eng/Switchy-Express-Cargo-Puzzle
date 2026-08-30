@@ -23,6 +23,7 @@ const ROUTE_LOCKED := Color("ef554d")
 const ROUTE_INACTIVE := Color("807a70")
 const RED_CARGO := Color("d94f49")
 const BLUE_CARGO := Color("3979b7")
+const WASTE_CARGO := Color("66734b")
 const TEXT_DARK := Color("243038")
 const TEXT_LIGHT := Color("f7f2e8")
 const CONTROL_DECK_RAISED := Color("18363c")
@@ -40,8 +41,16 @@ const RAIL_HIGHLIGHT_WIDTH := 3.0
 
 
 static func cargo_color(cargo_type: StringName) -> Color:
-	return RED_CARGO if cargo_type == &"RED_STAR" else BLUE_CARGO
+	if cargo_type == &"RED_STAR":
+		return RED_CARGO
+	if cargo_type == &"WASTE_CRATE":
+		return WASTE_CARGO
+	return BLUE_CARGO
 
 
 static func cargo_label(cargo_type: StringName) -> String:
-	return "A" if cargo_type == &"RED_STAR" else "B"
+	if cargo_type == &"RED_STAR":
+		return "A"
+	if cargo_type == &"WASTE_CRATE":
+		return "W"
+	return "B"

@@ -1,0 +1,29 @@
+{
+  "definition_schema_version": 3,
+  "map_id": "RB09_SALVAGE_SIDING",
+  "map_revision": 1,
+  "ruleset_version": "fp_core_v2",
+  "marker_tracks_player_built": true,
+  "allow_open_terminals_after_required": true,
+  "board_size": [9, 7],
+  "start_cell": [1, 3],
+  "incoming_cell": [0, 3],
+  "time_limit_seconds": 100.0,
+  "buildable_rects": [{"minimum": [1, 1], "maximum": [8, 5]}],
+  "blocked_cells": [[2, 1], [4, 1], [6, 1], [8, 3], [2, 5]],
+  "board_decorations": [
+    {"kind": "FOREST_CLUSTER", "cell": [2, 1]},
+    {"kind": "MOSS_BOULDER", "cell": [4, 1]},
+    {"kind": "TIMBER_STACK", "cell": [6, 1]},
+    {"kind": "WATERWAY", "cell": [8, 3]},
+    {"kind": "LANTERN_FENCE", "cell": [2, 5]}
+  ],
+  "station_placements": [
+    {"cell": [6, 2], "cargo_type": "RED_STAR"},
+    {"cell": [7, 5], "cargo_type": "WASTE_CRATE", "destination_kind": "DISPOSAL_YARD"}
+  ],
+  "cargo_placements": [
+    {"cell": [3, 3], "cargo_type": "WASTE_CRATE"},
+    {"cell": [4, 4], "cargo_type": "RED_STAR"}
+  ]
+}
