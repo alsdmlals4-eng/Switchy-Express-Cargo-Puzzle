@@ -73,3 +73,42 @@ Any failure requires a targeted regeneration of only the defective subject, foll
 | Files in `art/product_assets/ed_hybrid_v2/core/` | `0_NEW_FILES` |
 | `ProductBoardRenderer` v02 paths | `NOT_CHANGED` |
 | Godot runtime / physical / human evidence | `NOT_RUN` |
+
+## 2026-08-30 generated candidate receipt
+
+The following are built-in image-model outputs. They remain outside the repository's product-asset paths under `C:/Users/user/.codex/generated_images/01a04af4-2ebb-7912-80d3-e4bfa4f1efe0/`; the displayed review copies are deterministic Godot `Image.INTERPOLATE_LANCZOS` reductions in its `sx063-core-board-v02-previews/` subfolder. No candidate source or preview has been copied into `art/product_assets/`.
+
+| Candidate ID | Selected image-model output | SHA-256 | Review preview | Disposition |
+| --- | --- | --- | --- | --- |
+| `SX-VIS-063-CORE-TRAIN-001` | `exec-eb29fe34-ca5b-423b-9699-962cad5592ef.png` | `4b1ecccda212790e9b9b26d28032fd03e3a726f0c7c6b11e63b79fcdffb66b97` | `SX-VIS-063-CORE-TRAIN-001-alpha-128x96.png` | `GENERATED_CANDIDATE · PASS` |
+| `SX-VIS-063-CORE-RAIL-STRAIGHT-001` | `exec-95b28d77-dfa4-43f9-92cc-40d9439e99a8.png` | `9d43427a3e96ad2e7e871faa79c34fc8fcceb51c0306032642ab3a63c5050ecf` | `rail-straight-alt-b-64x64.png` | `GENERATED_CANDIDATE · PASS_WITH_SEAM_REVIEW` |
+| `SX-VIS-063-CORE-RAIL-CURVE-001` | `exec-5185a5bf-5907-4282-bcb0-feac95b9104d.png` | `445be8b43563ba639a1d7fbdde5bf6163267c00d516f9feb0de96dd043c4d792` | `SX-VIS-063-CORE-RAIL-CURVE-001-alpha-64x64.png` | `GENERATED_CANDIDATE · PARTIAL_PORT_ALIGNMENT` |
+| `SX-VIS-063-CORE-RAIL-CROSSING-001` | `exec-0d0307f1-1e34-45fd-8b6e-9410bf859248.png` | `20858d990ae1bfa1a06e1858826866c98ab7e798ff8fc862c15662a7e2c925fa` | `SX-VIS-063-CORE-RAIL-CROSSING-001-alpha-64x64.png` | `GENERATED_CANDIDATE · PASS_WITH_SEAM_REVIEW` |
+| `SX-VIS-063-CORE-RAIL-SWITCH-001` | `exec-52ac3317-0621-48b1-a837-550edeb6e5ab.png` | `d616d4ce8be8d3daa3a24687405a98c2576759e4ba2a9ad14e5a50c068d8a2e7` | `SX-VIS-063-CORE-RAIL-SWITCH-001-alpha-64x64.png` | `GENERATED_CANDIDATE · PARTIAL_PORT_ALIGNMENT` |
+| `SX-VIS-063-CORE-START-001` | `exec-3c8e8c35-d79b-4da4-b59b-f31338e71f1f.png` | `c2f2d6d0202ee1eefd0034375eac6be8887d5ee9eb0ce35712377241ed2b73af` | `SX-VIS-063-CORE-START-001-64x64.png` | `GENERATED_CANDIDATE · PASS` |
+| `SX-VIS-063-CORE-END-001` | `exec-8f14bfa3-a06d-42e8-98dc-7a8b369187fe.png` | `0055dc4e3e45dbc4fc778443a81cc86edc889297360894c659d0fb217d3972e1` | `SX-VIS-063-CORE-END-001-64x64.png` | `GENERATED_CANDIDATE · PASS` |
+| `SX-VIS-063-CORE-STATION-RED-001` | `exec-a5842278-90f2-4964-8c0a-215f0ec0fab6.png` | `fa7e880593bc35c20462266650895f6243c7c9817e770ea49b2937449c93ed07` | `SX-VIS-063-CORE-STATION-RED-001-alpha-64x64.png` | `GENERATED_CANDIDATE · PASS` |
+| `SX-VIS-063-CORE-STATION-BLUE-001` | `exec-c3748987-887a-4209-a222-26ade19b7eab.png` | `9e48821d85921c0b4e8d4f595b11ce084c86cdd199d25b74dad83d30c896260e` | `SX-VIS-063-CORE-STATION-BLUE-001-64x64.png` | `GENERATED_CANDIDATE · PASS` |
+| `SX-VIS-063-CORE-STATION-YELLOW-001` | `exec-c9e9af7e-2139-4bb6-ba9a-c54abeeadae8.png` | `d41cd8308744ff6ee10270e7d8b87e6d8fb9567474015664c3da77f60ed8c436` | `SX-VIS-063-CORE-STATION-YELLOW-001-64x64.png` | `GENERATED_CANDIDATE · PASS` |
+| `SX-VIS-063-CORE-CARGO-RED-001` | `exec-fca9e1d1-fd36-4d79-9e77-08b51f46b66d.png` | `157eb9c4058191d35c2b22d148c7a6c8af2241ac87d05ec65d69259d691007f0` | `SX-VIS-063-CORE-CARGO-RED-001-64x64.png` | `GENERATED_CANDIDATE · PASS` |
+| `SX-VIS-063-CORE-CARGO-BLUE-001` | `exec-382a8f00-8c25-415b-872b-df80c7124ee6.png` | `5d16101bf845bdb3947de85bce354b382a38f94d2014ba71a38fa418f66e22b6` | `SX-VIS-063-CORE-CARGO-BLUE-001-alpha-64x64.png` | `GENERATED_CANDIDATE · PASS` |
+| `SX-VIS-063-CORE-CARGO-YELLOW-001` | `exec-cdee6143-289f-41fe-979f-c9ce33add219.png` | `baa2ad58f48fa0dbd90aa583f1cc3d20466001f43354439449029d44395481bc` | `SX-VIS-063-CORE-CARGO-YELLOW-001-64x64.png` | `GENERATED_CANDIDATE · PASS` |
+
+### Candidate-only five-pass review
+
+| Loop | Observed result | Current result |
+| --- | --- | --- |
+| 1 · Consumer boundary | Every candidate maps to one existing `ProductBoardRenderer` slot. No board, UI, sheet, terrain, scene, or new consumer has been introduced. | `PASS` |
+| 2 · Rule and geometry attack | All three stations are off-track and contain no rail or service-ring image. Straight and crossing rail intent reads correctly. At 64px, the model does not place the curve and switch exits at mathematically exact cell-center coordinates. | `PARTIAL · USER_DECISION_REQUIRED_FOR_SEAM_STRATEGY` |
+| 3 · Target-footprint readability | The selected locomotive is recognizable at 128×96; station roofs, star cargo colors, and start/end silhouettes remain distinct at 64×64. Curve and switch remain recognizable but cannot on their own guarantee adjacent-cell seam alignment. | `PARTIAL · USER_DECISION_REQUIRED_FOR_SEAM_STRATEGY` |
+| 4 · Provenance and embedded-content attack | The common prompt prohibited third-party art, reference-layout copying, text, logos, watermarks, UI, and frames. Visual review found none. Three candidates with opaque background corners were image-model edited to transparent alpha and rechecked; the selected final candidates have transparent corners. | `PASS_FOR_CANDIDATE_REVIEW · RELEASE_RIGHTS_NOT_APPROVED` |
+| 5 · Scope and evidence attack | No product path, manifest, renderer, gameplay rule, runtime capture, package candidate, physical/device/audio/human evidence, or protected PR has changed. | `PASS_FOR_CANDIDATE_BOUNDARY` |
+
+### Required user disposition
+
+The image pixels are ready for review, but the two partial rail results are not silently promotable as exact grid geometry. The next runtime path is intentionally held at `PENDING_USER_PIXEL_AND_SEAM_DECISION`:
+
+1. **Recommended — approve this 13-image bundle with a narrow procedural seam underlay.** The new image-model rail sprites remain the visible art. Godot adds only a muted, non-interactive edge-connector underlay beneath curve/switch cells so adjacent grid ports meet exactly; it cannot change routing, service, input, lock, or any game rule.
+2. **Regenerate curve and switch again.** Keep the existing candidates outside the product path and attempt more image-model iterations for exact visual port placement before any runtime promotion.
+
+Either route still requires a direct user approval of the assembled image pixels before files are copied into `art/product_assets/` or `ProductBoardRenderer` changes.
