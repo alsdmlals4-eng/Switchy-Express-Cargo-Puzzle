@@ -163,6 +163,22 @@
       "status": "CURRENT"
     },
     {
+      "id": "SX-DEC-066-CURATED-ROUTE-BOOK-01",
+      "question": "첫 세션을 바꾸지 않고 여섯 개의 고정 추가 스테이지를 어떤 규칙과 증거 경계로 제공하는가",
+      "source": "docs/decisions/SX_DEC_066_CURATED_ROUTE_BOOK_01.md",
+      "format": "markdown",
+      "publication_policy": "milestone_sync",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SX-ROUTE-BOOK-01-CONTENT",
+      "question": "Route Book 01의 각 맵 ID, 플레이어 판단, 마커 계약, witness와 반례는 무엇인가",
+      "source": "기획서/20_시스템_콘텐츠/ROUTE_BOOK_01_STAGE_CONTENT_SPEC.md",
+      "format": "markdown",
+      "publication_policy": "milestone_sync",
+      "status": "CURRENT"
+    },
+    {
       "id": "SX-DEC-062-IMPLEMENTATION-CONTRACT",
       "question": "SX-DEC-062 구현의 exact test-first CodeX handoff는 무엇인가",
       "source": "기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md",

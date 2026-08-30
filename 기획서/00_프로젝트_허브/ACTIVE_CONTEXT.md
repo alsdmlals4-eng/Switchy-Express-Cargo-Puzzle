@@ -91,6 +91,10 @@ sx_dec_064_test_evidence: RED_RECORDED_THEN_GREEN · EXACT_HEAD_CI_7_GREEN · PO
 sx_dec_064_candidate_004_evidence: SX60-POC-ACCEPT-004 · HISTORICAL_PRE_V04_PRODUCT_BYTES · docs/operations/2026-08-29-sx-dec-064-candidate-004-package-freshness.md · PHYSICAL_AND_HUMAN_NOT_RUN
 sx_dec_064_candidate_004_tracking_issue: GitHub_Issue_251
 sx_dec_065_machine_primary_validation: USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW · FIVE_SCOPE_ADVERSARIAL_REVIEW_CLOSED · docs/decisions/SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW_VALIDATION_POLICY.md
+sx_dec_066_curated_route_book_01: USER_APPROVED · DESIGN_LOCKED · BUILD_PENDING_PLAN_REVIEW · six optional fixed schema-v3 stages · docs/decisions/SX_DEC_066_CURATED_ROUTE_BOOK_01.md
+sx_dec_066_content_owner: 기획서/20_시스템_콘텐츠/ROUTE_BOOK_01_STAGE_CONTENT_SPEC.md
+sx_dec_066_design_spec: docs/superpowers/specs/2026-08-30-route-book-01-stage-pack-design.md
+sx_dec_066_implementation_plan: docs/superpowers/plans/2026-08-30-route-book-01-stage-pack-implementation.md
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · 2026-08-28 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
@@ -113,6 +117,7 @@ phase5_execution_plan: docs/superpowers/plans/2026-08-28-phase5-human-validation
 validation_strategy: MACHINE_PRIMARY_FINAL_USER_REVIEW
 base_work_current_phase: PHASE_5_MACHINE_PRIMARY_VALIDATION_COMPLETE · SX60_POC_ACCEPT_005
 remaining_machine_executable_required_work: NONE · FINAL_USER_REVIEW_OPTIONAL_ON_UNCHANGED_CANDIDATE_005
+route_book_execution_state: PLAN_REVIEW_REQUIRED_BEFORE_BUILD · Candidate_005_remains_historical_for_any_future_Route_Book_product_byte_change
 windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device_post_060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
 five_person_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
