@@ -95,6 +95,7 @@ sx_dec_066_curated_route_book_01: USER_APPROVED · DESIGN_LOCKED · BUILD_PENDIN
 sx_dec_066_content_owner: 기획서/20_시스템_콘텐츠/ROUTE_BOOK_01_STAGE_CONTENT_SPEC.md
 sx_dec_066_design_spec: docs/superpowers/specs/2026-08-30-route-book-01-stage-pack-design.md
 sx_dec_066_implementation_plan: docs/superpowers/plans/2026-08-30-route-book-01-stage-pack-implementation.md
+sx_dec_066_genre_benchmark: RESEARCHED · 12 public developer/publisher/wiki/store product sources · fixed authored-map ADOPT / progression-sandbox REJECT · docs/research/2026-08-30-route-book-01-genre-reverse-engineering.md
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · 2026-08-28 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md

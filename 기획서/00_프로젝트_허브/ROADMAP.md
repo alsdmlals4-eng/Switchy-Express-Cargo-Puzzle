@@ -41,6 +41,7 @@ SX-DEC-066 · USER_APPROVED
 → Route Book 01: six optional fixed schema-v3 stages
 → first session and finite rule boundary protected
 → design/spec/implementation plan complete
+→ 12-game public-source genre benchmark complete: fixed authored maps ADOPT; progression/sandbox families REJECT
 → BUILD_PENDING_PLAN_REVIEW
 ```
 
@@ -144,6 +145,7 @@ Route Book 01 is a separate optional stage surface: six directly selectable, han
 기획서/20_시스템_콘텐츠/ROUTE_BOOK_01_STAGE_CONTENT_SPEC.md
 docs/superpowers/specs/2026-08-30-route-book-01-stage-pack-design.md
 docs/superpowers/plans/2026-08-30-route-book-01-stage-pack-implementation.md
+docs/research/2026-08-30-route-book-01-genre-reverse-engineering.md
 ```
 
 No Route Book runtime, package, physical, human, or candidate evidence exists before implementation. Candidate 005 remains valid only for its pre-Route-Book exact source bytes.

@@ -160,14 +160,14 @@ SX-DEC-060는 이 단계 수를 늘리지 않는다. T2의 station mental model�
 
 ## SX-DEC-066 curated Route Book 01
 
-Canonical owners: `docs/decisions/SX_DEC_066_CURATED_ROUTE_BOOK_01.md`, `기획서/20_시스템_콘텐츠/ROUTE_BOOK_01_STAGE_CONTENT_SPEC.md`, `docs/superpowers/specs/2026-08-30-route-book-01-stage-pack-design.md`, and `docs/superpowers/plans/2026-08-30-route-book-01-stage-pack-implementation.md`.
+Canonical owners: `docs/decisions/SX_DEC_066_CURATED_ROUTE_BOOK_01.md`, `기획서/20_시스템_콘텐츠/ROUTE_BOOK_01_STAGE_CONTENT_SPEC.md`, `docs/superpowers/specs/2026-08-30-route-book-01-stage-pack-design.md`, `docs/superpowers/plans/2026-08-30-route-book-01-stage-pack-implementation.md`, and the twelve-game comparison record `docs/research/2026-08-30-route-book-01-genre-reverse-engineering.md`.
 
 ```text
 Title → Stage Book → one of six fixed hand-authored stages → existing Briefing / BUILD / RUN / factual Result
 → Retry Same Route | Edit Route | Stage Book | Next Stage
 ```
 
-This is an optional post-onboarding content pack, not T7 or a first-session replacement. It reuses schema-v3 finite maps, current cargo/station/LIFO/Auto/switch rules, existing product assets, and the existing product result path. It adds no save/unlock, score/rank/reward, generator, Yard Lab, Mastery, Daily/Weekly, asset, audio, or core-rule surface. All six stages are directly selectable; `RECOMMENDED_LAYOUT` stays hidden. Current state is design locked, implementation plan complete, and `BUILD_PENDING_PLAN_REVIEW`; no Route Book runtime or package evidence exists yet.
+This is an optional post-onboarding content pack, not T7 or a first-session replacement. It reuses schema-v3 finite maps, current cargo/station/LIFO/Auto/switch rules, existing product assets, and the existing product result path. It adds no save/unlock, score/rank/reward, generator, Yard Lab, Mastery, Daily/Weekly, asset, audio, or core-rule surface. All six stages are directly selectable; `RECOMMENDED_LAYOUT` stays hidden. The completed twelve-game benchmark supports the fixed authored-map disposition and rejects the adjacent progression/sandbox families, but adds no gameplay bytes or runtime evidence. Current state is design locked, implementation plan complete, and `BUILD_PENDING_PLAN_REVIEW`; no Route Book runtime or package evidence exists yet.
 
 ## SX-DEC-061 confirmed visual/validation contract
 

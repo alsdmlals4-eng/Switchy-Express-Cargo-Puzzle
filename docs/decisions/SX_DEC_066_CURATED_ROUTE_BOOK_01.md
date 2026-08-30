@@ -91,8 +91,13 @@ All stages expose full production controls except `RECOMMENDED_LAYOUT`; hiding t
 
 ## Research and feasibility disposition
 
-`ADAPT`: fixed authored stage packs. Train Valley 2's official product description demonstrates a multi-level railway-puzzle mode, which supports a small curated-map model without importing its tycoon, locomotive-upgrade, or Workshop systems.
-`REJECT`: dynamic growth, upgrades, endless pressure, and generated maps. Mini Metro's official console description uses random city growth and upgrades; those mechanisms conflict with Switchy's finite handcrafted puzzle and cosmetic-only progression boundaries.
+Public-source reverse engineering across twelve related railway, routing, delivery, and miniature-puzzle games is recorded in [`docs/research/2026-08-30-route-book-01-genre-reverse-engineering.md`](../research/2026-08-30-route-book-01-genre-reverse-engineering.md). It closes the pre-implementation comparison gate without changing any finite product rule or claiming runtime/user evidence.
+
+`ADOPT`: six fixed, directly selectable authored maps; one named central judgement per map; testable success witnesses and failure counterexamples; factual delivery feedback; color + shape + text redundancy; and multiple valid player solutions without a solution reveal.
+
+`ADAPT`: the clear information hierarchy and miniature-diorama warmth found in comparable games, but only through existing board/HUD/result consumers and the already-approved E+D Hybrid / Neo-Arcade asset grammar. No new production asset is needed.
+
+`REJECT`: tycoon/economy/production chains, score/rank/stars/rewards, unlock/save progression, dynamic city growth, endless/survival pressure, roguelite, procedural maps, editor/UGC, sandbox, social sharing, free terrain, multi-train systems, and any replacement of the machine-primary validation policy with a player-experience gate.
 
 No new Godot engine capability, plugin, service, schema version, asset slot, or platform dependency is required. Existing `FiniteMapLoader`, `FiniteBuildSession`, `FiniteRunSessionFactory`, `ProductFiniteSlice`, `FirstSessionStagePolicy`, and `DemoFlowController` prove the needed integration seam.
 

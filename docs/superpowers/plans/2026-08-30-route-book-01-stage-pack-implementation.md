@@ -10,6 +10,8 @@
 
 **Spec:** `docs/superpowers/specs/2026-08-30-route-book-01-stage-pack-design.md`
 
+**Research prerequisite:** `docs/research/2026-08-30-route-book-01-genre-reverse-engineering.md` (`12-game public-source benchmark · RESEARCHED`). The research gate is closed for the fixed authored-map direction only; it does not make an implementation, package, runtime, or user-validation claim.
+
 ## Global Constraints
 
 - Preserve T1–T6, `VS_DEMO_01`, first-session IDs/order/maps/policies/copy, and their existing tests byte-for-byte unless a new regression proves an unavoidable shared-parser correction.
@@ -20,6 +22,14 @@
 - Localize every added player-visible Route Book string in `ko`, `en`, `ja`, and `zh-Hans`.
 - Keep PR #174 untouched and do not modify PR #254.
 - Use RED→GREEN evidence, five full-scope post-build adversarial review loops, and a new exact candidate after product bytes change.
+
+## Pre-implementation research guardrails
+
+- Treat the six direct cards as authored puzzle selection, never as a score, unlock, save, rank, or progression layer.
+- Preserve one named primary judgement per Route Book map and write both a success witness and an in-scope failure counterexample before map implementation.
+- Reuse existing E+D Hybrid / Neo-Arcade board/HUD/result consumers; do not create a new visual asset merely to resemble a benchmark game.
+- Keep timing as the existing factual failure condition, never an endless, survival, resource-extraction, or roguelite loop.
+- Do not translate a benchmark's editor, procedural content, sandbox, social sharing, economy, multi-train, terrain, or upgrade system into this scope.
 
 ---
 
