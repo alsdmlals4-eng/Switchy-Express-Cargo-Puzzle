@@ -5,8 +5,11 @@ const COPY_PATH := "res://data/localization/route_book_01_v1.json"
 const LOCALES: Array[String] = ["ko", "en", "ja", "zh-Hans"]
 const KEYS: Array[StringName] = [
 	&"SX_RB_STAGE_BOOK",
+	&"SX_RB_SELECT_STAGE",
 	&"SX_RB_BACK",
+	&"SX_RB_BEGIN",
 	&"SX_RB_NEXT_STAGE",
+	&"SX_RB_PROGRESS",
 	&"SX_RB01_TITLE",
 	&"SX_RB01_OBJECTIVE",
 	&"SX_RB06_TITLE",

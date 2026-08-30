@@ -70,6 +70,11 @@ custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 text = "데모 시작"
 
+[node name="StageBookButton" type="Button" parent="TitleScreen/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "스테이지 북 01"
+
 [node name="ControlsButton" type="Button" parent="TitleScreen/Panel/Content"]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
@@ -111,6 +116,45 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 text = "닫기"
+
+[node name="RouteBookScreen" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="RouteBookScreen"]
+custom_minimum_size = Vector2(700, 480)
+layout_mode = 2
+theme_type_variation = &"ShellPanel"
+
+[node name="Content" type="VBoxContainer" parent="RouteBookScreen/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="RouteBookScreen/Panel/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "스테이지 선택"
+horizontal_alignment = 1
+
+[node name="StageScroll" type="ScrollContainer" parent="RouteBookScreen/Panel/Content"]
+custom_minimum_size = Vector2(620, 300)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="StageList" type="VBoxContainer" parent="RouteBookScreen/Panel/Content/StageScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="BackButton" type="Button" parent="RouteBookScreen/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "타이틀로"
 
 [node name="BriefingScreen" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -320,3 +364,19 @@ custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "타이틀로"
+
+[node name="RouteBookActions" type="HBoxContainer" parent="ResultOverlay/Panel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="StageBookButton" type="Button" parent="ResultOverlay/Panel/Content/RouteBookActions"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "스테이지 북 01"
+
+[node name="NextStageButton" type="Button" parent="ResultOverlay/Panel/Content/RouteBookActions"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "다음 스테이지"

@@ -5,6 +5,7 @@
     "SX_RB_STAGE_BOOK": {"ko": "스테이지 북 01", "en": "Stage Book 01", "ja": "ステージブック 01", "zh-Hans": "关卡手册 01"},
     "SX_RB_SELECT_STAGE": {"ko": "스테이지 선택", "en": "Select a Stage", "ja": "ステージを選ぶ", "zh-Hans": "选择关卡"},
     "SX_RB_BACK": {"ko": "타이틀로", "en": "Back to Title", "ja": "タイトルへ", "zh-Hans": "返回标题"},
+    "SX_RB_BEGIN": {"ko": "건설 시작", "en": "Begin Building", "ja": "建設を始める", "zh-Hans": "开始建设"},
     "SX_RB_NEXT_STAGE": {"ko": "다음 스테이지", "en": "Next Stage", "ja": "次のステージ", "zh-Hans": "下一关"},
     "SX_RB_PROGRESS": {"ko": "스테이지 북 01 · {current} / {total}", "en": "Stage Book 01 · {current} / {total}", "ja": "ステージブック 01 · {current} / {total}", "zh-Hans": "关卡手册 01 · {current} / {total}"},
     "SX_RB01_TITLE": {"ko": "역 옆의 선로", "en": "Track Beside the Station", "ja": "駅のとなりの線路", "zh-Hans": "车站旁的轨道"},

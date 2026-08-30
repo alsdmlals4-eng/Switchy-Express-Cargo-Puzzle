@@ -1,0 +1,24 @@
+{
+  "definition_schema_version": 3,
+  "map_id": "RB06_PORT_CIRCUIT",
+  "map_revision": 1,
+  "ruleset_version": "fp_core_v2",
+  "marker_tracks_player_built": true,
+  "allow_open_terminals_after_required": true,
+  "board_size": [15, 11],
+  "start_cell": [1, 5],
+  "incoming_cell": [0, 5],
+  "time_limit_seconds": 165.0,
+  "buildable_rects": [{"minimum": [1, 1], "maximum": [13, 9]}],
+  "blocked_cells": [[6, 3], [8, 3], [6, 7], [8, 7]],
+  "station_placements": [
+    {"cell": [12, 2], "cargo_type": "RED_STAR"},
+    {"cell": [12, 5], "cargo_type": "YELLOW_TRIANGLE"},
+    {"cell": [12, 8], "cargo_type": "BLUE_DIAMOND"}
+  ],
+  "cargo_placements": [
+    {"cell": [4, 5], "cargo_type": "BLUE_DIAMOND"},
+    {"cell": [7, 4], "cargo_type": "YELLOW_TRIANGLE"},
+    {"cell": [9, 7], "cargo_type": "RED_STAR"}
+  ]
+}

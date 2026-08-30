@@ -1,0 +1,22 @@
+{
+  "definition_schema_version": 3,
+  "map_id": "RB02_REVERSE_ORDER",
+  "map_revision": 1,
+  "ruleset_version": "fp_core_v2",
+  "marker_tracks_player_built": true,
+  "allow_open_terminals_after_required": true,
+  "board_size": [11, 7],
+  "start_cell": [1, 3],
+  "incoming_cell": [0, 3],
+  "time_limit_seconds": 105.0,
+  "buildable_rects": [{"minimum": [1, 1], "maximum": [10, 5]}],
+  "blocked_cells": [],
+  "station_placements": [
+    {"cell": [7, 1], "cargo_type": "RED_STAR"},
+    {"cell": [9, 5], "cargo_type": "BLUE_DIAMOND"}
+  ],
+  "cargo_placements": [
+    {"cell": [3, 3], "cargo_type": "BLUE_DIAMOND"},
+    {"cell": [5, 3], "cargo_type": "RED_STAR"}
+  ]
+}

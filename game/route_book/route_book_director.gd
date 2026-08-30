@@ -46,10 +46,18 @@ func stage_count() -> int:
 	return _stage_ids.size()
 
 
-func current_stage() -> Dictionary:
+func stage_ids() -> Array[StringName]:
+	return _stage_ids.duplicate()
+
+
+func stage(stage_id: StringName) -> Dictionary:
 	if _definition == null:
 		return {}
-	return _definition.stage(current_stage_id())
+	return _definition.stage(stage_id)
+
+
+func current_stage() -> Dictionary:
+	return stage(current_stage_id())
 
 
 func has_next_stage() -> bool:
