@@ -110,6 +110,8 @@ git commit -m "docs: define core board v02 image candidates"
 
 **Files:**
 - Create outside the repository first: thirteen built-in image-model outputs, one per `SX-VIS-063-CORE-*` candidate ID.
+- Create: `tools/prepare_sx_dec_063_core_board_asset.gd`
+- Create: `tests/python/test_prepare_sx_dec_063_core_board_asset.py`
 - Modify after inspection only: `docs/visual-references/sx-dec-063-core-board-v02/CORE_BOARD_V02_CANDIDATE_RECORD.md`
 
 **Interfaces:**
@@ -120,7 +122,11 @@ git commit -m "docs: define core board v02 image candidates"
 
 Use the built-in Image Generation tool thirteen times. Include only `docs/visual-references/human-game-blueprint/r02/sx-hgb-vis-004-rail-station-language-candidate.png` as a local style-reference image. Do not request a sheet, collage, text, or pre-composed screen.
 
-- [ ] **Step 2: Inspect each native image and game-scale reduction**
+- [ ] **Step 2: Create the repeatable candidate-preview resampling utility**
+
+Create `tools/prepare_sx_dec_063_core_board_asset.gd` as a Godot command-line utility before inspecting a candidate. It must accept an image-model input path, an output path, an exact width, and an exact height; load through `Image`, resize with `Image.INTERPOLATE_LANCZOS`, preserve alpha, and save a PNG. It must fail with a non-zero exit if an input cannot be loaded, if a target dimension is non-positive, if the output write fails, or if the written image dimensions do not exactly match the requested dimensions. The utility is packaging only: it may scale an image-model output, but must not draw, paint, synthesize, vectorize, or alter its content.
+
+- [ ] **Step 3: Inspect each native image and game-scale reduction**
 
 For each candidate, verify all of the following before it can be shown as a final candidate:
 
@@ -136,7 +142,7 @@ train is a short locomotive, not a wagon or long train
 object remains readable at its 64×64 or 128×96 target footprint
 ```
 
-- [ ] **Step 3: Run the candidate-only adversarial review**
+- [ ] **Step 4: Run the candidate-only adversarial review**
 
 Record five results in the candidate record:
 
@@ -150,11 +156,11 @@ Record five results in the candidate record:
 
 Any candidate that fails one check receives one targeted regeneration prompt that changes only the observed failure, then repeats all five checks.
 
-- [ ] **Step 4: Show the assembled candidate bundle to the user**
+- [ ] **Step 5: Show the assembled candidate bundle to the user**
 
 Present all selected candidates with their target paths and state each as `GENERATED_CANDIDATE · NOT_RUNTIME_ASSET`. Do not copy them into `art/product_assets/`, change a renderer path, or claim runtime validation.
 
-- [ ] **Step 5: Stop for the final visual-pixel disposition**
+- [ ] **Step 6: Stop for the final visual-pixel disposition**
 
 Proceed only when the user explicitly approves the assembled Core Board v02 bundle. A request to continue implementation is not treated as approval of pixels not yet generated.
 
@@ -253,15 +259,11 @@ Keep this checkpoint uncommitted until the final image bundle is selected and th
 - Consumes: the final user-approved image bundle and the failing assertions from Task 3.
 - Produces: locally tracked original v02 source binaries with a complete provenance/consumer contract, but still no changed renderer path until Task 5.
 
-- [ ] **Step 1: Create the repeatable Godot resampling utility before placing final source bytes**
-
-Create `tools/prepare_sx_dec_063_core_board_asset.gd` as a Godot command-line utility. It must accept the image-model output path, final output path, exact width, and exact height; load through `Image`, resize with `Image.INTERPOLATE_LANCZOS`, preserve alpha, and save a PNG. It must fail with a non-zero exit if an input cannot be loaded, if a target dimension is non-positive, if the output write fails, or if the written image dimensions do not exactly match the requested dimensions. The utility is packaging only: it may scale an approved image-model output, but must not draw, paint, synthesize, vectorize, or alter its content.
-
-- [ ] **Step 2: Create final dimensions from the selected image-model outputs**
+- [ ] **Step 1: Create final dimensions from the selected image-model outputs**
 
 For every approved candidate, use the Task 1 target path as the resampling output and its declared 64×64 or 128×96 size. The source object must remain centered and readable at the declared target footprint; any source that fails the Task 2 check is regenerated rather than manually painted or vector-redrawn. Keep the selected native image-model output outside `art/product_assets/` as candidate evidence, and save only the deterministic scaled final binary to the production target.
 
-- [ ] **Step 3: Import through Godot without source-metadata edits**
+- [ ] **Step 2: Import through Godot without source-metadata edits**
 
 Run:
 
@@ -271,15 +273,15 @@ Run:
 
 Expected: each final PNG receives a Godot texture import descriptor. If the editor rewrites an unrelated tracked `.import` file only for line endings, restore that unrelated file before staging; do not commit it.
 
-- [ ] **Step 4: Write complete asset manifest entries**
+- [ ] **Step 3: Write complete asset manifest entries**
 
 Set `manifest.json` status to `APPROVED_GITHUB_PRESERVED_RUNTIME_PENDING`. Include fourteen entries: the existing `SX-BOARD-TERRAIN-002` plus every Task 3 asset ID. Each entry contains `path`, dimensions, SHA-256 from the exact final bytes, `visual_role`, `runtime_consumer`, `consumer_status: PENDING_RENDERER_PATH`, `source_candidate_id`, `user_approval_ref`, and `runtime_connection_status: NOT_CONNECTED`.
 
-- [ ] **Step 5: Record exact provenance and review disposition**
+- [ ] **Step 4: Record exact provenance and review disposition**
 
 For each new asset, record the built-in image-model service, the full prompt, HGB r02 style-reference role, input-rights statement, no-third-party-source statement, final file SHA-256, dimensions, target consumer, user approval message, and `APPROVED_GITHUB_PRESERVED_RUNTIME_PENDING` in both provenance owners. State clearly that the reference sheet was not embedded, cropped, or shipped.
 
-- [ ] **Step 6: Re-run the red tests and classify failures**
+- [ ] **Step 5: Re-run the red tests and classify failures**
 
 Run the Task 3 commands again.
 
