@@ -49,6 +49,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Read post-060 candidate status
+        id: post060_candidate
+        shell: powershell
+        run: |
+          $pointer = Get-Content -LiteralPath 'evidence/acceptance/post_sx_dec_060_candidate.json' -Raw -Encoding UTF8 | ConvertFrom-Json
+          "candidate_status=$([string]$pointer.candidate_status)" >> $env:GITHUB_OUTPUT
+
       - name: Parse historical and post-060 PowerShell launchers
         shell: powershell
         run: |
@@ -89,6 +96,7 @@ jobs:
             -WorkDir (Join-Path $env:RUNNER_TEMP 'switchy-historical-candidate-003')
 
       - name: Verify post-060 candidate package without launch
+        if: steps.post060_candidate.outputs.candidate_status != 'NOT_CREATED'
         shell: powershell
         env:
           GH_TOKEN: ${{ github.token }}

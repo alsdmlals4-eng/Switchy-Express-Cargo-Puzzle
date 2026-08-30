@@ -123,6 +123,12 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertIn("Verify post-060 explicit candidate contract", text)
         self.assertIn("Verify post-060 candidate package without launch", text)
         self.assertIn("-ContractCheck", text)
+        self.assertIn("id: post060_candidate", text)
+        self.assertIn("candidate_status=", text)
+        self.assertIn(
+            "steps.post060_candidate.outputs.candidate_status != 'NOT_CREATED'",
+            text,
+        )
         self.assertIn("switchy-post-060-candidate-002", text)
         self.assertIn("evidence/acceptance/sx60_poc_accept_*_artifact.json", text)
         self.assertIn("SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_*.md", text)
