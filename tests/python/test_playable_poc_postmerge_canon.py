@@ -38,7 +38,7 @@ class PlayablePocPostMergeCanonTests(unittest.TestCase):
 
     def test_current_decision_and_gates_route_post_060_work(self) -> None:
         decisions = CURRENT_DECISIONS.read_text(encoding="utf-8")
-        self.assertIn("current_decision_span: SX-DEC-027~066", decisions)
+        self.assertIn("current_decision_span: SX-DEC-027~067", decisions)
         self.assertIn("SX-DEC-060", decisions)
         self.assertIn("SX-DEC-061", decisions)
         self.assertIn("SX-DEC-063", decisions)

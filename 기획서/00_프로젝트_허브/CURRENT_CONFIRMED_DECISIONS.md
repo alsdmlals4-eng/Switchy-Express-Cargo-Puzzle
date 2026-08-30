@@ -9,7 +9,7 @@ Last updated: `2026-08-31 KST`
 - **Core rule:** authored `CAUTION_TRACK` departure segments use one fixed `0.55` speed multiplier; this is not retired cargo-count slowdown.
 - **Cargo rule:** `WASTE_CRATE` unloads only at an off-track cardinal-adjacent `DISPOSAL_YARD`; LIFO/TOP and ordinary stations remain unchanged.
 - **Content rule:** Route Book 02 contributes six optional authored stages; T1–T6, VS_DEMO_01, Route Book 01, score/progression, generators, and solution reveal remain out of scope.
-- **Evidence:** local Godot full regression `PASS · 120 cases / 14,047 assertions`; current-worktree Hera runtime observed title → book selector → Route Book 02 and RB12 build board. `docs/operations/2026-08-31-sx-dec-067-local-machine-runtime-verification.md` owns the exact local receipt.
+- **Evidence:** local Godot full regression `PASS · 120 cases / 14,053 assertions`; current-worktree Hera runtime observed title → book selector → Route Book 02 and RB12 build board. `docs/operations/2026-08-31-sx-dec-067-local-machine-runtime-verification.md` owns the exact local receipt.
 - **Asset state:** 8 bitmap files are `GENERATED_CANDIDATE · RUNTIME_CONNECTED · NOT_CANON · USER_PIXEL_REVIEW_PENDING`, with SHA-256 and exact consumers in `art/product_assets/ed_hybrid_v2/manifest.json` and `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`.
 - **Ceiling:** Candidate 006 is historical for these changed bytes. No post-change package, remote CI/merge, physical/device/audio, human, final-user-review, or release claim is transferred.
 
@@ -21,7 +21,7 @@ Last updated: `2026-08-31 KST`
 
 ```yaml
 current_product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060
-current_decision_span: SX-DEC-027~066
+current_decision_span: SX-DEC-027~067
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0

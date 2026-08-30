@@ -1,6 +1,6 @@
 # Development Gates
 
-Last updated: `2026-08-30 KST`
+Last updated: `2026-08-31 KST`
 
 현재 실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 우선한다. 과거 commit/PR/run은 역사 evidence이며 current next action을 자동 정의하지 않는다.
 
@@ -12,9 +12,10 @@ work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~066
-current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · SX_DEC_066_ROUTE_BOOK_01 · SX60_POC_ACCEPT_006_MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN
+current_decisions: SX-DEC-027~067
+current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · SX_DEC_066_ROUTE_BOOK_01 · SX_DEC_067_WAYSIDE_HAZARDS_ROUTE_BOOK_02_LOCAL_MACHINE_RUNTIME_VERIFIED · PR_263_CI_REPAIR_IN_PROGRESS · FINAL_USER_REVIEW_NOT_RUN
 sx_dec_066_merged_gate: MERGED_MAIN_VERIFIED · PR_260 · main_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · hosted_CI_package_candidate_complete · final_user_review_NOT_RUN
+sx_dec_067_delivery_gate: PR_263_OPEN · LOCAL_GODOT_120_CASES_14053_ASSERTIONS_PASS · REMOTE_CI_REPAIR_IN_PROGRESS · package_candidate_NOT_MINTED · final_user_review_NOT_RUN
 ```
 
 ## 1. Stable historical implementation evidence

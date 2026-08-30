@@ -53,7 +53,7 @@ project_base_compatibility_pin: v9.4.3
 project_base_pin_role: HISTORICAL_COMPATIBILITY_AND_PROJECT_ADOPTION_EVIDENCE
 base_current_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
-current_decision_span: SX-DEC-027~066
+current_decision_span: SX-DEC-027~067
 ```
 
 `Base v9.4.3` pin은 과거 project compatibility evidence일 뿐 current Base 실행 방법론 pin이 아니다.
