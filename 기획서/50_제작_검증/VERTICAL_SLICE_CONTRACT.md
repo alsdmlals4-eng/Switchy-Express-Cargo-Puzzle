@@ -203,7 +203,7 @@ PR #83은 **역사적으로 병합 완료**된 Vertical Slice PR이며 현재 Dr
 4. GitHub 정본·correct Google Sheet sync
 5. 실행하지 않은 physical/device/human Gate를 PASS로 확대하지 않음
 
-PR merge는 store production cutover가 아니다. Windows physical runtime, Android Device Smoke, Five-person Comprehension, release signing·store evidence는 별도 Gate다.
+PR merge는 store production cutover가 아니다. `SX-DEC-065`의 `MACHINE_PRIMARY_FINAL_USER_REVIEW`에 따라 deterministic/runtime/export/package/CI evidence가 primary acceptance route다. Windows physical/audio는 `FINAL_USER_REVIEW_ONLY`, Android Device Smoke는 target-in-scope machine/device compatibility gate이며, `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED`와 `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED`는 mandatory gate가 아니다. Release signing·store evidence remains separately owned.
 
 ## 11. Current Conclusion
 
@@ -216,7 +216,9 @@ PC FULL LOCAL FLOW: NOT_CLOSED · RETEST_REQUIRED
 WINDOWS ARTIFACT RUNTIME: NOT_RUN
 ANDROID APK EXPORT: PASS · PACKAGING/HASH EVIDENCE
 ANDROID DEVICE SMOKE: NOT_RUN
-FIVE-PERSON COMPREHENSION: NOT_RUN
+FIVE-PERSON COMPREHENSION: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+PLAYER EXPERIENCE STUDY: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+FINAL USER REVIEW: NOT_RUN · FINAL_USER_REVIEW_ONLY
 SX-DEC-055 RUNTIME SEMANTIC POC: SPEC/DoR APPROVED · USER_DEFERRED_AFTER_DOR · IMPLEMENTATION_NOT_STARTED
 CONNECTED PHYSICAL EDITOR: NOT_RUN
 PRODUCTION CUTOVER: BLOCKED_DEFERRED

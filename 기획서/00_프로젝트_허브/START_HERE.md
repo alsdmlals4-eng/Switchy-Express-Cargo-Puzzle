@@ -9,7 +9,7 @@ Last updated: `2026-08-29 KST`
 | 항목 | 현재 값 |
 |---|---|
 | 제품 기준선 | `GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060` |
-| 결정 범위 | `SX-DEC-027~064` |
+| 결정 범위 | `SX-DEC-027~065` |
 | 작업지시문 | `v4.8 · revision 2026-08-26-r5.4-superset-final · Switchy thin adapter` |
 | 작업지시문 역할 | `USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT` |
 | current project adapter | `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md` |
@@ -24,13 +24,15 @@ Last updated: `2026-08-29 KST`
 | station representation | `OFF_TRACK_SERVICE_OBJECT · station cell player rail forbidden` |
 | image requirement | `0 new bitmap · reuse existing station PNG consumers + procedural service overlay` |
 | pre-060 Candidate 003 | `SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY after SX-DEC-060` |
-| post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · source main 58b99f261c3576150ab275bb041d744c69b83538 · package-only evidence` |
+| post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · SX60-POC-ACCEPT-004 is HISTORICAL_PRE_V04_PRODUCT_BYTES · mint SX60-POC-ACCEPT-005 before MACHINE_PRIMARY acceptance` |
 | SX60 Candidate 001 | `HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE · hashes/PCK preserved` |
 | post-060 automated regression | `PASS · 111 cases / 13,461 assertions · CI 7 GREEN · SX-AUD-071 CLOSED` |
 | post-060 Windows physical | `HISTORICAL_AUTOMATION_OBSERVED_INITIAL_TITLE_AND_BUILD_ENTRY · CURRENT_EXACT_CANDIDATE_004_PACKAGE_VERIFIED_HUMAN_PHYSICAL_NOT_RUN · full human/runtime gate NOT_RUN` |
 | post-060 Android device | `NOT_RUN` |
-| post-060 five-person | `NOT_RUN` |
-| Player experience | `NOT_RUN` |
+| validation strategy | `SX-DEC-065 · MACHINE_PRIMARY_FINAL_USER_REVIEW` |
+| post-060 five-person | `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` |
+| Player experience | `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED` |
+| final user review | `FINAL_USER_REVIEW · NOT_RUN · exact candidate required` |
 | Production cutover | `BLOCKED_DEFERRED` |
 | SX-DEC-056A | `PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED` |
 | SX-DEC-056B | `BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME` |
@@ -175,13 +177,13 @@ SX-DEC-063 terrain v02 is GitHub-preserved; v01 remains the live runtime path
 → the only authorized product mutation is the terrain-only Phase 2 runtime handoff
 → separately, Issue #246 records a planning-only core-system board candidate; it has no runtime consumer or implementation scope
 → only after the Phase 2 handoff is executed and validated, interpret a new exact runtime/package candidate
-→ Phase 5 user-validation continuation remains a separate later gate
+→ SX-DEC-065 machine-primary candidate validation is the current gate
 → current Playtest authority corrects old 055/059/validation-APK status to historical
-SX60-POC-ACCEPT-004 exact package verified; Candidates 002/003 remain prior-byte evidence only
-→ Windows physical smoke + audio perceptual QA
-→ exact post-060 Android APK identity assignment + Android device smoke
-→ Five-person first-contact comprehension
-→ product decision
+SX60-POC-ACCEPT-004 exact package is historical for the v04 byte set; Candidates 002/003 remain prior-byte evidence only
+→ new immutable exact candidate + deterministic/Godot/export/package/CI machine verification
+→ MACHINE_PRIMARY acceptance decision
+→ FINAL_USER_REVIEW only if the user requests final inspection
+→ FIVE_PERSON_COMPREHENSION_NOT_REQUIRED / PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED
 ```
 
 Current evidence ceiling is `RUNTIME_MERGED_MAIN_VERIFIED / AUTOMATED_PASS / FIVE_PASS_REVIEW_CLOSED`. Package, physical, device, human, and player-experience PASS for SX-DEC-060 are not yet available.

@@ -12,8 +12,8 @@ work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~064
-current_product_gate: SX_DEC_064_EXACT_PACKAGE_CANDIDATE_VERIFIED · WINDOWS_PHYSICAL_AUDIO_PENDING
+current_decisions: SX-DEC-027~065
+current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · EXACT_CANDIDATE_005_MACHINE_VALIDATION_PENDING
 ```
 
 ## 1. Stable historical implementation evidence
@@ -47,11 +47,13 @@ This one presentation slice may modify only the named palette/theme/HUD/shell/bo
 
 The implementation demonstrated RED→GREEN tests, exact-head static/Godot checks, a no-new-asset/no-gameplay-delta review, and an exact-main package candidate. `SX60-POC-ACCEPT-002` and `SX60-POC-ACCEPT-003` cannot validate the SX-DEC-064 bytes; `SX60-POC-ACCEPT-004` is current package evidence only and does not pass a physical/human gate.
 
-Stable physical/human anchors remain:
+Stable historical physical/human anchors remain:
 
 ```text
-ANDROID DEVICE SMOKE: NOT_RUN
-FIVE-PERSON COMPREHENSION: NOT_RUN
+ANDROID DEVICE SMOKE: NOT_RUN · MACHINE/DEVICE_COMPATIBILITY_IF_TARGETED
+FIVE-PERSON COMPREHENSION: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+PLAYER EXPERIENCE STUDY: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+FINAL USER REVIEW: NOT_RUN · FINAL_USER_REVIEW_ONLY
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
 
@@ -296,22 +298,21 @@ Minimum complete loops after implementation:
 
 Any finding is fixed and the affected full loop is repeated. `CLEAN_REVIEW_EXIT` is unavailable before all five loops are clean on exact head.
 
-## 13. Post-implementation package / physical gate
+## 13. SX-DEC-065 exact package / machine-primary gate
 
 Blocked until S60-1~10 are complete.
 
 ```text
-SX60-POC-ACCEPT-004 exact package verified (source main 58b99f261c3576150ab275bb041d744c69b83538)
-→ package verification PASS → Windows full physical smoke
-→ audio perceptual QA
-→ exact post-060 Android APK identity assignment + Android device smoke
-→ Five-person first-contact comprehension
-→ player-experience decision
+SX60-POC-ACCEPT-004 exact package is historical for the v04 byte set
+→ mint a new immutable exact candidate
+→ deterministic contract + Godot/runtime/export/package/CI verification
+→ MACHINE_PRIMARY acceptance decision
+→ FINAL_USER_REVIEW on that exact candidate only when requested
 ```
 
-Each gate is independent. Package/CI does not imply physical. Windows does not imply Android. Device does not imply human/player experience.
+Machine evidence does not imply human evidence. `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` and `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED` are not release blockers. Windows physical/audio is `FINAL_USER_REVIEW_ONLY`; Android device remains a separate machine/device compatibility gate if Android is targeted.
 
-Current Base Work mapping: `PHASE_5_USER_VERTICAL_SLICE_VALIDATION · USER_AUTHORIZED_2026-08-28 · WINDOWS_PHYSICAL_AUDIO_EXECUTION_PENDING`. All current Phase 4 machine-executable work is closed; `remaining_machine_executable_required_work: 0`. The receipt is `docs/operations/2026-08-27-sx60-work-five-phase-start-receipt.md` and the current execution plan is `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`; Phase 5 evidence must not be automated or inferred. The historical Android validation APK has no post-060 candidate eligibility; Android remains `BLOCKED_UNVERIFIED` until an exact artifact identity is assigned.
+Current mapping: `PHASE_5_MACHINE_PRIMARY_VALIDATION · USER_APPROVED_2026-08-30 · EXACT_CANDIDATE_005_MACHINE_EVIDENCE_PENDING`. The historical receipt is preserved as prior process evidence. The current execution plan is `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`; its final user review must not be inferred from automation. The historical Android validation APK has no post-060 candidate eligibility.
 
 Fresh-main Godot live machine QA is recorded in `docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md`: exact `main@cf93926` observed title → briefing → build board after machine pointer input, with the official 112-case / 13,480-assertion runner green. This remains machine-runtime evidence only; physical, audio, device, and human gates stay `NOT_RUN`.
 

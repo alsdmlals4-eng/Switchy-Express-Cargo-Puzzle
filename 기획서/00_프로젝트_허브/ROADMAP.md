@@ -10,7 +10,7 @@ work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~064
+current_decisions: SX-DEC-027~065
 ```
 
 The user-approved SX-DEC-060 gameplay amendment changes the efficient next product gate. Pre-SX-DEC-060 Candidate 003 remains historical exact-byte evidence; it is no longer the build to spend the next human acceptance cycle on.
@@ -182,11 +182,14 @@ Actual Godot product implementation is merged-main verified by PR #188; the pack
 
 `CURRENT_NEXT_PRODUCT_GATE · POST_MERGE_PACKAGE_PROOF_AND_CANDIDATE`
 
-Stable sequence:
+Historical package record and current sequence:
 
 ```text
 SX60-POC-ACCEPT-004 exact package verified on main 58b99f2
-→ package proof PASS, then physical/device/human gates
+→ historical pre-v04 package evidence only
+→ mint SX60-POC-ACCEPT-005
+→ machine-primary deterministic/Godot/runtime/export/package/CI validation
+→ final user review only when requested
 ```
 
 ```yaml
@@ -194,7 +197,8 @@ SX_DEC_060_RUNTIME: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62
 FULL_AUTOMATED_REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 FIVE_PASS_REVIEW: CLOSED · SX-AUD-071
 POST_060_PACKAGE: SX60_POC_ACCEPT_004_PREPARED_PACKAGE_VERIFIED · HISTORICAL_SX60_POC_ACCEPT_001_TO_003_PRESERVED
-POST_060_CANDIDATE: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · HUMAN_PHYSICAL_NOT_RUN
+POST_060_CANDIDATE_004: PREPARED_PACKAGE_VERIFIED · HISTORICAL_PRE_V04_PRODUCT_BYTES
+POST_060_CANDIDATE_005: MACHINE_EVIDENCE_PENDING
 ```
 
 ## M6R · Runtime route readability correction
@@ -229,25 +233,22 @@ GitHub Issue #235 and PR #237 implemented the contract in `docs/decisions/SX_DEC
 
 The user-promoted `SX-VIS-063-CANDIDATE-001` is stored at `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png` with exact SHA/provenance. It is a versioned source asset for the proven `ProductBoardRenderer.board_terrain` slot; v01 remains the live runtime path. The next only visual mutation is the terrain-only Phase 2 handoff, which must prove RED→GREEN loading, a same-state 1280×720 BUILD comparison, no geometry/input/semantic change, an exact new package candidate when available, and five clean adversarial loops. No other board or shell image is automatically promoted.
 
-## M6A · Post-060 physical/device/human validation
+## M6A · SX-DEC-065 machine-primary validation
 
-`PHASE_5_USER_VERTICAL_SLICE_VALIDATION · USER_AUTHORIZED_2026-08-28 · WINDOWS_PHYSICAL_AUDIO_EXECUTION_PENDING`
+`MACHINE_PRIMARY_FINAL_USER_REVIEW · USER_APPROVED_2026-08-30 · EXACT_CANDIDATE_005_MACHINE_EVIDENCE_PENDING`
 
-With SX-DEC-062/064 merged and Candidate 004 package verified, the next gates are:
+The v04 runtime-byte change requires a new exact candidate. The current sequence is:
 
 ```text
-Windows full physical smoke
-→ audio perceptual QA
-→ exact post-060 Android APK identity assignment + Android device smoke
-→ Five-person first-contact comprehension
-→ player-experience decision
+immutable exact candidate
+→ deterministic/Godot/runtime/export/package/CI machine verification
+→ MACHINE_PRIMARY acceptance decision
+→ FINAL_USER_REVIEW only when requested
 ```
 
-No pre-060 package/physical evidence automatically transfers. The historical Android validation APK is not an eligible post-060 device artifact.
+`FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` and `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED` are not blockers. Windows physical/audio is `FINAL_USER_REVIEW_ONLY`. Android device compatibility remains an independently recorded machine/device gate if the Android target is in scope; the historical Android validation APK is not eligible.
 
-Current execution plan: `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`.
-
-Base Work five-phase mapping is recorded in `docs/operations/2026-08-27-sx60-work-five-phase-start-receipt.md`: Phase 4 machine closeout is complete with `remaining_machine_executable_required_work: 0`; the remaining gates require actual human/device evidence and do not authorize an automatic next Slice.
+No pre-060 package/physical evidence automatically transfers. Current execution plan: `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`.
 
 ## M7 · Production cutover
 

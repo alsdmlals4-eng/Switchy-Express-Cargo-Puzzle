@@ -1,16 +1,17 @@
-# Phase 5 Human Validation Start and Execution Plan
+# Phase 5 Machine-Primary Validation and Final User Review Plan
 
-> **For the user:** Phase 5 is authorized to start. This document is a validation plan, not runtime proof. Record only observations made on the exact artifact identified below.
+> **For the user:** SX-DEC-065 makes machine verification the primary route. This plan records only exact-candidate evidence and a separately requested final user review; it is not runtime proof by itself.
 
-**Goal:** Validate whether the approved first-session promise is understandable and playable on the current post-SX-DEC-060 product, without changing gameplay, assets, Scenes, Resources, or production scope.
+**Goal:** Produce machine acceptance evidence for the exact current product candidate, then reserve one product-owner final review for the same exact candidate without changing gameplay, assets, Scenes, Resources, or production scope.
 
 **Issue:** #233
-**Current authority:** `GMB-002 · SX-DEC-027~064`, `SX-DEC-060`, `SX-DEC-061`, `SX-DEC-062`, `SX-DEC-064`, `기획서/50_제작_검증/PLAYTEST_PLAN.md`
-**Current candidate:** `SX60-POC-ACCEPT-004` from source `58b99f261c3576150ab275bb041d744c69b83538`
+**Current authority:** `GMB-002 · SX-DEC-027~065`, `SX-DEC-060`, `SX-DEC-061`, `SX-DEC-062`, `SX-DEC-064`, `SX-DEC-065`, `기획서/50_제작_검증/PLAYTEST_PLAN.md`
+**Last verified package candidate:** `SX60-POC-ACCEPT-004` from source `58b99f261c3576150ab275bb041d744c69b83538` · `HISTORICAL_PRE_V04_PRODUCT_BYTES`
+**Current exact candidate:** `NONE · SX60-POC-ACCEPT-005_MINT_PENDING`
 **Candidate pointer:** `evidence/acceptance/post_sx_dec_060_candidate.json`
-**Status at plan creation:** `USER_AUTHORIZED · WINDOWS_PHYSICAL_AUDIO_NOT_RUN · ANDROID_ARTIFACT_ID_UNASSIGNED · FIVE_PERSON_NOT_RUN`
+**Status at plan creation:** `MACHINE_PRIMARY_FINAL_USER_REVIEW · EXACT_CANDIDATE_005_MACHINE_EVIDENCE_PENDING · FINAL_USER_REVIEW_NOT_RUN`
 
-> **SX-DEC-064 boundary:** Candidates 002 and 003 are immutable prior-byte observation/package evidence. Candidate 004 is the sole current package candidate after active-route-lighting. Carry the same evidence sequence forward without promoting any old physical/audio/human field.
+> **SX-DEC-063 v04 boundary:** Candidates 002–004 are immutable prior-byte observation/package evidence. Mint Candidate 005 from the exact current runtime bytes before machine acceptance; never promote any older physical/audio/human field.
 
 ## Player outcome under test
 
@@ -32,8 +33,8 @@ T1 Track Connection
 In scope:
 
 - Current-status correction for Phase 5 documents and historical validation artifacts.
-- One exact Windows physical/audio gate, then an exact Android identity gate, then first-contact human sessions.
-- Behavior-first observation including the cardinal station service rule.
+- One exact immutable candidate and its supported deterministic/runtime/export/package/CI machine verification.
+- A final user review only when the product owner requests it, including the cardinal station service rule when that review is run.
 
 Out of scope:
 
@@ -42,37 +43,28 @@ Out of scope:
 - Reuse of `SX59-POC-ACCEPT-003`, `SX60-POC-ACCEPT-001`, or the old Android validation APK as current post-060 proof.
 - A PASS claim from automation, a package hash, a concept board, a screenshot, or an AI-generated planning image.
 
-## Task 1 — Freeze the exact Windows candidate before observation
+## Task 1 — Freeze the exact candidate before machine validation
 
 **Read first:** `evidence/acceptance/post_sx_dec_060_candidate.json`, `evidence/acceptance/sx60_poc_accept_004_artifact.json`, `기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_04.md`.
 
 - [ ] Use the current pointer; never select an artifact by newest timestamp.
-- [ ] Run the existing current-main launcher only if its contract check resolves Candidate 004:
-
-  ```powershell
-  powershell -ExecutionPolicy Bypass -File .\RUN_SX60_POC_SELF_RUN.ps1 -ContractCheck
-  powershell -ExecutionPolicy Bypass -File .\RUN_SX60_POC_SELF_RUN.ps1
-  ```
-
-- [ ] Before recording observation, verify the launched EXE and PCK against the Candidate 004 hashes in `PLAYTEST_PLAN.md`.
+- [ ] Run only repository-supported deterministic, Godot runner, export, runtime-payload, package-integrity, and CI routes for the chosen exact source head.
+- [ ] Before recording a machine result, verify every artifact hash and workflow head against the candidate evidence owner.
 - [ ] If the artifact is expired, unavailable, hash-mismatched, or its resolved candidate differs, stop with `BLOCKED_IDENTITY`; do not substitute another package.
 
-**Record:** candidate ID, source SHA, observer alias, date/time, display/audio conditions, and a redacted evidence reference.
-**Does not prove:** Android, first-contact comprehension, player experience, or release readiness.
+**Record:** candidate ID, source SHA, executed command/workflow identity, artifact hashes, date/time, and a redacted evidence reference.
+**Does not prove:** a final user review, release readiness, or any unrun Android physical-device result.
 
-## Task 2 — Windows full physical smoke and audio perceptual QA
+## Task 2 — Machine acceptance decision
 
 **Prerequisite:** Task 1 identity is exact.
-**Success condition:** A human observer completes the representative T1→T6→capstone/result journey without a blocking launch, input, visual, or audio defect, while recording individual observations rather than a blanket PASS.
+**Success condition:** all applicable exact-head machine owners pass without a claim beyond their evidence ceiling.
 
-- [ ] Start at title, enter briefing and BUILD, and confirm primary pointer/keyboard controls respond.
-- [ ] Complete T1 preflight correction without a hidden command.
-- [ ] At T2, distinguish cargo same-cell pickup from station cardinal-adjacent service. Verify that station footprint and diagonal expectation do not silently deliver.
-- [ ] Continue through LIFO/TOP, selective load, Auto ON/OFF, and switch occupied-lock lessons; reach a capstone result and use Retry or Edit where the outcome calls for it.
-- [ ] Listen for essential feedback at title, briefing, BUILD, RUN, pickup/unload, route/switch, and success/failure. Record silence, masking, wrong causal cue, distortion, or unacceptable level as an observation; do not infer audio from a capture.
-- [ ] Record any crash, input loss, raw key, unreadable primary cue, or contradiction between visual feedback and gameplay as `FAIL` or `BLOCKED`, not as a cosmetic note.
+- [ ] Preserve the full Godot runner, focused Python contracts, export/package proof, package/PCK audit, and hosted required checks as separate named evidence.
+- [ ] Verify the T1→T6→capstone/result contract at the actual runtime consumer boundary; do not substitute a mockup or documentation-only assertion.
+- [ ] Mark unsupported or unavailable physical-device routes `NOT_RUN` or `BLOCKED_UNVERIFIED`, never `PASS`.
 
-**Evidence ceiling after this task:** at most `WINDOWS_PHYSICAL_AND_AUDIO_REVIEWED`; Android and human/player gates remain separate.
+**Evidence ceiling after this task:** `MACHINE_PRIMARY_ACCEPTANCE_REVIEWED`; it is not a human or release pass.
 
 ## Task 3 — Assign a post-060 Android artifact before device testing
 
@@ -83,15 +75,15 @@ Out of scope:
 - [ ] Create or adapt an Android runbook only after those facts exist; it must include T2 cardinal service, the current first-session flow, landscape touch/readability, and privacy-safe evidence fields.
 - [ ] Perform physical-device smoke only on that identity. Emulator, package JSON, or Windows observation cannot substitute for it.
 
-## Task 4 — Five-person first-contact comprehension
+## Task 4 — Final user review (not a five-person study)
 
-**Prerequisites:** reviewed Windows physical/audio result, exact Android artifact/device gate if the study is Android-targeted, and no unresolved P0/P1 issue that invalidates the session.
+**Prerequisite:** machine acceptance decision and a named exact candidate.
 
-- [ ] Recruit at least five people without exposure to the exact tested build. Use aliases only.
-- [ ] Use the neutral opening and behavior/prediction/explanation fields in `PLAYTEST_PLAN.md`; never coach the route, stack, switch, or station rule.
-- [ ] Require `FS-02A`: before outcome, the participant distinguishes cargo same-cell contact from station cardinal service and does not expect diagonal/footprint delivery.
-- [ ] Apply the existing 4/5 threshold and all `HUM` gates, including new `HUM-02A`. `INTERVENTION_CONTAMINATED` is not independent PASS evidence.
-- [ ] Preserve private recordings outside the public repository; commit only a minimized, redacted result record after evidence/privacy review.
+- [ ] Run only when the user asks for final inspection; do not schedule a five-person comprehension study.
+- [ ] Record the exact candidate, what the user actually inspected, and any decision/finding without inflating it into research evidence.
+- [ ] A user-reported blocking defect routes to the earliest affected machine/implementation owner and requires a new exact candidate after product bytes change.
+
+`FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` and `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED` remain explicit. A final user review is `FINAL_USER_REVIEW`, not a substitute label for unrun human research.
 
 ## Documentation correction and learning record
 

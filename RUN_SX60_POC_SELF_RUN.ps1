@@ -27,6 +27,10 @@ $Pointer = Get-Content -LiteralPath $PointerPath -Raw -Encoding UTF8 | ConvertFr
 Assert-Equal ([string]$Pointer.decision_id) "SX-DEC-060" "decision id"
 Assert-Equal ([string]$Pointer.selection_policy) "EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE" "selection policy"
 if ([string]$Pointer.candidate_status -eq "NOT_CREATED") {
+    if ($ContractCheck) {
+        Write-Host "POST_SX_DEC_060_CANDIDATE_CONTRACT: NO_CURRENT_CANDIDATE_MINT_REQUIRED" -ForegroundColor Yellow
+        exit 0
+    }
     throw "POST_SX_DEC_060_CANDIDATE_CONTRACT: no current candidate. Mint a new exact package at minimum_product_source_main before physical, device, or human testing."
 }
 Assert-Equal ([string]$Pointer.candidate_status) "PREPARED_PACKAGE_VERIFIED" "candidate status"

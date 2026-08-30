@@ -18,14 +18,14 @@ class SXDec062Candidate003EvidenceTests(unittest.TestCase):
         self.assertTrue(path.is_file(), f"missing required evidence owner: {path}")
         return json.loads(path.read_text(encoding="utf-8"))
 
-    def test_current_pointer_binds_the_exact_main_export(self) -> None:
+    def test_historical_pointer_preserves_the_exact_main_export(self) -> None:
         pointer = self._json(POINTER)
         artifact = self._json(ARTIFACT)
         audit = self._json(AUDIT)
 
-        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
+        self.assertEqual(pointer["candidate_status"], "NOT_CREATED")
         historical = pointer["historical_superseded_after_sx_dec_064"]
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-004")
+        self.assertIsNone(pointer["current_candidate_id"])
         self.assertEqual(historical["candidate_id"], "SX60-POC-ACCEPT-003")
         self.assertEqual(historical["source_main"], "8bce715b5045afebfb04d38108d2e3f7353e1b10")
         self.assertEqual(

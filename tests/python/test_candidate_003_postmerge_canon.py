@@ -49,7 +49,7 @@ class Candidate003PostmergeCanonTests(unittest.TestCase):
             "role_after_sx_dec_060: HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY",
             "candidate_003_physical_visual_recheck: NOT_RUN",
             "sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED",
-            "current_decision_span: SX-DEC-027~064",
+            "current_decision_span: SX-DEC-027~065",
             "SX-DEC-060",
             "SX-DEC-061",
             "SX-DEC-063",
@@ -75,9 +75,11 @@ class Candidate003PostmergeCanonTests(unittest.TestCase):
         self.assertTrue(POST_060_LAUNCHER.is_file())
         pointer = POST_060_POINTER.read_text(encoding="utf-8")
         launcher = POST_060_LAUNCHER.read_text(encoding="ascii")
-        self.assertIn('\"candidate_status\": \"PREPARED_PACKAGE_VERIFIED\"', pointer)
-        self.assertIn('\"current_candidate_id\": \"SX60-POC-ACCEPT-004\"', pointer)
-        self.assertIn('\"minimum_product_source_main\": \"58b99f261c3576150ab275bb041d744c69b83538\"', pointer)
+        self.assertIn('\"candidate_status\": \"NOT_CREATED\"', pointer)
+        self.assertIn('\"current_candidate_id\": null', pointer)
+        self.assertIn('SX60-POC-ACCEPT-005_MINT_PENDING', pointer)
+        self.assertIn('SX60-POC-ACCEPT-004', pointer)
+        self.assertIn('HISTORICAL_SUPERSEDED_BY_SX_DEC_063_CORE_BOARD_V04_PRODUCT_BYTE_CHANGE', pointer)
         self.assertIn("HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE", pointer)
         self.assertIn("PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE", pointer)
         self.assertIn("HISTORICAL_EXACT_BYTES_ONLY", pointer)

@@ -26,8 +26,8 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         artifact = self._json(ARTIFACT)
         audit = self._json(AUDIT)
 
-        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-004")
+        self.assertEqual(pointer["candidate_status"], "NOT_CREATED")
+        self.assertIsNone(pointer["current_candidate_id"])
         historical = pointer["historical_superseded_after_sx_dec_062"]
         self.assertEqual(historical["candidate_id"], "SX60-POC-ACCEPT-002")
         self.assertEqual(
@@ -100,13 +100,16 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
 
         self.assertNotIn("SX60-POC-ACCEPT-004 · PHYSICAL_PASS", text)
         self.assertIn("sx60_poc_accept_002: SX60-POC-ACCEPT-002 · HISTORICAL_SUPERSEDED_BY_SX_DEC_062", text)
-        self.assertIn("acceptance_build: SX60-POC-ACCEPT-004 · PACKAGE_VERIFIED · NO_HUMAN_OR_PHYSICAL_EVIDENCE", text)
+        self.assertIn(
+            "acceptance_build: SX60-POC-ACCEPT-004 · PACKAGE_VERIFIED · HISTORICAL_CURRENT_POINTER_UNTIL_EXACT_CANDIDATE_005 · NO_HUMAN_OR_PHYSICAL_EVIDENCE",
+            text,
+        )
 
-    def test_active_context_routes_after_startup_observation_to_isolated_self_run(self) -> None:
+    def test_active_context_preserves_candidate_history_and_routes_to_new_machine_candidate(self) -> None:
         text = ACTIVE_CONTEXT.read_text(encoding="utf-8")
 
         self.assertIn(
-            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_58b99f2 · WINDOWS_PHYSICAL_AUDIO_QA_NEXT",
+            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_58b99f2 · HISTORICAL_PRE_V04_PRODUCT_BYTES · EXACT_CANDIDATE_005_MINT_NEXT",
             text,
         )
         self.assertNotIn("HUMAN_PHYSICAL_SELF_RUN_NEXT", text)
@@ -126,7 +129,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
             self.assertTrue((ROOT / relative_path).is_file(), relative_path)
             self.assertNotIn(relative_path, approval["approved_paths"])
 
-    def test_five_phase_receipt_preserves_historical_block_while_active_context_tracks_user_authorization(self) -> None:
+    def test_five_phase_receipt_remains_historical_while_active_context_tracks_machine_primary_policy(self) -> None:
         receipt = FIVE_PHASE_RECEIPT.read_text(encoding="utf-8")
         active_context = ACTIVE_CONTEXT.read_text(encoding="utf-8")
 
@@ -141,14 +144,17 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
             self.assertIn(required, receipt)
 
         self.assertIn(
-            "base_work_current_phase: PHASE_5_USER_VERTICAL_SLICE_VALIDATION · USER_AUTHORIZED · WINDOWS_PHYSICAL_AUDIO_EXECUTION_PENDING",
+            "base_work_current_phase: PHASE_5_MACHINE_PRIMARY_VALIDATION · EXACT_CANDIDATE_005_MINT_AND_MACHINE_EVIDENCE_PENDING",
             active_context,
         )
         self.assertNotIn(
             "base_work_current_phase: PHASE_5_USER_VERTICAL_SLICE_VALIDATION · BLOCKED_USER_VALIDATION",
             active_context,
         )
-        self.assertIn("remaining_machine_executable_required_work: 0", active_context)
+        self.assertIn(
+            "remaining_machine_executable_required_work: NEW_EXACT_CANDIDATE_005_MACHINE_VALIDATION_PENDING",
+            active_context,
+        )
 
     def test_current_main_live_machine_qa_preserves_the_human_evidence_boundary(self) -> None:
         text = LIVE_MACHINE_QA.read_text(encoding="utf-8")

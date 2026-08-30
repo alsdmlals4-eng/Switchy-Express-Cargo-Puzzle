@@ -50,7 +50,7 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
 
         self.assertIn("default_branch: main", active)
         self.assertIn("product_baseline: GMB-002 · AMENDED_BY_SX_DEC_060", active)
-        self.assertIn("current_decisions: SX-DEC-027~064", active)
+        self.assertIn("current_decisions: SX-DEC-027~065", active)
         self.assertIn("sx_dec_059_implementation: MERGED_MAIN_VERIFIED · PRE_SX_DEC_060_RUNTIME", active)
         self.assertIn("pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003", active)
         self.assertIn("candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY", active)
@@ -74,9 +74,12 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
             active,
         )
         self.assertIn(
-            "post_sx_dec_060_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · "
-            "SOURCE_MAIN_58b99f261c3576150ab275bb041d744c69b83538 · PACKAGE_ONLY · "
-            "SX_DEC_064_ACTIVE_ROUTE_LIGHTING_INCLUDED",
+            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · "
+            "SOURCE_MAIN_58b99f2 · HISTORICAL_PRE_V04_PRODUCT_BYTES · EXACT_CANDIDATE_005_MINT_NEXT",
+            active,
+        )
+        self.assertIn(
+            "sx_dec_065_machine_primary_validation: USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW",
             active,
         )
         self.assertIn("PR #174 remains", active)

@@ -107,16 +107,18 @@ sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · schema_v3/cardinal_service
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · EXISTING_ASSET_ONLY
 sx_dec_063: TERRAIN_V02_APPROVED_GITHUB_PRESERVED · RUNTIME_NOT_CONNECTED · ISSUE_243_PHASE2_HANDOFF_READY
+sx_dec_065_validation_policy: USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW
 post_sx_dec_060_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · PACKAGE_ONLY · SX_DEC_064_ACTIVE_ROUTE_LIGHTING_INCLUDED
-windows_physical_post_060: NOT_RUN
-audio_perceptual_post_060: NOT_RUN
+windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
+audio_perceptual_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device_post_060: NOT_RUN
-five_person_comprehension_post_060: NOT_RUN
-player_experience_post_060: NOT_RUN
+five_person_comprehension_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+player_experience_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+final_user_review: FINAL_USER_REVIEW · NOT_RUN · EXACT_CANDIDATE_REQUIRED
 production_cutover: BLOCKED_DEFERRED
 ```
 
-Automated tests, package integrity, asset hashes, or generated-image inspection never prove physical usability, audio perception, device compatibility, comprehension, or player enjoyment.
+Automated tests, package integrity, asset hashes, or generated-image inspection never prove physical usability, audio perception, device compatibility, comprehension, or player enjoyment. Under `SX-DEC-065`, however, those machine owners are the primary acceptance route; `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` and `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED` leave final user inspection as a separately recorded `FINAL_USER_REVIEW`.
 
 ## 8. Current owner map
 

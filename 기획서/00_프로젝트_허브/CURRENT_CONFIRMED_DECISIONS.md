@@ -10,7 +10,7 @@ Last updated: `2026-08-29 KST`
 
 ```yaml
 current_product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060
-current_decision_span: SX-DEC-027~064
+current_decision_span: SX-DEC-027~065
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
@@ -39,11 +39,11 @@ candidate_003_preparation: MERGED_MAIN_VERIFIED · PR #172 · main_2521f3be600ea
 pre_sx_dec_060_candidate_pointer: evidence/acceptance/current_poc_candidate.json
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_AFTER_SX_DEC_060
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_58b99f261c3576150ab275bb041d744c69b83538 · PACKAGE_ONLY · SX_DEC_064_ACTIVE_ROUTE_LIGHTING_INCLUDED
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_58b99f261c3576150ab275bb041d744c69b83538 · HISTORICAL_PRE_V04_PRODUCT_BYTES · EXACT_CANDIDATE_005_MINT_PENDING
 sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 sx60_poc_accept_002: SX60-POC-ACCEPT-002 · HISTORICAL_SUPERSEDED_BY_SX_DEC_062 · PRIOR_BYTE_ISOLATED_VISUAL_INPUT_OBSERVATION_DOES_NOT_TRANSFER
 sx60_poc_accept_003: SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE
-sx60_poc_accept_004: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · PACKAGE_ONLY · PHYSICAL_AUDIO_QA_NEXT
+sx60_poc_accept_004: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · HISTORICAL_SUPERSEDED_BY_SX_DEC_063_CORE_BOARD_V04_PRODUCT_BYTE_CHANGE · EXACT_CANDIDATE_005_MINT_PENDING
 candidate_003_package_integrity: PASS · HISTORICAL_PRE_SX_DEC_060
 candidate_003_pck_integrity: PASS · 472_OF_472 · HISTORICAL_PRE_SX_DEC_060
 candidate_003_product_textures: PASS · 73_OF_73 · HISTORICAL_PRE_SX_DEC_060
@@ -61,15 +61,17 @@ sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5
 sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · CORE_BOARD_V04_CENTERED_PORT_RAILS_MERGED_MAIN_VERIFIED_PR_255_MAIN_2CF7BB5 · TERRAIN_PLUS_9_NON_RAIL_V02_CORE_ASSETS_PLUS_4_V04_MASTER_DERIVED_RAILS · AUTOMATED_MACHINE_RUNTIME_LOCAL_PACKAGE_AND_REMOTE_RUNTIME_BYTE_CI_7_GREEN_PR_255_F00DE19 · EXACT_GITHUB_CANDIDATE_AND_PHYSICAL_HUMAN_GATES_NOT_RUN
 sx_vis_061_core_systems_board: USER_APPROVED_GITHUB_PRESERVED_PLANNING_REFERENCE · ISSUE_246 · docs/visual-references/sx-vis-061-core-systems-board-exploration-002b.png · NO_RUNTIME_CONSUMER · NOT_RUNTIME_PROOF
 sx_dec_064_active_route_lighting: MERGED_MAIN_VERIFIED · ISSUE_248 · PR_249 · main_2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI_7_GREEN · POST_MERGE_GODOT_112_CASES_13513_ASSERTIONS_PASS
+sx_dec_065_machine_primary_validation: USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW · FIVE_SCOPE_ADVERSARIAL_REVIEW_CLOSED · FIVE_PERSON_COMPREHENSION_NOT_REQUIRED · PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED · FINAL_USER_REVIEW_NOT_RUN
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · PR_240 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
 developer_self_run: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_VISUAL_INPUT_OBSERVED_AUDIO_NOT_OBSERVED · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_004
 windows_physical_startup_and_build_entry_automation_observed: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_004
-acceptance_build: SX60-POC-ACCEPT-004 · PACKAGE_VERIFIED · NO_HUMAN_OR_PHYSICAL_EVIDENCE · WINDOWS_PHYSICAL_AUDIO_QA_NEXT
-windows_full_physical_runtime: NOT_RUN_POST_SX_DEC_060
-audio_perceptual_qa: NOT_RUN_POST_SX_DEC_060
+acceptance_build: SX60-POC-ACCEPT-004 · PACKAGE_VERIFIED · HISTORICAL_CURRENT_POINTER_UNTIL_EXACT_CANDIDATE_005 · NO_HUMAN_OR_PHYSICAL_EVIDENCE
+windows_full_physical_runtime: FINAL_USER_REVIEW_ONLY · NOT_RUN
+audio_perceptual_qa: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device: NOT_RUN_POST_SX_DEC_060
-five_person_comprehension: NOT_RUN_POST_SX_DEC_060
-player_experience: NOT_RUN_POST_SX_DEC_060
+five_person_comprehension: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+player_experience: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+final_user_review: FINAL_USER_REVIEW · NOT_RUN · EXACT_CANDIDATE_REQUIRED
 production_cutover: BLOCKED_DEFERRED
 sx_dec_055_runtime_implementation: MERGED_MAIN_VERIFIED · PR_151
 sx_dec_056a: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
@@ -195,6 +197,12 @@ rectangular BUILD/RUN grid and exact input mapping stay
 
 `SX-VIS-063-CANDIDATE-001` terrain plus `SX-VIS-063-CORE-*` are user-promoted at their v02 paths, while user-approved `SX-VIS-063-RAIL-NETWORK-MASTER-003` deterministically supplies the four current v04 rail paths recorded in `art/product_assets/ed_hybrid_v2/manifest.json` (master SHA-256 `f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b`; terrain SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`). The v04 crop rectifies a measured v03 edge-centre mismatch without changing source artwork or gameplay, while the renderer's reviewed non-square quarter-turn fix preserves the target bounds and edge centres after rotation. Its local automated/machine-runtime/local-package evidence and all seven required remote checks for PR #255 runtime-byte head `4d5c5ef09040c36aa064b8b79ddb69443b465877` are recorded; immutable GitHub package candidate, physical Windows/audio, Android device, accessibility, player comprehension, release rights, and cutover remain open. Source master and review captures are excluded from final PCK proofs. It is not a true isometric conversion, gameplay/data/audio/locale/progression change, Human/Player Experience, or release-rights promotion. Notion is retired from this lifecycle by the 2026-08-28 user decision.
 
+## SX-DEC-065 machine-primary validation policy
+
+Canonical owner: `docs/decisions/SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW_VALIDATION_POLICY.md`.
+
+`MACHINE_PRIMARY_FINAL_USER_REVIEW` makes the exact-candidate deterministic/Godot/runtime/export/package/CI route the primary acceptance path. `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` and `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED` replace the old mandatory studies. `FINAL_USER_REVIEW` remains `NOT_RUN` until the user asks to inspect the named exact candidate. Machine evidence never becomes human evidence, and release/platform/right obligations retain their separate owners.
+
 ## SX-DEC-064 active-route lighting
 
 Canonical owner: `docs/decisions/SX_DEC_064_ACTIVE_ROUTE_LIGHTING.md`. Tracking: GitHub Issue #248.
@@ -304,15 +312,15 @@ pre-SX-DEC-060:
 PR #158 implementation → PR #166 playable POC → PR #171 visual correction → PR #172 Candidate 003
 
 current:
-SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063 user-approved Core Board connected-master rail isolated implementation with v04 centred-port correction
+SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063 Core Board v04 centred-port rail correction merged main PR #255
 → SX-DEC-064 active-route lighting merged main PR #249 with exact-head CI 7 green
-→ SX60-POC-ACCEPT-004 exact package verified for merged main 58b99f2
-→ terrain v02 plus nine non-rail v02 core bytes and four v04 centred master-derived rail bytes are in the isolated implementation worktree; existing renderer uses the four v04 rail paths with pre-swapped non-square quarter-turn bounds and no procedural seam
-→ automated renderer/import/Godot tests, formal GUT, live BUILD machine capture, non-writing master-derived-byte verification, local Windows/Android runtime-JSON package proof, and all seven required remote checks for PR #255 runtime-byte head `4d5c5ef09040c36aa064b8b79ddb69443b465877` are verified for v04; immutable GitHub candidate and physical/human evidence remain separate gates for these changed bytes
-→ NoLaunch verification PASS, then Windows physical smoke + audio perceptual QA
-→ Android device smoke
-→ Five-person first-contact comprehension
-→ EXPAND / REWORK / REPEAT_SLICE / HOLD / STOP
+→ SX60-POC-ACCEPT-004 remains historical package evidence for pre-v04 product bytes
+→ SX-DEC-065 USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW
+→ mint a new immutable exact candidate and execute deterministic renderer/import/Godot/GUT/export/package/CI evidence
+→ machine acceptance decision
+→ FINAL_USER_REVIEW only on that exact candidate when requested
+→ Android device compatibility only when the Android target is in scope
+→ FIVE_PERSON_COMPREHENSION_NOT_REQUIRED / PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED
 ```
 
 Candidate 003 Gate 0 is retained as historical pre-060 validation instructions but is no longer the next efficient product gate after the user-approved gameplay change.
