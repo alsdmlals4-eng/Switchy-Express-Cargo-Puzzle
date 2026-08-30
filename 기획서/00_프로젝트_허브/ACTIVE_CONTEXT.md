@@ -74,7 +74,7 @@ sx_dec_062_implementation_plan: docs/superpowers/plans/2026-08-28-board-first-ru
 sx_dec_062_codex_handoff: 기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md
 sx_dec_062_tracking_issue: GitHub_Issue_235
 sx_dec_062_runtime_status: IMPLEMENTED · RED_GREEN_PASS · LOCAL_GODOT_112_CASES_13512_ASSERTIONS · EXACT_HEAD_CI_6_GREEN · NEW_EXACT_CANDIDATE_MINTED
-sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · CORE_BOARD_V03_MASTER_RAILS_IMPLEMENTED_IN_PR_255 · TERRAIN_PLUS_9_NON_RAIL_V02_CORE_ASSETS_PLUS_4_V03_MASTER_DERIVED_RAILS · AUTOMATED_RUNTIME_LIVE_MACHINE_CAPTURE_AND_LOCAL_PACKAGE_VERIFIED · EXACT_GITHUB_CANDIDATE_AND_PHYSICAL_HUMAN_NOT_RUN
+sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · CORE_BOARD_V03_MASTER_RAILS_IMPLEMENTED_IN_PR_255 · TERRAIN_PLUS_9_NON_RAIL_V02_CORE_ASSETS_PLUS_4_V03_MASTER_DERIVED_RAILS · AUTOMATED_RUNTIME_LIVE_MACHINE_CAPTURE_LOCAL_PACKAGE_AND_HOSTED_EXACT_RUNTIME_BYTE_CI_7_GREEN · EXACT_GITHUB_CANDIDATE_AND_PHYSICAL_HUMAN_NOT_RUN
 sx_dec_063_decision_owner: docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md
 sx_dec_063_design_spec: docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production-design.md
 sx_dec_063_core_board_v02_spec: docs/superpowers/specs/2026-08-30-sx-dec-063-core-board-v02-design.md
@@ -312,9 +312,9 @@ SX-DEC-064 active-route-lighting is merged on main through Issue #248 / PR #249 
 → only the currently selected deterministic route is lime-lit; alternate rails stay unlit, lock is a separate crimson overlay, and terminal phases have no predictive route glow
 → this is not a solver, gameplay, map/data, asset, or Notion change
 → SX-DEC-063 Core Board rail correction is implemented in PR #255 after user approval: one connected v03 rail master is preserved and deterministically cropped into four full-cell rail textures; it replaces the short-lived curve/switch seam layer while the v02 terrain plus nine non-rail core assets, translucent BUILD preview, and smaller cargo marker remain
-→ manifest/provenance/import contracts, the full Godot runner (112 cases / 13,548 assertions), formal GUT (21 tests / 152 assertions with validated JUnit), Python regression (223 passed, 1 skipped), live 1280×720 recommended/ghost machine captures, and local Windows debug/Windows+Android runtime-JSON PCK proof are recorded for v03; source master and evidence captures are excluded from export; hosted exact-head checks remain required; v01 and v02 rail files remain tracked rollback
+→ manifest/provenance/import contracts, the full Godot runner (112 cases / 13,548 assertions), formal GUT (21 tests / 152 assertions with validated JUnit), Python regression (223 passed, 1 skipped), live 1280×720 recommended/ghost machine captures, local Windows debug/Windows+Android runtime-JSON PCK proof, and all seven hosted checks for exact runtime-byte head c07e02b are recorded for v03; source master and evidence captures are excluded from export; v01 and v02 rail files remain tracked rollback
 → preserve the rectangular BUILD/RUN grid, gameplay semantics, actual consumer mapping, T2 v02, and Issue #227
-→ local package/export proof is complete for the PR #255 branch; next safe step is current hosted exact-head CI, then record a new exact candidate only from immutable reviewed bytes
+→ local package/export proof and hosted exact runtime-byte CI are complete for the PR #255 branch; next safe step is to record a new exact candidate only from immutable reviewed bytes
 → Candidate 004 remains the package record for merged-main pre-Core-Board-v02 bytes and does not transfer to this player-facing branch
 → Candidates 002–004 are immutable prior-byte evidence; physical Windows/audio, Android, five-person, and player-experience gates remain separate
 → Windows package verification PASS; run Windows physical smoke and audio-perceptual QA before any Phase 5 human evidence claim
