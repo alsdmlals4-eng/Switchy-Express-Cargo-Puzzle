@@ -74,11 +74,11 @@ BUILD a reachable rail route
 | Area | Confirmed state | Evidence ceiling |
 |---|---|---|
 | Finite puzzle semantics | `IMPLEMENTED · AUTOMATED_TEST_PASS` | SX-DEC-060 main merge: 111 cases / 13,461 assertions historical exact run; later current-main regression is 112 cases / 13,513 assertions. Re-run exact current head before a release claim. |
-| Board-first existing-asset composition and active-route lighting | `IMPLEMENTED · AUTOMATED_TEST_PASS` | current main includes SX-DEC-062 and SX-DEC-064; human/device/audio evidence remains `NOT_RUN`. |
-| First session T1–T6 + capstone | `IMPLEMENTED · AUTOMATED_TEST_PASS` | code + test registry; comprehension remains `NOT_RUN`. |
-| Runtime art | Existing 79 tracked product PNGs; renderer has 14 board visual paths | loaded/runtime composition is not UX verification. |
-| SX-VIS-063 terrain v02 | `USER_APPROVED · GITHUB_PRESERVED · RUNTIME_NOT_CONNECTED` | 1672×941 RGB, SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`; a later integration contract is still required. |
-| Windows / Android / audio / five-person / player experience | `NOT_RUN` for current candidate | cannot be inferred from CI, package, screenshot, or asset existence. |
+| Board-first existing-asset composition and active-route lighting | `IMPLEMENTED · AUTOMATED_TEST_PASS` | current main includes SX-DEC-062, SX-DEC-063 v2/v4 core-board integration, and SX-DEC-064; final user review remains `NOT_RUN`. |
+| First session T1–T6 + capstone | `IMPLEMENTED · AUTOMATED_TEST_PASS` | code + test registry; five-person/player-experience studies are not required by SX-DEC-065. |
+| Runtime art | `CORE_BOARD_V02_V04_RUNTIME_CONNECTED` | `ProductBoardRenderer` consumes fourteen v2/v4 board paths: terrain, train, four rails, two markers, three stations, and three cargo tokens. Runtime composition is not UX verification. |
+| SX-VIS-063 core board | `USER_APPROVED · GITHUB_PRESERVED · RUNTIME_CONNECTED` | v2 terrain plus nine v2 non-rail assets and four v04 rail crops were merged by PR #255; Candidate 005 preserves the later exact package evidence. |
+| Windows / Android / audio / final user review | Windows/audio are `FINAL_USER_REVIEW_ONLY · NOT_RUN`; Android is `NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN`; final user review is optional and byte-specific | CI/package evidence cannot become physical or user-review evidence. Five-person and player-experience studies are `NOT_REQUIRED_BY_USER_VALIDATION_POLICY`. |
 
 ## 03. CONFIRMED DECISIONS
 
@@ -256,15 +256,15 @@ Keyboard inputs in `project.godot`: `1–4` tool selection, `R` rotation, primar
 
 | AST ID | Consumer | Current path/size | Status / rule |
 |---|---|---|---|
-| AST-001 | `ProductBoardRenderer.board_terrain` | runtime: `art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png`, 1672×941 | v01 remains current runtime asset until Phase 2 |
-| AST-001A | planned `ProductBoardRenderer.board_terrain` successor | `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png`, 1672×941, SHA `1b8c…45d0d` | SX-VIS-063 user-approved project asset; runtime not connected; Issue #243 |
-| AST-002 | train | `core_train_locomotive_blue_normal_v01.png`, 128×96 | current runtime asset |
-| AST-003 | four rail forms | v01 64×64 | current runtime assets, rotate/pivot compatibility protected |
-| AST-004 | start/route-end markers | v01 64×64 | current runtime assets |
-| AST-005 | red/blue/yellow stations | v01 64×64 | off-track object distinction protected |
-| AST-006 | red/blue/yellow cargo | v01 64×64 | compact token; HUD owns exact stack order |
+| AST-001 | `ProductBoardRenderer.board_terrain` | runtime: `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png`, 1672×941 | user-approved core-board terrain; connected in PR #255 |
+| AST-001A | terrain v01 rollback source | `art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png`, 1672×941 | tracked rollback/provenance; not the selected runtime path |
+| AST-002 | train | `core_train_locomotive_blue_normal_v02.png`, 128×96 | selected v2 runtime asset |
+| AST-003 | four rail forms | `core_rail_*_normal_v04.png`, 64×64 | selected connected-master v04 runtime assets; full-cell rotation/pivot compatibility protected |
+| AST-004 | start/route-end markers | v02 64×64 | selected v2 runtime assets |
+| AST-005 | red/blue/yellow stations | v02 64×64 | selected v2 runtime assets; off-track distinction protected |
+| AST-006 | red/blue/yellow cargo | v02 64×64 | selected v2 runtime assets; compact token and HUD-owned stack order retained |
 | AST-007 | title/lesson/result shells | `ProductShellArt` paths | T2 `shell_lesson_hero_v02.png` and Issue #227 protected |
-| AST-008 | SX-VIS-063-CANDIDATE-001 | 1672×941 generated review candidate | `NOT_RUNTIME_PROOF · NOT_APPROVED · NOT_IN_REPO`; promote only after user decision and later implementation contract |
+| AST-008 | SX-VIS-063-CANDIDATE-001 terrain source | 1672×941 generated source | `HISTORICAL_CANDIDATE_PROMOTED_TO_AST-001`; provenance remains tracked, while the planning-board binary is separately `NOT_RUNTIME_PROOF` |
 
 **Visual grammar:** warm toy-scale miniature railway world; rectangular interaction geometry; elevated 3/4 depth inside asset bounds; rounded silhouettes, soft contact shadow, warm upper-left practical light; dark navy/charcoal control deck with restrained brass. Avoid copied layouts, pseudo-text, currency/score/progression symbols, pure-black pixel outlines, or ornament that hides ports/cells/states.
 
@@ -379,7 +379,7 @@ All state changes must preserve the current finite rule boundary. A future save/
 | Live branch commitment | SYS-006, CNT-T6 | route overlay, state colors/icons | graph + route control overlay + renderer | rail/route visual tests |
 | Learning without new rules | SYS-007, CNT-T1–T6 | briefing, contextual cue | first-session definition/policy/director/copy | first-session/demo flow tests |
 | Retry/Edit learning | SYS-009, CNT-VS01 | result shell and live text | factory retry, presenter/result UI | solution identity/result summary tests |
-| Cozy but precise visual alignment | DEC-SX-061/062/063 | AST-001–008 | current renderer/shell; no candidate integration | assets/CI only; physical/UX NOT_RUN |
+| Cozy but precise visual alignment | DEC-SX-061/062/063 | AST-001–008 | current renderer consumes the promoted v2/v4 core-board paths | assets/CI and Candidate 005 package evidence; physical/final-user review remain separately unrun |
 
 ## 22. TEST AND QA CONTRACT
 
@@ -391,15 +391,14 @@ All state changes must preserve the current finite rule boundary. A future save/
 | QA-004 | first-session teaching/hidden-command policy | `tests/first_session/*`, `tests/demo/test_first_session_*` |
 | QA-005 | board/HUD/route visual contracts | `tests/demo/test_product_board_*`, HUD, semantic asset/runtime suites |
 | QA-006 | package/CI | exact-head GitHub checks; package not human evidence |
-| QA-007 | candidate image mechanical review | dimensions, PNG integrity, center-area composition, prohibited-object visual inspection, future same-state runtime composite |
-| QA-008 | human/game experience | Windows visual/audio, Android, five-person first contact, player experience — all current candidate `NOT_RUN` |
+| QA-007 | promoted core-board image and runtime-path review | dimensions, PNG integrity, provenance, import, renderer path, port alignment, and exact Candidate 005 package evidence |
+| QA-008 | final user / physical evidence | Windows visual/audio and final user review are separately `NOT_RUN`; Android is not required for machine-primary acceptance; five-person/player-experience studies are not required by policy |
 
-### Required manual gate for any visual promotion
+### Final-user-only gate after Candidate 005
 
-1. Composite the candidate only in the named actual board consumer at the same viewport/state as the current baseline.
+1. If the user requests it, inspect only unchanged `SX60-POC-ACCEPT-005` in the named actual board consumer.
 2. Check cell hit testing, rail ports, cargo/station contrast, cardinal-service cue, selected/alternate/locked routes, TOP HUD, clipping and crop.
-3. Run desktop physical/audio smoke, Android landscape smoke, and first-contact comprehension before release claims.
-4. Record failures as cause/evidence/impact, not a generic subjective score.
+3. Record observations as cause/evidence/impact. This optional review neither upgrades machine evidence to human evidence nor reinstates five-person/player-experience studies.
 
 ## 23. VERTICAL SLICE DEFINITION
 
@@ -409,29 +408,24 @@ The active playable slice is `T1 → T2 → T3 → T4 → T5 → T6 → VS_DEMO_
 
 | Risk | Impact | Disposition / next validation |
 |---|---|---|
-| Terrain and existing object material mismatch | visual direction can feel incoherent | TEST SX-VIS-063 candidate only in actual board composite |
+| Terrain and existing object material mismatch | visual direction can feel incoherent | core-board paths are implemented; inspect only during an optional exact-Candidate-005 final user review |
 | Dense diorama border hides gameplay | input/readability regression | protect calm center; inspect at target viewports |
-| Candidate mistakenly treated as runtime asset | provenance and evidence drift | keep `NOT_RUNTIME_PROOF` until explicit promotion + integration |
+| Planning board mistakenly treated as runtime asset | provenance and evidence drift | planning-board binary remains `NOT_RUNTIME_PROOF`; promoted v2/v4 runtime assets remain separately recorded in the manifest and renderer |
 | Full rail-sim feature creep | loses pointed fun and scope | REJECT schedules/economy/maintenance/endless systems |
 | T2 protected asset accidentally replaced | approved lesson regression | maintain `shell_lesson_hero_v02.png` and Issue #227 boundary |
 | Result invents causal information | misleading player feedback | use only current summary/event evidence |
-| CI/payload seen as player evidence | release risk | run physical, audio, device and first-contact gates separately |
+| CI/payload seen as user evidence | evidence inflation | machine evidence remains separate; only the user may request an exact-Candidate-005 final review |
 | Draft PR #174 changes silently absorbed | canon conflict | READ_ONLY; inspect only |
 
 ## 25. USER DECISION REQUIRED
 
-1. **SX-VIS-063-CANDIDATE-001 final disposition:** Approve, revise, or reject the generated terrain candidate. Approval still does **not** integrate it; it authorizes local project promotion/provenance and preparation of a later bounded runtime contract.
-2. **After the complete candidate family and this GDD are reviewed:** authorize or decline the Phase 2 implementation contract. This is the first point at which Godot paths/manifest/import/runtime bytes may be proposed.
-
-No choice is required for confirmed finite rules, T1–T6 structure, PR #174, or protected T2 shell.
+No product decision is required for the connected v2/v4 core board or machine-primary Candidate 005. The only optional user action is a final review of unchanged `SX60-POC-ACCEPT-005`; release, platform, and rights decisions retain their separate owners.
 
 ## 26. IMPLEMENTATION QUEUE
 
-1. Review first terrain candidate at board composite scale; decide APPROVE / REVISE / REJECT.
-2. If approved, create provenance record and versioned local Git-tracked asset; do not change runtime yet. Notion is retired from the workflow.
-3. Produce only remaining proven-consumer candidates with the same visual grammar, reviewing each before promotion.
-4. Create a Phase 2 `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF` covering selected paths, imports, manifest, renderer integration, tests, package and manual evidence.
-5. Implement only that bounded contract using RED-first tests; then new exact package and physical/human gates.
+1. Maintain the merged fourteen-slot v2/v4 core-board map and C5 byte identity; do not silently substitute an earlier candidate.
+2. Run final user review only if explicitly requested, against unchanged Candidate 005.
+3. Treat future visual, release, or platform work as separate user-authorized scopes with their own consumer, implementation, and acceptance records.
 
 ## 27. CHANGE LOG
 
@@ -440,3 +434,4 @@ No choice is required for confirmed finite rules, T1–T6 structure, PR #174, or
 | 2026-08-28 | Initial integrated AI production specification from `origin/main@c20a0b5`; records SX-DEC-063 as planning current and preserves all evidence ceilings. |
 | 2026-08-28 | User workflow amendment recorded: generate actual-consumer image candidates before a promotion decision; final asset promotion remains an explicit user decision. |
 | 2026-08-28 | `SX-VIS-063-CANDIDATE-001` generated as a review-only 1672×941 terrain candidate; no repository path, runtime integration or approval claim made. |
+| 2026-08-30 | Canonical status refreshed: user-approved v2 terrain/non-rail assets and v04 rails are connected through `ProductBoardRenderer`, while Candidate 005 is the machine-primary exact package; historical planning-stage entries above remain historical. |

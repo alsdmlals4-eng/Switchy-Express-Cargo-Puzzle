@@ -1,6 +1,6 @@
 # PROJECT_CORE_SCENE_VISUAL_BOARD
 
-Status: `CURRENT_PLANNING_OWNER · SX-DEC-061/063/064 · SYSTEM_EXPLANATION_CORRECTED · USER_APPROVED_GITHUB_PRESERVED_PLANNING_REFERENCE · NOT_RUNTIME_PROOF · SX-DEC-063_TERRAIN_V02_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED`
+Status: `CURRENT_PLANNING_OWNER · SX-DEC-061/063/064/065 · SYSTEM_EXPLANATION_CORRECTED · USER_APPROVED_GITHUB_PRESERVED_PLANNING_REFERENCE · NOT_RUNTIME_PROOF · SX-DEC-063_CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED_RUNTIME_CONSUMERS_CONNECTED`
 
 This document owns the exact meaning of the planning board. The board image is only an AI-understanding and visual-direction review aid: no panel is a finished runtime asset, Godot screen, Scene, UI implementation, or Human/Player Experience PASS.
 
@@ -102,7 +102,7 @@ SX-DEC-062 maps to a merged existing-asset presentation contract. SX-DEC-063 map
 
 | Consumer family | Requirement | Current production state |
 | --- | --- | --- |
-| BUILD/RUN board terrain, train, rail, markers, stations, cargo | SX-VIS-063-RQ-001 | Terrain v02 is user-approved/GitHub-preserved but not runtime connected; the remaining 13 proposed slots have no generated or approved asset. |
+| BUILD/RUN board terrain, train, rail, markers, stations, cargo | SX-VIS-063-RQ-001 | User-approved terrain v02, nine non-rail v02 assets, and four v04 rail crops are GitHub-tracked and connected to the fourteen runtime slots. This planning-board binary itself remains `NOT_RUNTIME_PROOF`. |
 | Title, shared non-T2 lesson, success/failure result | SX-VIS-063-RQ-002 | 4 proposed versioned slots; deferred until their own candidate generation and final promotion disposition. |
 | Control deck density | SX-VIS-063-RQ-003 | Later code-only implementation review; no new control or system. |
 

@@ -180,7 +180,7 @@ References:
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
 candidate_003_role_after_decision: HISTORICAL_PRE_SX_DEC_060_PHYSICAL_TARGET
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_58b99f261c3576150ab275bb041d744c69b83538 · SX_DEC_062_064_RUNTIME_BYTES
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-005 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · SOURCE_MAIN_a11dfd1a063e434ee22e8cfb7b073ebc380aa27a · SX_DEC_063_CORE_BOARD_V02_V04_AND_SX_DEC_064_RUNTIME_BYTES
 sx60_poc_accept_001: HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 candidate_003_package_integrity: PRESERVED_HISTORICAL_PASS
 candidate_003_physical_visual_recheck: NOT_RUN
@@ -188,11 +188,12 @@ sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_five_pass_review: CLOSED · SX-AUD-071
 sx_dec_060_notion_readback: PASS
-sx_dec_060_packaged_runtime: SX60_POC_ACCEPT_004_PREPARED_PACKAGE_VERIFIED · HISTORICAL_SX60_POC_ACCEPT_001_TO_003_PRESERVED
-sx_dec_060_windows_physical: NOT_RUN_CURRENT_EXACT_CANDIDATE_004
-sx_dec_060_android_device: NOT_RUN
-sx_dec_060_five_person_comprehension: NOT_RUN
-sx_dec_060_player_experience: NOT_RUN
+sx_dec_060_packaged_runtime: SX60_POC_ACCEPT_005_MACHINE_PRIMARY_PACKAGE_AND_RUNTIME_JSON_VERIFIED · HISTORICAL_SX60_POC_ACCEPT_001_TO_004_PRESERVED
+sx_dec_060_windows_physical: FINAL_USER_REVIEW_ONLY · NOT_RUN_CURRENT_EXACT_CANDIDATE_005
+sx_dec_060_android_device: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
+sx_dec_060_five_person_comprehension: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+sx_dec_060_player_experience: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+sx_dec_060_final_user_review: FINAL_USER_REVIEW · NOT_RUN · EXACT_CANDIDATE_005_REQUIRED
 new_bitmap_assets: 0
 ```
 
@@ -218,6 +219,6 @@ Actual GDScript / Scene / Resource / map-data / runtime test work is merged-main
 
 ```text
 SX60-POC-ACCEPT-002 isolated title → briefing → build visual/input observation is immutable prior-byte evidence
-→ SX60-POC-ACCEPT-004 exact post-SX-DEC-064 package verification
-→ audio perceptual QA and physical/device/human evidence gates
+→ SX60-POC-ACCEPT-005 exact package and runtime-JSON verification on `main@a11dfd1`
+→ machine-primary acceptance is ready; final user review is optional and byte-specific
 ```

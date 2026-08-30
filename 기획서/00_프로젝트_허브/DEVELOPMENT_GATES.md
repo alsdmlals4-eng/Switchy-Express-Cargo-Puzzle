@@ -1,6 +1,6 @@
 # Development Gates
 
-Last updated: `2026-08-29 KST`
+Last updated: `2026-08-30 KST`
 
 현재 실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 우선한다. 과거 commit/PR/run은 역사 evidence이며 current next action을 자동 정의하지 않는다.
 
@@ -13,7 +13,7 @@ base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
 current_decisions: SX-DEC-027~065
-current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · EXACT_CANDIDATE_005_MACHINE_VALIDATION_PENDING
+current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · SX60_POC_ACCEPT_005_MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN
 ```
 
 ## 1. Stable historical implementation evidence
@@ -32,7 +32,7 @@ These remain valid for their exact historical bytes and bounded claims. They do 
 
 ## 1A. SX-DEC-062 composition-contract gate
 
-`PASS · MERGED_MAIN_VERIFIED · PR #237/#249 · EXACT_MAIN_PACKAGE_CANDIDATE_004_VERIFIED · HUMAN_GATES_OPEN`
+`HISTORICAL · MERGED_MAIN_VERIFIED · PR #237/#249 · EXACT_MAIN_PACKAGE_CANDIDATE_004_VERIFIED · SUPERSEDED_BY_CANDIDATE_005_FOR_CURRENT_PRODUCT_BYTES`
 
 Binding owners:
 
@@ -45,7 +45,7 @@ docs/superpowers/plans/2026-08-28-board-first-runtime-composition.md
 
 This one presentation slice may modify only the named palette/theme/HUD/shell/board-renderer owners and tests. It preserves all existing raster paths and consumers, including T2 v02. Issue #227, finite data/rules, first-session content, audio, score/economy/progression, Base, and PR #174 are out of scope.
 
-The implementation demonstrated RED→GREEN tests, exact-head static/Godot checks, a no-new-asset/no-gameplay-delta review, and an exact-main package candidate. `SX60-POC-ACCEPT-002` and `SX60-POC-ACCEPT-003` cannot validate the SX-DEC-064 bytes; `SX60-POC-ACCEPT-004` is current package evidence only and does not pass a physical/human gate.
+The implementation demonstrated RED→GREEN tests, exact-head static/Godot checks, a no-new-asset/no-gameplay-delta review, and an exact-main package candidate. `SX60-POC-ACCEPT-002` and `SX60-POC-ACCEPT-003` cannot validate the SX-DEC-064 bytes; `SX60-POC-ACCEPT-004` is historical package evidence only and does not pass a physical/human gate. `SX60-POC-ACCEPT-005` is the current machine-primary exact candidate.
 
 Stable historical physical/human anchors remain:
 
@@ -73,7 +73,7 @@ docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production
 
 The selected direction adds elevated miniature-diorama depth cues within the existing rectangular BUILD/RUN grid. The user promoted only `SX-VIS-063-CANDIDATE-001` as v02 source art with SHA/provenance and a real future consumer. It does not yet authorize a true isometric conversion, Godot/Scene/Resource runtime integration, a production asset batch, gameplay/data/audio/locale/progression changes, Issue #227 T2 replacement, or a new human/player-evidence claim. The next runtime mutation must follow `SX_DEC_063_TERRAIN_RUNTIME_INTEGRATION_HANDOFF.md`.
 
-## 2. Candidate 004 evidence boundary
+## 2. Historical Candidate 004 evidence boundary
 
 ```yaml
 candidate_id: SX59-POC-ACCEPT-003
