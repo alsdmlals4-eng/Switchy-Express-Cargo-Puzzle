@@ -12,6 +12,8 @@
 
 **Research prerequisite:** `docs/research/2026-08-30-route-book-01-genre-reverse-engineering.md` (`12-game public-source benchmark · RESEARCHED`). The research gate is closed for the fixed authored-map direction only; it does not make an implementation, package, runtime, or user-validation claim.
 
+**Execution update (2026-08-30 KST):** Tasks 1–5 and Task 6 Step 1 are complete on the isolated local branch: `d1d2087` created the definition contract and `49574b249cf4cfa675d4ba804851bfeb5e317dff` added the six maps, runtime flow, and regression suite. Local evidence is `PROJECT_CONTRACT_PASS`, `PYTHON_263_PASSED_1_SKIPPED`, and `GODOT_118_CASES_13791_ASSERTIONS_0_FAILED_NO_EXIT_LEAK_WARNING`. PR, hosted CI, merge/readback, package verification, exact candidate, physical/device, and final-user gates remain pending. See `docs/operations/2026-08-30-sx-dec-066-route-book-01-local-machine-verification.md`.
+
 ## Global Constraints
 
 - Preserve T1–T6, `VS_DEMO_01`, first-session IDs/order/maps/policies/copy, and their existing tests byte-for-byte unless a new regression proves an unavoidable shared-parser correction.
@@ -65,7 +67,7 @@
 - Consumes: `FirstSessionStagePolicy.create(stage: Dictionary) -> Variant` and `FiniteMapLoader.load_from_path(path: String) -> Variant`.
 - Produces: `RouteBookDefinition.load_from_path(path: String) -> Variant`; `RouteBookDirector.configure(definition: Variant) -> bool`; the exact six-stage order specified in the design.
 
-- [ ] **Step 1: Write the failing definition and director tests**
+- [x] **Step 1: Write the failing definition and director tests**
 
 ```gdscript
 func run() -> void:
@@ -81,12 +83,12 @@ func run() -> void:
     assert_equal(director.current_stage_number(), 5, "selection keeps declared order")
 ```
 
-- [ ] **Step 2: Register and run the failing tests**
+- [x] **Step 2: Register and run the failing tests**
 
 Run: `& $godot --headless --path . --script res://tests/run_tests.gd`
 Expected: FAIL because the Route Book scripts/data are absent and no legacy map catalogue is accepted as a substitute.
 
-- [ ] **Step 3: Implement strict data owners and the reusable path loader**
+- [x] **Step 3: Implement strict data owners and the reusable path loader**
 
 ```gdscript
 # RouteBookDefinition validation must reject anything but the exact order.
@@ -102,12 +104,12 @@ func load_default() -> bool:
 
 Create both JSON files with all six stage records and every four-locale title/objective/navigation key. Validate every stage map path exists and can load through `FiniteMapLoader`; do not accept missing paths or fall back to `VS_DEMO_01`.
 
-- [ ] **Step 4: Run data and parser tests green**
+- [x] **Step 4: Run data and parser tests green**
 
 Run: `& $godot --headless --path . --script res://tests/run_tests.gd`
 Expected: Route Book definition/copy tests pass, all first-session copy/definition tests remain green.
 
-- [ ] **Step 5: Commit the self-contained data-owner increment**
+- [x] **Step 5: Commit the self-contained data-owner increment**
 
 ```powershell
 git add data/route_book data/localization/route_book_01_v1.json game/route_book game/first_session/first_session_copy.gd tests/route_book tests/run_tests.gd
@@ -126,7 +128,7 @@ git commit -m "feat: add route book stage definitions"
 - Consumes: `RouteBookDirector`, `FirstSessionStagePolicy.create(current_stage)`, existing `ProductFiniteSlice.map_path`, `set_stage_policy`, `terminal_reached` and Retry/Edit commands.
 - Produces: `open_route_book()`, `select_route_book_stage(stage_id: StringName)`, `current_route_book_stage_id_for_test()`, and Route Book-only Next/List actions.
 
-- [ ] **Step 1: Write failing scene-flow tests**
+- [x] **Step 1: Write failing scene-flow tests**
 
 ```gdscript
 func run() -> void:
@@ -143,12 +145,12 @@ func run() -> void:
 
 Add assertions that existing Title Start still loads T1 in product main, standalone demo still loads `VS_DEMO_01`, Route Book success shows Next only before stage six, Stage Book returns to selectable cards, and Retry/Edit preserve current behavior.
 
-- [ ] **Step 2: Run the test red**
+- [x] **Step 2: Run the test red**
 
 Run: `& $godot --headless --path . --script res://tests/run_tests.gd`
 Expected: FAIL because `ROUTE_BOOK`, selection methods, scene nodes, and result actions do not exist.
 
-- [ ] **Step 3: Implement the smallest isolated flow/UI delta**
+- [x] **Step 3: Implement the smallest isolated flow/UI delta**
 
 ```gdscript
 const ROUTE_BOOK: StringName = &"ROUTE_BOOK"
@@ -164,12 +166,12 @@ func open_route_book() -> void:
 
 Add `StageBookButton`, `RouteBookScreen`, a six-card `StageList`, a Back button, and a separate `RouteBookActions` row. Reuse the existing briefing panel and neutral shell art. Install `FirstSessionStagePolicy.create(current_stage)` before adding the product node so full controls are present but `RECOMMENDED_LAYOUT` is hidden.
 
-- [ ] **Step 4: Run selection, first-session, and responsive tests green**
+- [x] **Step 4: Run selection, first-session, and responsive tests green**
 
 Run: `& $godot --headless --path . --script res://tests/run_tests.gd`
 Expected: Route Book flow passes; T1/T2 and standalone demo assertions still pass; every new visible Route Book control is within the target viewport and at least 48px.
 
-- [ ] **Step 5: Commit the flow increment**
+- [x] **Step 5: Commit the flow increment**
 
 ```powershell
 git add game/demo/demo_flow_controller.gd game/demo/vertical_slice_demo.tscn tests/demo tests/run_tests.gd
@@ -192,7 +194,7 @@ git commit -m "feat: add route book stage selection flow"
 - Consumes: exact coordinates/contract in `ROUTE_BOOK_01_STAGE_CONTENT_SPEC.md`, real finite loader/build/factory/session chain.
 - Produces: three schema-v3 map identities and deterministic, non-player-facing witnesses.
 
-- [ ] **Step 1: Write the failing stage contracts**
+- [x] **Step 1: Write the failing stage contracts**
 
 ```gdscript
 func run() -> void:
@@ -205,21 +207,21 @@ func run() -> void:
 
 For RB01, assert schema-v3 station cells are not buildable and no station-footprint/diagonal delivery occurs. For RB03, record two Blue-cell contacts and assert first skip, second pickup, and naive load-all failure.
 
-- [ ] **Step 2: Run red**
+- [x] **Step 2: Run red**
 
 Run: `& $godot --headless --path . --script res://tests/run_tests.gd`
 Expected: FAIL because the three map files and fixtures do not yet exist.
 
-- [ ] **Step 3: Author only the specified map bytes and witnesses**
+- [x] **Step 3: Author only the specified map bytes and witnesses**
 
 Use the exact content-spec coordinates, `definition_schema_version: 3`, `marker_tracks_player_built: true`, and `allow_open_terminals_after_required: true`. Keep station cells off track. Build fixture pieces only through `TrackPiece.create`; start the real run, send actual Manual input, advance time to terminal, and collect actual `delivery_event_created` records.
 
-- [ ] **Step 4: Run maps 01–03 green**
+- [x] **Step 4: Run maps 01–03 green**
 
 Run: `& $godot --headless --path . --script res://tests/run_tests.gd`
 Expected: all schema, witness, and counterexample assertions pass with no finite-core test change.
 
-- [ ] **Step 5: Commit the first three authored maps**
+- [x] **Step 5: Commit the first three authored maps**
 
 ```powershell
 git add data/maps/route_book tests/fixtures/route_book tests/route_book tests/run_tests.gd
@@ -242,7 +244,7 @@ git commit -m "feat: add route book stages one through three"
 - Consumes: `FiniteGameplayInputState`, `FiniteTrackGraph.select_switch_exit`, real session event history, and exact map contracts.
 - Produces: Auto/Manual and switch occupancy proof for stages 04–06.
 
-- [ ] **Step 1: Write failing behavioral tests**
+- [x] **Step 1: Write failing behavioral tests**
 
 ```gdscript
 func run() -> void:
@@ -256,21 +258,21 @@ func run() -> void:
 
 For RB05, assert the witness changes a switch pre-occupancy, the graph rejects its change while occupied, the chosen exit persists, and initial wrong branch fails. For RB06, assert all three cargo types unload through cardinal service, at least one Auto transition occurs, at least one switch is used, and the specified wrong-order/branch fixture fails.
 
-- [ ] **Step 2: Run red**
+- [x] **Step 2: Run red**
 
 Run: `& $godot --headless --path . --script res://tests/run_tests.gd`
 Expected: FAIL because stages 04–06 and their witness fixtures are absent.
 
-- [ ] **Step 3: Implement exact map bytes and real control-driven witnesses**
+- [x] **Step 3: Implement exact map bytes and real control-driven witnesses**
 
 Use no hidden timer/reflex mechanism, no switch auto-reset, and no tutorial-only shortcut. Every automation call must target the real input/graph command boundary, not mutate cargo stack, train cell, delivery result, or route-control state directly.
 
-- [ ] **Step 4: Run maps 04–06 green**
+- [x] **Step 4: Run maps 04–06 green**
 
 Run: `& $godot --headless --path . --script res://tests/run_tests.gd`
 Expected: explicit Auto, occupancy lock, three-type composite, and all negative cases pass; all pre-existing suites remain green.
 
-- [ ] **Step 5: Commit the latter three authored maps**
+- [x] **Step 5: Commit the latter three authored maps**
 
 ```powershell
 git add data/maps/route_book tests/fixtures/route_book tests/route_book tests/run_tests.gd
@@ -296,7 +298,7 @@ git commit -m "feat: add route book stages four through six"
 - Consumes: exact final files/tests and current verification results.
 - Produces: GitHub-owned canon synchronized with actual implementation and an evidence record that distinguishes executed PASS from `NOT_RUN`.
 
-- [ ] **Step 1: Write red copy and visual-regression assertions**
+- [x] **Step 1: Write red copy and visual-regression assertions**
 
 ```gdscript
 for locale: String in [&"ko", &"en", &"ja", &"zh-Hans"]:
@@ -307,16 +309,16 @@ assert_false(route_book_actions.visible, "Route Book result controls never leak 
 
 Expand responsive checks to 960×540 and 2560×1080. Assert Route Book panel/cards and Stage Book/Next buttons are in bounds and at least 48px when visible.
 
-- [ ] **Step 2: Run red**
+- [x] **Step 2: Run red**
 
 Run: `& $godot --headless --path . --script res://tests/run_tests.gd`
 Expected: FAIL until all locales and Route Book-only visual state boundaries are complete.
 
-- [ ] **Step 3: Complete canonical synchronization and evidence template**
+- [x] **Step 3: Complete canonical synchronization and evidence template**
 
 Record SX-DEC-066 as `IMPLEMENTED` only after implementation and checks actually pass. Preserve Candidate 005 as historical exact-byte evidence for the old product and reserve no new candidate ID until the existing mint procedure issues one from exact post-merge main. The verification record begins with `NOT_RUN` for physical/audio/device/final-user review and changes only when evidence is executed.
 
-- [ ] **Step 4: Run all local checks green**
+- [x] **Step 4: Run all local checks green**
 
 Run:
 
@@ -345,11 +347,11 @@ git commit -m "docs: register route book stage pack evidence"
 - Consumes: full implementation diff, all local evidence, CI/package workflows, existing candidate procedure.
 - Produces: a clean current-task PR, exact-main readback, and a new immutable machine-verified candidate or an explicit `BLOCKED_UNVERIFIED` record.
 
-- [ ] **Step 1: Run five full-scope adversarial review loops**
+- [x] **Step 1: Run five full-scope adversarial review loops**
 
 Review and correct, in sequence: (1) first-session/finite rule and forbidden-scope drift, (2) map/witness/consumer realism, (3) UI/readability/touch/locale and no-op-control drift, (4) asset/provenance/candidate evidence boundary, and (5) exact PR/main/CI/package integrity. Re-run the complete relevant suite after every correction.
 
-- [ ] **Step 2: Verify the final diff and current remote state**
+- [x] **Step 2: Verify the final diff and current remote state**
 
 Run:
 

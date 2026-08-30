@@ -42,7 +42,7 @@ SX-DEC-066 · USER_APPROVED
 → first session and finite rule boundary protected
 → design/spec/implementation plan complete
 → 12-game public-source genre benchmark complete: fixed authored maps ADOPT; progression/sandbox families REJECT
-→ BUILD_PENDING_PLAN_REVIEW
+→ IMPLEMENTED_LOCAL_MACHINE_VERIFIED · NOT_MERGED · remote CI/package/candidate remain separate
 ```
 
 ## M0 · Product baseline
@@ -137,7 +137,7 @@ SX-DEC-060 changes T2 station meaning to cardinal-adjacent delivery; no extra le
 
 ## M5C · SX-DEC-066 Curated Route Book 01
 
-`USER_APPROVED · DESIGN_LOCKED · BUILD_PENDING_PLAN_REVIEW`
+`USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_VERIFIED · NOT_MERGED`
 
 Route Book 01 is a separate optional stage surface: six directly selectable, hand-authored finite maps reuse current Build/Run/cargo/adjacent-station/LIFO/Auto/switch/result consumers. It neither alters nor extends the locked T1→T6→`VS_DEMO_01` first session. It excludes persistence, locks, rewards, score/rank, generated challenges, Yard Labs, Mastery, new assets, and new rules. The approved content owner, technical design, and task-by-task plan are:
 
@@ -148,7 +148,7 @@ docs/superpowers/plans/2026-08-30-route-book-01-stage-pack-implementation.md
 docs/research/2026-08-30-route-book-01-genre-reverse-engineering.md
 ```
 
-No Route Book runtime, package, physical, human, or candidate evidence exists before implementation. Candidate 005 remains valid only for its pre-Route-Book exact source bytes.
+Local implementation is committed at `d1d2087` and `49574b249cf4cfa675d4ba804851bfeb5e317dff`: six map contracts, direct selection/recovery, four-locale copy, responsive controls, and full machine regression are verified locally. Hosted CI, package/export, a new exact candidate, physical/device checks, and final user review remain unrun. Candidate 005 remains valid only for its pre-Route-Book exact source bytes.
 
 Historical Candidate 003:
 

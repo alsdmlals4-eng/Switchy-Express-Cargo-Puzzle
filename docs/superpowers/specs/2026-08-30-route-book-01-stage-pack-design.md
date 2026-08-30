@@ -1,8 +1,10 @@
 # Route Book 01 Stage Pack Design
 
 **Decision:** `SX-DEC-066`
-**Status:** `USER_APPROVED · DESIGN_LOCKED · BUILD_PENDING_PLAN_REVIEW`
+**Status:** `USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_VERIFIED · NOT_MERGED`
 **Content source:** `기획서/20_시스템_콘텐츠/ROUTE_BOOK_01_STAGE_CONTENT_SPEC.md`
+
+Implementation follows this architecture at local commits `d1d2087` and `49574b249cf4cfa675d4ba804851bfeb5e317dff`. The local machine evidence is recorded separately; this design does not claim merge, hosted CI/package, an exact candidate, or user/physical evidence.
 
 ## 1. Architecture
 

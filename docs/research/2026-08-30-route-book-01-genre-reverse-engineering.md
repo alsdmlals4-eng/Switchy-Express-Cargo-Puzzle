@@ -2,7 +2,7 @@
 
 **Date:** 2026-08-30 KST
 **Decision linkage:** `SX-DEC-066 · Curated Route Book 01`
-**Status:** `RESEARCHED · IMPLEMENTATION_NOT_STARTED`
+**Status:** `RESEARCHED · INPUT_USED_BY_LOCAL_IMPLEMENTATION · NOT_MERGED`
 **Method:** 개발사·퍼블리셔의 공식 사이트/위키 또는 해당 제품의 공개 스토어 설명만을 대상으로 한 공개 정보 역공학
 
 ## 이 조사가 답하는 질문

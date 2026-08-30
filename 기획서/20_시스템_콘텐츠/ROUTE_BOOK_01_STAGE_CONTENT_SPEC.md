@@ -1,8 +1,10 @@
 # Route Book 01 · Stage Content Specification
 
 **Decision:** `SX-DEC-066`
-**Status:** `USER_APPROVED · SPECIFIED · IMPLEMENTATION_NOT_STARTED`
+**Status:** `USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_VERIFIED · NOT_MERGED`
 **Content boundary:** Six optional, fixed post-onboarding stages. This file does not change T1–T6 or `VS_DEMO_01`.
+
+Local implementation is fixed at `d1d2087` and `49574b249cf4cfa675d4ba804851bfeb5e317dff`; six map contracts and their test-only witnesses passed the complete local machine suite. Merge, hosted CI/package, exact candidate, and final user review remain separate `NOT_RUN` gates. See `docs/operations/2026-08-30-sx-dec-066-route-book-01-local-machine-verification.md`.
 
 ## Common authoring contract
 

@@ -1,6 +1,6 @@
 # SX-DEC-066 · Curated Route Book 01
 
-**Status:** `USER_APPROVED · DESIGN_LOCKED · BUILD_PENDING_PLAN_REVIEW`
+**Status:** `USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_VERIFIED · NOT_MERGED`
 
 **Date:** 2026-08-30 KST
 **Approval source:** The user requested that playable stages be created and then approved the recommended six-stage `Route Book 01` direction with “진행해”.
@@ -8,7 +8,7 @@
 
 ## Decision lifecycle boundary
 
-`SX-DEC-066` is a user-approved **planning direction**, not an implemented product decision yet. Until this implementation plan receives its final user approval and actual build work starts, it remains `PENDING_EXECUTION_DECISION`: it is registered for traceability, but does not advance the global `current_decision_span` beyond `SX-DEC-065`, does not change the product baseline, and cannot be cited as runtime, package, or candidate evidence.
+`SX-DEC-066` moved from approved planning direction to local implementation after the user approved the six-stage recommendation. The implementation commits are `d1d2087` (definition contract) and `49574b249cf4cfa675d4ba804851bfeb5e317dff` (maps, flow, consumers, and tests). Local machine checks now prove the bounded implementation; they do **not** prove a merge to `main`, hosted CI, export/package integrity, a new immutable candidate, physical/device behavior, or final user review. The exact local evidence is recorded in `docs/operations/2026-08-30-sx-dec-066-route-book-01-local-machine-verification.md`.
 
 ## Decision
 
@@ -39,7 +39,7 @@ expected_experience: "한 가지 규칙을 다시 설명받는 느낌이 아니�
 research_question: "현재 finite 규칙과 existing product UI만으로 반복 가능한 고정형 추가 스테이지를 안전하게 생산할 수 있는가?"
 observable_signal: "각 맵이 schema/preflight/success witness와 해당 핵심 판단을 무시한 반례를 자동 검증하며, Title→Stage Book→stage→Result recovery가 동일 런타임에서 연결된다."
 evidence_ceiling: "MACHINE_VERIFIED only. Five-person comprehension and player-experience study are not required by SX-DEC-065; final user review is optional and only valid for a named exact post-change candidate."
-slice_acceptance: "six map contracts, direct selection, recovery, four-locale copy, full Godot regression, CI/package proof, and a new exact candidate all pass without widening the finite core."
+slice_acceptance: "six map contracts, direct selection, recovery, four-locale copy, and full local machine regression pass without widening the finite core; exact CI/package proof and a new exact candidate remain separate post-merge work."
 ```
 
 ## Fixed scope
@@ -53,7 +53,7 @@ slice_acceptance: "six map contracts, direct selection, recovery, four-locale co
 - Existing product slice, board, HUD, route-control overlay, result recovery, and semantic product assets reused unchanged in purpose.
 - New strings in `ko`, `en`, `ja`, and `zh-Hans`.
 - Stage Book / Next Stage result actions, which are visible only while Route Book is active.
-- Deterministic map, flow, input-policy, responsive-layout, regression, CI, package, and exact-candidate verification.
+- Deterministic map, flow, input-policy, responsive-layout, and local regression verification; remote CI, package, and exact-candidate verification remain separately required after review/merge.
 
 ### Explicitly excluded
 
@@ -107,8 +107,8 @@ The current `SX60-POC-ACCEPT-005` remains an immutable, machine-primary candidat
 
 ```text
 Route Book implementation changes product bytes
-→ all deterministic and runtime checks rerun on exact implementation head
-→ exact CI/export/package verification
+→ local deterministic and headless Godot checks pass on exact local implementation commit `49574b249cf4cfa675d4ba804851bfeb5e317dff`
+→ exact CI/export/package verification after review/merge
 → mint a new immutable candidate using the existing candidate procedure
 → machine-primary acceptance
 → optional final user review only when requested on that exact candidate
@@ -125,4 +125,5 @@ The feature has no save migration, unlock state, asset mutation, or core-rule ch
 - Content owner: `기획서/20_시스템_콘텐츠/ROUTE_BOOK_01_STAGE_CONTENT_SPEC.md`
 - Technical design: `docs/superpowers/specs/2026-08-30-route-book-01-stage-pack-design.md`
 - Implementation plan: `docs/superpowers/plans/2026-08-30-route-book-01-stage-pack-implementation.md`
-- Runtime evidence: a new dated operation record after the actual exact-head checks run.
+- Local machine evidence: `docs/operations/2026-08-30-sx-dec-066-route-book-01-local-machine-verification.md`.
+- Remote runtime/package evidence: a separate exact-main operation record only after review/merge checks run.
