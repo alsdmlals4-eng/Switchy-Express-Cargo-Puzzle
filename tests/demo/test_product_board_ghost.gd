@@ -27,6 +27,8 @@ func run() -> void:
 
 	assert_true(renderer.has_method("ghost_descriptor_for_test"), "renderer must expose ghost state for verification")
 	assert_true(renderer.has_method("semantic_build_descriptor_for_test"), "renderer must expose bounded semantic BUILD diagnostics")
+	assert_true(renderer.has_method("ghost_presentation_for_test"), "renderer must expose the compact ghost presentation contract")
+	assert_true(renderer.has_method("ghost_status_badge_rect_for_test"), "renderer must expose the actual compact semantic badge bounds")
 	if not renderer.has_method("ghost_descriptor_for_test"):
 		renderer.free()
 		return
@@ -57,6 +59,31 @@ func run() -> void:
 			["art/product_assets/ed_hybrid_v1/build/build_placement_valid_overlay_v01.png"],
 			"valid ghost resolves exact BUILD semantic overlay"
 		)
+	if renderer.has_method("ghost_presentation_for_test"):
+		var presentation: Dictionary = renderer.ghost_presentation_for_test()
+		assert_less_equal(
+			float(presentation.get("fill_alpha", 1.0)),
+			0.08,
+			"valid ghost must retain the board underneath instead of whitening the whole cell"
+		)
+		assert_less_equal(
+			float(presentation.get("track_alpha", 1.0)),
+			0.46,
+			"ghost rail art must remain a translucent placement preview"
+		)
+		assert_less_equal(
+			float(presentation.get("semantic_badge_scale", 1.0)),
+			0.28,
+			"semantic feedback must be a compact badge, not a full-cell overlay"
+		)
+	if renderer.has_method("ghost_status_badge_rect_for_test"):
+		var preview_cell := Rect2(0.0, 0.0, 100.0, 60.0)
+		var badge: Rect2 = renderer.ghost_status_badge_rect_for_test(preview_cell)
+		assert_true(
+			badge.size.x < preview_cell.size.x * 0.30 and badge.size.y < preview_cell.size.y * 0.30,
+			"semantic status badge must occupy a small corner of the selected cell"
+		)
+		assert_true(preview_cell.encloses(badge), "semantic status badge must remain inside the selected cell")
 
 	var rotated_snapshot: Dictionary = renderer.snapshot_for_test()
 	rotated_snapshot["selected_rotation_quarters"] = 1

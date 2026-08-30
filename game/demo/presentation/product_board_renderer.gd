@@ -11,6 +11,11 @@ const SemanticRuntimeStateScript := preload("res://game/demo/presentation/semant
 const FiniteTrackGraphScript := preload("res://game/finite/rail/finite_track_graph.gd")
 const TrackPieceScript := preload("res://game/finite/build/track_piece.gd")
 const NO_CELL := Vector2i(-1, -1)
+const PRODUCT_RAIL_SEAM_OVERLAP := 3.0
+const GHOST_FILL_ALPHA := 0.08
+const GHOST_TRACK_ALPHA := 0.46
+const GHOST_SEMANTIC_BADGE_SCALE := 0.28
+const CARGO_MARKER_SCALE := 0.62
 
 const PRODUCT_VISUAL_ASSET_PATHS := {
 	"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
@@ -74,6 +79,26 @@ func loaded_product_visuals_for_test() -> Dictionary:
 
 func product_rail_seam_descriptor_for_test(geometry: StringName, rotation: int) -> Dictionary:
 	return _product_rail_seam_descriptor(geometry, rotation)
+
+
+func curve_seam_arc_for_test(rotation: int, target: Rect2) -> Dictionary:
+	return _curve_seam_arc_geometry(_track_ports(&"CURVE", rotation), target)
+
+
+func product_rail_seam_target_for_test(geometry: StringName, target: Rect2) -> Rect2:
+	return _product_rail_seam_target(geometry, target)
+
+
+func marker_target_for_test(is_station: bool, cell_rect: Rect2) -> Rect2:
+	return _marker_target_rect(is_station, cell_rect)
+
+
+func ghost_presentation_for_test() -> Dictionary:
+	return _ghost_presentation()
+
+
+func ghost_status_badge_rect_for_test(cell_rect: Rect2) -> Rect2:
+	return _ghost_status_badge_rect(cell_rect)
 
 
 func station_service_descriptors_for_test() -> Array[Dictionary]:
@@ -522,9 +547,20 @@ func _draw_product_rail_seam_underlay(
 	var descriptor := _product_rail_seam_descriptor(geometry, rotation)
 	if not bool(descriptor["enabled"]):
 		return
-	var center := target.get_center()
-	var half := target.size * 0.5
+	var seam_target := _product_rail_seam_target(geometry, target)
+	var ports: Array[Vector2i] = []
 	for direction: Vector2i in descriptor["ports"]:
+		ports.append(direction)
+	if descriptor.get("mode", &"") == &"CURVE_ARC":
+		_draw_curve_rail_seam_arc(
+			_curve_seam_arc_geometry(ports, seam_target),
+			bed_color,
+			rail_color
+		)
+		return
+	var center := seam_target.get_center()
+	var half := seam_target.size * 0.5
+	for direction: Vector2i in ports:
 		var endpoint := center + Vector2(direction.x * half.x, direction.y * half.y)
 		draw_line(
 			center,
@@ -542,10 +578,107 @@ func _draw_product_rail_seam_underlay(
 		)
 
 
+func _draw_curve_rail_seam_arc(
+	arc: Dictionary,
+	bed_color: Color,
+	rail_color: Color
+) -> void:
+	if arc.is_empty():
+		return
+	var center: Vector2 = arc["center"]
+	var major_radius := float(arc["major_radius"])
+	var minor_radius := float(arc["minor_radius"])
+	var start_angle := float(arc["start_angle"])
+	var end_angle := float(arc["end_angle"])
+	draw_ellipse_arc(
+		center,
+		major_radius,
+		minor_radius,
+		start_angle,
+		end_angle,
+		24,
+		_alpha(bed_color, minf(bed_color.a, 0.34)),
+		maxf(Palette.RAIL_WIDTH * 0.60, 3.0),
+		true
+	)
+	draw_ellipse_arc(
+		center,
+		major_radius,
+		minor_radius,
+		start_angle,
+		end_angle,
+		24,
+		_alpha(rail_color, 0.42),
+		maxf(Palette.RAIL_HIGHLIGHT_WIDTH * 0.60, 2.0),
+		true
+	)
+
+
 static func _product_rail_seam_descriptor(geometry: StringName, rotation: int) -> Dictionary:
-	if geometry not in [&"CURVE", &"SWITCH"]:
-		return {"enabled": false, "ports": []}
-	return {"enabled": true, "ports": _track_ports(geometry, rotation)}
+	match geometry:
+		&"CURVE":
+			return {
+				"enabled": true,
+				"mode": &"CURVE_ARC",
+				"ports": _track_ports(geometry, rotation),
+			}
+		&"SWITCH":
+			return {
+				"enabled": true,
+				"mode": &"PORT_SPOKES",
+				"ports": _track_ports(geometry, rotation),
+			}
+		_:
+			return {"enabled": false, "ports": []}
+
+
+static func _product_rail_seam_target(geometry: StringName, target: Rect2) -> Rect2:
+	if geometry in [&"CURVE", &"SWITCH"]:
+		return target.grow(PRODUCT_RAIL_SEAM_OVERLAP)
+	return target
+
+
+static func _curve_seam_arc_geometry(
+	ports: Array[Vector2i],
+	target: Rect2
+) -> Dictionary:
+	if ports.size() != 2:
+		return {}
+	var first_port := ports[0]
+	var second_port := ports[1]
+	if first_port.x * second_port.x + first_port.y * second_port.y != 0:
+		return {}
+	var major_radius := target.size.x * 0.5
+	var minor_radius := target.size.y * 0.5
+	if major_radius <= 0.0 or minor_radius <= 0.0:
+		return {}
+	var cell_center := target.get_center()
+	var arc_center := cell_center + Vector2(
+		float(first_port.x + second_port.x) * major_radius,
+		float(first_port.y + second_port.y) * minor_radius
+	)
+	var first_endpoint := cell_center + Vector2(
+		float(first_port.x) * major_radius,
+		float(first_port.y) * minor_radius
+	)
+	var second_endpoint := cell_center + Vector2(
+		float(second_port.x) * major_radius,
+		float(second_port.y) * minor_radius
+	)
+	var start_angle := (first_endpoint - arc_center).angle()
+	var end_angle := (second_endpoint - arc_center).angle()
+	var angle_delta := end_angle - start_angle
+	if angle_delta > PI:
+		end_angle -= TAU
+	elif angle_delta < -PI:
+		end_angle += TAU
+	return {
+		"center": arc_center,
+		"major_radius": major_radius,
+		"minor_radius": minor_radius,
+		"start_angle": start_angle,
+		"end_angle": end_angle,
+	}
 
 
 func _draw_fixed_markers(rect: Rect2, board_size: Vector2i) -> void:
@@ -579,29 +712,38 @@ func _draw_marker(
 	var cell := snapshot_cell(cell_value)
 	if cell == NO_CELL:
 		return
-	var cell_rect := _cell_rect(cell, rect, board_size).grow(-5.0)
+	var cell_rect := _cell_rect(cell, rect, board_size)
+	var marker_rect := _marker_target_rect(is_station, cell_rect)
 	var color: Color = Palette.cargo_color(cargo_type)
 	var asset_key := _marker_asset_key(cargo_type, is_station)
-	var drew_product_art := _draw_product_texture(asset_key, cell_rect)
+	var drew_product_art := _draw_product_texture(asset_key, marker_rect)
 	if not drew_product_art:
 		if is_station:
-			draw_rect(cell_rect, _alpha(color, 0.22), true)
-			draw_rect(cell_rect, color, false, 4.0)
+			draw_rect(marker_rect, _alpha(color, 0.22), true)
+			draw_rect(marker_rect, color, false, 4.0)
 		else:
-			draw_circle(cell_rect.get_center(), minf(cell_rect.size.x, cell_rect.size.y) * 0.27, Palette.BOARD_EDGE)
+			draw_circle(marker_rect.get_center(), minf(marker_rect.size.x, marker_rect.size.y) * 0.27, Palette.BOARD_EDGE)
 	else:
 		# Keep a non-color outline even when the approved sprite is available.
 		if is_station:
-			draw_rect(cell_rect, color, false, 2.0)
+			draw_rect(marker_rect, color, false, 2.0)
 		else:
-			draw_circle(cell_rect.get_center(), minf(cell_rect.size.x, cell_rect.size.y) * 0.24, Palette.BOARD_EDGE, false, 2.0)
+			draw_circle(marker_rect.get_center(), minf(marker_rect.size.x, marker_rect.size.y) * 0.24, Palette.BOARD_EDGE, false, 2.0)
 	_draw_cargo_shape(
-		cell_rect.get_center(),
+		marker_rect.get_center(),
 		cargo_type,
-		minf(cell_rect.size.x, cell_rect.size.y) * (0.11 if drew_product_art else 0.20),
+		minf(marker_rect.size.x, marker_rect.size.y) * (0.11 if drew_product_art else 0.20),
 		color
 	)
-	_draw_marker_label(cell_rect.get_center(), cargo_type)
+	_draw_marker_label(marker_rect.get_center(), cargo_type)
+
+
+static func _marker_target_rect(is_station: bool, cell_rect: Rect2) -> Rect2:
+	if is_station:
+		return cell_rect.grow(-5.0)
+	var cargo_side := minf(cell_rect.size.x, cell_rect.size.y) * CARGO_MARKER_SCALE
+	var cargo_size := Vector2(cargo_side, cargo_side)
+	return Rect2(cell_rect.get_center() - cargo_size * 0.5, cargo_size)
 
 
 func _draw_start_marker(rect: Rect2, board_size: Vector2i) -> void:
@@ -701,17 +843,37 @@ func _draw_ghost(rect: Rect2, board_size: Vector2i) -> void:
 	var color: Color = Palette.GHOST_VALID if valid else Palette.GHOST_INVALID
 	var cell: Vector2i = descriptor["cell"]
 	var cell_rect := _cell_rect(cell, rect, board_size).grow(-5.0)
-	draw_rect(cell_rect, _alpha(color, 0.16), true)
+	var presentation := _ghost_presentation()
+	draw_rect(cell_rect, _alpha(color, float(presentation["fill_alpha"])), true)
 	_draw_track_piece(
 		cell,
 		StringName(descriptor["geometry"]),
 		int(descriptor.get("rotation_quarters", 0)),
 		rect,
 		board_size,
-		_alpha(color, 0.58),
+		_alpha(color, float(presentation["track_alpha"])),
 		color
 	)
-	_draw_semantic_record(_placement_record(), cell_rect)
+	_draw_semantic_record(_placement_record(), _ghost_status_badge_rect(cell_rect))
+
+
+static func _ghost_presentation() -> Dictionary:
+	return {
+		"fill_alpha": GHOST_FILL_ALPHA,
+		"track_alpha": GHOST_TRACK_ALPHA,
+		"semantic_badge_scale": GHOST_SEMANTIC_BADGE_SCALE,
+	}
+
+
+static func _ghost_status_badge_rect(cell_rect: Rect2) -> Rect2:
+	var side := clampf(
+		minf(cell_rect.size.x, cell_rect.size.y) * GHOST_SEMANTIC_BADGE_SCALE,
+		12.0,
+		20.0
+	)
+	var margin := 2.0
+	var badge_size := Vector2(side, side)
+	return Rect2(cell_rect.end - badge_size - Vector2(margin, margin), badge_size)
 
 
 func _draw_train(rect: Rect2, board_size: Vector2i) -> void:

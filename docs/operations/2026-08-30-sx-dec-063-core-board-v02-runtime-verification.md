@@ -77,3 +77,65 @@ release_rights_and_production_cutover: NOT_RUN
 ```
 
 The previous Candidate 004 package evidence is retained as historical evidence for earlier bytes. It does not transfer to the player-facing Core Board v02 runtime byte set.
+
+## 2026-08-30 visual-readability repair addendum
+
+### Observed problem and adopted bounded correction
+
+The user inspected the real BUILD board and reported three renderer defects: the mouse placement preview whitened an entire cell, branch rails looked disconnected, and cargo had the same visual weight as a station. The repair stays within the existing user-approved Core Board v02 and curve/switch-underlay scope.
+
+| Observation | Cause in the real renderer | Implemented correction |
+| --- | --- | --- |
+| White placement cell | The existing semantic placement texture was stretched across the whole ghost cell. | Preserve exact semantic state/path resolution, but draw that existing texture only as a compact in-cell corner badge. Ghost fill is now 0.08 and rail art is 0.46 opacity. |
+| Branch/curve joins look broken | Curve and switch seam strokes ended at the already-inset source-texture rectangle, leaving a visible tile-edge gap. | Continue to use the same authored ports, but extend the visual-only seam target 3px beyond that rectangle. Curves use a 24-segment rectangular ellipse arc; switches retain their three port spokes. |
+| Cargo competes with stations | Cargo and station textures both used the same inset cell rectangle. | Keep the station rectangle unchanged. Draw cargo into a centered square of 0.62 times the cell's shorter dimension. |
+
+No `TrackPiece`, port list, map, input, route selection, station service, cargo mechanics, data asset, source image, manifest, or gameplay rule changed.
+
+### RED → GREEN evidence
+
+- **RED:** the full custom runner completed with exactly two failed cases and four new targeted assertions: missing compact ghost contracts, missing expanded rail-seam contract, and missing cargo sizing contract. An initial test-authoring issue used an unsupported assertion helper; it was corrected before this RED result and did not affect production code.
+- **GREEN:** the same full runner passed **112 cases / 0 failed / 13,563 assertions** after the renderer change.
+- Project operating contract: **PASS**.
+- Python regression: **223 passed, 1 skipped**.
+- Godot 4.7.1 headless import and formal GUT: **7 scripts / 21 tests / 152 assertions, all passing**; JUnit discovery guard passed.
+- Current live Hera diagnostics: **0 errors / 0 warnings**. The formal import recreated two missing untracked `.uid` cache files; they were removed and are not part of this change.
+- Approved asset integrity: `validate_ed_hybrid_asset_pack.py` passed 31 assets. `validate_final_ed_product_asset_promotion.py` passed with the existing two deferred historical candidate CRC findings; neither finding is in the v02 runtime asset family and neither was changed here.
+
+### New real-consumer captures
+
+Both captures use the actual isolated-worktree `ProductFiniteSlice` at native 1280×720. The visible `권장 배치` button installed the real recommended layout; the visible `곡선 2` tool was then selected and a real mouse-move event was sent to an empty board cell. No planning mockup or synthetic composition was substituted.
+
+| State | Capture | Observed result |
+| --- | --- | --- |
+| Recommended BUILD layout | `evidence/runtime/sx_dec_063_core_board_v02/2026-08-30-core-board-v02-recommended-layout-1280x720.png` | Terrain, straight rails, curve rails, two three-way branches, station service frames, stations, smaller cargo, grid, and HUD appear together. |
+| Curve hover preview | `evidence/runtime/sx_dec_063_core_board_v02/2026-08-30-core-board-v02-recommended-ghost-curve-1280x720.png` | The selected curve remains translucent over the terrain; its cyan cell outline and small semantic badge remain visible without turning the cell white. |
+
+The analyzer reported nonblank frames. Its `possible_clipping` signal is the known bottom-toolbar edge heuristic; direct inspection found the board and HUD visible within their intended bounds. This remains machine runtime evidence, not physical Windows, device, accessibility, player-comprehension, or release evidence.
+
+### Five-pass adversarial review for this repair
+
+| Loop | Attack | Result |
+| --- | --- | --- |
+| 1 | Gameplay/topology or input drift from a visual patch | Renderer-only diff and full Godot/GUT regressions; no graph, map, controller, or input file changed. **PASS**. |
+| 2 | Rotated curve and three-way switch use a wrong or shortened port | Renderer contracts cover all four curve rotations and switch ports; both seam families expand by the same 3px visual overlap. **PASS**. |
+| 3 | Selection readability, cargo/station hierarchy, or clipping regresses in the live board | Two actual BUILD captures show the translucent preview, compact badge, smaller cargo, stations, curves, branches, grid, and HUD. **PASS_AT_MACHINE_EVIDENCE_CEILING**. |
+| 4 | New or modified image/provenance drift | Asset validators passed and the working diff contains no `art/product_assets/**` change. **PASS_FOR_IMPLEMENTATION_SCOPE**. |
+| 5 | Evidence inflation or unrelated branch impact | Local runtime evidence is recorded as local; physical/device/human/release gates and protected PR #174 remain untouched. **PASS**. |
+
+### Updated evidence ceiling
+
+```yaml
+visual_readability_repair_renderer_contract: PASS
+visual_readability_repair_full_headless_godot: PASS_112_CASES_13563_ASSERTIONS
+visual_readability_repair_python_regression: PASS_223_PASSED_1_SKIPPED
+visual_readability_repair_formal_gut: PASS_21_TESTS_152_ASSERTIONS_JUNIT_VALIDATED
+visual_readability_repair_live_machine_build_capture: VERIFIED
+visual_readability_repair_live_ghost_capture: VERIFIED
+visual_readability_repair_godot_diagnostics: CLEAN
+visual_readability_repair_asset_bytes: UNCHANGED
+visual_readability_repair_windows_physical_visual_audio: NOT_RUN
+visual_readability_repair_android_device: NOT_RUN
+visual_readability_repair_human_accessibility_comprehension_player_experience: NOT_RUN
+visual_readability_repair_release_rights_and_production_cutover: NOT_RUN
+```
