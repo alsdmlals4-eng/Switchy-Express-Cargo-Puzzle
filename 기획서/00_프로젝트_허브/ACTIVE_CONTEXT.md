@@ -20,7 +20,7 @@ project_live_main_policy: REFRESH_FROM_GITHUB_BEFORE_EXECUTION
 engine: Godot 4.7.1-stable
 language: GDScript
 product_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~066
+current_decisions: SX-DEC-027~067
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
@@ -121,6 +121,14 @@ validation_strategy: MACHINE_PRIMARY_FINAL_USER_REVIEW
 base_work_current_phase: PHASE_5_MACHINE_PRIMARY_VALIDATION_COMPLETE · SX60_POC_ACCEPT_006
 remaining_machine_executable_required_work: NONE · FINAL_USER_REVIEW_OPTIONAL_ON_UNCHANGED_CANDIDATE_006
 route_book_execution_state: MERGED_MAIN_MACHINE_VERIFIED · PR_260 · Candidate_006_current · Candidate_005_historical_for_pre_Route_Book_bytes
+sx_dec_067_wayside_hazards_and_route_book_02: USER_APPROVED · DESIGN_AND_PLAN_RECORDED · IMPLEMENTATION_NOT_STARTED
+sx_dec_067_decision_owner: docs/decisions/SX_DEC_067_WAYSIDE_HAZARDS_SALVAGE_AND_ROUTE_BOOK_02.md
+sx_dec_067_core_design: docs/superpowers/specs/2026-08-30-wayside-hazards-and-salvage-design.md
+sx_dec_067_content_design: docs/superpowers/specs/2026-08-30-route-book-02-surface-content-design.md
+sx_dec_067_core_plan: docs/superpowers/plans/2026-08-30-wayside-hazards-and-salvage-core.md
+sx_dec_067_content_plan: docs/superpowers/plans/2026-08-30-route-book-02-surface-content.md
+sx_dec_067_content_owner: 기획서/20_시스템_콘텐츠/ROUTE_BOOK_02_WAYSIDE_CONTENT_SPEC.md
+sx_dec_067_candidate_status: NOT_MINTED · Candidate_006_is_historical_for_post_SX_DEC_067_product_bytes
 windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device_post_060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
 five_person_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY

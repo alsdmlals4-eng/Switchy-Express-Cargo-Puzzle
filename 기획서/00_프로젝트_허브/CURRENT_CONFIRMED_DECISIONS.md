@@ -2,6 +2,15 @@
 
 Last updated: `2026-08-30 KST`
 
+## SX-DEC-067 · Wayside Hazards, Salvage, and Route Book 02
+
+- **Status:** `USER_APPROVED · DESIGN_AND_PLAN_RECORDED · IMPLEMENTATION_NOT_STARTED`
+- **Decision owner:** `docs/decisions/SX_DEC_067_WAYSIDE_HAZARDS_SALVAGE_AND_ROUTE_BOOK_02.md`
+- **Core rule:** authored `CAUTION_TRACK` departure segments use one fixed `0.55` speed multiplier; this is not retired cargo-count slowdown.
+- **Cargo rule:** `WASTE_CRATE` unloads only at an off-track cardinal-adjacent `DISPOSAL_YARD`; LIFO/TOP and ordinary stations remain unchanged.
+- **Content rule:** Route Book 02 contributes six optional authored stages; T1–T6, VS_DEMO_01, Route Book 01, score/progression, generators, and solution reveal remain out of scope.
+- **Evidence:** `NOT_IMPLEMENTED`; no candidate, runtime, device, human, or final-user-review claim transfers from Candidate 006.
+
 이 문서는 Switchy Express의 **현재 승인 Decision과 실행 권위**를 압축한다. 상세 규칙·근거·역사 CI는 각 Decision/Audit owner가 책임진다. Google Sheets는 migration-only이며 active decision authority가 아니다.
 
 ## Current authority snapshot
