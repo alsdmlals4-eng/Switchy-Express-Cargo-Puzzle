@@ -10,6 +10,7 @@ const GAMEPLAY: StringName = &"GAMEPLAY"
 const PAUSED: StringName = &"PAUSED"
 const EXIT_CONFIRM: StringName = &"EXIT_CONFIRM"
 const RESULT: StringName = &"RESULT"
+const ROUTE_BOOK: StringName = &"ROUTE_BOOK"
 
 const ProductScene := preload("res://game/demo/product_finite_slice.tscn")
 const ThemeFactory := preload("res://game/demo/presentation/demo_theme_factory.gd")
@@ -23,6 +24,15 @@ const FirstSessionCopyScript := preload("res://game/first_session/first_session_
 const FirstSessionStarterLayoutsScript := preload(
 	"res://game/first_session/first_session_starter_layouts.gd"
 )
+const FirstSessionStagePolicyScript := preload(
+	"res://game/first_session/first_session_stage_policy.gd"
+)
+const RouteBookDefinitionScript := preload(
+	"res://game/route_book/route_book_definition.gd"
+)
+const RouteBookDirectorScript := preload(
+	"res://game/route_book/route_book_director.gd"
+)
 
 @export var first_session_enabled: bool = false
 @export var first_session_locale: String = "ko"
@@ -32,11 +42,15 @@ var _last_result: Variant
 var _gameplay: Control
 var _first_session_director: Variant = null
 var _first_session_copy: Variant = null
+var _route_book_director: Variant = null
+var _route_book_copy: Variant = null
+var _route_book_active: bool = false
 
 
 func _ready() -> void:
 	theme = ThemeFactory.create_theme()
 	_connect_button("TitleScreen/Panel/Content/StartButton", start_demo)
+	_connect_button("TitleScreen/Panel/Content/StageBookButton", open_route_book)
 	_connect_button("TitleScreen/Panel/Content/ControlsButton", open_controls)
 	_connect_button("TitleScreen/Panel/Content/QuitButton", _quit_demo)
 	_connect_button("ControlsOverlay/Panel/Content/CloseButton", close_controls)
@@ -54,8 +68,18 @@ func _ready() -> void:
 	_connect_button("ResultOverlay/Panel/Content/Actions/RetryButton", _retry_result)
 	_connect_button("ResultOverlay/Panel/Content/Actions/EditButton", _edit_result)
 	_connect_button("ResultOverlay/Panel/Content/Actions/TitleButton", return_to_title)
+	_connect_button(
+		"ResultOverlay/Panel/Content/RouteBookActions/StageBookButton",
+		open_route_book
+	)
+	_connect_button(
+		"ResultOverlay/Panel/Content/RouteBookActions/NextStageButton",
+		open_next_route_book_stage
+	)
+	_connect_button("RouteBookScreen/Panel/Content/BackButton", return_to_title)
 	if first_session_enabled:
 		_setup_first_session()
+	_setup_route_book()
 	_sync_visibility()
 
 
@@ -76,6 +100,42 @@ func start_demo() -> void:
 		_transition_to(BRIEFING)
 
 
+func open_route_book() -> void:
+	if _route_book_director == null:
+		return
+	if _state != TITLE and not (_state == RESULT and _route_book_active):
+		return
+	_release_gameplay_instance()
+	_route_book_active = false
+	_route_book_director.reset()
+	_populate_route_book_list()
+	_transition_to(ROUTE_BOOK)
+
+
+func select_route_book_stage(stage_id: StringName) -> bool:
+	if _state != ROUTE_BOOK or _route_book_director == null:
+		return false
+	if not _route_book_director.select_stage(stage_id):
+		return false
+	_route_book_active = true
+	_apply_route_book_card()
+	_transition_to(BRIEFING)
+	return true
+
+
+func open_next_route_book_stage() -> bool:
+	if _state != RESULT or not _route_book_active or _route_book_director == null:
+		return false
+	if StringName(_summary_value(_last_result, &"outcome", &"FAILURE")) != &"SUCCESS":
+		return false
+	if not _route_book_director.select_next_stage():
+		return false
+	_release_gameplay_instance()
+	_apply_route_book_card()
+	_transition_to(BRIEFING)
+	return true
+
+
 func open_controls() -> void:
 	if _state == TITLE:
 		_transition_to(CONTROLS)
@@ -90,7 +150,9 @@ func begin_build() -> void:
 	if _state != BRIEFING:
 		return
 	var map_path := "res://data/maps/vs_demo_01.json"
-	if first_session_enabled and _first_session_director != null:
+	if _route_book_active and _route_book_director != null:
+		map_path = str(_route_book_director.current_stage().get("map_path", map_path))
+	elif first_session_enabled and _first_session_director != null:
 		map_path = str(_first_session_director.current_lesson().get("map_path", map_path))
 	_ensure_gameplay_instance(map_path)
 	_transition_to(GAMEPLAY)
@@ -147,6 +209,9 @@ func show_result(summary: Variant) -> void:
 func return_to_title() -> void:
 	_last_result = null
 	_release_gameplay_instance()
+	_route_book_active = false
+	if _route_book_director != null:
+		_route_book_director.reset()
 	if first_session_enabled and _first_session_director != null:
 		_first_session_director.reset()
 		_apply_lesson_card()
@@ -157,6 +222,12 @@ func current_lesson_id_for_test() -> StringName:
 	if _first_session_director == null:
 		return &""
 	return _first_session_director.current_lesson_id()
+
+
+func current_route_book_stage_id_for_test() -> StringName:
+	if _route_book_director == null:
+		return &""
+	return _route_book_director.current_stage_id()
 
 
 func dispatch_flow_action_for_test(action: StringName, pressed: bool) -> bool:
@@ -181,6 +252,9 @@ func dispatch_flow_action_for_test(action: StringName, pressed: bool) -> bool:
 			match _state:
 				CONTROLS:
 					close_controls()
+					return true
+				ROUTE_BOOK:
+					return_to_title()
 					return true
 				BRIEFING, RESULT:
 					return_to_title()
@@ -214,7 +288,11 @@ func _ensure_gameplay_instance(map_path: String = "res://data/maps/vs_demo_01.js
 	_gameplay = ProductScene.instantiate()
 	_gameplay.name = "ProductFiniteSlice"
 	_gameplay.map_path = map_path
-	if first_session_enabled and _first_session_director != null:
+	if _route_book_active and _route_book_director != null:
+		_gameplay.set_stage_policy(
+			FirstSessionStagePolicyScript.create(_route_book_director.current_stage())
+		)
+	elif first_session_enabled and _first_session_director != null:
 		_gameplay.set_stage_policy(_first_session_director.current_policy())
 	container.add_child(_gameplay)
 	if first_session_enabled and _first_session_director != null:
@@ -226,7 +304,7 @@ func _ensure_gameplay_instance(map_path: String = "res://data/maps/vs_demo_01.js
 				FirstSessionStarterLayoutsScript.pieces(layout_id)
 			)
 	_gameplay.terminal_reached.connect(_on_product_terminal_reached)
-	if first_session_enabled:
+	if first_session_enabled and not _route_book_active:
 		_gameplay.product_model_changed.connect(_on_first_session_model_changed)
 	_gameplay.title_requested.connect(return_to_title)
 	_gameplay.pause_changed.connect(set_paused)
@@ -246,6 +324,9 @@ func _release_gameplay_instance() -> void:
 
 
 func _on_product_terminal_reached(summary: Variant) -> void:
+	if _route_book_active:
+		show_result(summary)
+		return
 	if first_session_enabled and _first_session_director != null:
 		var transition: Dictionary = _first_session_director.observe_terminal(summary)
 		if bool(transition.get("changed", false)):
@@ -310,6 +391,7 @@ func _transition_to(next_state: StringName) -> void:
 func _sync_visibility() -> void:
 	_set_visible("TitleScreen", _state == TITLE)
 	_set_visible("ControlsOverlay", _state == CONTROLS)
+	_set_visible("RouteBookScreen", _state == ROUTE_BOOK)
 	_set_visible("BriefingScreen", _state == BRIEFING)
 	_set_visible(
 		"GameplayContainer",
@@ -321,6 +403,10 @@ func _sync_visibility() -> void:
 	_set_visible("PauseOverlay", _state == PAUSED)
 	_set_visible("ExitConfirmOverlay", _state == EXIT_CONFIRM)
 	_set_visible("ResultOverlay", _state == RESULT)
+	_set_visible(
+		"ResultOverlay/Panel/Content/RouteBookActions",
+		_state == RESULT and _route_book_active
+	)
 	if is_instance_valid(_gameplay):
 		_gameplay.set_shell_input_locked(_state != GAMEPLAY)
 
@@ -334,7 +420,8 @@ func _update_result_copy(summary: Variant) -> void:
 	var result_art := get_node_or_null("ResultOverlay/Panel/Content/ResultArt")
 	if result_art != null and result_art.has_method("set_result_outcome"):
 		result_art.set_result_outcome(outcome)
-	if first_session_enabled and _first_session_copy != null:
+	_update_route_book_result_actions(outcome)
+	if first_session_enabled and _first_session_copy != null and not _route_book_active:
 		_update_first_session_result_copy(summary, title, body)
 		return
 
@@ -361,6 +448,29 @@ func _update_result_copy(summary: Variant) -> void:
 		final_cost,
 		" → ".join(unload_groups) if not unload_groups.is_empty() else "없음",
 	]
+
+
+func _update_route_book_result_actions(outcome: StringName) -> void:
+	var actions := get_node_or_null("ResultOverlay/Panel/Content/RouteBookActions") as CanvasItem
+	var stage_book := get_node_or_null(
+		"ResultOverlay/Panel/Content/RouteBookActions/StageBookButton"
+	) as Button
+	var next_stage := get_node_or_null(
+		"ResultOverlay/Panel/Content/RouteBookActions/NextStageButton"
+	) as Button
+	var visible := _route_book_active and _route_book_director != null
+	if actions != null:
+		actions.visible = visible and _state == RESULT
+	if stage_book != null and _route_book_copy != null:
+		stage_book.text = _route_book_copy.text(&"SX_RB_STAGE_BOOK", first_session_locale)
+	if next_stage != null:
+		if _route_book_copy != null:
+			next_stage.text = _route_book_copy.text(&"SX_RB_NEXT_STAGE", first_session_locale)
+		next_stage.visible = (
+			visible
+			and outcome == &"SUCCESS"
+			and _route_book_director.has_next_stage()
+		)
 
 
 func _update_first_session_result_copy(summary: Variant, title: Label, body: Label) -> void:
@@ -437,8 +547,88 @@ func _setup_first_session() -> void:
 	var start_button := get_node_or_null("TitleScreen/Panel/Content/StartButton") as Button
 	if start_button != null:
 		start_button.text = _first_session_copy.text(&"SX_FS_START", first_session_locale)
-	_set_visible("TitleScreen/Panel/Content/SliceBadge", false)
+		_set_visible("TitleScreen/Panel/Content/SliceBadge", false)
 	_apply_lesson_card()
+
+
+func _setup_route_book() -> void:
+	var definition: Variant = RouteBookDefinitionScript.load_from_path(
+		"res://data/route_book/route_book_01.json"
+	)
+	_route_book_director = RouteBookDirectorScript.new()
+	if definition == null or not _route_book_director.configure(definition):
+		_route_book_director = null
+		return
+	_route_book_copy = FirstSessionCopyScript.new()
+	if not _route_book_copy.load_from_path("res://data/localization/route_book_01_v1.json"):
+		_route_book_copy = null
+		return
+	var button := get_node_or_null("TitleScreen/Panel/Content/StageBookButton") as Button
+	if button != null:
+		button.text = _route_book_copy.text(&"SX_RB_STAGE_BOOK", first_session_locale)
+	var title := get_node_or_null("RouteBookScreen/Panel/Content/Title") as Label
+	if title != null:
+		title.text = _route_book_copy.text(&"SX_RB_SELECT_STAGE", first_session_locale)
+	var back := get_node_or_null("RouteBookScreen/Panel/Content/BackButton") as Button
+	if back != null:
+		back.text = _route_book_copy.text(&"SX_RB_BACK", first_session_locale)
+
+
+func _populate_route_book_list() -> void:
+	if _route_book_director == null or _route_book_copy == null:
+		return
+	var list := get_node_or_null("RouteBookScreen/Panel/Content/StageScroll/StageList") as VBoxContainer
+	if list == null:
+		return
+	for child: Node in list.get_children():
+		list.remove_child(child)
+		child.free()
+	for stage_id: StringName in _route_book_director.stage_ids():
+		var stage: Dictionary = _route_book_director.stage(stage_id)
+		var selected_stage_id := stage_id
+		var card := Button.new()
+		card.name = "%sCard" % stage_id
+		card.custom_minimum_size = Vector2(0, 64)
+		card.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		card.text = "%02d  %s\n%s" % [
+			_route_book_director.stage_ids().find(stage_id) + 1,
+			_route_book_copy.text(StringName(stage.get("title_key", &"")), first_session_locale),
+			_route_book_copy.text(StringName(stage.get("objective_key", &"")), first_session_locale),
+		]
+		card.pressed.connect(func() -> void: select_route_book_stage(selected_stage_id))
+		list.add_child(card)
+
+
+func _apply_route_book_card() -> void:
+	if _route_book_director == null or _route_book_copy == null:
+		return
+	var stage: Dictionary = _route_book_director.current_stage()
+	var progress := get_node_or_null("BriefingScreen/Panel/Content/LessonProgress") as Label
+	var title := get_node_or_null("BriefingScreen/Panel/Content/Title") as Label
+	var objective := get_node_or_null("BriefingScreen/Panel/Content/Objective") as Label
+	var rules := get_node_or_null("BriefingScreen/Panel/Content/Rules") as Label
+	var begin := get_node_or_null("BriefingScreen/Panel/Content/BeginButton") as Button
+	var lesson_art := get_node_or_null("BriefingScreen/Panel/Content/LessonArt")
+	if lesson_art != null and lesson_art.has_method("set_lesson_id"):
+		lesson_art.set_lesson_id(_route_book_director.current_stage_id())
+	if progress != null:
+		progress.text = _route_book_copy.format(
+			&"SX_RB_PROGRESS",
+			{
+				"current": _route_book_director.current_stage_number(),
+				"total": _route_book_director.stage_count(),
+			},
+			first_session_locale
+		)
+	if title != null:
+		title.text = _route_book_copy.text(StringName(stage.get("title_key", &"")), first_session_locale)
+	if objective != null:
+		objective.text = _route_book_copy.text(StringName(stage.get("objective_key", &"")), first_session_locale)
+	if rules != null:
+		rules.text = ""
+		rules.visible = false
+	if begin != null:
+		begin.text = _route_book_copy.text(&"SX_RB_BEGIN", first_session_locale)
 
 
 func _apply_lesson_card() -> void:

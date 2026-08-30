@@ -14,6 +14,7 @@ fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
 current_decisions: SX-DEC-027~065
 current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · SX60_POC_ACCEPT_005_MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN
+sx_dec_066_local_unmerged_gate: IMPLEMENTED_LOCAL_MACHINE_VERIFIED · code_49574b249cf4cfa675d4ba804851bfeb5e317dff · hosted_CI_package_candidate_final_user_review_NOT_RUN
 ```
 
 ## 1. Stable historical implementation evidence

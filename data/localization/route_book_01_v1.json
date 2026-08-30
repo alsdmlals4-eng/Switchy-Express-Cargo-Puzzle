@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "locales": ["ko", "en", "ja", "zh-Hans"],
+  "strings": {
+    "SX_RB_STAGE_BOOK": {"ko": "스테이지 북 01", "en": "Stage Book 01", "ja": "ステージブック 01", "zh-Hans": "关卡手册 01"},
+    "SX_RB_SELECT_STAGE": {"ko": "스테이지 선택", "en": "Select a Stage", "ja": "ステージを選ぶ", "zh-Hans": "选择关卡"},
+    "SX_RB_BACK": {"ko": "타이틀로", "en": "Back to Title", "ja": "タイトルへ", "zh-Hans": "返回标题"},
+    "SX_RB_BEGIN": {"ko": "건설 시작", "en": "Begin Building", "ja": "建設を始める", "zh-Hans": "开始建设"},
+    "SX_RB_NEXT_STAGE": {"ko": "다음 스테이지", "en": "Next Stage", "ja": "次のステージ", "zh-Hans": "下一关"},
+    "SX_RB_PROGRESS": {"ko": "스테이지 북 01 · {current} / {total}", "en": "Stage Book 01 · {current} / {total}", "ja": "ステージブック 01 · {current} / {total}", "zh-Hans": "关卡手册 01 · {current} / {total}"},
+    "SX_RB01_TITLE": {"ko": "역 옆의 선로", "en": "Track Beside the Station", "ja": "駅のとなりの線路", "zh-Hans": "车站旁的轨道"},
+    "SX_RB01_OBJECTIVE": {"ko": "화물 칸을 지나 싣고, 역의 상하좌우 한 칸을 지나 배송하세요.", "en": "Load by passing cargo, then deliver by passing one cardinal cell beside its station.", "ja": "貨物マスを通って積み、駅の上下左右1マスを通って配送しましょう。", "zh-Hans": "经过货物格装载，再经过车站上下左右相邻的一格完成配送。"},
+    "SX_RB02_TITLE": {"ko": "역순 적재", "en": "Reverse the Load Order", "ja": "逆順に積む", "zh-Hans": "逆序装载"},
+    "SX_RB02_OBJECTIVE": {"ko": "먼저 내릴 화물이 TOP에 오도록 만나는 순서를 거꾸로 계획하세요.", "en": "Plan the encounter order in reverse so the first delivery is on TOP.", "ja": "最初に降ろす貨物がTOPになるよう、出会う順番を逆に考えましょう。", "zh-Hans": "倒过来规划遇到货物的顺序，让先配送的货物位于TOP。"},
+    "SX_RB03_TITLE": {"ko": "되돌아오는 화물", "en": "Cargo on the Return", "ja": "戻って積む貨物", "zh-Hans": "回程货物"},
+    "SX_RB03_OBJECTIVE": {"ko": "첫 만남에서는 하나를 지나치고, 필요한 배송 뒤에 다시 돌아와 실으세요.", "en": "Skip one cargo on the first pass, then return for it after the needed delivery.", "ja": "最初は貨物をひとつ見送り、必要な配送のあとで戻って積みましょう。", "zh-Hans": "第一次经过时跳过一件货物，在完成必要配送后再回来装载。"},
+    "SX_RB04_TITLE": {"ko": "자동 적재 창", "en": "Auto Load Window", "ja": "自動積載の区間", "zh-Hans": "自动装载窗口"},
+    "SX_RB04_OBJECTIVE": {"ko": "안전한 같은 색 화물에는 자동 적재를 쓰고, 순서가 중요한 화물 앞에서는 끄세요.", "en": "Use Auto Load for the safe matching pair, then turn it off before order-sensitive cargo.", "ja": "安全な同色の組には自動積載を使い、順番が重要な貨物の前でOFFにしましょう。", "zh-Hans": "对安全的同色货物使用自动装载，在顺序敏感的货物前关闭它。"},
+    "SX_RB05_TITLE": {"ko": "잠긴 분기", "en": "Locked Switch", "ja": "ロックされた分岐", "zh-Hans": "锁定的道岔"},
+    "SX_RB05_OBJECTIVE": {"ko": "열차가 오기 전에 배송 분기를 고르고, 열차가 밟으면 바꿀 수 없다는 점을 확인하세요.", "en": "Choose the delivery branch before arrival; it cannot change while the train occupies it.", "ja": "列車が来る前に配送分岐を選び、列車が乗ると変更できないことを確かめましょう。", "zh-Hans": "在列车到达前选择配送分支；列车占用道岔时无法更改。"},
+    "SX_RB06_TITLE": {"ko": "항만 순환선", "en": "Harbor Circuit", "ja": "港の環状線", "zh-Hans": "港口环线"},
+    "SX_RB06_OBJECTIVE": {"ko": "TOP 순서, 역 옆 배송, 자동 적재 전환과 분기 선택을 함께 계획하세요.", "en": "Plan TOP order, beside-station delivery, Auto Load changes, and switch choices together.", "ja": "TOPの順番、駅のとなりでの配送、自動積載の切替、分岐選択をまとめて計画しましょう。", "zh-Hans": "同时规划TOP顺序、车站旁配送、自动装载切换和道岔选择。"}
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "definition_schema_version": 3,
+  "map_id": "RB04_LOAD_WINDOW",
+  "map_revision": 1,
+  "ruleset_version": "fp_core_v2",
+  "marker_tracks_player_built": true,
+  "allow_open_terminals_after_required": true,
+  "board_size": [12, 9],
+  "start_cell": [1, 4],
+  "incoming_cell": [0, 4],
+  "time_limit_seconds": 120.0,
+  "buildable_rects": [{"minimum": [1, 1], "maximum": [10, 7]}],
+  "blocked_cells": [],
+  "station_placements": [
+    {"cell": [9, 2], "cargo_type": "RED_STAR"},
+    {"cell": [9, 7], "cargo_type": "BLUE_DIAMOND"}
+  ],
+  "cargo_placements": [
+    {"cell": [3, 4], "cargo_type": "RED_STAR"},
+    {"cell": [4, 4], "cargo_type": "RED_STAR"},
+    {"cell": [6, 4], "cargo_type": "BLUE_DIAMOND"}
+  ]
+}

@@ -141,6 +141,7 @@ sx_dec_060_new_bitmap_assets_required: 0
 | **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · v2 terrain/non-rail and v04 centred-port rail correction merged main in PR #255, including reviewed non-square quarter-turn fix · remote CI 7 green and Candidate 005 exact package evidence complete** |
 | **SX-DEC-064** | **Active-route lighting · MERGED_MAIN_VERIFIED · PR #249 · CI 7 green · procedural presentation delta · physical/player gates remain open** |
 | **SX-DEC-065** | **Machine-primary final-user-review policy · USER_APPROVED · Candidate 005 is MACHINE_PRIMARY_ACCEPTANCE_READY; five-person/player-experience studies not required** |
+| **SX-DEC-066** | **Curated Route Book 01 · USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_VERIFIED · NOT_MERGED · six optional fixed stages; hosted CI/package/candidate and final user review remain separate** |
 
 ## SX-DEC-059 retained first-session contract
 
@@ -156,6 +157,17 @@ T1 · Track Connection
 ```
 
 SX-DEC-060는 이 단계 수를 늘리지 않는다. T2의 station mental model만 `station exact-cell arrival`에서 `cardinal adjacent service`로 교정한다.
+
+## SX-DEC-066 curated Route Book 01
+
+Canonical owners: `docs/decisions/SX_DEC_066_CURATED_ROUTE_BOOK_01.md`, `기획서/20_시스템_콘텐츠/ROUTE_BOOK_01_STAGE_CONTENT_SPEC.md`, `docs/superpowers/specs/2026-08-30-route-book-01-stage-pack-design.md`, `docs/superpowers/plans/2026-08-30-route-book-01-stage-pack-implementation.md`, and the twelve-game comparison record `docs/research/2026-08-30-route-book-01-genre-reverse-engineering.md`.
+
+```text
+Title → Stage Book → one of six fixed hand-authored stages → existing Briefing / BUILD / RUN / factual Result
+→ Retry Same Route | Edit Route | Stage Book | Next Stage
+```
+
+This is an optional post-onboarding content pack, not T7 or a first-session replacement. It reuses schema-v3 finite maps, current cargo/station/LIFO/Auto/switch rules, existing product assets, and the existing product result path. It adds no save/unlock, score/rank/reward, generator, Yard Lab, Mastery, Daily/Weekly, asset, audio, or core-rule surface. All six stages are directly selectable; `RECOMMENDED_LAYOUT` stays hidden. The completed twelve-game benchmark supports the fixed authored-map disposition and rejects the adjacent progression/sandbox families. Local implementation is fixed at `d1d2087` and `49574b249cf4cfa675d4ba804851bfeb5e317dff`: six map/data contracts, direct flow/recovery, four-locale copy, responsive layout, and full machine regression passed. It is not merged; hosted CI, package/export, a new exact candidate, physical/device checks, and final user review remain unrun. See `docs/operations/2026-08-30-sx-dec-066-route-book-01-local-machine-verification.md`.
 
 ## SX-DEC-061 confirmed visual/validation contract
 
