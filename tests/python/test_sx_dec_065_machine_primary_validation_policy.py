@@ -205,6 +205,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
 
         approval = json.loads(read("docs/operations/PROJECT_PROTECTED_CHANGE_APPROVAL.json"))
         self.assertIn("SX-DEC-065", approval["decision_ids"])
+        self.assertIn("SX-DEC-067", approval["decision_ids"])
         self.assertNotIn(
             "docs/decisions/SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW_VALIDATION_POLICY.md",
             approval["approved_paths"],
