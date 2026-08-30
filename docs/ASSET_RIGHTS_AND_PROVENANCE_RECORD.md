@@ -195,7 +195,7 @@ runtime_connection_status: LOCAL_AUTOMATED_AND_MACHINE_RUNTIME_VERIFIED
 renderer_treatment: four product textures draw at the full cell rectangle; rotations 1/3 pre-swap non-square local draw dimensions before renderer rotation; no renderer-local rail seam underlay remains
 v01_v02_v03_rail_rollback: tracked and not runtime-selected
 local_windows_android_package_proof: VERIFIED_LOCAL_ONLY
-remote_runtime_byte_ci: PASS_PR_255_4D5C5EF_7_REQUIRED_CHECKS
+remote_runtime_byte_ci: PASS_PR_255_F00DE19_7_REQUIRED_CHECKS · MERGED_MAIN_2CF7BB5
 physical_windows_audio_android_human_player_experience_release: NOT_RUN
 ```
 
@@ -206,7 +206,7 @@ physical_windows_audio_android_human_player_experience_release: NOT_RUN
 | `SX-CORE-RAIL-CROSSING-004` | `[388, 300, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v04.png` | `0500d474f628272f33c1cf29622d30e7ad86b79ed5c77476894f75b566a5f3d9` | `rail_crossing` |
 | `SX-CORE-RAIL-SWITCH-004` | `[855, 300, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v04.png` | `08341ce6b346c2225bbc146c7dbde12e2854b57cca7dc9369e6f6bdcd9ebca37` | `rail_switch` |
 
-The v04 correction does not add a new generated image or third-party reference. The user-visible defect was an off-centre v03 crop, not a missing rail family. The real-byte port contract, import, full suite, live recommended board capture, local package proof, and all seven required remote checks for PR #255 runtime-byte head `4d5c5ef09040c36aa064b8b79ddb69443b465877` verify the current consumer at their stated machine evidence ceiling. Immutable candidate and all physical/human/release gates remain separate.
+The v04 correction does not add a new generated image or third-party reference. The user-visible defect was an off-centre v03 crop, not a missing rail family. The real-byte port contract, import, full suite, live recommended board capture, local package proof, and all seven required remote checks for PR #255 runtime-byte head `f00de19ea0ef1db907bf05c8dc847a0180489c35`, merged into `main` at `2cf7bb5595a297955c75e6b4108bc1be6fe9428c`, verify the current consumer at their stated machine evidence ceiling. Immutable candidate and all physical/human/release gates remain separate.
 
 실제 game runtime consumer가 확인된 필요한 이미지는 별도 이미지별 승인 없이 자동 생성할 수 있다. 생성 후보는 review-only로 유지하고, 사용자 승인 final만 GitHub tracked project-local asset로 보존하며 기존 E+D Hybrid / Neo-Arcade 시각 언어를 유지한다. Runtime consumer가 없는 이미지 생성이나 runtime promotion은 이 권한에 포함되지 않는다.
 

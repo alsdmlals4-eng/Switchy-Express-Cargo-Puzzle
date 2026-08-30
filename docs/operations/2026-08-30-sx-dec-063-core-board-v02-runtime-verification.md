@@ -1,6 +1,6 @@
 # SX-DEC-063 Core Board v02 live runtime verification
 
-**Current v04 status:** `MACHINE_RUNTIME_CAPTURE_AND_LOCAL_PACKAGE_VERIFIED · REMOTE_RUNTIME_BYTE_CI_7_GREEN_PR_255_4D5C5EF · PHYSICAL_HUMAN_NOT_RUN`
+**Current v04 status:** `MERGED_MAIN_VERIFIED_PR_255_MAIN_2CF7BB5 · REMOTE_RUNTIME_BYTE_CI_7_GREEN_PR_255_F00DE19 · PHYSICAL_HUMAN_NOT_RUN`
 
 > The v02/v03 sections before the explicit v04 correction below are historical evidence only. Their old screenshots, package counts, and hosted-CI records do not apply to the current v04 runtime bytes.
 
@@ -258,7 +258,7 @@ v04_live_recommended_build_capture: VERIFIED_MACHINE_RUNTIME
 v04_godot_diagnostics: CLEAN_0_ERRORS_0_WARNINGS
 v04_local_windows_debug_export: PASS_UNCOMMITTED_ISOLATED_WORKTREE
 v04_local_windows_android_runtime_json_pck: PASS_UNCOMMITTED_ISOLATED_WORKTREE_561_OF_561_ENTRIES
-v04_remote_runtime_byte_ci: PASS_PR_255_4D5C5EF_7_REQUIRED_CHECKS
+v04_remote_runtime_byte_ci: PASS_PR_255_F00DE19_7_REQUIRED_CHECKS · MERGED_MAIN_2CF7BB5
 v04_immutable_package_candidate: NOT_MINTED
 v04_windows_physical_audio_android_device_human_player_experience_release: NOT_RUN
 ```
