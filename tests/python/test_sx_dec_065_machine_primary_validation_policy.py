@@ -74,7 +74,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         self.assertNotIn("current_decision_span: SX-DEC-027~064", adapter)
         self.assertIn(
             "current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · "
-            "SX_DEC_066_ROUTE_BOOK_01 · SX_DEC_067_WAYSIDE_HAZARDS_ROUTE_BOOK_02_LOCAL_MACHINE_RUNTIME_VERIFIED · PR_263_CI_REPAIR_IN_PROGRESS · FINAL_USER_REVIEW_NOT_RUN",
+            "SX_DEC_066_ROUTE_BOOK_01 · SX_DEC_067_WAYSIDE_HAZARDS_ROUTE_BOOK_02_REMOTE_CI_7_GREEN · PR_263_AWAITING_MERGE · FINAL_USER_REVIEW_NOT_RUN",
             gates,
         )
         self.assertNotIn("EXACT_CANDIDATE_005_MACHINE_VALIDATION_PENDING", gates)

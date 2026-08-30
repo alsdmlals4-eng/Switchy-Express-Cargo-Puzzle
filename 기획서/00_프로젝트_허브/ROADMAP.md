@@ -48,7 +48,7 @@ SX-DEC-067 · USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_RUNTIME_VERIFIED · NOT
 → Route Book 02: six optional authored wayside/salvage stages, selected before the existing stage list
 → authored `CAUTION_TRACK` 0.55 departure segments; `WASTE_CRATE` only at cardinal-adjacent `DISPOSAL_YARD`
 → five modular board-decoration placements per new map and eight runtime-connected generated candidate assets
-→ Godot full local regression PASS · 120 cases / 14,053 assertions; PR #263 CI repair in progress; no post-change package/physical/final-user candidate yet
+→ Godot full local regression PASS · 120 cases / 14,053 assertions; PR #263 remote CI 7 GREEN and awaiting merge; no post-change package/physical/final-user candidate yet
 ```
 
 ## M0 · Product baseline
