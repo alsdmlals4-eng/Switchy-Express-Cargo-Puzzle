@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import os
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -97,6 +99,46 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
             "SX60-POC-ACCEPT-004",
             pointer["historical_superseded_after_sx_dec_063_core_board_v04"]["candidate_id"],
         )
+
+    @unittest.skipUnless(os.name == "nt", "PowerShell contract execution requires Windows")
+    def test_contract_check_accepts_no_current_candidate_but_launch_route_still_fails_closed(self) -> None:
+        contract_result = subprocess.run(
+            [
+                "powershell",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                str(ROOT / "RUN_SX60_POC_SELF_RUN.ps1"),
+                "-ContractCheck",
+            ],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+
+        self.assertEqual(
+            0,
+            contract_result.returncode,
+            contract_result.stdout + contract_result.stderr,
+        )
+        self.assertIn("NO_CURRENT_CANDIDATE_MINT_REQUIRED", contract_result.stdout)
+
+        launch_result = subprocess.run(
+            [
+                "powershell",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                str(ROOT / "RUN_SX60_POC_SELF_RUN.ps1"),
+            ],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertNotEqual(0, launch_result.returncode)
+        self.assertIn("no current candidate", launch_result.stdout + launch_result.stderr)
 
     def test_registry_map_and_protected_approval_track_the_new_owner(self) -> None:
         registry = json.loads(read("기획서/00_프로젝트_허브/DESIGN_DOCUMENT_REGISTRY.json"))
