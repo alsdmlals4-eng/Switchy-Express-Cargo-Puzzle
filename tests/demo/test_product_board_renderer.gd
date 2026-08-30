@@ -55,6 +55,39 @@ func run() -> void:
 				"rendered curve ports must match domain ports at rotation %d" % rotation
 			)
 
+	var non_square_target := Rect2(40.0, 80.0, 100.0, 60.0)
+	var base_curve_ports: Array[Vector2i] = [Vector2i.UP, Vector2i.RIGHT]
+	for rotation: int in range(4):
+		var local_draw_rect: Rect2 = RendererScript.product_texture_draw_rect_for_test(
+			non_square_target,
+			rotation
+		)
+		var expected_local_size := non_square_target.size
+		if rotation % 2 == 1:
+			expected_local_size = Vector2(non_square_target.size.y, non_square_target.size.x)
+		assert_equal(
+			local_draw_rect.size,
+			expected_local_size,
+			"quarter-turn texture draw must pre-swap a non-square target at rotation %d" % rotation
+		)
+		for base_port: Vector2i in base_curve_ports:
+			var expected_direction := base_port
+			for _quarter: int in range(rotation):
+				expected_direction = Vector2i(-expected_direction.y, expected_direction.x)
+			var expected_port_position := non_square_target.get_center() + Vector2(
+				float(expected_direction.x) * non_square_target.size.x * 0.5,
+				float(expected_direction.y) * non_square_target.size.y * 0.5
+			)
+			assert_equal(
+				RendererScript.product_texture_port_position_for_test(
+					base_port,
+					non_square_target,
+					rotation
+				),
+				expected_port_position,
+				"rotated curve port must meet the correct edge centre in a non-square cell at rotation %d" % rotation
+			)
+
 	var fixed_snapshot := {
 		"start_cell": Vector2i(1, 4),
 		"incoming_cell": Vector2i(0, 4),
@@ -150,10 +183,10 @@ func run() -> void:
 	var expected_product_paths := {
 		"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
 		"train": "art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png",
-		"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v03.png",
-		"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v03.png",
-		"rail_crossing": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v03.png",
-		"rail_switch": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v03.png",
+		"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v04.png",
+		"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v04.png",
+		"rail_crossing": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v04.png",
+		"rail_switch": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v04.png",
 		"start_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png",
 		"route_end_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png",
 		"station_red": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
@@ -166,7 +199,7 @@ func run() -> void:
 	assert_equal(
 		renderer.product_visual_asset_paths_for_test(),
 		expected_product_paths,
-		"core board must retain its existing visual slots while v03 replaces only rail pixels"
+		"core board must retain its existing visual slots while v04 replaces only rail pixels"
 	)
 	for asset_key: String in expected_product_paths:
 		assert_true(

@@ -19,10 +19,10 @@ const CARGO_MARKER_SCALE := 0.62
 const PRODUCT_VISUAL_ASSET_PATHS := {
 	"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
 	"train": "art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png",
-	"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v03.png",
-	"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v03.png",
-	"rail_crossing": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v03.png",
-	"rail_switch": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v03.png",
+	"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v04.png",
+	"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v04.png",
+	"rail_crossing": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v04.png",
+	"rail_switch": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v04.png",
 	"start_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png",
 	"route_end_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png",
 	"station_red": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
@@ -134,6 +134,23 @@ func visual_layer_order_for_test() -> Array[StringName]:
 
 static func track_ports_for_test(geometry: StringName, rotation: int) -> Array[Vector2i]:
 	return _track_ports(geometry, rotation)
+
+
+static func product_texture_draw_rect_for_test(target: Rect2, rotation_quarters: int) -> Rect2:
+	return _product_texture_local_draw_rect(target, rotation_quarters)
+
+
+static func product_texture_port_position_for_test(
+	base_port: Vector2i,
+	target: Rect2,
+	rotation_quarters: int
+) -> Vector2:
+	var local_rect := _product_texture_local_draw_rect(target, rotation_quarters)
+	var local_port := Vector2(
+		float(base_port.x) * local_rect.size.x * 0.5,
+		float(base_port.y) * local_rect.size.y * 0.5
+	)
+	return target.get_center() + _rotate_vector_by_quarters(local_port, rotation_quarters)
 
 
 func board_cell_from_local(local: Vector2, board_size: Vector2i) -> Vector2i:
@@ -771,10 +788,11 @@ func _draw_product_texture(
 		draw_texture_rect(texture, target, false, modulate)
 		return true
 	var center := target.get_center()
+	var local_target := _product_texture_local_draw_rect(target, quarters)
 	draw_set_transform(center, float(quarters) * PI * 0.5, Vector2.ONE)
 	draw_texture_rect(
 		texture,
-		Rect2(-target.size * 0.5, target.size),
+		local_target,
 		false,
 		modulate
 	)
@@ -1037,6 +1055,13 @@ static func _track_ports(geometry: StringName, rotation: int) -> Array[Vector2i]
 	return result
 
 
+static func _product_texture_local_draw_rect(target: Rect2, rotation_quarters: int) -> Rect2:
+	var local_size := target.size
+	if posmod(rotation_quarters, 4) % 2 == 1:
+		local_size = Vector2(target.size.y, target.size.x)
+	return Rect2(-local_size * 0.5, local_size)
+
+
 static func _rotation_quarters_for_direction(direction: Vector2i) -> int:
 	if direction == Vector2i.DOWN:
 		return 1
@@ -1051,6 +1076,13 @@ static func _rotate_direction(direction: Vector2i, quarters: int) -> Vector2i:
 	var result := direction
 	for _index: int in range(posmod(quarters, 4)):
 		result = Vector2i(-result.y, result.x)
+	return result
+
+
+static func _rotate_vector_by_quarters(vector: Vector2, quarters: int) -> Vector2:
+	var result := vector
+	for _index: int in range(posmod(quarters, 4)):
+		result = Vector2(-result.y, result.x)
 	return result
 
 

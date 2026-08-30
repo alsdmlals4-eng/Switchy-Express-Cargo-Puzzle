@@ -1,8 +1,10 @@
 # SX-DEC-063 Core Board v02 live runtime verification
 
-**Status:** `MACHINE_RUNTIME_CAPTURE_AND_LOCAL_PACKAGE_VERIFIED · PHYSICAL_HUMAN_NOT_RUN`
+**Current v04 status:** `MACHINE_RUNTIME_CAPTURE_AND_LOCAL_PACKAGE_VERIFIED · REMOTE_EXACT_HEAD_CI_PENDING · PHYSICAL_HUMAN_NOT_RUN`
 
-## Exact scope
+> The v02/v03 sections before the explicit v04 correction below are historical evidence only. Their old screenshots, package counts, and hosted-CI records do not apply to the current v04 runtime bytes.
+
+## Historical v02/v03 scope
 
 The 2026-08-30 user approval promoted the displayed Core Board v02 image bundle and the narrow curve/switch visual seam-underlay strategy. This check verifies only the changed product-renderer asset family on the isolated implementation branch. It includes a local, uncommitted Windows debug export and Windows/Android data-package proof; it does not mint a GitHub exact-head candidate, validate a physical Windows build, audio perception, Android device, accessibility with users, player comprehension, release rights, or production cutover.
 
@@ -193,4 +195,70 @@ v03_full_python_regression: PASS_223_PASSED_1_SKIPPED
 v03_hosted_exact_runtime_byte_ci: PASS_PR_255_C07E02B_7_REQUIRED_CHECKS
 v03_immutable_package_candidate: NOT_MINTED
 v03_windows_physical_audio_android_device_human_player_experience_release: NOT_RUN
+```
+
+## 2026-08-30 v04 centred-port correction
+
+### Scope, diagnosis, and selected approach
+
+The user reported that the actual curve was still not natural. The diagnosis used the current `ProductBoardRenderer` consumer and the actual v03 raster bytes, not a concept image: v03 curve right-edge opaque-pixel centre was `42.5` while its logical 64px tile edge centre is `31.5`; the v03 straight left edge was `27.5`. The renderer already draws a full 64px texture rectangle and owns quarter-turn rotation, so this source-coordinate error cannot be fixed correctly with a seam overlap.
+
+| Option | Disposition | Reason |
+| --- | --- | --- |
+| Restore a procedural overlap / seam underlay | `REJECT` | It masks, rather than corrects, the source centreline discontinuity and reintroduces the previously rejected separate-tile appearance. |
+| Promote a new generated rail master | `REJECT` | Tested candidates were not promoted because one did not preserve usable alpha and another lacked a clean standard curve; the approved master already contained usable connected material. |
+| Re-crop the approved connected master with a real-byte edge-centre contract | `ADOPT` | It preserves the approved source, changes only four actual visual consumers, and gives a deterministic regression test for every declared tile port. |
+
+The approved source remains `art/product_assets/ed_hybrid_v2/source/core_rail_network_master_v03.png` (SHA-256 `f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b`). `tools/derive_sx_dec_063_master_rail_v04.gd` deterministically crops and Lanczos-resamples: straight `[650, 803, 256, 256]`, curve `[394, 803, 256, 256]`, crossing `[388, 300, 256, 256]`, and switch `[855, 300, 256, 256]`; its non-mutating `--verify` mode regenerated and byte-compared every v04 PNG to the tracked output. No new generated image, external source, engine API, plugin, game rule, map, route, station service, cargo behavior, or input was introduced. Official external research is `NOT_MATERIAL`: the existing Godot `Image` crop/import and `Texture2D` renderer path are already the supported, verified consumer boundary.
+
+### RED → GREEN and actual-consumer evidence
+
+- **RED:** `tests/python/test_sx_dec_063_core_board_asset_promotion.py` examined the real active textures and found eleven off-centre declared ports using a two-pixel tolerance.
+- **Saved reproduction:** `evidence/runtime/sx_dec_063_core_board_v03/2026-08-30-curve-root-cause-reproduction-1280x720.png` preserves the original v03 consumer fault for comparison; it remains excluded from runtime import/export.
+- **GREEN:** the same contract reads the real active v04 renderer paths and passes with these contiguous port spans: straight `31.0/33.0`, curve `32.0/31.0`, crossing `31.0–31.5`, and switch `32.0–32.5` against logical centre `31.5`; every span has at least 12 opaque rail/ballast pixels.
+- **Non-square quarter turns:** the renderer contract tests all four curve rotations in a `100×60` target. It requires a pre-swapped local draw rectangle for rotations 1/3 and proves every rotated port lands at the matching target-edge centre.
+- **Derived-byte verification:** `Godot --headless --script res://tools/derive_sx_dec_063_master_rail_v04.gd -- --verify` returned `SX_DEC_063_MASTER_RAIL_V04_DERIVATION: PASS` without writing an output file.
+- **Live machine runtime:** the final recommended-layout capture at `evidence/runtime/sx_dec_063_core_board_v03/2026-08-30-master-rail-v04-rotated-cell-fix-recommended-1280x720.png` shows the top-right horizontal → curve → vertical path continuously aligned after the non-square rotation correction. Godot diagnostics reported `0` errors and `0` warnings. This is machine runtime evidence, not physical Windows, accessibility, player, or release proof.
+
+### Local package proof for v04 bytes
+
+| Check | Result |
+| --- | --- |
+| Windows Debug export | `PASS_LOCAL_UNCOMMITTED_WORKTREE` — `SwitchyExpressVerticalSlice.exe`, 102,982,144 bytes, SHA-256 `1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244`; this constructs an export but does not run a physical Windows smoke. |
+| Windows Demo runtime-JSON PCK | `PASS_LOCAL_UNCOMMITTED_WORKTREE` — 16,608,376 bytes, SHA-256 `f0e233a2f245a5e0bef068d02399e3be39b05ee3915093548b35d36965a08ecd`; `RUNTIME_JSON_PACK_PROOF: PASS parsed_json=29`; integrity 561/561 entries, zero bounds and MD5 mismatches. |
+| Android Validation runtime-JSON PCK | `PASS_LOCAL_UNCOMMITTED_WORKTREE` — 16,608,376 bytes, SHA-256 `61e294434b5d966b3b1d10fa7690181cc58e182684b30256759818a0f708e0d0`; `RUNTIME_JSON_PACK_PROOF: PASS parsed_json=29`; integrity 561/561 entries, zero bounds and MD5 mismatches. This is PCK proof only, not an Android APK/device claim. |
+| Asset/evidence boundary | `PASS` — the `art/product_assets/ed_hybrid_v2/core/` package prefix contains 21 imported core records including the four v04 paths; master source and `evidence/runtime/sx_dec_063_core_board_v03/` each have zero package entries. |
+| Hosted exact runtime-byte CI | `PENDING` — PR #255's prior v03 checks do not transfer to v04 bytes. |
+
+### Five full-scope adversarial review loops
+
+Every loop rechecked the entire bounded scope: actual consumer/gameplay, source and rights provenance, import/package inclusion, live readability, test evidence, and evidence-ceiling wording.
+
+| Loop | Attack | Result and correction |
+| --- | --- | --- |
+| 1 | The visual defect could be game topology, rotation logic, or interaction logic rather than asset geometry. | The live fault and actual alpha-edge measurements isolate it to v03 crop alignment; no map, `TrackPiece`, graph, controller, input, route, service, train, or cargo owner changed. **CORRECTED_AND_PASS**. |
+| 2 | A new crop could drift from the approved source or introduce a new rights/provenance boundary. | All four v04 files derive from the same approved master with its existing SHA; its `--verify` mode regenerated and byte-compared every tracked v04 output without writing it. Fresh generated attempts were rejected and not copied to the project. Manifest, four hashes, crop rectangles, and deterministic derivation tool are recorded. **PASS**. |
+| 3 | The new curve might centre one orientation but fail after renderer rotation, or hide a white-selection/cargo hierarchy regression. | Review found that quarter-turning a pre-scaled non-square rectangle could swap its final bounds. The renderer now pre-swaps the local rectangle for rotations 1/3; a 100×60 all-rotation contract proves each curve port reaches its correct target edge centre. The real recommended 1280×720 layout displays the formerly faulty curve with the existing cyan/translucent selection treatment and compact cargo unchanged. **CORRECTED_AND_PASS_AT_MACHINE_EVIDENCE_CEILING**. |
+| 4 | Review source or captures could leak into the runtime package, or the new paths could be omitted. | Windows and Android proof PCKs parse runtime JSON, verify 561/561 entries, include the imported core family, and contain zero master/capture prefix entries. **PASS_LOCAL_PACKAGE_ONLY**. |
+| 5 | Local success might be inflated into a remote, immutable, physical, device, human, or release result. | All documentation keeps PR #255 v04 hosted CI pending; the local proof is explicitly uncommitted, Candidate 004 remains historical merged-main evidence, and physical/audio/device/accessibility/player/release gates remain `NOT_RUN`. **PASS_WITH_BOUNDARY_RETAINED**. |
+
+### Current v04 evidence ceiling
+
+```yaml
+v04_real_byte_port_centre_contract: PASS_AFTER_RED_11_FINDINGS
+v04_contiguous_rail_port_span_contract: PASS_MINIMUM_12_PIXELS
+v04_non_square_quarter_turn_contract: PASS_100x60_ALL_CURVE_ROTATIONS
+v04_master_derivation_byte_verification: PASS_NO_WRITE
+v04_focused_python_contract: PASS_2_TESTS
+v04_full_project_contract: PASS
+v04_full_python_regression: PASS_215_TESTS_1_SKIPPED
+v04_full_headless_godot: PASS_112_CASES_13560_ASSERTIONS
+v04_formal_gut: PASS_21_TESTS_152_ASSERTIONS
+v04_live_recommended_build_capture: VERIFIED_MACHINE_RUNTIME
+v04_godot_diagnostics: CLEAN_0_ERRORS_0_WARNINGS
+v04_local_windows_debug_export: PASS_UNCOMMITTED_ISOLATED_WORKTREE
+v04_local_windows_android_runtime_json_pck: PASS_UNCOMMITTED_ISOLATED_WORKTREE_561_OF_561_ENTRIES
+v04_remote_exact_runtime_byte_ci: PENDING
+v04_immutable_package_candidate: NOT_MINTED
+v04_windows_physical_audio_android_device_human_player_experience_release: NOT_RUN
 ```

@@ -135,7 +135,7 @@ sx_dec_060_new_bitmap_assets_required: 0
 | **SX-DEC-060** | **Cardinal Station Service + Reachable Network · MERGED_MAIN_VERIFIED · PR #188** |
 | **SX-DEC-061** | **Board-first Cozy Neo-Arcade visual refinement · APPROVED · documentation/plan board only; runtime unchanged** |
 | **SX-DEC-062** | **Board-first runtime composition · MERGED_MAIN_VERIFIED · PR #237 · Candidate 003 is historical after SX-DEC-064; Candidate 004 is current package evidence · human gates remain open** |
-| **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · user-approved v03 connected-master rail correction implemented on isolated branch · automated and machine runtime evidence · v03 package/physical/human gates remain open** |
+| **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · user-directed v04 centred-port crop correction from the approved connected master is locally implemented on the isolated branch, including the reviewed non-square quarter-turn fix · automated, machine runtime, and local package evidence · remote CI/package-candidate/physical/human gates remain open** |
 | **SX-DEC-064** | **Active-route lighting · MERGED_MAIN_VERIFIED · PR #249 · CI 7 green · procedural presentation delta · physical/player gates remain open** |
 
 ## SX-DEC-059 retained first-session contract
@@ -189,11 +189,11 @@ rectangular BUILD/RUN grid and exact input mapping stay
 → elevated miniature-diorama depth is expressed inside that geometry
 → new visual bytes are limited to named, versioned actual consumers
 → T2 shell_lesson_hero_v02 and Issue #227 remain protected
-→ user-approved v02 terrain plus nine non-rail Core Board sprites and four v03 connected-master rail derivatives are stored as exact source binaries with provenance
-→ the existing fourteen-slot ProductBoardRenderer consumer map is connected; v03 rail textures draw full-cell with no procedural visual seam underlay
+→ user-approved v02 terrain plus nine non-rail Core Board sprites and four v04 centred-port derivatives of the approved connected rail master are stored as exact source binaries with provenance
+→ the existing fourteen-slot ProductBoardRenderer consumer map is connected; v04 rail textures draw full-cell, pre-swap non-square local bounds for quarter turns, and use no procedural visual seam underlay
 ```
 
-`SX-VIS-063-CANDIDATE-001` terrain plus `SX-VIS-063-CORE-*` are user-promoted at their v02 paths, while user-approved `SX-VIS-063-RAIL-NETWORK-MASTER-003` deterministically supplies the four v03 rail paths recorded in `art/product_assets/ed_hybrid_v2/manifest.json` (master SHA-256 `f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b`; terrain SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`). The isolated Core Board v03-rail implementation is `APPROVED_GITHUB_PRESERVED_RUNTIME_VERIFIED_AUTOMATED` at the automated/machine-runtime/local-package/hosted-CI ceiling; source master and review captures are excluded from the final local PCK proofs. It is not a true isometric conversion, gameplay/data/audio/locale/progression change, GitHub exact package candidate, Human/Player Experience, or release-rights promotion. The next required gate is an immutable new package candidate, followed by separately recorded physical/human validation. Notion is retired from this lifecycle by the 2026-08-28 user decision.
+`SX-VIS-063-CANDIDATE-001` terrain plus `SX-VIS-063-CORE-*` are user-promoted at their v02 paths, while user-approved `SX-VIS-063-RAIL-NETWORK-MASTER-003` deterministically supplies the four current v04 rail paths recorded in `art/product_assets/ed_hybrid_v2/manifest.json` (master SHA-256 `f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b`; terrain SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`). The v04 crop rectifies a measured v03 edge-centre mismatch without changing source artwork or gameplay, while the renderer's reviewed non-square quarter-turn fix preserves the target bounds and edge centres after rotation. Its local automated/machine-runtime/local-package evidence is recorded; remote exact-head CI, immutable GitHub package candidate, physical Windows/audio, Android device, accessibility, player comprehension, release rights, and cutover remain open. Source master and review captures are excluded from final PCK proofs. It is not a true isometric conversion, gameplay/data/audio/locale/progression change, Human/Player Experience, or release-rights promotion. Notion is retired from this lifecycle by the 2026-08-28 user decision.
 
 ## SX-DEC-064 active-route lighting
 
@@ -304,11 +304,11 @@ pre-SX-DEC-060:
 PR #158 implementation → PR #166 playable POC → PR #171 visual correction → PR #172 Candidate 003
 
 current:
-SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063 user-approved Core Board v03 connected-master rail isolated implementation
+SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063 user-approved Core Board connected-master rail isolated implementation with v04 centred-port correction
 → SX-DEC-064 active-route lighting merged main PR #249 with exact-head CI 7 green
 → SX60-POC-ACCEPT-004 exact package verified for merged main 58b99f2
-→ terrain v02 plus nine non-rail v02 core bytes and four v03 master-derived rail bytes are GitHub-preserved in the isolated implementation branch; existing renderer now uses the four v03 rail paths with no procedural seam
-→ automated renderer/import/Godot tests, formal GUT, live BUILD/ghost machine capture, and local Windows/Android runtime-JSON package proof are verified for v03; immutable GitHub candidate and physical/human evidence must be re-established for these changed bytes
+→ terrain v02 plus nine non-rail v02 core bytes and four v04 centred master-derived rail bytes are in the isolated implementation worktree; existing renderer uses the four v04 rail paths with pre-swapped non-square quarter-turn bounds and no procedural seam
+→ automated renderer/import/Godot tests, formal GUT, live BUILD machine capture, non-writing master-derived-byte verification, and local Windows/Android runtime-JSON package proof are verified for v04; remote exact-head CI, immutable GitHub candidate, and physical/human evidence must be established for these changed bytes
 → NoLaunch verification PASS, then Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person first-contact comprehension

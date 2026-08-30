@@ -1,11 +1,11 @@
 {
   "artifact_role": "SX_DEC_063_APPROVED_PRODUCT_ASSET_MANIFEST",
   "asset_family": "SWITCHY_HYBRID_MINIATURE_DIORAMA",
-  "status": "APPROVED_GITHUB_PRESERVED_RUNTIME_VERIFIED_AUTOMATED",
+  "status": "USER_DIRECTED_APPROVED_MASTER_DERIVATIVE_LOCAL_RUNTIME_AND_PACKAGE_VERIFIED_REMOTE_CI_PENDING",
   "decision_id": "SX-DEC-063",
   "source_candidate_id": "SX-VIS-063-CORE-BOARD-V02-APPROVED-BUNDLE_PLUS_SX-VIS-063-RAIL-NETWORK-MASTER-003",
   "tracking_issue": 243,
-  "user_approval_ref": "USER-APPROVAL-2026-08-30-CORE-BOARD-V02-PIXELS-AND-SEAM-UNDERLAY_PLUS_USER-APPROVAL-2026-08-30-RAIL-NETWORK-MASTER-V03",
+  "user_approval_ref": "USER-APPROVAL-2026-08-30-CORE-BOARD-V02-PIXELS-AND-SEAM-UNDERLAY_PLUS_USER-APPROVAL-2026-08-30-RAIL-NETWORK-MASTER-V03_PLUS_USER-REQUEST-2026-08-30-NATURAL-RAIL-CONNECTION-CROP-CORRECTION",
   "rail_master_source": {
     "source_candidate_id": "SX-VIS-063-RAIL-NETWORK-MASTER-003",
     "source_generation_receipt": "exec-c20ff7f8-a3b4-4b7d-a2d9-4a37d460ca3b.png",
@@ -14,10 +14,10 @@
     "sha256": "f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b",
     "derivation_route": "AI_GENERATED_THEN_DETERMINISTIC_RASTER_CROP_AND_RESAMPLE",
     "crop_rectangles": {
-      "SX-CORE-RAIL-STRAIGHT-003": [0, 316, 256, 256],
-      "SX-CORE-RAIL-CURVE-003": [374, 749, 256, 256],
-      "SX-CORE-RAIL-CROSSING-003": [374, 318, 256, 256],
-      "SX-CORE-RAIL-SWITCH-003": [821, 318, 256, 256]
+      "SX-CORE-RAIL-STRAIGHT-004": [650, 803, 256, 256],
+      "SX-CORE-RAIL-CURVE-004": [394, 803, 256, 256],
+      "SX-CORE-RAIL-CROSSING-004": [388, 300, 256, 256],
+      "SX-CORE-RAIL-SWITCH-004": [855, 300, 256, 256]
     }
   },
   "assets": [
@@ -44,44 +44,44 @@
       "runtime_connection_status": "VERIFIED"
     },
     {
-      "asset_id": "SX-CORE-RAIL-STRAIGHT-003",
+      "asset_id": "SX-CORE-RAIL-STRAIGHT-004",
       "source_candidate_id": "SX-VIS-063-RAIL-NETWORK-MASTER-003",
-      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v03.png",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v04.png",
       "dimensions": [64, 64],
-      "sha256": "7f7ab656c5ef16a09cea2dd723c8985dccfb357231b9f2a99772be82e77c32ad",
+      "sha256": "f8ef22f4410891956d22662bee7eadc6ae5686042fee8a2fce6e27d48eae172f",
       "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED_MASTER_DERIVED",
       "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[rail_straight]",
       "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
       "runtime_connection_status": "VERIFIED"
     },
     {
-      "asset_id": "SX-CORE-RAIL-CURVE-003",
+      "asset_id": "SX-CORE-RAIL-CURVE-004",
       "source_candidate_id": "SX-VIS-063-RAIL-NETWORK-MASTER-003",
-      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v03.png",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v04.png",
       "dimensions": [64, 64],
-      "sha256": "43cb0e419a1f1cca7e81115740c1cee9264d5f0496165ba8578aa7bc520b6d49",
+      "sha256": "2d75843d4ccd7cb11bc679814690e954c15c69477364df4414eec0b19c7499c7",
       "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED_MASTER_DERIVED",
       "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[rail_curve]",
       "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
       "runtime_connection_status": "VERIFIED"
     },
     {
-      "asset_id": "SX-CORE-RAIL-CROSSING-003",
+      "asset_id": "SX-CORE-RAIL-CROSSING-004",
       "source_candidate_id": "SX-VIS-063-RAIL-NETWORK-MASTER-003",
-      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v03.png",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v04.png",
       "dimensions": [64, 64],
-      "sha256": "85c176ea41fed46982c1929448854e2b4819495d11cd60dd0cfd851d1952c6da",
+      "sha256": "0500d474f628272f33c1cf29622d30e7ad86b79ed5c77476894f75b566a5f3d9",
       "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED_MASTER_DERIVED",
       "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[rail_crossing]",
       "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
       "runtime_connection_status": "VERIFIED"
     },
     {
-      "asset_id": "SX-CORE-RAIL-SWITCH-003",
+      "asset_id": "SX-CORE-RAIL-SWITCH-004",
       "source_candidate_id": "SX-VIS-063-RAIL-NETWORK-MASTER-003",
-      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v03.png",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v04.png",
       "dimensions": [64, 64],
-      "sha256": "a30dd23d29d6b2158f81120d98a313b3448e1085982bd5fd447d55a12ecc68e9",
+      "sha256": "08341ce6b346c2225bbc146c7dbde12e2854b57cca7dc9369e6f6bdcd9ebca37",
       "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED_MASTER_DERIVED",
       "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[rail_switch]",
       "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",

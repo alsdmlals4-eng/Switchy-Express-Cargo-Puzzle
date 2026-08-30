@@ -173,7 +173,40 @@ physical_windows_audio_android_human_player_experience_release: NOT_RUN
 | `SX-CORE-RAIL-CROSSING-003` | `[374, 318, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v03.png` | `85c176ea41fed46982c1929448854e2b4819495d11cd60dd0cfd851d1952c6da` | `rail_crossing` |
 | `SX-CORE-RAIL-SWITCH-003` | `[821, 318, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v03.png` | `a30dd23d29d6b2158f81120d98a313b3448e1085982bd5fd447d55a12ecc68e9` | `rail_switch` |
 
-The v03 master is a reproducibility source only and is excluded from Godot import/runtime use by its local `.gdignore`; the four derived PNGs are the actual runtime files. The user reviewed the real recommended BUILD layout before approving these final pixels. Automated renderer/import evidence is distinct from remaining package, physical Windows/audio, Android device, accessibility, player-comprehension, release-rights, and production-cutover gates.
+The v03 master is a reproducibility source only and is excluded from Godot import/runtime use by its local `.gdignore`. The v03 table remains historical rollback/provenance evidence; its four paths are no longer runtime-selected after the centred-port correction below. Automated renderer/import evidence is distinct from remaining package, physical Windows/audio, Android device, accessibility, player-comprehension, release-rights, and production-cutover gates.
+
+## SX-DEC-063 Rail Network Master v04 · centred-port runtime correction
+
+```yaml
+approval_ref: USER-APPROVAL-2026-08-30-RAIL-NETWORK-MASTER-V03_PLUS_USER-DIRECTION-2026-08-30-NATURAL-RAIL-CONNECTION
+decision_id: SX-DEC-063
+source_candidate_id: SX-VIS-063-RAIL-NETWORK-MASTER-003
+creation_route: EXISTING_USER_APPROVED_AI_GENERATED_MASTER_THEN_DETERMINISTIC_RASTER_CROP_AND_RESAMPLE
+new_image_generation_or_external_asset: NONE_PROMOTED
+tracked_master_path: art/product_assets/ed_hybrid_v2/source/core_rail_network_master_v03.png
+tracked_master_dimensions: 1254x1254 RGBA
+tracked_master_sha256: f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b
+derivation_tool: tools/derive_sx_dec_063_master_rail_v04.gd
+derivation_operator: deterministic rectangular crop followed by 256x256-to-64x64 Lanczos resample
+derivation_verification: --verify re-derives and byte-compares all four tracked outputs without writing them
+selection_rule: every declared visual rail port must be centred on its logical 64px tile edge within two pixels
+runtime_consumer_owner: game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS
+runtime_connection_status: LOCAL_AUTOMATED_AND_MACHINE_RUNTIME_VERIFIED
+renderer_treatment: four product textures draw at the full cell rectangle; rotations 1/3 pre-swap non-square local draw dimensions before renderer rotation; no renderer-local rail seam underlay remains
+v01_v02_v03_rail_rollback: tracked and not runtime-selected
+local_windows_android_package_proof: VERIFIED_LOCAL_ONLY
+remote_exact_head_ci: PENDING
+physical_windows_audio_android_human_player_experience_release: NOT_RUN
+```
+
+| Asset ID | Master crop rectangle `[x, y, width, height]` | Final tracked path | Final SHA-256 | Consumer slot |
+| --- | --- | --- | --- | --- |
+| `SX-CORE-RAIL-STRAIGHT-004` | `[650, 803, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v04.png` | `f8ef22f4410891956d22662bee7eadc6ae5686042fee8a2fce6e27d48eae172f` | `rail_straight` |
+| `SX-CORE-RAIL-CURVE-004` | `[394, 803, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v04.png` | `2d75843d4ccd7cb11bc679814690e954c15c69477364df4414eec0b19c7499c7` | `rail_curve` |
+| `SX-CORE-RAIL-CROSSING-004` | `[388, 300, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v04.png` | `0500d474f628272f33c1cf29622d30e7ad86b79ed5c77476894f75b566a5f3d9` | `rail_crossing` |
+| `SX-CORE-RAIL-SWITCH-004` | `[855, 300, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v04.png` | `08341ce6b346c2225bbc146c7dbde12e2854b57cca7dc9369e6f6bdcd9ebca37` | `rail_switch` |
+
+The v04 correction does not add a new generated image or third-party reference. The user-visible defect was an off-centre v03 crop, not a missing rail family. The real-byte port contract, import, full suite, live recommended board capture, and local package proof verify the current consumer at their stated machine evidence ceiling. Remote exact-head CI, immutable candidate, and all physical/human/release gates remain separate.
 
 실제 game runtime consumer가 확인된 필요한 이미지는 별도 이미지별 승인 없이 자동 생성할 수 있다. 생성 후보는 review-only로 유지하고, 사용자 승인 final만 GitHub tracked project-local asset로 보존하며 기존 E+D Hybrid / Neo-Arcade 시각 언어를 유지한다. Runtime consumer가 없는 이미지 생성이나 runtime promotion은 이 권한에 포함되지 않는다.
 
