@@ -325,13 +325,13 @@ SX-DEC-064 active-route-lighting is merged on main through Issue #248 / PR #249 
 → SX-DEC-063 Core Board rail correction now uses four v04 centred-port crops from the same user-approved connected master: the user-reported curve discontinuity was reproduced as an off-centre v03 texture edge and corrected without restoring a seam overlay; review then corrected non-square quarter-turn rendering by pre-swapping the local 90°/270° draw rectangle; v02 terrain, nine non-rail core assets, translucent BUILD preview, and smaller cargo marker remain
 → v04 manifest/provenance/import contracts, focused RED→GREEN contiguous-port test, all-rotation 100×60 non-square renderer contract, non-writing master derived-byte verification, full Godot runner (112 cases / 13,560 assertions), formal GUT (21 tests / 152 assertions), Python regression (215 tests, 1 skipped), final live 1280×720 recommended capture, local Windows debug, and Windows+Android runtime-JSON PCK proof are recorded; source master and evidence captures are excluded from export; v01, v02, and v03 rails remain tracked rollback; PR #255 runtime-byte head `f00de19ea0ef1db907bf05c8dc847a0180489c35` completed all seven required remote checks and merged into `main` at `2cf7bb5595a297955c75e6b4108bc1be6fe9428c`
 → preserve the rectangular BUILD/RUN grid, gameplay semantics, actual consumer mapping, T2 v02, and Issue #227
-→ local package/export proof, PR #255 runtime-byte CI, and merged-main readback are complete; the later immutable GitHub candidate is `SX60-POC-ACCEPT-005` from exact `main@a11dfd1a063e434ee22e8cfb7b073ebc380aa27a`
+→ local package/export proof, PR #255 runtime-byte CI, and merged-main readback are complete; `SX60-POC-ACCEPT-005` remains immutable historical evidence for exact `main@a11dfd1a063e434ee22e8cfb7b073ebc380aa27a`, while the current Route Book candidate is `SX60-POC-ACCEPT-006` from exact `main@9af5a8c46d29ea6781f9ee06008d7c7d2cde1877`
 → Candidate 004 remains the package record for merged-main pre-Core-Board-v02 bytes and does not transfer to this player-facing branch
 → Candidates 002–004 are immutable prior-byte evidence
-→ SX-DEC-065: Candidate 005 deterministic/Godot/runtime/export/package/CI machine validation is complete and `MACHINE_PRIMARY_ACCEPTANCE_READY`
+→ SX-DEC-065: Candidate 005 deterministic/Godot/runtime/export/package/CI validation remains historical; Candidate 006 is the current Route Book machine-primary package with `MACHINE_PRIMARY_ACCEPTANCE_READY`
 → Windows physical/audio is FINAL_USER_REVIEW_ONLY; Android device remains a separately recorded machine/device compatibility gate when targeted
 → FIVE_PERSON_COMPREHENSION_NOT_REQUIRED / PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED
-→ FINAL_USER_REVIEW is performed only when the user requests final inspection of that exact candidate
+→ FINAL_USER_REVIEW is performed only when the user requests final inspection of unchanged exact Candidate 006 bytes
 → historical foreign-project Notion Direction page is audit-only and does not block current work
 → use GitHub visual/decision owners as the sole current Switchy Direction
 ```
@@ -345,7 +345,7 @@ TDD_PLAN_RECORDED
 CODEX_HANDOFF_EXECUTED
 RUNTIME_MERGED_MAIN_VERIFIED_PR_188
 AUTOMATED_REGRESSION_PASS_111_CASES_13461_ASSERTIONS
-POST_060_CANDIDATE_SX60_POC_ACCEPT_005_MACHINE_PRIMARY_ACCEPTANCE_READY
+POST_060_CANDIDATE_SX60_POC_ACCEPT_006_MACHINE_PRIMARY_ACCEPTANCE_READY
 SX60_POC_ACCEPT_001_HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE
 POST_060_DEVICE_NOT_RUN
 POST_060_HUMAN_NOT_RUN

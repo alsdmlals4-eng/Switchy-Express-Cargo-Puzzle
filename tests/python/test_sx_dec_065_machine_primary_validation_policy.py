@@ -65,7 +65,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
             active,
         )
 
-    def test_adapter_and_gate_owner_do_not_leave_candidate_005_as_pending(self) -> None:
+    def test_adapter_and_gate_owner_route_current_machine_primary_state_to_candidate_006(self) -> None:
         adapter = read("PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md")
         gates = read("기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md")
         roadmap = read("기획서/00_프로젝트_허브/ROADMAP.md")
@@ -80,12 +80,12 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         self.assertNotIn("EXACT_CANDIDATE_005_MACHINE_VALIDATION_PENDING", gates)
         self.assertIn(
             "MACHINE_PRIMARY_FINAL_USER_REVIEW · USER_APPROVED_2026-08-30 · "
-            "SX60_POC_ACCEPT_005_MACHINE_EVIDENCE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN",
+            "SX60_POC_ACCEPT_006_MACHINE_EVIDENCE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN",
             roadmap,
         )
-        self.assertNotIn("EXACT_CANDIDATE_005_MACHINE_EVIDENCE_PENDING", roadmap)
+        self.assertNotIn("EXACT_CANDIDATE_006_MACHINE_EVIDENCE_PENDING", roadmap)
 
-    def test_current_owners_describe_connected_core_board_v02_v04_and_candidate_005(self) -> None:
+    def test_current_owners_describe_connected_core_board_v02_v04_and_candidate_006(self) -> None:
         agents = read("AGENTS.md")
         decision = read("docs/decisions/SX_DEC_060_CARDINAL_STATION_SERVICE_AND_REACHABLE_NETWORK.md")
         baseline = read("기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md")
@@ -217,8 +217,8 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
             approval["decision_ids"],
         )
         for protected_current_candidate_owner in (
-            "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_05.md",
-            "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_05.md",
+            "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_06.md",
+            "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_06.md",
         ):
             self.assertIn(protected_current_candidate_owner, approval["approved_paths"])
         for non_protected_evidence_owner in (

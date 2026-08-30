@@ -219,7 +219,7 @@ Candidate 002의 Windows startup PASS는 역사적 physical evidence지만 P1 vi
 SX60-POC-ACCEPT-006 machine-primary package verification is complete on exact main 9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 after Route Book 01
 → retain the machine / human evidence boundary: package, runtime JSON, PCK integrity, and automated regression are the acceptance basis
 → five-person comprehension and player-experience study are not required gates under SX-DEC-065
-→ final user review is optional, only when requested, and must inspect the unchanged exact Candidate 005 bytes
+→ final user review is optional, only when requested, and must inspect the unchanged exact Candidate 006 bytes
 → product decision
 ```
 

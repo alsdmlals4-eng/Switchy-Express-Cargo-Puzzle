@@ -139,9 +139,9 @@ sx_dec_060_new_bitmap_assets_required: 0
 | **SX-DEC-060** | **Cardinal Station Service + Reachable Network · MERGED_MAIN_VERIFIED · PR #188** |
 | **SX-DEC-061** | **Board-first Cozy Neo-Arcade visual refinement · APPROVED · documentation/plan board only; runtime unchanged** |
 | **SX-DEC-062** | **Board-first runtime composition · MERGED_MAIN_VERIFIED · PR #237 · Candidates 003/004 are historical prior-byte package evidence** |
-| **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · v2 terrain/non-rail and v04 centred-port rail correction merged main in PR #255, including reviewed non-square quarter-turn fix · remote CI 7 green and Candidate 005 exact package evidence complete** |
+| **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · v2 terrain/non-rail and v04 centred-port rail correction merged main in PR #255, including reviewed non-square quarter-turn fix · remote CI 7 green and Candidate 005 exact package evidence retained as historical pre-Route-Book bytes** |
 | **SX-DEC-064** | **Active-route lighting · MERGED_MAIN_VERIFIED · PR #249 · CI 7 green · procedural presentation delta · physical/player gates remain open** |
-| **SX-DEC-065** | **Machine-primary final-user-review policy · USER_APPROVED · Candidate 005 is MACHINE_PRIMARY_ACCEPTANCE_READY; five-person/player-experience studies not required** |
+| **SX-DEC-065** | **Machine-primary final-user-review policy · USER_APPROVED · Candidate 006 is the current MACHINE_PRIMARY_ACCEPTANCE_READY package; Candidate 005 remains historical; five-person/player-experience studies not required** |
 | **SX-DEC-066** | **Curated Route Book 01 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #260 · Candidate 006 MACHINE_PRIMARY_ACCEPTANCE_READY; final user review remains separate** |
 
 ## SX-DEC-059 retained first-session contract

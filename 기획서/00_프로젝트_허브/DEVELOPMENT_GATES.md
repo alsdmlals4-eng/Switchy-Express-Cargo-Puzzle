@@ -312,7 +312,7 @@ SX60-POC-ACCEPT-006 exact package is the current Route Book byte candidate
 
 Machine evidence does not imply human evidence. `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` and `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED` are not release blockers. Windows physical/audio is `FINAL_USER_REVIEW_ONLY`; Android device remains a separate machine/device compatibility gate if Android is targeted.
 
-Current mapping: `PHASE_5_MACHINE_PRIMARY_VALIDATION_COMPLETE · USER_APPROVED_2026-08-30 · SX60_POC_ACCEPT_005`. The historical receipt is preserved as prior process evidence. The current execution plan is `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`; its final user review must not be inferred from automation. Android-device evidence is not required for machine-primary acceptance and remains unrun.
+Current mapping: `PHASE_5_MACHINE_PRIMARY_VALIDATION_COMPLETE · USER_APPROVED_2026-08-30 · SX60_POC_ACCEPT_006`. Candidate 005 is preserved as prior exact-byte process evidence, while Candidate 006 is the current Route Book machine-primary package. The current execution plan is `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`; its final user review must not be inferred from automation. Android-device evidence is not required for machine-primary acceptance and remains unrun.
 
 Fresh-main Godot live machine QA is recorded in `docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md`: exact `main@cf93926` observed title → briefing → build board after machine pointer input, with the official 112-case / 13,480-assertion runner green. This remains machine-runtime evidence only; physical, audio, device, and human gates stay `NOT_RUN`.
 
