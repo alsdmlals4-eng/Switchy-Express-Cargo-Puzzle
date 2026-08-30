@@ -8,6 +8,7 @@
     "SX-DEC-062",
     "SX-DEC-063",
     "SX-DEC-064",
+    "USER-APPROVAL-2026-08-30-CORE-BOARD-V02-PIXELS-AND-SEAM-UNDERLAY",
     "USER-APPROVAL-2026-08-28-SX-VIS-063-TERRAIN-CANDIDATE-001-PROMOTION",
     "USER-OPERATING-2026-08-28-OFFICIAL_RESEARCH_FEASIBILITY_ADVERSARIAL_LOOP",
     "USER-APPROVAL-2026-08-29-SX-VIS-061-CORE-SYSTEM-BOARD-CORRECTION",
@@ -19,11 +20,13 @@
     "game/finite/main/finite_slice_session_controller.gd",
     "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
     "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
+    "기획서/00_프로젝트_허브/DESIGN_DOCUMENT_REGISTRY.json",
     "기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md",
     "기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md",
     "기획서/00_프로젝트_허브/ROADMAP.md",
     "기획서/00_프로젝트_허브/START_HERE.md",
     "기획서/40_표현/PROJECT_CORE_SCENE_VISUAL_BOARD.md",
+    "기획서/40_표현/TARGET_BUILD_SCREEN_SURFACE_AND_VISUAL_COVERAGE.md",
     "기획서/40_표현/VISUAL_DIRECTION.md",
     "기획서/50_제작_검증/SX_DEC_063_TERRAIN_RUNTIME_INTEGRATION_HANDOFF.md",
     "기획서/20_시스템_콘텐츠/CORE_SYSTEMS.md",
@@ -32,7 +35,7 @@
     "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_04.md",
     "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_04.md"
   ],
-  "approval_source": "USER_EXPLICIT_SX-VIS-063-CANDIDATE-001_PROMOTION_AND_USER_OPERATING_LOOP_2026-08-28_PLUS_USER_EXPLICIT_SX-VIS-061_CORE_SYSTEM_BOARD_CORRECTION_AND_SX-DEC-064_ACTIVE_ROUTE_LIGHTING_AND_SX60_POC_ACCEPT_004_VALIDATION_2026-08-29",
-  "approval_time": "2026-08-29T00:00:00+09:00",
-  "scope_summary": "The user explicitly promoted the reviewed SX-VIS-063 terrain candidate, required current official research/implementation-feasibility/adversarial review for meaningful work, approved the SX-VIS-061 core-system board as a GitHub planning reference, approved SX-DEC-064 active-route lighting, and authorized the exact post-SX-DEC-064 Candidate 004 package validation. SX-DEC-064 adds only a procedural board projection rooted at actual train state: selected deterministic rails glow; alternate rails do not; lock is a separate overlay; terminal states do not predict future route. Candidate 004 records the exact existing product bytes, artifact/PCK integrity, fail-closed no-launch validation, and no physical/human evidence promotion. This approval does not authorize terrain runtime integration, a production asset family, gameplay/data/audio/locale/progression/Base changes, T2/Issue #227 work, PR #174 mutation, a solver, or human/player/release evidence promotion."
+  "approval_source": "USER_EXPLICIT_SX-VIS-063_CANDIDATE_PROMOTION_AND_OPERATING_LOOP_2026-08-28_PLUS_SX-VIS-061_CORE_SYSTEM_BOARD_SX-DEC-064_AND_CANDIDATE_004_2026-08-29_PLUS_CORE_BOARD_V02_PIXELS_SEAM_UNDERLAY_GODOT_IMPLEMENTATION_AND_VISUAL_READABILITY_REPAIR_2026-08-30",
+  "approval_time": "2026-08-30T00:00:00+09:00",
+  "scope_summary": "The user explicitly promoted the reviewed SX-VIS-063 terrain candidate; required official research, feasibility and adversarial review; approved the SX-VIS-061 board, SX-DEC-064 active-route lighting, Candidate 004 package validation, and on 2026-08-30 the Core Board v02 pixels, curve/switch seam-underlay, Godot implementation, translucent Build preview, and smaller cargo marker. This approval permits the exact protected renderer/current-canon/evidence owners listed above and associated CI portability repair. It does not authorize gameplay, map/data, audio, locale, progression, Base changes, T2/Issue #227 work, PR #174 mutation, a solver, or human/player/release evidence promotion."
 }
