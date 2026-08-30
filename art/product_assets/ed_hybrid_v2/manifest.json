@@ -1,20 +1,165 @@
 {
   "artifact_role": "SX_DEC_063_APPROVED_PRODUCT_ASSET_MANIFEST",
   "asset_family": "SWITCHY_HYBRID_MINIATURE_DIORAMA",
-  "status": "APPROVED_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED",
+  "status": "APPROVED_GITHUB_PRESERVED_RUNTIME_VERIFIED_AUTOMATED",
   "decision_id": "SX-DEC-063",
-  "source_candidate_id": "SX-VIS-063-CANDIDATE-001",
+  "source_candidate_id": "SX-VIS-063-CORE-BOARD-V02-APPROVED-BUNDLE",
   "tracking_issue": 243,
-  "user_approval_ref": "USER-APPROVAL-2026-08-28-SX-VIS-063-TERRAIN-CANDIDATE-001-PROMOTION",
+  "user_approval_ref": "USER-APPROVAL-2026-08-30-CORE-BOARD-V02-PIXELS-AND-SEAM-UNDERLAY",
   "assets": [
     {
       "asset_id": "SX-BOARD-TERRAIN-002",
+      "source_candidate_id": "SX-VIS-063-TERRAIN-002",
       "path": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
       "dimensions": [1672, 941],
       "sha256": "1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d",
-      "visual_role": "APPROVED_PRODUCT_ASSET_PENDING_RUNTIME_INTEGRATION",
-      "planned_runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[board_terrain]",
-      "runtime_connection_status": "NOT_CONNECTED"
+      "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[board_terrain]",
+      "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
+      "runtime_connection_status": "VERIFIED"
+    },
+    {
+      "asset_id": "SX-CORE-TRAIN-002",
+      "source_candidate_id": "SX-VIS-063-CORE-TRAIN-001",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png",
+      "dimensions": [128, 96],
+      "sha256": "73d4a758eaa5d05842b313480116927eb6f86ce84e64db01110ff76f97c96348",
+      "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[train]",
+      "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
+      "runtime_connection_status": "VERIFIED"
+    },
+    {
+      "asset_id": "SX-CORE-RAIL-STRAIGHT-002",
+      "source_candidate_id": "SX-VIS-063-CORE-RAIL-STRAIGHT-001",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v02.png",
+      "dimensions": [64, 64],
+      "sha256": "b0d0e4d89d0f25ce35e060f47754ed4aabb416877ecd9d93567e89e1248bd884",
+      "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[rail_straight]",
+      "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
+      "runtime_connection_status": "VERIFIED"
+    },
+    {
+      "asset_id": "SX-CORE-RAIL-CURVE-002",
+      "source_candidate_id": "SX-VIS-063-CORE-RAIL-CURVE-001",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v02.png",
+      "dimensions": [64, 64],
+      "sha256": "8ca1b2396bfa74cc9e9d6380260585381f8bff9342301d66b072b9347fe7459f",
+      "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED_WITH_VISUAL_SEAM_UNDERLAY",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[rail_curve]",
+      "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
+      "runtime_connection_status": "VERIFIED"
+    },
+    {
+      "asset_id": "SX-CORE-RAIL-CROSSING-002",
+      "source_candidate_id": "SX-VIS-063-CORE-RAIL-CROSSING-001",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v02.png",
+      "dimensions": [64, 64],
+      "sha256": "bf77c0e0382a1af2d6b4a6ab38bc00158bfc1875d7642fbbd1e6c1fb31371244",
+      "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[rail_crossing]",
+      "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
+      "runtime_connection_status": "VERIFIED"
+    },
+    {
+      "asset_id": "SX-CORE-RAIL-SWITCH-002",
+      "source_candidate_id": "SX-VIS-063-CORE-RAIL-SWITCH-001",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v02.png",
+      "dimensions": [64, 64],
+      "sha256": "7d0c45093fae34b11b3ce122cc784db875b543e34aeaf1ff844bbc8701071d86",
+      "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED_WITH_VISUAL_SEAM_UNDERLAY",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[rail_switch]",
+      "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
+      "runtime_connection_status": "VERIFIED"
+    },
+    {
+      "asset_id": "SX-CORE-MARKER-START-002",
+      "source_candidate_id": "SX-VIS-063-CORE-START-001",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png",
+      "dimensions": [64, 64],
+      "sha256": "727cbc90ed667e013f402edc09e1e1be5e3cc031d043689f9dcdb74a8e3fdbe3",
+      "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[start_marker]",
+      "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
+      "runtime_connection_status": "VERIFIED"
+    },
+    {
+      "asset_id": "SX-CORE-MARKER-END-002",
+      "source_candidate_id": "SX-VIS-063-CORE-END-001",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png",
+      "dimensions": [64, 64],
+      "sha256": "9c5e07a8b868be88dcb9af6e708e1fb85d77105ddbab743e496cfadeea6d1e83",
+      "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[route_end_marker]",
+      "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
+      "runtime_connection_status": "VERIFIED"
+    },
+    {
+      "asset_id": "SX-CORE-STATION-RED-002",
+      "source_candidate_id": "SX-VIS-063-CORE-STATION-RED-001",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
+      "dimensions": [64, 64],
+      "sha256": "15f5be85d0830b2970b036464a4ec7064b065071fb8b6a44ec2234c48c750703",
+      "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[station_red]",
+      "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
+      "runtime_connection_status": "VERIFIED"
+    },
+    {
+      "asset_id": "SX-CORE-STATION-BLUE-002",
+      "source_candidate_id": "SX-VIS-063-CORE-STATION-BLUE-001",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_station_blue_normal_v02.png",
+      "dimensions": [64, 64],
+      "sha256": "558d15d0702d7b13cc522e26ba6db0d6c7c7f7226e31ca05e55ebfc14077ea12",
+      "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[station_blue]",
+      "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
+      "runtime_connection_status": "VERIFIED"
+    },
+    {
+      "asset_id": "SX-CORE-STATION-YELLOW-002",
+      "source_candidate_id": "SX-VIS-063-CORE-STATION-YELLOW-001",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png",
+      "dimensions": [64, 64],
+      "sha256": "cc88f7f296b63b1bcc3858a515e5d28b7bb4f19c33e75cdde1fbd6e6462f433f",
+      "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[station_yellow]",
+      "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
+      "runtime_connection_status": "VERIFIED"
+    },
+    {
+      "asset_id": "SX-CORE-CARGO-RED-002",
+      "source_candidate_id": "SX-VIS-063-CORE-CARGO-RED-001",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png",
+      "dimensions": [64, 64],
+      "sha256": "6feb7fa4a6b3a5401b97fb89d32fc38d0da4f27a3ea01404138453b90b865407",
+      "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[cargo_red]",
+      "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
+      "runtime_connection_status": "VERIFIED"
+    },
+    {
+      "asset_id": "SX-CORE-CARGO-BLUE-002",
+      "source_candidate_id": "SX-VIS-063-CORE-CARGO-BLUE-001",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_blue_normal_v02.png",
+      "dimensions": [64, 64],
+      "sha256": "15ada5b6a14038d381e740304a8cf5cbf480f50f45a8c38e14b37a83b787f831",
+      "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[cargo_blue]",
+      "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
+      "runtime_connection_status": "VERIFIED"
+    },
+    {
+      "asset_id": "SX-CORE-CARGO-YELLOW-002",
+      "source_candidate_id": "SX-VIS-063-CORE-CARGO-YELLOW-001",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png",
+      "dimensions": [64, 64],
+      "sha256": "96f667e507fc0d956fd34070ee1aa36d3ce195b39a208a80a7cd71db8ce9bc8f",
+      "visual_role": "APPROVED_PRODUCT_ASSET_RUNTIME_CONNECTED",
+      "runtime_consumer": "game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[cargo_yellow]",
+      "consumer_status": "VERIFIED_AUTOMATED_RUNTIME",
+      "runtime_connection_status": "VERIFIED"
     }
   ]
 }

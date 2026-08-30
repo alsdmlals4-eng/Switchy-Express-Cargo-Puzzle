@@ -147,4 +147,48 @@ func run() -> void:
 	assert_equal(primary_cells, [Vector2i(5, 4)], "primary requests preserve exact cell")
 	assert_equal(secondary_cells, [Vector2i(5, 4)], "secondary requests preserve exact cell")
 
+	var expected_v02_paths := {
+		"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
+		"train": "art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png",
+		"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v02.png",
+		"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v02.png",
+		"rail_crossing": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v02.png",
+		"rail_switch": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v02.png",
+		"start_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png",
+		"route_end_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png",
+		"station_red": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
+		"station_blue": "art/product_assets/ed_hybrid_v2/core/core_station_blue_normal_v02.png",
+		"station_yellow": "art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png",
+		"cargo_red": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png",
+		"cargo_blue": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_blue_normal_v02.png",
+		"cargo_yellow": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png",
+	}
+	assert_equal(
+		renderer.product_visual_asset_paths_for_test(),
+		expected_v02_paths,
+		"core board v02 must replace only the existing visual slot paths"
+	)
+	for asset_key: String in expected_v02_paths:
+		assert_true(
+			renderer.loaded_product_visuals_for_test().get(asset_key, false),
+			"core board v02 asset must import as Texture2D: %s" % asset_key
+		)
+
+	assert_true(
+		renderer.has_method("product_rail_seam_descriptor_for_test"),
+		"curve and switch seam diagnostics must expose their visual-only scope"
+	)
+	if renderer.has_method("product_rail_seam_descriptor_for_test"):
+		assert_equal(
+			renderer.product_rail_seam_descriptor_for_test(&"STRAIGHT", 0),
+			{"enabled": false, "ports": []},
+			"straight rail art must not gain a procedural seam layer"
+		)
+		for geometry: StringName in [&"CURVE", &"SWITCH"]:
+			assert_equal(
+				renderer.product_rail_seam_descriptor_for_test(geometry, 0),
+				{"enabled": true, "ports": RendererScript.track_ports_for_test(geometry, 0)},
+				"%s seam must remain a visual-only copy of the authored rail ports" % geometry
+			)
+
 	renderer.free()

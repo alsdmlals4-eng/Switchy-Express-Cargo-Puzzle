@@ -1,6 +1,6 @@
 # SX-DEC-063 · Hybrid Miniature-Diorama Visual Production Alignment
 
-**Status:** USER_APPROVED_DIRECTION · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · RUNTIME_INTEGRATION_CONTRACT_READY · RUNTIME_UNCHANGED
+**Status:** USER_APPROVED_DIRECTION · CORE_BOARD_V02_IMPLEMENTED · AUTOMATED_RUNTIME_VERIFIED · PHYSICAL_HUMAN_NOT_RUN
 **Date:** 2026-08-28 KST
 **Tracking:** GitHub Issue #239
 **Predecessors:** SX-DEC-061 visual lock, SX-DEC-062 existing-asset runtime composition
@@ -107,10 +107,10 @@ primary_use: warm board terrain backdrop beneath Godot grid, rails, train, cargo
 must_show: calm grass/soil/stone/conifer miniature terrain; open readable central playfield; subdued 3/4 depth cues; warm low-angle practical lighting
 must_not_show: track geometry, station/cargo/train objects, text, UI, coin/score/save elements, branded/logo material, identifiable reference layout
 runtime_compare_required: true
-candidate_status: USER_APPROVED_FOR_GITHUB_PROMOTION · RUNTIME_NOT_CONNECTED
+candidate_status: USER_APPROVED_FOR_GITHUB_PROMOTION · AUTOMATED_RUNTIME_VERIFIED
 ~~~
 
-**2026-08-28 user workflow amendment:** actual-consumer candidates may be generated and machine-reviewed without a per-image pre-generation approval. The user approved promotion of `SX-VIS-063-CANDIDATE-001` on 2026-08-28 KST. It is preserved at `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png` with SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`, Issue #243, and `APPROVED_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED` status. This does not authorize a batch or promote runtime, physical, human, Player Experience, or release evidence.
+**2026-08-28/30 user workflow readback:** actual-consumer candidates may be generated and machine-reviewed without a per-image pre-generation approval. Terrain v02 was promoted on 2026-08-28; the user then approved the displayed 13-image Core Board v02 bundle and narrow visual-only curve/switch seam underlay on 2026-08-30. The exact terrain plus 13 core outputs are now preserved under `art/product_assets/ed_hybrid_v2/`, their checksums and generated-source receipts are recorded in the manifest/provenance owners, and the existing `ProductBoardRenderer` 14-slot map loads them. This is `APPROVED_GITHUB_PRESERVED_RUNTIME_VERIFIED_AUTOMATED`, not a physical, human, Player Experience, release-rights, or production-cutover promotion.
 
 For every candidate that later passes review:
 
@@ -123,23 +123,22 @@ generate exactly one candidate
 → later Godot integration in one bounded implementation contract
 ~~~
 
-## Terrain v02 transition boundary
+## Core Board v02 transition boundary
 
-The first terrain asset is approved as a project-owned, tracked source binary only. The current `ProductBoardRenderer` path remains v01 until `기획서/50_제작_검증/SX_DEC_063_TERRAIN_RUNTIME_INTEGRATION_HANDOFF.md` is executed via RED → GREEN and an exact new candidate is created. `v01` is preserved for rollback.
+The bounded Core Board v02 implementation has replaced only the existing fourteen `ProductBoardRenderer` visual-path values: terrain, locomotive, four rails, two markers, three stations, and three cargo tokens. The generated curve/switch images remain visible art; a renderer-local muted underlay follows the existing authored port list beneath those two textures so cell seams remain aligned. It cannot alter map data, hit testing, routing, service, locks, or train behavior. Every v01 counterpart remains tracked as a rollback source. A local uncommitted Windows debug export plus Windows/Android PCK proof is recorded; a new immutable GitHub exact-head package candidate and physical/human gates remain separately required.
 
 ## Production and implementation boundaries
 
-### In scope now
+### Implemented in this bounded change
 
-- visual decision, coverage requirement links, exact candidate briefs, provenance plan, and stale-canon correction;
-- production candidates may be generated and machine-reviewed under the user-authorized workflow; only final asset promotion requires the user’s disposition;
-- asset review against real consumer dimensions.
+- user-approved v02 terrain plus thirteen core generated sprites, their Godot imports, hashes, provenance, and retained v01 rollback files;
+- the exact existing 14-slot renderer map and a curve/switch-only visual seam underlay;
+- RED→GREEN renderer/asset contracts, full local Godot runner (`112` cases, `13,534` assertions), live BUILD/RUN captures, and local Windows debug/Windows+Android PCK proof.
 
-### Deferred until the production set is approved
+### Deferred after automated runtime verification
 
-- GDScript, Scene, Resource, import, and consumer-path changes;
-- test additions and a new exact package candidate;
-- physical Windows/audio, Android, five-person, Player Experience, and production-cutover claims.
+- hosted exact-head CI and a new immutable package candidate for the changed player-facing bytes;
+- physical Windows/audio, Android, five-person, Player Experience, release-rights, and production-cutover claims.
 
 ### Out of scope
 

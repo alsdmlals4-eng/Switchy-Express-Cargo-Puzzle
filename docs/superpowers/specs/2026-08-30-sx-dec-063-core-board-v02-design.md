@@ -1,10 +1,10 @@
 # SX-DEC-063 Core Board v02 Asset and Runtime Design
 
-**Status:** `USER_APPROVED_FOR_CANDIDATE_GENERATION`
+**Status:** `USER_APPROVED · IMPLEMENTED · AUTOMATED_RUNTIME_VERIFIED · PHYSICAL_HUMAN_NOT_RUN`
 **Date:** 2026-08-30 KST
 **Decision baseline:** `SX-DEC-063 · HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT`
 **User direction:** 2026-08-30 — approve the core-board implementation, ask for required images plus Godot integration, and authorize local Godot/Hera activation.
-**Candidate-promotion gate:** Generated images are review candidates only. The user must approve the assembled Core Board v02 pixels before any runtime path changes.
+**Promotion disposition:** The user approved the displayed 13-image Core Board v02 bundle and the narrow curve/switch visual seam-underlay strategy on 2026-08-30. The approved binaries are now in their exact v02 paths and the existing 14-slot renderer consumer is connected.
 **Supersedes:** nothing. This is the next bounded implementation package under SX-DEC-063; it does not replace the terrain-only package until its proposed scope is approved and executed.
 
 ## Direction anchor
@@ -46,7 +46,7 @@ The first candidate bundle uses these explicit existing runtime slots. `v01` rem
 | `station_red`, `station_blue`, `station_yellow` | `art/product_assets/ed_hybrid_v2/core/core_station_<color>_normal_v02.png` | 64×64 each | normal; cardinal service remains procedural |
 | `cargo_red`, `cargo_blue`, `cargo_yellow` | `art/product_assets/ed_hybrid_v2/core/core_cargo_star_<color>_normal_v02.png` | 64×64 each | normal; color + shape + live label redundancy remains |
 
-Every new core sprite is an original, text-free, logo-free, watermark-free PNG with a genuinely transparent background. Its final source crop keeps all rail ports aligned to the current cell center/edge convention. The image model generates the artwork; deterministic downscaling and import packaging only prepare that generated source for the documented footprint.
+Every new core sprite is an original, text-free, logo-free, watermark-free PNG with a genuinely transparent background. Straight and crossing tiles preserve their readable semantic ports in the image itself. The generated curve and switch art does not assert mathematical edge-center pixel placement; the approved renderer draws a narrow muted rail-bed/metal underlay from the existing authored port directions below those two textures only, preserving exact visual adjacency without changing graph or input semantics. The image model generates the artwork; deterministic downscaling and import packaging only prepare that generated source for the documented footprint.
 
 ### Explicitly excluded
 
@@ -72,7 +72,7 @@ Every new core sprite is an original, text-free, logo-free, watermark-free PNG w
 
 ## Runtime integration contract
 
-After final art approval, `PRODUCT_VISUAL_ASSET_PATHS` switches only the above 14 slots to the versioned v02 locations. `_load_product_visuals()`, `_draw_board_terrain()`, `_draw_track_piece()`, `_draw_marker()`, and the renderer’s published visual layer order remain structurally unchanged.
+`PRODUCT_VISUAL_ASSET_PATHS` now switches only the above 14 slots to the versioned v02 locations. `_load_product_visuals()`, `_draw_board_terrain()`, `_draw_marker()`, input math, and the renderer’s published visual layer order remain structurally unchanged. `_draw_track_piece()` adds only the approved curve/switch visual seam underlay, rendered beneath a loaded texture from the existing authored `_track_ports()` directions.
 
 The manifest adds every approved v02 core asset with its exact consumer, dimensions, SHA-256, source-generation receipt, approval state, and `runtime_connection_status`. Source v01 entries remain in their existing manifest and are never deleted or overwritten.
 
@@ -82,7 +82,7 @@ The manifest adds every approved v02 core asset with its exact consumer, dimensi
 2. **GREEN:** Add selected image candidates only after final asset approval, update the v02 consumer map, then run the focused GDScript and Python tests to green.
 3. **Regression:** Re-run the project contract validator, full headless Godot suite, relevant Python suite, and Godot import. Do not hand-edit generated import cache files.
 4. **Live runtime:** With the current Hera-connected Godot 4.7.1 editor, launch representative 1280×720 BUILD and RUN snapshots. Inspect route ports, off-track stations, cardinal service frames, cargo, selected/locked routing, train, HUD, crop, and clipping; save captures as evidence rather than human proof.
-5. **Package/evidence:** Run the approved package flow only after the exact-head automated gates are green. Record a newly produced exact candidate if successful; otherwise retain `NOT_RUN`.
+5. **Package/evidence:** The local package flow passed on the isolated uncommitted branch. A GitHub exact-head candidate may be recorded only after reviewed immutable bytes and hosted automated gates are green; otherwise retain `NOT_MINTED`.
 
 ## Required adversarial close
 
@@ -110,6 +110,6 @@ The rollback is a single consumer-map restoration from each v02 path to its reta
 | Candidate evidence | Candidate 004 package is current only for its older bytes | New exact candidate required after v02 runtime paths change. |
 | Physical/human evidence | `NOT_RUN` | Still `NOT_RUN` until separately executed on the new exact candidate. |
 
-## Review request
+## Implementation readback
 
-This is a design and verification contract only. It intentionally creates no sprites and changes no Godot code. The next step is a detailed, test-first implementation plan; that plan should be written only after the user confirms this saved specification.
+The test-first implementation is complete for the bounded Core Board v02 runtime scope. The 2026-08-30 full Godot runner passed `112` cases and `13,534` assertions, including the v02 `Texture2D` load/path contract and the playable visual integration test. A local Windows debug export and Windows/Android proof PCKs parsed the v02 manifest and passed integrity verification. These are uncommitted isolated-branch machine/package evidence only; hosted CI, a new exact package candidate, Windows physical/audio, Android device, human/player-experience, and release-rights gates remain `NOT_RUN` or `NOT_MINTED` as applicable.

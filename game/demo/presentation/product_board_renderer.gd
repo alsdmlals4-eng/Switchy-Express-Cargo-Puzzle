@@ -13,20 +13,20 @@ const TrackPieceScript := preload("res://game/finite/build/track_piece.gd")
 const NO_CELL := Vector2i(-1, -1)
 
 const PRODUCT_VISUAL_ASSET_PATHS := {
-	"board_terrain": "art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png",
-	"train": "art/product_assets/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png",
-	"rail_straight": "art/product_assets/ed_hybrid_v1/core/core_rail_straight_normal_v01.png",
-	"rail_curve": "art/product_assets/ed_hybrid_v1/core/core_rail_curve_normal_v01.png",
-	"rail_crossing": "art/product_assets/ed_hybrid_v1/core/core_rail_crossing_normal_v01.png",
-	"rail_switch": "art/product_assets/ed_hybrid_v1/core/core_rail_switch_three_way_normal_v01.png",
-	"start_marker": "art/product_assets/ed_hybrid_v1/core/core_marker_start_normal_v01.png",
-	"route_end_marker": "art/product_assets/ed_hybrid_v1/core/core_marker_route_end_normal_v01.png",
-	"station_red": "art/product_assets/ed_hybrid_v1/core/core_station_red_normal_v01.png",
-	"station_blue": "art/product_assets/ed_hybrid_v1/core/core_station_blue_normal_v01.png",
-	"station_yellow": "art/product_assets/ed_hybrid_v1/core/core_station_yellow_normal_v01.png",
-	"cargo_red": "art/product_assets/ed_hybrid_v1/core/core_cargo_star_red_normal_v01.png",
-	"cargo_blue": "art/product_assets/ed_hybrid_v1/core/core_cargo_star_blue_normal_v01.png",
-	"cargo_yellow": "art/product_assets/ed_hybrid_v1/core/core_cargo_star_yellow_normal_v01.png",
+	"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
+	"train": "art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png",
+	"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v02.png",
+	"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v02.png",
+	"rail_crossing": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v02.png",
+	"rail_switch": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v02.png",
+	"start_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png",
+	"route_end_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png",
+	"station_red": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
+	"station_blue": "art/product_assets/ed_hybrid_v2/core/core_station_blue_normal_v02.png",
+	"station_yellow": "art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png",
+	"cargo_red": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png",
+	"cargo_blue": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_blue_normal_v02.png",
+	"cargo_yellow": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png",
 }
 
 var _snapshot: Dictionary = {}
@@ -70,6 +70,10 @@ func loaded_product_visuals_for_test() -> Dictionary:
 	for key: Variant in PRODUCT_VISUAL_ASSET_PATHS.keys():
 		result[str(key)] = _product_textures.get(str(key)) is Texture2D
 	return result
+
+
+func product_rail_seam_descriptor_for_test(geometry: StringName, rotation: int) -> Dictionary:
+	return _product_rail_seam_descriptor(geometry, rotation)
 
 
 func station_service_descriptors_for_test() -> Array[Dictionary]:
@@ -489,7 +493,10 @@ func _draw_track_piece(
 ) -> void:
 	var target := _cell_rect(cell, rect, board_size).grow(-2.0)
 	var asset_key := _track_asset_key(geometry)
-	if asset_key != "" and _draw_product_texture(asset_key, target, rotation, bed_color.a):
+	var has_product_art := asset_key != "" and _product_textures.get(asset_key) is Texture2D
+	if has_product_art:
+		_draw_product_rail_seam_underlay(geometry, rotation, target, bed_color, rail_color)
+	if has_product_art and _draw_product_texture(asset_key, target, rotation, bed_color.a):
 		return
 
 	var center := target.get_center()
@@ -503,6 +510,42 @@ func _draw_track_piece(
 		draw_line(center, endpoint, rail_color, Palette.RAIL_HIGHLIGHT_WIDTH, true)
 	if geometry == &"SWITCH":
 		draw_circle(center, minf(half.x, half.y) * 0.18, rail_color)
+
+
+func _draw_product_rail_seam_underlay(
+	geometry: StringName,
+	rotation: int,
+	target: Rect2,
+	bed_color: Color,
+	rail_color: Color
+) -> void:
+	var descriptor := _product_rail_seam_descriptor(geometry, rotation)
+	if not bool(descriptor["enabled"]):
+		return
+	var center := target.get_center()
+	var half := target.size * 0.5
+	for direction: Vector2i in descriptor["ports"]:
+		var endpoint := center + Vector2(direction.x * half.x, direction.y * half.y)
+		draw_line(
+			center,
+			endpoint,
+			_alpha(bed_color, minf(bed_color.a, 0.34)),
+			maxf(Palette.RAIL_WIDTH * 0.60, 3.0),
+			true
+		)
+		draw_line(
+			center,
+			endpoint,
+			_alpha(rail_color, 0.42),
+			maxf(Palette.RAIL_HIGHLIGHT_WIDTH * 0.60, 2.0),
+			true
+		)
+
+
+static func _product_rail_seam_descriptor(geometry: StringName, rotation: int) -> Dictionary:
+	if geometry not in [&"CURVE", &"SWITCH"]:
+		return {"enabled": false, "ports": []}
+	return {"enabled": true, "ports": _track_ports(geometry, rotation)}
 
 
 func _draw_fixed_markers(rect: Rect2, board_size: Vector2i) -> void:

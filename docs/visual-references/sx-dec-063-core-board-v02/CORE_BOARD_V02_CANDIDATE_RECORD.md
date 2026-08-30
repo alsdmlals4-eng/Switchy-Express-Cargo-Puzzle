@@ -1,12 +1,12 @@
 # SX-DEC-063 Core Board v02 candidate record
 
-> **Status:** `BRIEF_READY · USER_APPROVED_FOR_CANDIDATE_GENERATION · NO_RUNTIME_PATH_CHANGE`
+> **Status:** `USER_APPROVED · GITHUB_PROMOTED · RUNTIME_VERIFIED_AUTOMATED · PHYSICAL_HUMAN_NOT_RUN`
 >
 > **Decision and consumer:** `SX-DEC-063` → `game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS`
 >
 > **User direction:** 2026-08-30 — create the missing rail and station images, connect Godot and its plugin, and implement the approved Core Board v02 direction.
 >
-> **Candidate-promotion gate:** A generated image is `GENERATED_CANDIDATE · NOT_RUNTIME_ASSET` until the user approves the assembled Core Board v02 pixels. No file is promoted into `art/product_assets/`, and no renderer path changes, before that disposition.
+> **Promotion disposition:** The user approved the assembled 13-image pixels and the narrow visual-only curve/switch seam underlay on 2026-08-30. The selected final binaries are now preserved in the stated v02 paths and loaded by the existing renderer; physical and human gates remain separate and unrun.
 
 ## Scope and preserved rules
 
@@ -35,19 +35,19 @@ Constraints: genuine transparent background; no text, letters, numbers, logo, wa
 
 | Candidate ID | Exact target path | Exact subject suffix | Target size | Candidate state |
 | --- | --- | --- | --- | --- |
-| `SX-VIS-063-CORE-TRAIN-001` | `art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png` | `Subject: compact navy-blue locomotive facing right, short engine body only, brass lamp, no cargo wagon. Target render footprint: 128×96.` | 128×96 | `BRIEF_READY` |
-| `SX-VIS-063-CORE-RAIL-STRAIGHT-001` | `art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v02.png` | `Subject: straight rail tile with exactly two clear ports centered on the left and right edges. Target render footprint: 64×64.` | 64×64 | `BRIEF_READY` |
-| `SX-VIS-063-CORE-RAIL-CURVE-001` | `art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v02.png` | `Subject: quarter-turn rail tile with exactly two clear ports centered on the left and top edges. Target render footprint: 64×64.` | 64×64 | `BRIEF_READY` |
-| `SX-VIS-063-CORE-RAIL-CROSSING-001` | `art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v02.png` | `Subject: crossing rail tile with exactly four clear ports centered on all edges; north-south and east-west rails cross at one central point. Target render footprint: 64×64.` | 64×64 | `BRIEF_READY` |
-| `SX-VIS-063-CORE-RAIL-SWITCH-001` | `art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v02.png` | `Subject: three-way rail switch with exact ports centered left, top, and right; one compact manual switch lever at the lower-right, no route arrows or lock icon. Target render footprint: 64×64.` | 64×64 | `BRIEF_READY` |
-| `SX-VIS-063-CORE-START-001` | `art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png` | `Subject: small brass-and-navy circular start marker with a simple forward arrow, visually distinct from cargo and station, no letters. Target render footprint: 64×64.` | 64×64 | `BRIEF_READY` |
-| `SX-VIS-063-CORE-END-001` | `art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png` | `Subject: small crimson route-end beacon on a stone plinth, visually distinct from cargo and station, no letters. Target render footprint: 64×64.` | 64×64 | `BRIEF_READY` |
-| `SX-VIS-063-CORE-STATION-RED-001` | `art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png` | `Subject: compact red off-track station building on its own stone plinth, with no rail through its footprint and no service-ring graphics. Target render footprint: 64×64.` | 64×64 | `BRIEF_READY` |
-| `SX-VIS-063-CORE-STATION-BLUE-001` | `art/product_assets/ed_hybrid_v2/core/core_station_blue_normal_v02.png` | `Subject: compact blue off-track station building on its own stone plinth, with no rail through its footprint and no service-ring graphics. Target render footprint: 64×64.` | 64×64 | `BRIEF_READY` |
-| `SX-VIS-063-CORE-STATION-YELLOW-001` | `art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png` | `Subject: compact yellow off-track station building on its own stone plinth, with no rail through its footprint and no service-ring graphics. Target render footprint: 64×64.` | 64×64 | `BRIEF_READY` |
-| `SX-VIS-063-CORE-CARGO-RED-001` | `art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png` | `Subject: red five-point cargo star token with a thick dark outline and small brass cargo clasp, no text. Target render footprint: 64×64.` | 64×64 | `BRIEF_READY` |
-| `SX-VIS-063-CORE-CARGO-BLUE-001` | `art/product_assets/ed_hybrid_v2/core/core_cargo_star_blue_normal_v02.png` | `Subject: blue five-point cargo star token with a thick dark outline and small brass cargo clasp, no text. Target render footprint: 64×64.` | 64×64 | `BRIEF_READY` |
-| `SX-VIS-063-CORE-CARGO-YELLOW-001` | `art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png` | `Subject: yellow five-point cargo star token with a thick dark outline and small brass cargo clasp, no text. Target render footprint: 64×64.` | 64×64 | `BRIEF_READY` |
+| `SX-VIS-063-CORE-TRAIN-001` | `art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png` | `Subject: compact navy-blue locomotive facing right, short engine body only, brass lamp, no cargo wagon. Target render footprint: 128×96.` | 128×96 | `USER_APPROVED · PROMOTED · AUTOMATED_RUNTIME_VERIFIED` |
+| `SX-VIS-063-CORE-RAIL-STRAIGHT-001` | `art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v02.png` | `Subject: straight rail tile with exactly two clear ports centered on the left and right edges. Target render footprint: 64×64.` | 64×64 | `USER_APPROVED · PROMOTED · AUTOMATED_RUNTIME_VERIFIED` |
+| `SX-VIS-063-CORE-RAIL-CURVE-001` | `art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v02.png` | `Subject: quarter-turn rail tile with exactly two clear ports centered on the left and top edges. Target render footprint: 64×64.` | 64×64 | `USER_APPROVED · PROMOTED · AUTOMATED_RUNTIME_VERIFIED · SEAM_UNDERLAY` |
+| `SX-VIS-063-CORE-RAIL-CROSSING-001` | `art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v02.png` | `Subject: crossing rail tile with exactly four clear ports centered on all edges; north-south and east-west rails cross at one central point. Target render footprint: 64×64.` | 64×64 | `USER_APPROVED · PROMOTED · AUTOMATED_RUNTIME_VERIFIED` |
+| `SX-VIS-063-CORE-RAIL-SWITCH-001` | `art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v02.png` | `Subject: three-way rail switch with exact ports centered left, top, and right; one compact manual switch lever at the lower-right, no route arrows or lock icon. Target render footprint: 64×64.` | 64×64 | `USER_APPROVED · PROMOTED · AUTOMATED_RUNTIME_VERIFIED · SEAM_UNDERLAY` |
+| `SX-VIS-063-CORE-START-001` | `art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png` | `Subject: small brass-and-navy circular start marker with a simple forward arrow, visually distinct from cargo and station, no letters. Target render footprint: 64×64.` | 64×64 | `USER_APPROVED · PROMOTED · AUTOMATED_RUNTIME_VERIFIED` |
+| `SX-VIS-063-CORE-END-001` | `art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png` | `Subject: small crimson route-end beacon on a stone plinth, visually distinct from cargo and station, no letters. Target render footprint: 64×64.` | 64×64 | `USER_APPROVED · PROMOTED · AUTOMATED_RUNTIME_VERIFIED` |
+| `SX-VIS-063-CORE-STATION-RED-001` | `art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png` | `Subject: compact red off-track station building on its own stone plinth, with no rail through its footprint and no service-ring graphics. Target render footprint: 64×64.` | 64×64 | `USER_APPROVED · PROMOTED · AUTOMATED_RUNTIME_VERIFIED` |
+| `SX-VIS-063-CORE-STATION-BLUE-001` | `art/product_assets/ed_hybrid_v2/core/core_station_blue_normal_v02.png` | `Subject: compact blue off-track station building on its own stone plinth, with no rail through its footprint and no service-ring graphics. Target render footprint: 64×64.` | 64×64 | `USER_APPROVED · PROMOTED · AUTOMATED_RUNTIME_VERIFIED` |
+| `SX-VIS-063-CORE-STATION-YELLOW-001` | `art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png` | `Subject: compact yellow off-track station building on its own stone plinth, with no rail through its footprint and no service-ring graphics. Target render footprint: 64×64.` | 64×64 | `USER_APPROVED · PROMOTED · AUTOMATED_RUNTIME_VERIFIED` |
+| `SX-VIS-063-CORE-CARGO-RED-001` | `art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png` | `Subject: red five-point cargo star token with a thick dark outline and small brass cargo clasp, no text. Target render footprint: 64×64.` | 64×64 | `USER_APPROVED · PROMOTED · AUTOMATED_RUNTIME_VERIFIED` |
+| `SX-VIS-063-CORE-CARGO-BLUE-001` | `art/product_assets/ed_hybrid_v2/core/core_cargo_star_blue_normal_v02.png` | `Subject: blue five-point cargo star token with a thick dark outline and small brass cargo clasp, no text. Target render footprint: 64×64.` | 64×64 | `USER_APPROVED · PROMOTED · AUTOMATED_RUNTIME_VERIFIED` |
+| `SX-VIS-063-CORE-CARGO-YELLOW-001` | `art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png` | `Subject: yellow five-point cargo star token with a thick dark outline and small brass cargo clasp, no text. Target render footprint: 64×64.` | 64×64 | `USER_APPROVED · PROMOTED · AUTOMATED_RUNTIME_VERIFIED` |
 
 ## Candidate review contract
 
@@ -63,16 +63,16 @@ Before images are shown to the user, each native output and its 64×64 or 128×9
 
 Any failure requires a targeted regeneration of only the defective subject, followed by a fresh five-loop review of that candidate.
 
-## Promotion receipt — pending actual generation
+## Historical pre-promotion receipt
 
 | Field | Current truth |
 | --- | --- |
-| Image-model outputs | `NOT_GENERATED_YET` |
-| Candidate image locations | `NOT_GENERATED_YET` |
-| User pixel approval | `PENDING_ASSEMBLED_BUNDLE` |
-| Files in `art/product_assets/ed_hybrid_v2/core/` | `0_NEW_FILES` |
-| `ProductBoardRenderer` v02 paths | `NOT_CHANGED` |
-| Godot runtime / physical / human evidence | `NOT_RUN` |
+| Image-model outputs | `HISTORICAL_PRE_PROMOTION_PLACEHOLDER` |
+| Candidate image locations | `HISTORICAL_PRE_PROMOTION_PLACEHOLDER` |
+| User pixel approval | `HISTORICAL_PRE_PROMOTION_PLACEHOLDER` |
+| Files in `art/product_assets/ed_hybrid_v2/core/` | `HISTORICAL_PRE_PROMOTION_PLACEHOLDER` |
+| `ProductBoardRenderer` v02 paths | `HISTORICAL_PRE_PROMOTION_PLACEHOLDER` |
+| Godot runtime / physical / human evidence | `HISTORICAL_PRE_PROMOTION_PLACEHOLDER` |
 
 ## 2026-08-30 generated candidate receipt
 
@@ -99,16 +99,15 @@ The following are built-in image-model outputs. They remain outside the reposito
 | Loop | Observed result | Current result |
 | --- | --- | --- |
 | 1 · Consumer boundary | Every candidate maps to one existing `ProductBoardRenderer` slot. No board, UI, sheet, terrain, scene, or new consumer has been introduced. | `PASS` |
-| 2 · Rule and geometry attack | All three stations are off-track and contain no rail or service-ring image. Straight and crossing rail intent reads correctly. At 64px, the model does not place the curve and switch exits at mathematically exact cell-center coordinates. | `PARTIAL · USER_DECISION_REQUIRED_FOR_SEAM_STRATEGY` |
-| 3 · Target-footprint readability | The selected locomotive is recognizable at 128×96; station roofs, star cargo colors, and start/end silhouettes remain distinct at 64×64. Curve and switch remain recognizable but cannot on their own guarantee adjacent-cell seam alignment. | `PARTIAL · USER_DECISION_REQUIRED_FOR_SEAM_STRATEGY` |
+| 2 · Rule and geometry attack | All three stations are off-track and contain no rail or service-ring image. Straight and crossing rail intent reads correctly. Curve and switch exits are not mathematically exact in the source image alone, so the user approved a narrow visual-only underlay copied from the already-authored ports. | `PASS_WITH_APPROVED_VISUAL_SEAM_UNDERLAY` |
+| 3 · Target-footprint readability | The selected locomotive is recognizable at 128×96; station roofs, star cargo colors, and start/end silhouettes remain distinct at 64×64. The approved underlay closes curve/switch port seams while the generated rail sprites remain the visible art. | `PASS_WITH_APPROVED_VISUAL_SEAM_UNDERLAY` |
 | 4 · Provenance and embedded-content attack | The common prompt prohibited third-party art, reference-layout copying, text, logos, watermarks, UI, and frames. Visual review found none. Three candidates with opaque background corners were image-model edited to transparent alpha and rechecked; the selected final candidates have transparent corners. | `PASS_FOR_CANDIDATE_REVIEW · RELEASE_RIGHTS_NOT_APPROVED` |
-| 5 · Scope and evidence attack | No product path, manifest, renderer, gameplay rule, runtime capture, package candidate, physical/device/audio/human evidence, or protected PR has changed. | `PASS_FOR_CANDIDATE_BOUNDARY` |
+| 5 · Scope and evidence attack | Promotion changed only the existing fourteen renderer paths, generated v02 assets, their provenance/manifest, and matching contracts. It did not change gameplay rules, input, map/data, service, routing, locks, protected PRs, package candidate, or physical/device/audio/human evidence. | `PASS_FOR_APPROVED_IMPLEMENTATION_SCOPE` |
 
-### Required user disposition
+### User disposition and implementation receipt
 
-The image pixels are ready for review, but the two partial rail results are not silently promotable as exact grid geometry. The next runtime path is intentionally held at `PENDING_USER_PIXEL_AND_SEAM_DECISION`:
+The 2026-08-30 message **“승인”** accepted the displayed 13-image bundle and the recommended narrow procedural seam-underlay strategy. The final deterministic Godot reductions are now in the listed `art/product_assets/ed_hybrid_v2/core/` paths, with their exact hashes in `art/product_assets/ed_hybrid_v2/manifest.json` and `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`.
 
-1. **Recommended — approve this 13-image bundle with a narrow procedural seam underlay.** The new image-model rail sprites remain the visible art. Godot adds only a muted, non-interactive edge-connector underlay beneath curve/switch cells so adjacent grid ports meet exactly; it cannot change routing, service, input, lock, or any game rule.
-2. **Regenerate curve and switch again.** Keep the existing candidates outside the product path and attempt more image-model iterations for exact visual port placement before any runtime promotion.
+`ProductBoardRenderer` now switches only its existing fourteen visual slots to v02. For `CURVE` and `SWITCH` only, it draws a muted rail-bed/metal underlay from the same authored port directions immediately below the texture. This corrects visual adjacency without adding an input area, changing track graph data, route selection, station service, train behavior, or lock semantics.
 
-Either route still requires a direct user approval of the assembled image pixels before files are copied into `art/product_assets/` or `ProductBoardRenderer` changes.
+Automated runtime verification on 2026-08-30 passed the full Godot runner (`112` cases, `13,534` assertions) and confirms that all fourteen v02 slots load as `Texture2D`. A local isolated-branch Windows debug export plus Windows/Android PCK proof parsed the v02 manifest and passed PCK integrity; it is not a GitHub exact-head candidate. Hosted Windows CI, physical Windows/audio, Android device, human/player-experience, and release-rights evidence remain `NOT_RUN`.

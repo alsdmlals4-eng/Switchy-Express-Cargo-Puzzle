@@ -74,10 +74,14 @@ sx_dec_062_implementation_plan: docs/superpowers/plans/2026-08-28-board-first-ru
 sx_dec_062_codex_handoff: 기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md
 sx_dec_062_tracking_issue: GitHub_Issue_235
 sx_dec_062_runtime_status: IMPLEMENTED · RED_GREEN_PASS · LOCAL_GODOT_112_CASES_13512_ASSERTIONS · EXACT_HEAD_CI_6_GREEN · NEW_EXACT_CANDIDATE_MINTED
-sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · PR_244 · main_38d4ac2aac8af35672d43e96f27b2f243aa10a4b · RUNTIME_NOT_CONNECTED
+sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · CORE_BOARD_V02_IMPLEMENTED_ON_ISOLATED_BRANCH · TERRAIN_PLUS_13_CORE_ASSETS · AUTOMATED_RUNTIME_LIVE_MACHINE_CAPTURE_AND_LOCAL_PACKAGE_VERIFIED · EXACT_GITHUB_CANDIDATE_HOSTED_CI_AND_PHYSICAL_HUMAN_NOT_RUN
 sx_dec_063_decision_owner: docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md
 sx_dec_063_design_spec: docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production-design.md
-sx_dec_063_first_candidate: SX-VIS-063-CANDIDATE-001 · BOARD_TERRAIN_1672x941 · APPROVED_GITHUB_PRESERVED · SHA_1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d · RUNTIME_NOT_CONNECTED
+sx_dec_063_core_board_v02_spec: docs/superpowers/specs/2026-08-30-sx-dec-063-core-board-v02-design.md
+sx_dec_063_core_board_v02_plan: docs/superpowers/plans/2026-08-30-sx-dec-063-core-board-v02-runtime-integration.md
+sx_dec_063_core_board_v02_manifest: art/product_assets/ed_hybrid_v2/manifest.json
+sx_dec_063_core_board_v02_machine_evidence: docs/operations/2026-08-30-sx-dec-063-core-board-v02-runtime-verification.md
+sx_dec_063_first_candidate: SX-VIS-063-CANDIDATE-001 · BOARD_TERRAIN_1672x941 · SHA_1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d · NOW_CONNECTED_WITH_13_CORE_V02_ASSETS · AUTOMATED_AND_MACHINE_RUNTIME_VERIFIED
 sx_vis_061_core_systems_board: SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002B · USER_APPROVED_GITHUB_PRESERVED_PLANNING_REFERENCE · Issue_246 · docs/visual-references/sx-vis-061-core-systems-board-exploration-002b.png · NO_RUNTIME_CONSUMER · NOT_RUNTIME_PROOF
 sx_dec_064_active_route_lighting: MERGED_MAIN_VERIFIED · GitHub_Issue_248 · PR_249 · main_2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI_7_GREEN · PROCEDURAL_RUNTIME_DELTA
 sx_dec_064_decision_owner: docs/decisions/SX_DEC_064_ACTIVE_ROUTE_LIGHTING.md
@@ -306,12 +310,12 @@ SX-DEC-064 active-route-lighting is merged on main through Issue #248 / PR #249 
 → current route glow starts at the actual train cell plus actual previous cell; it falls back to authored start only before a train state exists
 → only the currently selected deterministic route is lime-lit; alternate rails stay unlit, lock is a separate crimson overlay, and terminal phases have no predictive route glow
 → this is not a solver, gameplay, map/data, asset, or Notion change
-→ then resume SX-DEC-063 hybrid miniature-diorama alignment with one user-promoted source asset on Issue #243
-→ terrain v02 is GitHub-preserved with SHA/provenance; v01 remains the active runtime path
+→ SX-DEC-063 Core Board v02 is implemented on the isolated branch after user approval: terrain plus 13 original core assets, a 14-slot renderer switch, and curve/switch visual seam underlay only
+→ manifest/provenance/import contracts, full Godot runner (112 cases / 13,534 assertions), formal GUT (21 tests / 152 assertions with validated JUnit), live 1280×720 BUILD/RUN machine captures, and local Windows debug/Windows+Android package proof are recorded; v01 remains tracked rollback
 → preserve the rectangular BUILD/RUN grid, gameplay semantics, actual consumer mapping, T2 v02, and Issue #227
-→ next machine-executable visual task: execute the terrain-only Phase 2 runtime handoff with RED→GREEN, same-state viewport comparison, package candidate refresh, and five adversarial loops
-→ SX-DEC-062 board-first runtime composition and SX-DEC-064 active-route lighting are packaged on exact main 58b99f2
-→ Candidates 002 and 003 are immutable prior-byte evidence; Candidate 004 is the sole current package candidate
+→ local package/export proof is complete only for the uncommitted isolated branch; next safe step is hosted exact-head CI after review, then record a new exact candidate only from immutable reviewed bytes
+→ Candidate 004 remains the package record for merged-main pre-Core-Board-v02 bytes and does not transfer to this player-facing branch
+→ Candidates 002–004 are immutable prior-byte evidence; physical Windows/audio, Android, five-person, and player-experience gates remain separate
 → Windows package verification PASS; run Windows physical smoke and audio-perceptual QA before any Phase 5 human evidence claim
 → use the full T1 → T6 → VS_DEMO_01 → Result sequence for the next Phase 5 human-validation design
 → historical foreign-project Notion Direction page is audit-only and does not block current work

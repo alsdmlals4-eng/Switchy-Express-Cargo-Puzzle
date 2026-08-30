@@ -6,7 +6,8 @@ const ANDROID_WORKFLOW_PATH := "res://.github/workflows/android-validation-apk.y
 const PACK_VERIFIER_PATH := "res://tools/validation/verify_exported_runtime_json.gd"
 const REQUIRED_INCLUDE_FILTER := (
 	"include_filter=\"data/maps/*.json,data/first_session/*.json,"
-	+ "data/localization/first_session*.json,art/product_assets/ed_hybrid_v1/*.json\""
+	+ "data/localization/first_session*.json,art/product_assets/ed_hybrid_v1/*.json,"
+	+ "art/product_assets/ed_hybrid_v2/*.json\""
 )
 const REQUIRED_EXCLUDE_FILTER := (
 	"exclude_filter=\"tests/**,addons/gut/**,addons/godot_ai/**\""
@@ -42,6 +43,7 @@ func run() -> void:
 		"res://data/maps/tutorial/tut_04_selective_load.json",
 		"res://data/maps/tutorial/tut_05_auto_load.json",
 		"res://data/maps/tutorial/tut_06_switch.json",
+		"res://art/product_assets/ed_hybrid_v2/manifest.json",
 	]:
 		assert_true(
 			verifier.contains(required_path),
@@ -49,6 +51,10 @@ func run() -> void:
 		)
 
 	var windows := FileAccess.get_file_as_string(WINDOWS_WORKFLOW_PATH)
+	assert_true(
+		windows.contains("art/product_assets/ed_hybrid_v2/**"),
+		"Windows export must run when a Core Board v02 runtime asset changes",
+	)
 	assert_true(windows.contains("--export-pack \"Windows Demo\""), "Windows workflow must build a preset-equivalent proof PCK")
 	assert_true(windows.contains("windows-runtime-json-proof.pck"), "Windows workflow must retain named runtime JSON proof pack")
 	assert_true(windows.contains("--main-pack builds/windows/windows-runtime-json-proof.pck"), "Windows workflow must mount the exported proof PCK")

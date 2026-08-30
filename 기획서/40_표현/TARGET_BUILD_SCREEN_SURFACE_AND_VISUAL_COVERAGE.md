@@ -162,7 +162,7 @@ SX-DEC-063 changes the prior no-new-image disposition only for real consumers al
 
 | Requirement | Applicable screen surfaces | Existing real consumer | Coverage status | Production state |
 | --- | --- | --- | --- | --- |
-| SX-VIS-063-RQ-001 board diorama | SX-SCR-004 BUILD, SX-SCR-005 route control, SX-SCR-006 RUN, SX-SCR-007 semantic events | ProductBoardRenderer product visual asset paths | REQUIREMENT_LINKED | One terrain candidate generated and machine-reviewed; no approval or integration. |
+| SX-VIS-063-RQ-001 board diorama | SX-SCR-004 BUILD, SX-SCR-005 route control, SX-SCR-006 RUN, SX-SCR-007 semantic events | ProductBoardRenderer product visual asset paths | AUTOMATED_MACHINE_RUNTIME_AND_LOCAL_PACKAGE_VERIFIED | User-approved v02 terrain plus 13 Core Board assets are connected to the existing 14 slots; BUILD/RUN machine captures and isolated-branch Windows/Android package proof are recorded. Curve/switch seam underlay is visual-only. Exact GitHub candidate, hosted CI, and human/device gates remain open. |
 | SX-VIS-063-RQ-002 shell cohesion | SX-SCR-001 title, SX-SCR-003 shared non-T2 lesson, SX-SCR-010 success, SX-SCR-011 failure | ProductShellArt title, shared lesson, success/failure paths | REQUIREMENT_LINKED | Four future versioned candidates may be generated/reviewed; user decides their final promotion. T2 v02 is COVERED_EXISTING and protected. |
 | SX-VIS-063-RQ-003 deck density | SX-SCR-001, 003, 004, 006, 010, 011 | existing Godot Theme, HUD, shell panels | REQUIREMENT_LINKED | Later code-only integration review; no new control or gameplay state. |
 
@@ -173,10 +173,12 @@ project_relation: SWITCHY_EXPRESS
 decision: SX-DEC-063
 candidate_generation_policy: USER_AUTHORIZED_GENERATE_THEN_PROMOTION_DECISION
 actual_consumer_required: true
-approved_runtime_asset_count_from_sx_dec_063: 0
-runtime_integration_from_sx_dec_063: NOT_STARTED
+approved_runtime_asset_count_from_sx_dec_063: 14
+runtime_integration_from_sx_dec_063: IMPLEMENTED_ON_ISOLATED_BRANCH · AUTOMATED_AND_MACHINE_RUNTIME_VERIFIED
 t2_hero_v02: PROTECTED_EXISTING_CONSUMER
 issue_227: DEFERRED_SEPARATE_SCOPE
+local_package_proof_for_core_board_v02_bytes: PASS_UNCOMMITTED_ISOLATED_BRANCH
+exact_github_package_candidate_for_core_board_v02_bytes: NOT_MINTED
 human_device_player_evidence: NOT_RUN
 ~~~
 
