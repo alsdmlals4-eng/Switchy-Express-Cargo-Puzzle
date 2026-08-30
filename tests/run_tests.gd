@@ -60,6 +60,8 @@ const TEST_SCRIPTS: Array[Script] = [
 	preload("res://tests/first_session/test_tutorial_maps_t1_t3.gd"),
 	preload("res://tests/first_session/test_tutorial_maps_t4_t5.gd"),
 	preload("res://tests/first_session/test_tutorial_map_t6.gd"),
+	preload("res://tests/route_book/test_route_book_definition.gd"),
+	preload("res://tests/route_book/test_route_book_copy.gd"),
 	preload("res://tests/demo/test_first_session_product_policy.gd"),
 	preload("res://tests/demo/test_first_session_flow_controller.gd"),
 	preload("res://tests/demo/test_first_session_result_copy.gd"),
