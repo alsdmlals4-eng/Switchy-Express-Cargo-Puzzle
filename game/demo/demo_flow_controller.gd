@@ -33,6 +33,9 @@ const RouteBookDefinitionScript := preload(
 const RouteBookDirectorScript := preload(
 	"res://game/route_book/route_book_director.gd"
 )
+const RouteBookCatalogScript := preload(
+	"res://game/route_book/route_book_catalog.gd"
+)
 
 @export var first_session_enabled: bool = false
 @export var first_session_locale: String = "ko"
@@ -44,6 +47,8 @@ var _first_session_director: Variant = null
 var _first_session_copy: Variant = null
 var _route_book_director: Variant = null
 var _route_book_copy: Variant = null
+var _route_book_selector_copy: Variant = null
+var _route_book_id: StringName = &""
 var _route_book_active: bool = false
 
 
@@ -101,15 +106,42 @@ func start_demo() -> void:
 
 
 func open_route_book() -> void:
-	if _route_book_director == null:
+	if _route_book_selector_copy == null:
 		return
 	if _state != TITLE and not (_state == RESULT and _route_book_active):
 		return
 	_release_gameplay_instance()
 	_route_book_active = false
-	_route_book_director.reset()
-	_populate_route_book_list()
+	_route_book_id = &""
+	_route_book_director = null
+	_route_book_copy = null
+	_populate_route_book_selector()
 	_transition_to(ROUTE_BOOK)
+
+
+func select_route_book(book_id: StringName) -> bool:
+	if _state != ROUTE_BOOK or _route_book_selector_copy == null:
+		return false
+	var definition_path := RouteBookCatalogScript.definition_path(book_id)
+	var copy_path := RouteBookCatalogScript.copy_path(book_id)
+	if definition_path.is_empty() or copy_path.is_empty():
+		return false
+	var definition: Variant = RouteBookDefinitionScript.load_from_path(definition_path)
+	var director: Variant = RouteBookDirectorScript.new()
+	if definition == null or not director.configure(definition):
+		return false
+	var copy: Variant = FirstSessionCopyScript.new()
+	if not copy.load_from_path(copy_path):
+		return false
+	_route_book_id = book_id
+	_route_book_director = director
+	_route_book_copy = copy
+	_route_book_active = false
+	var title := get_node_or_null("RouteBookScreen/Panel/Content/Title") as Label
+	if title != null:
+		title.text = _route_book_selector_copy.text(&"SX_RB_SELECT_STAGE", first_session_locale)
+	_populate_route_book_list()
+	return true
 
 
 func select_route_book_stage(stage_id: StringName) -> bool:
@@ -210,8 +242,9 @@ func return_to_title() -> void:
 	_last_result = null
 	_release_gameplay_instance()
 	_route_book_active = false
-	if _route_book_director != null:
-		_route_book_director.reset()
+	_route_book_id = &""
+	_route_book_director = null
+	_route_book_copy = null
 	if first_session_enabled and _first_session_director != null:
 		_first_session_director.reset()
 		_apply_lesson_card()
@@ -228,6 +261,10 @@ func current_route_book_stage_id_for_test() -> StringName:
 	if _route_book_director == null:
 		return &""
 	return _route_book_director.current_stage_id()
+
+
+func current_route_book_id_for_test() -> StringName:
+	return _route_book_id
 
 
 func dispatch_flow_action_for_test(action: StringName, pressed: bool) -> bool:
@@ -461,8 +498,8 @@ func _update_route_book_result_actions(outcome: StringName) -> void:
 	var visible := _route_book_active and _route_book_director != null
 	if actions != null:
 		actions.visible = visible and _state == RESULT
-	if stage_book != null and _route_book_copy != null:
-		stage_book.text = _route_book_copy.text(&"SX_RB_STAGE_BOOK", first_session_locale)
+	if stage_book != null and _route_book_selector_copy != null:
+		stage_book.text = _route_book_selector_copy.text(&"SX_RB_STAGE_BOOK", first_session_locale)
 	if next_stage != null:
 		if _route_book_copy != null:
 			next_stage.text = _route_book_copy.text(&"SX_RB_NEXT_STAGE", first_session_locale)
@@ -552,26 +589,45 @@ func _setup_first_session() -> void:
 
 
 func _setup_route_book() -> void:
-	var definition: Variant = RouteBookDefinitionScript.load_from_path(
-		"res://data/route_book/route_book_01.json"
-	)
-	_route_book_director = RouteBookDirectorScript.new()
-	if definition == null or not _route_book_director.configure(definition):
-		_route_book_director = null
-		return
-	_route_book_copy = FirstSessionCopyScript.new()
-	if not _route_book_copy.load_from_path("res://data/localization/route_book_01_v1.json"):
-		_route_book_copy = null
+	_route_book_selector_copy = FirstSessionCopyScript.new()
+	if not _route_book_selector_copy.load_from_path("res://data/localization/route_book_02_v1.json"):
+		_route_book_selector_copy = null
 		return
 	var button := get_node_or_null("TitleScreen/Panel/Content/StageBookButton") as Button
 	if button != null:
-		button.text = _route_book_copy.text(&"SX_RB_STAGE_BOOK", first_session_locale)
+		button.text = _route_book_selector_copy.text(&"SX_RB_STAGE_BOOK", first_session_locale)
 	var title := get_node_or_null("RouteBookScreen/Panel/Content/Title") as Label
 	if title != null:
-		title.text = _route_book_copy.text(&"SX_RB_SELECT_STAGE", first_session_locale)
+		title.text = _route_book_selector_copy.text(&"SX_RB_SELECT_BOOK", first_session_locale)
 	var back := get_node_or_null("RouteBookScreen/Panel/Content/BackButton") as Button
 	if back != null:
-		back.text = _route_book_copy.text(&"SX_RB_BACK", first_session_locale)
+		back.text = _route_book_selector_copy.text(&"SX_RB_BACK", first_session_locale)
+
+
+func _populate_route_book_selector() -> void:
+	if _route_book_selector_copy == null:
+		return
+	var title := get_node_or_null("RouteBookScreen/Panel/Content/Title") as Label
+	if title != null:
+		title.text = _route_book_selector_copy.text(&"SX_RB_SELECT_BOOK", first_session_locale)
+	var list := get_node_or_null("RouteBookScreen/Panel/Content/StageScroll/StageList") as VBoxContainer
+	if list == null:
+		return
+	for child: Node in list.get_children():
+		list.remove_child(child)
+		child.queue_free()
+	for book_id: StringName in RouteBookCatalogScript.book_ids():
+		var selected_book_id := book_id
+		var card := Button.new()
+		card.name = "%sCard" % book_id
+		card.custom_minimum_size = Vector2(0, 64)
+		card.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		card.text = _route_book_selector_copy.text(
+			RouteBookCatalogScript.display_key(book_id),
+			first_session_locale,
+		)
+		card.pressed.connect(func() -> void: select_route_book(selected_book_id))
+		list.add_child(card)
 
 
 func _populate_route_book_list() -> void:
@@ -582,7 +638,7 @@ func _populate_route_book_list() -> void:
 		return
 	for child: Node in list.get_children():
 		list.remove_child(child)
-		child.free()
+		child.queue_free()
 	for stage_id: StringName in _route_book_director.stage_ids():
 		var stage: Dictionary = _route_book_director.stage(stage_id)
 		var selected_stage_id := stage_id

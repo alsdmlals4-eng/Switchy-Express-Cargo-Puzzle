@@ -16,6 +16,7 @@ var _delivery_loop: Variant
 var _input_state: Variant
 var _run_state: Variant
 var _base_speed: float = 0.0
+var _caution_track_cells: Dictionary = {}
 var _unload_sequence: Variant
 var _pending_outcome: StringName = &""
 var _pending_failure_reason: StringName = &""
@@ -31,7 +32,8 @@ func configure(
 	input_state: Variant,
 	time_limit_seconds: float,
 	base_speed: float = 1.0,
-	initial_remaining_map_cargo: int = 1
+	initial_remaining_map_cargo: int = 1,
+	caution_track_cells: Array[Vector2i] = []
 ) -> void:
 	assert(train != null, "FiniteRunController requires a train")
 	assert(delivery_loop != null, "FiniteRunController requires a delivery loop")
@@ -45,6 +47,9 @@ func configure(
 	_delivery_loop = delivery_loop
 	_input_state = input_state
 	_base_speed = maxf(base_speed, 0.0)
+	_caution_track_cells = {}
+	for cell: Vector2i in caution_track_cells:
+		_caution_track_cells[cell] = true
 	_run_state = FiniteRunStateScript.new(time_limit_seconds)
 	_unload_sequence = null
 	_pending_outcome = &""
@@ -64,7 +69,7 @@ func start() -> bool:
 	if not _run_state.start():
 		return false
 	_input_state.set_paused(false)
-	_train.set_speed(_base_speed)
+	_apply_active_speed()
 	return true
 
 
@@ -82,7 +87,10 @@ func resume() -> bool:
 	if not _run_state.resume():
 		return false
 	_input_state.set_paused(false)
-	_train.set_speed(_base_speed if _run_state.phase() == &"RUNNING" else 0.0)
+	if _run_state.phase() == &"RUNNING":
+		_apply_active_speed()
+	else:
+		_train.set_speed(0.0)
 	return true
 
 
@@ -213,8 +221,12 @@ func _on_train_cell_entered(cell: Vector2i) -> void:
 	var event: Variant = _delivery_loop.handle_cell_entered(cell, _run_state.elapsed_seconds())
 	if event != null:
 		accept_delivery_event(event)
-	if _run_state.phase() == &"RUNNING" and not bool(_train.can_advance()):
+	if _run_state.phase() != &"RUNNING":
+		return
+	if not bool(_train.can_advance()):
 		_finish_terminal(FAILURE, ROUTE_END)
+		return
+	_apply_active_speed()
 
 
 func _resolve_unload_completion() -> void:
@@ -233,7 +245,19 @@ func _resolve_unload_completion() -> void:
 		_finish_terminal(FAILURE, ROUTE_END)
 		return
 	if _run_state.finish_unloading():
-		_train.set_speed(_base_speed)
+		_apply_active_speed()
+
+
+func _apply_active_speed() -> void:
+	_train.set_speed(_effective_speed_for_current_cell())
+
+
+func _effective_speed_for_current_cell() -> float:
+	if _caution_track_cells.is_empty():
+		return _base_speed
+	assert(_train.has_method("current_cell"), "caution-enabled train must expose current_cell")
+	var current_cell: Vector2i = _train.current_cell()
+	return _base_speed * 0.55 if _caution_track_cells.has(current_cell) else _base_speed
 
 
 func _finish_terminal(outcome: StringName, failure_reason: StringName = &"") -> void:

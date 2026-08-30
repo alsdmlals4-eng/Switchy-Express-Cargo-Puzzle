@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "book_id": "ROUTE_BOOK_02",
+  "stages": [
+    {
+      "stage_id": "RB07_FOREST_RELAY",
+      "map_path": "res://data/maps/route_book/rb07_forest_relay.json",
+      "title_key": "SX_RB07_TITLE",
+      "objective_key": "SX_RB07_OBJECTIVE",
+      "context_key": "",
+      "visible_features": ["BOARD", "BOARD_DECORATION", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
+      "allowed_build_tools": ["STRAIGHT", "CURVE", "SWITCH", "CROSSING"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "BOARD_CELL", "SWITCH", "PAUSE", "RESUME"]
+    },
+    {
+      "stage_id": "RB08_CAUTION_CUT",
+      "map_path": "res://data/maps/route_book/rb08_caution_cut.json",
+      "title_key": "SX_RB08_TITLE",
+      "objective_key": "SX_RB08_OBJECTIVE",
+      "context_key": "",
+      "visible_features": ["BOARD", "BOARD_DECORATION", "CAUTION_TRACK", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
+      "allowed_build_tools": ["STRAIGHT", "CURVE", "SWITCH", "CROSSING"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "BOARD_CELL", "SWITCH", "PAUSE", "RESUME"]
+    },
+    {
+      "stage_id": "RB09_SALVAGE_SIDING",
+      "map_path": "res://data/maps/route_book/rb09_salvage_siding.json",
+      "title_key": "SX_RB09_TITLE",
+      "objective_key": "SX_RB09_OBJECTIVE",
+      "context_key": "",
+      "visible_features": ["BOARD", "BOARD_DECORATION", "WASTE_CARGO", "DISPOSAL_YARD", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
+      "allowed_build_tools": ["STRAIGHT", "CURVE", "SWITCH", "CROSSING"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "BOARD_CELL", "SWITCH", "PAUSE", "RESUME"]
+    },
+    {
+      "stage_id": "RB10_CLEAN_BREAK",
+      "map_path": "res://data/maps/route_book/rb10_clean_break.json",
+      "title_key": "SX_RB10_TITLE",
+      "objective_key": "SX_RB10_OBJECTIVE",
+      "context_key": "",
+      "visible_features": ["BOARD", "BOARD_DECORATION", "CAUTION_TRACK", "WASTE_CARGO", "DISPOSAL_YARD", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
+      "allowed_build_tools": ["STRAIGHT", "CURVE", "SWITCH", "CROSSING"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "BOARD_CELL", "SWITCH", "PAUSE", "RESUME"]
+    },
+    {
+      "stage_id": "RB11_TURNOUT_UNDER_LOAD",
+      "map_path": "res://data/maps/route_book/rb11_turnout_under_load.json",
+      "title_key": "SX_RB11_TITLE",
+      "objective_key": "SX_RB11_OBJECTIVE",
+      "context_key": "",
+      "visible_features": ["BOARD", "BOARD_DECORATION", "CAUTION_TRACK", "WASTE_CARGO", "DISPOSAL_YARD", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
+      "allowed_build_tools": ["STRAIGHT", "CURVE", "SWITCH", "CROSSING"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "BOARD_CELL", "SWITCH", "PAUSE", "RESUME"]
+    },
+    {
+      "stage_id": "RB12_LANTERN_LOOP",
+      "map_path": "res://data/maps/route_book/rb12_lantern_loop.json",
+      "title_key": "SX_RB12_TITLE",
+      "objective_key": "SX_RB12_OBJECTIVE",
+      "context_key": "",
+      "visible_features": ["BOARD", "BOARD_DECORATION", "CAUTION_TRACK", "WASTE_CARGO", "DISPOSAL_YARD", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
+      "allowed_build_tools": ["STRAIGHT", "CURVE", "SWITCH", "CROSSING"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "BOARD_CELL", "SWITCH", "PAUSE", "RESUME"]
+    }
+  ]
+}

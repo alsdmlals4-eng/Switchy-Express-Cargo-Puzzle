@@ -12,6 +12,18 @@ const REQUIRED_IDS: Array[StringName] = [
 	&"RB05_FORK_LOCK",
 	&"RB06_PORT_CIRCUIT",
 ]
+const ROUTE_BOOK_02_IDS: Array[StringName] = [
+	&"RB07_FOREST_RELAY",
+	&"RB08_CAUTION_CUT",
+	&"RB09_SALVAGE_SIDING",
+	&"RB10_CLEAN_BREAK",
+	&"RB11_TURNOUT_UNDER_LOAD",
+	&"RB12_LANTERN_LOOP",
+]
+const STAGE_IDS_BY_BOOK: Dictionary = {
+	BOOK_ID: REQUIRED_IDS,
+	&"ROUTE_BOOK_02": ROUTE_BOOK_02_IDS,
+}
 const ARRAY_FIELDS: Array[StringName] = [
 	&"visible_features",
 	&"allowed_build_tools",
@@ -20,6 +32,8 @@ const ARRAY_FIELDS: Array[StringName] = [
 ]
 
 var _stages: Dictionary = {}
+var _book_id: StringName = &""
+var _stage_ids: Array[StringName] = []
 
 
 static func load_from_path(path: String) -> Variant:
@@ -37,20 +51,24 @@ static func load_from_path(path: String) -> Variant:
 static func create(data: Dictionary) -> Variant:
 	if int(data.get("schema_version", -1)) != SCHEMA_VERSION:
 		return null
-	if StringName(data.get("book_id", &"")) != BOOK_ID:
+	var requested_book_id := StringName(data.get("book_id", &""))
+	var expected_values: Variant = STAGE_IDS_BY_BOOK.get(requested_book_id, null)
+	if not expected_values is Array:
 		return null
+	var expected_ids: Array = expected_values
 	var values: Variant = data.get("stages", [])
-	if not values is Array or values.size() != REQUIRED_IDS.size():
+	if not values is Array or values.size() != expected_ids.size():
 		return null
 
 	var instance: Variant = load(SELF_SCRIPT_PATH).new()
-	for index: int in range(REQUIRED_IDS.size()):
+	instance._book_id = requested_book_id
+	for index: int in range(expected_ids.size()):
 		var value: Variant = values[index]
 		if not value is Dictionary:
 			return null
 		var stage: Dictionary = value
 		var stage_id := StringName(stage.get("stage_id", &""))
-		if stage_id != REQUIRED_IDS[index] or instance._stages.has(stage_id):
+		if stage_id != StringName(expected_ids[index]) or instance._stages.has(stage_id):
 			return null
 		if not _has_required_text(stage, &"map_path"):
 			return null
@@ -65,19 +83,20 @@ static func create(data: Dictionary) -> Variant:
 		if (stage.get("visible_features", []) as Array).has("RECOMMENDED_LAYOUT"):
 			return null
 		instance._stages[stage_id] = stage.duplicate(true)
+		instance._stage_ids.append(stage_id)
 	return instance
 
 
 func book_id() -> StringName:
-	return BOOK_ID
+	return _book_id
 
 
 func stage_ids() -> Array[StringName]:
-	return REQUIRED_IDS.duplicate()
+	return _stage_ids.duplicate()
 
 
 func stage_count() -> int:
-	return REQUIRED_IDS.size()
+	return _stage_ids.size()
 
 
 func stage(stage_id: StringName) -> Dictionary:

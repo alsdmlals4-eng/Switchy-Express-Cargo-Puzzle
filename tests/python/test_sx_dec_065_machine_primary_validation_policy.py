@@ -55,7 +55,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
             self.assertIn(required, combined)
 
         active = read("기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md")
-        self.assertIn("current_decisions: SX-DEC-027~066", active)
+        self.assertIn("current_decisions: SX-DEC-027~067", active)
         self.assertIn(
             "five_person_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY",
             active,
@@ -70,11 +70,11 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         gates = read("기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md")
         roadmap = read("기획서/00_프로젝트_허브/ROADMAP.md")
 
-        self.assertIn("current_decision_span: SX-DEC-027~066", adapter)
+        self.assertIn("current_decision_span: SX-DEC-027~067", adapter)
         self.assertNotIn("current_decision_span: SX-DEC-027~064", adapter)
         self.assertIn(
             "current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · "
-            "SX_DEC_066_ROUTE_BOOK_01 · SX60_POC_ACCEPT_006_MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN",
+            "SX_DEC_066_ROUTE_BOOK_01 · SX_DEC_067_WAYSIDE_HAZARDS_ROUTE_BOOK_02_REMOTE_CI_7_GREEN · PR_263_AWAITING_MERGE · FINAL_USER_REVIEW_NOT_RUN",
             gates,
         )
         self.assertNotIn("EXACT_CANDIDATE_005_MACHINE_VALIDATION_PENDING", gates)
@@ -101,7 +101,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         for text in (agents, decision):
             self.assertIn("SX60-POC-ACCEPT-006", text)
             self.assertIn("9af5a8c46d29ea6781f9ee06008d7c7d2cde1877", text)
-        self.assertIn("current_decision_span: SX-DEC-027~066", agents)
+        self.assertIn("current_decision_span: SX-DEC-027~067", agents)
         self.assertIn("SX-DEC-065", agents)
         self.assertIn("CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED", agents)
         self.assertIn("CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED", baseline)
@@ -205,6 +205,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
 
         approval = json.loads(read("docs/operations/PROJECT_PROTECTED_CHANGE_APPROVAL.json"))
         self.assertIn("SX-DEC-065", approval["decision_ids"])
+        self.assertIn("SX-DEC-067", approval["decision_ids"])
         self.assertNotIn(
             "docs/decisions/SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW_VALIDATION_POLICY.md",
             approval["approved_paths"],

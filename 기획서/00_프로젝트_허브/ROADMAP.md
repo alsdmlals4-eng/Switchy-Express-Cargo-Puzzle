@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: `2026-08-30 KST`
+Last updated: `2026-08-31 KST`
 
 ## Current authority
 
@@ -10,7 +10,7 @@ work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~066
+current_decisions: SX-DEC-027~067
 ```
 
 The user-approved SX-DEC-060 gameplay amendment changes the efficient next product gate. Pre-SX-DEC-060 Candidate 003 remains historical exact-byte evidence; it is no longer the build to spend the next human acceptance cycle on.
@@ -43,6 +43,12 @@ SX-DEC-066 · MERGED_MAIN_VERIFIED · PR #260 · SX60-POC-ACCEPT-006_MACHINE_PRI
 → design/spec/implementation plan complete
 → 12-game public-source genre benchmark complete: fixed authored maps ADOPT; progression/sandbox families REJECT
 → IMPLEMENTED_LOCAL_MACHINE_VERIFIED · NOT_MERGED · remote CI/package/candidate remain separate
+
+SX-DEC-067 · USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_RUNTIME_VERIFIED · NOT_MERGED
+→ Route Book 02: six optional authored wayside/salvage stages, selected before the existing stage list
+→ authored `CAUTION_TRACK` 0.55 departure segments; `WASTE_CRATE` only at cardinal-adjacent `DISPOSAL_YARD`
+→ five modular board-decoration placements per new map and eight runtime-connected generated candidate assets
+→ Godot full local regression PASS · 120 cases / 14,053 assertions; PR #263 remote CI 7 GREEN and awaiting merge; no post-change package/physical/final-user candidate yet
 ```
 
 ## M0 · Product baseline

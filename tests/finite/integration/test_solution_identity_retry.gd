@@ -18,6 +18,7 @@ func run() -> void:
 
 	var definition: Variant = inputs["definition"]
 	var sealed: Dictionary = inputs["sealed"]
+	definition.caution_track_cells = definition.buildable_cells.duplicate()
 	var original_definition: Dictionary = definition.to_dictionary()
 	var original_signature: String = sealed["layout_signature"]
 	var factory_script: Script = load(FACTORY_PATH)
@@ -31,6 +32,18 @@ func run() -> void:
 	var first_result: Dictionary = factory.create_attempt(1)
 	assert_true(first_result["success"], "factory must own copies of configured inputs")
 	var first: Variant = first_result["session"]
+	assert_true(first.run_controller.start(), "caution session must start")
+	var entered_cell: Vector2i = first.train.advance_one_cell()
+	assert_true(
+		original_definition["caution_track_cells"].has([entered_cell.x, entered_cell.y]),
+		"fixture setup must put the first outgoing track cell in the caution set"
+	)
+	assert_almost_equal(
+		first.train.speed,
+		1.1,
+		0.000001,
+		"session factory must pass authored caution cells into run-speed control"
+	)
 	assert_equal(first.map_identity(), "FP_CORE_PROOF_01@2", "caller definition mutation must not alter factory map identity")
 	assert_equal(first.definition_snapshot().to_dictionary(), original_definition, "factory must preserve configured definition value")
 	assert_equal(first.layout_snapshot().layout_signature(), original_signature, "caller layout mutation must not alter factory solution")

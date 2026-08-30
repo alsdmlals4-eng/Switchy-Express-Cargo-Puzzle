@@ -18,6 +18,7 @@ class FakeTrain:
 	var speed: float = 0.0
 	var advanced_seconds: float = 0.0
 	var can_advance_value: bool = true
+	var current_cell_value: Vector2i = Vector2i.ZERO
 
 	func set_speed(value: float) -> void:
 		speed = value
@@ -32,7 +33,11 @@ class FakeTrain:
 	func can_advance() -> bool:
 		return can_advance_value
 
+	func current_cell() -> Vector2i:
+		return current_cell_value
+
 	func enter_cell(cell: Vector2i) -> void:
+		current_cell_value = cell
 		cell_entered.emit(cell)
 
 
@@ -69,6 +74,45 @@ func run() -> void:
 	assert_false(controller.accept_delivery_event(mismatch), "mismatched station event must not begin unloading")
 	assert_equal(controller.run_state().phase(), &"RUNNING", "mismatch must remain RUNNING")
 	assert_almost_equal(train.speed, 2.0, 0.000001, "mismatch must not change train speed")
+
+	var caution_case: Dictionary = _configured(
+		controller_script,
+		input_script,
+		[Vector2i(3, 3)]
+	)
+	var caution_controller: Variant = caution_case["controller"]
+	var caution_train: FakeTrain = caution_case["train"]
+	caution_train.current_cell_value = Vector2i(3, 3)
+	assert_true(caution_controller.start(), "caution controller must start")
+	assert_almost_equal(
+		caution_train.speed,
+		1.1,
+		0.000001,
+		"a train departing a caution cell must use the fixed 0.55 speed multiplier"
+	)
+	assert_true(caution_controller.pause(), "caution controller must pause")
+	assert_almost_equal(caution_train.speed, 0.0, 0.000001, "pause must still stop a caution train")
+	assert_true(caution_controller.resume(), "caution controller must resume")
+	assert_almost_equal(
+		caution_train.speed,
+		1.1,
+		0.000001,
+		"resuming on a caution cell must restore its fixed reduced speed"
+	)
+	caution_train.enter_cell(Vector2i(4, 3))
+	assert_almost_equal(
+		caution_train.speed,
+		2.0,
+		0.000001,
+		"leaving a caution cell must restore base speed on the next normal segment"
+	)
+	caution_train.enter_cell(Vector2i(3, 3))
+	assert_almost_equal(
+		caution_train.speed,
+		1.1,
+		0.000001,
+		"entering a caution cell must reduce the following segment speed"
+	)
 
 	var timeout_case: Dictionary = _configured(controller_script, input_script)
 	var timeout_controller: Variant = timeout_case["controller"]
@@ -180,12 +224,16 @@ func _assert_final_delivery_case(
 	assert_false("boost_seconds" in summary, "finite summary must not expose BOOST")
 
 
-func _configured(controller_script: Script, input_script: Script) -> Dictionary:
+func _configured(
+	controller_script: Script,
+	input_script: Script,
+	caution_track_cells: Array[Vector2i] = []
+) -> Dictionary:
 	var train := FakeTrain.new()
 	var delivery := FakeDeliveryLoop.new()
 	var input: Variant = input_script.new()
 	var controller: Variant = controller_script.new()
-	controller.configure(train, delivery, input, 90.0, 2.0)
+	controller.configure(train, delivery, input, 90.0, 2.0, 1, caution_track_cells)
 	return {"controller": controller, "train": train, "delivery": delivery, "input": input}
 
 

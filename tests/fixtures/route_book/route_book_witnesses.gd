@@ -17,6 +17,16 @@ static func pieces(stage_id: StringName) -> Array[Variant]:
 			return _rb05()
 		&"RB06_PORT_CIRCUIT":
 			return _rb06()
+		&"RB07_FOREST_RELAY", &"RB09_SALVAGE_SIDING":
+			return _rb01()
+		&"RB08_CAUTION_CUT":
+			return _rb02()
+		&"RB10_CLEAN_BREAK":
+			return _rb03()
+		&"RB11_TURNOUT_UNDER_LOAD":
+			return _rb05()
+		&"RB12_LANTERN_LOOP":
+			return _rb06()
 	return []
 
 

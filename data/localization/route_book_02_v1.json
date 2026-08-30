@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "locales": ["ko", "en", "ja", "zh-Hans"],
+  "strings": {
+    "SX_RB_STAGE_BOOK": {"ko": "스테이지 북", "en": "Stage Books", "ja": "ステージブック", "zh-Hans": "关卡手册"},
+    "SX_RB_SELECT_STAGE": {"ko": "스테이지 선택", "en": "Select a Stage", "ja": "ステージを選ぶ", "zh-Hans": "选择关卡"},
+    "SX_RB_SELECT_BOOK": {"ko": "스테이지 북 선택", "en": "Select a Stage Book", "ja": "ステージブックを選ぶ", "zh-Hans": "选择关卡手册"},
+    "SX_RB_BACK": {"ko": "타이틀로", "en": "Back to Title", "ja": "タイトルへ", "zh-Hans": "返回标题"},
+    "SX_RB_BEGIN": {"ko": "건설 시작", "en": "Begin Building", "ja": "建設を始める", "zh-Hans": "开始建设"},
+    "SX_RB_NEXT_STAGE": {"ko": "다음 스테이지", "en": "Next Stage", "ja": "次のステージ", "zh-Hans": "下一关"},
+    "SX_RB01_STAGE_BOOK": {"ko": "스테이지 북 01 · 기본 노선", "en": "Stage Book 01 · Core Routes", "ja": "ステージブック 01・基本路線", "zh-Hans": "关卡手册 01 · 基础路线"},
+    "SX_RB02_STAGE_BOOK": {"ko": "스테이지 북 02 · 길가의 난관", "en": "Stage Book 02 · Wayside Challenges", "ja": "ステージブック 02・沿線の難所", "zh-Hans": "关卡手册 02 · 沿线挑战"},
+    "SX_RB_PROGRESS": {"ko": "스테이지 북 02 · {current} / {total}", "en": "Stage Book 02 · {current} / {total}", "ja": "ステージブック 02 · {current} / {total}", "zh-Hans": "关卡手册 02 · {current} / {total}"},
+    "SX_RB07_TITLE": {"ko": "숲길 중계", "en": "Forest Relay", "ja": "森の中継線", "zh-Hans": "林间接力"},
+    "SX_RB07_OBJECTIVE": {"ko": "나무와 바위 사이의 빈 공간을 읽고, 두 역의 옆 칸을 지나 배송하세요.", "en": "Read the open ground between trees and rocks, then pass beside both stations to deliver.", "ja": "木と岩のあいだの空地を読み、二つの駅のとなりを通って配送しましょう。", "zh-Hans": "看清树木和岩石之间的空地，经过两座车站旁边完成配送。"},
+    "SX_RB08_TITLE": {"ko": "감속 절개지", "en": "Caution Cut", "ja": "減速の切り通し", "zh-Hans": "减速路堑"},
+    "SX_RB08_OBJECTIVE": {"ko": "황색 주의 선로에서는 열차가 느려집니다. TOP 순서를 지키며 시간 여유를 남기세요.", "en": "The amber caution track slows the train. Preserve TOP order and leave time to spare.", "ja": "琥珀色の注意区間では列車が減速します。TOPの順番を守り、時間を残しましょう。", "zh-Hans": "琥珀色警戒轨道会让列车减速。保持TOP顺序并留出时间余量。"},
+    "SX_RB09_TITLE": {"ko": "회수선", "en": "Salvage Siding", "ja": "回収側線", "zh-Hans": "回收侧线"},
+    "SX_RB09_OBJECTIVE": {"ko": "폐기 상자는 일반 역이 아니라 쓰레기 처리장 옆 칸에서만 비울 수 있습니다.", "en": "A waste crate clears only beside the disposal yard, never beside a normal station.", "ja": "廃棄箱は通常の駅ではなく、処理場のとなりでだけ降ろせます。", "zh-Hans": "废弃箱只能在处理场旁边卸下，不能在普通车站旁卸下。"},
+    "SX_RB10_TITLE": {"ko": "깨끗한 회차", "en": "Clean Break", "ja": "きれいな折り返し", "zh-Hans": "整洁回程"},
+    "SX_RB10_OBJECTIVE": {"ko": "일반 배송을 먼저 끝내고, 되돌아와 폐기 상자를 처리장으로 가져가세요.", "en": "Finish the normal delivery first, then return with the waste crate to the disposal yard.", "ja": "通常の配送を先に終え、戻って廃棄箱を処理場へ運びましょう。", "zh-Hans": "先完成普通配送，再带着废弃箱返回处理场。"},
+    "SX_RB11_TITLE": {"ko": "적재 중 분기", "en": "Turnout Under Load", "ja": "積載中の分岐", "zh-Hans": "载货道岔"},
+    "SX_RB11_OBJECTIVE": {"ko": "열차가 분기를 밟기 전에 처리장 방향을 고르세요. 점유 중인 분기는 바꿀 수 없습니다.", "en": "Choose the disposal branch before the train occupies the turnout; occupied switches cannot change.", "ja": "列車が分岐に乗る前に処理場側を選びましょう。占有中の分岐は変えられません。", "zh-Hans": "在列车占用道岔前选择处理场方向；占用中的道岔无法切换。"},
+    "SX_RB12_TITLE": {"ko": "등불 순환선", "en": "Lantern Loop", "ja": "灯りの環状線", "zh-Hans": "灯笼环线"},
+    "SX_RB12_OBJECTIVE": {"ko": "장식 지형, 감속 구간, 폐기 상자, 자동 적재와 분기를 하나의 순환선으로 계획하세요.", "en": "Plan decorated terrain, caution track, waste, Auto Load, and a switch as one circuit.", "ja": "装飾地形、減速区間、廃棄箱、自動積載、分岐を一つの環状線で計画しましょう。", "zh-Hans": "把装饰地形、减速轨道、废弃箱、自动装载和道岔规划进同一条环线。"}
+  }
+}

@@ -12,6 +12,10 @@ func run() -> void:
 	var red: StringName = cargo_type.RED_STAR
 	var blue: StringName = cargo_type.BLUE_DIAMOND
 	var yellow: StringName = cargo_type.YELLOW_TRIANGLE
+	var waste: StringName = &"WASTE_CRATE"
+	assert_true(cargo_type.is_valid(waste), "waste crate must be a valid authored cargo type")
+	assert_equal(cargo_type.color_for(waste), &"WASTE", "waste crate must expose a distinct render color")
+	assert_equal(cargo_type.shape_for(waste), &"CRATE", "waste crate must expose a distinct render shape")
 
 	var stack: Variant = stack_script.new(8)
 	stack.push(red)
@@ -46,3 +50,11 @@ func run() -> void:
 	assert_equal(red_pair.items, [red, red], "final red result must contain both red cargo")
 	assert_equal(red_pair.unload_order_after, [], "stack must be empty after final unload")
 	assert_true(stack.is_empty(), "actual stack and result ViewModel must agree")
+
+	var waste_stack: Variant = stack_script.new(8)
+	waste_stack.push(waste)
+	var disposal_yard: Variant = station_script.new(Vector2i(8, 2), waste)
+	var waste_result: Dictionary = disposal_yard.try_unload(waste_stack)
+	assert_true(waste_result.matched, "a disposal yard must unload a matching waste crate")
+	assert_equal(waste_result.items, [waste], "waste unloading must preserve the explicit cargo type")
+	assert_true(waste_stack.is_empty(), "matching waste unload must consume the crate from the shared LIFO stack")

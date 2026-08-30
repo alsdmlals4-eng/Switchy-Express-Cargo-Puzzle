@@ -24,6 +24,18 @@ func run() -> void:
 	assert_equal(snapshot["board_size"], Vector2i(11, 9), "snapshot exposes board size")
 	assert_equal(snapshot["start_cell"], Vector2i(1, 4), "snapshot exposes start cell")
 	assert_equal(snapshot["incoming_cell"], Vector2i(0, 4), "snapshot exposes incoming cell")
+	assert_true(snapshot.has("caution_track_cells"), "snapshot must expose authored caution-track cells")
+	assert_equal(
+		snapshot.get("caution_track_cells"),
+		[],
+		"existing maps without authored caution retain an empty caution layer"
+	)
+	assert_true(snapshot.has("board_decorations"), "snapshot must expose authored board decorations")
+	assert_equal(
+		snapshot.get("board_decorations"),
+		[],
+		"existing maps without authored decorations retain an empty decoration layer"
+	)
 	assert_true(snapshot["layout_pieces"] is Array, "snapshot exposes immutable pieces")
 	assert_equal(snapshot["layout_pieces"].size(), 0, "new build session starts empty")
 

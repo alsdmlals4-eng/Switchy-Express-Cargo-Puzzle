@@ -97,7 +97,8 @@ func create_attempt(attempt_serial: int = -1) -> Dictionary:
 		input_state,
 		definition.time_limit_seconds,
 		_base_speed,
-		cargo_field.remaining_count()
+		cargo_field.remaining_count(),
+		definition.caution_track_cells
 	)
 
 	var session: Variant = FiniteRunSessionScript.create({

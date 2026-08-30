@@ -131,6 +131,30 @@ func run() -> void:
 	if renderer.has_method("visual_layer_order_for_test"):
 		var layer_order: Array = renderer.visual_layer_order_for_test()
 		assert_true(
+			layer_order.find(&"DECORATION") >= 0,
+			"board renderer must expose a dedicated decoration layer"
+		)
+		assert_true(
+			layer_order.find(&"CAUTION") >= 0,
+			"board renderer must expose a dedicated caution-track layer"
+		)
+		assert_true(
+			layer_order.find(&"TERRAIN") < layer_order.find(&"DECORATION"),
+			"board decorations must rest on terrain before the readable grid"
+		)
+		assert_true(
+			layer_order.find(&"DECORATION") < layer_order.find(&"GRID"),
+			"the grid must remain readable above board decorations"
+		)
+		assert_true(
+			layer_order.find(&"BLOCKED") < layer_order.find(&"CAUTION"),
+			"caution cues must remain visible above blocked-cell treatment"
+		)
+		assert_true(
+			layer_order.find(&"CAUTION") < layer_order.find(&"FIXED_TRACK"),
+			"rails must remain readable above authored caution cues"
+		)
+		assert_true(
 			layer_order.find(&"STATION_SERVICE") < layer_order.find(&"ROUTE"),
 			"station service orientation must remain below decisive route feedback"
 		)
@@ -141,6 +165,24 @@ func run() -> void:
 		assert_true(
 			layer_order.find(&"MARKERS") < layer_order.find(&"STATE"),
 			"markers must remain below state overlays"
+		)
+
+	renderer.apply_snapshot({
+		"caution_track_cells": [[2, 3]],
+		"board_decorations": [{"kind": "FOREST_CLUSTER", "cell": [4, 5]}],
+	})
+	assert_true(
+		renderer.has_method("wayside_presentation_descriptors_for_test"),
+		"board renderer must expose normalized wayside presentation data"
+	)
+	if renderer.has_method("wayside_presentation_descriptors_for_test"):
+		assert_equal(
+			renderer.wayside_presentation_descriptors_for_test(),
+			{
+				"caution_track_cells": [Vector2i(2, 3)],
+				"board_decorations": [{"kind": &"FOREST_CLUSTER", "cell": Vector2i(4, 5)}],
+			},
+			"renderer must normalize wayside data before it reaches board drawing"
 		)
 
 	var source: Dictionary = {
@@ -182,6 +224,12 @@ func run() -> void:
 
 	var expected_product_paths := {
 		"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
+		"decoration_forest_cluster": "art/product_assets/ed_hybrid_v2/board/board_decor_forest_cluster_v01.png",
+		"decoration_moss_boulder": "art/product_assets/ed_hybrid_v2/board/board_decor_moss_boulder_v01.png",
+		"decoration_timber_stack": "art/product_assets/ed_hybrid_v2/board/board_decor_timber_stack_v01.png",
+		"decoration_waterway": "art/product_assets/ed_hybrid_v2/board/board_decor_waterway_v01.png",
+		"decoration_lantern_fence": "art/product_assets/ed_hybrid_v2/board/board_decor_lantern_fence_v01.png",
+		"caution_track": "art/product_assets/ed_hybrid_v2/board/board_caution_track_overlay_v01.png",
 		"train": "art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png",
 		"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v04.png",
 		"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v04.png",
@@ -192,14 +240,16 @@ func run() -> void:
 		"station_red": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
 		"station_blue": "art/product_assets/ed_hybrid_v2/core/core_station_blue_normal_v02.png",
 		"station_yellow": "art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png",
+		"station_disposal": "art/product_assets/ed_hybrid_v2/core/core_disposal_yard_normal_v01.png",
 		"cargo_red": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png",
 		"cargo_blue": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_blue_normal_v02.png",
 		"cargo_yellow": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png",
+		"cargo_waste": "art/product_assets/ed_hybrid_v2/core/core_cargo_waste_crate_normal_v01.png",
 	}
 	assert_equal(
 		renderer.product_visual_asset_paths_for_test(),
 		expected_product_paths,
-		"core board must retain its existing visual slots while v04 replaces only rail pixels"
+		"core board must retain existing visual slots while adding approved wayside consumers"
 	)
 	for asset_key: String in expected_product_paths:
 		assert_true(

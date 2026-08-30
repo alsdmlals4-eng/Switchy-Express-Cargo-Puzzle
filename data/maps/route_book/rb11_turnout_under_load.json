@@ -1,0 +1,30 @@
+{
+  "definition_schema_version": 3,
+  "map_id": "RB11_TURNOUT_UNDER_LOAD",
+  "map_revision": 1,
+  "ruleset_version": "fp_core_v2",
+  "marker_tracks_player_built": true,
+  "allow_open_terminals_after_required": true,
+  "board_size": [13, 9],
+  "start_cell": [1, 4],
+  "incoming_cell": [0, 4],
+  "time_limit_seconds": 140.0,
+  "buildable_rects": [{"minimum": [1, 1], "maximum": [11, 7]}],
+  "blocked_cells": [[2, 1], [4, 7], [8, 8], [10, 8], [12, 4]],
+  "caution_track_cells": [[7, 4]],
+  "board_decorations": [
+    {"kind": "FOREST_CLUSTER", "cell": [2, 1]},
+    {"kind": "MOSS_BOULDER", "cell": [4, 7]},
+    {"kind": "TIMBER_STACK", "cell": [8, 8]},
+    {"kind": "WATERWAY", "cell": [10, 8]},
+    {"kind": "LANTERN_FENCE", "cell": [12, 4]}
+  ],
+  "station_placements": [
+    {"cell": [11, 2], "cargo_type": "RED_STAR"},
+    {"cell": [11, 6], "cargo_type": "WASTE_CRATE", "destination_kind": "DISPOSAL_YARD"}
+  ],
+  "cargo_placements": [
+    {"cell": [4, 4], "cargo_type": "WASTE_CRATE"},
+    {"cell": [8, 2], "cargo_type": "RED_STAR"}
+  ]
+}

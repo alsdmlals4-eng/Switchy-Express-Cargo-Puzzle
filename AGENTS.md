@@ -161,7 +161,7 @@ switch auto-reset
 ## 5. 현재 Decision / 기획 상태
 
 ```yaml
-current_decision_span: SX-DEC-027~066
+current_decision_span: SX-DEC-027~067
 sx_dec_055_runtime_semantic: MERGED_MAIN_VERIFIED · PR_151
 sx_dec_056a: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
