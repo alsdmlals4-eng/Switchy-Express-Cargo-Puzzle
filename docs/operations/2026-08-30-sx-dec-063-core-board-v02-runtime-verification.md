@@ -1,6 +1,6 @@
 # SX-DEC-063 Core Board v02 live runtime verification
 
-**Current v04 status:** `MACHINE_RUNTIME_CAPTURE_AND_LOCAL_PACKAGE_VERIFIED · REMOTE_EXACT_HEAD_CI_PENDING · PHYSICAL_HUMAN_NOT_RUN`
+**Current v04 status:** `MACHINE_RUNTIME_CAPTURE_AND_LOCAL_PACKAGE_VERIFIED · REMOTE_RUNTIME_BYTE_CI_7_GREEN_PR_255_4D5C5EF · PHYSICAL_HUMAN_NOT_RUN`
 
 > The v02/v03 sections before the explicit v04 correction below are historical evidence only. Their old screenshots, package counts, and hosted-CI records do not apply to the current v04 runtime bytes.
 
@@ -228,7 +228,7 @@ The approved source remains `art/product_assets/ed_hybrid_v2/source/core_rail_ne
 | Windows Demo runtime-JSON PCK | `PASS_LOCAL_UNCOMMITTED_WORKTREE` — 16,608,376 bytes, SHA-256 `f0e233a2f245a5e0bef068d02399e3be39b05ee3915093548b35d36965a08ecd`; `RUNTIME_JSON_PACK_PROOF: PASS parsed_json=29`; integrity 561/561 entries, zero bounds and MD5 mismatches. |
 | Android Validation runtime-JSON PCK | `PASS_LOCAL_UNCOMMITTED_WORKTREE` — 16,608,376 bytes, SHA-256 `61e294434b5d966b3b1d10fa7690181cc58e182684b30256759818a0f708e0d0`; `RUNTIME_JSON_PACK_PROOF: PASS parsed_json=29`; integrity 561/561 entries, zero bounds and MD5 mismatches. This is PCK proof only, not an Android APK/device claim. |
 | Asset/evidence boundary | `PASS` — the `art/product_assets/ed_hybrid_v2/core/` package prefix contains 21 imported core records including the four v04 paths; master source and `evidence/runtime/sx_dec_063_core_board_v03/` each have zero package entries. |
-| Hosted exact runtime-byte CI | `PENDING` — PR #255's prior v03 checks do not transfer to v04 bytes. |
+| Hosted exact runtime-byte CI | `PASS` — PR #255 runtime-byte head `4d5c5ef09040c36aa064b8b79ddb69443b465877` completed all seven required checks. This does not mint an immutable package candidate or a physical/device/human result. |
 
 ### Five full-scope adversarial review loops
 
@@ -240,7 +240,7 @@ Every loop rechecked the entire bounded scope: actual consumer/gameplay, source 
 | 2 | A new crop could drift from the approved source or introduce a new rights/provenance boundary. | All four v04 files derive from the same approved master with its existing SHA; its `--verify` mode regenerated and byte-compared every tracked v04 output without writing it. Fresh generated attempts were rejected and not copied to the project. Manifest, four hashes, crop rectangles, and deterministic derivation tool are recorded. **PASS**. |
 | 3 | The new curve might centre one orientation but fail after renderer rotation, or hide a white-selection/cargo hierarchy regression. | Review found that quarter-turning a pre-scaled non-square rectangle could swap its final bounds. The renderer now pre-swaps the local rectangle for rotations 1/3; a 100×60 all-rotation contract proves each curve port reaches its correct target edge centre. The real recommended 1280×720 layout displays the formerly faulty curve with the existing cyan/translucent selection treatment and compact cargo unchanged. **CORRECTED_AND_PASS_AT_MACHINE_EVIDENCE_CEILING**. |
 | 4 | Review source or captures could leak into the runtime package, or the new paths could be omitted. | Windows and Android proof PCKs parse runtime JSON, verify 561/561 entries, include the imported core family, and contain zero master/capture prefix entries. **PASS_LOCAL_PACKAGE_ONLY**. |
-| 5 | Local success might be inflated into a remote, immutable, physical, device, human, or release result. | All documentation keeps PR #255 v04 hosted CI pending; the local proof is explicitly uncommitted, Candidate 004 remains historical merged-main evidence, and physical/audio/device/accessibility/player/release gates remain `NOT_RUN`. **PASS_WITH_BOUNDARY_RETAINED**. |
+| 5 | Local success might be inflated into a remote, immutable, physical, device, human, or release result. | PR #255 runtime-byte head `4d5c5ef09040c36aa064b8b79ddb69443b465877` completed all seven required checks; Candidate 004 remains historical merged-main evidence, and physical/audio/device/accessibility/player/release gates remain `NOT_RUN`. **PASS_WITH_BOUNDARY_RETAINED**. |
 
 ### Current v04 evidence ceiling
 
@@ -258,7 +258,7 @@ v04_live_recommended_build_capture: VERIFIED_MACHINE_RUNTIME
 v04_godot_diagnostics: CLEAN_0_ERRORS_0_WARNINGS
 v04_local_windows_debug_export: PASS_UNCOMMITTED_ISOLATED_WORKTREE
 v04_local_windows_android_runtime_json_pck: PASS_UNCOMMITTED_ISOLATED_WORKTREE_561_OF_561_ENTRIES
-v04_remote_exact_runtime_byte_ci: PENDING
+v04_remote_runtime_byte_ci: PASS_PR_255_4D5C5EF_7_REQUIRED_CHECKS
 v04_immutable_package_candidate: NOT_MINTED
 v04_windows_physical_audio_android_device_human_player_experience_release: NOT_RUN
 ```
