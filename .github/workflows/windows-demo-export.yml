@@ -8,6 +8,7 @@ on:
       - game/finite/**
       - data/maps/**
       - art/product_assets/ed_hybrid_v1/**
+      - art/product_assets/ed_hybrid_v2/**
       - project.godot
       - export_presets.cfg
       - tools/validation/verify_exported_runtime_json.gd
@@ -34,9 +35,6 @@ jobs:
       - name: Install Python test runner
         run: python -m pip install --disable-pip-version-check pytest==8.3.5
 
-      - name: Run Python contracts
-        run: python -m pytest tests/python -q
-
       - name: Download Godot 4.7.1
         run: |
           curl --fail --location --retry 3 \
@@ -45,6 +43,11 @@ jobs:
           unzip -q godot.zip
           chmod +x Godot_v4.7.1-stable_linux.x86_64
           ./Godot_v4.7.1-stable_linux.x86_64 --version
+
+      - name: Run Python contracts
+        env:
+          GODOT_BINARY: ${{ github.workspace }}/Godot_v4.7.1-stable_linux.x86_64
+        run: python -m pytest tests/python -q
 
       - name: Install Godot 4.7.1 export templates
         run: |

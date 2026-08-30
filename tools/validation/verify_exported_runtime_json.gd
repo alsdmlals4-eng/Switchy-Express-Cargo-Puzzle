@@ -13,6 +13,7 @@ const REQUIRED_FILES: Array[String] = [
 	"res://art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054.json",
 	"res://art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054_build_2b.json",
 	"res://art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054_vfx_2c.json",
+	"res://art/product_assets/ed_hybrid_v2/manifest.json",
 ]
 const JSON_DIRECTORIES: Array[String] = [
 	"res://data/maps",
@@ -20,6 +21,7 @@ const JSON_DIRECTORIES: Array[String] = [
 	"res://data/first_session",
 	"res://data/localization",
 	"res://art/product_assets/ed_hybrid_v1",
+	"res://art/product_assets/ed_hybrid_v2",
 ]
 
 

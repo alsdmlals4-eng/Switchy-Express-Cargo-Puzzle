@@ -93,13 +93,120 @@ forbidden_expression_check: PASS_MACHINE_AND_VISUAL_REVIEW · no text, UI, rail,
 repository_local_path: art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png
 sha256: 1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d
 dimensions: 1672x941 RGB · no alpha required by the terrain backdrop consumer
-planned_runtime_consumer: ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[board_terrain]
-runtime_connection_status: NOT_CONNECTED
+runtime_consumer: ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[board_terrain]
+consumer_status: VERIFIED_AUTOMATED_RUNTIME
+runtime_connection_status: VERIFIED
 tracking_issue: 243
 approval_ref: USER-APPROVAL-2026-08-28-SX-VIS-063-TERRAIN-CANDIDATE-001-PROMOTION
-status: APPROVED_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED
-notes: Existing v01 remains the current runtime path and rollback source. Asset presence, import compatibility, or automated tests do not prove Godot runtime appearance, physical/audio/device/human/Player Experience, release-rights, or production cutover.
+status: APPROVED_GITHUB_PRESERVED_RUNTIME_VERIFIED_AUTOMATED
+notes: The 2026-08-30 Core Board v02 runtime implementation now loads this asset from the ProductBoardRenderer v02 map. Existing v01 remains a tracked rollback source. Automated verification does not prove physical/audio/device/human/Player Experience, release-rights, or production cutover.
 ```
+
+## SX-DEC-063 Core Board v02 · user-approved generated runtime family
+
+```yaml
+approval_ref: USER-APPROVAL-2026-08-30-CORE-BOARD-V02-PIXELS-AND-SEAM-UNDERLAY
+decision_id: SX-DEC-063
+artifact_family: SWITCHY_HYBRID_MINIATURE_DIORAMA
+creation_route: AI_GENERATED_THEN_DETERMINISTIC_GODOT_RESAMPLE
+creator_or_vendor: OpenAI image generation service
+source_generation_root: C:/Users/user/.codex/generated_images/01a04af4-2ebb-7912-80d3-e4bfa4f1efe0/
+prompt_record: docs/visual-references/sx-dec-063-core-board-v02/CORE_BOARD_V02_CANDIDATE_RECORD.md#common-image-model-prompt-contract
+prompt_scope: original single-object transparent sprite prompts; common contract plus exact candidate subject suffix
+reference_sources: project-owned HGB r02 rail/station language candidate only, material and silhouette reference; not cropped, embedded, shipped, or used as a layout source
+ai_input_rights: original project brief, current ProductBoardRenderer consumer table, and project-owned visual reference only; no third-party source, game screenshot, logo, trademark, asset pack, or creator style
+forbidden_expression_check: MACHINE_AND_VISUAL_CANDIDATE_REVIEW_PASS · no text, logo, watermark, UI panel, frame, score/currency/save cue, cargo wagon, route/lock state, or diagonal station-service implication
+runtime_consumer_owner: game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS
+runtime_connection_status: VERIFIED_AUTOMATED_RUNTIME
+automated_evidence: 2026-08-30 Godot 4.7.1 full runner · 112 cases · 13532 assertions · all 14 v02 Texture2D slots loaded
+seam_underlay: curve and switch only; renderer-owned muted visual underlay copied from authored ports; no map, input, routing, service, lock, or gameplay-state effect
+v01_rollback: all fourteen v01 board/core sources remain tracked and are contract-tested
+physical_windows_audio_android_human_player_experience_release: NOT_RUN
+```
+
+| Asset ID | Selected image-model receipt | Final tracked path | Final SHA-256 | Consumer slot |
+| --- | --- | --- | --- | --- |
+| `SX-CORE-TRAIN-002` | `exec-eb29fe34-ca5b-423b-9699-962cad5592ef.png` | `art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png` | `73d4a758eaa5d05842b313480116927eb6f86ce84e64db01110ff76f97c96348` | `train` |
+| `SX-CORE-RAIL-STRAIGHT-002` | `exec-95b28d77-dfa4-43f9-92cc-40d9439e99a8.png` | `art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v02.png` | `b0d0e4d89d0f25ce35e060f47754ed4aabb416877ecd9d93567e89e1248bd884` | `rail_straight` |
+| `SX-CORE-RAIL-CURVE-002` | `exec-5185a5bf-5907-4282-bcb0-feac95b9104d.png` | `art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v02.png` | `8ca1b2396bfa74cc9e9d6380260585381f8bff9342301d66b072b9347fe7459f` | `rail_curve` |
+| `SX-CORE-RAIL-CROSSING-002` | `exec-0d0307f1-1e34-45fd-8b6e-9410bf859248.png` | `art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v02.png` | `bf77c0e0382a1af2d6b4a6ab38bc00158bfc1875d7642fbbd1e6c1fb31371244` | `rail_crossing` |
+| `SX-CORE-RAIL-SWITCH-002` | `exec-52ac3317-0621-48b1-a837-550edeb6e5ab.png` | `art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v02.png` | `7d0c45093fae34b11b3ce122cc784db875b543e34aeaf1ff844bbc8701071d86` | `rail_switch` |
+| `SX-CORE-MARKER-START-002` | `exec-3c8e8c35-d79b-4da4-b59b-f31338e71f1f.png` | `art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png` | `727cbc90ed667e013f402edc09e1e1be5e3cc031d043689f9dcdb74a8e3fdbe3` | `start_marker` |
+| `SX-CORE-MARKER-END-002` | `exec-8f14bfa3-a06d-42e8-98dc-7a8b369187fe.png` | `art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png` | `9c5e07a8b868be88dcb9af6e708e1fb85d77105ddbab743e496cfadeea6d1e83` | `route_end_marker` |
+| `SX-CORE-STATION-RED-002` | `exec-a5842278-90f2-4964-8c0a-215f0ec0fab6.png` | `art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png` | `15f5be85d0830b2970b036464a4ec7064b065071fb8b6a44ec2234c48c750703` | `station_red` |
+| `SX-CORE-STATION-BLUE-002` | `exec-c3748987-887a-4209-a222-26ade19b7eab.png` | `art/product_assets/ed_hybrid_v2/core/core_station_blue_normal_v02.png` | `558d15d0702d7b13cc522e26ba6db0d6c7c7f7226e31ca05e55ebfc14077ea12` | `station_blue` |
+| `SX-CORE-STATION-YELLOW-002` | `exec-c9e9af7e-2139-4bb6-ba9a-c54abeeadae8.png` | `art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png` | `cc88f7f296b63b1bcc3858a515e5d28b7bb4f19c33e75cdde1fbd6e6462f433f` | `station_yellow` |
+| `SX-CORE-CARGO-RED-002` | `exec-fca9e1d1-fd36-4d79-9e77-08b51f46b66d.png` | `art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png` | `6feb7fa4a6b3a5401b97fb89d32fc38d0da4f27a3ea01404138453b90b865407` | `cargo_red` |
+| `SX-CORE-CARGO-BLUE-002` | `exec-382a8f00-8c25-415b-872b-df80c7124ee6.png` | `art/product_assets/ed_hybrid_v2/core/core_cargo_star_blue_normal_v02.png` | `15ada5b6a14038d381e740304a8cf5cbf480f50f45a8c38e14b37a83b787f831` | `cargo_blue` |
+| `SX-CORE-CARGO-YELLOW-002` | `exec-cdee6143-289f-41fe-979f-c9ce33add219.png` | `art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png` | `96f667e507fc0d956fd34070ee1aa36d3ce195b39a208a80a7cd71db8ce9bc8f` | `cargo_yellow` |
+
+Every final binary above is user-approved, GitHub-preserved, and machine-verified only at its actual renderer consumer boundary. The candidate source and its review previews remain outside product paths as evidence; the project ships only the listed deterministic v02 PNGs. The four v02 rail binaries remain rollback/provenance bytes after the separate user-approved v03 rail-master correction below. `RELEASE_RIGHTS_NOT_APPROVED` and all human/device gates remain separate.
+
+## SX-DEC-063 Rail Network Master v03 · user-approved runtime-derived rail family
+
+```yaml
+approval_ref: USER-APPROVAL-2026-08-30-RAIL-NETWORK-MASTER-V03
+decision_id: SX-DEC-063
+source_candidate_id: SX-VIS-063-RAIL-NETWORK-MASTER-003
+creation_route: AI_GENERATED_THEN_DETERMINISTIC_RASTER_CROP_AND_RESAMPLE
+creator_or_vendor: OpenAI image generation service
+source_generation_root: C:/Users/user/.codex/generated_images/01a04af4-2ebb-7912-80d3-e4bfa4f1efe0/
+source_generation_receipt: exec-c20ff7f8-a3b4-4b7d-a2d9-4a37d460ca3b.png
+tracked_master_path: art/product_assets/ed_hybrid_v2/source/core_rail_network_master_v03.png
+tracked_master_dimensions: 1254x1254 RGBA
+tracked_master_sha256: f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b
+derivation_operator: deterministic rectangular crop followed by 256x256-to-64x64 high-quality bicubic resample
+ai_input_rights: original project brief and current product-owned visual canon only; no third-party layout, logo, asset, screenshot, or style reference supplied
+reference_similarity_status: REVIEWED_NO_BRAND_OR_REFERENCE_LAYOUT_VISIBLE · release review remains separate
+forbidden_expression_check: MACHINE_AND_VISUAL_CANDIDATE_REVIEW_PASS · no text, logo, watermark, UI panel, score/currency/save cue, station, cargo, train, or gameplay-state expression embedded
+runtime_consumer_owner: game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS
+runtime_connection_status: VERIFIED_AUTOMATED_RUNTIME
+renderer_treatment: four product textures draw at the full cell rectangle; no renderer-local rail seam underlay remains
+v02_rail_rollback: core_rail_*_normal_v02.png remain tracked, but no longer occupy a runtime rail slot
+physical_windows_audio_android_human_player_experience_release: NOT_RUN
+```
+
+| Asset ID | Master crop rectangle `[x, y, width, height]` | Final tracked path | Final SHA-256 | Consumer slot |
+| --- | --- | --- | --- | --- |
+| `SX-CORE-RAIL-STRAIGHT-003` | `[0, 316, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v03.png` | `7f7ab656c5ef16a09cea2dd723c8985dccfb357231b9f2a99772be82e77c32ad` | `rail_straight` |
+| `SX-CORE-RAIL-CURVE-003` | `[374, 749, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v03.png` | `43cb0e419a1f1cca7e81115740c1cee9264d5f0496165ba8578aa7bc520b6d49` | `rail_curve` |
+| `SX-CORE-RAIL-CROSSING-003` | `[374, 318, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v03.png` | `85c176ea41fed46982c1929448854e2b4819495d11cd60dd0cfd851d1952c6da` | `rail_crossing` |
+| `SX-CORE-RAIL-SWITCH-003` | `[821, 318, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v03.png` | `a30dd23d29d6b2158f81120d98a313b3448e1085982bd5fd447d55a12ecc68e9` | `rail_switch` |
+
+The v03 master is a reproducibility source only and is excluded from Godot import/runtime use by its local `.gdignore`. The v03 table remains historical rollback/provenance evidence; its four paths are no longer runtime-selected after the centred-port correction below. Automated renderer/import evidence is distinct from remaining package, physical Windows/audio, Android device, accessibility, player-comprehension, release-rights, and production-cutover gates.
+
+## SX-DEC-063 Rail Network Master v04 · centred-port runtime correction
+
+```yaml
+approval_ref: USER-APPROVAL-2026-08-30-RAIL-NETWORK-MASTER-V03_PLUS_USER-DIRECTION-2026-08-30-NATURAL-RAIL-CONNECTION
+decision_id: SX-DEC-063
+source_candidate_id: SX-VIS-063-RAIL-NETWORK-MASTER-003
+creation_route: EXISTING_USER_APPROVED_AI_GENERATED_MASTER_THEN_DETERMINISTIC_RASTER_CROP_AND_RESAMPLE
+new_image_generation_or_external_asset: NONE_PROMOTED
+tracked_master_path: art/product_assets/ed_hybrid_v2/source/core_rail_network_master_v03.png
+tracked_master_dimensions: 1254x1254 RGBA
+tracked_master_sha256: f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b
+derivation_tool: tools/derive_sx_dec_063_master_rail_v04.gd
+derivation_operator: deterministic rectangular crop followed by 256x256-to-64x64 Lanczos resample
+derivation_verification: --verify re-derives and byte-compares all four tracked outputs without writing them
+selection_rule: every declared visual rail port must be centred on its logical 64px tile edge within two pixels
+runtime_consumer_owner: game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS
+runtime_connection_status: LOCAL_AUTOMATED_AND_MACHINE_RUNTIME_VERIFIED
+renderer_treatment: four product textures draw at the full cell rectangle; rotations 1/3 pre-swap non-square local draw dimensions before renderer rotation; no renderer-local rail seam underlay remains
+v01_v02_v03_rail_rollback: tracked and not runtime-selected
+local_windows_android_package_proof: VERIFIED_LOCAL_ONLY
+remote_runtime_byte_ci: PASS_PR_255_4D5C5EF_7_REQUIRED_CHECKS
+physical_windows_audio_android_human_player_experience_release: NOT_RUN
+```
+
+| Asset ID | Master crop rectangle `[x, y, width, height]` | Final tracked path | Final SHA-256 | Consumer slot |
+| --- | --- | --- | --- | --- |
+| `SX-CORE-RAIL-STRAIGHT-004` | `[650, 803, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v04.png` | `f8ef22f4410891956d22662bee7eadc6ae5686042fee8a2fce6e27d48eae172f` | `rail_straight` |
+| `SX-CORE-RAIL-CURVE-004` | `[394, 803, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v04.png` | `2d75843d4ccd7cb11bc679814690e954c15c69477364df4414eec0b19c7499c7` | `rail_curve` |
+| `SX-CORE-RAIL-CROSSING-004` | `[388, 300, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v04.png` | `0500d474f628272f33c1cf29622d30e7ad86b79ed5c77476894f75b566a5f3d9` | `rail_crossing` |
+| `SX-CORE-RAIL-SWITCH-004` | `[855, 300, 256, 256]` | `art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v04.png` | `08341ce6b346c2225bbc146c7dbde12e2854b57cca7dc9369e6f6bdcd9ebca37` | `rail_switch` |
+
+The v04 correction does not add a new generated image or third-party reference. The user-visible defect was an off-centre v03 crop, not a missing rail family. The real-byte port contract, import, full suite, live recommended board capture, local package proof, and all seven required remote checks for PR #255 runtime-byte head `4d5c5ef09040c36aa064b8b79ddb69443b465877` verify the current consumer at their stated machine evidence ceiling. Immutable candidate and all physical/human/release gates remain separate.
 
 실제 game runtime consumer가 확인된 필요한 이미지는 별도 이미지별 승인 없이 자동 생성할 수 있다. 생성 후보는 review-only로 유지하고, 사용자 승인 final만 GitHub tracked project-local asset로 보존하며 기존 E+D Hybrid / Neo-Arcade 시각 언어를 유지한다. Runtime consumer가 없는 이미지 생성이나 runtime promotion은 이 권한에 포함되지 않는다.
 

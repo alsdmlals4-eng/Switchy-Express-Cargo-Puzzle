@@ -58,7 +58,7 @@ sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFI
 sx_dec_060_notion_sync: PASS · POST_PR_188_READBACK_COMPLETE
 sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION · PACKAGE_VERIFIED
-sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · PR_244 · main_38d4ac2aac8af35672d43e96f27b2f243aa10a4b · RUNTIME_NOT_CONNECTED
+sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · CORE_BOARD_V04_CENTERED_PORT_RAILS_IMPLEMENTED_IN_PR_255 · TERRAIN_PLUS_9_NON_RAIL_V02_CORE_ASSETS_PLUS_4_V04_MASTER_DERIVED_RAILS · AUTOMATED_MACHINE_RUNTIME_LOCAL_PACKAGE_AND_REMOTE_RUNTIME_BYTE_CI_7_GREEN_PR_255_92F44B3 · EXACT_GITHUB_CANDIDATE_AND_PHYSICAL_HUMAN_GATES_NOT_RUN
 sx_vis_061_core_systems_board: USER_APPROVED_GITHUB_PRESERVED_PLANNING_REFERENCE · ISSUE_246 · docs/visual-references/sx-vis-061-core-systems-board-exploration-002b.png · NO_RUNTIME_CONSUMER · NOT_RUNTIME_PROOF
 sx_dec_064_active_route_lighting: MERGED_MAIN_VERIFIED · ISSUE_248 · PR_249 · main_2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI_7_GREEN · POST_MERGE_GODOT_112_CASES_13513_ASSERTIONS_PASS
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · PR_240 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
@@ -135,7 +135,7 @@ sx_dec_060_new_bitmap_assets_required: 0
 | **SX-DEC-060** | **Cardinal Station Service + Reachable Network · MERGED_MAIN_VERIFIED · PR #188** |
 | **SX-DEC-061** | **Board-first Cozy Neo-Arcade visual refinement · APPROVED · documentation/plan board only; runtime unchanged** |
 | **SX-DEC-062** | **Board-first runtime composition · MERGED_MAIN_VERIFIED · PR #237 · Candidate 003 is historical after SX-DEC-064; Candidate 004 is current package evidence · human gates remain open** |
-| **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · terrain v02 APPROVED_GITHUB_PRESERVED · Phase 2 runtime contract ready · runtime unchanged** |
+| **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · user-directed v04 centred-port crop correction from the approved connected master is locally implemented on the isolated branch, including the reviewed non-square quarter-turn fix · automated, machine runtime, and local package evidence · remote CI/package-candidate/physical/human gates remain open** |
 | **SX-DEC-064** | **Active-route lighting · MERGED_MAIN_VERIFIED · PR #249 · CI 7 green · procedural presentation delta · physical/player gates remain open** |
 
 ## SX-DEC-059 retained first-session contract
@@ -189,11 +189,11 @@ rectangular BUILD/RUN grid and exact input mapping stay
 → elevated miniature-diorama depth is expressed inside that geometry
 → new visual bytes are limited to named, versioned actual consumers
 → T2 shell_lesson_hero_v02 and Issue #227 remain protected
-→ first terrain candidate is user-promoted and stored as exact v02 source with provenance
-→ no Godot/Scene/Resource runtime consumer integration has occurred
+→ user-approved v02 terrain plus nine non-rail Core Board sprites and four v04 centred-port derivatives of the approved connected rail master are stored as exact source binaries with provenance
+→ the existing fourteen-slot ProductBoardRenderer consumer map is connected; v04 rail textures draw full-cell, pre-swap non-square local bounds for quarter turns, and use no procedural visual seam underlay
 ```
 
-`SX-VIS-063-CANDIDATE-001` is user-promoted at `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png` (SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`). It is `APPROVED_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED`, not a true isometric conversion, gameplay/data/audio/locale/progression change, runtime/package, Human/Player Experience, or release-rights promotion. The only authorized next product mutation is the separate Issue #243 runtime handoff. Notion is retired from this lifecycle by the 2026-08-28 user decision.
+`SX-VIS-063-CANDIDATE-001` terrain plus `SX-VIS-063-CORE-*` are user-promoted at their v02 paths, while user-approved `SX-VIS-063-RAIL-NETWORK-MASTER-003` deterministically supplies the four current v04 rail paths recorded in `art/product_assets/ed_hybrid_v2/manifest.json` (master SHA-256 `f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b`; terrain SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`). The v04 crop rectifies a measured v03 edge-centre mismatch without changing source artwork or gameplay, while the renderer's reviewed non-square quarter-turn fix preserves the target bounds and edge centres after rotation. Its local automated/machine-runtime/local-package evidence and all seven required remote checks for PR #255 runtime-byte head `4d5c5ef09040c36aa064b8b79ddb69443b465877` are recorded; immutable GitHub package candidate, physical Windows/audio, Android device, accessibility, player comprehension, release rights, and cutover remain open. Source master and review captures are excluded from final PCK proofs. It is not a true isometric conversion, gameplay/data/audio/locale/progression change, Human/Player Experience, or release-rights promotion. Notion is retired from this lifecycle by the 2026-08-28 user decision.
 
 ## SX-DEC-064 active-route lighting
 
@@ -304,11 +304,11 @@ pre-SX-DEC-060:
 PR #158 implementation → PR #166 playable POC → PR #171 visual correction → PR #172 Candidate 003
 
 current:
-SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063 user-approved visual-production direction
+SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063 user-approved Core Board connected-master rail isolated implementation with v04 centred-port correction
 → SX-DEC-064 active-route lighting merged main PR #249 with exact-head CI 7 green
 → SX60-POC-ACCEPT-004 exact package verified for merged main 58b99f2
-→ terrain v02 GitHub preservation on Issue #243; existing runtime stays v01
-→ Phase 2 terrain-only runtime contract is ready; no runtime bytes are changed yet
+→ terrain v02 plus nine non-rail v02 core bytes and four v04 centred master-derived rail bytes are in the isolated implementation worktree; existing renderer uses the four v04 rail paths with pre-swapped non-square quarter-turn bounds and no procedural seam
+→ automated renderer/import/Godot tests, formal GUT, live BUILD machine capture, non-writing master-derived-byte verification, local Windows/Android runtime-JSON package proof, and all seven required remote checks for PR #255 runtime-byte head `4d5c5ef09040c36aa064b8b79ddb69443b465877` are verified for v04; immutable GitHub candidate and physical/human evidence remain separate gates for these changed bytes
 → NoLaunch verification PASS, then Windows physical smoke + audio perceptual QA
 → Android device smoke
 → Five-person first-contact comprehension

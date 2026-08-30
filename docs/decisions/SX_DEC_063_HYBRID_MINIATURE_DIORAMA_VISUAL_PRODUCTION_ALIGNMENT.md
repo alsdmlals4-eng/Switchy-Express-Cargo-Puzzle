@@ -1,6 +1,6 @@
 # SX-DEC-063 · Hybrid Miniature-Diorama Visual Production Alignment
 
-**Status:** USER_APPROVED_DIRECTION · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · RUNTIME_INTEGRATION_CONTRACT_READY · RUNTIME_UNCHANGED
+**Status:** USER_APPROVED_DIRECTION · CORE_BOARD_V04_CENTERED_RAIL_CROPS_LOCAL_IMPLEMENTED · AUTOMATED_RUNTIME_AND_LOCAL_PACKAGE_VERIFIED · REMOTE_EXACT_HEAD_CI_PENDING · PHYSICAL_HUMAN_NOT_RUN
 **Date:** 2026-08-28 KST
 **Tracking:** GitHub Issue #239
 **Predecessors:** SX-DEC-061 visual lock, SX-DEC-062 existing-asset runtime composition
@@ -82,7 +82,7 @@ All paths below are **proposed versioned candidate paths**, not created files or
 
 | Requirement | Existing consumer | Candidate family / proposed target | Technical contract |
 | --- | --- | --- | --- |
-| SX-VIS-063-RQ-001 board diorama | ProductBoardRenderer product visual asset paths | terrain v02; locomotive v02; 4 rail v02; start/ROUTE_END markers v02; 3 stations v02; 3 cargo v02 | 14 slots. Terrain: 1672×941 RGB/RGBA backdrop. Train: 128×96 alpha. All remaining core slots: 64×64 alpha. Existing cell rotation/pivot conventions and transparent margins stay compatible. |
+| SX-VIS-063-RQ-001 board diorama | ProductBoardRenderer product visual asset paths | terrain v02; locomotive v02; 4 rail v04 centered master derivatives; start/ROUTE_END markers v02; 3 stations v02; 3 cargo v02 | 14 slots. Terrain: 1672×941 RGB/RGBA backdrop. Train: 128×96 alpha. All remaining core slots: 64×64 alpha. Existing cell rotation/pivot conventions stay compatible; every tile port must meet its logical edge centre before a rail crop can be runtime-selected. |
 | SX-VIS-063-RQ-002 shell cohesion | ProductShellArt title, shared non-T2 lesson, success result, failure result | title v02, lesson v03, success v03, failure v03 | Title: 1774×887. Other shells: 1672×941. Text/logo/watermark-free; source-safe center crop for the existing cover draw. |
 | SX-VIS-063-RQ-003 deck density | DemoThemeFactory, existing HUD/shell panels | code-only spacing, panel hierarchy, and CTA emphasis review | No new visible system, text ownership, or interactive control. Requires later implementation contract. |
 
@@ -107,10 +107,10 @@ primary_use: warm board terrain backdrop beneath Godot grid, rails, train, cargo
 must_show: calm grass/soil/stone/conifer miniature terrain; open readable central playfield; subdued 3/4 depth cues; warm low-angle practical lighting
 must_not_show: track geometry, station/cargo/train objects, text, UI, coin/score/save elements, branded/logo material, identifiable reference layout
 runtime_compare_required: true
-candidate_status: USER_APPROVED_FOR_GITHUB_PROMOTION · RUNTIME_NOT_CONNECTED
+candidate_status: USER_APPROVED_FOR_GITHUB_PROMOTION · AUTOMATED_RUNTIME_VERIFIED
 ~~~
 
-**2026-08-28 user workflow amendment:** actual-consumer candidates may be generated and machine-reviewed without a per-image pre-generation approval. The user approved promotion of `SX-VIS-063-CANDIDATE-001` on 2026-08-28 KST. It is preserved at `art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png` with SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`, Issue #243, and `APPROVED_GITHUB_PRESERVED_RUNTIME_NOT_CONNECTED` status. This does not authorize a batch or promote runtime, physical, human, Player Experience, or release evidence.
+**2026-08-28/30 user workflow readback:** actual-consumer candidates may be generated and machine-reviewed without a per-image pre-generation approval. Terrain v02 was promoted on 2026-08-28; the user then approved the displayed 13-image Core Board v02 bundle and initially approved a narrow visual-only curve/switch seam underlay on 2026-08-30. After inspecting the actual board, the user required connected-master rail art and then directed a further natural-continuity correction. The exact terrain, nine non-rail v02 core outputs, and four current v04 derivatives of the approved master are recorded under `art/product_assets/ed_hybrid_v2/`; their checksums and source receipt remain in the manifest/provenance owners, and the existing `ProductBoardRenderer` 14-slot map loads them. The v04 correction has local automated, machine-runtime, local package, and all-seven-required-check remote runtime-byte CI evidence for PR #255 head `4d5c5ef09040c36aa064b8b79ddb69443b465877`; physical, human, Player Experience, release-rights, and production-cutover promotion remain absent.
 
 For every candidate that later passes review:
 
@@ -123,23 +123,45 @@ generate exactly one candidate
 → later Godot integration in one bounded implementation contract
 ~~~
 
-## Terrain v02 transition boundary
+## Core Board v02 transition boundary
 
-The first terrain asset is approved as a project-owned, tracked source binary only. The current `ProductBoardRenderer` path remains v01 until `기획서/50_제작_검증/SX_DEC_063_TERRAIN_RUNTIME_INTEGRATION_HANDOFF.md` is executed via RED → GREEN and an exact new candidate is created. `v01` is preserved for rollback.
+The bounded Core Board v02 implementation originally replaced only the existing fourteen `ProductBoardRenderer` visual-path values: terrain, locomotive, four rails, two markers, three stations, and three cargo tokens. Its curve/switch underlay was a short-lived renderer correction and is superseded for the four rail slots by the connected-master family. The later v03 crop choice is historical/rollback only; the current v04 crop correction below keeps the same user-approved master but selects edge-centred source regions. It never altered map data, hit testing, routing, service, locks, or train behavior. Every v01, v02, and v03 rail byte remains a tracked rollback/provenance source. A local Windows debug export plus Windows/Android PCK proof is byte-specific; a new immutable GitHub exact-head package candidate and physical/human gates remain separately required for the v04 byte set.
+
+## 2026-08-30 rail-master v03 correction
+
+The user rejected disconnected-looking individual rail tiles and directed the project to draw the whole connected rail network first, then cut the actual runtime tiles from that single source. The selected master was inspected in the actual product board and the user approved its recommended runtime result.
+
+~~~text
+one connected 1254×1254 master rail network
+→ deterministic coordinate crop and high-quality resample to four 64×64 runtime PNGs
+→ full-cell texture draw at the existing four renderer slots
+→ no procedural curve or switch seam artwork
+~~~
+
+The tracked reproducibility source is `art/product_assets/ed_hybrid_v2/source/core_rail_network_master_v03.png` (SHA-256 `f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b`). Its deterministic crop rectangles and final output hashes are the manifest owner. The v03 paths are now historical because their independently positioned crops did not put every outer rail port at the logical cell centre. The source master and runtime review captures are Git-tracked but `.gdignore`d reproducibility/evidence material, so neither can become runtime payloads. Rotation remains renderer-owned, while route, lock, station-service, map, click, train, and cargo semantics remain unchanged. The original v02 and v03 rail files are retained rollback/provenance bytes but are no longer runtime-selected. Exact GitHub candidate and physical/human gates remain separate.
+
+## 2026-08-30 v04 centred-port crop correction
+
+The user reported that the real top-right curve was still visually abrupt. Direct measurement of the actual 64×64 v03 PNG alpha edges reproduced the fault: the logical centre is `31.5`, but the v03 curve's right-edge centre was `42.5` and the straight's left edge was `27.5`. That mismatch cannot be repaired by rotation or a renderer seam overlay because the renderer correctly draws each texture across one full cell.
+
+Three alternatives were evaluated against the real `ProductBoardRenderer` consumer. **REJECT:** reintroduce a procedural overlap/underlay, because it would only mask the centreline discontinuity. **REJECT:** promote a fresh generated master; candidate attempts were not accepted because they either baked in a non-alpha background or did not provide a clean standard curve, and no new source was necessary. **ADOPT:** retain the approved master and deterministically recrop edge-centred regions with a byte-level port contract.
+
+`tools/derive_sx_dec_063_master_rail_v04.gd` crops and Lanczos-resamples the same approved source into the four currently selected `64×64` files. The selected crop rectangles are straight `[650, 803, 256, 256]`, curve `[394, 803, 256, 256]`, crossing `[388, 300, 256, 256]`, and switch `[855, 300, 256, 256]`. The actual alpha-edge centres now stay within two pixels of the logical centre for every declared port: straight left/right `31.0/33.0`, curve top/right `32.0/31.0`, crossing `31.0–31.5`, and switch `32.0–32.5`.
+
+The four v04 runtime paths are `core_rail_straight_normal_v04.png`, `core_rail_curve_normal_v04.png`, `core_rail_crossing_normal_v04.png`, and `core_rail_switch_three_way_normal_v04.png`. `ProductBoardRenderer` consumes only these paths for rail slots and retains full-cell draw plus renderer-owned rotation. A review finding corrected its non-square quarter-turn treatment: rotations 1/3 pre-swap the local draw rectangle, preserving the intended `w×h` target bounds and port centres after rotation. The focused real-byte contract was first RED with 11 off-centre port findings and is GREEN after the crop correction; a `100×60` all-rotation renderer contract covers the previously missed case. The derivation tool's non-mutating `--verify` mode also regenerated and byte-compared every v04 output to the tracked PNG. `NOT_MATERIAL` external research disposition: this work reuses the already-supported Godot `Image` crop/resample, imported `Texture2D`, and existing renderer path; it introduces no new runtime API, plugin, vendor asset, or engine-design decision.
 
 ## Production and implementation boundaries
 
-### In scope now
+### Implemented in this bounded change
 
-- visual decision, coverage requirement links, exact candidate briefs, provenance plan, and stale-canon correction;
-- production candidates may be generated and machine-reviewed under the user-authorized workflow; only final asset promotion requires the user’s disposition;
-- asset review against real consumer dimensions.
+- user-approved v02 terrain plus nine non-rail core generated sprites, four v04 centred rail-master derivatives, their Godot imports, hashes, provenance, and retained v01/v02/v03 rollback files;
+- the exact existing 14-slot renderer map with full-cell master-derived rail textures and no procedural rail seam layer;
+- RED→GREEN renderer/asset contracts, all-rotation non-square target contract, master-derived-byte verification, full local Godot runner (`112` cases, `13,560` assertions), formal GUT (`21` tests, `152` assertions), full Python regression (`215` tests, `1` skipped), live recommended BUILD capture, and local Windows debug/Windows+Android PCK proof.
 
-### Deferred until the production set is approved
+### Deferred after automated runtime verification
 
-- GDScript, Scene, Resource, import, and consumer-path changes;
-- test additions and a new exact package candidate;
-- physical Windows/audio, Android, five-person, Player Experience, and production-cutover claims.
+- hosted exact-head CI and a new immutable package candidate for the changed player-facing bytes;
+- physical Windows/audio, Android, five-person, Player Experience, release-rights, and production-cutover claims.
 
 ### Out of scope
 

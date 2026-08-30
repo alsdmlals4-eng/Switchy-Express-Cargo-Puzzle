@@ -2,9 +2,10 @@
 
 > **Document role:** machine-searchable design and implementation contract. It does not replace source code, map data, tests, or human play evidence.
 >
-> **Canon snapshot:** `origin/main` / `9c3be67cf99221d5007f0332be6935e81a6954bb` (`2026-08-28 KST`)
-> **Working branch:** `codex/master-gdd-20260828`
-> **Generated:** `2026-08-28 KST`
+> **Canon snapshot:** `origin/main` / `28619f4a9269d61cd1ddd7e7a1dded9907997584` (`2026-08-30 KST`)
+> **Working branch:** `codex/human-game-blueprint-20260830`
+> **Generated:** `2026-08-30 KST`
+> **Human-review counterpart:** `SX-HGB-001 r01` — `docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT.md` derives the human-facing PDF. It is `사용자 최종 검수 대기`; it does not change implementation authority.
 > **Evidence vocabulary:** `DOCUMENTED`, `CONFIRMED`, `IMPLEMENTED`, `AUTOMATED_TEST_PASS`, `RUNTIME_VERIFIED`, `UX_VERIFIED`, `RELEASE_READY`. A later state never follows from an earlier state automatically.
 
 ## 00. CANON SNAPSHOT
@@ -50,6 +51,7 @@ BUILD a reachable rail route
 | SRC-008 | GitHub PR #174 | `DRAFT · READ_ONLY`, not incorporated |
 | SRC-009 | Official product/store material, researched 2026-08-28 | benchmark only; no product identity is copied |
 | SRC-010 | `docs/migrations/2026-08-28-notion-current-workspace-migration.md` | one-time source-to-GitHub migration receipt; Notion no longer active |
+| SRC-011 | `docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT.md` | `SX-HGB-001 r01` human-review editorial source; derived view only, user review awaiting |
 
 ### Benchmark registry
 
@@ -71,11 +73,11 @@ BUILD a reachable rail route
 
 | Area | Confirmed state | Evidence ceiling |
 |---|---|---|
-| Finite puzzle semantics | `IMPLEMENTED · AUTOMATED_TEST_PASS` | SX-DEC-060 main merge: 111 cases / 13,461 assertions historical exact run; later SX-DEC-062 documentation records 112 cases / 13,512 assertions. Re-run exact current head before a release claim. |
-| Board-first existing-asset composition | `IMPLEMENTED · AUTOMATED_TEST_PASS` | PR #237 / `main@8bce715…`; human/device/audio evidence remains `NOT_RUN`. |
+| Finite puzzle semantics | `IMPLEMENTED · AUTOMATED_TEST_PASS` | SX-DEC-060 main merge: 111 cases / 13,461 assertions historical exact run; later current-main regression is 112 cases / 13,513 assertions. Re-run exact current head before a release claim. |
+| Board-first existing-asset composition and active-route lighting | `IMPLEMENTED · AUTOMATED_TEST_PASS` | current main includes SX-DEC-062 and SX-DEC-064; human/device/audio evidence remains `NOT_RUN`. |
 | First session T1–T6 + capstone | `IMPLEMENTED · AUTOMATED_TEST_PASS` | code + test registry; comprehension remains `NOT_RUN`. |
 | Runtime art | Existing 79 tracked product PNGs; renderer has 14 board visual paths | loaded/runtime composition is not UX verification. |
-| SX-VIS-063-CANDIDATE-001 | `GENERATED_CANDIDATE · REVIEW_PENDING` | 1672×941 RGB, SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`; held outside the repository pending final asset decision. |
+| SX-VIS-063 terrain v02 | `USER_APPROVED · GITHUB_PRESERVED · RUNTIME_NOT_CONNECTED` | 1672×941 RGB, SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`; a later integration contract is still required. |
 | Windows / Android / audio / five-person / player experience | `NOT_RUN` for current candidate | cannot be inferred from CI, package, screenshot, or asset existence. |
 
 ## 03. CONFIRMED DECISIONS
@@ -93,6 +95,7 @@ BUILD a reachable rail route
 | DEC-SX-061 | Board-first cozy neo-arcade visual grammar | DOCUMENTED |
 | DEC-SX-062 | Existing-asset board-first runtime composition | IMPLEMENTED |
 | DEC-SX-063 | Rectangular-grid Hybrid Miniature-Diorama alignment | CONFIRMED / planning current |
+| DEC-SX-064 | Current selected route only receives the live lime direction cue; alternate stays a dim control target | IMPLEMENTED |
 
 ## 04. DESIGN PILLARS
 

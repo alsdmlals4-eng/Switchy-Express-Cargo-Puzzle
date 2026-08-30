@@ -60,7 +60,15 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         self.assertIn("sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED", active)
         self.assertIn("sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237", active)
         self.assertNotIn("sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · FIRST_CANDIDATE_GENERATED_REVIEW_PENDING · ISSUE_239 · RUNTIME_UNCHANGED", active)
-        self.assertIn("sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · PR_244 · main_38d4ac2aac8af35672d43e96f27b2f243aa10a4b · RUNTIME_NOT_CONNECTED", active)
+        self.assertIn(
+            "sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · "
+            "CORE_BOARD_V04_CENTERED_PORT_RAIL_CROPS_LOCAL_IMPLEMENTED_IN_PR_255_WORKTREE · "
+            "TERRAIN_PLUS_9_NON_RAIL_V02_CORE_ASSETS_PLUS_4_V04_MASTER_DERIVED_RAILS · "
+            "AUTOMATED_RUNTIME_LIVE_MACHINE_CAPTURE_AND_LOCAL_PACKAGE_VERIFIED · "
+            "REMOTE_RUNTIME_BYTE_CI_7_GREEN_PR_255_4D5C5EF · "
+            "EXACT_GITHUB_CANDIDATE_AND_PHYSICAL_HUMAN_NOT_RUN",
+            active,
+        )
         self.assertIn(
             "sx_dec_064_active_route_lighting: MERGED_MAIN_VERIFIED · GitHub_Issue_248 · PR_249 · main_2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI_7_GREEN",
             active,

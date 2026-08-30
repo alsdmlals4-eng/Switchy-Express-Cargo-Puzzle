@@ -11,22 +11,26 @@ const SemanticRuntimeStateScript := preload("res://game/demo/presentation/semant
 const FiniteTrackGraphScript := preload("res://game/finite/rail/finite_track_graph.gd")
 const TrackPieceScript := preload("res://game/finite/build/track_piece.gd")
 const NO_CELL := Vector2i(-1, -1)
+const GHOST_FILL_ALPHA := 0.08
+const GHOST_TRACK_ALPHA := 0.46
+const GHOST_SEMANTIC_BADGE_SCALE := 0.28
+const CARGO_MARKER_SCALE := 0.62
 
 const PRODUCT_VISUAL_ASSET_PATHS := {
-	"board_terrain": "art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png",
-	"train": "art/product_assets/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png",
-	"rail_straight": "art/product_assets/ed_hybrid_v1/core/core_rail_straight_normal_v01.png",
-	"rail_curve": "art/product_assets/ed_hybrid_v1/core/core_rail_curve_normal_v01.png",
-	"rail_crossing": "art/product_assets/ed_hybrid_v1/core/core_rail_crossing_normal_v01.png",
-	"rail_switch": "art/product_assets/ed_hybrid_v1/core/core_rail_switch_three_way_normal_v01.png",
-	"start_marker": "art/product_assets/ed_hybrid_v1/core/core_marker_start_normal_v01.png",
-	"route_end_marker": "art/product_assets/ed_hybrid_v1/core/core_marker_route_end_normal_v01.png",
-	"station_red": "art/product_assets/ed_hybrid_v1/core/core_station_red_normal_v01.png",
-	"station_blue": "art/product_assets/ed_hybrid_v1/core/core_station_blue_normal_v01.png",
-	"station_yellow": "art/product_assets/ed_hybrid_v1/core/core_station_yellow_normal_v01.png",
-	"cargo_red": "art/product_assets/ed_hybrid_v1/core/core_cargo_star_red_normal_v01.png",
-	"cargo_blue": "art/product_assets/ed_hybrid_v1/core/core_cargo_star_blue_normal_v01.png",
-	"cargo_yellow": "art/product_assets/ed_hybrid_v1/core/core_cargo_star_yellow_normal_v01.png",
+	"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
+	"train": "art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png",
+	"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v04.png",
+	"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v04.png",
+	"rail_crossing": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v04.png",
+	"rail_switch": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v04.png",
+	"start_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png",
+	"route_end_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png",
+	"station_red": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
+	"station_blue": "art/product_assets/ed_hybrid_v2/core/core_station_blue_normal_v02.png",
+	"station_yellow": "art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png",
+	"cargo_red": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png",
+	"cargo_blue": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_blue_normal_v02.png",
+	"cargo_yellow": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png",
 }
 
 var _snapshot: Dictionary = {}
@@ -72,6 +76,22 @@ func loaded_product_visuals_for_test() -> Dictionary:
 	return result
 
 
+func product_rail_seam_descriptor_for_test(geometry: StringName, rotation: int) -> Dictionary:
+	return _product_rail_seam_descriptor(geometry, rotation)
+
+
+func marker_target_for_test(is_station: bool, cell_rect: Rect2) -> Rect2:
+	return _marker_target_rect(is_station, cell_rect)
+
+
+func ghost_presentation_for_test() -> Dictionary:
+	return _ghost_presentation()
+
+
+func ghost_status_badge_rect_for_test(cell_rect: Rect2) -> Rect2:
+	return _ghost_status_badge_rect(cell_rect)
+
+
 func station_service_descriptors_for_test() -> Array[Dictionary]:
 	return _station_service_descriptors(_snapshot)
 
@@ -114,6 +134,23 @@ func visual_layer_order_for_test() -> Array[StringName]:
 
 static func track_ports_for_test(geometry: StringName, rotation: int) -> Array[Vector2i]:
 	return _track_ports(geometry, rotation)
+
+
+static func product_texture_draw_rect_for_test(target: Rect2, rotation_quarters: int) -> Rect2:
+	return _product_texture_local_draw_rect(target, rotation_quarters)
+
+
+static func product_texture_port_position_for_test(
+	base_port: Vector2i,
+	target: Rect2,
+	rotation_quarters: int
+) -> Vector2:
+	var local_rect := _product_texture_local_draw_rect(target, rotation_quarters)
+	var local_port := Vector2(
+		float(base_port.x) * local_rect.size.x * 0.5,
+		float(base_port.y) * local_rect.size.y * 0.5
+	)
+	return target.get_center() + _rotate_vector_by_quarters(local_port, rotation_quarters)
 
 
 func board_cell_from_local(local: Vector2, board_size: Vector2i) -> Vector2i:
@@ -487,9 +524,10 @@ func _draw_track_piece(
 	bed_color: Color,
 	rail_color: Color
 ) -> void:
-	var target := _cell_rect(cell, rect, board_size).grow(-2.0)
+	var target := _cell_rect(cell, rect, board_size)
 	var asset_key := _track_asset_key(geometry)
-	if asset_key != "" and _draw_product_texture(asset_key, target, rotation, bed_color.a):
+	var has_product_art := asset_key != "" and _product_textures.get(asset_key) is Texture2D
+	if has_product_art and _draw_product_texture(asset_key, target, rotation, bed_color.a):
 		return
 
 	var center := target.get_center()
@@ -503,6 +541,9 @@ func _draw_track_piece(
 		draw_line(center, endpoint, rail_color, Palette.RAIL_HIGHLIGHT_WIDTH, true)
 	if geometry == &"SWITCH":
 		draw_circle(center, minf(half.x, half.y) * 0.18, rail_color)
+
+static func _product_rail_seam_descriptor(geometry: StringName, rotation: int) -> Dictionary:
+	return {"enabled": false, "ports": []}
 
 
 func _draw_fixed_markers(rect: Rect2, board_size: Vector2i) -> void:
@@ -536,29 +577,38 @@ func _draw_marker(
 	var cell := snapshot_cell(cell_value)
 	if cell == NO_CELL:
 		return
-	var cell_rect := _cell_rect(cell, rect, board_size).grow(-5.0)
+	var cell_rect := _cell_rect(cell, rect, board_size)
+	var marker_rect := _marker_target_rect(is_station, cell_rect)
 	var color: Color = Palette.cargo_color(cargo_type)
 	var asset_key := _marker_asset_key(cargo_type, is_station)
-	var drew_product_art := _draw_product_texture(asset_key, cell_rect)
+	var drew_product_art := _draw_product_texture(asset_key, marker_rect)
 	if not drew_product_art:
 		if is_station:
-			draw_rect(cell_rect, _alpha(color, 0.22), true)
-			draw_rect(cell_rect, color, false, 4.0)
+			draw_rect(marker_rect, _alpha(color, 0.22), true)
+			draw_rect(marker_rect, color, false, 4.0)
 		else:
-			draw_circle(cell_rect.get_center(), minf(cell_rect.size.x, cell_rect.size.y) * 0.27, Palette.BOARD_EDGE)
+			draw_circle(marker_rect.get_center(), minf(marker_rect.size.x, marker_rect.size.y) * 0.27, Palette.BOARD_EDGE)
 	else:
 		# Keep a non-color outline even when the approved sprite is available.
 		if is_station:
-			draw_rect(cell_rect, color, false, 2.0)
+			draw_rect(marker_rect, color, false, 2.0)
 		else:
-			draw_circle(cell_rect.get_center(), minf(cell_rect.size.x, cell_rect.size.y) * 0.24, Palette.BOARD_EDGE, false, 2.0)
+			draw_circle(marker_rect.get_center(), minf(marker_rect.size.x, marker_rect.size.y) * 0.24, Palette.BOARD_EDGE, false, 2.0)
 	_draw_cargo_shape(
-		cell_rect.get_center(),
+		marker_rect.get_center(),
 		cargo_type,
-		minf(cell_rect.size.x, cell_rect.size.y) * (0.11 if drew_product_art else 0.20),
+		minf(marker_rect.size.x, marker_rect.size.y) * (0.11 if drew_product_art else 0.20),
 		color
 	)
-	_draw_marker_label(cell_rect.get_center(), cargo_type)
+	_draw_marker_label(marker_rect.get_center(), cargo_type)
+
+
+static func _marker_target_rect(is_station: bool, cell_rect: Rect2) -> Rect2:
+	if is_station:
+		return cell_rect.grow(-5.0)
+	var cargo_side := minf(cell_rect.size.x, cell_rect.size.y) * CARGO_MARKER_SCALE
+	var cargo_size := Vector2(cargo_side, cargo_side)
+	return Rect2(cell_rect.get_center() - cargo_size * 0.5, cargo_size)
 
 
 func _draw_start_marker(rect: Rect2, board_size: Vector2i) -> void:
@@ -658,17 +708,37 @@ func _draw_ghost(rect: Rect2, board_size: Vector2i) -> void:
 	var color: Color = Palette.GHOST_VALID if valid else Palette.GHOST_INVALID
 	var cell: Vector2i = descriptor["cell"]
 	var cell_rect := _cell_rect(cell, rect, board_size).grow(-5.0)
-	draw_rect(cell_rect, _alpha(color, 0.16), true)
+	var presentation := _ghost_presentation()
+	draw_rect(cell_rect, _alpha(color, float(presentation["fill_alpha"])), true)
 	_draw_track_piece(
 		cell,
 		StringName(descriptor["geometry"]),
 		int(descriptor.get("rotation_quarters", 0)),
 		rect,
 		board_size,
-		_alpha(color, 0.58),
+		_alpha(color, float(presentation["track_alpha"])),
 		color
 	)
-	_draw_semantic_record(_placement_record(), cell_rect)
+	_draw_semantic_record(_placement_record(), _ghost_status_badge_rect(cell_rect))
+
+
+static func _ghost_presentation() -> Dictionary:
+	return {
+		"fill_alpha": GHOST_FILL_ALPHA,
+		"track_alpha": GHOST_TRACK_ALPHA,
+		"semantic_badge_scale": GHOST_SEMANTIC_BADGE_SCALE,
+	}
+
+
+static func _ghost_status_badge_rect(cell_rect: Rect2) -> Rect2:
+	var side := clampf(
+		minf(cell_rect.size.x, cell_rect.size.y) * GHOST_SEMANTIC_BADGE_SCALE,
+		12.0,
+		20.0
+	)
+	var margin := 2.0
+	var badge_size := Vector2(side, side)
+	return Rect2(cell_rect.end - badge_size - Vector2(margin, margin), badge_size)
 
 
 func _draw_train(rect: Rect2, board_size: Vector2i) -> void:
@@ -718,10 +788,11 @@ func _draw_product_texture(
 		draw_texture_rect(texture, target, false, modulate)
 		return true
 	var center := target.get_center()
+	var local_target := _product_texture_local_draw_rect(target, quarters)
 	draw_set_transform(center, float(quarters) * PI * 0.5, Vector2.ONE)
 	draw_texture_rect(
 		texture,
-		Rect2(-target.size * 0.5, target.size),
+		local_target,
 		false,
 		modulate
 	)
@@ -984,6 +1055,13 @@ static func _track_ports(geometry: StringName, rotation: int) -> Array[Vector2i]
 	return result
 
 
+static func _product_texture_local_draw_rect(target: Rect2, rotation_quarters: int) -> Rect2:
+	var local_size := target.size
+	if posmod(rotation_quarters, 4) % 2 == 1:
+		local_size = Vector2(target.size.y, target.size.x)
+	return Rect2(-local_size * 0.5, local_size)
+
+
 static func _rotation_quarters_for_direction(direction: Vector2i) -> int:
 	if direction == Vector2i.DOWN:
 		return 1
@@ -998,6 +1076,13 @@ static func _rotate_direction(direction: Vector2i, quarters: int) -> Vector2i:
 	var result := direction
 	for _index: int in range(posmod(quarters, 4)):
 		result = Vector2i(-result.y, result.x)
+	return result
+
+
+static func _rotate_vector_by_quarters(vector: Vector2, quarters: int) -> Vector2:
+	var result := vector
+	for _index: int in range(posmod(quarters, 4)):
+		result = Vector2(-result.y, result.x)
 	return result
 
 

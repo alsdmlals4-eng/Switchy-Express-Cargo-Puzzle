@@ -55,6 +55,39 @@ func run() -> void:
 				"rendered curve ports must match domain ports at rotation %d" % rotation
 			)
 
+	var non_square_target := Rect2(40.0, 80.0, 100.0, 60.0)
+	var base_curve_ports: Array[Vector2i] = [Vector2i.UP, Vector2i.RIGHT]
+	for rotation: int in range(4):
+		var local_draw_rect: Rect2 = RendererScript.product_texture_draw_rect_for_test(
+			non_square_target,
+			rotation
+		)
+		var expected_local_size := non_square_target.size
+		if rotation % 2 == 1:
+			expected_local_size = Vector2(non_square_target.size.y, non_square_target.size.x)
+		assert_equal(
+			local_draw_rect.size,
+			expected_local_size,
+			"quarter-turn texture draw must pre-swap a non-square target at rotation %d" % rotation
+		)
+		for base_port: Vector2i in base_curve_ports:
+			var expected_direction := base_port
+			for _quarter: int in range(rotation):
+				expected_direction = Vector2i(-expected_direction.y, expected_direction.x)
+			var expected_port_position := non_square_target.get_center() + Vector2(
+				float(expected_direction.x) * non_square_target.size.x * 0.5,
+				float(expected_direction.y) * non_square_target.size.y * 0.5
+			)
+			assert_equal(
+				RendererScript.product_texture_port_position_for_test(
+					base_port,
+					non_square_target,
+					rotation
+				),
+				expected_port_position,
+				"rotated curve port must meet the correct edge centre in a non-square cell at rotation %d" % rotation
+			)
+
 	var fixed_snapshot := {
 		"start_cell": Vector2i(1, 4),
 		"incoming_cell": Vector2i(0, 4),
@@ -146,5 +179,58 @@ func run() -> void:
 	renderer.request_secondary_at(Vector2(550.0, 450.0))
 	assert_equal(primary_cells, [Vector2i(5, 4)], "primary requests preserve exact cell")
 	assert_equal(secondary_cells, [Vector2i(5, 4)], "secondary requests preserve exact cell")
+
+	var expected_product_paths := {
+		"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
+		"train": "art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png",
+		"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v04.png",
+		"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v04.png",
+		"rail_crossing": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v04.png",
+		"rail_switch": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v04.png",
+		"start_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png",
+		"route_end_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png",
+		"station_red": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
+		"station_blue": "art/product_assets/ed_hybrid_v2/core/core_station_blue_normal_v02.png",
+		"station_yellow": "art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png",
+		"cargo_red": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png",
+		"cargo_blue": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_blue_normal_v02.png",
+		"cargo_yellow": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png",
+	}
+	assert_equal(
+		renderer.product_visual_asset_paths_for_test(),
+		expected_product_paths,
+		"core board must retain its existing visual slots while v04 replaces only rail pixels"
+	)
+	for asset_key: String in expected_product_paths:
+		assert_true(
+			renderer.loaded_product_visuals_for_test().get(asset_key, false),
+			"core board asset must import as Texture2D: %s" % asset_key
+		)
+
+	assert_true(
+		renderer.has_method("product_rail_seam_descriptor_for_test"),
+		"master-derived rails must expose their disabled legacy-seam contract"
+	)
+	if renderer.has_method("product_rail_seam_descriptor_for_test"):
+		for geometry: StringName in [&"STRAIGHT", &"CURVE", &"CROSSING", &"SWITCH"]:
+			assert_equal(
+				renderer.product_rail_seam_descriptor_for_test(geometry, 0),
+				{"enabled": false, "ports": []},
+				"%s master-derived rail must not receive a procedural seam layer" % geometry
+			)
+
+	assert_true(
+		renderer.has_method("marker_target_for_test"),
+		"marker sizing must expose the same station and cargo targets used by the renderer"
+	)
+	if renderer.has_method("marker_target_for_test"):
+		var marker_cell := Rect2(0.0, 0.0, 100.0, 60.0)
+		var station_target: Rect2 = renderer.marker_target_for_test(true, marker_cell)
+		var cargo_target: Rect2 = renderer.marker_target_for_test(false, marker_cell)
+		assert_equal(station_target, Rect2(5.0, 5.0, 90.0, 50.0), "station keeps its existing prominent footprint")
+		assert_equal(cargo_target.get_center(), station_target.get_center(), "cargo remains centered in its authored map cell")
+		assert_almost_equal(cargo_target.size.x, cargo_target.size.y, 0.00001, "cargo art must retain its square source aspect")
+		assert_less_equal(cargo_target.size.x, 38.0, "cargo width must be materially smaller than its 100x60 tile")
+		assert_true(cargo_target.size.y < station_target.size.y, "cargo height must be smaller than the station footprint")
 
 	renderer.free()
