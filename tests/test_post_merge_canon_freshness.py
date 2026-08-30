@@ -62,7 +62,8 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
         self.assertNotIn("sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · FIRST_CANDIDATE_GENERATED_REVIEW_PENDING · ISSUE_239 · RUNTIME_UNCHANGED", active)
         self.assertIn(
             "sx_dec_063_hybrid_diorama_alignment: USER_APPROVED_DIRECTION · "
-            "CORE_BOARD_V02_IMPLEMENTED_IN_PR_255 · TERRAIN_PLUS_13_CORE_ASSETS · "
+            "CORE_BOARD_V03_MASTER_RAILS_IMPLEMENTED_IN_PR_255 · "
+            "TERRAIN_PLUS_9_NON_RAIL_V02_CORE_ASSETS_PLUS_4_V03_MASTER_DERIVED_RAILS · "
             "AUTOMATED_RUNTIME_LIVE_MACHINE_CAPTURE_AND_LOCAL_PACKAGE_VERIFIED · "
             "EXACT_GITHUB_CANDIDATE_AND_PHYSICAL_HUMAN_NOT_RUN",
             active,
