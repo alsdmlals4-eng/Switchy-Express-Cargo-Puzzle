@@ -21,9 +21,8 @@ class SXDec060CandidateMintTests(unittest.TestCase):
         artifact = self._json(ARTIFACT)
         audit = self._json(PCK_AUDIT)
 
-        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-004")
-        self.assertEqual(pointer["minimum_product_source_main"], "58b99f261c3576150ab275bb041d744c69b83538")
+        self.assertEqual(pointer["candidate_status"], "NOT_CREATED")
+        self.assertIsNone(pointer["current_candidate_id"])
         historical = pointer["historical_superseded_candidate"]
         self.assertEqual(historical["artifact_evidence_owner"], "evidence/acceptance/sx60_poc_accept_001_artifact.json")
         self.assertEqual(historical["deep_pck_evidence_owner"], "evidence/acceptance/sx60_poc_accept_001_pck_deep_audit.json")
@@ -35,7 +34,7 @@ class SXDec060CandidateMintTests(unittest.TestCase):
         self.assertEqual(audit["pck_integrity"]["file_count"], 477)
         self.assertEqual(audit["product_texture_packaging"]["product_png_import_count"], 73)
         self.assertEqual(
-            pointer["artifact_evidence_owner"],
+            pointer["historical_superseded_after_sx_dec_063_core_board_v04"]["artifact_evidence_owner"],
             "evidence/acceptance/sx60_poc_accept_004_artifact.json",
         )
 

@@ -1,42 +1,42 @@
 # Playtest Plan
 
 ```yaml
-status: CURRENT_CANON · PHASE_5_USER_VERTICAL_SLICE_VALIDATION · USER_AUTHORIZATION_RECORDED_2026-08-28 · HUMAN_EVIDENCE_NOT_RUN
-product_authority: GMB-002 · SX-DEC-027~064 · SX-DEC-060_CARDINAL_SERVICE_AMENDMENT · SX-DEC-062_COMPOSITION_CONTRACT · SX-DEC-064_ACTIVE_ROUTE_LIGHTING
+status: CURRENT_CANON · SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · MACHINE_EVIDENCE_PENDING · FINAL_USER_REVIEW_NOT_RUN
+product_authority: GMB-002 · SX-DEC-027~065 · SX-DEC-060_CARDINAL_SERVICE_AMENDMENT · SX-DEC-062_COMPOSITION_CONTRACT · SX-DEC-064_ACTIVE_ROUTE_LIGHTING · SX-DEC-065_MACHINE_PRIMARY_VALIDATION
 planning_audit: SX-AUD-049 · HISTORICAL_METHOD_PROVENANCE
-current_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED
-current_candidate_source_main: 58b99f261c3576150ab275bb041d744c69b83538
-current_candidate_windows_exe_sha256: 1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244
-current_candidate_windows_pck_sha256: 3325f11115fdf3fc57e39bb35c545d115217614eb1e58607934edacf0c6b0839
-windows_physical_and_audio: NOT_RUN · FIRST_EXECUTION_GATE
+last_verified_package_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · HISTORICAL_PRE_V04_PRODUCT_BYTES
+last_verified_package_source_main: 58b99f261c3576150ab275bb041d744c69b83538
+current_candidate: NONE · SX60-POC-ACCEPT-005_MINT_PENDING
+windows_physical_and_audio: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device: BLOCKED_UNVERIFIED · NO_EXACT_POST_SX_DEC_060_APK_ID_ASSIGNED
-five_person_comprehension: NOT_RUN · BLOCKED_BY_WINDOWS_PHYSICAL_AUDIO_AND_ANDROID_IDENTITY
-player_experience: NOT_RUN
+five_person_comprehension: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+player_experience: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+final_user_review: FINAL_USER_REVIEW · NOT_RUN · EXACT_CANDIDATE_REQUIRED
 sx_dec_056_058_implementation: NOT_AUTHORIZED
 production_cutover: BLOCKED_DEFERRED
 ```
 
 이 문서는 **현재 제품의 첫 세션 이해도와 사람 검증 방법**을 책임진다. 실제 사람 증거가 아니라 현재 구현·acceptance 실행 전에 고정된 검증 contract다.
 
-## Current Phase 5 scope · SX-DEC-060/061
+## Current validation scope · SX-DEC-065
 
-이 Section이 현재 실행 상태의 단일 정본이다. 사용자 승인 `2026-08-28 KST`는 Phase 5의 **시작 권한**만 기록한다. Windows physical, audio, Android, five-person, Player Experience, production cutover 중 어느 것도 PASS로 승격하지 않는다.
+이 Section이 현재 실행 상태의 단일 정본이다. 사용자 승인 `2026-08-30 KST`에 따라 현재 방법은 `MACHINE_PRIMARY_FINAL_USER_REVIEW`다. Windows physical, audio, Android, five-person, Player Experience, production cutover 중 어느 것도 실제 evidence 없이 PASS로 승격하지 않는다.
 
 ```text
-SX60-POC-ACCEPT-004 Windows exact candidate
-→ Windows full physical smoke + audio perceptual QA
-→ exact post-SX-DEC-060 Android APK identity assignment and physical device smoke
-→ five-person first-contact comprehension
-→ player-experience decision
+exact v04 immutable candidate
+→ deterministic contracts + Godot/runtime/export/package/CI machine verification
+→ MACHINE_PRIMARY acceptance decision
+→ FINAL_USER_REVIEW only when the user requests the final inspection
 ```
 
-- 현재 검증 단위는 `T1 → T2 → T3 → T4 → T5 → T6 → VS_DEMO_01 → Result / Retry / Edit`다.
+- 현재 머신 검증 단위는 `T1 → T2 → T3 → T4 → T5 → T6 → VS_DEMO_01 → Result / Retry / Edit`의 contract/runtime/package evidence다.
 - T2의 필수 구분은 `cargo = same-cell Manual/Auto pickup`, `station = one cardinal-adjacent service cell`, `diagonal / station footprint = no delivery`다.
-- `SX60-POC-ACCEPT-004`는 current Windows artifact identity와 Android runtime-JSON package proof를 지정한다. Android runtime JSON proof는 APK artifact identity나 physical-device proof가 아니다. 기존 Android validation APK/runbook은 historical이며 post-060 device Gate에 재사용하지 않는다.
+- `SX60-POC-ACCEPT-004`는 last verified Windows artifact identity와 Android runtime-JSON package proof를 보존한다. v04 product bytes에는 적용되지 않는다. Android runtime JSON proof는 APK artifact identity나 physical-device proof가 아니다. 기존 Android validation APK/runbook은 historical이며 post-060 device Gate에 재사용하지 않는다.
 - `SX-DEC-061`은 planning/visual direction lock이며 runtime bytes를 바꾸지 않았다. 화면의 visual grammar는 관찰할 수 있지만 board·generated exploration·machine capture만으로 human usability를 통과 처리하지 않는다.
+- `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED`와 `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED`는 이 프로젝트의 명시 정책이다. 최종 사용자 검수의 관찰은 같은 exact candidate에만 기록한다.
 - 상세 실행 순서, 기록 규칙, stale correction의 Incident/Solution/Lesson은 `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`를 따른다.
 
-Sections 1–3의 Phase B/055/old Android identity는 방법론·provenance로 보존한다. Sections 4–17의 behavior-first 연구 방법은 이 Section의 current candidate와 current rule을 적용해 사용한다.
+Sections 1–17 are `HISTORICAL_METHOD_REFERENCE_ONLY`. Phase B/055/old Android identity와 behavior-first 연구 방법은 provenance로 보존하되, SX-DEC-065의 현재 acceptance gate나 five-person requirement를 만들지 않는다.
 
 과거 Android validation APK는 별도 역사/진단 증거로 보존한다. post-SX-DEC-055 사람 검증의 active build identity로 자동 승격하지 않는다.
 
@@ -429,15 +429,17 @@ participant_result: PASS | FAIL | BLOCKED | NOT_RUN | INTERVENTION_CONTAMINATED
 ## 18. 현재 결론
 
 ```text
-PLAYTEST/COMPREHENSION CONTRACT: CURRENT_CANON
+HISTORICAL_PLAYTEST/COMPREHENSION_METHODS: REFERENCE_ONLY · NOT_ACTIVE_ACCEPTANCE_GATE
 HISTORICAL VALIDATION APK: PRESERVED · NOT CURRENT HUMAN ACCEPTANCE BUILD
-USER PHASE 5 START AUTHORIZATION: RECORDED · 2026-08-28 KST
-CURRENT PRODUCT AUTHORITY: GMB-002 · SX-DEC-027~064 · SX-DEC-060 cardinal station service · SX-DEC-062 board-first composition · SX-DEC-064 active-route lighting
-CURRENT WINDOWS CANDIDATE: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED
-WINDOWS PHYSICAL / AUDIO: NOT_RUN
+USER PHASE 5 START AUTHORIZATION: HISTORICAL · 2026-08-28 KST
+SX-DEC-065 USER APPROVAL: RECORDED · 2026-08-30 KST · MACHINE_PRIMARY_FINAL_USER_REVIEW
+CURRENT PRODUCT AUTHORITY: GMB-002 · SX-DEC-027~065 · SX-DEC-060 cardinal station service · SX-DEC-062 board-first composition · SX-DEC-064 active-route lighting · SX-DEC-065 MACHINE_PRIMARY_FINAL_USER_REVIEW
+LAST VERIFIED WINDOWS CANDIDATE: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · HISTORICAL_PRE_V04_PRODUCT_BYTES
+CURRENT EXACT CANDIDATE: NONE · SX60-POC-ACCEPT-005_MINT_PENDING
+WINDOWS PHYSICAL / AUDIO: FINAL_USER_REVIEW_ONLY · NOT_RUN
 POST-060 ANDROID APK IDENTITY: UNASSIGNED · DO NOT REUSE HISTORICAL VALIDATION APK
-FIVE-PERSON COMPREHENSION: NOT_RUN
-P01~P05: NOT_RUN
-PLAYER EXPERIENCE: NOT_RUN
+FIVE-PERSON COMPREHENSION: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+PLAYER EXPERIENCE STUDY: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+FINAL USER REVIEW: NOT_RUN · EXACT_CANDIDATE_REQUIRED
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```

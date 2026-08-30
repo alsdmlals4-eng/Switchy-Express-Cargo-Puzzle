@@ -155,6 +155,14 @@
       "status": "CURRENT"
     },
     {
+      "id": "SX-DEC-065-MACHINE-PRIMARY-VALIDATION",
+      "question": "Switchy Express에서 어떤 검증이 machine acceptance를 이루며 최종 사용자 검수는 언제 필요한가",
+      "source": "docs/decisions/SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW_VALIDATION_POLICY.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "CURRENT"
+    },
+    {
       "id": "SX-DEC-062-IMPLEMENTATION-CONTRACT",
       "question": "SX-DEC-062 구현의 exact test-first CodeX handoff는 무엇인가",
       "source": "기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md",

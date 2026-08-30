@@ -73,18 +73,21 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertIn("WorkDir must be a direct child of TEMP", text)
         self.assertIn("RUNNER_TEMP", text)
 
-    def test_post_060_pointer_selects_the_current_exact_candidate(self) -> None:
+    def test_post_060_pointer_fails_closed_until_the_new_exact_candidate_exists(self) -> None:
         pointer = self._post_060_pointer()
-        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-004")
-        self.assertEqual(pointer["minimum_product_source_main"], "58b99f261c3576150ab275bb041d744c69b83538")
+        self.assertEqual(pointer["candidate_status"], "NOT_CREATED")
+        self.assertIsNone(pointer["current_candidate_id"])
+        self.assertEqual(
+            pointer["current_candidate_role"],
+            "NO_CURRENT_EXACT_CANDIDATE · SX60-POC-ACCEPT-005_MINT_PENDING",
+        )
         self.assertEqual(
             pointer["historical_superseded_candidate"]["invalidation_reason"],
             "PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE",
         )
-        self.assertIn("artifact_evidence_owner", pointer)
-        self.assertIn("deep_pck_evidence_owner", pointer)
-        self.assertIn("self_run_record_name", pointer)
+        self.assertIsNone(pointer["artifact_evidence_owner"])
+        self.assertIsNone(pointer["deep_pck_evidence_owner"])
+        self.assertIsNone(pointer["self_run_record_name"])
         self.assertEqual(
             pointer["historical_superseded_after_sx_dec_062"]["candidate_id"],
             "SX60-POC-ACCEPT-002",
@@ -92,6 +95,10 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertEqual(
             pointer["historical_superseded_after_sx_dec_064"]["candidate_id"],
             "SX60-POC-ACCEPT-003",
+        )
+        self.assertEqual(
+            pointer["historical_superseded_after_sx_dec_063_core_board_v04"]["candidate_id"],
+            "SX60-POC-ACCEPT-004",
         )
 
     def test_candidate_002_evidence_is_preserved_as_history(self) -> None:

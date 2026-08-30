@@ -73,8 +73,9 @@ class TestAndroidSmokeCanonicalFreshness(unittest.TestCase):
         for token in (
             "SX-DEC-060",
             "M6",
-            "Android device smoke",
-            "Five-person first-contact comprehension",
+            "Android device compatibility",
+            "MACHINE_PRIMARY_FINAL_USER_REVIEW",
+            "FIVE_PERSON_COMPREHENSION_NOT_REQUIRED",
         ):
             self.assertIn(token, roadmap)
 

@@ -7,6 +7,7 @@
 | 지금 무엇을 만들고 있으며 현재 Gate는 무엇인가 | `START_HERE.md` |
 | 현재 상태와 다음 정확한 작업은 무엇인가 | `ACTIVE_CONTEXT.md` |
 | 승인된 결정은 무엇인가 | `CURRENT_CONFIRMED_DECISIONS.md` |
+| SX-DEC-065의 머신 우선 검증과 최종 사용자 검수의 경계는 무엇인가 | `../../../docs/decisions/SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW_VALIDATION_POLICY.md` |
 | finite 제품 기준선은 무엇인가 | `FINITE_DELIVERY_PUZZLE_BASELINE.md` |
 | 개발 Gate와 차단 관계는 무엇인가 | `DEVELOPMENT_GATES.md` |
 | 정식 Android Validation APK export 근거는 무엇인가 | `../../50_제작_검증/SX_AUD_019_ANDROID_APK_PIPELINE_PROBE.md` |
@@ -21,8 +22,8 @@
 | 현재 Slice의 모든 화면·오버레이와 시각 소비처 coverage는 무엇인가 | `../../40_표현/TARGET_BUILD_SCREEN_SURFACE_AND_VISUAL_COVERAGE.md` |
 | 첫 세션 화면·문구·progressive disclosure가 어떤 runtime 의미를 가리키는가 | `../../30_UI_UX/FIRST_SESSION_SCREEN_CONTENT_DATA_CONTRACT.md` |
 | Vertical Slice 범위와 cutover 경계는 무엇인가 | `../../50_제작_검증/VERTICAL_SLICE_CONTRACT.md` |
-| 플레이테스트와 사람 검증은 어떻게 하는가 | `../../50_제작_검증/PLAYTEST_PLAN.md` |
-| 현재 Phase 5 시작·Windows/Android/human 실행 순서는 무엇인가 | `../../../docs/superpowers/plans/2026-08-28-phase5-human-validation.md` |
+| 현재 머신 검증과 최종 사용자 검수는 어떻게 수행하는가 | `../../50_제작_검증/PLAYTEST_PLAN.md` |
+| exact candidate의 machine-primary 실행·최종 사용자 검수 순서는 무엇인가 | `../../../docs/superpowers/plans/2026-08-28-phase5-human-validation.md` |
 | Grill Me 승인 batch를 어떻게 닫는가 | `../../50_제작_검증/GRILL_ME_BATCH_MERGE_PROTOCOL.md` |
 | 플랫폼 출시·등급·에셋 권리 Profile은 무엇인가 | `../../../docs/PLATFORM_RELEASE_AND_ASSET_RIGHTS_PROFILE.md` |
 | 자산 권리·provenance를 어디에 기록하는가 | `../../../docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md` |

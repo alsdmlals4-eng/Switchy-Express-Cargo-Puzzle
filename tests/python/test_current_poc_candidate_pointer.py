@@ -78,13 +78,17 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
         self.assertEqual(evidence["package"]["identity_class"], "IMMUTABLE_CONTENT_DIGESTS")
         self.assertEqual(evidence["artifact"]["metadata_class"], "EPHEMERAL_DELIVERY_METADATA")
 
-    def test_post_060_pointer_selects_only_the_current_exact_candidate(self) -> None:
+    def test_post_060_pointer_fails_closed_and_preserves_every_prior_exact_candidate(self) -> None:
         pointer = self._json(POST_060_POINTER)
         self.assertEqual(pointer["schema_version"], 1)
         self.assertEqual(pointer["decision_id"], "SX-DEC-060")
-        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-004")
-        self.assertEqual(pointer["minimum_product_source_main"], "58b99f261c3576150ab275bb041d744c69b83538")
+        self.assertEqual(pointer["candidate_status"], "NOT_CREATED")
+        self.assertIsNone(pointer["current_candidate_id"])
+        self.assertIsNone(pointer["minimum_product_source_main"])
+        self.assertEqual(
+            pointer["current_candidate_role"],
+            "NO_CURRENT_EXACT_CANDIDATE · SX60-POC-ACCEPT-005_MINT_PENDING",
+        )
         self.assertEqual(
             pointer["selection_policy"],
             "EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE",
@@ -101,8 +105,8 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
             pointer["historical_predecessor"]["role"],
             "HISTORICAL_EXACT_BYTES_ONLY",
         )
-        self.assertEqual(pointer["artifact_evidence_owner"], "evidence/acceptance/sx60_poc_accept_004_artifact.json")
-        self.assertEqual(pointer["deep_pck_evidence_owner"], "evidence/acceptance/sx60_poc_accept_004_pck_deep_audit.json")
+        self.assertIsNone(pointer["artifact_evidence_owner"])
+        self.assertIsNone(pointer["deep_pck_evidence_owner"])
         historical = pointer["historical_superseded_candidate"]
         self.assertEqual(historical["candidate_id"], "SX60-POC-ACCEPT-001")
         self.assertEqual(historical["source_main"], "7b7f350345619e870bb94e12954fbe81b1ef9403")
@@ -115,12 +119,20 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
             sx_dec_062_history["invalidation_reason"],
             "PLAYER_FACING_SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION_CHANGE",
         )
+        sx_dec_063_v04_history = pointer["historical_superseded_after_sx_dec_063_core_board_v04"]
+        self.assertEqual(sx_dec_063_v04_history["candidate_id"], "SX60-POC-ACCEPT-004")
+        self.assertEqual(sx_dec_063_v04_history["source_main"], "58b99f261c3576150ab275bb041d744c69b83538")
+        self.assertEqual(
+            sx_dec_063_v04_history["role"],
+            "HISTORICAL_SUPERSEDED_BY_SX_DEC_063_CORE_BOARD_V04_PRODUCT_BYTE_CHANGE",
+        )
         self.assertEqual(pointer["tooling_only_non_invalidating_prs"], ["PR #201", "PR #250"])
 
-    def test_post_060_pointer_records_no_launch_before_physical_validation(self) -> None:
+    def test_post_060_pointer_records_no_launch_before_new_machine_candidate_validation(self) -> None:
         pointer = self._json(POST_060_POINTER)
+        self.assertEqual(pointer["completed_machine_gates"], [])
         self.assertEqual(
-            pointer["completed_machine_gates"],
+            pointer["last_verified_machine_gates"],
             [
                 "Windows Demo Export PASS · 2026-08-29 KST · GitHub Actions Windows runner run 33190345143 · "
                 "exact main 58b99f261c3576150ab275bb041d744c69b83538"
@@ -129,8 +141,8 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
         self.assertEqual(
             pointer["mint_after"],
             [
-                "Windows physical smoke and audio perceptual QA",
-                "Android device smoke and five-person first-contact comprehension",
+                "Mint SX60-POC-ACCEPT-005 from the exact current main after SX-DEC-065",
+                "Run deterministic, Godot, runtime payload, export/package, and CI machine validation",
             ],
         )
 

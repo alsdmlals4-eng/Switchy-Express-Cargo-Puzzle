@@ -65,9 +65,10 @@ class SxDec059ImplementationCanonicalFreshnessTests(unittest.TestCase):
         )
         for required in (
             "SX-DEC-060",
-            "SX60-POC-ACCEPT-004 exact package verified",
-            "PREPARED_PACKAGE_VERIFIED",
-            "NOT_RUN",
+            "SX-DEC-065",
+            "SX60-POC-ACCEPT-004",
+            "EXACT_CANDIDATE_005_MINT",
+            "MACHINE_PRIMARY_FINAL_USER_REVIEW",
         ):
             self.assertIn(required, combined)
         self.assertNotIn(

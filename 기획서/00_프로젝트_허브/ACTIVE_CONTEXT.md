@@ -20,7 +20,7 @@ project_live_main_policy: REFRESH_FROM_GITHUB_BEFORE_EXECUTION
 engine: Godot 4.7.1-stable
 language: GDScript
 product_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~064
+current_decisions: SX-DEC-027~065
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
@@ -90,11 +90,12 @@ sx_dec_064_runtime_owners: game/demo/presentation/product_board_renderer.gd + ga
 sx_dec_064_test_evidence: RED_RECORDED_THEN_GREEN · EXACT_HEAD_CI_7_GREEN · POST_MERGE_MAIN_GODOT_112_CASES_13513_ASSERTIONS · PHYSICAL_AND_HUMAN_NOT_RUN
 sx_dec_064_candidate_004_evidence: SX60-POC-ACCEPT-004 · PACKAGE_VERIFIED · docs/operations/2026-08-29-sx-dec-064-candidate-004-package-freshness.md · PHYSICAL_AND_HUMAN_NOT_RUN
 sx_dec_064_candidate_004_tracking_issue: GitHub_Issue_251
+sx_dec_065_machine_primary_validation: USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW · FIVE_SCOPE_ADVERSARIAL_REVIEW_CLOSED · docs/decisions/SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW_VALIDATION_POLICY.md
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · 2026-08-28 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
 notion_direction_current_page: 3c91b237-eb1c-8197-bf13-debb96d444c8 · CURRENT_CREATED_READBACK_PASS · 2026-08-28
-post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_58b99f2 · WINDOWS_PHYSICAL_AUDIO_QA_NEXT
+post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_58b99f2 · HISTORICAL_PRE_V04_PRODUCT_BYTES · EXACT_CANDIDATE_005_MINT_NEXT
 current_main_live_machine_qa: docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md · MAIN_CF93926 · TITLE_BRIEFING_BUILD_FLOW_OBSERVED · HUMAN_DEVICE_AUDIO_NOT_RUN
 title_hero_runtime_asset: MERGED_MAIN_VERIFIED · PR_217 · main_e0044d6c7427a7c199da6bcdcf792e41e2e2f152 · ISSUE_216 · RUNTIME_VERIFIED · DUAL_PRESERVATION_PASS
 title_hero_runtime_evidence: docs/operations/2026-08-27-title-hero-art-runtime-verification.md
@@ -108,13 +109,15 @@ t2_cardinal_lesson_hero_v02_evidence: docs/operations/2026-08-28-t2-cardinal-les
 screen_visual_coverage: SX-SCREEN-VISUAL-COVERAGE-001 · Issue_222 · SCREEN_INVENTORY_HANDOFF_READY · P0_GAP_BLOCKING_0 · NO_AUTOMATIC_IMAGE_GENERATION_FROM_GAPS
 base_work_five_phase_receipt: docs/operations/2026-08-27-sx60-work-five-phase-start-receipt.md
 phase5_user_start_authorization: RECORDED · 2026-08-28_KST · GitHub_Issue_233
-phase5_execution_plan: docs/superpowers/plans/2026-08-28-phase5-human-validation.md
-base_work_current_phase: PHASE_5_USER_VERTICAL_SLICE_VALIDATION · USER_AUTHORIZED · WINDOWS_PHYSICAL_AUDIO_EXECUTION_PENDING
-remaining_machine_executable_required_work: 0
-windows_physical_post_060: NOT_RUN_CURRENT_EXACT_CANDIDATE_004
+phase5_execution_plan: docs/superpowers/plans/2026-08-28-phase5-human-validation.md · SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW
+validation_strategy: MACHINE_PRIMARY_FINAL_USER_REVIEW
+base_work_current_phase: PHASE_5_MACHINE_PRIMARY_VALIDATION · EXACT_CANDIDATE_005_MINT_AND_MACHINE_EVIDENCE_PENDING
+remaining_machine_executable_required_work: NEW_EXACT_CANDIDATE_005_MACHINE_VALIDATION_PENDING
+windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device_post_060: BLOCKED_UNVERIFIED_NO_EXACT_POST_060_APK_ID
-five_person_post_060: NOT_RUN
-player_experience_post_060: NOT_RUN
+five_person_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+player_experience_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
+final_user_review: FINAL_USER_REVIEW · NOT_RUN · EXACT_CANDIDATE_REQUIRED
 production_cutover: BLOCKED_DEFERRED
 sx_dec_056a: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
@@ -316,15 +319,13 @@ SX-DEC-064 active-route-lighting is merged on main through Issue #248 / PR #249 
 → preserve the rectangular BUILD/RUN grid, gameplay semantics, actual consumer mapping, T2 v02, and Issue #227
 → local package/export proof, PR #255 runtime-byte CI, and merged-main readback are complete; no immutable GitHub candidate is minted, and any later candidate must still be recorded only from immutable reviewed bytes
 → Candidate 004 remains the package record for merged-main pre-Core-Board-v02 bytes and does not transfer to this player-facing branch
-→ Candidates 002–004 are immutable prior-byte evidence; physical Windows/audio, Android, five-person, and player-experience gates remain separate
-→ Windows package verification PASS; run Windows physical smoke and audio-perceptual QA before any Phase 5 human evidence claim
-→ use the full T1 → T6 → VS_DEMO_01 → Result sequence for the next Phase 5 human-validation design
+→ Candidates 002–004 are immutable prior-byte evidence
+→ SX-DEC-065: mint a new exact candidate, run deterministic/Godot/runtime/export/package/CI machine validation, and make the machine acceptance decision
+→ Windows physical/audio is FINAL_USER_REVIEW_ONLY; Android device remains a separately recorded machine/device compatibility gate when targeted
+→ FIVE_PERSON_COMPREHENSION_NOT_REQUIRED / PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED
+→ FINAL_USER_REVIEW is performed only when the user requests final inspection of that exact candidate
 → historical foreign-project Notion Direction page is audit-only and does not block current work
 → use GitHub visual/decision owners as the sole current Switchy Direction
-→ Windows physical smoke + audio perceptual QA
-→ Android device smoke
-→ Five-person comprehension
-→ product decision
 ```
 
 ## Evidence ceiling now

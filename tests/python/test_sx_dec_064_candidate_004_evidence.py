@@ -16,24 +16,26 @@ class SXDec064Candidate004EvidenceTests(unittest.TestCase):
         self.assertTrue(path.is_file(), f"missing required evidence owner: {path}")
         return json.loads(path.read_text(encoding="utf-8"))
 
-    def test_current_pointer_binds_the_exact_post_route_lighting_export(self) -> None:
+    def test_historical_pointer_preserves_the_exact_post_route_lighting_export(self) -> None:
         pointer = self._json(POINTER)
         artifact = self._json(ARTIFACT)
         audit = self._json(AUDIT)
 
-        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-004")
-        self.assertEqual(pointer["minimum_product_source_main"], "58b99f261c3576150ab275bb041d744c69b83538")
+        self.assertEqual(pointer["candidate_status"], "NOT_CREATED")
+        self.assertIsNone(pointer["current_candidate_id"])
+        historical = pointer["historical_superseded_after_sx_dec_063_core_board_v04"]
+        self.assertEqual(historical["candidate_id"], "SX60-POC-ACCEPT-004")
+        self.assertEqual(historical["source_main"], "58b99f261c3576150ab275bb041d744c69b83538")
         self.assertEqual(
-            pointer["artifact_evidence_owner"],
+            historical["artifact_evidence_owner"],
             "evidence/acceptance/sx60_poc_accept_004_artifact.json",
         )
         self.assertEqual(
-            pointer["deep_pck_evidence_owner"],
+            historical["deep_pck_evidence_owner"],
             "evidence/acceptance/sx60_poc_accept_004_pck_deep_audit.json",
         )
-        self.assertEqual(artifact["candidate_id"], pointer["current_candidate_id"])
-        self.assertEqual(artifact["source_build"]["main_sha"], pointer["minimum_product_source_main"])
+        self.assertEqual(artifact["candidate_id"], historical["candidate_id"])
+        self.assertEqual(artifact["source_build"]["main_sha"], historical["source_main"])
         self.assertEqual(artifact["artifact"]["workflow_run_id"], 33190345143)
         self.assertEqual(artifact["artifact"]["id"], 9693500347)
         self.assertEqual(artifact["artifact"]["workflow_head_sha"], artifact["source_build"]["main_sha"])
@@ -46,7 +48,7 @@ class SXDec064Candidate004EvidenceTests(unittest.TestCase):
             artifact["package"]["windows_pck_sha256"],
             "3325f11115fdf3fc57e39bb35c545d115217614eb1e58607934edacf0c6b0839",
         )
-        self.assertEqual(audit["candidate_id"], pointer["current_candidate_id"])
+        self.assertEqual(audit["candidate_id"], historical["candidate_id"])
 
     def test_deep_audit_and_evidence_ceiling_are_exact(self) -> None:
         artifact = self._json(ARTIFACT)
