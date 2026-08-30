@@ -36,7 +36,7 @@ class Candidate003PostmergeCanonTests(unittest.TestCase):
             "pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003",
             "candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY",
             "pre_sx_dec_060_candidate_physical_visual_recheck: NOT_RUN",
-            "post_sx_dec_060_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED",
+            "post_sx_dec_060_candidate: SX60-POC-ACCEPT-005 · PREPARED_PACKAGE_VERIFIED",
             "SX_DEC_060_CODEX_HANDOFF_PACKAGE.md",
         ):
             self.assertIn(required, text)
@@ -48,7 +48,7 @@ class Candidate003PostmergeCanonTests(unittest.TestCase):
             "pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003",
             "role_after_sx_dec_060: HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY",
             "candidate_003_physical_visual_recheck: NOT_RUN",
-            "sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED",
+            "sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-005 · PREPARED_PACKAGE_VERIFIED",
             "current_decision_span: SX-DEC-027~065",
             "SX-DEC-060",
             "SX-DEC-061",
@@ -75,9 +75,9 @@ class Candidate003PostmergeCanonTests(unittest.TestCase):
         self.assertTrue(POST_060_LAUNCHER.is_file())
         pointer = POST_060_POINTER.read_text(encoding="utf-8")
         launcher = POST_060_LAUNCHER.read_text(encoding="ascii")
-        self.assertIn('\"candidate_status\": \"NOT_CREATED\"', pointer)
-        self.assertIn('\"current_candidate_id\": null', pointer)
-        self.assertIn('SX60-POC-ACCEPT-005_MINT_PENDING', pointer)
+        self.assertIn('\"candidate_status\": \"PREPARED_PACKAGE_VERIFIED\"', pointer)
+        self.assertIn('\"current_candidate_id\": \"SX60-POC-ACCEPT-005\"', pointer)
+        self.assertIn('MACHINE_PRIMARY_ACCEPTANCE_READY', pointer)
         self.assertIn('SX60-POC-ACCEPT-004', pointer)
         self.assertIn('HISTORICAL_SUPERSEDED_BY_SX_DEC_063_CORE_BOARD_V04_PRODUCT_BYTE_CHANGE', pointer)
         self.assertIn("HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE", pointer)

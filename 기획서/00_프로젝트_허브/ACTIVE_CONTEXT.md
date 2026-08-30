@@ -7,7 +7,7 @@ historical_notion: AUDIT_ONLY · DO_NOT_READ_OR_WRITE_FOR_CURRENT_WORK
 notion_current_structure_migration: COMPLETE · docs/migrations/2026-08-28-notion-current-workspace-migration.md
 ```
 
-Last updated: `2026-08-29 KST`
+Last updated: `2026-08-30 KST`
 
 이 문서는 **현재 상태·다음 실행 지점·미검증 경계**를 연결하는 resume locator다. fresh GitHub/actual runtime이 저장 snapshot보다 우선한다. 2026-08-28 사용자 결정에 따라 Notion은 `RETIRED_NO_ACTIVE_USE`이며, 새 채팅은 과거 대화나 Notion을 필수 입력으로 요구하지 않고 Project GitHub에서 상태를 다시 재구성한다. Historical Notion readback은 감사 evidence로만 보존한다.
 
@@ -43,7 +43,7 @@ candidate_003_preparation_main: 2521f3be600ea950f9893ce45940604c2d0ac88a
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
 candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_58b99f261c3576150ab275bb041d744c69b83538 · PACKAGE_ONLY · SX_DEC_064_ACTIVE_ROUTE_LIGHTING_INCLUDED
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-005 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · SOURCE_MAIN_a11dfd1a063e434ee22e8cfb7b073ebc380aa27a · FINAL_USER_REVIEW_NOT_RUN
 sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 sx60_poc_accept_003: SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE · PLAYER_FACING_SX_DEC_064_ACTIVE_ROUTE_LIGHTING_CHANGE
 pre_sx_dec_060_candidate_package_integrity: PASS
@@ -88,14 +88,14 @@ sx_dec_064_active_route_lighting: MERGED_MAIN_VERIFIED · GitHub_Issue_248 · PR
 sx_dec_064_decision_owner: docs/decisions/SX_DEC_064_ACTIVE_ROUTE_LIGHTING.md
 sx_dec_064_runtime_owners: game/demo/presentation/product_board_renderer.gd + game/finite/main/finite_slice_session_controller.gd
 sx_dec_064_test_evidence: RED_RECORDED_THEN_GREEN · EXACT_HEAD_CI_7_GREEN · POST_MERGE_MAIN_GODOT_112_CASES_13513_ASSERTIONS · PHYSICAL_AND_HUMAN_NOT_RUN
-sx_dec_064_candidate_004_evidence: SX60-POC-ACCEPT-004 · PACKAGE_VERIFIED · docs/operations/2026-08-29-sx-dec-064-candidate-004-package-freshness.md · PHYSICAL_AND_HUMAN_NOT_RUN
+sx_dec_064_candidate_004_evidence: SX60-POC-ACCEPT-004 · HISTORICAL_PRE_V04_PRODUCT_BYTES · docs/operations/2026-08-29-sx-dec-064-candidate-004-package-freshness.md · PHYSICAL_AND_HUMAN_NOT_RUN
 sx_dec_064_candidate_004_tracking_issue: GitHub_Issue_251
 sx_dec_065_machine_primary_validation: USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW · FIVE_SCOPE_ADVERSARIAL_REVIEW_CLOSED · docs/decisions/SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW_VALIDATION_POLICY.md
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · 2026-08-28 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
 notion_direction_current_page: 3c91b237-eb1c-8197-bf13-debb96d444c8 · CURRENT_CREATED_READBACK_PASS · 2026-08-28
-post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_58b99f2 · HISTORICAL_PRE_V04_PRODUCT_BYTES · EXACT_CANDIDATE_005_MINT_NEXT
+post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-005 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_a11dfd1 · MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN
 current_main_live_machine_qa: docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md · MAIN_CF93926 · TITLE_BRIEFING_BUILD_FLOW_OBSERVED · HUMAN_DEVICE_AUDIO_NOT_RUN
 title_hero_runtime_asset: MERGED_MAIN_VERIFIED · PR_217 · main_e0044d6c7427a7c199da6bcdcf792e41e2e2f152 · ISSUE_216 · RUNTIME_VERIFIED · DUAL_PRESERVATION_PASS
 title_hero_runtime_evidence: docs/operations/2026-08-27-title-hero-art-runtime-verification.md
@@ -111,10 +111,10 @@ base_work_five_phase_receipt: docs/operations/2026-08-27-sx60-work-five-phase-st
 phase5_user_start_authorization: RECORDED · 2026-08-28_KST · GitHub_Issue_233
 phase5_execution_plan: docs/superpowers/plans/2026-08-28-phase5-human-validation.md · SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW
 validation_strategy: MACHINE_PRIMARY_FINAL_USER_REVIEW
-base_work_current_phase: PHASE_5_MACHINE_PRIMARY_VALIDATION · EXACT_CANDIDATE_005_MINT_AND_MACHINE_EVIDENCE_PENDING
-remaining_machine_executable_required_work: NEW_EXACT_CANDIDATE_005_MACHINE_VALIDATION_PENDING
+base_work_current_phase: PHASE_5_MACHINE_PRIMARY_VALIDATION_COMPLETE · SX60_POC_ACCEPT_005
+remaining_machine_executable_required_work: NONE · FINAL_USER_REVIEW_OPTIONAL_ON_UNCHANGED_CANDIDATE_005
 windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
-android_device_post_060: BLOCKED_UNVERIFIED_NO_EXACT_POST_060_APK_ID
+android_device_post_060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
 five_person_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
 player_experience_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
 final_user_review: FINAL_USER_REVIEW · NOT_RUN · EXACT_CANDIDATE_REQUIRED
@@ -337,7 +337,7 @@ TDD_PLAN_RECORDED
 CODEX_HANDOFF_EXECUTED
 RUNTIME_MERGED_MAIN_VERIFIED_PR_188
 AUTOMATED_REGRESSION_PASS_111_CASES_13461_ASSERTIONS
-POST_060_CANDIDATE_SX60_POC_ACCEPT_004_PREPARED_PACKAGE_VERIFIED
+POST_060_CANDIDATE_SX60_POC_ACCEPT_005_MACHINE_PRIMARY_ACCEPTANCE_READY
 SX60_POC_ACCEPT_001_HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE
 POST_060_DEVICE_NOT_RUN
 POST_060_HUMAN_NOT_RUN

@@ -185,20 +185,18 @@ Actual Godot product implementation is merged-main verified by PR #188; the pack
 Historical package record and current sequence:
 
 ```text
-SX60-POC-ACCEPT-004 exact package verified on main 58b99f2
-→ historical pre-v04 package evidence only
-→ mint SX60-POC-ACCEPT-005
-→ machine-primary deterministic/Godot/runtime/export/package/CI validation
-→ final user review only when requested
+SX60-POC-ACCEPT-005 exact package verified on main a11dfd1
+→ machine-primary deterministic/Godot/runtime/export/package/CI validation complete
+→ final user review only when requested on unchanged Candidate 005
 ```
 
 ```yaml
 SX_DEC_060_RUNTIME: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 FULL_AUTOMATED_REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 FIVE_PASS_REVIEW: CLOSED · SX-AUD-071
-POST_060_PACKAGE: SX60_POC_ACCEPT_004_PREPARED_PACKAGE_VERIFIED · HISTORICAL_SX60_POC_ACCEPT_001_TO_003_PRESERVED
+POST_060_PACKAGE: SX60_POC_ACCEPT_005_PREPARED_PACKAGE_VERIFIED · HISTORICAL_SX60_POC_ACCEPT_001_TO_004_PRESERVED
 POST_060_CANDIDATE_004: PREPARED_PACKAGE_VERIFIED · HISTORICAL_PRE_V04_PRODUCT_BYTES
-POST_060_CANDIDATE_005: MACHINE_EVIDENCE_PENDING
+POST_060_CANDIDATE_005: MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN
 ```
 
 ## M6R · Runtime route readability correction

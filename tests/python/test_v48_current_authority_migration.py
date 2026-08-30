@@ -101,11 +101,9 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
         text = PROJECT_SKILL.read_text(encoding="utf-8")
         current = text.split("### Current Gate authority", 1)[1].split("## SX-DEC-060 station / preflight contract", 1)[0]
         for required in (
-            "SX60-POC-ACCEPT-004 package verification",
-            "POST-060 EXACT CANDIDATE: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED",
-            "Windows physical smoke",
-            "Android device smoke",
-            "Five-person first-contact comprehension",
+            "SX60-POC-ACCEPT-005 machine-primary package verification",
+            "five-person comprehension and player-experience study are not required gates",
+            "final user review is optional, only when requested",
         ):
             self.assertIn(required, current)
         self.assertNotIn("Candidate 003 physical visual recheck", current)
@@ -118,7 +116,7 @@ class V48CurrentAuthorityMigrationTests(unittest.TestCase):
             "SX-DEC-056B: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME",
             "SX-DEC-057: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED",
             "SX-DEC-058: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED",
-            "player_experience: NOT_RUN",
+            "player_experience: NOT_REQUIRED_BY_USER_VALIDATION_POLICY",
         ):
             self.assertIn(required, text)
 

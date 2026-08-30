@@ -86,22 +86,25 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         )
         self.assertNotIn("→ five-person first-contact comprehension", current_phase)
         self.assertIn("HISTORICAL_METHOD_REFERENCE_ONLY", playtest)
-        self.assertIn("CURRENT EXACT CANDIDATE: NONE · SX60-POC-ACCEPT-005_MINT_PENDING", playtest)
+        self.assertIn(
+            "CURRENT EXACT CANDIDATE: SX60-POC-ACCEPT-005 · SOURCE_MAIN_a11dfd1a063e434ee22e8cfb7b073ebc380aa27a",
+            playtest,
+        )
 
-    def test_candidate_pointer_fails_closed_until_the_v04_exact_candidate_is_minted(self) -> None:
+    def test_candidate_pointer_selects_the_machine_verified_v04_candidate(self) -> None:
         pointer = json.loads(
             read("evidence/acceptance/post_sx_dec_060_candidate.json")
         )
 
-        self.assertEqual("NOT_CREATED", pointer["candidate_status"])
-        self.assertIsNone(pointer["current_candidate_id"])
+        self.assertEqual("PREPARED_PACKAGE_VERIFIED", pointer["candidate_status"])
+        self.assertEqual("SX60-POC-ACCEPT-005", pointer["current_candidate_id"])
         self.assertEqual(
             "SX60-POC-ACCEPT-004",
             pointer["historical_superseded_after_sx_dec_063_core_board_v04"]["candidate_id"],
         )
 
     @unittest.skipUnless(os.name == "nt", "PowerShell contract execution requires Windows")
-    def test_contract_check_accepts_no_current_candidate_but_launch_route_still_fails_closed(self) -> None:
+    def test_contract_check_resolves_current_candidate_without_launch(self) -> None:
         contract_result = subprocess.run(
             [
                 "powershell",
@@ -122,23 +125,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
             contract_result.returncode,
             contract_result.stdout + contract_result.stderr,
         )
-        self.assertIn("NO_CURRENT_CANDIDATE_MINT_REQUIRED", contract_result.stdout)
-
-        launch_result = subprocess.run(
-            [
-                "powershell",
-                "-ExecutionPolicy",
-                "Bypass",
-                "-File",
-                str(ROOT / "RUN_SX60_POC_SELF_RUN.ps1"),
-            ],
-            cwd=ROOT,
-            capture_output=True,
-            text=True,
-            check=False,
-        )
-        self.assertNotEqual(0, launch_result.returncode)
-        self.assertIn("no current candidate", launch_result.stdout + launch_result.stderr)
+        self.assertIn("POST_SX_DEC_060_CANDIDATE_CONTRACT: PASS - SX60-POC-ACCEPT-005", contract_result.stdout)
 
     def test_registry_map_and_protected_approval_track_the_new_owner(self) -> None:
         registry = json.loads(read("기획서/00_프로젝트_허브/DESIGN_DOCUMENT_REGISTRY.json"))
@@ -158,6 +145,22 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         )
         self.assertIn("SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW", approval["approval_source"])
         self.assertIn("SX-DEC-065", approval["scope_summary"])
+
+        self.assertIn(
+            "USER-APPROVAL-2026-08-30-SX60-POC-ACCEPT-005-MACHINE-VALIDATION",
+            approval["decision_ids"],
+        )
+        for protected_current_candidate_owner in (
+            "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_05.md",
+            "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_05.md",
+        ):
+            self.assertIn(protected_current_candidate_owner, approval["approved_paths"])
+        for non_protected_evidence_owner in (
+            "evidence/acceptance/post_sx_dec_060_candidate.json",
+            "evidence/acceptance/sx60_poc_accept_005_artifact.json",
+            "evidence/acceptance/sx60_poc_accept_005_pck_deep_audit.json",
+        ):
+            self.assertNotIn(non_protected_evidence_owner, approval["approved_paths"])
 
 
 if __name__ == "__main__":

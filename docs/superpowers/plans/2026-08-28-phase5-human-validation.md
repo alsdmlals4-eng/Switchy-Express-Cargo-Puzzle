@@ -7,11 +7,11 @@
 **Issue:** #233
 **Current authority:** `GMB-002 · SX-DEC-027~065`, `SX-DEC-060`, `SX-DEC-061`, `SX-DEC-062`, `SX-DEC-064`, `SX-DEC-065`, `기획서/50_제작_검증/PLAYTEST_PLAN.md`
 **Last verified package candidate:** `SX60-POC-ACCEPT-004` from source `58b99f261c3576150ab275bb041d744c69b83538` · `HISTORICAL_PRE_V04_PRODUCT_BYTES`
-**Current exact candidate:** `NONE · SX60-POC-ACCEPT-005_MINT_PENDING`
+**Current exact candidate:** `SX60-POC-ACCEPT-005 · source a11dfd1a063e434ee22e8cfb7b073ebc380aa27a · MACHINE_PRIMARY_ACCEPTANCE_READY`
 **Candidate pointer:** `evidence/acceptance/post_sx_dec_060_candidate.json`
-**Status at plan creation:** `MACHINE_PRIMARY_FINAL_USER_REVIEW · EXACT_CANDIDATE_005_MACHINE_EVIDENCE_PENDING · FINAL_USER_REVIEW_NOT_RUN`
+**Status:** `MACHINE_PRIMARY_FINAL_USER_REVIEW · EXACT_CANDIDATE_005_MACHINE_EVIDENCE_COMPLETE · FINAL_USER_REVIEW_NOT_RUN`
 
-> **SX-DEC-063 v04 boundary:** Candidates 002–004 are immutable prior-byte observation/package evidence. Mint Candidate 005 from the exact current runtime bytes before machine acceptance; never promote any older physical/audio/human field.
+> **SX-DEC-063 v04 boundary:** Candidates 002–004 are immutable prior-byte observation/package evidence. Candidate 005 is now bound to the exact current runtime bytes; never promote any older physical/audio/human field.
 
 ## Player outcome under test
 

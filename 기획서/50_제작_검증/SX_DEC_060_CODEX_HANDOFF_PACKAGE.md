@@ -241,7 +241,7 @@ its recorded NOT_RUN physical/human fields
 
 Do not call it the acceptance candidate for post-060 runtime. A changed gameplay build requires a new candidate identity and fresh evidence.
 
-The current post-060 candidate locator is `evidence/acceptance/post_sx_dec_060_candidate.json`; it explicitly selects `SX60-POC-ACCEPT-004` as `PREPARED_PACKAGE_VERIFIED` from `58b99f261c3576150ab275bb041d744c69b83538`, the exact post-SX-DEC-064 main. Candidates 001/002 remain immutable historical evidence; Candidate 003 is also immutable prior-byte evidence superseded by `PLAYER_FACING_SX_DEC_064_ACTIVE_ROUTE_LIGHTING_CHANGE`. None of the older candidates is launchable as the current acceptance candidate. `PR #201` and `PR #250` are tooling-only and non-invalidating.
+The current post-060 candidate locator is `evidence/acceptance/post_sx_dec_060_candidate.json`; it explicitly selects `SX60-POC-ACCEPT-005` as `PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY` from exact `main@a11dfd1a063e434ee22e8cfb7b073ebc380aa27a`. Candidates 001–004 remain immutable historical evidence. Candidate 005's CI export, artifact/API/download hashes, runtime JSON proofs, and PCK audit are machine evidence only; final user review remains `NOT_RUN`. `PR #201` and `PR #250` are tooling-only and non-invalidating.
 
 Allowed implementation completion claims depend on actual results. Never infer:
 
@@ -317,7 +317,7 @@ GODOT_RUNTIME_CHANGE: IMPLEMENTED_AUTOMATED · 111_CASES_13461_ASSERTIONS · CI_
 FIVE_PASS_REVIEW: CLOSED · SX-AUD-071
 NOTION_POST_MERGE_READBACK: PASS
 NEW_BITMAP_IMAGE: 0
-POST_060_ACCEPTANCE_CANDIDATE: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · PACKAGE_ONLY
+POST_060_ACCEPTANCE_CANDIDATE: SX60-POC-ACCEPT-005 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY
 SX60_POC_ACCEPT_001: HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE
 PHYSICAL_NOT_RUN
 HUMAN_NOT_RUN

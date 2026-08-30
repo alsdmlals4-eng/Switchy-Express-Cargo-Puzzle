@@ -16,13 +16,13 @@ class SXDec060CandidateMintTests(unittest.TestCase):
         self.assertTrue(path.is_file(), f"missing evidence owner: {path}")
         return json.loads(path.read_text(encoding="utf-8"))
 
-    def test_old_exact_main_artifact_is_preserved_as_historical_evidence_until_a_new_candidate_is_minted(self) -> None:
+    def test_old_exact_main_artifact_is_preserved_as_historical_evidence_after_candidate_005_mint(self) -> None:
         pointer = self._json(POINTER)
         artifact = self._json(ARTIFACT)
         audit = self._json(PCK_AUDIT)
 
-        self.assertEqual(pointer["candidate_status"], "NOT_CREATED")
-        self.assertIsNone(pointer["current_candidate_id"])
+        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-005")
         historical = pointer["historical_superseded_candidate"]
         self.assertEqual(historical["artifact_evidence_owner"], "evidence/acceptance/sx60_poc_accept_001_artifact.json")
         self.assertEqual(historical["deep_pck_evidence_owner"], "evidence/acceptance/sx60_poc_accept_001_pck_deep_audit.json")

@@ -303,16 +303,15 @@ Any finding is fixed and the affected full loop is repeated. `CLEAN_REVIEW_EXIT`
 Blocked until S60-1~10 are complete.
 
 ```text
-SX60-POC-ACCEPT-004 exact package is historical for the v04 byte set
-→ mint a new immutable exact candidate
-→ deterministic contract + Godot/runtime/export/package/CI verification
-→ MACHINE_PRIMARY acceptance decision
-→ FINAL_USER_REVIEW on that exact candidate only when requested
+SX60-POC-ACCEPT-005 exact package is the current v04 byte candidate
+→ deterministic contract + Godot/runtime/export/package/CI verification complete
+→ MACHINE_PRIMARY acceptance ready
+→ FINAL_USER_REVIEW on that unchanged exact candidate only when requested
 ```
 
 Machine evidence does not imply human evidence. `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` and `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED` are not release blockers. Windows physical/audio is `FINAL_USER_REVIEW_ONLY`; Android device remains a separate machine/device compatibility gate if Android is targeted.
 
-Current mapping: `PHASE_5_MACHINE_PRIMARY_VALIDATION · USER_APPROVED_2026-08-30 · EXACT_CANDIDATE_005_MACHINE_EVIDENCE_PENDING`. The historical receipt is preserved as prior process evidence. The current execution plan is `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`; its final user review must not be inferred from automation. The historical Android validation APK has no post-060 candidate eligibility.
+Current mapping: `PHASE_5_MACHINE_PRIMARY_VALIDATION_COMPLETE · USER_APPROVED_2026-08-30 · SX60_POC_ACCEPT_005`. The historical receipt is preserved as prior process evidence. The current execution plan is `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`; its final user review must not be inferred from automation. Android-device evidence is not required for machine-primary acceptance and remains unrun.
 
 Fresh-main Godot live machine QA is recorded in `docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md`: exact `main@cf93926` observed title → briefing → build board after machine pointer input, with the official 112-case / 13,480-assertion runner green. This remains machine-runtime evidence only; physical, audio, device, and human gates stay `NOT_RUN`.
 
