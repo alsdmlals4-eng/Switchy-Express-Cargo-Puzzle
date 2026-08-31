@@ -361,9 +361,10 @@ SX-DEC-064 active-route-lighting is merged on main through Issue #248 / PR #249 
 ```text
 SX-DEC-067 product bytes merged at main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75
 → Candidate 006 is immutable historical Route Book 01 evidence and cannot be used for final-user review of the changed bytes
-→ mint one exact post-SX-DEC-067 package candidate through the existing machine verification workflow
+→ SX60-POC-ACCEPT-007 is the exact post-SX-DEC-067 machine package candidate and current selection
+→ no remaining machine-executable acceptance work; current next action is FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_007 when requested
 → preserve generated wayside images as RUNTIME_CONNECTED candidates; do not promote them to canonical assets or human evidence
-→ only after that exact candidate exists may an optional final user review inspect its unchanged bytes
+→ an optional final user review may inspect only unchanged Candidate 007 bytes
 → five-person comprehension and player-experience studies remain not required by SX-DEC-065
 ```
 

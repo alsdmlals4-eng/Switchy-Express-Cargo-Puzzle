@@ -307,13 +307,13 @@ Blocked until S60-1~10 are complete.
 ```text
 SX60-POC-ACCEPT-006 is historical Route Book 01 package evidence
 → SX-DEC-067 changed player-facing bytes at main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75
-→ no current package candidate is selectable until a new exact machine package is minted
-→ FINAL_USER_REVIEW remains unavailable until that future unchanged candidate exists
+→ SX60-POC-ACCEPT-007 is the exact post-change package and current machine-primary candidate
+→ no remaining machine-executable acceptance work; FINAL_USER_REVIEW is available only when requested on unchanged Candidate 007
 ```
 
 Machine evidence does not imply human evidence. `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` and `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED` are not release blockers. Windows physical/audio is `FINAL_USER_REVIEW_ONLY`; Android device remains a separate machine/device compatibility gate if Android is targeted.
 
-Current mapping: `PHASE_5_MACHINE_PRIMARY_RECONCILIATION · SX_DEC_067_POST_CHANGE_CANDIDATE_REQUIRED`. Candidates 005 and 006 are preserved as prior exact-byte process evidence. The immediate machine task is a new exact package candidate; its final user review must not be inferred from automation. Android-device evidence is not required for machine-primary acceptance and remains unrun.
+Current mapping: `PHASE_5_MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_007`. Candidates 005 and 006 are preserved as prior exact-byte process evidence. Candidate 007 completes the immediate machine package task; its final user review remains separate from automation. Android-device evidence is not required for machine-primary acceptance and remains unrun.
 
 Fresh-main Godot live machine QA is recorded in `docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md`: exact `main@cf93926` observed title → briefing → build board after machine pointer input, with the official 112-case / 13,480-assertion runner green. This remains machine-runtime evidence only; physical, audio, device, and human gates stay `NOT_RUN`.
 
