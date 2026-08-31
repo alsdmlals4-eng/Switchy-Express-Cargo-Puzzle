@@ -21,8 +21,8 @@ class SXDec060CandidateMintTests(unittest.TestCase):
         artifact = self._json(ARTIFACT)
         audit = self._json(PCK_AUDIT)
 
-        self.assertEqual(pointer["candidate_status"], "NOT_MINTED")
-        self.assertIsNone(pointer["current_candidate_id"])
+        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-007")
         historical = pointer["historical_superseded_candidate"]
         self.assertEqual(historical["artifact_evidence_owner"], "evidence/acceptance/sx60_poc_accept_001_artifact.json")
         self.assertEqual(historical["deep_pck_evidence_owner"], "evidence/acceptance/sx60_poc_accept_001_pck_deep_audit.json")

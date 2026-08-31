@@ -1,6 +1,6 @@
 # SX-DEC-067 · Wayside Hazards, Salvage, and Route Book 02
 
-**Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · REMOTE_CI_7_GREEN · POST_CHANGE_CANDIDATE_NOT_MINTED`
+**Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · REMOTE_CI_7_GREEN · SX60-POC-ACCEPT-007_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN`
 **Date:** 2026-08-30 KST
 **Approval source:** The user approved the modular board-decoration and Route Book 02 direction, then explicitly approved `CAUTION_TRACK`, `WASTE_CARGO`, and `DISPOSAL_YARD` with “승인”.
 

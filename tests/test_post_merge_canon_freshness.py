@@ -74,8 +74,8 @@ class PostMergeCanonFreshnessTests(unittest.TestCase):
             active,
         )
         self.assertIn(
-            "post_sx_dec_060_candidate_status: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · "
-            "Candidate_006_historical · MINT_EXACT_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE",
+            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-007 · "
+            "PREPARED_PACKAGE_VERIFIED · Candidate_006_historical",
             active,
         )
         self.assertIn(

@@ -26,8 +26,8 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         artifact = self._json(ARTIFACT)
         audit = self._json(AUDIT)
 
-        self.assertEqual(pointer["candidate_status"], "NOT_MINTED")
-        self.assertIsNone(pointer["current_candidate_id"])
+        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-007")
         historical = pointer["historical_superseded_after_sx_dec_062"]
         self.assertEqual(historical["candidate_id"], "SX60-POC-ACCEPT-002")
         self.assertEqual(
@@ -109,7 +109,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         text = ACTIVE_CONTEXT.read_text(encoding="utf-8")
 
         self.assertIn(
-            "post_sx_dec_060_candidate_status: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · Candidate_006_historical · MINT_EXACT_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE",
+            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-007 · PREPARED_PACKAGE_VERIFIED · Candidate_006_historical",
             text,
         )
         self.assertNotIn("HUMAN_PHYSICAL_SELF_RUN_NEXT", text)
@@ -144,7 +144,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
             self.assertIn(required, receipt)
 
         self.assertIn(
-            "base_work_current_phase: PHASE_5_MACHINE_PRIMARY_RECONCILIATION · SX_DEC_067_POST_CHANGE_CANDIDATE_REQUIRED",
+            "base_work_current_phase: PHASE_5_MACHINE_PRIMARY_CANDIDATE_007_PREPARED",
             active_context,
         )
         self.assertNotIn(
@@ -152,7 +152,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
             active_context,
         )
         self.assertIn(
-            "remaining_machine_executable_required_work: MINT_EXACT_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE",
+            "remaining_machine_executable_required_work: NONE · exact SX-DEC-067 machine package candidate prepared",
             active_context,
         )
 

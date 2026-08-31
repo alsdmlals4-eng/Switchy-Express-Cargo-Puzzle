@@ -73,11 +73,11 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertIn("WorkDir must be a direct child of TEMP", text)
         self.assertIn("RUNNER_TEMP", text)
 
-    def test_post_060_pointer_fails_closed_while_preserving_historical_evidence(self) -> None:
+    def test_post_060_pointer_selects_candidate_007_while_preserving_historical_evidence(self) -> None:
         pointer = self._post_060_pointer()
-        self.assertEqual(pointer["candidate_status"], "NOT_MINTED")
-        self.assertIsNone(pointer["current_candidate_id"])
-        self.assertIn("FAIL_CLOSED", pointer["current_candidate_role"])
+        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-007")
+        self.assertIn("MACHINE_PRIMARY_ACCEPTANCE_READY", pointer["current_candidate_role"])
         self.assertEqual(
             pointer["historical_superseded_candidate"]["invalidation_reason"],
             "PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE",

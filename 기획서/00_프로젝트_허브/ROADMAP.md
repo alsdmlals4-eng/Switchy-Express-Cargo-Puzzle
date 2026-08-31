@@ -44,7 +44,7 @@ SX-DEC-066 · MERGED_MAIN_VERIFIED · PR #260 · SX60-POC-ACCEPT-006_HISTORICAL_
 → 12-game public-source genre benchmark complete: fixed authored maps ADOPT; progression/sandbox families REJECT
 → IMPLEMENTED_LOCAL_MACHINE_VERIFIED · NOT_MERGED · remote CI/package/candidate remain separate
 
-SX-DEC-067 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #263 · main@c0bb86e · POST_CHANGE_CANDIDATE_NOT_MINTED
+SX-DEC-067 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #263 · main@c0bb86e · SX60-POC-ACCEPT-007_PREPARED_PACKAGE_VERIFIED
 → Route Book 02: six optional authored wayside/salvage stages, selected before the existing stage list
 → authored `CAUTION_TRACK` 0.55 departure segments; `WASTE_CRATE` only at cardinal-adjacent `DISPOSAL_YARD`
 → five modular board-decoration placements per new map and eight runtime-connected generated candidate assets
@@ -215,14 +215,14 @@ Historical package record and current sequence:
 ```text
 SX60-POC-ACCEPT-006 exact package verified on main 9af5a8c after Route Book 01
 → SX-DEC-067 changed player-facing bytes at main c0bb86e
-→ Candidate 006 is historical and the exact post-change machine package candidate remains to be minted
+→ Candidate 006 is historical; Candidate 007 now binds the exact post-change machine package
 ```
 
 ```yaml
 SX_DEC_060_RUNTIME: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 FULL_AUTOMATED_REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 FIVE_PASS_REVIEW: CLOSED · SX-AUD-071
-POST_060_PACKAGE: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · HISTORICAL_SX60_POC_ACCEPT_001_TO_006_PRESERVED
+POST_060_PACKAGE: SX60-POC-ACCEPT-007_PREPARED_PACKAGE_VERIFIED · HISTORICAL_SX60_POC_ACCEPT_001_TO_006_PRESERVED
 POST_060_CANDIDATE_004: PREPARED_PACKAGE_VERIFIED · HISTORICAL_PRE_V04_PRODUCT_BYTES
 POST_060_CANDIDATE_006: HISTORICAL_PRE_SX_DEC_067_PRODUCT_BYTES · FINAL_USER_REVIEW_NOT_RUN
 ```
@@ -261,15 +261,14 @@ The user-promoted `SX-VIS-063-CANDIDATE-001` is stored at `art/product_assets/ed
 
 ## M6A · SX-DEC-065 machine-primary validation
 
-`MACHINE_PRIMARY_FINAL_USER_REVIEW · USER_APPROVED · SX_DEC_067_POST_CHANGE_CANDIDATE_NOT_MINTED · FINAL_USER_REVIEW_NOT_RUN`
+`MACHINE_PRIMARY_FINAL_USER_REVIEW · USER_APPROVED · SX60-POC-ACCEPT-007_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN`
 
-The v04 runtime-byte change retains immutable exact Candidate 005 historical evidence. Route Book 01 subsequently minted Candidate 006, which SX-DEC-067 then superseded with player-facing bytes. The immediate machine sequence is:
+The v04 runtime-byte change retains immutable exact Candidate 005 historical evidence. Route Book 01 subsequently minted Candidate 006, which SX-DEC-067 then superseded with player-facing bytes. Candidate 007 now binds the exact SX-DEC-067 package. The current sequence is:
 
 ```text
-mint an immutable exact post-SX-DEC-067 candidate
-→ deterministic/Godot/runtime/export/package/CI machine verification
+Candidate 007 immutable exact post-SX-DEC-067 package verification complete
 → MACHINE_PRIMARY_ACCEPTANCE_READY
-→ optional FINAL_USER_REVIEW only when requested
+→ optional FINAL_USER_REVIEW only when requested on unchanged Candidate 007
 ```
 
 `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` and `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED` are not blockers. Windows physical/audio is `FINAL_USER_REVIEW_ONLY`. Android device compatibility remains an independently recorded machine/device gate if the Android target is in scope; the historical Android validation APK is not eligible.
