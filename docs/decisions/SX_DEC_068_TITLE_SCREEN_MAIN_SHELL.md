@@ -1,6 +1,6 @@
 # SX-DEC-068 · Main Title Shell Composition
 
-**Status:** `USER_APPROVED · SPECIFIED · IMPLEMENTATION_IN_PROGRESS`
+**Status:** `USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_VERIFIED · AWAITING_PR_REVIEW`
 **Date:** 2026-08-31 KST
 **Approval source:** The user approved the recommended continuation and explicitly requested “메인화면도 제작해”.
 
@@ -47,6 +47,10 @@ After the new runtime bytes are machine-verified, Candidate 007 is retained as `
 
 Automated scene, focus, responsive-layout, asset-consumer, and full Godot-suite results are machine evidence. Five-person comprehension and player-experience studies remain `NOT_REQUIRED_BY_USER_VALIDATION_POLICY`. Physical Windows, audio, Android-device, accessibility-assistive-device, release, and final-user review states remain separate and must not be inferred from this work.
 
+## Local machine verification
+
+The implementation commit is `dc326af61a253f1d10db80bb73c476672a4d3d1b` on `codex/sx068-title-main-shell-20260831`. Its full local Godot suite, project operating-contract check, and Python suite passed; the focused title topology, consumer, focus, and 960×540 through 1920×1080 layout assertions are included in that suite. The full evidence, the corrective layout finding, and the retained evidence ceiling are recorded in `docs/operations/2026-08-31-sx-dec-068-title-main-shell-machine-verification.md`.
+
 ## Owners
 
 - Runtime scene: `game/demo/vertical_slice_demo.tscn`
@@ -55,3 +59,4 @@ Automated scene, focus, responsive-layout, asset-consumer, and full Godot-suite 
 - Theme: `game/demo/presentation/demo_theme_factory.gd`
 - Design: `docs/superpowers/specs/2026-08-31-title-screen-main-shell-design.md`
 - Plan: `docs/superpowers/plans/2026-08-31-title-screen-main-shell.md`
+- Local machine evidence: `docs/operations/2026-08-31-sx-dec-068-title-main-shell-machine-verification.md`
