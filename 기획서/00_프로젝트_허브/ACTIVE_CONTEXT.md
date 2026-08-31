@@ -43,7 +43,7 @@ candidate_003_preparation_main: 2521f3be600ea950f9893ce45940604c2d0ac88a
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
 candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · Candidate_006_historical · source main c0bb86efa5bad6050217ca67dd6aa9eba155dc75 requires exact package mint
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-007 · PREPARED_PACKAGE_VERIFIED · Candidate_006_historical · source main c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · FINAL_USER_REVIEW_NOT_RUN
 sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 sx60_poc_accept_003: SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE · PLAYER_FACING_SX_DEC_064_ACTIVE_ROUTE_LIGHTING_CHANGE
 pre_sx_dec_060_candidate_package_integrity: PASS
@@ -102,7 +102,7 @@ sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
 notion_direction_current_page: 3c91b237-eb1c-8197-bf13-debb96d444c8 · CURRENT_CREATED_READBACK_PASS · 2026-08-28
-post_sx_dec_060_candidate_status: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · Candidate_006_historical · MINT_EXACT_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE
+post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-007 · PREPARED_PACKAGE_VERIFIED · Candidate_006_historical · FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_007
 current_main_live_machine_qa: docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md · MAIN_CF93926 · TITLE_BRIEFING_BUILD_FLOW_OBSERVED · HUMAN_DEVICE_AUDIO_NOT_RUN
 title_hero_runtime_asset: MERGED_MAIN_VERIFIED · PR_217 · main_e0044d6c7427a7c199da6bcdcf792e41e2e2f152 · ISSUE_216 · RUNTIME_VERIFIED · DUAL_PRESERVATION_PASS
 title_hero_runtime_evidence: docs/operations/2026-08-27-title-hero-art-runtime-verification.md
@@ -118,10 +118,10 @@ base_work_five_phase_receipt: docs/operations/2026-08-27-sx60-work-five-phase-st
 phase5_user_start_authorization: RECORDED · 2026-08-28_KST · GitHub_Issue_233
 phase5_execution_plan: docs/superpowers/plans/2026-08-28-phase5-human-validation.md · SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW
 validation_strategy: MACHINE_PRIMARY_FINAL_USER_REVIEW
-base_work_current_phase: PHASE_5_MACHINE_PRIMARY_RECONCILIATION · SX_DEC_067_POST_CHANGE_CANDIDATE_REQUIRED
-remaining_machine_executable_required_work: MINT_EXACT_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE
-route_book_execution_state: SX_DEC_066_MERGED_MAIN_MACHINE_VERIFIED · Candidate_006_historical_after_SX_DEC_067
-sx_dec_067_wayside_hazards_and_route_book_02: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · REMOTE_CI_7_GREEN · POST_CHANGE_CANDIDATE_NOT_MINTED
+base_work_current_phase: PHASE_5_MACHINE_PRIMARY_CANDIDATE_007_PREPARED
+remaining_machine_executable_required_work: NONE · exact SX-DEC-067 machine package candidate prepared
+route_book_execution_state: SX_DEC_066_MERGED_MAIN_MACHINE_VERIFIED · Candidate_006_historical_after_SX_DEC_067 · Candidate_007_current_exact_machine_package
+sx_dec_067_wayside_hazards_and_route_book_02: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · REMOTE_CI_7_GREEN · SX60-POC-ACCEPT-007_PREPARED_PACKAGE_VERIFIED
 sx_dec_067_decision_owner: docs/decisions/SX_DEC_067_WAYSIDE_HAZARDS_SALVAGE_AND_ROUTE_BOOK_02.md
 sx_dec_067_core_design: docs/superpowers/specs/2026-08-30-wayside-hazards-and-salvage-design.md
 sx_dec_067_content_design: docs/superpowers/specs/2026-08-30-route-book-02-surface-content-design.md
@@ -130,7 +130,7 @@ sx_dec_067_content_plan: docs/superpowers/plans/2026-08-30-route-book-02-surface
 sx_dec_067_content_owner: 기획서/20_시스템_콘텐츠/ROUTE_BOOK_02_WAYSIDE_CONTENT_SPEC.md
 sx_dec_067_local_machine_evidence: GODOT_120_CASES_14053_ASSERTIONS_0_FAILED · HERA_ROUTE_BOOK_02_AND_RB12_BUILD_MACHINE_RUNTIME_PASS · PR_263_REMOTE_CI_7_GREEN · POST_MERGE_TREE_IDENTITY_AND_CONTRACT_PYTHON_READBACK_PASS · docs/operations/2026-08-31-sx-dec-067-local-machine-runtime-verification.md
 sx_dec_067_candidate_assets: EIGHT_GENERATED_CANDIDATES_RUNTIME_CONNECTED_NOT_CANON · USER_PIXEL_REVIEW_PENDING · art/product_assets/ed_hybrid_v2/manifest.json
-sx_dec_067_candidate_status: NOT_MINTED · Candidate_006_is_historical_for_post_SX_DEC_067_product_bytes
+sx_dec_067_candidate_status: SX60-POC-ACCEPT-007 · PREPARED_PACKAGE_VERIFIED · Candidate_006_is_historical_for_post_SX_DEC_067_product_bytes
 windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device_post_060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
 five_person_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
@@ -376,7 +376,7 @@ TDD_PLAN_RECORDED
 CODEX_HANDOFF_EXECUTED
 RUNTIME_MERGED_MAIN_VERIFIED_PR_188
 AUTOMATED_REGRESSION_PASS_111_CASES_13461_ASSERTIONS
-POST_SX_DEC_067_CANDIDATE_NOT_MINTED · CURRENT_SELECTION_FAIL_CLOSED
+POST_SX_DEC_067_CANDIDATE_007_PREPARED_PACKAGE_VERIFIED · CURRENT_SELECTION_EXPLICIT
 SX60_POC_ACCEPT_001_HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE
 POST_060_DEVICE_NOT_RUN
 POST_060_HUMAN_NOT_RUN

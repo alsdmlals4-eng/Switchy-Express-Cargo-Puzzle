@@ -23,9 +23,9 @@ class SXDec062Candidate003EvidenceTests(unittest.TestCase):
         artifact = self._json(ARTIFACT)
         audit = self._json(AUDIT)
 
-        self.assertEqual(pointer["candidate_status"], "NOT_MINTED")
+        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
         historical = pointer["historical_superseded_after_sx_dec_064"]
-        self.assertIsNone(pointer["current_candidate_id"])
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-007")
         self.assertEqual(historical["candidate_id"], "SX60-POC-ACCEPT-003")
         self.assertEqual(historical["source_main"], "8bce715b5045afebfb04d38108d2e3f7353e1b10")
         self.assertEqual(
@@ -94,8 +94,8 @@ class SXDec062Candidate003EvidenceTests(unittest.TestCase):
         self.assertIn("SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE", decisions)
         self.assertIn("SX60-POC-ACCEPT-002 · HISTORICAL_SUPERSEDED_BY_SX_DEC_062", decisions)
         self.assertIn(
-            "post_sx_dec_060_candidate_status: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · "
-            "Candidate_006_historical · MINT_EXACT_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE",
+            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-007 · "
+            "PREPARED_PACKAGE_VERIFIED · Candidate_006_historical",
             active_context,
         )
         self.assertNotIn("SX-DEC-062 runtime/test/package/human result exists yet", decisions)

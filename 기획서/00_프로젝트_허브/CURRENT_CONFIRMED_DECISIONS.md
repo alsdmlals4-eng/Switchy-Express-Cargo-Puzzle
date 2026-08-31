@@ -4,14 +4,14 @@ Last updated: `2026-08-31 KST`
 
 ## SX-DEC-067 · Wayside Hazards, Salvage, and Route Book 02
 
-- **Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · REMOTE_CI_7_GREEN · POST_CHANGE_CANDIDATE_NOT_MINTED`
+- **Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · REMOTE_CI_7_GREEN · SX60-POC-ACCEPT-007_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN`
 - **Decision owner:** `docs/decisions/SX_DEC_067_WAYSIDE_HAZARDS_SALVAGE_AND_ROUTE_BOOK_02.md`
 - **Core rule:** authored `CAUTION_TRACK` departure segments use one fixed `0.55` speed multiplier; this is not retired cargo-count slowdown.
 - **Cargo rule:** `WASTE_CRATE` unloads only at an off-track cardinal-adjacent `DISPOSAL_YARD`; LIFO/TOP and ordinary stations remain unchanged.
 - **Content rule:** Route Book 02 contributes six optional authored stages; T1–T6, VS_DEMO_01, Route Book 01, score/progression, generators, and solution reveal remain out of scope.
 - **Evidence:** local Godot full regression `PASS · 120 cases / 14,053 assertions`; current-worktree Hera runtime observed title → book selector → Route Book 02 and RB12 build board; PR #263's seven required remote checks are green. The exact PR-head tree equals merged `main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75`; post-merge Project Contract and Python regression readbacks passed. `docs/operations/2026-08-31-sx-dec-067-local-machine-runtime-verification.md` owns the exact receipt and its evidence ceiling.
 - **Asset state:** 8 bitmap files are `GENERATED_CANDIDATE · RUNTIME_CONNECTED · NOT_CANON · USER_PIXEL_REVIEW_PENDING`, with SHA-256 and exact consumers in `art/product_assets/ed_hybrid_v2/manifest.json` and `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`.
-- **Ceiling:** Candidate 006 is historical for these changed bytes. Remote CI and merged-main readback are recorded, but no post-change package, physical/device/audio, human, final-user-review, or release claim is transferred.
+- **Ceiling:** Candidate 006 is historical for the prior Route Book 01 bytes. Candidate 007 carries the exact post-SX-DEC-067 machine package evidence; physical/device/audio, human, final-user-review, and release claims remain separate and are not transferred.
 
 이 문서는 Switchy Express의 **현재 승인 Decision과 실행 권위**를 압축한다. 상세 규칙·근거·역사 CI는 각 Decision/Audit owner가 책임진다. Google Sheets는 migration-only이며 active decision authority가 아니다.
 
@@ -50,7 +50,7 @@ candidate_003_preparation: MERGED_MAIN_VERIFIED · PR #172 · main_2521f3be600ea
 pre_sx_dec_060_candidate_pointer: evidence/acceptance/current_poc_candidate.json
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_AFTER_SX_DEC_060
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · Candidate_006_historical · source main c0bb86efa5bad6050217ca67dd6aa9eba155dc75 requires exact package mint
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-007 · PREPARED_PACKAGE_VERIFIED · Candidate_006_historical · source main c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · FINAL_USER_REVIEW_NOT_RUN
 sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 sx60_poc_accept_002: SX60-POC-ACCEPT-002 · HISTORICAL_SUPERSEDED_BY_SX_DEC_062 · PRIOR_BYTE_ISOLATED_VISUAL_INPUT_OBSERVATION_DOES_NOT_TRANSFER
 sx60_poc_accept_003: SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE
@@ -67,7 +67,7 @@ sx_dec_060_design: RECORDED
 sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
-sx_dec_060_post_change_candidate: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · Candidate_006_historical · package mint pending
+sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-007 · PREPARED_PACKAGE_VERIFIED · Candidate_006_historical · FINAL_USER_REVIEW_NOT_RUN
 sx_dec_060_notion_sync: PASS · POST_PR_188_READBACK_COMPLETE
 sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION · PACKAGE_VERIFIED
@@ -344,8 +344,8 @@ SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063
 → SX60-POC-ACCEPT-004 remains historical package evidence for pre-v04 product bytes
 → SX-DEC-065 USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW
 → SX60-POC-ACCEPT-005 historical for pre-Route-Book bytes; SX60-POC-ACCEPT-006 minted from exact `main@9af5a8c46d29ea6781f9ee06008d7c7d2cde1877` and machine validation completed for those Route Book 01 bytes
-→ SX-DEC-067 later changed player-facing bytes, so Candidate 006 is historical and the current candidate selection is fail-closed until a new exact package is minted
-→ FINAL_USER_REVIEW only on the future unchanged post-SX-DEC-067 candidate when requested
+→ SX-DEC-067 later changed player-facing bytes, so Candidate 006 is historical; Candidate 007 is now minted from those exact bytes with machine package verification
+→ FINAL_USER_REVIEW only on unchanged Candidate 007 when requested
 → Android device compatibility only when the Android target is in scope
 → FIVE_PERSON_COMPREHENSION_NOT_REQUIRED / PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED
 ```
@@ -357,9 +357,8 @@ Candidate 003 Gate 0 is retained as historical pre-060 validation instructions b
 ```text
 SX-DEC-067 merged main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75
 → Candidate 006 is historical for the prior Route Book 01 bytes
-→ current pointer is fail-closed: no exact post-SX-DEC-067 package candidate has been minted
-→ next machine work is to mint and verify that package candidate
-→ optional final user review may only inspect the future unchanged candidate
+→ Candidate 007 is the exact post-SX-DEC-067 machine package candidate and the current pointer
+→ machine package verification is complete; optional final user review may only inspect unchanged Candidate 007
 → five-person comprehension and player-experience studies remain not required under SX-DEC-065
 ```
 

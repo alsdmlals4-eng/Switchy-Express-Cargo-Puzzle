@@ -13,9 +13,9 @@ base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
 current_decisions: SX-DEC-027~067
-current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · SX_DEC_066_ROUTE_BOOK_01 · SX_DEC_067_WAYSIDE_HAZARDS_ROUTE_BOOK_02_MERGED_MAIN_VERIFIED · POST_CHANGE_CANDIDATE_NOT_MINTED · FINAL_USER_REVIEW_NOT_RUN
+current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · SX_DEC_066_ROUTE_BOOK_01 · SX_DEC_067_WAYSIDE_HAZARDS_ROUTE_BOOK_02_MERGED_MAIN_VERIFIED · SX60-POC-ACCEPT-007_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN
 sx_dec_066_merged_gate: MERGED_MAIN_VERIFIED · PR_260 · main_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · hosted_CI_package_candidate_complete · final_user_review_NOT_RUN
-sx_dec_067_delivery_gate: PR_263_MERGED · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · LOCAL_GODOT_120_CASES_14053_ASSERTIONS_PASS · REMOTE_CI_7_GREEN · package_candidate_NOT_MINTED · final_user_review_NOT_RUN
+sx_dec_067_delivery_gate: PR_263_MERGED · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · LOCAL_GODOT_120_CASES_14053_ASSERTIONS_PASS · REMOTE_CI_7_GREEN · SX60-POC-ACCEPT-007_PREPARED_PACKAGE_VERIFIED · final_user_review_NOT_RUN
 ```
 
 ## 1. Stable historical implementation evidence
@@ -47,7 +47,7 @@ docs/superpowers/plans/2026-08-28-board-first-runtime-composition.md
 
 This one presentation slice may modify only the named palette/theme/HUD/shell/board-renderer owners and tests. It preserves all existing raster paths and consumers, including T2 v02. Issue #227, finite data/rules, first-session content, audio, score/economy/progression, Base, and PR #174 are out of scope.
 
-The implementation demonstrated RED→GREEN tests, exact-head static/Godot checks, a no-new-asset/no-gameplay-delta review, and exact-main package candidates. `SX60-POC-ACCEPT-002` through `SX60-POC-ACCEPT-006` are historical package evidence only and do not pass a physical/human gate. SX-DEC-067 changed player-facing bytes, so the current candidate selection is fail-closed until a new exact package is minted.
+The implementation demonstrated RED→GREEN tests, exact-head static/Godot checks, a no-new-asset/no-gameplay-delta review, and exact-main package candidates. `SX60-POC-ACCEPT-002` through `SX60-POC-ACCEPT-006` are historical package evidence only and do not pass a physical/human gate. `SX60-POC-ACCEPT-007` now binds the exact SX-DEC-067 product bytes for machine-primary acceptance; physical/human gates remain separate.
 
 Stable historical physical/human anchors remain:
 

@@ -20,8 +20,8 @@ class SXDec066Candidate006MachineEvidenceTests(unittest.TestCase):
     def test_pointer_preserves_route_book_candidate_006_as_historical_after_sx_dec_067(self) -> None:
         pointer = self._json(POINTER)
 
-        self.assertEqual("NOT_MINTED", pointer["candidate_status"])
-        self.assertIsNone(pointer["current_candidate_id"])
+        self.assertEqual("PREPARED_PACKAGE_VERIFIED", pointer["candidate_status"])
+        self.assertEqual("SX60-POC-ACCEPT-007", pointer["current_candidate_id"])
         self.assertEqual(
             "9af5a8c46d29ea6781f9ee06008d7c7d2cde1877",
             pointer["historical_superseded_after_sx_dec_067"]["source_main"],
@@ -34,8 +34,8 @@ class SXDec066Candidate006MachineEvidenceTests(unittest.TestCase):
             "evidence/acceptance/sx60_poc_accept_006_pck_deep_audit.json",
             pointer["historical_superseded_after_sx_dec_067"]["deep_pck_evidence_owner"],
         )
-        self.assertIn("FAIL_CLOSED", pointer["current_candidate_role"])
-        self.assertIn("CANDIDATE_006_HISTORICAL_ONLY", pointer["current_candidate_role"])
+        self.assertIn("MACHINE_PRIMARY_ACCEPTANCE_READY", pointer["current_candidate_role"])
+        self.assertIn("POST_SX_DEC_067_EXACT_PRODUCT_BYTES", pointer["current_candidate_role"])
 
     def test_artifact_and_deep_audit_bind_the_route_book_package(self) -> None:
         pointer = self._json(POINTER)

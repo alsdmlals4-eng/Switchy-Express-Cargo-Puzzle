@@ -31,7 +31,7 @@ description: Use for Switchy Express finite-delivery gameplay, track constructio
 
 ### SX-DEC-067 candidate freshness override
 
-`SX60-POC-ACCEPT-006` is immutable historical Route Book 01 evidence after the player-facing SX-DEC-067 bytes merged at `main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75`. The current pointer is fail-closed (`NOT_MINTED`): do not select Candidate 006 for a final-user review, and mint a new exact machine package candidate before any such optional review.
+`SX60-POC-ACCEPT-006` is immutable historical Route Book 01 evidence after the player-facing SX-DEC-067 bytes merged at `main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75`. `SX60-POC-ACCEPT-007` is the current explicit machine-package pointer for those exact bytes; do not select Candidate 006 for a final-user review, and do not transfer Candidate 007 evidence to changed bytes.
 
 ```text
 build the needed rail network
@@ -85,7 +85,7 @@ SX-DEC-060 DESIGN/TDD/CODEX HANDOFF: PREPARED
 SX-DEC-060 RUNTIME IMPLEMENTATION: MERGED_MAIN_VERIFIED · PR #188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 SX-DEC-060 FULL AUTOMATED REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 SX-DEC-060 FIVE-PASS REVIEW: CLOSED · SX-AUD-071
-POST-SX-DEC-067 EXACT CANDIDATE: NOT_MINTED · current selection fail-closed · Candidate 006 historical Route Book 01 evidence from source main 9af5a8c46d29ea6781f9ee06008d7c7d2cde1877
+POST-SX-DEC-067 EXACT CANDIDATE: SX60-POC-ACCEPT-007 · PREPARED_PACKAGE_VERIFIED · source main c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · Candidate 006 historical Route Book 01 evidence
 SX60-POC-ACCEPT-001: HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 WINDOWS PHYSICAL POST-060: FINAL_USER_REVIEW_ONLY · NOT_RUN · SX60-POC-ACCEPT-001_TO_004_OBSERVATIONS_HISTORICAL_ONLY
 ANDROID DEVICE POST-060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN

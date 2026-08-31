@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
   "decision_id": "SX-DEC-060",
-  "candidate_status": "NOT_MINTED",
-  "current_candidate_id": null,
-  "current_candidate_role": "FAIL_CLOSED · NO_CURRENT_POST_SX_DEC_067_PACKAGE_CANDIDATE · CANDIDATE_006_HISTORICAL_ONLY",
+  "candidate_status": "PREPARED_PACKAGE_VERIFIED",
+  "current_candidate_id": "SX60-POC-ACCEPT-007",
+  "current_candidate_role": "MACHINE_PRIMARY_ACCEPTANCE_READY · POST_SX_DEC_067_EXACT_PRODUCT_BYTES · FINAL_USER_REVIEW_NOT_RUN",
   "candidate_mint_policy": "SX-DEC-065 · MACHINE_PRIMARY_FINAL_USER_REVIEW",
   "selection_policy": "EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE",
   "minimum_product_source_main": "c0bb86efa5bad6050217ca67dd6aa9eba155dc75",
-  "artifact_evidence_owner": null,
-  "deep_pck_evidence_owner": null,
-  "acceptance_candidate_document": null,
-  "self_run_record_name": null,
+  "artifact_evidence_owner": "evidence/acceptance/sx60_poc_accept_007_artifact.json",
+  "deep_pck_evidence_owner": "evidence/acceptance/sx60_poc_accept_007_pck_deep_audit.json",
+  "acceptance_candidate_document": "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_07.md",
+  "self_run_record_name": "SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_07.md",
   "historical_predecessor": {
     "candidate_id": "SX59-POC-ACCEPT-003",
     "pointer": "evidence/acceptance/current_poc_candidate.json",
@@ -93,19 +93,17 @@
     "PR #250"
   ],
   "completed_machine_gates": [
-    "GitHub Actions Windows Demo Export PASS · run 33308989848 · exact main 9af5a8c46d29ea6781f9ee06008d7c7d2cde1877",
-    "Python contracts PASS · 235 passed, 2 skipped · exact workflow run 33308989848",
-    "Godot 4.7.1 headless PASS · 118 cases, 13791 assertions · exact workflow run 33308989848",
-    "Windows and Android preset runtime JSON PCK PASS · parsed_json=30 each · exact workflow run 33308989848",
-    "Artifact API/download ZIP and inner EXE/PCK SHA-256 PASS · exact artifact 9731396797",
-    "Independent Godot PCK integrity PASS · 571 of 571 entries · zero MD5/bounds/flag/trailing failures"
+    "GitHub Actions Windows Demo Export PASS · run 33382094895 · exact main c0bb86efa5bad6050217ca67dd6aa9eba155dc75",
+    "Python contracts PASS · 240 passed, 2 skipped · exact workflow run 33382094895",
+    "Godot 4.7.1 headless PASS · 120 cases, 14053 assertions, 0 failed · exact workflow run 33382094895",
+    "Windows and Android preset runtime JSON PCK PASS · parsed_json=31 each · exact workflow run 33382094895",
+    "Artifact API/download ZIP and inner EXE/PCK SHA-256 PASS · exact artifact 9754181081",
+    "Independent Godot PCK integrity PASS · 599 of 599 entries · zero MD5/bounds/flag/trailing failures"
   ],
   "last_verified_machine_gates": [
-    "Windows Demo Export PASS · 2026-08-30 KST · GitHub Actions run 33308989848 · exact main 9af5a8c46d29ea6781f9ee06008d7c7d2cde1877"
+    "Windows Demo Export PASS · 2026-08-31 KST · GitHub Actions run 33382094895 · exact main c0bb86efa5bad6050217ca67dd6aa9eba155dc75"
   ],
-  "mint_after": [
-    "MINT_EXACT_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE_FROM_MAIN_C0BB86EFA5BAD6050217CA67DD6AA9EBA155DC75"
-  ],
-  "current_next_action": "MINT_EXACT_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE",
+  "mint_after": [],
+  "current_next_action": "FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_007",
   "updated_date_kst": "2026-08-31"
 }

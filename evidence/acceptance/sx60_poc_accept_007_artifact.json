@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "candidate_id": "SX60-POC-ACCEPT-007",
+  "decision_id": "SX-DEC-060",
+  "change_decision_ids": ["SX-DEC-062", "SX-DEC-064", "SX-DEC-065", "SX-DEC-066", "SX-DEC-067"],
+  "observed_date_kst": "2026-08-31",
+  "source_build": {
+    "main_sha": "c0bb86efa5bad6050217ca67dd6aa9eba155dc75",
+    "identity": "SX_DEC_067_EXACT_MAIN_WORKFLOW_DISPATCH_VIA_EPHEMERAL_SOURCE_REF"
+  },
+  "artifact": {
+    "workflow_name": "Windows Demo Export",
+    "workflow_run_id": 33382094895,
+    "workflow_run_number": 563,
+    "workflow_event": "workflow_dispatch",
+    "workflow_head_sha": "c0bb86efa5bad6050217ca67dd6aa9eba155dc75",
+    "workflow_head_ref": "codex/sx067-candidate-source-20260831",
+    "workflow_conclusion": "success",
+    "id": 9754181081,
+    "name": "switchy-express-windows-demo-c0bb86efa5bad6050217ca67dd6aa9eba155dc75",
+    "created_at": "2026-08-31T10:24:02Z",
+    "expires_at": "2026-09-14T10:23:56Z",
+    "retention_days": 14,
+    "api_digest_sha256": "a48b689bcbe40fc229663ed8a1b254e876f210851cec43963cb8db72af6ff3ef",
+    "metadata_class": "EPHEMERAL_DELIVERY_METADATA"
+  },
+  "package": {
+    "identity_class": "IMMUTABLE_CONTENT_DIGESTS",
+    "zip_sha256": "a48b689bcbe40fc229663ed8a1b254e876f210851cec43963cb8db72af6ff3ef",
+    "windows_exe_sha256": "1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244",
+    "windows_pck_sha256": "e848f9932c90210aa8e05b187dd69180c161258ad236ad0c5a278ecaa52669c4",
+    "windows_runtime_json_proof_pck_sha256": "e848f9932c90210aa8e05b187dd69180c161258ad236ad0c5a278ecaa52669c4",
+    "android_validation_pck_sha256": "5e127d1ec3ad584a5cc89a2d65f5b5a2f122911b92eef5c03a8852b85b18005d"
+  },
+  "verification": {
+    "artifact_api_digest_equals_downloaded_zip_sha256": true,
+    "artifact_api_readback": "PASS · 2026-08-31 · artifact 9754181081",
+    "independent_zip_hash": "PASS · 2026-08-31 · API download SHA-256 equals artifact digest",
+    "inner_sha256sums_matches_downloaded_exe_pck": true,
+    "python_contracts": "PASS · 240 passed, 2 skipped",
+    "godot_headless": "PASS · 120 cases, 14053 assertions, 0 failed",
+    "windows_runtime_json": "PASS · parsed_json=31",
+    "android_validation_runtime_json": "PASS · parsed_json=31",
+    "package_integrity": "PASS",
+    "launcher_contract_check": "PASS · 2026-08-31 · POST_SX_DEC_060_CANDIDATE_CONTRACT: PASS - SX60-POC-ACCEPT-007",
+    "launcher_no_launch_package_verification": "NOT_RUN",
+    "windows_physical_startup_and_build_entry_automation_observed": "NOT_RUN",
+    "developer_self_run": "NOT_RUN",
+    "windows_physical_runtime_full_scenarios": "NOT_RUN",
+    "audio_perceptual_qa": "NOT_RUN",
+    "android_device": "NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN",
+    "five_person_comprehension": "NOT_REQUIRED_BY_USER_VALIDATION_POLICY",
+    "player_experience": "NOT_REQUIRED_BY_USER_VALIDATION_POLICY",
+    "final_user_review": "FINAL_USER_REVIEW · NOT_RUN",
+    "production_cutover": "BLOCKED_DEFERRED"
+  }
+}
