@@ -6,7 +6,7 @@
 | --- | --- |
 | 대상 프로젝트 | alsdmlals4-eng/Switchy-Express-Cargo-Puzzle |
 | 프로젝트 흡수 전 기준 | `a165a31ddf3ba20d2ba0411f42cc9f5899b4753b` (2026-08-31 KST) |
-| 프로젝트 흡수 source | `7b625e496e1103b2d5c71b76a9b2f763bd0e611d` |
+| 프로젝트 흡수 source | `32e7a0872f02e19561b0552cafe09aeb7bac5681` |
 | Base 비교 revision | `1f0ef9d8bdb1869c9ba25b33efdcb34cf2ccba83` |
 | 조사 기간과 표본 | 2026-08-01~2026-08-31 KST, reachable main 640 commits, first-parent milestones 51개 |
 | 프로젝트 흡수 기록 | `docs/operations/2026-08-31-project-learning-absorption.md` (`SX-LRN-20260831-01`) |
@@ -103,4 +103,4 @@ Switchy는 PR #264에서 v4.8 adapter의 workspace artifact hygiene 절, Active 
 
 ### PDF 검수 기록
 
-2026-08-31에 이 Markdown 파생 원고로 PDF를 생성하고 A4 3쪽 전체를 PNG로 렌더링해 검사했다. 한글 글꼴, 잘림, 겹침, 빈 페이지, 표 넘침, 머리말과 쪽번호는 발견되지 않았다. 텍스트 추출에는 `BCL-SX-001`, `OBSERVATION_ONLY`, `NOT SUBMITTED`, `NOT PERFORMED`, `7b625e496e1103b2d5c71b76a9b2f763bd0e611d`, `공용 후보`가 포함됨을 확인했다. 이 검수는 PDF 표현과 텍스트 추출에 한정되며, Base 채택·runtime·사용자 검수의 PASS를 뜻하지 않는다.
+2026-08-31에 이 Markdown 파생 원고로 PDF를 생성하고 A4 3쪽 전체를 PNG로 렌더링해 검사했다. 한글 글꼴, 잘림, 겹침, 빈 페이지, 표 넘침, 머리말과 쪽번호는 발견되지 않았다. 텍스트 추출에는 `BCL-SX-001`, `OBSERVATION_ONLY`, `NOT SUBMITTED`, `NOT PERFORMED`, `32e7a0872f02e19561b0552cafe09aeb7bac5681`, `공용 후보`가 포함됨을 확인했다. 이 검수는 PDF 표현과 텍스트 추출에 한정되며, Base 채택·runtime·사용자 검수의 PASS를 뜻하지 않는다.
