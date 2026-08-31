@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "candidate_id": "SX60-POC-ACCEPT-009",
+  "decision_id": "SX-DEC-060",
+  "change_decision_ids": ["SX-DEC-062", "SX-DEC-064", "SX-DEC-065", "SX-DEC-066", "SX-DEC-067", "SX-DEC-068"],
+  "observed_date_kst": "2026-08-31",
+  "source_build": {
+    "main_sha": "1ac3099d9ab1451323cca2935547f82d210b50b4",
+    "identity": "SX_DEC_068_CANONICAL_WORDMARK_EXACT_SOURCE_WORKFLOW_DISPATCH_VIA_EPHEMERAL_SOURCE_REF"
+  },
+  "artifact": {
+    "workflow_name": "Windows Demo Export",
+    "workflow_run_id": 33396533310,
+    "workflow_run_number": 575,
+    "workflow_event": "workflow_dispatch",
+    "workflow_head_sha": "1ac3099d9ab1451323cca2935547f82d210b50b4",
+    "workflow_head_ref": "codex/sx068-candidate-009-source-canon-20260831",
+    "workflow_conclusion": "success",
+    "id": 9759591197,
+    "name": "switchy-express-windows-demo-1ac3099d9ab1451323cca2935547f82d210b50b4",
+    "created_at": "2026-08-31T13:23:30Z",
+    "expires_at": "2026-09-14T13:23:24Z",
+    "retention_days": 14,
+    "api_digest_sha256": "fe90c0b85abfa23684ac07b1cfb391e3b56e3f6f912180bd9702311b3fbefc22",
+    "metadata_class": "EPHEMERAL_DELIVERY_METADATA"
+  },
+  "package": {
+    "identity_class": "IMMUTABLE_CONTENT_DIGESTS",
+    "zip_sha256": "fe90c0b85abfa23684ac07b1cfb391e3b56e3f6f912180bd9702311b3fbefc22",
+    "windows_exe_sha256": "1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244",
+    "windows_pck_sha256": "5f5de90db1587f07c8e44e9ae1c8efcde8db6bd3c222785bf4f8eea5a4478d8c",
+    "windows_runtime_json_proof_pck_sha256": "5f5de90db1587f07c8e44e9ae1c8efcde8db6bd3c222785bf4f8eea5a4478d8c",
+    "android_validation_pck_sha256": "6e3cf1703cb52f1adaeb8c3db9d18af7e43a86720cd52a3fec41b9c411d3c7ca"
+  },
+  "verification": {
+    "artifact_api_digest_equals_downloaded_zip_sha256": true,
+    "artifact_api_readback": "PASS · 2026-08-31 · artifact 9759591197",
+    "independent_zip_hash": "PASS · 2026-08-31 · API download SHA-256 equals artifact digest",
+    "inner_sha256sums_matches_downloaded_exe_pck": true,
+    "python_contracts": "PASS · 250 passed, 2 skipped",
+    "godot_headless": "PASS · 120 cases, 14125 assertions, 0 failed",
+    "windows_runtime_json": "PASS · parsed_json=31",
+    "android_validation_runtime_json": "PASS · parsed_json=31",
+    "package_integrity": "PASS",
+    "launcher_contract_check": "PASS · 2026-08-31 · POST_SX_DEC_060_CANDIDATE_CONTRACT: PASS - SX60-POC-ACCEPT-009",
+    "launcher_no_launch_package_verification": "NOT_RUN",
+    "windows_physical_startup_and_build_entry_automation_observed": "NOT_RUN",
+    "developer_self_run": "NOT_RUN",
+    "windows_physical_runtime_full_scenarios": "NOT_RUN",
+    "audio_perceptual_qa": "NOT_RUN",
+    "android_device": "NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN",
+    "five_person_comprehension": "NOT_REQUIRED_BY_USER_VALIDATION_POLICY",
+    "player_experience": "NOT_REQUIRED_BY_USER_VALIDATION_POLICY",
+    "final_user_review": "FINAL_USER_REVIEW · NOT_RUN",
+    "title_wordmark_pixel_review": "USER_PIXEL_APPROVED · CANON_REGISTERED",
+    "production_cutover": "BLOCKED_DEFERRED"
+  }
+}

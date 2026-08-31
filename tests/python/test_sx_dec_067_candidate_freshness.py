@@ -14,7 +14,7 @@ class SXDec067CandidateFreshnessTests(unittest.TestCase):
         pointer = json.loads(POINTER.read_text(encoding="utf-8"))
 
         self.assertEqual("PREPARED_PACKAGE_VERIFIED", pointer["candidate_status"])
-        self.assertEqual("SX60-POC-ACCEPT-008", pointer["current_candidate_id"])
+        self.assertEqual("SX60-POC-ACCEPT-009", pointer["current_candidate_id"])
         self.assertEqual(
             "c0bb86efa5bad6050217ca67dd6aa9eba155dc75",
             pointer["historical_superseded_after_sx_dec_068"]["source_main"],
@@ -28,6 +28,6 @@ class SXDec067CandidateFreshnessTests(unittest.TestCase):
             pointer["historical_superseded_after_sx_dec_067"]["role"],
         )
         self.assertEqual(
-            "FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_008_WITH_SEPARATE_TITLE_WORDMARK_PIXEL_DISPOSITION",
+            "FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_009",
             pointer["current_next_action"],
         )

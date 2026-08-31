@@ -17,7 +17,7 @@ DECISION = ROOT / "docs/decisions/SX_DEC_068_TITLE_SCREEN_MAIN_SHELL.md"
 
 
 class SXDec068TitleWordmarkCandidateTests(unittest.TestCase):
-    def test_wordmark_is_a_tracked_rgba_candidate_with_one_title_consumer(self) -> None:
+    def test_wordmark_is_a_tracked_rgba_canonical_asset_with_one_title_consumer(self) -> None:
         asset_path = ROOT / ASSET_PATH
         self.assertTrue(asset_path.is_file(), "generated title wordmark must be tracked in the project asset family")
 
@@ -28,18 +28,21 @@ class SXDec068TitleWordmarkCandidateTests(unittest.TestCase):
         self.assertEqual(ASSET_SHA256, hashlib.sha256(raw).hexdigest())
 
         manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+        canonical_assets = {entry["asset_id"]: entry for entry in manifest["assets"]}
         generated_candidates = {entry["asset_id"]: entry for entry in manifest["generated_candidates"]}
-        self.assertIn(ASSET_ID, generated_candidates)
-        candidate = generated_candidates[ASSET_ID]
-        self.assertEqual(ASSET_PATH, candidate["path"])
-        self.assertEqual([1774, 887], candidate["dimensions"])
-        self.assertEqual(ASSET_SHA256, candidate["sha256"])
-        self.assertEqual("GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON", candidate["visual_role"])
-        self.assertEqual("GODOT_IMPORT_AND_AUTOMATED_TITLE_TEST_PASS", candidate["consumer_status"])
-        self.assertEqual("USER_REVIEW_PENDING", candidate["pixel_review_status"])
+        self.assertIn(ASSET_ID, canonical_assets)
+        self.assertNotIn(ASSET_ID, generated_candidates)
+        asset = canonical_assets[ASSET_ID]
+        self.assertEqual(ASSET_PATH, asset["path"])
+        self.assertEqual([1774, 887], asset["dimensions"])
+        self.assertEqual(ASSET_SHA256, asset["sha256"])
+        self.assertEqual("USER_APPROVED_CANONICAL_PRODUCT_ASSET_RUNTIME_CONNECTED", asset["visual_role"])
+        self.assertEqual("VERIFIED_AUTOMATED_RUNTIME", asset["consumer_status"])
+        self.assertEqual("VERIFIED", asset["runtime_connection_status"])
+        self.assertEqual("USER_APPROVED · CANON_REGISTERED", asset["pixel_review_status"])
         self.assertEqual(
             "game/demo/vertical_slice_demo.tscn::TitleScreen/TitleMargin/TitleColumns/TitleDeck/Content/TitleLogo",
-            candidate["runtime_consumer"],
+            asset["runtime_consumer"],
         )
 
         scene = SCENE.read_text(encoding="utf-8")
@@ -49,8 +52,8 @@ class SXDec068TitleWordmarkCandidateTests(unittest.TestCase):
 
         decision = DECISION.read_text(encoding="utf-8")
         self.assertIn(ASSET_ID, decision)
-        self.assertIn("USER_PIXEL_REVIEW_PENDING", decision)
-        self.assertIn("not a canonical asset", decision)
+        self.assertIn("USER_PIXEL_APPROVED", decision)
+        self.assertIn("canonical product asset", decision)
 
 
 if __name__ == "__main__":

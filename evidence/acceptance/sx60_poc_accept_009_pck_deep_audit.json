@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "candidate_id": "SX60-POC-ACCEPT-009",
+  "candidate_evidence_owner": "evidence/acceptance/sx60_poc_accept_009_artifact.json",
+  "package_identity": {
+    "zip_sha256": "fe90c0b85abfa23684ac07b1cfb391e3b56e3f6f912180bd9702311b3fbefc22",
+    "windows_exe_sha256": "1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244",
+    "windows_pck_sha256": "5f5de90db1587f07c8e44e9ae1c8efcde8db6bd3c222785bf4f8eea5a4478d8c"
+  },
+  "pck_integrity": {
+    "verifier": "tools/verify_godot_pck_integrity.py",
+    "final_verifier_actual_candidate_invocation": "PASS",
+    "recomputed_windows_pck_sha256": "5f5de90db1587f07c8e44e9ae1c8efcde8db6bd3c222785bf4f8eea5a4478d8c",
+    "pack_format_version": 4,
+    "engine_version": "4.7.1",
+    "pack_flags": 2,
+    "relative_filebase": true,
+    "file_size_bytes": 25521156,
+    "file_base": 112,
+    "trailing_unverified_bytes": 0,
+    "file_count": 575,
+    "verified_entry_count": 575,
+    "md5_mismatch_count": 0,
+    "bounds_error_count": 0,
+    "nonzero_entry_flags_count": 0,
+    "integrity_pass": true
+  },
+  "product_texture_packaging": {
+    "ed_hybrid_v1_prefix": "art/product_assets/ed_hybrid_v1/",
+    "ed_hybrid_v1_prefix_entry_count": 85,
+    "ed_hybrid_v1_runtime_png_import_count": 79,
+    "ed_hybrid_v2_prefix": "art/product_assets/ed_hybrid_v2/",
+    "ed_hybrid_v2_prefix_entry_count": 32,
+    "ed_hybrid_v2_runtime_png_import_count": 31,
+    "ed_hybrid_v2_manifest_included": true,
+    "ed_hybrid_v2_master_source_excluded_from_package": true,
+    "sx_dec_067_added_runtime_asset_import_count": 8,
+    "sx_dec_068_title_wordmark_runtime_asset_import_count": 1,
+    "title_wordmark_exact_pck_entries": [
+      ".godot/imported/shell_title_wordmark_switchy_express_candidate_v01.png-dddbc61b1e6352d16a761c11fed67b5e.ctex",
+      "art/product_assets/ed_hybrid_v2/shells/shell_title_wordmark_switchy_express_candidate_v01.png.import"
+    ],
+    "title_wordmark_manifest_entry_included": true,
+    "packaging_crosscheck": "PASS · v1 85 entries plus v2 32 entries in exact Candidate 009 PCK; the transparent title wordmark import, compiled texture, and canonical manifest state are present"
+  },
+  "route_book_packaging": {
+    "map_prefix": "data/maps/route_book/",
+    "map_json_entry_count": 12,
+    "definition_prefix": "data/route_book/",
+    "definition_json_entry_count": 2,
+    "route_book_01_map_json_entry_count": 6,
+    "route_book_02_map_json_entry_count": 6,
+    "packaging_crosscheck": "PASS · twelve authored Route Book maps and two Route Book definitions are present in exact Candidate 009 PCK"
+  },
+  "export_hygiene": {
+    "evidence_prefix_entry_count": 0,
+    "output_prefix_entry_count": 0,
+    "result": "PASS · internal evidence and human-PDF output cache are excluded from the game PCK"
+  },
+  "packaged_runtime_proof": {
+    "windows_runtime_json": "PASS · parsed_json=31",
+    "android_validation_runtime_json": "PASS · parsed_json=31"
+  },
+  "scope": {
+    "candidate_mint_changes_gameplay_rule_or_map_data": false,
+    "candidate_mint_changes_image_asset_bytes": false,
+    "candidate_mint_changes_asset_manifest_status": true,
+    "candidate_mint_changes_audio_bytes": false,
+    "candidate_source_includes_approved_sx_dec_063_core_board_v04_runtime_assets": true,
+    "candidate_source_includes_prior_approved_active_route_lighting_runtime_delta": true,
+    "candidate_source_includes_sx_dec_066_route_book_01": true,
+    "candidate_source_includes_sx_dec_067_wayside_hazards_salvage_and_route_book_02": true,
+    "candidate_source_includes_sx_dec_068_title_wordmark_canonical_asset": true,
+    "title_wordmark_status_within_package": "USER_APPROVED_CANONICAL_PRODUCT_ASSET_RUNTIME_CONNECTED · USER_APPROVED · CANON_REGISTERED",
+    "sx_dec_056a_056b_057_058_authorization_changed": false
+  },
+  "evidence_ceiling": {
+    "package_integrity": "PASS",
+    "windows_physical_startup_and_build_entry_automation_observed": "NOT_RUN",
+    "physical_visual_recheck": "NOT_RUN",
+    "developer_self_run": "NOT_RUN",
+    "windows_physical_runtime_full_scenarios": "NOT_RUN",
+    "audio_perceptual_qa": "NOT_RUN",
+    "android_device": "NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN",
+    "five_person_comprehension": "NOT_REQUIRED_BY_USER_VALIDATION_POLICY",
+    "player_experience": "NOT_REQUIRED_BY_USER_VALIDATION_POLICY",
+    "final_user_review": "FINAL_USER_REVIEW · NOT_RUN",
+    "title_wordmark_pixel_review": "USER_PIXEL_APPROVED · CANON_REGISTERED",
+    "production_cutover": "BLOCKED_DEFERRED"
+  }
+}
