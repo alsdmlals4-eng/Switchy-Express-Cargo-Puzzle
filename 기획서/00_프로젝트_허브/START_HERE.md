@@ -24,10 +24,10 @@ Last updated: `2026-08-31 KST`
 | station representation | `OFF_TRACK_SERVICE_OBJECT · station cell player rail forbidden` |
 | image requirement | `SX-DEC-060 station-service overlay: no new bitmap; SX-DEC-063 core board: user-approved v2/v4 fourteen-slot asset map connected` |
 | pre-060 Candidate 003 | `SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY after SX-DEC-060` |
-| post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · SX60-POC-ACCEPT-007 is the exact post-SX-DEC-067 machine package · Candidates 001–006 are historical · FINAL_USER_REVIEW_NOT_RUN` |
+| post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · SX60-POC-ACCEPT-008 is the exact post-SX-DEC-068 machine package · Candidates 001–007 are historical · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_PIXEL_REVIEW_PENDING` |
 | SX60 Candidate 001 | `HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE · hashes/PCK preserved` |
 | post-060 automated regression | `PASS · 111 cases / 13,461 assertions · CI 7 GREEN · SX-AUD-071 CLOSED` |
-| post-060 Windows physical | `FINAL_USER_REVIEW_ONLY · unchanged SX60-POC-ACCEPT-007 required · NOT_RUN` |
+| post-060 Windows physical | `FINAL_USER_REVIEW_ONLY · unchanged SX60-POC-ACCEPT-008 required · NOT_RUN` |
 | post-060 Android device | `NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN` |
 | validation strategy | `SX-DEC-065 · MACHINE_PRIMARY_FINAL_USER_REVIEW` |
 | post-060 five-person | `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` |
@@ -122,7 +122,7 @@ approved_image_preservation: PROJECT_LOCAL_GITHUB_ONLY
 
 `SX59-POC-ACCEPT-003` remains exact historical evidence for pre-SX-DEC-060 bytes. Its package/PCK/product-texture/live-download facts stay preserved, but it is no longer the efficient next acceptance target because gameplay semantics have changed.
 
-Do not run its old physical Gate 0 as if it validated the new rule. `SX60-POC-ACCEPT-006` is historical Route Book 01 evidence; `SX60-POC-ACCEPT-007` is the exact post-SX-DEC-067 machine-primary package and remains exact-byte-specific.
+Do not run its old physical Gate 0 as if it validated the new rule. `SX60-POC-ACCEPT-006` is historical Route Book 01 evidence and `SX60-POC-ACCEPT-007` is historical post-SX-DEC-067 evidence; `SX60-POC-ACCEPT-008` is the exact post-SX-DEC-068 machine-primary package and remains exact-byte-specific.
 
 ## Current implementation package
 
@@ -176,8 +176,8 @@ The user selected Hybrid Miniature-Diorama Alignment: the rectangular grid and i
 SX-DEC-063 core-board terrain v02, nine non-rail v02 assets, and four v04 rails are connected to the live fourteen-slot renderer map
 → Issue #246 planning board remains a no-consumer explanatory asset and is not runtime proof
 → SX60-POC-ACCEPT-006 exact package is historical Route Book 01 byte evidence; Candidates 002–005 remain prior-byte evidence only
-→ SX-DEC-067 changed player-facing bytes; Candidate 007 now binds its exact package, while Candidate 006 stays historical
-→ FINAL_USER_REVIEW only if the user requests final inspection of unchanged Candidate 007 bytes
+→ SX-DEC-068 changed player-facing title-shell bytes; Candidate 008 now binds its exact package, while Candidates 006–007 stay historical
+→ FINAL_USER_REVIEW only if the user requests final inspection of unchanged Candidate 008 bytes; title wordmark pixel approval remains separate
 → FIVE_PERSON_COMPREHENSION_NOT_REQUIRED / PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED
 ```
 

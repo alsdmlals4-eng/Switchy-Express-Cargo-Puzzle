@@ -2,16 +2,25 @@
 
 Last updated: `2026-08-31 KST`
 
+## SX-DEC-068 · Main Title Shell and World Wordmark
+
+- **Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_271 · main_53e29f874bc70a0057c310d661dc45dbecc6cf13 · SX60-POC-ACCEPT-008_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN · USER_PIXEL_REVIEW_PENDING`
+- **Decision owner:** `docs/decisions/SX_DEC_068_TITLE_SCREEN_MAIN_SHELL.md`
+- **Product boundary:** the existing title screen now consumes a transparent, rail/cargo world wordmark through `TitleLogo`; title actions, focus routing, finite rules, maps, stage IDs, saves, economy, score, and tutorial content are unchanged.
+- **Asset boundary:** `SX-TITLE-WORDMARK-001` is `GENERATED_CANDIDATE · RUNTIME_CONNECTED · NOT_CANON · USER_PIXEL_REVIEW_PENDING`. Exact SHA-256, provenance, and consumer are held in `art/product_assets/ed_hybrid_v2/manifest.json`.
+- **Evidence:** exact-source Windows Demo Export `33392296685` passed for `main@53e29f874bc70a0057c310d661dc45dbecc6cf13`; the independent artifact/PCK audit records ZIP and inner hashes, 575/575 integrity, runtime JSON proof, actual title-wordmark PCK entries, and zero `evidence/` / `output/` entries.
+- **Ceiling:** Candidate 008 is current machine package evidence only. Physical/device/audio, human, final-user-review, title-pixel approval, canonical promotion, and release claims remain separate and are not transferred.
+
 ## SX-DEC-067 · Wayside Hazards, Salvage, and Route Book 02
 
-- **Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · REMOTE_CI_7_GREEN · SX60-POC-ACCEPT-007_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN`
+- **Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · REMOTE_CI_7_GREEN · SX60-POC-ACCEPT-007_historical_after_SX_DEC_068`
 - **Decision owner:** `docs/decisions/SX_DEC_067_WAYSIDE_HAZARDS_SALVAGE_AND_ROUTE_BOOK_02.md`
 - **Core rule:** authored `CAUTION_TRACK` departure segments use one fixed `0.55` speed multiplier; this is not retired cargo-count slowdown.
 - **Cargo rule:** `WASTE_CRATE` unloads only at an off-track cardinal-adjacent `DISPOSAL_YARD`; LIFO/TOP and ordinary stations remain unchanged.
 - **Content rule:** Route Book 02 contributes six optional authored stages; T1–T6, VS_DEMO_01, Route Book 01, score/progression, generators, and solution reveal remain out of scope.
 - **Evidence:** local Godot full regression `PASS · 120 cases / 14,053 assertions`; current-worktree Hera runtime observed title → book selector → Route Book 02 and RB12 build board; PR #263's seven required remote checks are green. The exact PR-head tree equals merged `main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75`; post-merge Project Contract and Python regression readbacks passed. `docs/operations/2026-08-31-sx-dec-067-local-machine-runtime-verification.md` owns the exact receipt and its evidence ceiling.
 - **Asset state:** 8 bitmap files are `GENERATED_CANDIDATE · RUNTIME_CONNECTED · NOT_CANON · USER_PIXEL_REVIEW_PENDING`, with SHA-256 and exact consumers in `art/product_assets/ed_hybrid_v2/manifest.json` and `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`.
-- **Ceiling:** Candidate 006 is historical for the prior Route Book 01 bytes. Candidate 007 carries the exact post-SX-DEC-067 machine package evidence; physical/device/audio, human, final-user-review, and release claims remain separate and are not transferred.
+- **Ceiling:** Candidate 006 is historical for the prior Route Book 01 bytes and Candidate 007 is historical for post-SX-DEC-067 bytes. Candidate 008 carries the exact post-SX-DEC-068 machine package evidence; physical/device/audio, human, final-user-review, title-pixel approval, and release claims remain separate and are not transferred.
 
 이 문서는 Switchy Express의 **현재 승인 Decision과 실행 권위**를 압축한다. 상세 규칙·근거·역사 CI는 각 Decision/Audit owner가 책임진다. Google Sheets는 migration-only이며 active decision authority가 아니다.
 
@@ -21,7 +30,7 @@ Last updated: `2026-08-31 KST`
 
 ```yaml
 current_product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060
-current_decision_span: SX-DEC-027~067
+current_decision_span: SX-DEC-027~068
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
@@ -50,7 +59,7 @@ candidate_003_preparation: MERGED_MAIN_VERIFIED · PR #172 · main_2521f3be600ea
 pre_sx_dec_060_candidate_pointer: evidence/acceptance/current_poc_candidate.json
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_AFTER_SX_DEC_060
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-007 · PREPARED_PACKAGE_VERIFIED · Candidate_006_historical · source main c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · FINAL_USER_REVIEW_NOT_RUN
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-008 · PREPARED_PACKAGE_VERIFIED · SX60-POC-ACCEPT-007_historical · source main 53e29f874bc70a0057c310d661dc45dbecc6cf13 · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_PIXEL_REVIEW_PENDING
 sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 sx60_poc_accept_002: SX60-POC-ACCEPT-002 · HISTORICAL_SUPERSEDED_BY_SX_DEC_062 · PRIOR_BYTE_ISOLATED_VISUAL_INPUT_OBSERVATION_DOES_NOT_TRANSFER
 sx60_poc_accept_003: SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE
@@ -67,7 +76,7 @@ sx_dec_060_design: RECORDED
 sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
-sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-007 · PREPARED_PACKAGE_VERIFIED · Candidate_006_historical · FINAL_USER_REVIEW_NOT_RUN
+sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-008 · PREPARED_PACKAGE_VERIFIED · SX60-POC-ACCEPT-007_historical · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_PIXEL_REVIEW_PENDING
 sx_dec_060_notion_sync: PASS · POST_PR_188_READBACK_COMPLETE
 sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION · PACKAGE_VERIFIED
@@ -78,7 +87,7 @@ sx_dec_065_machine_primary_validation: USER_APPROVED · MACHINE_PRIMARY_FINAL_US
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · PR_240 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
 developer_self_run: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_VISUAL_INPUT_OBSERVED_AUDIO_NOT_OBSERVED · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_004
 windows_physical_startup_and_build_entry_automation_observed: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_004
-acceptance_build: SX60-POC-ACCEPT-007 · PREPARED_PACKAGE_VERIFIED · exact post-SX-DEC-067 machine package · NO_HUMAN_OR_PHYSICAL_EVIDENCE
+acceptance_build: SX60-POC-ACCEPT-008 · PREPARED_PACKAGE_VERIFIED · exact post-SX-DEC-068 machine package · NO_HUMAN_OR_PHYSICAL_EVIDENCE · TITLE_WORDMARK_PIXEL_REVIEW_PENDING
 windows_full_physical_runtime: FINAL_USER_REVIEW_ONLY · NOT_RUN
 audio_perceptual_qa: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device: NOT_RUN_POST_SX_DEC_060
@@ -154,7 +163,8 @@ sx_dec_060_new_bitmap_assets_required: 0
 | **SX-DEC-064** | **Active-route lighting · MERGED_MAIN_VERIFIED · PR #249 · CI 7 green · procedural presentation delta · physical/player gates remain open** |
 | **SX-DEC-065** | **Machine-primary final-user-review policy · USER_APPROVED · Candidate 006 was machine-primary evidence for its unchanged Route Book 01 bytes and is historical after SX-DEC-067; five-person/player-experience studies not required** |
 | **SX-DEC-066** | **Curated Route Book 01 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #260 · Candidate 006 preserved as historical exact package evidence; final user review requires a current byte-specific candidate** |
-| **SX-DEC-067** | **Wayside Hazards, Salvage, and Route Book 02 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #263 · exact main `c0bb86e` · Candidate 006 historical; post-change package candidate not yet minted** |
+| **SX-DEC-067** | **Wayside Hazards, Salvage, and Route Book 02 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #263 · exact main `c0bb86e` · Candidate 007 is historical after the later title-shell byte change** |
+| **SX-DEC-068** | **Main Title Shell and World Wordmark · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #271 · exact main `53e29f8` · Candidate 008 exact machine package · wordmark remains runtime-connected, non-canonical, and user-pixel-review pending** |
 
 ## SX-DEC-059 retained first-session contract
 
@@ -344,8 +354,8 @@ SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063
 → SX60-POC-ACCEPT-004 remains historical package evidence for pre-v04 product bytes
 → SX-DEC-065 USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW
 → SX60-POC-ACCEPT-005 historical for pre-Route-Book bytes; SX60-POC-ACCEPT-006 minted from exact `main@9af5a8c46d29ea6781f9ee06008d7c7d2cde1877` and machine validation completed for those Route Book 01 bytes
-→ SX-DEC-067 later changed player-facing bytes, so Candidate 006 is historical; Candidate 007 is now minted from those exact bytes with machine package verification
-→ FINAL_USER_REVIEW only on unchanged Candidate 007 when requested
+→ SX-DEC-067 later changed player-facing bytes, so Candidate 006 is historical; SX-DEC-068 then changed the title-shell bytes, so Candidate 007 is historical
+→ Candidate 008 now binds the exact post-SX-DEC-068 package; FINAL_USER_REVIEW only on unchanged Candidate 008 when requested
 → Android device compatibility only when the Android target is in scope
 → FIVE_PERSON_COMPREHENSION_NOT_REQUIRED / PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED
 ```
@@ -357,8 +367,8 @@ Candidate 003 Gate 0 is retained as historical pre-060 validation instructions b
 ```text
 SX-DEC-067 merged main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75
 → Candidate 006 is historical for the prior Route Book 01 bytes
-→ Candidate 007 is the exact post-SX-DEC-067 machine package candidate and the current pointer
-→ machine package verification is complete; optional final user review may only inspect unchanged Candidate 007
+→ Candidate 007 is immutable historical post-SX-DEC-067 evidence; Candidate 008 is the exact post-SX-DEC-068 machine package and current pointer
+→ machine package verification is complete; optional final user review may only inspect unchanged Candidate 008, separately from wordmark pixel approval
 → five-person comprehension and player-experience studies remain not required under SX-DEC-065
 ```
 

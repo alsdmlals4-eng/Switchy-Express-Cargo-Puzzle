@@ -1,6 +1,6 @@
 # SX-DEC-068 · Main Title Shell Composition
 
-**Status:** `USER_APPROVED · TITLE_WORDMARK_CANDIDATE_RUNTIME_CONNECTED · USER_PIXEL_REVIEW_PENDING · AWAITING_PR_REVIEW`
+**Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_271 · TITLE_WORDMARK_CANDIDATE_RUNTIME_CONNECTED · CANDIDATE_008_PREPARED_PACKAGE_VERIFIED · USER_PIXEL_REVIEW_PENDING`
 **Date:** 2026-08-31 KST
 **Approval source:** The user approved the recommended continuation and explicitly requested “메인화면도 제작해”.
 
@@ -56,7 +56,9 @@ The feasibility basis is Godot's documented full-rect `Control` anchoring, `Text
 
 `SX60-POC-ACCEPT-007` is the immutable machine package for exact product bytes at `main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75`. This player-facing title-shell change cannot inherit its final-user-review eligibility.
 
-After the new runtime bytes are machine-verified, Candidate 007 is retained as `HISTORICAL_SUPERSEDED_BY_SX_DEC_068_PLAYER_FACING_PRODUCT_BYTE_CHANGE`; a new exact package candidate must then be minted before any future final user review. This does not invalidate Candidate 007’s existing package integrity evidence for its own source bytes.
+`SX60-POC-ACCEPT-008` now binds the exact title-shell source at `main@53e29f874bc70a0057c310d661dc45dbecc6cf13`: GitHub Actions Windows Demo Export run `33392296685`, artifact `9757983433`, ZIP digest `f11fc0dc64ac59ce86d581bdb68e5833d79e92ec6345112c470a5f3a26b9902a`, and independent 575-entry PCK audit all passed. Candidate 007 is retained as `HISTORICAL_SUPERSEDED_BY_SX_DEC_068_PLAYER_FACING_PRODUCT_BYTE_CHANGE`; its own package evidence remains valid only for its own source bytes.
+
+Candidate 008 is the only exact package eligible for a future final-user review while unchanged. That eligibility is separate from the wordmark’s `USER_PIXEL_REVIEW_PENDING` asset disposition; packaging the candidate does not promote it to canonical art.
 
 ## Evidence boundary
 
@@ -70,7 +72,7 @@ The candidate PNG imported as Godot `CompressedTexture2D` with its RGBA channel 
 
 ## Local machine verification
 
-The implementation commit is `dc326af61a253f1d10db80bb73c476672a4d3d1b` on `codex/sx068-title-main-shell-20260831`. Its full local Godot suite, project operating-contract check, and Python suite passed; the focused title topology, consumer, focus, and 960×540 through 1920×1080 layout assertions are included in that suite. The full evidence, the corrective layout finding, and the retained evidence ceiling are recorded in `docs/operations/2026-08-31-sx-dec-068-title-main-shell-machine-verification.md`.
+The title-shell changes were merged through PR #271 at `main@53e29f874bc70a0057c310d661dc45dbecc6cf13`. Its full local Godot suite, project operating-contract check, Python suite, and the exact-source remote export all passed; the focused title topology, consumer, focus, and 960×540 through 1920×1080 layout assertions are included in that evidence. The full evidence, corrective layout finding, Candidate 008 package proof, and retained evidence ceiling are recorded in `docs/operations/2026-08-31-sx-dec-068-title-wordmark-candidate-machine-verification.md` and `기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_08.md`.
 
 ## Owners
 

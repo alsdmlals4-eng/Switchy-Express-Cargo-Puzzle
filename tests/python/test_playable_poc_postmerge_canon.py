@@ -38,12 +38,13 @@ class PlayablePocPostMergeCanonTests(unittest.TestCase):
 
     def test_current_decision_and_gates_route_post_060_work(self) -> None:
         decisions = CURRENT_DECISIONS.read_text(encoding="utf-8")
-        self.assertIn("current_decision_span: SX-DEC-027~067", decisions)
+        self.assertIn("current_decision_span: SX-DEC-027~068", decisions)
         self.assertIn("SX-DEC-060", decisions)
         self.assertIn("SX-DEC-061", decisions)
         self.assertIn("SX-DEC-063", decisions)
         self.assertIn("SX-DEC-064", decisions)
         self.assertIn("SX-DEC-065", decisions)
+        self.assertIn("SX-DEC-068", decisions)
         self.assertNotIn("current_decision_span: SX-DEC-027~059", decisions)
         for path in (DEVELOPMENT_GATES, ROADMAP):
             text = path.read_text(encoding="utf-8")
