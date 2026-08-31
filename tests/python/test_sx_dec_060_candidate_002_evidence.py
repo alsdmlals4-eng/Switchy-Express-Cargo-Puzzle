@@ -27,7 +27,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         audit = self._json(AUDIT)
 
         self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-008")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-009")
         historical = pointer["historical_superseded_after_sx_dec_062"]
         self.assertEqual(historical["candidate_id"], "SX60-POC-ACCEPT-002")
         self.assertEqual(
@@ -101,7 +101,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         self.assertNotIn("SX60-POC-ACCEPT-004 · PHYSICAL_PASS", text)
         self.assertIn("sx60_poc_accept_002: SX60-POC-ACCEPT-002 · HISTORICAL_SUPERSEDED_BY_SX_DEC_062", text)
         self.assertIn(
-            "acceptance_build: SX60-POC-ACCEPT-008 · PREPARED_PACKAGE_VERIFIED · exact post-SX-DEC-068 machine package · NO_HUMAN_OR_PHYSICAL_EVIDENCE",
+            "acceptance_build: SX60-POC-ACCEPT-009 · PREPARED_PACKAGE_VERIFIED · exact post-SX-DEC-068 canonical-wordmark machine package · NO_HUMAN_OR_PHYSICAL_EVIDENCE",
             text,
         )
 
@@ -109,7 +109,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         text = ACTIVE_CONTEXT.read_text(encoding="utf-8")
 
         self.assertIn(
-            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-008 · PREPARED_PACKAGE_VERIFIED · SX60-POC-ACCEPT-007_historical",
+            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-009 · PREPARED_PACKAGE_VERIFIED · SX60-POC-ACCEPT-008_historical",
             text,
         )
         self.assertNotIn("HUMAN_PHYSICAL_SELF_RUN_NEXT", text)
@@ -144,7 +144,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
             self.assertIn(required, receipt)
 
         self.assertIn(
-            "base_work_current_phase: PHASE_5_MACHINE_PRIMARY_CANDIDATE_008_PREPARED",
+            "base_work_current_phase: PHASE_5_MACHINE_PRIMARY_CANDIDATE_009_PREPARED",
             active_context,
         )
         self.assertNotIn(

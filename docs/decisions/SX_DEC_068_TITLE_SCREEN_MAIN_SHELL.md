@@ -1,6 +1,6 @@
 # SX-DEC-068 · Main Title Shell Composition
 
-**Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_271 · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · CANDIDATE_009_MINT_IN_PROGRESS`
+**Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_271 · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · CANDIDATE_009_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN`
 **Date:** 2026-08-31 KST
 **Approval source:** The user approved the recommended continuation and explicitly requested “메인화면도 제작해”; the user then explicitly approved the title-wordmark pixels for canonical promotion on 2026-08-31 KST.
 
@@ -68,7 +68,7 @@ This is a metadata and ownership transition only: the approved PNG bytes, scene 
 
 `SX60-POC-ACCEPT-008` now binds the exact title-shell source at `main@53e29f874bc70a0057c310d661dc45dbecc6cf13`: GitHub Actions Windows Demo Export run `33392296685`, artifact `9757983433`, ZIP digest `f11fc0dc64ac59ce86d581bdb68e5833d79e92ec6345112c470a5f3a26b9902a`, and independent 575-entry PCK audit all passed. Candidate 007 is retained as `HISTORICAL_SUPERSEDED_BY_SX_DEC_068_PLAYER_FACING_PRODUCT_BYTE_CHANGE`; its own package evidence remains valid only for its own source bytes.
 
-Candidate 008 remains immutable evidence for its own pre-canonical-status package bytes, including its then-pending wordmark disposition. It is historical after the manifest promotion and must not be used for a later final-user review. Candidate 009 is being minted from the exact canonical-status source commit; only a successful replacement PCK/artifact audit can restore the machine-primary package candidate. The asset’s user pixel approval is complete, but it does not imply physical display, device, accessibility, human/player, release, or production-cutover approval.
+Candidate 008 remains immutable evidence for its own pre-canonical-status package bytes, including its then-pending wordmark disposition. It is historical after the manifest promotion and must not be used for a later final-user review. `SX60-POC-ACCEPT-009` now binds the exact canonical-status source at `1ac3099d9ab1451323cca2935547f82d210b50b4`: GitHub Actions Windows Demo Export run `33396533310`, artifact `9759591197`, ZIP digest `fe90c0b85abfa23684ac07b1cfb391e3b56e3f6f912180bd9702311b3fbefc22`, Windows PCK digest `5f5de90db1587f07c8e44e9ae1c8efcde8db6bd3c222785bf4f8eea5a4478d8c`, runtime JSON proofs, and an independent 575-entry PCK audit all passed. Candidate 009 is the current machine-primary package and is the only exact candidate eligible for a later final-user review. The asset’s user pixel approval is complete, but it does not imply physical display, device, accessibility, human/player, release, or production-cutover approval.
 
 ## Evidence boundary
 
@@ -82,7 +82,7 @@ The candidate PNG imported as Godot `CompressedTexture2D` with its RGBA channel 
 
 ## Local machine verification
 
-The title-shell changes were merged through PR #271 at `main@53e29f874bc70a0057c310d661dc45dbecc6cf13`. Its full local Godot suite, project operating-contract check, Python suite, and the exact-source remote export all passed; the focused title topology, consumer, focus, and 960×540 through 1920×1080 layout assertions are included in that evidence. The full evidence, corrective layout finding, Candidate 008 package proof, and retained evidence ceiling are recorded in `docs/operations/2026-08-31-sx-dec-068-title-wordmark-candidate-machine-verification.md` and `기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_08.md`.
+The title-shell changes were merged through PR #271 at `main@53e29f874bc70a0057c310d661dc45dbecc6cf13`. Its full local Godot suite, project operating-contract check, Python suite, and the exact-source remote export all passed; the focused title topology, consumer, focus, and 960×540 through 1920×1080 layout assertions are included in that evidence. The explicit pixel approval was then registered in the manifest without changing the PNG or game behavior, and Candidate 009 provides its own exact-source package proof. The historical Candidate 008 proof and retained evidence ceiling are recorded in `docs/operations/2026-08-31-sx-dec-068-title-wordmark-candidate-machine-verification.md`; the current Candidate 009 proof is recorded in `기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_09.md`.
 
 ## Owners
 

@@ -276,10 +276,10 @@ pixel_review_status: USER_APPROVED · CANON_REGISTERED
 reference_similarity_status: NOT_APPLICABLE
 commercial_release_rights: CONDITIONAL_PENDING_SEPARATE_RELEASE_REVIEW
 physical_windows_audio_android_accessibility_human_player_experience_release: NOT_RUN
-exact_package_state: CANDIDATE_009_MINT_IN_PROGRESS
+exact_package_state: CANDIDATE_009_PREPARED_PACKAGE_VERIFIED
 ```
 
-The user’s pixel approval promotes this exact tracked PNG only; it does not alter its source provenance, claim exclusive-rights clearance, or approve release use. Candidate 008 preserves its own pre-promotion package evidence. Because the manifest is included in the export, Candidate 009 must independently verify the post-promotion package before final-user review can again be offered.
+The user’s pixel approval promotes this exact tracked PNG only; it does not alter its source provenance, claim exclusive-rights clearance, or approve release use. Candidate 008 preserves its own pre-promotion package evidence. Because the manifest is included in the export, Candidate 009 independently verified the post-promotion package and is now the only exact candidate eligible for a later final-user review.
 
 ## SX-TITLE-HERO-001 · Title runtime hero banner
 

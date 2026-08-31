@@ -42,7 +42,7 @@ At the smallest supported 960×540 viewport the parent margin shrinks, but the a
 
 ## Asset and provenance boundary
 
-The title retains `SX-TITLE-HERO-001` at `art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png`, already a tracked, runtime-verified, text-free backdrop. The user-directed amendment adds exactly one transparent raster candidate, `SX-TITLE-WORDMARK-001`, at `art/product_assets/ed_hybrid_v2/shells/shell_title_wordmark_switchy_express_candidate_v01.png`. It is `GENERATED_CANDIDATE · RUNTIME_CONNECTED · NOT_CANON`, carries a SHA-256/provenance record in the project manifest, and remains `USER_PIXEL_REVIEW_PENDING`. The eight SX-DEC-067 wayside images remain independent candidates.
+The title retains `SX-TITLE-HERO-001` at `art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png`, already a tracked, runtime-verified, text-free backdrop. The user-directed amendment adds exactly one transparent raster title wordmark, `SX-TITLE-WORDMARK-001`, at `art/product_assets/ed_hybrid_v2/shells/shell_title_wordmark_switchy_express_candidate_v01.png`. Its unchanged PNG is `USER_APPROVED_CANONICAL_PRODUCT_ASSET_RUNTIME_CONNECTED · USER_PIXEL_APPROVED · CANON_REGISTERED`, with SHA-256/original-candidate/provenance records and its sole `TitleLogo` consumer held in the project manifest. The eight SX-DEC-067 wayside images remain independent candidates.
 
 ## Technical basis
 

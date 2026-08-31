@@ -65,7 +65,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
             active,
         )
 
-    def test_adapter_and_gate_owner_route_current_machine_primary_state_to_candidate_008(self) -> None:
+    def test_adapter_and_gate_owner_route_current_machine_primary_state_to_candidate_009(self) -> None:
         adapter = read("PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md")
         gates = read("기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md")
         roadmap = read("기획서/00_프로젝트_허브/ROADMAP.md")
@@ -73,16 +73,16 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         self.assertIn("current_decision_span: SX-DEC-027~068", adapter)
         self.assertNotIn("current_decision_span: SX-DEC-027~064", adapter)
         self.assertIn(
-            "SX60-POC-ACCEPT-008_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN · USER_PIXEL_REVIEW_PENDING",
+            "SX60-POC-ACCEPT-009 is the exact post-change package and current machine-primary candidate",
             gates,
         )
         self.assertNotIn("EXACT_CANDIDATE_005_MACHINE_VALIDATION_PENDING", gates)
         self.assertIn(
             "MACHINE_PRIMARY_FINAL_USER_REVIEW · USER_APPROVED · "
-            "SX60-POC-ACCEPT-008_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_PIXEL_REVIEW_PENDING",
+            "SX60-POC-ACCEPT-009_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED",
             roadmap,
         )
-        self.assertIn("Candidate 008 immutable exact post-SX-DEC-068 package verification complete", roadmap)
+        self.assertIn("Candidate 009 immutable exact post-canonical-wordmark-status package verification complete", roadmap)
 
     def test_current_owners_describe_connected_core_board_v02_v04_and_post_sx_dec_068_candidate_state(self) -> None:
         agents = read("AGENTS.md")
@@ -97,10 +97,10 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         start_here = read("기획서/00_프로젝트_허브/START_HERE.md")
         renderer = read("game/demo/presentation/product_board_renderer.gd")
 
-        self.assertIn("SX60-POC-ACCEPT-008", agents)
-        self.assertIn("53e29f874bc70a0057c310d661dc45dbecc6cf13", agents)
-        self.assertIn("SX60-POC-ACCEPT-008", decision)
-        self.assertIn("53e29f874bc70a0057c310d661dc45dbecc6cf13", decision)
+        self.assertIn("SX60-POC-ACCEPT-009", agents)
+        self.assertIn("1ac3099d9ab1451323cca2935547f82d210b50b4", agents)
+        self.assertIn("SX60-POC-ACCEPT-009", decision)
+        self.assertIn("1ac3099d9ab1451323cca2935547f82d210b50b4", decision)
         self.assertIn("current_decision_span: SX-DEC-027~068", agents)
         self.assertIn("SX-DEC-068", agents)
         self.assertIn("CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED", agents)
@@ -112,13 +112,15 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         self.assertIn("SX60-POC-ACCEPT-006", current_decisions)
         self.assertIn("SX60-POC-ACCEPT-007", current_decisions)
         self.assertIn("SX60-POC-ACCEPT-008", current_decisions)
+        self.assertIn("SX60-POC-ACCEPT-009", current_decisions)
         self.assertIn("SX60-POC-ACCEPT-006", active_context)
         self.assertIn("SX60-POC-ACCEPT-007", active_context)
         self.assertIn("SX60-POC-ACCEPT-008", active_context)
+        self.assertIn("SX60-POC-ACCEPT-009", active_context)
         self.assertIn("CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED", start_here)
         self.assertIn("SX60-POC-ACCEPT-006", start_here)
         self.assertIn("SX60-POC-ACCEPT-007", start_here)
-        self.assertIn("SX60-POC-ACCEPT-008", start_here)
+        self.assertIn("SX60-POC-ACCEPT-009", start_here)
 
         for required_runtime_path in (
             '"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png"',
@@ -157,17 +159,17 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         self.assertNotIn("→ five-person first-contact comprehension", current_phase)
         self.assertIn("HISTORICAL_METHOD_REFERENCE_ONLY", playtest)
         self.assertIn(
-            "CURRENT EXACT CANDIDATE: SX60-POC-ACCEPT-008 · PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN",
+            "CURRENT EXACT CANDIDATE: SX60-POC-ACCEPT-009 · PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN",
             playtest,
         )
 
-    def test_candidate_pointer_binds_candidate_008_after_the_later_player_facing_change(self) -> None:
+    def test_candidate_pointer_binds_candidate_009_after_the_canonical_wordmark_status_change(self) -> None:
         pointer = json.loads(
             read("evidence/acceptance/post_sx_dec_060_candidate.json")
         )
 
         self.assertEqual("PREPARED_PACKAGE_VERIFIED", pointer["candidate_status"])
-        self.assertEqual("SX60-POC-ACCEPT-008", pointer["current_candidate_id"])
+        self.assertEqual("SX60-POC-ACCEPT-009", pointer["current_candidate_id"])
         self.assertEqual(
             "SX60-POC-ACCEPT-004",
             pointer["historical_superseded_after_sx_dec_063_core_board_v04"]["candidate_id"],
@@ -195,7 +197,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
             contract_result.returncode,
             contract_result.stdout + contract_result.stderr,
         )
-        self.assertIn("POST_SX_DEC_060_CANDIDATE_CONTRACT: PASS - SX60-POC-ACCEPT-008", contract_result.stdout)
+        self.assertIn("POST_SX_DEC_060_CANDIDATE_CONTRACT: PASS - SX60-POC-ACCEPT-009", contract_result.stdout)
 
     def test_registry_map_and_protected_approval_track_the_new_owner(self) -> None:
         registry = json.loads(read("기획서/00_프로젝트_허브/DESIGN_DOCUMENT_REGISTRY.json"))
@@ -229,6 +231,8 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
             "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_07.md",
             "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_08.md",
             "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_08.md",
+            "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_09.md",
+            "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_09.md",
         ):
             self.assertIn(protected_current_candidate_owner, approval["approved_paths"])
         for non_protected_evidence_owner in (

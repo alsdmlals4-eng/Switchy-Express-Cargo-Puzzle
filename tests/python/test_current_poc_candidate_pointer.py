@@ -79,17 +79,17 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
         self.assertEqual(evidence["package"]["identity_class"], "IMMUTABLE_CONTENT_DIGESTS")
         self.assertEqual(evidence["artifact"]["metadata_class"], "EPHEMERAL_DELIVERY_METADATA")
 
-    def test_post_060_pointer_selects_candidate_008_and_preserves_every_prior_exact_candidate(self) -> None:
+    def test_post_060_pointer_selects_candidate_009_and_preserves_every_prior_exact_candidate(self) -> None:
         pointer = self._json(POST_060_POINTER)
         self.assertEqual(pointer["schema_version"], 1)
         self.assertEqual(pointer["decision_id"], "SX-DEC-060")
         self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-008")
-        self.assertEqual(pointer["minimum_product_source_main"], "53e29f874bc70a0057c310d661dc45dbecc6cf13")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-009")
+        self.assertEqual(pointer["minimum_product_source_main"], "1ac3099d9ab1451323cca2935547f82d210b50b4")
         self.assertEqual(
             pointer["current_candidate_role"],
-            "MACHINE_PRIMARY_ACCEPTANCE_READY · POST_SX_DEC_068_EXACT_PRODUCT_BYTES · "
-            "FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_PIXEL_REVIEW_PENDING",
+            "MACHINE_PRIMARY_ACCEPTANCE_READY · POST_SX_DEC_068_CANONICAL_WORDMARK_PRODUCT_BYTES · "
+            "FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED",
         )
         self.assertEqual(
             pointer["selection_policy"],
@@ -107,8 +107,8 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
             pointer["historical_predecessor"]["role"],
             "HISTORICAL_EXACT_BYTES_ONLY",
         )
-        self.assertEqual(pointer["artifact_evidence_owner"], "evidence/acceptance/sx60_poc_accept_008_artifact.json")
-        self.assertEqual(pointer["deep_pck_evidence_owner"], "evidence/acceptance/sx60_poc_accept_008_pck_deep_audit.json")
+        self.assertEqual(pointer["artifact_evidence_owner"], "evidence/acceptance/sx60_poc_accept_009_artifact.json")
+        self.assertEqual(pointer["deep_pck_evidence_owner"], "evidence/acceptance/sx60_poc_accept_009_pck_deep_audit.json")
         historical = pointer["historical_superseded_candidate"]
         self.assertEqual(historical["candidate_id"], "SX60-POC-ACCEPT-001")
         self.assertEqual(historical["source_main"], "7b7f350345619e870bb94e12954fbe81b1ef9403")
@@ -145,20 +145,24 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
         sx_dec_068_history = pointer["historical_superseded_after_sx_dec_068"]
         self.assertEqual(sx_dec_068_history["candidate_id"], "SX60-POC-ACCEPT-007")
         self.assertEqual(sx_dec_068_history["source_main"], "c0bb86efa5bad6050217ca67dd6aa9eba155dc75")
+        candidate_008_history = pointer["historical_superseded_after_sx_dec_068_canonical_wordmark_status"]
+        self.assertEqual(candidate_008_history["candidate_id"], "SX60-POC-ACCEPT-008")
+        self.assertEqual(candidate_008_history["source_main"], "53e29f874bc70a0057c310d661dc45dbecc6cf13")
+        self.assertEqual(candidate_008_history["invalidated_by_product_source_main"], "1ac3099d9ab1451323cca2935547f82d210b50b4")
         self.assertEqual(pointer["tooling_only_non_invalidating_prs"], ["PR #201", "PR #250"])
 
     def test_post_060_pointer_records_machine_validation_and_final_review_boundary(self) -> None:
         pointer = self._json(POST_060_POINTER)
         self.assertGreaterEqual(len(pointer["completed_machine_gates"]), 6)
         self.assertIn(
-            "GitHub Actions Windows Demo Export PASS · run 33392296685 · exact main 53e29f874bc70a0057c310d661dc45dbecc6cf13",
+            "GitHub Actions Windows Demo Export PASS · run 33396533310 · exact canonical-wordmark source 1ac3099d9ab1451323cca2935547f82d210b50b4",
             pointer["completed_machine_gates"],
         )
         self.assertEqual(
             pointer["last_verified_machine_gates"],
             [
-                "Windows Demo Export PASS · 2026-08-31 KST · GitHub Actions run 33392296685 · "
-                "exact main 53e29f874bc70a0057c310d661dc45dbecc6cf13"
+                "Windows Demo Export PASS · 2026-08-31 KST · GitHub Actions run 33396533310 · "
+                "exact canonical-wordmark source 1ac3099d9ab1451323cca2935547f82d210b50b4"
             ],
         )
         self.assertEqual(
@@ -189,7 +193,7 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
             self.assertIn("SX60-POC-ACCEPT-006", text, relative)
             self.assertIn("NOT_RUN", text, relative)
 
-    def test_current_machine_primary_surfaces_route_only_candidate_008_after_the_post_sx_dec_068_mint(self) -> None:
+    def test_current_machine_primary_surfaces_route_only_candidate_009_after_canonical_wordmark_promotion(self) -> None:
         current_surfaces = (
             "AGENTS.md",
             "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md",
@@ -208,7 +212,7 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
         for relative in current_surfaces:
             text = (ROOT / relative).read_text(encoding="utf-8")
             self.assertIn("SX-DEC-068", text, relative)
-            self.assertIn("SX60-POC-ACCEPT-008", text, relative)
+            self.assertIn("SX60-POC-ACCEPT-009", text, relative)
             for line_number, line in enumerate(text.splitlines(), 1):
                 if stale_current_claim.search(line) and "historical" not in line.lower():
                     findings.append(f"{relative}:{line_number}: {line.strip()}")

@@ -76,7 +76,7 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
     def test_post_060_pointer_selects_candidate_008_while_preserving_historical_evidence(self) -> None:
         pointer = self._post_060_pointer()
         self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-008")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-009")
         self.assertIn("MACHINE_PRIMARY_ACCEPTANCE_READY", pointer["current_candidate_role"])
         self.assertEqual(
             pointer["historical_superseded_candidate"]["invalidation_reason"],
