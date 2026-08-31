@@ -4,14 +4,14 @@ Last updated: `2026-08-31 KST`
 
 ## SX-DEC-067 · Wayside Hazards, Salvage, and Route Book 02
 
-- **Status:** `USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_RUNTIME_VERIFIED · PR_263_REMOTE_CI_7_GREEN · NOT_MERGED`
+- **Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · REMOTE_CI_7_GREEN · POST_CHANGE_CANDIDATE_NOT_MINTED`
 - **Decision owner:** `docs/decisions/SX_DEC_067_WAYSIDE_HAZARDS_SALVAGE_AND_ROUTE_BOOK_02.md`
 - **Core rule:** authored `CAUTION_TRACK` departure segments use one fixed `0.55` speed multiplier; this is not retired cargo-count slowdown.
 - **Cargo rule:** `WASTE_CRATE` unloads only at an off-track cardinal-adjacent `DISPOSAL_YARD`; LIFO/TOP and ordinary stations remain unchanged.
 - **Content rule:** Route Book 02 contributes six optional authored stages; T1–T6, VS_DEMO_01, Route Book 01, score/progression, generators, and solution reveal remain out of scope.
-- **Evidence:** local Godot full regression `PASS · 120 cases / 14,053 assertions`; current-worktree Hera runtime observed title → book selector → Route Book 02 and RB12 build board; PR #263's seven required remote checks are green. `docs/operations/2026-08-31-sx-dec-067-local-machine-runtime-verification.md` owns the exact local receipt.
+- **Evidence:** local Godot full regression `PASS · 120 cases / 14,053 assertions`; current-worktree Hera runtime observed title → book selector → Route Book 02 and RB12 build board; PR #263's seven required remote checks are green. The exact PR-head tree equals merged `main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75`; post-merge Project Contract and Python regression readbacks passed. `docs/operations/2026-08-31-sx-dec-067-local-machine-runtime-verification.md` owns the exact receipt and its evidence ceiling.
 - **Asset state:** 8 bitmap files are `GENERATED_CANDIDATE · RUNTIME_CONNECTED · NOT_CANON · USER_PIXEL_REVIEW_PENDING`, with SHA-256 and exact consumers in `art/product_assets/ed_hybrid_v2/manifest.json` and `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`.
-- **Ceiling:** Candidate 006 is historical for these changed bytes. Remote CI is green, but no post-change package, merge/readback, physical/device/audio, human, final-user-review, or release claim is transferred.
+- **Ceiling:** Candidate 006 is historical for these changed bytes. Remote CI and merged-main readback are recorded, but no post-change package, physical/device/audio, human, final-user-review, or release claim is transferred.
 
 이 문서는 Switchy Express의 **현재 승인 Decision과 실행 권위**를 압축한다. 상세 규칙·근거·역사 CI는 각 Decision/Audit owner가 책임진다. Google Sheets는 migration-only이며 active decision authority가 아니다.
 
@@ -154,6 +154,7 @@ sx_dec_060_new_bitmap_assets_required: 0
 | **SX-DEC-064** | **Active-route lighting · MERGED_MAIN_VERIFIED · PR #249 · CI 7 green · procedural presentation delta · physical/player gates remain open** |
 | **SX-DEC-065** | **Machine-primary final-user-review policy · USER_APPROVED · Candidate 006 is the current MACHINE_PRIMARY_ACCEPTANCE_READY package; Candidate 005 remains historical; five-person/player-experience studies not required** |
 | **SX-DEC-066** | **Curated Route Book 01 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #260 · Candidate 006 MACHINE_PRIMARY_ACCEPTANCE_READY; final user review remains separate** |
+| **SX-DEC-067** | **Wayside Hazards, Salvage, and Route Book 02 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #263 · exact main `c0bb86e` · Candidate 006 historical; post-change package candidate not yet minted** |
 
 ## SX-DEC-059 retained first-session contract
 

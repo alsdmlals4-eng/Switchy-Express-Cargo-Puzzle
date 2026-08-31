@@ -9,7 +9,7 @@
 ```text
 Godot: 4.7.1-stable official
 runner: res://tests/run_tests.gd
-result: PASS · 120 cases · 14,047 assertions · 0 failed
+result: PASS · 120 cases · 14,053 assertions · 0 failed
 coverage added by SX-DEC-067:
   map optional-field validation and serialization
   caution departure-speed application and recovery
@@ -19,6 +19,12 @@ coverage added by SX-DEC-067:
   Route Book catalog, 4-locale copy, six map contracts, and six executable witnesses
   click-signal regression for book and stage cards
 ```
+
+## Merge and current-main readback
+
+PR #263 was squash-merged as `main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75`. The merged tree is byte-for-byte identical to the verified PR head `eba39748c08d56a70933cd05f8a4c84a0d62f871`; the protected remote branch was deleted. On that exact merged main, the Project Contract passed and the Python regression result was `268 passed, 1 skipped`.
+
+This is a merge/readback fact, not a transfer of the pre-merge live Godot observation to a new physical or human evidence class. The post-change package candidate remains unminted.
 
 ## Live Godot runtime inspection
 
@@ -53,7 +59,7 @@ candidate_assets: GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON
 user_pixel_review: USER_REVIEW_PENDING
 local_machine_runtime: PASS
 local_package_export: NOT_RUN_FOR_SX_DEC_067_BYTES
-remote_ci_and_merge: NOT_RUN
+remote_ci_and_merge: MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · 7_REQUIRED_CHECKS_GREEN
 windows_physical_audio_android_device: NOT_RUN
 five_person_comprehension: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
 player_experience_study: NOT_REQUIRED_BY_USER_VALIDATION_POLICY

@@ -14,6 +14,7 @@ WORK_INSTRUCTION = (
 POST_060_POINTER = ROOT / "evidence/acceptance/post_sx_dec_060_candidate.json"
 SX60_ARTIFACT = ROOT / "evidence/acceptance/sx60_poc_accept_001_artifact.json"
 PROJECT_CONTRACT_WORKFLOW = ROOT / ".github/workflows/project-contract.yml"
+ACTIVE_CONTEXT = ROOT / "기획서" / "00_프로젝트_허브" / "ACTIVE_CONTEXT.md"
 CURRENT_OWNER_DOCS = (
     ROOT / "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
     ROOT / "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
@@ -37,6 +38,7 @@ REQUIRED_DURABLE_MARKERS = {
     "candidate freshness invalidation":
         "candidate_freshness_invalidation: PLAYER_FACING_BYTES_CHANGE → INVALIDATE_EXACT_CANDIDATE",
     "zero remaining work completion gate": "completion_gate: REQUIRED_WORK_REMAINING: 0",
+    "workspace artifact hygiene": "## 8A. Workspace artifact hygiene · 2026-08-31 user directive",
 }
 
 
@@ -77,6 +79,16 @@ class ExecutionContractFreshnessTests(unittest.TestCase):
             "work instruction is missing required execution boundaries: "
             + ", ".join(f"{name}={clause!r}" for name, clause in missing.items()),
         )
+
+    def test_active_context_keeps_the_user_workspace_hygiene_rule(self) -> None:
+        active = ACTIVE_CONTEXT.read_text(encoding="utf-8")
+        for required in (
+            "## 2026-08-31 workspace artifact hygiene",
+            "short direct child of the Windows temp root",
+            "Never clean the user root worktree, a dirty or unmerged worktree",
+            "do not relabel it as removed or work around a safety control",
+        ):
+            self.assertIn(required, active)
 
     def test_sx60_candidate_preserves_immutable_historical_source_identity(self) -> None:
         self.assertTrue(SX60_ARTIFACT.is_file(), "SX60 candidate artifact evidence is missing")

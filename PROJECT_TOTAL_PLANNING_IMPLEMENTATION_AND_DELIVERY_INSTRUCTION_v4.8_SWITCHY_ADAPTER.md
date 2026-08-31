@@ -288,6 +288,22 @@ Historical concurrency closure:
 - PR #155/#156 = `CLOSED_UNMERGED · HISTORICAL_ACCIDENT`.
 - PR #174 = pre-existing r4 Draft workstream; `READ_ONLY` for this r5.4 reconciliation.
 
+## 8A. Workspace artifact hygiene · 2026-08-31 user directive
+
+Keep only material that has a current consumer or a declared evidence/rollback role. This rule supplements the GitHub-only authority model; it never treats history, current tracked assets, or a protected worktree as disposable by age alone.
+
+```text
+exact target + consumer/reference readback
+→ branch/PR/dirty-state/active-process audit
+→ remove completed temporary worktree + generated cache + task logs
+→ delete its merged local branch
+→ post-removal Git/worktree readback
+```
+
+- Create Godot-only temporary worktrees as direct children of the configured Windows temporary root with a short name; remove them after machine evidence is read back. This avoids shader-cache paths exceeding Windows limits.
+- Never use a broad cleanup against the user root, a dirty or unmerged worktree, any open/draft PR worktree, tracked product assets, or declared historical rollback/provenance evidence.
+- When a cleanup command is blocked or ends partially, preserve the residual, record its exact path/reason/size, and repair only after re-verifying the target. Do not claim reclaimed storage that remains on disk.
+
 ## 9. Verification invariants / Implementation Reality Gate
 
 현재 계약/정본 수정은 RED → expected failure → minimal GREEN → related regression으로 검증한다.
