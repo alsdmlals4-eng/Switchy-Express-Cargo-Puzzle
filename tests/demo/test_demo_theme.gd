@@ -17,7 +17,13 @@ func run() -> void:
 		demo.free()
 		return
 
-	var start_button := demo.get_node("TitleScreen/Panel/Content/StartButton") as Button
+	var start_button := demo.get_node_or_null(
+		"TitleScreen/TitleMargin/TitleColumns/TitleDeck/Content/StartButton"
+	) as Button
+	assert_not_null(start_button, "title must expose its primary action inside the title deck")
+	if start_button == null:
+		demo.free()
+		return
 	for state: StringName in [&"normal", &"hover", &"pressed", &"disabled", &"focus"]:
 		var style: StyleBox = start_button.get_theme_stylebox(state, &"Button")
 		assert_not_null(style, "Button %s style must exist" % state)
@@ -28,7 +34,18 @@ func run() -> void:
 	assert_true(normal.content_margin_left >= 12.0, "buttons must include readable horizontal padding")
 	assert_true(normal.content_margin_top >= 8.0, "buttons must include readable vertical padding")
 
-	var title_panel := demo.get_node("TitleScreen/Panel") as PanelContainer
+	var title_backdrop := demo.get_node_or_null("TitleScreen/TitleBackdrop") as Control
+	assert_not_null(title_backdrop, "title must expose the full-viewport title-art consumer")
+	if title_backdrop != null:
+		assert_equal(
+			title_backdrop.mouse_filter,
+			Control.MOUSE_FILTER_IGNORE,
+			"title background must never intercept the title action deck"
+		)
+		assert_equal(title_backdrop.anchor_right, 1.0, "title background must fill its parent width")
+		assert_equal(title_backdrop.anchor_bottom, 1.0, "title background must fill its parent height")
+
+	var title_panel := demo.get_node("TitleScreen/TitleMargin/TitleColumns/TitleDeck") as PanelContainer
 	var panel_style := title_panel.get_theme_stylebox(&"panel", &"PanelContainer") as StyleBoxFlat
 	assert_not_null(panel_style, "PanelContainer product style must exist")
 	if panel_style != null:
@@ -75,5 +92,10 @@ func run() -> void:
 			Color("e9ae45"),
 			"focused controls must use the restrained action trim"
 		)
+	assert_not_null(
+		demo.get_node_or_null("TitleScreen/TitleMargin/TitleColumns/ActionDeck"),
+		"title must keep optional actions in a dedicated action deck"
+	)
+	assert_true(start_button.has_focus(), "the title's primary action must own initial keyboard focus")
 
 	demo.free()
