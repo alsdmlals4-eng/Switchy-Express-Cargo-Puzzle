@@ -73,6 +73,20 @@ Base latest completed main
 
 새 채팅은 과거 대화를 필수 입력으로 사용하지 않는다. Project GitHub에서 current identity / goal / quality-stage / protected scope / next safe action / evidence ceiling을 재구성한다. historical Notion은 explicit audit/migration request가 없는 한 읽거나 쓰지 않는다.
 
+### 로컬·원격 정본 동기화 — 사용자 지시 2026-08-31
+
+각 작업 단위는 로컬과 GitHub 정본의 차이를 남기지 않는 다음 순서를 따른다.
+
+```text
+start: git fetch --prune → exact origin/main + local status readback → clean safe fast-forward pull only
+work: isolated change + machine verification → push branch → PR/required checks → normal merge
+close: git fetch --prune → fast-forward pull main → exact origin/main == local HEAD + working-tree status readback
+```
+
+- dirty user worktree, pre-existing untracked content, open/draft PR, protected branch, or unresolved source drift에는 강제 pull/push/merge를 하지 않는다. exact blocker를 기록하고 안전한 다음 행동만 한다.
+- `pull`은 fast-forward-only로만 수행한다. direct `main` push, force push, admin/ruleset bypass는 금지다.
+- 산출물·evidence가 포함된 작업도 GitHub merged main readback 전에는 current로 주장하지 않는다.
+
 `GOOGLE_SHEETS: RETIRED_NO_ACTIVE_USE`
 
 사용자 2026-08-25 지시에 따라 기존 Google Sheet는 **일반 작업에서 읽기·쓰기·동기화·결정 입력 대상으로 사용하지 않는다.** 과거 Sheet ID·URL·sync 기록은 역사/감사 provenance가 필요한 경우에만 legacy migration evidence에서 확인하며, active workspace나 기본 탐색면으로 되살리지 않는다. Figma, external HTML, Tool Hub, QA Evidence Studio도 기본/필수 프로젝트 경로가 아니다.
@@ -94,9 +108,9 @@ fresh_read_bootstrap_policy: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 skill_coverage_policy: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT
 gpt_local_codex_orchestration_policy: RETIRED
 current_validation_locator: 기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md
-current_product_decision: SX-DEC-067 · WAYSIDE_HAZARDS_SALVAGE_ROUTE_BOOK_02_MERGED_MAIN_VERIFIED + SX60_POC_ACCEPT_007_MACHINE_PRIMARY_PACKAGE_VERIFIED
+current_product_decision: SX-DEC-068 · TITLE_SHELL_AND_WORLD_WORDMARK_CANDIDATE_MERGED_MAIN_VERIFIED + SX60_POC_ACCEPT_008_MACHINE_PRIMARY_PACKAGE_VERIFIED · TITLE_WORDMARK_PIXEL_REVIEW_PENDING
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-007 · PREPARED_PACKAGE_VERIFIED · exact source main c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · FINAL_USER_REVIEW_NOT_RUN
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-008 · PREPARED_PACKAGE_VERIFIED · exact source main 53e29f874bc70a0057c310d661dc45dbecc6cf13 · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_PIXEL_REVIEW_PENDING
 ```
 
 v4.7 Switchy adapter, v4.5 r2 bundle, v4.8 r2 provenance와 2026-08-24 r4 전환 자료는 역사·rollback/provenance evidence로 보존하며 current work-instruction authority가 아니다. r5.4의 fresh-read/Skill coverage/복구/Godot 상세는 thin adapter와 최신 Base owner를 progressive-load한다.
@@ -161,7 +175,7 @@ switch auto-reset
 ## 5. 현재 Decision / 기획 상태
 
 ```yaml
-current_decision_span: SX-DEC-027~067
+current_decision_span: SX-DEC-027~068
 sx_dec_055_runtime_semantic: MERGED_MAIN_VERIFIED · PR_151
 sx_dec_056a: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
@@ -177,14 +191,15 @@ sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS
 sx_dec_060_ci: PASS · 7_REQUIRED_CHECKS
 sx_dec_060_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
 sx_dec_060_notion_readback: PASS
-sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-007 · PREPARED_PACKAGE_VERIFIED · exact main c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · FINAL_USER_REVIEW_NOT_RUN
+sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-008 · PREPARED_PACKAGE_VERIFIED · exact main 53e29f874bc70a0057c310d661dc45dbecc6cf13 · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_PIXEL_REVIEW_PENDING
 sx_dec_061: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 sx_dec_062: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION
 sx_dec_063: CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED · PR_255 · main_2cf7bb5595a297955c75e6b4108bc1be6fe9428c · PRODUCT_BOARD_RENDERER_V2_CONSUMERS_CONNECTED · CI_7_GREEN
 sx_dec_064: MERGED_MAIN_VERIFIED · PR_249 · main_2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI_7_GREEN · PROCEDURAL_RUNTIME_DELTA
 sx_dec_065: USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW · FIVE_PERSON_COMPREHENSION_NOT_REQUIRED · PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED · FINAL_USER_REVIEW_NOT_RUN
 sx_dec_066: USER_APPROVED · MERGED_MAIN_VERIFIED · Candidate_006_historical_after_SX_DEC_067
-sx_dec_067: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · SX60_POC_ACCEPT_007_PREPARED_PACKAGE_VERIFIED
+sx_dec_067: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · Candidate_007_historical_after_SX_DEC_068
+sx_dec_068: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_271 · main_53e29f874bc70a0057c310d661dc45dbecc6cf13 · TITLE_WORDMARK_CANDIDATE_RUNTIME_CONNECTED · SX60_POC_ACCEPT_008_PREPARED_PACKAGE_VERIFIED · USER_PIXEL_REVIEW_PENDING
 ```
 
 Current first-session shape remains:
@@ -318,7 +333,7 @@ SX-DEC-060 FIVE-PASS REVIEW: CLOSED · SX-AUD-071
 SX-DEC-060 NOTION READBACK: PASS
 POST-060 CANDIDATE 004: HISTORICAL_PRE_V04_PRODUCT_BYTES · PREPARED_PACKAGE_VERIFIED
 POST-060 CANDIDATE 006 PACKAGE/PCK/RUNTIME-JSON POINTER: HISTORICAL_PRE_SX_DEC_067_PRODUCT_BYTES
-POST-SX-DEC-067 PACKAGE CANDIDATE: SX60-POC-ACCEPT-007 · PREPARED_PACKAGE_VERIFIED · exact source main c0bb86efa5bad6050217ca67dd6aa9eba155dc75
+POST-SX-DEC-068 PACKAGE CANDIDATE: SX60-POC-ACCEPT-008 · PREPARED_PACKAGE_VERIFIED · exact source main 53e29f874bc70a0057c310d661dc45dbecc6cf13 · TITLE_WORDMARK_PIXEL_REVIEW_PENDING
 WINDOWS PHYSICAL POST-060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 AUDIO PERCEPTUAL POST-060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 ANDROID DEVICE POST-060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
@@ -334,9 +349,9 @@ Automated/export/package/self-run does not imply HUMAN/PLAYER EXPERIENCE PASS. P
 Current next gate:
 
 ```text
-SX-DEC-067 merged player-facing bytes after Candidate 006
-→ mint one exact post-change machine package candidate
-→ final user review only when requested on that future unchanged candidate
+SX-DEC-068 merged player-facing title-shell bytes after Candidate 007
+→ SX60-POC-ACCEPT-008 exact package is machine-primary verified
+→ final user review only when requested on unchanged Candidate 008; title-wordmark pixel disposition remains separate
 → platform / rights / production-cutover gates remain separate
 ```
 

@@ -29,9 +29,9 @@ description: Use for Switchy Express finite-delivery gameplay, track constructio
 
 ## Current Product Authority
 
-### SX-DEC-067 candidate freshness override
+### SX-DEC-068 candidate freshness override
 
-`SX60-POC-ACCEPT-006` is immutable historical Route Book 01 evidence after the player-facing SX-DEC-067 bytes merged at `main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75`. `SX60-POC-ACCEPT-007` is the current explicit machine-package pointer for those exact bytes; do not select Candidate 006 for a final-user review, and do not transfer Candidate 007 evidence to changed bytes.
+`SX60-POC-ACCEPT-006` is immutable historical Route Book 01 evidence. `SX60-POC-ACCEPT-007` is immutable historical post-SX-DEC-067 evidence after SX-DEC-068 changed player-facing title-shell bytes at `main@53e29f874bc70a0057c310d661dc45dbecc6cf13`. `SX60-POC-ACCEPT-008` is the current explicit machine-package pointer for those exact bytes; do not select Candidates 006 or 007 for a final-user review, and do not transfer Candidate 008 evidence to later changed bytes.
 
 ```text
 build the needed rail network
@@ -85,23 +85,23 @@ SX-DEC-060 DESIGN/TDD/CODEX HANDOFF: PREPARED
 SX-DEC-060 RUNTIME IMPLEMENTATION: MERGED_MAIN_VERIFIED · PR #188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 SX-DEC-060 FULL AUTOMATED REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 SX-DEC-060 FIVE-PASS REVIEW: CLOSED · SX-AUD-071
-POST-SX-DEC-067 EXACT CANDIDATE: SX60-POC-ACCEPT-007 · PREPARED_PACKAGE_VERIFIED · source main c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · Candidate 006 historical Route Book 01 evidence
+POST-SX-DEC-068 EXACT CANDIDATE: SX60-POC-ACCEPT-008 · PREPARED_PACKAGE_VERIFIED · source main 53e29f874bc70a0057c310d661dc45dbecc6cf13 · Candidates 006–007 historical · TITLE_WORDMARK_PIXEL_REVIEW_PENDING
 SX60-POC-ACCEPT-001: HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 WINDOWS PHYSICAL POST-060: FINAL_USER_REVIEW_ONLY · NOT_RUN · SX60-POC-ACCEPT-001_TO_004_OBSERVATIONS_HISTORICAL_ONLY
 ANDROID DEVICE POST-060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
 FIVE-PERSON POST-060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
 PLAYER EXPERIENCE POST-060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
-FINAL USER REVIEW: OPTIONAL_ONLY_WHEN_REQUESTED · NOT_RUN · FUTURE_EXACT_POST_SX_DEC_067_CANDIDATE_REQUIRED
+FINAL USER REVIEW: OPTIONAL_ONLY_WHEN_REQUESTED · NOT_RUN · UNCHANGED_SX60_POC_ACCEPT_008_REQUIRED · TITLE_WORDMARK_PIXEL_DISPOSITION_SEPARATE
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
 
 Current validation sequence:
 
 ```text
-SX60-POC-ACCEPT-006 machine-primary package verification PASS for historical Route Book 01 bytes
+SX60-POC-ACCEPT-008 machine-primary package verification PASS for exact post-SX-DEC-068 title-shell bytes
 → machine acceptance is based on exact package, runtime JSON, PCK integrity, and automated regression evidence
 → five-person comprehension and player-experience study are not required gates under SX-DEC-065
-→ final user review is optional, only when requested, on the unchanged exact post-SX-DEC-067 candidate after it is minted
+→ final user review is optional, only when requested, on unchanged Candidate 008; title-wordmark pixel disposition remains separately pending
 → product decision
 ```
 

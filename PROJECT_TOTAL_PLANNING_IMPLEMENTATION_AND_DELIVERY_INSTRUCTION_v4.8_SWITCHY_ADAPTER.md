@@ -53,7 +53,7 @@ project_base_compatibility_pin: v9.4.3
 project_base_pin_role: HISTORICAL_COMPATIBILITY_AND_PROJECT_ADOPTION_EVIDENCE
 base_current_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
-current_decision_span: SX-DEC-027~067
+current_decision_span: SX-DEC-027~068
 ```
 
 `Base v9.4.3` pin은 과거 project compatibility evidence일 뿐 current Base 실행 방법론 pin이 아니다.
@@ -199,8 +199,8 @@ sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_five_pass_review: CLOSED · SX-AUD-071
 sx_dec_060_notion_readback: PASS
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-007 · PREPARED_PACKAGE_VERIFIED · Candidate_006_historical
-post_sx_dec_060_candidate_minimum_product_source_main: c0bb86efa5bad6050217ca67dd6aa9eba155dc75
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-008 · PREPARED_PACKAGE_VERIFIED · Candidate_007_historical
+post_sx_dec_060_candidate_minimum_product_source_main: 53e29f874bc70a0057c310d661dc45dbecc6cf13
 sx60_poc_accept_001: HISTORICAL_SUPERSEDED_BY_PLAYER_FACING_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 sx60_poc_accept_003: SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE · PLAYER_FACING_SX_DEC_064_ACTIVE_ROUTE_LIGHTING_CHANGE
 windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
@@ -217,9 +217,10 @@ Candidate 002의 Windows startup PASS는 역사적 physical evidence지만 P1 vi
 
 ```text
 SX60-POC-ACCEPT-006 package verification remains historical on exact main 9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 after Route Book 01
-→ SX-DEC-067 changed player-facing bytes at main c0bb86efa5bad6050217ca67dd6aa9eba155dc75; SX60-POC-ACCEPT-007 now binds its exact machine package and final user review remains NOT_RUN
+→ SX-DEC-067 changed player-facing bytes at main c0bb86efa5bad6050217ca67dd6aa9eba155dc75; SX-DEC-068 then changed the title-shell bytes at main 53e29f874bc70a0057c310d661dc45dbecc6cf13
+→ SX60-POC-ACCEPT-007 is historical; SX60-POC-ACCEPT-008 now binds the exact machine package and final user review remains NOT_RUN
 → five-person comprehension and player-experience study are not required gates under SX-DEC-065
-→ final user review is optional, only when requested, and must inspect the future unchanged post-SX-DEC-067 candidate
+→ final user review is optional, only when requested, and must inspect unchanged Candidate 008; the title-wordmark pixel disposition remains separately pending
 → product decision
 ```
 
@@ -239,6 +240,8 @@ fresh shell
 → authoring/test/runtime
 → readback
 ```
+
+모든 작업 단위의 close는 GitHub PR/normal merge 뒤 `git fetch --prune → git pull --ff-only → local HEAD == origin/main + status readback`으로 끝낸다. 시작도 같은 fetch/readback/clean fast-forward 규칙을 따른다. dirty user content, open/draft PR, protected branch, 또는 drift에는 강제 동기화를 하지 않으며 blocker를 남긴다. direct `main` push와 force push는 금지다.
 
 프로젝트별 동일 Godot binary나 전용 포트를 기본적으로 증식시키지 않는다. compatible host에서는 shared approved exact Godot/Godot-AI pin과 provider default fixed ports를 사용하고, project isolation은 exact path/editor/session identity로 보장한다. 충돌·breaking migration·추가 비용·권한 확대가 있으면 자동 update하지 않는다.
 
