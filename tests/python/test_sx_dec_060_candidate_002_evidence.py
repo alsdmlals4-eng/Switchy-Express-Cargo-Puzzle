@@ -101,7 +101,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         self.assertNotIn("SX60-POC-ACCEPT-004 · PHYSICAL_PASS", text)
         self.assertIn("sx60_poc_accept_002: SX60-POC-ACCEPT-002 · HISTORICAL_SUPERSEDED_BY_SX_DEC_062", text)
         self.assertIn(
-            "acceptance_build: NONE · FUTURE_EXACT_POST_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE_REQUIRED · NO_HUMAN_OR_PHYSICAL_EVIDENCE",
+            "acceptance_build: SX60-POC-ACCEPT-007 · PREPARED_PACKAGE_VERIFIED · exact post-SX-DEC-067 machine package · NO_HUMAN_OR_PHYSICAL_EVIDENCE",
             text,
         )
 
