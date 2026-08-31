@@ -6,7 +6,7 @@
 
 **Architecture:** `ProductBoardRenderer` remains the sole owner of the short-lived visual transition. It compares consecutive immutable render snapshots, derives an entry or exit descriptor, then uses a bounded CanvasItem redraw window to draw line-based cues above route state and below the train. The existing maps and `FiniteRunController` continue to own caution cells and the 0.55 speed multiplier; no gameplay state is written by the renderer.
 
-**Tech Stack:** Godot 4.7.1, GDScript, project SceneTree test runner, Pillow-backed Python PNG validator, built-in image generation, project-local PNG assets.
+**Tech Stack:** Godot 4.7.1, GDScript, project SceneTree test runner, Python standard-library PNG validator, built-in image generation, project-local PNG assets.
 
 **Spec:** `docs/decisions/SX_DEC_067_WAYSIDE_HAZARDS_SALVAGE_AND_ROUTE_BOOK_02.md` plus the user-approved 2026-09-01 transparent-background and distinct-speed-transition direction.
 
@@ -75,7 +75,7 @@ assert_equal(
 
 - [x] **Step 2: Write the failing PNG/provenance validator**
 
-Create a Pillow-backed Python unittest that asserts all eight v02 files exist, are RGBA, have fully transparent corner pixels, do not cover the full raster with opaque pixels, have manifest entries under `generated_candidates`, and are the exact renderer consumers.
+Create a standard-library Python unittest that parses non-interlaced 8-bit RGBA scanlines and asserts all eight v02 files exist, have fully transparent corner pixels, do not cover the full raster with opaque pixels, have manifest entries under `generated_candidates`, and are the exact renderer consumers.
 
 - [x] **Step 3: Run the tests to verify RED**
 
