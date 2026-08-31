@@ -156,6 +156,7 @@ The user requires a lean local workspace: retain only current source, tracked ca
 - Remove a worktree, its merged local branch, generated `.godot` cache, and task logs immediately after its evidence has been read back. Use a short direct child of the Windows temp root for Godot-only temporary worktrees so shader-cache paths do not exceed Windows path limits.
 - Never clean the user root worktree, a dirty or unmerged worktree, an open/draft PR worktree, current tracked assets, or historical rollback/provenance evidence merely because it is old.
 - When cleanup is incomplete, record the exact residual path, reason, and reclaimable size; do not relabel it as removed or work around a safety control.
+- `cleanup_residual_candidate_009_path: C:\Users\user\AppData\Local\Temp\SX60-POC-ACCEPT-009-33396533310` · `cleanup_residual_candidate_009_bytes_observed: 290458482` · `cleanup_residual_candidate_009_status: HOST_POLICY_BLOCKED` · all artifact/PCK evidence has been read back into tracked GitHub owners; the exact recursive removal was blocked by the host and must not be bypassed or reported as complete.
 - `SX-LRN-20260831-01` is the current project learning receipt at `docs/operations/2026-08-31-project-learning-absorption.md`. It records existing project reflections, project-only exclusions, and one `BASE_REVIEW_CANDIDATE_OBSERVATION`; Base remains unchanged and no proposal is registered.
 
 ## Current product promise

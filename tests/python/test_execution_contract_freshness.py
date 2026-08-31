@@ -88,6 +88,8 @@ class ExecutionContractFreshnessTests(unittest.TestCase):
             "short direct child of the Windows temp root",
             "Never clean the user root worktree, a dirty or unmerged worktree",
             "do not relabel it as removed or work around a safety control",
+            "SX60-POC-ACCEPT-009-33396533310",
+            "HOST_POLICY_BLOCKED",
         ):
             self.assertIn(required, active)
 
