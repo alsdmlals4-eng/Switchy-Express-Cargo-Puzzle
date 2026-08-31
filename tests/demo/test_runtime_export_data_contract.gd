@@ -10,7 +10,7 @@ const REQUIRED_INCLUDE_FILTER := (
 	+ "art/product_assets/ed_hybrid_v2/*.json\""
 )
 const REQUIRED_EXCLUDE_FILTER := (
-	"exclude_filter=\"tests/**,addons/gut/**,addons/godot_ai/**\""
+	"exclude_filter=\"tests/**,addons/gut/**,addons/godot_ai/**,evidence/**,output/**\""
 )
 
 
