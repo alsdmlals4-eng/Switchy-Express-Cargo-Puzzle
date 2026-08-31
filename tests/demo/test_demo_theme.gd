@@ -2,6 +2,7 @@ extends "res://tests/test_case.gd"
 
 const DemoScene := preload("res://game/demo/vertical_slice_demo.tscn")
 const TUTORIAL_FOCUS := Color("9b6bdf")
+const TITLE_WORDMARK_PATH := "res://art/product_assets/ed_hybrid_v2/shells/shell_title_wordmark_switchy_express_candidate_v01.png"
 
 
 func run() -> void:
@@ -44,6 +45,27 @@ func run() -> void:
 		)
 		assert_equal(title_backdrop.anchor_right, 1.0, "title background must fill its parent width")
 		assert_equal(title_backdrop.anchor_bottom, 1.0, "title background must fill its parent height")
+
+	var title_logo := demo.get_node_or_null(
+		"TitleScreen/TitleMargin/TitleColumns/TitleDeck/Content/TitleLogo"
+	) as TextureRect
+	assert_not_null(title_logo, "title must expose the generated railway wordmark consumer")
+	if title_logo != null:
+		assert_not_null(title_logo.texture, "title wordmark consumer must load its tracked candidate texture")
+		assert_equal(
+			title_logo.texture.resource_path,
+			TITLE_WORDMARK_PATH,
+			"title wordmark consumer must point at the tracked candidate asset"
+		)
+		assert_equal(
+			title_logo.mouse_filter,
+			Control.MOUSE_FILTER_IGNORE,
+			"decorative title wordmark must not intercept the title controls"
+		)
+		assert_true(
+			title_logo.custom_minimum_size.x >= 360.0 and title_logo.custom_minimum_size.y >= 180.0,
+			"title wordmark must retain a legible menu-scale footprint"
+		)
 
 	var title_panel := demo.get_node("TitleScreen/TitleMargin/TitleColumns/TitleDeck") as PanelContainer
 	var panel_style := title_panel.get_theme_stylebox(&"panel", &"PanelContainer") as StyleBoxFlat

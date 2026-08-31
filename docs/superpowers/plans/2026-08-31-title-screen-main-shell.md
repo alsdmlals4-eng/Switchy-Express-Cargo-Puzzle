@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Replace the cramped title dialog with a responsive, full-viewport main title shell that reuses the existing approved title artwork and all current entry actions.
+**Goal:** Replace the cramped title dialog with a responsive, full-viewport main title shell that reuses the existing approved title artwork, adds the user-directed title wordmark candidate, and retains all current entry actions.
 
 **Architecture:** Keep `DemoFlowController` as the sole owner of title-state transitions. Restructure only the `TitleScreen` node tree into a full-background composition; use existing `ProductShellArt` in `TITLE` mode for the exact hero asset and existing `DemoThemeFactory` styles for the two control decks. Add a narrow focus helper rather than new navigation state.
 
@@ -12,7 +12,7 @@
 
 ## Global Constraints
 
-- Reuse `art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png`; create zero bitmap assets.
+- Reuse `art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png`. The approved amendment creates exactly one transparent **candidate** bitmap, `SX-TITLE-WORDMARK-001`, with a concrete `TitleLogo` runtime consumer and user pixel review still pending.
 - Preserve the `StartButton`, `StageBookButton`, `ControlsButton`, and `QuitButton` logical actions; migrate every controller lookup to the new deck paths in the same task.
 - Keep all finite gameplay, first-session, Route Book, save, and localization behavior unchanged.
 - Initial TITLE focus is `StartButton`; all action buttons retain a visible focus state and at least 56px height.

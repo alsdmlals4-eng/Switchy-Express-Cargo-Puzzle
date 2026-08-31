@@ -26,6 +26,7 @@ func run() -> void:
 		var root_rect := Rect2(Vector2.ZERO, viewport_size)
 		for title_path: NodePath in [
 			NodePath("TitleScreen/TitleBackdrop"),
+			NodePath("TitleScreen/TitleMargin/TitleColumns/TitleDeck/Content/TitleLogo"),
 			NodePath("TitleScreen/TitleMargin/TitleColumns/TitleDeck/Content/StartButton"),
 			NodePath("TitleScreen/TitleMargin/TitleColumns/ActionDeck/Content/StageBookButton"),
 			NodePath("TitleScreen/TitleMargin/TitleColumns/ActionDeck/Content/ControlsButton"),
