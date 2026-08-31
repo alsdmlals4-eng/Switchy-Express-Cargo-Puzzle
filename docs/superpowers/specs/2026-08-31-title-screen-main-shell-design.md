@@ -23,12 +23,12 @@ TITLE
 
 `TitleScreen` remains a full-rect `Control`. Its children, ordered back to front, are:
 
-1. `TitleBackdrop`: full rect, mouse ignored, `ProductShellArt` `TITLE` mode; it has the only bitmap consumer.
+1. `TitleBackdrop`: full rect, mouse ignored, `ProductShellArt` `TITLE` mode, consuming the approved text-free title hero.
 2. `TitleShade`: full rect, a dark low-opacity `ColorRect` that protects copy without hiding the miniature world.
 3. `TitleMargin`: a full-rect `MarginContainer` with responsive edge space.
 4. `TitleColumns`: an `HBoxContainer` with a left `TitleDeck`, a flexible spacer, and a right `ActionDeck`.
 
-Both decks use existing `ShellPanel` material grammar. The left deck is restrained, not another navigation list; the right deck is the navigation destination. The left deck has `SWITCHY EXPRESS`, the existing Korean product promise, an explicit “첫 운행” cue, and the primary existing start control. The right deck gives the three non-primary actions a compact label and existing copy.
+Both decks use existing `ShellPanel` material grammar. The left deck is restrained, not another navigation list; the right deck is the navigation destination. The left deck has a non-interactive 2:1 `TitleLogo` `TextureRect` consuming the transparent `SX-TITLE-WORDMARK-001` candidate, then the existing Korean product promise, an explicit “첫 운행” cue, and the primary existing start control. The right deck gives the three non-primary actions a compact label and existing copy.
 
 At the smallest supported 960×540 viewport the parent margin shrinks, but the action deck stays in view and every button remains 56px high. The title hero is always an aspect-cover backdrop, never a container-sized 96px crop.
 
@@ -38,11 +38,11 @@ At the smallest supported 960×540 viewport the parent margin shrinks, but the a
 - The existing theme's visible gold focus outline remains enabled for all actions.
 - Focus moves top-to-bottom through the title actions; initial focus is reset when returning from another shell state.
 - Decorative background controls ignore mouse input; the buttons are the only title interaction targets.
-- Text stays as live Godot labels in Korean; no exact UI text is requested from image generation.
+- Korean product copy and all action labels stay as live Godot labels. The English title wordmark is a generated raster candidate, so its exact spelling is verified by review and its use remains separate from localization.
 
 ## Asset and provenance boundary
 
-The title uses `SX-TITLE-HERO-001` at `art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png`, already a tracked, runtime-verified, text-free asset. This scope creates **zero bitmap assets**. The eight SX-DEC-067 wayside images remain independent `GENERATED_CANDIDATE · RUNTIME_CONNECTED · NOT_CANON` board assets and are shown to the user separately for pixel disposition.
+The title retains `SX-TITLE-HERO-001` at `art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png`, already a tracked, runtime-verified, text-free backdrop. The user-directed amendment adds exactly one transparent raster candidate, `SX-TITLE-WORDMARK-001`, at `art/product_assets/ed_hybrid_v2/shells/shell_title_wordmark_switchy_express_candidate_v01.png`. It is `GENERATED_CANDIDATE · RUNTIME_CONNECTED · NOT_CANON`, carries a SHA-256/provenance record in the project manifest, and remains `USER_PIXEL_REVIEW_PENDING`. The eight SX-DEC-067 wayside images remain independent candidates.
 
 ## Technical basis
 
@@ -55,7 +55,7 @@ The technical feasibility sources are the [Godot Control documentation](https://
 
 ## Out of scope
 
-- new bitmap generation, asset replacement, logo design, score/rank/progression/persistence UI;
+- title-art replacement, score/rank/progression/persistence UI;
 - new game rules, map data, tutorial stage, first-session sequence, Route Book data, or game-state preview;
 - changing the user's machine-primary validation policy;
 - declaring physical, user, accessibility-device, platform, release, or final-user review PASS.
