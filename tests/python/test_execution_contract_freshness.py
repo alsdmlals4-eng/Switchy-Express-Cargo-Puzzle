@@ -112,6 +112,27 @@ class ExecutionContractFreshnessTests(unittest.TestCase):
         missing = [marker for marker in required_markers if marker not in receipt]
         self.assertFalse(missing, "project learning receipt is missing: " + ", ".join(missing))
 
+    def test_project_learning_receipt_keeps_user_approval_preference_loop(self) -> None:
+        receipt = PROJECT_LEARNING_RECEIPT.read_text(encoding="utf-8")
+        required_markers = (
+            "SX-APR-20260831-01",
+            "USER_APPROVAL_PREFERENCE_LEARNING",
+            "CURRENT_STATE → RECOMMENDED_ACTION → REASON → EXPECTED_EFFECT",
+            "PROMOTION_RATIONALE",
+            "WORK_STRUCTURE",
+            "VISUAL_OR_ASSET_RELEVANCE",
+            "FAILURE_CAUSAL_ANALYSIS",
+            "EXPECTED_EFFECT",
+            "TEXT_NATIVE_FLOW_NO_IMAGE_GENERATION",
+            "PROJECT_LEARNING_ONLY_UNTIL_BASE_ELIGIBILITY_AND_REGISTRY_OWNERSHIP_CLEAR",
+        )
+        missing = [marker for marker in required_markers if marker not in receipt]
+        self.assertFalse(
+            missing,
+            "project learning receipt is missing user approval preference markers: "
+            + ", ".join(missing),
+        )
+
     def test_active_context_routes_the_project_learning_receipt(self) -> None:
         active = ACTIVE_CONTEXT.read_text(encoding="utf-8")
         for required in (

@@ -96,6 +96,40 @@ status: retained_in_project_only_owners
 
 Machine-primary acceptance, final-user-review scope, LIFO delivery semantics, cardinal station service, curated Route Book stages, wayside hazards, and miniature rail asset construction remain project-specific. They are not sent to Base as general rules. In particular, the user-selected exclusion of five-person comprehension and player-experience studies is a project validation policy, not a Base requirement.
 
+### 5. User decision and approval preference learning
+
+```yaml
+approval_preference_id: SX-APR-20260831-01
+classification: PROJECT_OPERATIONAL_PREFERENCE
+status: USER_APPROVED_AND_REGRESSION_GUARDED
+learning_mode: USER_APPROVAL_PREFERENCE_LEARNING
+decision_trace_required: CURRENT_STATE → RECOMMENDED_ACTION → REASON → EXPECTED_EFFECT
+base_promotion_boundary: PROJECT_LEARNING_ONLY_UNTIL_BASE_ELIGIBILITY_AND_REGISTRY_OWNERSHIP_CLEAR
+```
+
+The user requires a recommendation or approval request to explain the decision in a way that can be judged before implementation. This is a reporting and learning preference, not a new game mechanic, visual canon, runtime acceptance state, or permission to bypass a Base proposal lifecycle.
+
+| Required approval explanation | What must be shown | Why it prevents an avoidable mistake |
+| --- | --- | --- |
+| `CURRENT_STATE` | The exact current owner, consumer, evidence state, and unresolved constraint | Prevents a recommendation from being based on stale chat context or a candidate being presented as current runtime truth. |
+| `RECOMMENDED_ACTION` | The smallest concrete action, its excluded scope, and whether it is project-only, a Base candidate, or an approved Base implementation | Prevents an observation, proposal, and active implementation from being silently conflated. |
+| `REASON` | The decision rationale and at least the materially distinct alternatives that were rejected or deferred | Prevents preference-only choices from being reported as inevitable technical facts. |
+| `EXPECTED_EFFECT` | The player, maintainer, verification, storage, recovery, or future-work effect that is expected, plus its evidence ceiling | Prevents a cleanup, document change, or static test from being overstated as runtime, human, device, or release proof. |
+
+Every future Base-promotion submission proposed from this project must additionally include the following fields before the user is asked to judge it:
+
+```yaml
+PROMOTION_RATIONALE: why the lesson should leave the project boundary
+WORK_STRUCTURE: the actual preflight → action → readback → rollback flow
+VISUAL_OR_ASSET_RELEVANCE: required consumer-backed image state, or an explicit no-image rationale
+FAILURE_CAUSAL_ANALYSIS: the concrete failure mechanism, recurrence conditions, and unsafe shortcuts
+EXPECTED_EFFECT: measurable prevention, maintenance, recovery, or evidence-quality benefit
+```
+
+For a workflow-only proposal with no player-facing or runtime texture consumer, `VISUAL_OR_ASSET_RELEVANCE` must state `TEXT_NATIVE_FLOW_NO_IMAGE_GENERATION`. The proposal may use a text-native flow diagram, table, or state machine to make the operational relationship inspectable, but it must not generate decorative raster images merely to make the proposal look complete.
+
+This learning does not promote the user's project-specific decision criteria to Base by itself. A later Base submission must separately prove the Base promotion requirements: strong shared contract or repeated cross-project value, preserved project identity, narrow stable interface, clear rights/security/cost boundaries, real consumer and regression evidence, and unoccupied Proposal Registry ownership.
+
 ## Reuse handoff evaluation
 
 | Required field | Result |
