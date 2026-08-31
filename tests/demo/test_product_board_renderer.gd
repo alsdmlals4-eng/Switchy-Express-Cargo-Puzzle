@@ -185,6 +185,84 @@ func run() -> void:
 			"renderer must normalize wayside data before it reaches board drawing"
 		)
 
+	assert_true(
+		renderer.has_method("speed_transition_descriptor_for_test"),
+		"renderer must expose visual-only speed transition diagnostics"
+	)
+	if renderer.has_method("speed_transition_descriptor_for_test"):
+		var deceleration: Dictionary = renderer.speed_transition_descriptor_for_test(
+			{
+				"train_cell": Vector2i(2, 3),
+				"caution_track_cells": [Vector2i(3, 3)],
+			},
+			{
+				"train_cell": Vector2i(3, 3),
+				"caution_track_cells": [Vector2i(3, 3)],
+			}
+		)
+		assert_equal(
+			deceleration.get("kind", &""),
+			&"DECELERATE",
+			"normal-to-caution entry must show braking"
+		)
+		assert_equal(
+			deceleration.get("cell", Vector2i(-1, -1)),
+			Vector2i(3, 3),
+			"braking cue belongs at the entered caution cell"
+		)
+		var acceleration: Dictionary = renderer.speed_transition_descriptor_for_test(
+			{
+				"train_cell": Vector2i(3, 3),
+				"caution_track_cells": [Vector2i(3, 3)],
+			},
+			{
+				"train_cell": Vector2i(4, 3),
+				"caution_track_cells": [Vector2i(3, 3)],
+			}
+		)
+		assert_equal(
+			acceleration.get("kind", &""),
+			&"ACCELERATE",
+			"caution exit must show normal-speed recovery"
+		)
+		assert_equal(
+			acceleration.get("direction", Vector2i.ZERO),
+			Vector2i.RIGHT,
+			"recovery cue must follow train travel direction"
+		)
+		assert_equal(
+			renderer.speed_transition_descriptor_for_test(
+				{
+					"train_cell": Vector2i(3, 3),
+					"caution_track_cells": [Vector2i(3, 3), Vector2i(4, 3)],
+				},
+				{
+					"train_cell": Vector2i(4, 3),
+					"caution_track_cells": [Vector2i(3, 3), Vector2i(4, 3)],
+				}
+			),
+			{},
+			"consecutive caution cells must not replay a speed transition"
+		)
+		assert_true(
+			renderer.visual_layer_order_for_test().find(&"SPEED_TRANSITION")
+			< renderer.visual_layer_order_for_test().find(&"TRAIN"),
+			"speed feedback must remain below the train"
+		)
+		renderer.apply_snapshot({
+			"train_cell": Vector2i(2, 3),
+			"caution_track_cells": [Vector2i(3, 3)],
+		})
+		renderer.apply_snapshot({
+			"train_cell": Vector2i(3, 3),
+			"caution_track_cells": [Vector2i(3, 3)],
+		})
+		assert_equal(
+			renderer.speed_transition_playback_for_test().get("kind", &""),
+			&"DECELERATE",
+			"snapshot playback must retain renderer-local braking feedback"
+		)
+
 	var source: Dictionary = {
 		"map_id": &"VS_DEMO_01",
 		"board_size": Vector2i(11, 9),
@@ -224,12 +302,12 @@ func run() -> void:
 
 	var expected_product_paths := {
 		"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
-		"decoration_forest_cluster": "art/product_assets/ed_hybrid_v2/board/board_decor_forest_cluster_v01.png",
-		"decoration_moss_boulder": "art/product_assets/ed_hybrid_v2/board/board_decor_moss_boulder_v01.png",
-		"decoration_timber_stack": "art/product_assets/ed_hybrid_v2/board/board_decor_timber_stack_v01.png",
-		"decoration_waterway": "art/product_assets/ed_hybrid_v2/board/board_decor_waterway_v01.png",
-		"decoration_lantern_fence": "art/product_assets/ed_hybrid_v2/board/board_decor_lantern_fence_v01.png",
-		"caution_track": "art/product_assets/ed_hybrid_v2/board/board_caution_track_overlay_v01.png",
+		"decoration_forest_cluster": "art/product_assets/ed_hybrid_v2/board/board_decor_forest_cluster_v02.png",
+		"decoration_moss_boulder": "art/product_assets/ed_hybrid_v2/board/board_decor_moss_boulder_v02.png",
+		"decoration_timber_stack": "art/product_assets/ed_hybrid_v2/board/board_decor_timber_stack_v02.png",
+		"decoration_waterway": "art/product_assets/ed_hybrid_v2/board/board_decor_waterway_v02.png",
+		"decoration_lantern_fence": "art/product_assets/ed_hybrid_v2/board/board_decor_lantern_fence_v02.png",
+		"caution_track": "art/product_assets/ed_hybrid_v2/board/board_caution_track_overlay_v02.png",
 		"train": "art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png",
 		"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v04.png",
 		"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v04.png",
@@ -240,11 +318,11 @@ func run() -> void:
 		"station_red": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
 		"station_blue": "art/product_assets/ed_hybrid_v2/core/core_station_blue_normal_v02.png",
 		"station_yellow": "art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png",
-		"station_disposal": "art/product_assets/ed_hybrid_v2/core/core_disposal_yard_normal_v01.png",
+		"station_disposal": "art/product_assets/ed_hybrid_v2/core/core_disposal_yard_normal_v02.png",
 		"cargo_red": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png",
 		"cargo_blue": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_blue_normal_v02.png",
 		"cargo_yellow": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png",
-		"cargo_waste": "art/product_assets/ed_hybrid_v2/core/core_cargo_waste_crate_normal_v01.png",
+		"cargo_waste": "art/product_assets/ed_hybrid_v2/core/core_cargo_waste_crate_normal_v02.png",
 	}
 	assert_equal(
 		renderer.product_visual_asset_paths_for_test(),

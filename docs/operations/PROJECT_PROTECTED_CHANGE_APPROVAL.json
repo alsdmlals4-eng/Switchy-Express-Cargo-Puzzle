@@ -12,6 +12,7 @@
     "SX-DEC-066",
     "SX-DEC-067",
     "SX-DEC-068",
+    "SX-DEC-069",
     "USER-APPROVAL-2026-08-30-CORE-BOARD-V02-PIXELS-AND-SEAM-UNDERLAY",
     "USER-APPROVAL-2026-08-30-RAIL-NETWORK-MASTER-V03",
     "USER-APPROVAL-2026-08-28-SX-VIS-063-TERRAIN-CANDIDATE-001-PROMOTION",
@@ -24,13 +25,15 @@
     "USER-APPROVAL-2026-08-31-SX-DEC-067-WAYSIDE-HAZARDS-SALVAGE-AND-ROUTE-BOOK-02",
     "USER-APPROVAL-2026-08-31-SX60-POC-ACCEPT-007-MACHINE-VALIDATION",
     "USER-APPROVAL-2026-08-31-SX-DEC-068-WORLD-TITLE_WORDMARK-AND-CANDIDATE-008-MACHINE-VALIDATION",
-    "USER-APPROVAL-2026-08-31-SX-DEC-068-WORDMARK-PIXEL-CANONICAL-PROMOTION-AND-CANDIDATE-009-MACHINE-VALIDATION"
+    "USER-APPROVAL-2026-08-31-SX-DEC-068-WORDMARK-PIXEL-CANONICAL-PROMOTION-AND-CANDIDATE-009-MACHINE-VALIDATION",
+    "USER-APPROVAL-2026-09-01-SX-DEC-069-TRANSPARENT-WAYSIDE-AND-SPEED-TRANSITION-PRESENTATION"
   ],
   "approved_paths": [
     "game/cargo/cargo_type.gd",
     "game/demo/demo_flow_controller.gd",
     "game/demo/presentation/demo_palette.gd",
     "game/demo/presentation/product_board_renderer.gd",
+    "game/demo/product_finite_slice.gd",
     "game/demo/vertical_slice_demo.tscn",
     "game/finite/main/finite_slice_session_controller.gd",
     "game/finite/map/finite_map_definition.gd",
@@ -72,5 +75,5 @@
   ],
   "approval_source": "USER_EXPLICIT_SX-VIS-063_CANDIDATE_PROMOTION_AND_OPERATING_LOOP_2026-08-28_PLUS_SX-VIS-061_CORE_SYSTEM_BOARD_SX-DEC-064_AND_CANDIDATE_004_2026-08-29_PLUS_CORE_BOARD_V02_PIXELS_SEAM_UNDERLAY_GODOT_IMPLEMENTATION_VISUAL_READABILITY_REPAIR_AND_RAIL_NETWORK_MASTER_V03_PROMOTION_PLUS_SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW_AND_CANDIDATE_005_MACHINE_VALIDATION_PLUS_SX_DEC_066_ROUTE_BOOK_01_IMPLEMENTATION_AND_CANDIDATE_006_MACHINE_VALIDATION_2026-08-30_PLUS_SX_DEC_067_WAYSIDE_HAZARDS_SALVAGE_AND_ROUTE_BOOK_02_AND_SX60_POC_ACCEPT_007_MACHINE_VALIDATION_PLUS_SX_DEC_068_WORLD_TITLE_WORDMARK_CANDIDATE_008_MACHINE_VALIDATION_AND_USER_PIXEL_CANONICAL_PROMOTION_CANDIDATE_009_MACHINE_VALIDATION_2026-08-31",
   "approval_time": "2026-08-31T00:00:00+09:00",
-  "scope_summary": "The user explicitly promoted the reviewed SX-VIS-063 terrain candidate; required official research, feasibility and adversarial review; approved the SX-VIS-061 board, SX-DEC-064 active-route lighting, Candidate 004 package validation, and on 2026-08-30 the Core Board v02 pixels, Godot implementation, translucent Build preview, smaller cargo marker, the final connected rail-network master v03, SX-DEC-065, Candidate 005 machine validation, then the six fixed SX-DEC-066 Route Book 01 stages and Candidate 006 machine validation. On 2026-08-31 the user also approved SX-DEC-067: six optional Route Book 02 maps with authored caution-track segments, waste cargo, cardinal-adjacent disposal-yard delivery, and blocked-cell wayside decorations, then the exact-machine Candidate 007 evidence continuation. The user then clarified the main title must be a world-fitting title treatment and authorized SX-DEC-068: one transparent rail/cargo wordmark candidate in the existing title consumer plus exact-machine Candidate 008 package evidence. The user then explicitly approved the wordmark pixels, its canonical promotion, and the replacement exact-machine Candidate 009 package evidence. SX-DEC-065 makes deterministic machine verification the primary validation route; five-person comprehension and player-experience studies are not required, while final user review remains separately recorded. This approval permits the exact protected current-canon/evidence owners listed above. It does not authorize gameplay beyond SX-DEC-068, audio, locale beyond its four approved locales, progression, Base changes, T2/Issue #227 work, PR #174 mutation, a solver, or human/player/release evidence promotion."
+  "scope_summary": "The user explicitly promoted the reviewed SX-VIS-063 terrain candidate; required official research, feasibility and adversarial review; approved the SX-VIS-061 board, SX-DEC-064 active-route lighting, Candidate 004 package validation, and on 2026-08-30 the Core Board v02 pixels, Godot implementation, translucent Build preview, smaller cargo marker, the final connected rail-network master v03, SX-DEC-065, Candidate 005 machine validation, then the six fixed SX-DEC-066 Route Book 01 stages and Candidate 006 machine validation. On 2026-08-31 the user also approved SX-DEC-067: six optional Route Book 02 maps with authored caution-track segments, waste cargo, cardinal-adjacent disposal-yard delivery, and blocked-cell wayside decorations, then the exact-machine Candidate 007 evidence continuation. The user then clarified the main title must be a world-fitting title treatment and authorized SX-DEC-068: one transparent rail/cargo wordmark candidate in the existing title consumer plus exact-machine Candidate 008 package evidence. The user then explicitly approved the wordmark pixels, its canonical promotion, and the replacement exact-machine Candidate 009 package evidence. On 2026-09-01 the user approved SX-DEC-069: transparent object-only replacements for the eight wayside/cargo/disposal candidates and distinct renderer-local caution-entry versus normal-speed-recovery feedback. SX-DEC-065 makes deterministic machine verification the primary validation route; five-person comprehension and player-experience studies are not required, while final user review remains separately recorded. This approval permits the exact protected current-canon/evidence owners listed above. It does not authorize new gameplay beyond SX-DEC-069, audio, locale beyond its four approved locales, progression, Base changes, T2/Issue #227 work, PR #174 mutation, a solver, or human/player/release evidence promotion."
 }

@@ -15,15 +15,19 @@ const GHOST_FILL_ALPHA := 0.08
 const GHOST_TRACK_ALPHA := 0.46
 const GHOST_SEMANTIC_BADGE_SCALE := 0.28
 const CARGO_MARKER_SCALE := 0.62
+const SPEED_TRANSITION_DURATION_SECONDS := 0.28
+const REDUCED_MOTION_SPEED_TRANSITION_DURATION_SECONDS := 0.20
+const SPEED_DECELERATION_COLOR := Color(1.0, 0.72, 0.18, 1.0)
+const SPEED_ACCELERATION_COLOR := Color(0.22, 0.92, 0.90, 1.0)
 
 const PRODUCT_VISUAL_ASSET_PATHS := {
 	"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
-	"decoration_forest_cluster": "art/product_assets/ed_hybrid_v2/board/board_decor_forest_cluster_v01.png",
-	"decoration_moss_boulder": "art/product_assets/ed_hybrid_v2/board/board_decor_moss_boulder_v01.png",
-	"decoration_timber_stack": "art/product_assets/ed_hybrid_v2/board/board_decor_timber_stack_v01.png",
-	"decoration_waterway": "art/product_assets/ed_hybrid_v2/board/board_decor_waterway_v01.png",
-	"decoration_lantern_fence": "art/product_assets/ed_hybrid_v2/board/board_decor_lantern_fence_v01.png",
-	"caution_track": "art/product_assets/ed_hybrid_v2/board/board_caution_track_overlay_v01.png",
+	"decoration_forest_cluster": "art/product_assets/ed_hybrid_v2/board/board_decor_forest_cluster_v02.png",
+	"decoration_moss_boulder": "art/product_assets/ed_hybrid_v2/board/board_decor_moss_boulder_v02.png",
+	"decoration_timber_stack": "art/product_assets/ed_hybrid_v2/board/board_decor_timber_stack_v02.png",
+	"decoration_waterway": "art/product_assets/ed_hybrid_v2/board/board_decor_waterway_v02.png",
+	"decoration_lantern_fence": "art/product_assets/ed_hybrid_v2/board/board_decor_lantern_fence_v02.png",
+	"caution_track": "art/product_assets/ed_hybrid_v2/board/board_caution_track_overlay_v02.png",
 	"train": "art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png",
 	"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v04.png",
 	"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v04.png",
@@ -34,17 +38,21 @@ const PRODUCT_VISUAL_ASSET_PATHS := {
 	"station_red": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
 	"station_blue": "art/product_assets/ed_hybrid_v2/core/core_station_blue_normal_v02.png",
 	"station_yellow": "art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png",
-	"station_disposal": "art/product_assets/ed_hybrid_v2/core/core_disposal_yard_normal_v01.png",
+	"station_disposal": "art/product_assets/ed_hybrid_v2/core/core_disposal_yard_normal_v02.png",
 	"cargo_red": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png",
 	"cargo_blue": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_blue_normal_v02.png",
 	"cargo_yellow": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png",
-	"cargo_waste": "art/product_assets/ed_hybrid_v2/core/core_cargo_waste_crate_normal_v01.png",
+	"cargo_waste": "art/product_assets/ed_hybrid_v2/core/core_cargo_waste_crate_normal_v02.png",
 }
 
 var _snapshot: Dictionary = {}
 var _hover_cell: Vector2i = NO_CELL
 var _catalog: Variant
 var _product_textures: Dictionary = {}
+var _speed_transition: Dictionary = {}
+var _speed_transition_remaining_seconds := 0.0
+var _speed_transition_duration_seconds := 0.0
+var _reduced_motion := false
 
 
 func _init() -> void:
@@ -54,10 +62,32 @@ func _init() -> void:
 	_catalog = SemanticAssetCatalogScript.new()
 	_catalog.load_default()
 	_load_product_visuals()
+	set_process(false)
 
 
 func apply_snapshot(snapshot: Dictionary) -> void:
-	_snapshot = snapshot.duplicate(true)
+	var next_snapshot := snapshot.duplicate(true)
+	var transition := _speed_transition_descriptor(_snapshot, next_snapshot)
+	_snapshot = next_snapshot
+	if not transition.is_empty():
+		_start_speed_transition(transition)
+	queue_redraw()
+
+
+func set_reduced_motion(enabled: bool) -> void:
+	_reduced_motion = enabled
+	queue_redraw()
+
+
+func _process(delta: float) -> void:
+	if _speed_transition.is_empty():
+		set_process(false)
+		return
+	_speed_transition_remaining_seconds = maxf(_speed_transition_remaining_seconds - maxf(delta, 0.0), 0.0)
+	if _speed_transition_remaining_seconds <= 0.0:
+		_speed_transition = {}
+		_speed_transition_duration_seconds = 0.0
+		set_process(false)
 	queue_redraw()
 
 
@@ -128,6 +158,17 @@ func wayside_presentation_descriptors_for_test() -> Dictionary:
 	return _wayside_presentation_descriptors(_snapshot)
 
 
+func speed_transition_descriptor_for_test(
+	previous_snapshot: Dictionary,
+	next_snapshot: Dictionary
+) -> Dictionary:
+	return _speed_transition_descriptor(previous_snapshot, next_snapshot)
+
+
+func speed_transition_playback_for_test() -> Dictionary:
+	return _speed_transition.duplicate(true)
+
+
 func visual_layer_order_for_test() -> Array[StringName]:
 	return [
 		&"TERRAIN",
@@ -142,6 +183,7 @@ func visual_layer_order_for_test() -> Array[StringName]:
 		&"MARKERS",
 		&"START",
 		&"STATE",
+		&"SPEED_TRANSITION",
 		&"TRAIN",
 	]
 
@@ -237,6 +279,7 @@ func _draw() -> void:
 	_draw_fixed_markers(rect, board_size)
 	_draw_start_marker(rect, board_size)
 	_draw_state_overlays(rect, board_size)
+	_draw_speed_transition(rect, board_size)
 	_draw_train(rect, board_size)
 
 
@@ -736,6 +779,128 @@ func _draw_state_overlays(rect: Rect2, board_size: Vector2i) -> void:
 		if problem != NO_CELL:
 			var problem_rect := _cell_rect(problem, rect, board_size).grow(-2.0)
 			draw_rect(problem_rect, Palette.PROBLEM, false, 5.0)
+
+
+func _draw_speed_transition(rect: Rect2, board_size: Vector2i) -> void:
+	if _speed_transition.is_empty():
+		return
+	var cell := snapshot_cell(_speed_transition.get("cell", NO_CELL))
+	if cell == NO_CELL:
+		return
+	var direction_cell := snapshot_cell(_speed_transition.get("direction", Vector2i.RIGHT))
+	if direction_cell == NO_CELL or direction_cell == Vector2i.ZERO:
+		direction_cell = Vector2i.RIGHT
+	var direction := Vector2(direction_cell).normalized()
+	if direction == Vector2.ZERO:
+		direction = Vector2.RIGHT
+	var perpendicular := Vector2(-direction.y, direction.x)
+	var cell_rect := _cell_rect(cell, rect, board_size)
+	var center := cell_rect.get_center()
+	var extent := minf(cell_rect.size.x, cell_rect.size.y) * 0.42
+	var kind := StringName(_speed_transition.get("kind", &""))
+	var progress := _speed_transition_progress()
+	match kind:
+		&"DECELERATE":
+			_draw_deceleration_cue(center, direction, perpendicular, extent, progress)
+		&"ACCELERATE":
+			_draw_acceleration_cue(center, direction, perpendicular, extent, progress)
+
+
+func _draw_deceleration_cue(
+	center: Vector2,
+	direction: Vector2,
+	perpendicular: Vector2,
+	extent: float,
+	progress: float
+) -> void:
+	var compression := 1.0 if _reduced_motion else lerpf(0.0, 1.0, progress)
+	var offset := lerpf(extent * 0.42, extent * 0.12, compression)
+	var half_width := lerpf(extent * 0.34, extent * 0.18, compression)
+	for sign: float in [-1.0, 1.0]:
+		var bar_center := center + direction * offset * sign
+		var from := bar_center - perpendicular * half_width
+		var to := bar_center + perpendicular * half_width
+		draw_line(from, to, _alpha(Palette.BOARD_EDGE, 0.76), 6.0, true)
+		draw_line(from, to, SPEED_DECELERATION_COLOR, 3.0, true)
+	draw_circle(center, maxf(extent * 0.11, 3.0), _alpha(SPEED_DECELERATION_COLOR, 0.88))
+
+
+func _draw_acceleration_cue(
+	center: Vector2,
+	direction: Vector2,
+	perpendicular: Vector2,
+	extent: float,
+	progress: float
+) -> void:
+	var extension := 1.0 if _reduced_motion else lerpf(0.38, 1.0, progress)
+	for lane: float in [-0.22, 0.22]:
+		var lateral := perpendicular * extent * lane
+		var from := center - direction * extent * 0.34 + lateral
+		var to := center + direction * extent * extension + lateral * 1.45
+		draw_line(from, to, _alpha(Palette.BOARD_EDGE, 0.72), 5.0, true)
+		draw_line(from, to, SPEED_ACCELERATION_COLOR, 2.2, true)
+	var nose := center + direction * extent * extension
+	draw_circle(nose, maxf(extent * 0.10, 2.5), _alpha(SPEED_ACCELERATION_COLOR, 0.92))
+
+
+func _speed_transition_progress() -> float:
+	if _reduced_motion or _speed_transition_duration_seconds <= 0.0:
+		return 1.0
+	return clampf(
+		1.0 - _speed_transition_remaining_seconds / _speed_transition_duration_seconds,
+		0.0,
+		1.0
+	)
+
+
+func _start_speed_transition(descriptor: Dictionary) -> void:
+	_speed_transition = descriptor.duplicate(true)
+	_speed_transition_duration_seconds = (
+		REDUCED_MOTION_SPEED_TRANSITION_DURATION_SECONDS
+		if _reduced_motion
+		else SPEED_TRANSITION_DURATION_SECONDS
+	)
+	_speed_transition_remaining_seconds = _speed_transition_duration_seconds
+	set_process(true)
+
+
+static func _speed_transition_descriptor(
+	previous_snapshot: Dictionary,
+	next_snapshot: Dictionary
+) -> Dictionary:
+	var previous_cell := snapshot_cell(previous_snapshot.get("train_cell", NO_CELL))
+	var next_cell := snapshot_cell(next_snapshot.get("train_cell", NO_CELL))
+	if previous_cell == NO_CELL or next_cell == NO_CELL or previous_cell == next_cell:
+		return {}
+	var direction := next_cell - previous_cell
+	if direction == Vector2i.ZERO:
+		return {}
+	var previous_caution_cells := _normalized_caution_cells(previous_snapshot)
+	var next_caution_cells := _normalized_caution_cells(next_snapshot)
+	var was_caution := previous_caution_cells.has(previous_cell)
+	var is_caution := next_caution_cells.has(next_cell)
+	if not was_caution and is_caution:
+		return {
+			"kind": &"DECELERATE",
+			"cell": next_cell,
+			"direction": direction,
+		}
+	if was_caution and not is_caution:
+		return {
+			"kind": &"ACCELERATE",
+			"cell": next_cell,
+			"direction": direction,
+		}
+	return {}
+
+
+static func _normalized_caution_cells(snapshot: Dictionary) -> Array[Vector2i]:
+	var result: Array[Vector2i] = []
+	for value: Variant in snapshot.get("caution_track_cells", []):
+		var cell := snapshot_cell(value)
+		if cell != NO_CELL and not result.has(cell):
+			result.append(cell)
+	return result
 
 
 func _draw_ghost(rect: Rect2, board_size: Vector2i) -> void:

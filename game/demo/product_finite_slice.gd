@@ -78,6 +78,8 @@ func shell_input_locked_for_test() -> bool:
 
 
 func set_reduced_motion(enabled: bool) -> void:
+	if is_instance_valid(_renderer) and _renderer.has_method("set_reduced_motion"):
+		_renderer.set_reduced_motion(enabled)
 	if is_instance_valid(_semantic_events):
 		_semantic_events.set_reduced_motion(enabled)
 

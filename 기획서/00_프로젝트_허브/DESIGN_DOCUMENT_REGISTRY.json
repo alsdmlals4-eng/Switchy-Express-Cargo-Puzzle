@@ -3,6 +3,14 @@
   "project": "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle",
   "documents": [
     {
+      "id": "SX-DEC-069-TRANSPARENT-WAYSIDE-SPEED-TRANSITIONS",
+      "question": "Route Book 02의 지형 없는 투명 오브젝트 후보와 주의구간 진입·회복 시각 피드백의 승인 범위와 검증 경계는 무엇인가",
+      "source": "docs/decisions/SX_DEC_069_TRANSPARENT_WAYSIDE_AND_SPEED_TRANSITIONS.md",
+      "format": "markdown",
+      "publication_policy": "milestone_sync",
+      "status": "CURRENT"
+    },
+    {
       "id": "SX-WORK-INSTRUCTION-V4-8-R5-4",
       "question": "현재 프로젝트 실행 Thin Adapter 작업지시문 정본은 무엇인가",
       "source": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md",

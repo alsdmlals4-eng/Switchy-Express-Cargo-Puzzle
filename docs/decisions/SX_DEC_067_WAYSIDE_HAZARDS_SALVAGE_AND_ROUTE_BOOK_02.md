@@ -78,6 +78,12 @@ five_person_and_player_experience_studies: NOT_REQUIRED_BY_USER_VALIDATION_POLIC
 
 The generated bitmap family is intentionally recorded as a runtime-connected candidate rather than as an approved canonical final asset. Its provenance and exact hashes are owned by `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`; the eventual unchanged post-change package candidate remains the only valid target for an optional user visual review.
 
+## Presentation amendment · 2026-09-01 KST
+
+`SX-DEC-069` preserves every SX-DEC-067 gameplay, map, content, and onboarding rule while replacing the eight candidate pixels that contained embedded terrain with transparent object-only v02 candidates. It also adds renderer-local visual differentiation between caution entry (amber braking) and return to normal speed (cyan forward recovery). The underlying authored `0.55` multiplier, all Route Book 02 stage IDs, map JSON, cargo/disposal rules, and title screen remain unchanged.
+
+The v01 files are retained only as historical candidate provenance. The v02 candidate family remains `GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON · USER_PIXEL_REVIEW_PENDING`; local import/test/runtime capture is not pixel approval, physical-device review, or release clearance.
+
 ## Owners
 
 - Core design: `docs/superpowers/specs/2026-08-30-wayside-hazards-and-salvage-design.md`
