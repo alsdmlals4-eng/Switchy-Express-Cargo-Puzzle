@@ -30,13 +30,13 @@ func run() -> void:
 	var first_session := main.get_node("VerticalSliceDemo")
 	assert_true(first_session.first_session_enabled, "product main opts into first session")
 	assert_equal(
-		(first_session.get_node("TitleScreen/Panel/Content/StartButton") as Button).text,
+		(first_session.get_node("TitleScreen/TitleMargin/TitleColumns/TitleDeck/Content/StartButton") as Button).text,
 		"첫 배송 시작",
 		"first-session title uses localized CTA"
 	)
-	assert_false(
-		(first_session.get_node("TitleScreen/Panel/Content/SliceBadge") as Label).visible,
-		"internal vertical-slice badge is hidden in product entry"
+	assert_not_null(
+		first_session.get_node_or_null("TitleScreen/TitleMargin/TitleColumns/ActionDeck"),
+		"product entry keeps optional actions out of the first-session primary deck"
 	)
 	first_session.start_demo()
 	assert_equal(first_session.state(), &"BRIEFING", "first-session title opens lesson card")

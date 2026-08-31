@@ -78,7 +78,8 @@ func run() -> void:
 	shell.first_session_enabled = true
 	tree.root.add_child(shell)
 	for panel_path: NodePath in [
-		NodePath("TitleScreen/Panel"),
+		NodePath("TitleScreen/TitleMargin/TitleColumns/TitleDeck"),
+		NodePath("TitleScreen/TitleMargin/TitleColumns/ActionDeck"),
 		NodePath("BriefingScreen/Panel"),
 		NodePath("PauseOverlay/Panel"),
 		NodePath("ExitConfirmOverlay/Panel"),
@@ -93,7 +94,7 @@ func run() -> void:
 				"shell panel must use the shared board-first control-deck variation at %s" % panel_path
 			)
 	for path: NodePath in [
-		"TitleScreen/Panel/Content/HeroArt",
+		"TitleScreen/TitleBackdrop",
 		"BriefingScreen/Panel/Content/LessonArt",
 		"ResultOverlay/Panel/Content/ResultArt",
 	]:
@@ -116,7 +117,7 @@ func run() -> void:
 					"all shell product-art textures must load"
 				)
 
-	var title_art := shell.get_node_or_null("TitleScreen/Panel/Content/HeroArt")
+	var title_art := shell.get_node_or_null("TitleScreen/TitleBackdrop")
 	assert_not_null(title_art, "title screen must expose its runtime hero-art consumer")
 	if title_art != null and title_art.has_method("asset_paths_for_test"):
 		assert_equal(

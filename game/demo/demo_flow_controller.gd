@@ -12,6 +12,19 @@ const EXIT_CONFIRM: StringName = &"EXIT_CONFIRM"
 const RESULT: StringName = &"RESULT"
 const ROUTE_BOOK: StringName = &"ROUTE_BOOK"
 
+const TITLE_START_BUTTON_PATH := NodePath(
+	"TitleScreen/TitleMargin/TitleColumns/TitleDeck/Content/StartButton"
+)
+const TITLE_STAGE_BOOK_BUTTON_PATH := NodePath(
+	"TitleScreen/TitleMargin/TitleColumns/ActionDeck/Content/StageBookButton"
+)
+const TITLE_CONTROLS_BUTTON_PATH := NodePath(
+	"TitleScreen/TitleMargin/TitleColumns/ActionDeck/Content/ControlsButton"
+)
+const TITLE_QUIT_BUTTON_PATH := NodePath(
+	"TitleScreen/TitleMargin/TitleColumns/ActionDeck/Content/QuitButton"
+)
+
 const ProductScene := preload("res://game/demo/product_finite_slice.tscn")
 const ThemeFactory := preload("res://game/demo/presentation/demo_theme_factory.gd")
 const FirstSessionDefinitionScript := preload(
@@ -54,10 +67,10 @@ var _route_book_active: bool = false
 
 func _ready() -> void:
 	theme = ThemeFactory.create_theme()
-	_connect_button("TitleScreen/Panel/Content/StartButton", start_demo)
-	_connect_button("TitleScreen/Panel/Content/StageBookButton", open_route_book)
-	_connect_button("TitleScreen/Panel/Content/ControlsButton", open_controls)
-	_connect_button("TitleScreen/Panel/Content/QuitButton", _quit_demo)
+	_connect_button(TITLE_START_BUTTON_PATH, start_demo)
+	_connect_button(TITLE_STAGE_BOOK_BUTTON_PATH, open_route_book)
+	_connect_button(TITLE_CONTROLS_BUTTON_PATH, open_controls)
+	_connect_button(TITLE_QUIT_BUTTON_PATH, _quit_demo)
 	_connect_button("ControlsOverlay/Panel/Content/CloseButton", close_controls)
 	_connect_button("BriefingScreen/Panel/Content/BeginButton", begin_build)
 	_connect_button("PauseOverlay/Panel/Content/ResumeButton", _resume_demo)
@@ -427,6 +440,8 @@ func _transition_to(next_state: StringName) -> void:
 
 func _sync_visibility() -> void:
 	_set_visible("TitleScreen", _state == TITLE)
+	if _state == TITLE:
+		_focus_title_start()
 	_set_visible("ControlsOverlay", _state == CONTROLS)
 	_set_visible("RouteBookScreen", _state == ROUTE_BOOK)
 	_set_visible("BriefingScreen", _state == BRIEFING)
@@ -446,6 +461,12 @@ func _sync_visibility() -> void:
 	)
 	if is_instance_valid(_gameplay):
 		_gameplay.set_shell_input_locked(_state != GAMEPLAY)
+
+
+func _focus_title_start() -> void:
+	var start_button := get_node_or_null(TITLE_START_BUTTON_PATH) as Button
+	if start_button != null and start_button.is_visible_in_tree() and start_button.focus_mode != Control.FOCUS_NONE:
+		start_button.grab_focus()
 
 
 func _update_result_copy(summary: Variant) -> void:
@@ -581,10 +602,9 @@ func _setup_first_session() -> void:
 	if not _first_session_copy.load_default():
 		_first_session_copy = null
 		return
-	var start_button := get_node_or_null("TitleScreen/Panel/Content/StartButton") as Button
+	var start_button := get_node_or_null(TITLE_START_BUTTON_PATH) as Button
 	if start_button != null:
 		start_button.text = _first_session_copy.text(&"SX_FS_START", first_session_locale)
-		_set_visible("TitleScreen/Panel/Content/SliceBadge", false)
 	_apply_lesson_card()
 
 
@@ -593,7 +613,7 @@ func _setup_route_book() -> void:
 	if not _route_book_selector_copy.load_from_path("res://data/localization/route_book_02_v1.json"):
 		_route_book_selector_copy = null
 		return
-	var button := get_node_or_null("TitleScreen/Panel/Content/StageBookButton") as Button
+	var button := get_node_or_null(TITLE_STAGE_BOOK_BUTTON_PATH) as Button
 	if button != null:
 		button.text = _route_book_selector_copy.text(&"SX_RB_STAGE_BOOK", first_session_locale)
 	var title := get_node_or_null("RouteBookScreen/Panel/Content/Title") as Label

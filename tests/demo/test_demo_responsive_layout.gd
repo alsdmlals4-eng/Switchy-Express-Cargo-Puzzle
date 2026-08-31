@@ -2,6 +2,7 @@ extends "res://tests/test_case.gd"
 
 const DemoScene := preload("res://game/demo/vertical_slice_demo.tscn")
 const VIEWPORT_SIZES: Array[Vector2] = [
+	Vector2(960.0, 540.0),
 	Vector2(1280.0, 720.0),
 	Vector2(1600.0, 900.0),
 	Vector2(1920.0, 1080.0),
@@ -20,13 +21,37 @@ func run() -> void:
 		demo.set_anchors_preset(Control.PRESET_TOP_LEFT)
 		demo.position = Vector2.ZERO
 		demo.size = viewport_size
+		_force_layout(demo)
+
+		var root_rect := Rect2(Vector2.ZERO, viewport_size)
+		for title_path: NodePath in [
+			NodePath("TitleScreen/TitleBackdrop"),
+			NodePath("TitleScreen/TitleMargin/TitleColumns/TitleDeck/Content/StartButton"),
+			NodePath("TitleScreen/TitleMargin/TitleColumns/ActionDeck/Content/StageBookButton"),
+			NodePath("TitleScreen/TitleMargin/TitleColumns/ActionDeck/Content/ControlsButton"),
+			NodePath("TitleScreen/TitleMargin/TitleColumns/ActionDeck/Content/QuitButton"),
+		]:
+			var title_control := demo.get_node_or_null(title_path) as Control
+			assert_not_null(title_control, "%s must exist at %s" % [title_path, viewport_size])
+			if title_control != null:
+				assert_true(
+					_rect_inside(root_rect, title_control.get_global_rect()),
+					_layout_failure_message(demo, title_path, title_control, viewport_size)
+				)
+				if title_control is Button:
+					assert_true(
+						title_control.size.y >= 56.0,
+						"%s keeps the title action touch target at %s" % [title_path, viewport_size]
+					)
+		if viewport_size == Vector2(960.0, 540.0):
+			demo.free()
+			continue
+
 		demo.start_demo()
 		demo.begin_build()
 		_force_layout(demo)
 
-		var root_rect := Rect2(Vector2.ZERO, viewport_size)
 		for path: NodePath in [
-			NodePath("TitleScreen/Panel/Content/StartButton"),
 			NodePath("BriefingScreen/Panel/Content/BeginButton"),
 			NodePath("GameplayContainer/ProductFiniteSlice/HUD/BuildToolbar"),
 			NodePath("GameplayContainer/ProductFiniteSlice/HUD/RunToolbar"),
@@ -102,6 +127,37 @@ func _layout_failure_message(
 					if child_control is Label:
 						var label := child_control as Label
 						message += " text_len=%d autowrap=%d" % [label.text.length(), label.autowrap_mode]
+	if str(path).begins_with("TitleScreen/"):
+		for title_path: NodePath in [
+			NodePath("TitleScreen"),
+			NodePath("TitleScreen/TitleMargin"),
+			NodePath("TitleScreen/TitleMargin/TitleColumns"),
+			NodePath("TitleScreen/TitleMargin/TitleColumns/TitleDeck"),
+			NodePath("TitleScreen/TitleMargin/TitleColumns/TitleDeck/Content"),
+		]:
+			var title_node := demo.get_node_or_null(title_path) as Control
+			if title_node != null:
+				message += " · title_node=%s rect=%s min=%s hflags=%d vflags=%d" % [
+					title_path,
+					title_node.get_global_rect(),
+					title_node.get_combined_minimum_size(),
+					title_node.size_flags_horizontal,
+					title_node.size_flags_vertical,
+				]
+		var title_content := demo.get_node_or_null(
+			"TitleScreen/TitleMargin/TitleColumns/TitleDeck/Content"
+		) as Control
+		if title_content != null:
+			for child: Node in title_content.get_children():
+				if child is Control:
+					var child_control := child as Control
+					message += " · title_child=%s rect=%s min=%s hflags=%d vflags=%d" % [
+						child_control.name,
+						child_control.get_global_rect(),
+						child_control.get_combined_minimum_size(),
+						child_control.size_flags_horizontal,
+						child_control.size_flags_vertical,
+					]
 	return message
 
 
