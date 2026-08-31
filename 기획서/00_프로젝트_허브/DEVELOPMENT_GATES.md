@@ -12,11 +12,12 @@ work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~068
-current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · SX_DEC_066_ROUTE_BOOK_01 · SX_DEC_067_WAYSIDE_HAZARDS_ROUTE_BOOK_02_MERGED_MAIN_VERIFIED · SX_DEC_068_TITLE_SHELL_WORDMARK_CANONICAL_USER_PIXEL_APPROVED · SX60-POC-ACCEPT-009_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN
+current_decisions: SX-DEC-027~069
+current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · SX_DEC_066_ROUTE_BOOK_01 · SX_DEC_067_WAYSIDE_HAZARDS_ROUTE_BOOK_02_MERGED_MAIN_VERIFIED · SX_DEC_068_TITLE_SHELL_WORDMARK_CANONICAL_USER_PIXEL_APPROVED · SX_DEC_069_TRANSPARENT_WAYSIDE_SPEED_TRANSITIONS_MERGED_MAIN_VERIFIED · SX60-POC-ACCEPT-010_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN
 sx_dec_066_merged_gate: MERGED_MAIN_VERIFIED · PR_260 · main_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · hosted_CI_package_candidate_complete · final_user_review_NOT_RUN
 sx_dec_067_delivery_gate: PR_263_MERGED · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · LOCAL_GODOT_120_CASES_14053_ASSERTIONS_PASS · REMOTE_CI_7_GREEN · Candidate_007_historical_after_SX_DEC_068
-sx_dec_068_delivery_gate: PR_271_MERGED · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · EXACT_EXPORT_RUN_33396533310_PASS · SX60-POC-ACCEPT-009_PREPARED_PACKAGE_VERIFIED · final_user_review_NOT_RUN
+sx_dec_068_delivery_gate: PR_271_MERGED · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · EXACT_EXPORT_RUN_33396533310_PASS · SX60-POC-ACCEPT-009_HISTORICAL_AFTER_SX_DEC_069
+sx_dec_069_delivery_gate: PR_276_MERGED · main_79323ff0175b674c594d18dfd6d28a8e9951f5bd · REMOTE_CI_7_GREEN · EXACT_EXPORT_RUN_33415291733_PASS · SX60-POC-ACCEPT-010_PREPARED_PACKAGE_VERIFIED · final_user_review_NOT_RUN · v02_wayside_pixel_review_PENDING
 ```
 
 ## 1. Stable historical implementation evidence
@@ -48,7 +49,7 @@ docs/superpowers/plans/2026-08-28-board-first-runtime-composition.md
 
 This one presentation slice may modify only the named palette/theme/HUD/shell/board-renderer owners and tests. It preserves all existing raster paths and consumers, including T2 v02. SX-DEC-068 adds one runtime-connected title-wordmark candidate to the title shell only; finite data/rules, first-session content, audio, score/economy/progression, Base, and PR #174 remain out of scope.
 
-The implementation demonstrated RED→GREEN tests, exact-head static/Godot checks, bounded asset-consumer review, and exact package candidates. `SX60-POC-ACCEPT-002` through `SX60-POC-ACCEPT-008` are historical package evidence only and do not pass a physical/human gate. `SX60-POC-ACCEPT-009` binds exact SX-DEC-068 canonical-wordmark product bytes for machine-primary acceptance; physical/human gates and release approval remain separate.
+The implementation demonstrated RED→GREEN tests, exact-head static/Godot checks, bounded asset-consumer review, and exact package candidates. `SX60-POC-ACCEPT-002` through `SX60-POC-ACCEPT-009` are historical package evidence only and do not pass a physical/human gate. `SX60-POC-ACCEPT-010` binds exact SX-DEC-069 transparent-wayside/speed-transition product bytes for machine-primary acceptance; physical/human gates and release approval remain separate.
 
 Stable historical physical/human anchors remain:
 
@@ -307,14 +308,14 @@ Blocked until S60-1~10 are complete.
 
 ```text
 SX60-POC-ACCEPT-006 is historical Route Book 01 package evidence
-→ SX-DEC-067 changed player-facing bytes, then SX-DEC-068 changed title-shell bytes at main@53e29f874bc70a0057c310d661dc45dbecc6cf13
-→ SX60-POC-ACCEPT-007 and Candidate 008 are historical; SX60-POC-ACCEPT-009 is the exact post-change package and current machine-primary candidate
-→ no remaining machine-executable acceptance work; FINAL_USER_REVIEW is available only when requested on unchanged Candidate 009
+→ SX-DEC-067 changed player-facing bytes, SX-DEC-068 changed title-shell bytes at main@53e29f874bc70a0057c310d661dc45dbecc6cf13, and SX-DEC-069 changed transparent wayside/speed-transition bytes at main@79323ff0175b674c594d18dfd6d28a8e9951f5bd
+→ SX60-POC-ACCEPT-007 through Candidate 009 are historical; SX60-POC-ACCEPT-010 is the exact post-change package and current machine-primary candidate
+→ no remaining machine-executable acceptance work; FINAL_USER_REVIEW is available only when requested on unchanged Candidate 010
 ```
 
 Machine evidence does not imply human evidence. `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` and `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED` are not release blockers. Windows physical/audio is `FINAL_USER_REVIEW_ONLY`; Android device remains a separate machine/device compatibility gate if Android is targeted.
 
-Current mapping: `PHASE_5_MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_009 · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED`. Candidates 005 through 008 are preserved as prior exact-byte process evidence. Candidate 009 completes the immediate machine package task; its final user review remains separate from automation. Android-device evidence is not required for machine-primary acceptance and remains unrun.
+Current mapping: `PHASE_5_MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_010 · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING`. Candidates 005 through 009 are preserved as prior exact-byte process evidence; this explicitly includes `SX60-POC-ACCEPT-008` historical pre-canonical-wordmark evidence and `SX60-POC-ACCEPT-009` historical pre-SX-DEC-069 evidence. `SX60-POC-ACCEPT-010` completes the immediate machine package task; its final user review remains separate from automation. Android-device evidence is not required for machine-primary acceptance and remains unrun.
 
 Fresh-main Godot live machine QA is recorded in `docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md`: exact `main@cf93926` observed title → briefing → build board after machine pointer input, with the official 112-case / 13,480-assertion runner green. This remains machine-runtime evidence only; physical, audio, device, and human gates stay `NOT_RUN`.
 

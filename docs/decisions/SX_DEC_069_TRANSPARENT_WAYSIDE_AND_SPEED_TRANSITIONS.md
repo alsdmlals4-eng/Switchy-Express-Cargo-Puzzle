@@ -1,6 +1,6 @@
 # SX-DEC-069 · Transparent Wayside Cutouts and Speed-Transition Presentation
 
-**Status:** `USER_APPROVED · IMPLEMENTED_ON_ISOLATED_BRANCH · LOCAL_MACHINE_VERIFIED · MERGE_PENDING`
+**Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_276 · REMOTE_CI_7_GREEN · SX60-POC-ACCEPT-010_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN`
 **Date:** 2026-09-01 KST
 **Approval source:** The user approved the existing title screen, directed that the Route Book 02 wayside images must have transparent object-only backgrounds rather than embedded terrain, and directed a distinct visual treatment for caution entry and normal-speed recovery.
 
@@ -64,7 +64,7 @@ The local runtime readback proves that the v02 objects are connected on the actu
 
 ## Candidate and next gate
 
-`SX60-POC-ACCEPT-009` is valid immutable evidence only for its exact pre-SX-DEC-069 source bytes. This player-facing renderer and asset change must fail closed until a new exact package candidate is minted from the eventual merged main commit. No existing candidate is eligible for final user review of the changed bytes.
+`SX60-POC-ACCEPT-009` is valid immutable evidence only for its exact pre-SX-DEC-069 source bytes. `SX60-POC-ACCEPT-010` now binds exact merged `main@79323ff0175b674c594d18dfd6d28a8e9951f5bd`: Windows Demo Export run `33415291733`, artifact `9766817524`, API/download ZIP digest `e90e735e6f3571e6e10e075759983021bec006d5636f8f292a5437775a2beefc`, Windows PCK digest `e326a7fab45e939d912d1c4ceed37e9cd959eed769530e8972b39c8a1c3468d3`, runtime JSON proofs, and an independent 591-entry PCK audit all passed. Candidate 010 is the only exact candidate eligible for a later final user review of the changed bytes; the v02 pixels remain `USER_PIXEL_REVIEW_PENDING`.
 
 ## Owners
 

@@ -3,6 +3,13 @@
 param([switch]$ContractCheck, [switch]$NoLaunch, [switch]$NoOpenRecord, [string]$WorkDir = "")
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+$BuiltinUtilityManifest = Join-Path $PSHOME "Modules\Microsoft.PowerShell.Utility\Microsoft.PowerShell.Utility.psd1"
+if (Test-Path -LiteralPath $BuiltinUtilityManifest -PathType Leaf) {
+    Import-Module -Name $BuiltinUtilityManifest -Force -ErrorAction Stop
+}
+if (-not (Get-Command Get-FileHash -ErrorAction SilentlyContinue)) {
+    throw "Get-FileHash is required for exact candidate package verification."
+}
 $Repository = "alsdmlals4-eng/Switchy-Express-Cargo-Puzzle"
 $RepoRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $PointerPath = Join-Path $RepoRoot "evidence\acceptance\post_sx_dec_060_candidate.json"

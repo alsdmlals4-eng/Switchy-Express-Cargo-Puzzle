@@ -18,7 +18,7 @@
 - Each v02 bitmap must have genuine RGBA transparency and contain only its named object or rail-side signal: no grass, dirt, rocks, terrain tile, opaque rectangle, background, label, or extra prop.
 - New bitmaps stay `GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON` pending pixel review; generation/import/test PASS is not user visual approval.
 - Reduced Motion keeps the same deceleration/normal-speed-recovery meaning using static color and shape, without motion-driven state changes.
-- Candidate 009 remains current only for its already-merged `main` bytes while this branch is pending; it becomes historical once the changed player-facing bytes merge. Create a new exact machine-verification candidate only after all checks and GitHub post-merge readback.
+- Candidate 009 is historical for its exact pre-SX-DEC-069 bytes. Candidate 010 now binds merged `main@79323ff0175b674c594d18dfd6d28a8e9951f5bd` after exact package verification; user review remains separate and v02 asset pixels remain pending review.
 
 ---
 
@@ -196,7 +196,7 @@ Document that the title screen remains canonical, v02 assets remove embedded ter
 
 - [x] **Step 2: Record evidence ceilings**
 
-Record that Candidate 009 remains current only for merged `main` while this branch is pending and becomes `HISTORICAL_AFTER_PLAYER_FACING_CHANGE` on merge. Do not claim final user, device, accessibility, audio perceptual, or release PASS. Set the next exact package candidate to `PREPARED` only after merge and package checks begin.
+Record Candidate 009 as `HISTORICAL_AFTER_PLAYER_FACING_CHANGE`; do not claim final user, device, accessibility, audio perceptual, or release PASS. Candidate 010 completes the exact package route after merge, artifact and PCK checks.
 
 ### Task 5: Runtime readback, adversarial review, and GitHub sync
 
@@ -217,9 +217,9 @@ Use the project-local Hera connection only. Capture the Route Book 02 board at n
 
 Check consumer/path mismatch, transparent-background/halo failure, route and marker readability, transition repeat/interruption/reduced-motion behavior, and evidence/provenance inflation. Correct every verified in-scope issue and rerun the relevant tests.
 
-- [ ] **Step 3: Commit, push, open/update PR, and read back remote state**
+- [x] **Step 3: Commit, push, open/update PR, and read back remote state**
 
-Use one focused commit on `codex/transparent-wayside-speed-transitions`, push it, open a separate PR without touching #174 or #254, wait for required CI, merge only when all project gates permit it, then fetch `origin/main` and compare exact source bytes. Record only verified results.
+Completed through focused PR #276 without touching #174 or #254: required CI passed, the normal merge produced exact `main@79323ff0175b674c594d18dfd6d28a8e9951f5bd`, and Candidate 010 binds the independently inspected package from that unchanged source. Current-candidate owner synchronization remains a documentation/evidence follow-up only; it does not change package bytes or transfer human evidence.
 
 ## Plan Self-Review
 

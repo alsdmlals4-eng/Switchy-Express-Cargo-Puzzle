@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "candidate_id": "SX60-POC-ACCEPT-010",
+  "candidate_evidence_owner": "evidence/acceptance/sx60_poc_accept_010_artifact.json",
+  "package_identity": {
+    "zip_sha256": "e90e735e6f3571e6e10e075759983021bec006d5636f8f292a5437775a2beefc",
+    "windows_exe_sha256": "1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244",
+    "windows_pck_sha256": "e326a7fab45e939d912d1c4ceed37e9cd959eed769530e8972b39c8a1c3468d3"
+  },
+  "pck_integrity": {
+    "verifier": "tools/verify_godot_pck_integrity.py",
+    "final_verifier_actual_candidate_invocation": "PASS",
+    "recomputed_windows_pck_sha256": "e326a7fab45e939d912d1c4ceed37e9cd959eed769530e8972b39c8a1c3468d3",
+    "pack_format_version": 4,
+    "engine_version": "4.7.1",
+    "pack_flags": 2,
+    "relative_filebase": true,
+    "file_size_bytes": 35752744,
+    "file_base": 112,
+    "trailing_unverified_bytes": 0,
+    "file_count": 591,
+    "verified_entry_count": 591,
+    "md5_mismatch_count": 0,
+    "bounds_error_count": 0,
+    "nonzero_entry_flags_count": 0,
+    "integrity_pass": true
+  },
+  "product_texture_packaging": {
+    "ed_hybrid_v1_prefix": "art/product_assets/ed_hybrid_v1/",
+    "ed_hybrid_v1_prefix_entry_count": 85,
+    "ed_hybrid_v1_runtime_png_import_count": 79,
+    "ed_hybrid_v2_prefix": "art/product_assets/ed_hybrid_v2/",
+    "ed_hybrid_v2_prefix_entry_count": 40,
+    "ed_hybrid_v2_runtime_png_import_count": 39,
+    "ed_hybrid_v2_manifest_included": true,
+    "ed_hybrid_v2_master_source_excluded_from_package": true,
+    "sx_dec_067_added_runtime_asset_import_count": 8,
+    "sx_dec_068_title_wordmark_runtime_asset_import_count": 1,
+    "sx_dec_069_transparent_runtime_asset_import_count": 8,
+    "sx_dec_069_transparent_import_entries": [
+      "art/product_assets/ed_hybrid_v2/board/board_decor_forest_cluster_v02.png.import",
+      "art/product_assets/ed_hybrid_v2/board/board_decor_moss_boulder_v02.png.import",
+      "art/product_assets/ed_hybrid_v2/board/board_decor_timber_stack_v02.png.import",
+      "art/product_assets/ed_hybrid_v2/board/board_decor_waterway_v02.png.import",
+      "art/product_assets/ed_hybrid_v2/board/board_decor_lantern_fence_v02.png.import",
+      "art/product_assets/ed_hybrid_v2/board/board_caution_track_overlay_v02.png.import",
+      "art/product_assets/ed_hybrid_v2/core/core_cargo_waste_crate_normal_v02.png.import",
+      "art/product_assets/ed_hybrid_v2/core/core_disposal_yard_normal_v02.png.import"
+    ],
+    "renderer_source_entry_included": "game/demo/presentation/product_board_renderer.gd",
+    "packaging_crosscheck": "PASS · v1 85 entries plus v2 40 entries in exact Candidate 010 PCK; all eight transparent v02 source imports, the renderer source, and the asset manifest are present"
+  },
+  "route_book_packaging": {
+    "map_prefix": "data/maps/route_book/",
+    "map_json_entry_count": 12,
+    "definition_prefix": "data/route_book/",
+    "definition_json_entry_count": 2,
+    "route_book_01_map_json_entry_count": 6,
+    "route_book_02_map_json_entry_count": 6,
+    "packaging_crosscheck": "PASS · twelve authored Route Book maps and two Route Book definitions are present in exact Candidate 010 PCK"
+  },
+  "export_hygiene": {
+    "evidence_prefix_entry_count": 0,
+    "output_prefix_entry_count": 0,
+    "result": "PASS · internal evidence and human-PDF output cache are excluded from the game PCK"
+  },
+  "packaged_runtime_proof": {
+    "windows_runtime_json": "PASS · parsed_json=31",
+    "android_validation_runtime_json": "PASS · parsed_json=31"
+  },
+  "scope": {
+    "candidate_mint_changes_gameplay_rule_or_map_data": false,
+    "candidate_mint_changes_image_asset_bytes": false,
+    "candidate_mint_changes_asset_manifest_status": false,
+    "candidate_mint_changes_audio_bytes": false,
+    "candidate_source_includes_approved_sx_dec_063_core_board_v04_runtime_assets": true,
+    "candidate_source_includes_prior_approved_active_route_lighting_runtime_delta": true,
+    "candidate_source_includes_sx_dec_066_route_book_01": true,
+    "candidate_source_includes_sx_dec_067_wayside_hazards_salvage_and_route_book_02": true,
+    "candidate_source_includes_sx_dec_068_title_wordmark_canonical_asset": true,
+    "candidate_source_includes_sx_dec_069_transparent_wayside_speed_transition": true,
+    "title_wordmark_status_within_package": "USER_APPROVED_CANONICAL_PRODUCT_ASSET_RUNTIME_CONNECTED · USER_APPROVED · CANON_REGISTERED",
+    "wayside_v02_asset_status_within_package": "GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON · USER_PIXEL_REVIEW_PENDING",
+    "sx_dec_056a_056b_057_058_authorization_changed": false
+  },
+  "evidence_ceiling": {
+    "package_integrity": "PASS",
+    "windows_physical_startup_and_build_entry_automation_observed": "NOT_RUN",
+    "physical_visual_recheck": "NOT_RUN",
+    "developer_self_run": "NOT_RUN",
+    "windows_physical_runtime_full_scenarios": "NOT_RUN",
+    "audio_perceptual_qa": "NOT_RUN",
+    "android_device": "NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN",
+    "five_person_comprehension": "NOT_REQUIRED_BY_USER_VALIDATION_POLICY",
+    "player_experience": "NOT_REQUIRED_BY_USER_VALIDATION_POLICY",
+    "final_user_review": "FINAL_USER_REVIEW · NOT_RUN",
+    "title_wordmark_pixel_review": "USER_PIXEL_APPROVED · CANON_REGISTERED",
+    "wayside_v02_pixel_review": "USER_PIXEL_REVIEW_PENDING",
+    "production_cutover": "BLOCKED_DEFERRED"
+  }
+}

@@ -258,7 +258,7 @@ The isolated `codex/transparent-wayside-speed-transitions` branch replaces eight
 
 Local evidence for this branch is limited to Godot import, an 8-entry transparent asset contract, full headless regression (`120 cases / 14,133 assertions / 0 failed`), and an RB08 build-board local runtime readback with clean diagnostics. The eight v02 pixels remain `GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON · USER_PIXEL_REVIEW_PENDING`.
 
-`SX60-POC-ACCEPT-009` remains current only for already-merged `main` bytes while this branch is pending. If SX-DEC-069 merges, Candidate 009 becomes immutable pre-change history and a new exact package candidate is required before final user review of the changed product bytes.
+PR #276 merged SX-DEC-069 at `main@79323ff0175b674c594d18dfd6d28a8e9951f5bd`. `SX60-POC-ACCEPT-009` is immutable pre-change history, and `SX60-POC-ACCEPT-010` binds the exact machine package after remote Windows export, runtime JSON, artifact digest, and 591-entry PCK verification. Final user review, if requested, may inspect only unchanged Candidate 010 bytes; the eight v02 pixels remain `USER_PIXEL_REVIEW_PENDING`.
 
 ## 11. Required verification
 

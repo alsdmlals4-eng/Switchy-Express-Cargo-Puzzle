@@ -6,7 +6,7 @@ product_authority: GMB-002 · SX-DEC-027~068 · SX-DEC-060_CARDINAL_SERVICE_AMEN
 planning_audit: SX-AUD-049 · HISTORICAL_METHOD_PROVENANCE
 last_verified_package_candidate: SX60-POC-ACCEPT-007 · HISTORICAL_POST_SX_DEC_067_PACKAGE_VERIFIED · SUPERSEDED_BY_SX_DEC_068_PLAYER_FACING_TITLE_SHELL_BYTES
 last_verified_package_source_main: c0bb86efa5bad6050217ca67dd6aa9eba155dc75
-current_candidate: SX60-POC-ACCEPT-009 · PREPARED_PACKAGE_VERIFIED · EXACT_CANONICAL_WORDMARK_SOURCE_1ac3099d9ab1451323cca2935547f82d210b50b4
+current_candidate: SX60-POC-ACCEPT-010 · PREPARED_PACKAGE_VERIFIED · EXACT_SX_DEC_069_SOURCE_79323ff0175b674c594d18dfd6d28a8e9951f5bd · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
 windows_physical_and_audio: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
 five_person_comprehension: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
@@ -33,7 +33,7 @@ exact immutable post-SX-DEC-068 candidate
 - T2의 필수 구분은 `cargo = same-cell Manual/Auto pickup`, `station = one cardinal-adjacent service cell`, `diagonal / station footprint = no delivery`다.
 - `SX60-POC-ACCEPT-004`는 last verified Windows artifact identity와 Android runtime-JSON package proof를 보존한다. v04 product bytes에는 적용되지 않는다. Android runtime JSON proof는 APK artifact identity나 physical-device proof가 아니다. 기존 Android validation APK/runbook은 historical이며 post-060 device Gate에 재사용하지 않는다.
 - `SX-DEC-061`은 planning/visual direction lock이며 runtime bytes를 바꾸지 않았다. 화면의 visual grammar는 관찰할 수 있지만 board·generated exploration·machine capture만으로 human usability를 통과 처리하지 않는다.
-- `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED`와 `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED`는 이 프로젝트의 명시 정책이다. 최종 사용자 검수의 관찰은 unchanged Candidate 009에만 기록하며, title-wordmark pixel disposition은 `USER_PIXEL_APPROVED · CANON_REGISTERED` asset state로 보존한다.
+- `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED`와 `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED`는 이 프로젝트의 명시 정책이다. 최종 사용자 검수의 관찰은 unchanged Candidate 010에만 기록하며, title-wordmark pixel disposition은 `USER_PIXEL_APPROVED · CANON_REGISTERED`으로 보존하고 v02 wayside pixel disposition은 `USER_PIXEL_REVIEW_PENDING`으로 분리한다.
 - 상세 실행 순서, 기록 규칙, stale correction의 Incident/Solution/Lesson은 `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`를 따른다.
 
 Sections 1–17 are `HISTORICAL_METHOD_REFERENCE_ONLY`. Phase B/055/old Android identity와 behavior-first 연구 방법은 provenance로 보존하되, SX-DEC-065의 현재 acceptance gate나 five-person requirement를 만들지 않는다.
@@ -435,7 +435,7 @@ USER PHASE 5 START AUTHORIZATION: HISTORICAL · 2026-08-28 KST
 SX-DEC-065 USER APPROVAL: RECORDED · 2026-08-30 KST · MACHINE_PRIMARY_FINAL_USER_REVIEW
 CURRENT PRODUCT AUTHORITY: GMB-002 · SX-DEC-027~068 · SX-DEC-060 cardinal station service · SX-DEC-062 board-first composition · SX-DEC-064 active-route lighting · SX-DEC-065 MACHINE_PRIMARY_FINAL_USER_REVIEW · SX-DEC-066 Route Book 01 · SX-DEC-067 Wayside Hazards / Route Book 02 · SX-DEC-068 Title Shell / Wordmark Candidate
 LAST VERIFIED WINDOWS CANDIDATE: SX60-POC-ACCEPT-007 · HISTORICAL_POST_SX_DEC_067_PACKAGE_VERIFIED · SUPERSEDED_BY_SX_DEC_068_TITLE_SHELL_BYTES
-CURRENT EXACT CANDIDATE: SX60-POC-ACCEPT-009 · PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED
+CURRENT EXACT CANDIDATE: SX60-POC-ACCEPT-010 · PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
 WINDOWS PHYSICAL / AUDIO: FINAL_USER_REVIEW_ONLY · NOT_RUN
 POST-060 ANDROID APK IDENTITY: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
