@@ -50,13 +50,13 @@ candidate_003_preparation: MERGED_MAIN_VERIFIED · PR #172 · main_2521f3be600ea
 pre_sx_dec_060_candidate_pointer: evidence/acceptance/current_poc_candidate.json
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_AFTER_SX_DEC_060
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · SOURCE_MAIN_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · FINAL_USER_REVIEW_NOT_RUN
+post_sx_dec_060_candidate: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · Candidate_006_historical · source main c0bb86efa5bad6050217ca67dd6aa9eba155dc75 requires exact package mint
 sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 sx60_poc_accept_002: SX60-POC-ACCEPT-002 · HISTORICAL_SUPERSEDED_BY_SX_DEC_062 · PRIOR_BYTE_ISOLATED_VISUAL_INPUT_OBSERVATION_DOES_NOT_TRANSFER
 sx60_poc_accept_003: SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE
 sx60_poc_accept_004: SX60-POC-ACCEPT-004 · PREPARED_PACKAGE_VERIFIED · HISTORICAL_SUPERSEDED_BY_SX_DEC_063_CORE_BOARD_V04_PRODUCT_BYTE_CHANGE
 sx60_poc_accept_005: SX60-POC-ACCEPT-005 · PREPARED_PACKAGE_VERIFIED · HISTORICAL_SUPERSEDED_BY_SX_DEC_066_ROUTE_BOOK_01_PRODUCT_BYTE_CHANGE
-sx60_poc_accept_006: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN
+sx60_poc_accept_006: SX60-POC-ACCEPT-006 · HISTORICAL_SUPERSEDED_BY_SX_DEC_067_PLAYER_FACING_PRODUCT_BYTE_CHANGE · FINAL_USER_REVIEW_NOT_RUN
 candidate_003_package_integrity: PASS · HISTORICAL_PRE_SX_DEC_060
 candidate_003_pck_integrity: PASS · 472_OF_472 · HISTORICAL_PRE_SX_DEC_060
 candidate_003_product_textures: PASS · 73_OF_73 · HISTORICAL_PRE_SX_DEC_060
@@ -67,7 +67,7 @@ sx_dec_060_design: RECORDED
 sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
-sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · PACKAGE_AND_RUNTIME_JSON_VERIFIED
+sx_dec_060_post_change_candidate: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · Candidate_006_historical · package mint pending
 sx_dec_060_notion_sync: PASS · POST_PR_188_READBACK_COMPLETE
 sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION · PACKAGE_VERIFIED
@@ -78,7 +78,7 @@ sx_dec_065_machine_primary_validation: USER_APPROVED · MACHINE_PRIMARY_FINAL_US
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · PR_240 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
 developer_self_run: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_VISUAL_INPUT_OBSERVED_AUDIO_NOT_OBSERVED · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_004
 windows_physical_startup_and_build_entry_automation_observed: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_004
-acceptance_build: SX60-POC-ACCEPT-006 · MACHINE_PRIMARY_PACKAGE_VERIFIED · NO_HUMAN_OR_PHYSICAL_EVIDENCE
+acceptance_build: NONE · FUTURE_EXACT_POST_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE_REQUIRED · NO_HUMAN_OR_PHYSICAL_EVIDENCE
 windows_full_physical_runtime: FINAL_USER_REVIEW_ONLY · NOT_RUN
 audio_perceptual_qa: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device: NOT_RUN_POST_SX_DEC_060
@@ -152,8 +152,8 @@ sx_dec_060_new_bitmap_assets_required: 0
 | **SX-DEC-062** | **Board-first runtime composition · MERGED_MAIN_VERIFIED · PR #237 · Candidates 003/004 are historical prior-byte package evidence** |
 | **SX-DEC-063** | **Hybrid miniature-diorama visual production alignment · v2 terrain/non-rail and v04 centred-port rail correction merged main in PR #255, including reviewed non-square quarter-turn fix · remote CI 7 green and Candidate 005 exact package evidence retained as historical pre-Route-Book bytes** |
 | **SX-DEC-064** | **Active-route lighting · MERGED_MAIN_VERIFIED · PR #249 · CI 7 green · procedural presentation delta · physical/player gates remain open** |
-| **SX-DEC-065** | **Machine-primary final-user-review policy · USER_APPROVED · Candidate 006 is the current MACHINE_PRIMARY_ACCEPTANCE_READY package; Candidate 005 remains historical; five-person/player-experience studies not required** |
-| **SX-DEC-066** | **Curated Route Book 01 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #260 · Candidate 006 MACHINE_PRIMARY_ACCEPTANCE_READY; final user review remains separate** |
+| **SX-DEC-065** | **Machine-primary final-user-review policy · USER_APPROVED · Candidate 006 was machine-primary evidence for its unchanged Route Book 01 bytes and is historical after SX-DEC-067; five-person/player-experience studies not required** |
+| **SX-DEC-066** | **Curated Route Book 01 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #260 · Candidate 006 preserved as historical exact package evidence; final user review requires a current byte-specific candidate** |
 | **SX-DEC-067** | **Wayside Hazards, Salvage, and Route Book 02 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #263 · exact main `c0bb86e` · Candidate 006 historical; post-change package candidate not yet minted** |
 
 ## SX-DEC-059 retained first-session contract
@@ -180,7 +180,7 @@ Title → Stage Book → one of six fixed hand-authored stages → existing Brie
 → Retry Same Route | Edit Route | Stage Book | Next Stage
 ```
 
-This is an optional post-onboarding content pack, not T7 or a first-session replacement. It reuses schema-v3 finite maps, current cargo/station/LIFO/Auto/switch rules, existing product assets, and the existing product result path. It adds no save/unlock, score/rank/reward, generator, Yard Lab, Mastery, Daily/Weekly, asset, audio, or core-rule surface. All six stages are directly selectable; `RECOMMENDED_LAYOUT` stays hidden. The completed twelve-game benchmark supports the fixed authored-map disposition and rejects the adjacent progression/sandbox families. Implementation merged via PR #260 at `main@9af5a8c`; exact CI/package integrity created Candidate 006. Physical/device checks and final user review remain distinct and unrun. See `docs/operations/2026-08-30-sx-dec-066-route-book-01-local-machine-verification.md`.
+This is an optional post-onboarding content pack, not T7 or a first-session replacement. It reuses schema-v3 finite maps, current cargo/station/LIFO/Auto/switch rules, existing product assets, and the existing product result path. It adds no save/unlock, score/rank/reward, generator, Yard Lab, Mastery, Daily/Weekly, asset, audio, or core-rule surface. All six stages are directly selectable; `RECOMMENDED_LAYOUT` stays hidden. The completed twelve-game benchmark supports the fixed authored-map disposition and rejects the adjacent progression/sandbox families. Implementation merged via PR #260 at `main@9af5a8c`; exact CI/package integrity created Candidate 006 for Route Book 01. SX-DEC-067 later changed player-facing bytes, preserving Candidate 006 as historical evidence and requiring a new exact package before final user review. Physical/device checks and final user review remain distinct and unrun. See `docs/operations/2026-08-30-sx-dec-066-route-book-01-local-machine-verification.md`.
 
 ## SX-DEC-061 confirmed visual/validation contract
 
@@ -222,7 +222,7 @@ rectangular BUILD/RUN grid and exact input mapping stay
 → the existing fourteen-slot ProductBoardRenderer consumer map is connected; v04 rail textures draw full-cell, pre-swap non-square local bounds for quarter turns, and use no procedural visual seam underlay
 ```
 
-`SX-VIS-063-CANDIDATE-001` terrain plus `SX-VIS-063-CORE-*` are user-promoted at their v02 paths, while user-approved `SX-VIS-063-RAIL-NETWORK-MASTER-003` deterministically supplies the four current v04 rail paths recorded in `art/product_assets/ed_hybrid_v2/manifest.json` (master SHA-256 `f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b`; terrain SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`). The v04 crop rectifies a measured v03 edge-centre mismatch without changing source artwork or gameplay, while the renderer's reviewed non-square quarter-turn fix preserves the target bounds and edge centres after rotation. Its local automated/machine-runtime/local-package evidence and all seven required remote checks for PR #255 runtime-byte head `f00de19ea0ef1db907bf05c8dc847a0180489c35` are recorded; Candidate 005 is historical and `SX60-POC-ACCEPT-006` supplies the current immutable Route Book package candidate. Windows/audio final-user review remains unrun, Android is not required for machine-primary acceptance, and five-person/player-experience studies are not required by SX-DEC-065. Source master and review captures are excluded from final PCK proofs. It is not a true isometric conversion, gameplay/data/audio/locale/progression change, Human/Player Experience, or release-rights promotion. Notion is retired from this lifecycle by the 2026-08-28 user decision.
+`SX-VIS-063-CANDIDATE-001` terrain plus `SX-VIS-063-CORE-*` are user-promoted at their v02 paths, while user-approved `SX-VIS-063-RAIL-NETWORK-MASTER-003` deterministically supplies the four current v04 rail paths recorded in `art/product_assets/ed_hybrid_v2/manifest.json` (master SHA-256 `f3a6f070b728e319a15b3fc1b72ac7c4732f3b632e73e5dda202a52e95bb5d5b`; terrain SHA-256 `1b8cdeda06a940e70bf462e0e59b71e4130eeb1b266f606d7cd484ab5d145d0d`). The v04 crop rectifies a measured v03 edge-centre mismatch without changing source artwork or gameplay, while the renderer's reviewed non-square quarter-turn fix preserves the target bounds and edge centres after rotation. Its local automated/machine-runtime/local-package evidence and all seven required remote checks for PR #255 runtime-byte head `f00de19ea0ef1db907bf05c8dc847a0180489c35` are recorded; Candidate 005 and `SX60-POC-ACCEPT-006` are historical prior-byte package evidence after SX-DEC-067. Windows/audio final-user review remains unrun, Android is not required for machine-primary acceptance, and five-person/player-experience studies are not required by SX-DEC-065. Source master and review captures are excluded from final PCK proofs. It is not a true isometric conversion, gameplay/data/audio/locale/progression change, Human/Player Experience, or release-rights promotion. Notion is retired from this lifecycle by the 2026-08-28 user decision.
 
 ## SX-DEC-065 machine-primary validation policy
 
@@ -332,7 +332,7 @@ role_after_sx_dec_060: HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY
 
 Automated/package/launcher PASS는 corrected physical appearance 또는 player-experience PASS가 아니다. SX-DEC-060가 gameplay bytes를 변경하므로 Candidate 003을 post-060 acceptance로 승격할 수 없다.
 
-## Current execution boundary
+## Historical execution boundary through SX-DEC-066
 
 ```text
 pre-SX-DEC-060:
@@ -343,14 +343,25 @@ SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063
 → SX-DEC-064 active-route lighting merged main PR #249 with exact-head CI 7 green
 → SX60-POC-ACCEPT-004 remains historical package evidence for pre-v04 product bytes
 → SX-DEC-065 USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW
-→ SX60-POC-ACCEPT-005 historical for pre-Route-Book bytes; SX60-POC-ACCEPT-006 minted from exact `main@9af5a8c46d29ea6781f9ee06008d7c7d2cde1877` and machine validation complete
-→ MACHINE_PRIMARY_ACCEPTANCE_READY
-→ FINAL_USER_REVIEW only on unchanged Candidate 006 when requested
+→ SX60-POC-ACCEPT-005 historical for pre-Route-Book bytes; SX60-POC-ACCEPT-006 minted from exact `main@9af5a8c46d29ea6781f9ee06008d7c7d2cde1877` and machine validation completed for those Route Book 01 bytes
+→ SX-DEC-067 later changed player-facing bytes, so Candidate 006 is historical and the current candidate selection is fail-closed until a new exact package is minted
+→ FINAL_USER_REVIEW only on the future unchanged post-SX-DEC-067 candidate when requested
 → Android device compatibility only when the Android target is in scope
 → FIVE_PERSON_COMPREHENSION_NOT_REQUIRED / PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED
 ```
 
 Candidate 003 Gate 0 is retained as historical pre-060 validation instructions but is no longer the next efficient product gate after the user-approved gameplay change.
+
+## Current execution boundary after SX-DEC-067
+
+```text
+SX-DEC-067 merged main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75
+→ Candidate 006 is historical for the prior Route Book 01 bytes
+→ current pointer is fail-closed: no exact post-SX-DEC-067 package candidate has been minted
+→ next machine work is to mint and verify that package candidate
+→ optional final user review may only inspect the future unchanged candidate
+→ five-person comprehension and player-experience studies remain not required under SX-DEC-065
+```
 
 ## Protected future packages
 

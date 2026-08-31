@@ -1,6 +1,6 @@
 # Switchy Express 프로젝트 허브
 
-Last updated: `2026-08-30 KST`
+Last updated: `2026-08-31 KST`
 
 이 문서는 현재 제품 기준선과 **다음 실행 지점**을 빠르게 찾는 허브다. 실행 전에는 항상 fresh Base completed `main`, current Skill Registry/generated map, fresh project `main`, Open/Draft PR, current GitHub owners와 actual runtime evidence를 다시 읽는다. Notion의 current structure는 GitHub에 이관됐고 historical audit-only다.
 
@@ -9,7 +9,7 @@ Last updated: `2026-08-30 KST`
 | 항목 | 현재 값 |
 |---|---|
 | 제품 기준선 | `GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060` |
-| 결정 범위 | `SX-DEC-027~065` |
+| 결정 범위 | `SX-DEC-027~067` |
 | 작업지시문 | `v4.8 · revision 2026-08-26-r5.4-superset-final · Switchy thin adapter` |
 | 작업지시문 역할 | `USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT` |
 | current project adapter | `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md` |
@@ -24,10 +24,10 @@ Last updated: `2026-08-30 KST`
 | station representation | `OFF_TRACK_SERVICE_OBJECT · station cell player rail forbidden` |
 | image requirement | `SX-DEC-060 station-service overlay: no new bitmap; SX-DEC-063 core board: user-approved v2/v4 fourteen-slot asset map connected` |
 | pre-060 Candidate 003 | `SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY after SX-DEC-060` |
-| post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · SX60-POC-ACCEPT-006 is the exact-main MACHINE_PRIMARY candidate after Route Book 01 · Candidate 005 is HISTORICAL_PRE_ROUTE_BOOK_PRODUCT_BYTES` |
+| post-060 candidate route | `evidence/acceptance/post_sx_dec_060_candidate.json · SX-DEC-067 changed product bytes; no current candidate is selectable until an exact post-change machine package is minted · Candidates 001–006 are historical` |
 | SX60 Candidate 001 | `HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE · hashes/PCK preserved` |
 | post-060 automated regression | `PASS · 111 cases / 13,461 assertions · CI 7 GREEN · SX-AUD-071 CLOSED` |
-| post-060 Windows physical | `FINAL_USER_REVIEW_ONLY · Candidate 006 · NOT_RUN` |
+| post-060 Windows physical | `FINAL_USER_REVIEW_ONLY · future unchanged post-SX-DEC-067 candidate required · NOT_RUN` |
 | post-060 Android device | `NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN` |
 | validation strategy | `SX-DEC-065 · MACHINE_PRIMARY_FINAL_USER_REVIEW` |
 | post-060 five-person | `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` |
@@ -175,10 +175,9 @@ The user selected Hybrid Miniature-Diorama Alignment: the rectangular grid and i
 ```text
 SX-DEC-063 core-board terrain v02, nine non-rail v02 assets, and four v04 rails are connected to the live fourteen-slot renderer map
 → Issue #246 planning board remains a no-consumer explanatory asset and is not runtime proof
-→ SX60-POC-ACCEPT-006 exact package is the current Route Book byte candidate; Candidates 002–005 remain prior-byte evidence only
-→ deterministic/Godot/export/package/CI machine verification complete
-→ MACHINE_PRIMARY acceptance ready
-→ FINAL_USER_REVIEW only if the user requests final inspection
+→ SX60-POC-ACCEPT-006 exact package is historical Route Book 01 byte evidence; Candidates 002–005 remain prior-byte evidence only
+→ SX-DEC-067 changed player-facing bytes, so the current package selection is fail-closed until a new exact machine candidate is minted
+→ FINAL_USER_REVIEW only if the user requests final inspection of that future unchanged candidate
 → FIVE_PERSON_COMPREHENSION_NOT_REQUIRED / PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED
 ```
 

@@ -1,17 +1,17 @@
 # Playtest Plan
 
 ```yaml
-status: CURRENT_CANON · SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN
-product_authority: GMB-002 · SX-DEC-027~065 · SX-DEC-060_CARDINAL_SERVICE_AMENDMENT · SX-DEC-062_COMPOSITION_CONTRACT · SX-DEC-064_ACTIVE_ROUTE_LIGHTING · SX-DEC-065_MACHINE_PRIMARY_VALIDATION
+status: CURRENT_CANON · SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · SX_DEC_067_POST_CHANGE_CANDIDATE_NOT_MINTED · FINAL_USER_REVIEW_NOT_RUN
+product_authority: GMB-002 · SX-DEC-027~067 · SX-DEC-060_CARDINAL_SERVICE_AMENDMENT · SX-DEC-062_COMPOSITION_CONTRACT · SX-DEC-064_ACTIVE_ROUTE_LIGHTING · SX-DEC-065_MACHINE_PRIMARY_VALIDATION
 planning_audit: SX-AUD-049 · HISTORICAL_METHOD_PROVENANCE
-last_verified_package_candidate: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY
+last_verified_package_candidate: SX60-POC-ACCEPT-006 · HISTORICAL_ROUTE_BOOK_01_PACKAGE_VERIFIED · SUPERSEDED_BY_SX_DEC_067_PLAYER_FACING_BYTES
 last_verified_package_source_main: 9af5a8c46d29ea6781f9ee06008d7c7d2cde1877
-current_candidate: SX60-POC-ACCEPT-006 · EXACT_MAIN_MACHINE_VERIFIED
+current_candidate: NONE · FAIL_CLOSED_UNTIL_EXACT_POST_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE_IS_MINTED
 windows_physical_and_audio: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
 five_person_comprehension: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
 player_experience: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
-final_user_review: FINAL_USER_REVIEW · NOT_RUN · EXACT_CANDIDATE_REQUIRED
+final_user_review: FINAL_USER_REVIEW · NOT_RUN · FUTURE_EXACT_POST_SX_DEC_067_CANDIDATE_REQUIRED
 sx_dec_056_058_implementation: NOT_AUTHORIZED
 production_cutover: BLOCKED_DEFERRED
 ```
@@ -23,7 +23,7 @@ production_cutover: BLOCKED_DEFERRED
 이 Section이 현재 실행 상태의 단일 정본이다. 사용자 승인 `2026-08-30 KST`에 따라 현재 방법은 `MACHINE_PRIMARY_FINAL_USER_REVIEW`다. Windows physical, audio, Android, five-person, Player Experience, production cutover 중 어느 것도 실제 evidence 없이 PASS로 승격하지 않는다.
 
 ```text
-exact v04 immutable candidate
+exact immutable post-SX-DEC-067 candidate
 → deterministic contracts + Godot/runtime/export/package/CI machine verification
 → MACHINE_PRIMARY acceptance decision
 → FINAL_USER_REVIEW only when the user requests the final inspection
@@ -33,7 +33,7 @@ exact v04 immutable candidate
 - T2의 필수 구분은 `cargo = same-cell Manual/Auto pickup`, `station = one cardinal-adjacent service cell`, `diagonal / station footprint = no delivery`다.
 - `SX60-POC-ACCEPT-004`는 last verified Windows artifact identity와 Android runtime-JSON package proof를 보존한다. v04 product bytes에는 적용되지 않는다. Android runtime JSON proof는 APK artifact identity나 physical-device proof가 아니다. 기존 Android validation APK/runbook은 historical이며 post-060 device Gate에 재사용하지 않는다.
 - `SX-DEC-061`은 planning/visual direction lock이며 runtime bytes를 바꾸지 않았다. 화면의 visual grammar는 관찰할 수 있지만 board·generated exploration·machine capture만으로 human usability를 통과 처리하지 않는다.
-- `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED`와 `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED`는 이 프로젝트의 명시 정책이다. 최종 사용자 검수의 관찰은 같은 exact candidate에만 기록한다.
+- `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED`와 `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED`는 이 프로젝트의 명시 정책이다. 최종 사용자 검수의 관찰은 새 post-SX-DEC-067 exact candidate가 minted 된 뒤 그 동일한 candidate에만 기록한다.
 - 상세 실행 순서, 기록 규칙, stale correction의 Incident/Solution/Lesson은 `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`를 따른다.
 
 Sections 1–17 are `HISTORICAL_METHOD_REFERENCE_ONLY`. Phase B/055/old Android identity와 behavior-first 연구 방법은 provenance로 보존하되, SX-DEC-065의 현재 acceptance gate나 five-person requirement를 만들지 않는다.
@@ -433,9 +433,9 @@ HISTORICAL_PLAYTEST/COMPREHENSION_METHODS: REFERENCE_ONLY · NOT_ACTIVE_ACCEPTAN
 HISTORICAL VALIDATION APK: PRESERVED · NOT CURRENT HUMAN ACCEPTANCE BUILD
 USER PHASE 5 START AUTHORIZATION: HISTORICAL · 2026-08-28 KST
 SX-DEC-065 USER APPROVAL: RECORDED · 2026-08-30 KST · MACHINE_PRIMARY_FINAL_USER_REVIEW
-CURRENT PRODUCT AUTHORITY: GMB-002 · SX-DEC-027~066 · SX-DEC-060 cardinal station service · SX-DEC-062 board-first composition · SX-DEC-064 active-route lighting · SX-DEC-065 MACHINE_PRIMARY_FINAL_USER_REVIEW · SX-DEC-066 Route Book 01
-LAST VERIFIED WINDOWS CANDIDATE: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY
-CURRENT EXACT CANDIDATE: SX60-POC-ACCEPT-006 · SOURCE_MAIN_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877
+CURRENT PRODUCT AUTHORITY: GMB-002 · SX-DEC-027~067 · SX-DEC-060 cardinal station service · SX-DEC-062 board-first composition · SX-DEC-064 active-route lighting · SX-DEC-065 MACHINE_PRIMARY_FINAL_USER_REVIEW · SX-DEC-066 Route Book 01 · SX-DEC-067 Wayside Hazards / Route Book 02
+LAST VERIFIED WINDOWS CANDIDATE: SX60-POC-ACCEPT-006 · HISTORICAL_ROUTE_BOOK_01_PACKAGE_VERIFIED · SUPERSEDED_BY_SX_DEC_067_PLAYER_FACING_BYTES
+CURRENT EXACT CANDIDATE: NONE · FAIL_CLOSED_UNTIL_EXACT_POST_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE_IS_MINTED
 WINDOWS PHYSICAL / AUDIO: FINAL_USER_REVIEW_ONLY · NOT_RUN
 POST-060 ANDROID APK IDENTITY: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
 FIVE-PERSON COMPREHENSION: NOT_REQUIRED_BY_USER_VALIDATION_POLICY

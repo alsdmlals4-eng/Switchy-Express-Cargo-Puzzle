@@ -241,7 +241,7 @@ its recorded NOT_RUN physical/human fields
 
 Do not call it the acceptance candidate for post-060 runtime. A changed gameplay build requires a new candidate identity and fresh evidence.
 
-The current post-060 candidate locator is `evidence/acceptance/post_sx_dec_060_candidate.json`; it explicitly selects `SX60-POC-ACCEPT-005` as `PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY` from exact `main@a11dfd1a063e434ee22e8cfb7b073ebc380aa27a`. Candidates 001–004 remain immutable historical evidence. Candidate 005's CI export, artifact/API/download hashes, runtime JSON proofs, and PCK audit are machine evidence only; final user review remains `NOT_RUN`. `PR #201` and `PR #250` are tooling-only and non-invalidating.
+The current post-060 candidate locator is `evidence/acceptance/post_sx_dec_060_candidate.json`. After SX-DEC-067 changed player-facing bytes at exact `main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75`, the locator is deliberately `NOT_MINTED` and selects no current candidate. Candidates 001–006, including Candidate 005's CI export, artifact/API/download hashes, runtime JSON proofs, and PCK audit, remain immutable machine evidence for their respective historical source bytes only. Final user review remains `NOT_RUN` and requires one future unchanged post-SX-DEC-067 candidate. `PR #201` and `PR #250` are tooling-only and non-invalidating.
 
 Allowed implementation completion claims depend on actual results. Never infer:
 

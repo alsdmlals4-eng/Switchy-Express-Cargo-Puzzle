@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
   "decision_id": "SX-DEC-060",
-  "candidate_status": "PREPARED_PACKAGE_VERIFIED",
-  "current_candidate_id": "SX60-POC-ACCEPT-006",
-  "current_candidate_role": "MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN · EXACT_SOURCE_MAIN_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877",
+  "candidate_status": "NOT_MINTED",
+  "current_candidate_id": null,
+  "current_candidate_role": "FAIL_CLOSED · NO_CURRENT_POST_SX_DEC_067_PACKAGE_CANDIDATE · CANDIDATE_006_HISTORICAL_ONLY",
   "candidate_mint_policy": "SX-DEC-065 · MACHINE_PRIMARY_FINAL_USER_REVIEW",
   "selection_policy": "EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE",
-  "minimum_product_source_main": "9af5a8c46d29ea6781f9ee06008d7c7d2cde1877",
-  "artifact_evidence_owner": "evidence/acceptance/sx60_poc_accept_006_artifact.json",
-  "deep_pck_evidence_owner": "evidence/acceptance/sx60_poc_accept_006_pck_deep_audit.json",
-  "acceptance_candidate_document": "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_06.md",
-  "self_run_record_name": "SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_06.md",
+  "minimum_product_source_main": "c0bb86efa5bad6050217ca67dd6aa9eba155dc75",
+  "artifact_evidence_owner": null,
+  "deep_pck_evidence_owner": null,
+  "acceptance_candidate_document": null,
+  "self_run_record_name": null,
   "historical_predecessor": {
     "candidate_id": "SX59-POC-ACCEPT-003",
     "pointer": "evidence/acceptance/current_poc_candidate.json",
@@ -76,6 +76,18 @@
     "invalidated_by_product_source_main": "9af5a8c46d29ea6781f9ee06008d7c7d2cde1877",
     "role": "HISTORICAL_SUPERSEDED_BY_SX_DEC_066_ROUTE_BOOK_01_PRODUCT_BYTE_CHANGE"
   },
+  "historical_superseded_after_sx_dec_067": {
+    "candidate_id": "SX60-POC-ACCEPT-006",
+    "source_main": "9af5a8c46d29ea6781f9ee06008d7c7d2cde1877",
+    "candidate_status_at_invalidation": "PREPARED_PACKAGE_VERIFIED",
+    "artifact_evidence_owner": "evidence/acceptance/sx60_poc_accept_006_artifact.json",
+    "deep_pck_evidence_owner": "evidence/acceptance/sx60_poc_accept_006_pck_deep_audit.json",
+    "acceptance_candidate_document": "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_06.md",
+    "self_run_record_name": "SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_06.md",
+    "invalidation_reason": "SX_DEC_067_WAYSIDE_HAZARDS_SALVAGE_AND_ROUTE_BOOK_02_PLAYER_FACING_PRODUCT_BYTE_CHANGE",
+    "invalidated_by_product_source_main": "c0bb86efa5bad6050217ca67dd6aa9eba155dc75",
+    "role": "HISTORICAL_SUPERSEDED_BY_SX_DEC_067_PLAYER_FACING_PRODUCT_BYTE_CHANGE"
+  },
   "tooling_only_non_invalidating_prs": [
     "PR #201",
     "PR #250"
@@ -91,7 +103,9 @@
   "last_verified_machine_gates": [
     "Windows Demo Export PASS · 2026-08-30 KST · GitHub Actions run 33308989848 · exact main 9af5a8c46d29ea6781f9ee06008d7c7d2cde1877"
   ],
-  "mint_after": [],
-  "current_next_action": "OPTIONAL_FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_006_ONLY",
-  "updated_date_kst": "2026-08-30"
+  "mint_after": [
+    "MINT_EXACT_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE_FROM_MAIN_C0BB86EFA5BAD6050217CA67DD6AA9EBA155DC75"
+  ],
+  "current_next_action": "MINT_EXACT_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE",
+  "updated_date_kst": "2026-08-31"
 }

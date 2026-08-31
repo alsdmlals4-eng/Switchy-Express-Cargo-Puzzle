@@ -394,9 +394,9 @@ All state changes must preserve the current finite rule boundary. A future save/
 | QA-007 | promoted core-board image and runtime-path review | dimensions, PNG integrity, provenance, import, renderer path, port alignment, and exact Candidate 005 package evidence |
 | QA-008 | final user / physical evidence | Windows visual/audio and final user review are separately `NOT_RUN`; Android is not required for machine-primary acceptance; five-person/player-experience studies are not required by policy |
 
-### Final-user-only gate after Candidate 005
+### Final-user-only gate after the future post-SX-DEC-067 candidate
 
-1. If the user requests it, inspect only unchanged `SX60-POC-ACCEPT-006` in the named actual board consumer.
+1. First mint one exact post-SX-DEC-067 machine package candidate. If the user then requests it, inspect only that unchanged candidate in the named actual board consumer.
 2. Check cell hit testing, rail ports, cargo/station contrast, cardinal-service cue, selected/alternate/locked routes, TOP HUD, clipping and crop.
 3. Record observations as cause/evidence/impact. This optional review neither upgrades machine evidence to human evidence nor reinstates five-person/player-experience studies.
 
@@ -408,23 +408,23 @@ The active playable slice is `T1 → T2 → T3 → T4 → T5 → T6 → VS_DEMO_
 
 | Risk | Impact | Disposition / next validation |
 |---|---|---|
-| Terrain and existing object material mismatch | visual direction can feel incoherent | core-board paths are implemented; inspect only during an optional exact-Candidate-005 final user review |
+| Terrain and existing object material mismatch | visual direction can feel incoherent | core-board paths are implemented; inspect only during an optional final user review of a minted exact post-SX-DEC-067 candidate |
 | Dense diorama border hides gameplay | input/readability regression | protect calm center; inspect at target viewports |
 | Planning board mistakenly treated as runtime asset | provenance and evidence drift | planning-board binary remains `NOT_RUNTIME_PROOF`; promoted v2/v4 runtime assets remain separately recorded in the manifest and renderer |
 | Full rail-sim feature creep | loses pointed fun and scope | REJECT schedules/economy/maintenance/endless systems |
 | T2 protected asset accidentally replaced | approved lesson regression | maintain `shell_lesson_hero_v02.png` and Issue #227 boundary |
 | Result invents causal information | misleading player feedback | use only current summary/event evidence |
-| CI/payload seen as user evidence | evidence inflation | machine evidence remains separate; only the user may request an exact-Candidate-005 final review |
+| CI/payload seen as user evidence | evidence inflation | machine evidence remains separate; only the user may request a final review of a minted exact post-SX-DEC-067 candidate |
 | Draft PR #174 changes silently absorbed | canon conflict | READ_ONLY; inspect only |
 
 ## 25. USER DECISION REQUIRED
 
-No product decision is required for the connected v2/v4 core board or machine-primary Candidate 006. The only optional user action is a final review of unchanged `SX60-POC-ACCEPT-006`; release, platform, and rights decisions retain their separate owners.
+No new product decision is required for the connected v2/v4 core board. Candidate 006 is historical Route Book 01 evidence; the required machine action is to mint an exact post-SX-DEC-067 package candidate. Only then may the user optionally review its unchanged bytes; release, platform, and rights decisions retain their separate owners.
 
 ## 26. IMPLEMENTATION QUEUE
 
 1. Maintain the merged fourteen-slot v2/v4 core-board map and C5 byte identity; do not silently substitute an earlier candidate.
-2. Run final user review only if explicitly requested, against unchanged Candidate 005.
+2. Mint and verify one exact post-SX-DEC-067 package candidate; run final user review only if explicitly requested, against its unchanged bytes.
 3. Treat future visual, release, or platform work as separate user-authorized scopes with their own consumer, implementation, and acceptance records.
 
 ## 27. CHANGE LOG
@@ -435,3 +435,4 @@ No product decision is required for the connected v2/v4 core board or machine-pr
 | 2026-08-28 | User workflow amendment recorded: generate actual-consumer image candidates before a promotion decision; final asset promotion remains an explicit user decision. |
 | 2026-08-28 | `SX-VIS-063-CANDIDATE-001` generated as a review-only 1672×941 terrain candidate; no repository path, runtime integration or approval claim made. |
 | 2026-08-30 | Canonical status refreshed: user-approved v2 terrain/non-rail assets and v04 rails are connected through `ProductBoardRenderer`, while Candidate 005 is the machine-primary exact package; historical planning-stage entries above remain historical. |
+| 2026-08-31 | SX-DEC-067 changed player-facing bytes after Route Book 01. Candidate 006 is retained as historical evidence and no current candidate is selected until the exact post-change machine package is minted. |

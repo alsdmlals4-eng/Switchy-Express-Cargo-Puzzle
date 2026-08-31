@@ -17,33 +17,34 @@ class SXDec066Candidate006MachineEvidenceTests(unittest.TestCase):
         self.assertTrue(path.is_file(), f"missing machine evidence owner: {path}")
         return json.loads(path.read_text(encoding="utf-8"))
 
-    def test_pointer_selects_only_route_book_exact_candidate_006(self) -> None:
+    def test_pointer_preserves_route_book_candidate_006_as_historical_after_sx_dec_067(self) -> None:
         pointer = self._json(POINTER)
 
-        self.assertEqual("PREPARED_PACKAGE_VERIFIED", pointer["candidate_status"])
-        self.assertEqual("SX60-POC-ACCEPT-006", pointer["current_candidate_id"])
+        self.assertEqual("NOT_MINTED", pointer["candidate_status"])
+        self.assertIsNone(pointer["current_candidate_id"])
         self.assertEqual(
             "9af5a8c46d29ea6781f9ee06008d7c7d2cde1877",
-            pointer["minimum_product_source_main"],
+            pointer["historical_superseded_after_sx_dec_067"]["source_main"],
         )
         self.assertEqual(
             "evidence/acceptance/sx60_poc_accept_006_artifact.json",
-            pointer["artifact_evidence_owner"],
+            pointer["historical_superseded_after_sx_dec_067"]["artifact_evidence_owner"],
         )
         self.assertEqual(
             "evidence/acceptance/sx60_poc_accept_006_pck_deep_audit.json",
-            pointer["deep_pck_evidence_owner"],
+            pointer["historical_superseded_after_sx_dec_067"]["deep_pck_evidence_owner"],
         )
-        self.assertIn("MACHINE_PRIMARY", pointer["current_candidate_role"])
-        self.assertIn("FINAL_USER_REVIEW_NOT_RUN", pointer["current_candidate_role"])
+        self.assertIn("FAIL_CLOSED", pointer["current_candidate_role"])
+        self.assertIn("CANDIDATE_006_HISTORICAL_ONLY", pointer["current_candidate_role"])
 
     def test_artifact_and_deep_audit_bind_the_route_book_package(self) -> None:
         pointer = self._json(POINTER)
         artifact = self._json(ARTIFACT)
         audit = self._json(AUDIT)
 
-        self.assertEqual(artifact["candidate_id"], pointer["current_candidate_id"])
-        self.assertEqual(artifact["source_build"]["main_sha"], pointer["minimum_product_source_main"])
+        historical = pointer["historical_superseded_after_sx_dec_067"]
+        self.assertEqual(artifact["candidate_id"], historical["candidate_id"])
+        self.assertEqual(artifact["source_build"]["main_sha"], historical["source_main"])
         self.assertEqual(33308989848, artifact["artifact"]["workflow_run_id"])
         self.assertEqual(551, artifact["artifact"]["workflow_run_number"])
         self.assertEqual(9731396797, artifact["artifact"]["id"])

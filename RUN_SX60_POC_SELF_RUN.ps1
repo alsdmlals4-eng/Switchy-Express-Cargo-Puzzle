@@ -26,7 +26,7 @@ function Assert-FileHash([string]$Path, [string]$Expected, [string]$Label) {
 $Pointer = Get-Content -LiteralPath $PointerPath -Raw -Encoding UTF8 | ConvertFrom-Json
 Assert-Equal ([string]$Pointer.decision_id) "SX-DEC-060" "decision id"
 Assert-Equal ([string]$Pointer.selection_policy) "EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE" "selection policy"
-if ([string]$Pointer.candidate_status -eq "NOT_CREATED") {
+if ([string]$Pointer.candidate_status -in @("NOT_CREATED", "NOT_MINTED")) {
     if ($ContractCheck) {
         Write-Host "POST_SX_DEC_060_CANDIDATE_CONTRACT: NO_CURRENT_CANDIDATE_MINT_REQUIRED" -ForegroundColor Yellow
         exit 0

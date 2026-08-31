@@ -94,9 +94,9 @@ fresh_read_bootstrap_policy: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 skill_coverage_policy: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT
 gpt_local_codex_orchestration_policy: RETIRED
 current_validation_locator: 기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md
-current_product_decision: SX-DEC-063 · CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED + SX-DEC-064 · ACTIVE_ROUTE_LIGHTING + SX-DEC-065 · MACHINE_PRIMARY_FINAL_USER_REVIEW
+current_product_decision: SX-DEC-067 · WAYSIDE_HAZARDS_SALVAGE_ROUTE_BOOK_02_MERGED_MAIN_VERIFIED + POST_CHANGE_MACHINE_CANDIDATE_NOT_MINTED
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · SOURCE_MAIN_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · FINAL_USER_REVIEW_NOT_RUN · Candidate_005_historical_pre_Route_Book_bytes
+post_sx_dec_060_candidate: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · Candidate_006_historical · source main c0bb86efa5bad6050217ca67dd6aa9eba155dc75 requires an exact machine package candidate
 ```
 
 v4.7 Switchy adapter, v4.5 r2 bundle, v4.8 r2 provenance와 2026-08-24 r4 전환 자료는 역사·rollback/provenance evidence로 보존하며 current work-instruction authority가 아니다. r5.4의 fresh-read/Skill coverage/복구/Godot 상세는 thin adapter와 최신 Base owner를 progressive-load한다.
@@ -177,12 +177,14 @@ sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS
 sx_dec_060_ci: PASS · 7_REQUIRED_CHECKS
 sx_dec_060_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
 sx_dec_060_notion_readback: PASS
-sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · exact main 9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · Route Book package and runtime-JSON evidence
+sx_dec_060_post_change_candidate: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · Candidate_006_historical · exact main c0bb86efa5bad6050217ca67dd6aa9eba155dc75 requires a new machine package candidate
 sx_dec_061: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 sx_dec_062: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION
 sx_dec_063: CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED · PR_255 · main_2cf7bb5595a297955c75e6b4108bc1be6fe9428c · PRODUCT_BOARD_RENDERER_V2_CONSUMERS_CONNECTED · CI_7_GREEN
 sx_dec_064: MERGED_MAIN_VERIFIED · PR_249 · main_2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI_7_GREEN · PROCEDURAL_RUNTIME_DELTA
 sx_dec_065: USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW · FIVE_PERSON_COMPREHENSION_NOT_REQUIRED · PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED · FINAL_USER_REVIEW_NOT_RUN
+sx_dec_066: USER_APPROVED · MERGED_MAIN_VERIFIED · Candidate_006_historical_after_SX_DEC_067
+sx_dec_067: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · POST_CHANGE_CANDIDATE_NOT_MINTED
 ```
 
 Current first-session shape remains:
@@ -315,8 +317,8 @@ SX-DEC-060 AUTOMATED REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREE
 SX-DEC-060 FIVE-PASS REVIEW: CLOSED · SX-AUD-071
 SX-DEC-060 NOTION READBACK: PASS
 POST-060 CANDIDATE 004: HISTORICAL_PRE_V04_PRODUCT_BYTES · PREPARED_PACKAGE_VERIFIED
-POST-060 CANDIDATE 006 PACKAGE/PCK/RUNTIME-JSON POINTER: PASS · exact main 9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · MACHINE_PRIMARY_ACCEPTANCE_READY
-POST-060 CANDIDATE 006 FINAL USER REVIEW: NOT_RUN · exact unchanged candidate required
+POST-060 CANDIDATE 006 PACKAGE/PCK/RUNTIME-JSON POINTER: HISTORICAL_PRE_SX_DEC_067_PRODUCT_BYTES
+POST-SX-DEC-067 PACKAGE CANDIDATE: NOT_MINTED · exact source main c0bb86efa5bad6050217ca67dd6aa9eba155dc75 required
 WINDOWS PHYSICAL POST-060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 AUDIO PERCEPTUAL POST-060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 ANDROID DEVICE POST-060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
@@ -332,9 +334,9 @@ Automated/export/package/self-run does not imply HUMAN/PLAYER EXPERIENCE PASS. P
 Current next gate:
 
 ```text
-SX-DEC-065 policy / SX-DEC-066 Candidate 006 machine-primary package verification complete
-→ no remaining machine-executable acceptance work
-→ final user review only when requested on unchanged Candidate 006
+SX-DEC-067 merged player-facing bytes after Candidate 006
+→ mint one exact post-change machine package candidate
+→ final user review only when requested on that future unchanged candidate
 → platform / rights / production-cutover gates remain separate
 ```
 
