@@ -123,7 +123,8 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertIn("id: post060_candidate", text)
         self.assertIn("candidate_status=", text)
         self.assertIn(
-            "steps.post060_candidate.outputs.candidate_status != 'NOT_CREATED'",
+            "steps.post060_candidate.outputs.candidate_status != 'NOT_CREATED' && "
+            "steps.post060_candidate.outputs.candidate_status != 'NOT_MINTED'",
             text,
         )
         self.assertIn("switchy-post-060-candidate-002", text)

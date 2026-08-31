@@ -96,7 +96,7 @@ jobs:
             -WorkDir (Join-Path $env:RUNNER_TEMP 'switchy-historical-candidate-003')
 
       - name: Verify post-060 candidate package without launch
-        if: steps.post060_candidate.outputs.candidate_status != 'NOT_CREATED'
+        if: steps.post060_candidate.outputs.candidate_status != 'NOT_CREATED' && steps.post060_candidate.outputs.candidate_status != 'NOT_MINTED'
         shell: powershell
         env:
           GH_TOKEN: ${{ github.token }}
