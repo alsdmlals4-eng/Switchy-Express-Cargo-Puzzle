@@ -121,14 +121,14 @@ validation_strategy: MACHINE_PRIMARY_FINAL_USER_REVIEW
 base_work_current_phase: PHASE_5_MACHINE_PRIMARY_VALIDATION_COMPLETE · SX60_POC_ACCEPT_006
 remaining_machine_executable_required_work: NONE · FINAL_USER_REVIEW_OPTIONAL_ON_UNCHANGED_CANDIDATE_006
 route_book_execution_state: MERGED_MAIN_MACHINE_VERIFIED · PR_260 · Candidate_006_current · Candidate_005_historical_for_pre_Route_Book_bytes
-sx_dec_067_wayside_hazards_and_route_book_02: USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_RUNTIME_VERIFIED · PR_263_OPEN_REMOTE_CI_7_GREEN · NOT_MERGED
+sx_dec_067_wayside_hazards_and_route_book_02: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · REMOTE_CI_7_GREEN · POST_CHANGE_CANDIDATE_NOT_MINTED
 sx_dec_067_decision_owner: docs/decisions/SX_DEC_067_WAYSIDE_HAZARDS_SALVAGE_AND_ROUTE_BOOK_02.md
 sx_dec_067_core_design: docs/superpowers/specs/2026-08-30-wayside-hazards-and-salvage-design.md
 sx_dec_067_content_design: docs/superpowers/specs/2026-08-30-route-book-02-surface-content-design.md
 sx_dec_067_core_plan: docs/superpowers/plans/2026-08-30-wayside-hazards-and-salvage-core.md
 sx_dec_067_content_plan: docs/superpowers/plans/2026-08-30-route-book-02-surface-content.md
 sx_dec_067_content_owner: 기획서/20_시스템_콘텐츠/ROUTE_BOOK_02_WAYSIDE_CONTENT_SPEC.md
-sx_dec_067_local_machine_evidence: GODOT_120_CASES_14053_ASSERTIONS_0_FAILED · HERA_ROUTE_BOOK_02_AND_RB12_BUILD_MACHINE_RUNTIME_PASS · PR_263_REMOTE_CI_7_GREEN · docs/operations/2026-08-31-sx-dec-067-local-machine-runtime-verification.md
+sx_dec_067_local_machine_evidence: GODOT_120_CASES_14053_ASSERTIONS_0_FAILED · HERA_ROUTE_BOOK_02_AND_RB12_BUILD_MACHINE_RUNTIME_PASS · PR_263_REMOTE_CI_7_GREEN · POST_MERGE_TREE_IDENTITY_AND_CONTRACT_PYTHON_READBACK_PASS · docs/operations/2026-08-31-sx-dec-067-local-machine-runtime-verification.md
 sx_dec_067_candidate_assets: EIGHT_GENERATED_CANDIDATES_RUNTIME_CONNECTED_NOT_CANON · USER_PIXEL_REVIEW_PENDING · art/product_assets/ed_hybrid_v2/manifest.json
 sx_dec_067_candidate_status: NOT_MINTED · Candidate_006_is_historical_for_post_SX_DEC_067_product_bytes
 windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
@@ -143,6 +143,15 @@ sx_dec_057: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_058: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 pr_174: PRE_EXISTING_DRAFT · READ_ONLY
 ```
+
+## 2026-08-31 workspace artifact hygiene
+
+The user requires a lean local workspace: retain only current source, tracked canon/assets/tests/evidence, active worktrees, and clearly identified rollback material. This is an operating rule, not a product Decision, so it does not create a new SX-DEC number or weaken historical-evidence retention.
+
+- Before removing anything, read the exact path, active consumer/reference, Git branch/PR state, local diff, merged/main relationship, and active Godot process state.
+- Remove a worktree, its merged local branch, generated `.godot` cache, and task logs immediately after its evidence has been read back. Use a short direct child of the Windows temp root for Godot-only temporary worktrees so shader-cache paths do not exceed Windows path limits.
+- Never clean the user root worktree, a dirty or unmerged worktree, an open/draft PR worktree, current tracked assets, or historical rollback/provenance evidence merely because it is old.
+- When cleanup is incomplete, record the exact residual path, reason, and reclaimable size; do not relabel it as removed or work around a safety control.
 
 ## Current product promise
 
