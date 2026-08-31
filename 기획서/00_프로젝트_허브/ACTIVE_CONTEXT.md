@@ -134,12 +134,12 @@ sx_dec_067_candidate_status: SX60-POC-ACCEPT-007 · HISTORICAL_SUPERSEDED_BY_SX_
 sx_dec_068_title_shell_wordmark: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_271 · SX-TITLE-WORDMARK-001_USER_PIXEL_APPROVED_CANON_REGISTERED · SX60-POC-ACCEPT-009_PREPARED_PACKAGE_VERIFIED
 sx_dec_068_decision_owner: docs/decisions/SX_DEC_068_TITLE_SCREEN_MAIN_SHELL.md
 sx_dec_068_title_wordmark: SX-TITLE-WORDMARK-001 · USER_APPROVED_CANONICAL_PRODUCT_ASSET_RUNTIME_CONNECTED · USER_PIXEL_APPROVED · CANON_REGISTERED · art/product_assets/ed_hybrid_v2/manifest.json
-sx_dec_068_machine_evidence: GitHub_Actions_run_33392296685_PASS · ARTIFACT_9757983433 · PCK_575_OF_575 · docs/operations/2026-08-31-sx-dec-068-title-wordmark-candidate-machine-verification.md
+sx_dec_068_machine_evidence: GitHub_Actions_run_33396533310_PASS · ARTIFACT_9759591197 · PCK_575_OF_575 · evidence/acceptance/sx60_poc_accept_009_artifact.json · canonical-wordmark-status source 1ac3099d9ab1451323cca2935547f82d210b50b4
 windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device_post_060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
 five_person_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
 player_experience_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
-final_user_review: FINAL_USER_REVIEW · NOT_RUN · REQUIRES_UNCHANGED_SX60_POC_ACCEPT_008 · TITLE_WORDMARK_PIXEL_DISPOSITION_SEPARATE
+final_user_review: FINAL_USER_REVIEW · NOT_RUN · REQUIRES_UNCHANGED_SX60_POC_ACCEPT_009 · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED
 production_cutover: BLOCKED_DEFERRED
 sx_dec_056a: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
@@ -366,9 +366,9 @@ SX-DEC-064 active-route-lighting is merged on main through Issue #248 / PR #249 
 SX-DEC-068 title-shell product bytes merged at main@53e29f874bc70a0057c310d661dc45dbecc6cf13
 → Candidate 006 is immutable historical Route Book 01 evidence; Candidate 007 is immutable historical post-SX-DEC-067 evidence
 → SX60-POC-ACCEPT-008 is historical pre-canonical-status evidence; SX60-POC-ACCEPT-009 is the exact post-SX-DEC-068 canonical-wordmark machine package candidate and current selection
-→ no remaining machine-executable acceptance work; current next action is FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_008 when requested
+→ no remaining machine-executable acceptance work; current next action is FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_009 when requested
 → preserve generated wayside images as RUNTIME_CONNECTED candidates; do not promote them to canonical assets or human evidence
-→ preserve the generated title wordmark as a runtime-connected candidate pending a separate user pixel disposition
+→ preserve the user-approved title wordmark as its canon-registered, runtime-connected tracked product asset; do not infer physical, device, human, or release approval from that asset state
 → an optional final user review may inspect only unchanged Candidate 009 bytes
 → five-person comprehension and player-experience studies remain not required by SX-DEC-065
 ```

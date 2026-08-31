@@ -1,5 +1,7 @@
 # Title Screen Main Shell Implementation Plan
 
+> **Historical planning record:** This plan captured the pre-pixel-approval implementation intent. The title wordmark is now `USER_PIXEL_APPROVED · CANON_REGISTERED` and Candidate 009 is the current exact machine package. Do not use the candidate/pending wording below as current state; follow `docs/decisions/SX_DEC_068_TITLE_SCREEN_MAIN_SHELL.md` and `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Replace the cramped title dialog with a responsive, full-viewport main title shell that reuses the existing approved title artwork, adds the user-directed title wordmark candidate, and retains all current entry actions.
