@@ -98,6 +98,10 @@ EXPECTED_ASSETS = {
     ),
 }
 
+APPROVED_NON_SX_DEC_063_ASSET_IDS = {
+    "SX-TITLE-WORDMARK-001",
+}
+
 V01_ROLLBACK_PATHS = [
     "art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png",
     "art/product_assets/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png",
@@ -250,7 +254,10 @@ class SXDec063CoreBoardAssetPromotionTests(unittest.TestCase):
             manifest["status"],
         )
         manifest_assets = {entry["asset_id"]: entry for entry in manifest["assets"]}
-        self.assertEqual(set(EXPECTED_ASSETS), set(manifest_assets))
+        self.assertEqual(
+            set(EXPECTED_ASSETS) | APPROVED_NON_SX_DEC_063_ASSET_IDS,
+            set(manifest_assets),
+        )
         renderer = RENDERER_PATH.read_text(encoding="utf-8")
 
         self.assertEqual(RAIL_MASTER_SOURCE, manifest["rail_master_source"])

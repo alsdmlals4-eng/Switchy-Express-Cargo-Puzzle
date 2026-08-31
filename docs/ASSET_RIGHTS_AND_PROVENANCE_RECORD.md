@@ -256,6 +256,31 @@ The eight files below are intentionally outside the manifest's approved `assets`
 
 No external asset, copied prompt, user-identifying content, logo, watermark, readable pseudo-text, or third-party visual reference was used in generation. The original generated source receipts remain in the local Codex generation store for audit; only the listed candidate copies are connected to this project worktree.
 
+## SX-DEC-068 · Title wordmark canonical product asset
+
+```yaml
+decision_id: SX-DEC-068
+asset_id: SX-TITLE-WORDMARK-001
+source_candidate_id: SX-VIS-068-TITLE-WORDMARK-001
+creation_route: OPENAI_IMAGEGEN_BUILT_IN
+creator_or_vendor: OpenAI Image Generation
+input_rights: original project-owned rail/cargo title brief and the actual Godot TitleLogo consumer; no third-party image, logo, layout, character, or prompt reference supplied
+generation_receipt: exec-abd1ad70-3d2b-4cf3-aefb-81ecd30cda4e.png
+tracked_path: art/product_assets/ed_hybrid_v2/shells/shell_title_wordmark_switchy_express_candidate_v01.png
+sha256: 4faaefca00416119bc0c30e0e45b8e8bf33fe27c72a7466d541ab6c6576244e8
+candidate_lifecycle: GENERATED_CANDIDATE -> GODOT_IMPORTED -> AUTOMATED_TITLE_TEST_PASS -> USER_PIXEL_APPROVED -> CANON_REGISTERED -> IMPLEMENTED
+visual_role: USER_APPROVED_CANONICAL_PRODUCT_ASSET_RUNTIME_CONNECTED
+runtime_consumer: game/demo/vertical_slice_demo.tscn::TitleScreen/TitleMargin/TitleColumns/TitleDeck/Content/TitleLogo
+runtime_connection_status: VERIFIED_AUTOMATED_RUNTIME
+pixel_review_status: USER_APPROVED · CANON_REGISTERED
+reference_similarity_status: NOT_APPLICABLE
+commercial_release_rights: CONDITIONAL_PENDING_SEPARATE_RELEASE_REVIEW
+physical_windows_audio_android_accessibility_human_player_experience_release: NOT_RUN
+exact_package_state: CANDIDATE_009_MINT_IN_PROGRESS
+```
+
+The user’s pixel approval promotes this exact tracked PNG only; it does not alter its source provenance, claim exclusive-rights clearance, or approve release use. Candidate 008 preserves its own pre-promotion package evidence. Because the manifest is included in the export, Candidate 009 must independently verify the post-promotion package before final-user review can again be offered.
+
 ## SX-TITLE-HERO-001 · Title runtime hero banner
 
 ```yaml

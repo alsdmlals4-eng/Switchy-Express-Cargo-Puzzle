@@ -1,8 +1,8 @@
 # SX-DEC-068 · Main Title Shell Composition
 
-**Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_271 · TITLE_WORDMARK_CANDIDATE_RUNTIME_CONNECTED · CANDIDATE_008_PREPARED_PACKAGE_VERIFIED · USER_PIXEL_REVIEW_PENDING`
+**Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_271 · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · CANDIDATE_009_MINT_IN_PROGRESS`
 **Date:** 2026-08-31 KST
-**Approval source:** The user approved the recommended continuation and explicitly requested “메인화면도 제작해”.
+**Approval source:** The user approved the recommended continuation and explicitly requested “메인화면도 제작해”; the user then explicitly approved the title-wordmark pixels for canonical promotion on 2026-08-31 KST.
 
 ## Decision
 
@@ -29,7 +29,7 @@ The user clarified that the requested logo is the game’s in-world title treatm
 → unchanged Korean promise, first-run cue, and title actions
 ```
 
-It uses a night-rail material language—midnight enamel, antique brass, amber signal lamps, a switch fork, cargo marks, and route geometry—rather than the reference’s fantasy/book motifs. It is a **generated candidate**, not a canonical asset, and retains `USER_PIXEL_REVIEW_PENDING` until the user reviews the actual pixels. Candidate connection is limited to the existing `TitleLogo` consumer and does not alter a puzzle rule, action, or save key.
+It uses a night-rail material language—midnight enamel, antique brass, amber signal lamps, a switch fork, cargo marks, and route geometry—rather than the reference’s fantasy/book motifs. The original `SX-VIS-068-TITLE-WORDMARK-001` candidate has now received explicit user pixel approval and is registered as a **canonical product asset**. Its original candidate ID, generation receipt, hash, stable tracked path, and sole `TitleLogo` consumer remain preserved for provenance. The canonical promotion alters no puzzle rule, action, or save key.
 
 ## Existing-solution and alternative study
 
@@ -52,19 +52,29 @@ The feasibility basis is Godot's documented full-rect `Control` anchoring, `Text
 - The visual field must remain readable at 960×540, 1280×720, and 1920×1080; the wordmark is given a fixed 2:1 menu footprint and the remaining action copy stays live Godot text.
 - No gameplay rule, map, stage ID, save key, economy, score, or tutorial content changes.
 
+## User pixel approval and canonical promotion
+
+| Option | Result | Decision |
+| --- | --- | --- |
+| Leave the approved pixels in `generated_candidates` and keep Candidate 008 current | Conflicts with the explicit approval and leaves the packaged manifest’s live owner state false. | **REJECT** |
+| Move the approval into a document outside the packaged manifest | Avoids reminting a package, but splits the asset’s approval status away from its project-owned runtime asset record. | **REJECT** |
+| Promote the unchanged file in the project manifest and mint a new exact package candidate | Keeps SHA-256/provenance/consumer/approval co-located and makes the user-review package byte-specific. | **ADOPT** |
+
+This is a metadata and ownership transition only: the approved PNG bytes, scene path, input/focus flow, finite rules, maps, stage IDs, saves, score, economy, and tutorial content do not change. The product manifest is intentionally included in the PCK, so its status update requires a new exact package candidate.
+
 ## Candidate and evidence transition
 
 `SX60-POC-ACCEPT-007` is the immutable machine package for exact product bytes at `main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75`. This player-facing title-shell change cannot inherit its final-user-review eligibility.
 
 `SX60-POC-ACCEPT-008` now binds the exact title-shell source at `main@53e29f874bc70a0057c310d661dc45dbecc6cf13`: GitHub Actions Windows Demo Export run `33392296685`, artifact `9757983433`, ZIP digest `f11fc0dc64ac59ce86d581bdb68e5833d79e92ec6345112c470a5f3a26b9902a`, and independent 575-entry PCK audit all passed. Candidate 007 is retained as `HISTORICAL_SUPERSEDED_BY_SX_DEC_068_PLAYER_FACING_PRODUCT_BYTE_CHANGE`; its own package evidence remains valid only for its own source bytes.
 
-Candidate 008 is the only exact package eligible for a future final-user review while unchanged. That eligibility is separate from the wordmark’s `USER_PIXEL_REVIEW_PENDING` asset disposition; packaging the candidate does not promote it to canonical art.
+Candidate 008 remains immutable evidence for its own pre-canonical-status package bytes, including its then-pending wordmark disposition. It is historical after the manifest promotion and must not be used for a later final-user review. Candidate 009 is being minted from the exact canonical-status source commit; only a successful replacement PCK/artifact audit can restore the machine-primary package candidate. The asset’s user pixel approval is complete, but it does not imply physical display, device, accessibility, human/player, release, or production-cutover approval.
 
 ## Evidence boundary
 
 Automated scene, focus, responsive-layout, asset-consumer, and full Godot-suite results are machine evidence. Five-person comprehension and player-experience studies remain `NOT_REQUIRED_BY_USER_VALIDATION_POLICY`. Physical Windows, audio, Android-device, accessibility-assistive-device, release, and final-user review states remain separate and must not be inferred from this work.
 
-Candidate generation, its manifest record, import, and automated scene connection also do not constitute a user pixel approval or canonical promotion.
+Candidate generation, import, and automated scene connection did not themselves constitute pixel approval. The user’s explicit pixel approval now completes canonical promotion, while the replacement package, physical display, device, accessibility, human/player, release, and production-cutover evidence remain separate.
 
 ## Title wordmark candidate local machine evidence
 
