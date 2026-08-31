@@ -15,6 +15,7 @@ POST_060_POINTER = ROOT / "evidence/acceptance/post_sx_dec_060_candidate.json"
 SX60_ARTIFACT = ROOT / "evidence/acceptance/sx60_poc_accept_001_artifact.json"
 PROJECT_CONTRACT_WORKFLOW = ROOT / ".github/workflows/project-contract.yml"
 ACTIVE_CONTEXT = ROOT / "기획서" / "00_프로젝트_허브" / "ACTIVE_CONTEXT.md"
+PROJECT_LEARNING_RECEIPT = ROOT / "docs" / "operations" / "2026-08-31-project-learning-absorption.md"
 CURRENT_OWNER_DOCS = (
     ROOT / "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
     ROOT / "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
@@ -87,6 +88,34 @@ class ExecutionContractFreshnessTests(unittest.TestCase):
             "short direct child of the Windows temp root",
             "Never clean the user root worktree, a dirty or unmerged worktree",
             "do not relabel it as removed or work around a safety control",
+        ):
+            self.assertIn(required, active)
+
+    def test_project_learning_absorption_receipt_is_present(self) -> None:
+        self.assertTrue(PROJECT_LEARNING_RECEIPT.is_file(), "project learning absorption receipt is missing")
+        receipt = PROJECT_LEARNING_RECEIPT.read_text(encoding="utf-8")
+        required_markers = (
+            "SX-LRN-20260831-01",
+            "a165a31ddf3ba20d2ba0411f42cc9f5899b4753b",
+            "EXISTING_PROJECT_REFLECTION_AND_BASE_DUPLICATE",
+            "PROJECT_ONLY",
+            "BASE_REVIEW_CANDIDATE_OBSERVATION",
+            "short direct child of the configured Windows temporary root",
+            "cleanup_residual_path: .worktrees/codex-wayside-hazards-salvage-20260830",
+            "cleanup_residual_bytes_observed: 137790617",
+            "BASE_BCP_TARGET: BCP-2026-046-work-godot-process-lifecycle",
+            "BASE_REPOSITORY_MUTATION: NOT_PERFORMED",
+            "this receipt, its focused regression test, and the current Active Context resume link",
+        )
+        missing = [marker for marker in required_markers if marker not in receipt]
+        self.assertFalse(missing, "project learning receipt is missing: " + ", ".join(missing))
+
+    def test_active_context_routes_the_project_learning_receipt(self) -> None:
+        active = ACTIVE_CONTEXT.read_text(encoding="utf-8")
+        for required in (
+            "SX-LRN-20260831-01",
+            "docs/operations/2026-08-31-project-learning-absorption.md",
+            "BASE_REVIEW_CANDIDATE_OBSERVATION",
         ):
             self.assertIn(required, active)
 
