@@ -215,14 +215,14 @@ Historical package record and current sequence:
 ```text
 SX60-POC-ACCEPT-006 exact package verified on main 9af5a8c after Route Book 01
 → SX-DEC-067 changed player-facing bytes at main c0bb86e
-→ Candidate 006 is historical; SX-DEC-068 later changed title-shell bytes, so Candidate 007 is historical; Candidate 008 is historical pre-canonical-wordmark-status evidence, and Candidate 009 binds the exact current machine package
+→ Candidate 006 is historical; SX-DEC-068 later changed title-shell bytes, so Candidate 007 is historical; Candidate 008 is historical pre-canonical-wordmark-status evidence; SX-DEC-069 then changed transparent wayside/speed-transition bytes, so Candidate 009 is historical and Candidate 010 binds the exact current machine package
 ```
 
 ```yaml
 SX_DEC_060_RUNTIME: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 FULL_AUTOMATED_REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 FIVE_PASS_REVIEW: CLOSED · SX-AUD-071
-POST_060_PACKAGE: SX60-POC-ACCEPT-009_PREPARED_PACKAGE_VERIFIED · HISTORICAL_SX60_POC_ACCEPT_001_TO_008_PRESERVED · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED
+POST_060_PACKAGE: SX60-POC-ACCEPT-010_PREPARED_PACKAGE_VERIFIED · HISTORICAL_SX60_POC_ACCEPT_001_TO_009_PRESERVED · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
 POST_060_CANDIDATE_004: PREPARED_PACKAGE_VERIFIED · HISTORICAL_PRE_V04_PRODUCT_BYTES
 POST_060_CANDIDATE_006: HISTORICAL_PRE_SX_DEC_067_PRODUCT_BYTES · FINAL_USER_REVIEW_NOT_RUN
 ```
@@ -261,15 +261,16 @@ The user-promoted `SX-VIS-063-CANDIDATE-001` is stored at `art/product_assets/ed
 
 ## M6A · SX-DEC-065 machine-primary validation
 
-`MACHINE_PRIMARY_FINAL_USER_REVIEW · USER_APPROVED · SX60-POC-ACCEPT-009_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED`
+`MACHINE_PRIMARY_FINAL_USER_REVIEW · USER_APPROVED · SX60-POC-ACCEPT-010_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING`
 
-The v04 runtime-byte change retains immutable exact Candidate 005 historical evidence. Route Book 01 subsequently minted Candidate 006, which SX-DEC-067 then superseded with player-facing bytes. SX-DEC-068 subsequently changed the title shell and made Candidate 007 historical. Candidate 008 bound those title-shell bytes before the user-approved manifest promotion; that status promotion requires Candidate 009, which now binds the exact current package. The current sequence is:
+The v04 runtime-byte change retains immutable exact Candidate 005 historical evidence. Route Book 01 subsequently minted Candidate 006, which SX-DEC-067 then superseded with player-facing bytes. SX-DEC-068 subsequently changed the title shell and made Candidate 007 historical. Candidate 008 bound those title-shell bytes before the user-approved manifest promotion; that status promotion required Candidate 009. SX-DEC-069 then changed transparent wayside/speed-transition player-facing bytes, so Candidate 009 is historical and Candidate 010 now binds the exact current package. The current sequence is:
 
 ```text
 Candidate 008 immutable exact pre-canonical-wordmark-status package verification retained
-→ Candidate 009 immutable exact post-canonical-wordmark-status package verification complete
+→ Candidate 009 immutable exact post-canonical-wordmark-status package verification retained as pre-SX-DEC-069 history
+→ Candidate 010 immutable exact post-SX-DEC-069 package verification complete
 → MACHINE_PRIMARY_ACCEPTANCE_READY
-→ optional FINAL_USER_REVIEW only when requested on unchanged Candidate 009; title wordmark pixel approval and canonical registration are complete
+→ optional FINAL_USER_REVIEW only when requested on unchanged Candidate 010; title wordmark pixel approval and canonical registration are complete while v02 wayside pixel review remains pending
 ```
 
 `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` and `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED` are not blockers. Windows physical/audio is `FINAL_USER_REVIEW_ONLY`. Android device compatibility remains an independently recorded machine/device gate if the Android target is in scope; the historical Android validation APK is not eligible.

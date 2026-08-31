@@ -30,20 +30,21 @@ class SXDec068Candidate008MachineEvidenceTests(unittest.TestCase):
         artifact = self._json(ARTIFACT)
 
         self.assertEqual("PREPARED_PACKAGE_VERIFIED", pointer["candidate_status"])
-        self.assertEqual("SX60-POC-ACCEPT-009", pointer["current_candidate_id"])
+        self.assertEqual("SX60-POC-ACCEPT-010", pointer["current_candidate_id"])
         self.assertIn("PASS", artifact["verification"]["launcher_contract_check"])
         self.assertEqual(
-            "MACHINE_PRIMARY_ACCEPTANCE_READY · POST_SX_DEC_068_CANONICAL_WORDMARK_PRODUCT_BYTES · "
-            "FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED",
+            "MACHINE_PRIMARY_ACCEPTANCE_READY · POST_SX_DEC_069_TRANSPARENT_WAYSIDE_SPEED_TRANSITION_PRODUCT_BYTES · "
+            "FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · "
+            "V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING",
             pointer["current_candidate_role"],
         )
-        self.assertEqual("1ac3099d9ab1451323cca2935547f82d210b50b4", pointer["minimum_product_source_main"])
-        self.assertEqual("evidence/acceptance/sx60_poc_accept_009_artifact.json", pointer["artifact_evidence_owner"])
-        self.assertEqual("evidence/acceptance/sx60_poc_accept_009_pck_deep_audit.json", pointer["deep_pck_evidence_owner"])
-        self.assertEqual("기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_09.md", pointer["acceptance_candidate_document"])
-        self.assertEqual("SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_09.md", pointer["self_run_record_name"])
+        self.assertEqual("79323ff0175b674c594d18dfd6d28a8e9951f5bd", pointer["minimum_product_source_main"])
+        self.assertEqual("evidence/acceptance/sx60_poc_accept_010_artifact.json", pointer["artifact_evidence_owner"])
+        self.assertEqual("evidence/acceptance/sx60_poc_accept_010_pck_deep_audit.json", pointer["deep_pck_evidence_owner"])
+        self.assertEqual("기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_10.md", pointer["acceptance_candidate_document"])
+        self.assertEqual("SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_10.md", pointer["self_run_record_name"])
         self.assertEqual(
-            "FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_009",
+            "FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_010",
             pointer["current_next_action"],
         )
 
@@ -101,19 +102,19 @@ class SXDec068Candidate008MachineEvidenceTests(unittest.TestCase):
             self.assertIn("FINAL_USER_REVIEW_NOT_RUN", text)
             self.assertIn("USER_PIXEL_REVIEW_PENDING", text)
 
-    def test_current_owners_point_to_candidate_009_and_retain_candidate_008_as_history(self) -> None:
+    def test_current_owners_point_to_candidate_010_and_retain_candidate_008_as_history(self) -> None:
         active = self._text(ACTIVE_CONTEXT)
         decisions = self._text(CURRENT_DECISIONS)
         gates = self._text(DEVELOPMENT_GATES)
 
         for text in (active, decisions, gates):
             self.assertIn("SX60-POC-ACCEPT-008", text)
-            self.assertIn("SX60-POC-ACCEPT-009", text)
+            self.assertIn("SX60-POC-ACCEPT-010", text)
             self.assertIn("FINAL_USER_REVIEW_NOT_RUN", text)
             self.assertIn("USER_PIXEL_APPROVED", text)
 
         self.assertIn("remaining_machine_executable_required_work: NONE", active)
-        self.assertIn("FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_009", active)
+        self.assertIn("FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_010", active)
 
 
 if __name__ == "__main__":

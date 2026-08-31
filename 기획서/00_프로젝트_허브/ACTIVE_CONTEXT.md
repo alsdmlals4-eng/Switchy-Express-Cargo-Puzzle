@@ -43,7 +43,7 @@ candidate_003_preparation_main: 2521f3be600ea950f9893ce45940604c2d0ac88a
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
 candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-009 · PREPARED_PACKAGE_VERIFIED · SX60-POC-ACCEPT-008_historical_after_wordmark_canonical_status · source 1ac3099d9ab1451323cca2935547f82d210b50b4 · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-010 · PREPARED_PACKAGE_VERIFIED · SX60-POC-ACCEPT-009_historical_after_SX_DEC_069 · source 79323ff0175b674c594d18dfd6d28a8e9951f5bd · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
 sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 sx60_poc_accept_003: SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE · PLAYER_FACING_SX_DEC_064_ACTIVE_ROUTE_LIGHTING_CHANGE
 pre_sx_dec_060_candidate_package_integrity: PASS
@@ -102,7 +102,7 @@ sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
 notion_direction_current_page: 3c91b237-eb1c-8197-bf13-debb96d444c8 · CURRENT_CREATED_READBACK_PASS · 2026-08-28
-post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-009 · PREPARED_PACKAGE_VERIFIED · SX60-POC-ACCEPT-008_historical_after_wordmark_canonical_status · FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_009 · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED
+post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-010 · PREPARED_PACKAGE_VERIFIED · SX60-POC-ACCEPT-009_historical_after_SX_DEC_069 · FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_010 · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
 current_main_live_machine_qa: docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md · MAIN_CF93926 · TITLE_BRIEFING_BUILD_FLOW_OBSERVED · HUMAN_DEVICE_AUDIO_NOT_RUN
 title_hero_runtime_asset: MERGED_MAIN_VERIFIED · PR_217 · main_e0044d6c7427a7c199da6bcdcf792e41e2e2f152 · ISSUE_216 · RUNTIME_VERIFIED · DUAL_PRESERVATION_PASS
 title_hero_runtime_evidence: docs/operations/2026-08-27-title-hero-art-runtime-verification.md
@@ -118,9 +118,9 @@ base_work_five_phase_receipt: docs/operations/2026-08-27-sx60-work-five-phase-st
 phase5_user_start_authorization: RECORDED · 2026-08-28_KST · GitHub_Issue_233
 phase5_execution_plan: docs/superpowers/plans/2026-08-28-phase5-human-validation.md · SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW
 validation_strategy: MACHINE_PRIMARY_FINAL_USER_REVIEW
-base_work_current_phase: PHASE_5_MACHINE_PRIMARY_CANDIDATE_009_PREPARED
-remaining_machine_executable_required_work: NONE · exact SX-DEC-068 machine package candidate prepared
-route_book_execution_state: SX_DEC_066_MERGED_MAIN_MACHINE_VERIFIED · SX60-POC-ACCEPT-006_historical_after_SX_DEC_067 · SX60-POC-ACCEPT-007_historical_after_SX_DEC_068 · SX60-POC-ACCEPT-008_historical_after_wordmark_canonical_status · SX60-POC-ACCEPT-009_current_exact_machine_package
+base_work_current_phase: PHASE_5_MACHINE_PRIMARY_CANDIDATE_010_PREPARED
+remaining_machine_executable_required_work: NONE · exact SX-DEC-069 machine package candidate prepared
+route_book_execution_state: SX_DEC_066_MERGED_MAIN_MACHINE_VERIFIED · SX60-POC-ACCEPT-006_historical_after_SX_DEC_067 · SX60-POC-ACCEPT-007_historical_after_SX_DEC_068 · SX60-POC-ACCEPT-008_historical_after_wordmark_canonical_status · SX60-POC-ACCEPT-009_historical_after_SX_DEC_069 · SX60-POC-ACCEPT-010_current_exact_machine_package
 sx_dec_067_wayside_hazards_and_route_book_02: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · REMOTE_CI_7_GREEN · SX60-POC-ACCEPT-007_historical_after_SX_DEC_068
 sx_dec_067_decision_owner: docs/decisions/SX_DEC_067_WAYSIDE_HAZARDS_SALVAGE_AND_ROUTE_BOOK_02.md
 sx_dec_067_core_design: docs/superpowers/specs/2026-08-30-wayside-hazards-and-salvage-design.md
@@ -131,20 +131,20 @@ sx_dec_067_content_owner: 기획서/20_시스템_콘텐츠/ROUTE_BOOK_02_WAYSIDE
 sx_dec_067_local_machine_evidence: GODOT_120_CASES_14053_ASSERTIONS_0_FAILED · HERA_ROUTE_BOOK_02_AND_RB12_BUILD_MACHINE_RUNTIME_PASS · PR_263_REMOTE_CI_7_GREEN · POST_MERGE_TREE_IDENTITY_AND_CONTRACT_PYTHON_READBACK_PASS · docs/operations/2026-08-31-sx-dec-067-local-machine-runtime-verification.md
 sx_dec_067_candidate_assets: EIGHT_GENERATED_CANDIDATES_RUNTIME_CONNECTED_NOT_CANON · USER_PIXEL_REVIEW_PENDING · art/product_assets/ed_hybrid_v2/manifest.json
 sx_dec_067_candidate_status: SX60-POC-ACCEPT-007 · HISTORICAL_SUPERSEDED_BY_SX_DEC_068_PRODUCT_BYTES · Candidate_006_is_historical_for_post_SX_DEC_067_product_bytes
-sx_dec_068_title_shell_wordmark: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_271 · SX-TITLE-WORDMARK-001_USER_PIXEL_APPROVED_CANON_REGISTERED · SX60-POC-ACCEPT-009_PREPARED_PACKAGE_VERIFIED
+sx_dec_068_title_shell_wordmark: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_271 · SX-TITLE-WORDMARK-001_USER_PIXEL_APPROVED_CANON_REGISTERED · SX60-POC-ACCEPT-009_HISTORICAL_AFTER_SX_DEC_069
 sx_dec_068_decision_owner: docs/decisions/SX_DEC_068_TITLE_SCREEN_MAIN_SHELL.md
 sx_dec_068_title_wordmark: SX-TITLE-WORDMARK-001 · USER_APPROVED_CANONICAL_PRODUCT_ASSET_RUNTIME_CONNECTED · USER_PIXEL_APPROVED · CANON_REGISTERED · art/product_assets/ed_hybrid_v2/manifest.json
 sx_dec_068_machine_evidence: GitHub_Actions_run_33396533310_PASS · ARTIFACT_9759591197 · PCK_575_OF_575 · evidence/acceptance/sx60_poc_accept_009_artifact.json · canonical-wordmark-status source 1ac3099d9ab1451323cca2935547f82d210b50b4
-sx_dec_069_transparent_wayside_speed_transitions: USER_APPROVED · IMPLEMENTED_ON_ISOLATED_BRANCH · LOCAL_MACHINE_VERIFIED · GODOT_IMPORT_8_V02_PNGS · TRANSPARENT_CONTRACT_PASS · GODOT_120_CASES_14133_ASSERTIONS_0_FAILED · USER_PIXEL_REVIEW_PENDING
+sx_dec_069_transparent_wayside_speed_transitions: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_276 · main_79323ff0175b674c594d18dfd6d28a8e9951f5bd · REMOTE_CI_7_GREEN · GODOT_IMPORT_8_V02_PNGS · TRANSPARENT_CONTRACT_PASS · GODOT_120_CASES_14133_ASSERTIONS_0_FAILED · SX60-POC-ACCEPT-010_PREPARED_PACKAGE_VERIFIED · USER_PIXEL_REVIEW_PENDING
 sx_dec_069_decision_owner: docs/decisions/SX_DEC_069_TRANSPARENT_WAYSIDE_AND_SPEED_TRANSITIONS.md
 sx_dec_069_runtime_owners: game/demo/presentation/product_board_renderer.gd + game/demo/product_finite_slice.gd
 sx_dec_069_candidate_assets: EIGHT_V02_GENERATED_CANDIDATES_RUNTIME_CONNECTED_NOT_CANON · V01_RETAINED_HISTORICAL_PROVENANCE · art/product_assets/ed_hybrid_v2/manifest.json
-sx_dec_069_runtime_readback: LOCAL_HERA_RB08_BUILD_OBSERVED · NO_NEW_TRACKED_SCREENSHOT_ARTIFACT · RUNTIME_LOGS_CLEAN
+sx_dec_069_runtime_readback: LOCAL_HERA_RB08_BUILD_OBSERVED · NO_NEW_TRACKED_SCREENSHOT_ARTIFACT · RUNTIME_LOGS_CLEAN · PACKAGE_PCK_591_OF_591 · REMOTE_RUNTIME_JSON_31_EACH
 windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device_post_060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
 five_person_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
 player_experience_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
-final_user_review: FINAL_USER_REVIEW · NOT_RUN · REQUIRES_UNCHANGED_SX60_POC_ACCEPT_009 · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED
+final_user_review: FINAL_USER_REVIEW · NOT_RUN · REQUIRES_UNCHANGED_SX60_POC_ACCEPT_010 · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
 production_cutover: BLOCKED_DEFERRED
 sx_dec_056a: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
@@ -361,7 +361,7 @@ SX-DEC-064 active-route-lighting is merged on main through Issue #248 / PR #249 
 → SX-DEC-065: Candidate 005 deterministic/Godot/runtime/export/package/CI validation remains historical; Candidate 006 was the Route Book 01 machine-primary package and became historical after the SX-DEC-067 player-facing byte change
 → Windows physical/audio is FINAL_USER_REVIEW_ONLY; Android device remains a separately recorded machine/device compatibility gate when targeted
 → FIVE_PERSON_COMPREHENSION_NOT_REQUIRED / PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED
-→ FINAL_USER_REVIEW may occur only when requested on an unchanged exact candidate; Candidate 008 is historical for its pre-canonical-wordmark-status bytes, while Candidate 009 binds the current package and the title-wordmark pixel disposition is user-approved and canon-registered
+→ FINAL_USER_REVIEW may occur only when requested on an unchanged exact candidate; Candidate 008 is historical for its pre-canonical-wordmark-status bytes, Candidate 009 is historical for pre-SX-DEC-069 bytes, while Candidate 010 binds the current package; the title-wordmark is user-approved/canon-registered and v02 wayside pixels remain user-review pending
 → historical foreign-project Notion Direction page is audit-only and does not block current work
 → use GitHub visual/decision owners as the sole current Switchy Direction
 ```
@@ -371,11 +371,11 @@ SX-DEC-064 active-route-lighting is merged on main through Issue #248 / PR #249 
 ```text
 SX-DEC-068 title-shell product bytes merged at main@53e29f874bc70a0057c310d661dc45dbecc6cf13
 → Candidate 006 is immutable historical Route Book 01 evidence; Candidate 007 is immutable historical post-SX-DEC-067 evidence
-→ SX60-POC-ACCEPT-008 is historical pre-canonical-status evidence; SX60-POC-ACCEPT-009 is the exact post-SX-DEC-068 canonical-wordmark machine package candidate and current selection
-→ no remaining machine-executable acceptance work; current next action is FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_009 when requested
+→ SX60-POC-ACCEPT-008 is historical pre-canonical-status evidence; SX60-POC-ACCEPT-009 is historical pre-SX-DEC-069 evidence; SX60-POC-ACCEPT-010 is the exact post-SX-DEC-069 machine package candidate and current selection
+→ no remaining machine-executable acceptance work; current next action is FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_010 when requested
 → preserve generated wayside images as RUNTIME_CONNECTED candidates; do not promote them to canonical assets or human evidence
 → preserve the user-approved title wordmark as its canon-registered, runtime-connected tracked product asset; do not infer physical, device, human, or release approval from that asset state
-→ an optional final user review may inspect only unchanged Candidate 009 bytes
+→ an optional final user review may inspect only unchanged Candidate 010 bytes
 → five-person comprehension and player-experience studies remain not required by SX-DEC-065
 ```
 

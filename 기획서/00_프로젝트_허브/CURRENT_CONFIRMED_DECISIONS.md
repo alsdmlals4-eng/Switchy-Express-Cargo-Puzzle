@@ -4,21 +4,21 @@ Last updated: `2026-09-01 KST`
 
 ## SX-DEC-069 · Transparent Wayside Cutouts and Speed-Transition Presentation
 
-- **Status:** `USER_APPROVED · IMPLEMENTED_ON_ISOLATED_BRANCH · LOCAL_MACHINE_VERIFIED · MERGE_PENDING`
+- **Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_276 · REMOTE_CI_7_GREEN · SX60-POC-ACCEPT-010_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN`
 - **Decision owner:** `docs/decisions/SX_DEC_069_TRANSPARENT_WAYSIDE_AND_SPEED_TRANSITIONS.md`
 - **Product boundary:** the canonical main-title wordmark, Route Book 02 maps/stage IDs, finite delivery rules, `0.55` caution multiplier, saves, score/progression, and first-session content are unchanged. Eight existing renderer asset slots now use transparent v02 object candidates; no terrain rectangle is embedded in the asset pixels.
 - **Presentation boundary:** the renderer draws amber inward braking feedback only on a normal-to-caution boundary, cyan forward normal-speed-recovery feedback only on a caution-to-normal boundary, and no repeat through adjacent caution cells. The feedback has no gameplay write authority and remains below the train.
 - **Evidence:** Godot 4.7.1 imported all v02 PNGs; transparent-candidate contract `PASS · 1 test / 8 entries`; full local Godot regression `PASS · 120 cases / 14,133 assertions`; actual title → Stage Book → Route Book 02 → RB08 build board was read back through the project-local runtime connection with clean diagnostics. The v02 pixels remain `GENERATED_CANDIDATE · RUNTIME_CONNECTED · NOT_CANON · USER_PIXEL_REVIEW_PENDING`.
-- **Ceiling:** Candidate 009 remains immutable historical package evidence for its own exact pre-change bytes only. The changed product has no current exact package candidate until post-merge package verification; physical/device/audio, accessibility, human, final-user-review, and release claims remain separate and unrun.
+- **Ceiling:** Candidate 009 remains immutable historical package evidence for its own exact pre-change bytes only. Candidate 010 binds exact `main@79323ff0175b674c594d18dfd6d28a8e9951f5bd` with remote export, runtime JSON, artifact, and 591-entry PCK evidence. Physical/device/audio, accessibility, human, final-user-review, and release claims remain separate and unrun; the v02 pixel review remains pending.
 
 ## SX-DEC-068 · Main Title Shell and World Wordmark
 
-- **Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_271 · SX-TITLE-WORDMARK-001_USER_PIXEL_APPROVED_CANON_REGISTERED · SX60-POC-ACCEPT-009_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN`
+- **Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · PR_271 · SX-TITLE-WORDMARK-001_USER_PIXEL_APPROVED_CANON_REGISTERED · SX60-POC-ACCEPT-009_HISTORICAL_AFTER_SX_DEC_069`
 - **Decision owner:** `docs/decisions/SX_DEC_068_TITLE_SCREEN_MAIN_SHELL.md`
 - **Product boundary:** the existing title screen now consumes a transparent, rail/cargo world wordmark through `TitleLogo`; title actions, focus routing, finite rules, maps, stage IDs, saves, economy, score, and tutorial content are unchanged.
 - **Asset boundary:** `SX-TITLE-WORDMARK-001` is `USER_APPROVED_CANONICAL_PRODUCT_ASSET_RUNTIME_CONNECTED · USER_PIXEL_APPROVED · CANON_REGISTERED`. Its exact SHA-256, original candidate ID/receipt, and sole consumer remain held in `art/product_assets/ed_hybrid_v2/manifest.json`.
 - **Evidence:** exact-source Windows Demo Export `33396533310` passed for canonical-status source `1ac3099d9ab1451323cca2935547f82d210b50b4`; the independent artifact/PCK audit records ZIP and inner hashes, 575/575 integrity, runtime JSON proof, actual title-wordmark PCK entries, canonical manifest membership, and zero `evidence/` / `output/` entries.
-- **Ceiling:** Candidate 009 is current machine package evidence only. Pixel approval and canonical promotion are complete; physical/device/audio, human, final-user-review, and release claims remain separate and are not transferred.
+- **Ceiling:** Candidate 009 is historical machine package evidence only after SX-DEC-069. Pixel approval and canonical promotion are complete; physical/device/audio, human, final-user-review, and release claims remain separate and are not transferred.
 
 ## SX-DEC-067 · Wayside Hazards, Salvage, and Route Book 02
 
@@ -29,7 +29,7 @@ Last updated: `2026-09-01 KST`
 - **Content rule:** Route Book 02 contributes six optional authored stages; T1–T6, VS_DEMO_01, Route Book 01, score/progression, generators, and solution reveal remain out of scope.
 - **Evidence:** local Godot full regression `PASS · 120 cases / 14,053 assertions`; current-worktree Hera runtime observed title → book selector → Route Book 02 and RB12 build board; PR #263's seven required remote checks are green. The exact PR-head tree equals merged `main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75`; post-merge Project Contract and Python regression readbacks passed. `docs/operations/2026-08-31-sx-dec-067-local-machine-runtime-verification.md` owns the exact receipt and its evidence ceiling.
 - **Asset state:** 8 bitmap files are `GENERATED_CANDIDATE · RUNTIME_CONNECTED · NOT_CANON · USER_PIXEL_REVIEW_PENDING`, with SHA-256 and exact consumers in `art/product_assets/ed_hybrid_v2/manifest.json` and `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`.
-- **Ceiling:** Candidate 006 is historical for the prior Route Book 01 bytes, Candidate 007 is historical for post-SX-DEC-067 bytes, and Candidate 008 is historical for pre-canonical-wordmark-status bytes. Candidate 009 carries the exact current machine package evidence; physical/device/audio, human, final-user-review, and release claims remain separate and are not transferred.
+- **Ceiling:** `SX60-POC-ACCEPT-006` is historical for the prior Route Book 01 bytes, `SX60-POC-ACCEPT-007` is historical for post-SX-DEC-067 bytes, `SX60-POC-ACCEPT-008` is historical for pre-canonical-wordmark-status bytes, and `SX60-POC-ACCEPT-009` is historical for pre-SX-DEC-069 bytes. `SX60-POC-ACCEPT-010` carries the exact current machine package evidence; physical/device/audio, human, final-user-review, and release claims remain separate and are not transferred.
 
 이 문서는 Switchy Express의 **현재 승인 Decision과 실행 권위**를 압축한다. 상세 규칙·근거·역사 CI는 각 Decision/Audit owner가 책임진다. Google Sheets는 migration-only이며 active decision authority가 아니다.
 
@@ -68,7 +68,7 @@ candidate_003_preparation: MERGED_MAIN_VERIFIED · PR #172 · main_2521f3be600ea
 pre_sx_dec_060_candidate_pointer: evidence/acceptance/current_poc_candidate.json
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_AFTER_SX_DEC_060
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-009 · PREPARED_PACKAGE_VERIFIED · SX60-POC-ACCEPT-008_historical_after_wordmark_canonical_status · source 1ac3099d9ab1451323cca2935547f82d210b50b4 · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-010 · PREPARED_PACKAGE_VERIFIED · SX60-POC-ACCEPT-009_historical_after_SX_DEC_069 · source 79323ff0175b674c594d18dfd6d28a8e9951f5bd · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
 sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 sx60_poc_accept_002: SX60-POC-ACCEPT-002 · HISTORICAL_SUPERSEDED_BY_SX_DEC_062 · PRIOR_BYTE_ISOLATED_VISUAL_INPUT_OBSERVATION_DOES_NOT_TRANSFER
 sx60_poc_accept_003: SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE
@@ -85,7 +85,7 @@ sx_dec_060_design: RECORDED
 sx_dec_060_runtime_implementation: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 sx_dec_060_implementation_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
-sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-009 · PREPARED_PACKAGE_VERIFIED · SX60-POC-ACCEPT-008_historical_after_wordmark_canonical_status · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED
+sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-010 · PREPARED_PACKAGE_VERIFIED · SX60-POC-ACCEPT-009_historical_after_SX_DEC_069 · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
 sx_dec_060_notion_sync: PASS · POST_PR_188_READBACK_COMPLETE
 sx_dec_061_visual_refinement: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION · PACKAGE_VERIFIED
@@ -96,7 +96,7 @@ sx_dec_065_machine_primary_validation: USER_APPROVED · MACHINE_PRIMARY_FINAL_US
 sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_FLOW · PR_240 · main_f316ee1ba3b641e655facfb3bfaee28b3bc8d64b · HISTORY_AUDIT_ONLY
 developer_self_run: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_VISUAL_INPUT_OBSERVED_AUDIO_NOT_OBSERVED · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_004
 windows_physical_startup_and_build_entry_automation_observed: HISTORICAL_SX60_POC_ACCEPT_002_ISOLATED_TITLE_BRIEFING_BUILD_VISUAL_AND_BUTTON_INPUT · NOT_TRANSFERRED_TO_CURRENT_CANDIDATE_004
-acceptance_build: SX60-POC-ACCEPT-009 · PREPARED_PACKAGE_VERIFIED · exact post-SX-DEC-068 canonical-wordmark machine package · NO_HUMAN_OR_PHYSICAL_EVIDENCE · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED
+acceptance_build: SX60-POC-ACCEPT-010 · PREPARED_PACKAGE_VERIFIED · exact post-SX-DEC-069 transparent-wayside/speed-transition machine package · NO_HUMAN_OR_PHYSICAL_EVIDENCE · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
 windows_full_physical_runtime: FINAL_USER_REVIEW_ONLY · NOT_RUN
 audio_perceptual_qa: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device: NOT_RUN_POST_SX_DEC_060
@@ -173,7 +173,7 @@ sx_dec_060_new_bitmap_assets_required: 0
 | **SX-DEC-065** | **Machine-primary final-user-review policy · USER_APPROVED · Candidate 006 was machine-primary evidence for its unchanged Route Book 01 bytes and is historical after SX-DEC-067; five-person/player-experience studies not required** |
 | **SX-DEC-066** | **Curated Route Book 01 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #260 · Candidate 006 preserved as historical exact package evidence; final user review requires a current byte-specific candidate** |
 | **SX-DEC-067** | **Wayside Hazards, Salvage, and Route Book 02 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #263 · exact main `c0bb86e` · Candidate 007 is historical after the later title-shell byte change** |
-| **SX-DEC-068** | **Main Title Shell and World Wordmark · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #271 · canonical-status source `1ac3099` · Candidate 009 exact machine package · wordmark is runtime-connected, user-pixel-approved, and canon-registered** |
+| **SX-DEC-068** | **Main Title Shell and World Wordmark · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #271 · canonical-status source `1ac3099` · Candidate 009 historical after SX-DEC-069 · wordmark is runtime-connected, user-pixel-approved, and canon-registered** |
 
 ## SX-DEC-059 retained first-session contract
 
@@ -364,7 +364,7 @@ SX-DEC-060 merged main PR #188 → SX-DEC-062 merged main PR #237 → SX-DEC-063
 → SX-DEC-065 USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW
 → SX60-POC-ACCEPT-005 historical for pre-Route-Book bytes; SX60-POC-ACCEPT-006 minted from exact `main@9af5a8c46d29ea6781f9ee06008d7c7d2cde1877` and machine validation completed for those Route Book 01 bytes
 → SX-DEC-067 later changed player-facing bytes, so Candidate 006 is historical; SX-DEC-068 then changed the title-shell bytes, so Candidate 007 is historical
-→ Candidate 008 is historical pre-canonical-wordmark-status evidence; Candidate 009 binds the exact current package, and FINAL_USER_REVIEW applies only to unchanged Candidate 009 when requested
+→ Candidate 008 is historical pre-canonical-wordmark-status evidence; Candidate 009 is historical pre-SX-DEC-069 evidence; Candidate 010 binds the exact current package, and FINAL_USER_REVIEW applies only to unchanged Candidate 010 when requested
 → Android device compatibility only when the Android target is in scope
 → FIVE_PERSON_COMPREHENSION_NOT_REQUIRED / PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED
 ```
@@ -376,8 +376,8 @@ Candidate 003 Gate 0 is retained as historical pre-060 validation instructions b
 ```text
 SX-DEC-067 merged main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75
 → Candidate 006 is historical for the prior Route Book 01 bytes
-→ Candidate 007 is immutable historical post-SX-DEC-067 evidence; Candidate 008 is immutable historical pre-canonical-wordmark-status evidence; Candidate 009 is the exact current machine package and pointer
-→ machine package verification is complete; optional final user review may only inspect unchanged Candidate 009; wordmark pixel approval and canonical registration are complete
+→ Candidate 007 is immutable historical post-SX-DEC-067 evidence; Candidate 008 is immutable historical pre-canonical-wordmark-status evidence; Candidate 009 is immutable pre-SX-DEC-069 evidence; Candidate 010 is the exact current machine package and pointer
+→ machine package verification is complete; optional final user review may only inspect unchanged Candidate 010; wordmark pixel approval and canonical registration are complete while v02 wayside pixel review remains pending
 → five-person comprehension and player-experience studies remain not required under SX-DEC-065
 ```
 

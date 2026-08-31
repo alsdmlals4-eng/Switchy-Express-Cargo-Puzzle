@@ -2,15 +2,15 @@
   "schema_version": 1,
   "decision_id": "SX-DEC-060",
   "candidate_status": "PREPARED_PACKAGE_VERIFIED",
-  "current_candidate_id": "SX60-POC-ACCEPT-009",
-  "current_candidate_role": "MACHINE_PRIMARY_ACCEPTANCE_READY · POST_SX_DEC_068_CANONICAL_WORDMARK_PRODUCT_BYTES · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED",
+  "current_candidate_id": "SX60-POC-ACCEPT-010",
+  "current_candidate_role": "MACHINE_PRIMARY_ACCEPTANCE_READY · POST_SX_DEC_069_TRANSPARENT_WAYSIDE_SPEED_TRANSITION_PRODUCT_BYTES · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING",
   "candidate_mint_policy": "SX-DEC-065 · MACHINE_PRIMARY_FINAL_USER_REVIEW",
   "selection_policy": "EXPLICIT_FAIL_CLOSED_POINTER_NO_NEWEST_INFERENCE",
-  "minimum_product_source_main": "1ac3099d9ab1451323cca2935547f82d210b50b4",
-  "artifact_evidence_owner": "evidence/acceptance/sx60_poc_accept_009_artifact.json",
-  "deep_pck_evidence_owner": "evidence/acceptance/sx60_poc_accept_009_pck_deep_audit.json",
-  "acceptance_candidate_document": "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_09.md",
-  "self_run_record_name": "SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_09.md",
+  "minimum_product_source_main": "79323ff0175b674c594d18dfd6d28a8e9951f5bd",
+  "artifact_evidence_owner": "evidence/acceptance/sx60_poc_accept_010_artifact.json",
+  "deep_pck_evidence_owner": "evidence/acceptance/sx60_poc_accept_010_pck_deep_audit.json",
+  "acceptance_candidate_document": "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_10.md",
+  "self_run_record_name": "SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_10.md",
   "historical_predecessor": {
     "candidate_id": "SX59-POC-ACCEPT-003",
     "pointer": "evidence/acceptance/current_poc_candidate.json",
@@ -112,24 +112,36 @@
     "invalidated_by_product_source_main": "1ac3099d9ab1451323cca2935547f82d210b50b4",
     "role": "HISTORICAL_SUPERSEDED_BY_SX_DEC_068_CANONICAL_WORDMARK_PRODUCT_BYTE_CHANGE"
   },
+  "historical_superseded_after_sx_dec_069": {
+    "candidate_id": "SX60-POC-ACCEPT-009",
+    "source_main": "1ac3099d9ab1451323cca2935547f82d210b50b4",
+    "candidate_status_at_invalidation": "PREPARED_PACKAGE_VERIFIED",
+    "artifact_evidence_owner": "evidence/acceptance/sx60_poc_accept_009_artifact.json",
+    "deep_pck_evidence_owner": "evidence/acceptance/sx60_poc_accept_009_pck_deep_audit.json",
+    "acceptance_candidate_document": "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_09.md",
+    "self_run_record_name": "SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_09.md",
+    "invalidation_reason": "SX_DEC_069_TRANSPARENT_WAYSIDE_SPEED_TRANSITION_PLAYER_FACING_PRODUCT_BYTE_CHANGE",
+    "invalidated_by_product_source_main": "79323ff0175b674c594d18dfd6d28a8e9951f5bd",
+    "role": "HISTORICAL_SUPERSEDED_BY_SX_DEC_069_TRANSPARENT_WAYSIDE_SPEED_TRANSITION_PRODUCT_BYTE_CHANGE"
+  },
   "tooling_only_non_invalidating_prs": [
     "PR #201",
     "PR #250"
   ],
   "completed_machine_gates": [
-    "GitHub Actions Windows Demo Export PASS · run 33396533310 · exact canonical-wordmark source 1ac3099d9ab1451323cca2935547f82d210b50b4",
-    "Python contracts PASS · 250 passed, 2 skipped · exact workflow run 33396533310",
-    "Godot 4.7.1 headless PASS · 120 cases, 14125 assertions, 0 failed · exact workflow run 33396533310",
-    "Windows and Android preset runtime JSON PCK PASS · parsed_json=31 each · exact workflow run 33396533310",
-    "Artifact API/download ZIP and inner EXE/PCK SHA-256 PASS · exact artifact 9759591197",
-    "Independent Godot PCK integrity PASS · 575 of 575 entries · zero MD5/bounds/flag/trailing failures",
-    "Title wordmark compiled texture/import and canonical manifest membership PASS · USER_PIXEL_APPROVED · CANON_REGISTERED",
+    "GitHub Actions Windows Demo Export PASS · run 33415291733 · exact SX-DEC-069 source 79323ff0175b674c594d18dfd6d28a8e9951f5bd",
+    "Python contracts PASS · 254 passed, 2 skipped · exact workflow run 33415291733",
+    "Godot 4.7.1 headless PASS · 120 cases, 14133 assertions, 0 failed · exact workflow run 33415291733",
+    "Windows and Android preset runtime JSON PCK PASS · parsed_json=31 each · exact workflow run 33415291733",
+    "Artifact API/download ZIP and inner EXE/PCK SHA-256 PASS · exact artifact 9766817524",
+    "Independent Godot PCK integrity PASS · 591 of 591 entries · zero MD5/bounds/flag/trailing failures",
+    "Title wordmark compiled texture/import and canonical manifest membership PASS · USER_PIXEL_APPROVED · CANON_REGISTERED; eight v02 wayside/cargo/disposal imports and renderer source are present · USER_PIXEL_REVIEW_PENDING",
     "Export hygiene PASS · evidence/ and output/ entries are absent from the exact PCK"
   ],
   "last_verified_machine_gates": [
-    "Windows Demo Export PASS · 2026-08-31 KST · GitHub Actions run 33396533310 · exact canonical-wordmark source 1ac3099d9ab1451323cca2935547f82d210b50b4"
+    "Windows Demo Export PASS · 2026-09-01 KST · GitHub Actions run 33415291733 · exact SX-DEC-069 source 79323ff0175b674c594d18dfd6d28a8e9951f5bd"
   ],
   "mint_after": [],
-  "current_next_action": "FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_009",
-  "updated_date_kst": "2026-08-31"
+  "current_next_action": "FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_010",
+  "updated_date_kst": "2026-09-01"
 }

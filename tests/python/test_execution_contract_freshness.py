@@ -156,8 +156,8 @@ class ExecutionContractFreshnessTests(unittest.TestCase):
         self.assertTrue(POST_060_POINTER.is_file(), "post-060 candidate pointer is missing")
         pointer = json.loads(POST_060_POINTER.read_text(encoding="utf-8"))
         self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-009")
-        self.assertEqual(pointer["minimum_product_source_main"], "1ac3099d9ab1451323cca2935547f82d210b50b4")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-010")
+        self.assertEqual(pointer["minimum_product_source_main"], "79323ff0175b674c594d18dfd6d28a8e9951f5bd")
         self.assertEqual(
             pointer["historical_superseded_after_sx_dec_063_core_board_v04"]["source_main"],
             "58b99f261c3576150ab275bb041d744c69b83538",

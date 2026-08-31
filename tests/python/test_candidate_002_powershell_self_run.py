@@ -72,11 +72,14 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertIn("Start-Process", text)
         self.assertIn("WorkDir must be a direct child of TEMP", text)
         self.assertIn("RUNNER_TEMP", text)
+        self.assertIn("Import-Module", text)
+        self.assertIn("Microsoft.PowerShell.Utility", text)
+        self.assertIn("$PSHOME", text)
 
-    def test_post_060_pointer_selects_candidate_008_while_preserving_historical_evidence(self) -> None:
+    def test_post_060_pointer_selects_candidate_010_while_preserving_historical_evidence(self) -> None:
         pointer = self._post_060_pointer()
         self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-009")
+        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-010")
         self.assertIn("MACHINE_PRIMARY_ACCEPTANCE_READY", pointer["current_candidate_role"])
         self.assertEqual(
             pointer["historical_superseded_candidate"]["invalidation_reason"],
@@ -96,6 +99,10 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertEqual(
             pointer["historical_superseded_after_sx_dec_063_core_board_v04"]["candidate_id"],
             "SX60-POC-ACCEPT-004",
+        )
+        self.assertEqual(
+            pointer["historical_superseded_after_sx_dec_069"]["candidate_id"],
+            "SX60-POC-ACCEPT-009",
         )
 
     def test_candidate_002_evidence_is_preserved_as_history(self) -> None:

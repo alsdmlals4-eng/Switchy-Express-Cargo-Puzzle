@@ -31,7 +31,7 @@ description: Use for Switchy Express finite-delivery gameplay, track constructio
 
 ### SX-DEC-068 candidate freshness override
 
-`SX60-POC-ACCEPT-006` is immutable historical Route Book 01 evidence. `SX60-POC-ACCEPT-007` is immutable historical post-SX-DEC-067 evidence after SX-DEC-068 changed player-facing title-shell bytes at `main@53e29f874bc70a0057c310d661dc45dbecc6cf13`. `SX60-POC-ACCEPT-008` is immutable historical pre-canonical-wordmark-status evidence. `SX60-POC-ACCEPT-009` is the current explicit machine-package pointer for canonical-status source `1ac3099d9ab1451323cca2935547f82d210b50b4`; do not select Candidates 006–008 for a final-user review, and do not transfer their evidence to later changed bytes.
+`SX60-POC-ACCEPT-006` is immutable historical Route Book 01 evidence. `SX60-POC-ACCEPT-007` is immutable historical post-SX-DEC-067 evidence after SX-DEC-068 changed player-facing title-shell bytes at `main@53e29f874bc70a0057c310d661dc45dbecc6cf13`. `SX60-POC-ACCEPT-008` is immutable historical pre-canonical-wordmark-status evidence. `SX60-POC-ACCEPT-009` is immutable historical pre-SX-DEC-069 evidence. `SX60-POC-ACCEPT-010` is the current explicit machine-package pointer for transparent-wayside/speed-transition source `79323ff0175b674c594d18dfd6d28a8e9951f5bd`; do not select Candidates 006–009 for a final-user review, and do not transfer their evidence to later changed bytes.
 
 ```text
 build the needed rail network
@@ -85,23 +85,23 @@ SX-DEC-060 DESIGN/TDD/CODEX HANDOFF: PREPARED
 SX-DEC-060 RUNTIME IMPLEMENTATION: MERGED_MAIN_VERIFIED · PR #188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 SX-DEC-060 FULL AUTOMATED REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 SX-DEC-060 FIVE-PASS REVIEW: CLOSED · SX-AUD-071
-POST-SX-DEC-068 EXACT CANDIDATE: SX60-POC-ACCEPT-009 · PREPARED_PACKAGE_VERIFIED · canonical-wordmark source 1ac3099d9ab1451323cca2935547f82d210b50b4 · Candidates 006–008 historical · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED
+POST-SX-DEC-069 EXACT CANDIDATE: SX60-POC-ACCEPT-010 · PREPARED_PACKAGE_VERIFIED · transparent-wayside/speed-transition source 79323ff0175b674c594d18dfd6d28a8e9951f5bd · Candidates 006–009 historical · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
 SX60-POC-ACCEPT-001: HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 WINDOWS PHYSICAL POST-060: FINAL_USER_REVIEW_ONLY · NOT_RUN · SX60-POC-ACCEPT-001_TO_004_OBSERVATIONS_HISTORICAL_ONLY
 ANDROID DEVICE POST-060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
 FIVE-PERSON POST-060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
 PLAYER EXPERIENCE POST-060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
-FINAL USER REVIEW: OPTIONAL_ONLY_WHEN_REQUESTED · NOT_RUN · UNCHANGED_SX60_POC_ACCEPT_009_REQUIRED · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED
+FINAL USER REVIEW: OPTIONAL_ONLY_WHEN_REQUESTED · NOT_RUN · UNCHANGED_SX60_POC_ACCEPT_010_REQUIRED · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
 
 Current validation sequence:
 
 ```text
-SX60-POC-ACCEPT-009 machine-primary package verification PASS for exact post-SX-DEC-068 canonical-wordmark-status bytes
+SX60-POC-ACCEPT-010 machine-primary package verification PASS for exact post-SX-DEC-069 transparent-wayside/speed-transition bytes
 → machine acceptance is based on exact package, runtime JSON, PCK integrity, and automated regression evidence
 → five-person comprehension and player-experience study are not required gates under SX-DEC-065
-→ final user review is optional, only when requested, on unchanged Candidate 009; title-wordmark pixel approval and canonical registration are complete
+→ final user review is optional, only when requested, on unchanged Candidate 010; title-wordmark pixel approval and canonical registration are complete while v02 wayside pixel review remains pending
 → product decision
 ```
 

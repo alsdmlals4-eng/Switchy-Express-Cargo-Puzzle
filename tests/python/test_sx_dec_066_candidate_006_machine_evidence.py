@@ -21,7 +21,7 @@ class SXDec066Candidate006MachineEvidenceTests(unittest.TestCase):
         pointer = self._json(POINTER)
 
         self.assertEqual("PREPARED_PACKAGE_VERIFIED", pointer["candidate_status"])
-        self.assertEqual("SX60-POC-ACCEPT-009", pointer["current_candidate_id"])
+        self.assertEqual("SX60-POC-ACCEPT-010", pointer["current_candidate_id"])
         self.assertEqual(
             "9af5a8c46d29ea6781f9ee06008d7c7d2cde1877",
             pointer["historical_superseded_after_sx_dec_067"]["source_main"],
@@ -35,7 +35,7 @@ class SXDec066Candidate006MachineEvidenceTests(unittest.TestCase):
             pointer["historical_superseded_after_sx_dec_067"]["deep_pck_evidence_owner"],
         )
         self.assertIn("MACHINE_PRIMARY_ACCEPTANCE_READY", pointer["current_candidate_role"])
-        self.assertIn("POST_SX_DEC_068_CANONICAL_WORDMARK_PRODUCT_BYTES", pointer["current_candidate_role"])
+        self.assertIn("POST_SX_DEC_069_TRANSPARENT_WAYSIDE_SPEED_TRANSITION_PRODUCT_BYTES", pointer["current_candidate_role"])
 
     def test_artifact_and_deep_audit_bind_the_route_book_package(self) -> None:
         pointer = self._json(POINTER)
