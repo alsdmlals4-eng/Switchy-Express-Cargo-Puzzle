@@ -13,9 +13,9 @@ base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
 current_decisions: SX-DEC-027~067
-current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · SX_DEC_066_ROUTE_BOOK_01 · SX_DEC_067_WAYSIDE_HAZARDS_ROUTE_BOOK_02_REMOTE_CI_7_GREEN · PR_263_AWAITING_MERGE · FINAL_USER_REVIEW_NOT_RUN
+current_product_gate: SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · SX_DEC_066_ROUTE_BOOK_01 · SX_DEC_067_WAYSIDE_HAZARDS_ROUTE_BOOK_02_MERGED_MAIN_VERIFIED · POST_CHANGE_CANDIDATE_NOT_MINTED · FINAL_USER_REVIEW_NOT_RUN
 sx_dec_066_merged_gate: MERGED_MAIN_VERIFIED · PR_260 · main_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · hosted_CI_package_candidate_complete · final_user_review_NOT_RUN
-sx_dec_067_delivery_gate: PR_263_OPEN · LOCAL_GODOT_120_CASES_14053_ASSERTIONS_PASS · REMOTE_CI_7_GREEN · package_candidate_NOT_MINTED · final_user_review_NOT_RUN
+sx_dec_067_delivery_gate: PR_263_MERGED · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · LOCAL_GODOT_120_CASES_14053_ASSERTIONS_PASS · REMOTE_CI_7_GREEN · package_candidate_NOT_MINTED · final_user_review_NOT_RUN
 ```
 
 ## 1. Stable historical implementation evidence
@@ -47,7 +47,7 @@ docs/superpowers/plans/2026-08-28-board-first-runtime-composition.md
 
 This one presentation slice may modify only the named palette/theme/HUD/shell/board-renderer owners and tests. It preserves all existing raster paths and consumers, including T2 v02. Issue #227, finite data/rules, first-session content, audio, score/economy/progression, Base, and PR #174 are out of scope.
 
-The implementation demonstrated RED→GREEN tests, exact-head static/Godot checks, a no-new-asset/no-gameplay-delta review, and an exact-main package candidate. `SX60-POC-ACCEPT-002` through `SX60-POC-ACCEPT-005` are historical package evidence only and do not pass a physical/human gate. `SX60-POC-ACCEPT-006` is the current Route Book machine-primary exact candidate.
+The implementation demonstrated RED→GREEN tests, exact-head static/Godot checks, a no-new-asset/no-gameplay-delta review, and exact-main package candidates. `SX60-POC-ACCEPT-002` through `SX60-POC-ACCEPT-006` are historical package evidence only and do not pass a physical/human gate. SX-DEC-067 changed player-facing bytes, so the current candidate selection is fail-closed until a new exact package is minted.
 
 Stable historical physical/human anchors remain:
 
@@ -305,15 +305,15 @@ Any finding is fixed and the affected full loop is repeated. `CLEAN_REVIEW_EXIT`
 Blocked until S60-1~10 are complete.
 
 ```text
-SX60-POC-ACCEPT-006 exact package is the current Route Book byte candidate
-→ deterministic contract + Godot/runtime/export/package/CI verification complete
-→ MACHINE_PRIMARY acceptance ready
-→ FINAL_USER_REVIEW on that unchanged exact candidate only when requested
+SX60-POC-ACCEPT-006 is historical Route Book 01 package evidence
+→ SX-DEC-067 changed player-facing bytes at main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75
+→ no current package candidate is selectable until a new exact machine package is minted
+→ FINAL_USER_REVIEW remains unavailable until that future unchanged candidate exists
 ```
 
 Machine evidence does not imply human evidence. `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` and `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED` are not release blockers. Windows physical/audio is `FINAL_USER_REVIEW_ONLY`; Android device remains a separate machine/device compatibility gate if Android is targeted.
 
-Current mapping: `PHASE_5_MACHINE_PRIMARY_VALIDATION_COMPLETE · USER_APPROVED_2026-08-30 · SX60_POC_ACCEPT_006`. Candidate 005 is preserved as prior exact-byte process evidence, while Candidate 006 is the current Route Book machine-primary package. The current execution plan is `docs/superpowers/plans/2026-08-28-phase5-human-validation.md`; its final user review must not be inferred from automation. Android-device evidence is not required for machine-primary acceptance and remains unrun.
+Current mapping: `PHASE_5_MACHINE_PRIMARY_RECONCILIATION · SX_DEC_067_POST_CHANGE_CANDIDATE_REQUIRED`. Candidates 005 and 006 are preserved as prior exact-byte process evidence. The immediate machine task is a new exact package candidate; its final user review must not be inferred from automation. Android-device evidence is not required for machine-primary acceptance and remains unrun.
 
 Fresh-main Godot live machine QA is recorded in `docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md`: exact `main@cf93926` observed title → briefing → build board after machine pointer input, with the official 112-case / 13,480-assertion runner green. This remains machine-runtime evidence only; physical, audio, device, and human gates stay `NOT_RUN`.
 

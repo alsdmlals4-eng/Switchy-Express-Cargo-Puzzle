@@ -40,7 +40,7 @@ project_consumers:
 status: already_absorbed_and_regression_guarded
 ```
 
-The project preserves each prior candidate as immutable historical evidence and fail-closes current selection on Candidate 006's exact source revision. Player-facing byte changes invalidate prior candidate status, while tooling-only changes are separately named. This is already enforced by the explicit JSON pointer, launcher, and regression tests. It is not a new Base candidate: Base's current exact-SHA, source-identity, and evidence-transfer contracts already own the general rule.
+The project preserves each prior candidate as immutable historical evidence and fail-closes current selection after Candidate 006's exact source revision was superseded by player-facing SX-DEC-067 bytes. Player-facing byte changes invalidate prior candidate status, while tooling-only changes are separately named. This is enforced by the explicit JSON pointer, launcher, and regression tests. It is not a new Base candidate: Base's current exact-SHA, source-identity, and evidence-transfer contracts already own the general rule.
 
 ### 2. Fresh Godot import is a preparation gate, not a runtime result
 

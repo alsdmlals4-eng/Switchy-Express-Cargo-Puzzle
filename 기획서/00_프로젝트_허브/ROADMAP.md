@@ -37,18 +37,18 @@ SX-DEC-060 · CURRENT
 → full automated regression PASS · 111 cases / 13,461 assertions · CI 7 GREEN
 → SX60-POC-ACCEPT-001 historical package evidence superseded by player-facing route-readability bytes
 
-SX-DEC-066 · MERGED_MAIN_VERIFIED · PR #260 · SX60-POC-ACCEPT-006_MACHINE_PRIMARY_ACCEPTANCE_READY
+SX-DEC-066 · MERGED_MAIN_VERIFIED · PR #260 · SX60-POC-ACCEPT-006_HISTORICAL_AFTER_SX_DEC_067
 → Route Book 01: six optional fixed schema-v3 stages
 → first session and finite rule boundary protected
 → design/spec/implementation plan complete
 → 12-game public-source genre benchmark complete: fixed authored maps ADOPT; progression/sandbox families REJECT
 → IMPLEMENTED_LOCAL_MACHINE_VERIFIED · NOT_MERGED · remote CI/package/candidate remain separate
 
-SX-DEC-067 · USER_APPROVED · IMPLEMENTED_LOCAL_MACHINE_RUNTIME_VERIFIED · NOT_MERGED
+SX-DEC-067 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #263 · main@c0bb86e · POST_CHANGE_CANDIDATE_NOT_MINTED
 → Route Book 02: six optional authored wayside/salvage stages, selected before the existing stage list
 → authored `CAUTION_TRACK` 0.55 departure segments; `WASTE_CRATE` only at cardinal-adjacent `DISPOSAL_YARD`
 → five modular board-decoration placements per new map and eight runtime-connected generated candidate assets
-→ Godot full local regression PASS · 120 cases / 14,053 assertions; PR #263 remote CI 7 GREEN and awaiting merge; no post-change package/physical/final-user candidate yet
+→ Godot full local regression PASS · 120 cases / 14,053 assertions; PR #263 remote CI 7 GREEN and merged; no post-change package/physical/final-user candidate yet
 ```
 
 ## M0 · Product baseline
@@ -154,7 +154,7 @@ docs/superpowers/plans/2026-08-30-route-book-01-stage-pack-implementation.md
 docs/research/2026-08-30-route-book-01-genre-reverse-engineering.md
 ```
 
-Local implementation is committed at `d1d2087` and `49574b249cf4cfa675d4ba804851bfeb5e317dff`: six map contracts, direct selection/recovery, four-locale copy, responsive controls, and full machine regression are verified locally. PR #260 merged at `main@9af5a8c`; hosted CI, export/package integrity, and Candidate 006 are complete. Physical/device checks and final user review remain unrun. Candidate 005 remains valid only for its pre-Route-Book exact source bytes.
+Local implementation is committed at `d1d2087` and `49574b249cf4cfa675d4ba804851bfeb5e317dff`: six map contracts, direct selection/recovery, four-locale copy, responsive controls, and full machine regression are verified locally. PR #260 merged at `main@9af5a8c`; hosted CI, export/package integrity, and Candidate 006 are complete for its Route Book 01 bytes. SX-DEC-067 later changed player-facing bytes, making Candidate 006 historical; a new exact package must be minted before final user review. Candidate 005 remains valid only for its pre-Route-Book exact source bytes.
 
 Historical Candidate 003:
 
@@ -214,17 +214,17 @@ Historical package record and current sequence:
 
 ```text
 SX60-POC-ACCEPT-006 exact package verified on main 9af5a8c after Route Book 01
-→ machine-primary deterministic/Godot/runtime/export/package/CI validation complete
-→ final user review only when requested on unchanged Candidate 006
+→ SX-DEC-067 changed player-facing bytes at main c0bb86e
+→ Candidate 006 is historical and the exact post-change machine package candidate remains to be minted
 ```
 
 ```yaml
 SX_DEC_060_RUNTIME: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 FULL_AUTOMATED_REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 FIVE_PASS_REVIEW: CLOSED · SX-AUD-071
-POST_060_PACKAGE: SX60_POC_ACCEPT_006_PREPARED_PACKAGE_VERIFIED · HISTORICAL_SX60_POC_ACCEPT_001_TO_005_PRESERVED
+POST_060_PACKAGE: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · HISTORICAL_SX60_POC_ACCEPT_001_TO_006_PRESERVED
 POST_060_CANDIDATE_004: PREPARED_PACKAGE_VERIFIED · HISTORICAL_PRE_V04_PRODUCT_BYTES
-POST_060_CANDIDATE_006: MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN · CANDIDATE_005_HISTORICAL_PRE_ROUTE_BOOK_BYTES
+POST_060_CANDIDATE_006: HISTORICAL_PRE_SX_DEC_067_PRODUCT_BYTES · FINAL_USER_REVIEW_NOT_RUN
 ```
 
 ## M6R · Runtime route readability correction
@@ -251,7 +251,7 @@ existing E+D assets / shell consumers
 → no bitmap, gameplay, map/data, first-session-copy, or audio delta
 ```
 
-GitHub Issue #235 and PR #237 implemented the contract in `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`, its spec/plan, and `SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`. SX-DEC-064 then changed player-facing active-route lighting. Candidates 002–005 are prior-byte evidence; Candidate 006 is the exact `main@9af5a8c` Route Book machine-primary package route, with final user review still not run.
+GitHub Issue #235 and PR #237 implemented the contract in `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`, its spec/plan, and `SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`. SX-DEC-064 then changed player-facing active-route lighting. Candidates 002–005 are prior-byte evidence; Candidate 006 is the exact `main@9af5a8c` Route Book 01 machine-primary package record and became historical after SX-DEC-067. No post-SX-DEC-067 candidate exists until the exact package mint completes.
 
 ## M6T · SX-DEC-063 terrain v02 asset promotion
 
@@ -261,15 +261,15 @@ The user-promoted `SX-VIS-063-CANDIDATE-001` is stored at `art/product_assets/ed
 
 ## M6A · SX-DEC-065 machine-primary validation
 
-`MACHINE_PRIMARY_FINAL_USER_REVIEW · USER_APPROVED_2026-08-30 · SX60_POC_ACCEPT_006_MACHINE_EVIDENCE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN`
+`MACHINE_PRIMARY_FINAL_USER_REVIEW · USER_APPROVED · SX_DEC_067_POST_CHANGE_CANDIDATE_NOT_MINTED · FINAL_USER_REVIEW_NOT_RUN`
 
-The v04 runtime-byte change retains immutable exact Candidate 005 historical evidence. Route Book 01 subsequently minted Candidate 006 as the current immutable machine-primary package. Its completed machine sequence is:
+The v04 runtime-byte change retains immutable exact Candidate 005 historical evidence. Route Book 01 subsequently minted Candidate 006, which SX-DEC-067 then superseded with player-facing bytes. The immediate machine sequence is:
 
 ```text
-immutable exact candidate
+mint an immutable exact post-SX-DEC-067 candidate
 → deterministic/Godot/runtime/export/package/CI machine verification
 → MACHINE_PRIMARY_ACCEPTANCE_READY
-→ FINAL_USER_REVIEW only when requested
+→ optional FINAL_USER_REVIEW only when requested
 ```
 
 `FIVE_PERSON_COMPREHENSION_NOT_REQUIRED` and `PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED` are not blockers. Windows physical/audio is `FINAL_USER_REVIEW_ONLY`. Android device compatibility remains an independently recorded machine/device gate if the Android target is in scope; the historical Android validation APK is not eligible.

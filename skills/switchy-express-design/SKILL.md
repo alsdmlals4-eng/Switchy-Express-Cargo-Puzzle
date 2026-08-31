@@ -29,6 +29,10 @@ description: Use for Switchy Express finite-delivery gameplay, track constructio
 
 ## Current Product Authority
 
+### SX-DEC-067 candidate freshness override
+
+`SX60-POC-ACCEPT-006` is immutable historical Route Book 01 evidence after the player-facing SX-DEC-067 bytes merged at `main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75`. The current pointer is fail-closed (`NOT_MINTED`): do not select Candidate 006 for a final-user review, and mint a new exact machine package candidate before any such optional review.
+
 ```text
 build the needed rail network
 → create cargo encounter order
@@ -81,23 +85,23 @@ SX-DEC-060 DESIGN/TDD/CODEX HANDOFF: PREPARED
 SX-DEC-060 RUNTIME IMPLEMENTATION: MERGED_MAIN_VERIFIED · PR #188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 SX-DEC-060 FULL AUTOMATED REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
 SX-DEC-060 FIVE-PASS REVIEW: CLOSED · SX-AUD-071
-POST-060 EXACT CANDIDATE: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · source main 9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · Candidate 005 historical pre-Route-Book bytes
+POST-SX-DEC-067 EXACT CANDIDATE: NOT_MINTED · current selection fail-closed · Candidate 006 historical Route Book 01 evidence from source main 9af5a8c46d29ea6781f9ee06008d7c7d2cde1877
 SX60-POC-ACCEPT-001: HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 WINDOWS PHYSICAL POST-060: FINAL_USER_REVIEW_ONLY · NOT_RUN · SX60-POC-ACCEPT-001_TO_004_OBSERVATIONS_HISTORICAL_ONLY
 ANDROID DEVICE POST-060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
 FIVE-PERSON POST-060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
 PLAYER EXPERIENCE POST-060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
-FINAL USER REVIEW: OPTIONAL_ONLY_WHEN_REQUESTED · NOT_RUN · EXACT_CANDIDATE_006_REQUIRED
+FINAL USER REVIEW: OPTIONAL_ONLY_WHEN_REQUESTED · NOT_RUN · FUTURE_EXACT_POST_SX_DEC_067_CANDIDATE_REQUIRED
 PRODUCTION CUTOVER: BLOCKED_DEFERRED
 ```
 
 Current validation sequence:
 
 ```text
-SX60-POC-ACCEPT-006 machine-primary package verification PASS after Route Book 01
+SX60-POC-ACCEPT-006 machine-primary package verification PASS for historical Route Book 01 bytes
 → machine acceptance is based on exact package, runtime JSON, PCK integrity, and automated regression evidence
 → five-person comprehension and player-experience study are not required gates under SX-DEC-065
-→ final user review is optional, only when requested, on unchanged exact Candidate 006 bytes
+→ final user review is optional, only when requested, on the unchanged exact post-SX-DEC-067 candidate after it is minted
 → product decision
 ```
 

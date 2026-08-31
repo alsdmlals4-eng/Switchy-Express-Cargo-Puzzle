@@ -43,7 +43,7 @@ candidate_003_preparation_main: 2521f3be600ea950f9893ce45940604c2d0ac88a
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
 candidate_003_role_after_sx_dec_060: HISTORICAL_EXACT_BYTES_ONLY
 post_sx_dec_060_candidate_pointer: evidence/acceptance/post_sx_dec_060_candidate.json
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · SOURCE_MAIN_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · FINAL_USER_REVIEW_NOT_RUN
+post_sx_dec_060_candidate: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · Candidate_006_historical · source main c0bb86efa5bad6050217ca67dd6aa9eba155dc75 requires exact package mint
 sx60_poc_accept_001: SX60-POC-ACCEPT-001 · HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 sx60_poc_accept_003: SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE · PLAYER_FACING_SX_DEC_064_ACTIVE_ROUTE_LIGHTING_CHANGE
 pre_sx_dec_060_candidate_package_integrity: PASS
@@ -91,7 +91,7 @@ sx_dec_064_test_evidence: RED_RECORDED_THEN_GREEN · EXACT_HEAD_CI_7_GREEN · PO
 sx_dec_064_candidate_004_evidence: SX60-POC-ACCEPT-004 · HISTORICAL_PRE_V04_PRODUCT_BYTES · docs/operations/2026-08-29-sx-dec-064-candidate-004-package-freshness.md · PHYSICAL_AND_HUMAN_NOT_RUN
 sx_dec_064_candidate_004_tracking_issue: GitHub_Issue_251
 sx_dec_065_machine_primary_validation: USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW · FIVE_SCOPE_ADVERSARIAL_REVIEW_CLOSED · docs/decisions/SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW_VALIDATION_POLICY.md
-sx_dec_066_curated_route_book_01: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_260 · main_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · SX60-POC-ACCEPT-006_PREPARED_PACKAGE_VERIFIED · six optional fixed schema-v3 stages · docs/decisions/SX_DEC_066_CURATED_ROUTE_BOOK_01.md
+sx_dec_066_curated_route_book_01: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_260 · main_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · Candidate_006_historical_after_SX_DEC_067 · six optional fixed schema-v3 stages · docs/decisions/SX_DEC_066_CURATED_ROUTE_BOOK_01.md
 sx_dec_066_content_owner: 기획서/20_시스템_콘텐츠/ROUTE_BOOK_01_STAGE_CONTENT_SPEC.md
 sx_dec_066_design_spec: docs/superpowers/specs/2026-08-30-route-book-01-stage-pack-design.md
 sx_dec_066_implementation_plan: docs/superpowers/plans/2026-08-30-route-book-01-stage-pack-implementation.md
@@ -102,7 +102,7 @@ sx_dec_063_historical_notion_readback: PASS · HOME_DIRECTION_VISUAL_PRODUCTION_
 notion_direction_page: CONFLICT_FOREIGN_PROJECT_NOT_MUTATED · Issue_230
 notion_direction_conflict_owner: docs/operations/2026-08-28-notion-direction-project-identity-conflict.md
 notion_direction_current_page: 3c91b237-eb1c-8197-bf13-debb96d444c8 · CURRENT_CREATED_READBACK_PASS · 2026-08-28
-post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_9af5a8c · MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN
+post_sx_dec_060_candidate_status: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · Candidate_006_historical · MINT_EXACT_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE
 current_main_live_machine_qa: docs/operations/2026-08-27-sx60-current-main-live-machine-qa.md · MAIN_CF93926 · TITLE_BRIEFING_BUILD_FLOW_OBSERVED · HUMAN_DEVICE_AUDIO_NOT_RUN
 title_hero_runtime_asset: MERGED_MAIN_VERIFIED · PR_217 · main_e0044d6c7427a7c199da6bcdcf792e41e2e2f152 · ISSUE_216 · RUNTIME_VERIFIED · DUAL_PRESERVATION_PASS
 title_hero_runtime_evidence: docs/operations/2026-08-27-title-hero-art-runtime-verification.md
@@ -118,9 +118,9 @@ base_work_five_phase_receipt: docs/operations/2026-08-27-sx60-work-five-phase-st
 phase5_user_start_authorization: RECORDED · 2026-08-28_KST · GitHub_Issue_233
 phase5_execution_plan: docs/superpowers/plans/2026-08-28-phase5-human-validation.md · SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW
 validation_strategy: MACHINE_PRIMARY_FINAL_USER_REVIEW
-base_work_current_phase: PHASE_5_MACHINE_PRIMARY_VALIDATION_COMPLETE · SX60_POC_ACCEPT_006
-remaining_machine_executable_required_work: NONE · FINAL_USER_REVIEW_OPTIONAL_ON_UNCHANGED_CANDIDATE_006
-route_book_execution_state: MERGED_MAIN_MACHINE_VERIFIED · PR_260 · Candidate_006_current · Candidate_005_historical_for_pre_Route_Book_bytes
+base_work_current_phase: PHASE_5_MACHINE_PRIMARY_RECONCILIATION · SX_DEC_067_POST_CHANGE_CANDIDATE_REQUIRED
+remaining_machine_executable_required_work: MINT_EXACT_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE
+route_book_execution_state: SX_DEC_066_MERGED_MAIN_MACHINE_VERIFIED · Candidate_006_historical_after_SX_DEC_067
 sx_dec_067_wayside_hazards_and_route_book_02: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · REMOTE_CI_7_GREEN · POST_CHANGE_CANDIDATE_NOT_MINTED
 sx_dec_067_decision_owner: docs/decisions/SX_DEC_067_WAYSIDE_HAZARDS_SALVAGE_AND_ROUTE_BOOK_02.md
 sx_dec_067_core_design: docs/superpowers/specs/2026-08-30-wayside-hazards-and-salvage-design.md
@@ -135,7 +135,7 @@ windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device_post_060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
 five_person_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
 player_experience_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
-final_user_review: FINAL_USER_REVIEW · NOT_RUN · EXACT_CANDIDATE_REQUIRED
+final_user_review: FINAL_USER_REVIEW · NOT_RUN · REQUIRES_FUTURE_UNCHANGED_POST_SX_DEC_067_CANDIDATE
 production_cutover: BLOCKED_DEFERRED
 sx_dec_056a: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
 sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
@@ -334,7 +334,7 @@ CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF
 
 The current handoff package is `기획서/50_제작_검증/SX_DEC_060_CODEX_HANDOFF_PACKAGE.md`.
 
-## Current next action
+## Historical implementation context through SX-DEC-066
 
 ```text
 SX-DEC-064 active-route-lighting is merged on main through Issue #248 / PR #249 with all 7 exact-head CI checks green
@@ -345,15 +345,26 @@ SX-DEC-064 active-route-lighting is merged on main through Issue #248 / PR #249 
 → SX-DEC-063 Core Board rail correction now uses four v04 centred-port crops from the same user-approved connected master: the user-reported curve discontinuity was reproduced as an off-centre v03 texture edge and corrected without restoring a seam overlay; review then corrected non-square quarter-turn rendering by pre-swapping the local 90°/270° draw rectangle; v02 terrain, nine non-rail core assets, translucent BUILD preview, and smaller cargo marker remain
 → v04 manifest/provenance/import contracts, focused RED→GREEN contiguous-port test, all-rotation 100×60 non-square renderer contract, non-writing master derived-byte verification, full Godot runner (112 cases / 13,560 assertions), formal GUT (21 tests / 152 assertions), Python regression (215 tests, 1 skipped), final live 1280×720 recommended capture, local Windows debug, and Windows+Android runtime-JSON PCK proof are recorded; source master and evidence captures are excluded from export; v01, v02, and v03 rails remain tracked rollback; PR #255 runtime-byte head `f00de19ea0ef1db907bf05c8dc847a0180489c35` completed all seven required remote checks and merged into `main` at `2cf7bb5595a297955c75e6b4108bc1be6fe9428c`
 → preserve the rectangular BUILD/RUN grid, gameplay semantics, actual consumer mapping, T2 v02, and Issue #227
-→ local package/export proof, PR #255 runtime-byte CI, and merged-main readback are complete; `SX60-POC-ACCEPT-005` remains immutable historical evidence for exact `main@a11dfd1a063e434ee22e8cfb7b073ebc380aa27a`, while the current Route Book candidate is `SX60-POC-ACCEPT-006` from exact `main@9af5a8c46d29ea6781f9ee06008d7c7d2cde1877`
+→ local package/export proof, PR #255 runtime-byte CI, and merged-main readback are complete; `SX60-POC-ACCEPT-005` remains immutable historical evidence for exact `main@a11dfd1a063e434ee22e8cfb7b073ebc380aa27a`, while `SX60-POC-ACCEPT-006` is the later immutable Route Book 01 record from exact `main@9af5a8c46d29ea6781f9ee06008d7c7d2cde1877`
 → Candidate 004 remains the package record for merged-main pre-Core-Board-v02 bytes and does not transfer to this player-facing branch
 → Candidates 002–004 are immutable prior-byte evidence
-→ SX-DEC-065: Candidate 005 deterministic/Godot/runtime/export/package/CI validation remains historical; Candidate 006 is the current Route Book machine-primary package with `MACHINE_PRIMARY_ACCEPTANCE_READY`
+→ SX-DEC-065: Candidate 005 deterministic/Godot/runtime/export/package/CI validation remains historical; Candidate 006 was the Route Book 01 machine-primary package and became historical after the SX-DEC-067 player-facing byte change
 → Windows physical/audio is FINAL_USER_REVIEW_ONLY; Android device remains a separately recorded machine/device compatibility gate when targeted
 → FIVE_PERSON_COMPREHENSION_NOT_REQUIRED / PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED
-→ FINAL_USER_REVIEW is performed only when the user requests final inspection of unchanged exact Candidate 006 bytes
+→ FINAL_USER_REVIEW may occur only when requested on an unchanged exact candidate; after SX-DEC-067 that requires the new package candidate to be minted first
 → historical foreign-project Notion Direction page is audit-only and does not block current work
 → use GitHub visual/decision owners as the sole current Switchy Direction
+```
+
+## Current next action
+
+```text
+SX-DEC-067 product bytes merged at main@c0bb86efa5bad6050217ca67dd6aa9eba155dc75
+→ Candidate 006 is immutable historical Route Book 01 evidence and cannot be used for final-user review of the changed bytes
+→ mint one exact post-SX-DEC-067 package candidate through the existing machine verification workflow
+→ preserve generated wayside images as RUNTIME_CONNECTED candidates; do not promote them to canonical assets or human evidence
+→ only after that exact candidate exists may an optional final user review inspect its unchanged bytes
+→ five-person comprehension and player-experience studies remain not required by SX-DEC-065
 ```
 
 ## Evidence ceiling now
@@ -365,7 +376,7 @@ TDD_PLAN_RECORDED
 CODEX_HANDOFF_EXECUTED
 RUNTIME_MERGED_MAIN_VERIFIED_PR_188
 AUTOMATED_REGRESSION_PASS_111_CASES_13461_ASSERTIONS
-POST_060_CANDIDATE_SX60_POC_ACCEPT_006_MACHINE_PRIMARY_ACCEPTANCE_READY
+POST_SX_DEC_067_CANDIDATE_NOT_MINTED · CURRENT_SELECTION_FAIL_CLOSED
 SX60_POC_ACCEPT_001_HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE
 POST_060_DEVICE_NOT_RUN
 POST_060_HUMAN_NOT_RUN

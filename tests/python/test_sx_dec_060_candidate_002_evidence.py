@@ -26,8 +26,8 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         artifact = self._json(ARTIFACT)
         audit = self._json(AUDIT)
 
-        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-006")
+        self.assertEqual(pointer["candidate_status"], "NOT_MINTED")
+        self.assertIsNone(pointer["current_candidate_id"])
         historical = pointer["historical_superseded_after_sx_dec_062"]
         self.assertEqual(historical["candidate_id"], "SX60-POC-ACCEPT-002")
         self.assertEqual(
@@ -101,7 +101,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         self.assertNotIn("SX60-POC-ACCEPT-004 · PHYSICAL_PASS", text)
         self.assertIn("sx60_poc_accept_002: SX60-POC-ACCEPT-002 · HISTORICAL_SUPERSEDED_BY_SX_DEC_062", text)
         self.assertIn(
-            "acceptance_build: SX60-POC-ACCEPT-006 · MACHINE_PRIMARY_PACKAGE_VERIFIED · NO_HUMAN_OR_PHYSICAL_EVIDENCE",
+            "acceptance_build: NONE · FUTURE_EXACT_POST_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE_REQUIRED · NO_HUMAN_OR_PHYSICAL_EVIDENCE",
             text,
         )
 
@@ -109,7 +109,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
         text = ACTIVE_CONTEXT.read_text(encoding="utf-8")
 
         self.assertIn(
-            "post_sx_dec_060_candidate_status: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · SOURCE_MAIN_9af5a8c · MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN",
+            "post_sx_dec_060_candidate_status: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · Candidate_006_historical · MINT_EXACT_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE",
             text,
         )
         self.assertNotIn("HUMAN_PHYSICAL_SELF_RUN_NEXT", text)
@@ -144,7 +144,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
             self.assertIn(required, receipt)
 
         self.assertIn(
-            "base_work_current_phase: PHASE_5_MACHINE_PRIMARY_VALIDATION_COMPLETE · SX60_POC_ACCEPT_006",
+            "base_work_current_phase: PHASE_5_MACHINE_PRIMARY_RECONCILIATION · SX_DEC_067_POST_CHANGE_CANDIDATE_REQUIRED",
             active_context,
         )
         self.assertNotIn(
@@ -152,7 +152,7 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
             active_context,
         )
         self.assertIn(
-            "remaining_machine_executable_required_work: NONE · FINAL_USER_REVIEW_OPTIONAL_ON_UNCHANGED_CANDIDATE_006",
+            "remaining_machine_executable_required_work: MINT_EXACT_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE",
             active_context,
         )
 

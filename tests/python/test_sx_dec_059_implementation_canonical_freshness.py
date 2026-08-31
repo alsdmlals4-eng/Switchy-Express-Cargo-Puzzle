@@ -49,7 +49,7 @@ class SxDec059ImplementationCanonicalFreshnessTests(unittest.TestCase):
             "pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003",
             "HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY",
             "sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7",
-            "post_sx_dec_060_candidate: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED",
+            "post_sx_dec_060_candidate: NO_CURRENT_POST_SX_DEC_067_CANDIDATE · Candidate_006_historical",
         ):
             self.assertIn(required, adapter)
         for path in (ACTIVE_CONTEXT, CURRENT_DECISIONS):
@@ -66,8 +66,8 @@ class SxDec059ImplementationCanonicalFreshnessTests(unittest.TestCase):
         for required in (
             "SX-DEC-060",
             "SX-DEC-065",
-            "SX60-POC-ACCEPT-006",
-            "MACHINE_PRIMARY_ACCEPTANCE_READY",
+            "NO_CURRENT_POST_SX_DEC_067_CANDIDATE",
+            "MINT_EXACT_SX_DEC_067_MACHINE_PACKAGE_CANDIDATE",
             "MACHINE_PRIMARY_FINAL_USER_REVIEW",
         ):
             self.assertIn(required, combined)

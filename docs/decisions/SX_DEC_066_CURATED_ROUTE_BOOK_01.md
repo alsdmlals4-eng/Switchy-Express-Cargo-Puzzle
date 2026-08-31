@@ -1,6 +1,6 @@
 # SX-DEC-066 · Curated Route Book 01
 
-**Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · SX60-POC-ACCEPT-006_MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN`
+**Status:** `USER_APPROVED · MERGED_MAIN_VERIFIED · SX60-POC-ACCEPT-006_HISTORICAL_AFTER_SX_DEC_067 · POST_CHANGE_CANDIDATE_NOT_MINTED · FINAL_USER_REVIEW_NOT_RUN`
 
 **Date:** 2026-08-30 KST
 **Approval source:** The user requested that playable stages be created and then approved the recommended six-stage `Route Book 01` direction with “진행해”.
@@ -103,7 +103,7 @@ No new Godot engine capability, plugin, service, schema version, asset slot, or 
 
 ## Evidence and candidate transition
 
-`SX60-POC-ACCEPT-005` remains immutable historical machine evidence for its exact `main@a11dfd1` source bytes. Route Book code/data changes make it historical for the changed product. `SX60-POC-ACCEPT-006` is the current immutable machine-primary candidate for exact `main@9af5a8c` Route Book bytes.
+`SX60-POC-ACCEPT-005` remains immutable historical machine evidence for its exact `main@a11dfd1` source bytes. Route Book code/data changes made it historical for the changed product. `SX60-POC-ACCEPT-006` is immutable machine-primary evidence for exact `main@9af5a8c` Route Book 01 bytes, and SX-DEC-067 later made it historical for the changed product; no current candidate is selected until a new exact package is minted.
 
 ```text
 Route Book implementation changes product bytes

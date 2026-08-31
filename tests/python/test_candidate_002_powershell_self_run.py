@@ -73,21 +73,18 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertIn("WorkDir must be a direct child of TEMP", text)
         self.assertIn("RUNNER_TEMP", text)
 
-    def test_post_060_pointer_selects_candidate_005_while_preserving_historical_evidence(self) -> None:
+    def test_post_060_pointer_fails_closed_while_preserving_historical_evidence(self) -> None:
         pointer = self._post_060_pointer()
-        self.assertEqual(pointer["candidate_status"], "PREPARED_PACKAGE_VERIFIED")
-        self.assertEqual(pointer["current_candidate_id"], "SX60-POC-ACCEPT-006")
-        self.assertEqual(
-            pointer["current_candidate_role"],
-            "MACHINE_PRIMARY_ACCEPTANCE_READY · FINAL_USER_REVIEW_NOT_RUN · EXACT_SOURCE_MAIN_9af5a8c46d29ea6781f9ee06008d7c7d2cde1877",
-        )
+        self.assertEqual(pointer["candidate_status"], "NOT_MINTED")
+        self.assertIsNone(pointer["current_candidate_id"])
+        self.assertIn("FAIL_CLOSED", pointer["current_candidate_role"])
         self.assertEqual(
             pointer["historical_superseded_candidate"]["invalidation_reason"],
             "PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE",
         )
-        self.assertEqual(pointer["artifact_evidence_owner"], "evidence/acceptance/sx60_poc_accept_006_artifact.json")
-        self.assertEqual(pointer["deep_pck_evidence_owner"], "evidence/acceptance/sx60_poc_accept_006_pck_deep_audit.json")
-        self.assertEqual(pointer["self_run_record_name"], "SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_06.md")
+        self.assertEqual(pointer["historical_superseded_after_sx_dec_067"]["artifact_evidence_owner"], "evidence/acceptance/sx60_poc_accept_006_artifact.json")
+        self.assertEqual(pointer["historical_superseded_after_sx_dec_067"]["deep_pck_evidence_owner"], "evidence/acceptance/sx60_poc_accept_006_pck_deep_audit.json")
+        self.assertEqual(pointer["historical_superseded_after_sx_dec_067"]["self_run_record_name"], "SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_06.md")
         self.assertEqual(
             pointer["historical_superseded_after_sx_dec_062"]["candidate_id"],
             "SX60-POC-ACCEPT-002",
@@ -126,7 +123,8 @@ class CandidatePowerShellSelfRunTests(unittest.TestCase):
         self.assertIn("id: post060_candidate", text)
         self.assertIn("candidate_status=", text)
         self.assertIn(
-            "steps.post060_candidate.outputs.candidate_status != 'NOT_CREATED'",
+            "steps.post060_candidate.outputs.candidate_status != 'NOT_CREATED' && "
+            "steps.post060_candidate.outputs.candidate_status != 'NOT_MINTED'",
             text,
         )
         self.assertIn("switchy-post-060-candidate-002", text)
