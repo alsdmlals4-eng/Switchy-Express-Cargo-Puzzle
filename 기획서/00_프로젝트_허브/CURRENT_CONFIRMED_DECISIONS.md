@@ -1,6 +1,15 @@
 # Current Confirmed Decisions
 
-Last updated: `2026-08-31 KST`
+Last updated: `2026-09-01 KST`
+
+## SX-DEC-069 · Transparent Wayside Cutouts and Speed-Transition Presentation
+
+- **Status:** `USER_APPROVED · IMPLEMENTED_ON_ISOLATED_BRANCH · LOCAL_MACHINE_VERIFIED · MERGE_PENDING`
+- **Decision owner:** `docs/decisions/SX_DEC_069_TRANSPARENT_WAYSIDE_AND_SPEED_TRANSITIONS.md`
+- **Product boundary:** the canonical main-title wordmark, Route Book 02 maps/stage IDs, finite delivery rules, `0.55` caution multiplier, saves, score/progression, and first-session content are unchanged. Eight existing renderer asset slots now use transparent v02 object candidates; no terrain rectangle is embedded in the asset pixels.
+- **Presentation boundary:** the renderer draws amber inward braking feedback only on a normal-to-caution boundary, cyan forward normal-speed-recovery feedback only on a caution-to-normal boundary, and no repeat through adjacent caution cells. The feedback has no gameplay write authority and remains below the train.
+- **Evidence:** Godot 4.7.1 imported all v02 PNGs; transparent-candidate contract `PASS · 1 test / 8 entries`; full local Godot regression `PASS · 120 cases / 14,133 assertions`; actual title → Stage Book → Route Book 02 → RB08 build board was read back through the project-local runtime connection with clean diagnostics. The v02 pixels remain `GENERATED_CANDIDATE · RUNTIME_CONNECTED · NOT_CANON · USER_PIXEL_REVIEW_PENDING`.
+- **Ceiling:** Candidate 009 remains immutable historical package evidence for its own exact pre-change bytes only. The changed product has no current exact package candidate until post-merge package verification; physical/device/audio, accessibility, human, final-user-review, and release claims remain separate and unrun.
 
 ## SX-DEC-068 · Main Title Shell and World Wordmark
 
@@ -30,7 +39,7 @@ Last updated: `2026-08-31 KST`
 
 ```yaml
 current_product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060
-current_decision_span: SX-DEC-027~068
+current_decision_span: SX-DEC-027~069
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0

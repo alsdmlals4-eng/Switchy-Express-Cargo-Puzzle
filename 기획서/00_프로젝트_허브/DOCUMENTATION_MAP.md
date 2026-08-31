@@ -8,6 +8,7 @@
 | 현재 상태와 다음 정확한 작업은 무엇인가 | `ACTIVE_CONTEXT.md` |
 | 승인된 결정은 무엇인가 | `CURRENT_CONFIRMED_DECISIONS.md` |
 | SX-DEC-065의 머신 우선 검증과 최종 사용자 검수의 경계는 무엇인가 | `../../../docs/decisions/SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW_VALIDATION_POLICY.md` |
+| Route Book 02의 투명 오브젝트형 후보와 주의구간 진입·회복 연출의 승인 범위·검증 경계는 무엇인가 | `../../../docs/decisions/SX_DEC_069_TRANSPARENT_WAYSIDE_AND_SPEED_TRANSITIONS.md` |
 | Route Book 01의 승인 범위·보호 규칙·증거 전환은 무엇인가 | `../../../docs/decisions/SX_DEC_066_CURATED_ROUTE_BOOK_01.md` |
 | Route Book 01의 여섯 맵 콘텐츠 계약은 무엇인가 | `../../20_시스템_콘텐츠/ROUTE_BOOK_01_STAGE_CONTENT_SPEC.md` |
 | Route Book 01의 기술 설계와 구현 순서는 무엇인가 | `../../../docs/superpowers/specs/2026-08-30-route-book-01-stage-pack-design.md`, `../../../docs/superpowers/plans/2026-08-30-route-book-01-stage-pack-implementation.md` |

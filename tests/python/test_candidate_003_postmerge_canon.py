@@ -49,7 +49,7 @@ class Candidate003PostmergeCanonTests(unittest.TestCase):
             "role_after_sx_dec_060: HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY",
             "candidate_003_physical_visual_recheck: NOT_RUN",
             "sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-009 · PREPARED_PACKAGE_VERIFIED",
-            "current_decision_span: SX-DEC-027~068",
+            "current_decision_span: SX-DEC-027~069",
             "SX-DEC-060",
             "SX-DEC-061",
             "SX-DEC-063",

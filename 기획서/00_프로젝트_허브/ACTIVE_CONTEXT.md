@@ -7,7 +7,7 @@ historical_notion: AUDIT_ONLY · DO_NOT_READ_OR_WRITE_FOR_CURRENT_WORK
 notion_current_structure_migration: COMPLETE · docs/migrations/2026-08-28-notion-current-workspace-migration.md
 ```
 
-Last updated: `2026-08-31 KST`
+Last updated: `2026-09-01 KST`
 
 이 문서는 **현재 상태·다음 실행 지점·미검증 경계**를 연결하는 resume locator다. fresh GitHub/actual runtime이 저장 snapshot보다 우선한다. 2026-08-28 사용자 결정에 따라 Notion은 `RETIRED_NO_ACTIVE_USE`이며, 새 채팅은 과거 대화나 Notion을 필수 입력으로 요구하지 않고 Project GitHub에서 상태를 다시 재구성한다. Historical Notion readback은 감사 evidence로만 보존한다.
 
@@ -20,7 +20,7 @@ project_live_main_policy: REFRESH_FROM_GITHUB_BEFORE_EXECUTION
 engine: Godot 4.7.1-stable
 language: GDScript
 product_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~068
+current_decisions: SX-DEC-027~069
 work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
@@ -135,6 +135,11 @@ sx_dec_068_title_shell_wordmark: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_271
 sx_dec_068_decision_owner: docs/decisions/SX_DEC_068_TITLE_SCREEN_MAIN_SHELL.md
 sx_dec_068_title_wordmark: SX-TITLE-WORDMARK-001 · USER_APPROVED_CANONICAL_PRODUCT_ASSET_RUNTIME_CONNECTED · USER_PIXEL_APPROVED · CANON_REGISTERED · art/product_assets/ed_hybrid_v2/manifest.json
 sx_dec_068_machine_evidence: GitHub_Actions_run_33396533310_PASS · ARTIFACT_9759591197 · PCK_575_OF_575 · evidence/acceptance/sx60_poc_accept_009_artifact.json · canonical-wordmark-status source 1ac3099d9ab1451323cca2935547f82d210b50b4
+sx_dec_069_transparent_wayside_speed_transitions: USER_APPROVED · IMPLEMENTED_ON_ISOLATED_BRANCH · LOCAL_MACHINE_VERIFIED · GODOT_IMPORT_8_V02_PNGS · TRANSPARENT_CONTRACT_PASS · GODOT_120_CASES_14133_ASSERTIONS_0_FAILED · USER_PIXEL_REVIEW_PENDING
+sx_dec_069_decision_owner: docs/decisions/SX_DEC_069_TRANSPARENT_WAYSIDE_AND_SPEED_TRANSITIONS.md
+sx_dec_069_runtime_owners: game/demo/presentation/product_board_renderer.gd + game/demo/product_finite_slice.gd
+sx_dec_069_candidate_assets: EIGHT_V02_GENERATED_CANDIDATES_RUNTIME_CONNECTED_NOT_CANON · V01_RETAINED_HISTORICAL_PROVENANCE · art/product_assets/ed_hybrid_v2/manifest.json
+sx_dec_069_runtime_readback: LOCAL_HERA_RB08_BUILD_OBSERVED · NO_NEW_TRACKED_SCREENSHOT_ARTIFACT · RUNTIME_LOGS_CLEAN
 windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
 android_device_post_060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
 five_person_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY

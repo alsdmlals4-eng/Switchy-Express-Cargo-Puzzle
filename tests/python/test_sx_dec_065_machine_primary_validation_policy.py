@@ -55,7 +55,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
             self.assertIn(required, combined)
 
         active = read("기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md")
-        self.assertIn("current_decisions: SX-DEC-027~068", active)
+        self.assertIn("current_decisions: SX-DEC-027~069", active)
         self.assertIn(
             "five_person_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY",
             active,

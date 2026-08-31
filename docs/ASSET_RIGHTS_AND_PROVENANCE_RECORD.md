@@ -256,6 +256,37 @@ The eight files below are intentionally outside the manifest's approved `assets`
 
 No external asset, copied prompt, user-identifying content, logo, watermark, readable pseudo-text, or third-party visual reference was used in generation. The original generated source receipts remain in the local Codex generation store for audit; only the listed candidate copies are connected to this project worktree.
 
+## SX-DEC-069 · Transparent wayside v02 replacement candidates
+
+```yaml
+decision_id: SX-DEC-069
+generation_authority: USER_DIRECTED_2026_09_01_TRANSPARENT_OBJECT_ONLY_WAYSIDE_REVISION
+creation_route: OPENAI_IMAGEGEN_BUILT_IN
+creator_or_vendor: OpenAI Image Generation
+input_rights: project-owned E+D Hybrid / Neo-Arcade art direction and eight existing ProductBoardRenderer consumer slots; no third-party image, logo, layout, or character reference supplied
+candidate_lifecycle: GENERATED_CANDIDATE -> ALPHA_CONTRACT_PASS -> GODOT_IMPORTED -> AUTOMATED_RENDERER_TEST_PASS -> USER_PIXEL_REVIEW_PENDING
+visual_role: GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON
+pixel_review_status: USER_REVIEW_PENDING
+reference_similarity_status: NOT_APPLICABLE
+commercial_release_rights: CONDITIONAL_PENDING_SEPARATE_RELEASE_REVIEW
+physical_windows_audio_android_human_player_experience_release: NOT_RUN
+```
+
+The prior eight v01 candidates remain tracked as immutable provenance and are marked `SUPERSEDED_BY_TRANSPARENT_V02_CANDIDATE_USER_REVIEW_PENDING` in the manifest; they are not deleted, re-promoted, or substituted for v02 review. The table records only source files actually connected to the current renderer slots.
+
+| Candidate asset ID | Generation receipt | Tracked candidate path | SHA-256 | Exact runtime consumer slot |
+| --- | --- | --- | --- | --- |
+| `SX-BOARD-DECOR-FOREST-002` | `exec-68f7dd2a-773d-45f7-a76a-de4ac29ba36a.png` | `art/product_assets/ed_hybrid_v2/board/board_decor_forest_cluster_v02.png` | `0d4e82ee70119e361f0df8ea7bfbe0f0cbb000a53abab3f857ad27b1f32976da` | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[decoration_forest_cluster]` |
+| `SX-BOARD-DECOR-BOULDER-002` | `exec-55c31f16-b02e-4200-961d-e544bf713d62.png` | `art/product_assets/ed_hybrid_v2/board/board_decor_moss_boulder_v02.png` | `a12cd12047c77dac5f78f2ebf57b926afc692bb20eca89dca649ffa8f29b292d` | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[decoration_moss_boulder]` |
+| `SX-BOARD-DECOR-TIMBER-002` | `exec-7627e526-d6b7-499d-86e6-f866d9fb3ed8.png` | `art/product_assets/ed_hybrid_v2/board/board_decor_timber_stack_v02.png` | `ed4d58fed7912df8bfc7cabf77ce6b3f6db2756e3d0a1fd888fe78ff8f5ccea9` | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[decoration_timber_stack]` |
+| `SX-BOARD-DECOR-WATERWAY-002` | `exec-81552c22-7246-4e92-976a-b37290304679.png` | `art/product_assets/ed_hybrid_v2/board/board_decor_waterway_v02.png` | `42678b51f3231ad8f5ad26ac7f970a475b40222fa15e15759449ede7d71f9030` | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[decoration_waterway]` |
+| `SX-BOARD-DECOR-LANTERN-002` | `exec-d566ecbb-bac6-4401-a897-53ba3f8c40d8.png` | `art/product_assets/ed_hybrid_v2/board/board_decor_lantern_fence_v02.png` | `a98338031c6d056c4ba0168e012a7690bb21636119987142a38e8a13d37a6641` | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[decoration_lantern_fence]` |
+| `SX-BOARD-CAUTION-002` | `exec-51dae025-1e9b-418f-b068-bc9c45abc4a7.png` | `art/product_assets/ed_hybrid_v2/board/board_caution_track_overlay_v02.png` | `18e02cafd84529371ec7783ecff17851cbde4ff20468566cadf294342c499262` | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[caution_track]` |
+| `SX-CORE-CARGO-WASTE-002` | `exec-3b871d96-c5e8-4bcb-b8c8-28c34abc22e8.png` | `art/product_assets/ed_hybrid_v2/core/core_cargo_waste_crate_normal_v02.png` | `54e8a7f4408ffec46509045dbea6fb347362f7f63cdc25ca06f6cce36c3df5a4` | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[cargo_waste]` |
+| `SX-CORE-DISPOSAL-YARD-002` | `exec-6c23d98b-778d-43f6-95ac-6f5cad521f41.png` | `art/product_assets/ed_hybrid_v2/core/core_disposal_yard_normal_v02.png` | `67763ea2a523f8a520f301a70f537c157c8e72c28001e315b30db85bf4b613e9` | `ProductBoardRenderer::PRODUCT_VISUAL_ASSET_PATHS[station_disposal]` |
+
+The project-local validator verified 8-bit RGBA mode, transparent corners, non-full-frame coverage, manifest SHA-256 equality, and exact consumer mapping. Godot 4.7.1 imported all eight files, and the full 120-case renderer/game regression passed. These are machine facts only and do not promote any v02 pixels to approved/canonical status.
+
 ## SX-DEC-068 · Title wordmark canonical product asset
 
 ```yaml

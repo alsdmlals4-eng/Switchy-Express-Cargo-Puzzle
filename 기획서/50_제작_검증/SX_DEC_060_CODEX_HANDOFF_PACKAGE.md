@@ -252,6 +252,14 @@ device PASS → five-person PASS
 technical PASS → player-experience PASS
 ```
 
+## 2026-09-01 branch amendment · SX-DEC-069
+
+The isolated `codex/transparent-wayside-speed-transitions` branch replaces eight runtime-connected Route Book 02 candidate images with transparent object-only v02 candidates and adds renderer-local `DECELERATE` / `ACCELERATE` snapshot feedback. It must preserve the finite-domain `0.55` multiplier and must not alter the approved title-screen wordmark, map data, stage IDs, score/progression, saves, or first-session flow.
+
+Local evidence for this branch is limited to Godot import, an 8-entry transparent asset contract, full headless regression (`120 cases / 14,133 assertions / 0 failed`), and an RB08 build-board local runtime readback with clean diagnostics. The eight v02 pixels remain `GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON · USER_PIXEL_REVIEW_PENDING`.
+
+`SX60-POC-ACCEPT-009` remains current only for already-merged `main` bytes while this branch is pending. If SX-DEC-069 merges, Candidate 009 becomes immutable pre-change history and a new exact package candidate is required before final user review of the changed product bytes.
+
 ## 11. Required verification
 
 Use current repository commands discovered from merged main. At minimum the current project discipline expects:
