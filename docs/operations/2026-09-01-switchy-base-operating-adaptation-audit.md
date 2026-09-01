@@ -36,13 +36,13 @@ external_research: NOT_MATERIAL · this is an internal Base/project operating-co
 - `START_HERE` now states `SX-DEC-027~069`.
 - `CURRENT_CONFIRMED_DECISIONS` now includes SX-DEC-069 in the active Decision Registry.
 - `ACTIVE_CONTEXT` now selects Candidate 010 as the exact current machine package and leaves Candidate 009 historical.
-- `PROJECT_OPERATING_HEALTH.json` now declares its historical compatibility-snapshot scope instead of competing with current runtime owners.
+- `PROJECT_OPERATING_HEALTH.json` remains schema-compatible; this dated receipt bounds its early compatibility snapshot so it does not compete with current runtime owners.
 - The active v4.8 adapter now carries the minimal Switchy control plane without copying Base's full body.
 - `README` and the compact `ROADMAP` authority now point to SX-DEC-069/Candidate 010 instead of Candidate 006-era work; the old SX-DEC-063 planning gate is retained as `HISTORICAL_PRE_RUNTIME` and links its current runtime owner.
 
 ## Evidence boundary
 
-This receipt records an operating-contract audit only. It does not change game code, Scene/Resource/map data, assets, candidate package bytes, user pixel approvals, physical/device/audio/accessibility/human evidence, release rights, or production-cutover state.
+This receipt records an operating-contract audit only. `PROJECT_OPERATING_HEALTH.json` remains schema-compatible and is not extended with unsupported scope fields; its early baseline data therefore cannot compete with `ACTIVE_CONTEXT.md` and current Decision owners. This task does not change game code, Scene/Resource/map data, assets, candidate package bytes, user pixel approvals, physical/device/audio/accessibility/human evidence, release rights, or production-cutover state.
 
 ## Local machine verification
 
@@ -53,11 +53,17 @@ This receipt records an operating-contract audit only. It does not change game c
 - GREEN: `python tools/validate_project_contract.py` returned `project operating contract: PASS`.
 - GREEN: `git diff --check` completed without whitespace errors. CRLF conversion notices are checkout configuration notices, not content findings.
 
+## Exact-head validator correction
+
+- The first PR #278 Base-adapter run at `c4ab22c` correctly rejected three unsupported `PROJECT_OPERATING_HEALTH.json` keys and reported the expected protected current-canon delta without the required PR label metadata.
+- The health file was restored to its strict Base schema. Its non-current interpretation is now stated only in this dated audit, which is the project-specific extension point for the fact.
+- The existing protected approval manifest already listed the exact protected path set. It now records this user-approved Base-current adaptation source; the normal `approved-protected-change` PR label is required before rerunning that check. This is an approval gate, not a Base mutation, direct-main action, force push, or ruleset bypass.
+
 ## Five full-scope adversarial loops
 
 | Loop | Attack and validated result | Refinement and regression | Better alternative and long-horizon recheck |
 |---|---|---|---|
-| 1 · authority/consumer | Challenged each current locator against actual SX-DEC-069/Candidate 010 ownership; found F1–F5, then entry-surface F6. | Added the thin control plane, current Decision row, Candidate 010 locator, and historical-snapshot classification; focused adaptation test is `6/6` GREEN. | Rejected a Base repin/full-body copy because it would change compatibility meaning without a canary/rollback decision; Base `main@19355b7` is recorded only as a task observation. |
+| 1 · authority/consumer | Challenged each current locator against actual SX-DEC-069/Candidate 010 ownership; found F1–F5, then entry-surface F6. | Added the thin control plane, current Decision row, Candidate 010 locator, and audit-bounded schema-compatible health snapshot; focused adaptation test is `6/6` GREEN. | Rejected a Base repin/full-body copy because it would change compatibility meaning without a canary/rollback decision; Base `main@19355b7` is recorded only as a task observation. |
 | 2 · scope/consumer | Challenged the change list for accidental Godot/product/asset mutation; only contract, locator, audit, and Python-test paths changed. | Preserved every GDScript, Scene, Resource, map, asset, Candidate 010 pointer, and approval state; full Python suite is GREEN. | Rejected a product-runtime retest as proof for a documentation-only diff; existing machine evidence remains owned by the product records and human/device gates remain unchanged. |
 | 3 · history/current split | Challenged whether history preservation was lost while replacing Candidate 006 current wording; the 28-test regression found the exact historical ID absent from README. | Restored `SX60-POC-ACCEPT-006` only as `HISTORICAL_SUPERSEDED...`; the focused 28-test and SX-DEC-060 14-test suites are GREEN. | Rejected deleting or rewriting old candidate evidence; immutable prior-byte identity remains available while Candidate 010 is the sole current machine route. |
 | 4 · evidence ceiling | Challenged package/automation wording for human, physical, device, audio, release, or final-user inflation; no new promotion was found. | Preserved `NOT_RUN`, final-user-only, five-person-not-required, and player-experience-not-required boundaries; full suite `252` GREEN with one configured skip stated exactly. | Rejected treating the test runner or historical candidate warnings as release proof; a requested unchanged-Candidate-010 final review remains the separate next human gate. |

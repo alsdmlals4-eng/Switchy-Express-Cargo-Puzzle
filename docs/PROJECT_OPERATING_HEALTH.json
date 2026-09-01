@@ -1,8 +1,5 @@
 {
   "artifact_role": "PROJECT_OPERATING_HEALTH",
-  "snapshot_role": "HISTORICAL_COMPATIBILITY_SNAPSHOT",
-  "evidence_scope": "BASE_ADOPTION_BASELINE_ONLY",
-  "current_runtime_authority": "ACTIVE_CONTEXT_AND_DECISION_OWNERS",
   "critical_gates": {
     "accessibility": "NOT_RUN",
     "device": "NOT_RUN",

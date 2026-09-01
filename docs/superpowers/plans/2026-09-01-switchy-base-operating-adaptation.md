@@ -197,6 +197,7 @@ Expected: `PASS`.
 **Files:**
 
 - Modify if required by validated finding: only files listed in Tasks 1–3.
+- Modify if the protected validator identifies an exact approved-delta reconciliation: `docs/operations/PROJECT_PROTECTED_CHANGE_APPROVAL.json` only, preserving its exact detected-path set and recording the current user approval source.
 - Read: `.github/workflows/project-contract.yml`
 - Read: `skills/PROJECT_BASE_ADAPTER.json`
 
@@ -234,7 +235,7 @@ git commit -m "docs: adapt current Base operating model for Switchy"
 
 Run: `git push -u origin codex/base-operating-adaptation-20260901`
 
-Expected: PR targets `main`, contains only approved contract/status/test paths, and has exact-head required checks.
+Expected: PR targets `main`, contains only approved contract/status/test paths, has exact-head required checks, and uses `approved-protected-change` only when the current user approval is recorded in the exact-path manifest.
 
 - [ ] **Step 5: Merge normally, read back main, and recalculate remaining work**
 

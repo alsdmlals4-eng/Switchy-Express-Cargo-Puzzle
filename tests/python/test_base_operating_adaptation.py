@@ -44,14 +44,15 @@ class BaseOperatingAdaptationTests(unittest.TestCase):
         self.assertIn("SX60-POC-ACCEPT-010 is the exact current machine package candidate", active_context)
         self.assertIn("| **SX-DEC-069** |", decisions)
 
-    def test_operating_health_declares_its_historical_snapshot_role(self) -> None:
+    def test_operating_health_stays_schema_compatible_and_audit_bounds_its_scope(self) -> None:
         health = json.loads(read(HEALTH))
-        self.assertEqual(health["snapshot_role"], "HISTORICAL_COMPATIBILITY_SNAPSHOT")
-        self.assertEqual(
-            health["current_runtime_authority"],
-            "ACTIVE_CONTEXT_AND_DECISION_OWNERS",
+        self.assertEqual(health["artifact_role"], "PROJECT_OPERATING_HEALTH")
+        self.assertNotIn("snapshot_role", health)
+        self.assertNotIn("current_runtime_authority", health)
+        self.assertIn(
+            "remains schema-compatible",
+            read(AUDIT_RECEIPT),
         )
-        self.assertEqual(health["evidence_scope"], "BASE_ADOPTION_BASELINE_ONLY")
 
     def test_audit_receipt_is_not_an_active_base_pin(self) -> None:
         receipt = read(AUDIT_RECEIPT)
