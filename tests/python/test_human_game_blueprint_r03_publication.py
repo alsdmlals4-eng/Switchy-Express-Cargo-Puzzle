@@ -10,6 +10,10 @@ from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[2]
 BUILDER = ROOT / "tools/build_human_game_blueprint.py"
+WINDOWS_MALGUN = Path(r"C:\Windows\Fonts\malgun.ttf")
+WINDOWS_MALGUN_BOLD = Path(r"C:\Windows\Fonts\malgunbd.ttf")
+LINUX_TEST_FONT = Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
+LINUX_TEST_FONT_BOLD = Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf")
 
 
 def load_builder():
@@ -19,6 +23,22 @@ def load_builder():
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
+
+def register_test_fonts(builder) -> None:
+    """Use production fonts on Windows and a CI-only renderer substitute elsewhere.
+
+    The generated Korean publication remains intentionally Windows-font-bound.
+    This helper only lets the English fixture exercise the real ReportLab page
+    renderers on Ubuntu CI, where the production Malgun files do not exist.
+    """
+    if WINDOWS_MALGUN.exists() and WINDOWS_MALGUN_BOLD.exists():
+        builder.register_fonts()
+        return
+    if not LINUX_TEST_FONT.exists() or not LINUX_TEST_FONT_BOLD.exists():
+        raise AssertionError("CI font substitute is unavailable")
+    builder.pdfmetrics.registerFont(builder.TTFont("Malgun", str(LINUX_TEST_FONT)))
+    builder.pdfmetrics.registerFont(builder.TTFont("MalgunBold", str(LINUX_TEST_FONT_BOLD)))
 
 
 class HumanGameBlueprintR03PublicationTests(unittest.TestCase):
@@ -59,7 +79,7 @@ class HumanGameBlueprintR03PublicationTests(unittest.TestCase):
                 "footer": "candidate state remains separate",
             },
         ]
-        builder.register_fonts()
+        register_test_fonts(builder)
         stream = io.BytesIO()
         canvas = builder.Canvas(
             stream,
