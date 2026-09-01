@@ -28,7 +28,7 @@
 
 | Path | Responsibility | Change type |
 |---|---|---|
-| `tests/python/test_human_game_blueprint_r03_publication.py` | Enforces r03 metadata, the three new page kinds, title-wordmark provenance, deterministic temporary build, PDF page count, and generated-manifest truth. | Create |
+| `tests/python/test_human_game_blueprint_r03_publication.py` | Exercises all three new page kinds through the real ReportLab renderer and verifies that they produce three reopenable PDF pages. | Create |
 | `tools/build_human_game_blueprint.py` | Renders only the text-native r03 page kinds and approved existing asset inputs. | Modify |
 | `docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT.md` | Sole registered editorial source: r03 identity, flow, screen wireframes, RUN state map, asset readiness, and evidence language. | Modify |
 | `docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT_PUBLICATION_MANIFEST.json` | SHA-bound record emitted by the renderer for the actual r03 source and final PDF. | Generated/modify |
@@ -46,21 +46,16 @@
 
 **Interfaces:**
 
-- Consumes: the `<!-- BLUEPRINT_DATA:START -->` JSON block parsed from the registered editorial source.
-- Produces: a deterministic contract that expects revision `r03`, 23 pages, three new renderer page kinds, and a derived PDF that pypdf can reopen.
+- Consumes: three hand-authored page fixtures in the same schema as `BlueprintRenderer.render_page`.
+- Produces: a behavioral regression that proves all three new page kinds traverse the real renderer and create reopenable PDF bytes.
 
 - [ ] **Step 1: Write the failing test file.**
 
 ```python
 from __future__ import annotations
 
-import hashlib
+import io
 import importlib.util
-import json
-import re
-import subprocess
-import sys
-import tempfile
 import unittest
 from pathlib import Path
 
@@ -68,81 +63,52 @@ from pypdf import PdfReader
 
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = ROOT / "docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT.md"
 BUILDER = ROOT / "tools/build_human_game_blueprint.py"
-WORKSPACE_PYTHON = Path(r"C:\Users\user\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe")
 
 
-def blueprint_data() -> dict:
-    text = SOURCE.read_text(encoding="utf-8")
-    match = re.search(
-        r"<!-- BLUEPRINT_DATA:START -->\s*```json\s*(.*?)\s*```\s*<!-- BLUEPRINT_DATA:END -->",
-        text,
-        re.DOTALL,
-    )
-    if match is None:
-        raise AssertionError("BLUEPRINT_DATA block is missing")
-    return json.loads(match.group(1))
-
-
-def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+def load_builder():
+    spec = importlib.util.spec_from_file_location("human_game_blueprint_builder", BUILDER)
+    if spec is None or spec.loader is None:
+        raise AssertionError("human blueprint builder module cannot be loaded")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 class HumanGameBlueprintR03PublicationTests(unittest.TestCase):
-    def test_builder_advertises_r03_page_renderers(self) -> None:
-        source = BUILDER.read_text(encoding="utf-8")
-        for kind, renderer in {
-            "wireframes": "draw_wireframes",
-            "run_state": "draw_run_state",
-            "asset_readiness": "draw_asset_readiness",
-        }.items():
-            self.assertIn(f'"{kind}": self.{renderer}', source)
-            self.assertIn(f"def {renderer}(self, page: dict) -> None:", source)
-        self.assertIn('"title_wordmark"', source)
-
-    def test_editorial_source_declares_r03_current_surfaces(self) -> None:
-        data = blueprint_data()
-        kinds = [page["kind"] for page in data["pages"]]
-        self.assertEqual(data["revision"], "r03")
-        self.assertEqual(data["date"], "2026-09-01")
-        self.assertEqual(data["source_main"], "0bf5e2150d643210abf127e34880111ee986b29d")
-        self.assertEqual(data["user_final_review"], "AWAITING_R03_CONTENT_AND_RENDER_REVIEW")
-        self.assertEqual(len(data["pages"]), 23)
-        self.assertEqual(kinds.count("wireframes"), 1)
-        self.assertEqual(kinds.count("run_state"), 1)
-        self.assertEqual(kinds.count("asset_readiness"), 1)
-        text = SOURCE.read_text(encoding="utf-8")
-        for token in ("Route Book 01/02", "TitleLogo", "DECELERATE", "ACCELERATE", "USER_PIXEL_REVIEW_PENDING"):
-            self.assertIn(token, text)
-
-    def test_bundled_runtime_builds_a_reopenable_r03_pdf_and_manifest(self) -> None:
-        self.assertTrue(WORKSPACE_PYTHON.exists(), "bundled document runtime is required")
-        with tempfile.TemporaryDirectory() as raw_temp:
-            temp = Path(raw_temp)
-            output = temp / "r03.pdf"
-            manifest_path = temp / "r03-manifest.json"
-            subprocess.run(
-                [
-                    str(WORKSPACE_PYTHON), str(BUILDER),
-                    "--source", str(SOURCE),
-                    "--output", str(output),
-                    "--manifest", str(manifest_path),
-                ],
-                cwd=ROOT,
-                check=True,
-                text=True,
-                capture_output=True,
-            )
-            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-            self.assertEqual(len(PdfReader(str(output)).pages), 23)
-            self.assertEqual(manifest["revision"], "r03")
-            self.assertEqual(manifest["page_count"], 23)
-            self.assertEqual(manifest["output_sha256"], sha256(output))
-            self.assertEqual(
-                manifest["asset_inputs"]["title_wordmark"]["use"],
-                "existing_runtime_asset_as_human_blueprint_visual_input",
-            )
+    def test_new_page_kinds_render_real_pdf_pages(self) -> None:
+        builder = load_builder()
+        pages = [
+            {
+                "kind": "wireframes",
+                "eyebrow": "TEST", "title": "Wireframes", "claim": "renderer behavior",
+                "cards": [[f"SX-{index}", "surface", "attention", "information", "action"] for index in range(6)],
+            },
+            {
+                "kind": "run_state",
+                "eyebrow": "TEST", "title": "Run state", "claim": "renderer behavior",
+                "states": [[str(index), "state", "trigger", "player read", "next"] for index in range(6)],
+                "footer": "bounded presentation",
+            },
+            {
+                "kind": "asset_readiness",
+                "eyebrow": "TEST", "title": "Asset readiness", "claim": "renderer behavior",
+                "headers": ["surface", "consumer", "state", "use", "action"],
+                "rows": [["title", "node", "approved", "reuse", "none"] for _ in range(6)],
+                "footer": "candidate state remains separate",
+            },
+        ]
+        builder.register_fonts()
+        stream = io.BytesIO()
+        canvas = builder.Canvas(stream, pagesize=(builder.PAGE_W, builder.PAGE_H), pageCompression=1, invariant=1)
+        renderer = builder.BlueprintRenderer(canvas, {"revision": "r03", "date": "2026-09-01", "pages": pages})
+        try:
+            for page in pages:
+                renderer.render_page(page)
+        except ValueError as exc:
+            self.fail(str(exc))
+        canvas.save()
+        self.assertEqual(len(PdfReader(io.BytesIO(stream.getvalue())).pages), 3)
 
 
 if __name__ == "__main__":
@@ -158,7 +124,7 @@ $workspacePython = 'C:\Users\user\.cache\codex-runtimes\codex-primary-runtime\de
 & $workspacePython tests/python/test_human_game_blueprint_r03_publication.py
 ```
 
-Expected: `FAIL`, because the source is still r02 and the builder does not yet expose `wireframes`, `run_state`, `asset_readiness`, or `title_wordmark`.
+Expected: `FAIL` with `Unsupported page kind: wireframes`, because the renderer has no r03 page-kind behavior yet.
 
 - [ ] **Step 3: Commit the red test only after preserving its failing evidence in the task log.**
 
@@ -235,16 +201,16 @@ For every method, call `self.header(...)` first and `self.footer()` last. Reuse 
 "asset_readiness": self.draw_asset_readiness,
 ```
 
-- [ ] **Step 5: Run only the renderer-surface assertion.**
+- [ ] **Step 5: Run the real renderer behavior test.**
 
 Run:
 
 ```powershell
 $workspacePython = 'C:\Users\user\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
-& $workspacePython -m unittest tests.python.test_human_game_blueprint_r03_publication.HumanGameBlueprintR03PublicationTests.test_builder_advertises_r03_page_renderers
+& $workspacePython -m unittest tests.python.test_human_game_blueprint_r03_publication.HumanGameBlueprintR03PublicationTests.test_new_page_kinds_render_real_pdf_pages
 ```
 
-Expected: `PASS`. The editorial-source and temporary-PDF tests still fail until Task 3 updates r02 data.
+Expected: `PASS`. The r02 editorial source is updated separately in Task 3, then verified by the actual final PDF build in Task 4.
 
 - [ ] **Step 6: Commit the renderer-only change.**
 
@@ -339,17 +305,16 @@ Change the review record to `revision: r03`, state that r02 document candidates 
 
 Use `rg -n "r02|28619f4|20260830_r02|final user review" docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT.md` to classify each remaining occurrence. Retain historical r02 provenance only where it is explicitly labelled history; correct every current identity/reference occurrence.
 
-- [ ] **Step 5: Run the static source and renderer contract tests.**
+- [ ] **Step 5: Parse the r03 source data before PDF creation.**
 
 Run:
 
 ```powershell
 $workspacePython = 'C:\Users\user\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
-& $workspacePython -m unittest tests.python.test_human_game_blueprint_r03_publication.HumanGameBlueprintR03PublicationTests.test_builder_advertises_r03_page_renderers
-& $workspacePython -m unittest tests.python.test_human_game_blueprint_r03_publication.HumanGameBlueprintR03PublicationTests.test_editorial_source_declares_r03_current_surfaces
+& $workspacePython -c "import importlib.util; from pathlib import Path; root=Path.cwd(); spec=importlib.util.spec_from_file_location('builder', root/'tools/build_human_game_blueprint.py'); module=importlib.util.module_from_spec(spec); spec.loader.exec_module(module); data=module.load_data(root/'docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT.md'); kinds=[page['kind'] for page in data['pages']]; assert data['revision']=='r03'; assert data['date']=='2026-09-01'; assert data['source_main']=='0bf5e2150d643210abf127e34880111ee986b29d'; assert data['user_final_review']=='AWAITING_R03_CONTENT_AND_RENDER_REVIEW'; assert len(data['pages'])==23; assert kinds.count('wireframes')==1 and kinds.count('run_state')==1 and kinds.count('asset_readiness')==1; print('r03 source data: PASS')"
 ```
 
-Expected: both `PASS`. Do not run the PDF-producing test until Task 4 has recorded the required PDF artifact operation receipt.
+Expected: `PASS`. Do not create a PDF until Task 4 has recorded the required PDF artifact operation receipt.
 
 - [ ] **Step 6: Commit source and data changes.**
 
