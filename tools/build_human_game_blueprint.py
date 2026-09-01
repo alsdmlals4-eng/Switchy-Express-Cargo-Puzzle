@@ -25,7 +25,7 @@ from reportlab.lib.utils import ImageReader
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE = ROOT / "docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT.md"
-DEFAULT_OUTPUT = ROOT / "output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260830_r02.pdf"
+DEFAULT_OUTPUT = ROOT / "output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260901_r03.pdf"
 DEFAULT_MANIFEST = ROOT / "docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT_PUBLICATION_MANIFEST.json"
 
 PAGE_W, PAGE_H = landscape(A4)
