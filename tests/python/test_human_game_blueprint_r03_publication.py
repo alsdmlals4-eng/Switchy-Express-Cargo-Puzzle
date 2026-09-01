@@ -42,6 +42,102 @@ def register_test_fonts(builder) -> None:
 
 
 class HumanGameBlueprintR03PublicationTests(unittest.TestCase):
+    def test_dedicated_navigation_gameplay_and_spatial_wireframe_pages_render(self) -> None:
+        """Catch a regression where flow/wireframe kinds collapse back into summary cards."""
+        builder = load_builder()
+        pages = [
+            {
+                "kind": "screen_flow_map",
+                "eyebrow": "TEST",
+                "title": "Screen navigation",
+                "claim": "actual navigation map",
+                "nodes": [
+                    ["TITLE", "Title", "start or return"],
+                    ["BOOK", "Route Book", "choose stage"],
+                    ["BRIEF", "Briefing", "read goal"],
+                    ["BUILD", "Build", "design route"],
+                    ["RUN", "Run", "execute plan"],
+                    ["RESULT", "Result", "choose recovery"],
+                ],
+                "routes": [
+                    ["TITLE", "BOOK", "select"],
+                    ["BOOK", "BRIEF", "stage"],
+                    ["BRIEF", "BUILD", "begin"],
+                    ["BUILD", "RUN", "preflight pass"],
+                    ["RESULT", "BUILD", "edit"],
+                ],
+                "footer": "Invalid layout remains in BUILD.",
+            },
+            {
+                "kind": "gameplay_flow_map",
+                "eyebrow": "TEST",
+                "title": "Gameplay decisions",
+                "claim": "actual decision flow",
+                "stages": [
+                    ["OBSERVE", "Read board", "cargo and station"],
+                    ["BUILD", "Place track", "route order"],
+                    ["CHECK", "Preflight", "pass or edit"],
+                    ["RUN", "Execute", "TOP and route"],
+                    ["RESULT", "Resolve", "retry or edit"],
+                ],
+                "branches": [
+                    ["CHECK", "BUILD", "invalid -> edit"],
+                    ["CHECK", "RUN", "valid -> run"],
+                    ["RUN", "RESULT", "success/time/route end"],
+                ],
+                "footer": "Cargo is exact-cell; station service is cardinal-adjacent.",
+            },
+            {
+                "kind": "shell_wireframe",
+                "eyebrow": "TEST",
+                "title": "Shell wireframe",
+                "claim": "spatial screen regions",
+                "screens": [
+                    ["SX-SCR-001", "Title", "Wordmark", "Start", "Stage Book"],
+                    ["SX-SCR-RB", "Route Book", "Stage cards", "Select", "Back"],
+                    ["SX-SCR-003", "Briefing", "Goal", "Begin", "Rules"],
+                ],
+            },
+            {
+                "kind": "board_wireframe",
+                "eyebrow": "TEST",
+                "title": "Board wireframe",
+                "claim": "build and run spatial regions",
+                "build": ["SX-SCR-004", "Build", "tool rail", "board", "preflight"],
+                "run": ["SX-SCR-006", "Run", "top stack", "board", "route control"],
+                "footer": "The board remains the first attention surface.",
+            },
+            {
+                "kind": "result_wireframe",
+                "eyebrow": "TEST",
+                "title": "Result wireframe",
+                "claim": "recovery actions remain spatially distinct",
+                "screen": ["SX-SCR-010/011", "Result", "facts", "Retry", "Edit"],
+                "footer": "Retry preserves the layout; Edit returns to BUILD.",
+            },
+        ]
+        register_test_fonts(builder)
+        stream = io.BytesIO()
+        canvas = builder.Canvas(
+            stream,
+            pagesize=(builder.PAGE_W, builder.PAGE_H),
+            pageCompression=1,
+            invariant=1,
+        )
+        renderer = builder.BlueprintRenderer(
+            canvas,
+            {"revision": "r04", "date": "2026-09-01", "pages": pages},
+        )
+        for page in pages:
+            renderer.render_page(page)
+        canvas.save()
+        pdf = PdfReader(io.BytesIO(stream.getvalue()))
+        self.assertEqual(len(pdf.pages), 5)
+        rendered_text = "\n".join(page.extract_text() or "" for page in pdf.pages)
+        self.assertIn("Invalid layout remains in BUILD.", rendered_text)
+        self.assertIn("invalid -> edit", rendered_text)
+        self.assertIn("Retry preserves the layout; Edit returns to BUILD.", rendered_text)
+
     def test_new_page_kinds_render_real_pdf_pages(self) -> None:
         builder = load_builder()
         pages = [

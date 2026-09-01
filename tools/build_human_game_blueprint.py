@@ -26,7 +26,7 @@ from reportlab.lib.utils import ImageReader
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE = ROOT / "docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT.md"
-DEFAULT_OUTPUT = ROOT / "output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260901_r03.pdf"
+DEFAULT_OUTPUT = ROOT / "output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260901_r04.pdf"
 DEFAULT_MANIFEST = ROOT / "docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT_PUBLICATION_MANIFEST.json"
 
 PAGE_W, PAGE_H = landscape(A4)
@@ -285,6 +285,106 @@ class BlueprintRenderer:
             "DARK": DARK,
             "GREEN": LIME,
         }.get(name, SKY)
+
+    def draw_arrow(
+        self,
+        start: tuple[float, float],
+        end: tuple[float, float],
+        label: str = "",
+        color: Color = NAVY,
+        dashed: bool = False,
+        label_offset: tuple[float, float] = (0, 0),
+    ) -> None:
+        """Render an explicit directed transition instead of an implied adjacency."""
+        start_x, start_y = start
+        end_x, end_y = end
+        angle = math.atan2(end_y - start_y, end_x - start_x)
+        head = 7
+        self.c.saveState()
+        self.c.setStrokeColor(color)
+        self.c.setFillColor(color)
+        self.c.setLineWidth(1.35)
+        if dashed:
+            self.c.setDash(4, 3)
+        self.c.line(start_x, start_y, end_x, end_y)
+        self.c.line(end_x, end_y, end_x - head * math.cos(angle - 0.42), end_y - head * math.sin(angle - 0.42))
+        self.c.line(end_x, end_y, end_x - head * math.cos(angle + 0.42), end_y - head * math.sin(angle + 0.42))
+        self.c.restoreState()
+        if label:
+            mid_x = (start_x + end_x) / 2 + label_offset[0]
+            mid_y = (start_y + end_y) / 2 + label_offset[1]
+            self.c.setFont("MalgunBold", 6.5)
+            label_w = pdfmetrics.stringWidth(label, "MalgunBold", 6.5) + 10
+            self.c.setFillColor(PAPER)
+            self.c.roundRect(mid_x - label_w / 2, mid_y - 4, label_w, 12, 4, fill=1, stroke=0)
+            self.c.setFillColor(color)
+            self.c.drawCentredString(mid_x, mid_y, label)
+
+    def flow_node(
+        self,
+        x: float,
+        y: float,
+        width: float,
+        height: float,
+        node_id: str,
+        title: str,
+        body: str,
+        accent: Color,
+    ) -> None:
+        self.c.setFillColor(white)
+        self.c.setStrokeColor(accent)
+        self.c.setLineWidth(1.15)
+        self.c.roundRect(x, y, width, height, 8, fill=1, stroke=1)
+        self.c.setFillColor(accent)
+        self.c.roundRect(x + 9, y + height - 22, 54, 12, 5, fill=1, stroke=0)
+        self.c.setFillColor(white)
+        self.c.setFont("MalgunBold", 6.2)
+        self.c.drawCentredString(x + 36, y + height - 18, node_id)
+        self.c.setFillColor(INK)
+        self.c.setFont("MalgunBold", 10)
+        self.draw_wrapped(title, x + 10, y + height - 40, width - 20, 11, INK, "MalgunBold", 10, 2)
+        self.draw_wrapped(body, x + 10, y + 23, width - 20, 10, MUTED, "Malgun", 7.3, 3)
+
+    def wireframe_frame(
+        self,
+        x: float,
+        y: float,
+        width: float,
+        height: float,
+        screen_id: str,
+        title: str,
+        accent: Color,
+    ) -> tuple[float, float, float, float]:
+        self.c.setFillColor(white)
+        self.c.setStrokeColor(accent)
+        self.c.setLineWidth(1.4)
+        self.c.roundRect(x, y, width, height, 10, fill=1, stroke=1)
+        self.c.setFillColor(NAVY)
+        self.c.roundRect(x + 1, y + height - 25, width - 2, 24, 9, fill=1, stroke=0)
+        self.c.setFillColor(white)
+        self.c.setFont("MalgunBold", 6.8)
+        self.c.drawString(x + 9, y + height - 16, screen_id)
+        self.c.setFont("MalgunBold", 9.5)
+        self.c.drawRightString(x + width - 9, y + height - 16, title)
+        return x + 8, y + 8, width - 16, height - 41
+
+    def wireframe_region(
+        self,
+        x: float,
+        y: float,
+        width: float,
+        height: float,
+        label: str,
+        accent: Color = PAPER_2,
+        filled: bool = False,
+    ) -> None:
+        self.c.setFillColor(HexColor("#F3F7F8") if filled else PAPER)
+        self.c.setStrokeColor(accent)
+        self.c.setLineWidth(0.8)
+        self.c.roundRect(x, y, width, height, 4, fill=1, stroke=1)
+        self.c.setFillColor(INK)
+        self.c.setFont("MalgunBold", 6.5)
+        self.draw_wrapped(label, x + 6, y + height - 12, width - 12, 8.3, INK, "MalgunBold", 6.5, 3)
 
     def draw_asset_cover(self, key: str, x: float, y: float, width: float, height: float) -> None:
         image = ASSETS[key]
@@ -1013,6 +1113,245 @@ class BlueprintRenderer:
         self.draw_wrapped(page["boundary"], MARGIN, 56, PAGE_W - 2 * MARGIN, 10, MUTED, "Malgun", 7.6, 2)
         self.footer()
 
+    def draw_screen_flow_map(self, page: dict) -> None:
+        y = self.header(page["eyebrow"], page["title"], page["claim"])
+        palette = {"TITLE": SKY, "BOOK": VIOLET, "BRIEF": GOLD, "BUILD": LIME, "RUN": SKY, "RESULT": DARK}
+        positions = {
+            "TITLE": (MARGIN, 328),
+            "BOOK": (MARGIN + 145, 328),
+            "BRIEF": (MARGIN + 290, 328),
+            "BUILD": (MARGIN + 435, 328),
+            "RUN": (MARGIN + 580, 328),
+            "RESULT": (MARGIN + 580, 166),
+        }
+        node_w, node_h = 130, 86
+        details = {node_id: (title, body) for node_id, title, body in page["nodes"]}
+        for node_id, (x, node_y) in positions.items():
+            if node_id in details:
+                title, body = details[node_id]
+                self.flow_node(x, node_y, node_w, node_h, node_id, title, body, palette[node_id])
+
+        def anchor(node_id: str, target_id: str) -> tuple[tuple[float, float], tuple[float, float]]:
+            x1, y1 = positions[node_id]
+            x2, y2 = positions[target_id]
+            if abs(x2 - x1) >= abs(y2 - y1):
+                return (
+                    (x1 + (node_w if x2 > x1 else 0), y1 + node_h / 2),
+                    (x2 + (0 if x2 > x1 else node_w), y2 + node_h / 2),
+                )
+            return (
+                (x1 + node_w / 2, y1 + (0 if y2 < y1 else node_h)),
+                (x2 + node_w / 2, y2 + (node_h if y2 < y1 else 0)),
+            )
+
+        for start_id, end_id, label in page["routes"]:
+            if start_id not in positions or end_id not in positions:
+                continue
+            if (start_id, end_id) == ("TITLE", "BRIEF"):
+                # The first session bypasses Route Book.  A straight TITLE→BRIEF
+                # line would pass through BOOK and falsely read as an implied
+                # TITLE→BOOK→BRIEF-only journey, so preserve the independent
+                # entry route in its own lane above the three shell cards.
+                title_x, title_y = positions["TITLE"]
+                brief_x, brief_y = positions["BRIEF"]
+                title_center_x = title_x + node_w / 2
+                brief_center_x = brief_x + node_w / 2
+                lane_y = title_y + node_h + 25
+                self.c.saveState()
+                self.c.setStrokeColor(SKY)
+                self.c.setLineWidth(1.35)
+                self.c.line(title_center_x, title_y + node_h, title_center_x, lane_y)
+                self.c.line(title_center_x, lane_y, brief_center_x, lane_y)
+                self.c.restoreState()
+                self.draw_arrow((brief_center_x, lane_y), (brief_center_x, brief_y + node_h), "", SKY)
+                self.c.setFont("MalgunBold", 6.5)
+                label_w = pdfmetrics.stringWidth(label, "MalgunBold", 6.5) + 10
+                label_x = (title_center_x + brief_center_x) / 2
+                self.c.setFillColor(PAPER)
+                self.c.roundRect(label_x - label_w / 2, lane_y - 4, label_w, 12, 4, fill=1, stroke=0)
+                self.c.setFillColor(SKY)
+                self.c.drawCentredString(label_x, lane_y, label)
+                continue
+            if (start_id, end_id) == ("RESULT", "BUILD"):
+                # The former diagonal label occupied the same coordinates as
+                # the BUILD preflight-failure self-loop.  Route Edit through a
+                # dedicated lower lane so the two distinct ways back to BUILD
+                # remain independently readable.
+                result_x, result_y = positions["RESULT"]
+                build_x, build_y = positions["BUILD"]
+                result_center_x = result_x + node_w / 2
+                build_center_x = build_x + node_w / 2
+                lane_y = result_y - 27
+                self.c.saveState()
+                self.c.setStrokeColor(DARK)
+                self.c.setLineWidth(1.35)
+                self.c.line(result_center_x, result_y, result_center_x, lane_y)
+                self.c.line(result_center_x, lane_y, build_center_x, lane_y)
+                self.c.restoreState()
+                self.draw_arrow((build_center_x, lane_y), (build_center_x, build_y), "", DARK)
+                self.c.setFont("MalgunBold", 6.5)
+                label_w = pdfmetrics.stringWidth(label, "MalgunBold", 6.5) + 10
+                label_x = (result_center_x + build_center_x) / 2
+                self.c.setFillColor(PAPER)
+                self.c.roundRect(label_x - label_w / 2, lane_y - 4, label_w, 12, 4, fill=1, stroke=0)
+                self.c.setFillColor(DARK)
+                self.c.drawCentredString(label_x, lane_y, label)
+                continue
+            if (start_id, end_id) == ("RESULT", "RUN"):
+                result_x, result_y = positions["RESULT"]
+                run_x, run_y = positions["RUN"]
+                self.draw_arrow(
+                    (result_x + node_w, result_y + node_h / 2),
+                    (run_x + node_w, run_y + node_h / 2),
+                    label,
+                    SKY,
+                    label_offset=(15, 0),
+                )
+                continue
+            start, end = anchor(start_id, end_id)
+            offset = (0, 49) if start[1] == end[1] else (-18, 10)
+            self.draw_arrow(start, end, label, palette.get(start_id, NAVY), label_offset=offset)
+        if "BUILD" in details:
+            build_x, build_y = positions["BUILD"]
+            self.draw_arrow(
+                (build_x + 22, build_y - 54),
+                (build_x + 22, build_y),
+                "사전검사 실패: BUILD 유지",
+                CRIMSON,
+                True,
+                (79, -5),
+            )
+        self.c.setFillColor(HexColor("#F8E4E0"))
+        self.c.setStrokeColor(CRIMSON)
+        self.c.roundRect(MARGIN, 73, PAGE_W - 2 * MARGIN, 45, 8, fill=1, stroke=1)
+        self.draw_wrapped(page["footer"], MARGIN + 14, 98, PAGE_W - 2 * MARGIN - 28, 10.5, CRIMSON, "MalgunBold", 8.4, 2)
+        self.footer()
+
+    def draw_gameplay_flow_map(self, page: dict) -> None:
+        self.header(page["eyebrow"], page["title"], page["claim"])
+        palette = {"OBSERVE": SKY, "BUILD": GOLD, "CHECK": VIOLET, "RUN": LIME, "RESULT": DARK}
+        positions = {
+            "OBSERVE": (MARGIN, 334),
+            "BUILD": (MARGIN + 145, 334),
+            "CHECK": (MARGIN + 290, 334),
+            "RUN": (MARGIN + 435, 334),
+            "RESULT": (MARGIN + 580, 334),
+        }
+        node_w, node_h = 130, 86
+        details = {node_id: (title, body) for node_id, title, body in page["stages"]}
+        for node_id, (x, node_y) in positions.items():
+            if node_id in details:
+                title, body = details[node_id]
+                self.flow_node(x, node_y, node_w, node_h, node_id, title, body, palette[node_id])
+
+        def main_anchor(node_id: str, target_id: str) -> tuple[tuple[float, float], tuple[float, float]]:
+            x1, y1 = positions[node_id]
+            x2, y2 = positions[target_id]
+            if x2 < x1:
+                return (x1, y1 + node_h / 2), (x2 + node_w, y2 + node_h / 2)
+            return (x1 + node_w, y1 + node_h / 2), (x2, y2 + node_h / 2)
+
+        for start_id, end_id, label in page["branches"]:
+            if start_id not in positions or end_id not in positions:
+                continue
+            start, end = main_anchor(start_id, end_id)
+            self.draw_arrow(start, end, label, palette.get(start_id, NAVY), label_offset=(0, 11))
+
+        run_x, run_y = positions["RUN"]
+        detail_y = 168
+        detail_w = 168
+        detail_cards = page.get(
+            "run_detail",
+            [
+                ["화물", "정확한 화물 칸 통과", "적재 → TOP 변경"],
+                ["역", "상하좌우 인접 서비스", "matching TOP 묶음 하역"],
+                ["노선", "분기·주의·폐기", "선택/감속/정상 복귀"],
+            ],
+        )
+        for index, (title, trigger, consequence) in enumerate(detail_cards):
+            x = MARGIN + 130 + index * (detail_w + 18)
+            accent = [SKY, LIME, GOLD][index % 3]
+            self.flow_node(x, detail_y, detail_w, 80, f"RUN-{index + 1}", title, f"{trigger}\n→ {consequence}", accent)
+            self.draw_arrow((run_x + node_w / 2, run_y), (x + detail_w / 2, detail_y + 80), "운행 중", accent, label_offset=(0, 7))
+        self.c.setFillColor(NAVY)
+        self.c.roundRect(MARGIN, 66, PAGE_W - 2 * MARGIN, 48, 8, fill=1, stroke=0)
+        self.draw_wrapped(page["footer"], MARGIN + 14, 94, PAGE_W - 2 * MARGIN - 28, 10.5, white, "MalgunBold", 8.4, 3)
+        self.footer()
+
+    def draw_shell_wireframe(self, page: dict) -> None:
+        y = self.header(page["eyebrow"], page["title"], page["claim"])
+        frame_w, frame_h = (PAGE_W - 2 * MARGIN - 24) / 3, 300
+        accents = [SKY, VIOLET, GOLD]
+        for index, (screen_id, title, hero, action, secondary) in enumerate(page["screens"]):
+            x = MARGIN + index * (frame_w + 12)
+            inner_x, inner_y, inner_w, inner_h = self.wireframe_frame(x, 124, frame_w, frame_h, screen_id, title, accents[index])
+            if index == 0:
+                self.wireframe_region(inner_x + 10, inner_y + inner_h - 72, inner_w - 20, 42, hero, SKY, True)
+                self.wireframe_region(inner_x + 22, inner_y + 83, inner_w - 44, 70, "Hero visual / world mood", PAPER_2)
+                self.wireframe_region(inner_x + 10, inner_y + 42, inner_w - 20, 25, action, SKY, True)
+                self.wireframe_region(inner_x + 10, inner_y + 10, inner_w - 20, 20, secondary, PAPER_2)
+            elif index == 1:
+                self.wireframe_region(inner_x + 8, inner_y + 44, inner_w * 0.42, inner_h - 52, "Stage card list\nname + one question", VIOLET)
+                self.wireframe_region(inner_x + inner_w * 0.47, inner_y + 88, inner_w * 0.45, inner_h - 96, hero, PAPER_2)
+                self.wireframe_region(inner_x + inner_w * 0.47, inner_y + 52, inner_w * 0.45, 25, action, VIOLET, True)
+                self.wireframe_region(inner_x + inner_w * 0.47, inner_y + 16, inner_w * 0.45, 22, secondary, PAPER_2)
+            else:
+                self.wireframe_region(inner_x + 8, inner_y + 55, inner_w * 0.48, inner_h - 63, "Lesson art\nrule context", PAPER_2)
+                self.wireframe_region(inner_x + inner_w * 0.52, inner_y + 105, inner_w * 0.4, inner_h - 113, f"{hero}\n{secondary}", GOLD)
+                self.wireframe_region(inner_x + inner_w * 0.52, inner_y + 55, inner_w * 0.4, 30, action, GOLD, True)
+        self.c.setFillColor(MUTED)
+        self.c.setFont("Malgun", 8.2)
+        self.c.drawCentredString(PAGE_W / 2, 77, "각 프레임은 실제 화면의 정보 영역·행동 영역을 나타내며, 런타임 스크린샷이나 새 UI 이미지는 아니다.")
+        self.footer()
+
+    def draw_board_wireframe(self, page: dict) -> None:
+        self.header(page["eyebrow"], page["title"], page["claim"])
+        frame_w, frame_h, frame_y = 365, 304, 124
+        for index, spec in enumerate([page["build"], page["run"]]):
+            screen_id, title, side_label, board_label, action_label = spec
+            accent = LIME if index == 0 else SKY
+            x = MARGIN + index * (frame_w + 28)
+            inner_x, inner_y, inner_w, inner_h = self.wireframe_frame(x, frame_y, frame_w, frame_h, screen_id, title, accent)
+            self.wireframe_region(inner_x, inner_y + 36, 46, inner_h - 44, side_label, accent)
+            board_x, board_y, board_w, board_h = inner_x + 55, inner_y + 48, inner_w - 124, inner_h - 56
+            self.wireframe_region(board_x, board_y, board_w, board_h, board_label, PAPER_2, True)
+            self.c.setStrokeColor(HexColor("#D5C093"))
+            self.c.setLineWidth(0.35)
+            for grid_index in range(1, 9):
+                self.c.line(board_x + grid_index * board_w / 9, board_y, board_x + grid_index * board_w / 9, board_y + board_h)
+            for grid_index in range(1, 6):
+                self.c.line(board_x, board_y + grid_index * board_h / 6, board_x + board_w, board_y + grid_index * board_h / 6)
+            if index == 0:
+                self.wireframe_region(inner_x + inner_w - 60, inner_y + inner_h - 80, 52, 50, "Objective\nPreflight", GOLD)
+                self.wireframe_region(inner_x + inner_w - 60, inner_y + 8, 52, 22, action_label, LIME, True)
+            else:
+                self.wireframe_region(inner_x + inner_w - 60, inner_y + inner_h - 74, 52, 44, "TOP\nAuto\nTimer", VIOLET)
+                self.wireframe_region(inner_x + inner_w - 60, inner_y + 54, 52, 38, "Route\ncontrol", SKY)
+                self.wireframe_region(inner_x + inner_w - 60, inner_y + 8, 52, 22, action_label, SKY, True)
+        self.c.setFillColor(HexColor("#F8E4E0"))
+        self.c.setStrokeColor(CRIMSON)
+        self.c.roundRect(MARGIN, 65, PAGE_W - 2 * MARGIN, 42, 8, fill=1, stroke=1)
+        self.draw_wrapped(page["footer"], MARGIN + 14, 89, PAGE_W - 2 * MARGIN - 28, 10.3, CRIMSON, "MalgunBold", 8.2, 2)
+        self.footer()
+
+    def draw_result_wireframe(self, page: dict) -> None:
+        self.header(page["eyebrow"], page["title"], page["claim"])
+        screen_id, title, facts, retry, edit = page["screen"]
+        frame_w, frame_h, frame_y = 355, 290, 134
+        for index, outcome in enumerate([("SUCCESS", "성공", LIME, "Next stage / Title"), ("FAILURE", "실패", CRIMSON, "Title / Next stage")]):
+            key, outcome_title, accent, secondary = outcome
+            x = MARGIN + index * (frame_w + 62)
+            inner_x, inner_y, inner_w, inner_h = self.wireframe_frame(x, frame_y, frame_w, frame_h, f"{screen_id} · {key}", f"{title} · {outcome_title}", accent)
+            self.wireframe_region(inner_x + 12, inner_y + inner_h - 78, inner_w - 24, 52, facts, accent, True)
+            self.wireframe_region(inner_x + 12, inner_y + 84, inner_w - 24, 58, "원인 / 남은 화물 / 스택\n사실 기반 결과 요약", PAPER_2)
+            self.wireframe_region(inner_x + 12, inner_y + 42, (inner_w - 32) / 2, 26, retry, SKY, True)
+            self.wireframe_region(inner_x + 20 + (inner_w - 32) / 2, inner_y + 42, (inner_w - 32) / 2, 26, edit, GOLD, True)
+            self.wireframe_region(inner_x + 12, inner_y + 10, inner_w - 24, 20, secondary, PAPER_2)
+        self.c.setFillColor(NAVY)
+        self.c.roundRect(MARGIN, 69, PAGE_W - 2 * MARGIN, 40, 8, fill=1, stroke=0)
+        self.draw_wrapped(page["footer"], MARGIN + 14, 93, PAGE_W - 2 * MARGIN - 28, 10.5, white, "MalgunBold", 8.3, 2)
+        self.footer()
+
     def draw_wireframes(self, page: dict) -> None:
         y = self.header(page["eyebrow"], page["title"], page["claim"])
         card_w = (PAGE_W - 2 * MARGIN - 24) / 3
@@ -1197,6 +1536,11 @@ class BlueprintRenderer:
             "result": self.draw_result,
             "content": self.draw_content,
             "visual": self.draw_visual,
+            "screen_flow_map": self.draw_screen_flow_map,
+            "gameplay_flow_map": self.draw_gameplay_flow_map,
+            "shell_wireframe": self.draw_shell_wireframe,
+            "board_wireframe": self.draw_board_wireframe,
+            "result_wireframe": self.draw_result_wireframe,
             "wireframes": self.draw_wireframes,
             "run_state": self.draw_run_state,
             "asset_readiness": self.draw_asset_readiness,
