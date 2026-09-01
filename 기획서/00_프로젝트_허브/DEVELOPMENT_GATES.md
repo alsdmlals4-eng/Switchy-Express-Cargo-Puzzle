@@ -1,6 +1,6 @@
 # Development Gates
 
-Last updated: `2026-08-31 KST`
+Last updated: `2026-09-01 KST`
 
 현재 실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 우선한다. 과거 commit/PR/run은 역사 evidence이며 current next action을 자동 정의하지 않는다.
 
@@ -63,7 +63,7 @@ PRODUCTION CUTOVER: BLOCKED_DEFERRED
 
 ## 1B. SX-DEC-063 hybrid miniature-diorama visual-production planning gate
 
-`PASS · USER_APPROVED_DIRECTION · ISSUE #239/#243 · TERRAIN_V02_APPROVED_GITHUB_PRESERVED · RUNTIME_UNCHANGED`
+`HISTORICAL_PRE_RUNTIME · USER_APPROVED_DIRECTION · ISSUE #239/#243 · TERRAIN_V02_APPROVED_GITHUB_PRESERVED`
 
 Binding owners:
 
@@ -75,7 +75,7 @@ docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production
 기획서/40_표현/TARGET_BUILD_SCREEN_SURFACE_AND_VISUAL_COVERAGE.md
 ```
 
-The selected direction adds elevated miniature-diorama depth cues within the existing rectangular BUILD/RUN grid. The user promoted only `SX-VIS-063-CANDIDATE-001` as v02 source art with SHA/provenance and a real future consumer. It does not yet authorize a true isometric conversion, Godot/Scene/Resource runtime integration, a production asset batch, gameplay/data/audio/locale/progression changes, Issue #227 T2 replacement, or a new human/player-evidence claim. The next runtime mutation must follow `SX_DEC_063_TERRAIN_RUNTIME_INTEGRATION_HANDOFF.md`.
+The selected direction adds elevated miniature-diorama depth cues within the existing rectangular BUILD/RUN grid. The user promoted only `SX-VIS-063-CANDIDATE-001` as v02 source art with SHA/provenance and a real future consumer. This is the pre-runtime planning checkpoint: its former `RUNTIME_UNCHANGED` wording applies only to that historical checkpoint. Current SX-DEC-063 runtime status is `CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED · RUNTIME_CONSUMERS_CONNECTED` in `CURRENT_CONFIRMED_DECISIONS.md` and `ACTIVE_CONTEXT.md`. It neither authorizes a true isometric conversion nor changes gameplay/data/audio/locale/progression, Issue #227 T2 replacement, or human/player-evidence claims.
 
 ## 2. Historical Candidate 004 evidence boundary
 

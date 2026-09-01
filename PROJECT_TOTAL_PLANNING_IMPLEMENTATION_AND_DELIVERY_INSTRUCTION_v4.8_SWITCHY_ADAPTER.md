@@ -10,6 +10,8 @@ historical_r4_role: USER_PROVIDED_V4_8_R4_CONTRACT
 historical_r2_sha256: 6f0541048e084746f6777223521361d0339dbfb2e223c70947f694f1c050f508
 base_repository: https://github.com/alsdmlals4-eng/Base
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
+base_current_execution_model: FRESH_READ_ONLY_NO_REPIN
+base_current_observation_role: TASK_SCOPED_AUDIT_INPUT_NOT_RELEASE_LOCK
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 project_repository: https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
 human_workspace: GITHUB_REPOSITORY_ONLY_PROJECT_WORKSPACE
@@ -30,6 +32,7 @@ shared_godot_runtime_policy: SHARED_APPROVED_EXACT_PIN_DEFAULT_NO_PER_PROJECT_DU
 shared_godot_ai_port_policy: FIXED_DEFAULT_PORTS_WITH_EXACT_SESSION_ROUTING
 slice_delivery_policy: PLAYABLE_MEANINGFUL_SLICE_INCREMENTAL_DELIVERY
 requirement_traceability_policy: REQUIREMENT_TO_OWNER_IMPLEMENTATION_EVIDENCE_COMPLETION_REQUIRED
+current_base_provider_change: DEFERRED_UNVERIFIED
 ---
 
 # Switchy Express · v4.8 r5.4 project thin adapter
@@ -57,6 +60,21 @@ current_decision_span: SX-DEC-027~069
 ```
 
 `Base v9.4.3` pin은 과거 project compatibility evidence일 뿐 current Base 실행 방법론 pin이 아니다.
+
+## 1A. Current Base execution adaptation
+
+Switchy reads the latest completed Base `main` at each material task start, but does not convert that observation into a new release pin, copied shared policy body, or Godot-provider migration.  The current Base supplies the execution method; this adapter owns only Switchy's deliberate deviations and project boundaries.
+
+```yaml
+base_current_execution_model: FRESH_READ_ONLY_NO_REPIN
+base_current_observation_role: TASK_SCOPED_AUDIT_INPUT_NOT_RELEASE_LOCK
+project_base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
+current_base_provider_change: DEFERRED_UNVERIFIED
+base_release_or_registry_repin: USER_DECISION_AND_COMPATIBILITY_EVIDENCE_REQUIRED
+base_promotion_from_single_project_observation: DEFERRED
+```
+
+`DEFERRED_UNVERIFIED` is not a failure claim about Base. It records that Switchy's current Godot provider/toolchain has not completed an exact compatibility, canary, rollback, and user-approved adoption path. Until that path exists, the project retains its current tooling authority and reads the relevant current Base owner only when a task actually needs it.
 
 ## 2. Authority / domain split
 
@@ -165,6 +183,38 @@ candidate가 pin한 exact source 이후 player-facing GDScript, Scene, Resource,
 tooling-only, test-only, documentation-only 변경은 candidate를 무효화하지 않는다. candidate pointer, current GitHub owner, actual runtime evidence 중 candidate ID/source/status/next action이 하나라도 다르면 새 candidate 생성이나 physical gate 승격 전에 `CONTEXT_DRIFT_RECHECK_REQUIRED` reconciliation을 완료한다.
 
 종료 전 ready/deferred/high-risk queue를 재계산한다. `REQUIRED_WORK_REMAINING: 0`이 되기 전에는 자동화 가능한 current-slice work를 중단하지 않는다. `0`은 machine-executable work의 종료 조건일 뿐 physical/human/player evidence를 PASS로 승격하지 않는다.
+
+## 2D. Base-current adapted control plane
+
+For L1+ work, Switchy follows the current Base control plane as a sequence of observable repository states. The work type selects the implementation owner: canonical and contract work is noncoding repository work; GDScript, Scene, Resource, map, and runtime changes require an exact `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF`.
+
+```text
+FRESH_READ → CLASSIFY → PLAN → BUILD_OR_HANDOFF → VERIFY → FIVE_ADVERSARIAL_LOOPS
+→ PR_EXACT_HEAD → NORMAL_MERGE → MAIN_READBACK → REMAINING_WORK_RECALCULATION
+```
+
+```yaml
+l1_plus_preflight:
+  execution_surface: LOCAL_WORKTREE
+  base_completed_main: FRESH_READ_REQUIRED
+  project_main_and_open_prs: FRESH_READ_REQUIRED
+  authority_and_actual_consumer: FRESH_READ_REQUIRED
+  alternatives: MINIMUM_THREE_WITH_ADOPT_ADAPT_REJECT
+  external_research_without_material_external_fact: NOT_MATERIAL_WITH_REASON
+  workstream_rule: OPEN_PR_READ_ONLY_BY_DEFAULT
+  write_parent: LATEST_COMPLETED_MAIN_ONLY
+verification:
+  red_green_regression: REQUIRED_FOR_CHANGED_MACHINE_CONTRACT
+  adversarial_loops: MINIMUM_FIVE_FOR_L1_PLUS
+  evidence_ceiling: PRESERVE_REAL_LEVELS
+closure:
+  merge: NORMAL_REPOSITORY_GATE_ONLY
+  postmerge_main_readback: REQUIRED
+  remaining_work_recalculation: REQUIRED
+  completion_meaning: APPROVED_SCOPE_ONLY
+```
+
+`REMAINING_WORK_RECALCULATION` closes only the approved task contract. It does not make an optional final-user review, an unrun physical/device/audio gate, an unreviewed generated image, or production cutover complete. Conversely, a separately deferred product gate does not prevent a documentation-only operating-contract task from reaching a clean review exit.
 
 ## 3A. SX-DEC-060 current amendment
 

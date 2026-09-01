@@ -4,6 +4,8 @@
 
 이 저장소는 `alsdmlals4-eng/Base` v9.4.3 project compatibility pin을 역사적으로 보존하면서, **사용자가 2026-08-26 제공한 v4.8 r5.4 Superset Final 작업 계약**과 최신 Base completed `main`을 현재 실행 방법론으로 사용하는 Godot 프로젝트다.
 
+현재 Base의 실행 모델은 매 material task에서 fresh-read하여 `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`의 Switchy-specific control plane으로만 적용한다. 최신 Base `main` 관찰값은 release pin·Skill Registry 교체·Godot provider migration 권한이 아니며, 이 프로젝트의 `v9.4.3` compatibility evidence와 제품 경계를 자동 변경하지 않는다.
+
 ## 1. 권위 순서
 
 1. 사용자의 최신 지시와 승인

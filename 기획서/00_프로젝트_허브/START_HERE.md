@@ -1,6 +1,6 @@
 # Switchy Express 프로젝트 허브
 
-Last updated: `2026-08-31 KST`
+Last updated: `2026-09-01 KST`
 
 이 문서는 현재 제품 기준선과 **다음 실행 지점**을 빠르게 찾는 허브다. 실행 전에는 항상 fresh Base completed `main`, current Skill Registry/generated map, fresh project `main`, Open/Draft PR, current GitHub owners와 actual runtime evidence를 다시 읽는다. Notion의 current structure는 GitHub에 이관됐고 historical audit-only다.
 
@@ -9,10 +9,11 @@ Last updated: `2026-08-31 KST`
 | 항목 | 현재 값 |
 |---|---|
 | 제품 기준선 | `GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060` |
-| 결정 범위 | `SX-DEC-027~067` |
+| 결정 범위 | `SX-DEC-027~069` |
 | 작업지시문 | `v4.8 · revision 2026-08-26-r5.4-superset-final · Switchy thin adapter` |
 | 작업지시문 역할 | `USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT` |
 | current project adapter | `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md` |
+| Current Base adapted control plane | `fresh-read only · no Base repin · L1+ exact-head/remaining-work closure` |
 | historical v4.8 r4 predecessor | `2026-08-24-r4 · PROVENANCE_ONLY` |
 | SX-DEC-059 implementation | `MERGED_MAIN_VERIFIED · PRE_SX_DEC_060_RUNTIME` |
 | SX-DEC-060 | `MERGED_MAIN_VERIFIED · PR #188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7` |
@@ -56,6 +57,8 @@ past conversation not required
 base_runtime_authority: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 base_compatibility_pin: HISTORICAL_COMPATIBILITY_ONLY
 skill_coverage: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT
+base_current_execution_model: FRESH_READ_ONLY_NO_REPIN
+base_current_provider_change: DEFERRED_UNVERIFIED
 ```
 
 과거 Base SHA는 compatibility/audit evidence다. 현재 Base SHA를 프로젝트 정본에 고정하지 않는다.
