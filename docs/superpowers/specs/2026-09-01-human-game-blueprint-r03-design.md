@@ -1,7 +1,7 @@
 # Switchy Express · Human Game Blueprint r03 Design
 
 **Design ID:** `SX-HGB-001-R03-DESIGN`  
-**Status:** `USER_APPROVED_SCOPE · DESIGN_REVIEW_REQUIRED_BEFORE_BLUEPRINT_PUBLICATION`  
+**Status:** `USER_APPROVED_SCOPE_AND_DESIGN · PUBLICATION_PLAN_READY`
 **Approved request:** 현재 작업순서에 따라 벤치마킹을 완료하고, 실제 화면·소비처에 맞는 블루프린트(와이어프레임·플로우 맵·UI/이미지 준비도)를 제작한다.  
 **Work mode:** `PLAN` — 이 문서는 r03 발행 전 설계 원본이며, 새 게임 규칙·Godot 장면·GDScript·런타임 이미지·Candidate 010 바이트를 변경하지 않는다.
 
@@ -205,8 +205,8 @@ No game source, scene, map, runtime product PNG, Candidate package pointer, or a
 
 ### Required before r03 publication
 
-1. User review of this design: confirm the information hierarchy, screen flow, and no-new-bitmap finding.
-2. Write an exact implementation/publication plan only after that review.
+1. The user approved this design's information hierarchy, screen flow, and no-new-bitmap finding on 2026-09-01 KST.
+2. Follow `docs/superpowers/plans/2026-09-01-human-game-blueprint-r03-publication.md` for the exact publication work order.
 3. Update the registered human-blueprint source and its manifest in one branch.
 4. Run JSON/registry/document-link validation, the project contract validator, and PDF build/render inspection.
 5. Perform five full-scope adversarial loops for scope, flow/consumer correctness, asset/provenance state, visual readability, and evidence ceiling.
@@ -225,4 +225,3 @@ No game source, scene, map, runtime product PNG, Candidate package pointer, or a
 ### Rollback
 
 This design is documentation-only. A normal Git revert removes the design/registry navigation entries without altering product bytes, assets, Candidate 010, or the r02 PDF. Existing historical and approved document visuals remain preserved.
-
