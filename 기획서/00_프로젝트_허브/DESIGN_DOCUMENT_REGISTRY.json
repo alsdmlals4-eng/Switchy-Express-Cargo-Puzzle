@@ -51,6 +51,14 @@
       "status": "CURRENT"
     },
     {
+      "id": "SX-HGB-001-R03-DESIGN",
+      "question": "현재 Godot 화면·소비처·자산 상태를 보존하며 사람용 SX-HGB-001을 r03으로 어떻게 갱신하는가",
+      "source": "docs/superpowers/specs/2026-09-01-human-game-blueprint-r03-design.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "CURRENT"
+    },
+    {
       "id": "SX-ACTIVE-CONTEXT",
       "question": "현재 상태와 다음 정확한 작업은 무엇인가",
       "source": "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",

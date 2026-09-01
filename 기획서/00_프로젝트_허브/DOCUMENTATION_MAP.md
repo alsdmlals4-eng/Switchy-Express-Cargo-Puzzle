@@ -7,6 +7,7 @@
 | 지금 무엇을 만들고 있으며 현재 Gate는 무엇인가 | `START_HERE.md` |
 | 현재 상태와 다음 정확한 작업은 무엇인가 | `ACTIVE_CONTEXT.md` |
 | 승인된 결정은 무엇인가 | `CURRENT_CONFIRMED_DECISIONS.md` |
+| 현재 Godot 화면·소비처를 보존하며 사람용 블루프린트를 r03으로 갱신하는 설계는 무엇인가 | `../../../docs/superpowers/specs/2026-09-01-human-game-blueprint-r03-design.md` |
 | SX-DEC-065의 머신 우선 검증과 최종 사용자 검수의 경계는 무엇인가 | `../../../docs/decisions/SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW_VALIDATION_POLICY.md` |
 | Route Book 02의 투명 오브젝트형 후보와 주의구간 진입·회복 연출의 승인 범위·검증 경계는 무엇인가 | `../../../docs/decisions/SX_DEC_069_TRANSPARENT_WAYSIDE_AND_SPEED_TRANSITIONS.md` |
 | Route Book 01의 승인 범위·보호 규칙·증거 전환은 무엇인가 | `../../../docs/decisions/SX_DEC_066_CURATED_ROUTE_BOOK_01.md` |
