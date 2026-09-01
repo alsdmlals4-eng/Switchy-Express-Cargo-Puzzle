@@ -47,6 +47,7 @@ ASSETS = {
     "terrain": ROOT / "art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png",
     "terrain_v02": ROOT / "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
     "title": ROOT / "art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png",
+    "title_wordmark": ROOT / "art/product_assets/ed_hybrid_v2/shells/shell_title_wordmark_switchy_express_candidate_v01.png",
     "lesson": ROOT / "art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v02.png",
     "success": ROOT / "art/product_assets/ed_hybrid_v1/shells/shell_result_success_v02.png",
     "failure": ROOT / "art/product_assets/ed_hybrid_v1/shells/shell_result_failure_v02.png",
@@ -270,6 +271,9 @@ class BlueprintRenderer:
         self.draw_asset_cover("hgb_title", 0, 0, PAGE_W, PAGE_H)
         self.c.setFillColor(Color(0.02, 0.07, 0.1, alpha=0.80))
         self.c.rect(0, 0, PAGE_W * 0.58, PAGE_H, fill=1, stroke=0)
+        self.c.setFillColor(PAPER)
+        self.c.roundRect(MARGIN, PAGE_H - 173, 405, 72, 10, fill=1, stroke=0)
+        self.draw_asset_contain("title_wordmark", MARGIN + 18, PAGE_H - 163, 369, 52)
         self.c.setFillColor(GOLD)
         self.c.roundRect(MARGIN, PAGE_H - 73, 154, 21, 10, fill=1, stroke=0)
         self.c.setFillColor(NAVY)
@@ -277,7 +281,7 @@ class BlueprintRenderer:
         self.c.drawCentredString(MARGIN + 77, PAGE_H - 66, "HUMAN GAME BLUEPRINT")
         self.c.setFillColor(white)
         self.c.setFont("MalgunBold", 33)
-        y = PAGE_H - 122
+        y = PAGE_H - 223
         for line in page["title"].split("\n"):
             self.c.drawString(MARGIN, y, line)
             y -= 42
@@ -919,6 +923,127 @@ class BlueprintRenderer:
         self.draw_wrapped(page["boundary"], MARGIN, 56, PAGE_W - 2 * MARGIN, 10, MUTED, "Malgun", 7.6, 2)
         self.footer()
 
+    def draw_wireframes(self, page: dict) -> None:
+        y = self.header(page["eyebrow"], page["title"], page["claim"])
+        card_w = (PAGE_W - 2 * MARGIN - 24) / 3
+        card_h = 140
+        accents = [SKY, VIOLET, GOLD, LIME, SKY, CRIMSON]
+        for index, card in enumerate(page["cards"]):
+            screen_id, title, attention, information, action = card
+            row, col = divmod(index, 3)
+            x = MARGIN + col * (card_w + 12)
+            card_y = y - 160 - row * 162
+            accent = accents[index % len(accents)]
+            self.c.setFillColor(white)
+            self.c.setStrokeColor(accent)
+            self.c.setLineWidth(1.1)
+            self.c.roundRect(x, card_y, card_w, card_h, 8, fill=1, stroke=1)
+            self.c.setFillColor(NAVY)
+            self.c.roundRect(x + 1, card_y + card_h - 30, card_w - 2, 29, 7, fill=1, stroke=0)
+            self.c.setFillColor(white)
+            self.c.setFont("MalgunBold", 7.2)
+            self.c.drawString(x + 10, card_y + card_h - 19, screen_id)
+            self.c.setFont("MalgunBold", 10.4)
+            self.c.drawRightString(x + card_w - 10, card_y + card_h - 19, title)
+            self.c.setFillColor(accent)
+            self.c.setFont("MalgunBold", 7.1)
+            self.c.drawString(x + 11, card_y + card_h - 49, "첫 시선")
+            self.draw_wrapped(attention, x + 11, card_y + card_h - 63, card_w - 22, 10, INK, "MalgunBold", 8.1, 2)
+            self.c.setFillColor(MUTED)
+            self.c.setFont("MalgunBold", 7.1)
+            self.c.drawString(x + 11, card_y + 47, "읽을 정보")
+            self.draw_wrapped(information, x + 11, card_y + 33, card_w - 22, 9.2, MUTED, "Malgun", 7.5, 2)
+            self.c.setFillColor(accent)
+            self.c.roundRect(x + 9, card_y + 8, card_w - 18, 18, 5, fill=1, stroke=0)
+            self.c.setFillColor(white)
+            self.c.setFont("MalgunBold", 7.1)
+            self.c.drawCentredString(x + card_w / 2, card_y + 14, action)
+        self.footer()
+
+    def draw_run_state(self, page: dict) -> None:
+        y = self.header(page["eyebrow"], page["title"], page["claim"])
+        state_w = (PAGE_W - 2 * MARGIN - 24) / 3
+        state_h = 114
+        accents = [CRIMSON, SKY, VIOLET, GOLD, SKY, DARK]
+        positions: list[tuple[float, float]] = []
+        for index, state in enumerate(page["states"]):
+            state_id, title, trigger, player_read, next_state = state
+            row, col = divmod(index, 3)
+            x = MARGIN + col * (state_w + 12)
+            state_y = y - 149 - row * 152
+            positions.append((x, state_y))
+            accent = accents[index % len(accents)]
+            self.c.setFillColor(white)
+            self.c.setStrokeColor(accent)
+            self.c.setLineWidth(1.1)
+            self.c.roundRect(x, state_y, state_w, state_h, 8, fill=1, stroke=1)
+            self.c.setFillColor(accent)
+            self.c.roundRect(x + 10, state_y + state_h - 25, 74, 14, 6, fill=1, stroke=0)
+            self.c.setFillColor(white)
+            self.c.setFont("MalgunBold", 6.5)
+            self.c.drawCentredString(x + 47, state_y + state_h - 20, state_id)
+            self.c.setFillColor(INK)
+            self.c.setFont("MalgunBold", 10)
+            self.c.drawString(x + 10, state_y + state_h - 44, title)
+            self.c.setFillColor(MUTED)
+            self.c.setFont("Malgun", 7.2)
+            self.draw_wrapped(f"진입: {trigger}", x + 10, state_y + state_h - 61, state_w - 20, 8.8, MUTED, "Malgun", 7.2, 2)
+            self.draw_wrapped(f"판독: {player_read}", x + 10, state_y + 30, state_w - 20, 8.8, MUTED, "Malgun", 7.2, 2)
+            self.c.setFillColor(accent)
+            self.c.setFont("MalgunBold", 7.2)
+            self.c.drawRightString(x + state_w - 10, state_y + 12, f"다음: {next_state}")
+        self.c.setStrokeColor(NAVY)
+        self.c.setLineWidth(1.2)
+        for index in (0, 1, 3, 4):
+            x, state_y = positions[index]
+            self.c.line(x + state_w, state_y + state_h / 2, x + state_w + 9, state_y + state_h / 2)
+        self.c.setFillColor(NAVY)
+        self.c.roundRect(MARGIN, 58, PAGE_W - 2 * MARGIN, 37, 8, fill=1, stroke=0)
+        self.c.setFillColor(white)
+        self.c.setFont("MalgunBold", 8.6)
+        self.draw_wrapped(page["footer"], MARGIN + 14, 80, PAGE_W - 2 * MARGIN - 28, 10.5, white, "MalgunBold", 8.6, 2)
+        self.footer()
+
+    def draw_asset_readiness(self, page: dict) -> None:
+        y = self.header(page["eyebrow"], page["title"], page["claim"])
+        headers = page["headers"]
+        widths = [95, 175, 150, 145, PAGE_W - 2 * MARGIN - 565]
+        x = MARGIN
+        header_h = 29
+        self.c.setFillColor(NAVY)
+        self.c.rect(x, y - header_h, sum(widths), header_h, fill=1, stroke=0)
+        cursor = x
+        self.c.setFillColor(white)
+        self.c.setFont("MalgunBold", 7.1)
+        for heading, width in zip(headers, widths):
+            self.c.drawString(cursor + 6, y - 18, heading)
+            cursor += width
+        row_y = y - header_h
+        for row_index, row in enumerate(page["rows"]):
+            row_h = 48
+            self.c.setFillColor(white if row_index % 2 == 0 else PAPER_2)
+            self.c.rect(x, row_y - row_h, sum(widths), row_h, fill=1, stroke=0)
+            cursor = x
+            for col_index, (text, width) in enumerate(zip(row, widths)):
+                self.c.setStrokeColor(HexColor("#DDCFBC"))
+                self.c.rect(cursor, row_y - row_h, width, row_h, fill=0, stroke=1)
+                status = str(text)
+                color = INK if col_index == 0 else MUTED
+                if col_index == 2 and "PENDING" in status:
+                    color = GOLD
+                elif col_index == 2 and "APPROVED" in status:
+                    color = LIME
+                self.draw_wrapped(status, cursor + 6, row_y - 13, width - 12, 9.2, color, "MalgunBold" if col_index == 0 else "Malgun", 7.2, 4)
+                cursor += width
+            row_y -= row_h
+        self.c.setFillColor(HexColor("#F8E4E0"))
+        self.c.setStrokeColor(CRIMSON)
+        self.c.roundRect(MARGIN, 55, PAGE_W - 2 * MARGIN, 48, 8, fill=1, stroke=1)
+        self.c.setFillColor(CRIMSON)
+        self.c.setFont("MalgunBold", 8.3)
+        self.draw_wrapped(page["footer"], MARGIN + 14, 80, PAGE_W - 2 * MARGIN - 28, 10.5, CRIMSON, "MalgunBold", 8.3, 3)
+        self.footer()
+
     def draw_review(self, page: dict) -> None:
         y = self.header(page["eyebrow"], page["title"], page["claim"])
         self.c.setFillColor(INK)
@@ -982,6 +1107,9 @@ class BlueprintRenderer:
             "result": self.draw_result,
             "content": self.draw_content,
             "visual": self.draw_visual,
+            "wireframes": self.draw_wireframes,
+            "run_state": self.draw_run_state,
+            "asset_readiness": self.draw_asset_readiness,
             "review": self.draw_review,
         }
         try:
