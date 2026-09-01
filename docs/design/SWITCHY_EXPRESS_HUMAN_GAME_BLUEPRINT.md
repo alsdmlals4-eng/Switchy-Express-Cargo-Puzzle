@@ -37,11 +37,11 @@ source_main: 0bf5e2150d643210abf127e34880111ee986b29d
 output_pdf: output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260901_r03.pdf
 publication_manifest: docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT_PUBLICATION_MANIFEST.json
 generator: tools/build_human_game_blueprint.py
-content_review: PENDING_R03_SOURCE_REVIEW
-flow_branch_review: PENDING_R03_SOURCE_REVIEW
-scene_continuity_review: PENDING_R03_SOURCE_REVIEW
-human_language_review: PENDING_R03_SOURCE_REVIEW
-visual_render_review: NOT_RUN_R03
+content_review: MACHINE_SOURCE_READBACK_PASS_R03
+flow_branch_review: MACHINE_FLOW_SEMANTIC_PASS_R03
+scene_continuity_review: MACHINE_OWNER_READBACK_PASS_R03
+human_language_review: MACHINE_COPY_READBACK_PASS_R03
+visual_render_review: RENDERED_VISUAL_INSPECTION_PASS_R03
 user_final_review: AWAITING_R03_CONTENT_AND_RENDER_REVIEW
 implementation_authority: BLOCKED
 ```
@@ -197,7 +197,7 @@ implementation_authority: BLOCKED
         ["BUILD_FAIL", "사전검사 실패", "필수 경로/서비스 누락", "이유와 문제 칸을 읽음", "BUILD"],
         ["RUN_NORMAL", "정상 운행", "사전검사 통과", "TOP·Auto·시간·현재 행로", "분기/화물"],
         ["ROUTE_CHOICE", "분기 선택", "점유 전 도달", "대안 방향과 잠금 가능성", "RUN_NORMAL"],
-        ["DECELERATE", "주의 진입", "주의 칸에서 출발", "0.55 속도·amber 제동", "CAUTION"],
+        ["DECELERATE", "주의 진입", "주의 칸에서 출발", "0.55 속도·amber 제동", "주의 구간 운행"],
         ["ACCELERATE", "정상 복귀", "정상 칸으로 출발", "cyan 회복·연속 주의 반복 없음", "RUN_NORMAL"],
         ["RESULT", "결과", "성공·시간·ROUTE_END", "사실·남은 화물·다음 행동", "Retry/Edit/Title"]
       ],
@@ -377,6 +377,30 @@ implementation_authority: BLOCKED
 }
 ```
 <!-- BLUEPRINT_DATA:END -->
+
+## Publication validation record
+
+```yaml
+revision: r03
+machine_validation:
+  blueprint_renderer_tests: PASS · 6 tests
+  project_python_suite: PASS · 258 tests · 1 intentionally skipped
+  project_contract: PASS
+  pdf_structure: PASS · 23 pages · manifest SHA-256 match · title metadata match
+  rendered_visual_inspection: PASS · all 23 pages inspected after final render
+adversarial_review_loops:
+  - consumer_and_provenance_boundary: PASS · existing runtime assets, approved planning references, and document-only candidates remain separately labelled
+  - scope_and_authority: PASS · no Godot scene, GDScript, map, runtime asset, Candidate 010, or Route Book 02 approval change
+  - flow_semantics: PASS · BUILD_FAIL no longer visually transitions to RUN_NORMAL; caution entry and normal recovery remain separate
+  - readability_and_layout: PASS · journey/content callouts reserve footer clearance; LIFO and capstone copy remain inside their cards
+  - artifact_integrity: PASS · deterministic PDF regenerated, manifest SHA-256 read back, all pages rendered
+known_nonblocking_environment_note:
+  - validate_project_contract defers two pre-existing corrupt production-candidate PNG sources; their current runtime-integrated promoted assets remain validated and this r03 scope did not touch them
+evidence_ceiling:
+  - MACHINE_AND_RENDERED_DOCUMENT_EVIDENCE_ONLY
+  - final_user_review: AWAITING_R03_CONTENT_AND_RENDER_REVIEW
+  - physical_windows_audio_android_release: NOT_RUN_OR_SEPARATE
+```
 
 ## User final review record
 

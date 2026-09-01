@@ -79,6 +79,62 @@ class HumanGameBlueprintR03PublicationTests(unittest.TestCase):
         canvas.save()
         self.assertEqual(len(PdfReader(io.BytesIO(stream.getvalue())).pages), 3)
 
+    def test_run_state_connectors_do_not_turn_build_failure_into_a_run_transition(self) -> None:
+        builder = load_builder()
+        self.assertTrue(
+            hasattr(builder, "run_state_connector_pairs"),
+            "run-state connector mapping must be explicit and independently testable",
+        )
+        connector_pairs = builder.run_state_connector_pairs(6)
+        self.assertNotIn((0, 1), connector_pairs)
+        self.assertEqual(connector_pairs, ((1, 2), (3, 4), (4, 5)))
+
+    def test_eight_row_journey_table_reserves_a_visible_callout_above_the_footer(self) -> None:
+        builder = load_builder()
+        self.assertTrue(
+            hasattr(builder, "journey_table_layout"),
+            "journey table layout must explicitly reserve callout and footer space",
+        )
+        row_height, callout_y = builder.journey_table_layout(8)
+        self.assertLess(row_height, 50)
+        self.assertGreaterEqual(callout_y, 34)
+
+    def test_lifo_questions_fit_inside_dedicated_cards_without_entering_the_rule_bar(self) -> None:
+        builder = load_builder()
+        self.assertTrue(
+            hasattr(builder, "lifo_question_card_layout"),
+            "LIFO question-card geometry must be explicit so copy cannot render below its border",
+        )
+        cards = builder.lifo_question_card_layout(builder.PAGE_H - 133, 3)
+        self.assertEqual(len(cards), 3)
+        self.assertGreaterEqual(min(y for _x, y, _width, _height in cards), 96)
+        self.assertLessEqual(
+            max(y + height for _x, y, _width, height in cards), builder.PAGE_H - 133 - 25
+        )
+
+    def test_capstone_cards_stay_between_header_and_finish_bar(self) -> None:
+        builder = load_builder()
+        self.assertTrue(
+            hasattr(builder, "capstone_card_layout"),
+            "capstone card geometry must reserve readable copy space and avoid the finish bar",
+        )
+        cards = builder.capstone_card_layout(builder.PAGE_H - 133, 6)
+        self.assertEqual(len(cards), 6)
+        self.assertGreaterEqual(min(y for _x, y, _width, _height in cards), 106)
+        self.assertLessEqual(
+            max(y + height for _x, y, _width, height in cards), builder.PAGE_H - 133 - 25
+        )
+
+    def test_content_table_reserves_its_footer_callout_above_the_page_footer(self) -> None:
+        builder = load_builder()
+        self.assertTrue(
+            hasattr(builder, "content_table_layout"),
+            "content-table layout must reserve a visible callout and footer clearance",
+        )
+        row_height, callout_y = builder.content_table_layout(7)
+        self.assertLess(row_height, 53)
+        self.assertGreaterEqual(callout_y, 34)
+
 
 if __name__ == "__main__":
     unittest.main()

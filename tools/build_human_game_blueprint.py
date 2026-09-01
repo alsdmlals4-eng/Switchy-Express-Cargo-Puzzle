@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import re
 from pathlib import Path
 from typing import Iterable
@@ -103,6 +104,72 @@ def ensure_assets() -> None:
     missing = [str(path) for path in ASSETS.values() if not path.exists()]
     if missing:
         raise FileNotFoundError("Missing required current runtime asset(s): " + ", ".join(missing))
+
+
+def run_state_connector_pairs(state_count: int) -> tuple[tuple[int, int], ...]:
+    """Return only the adjacent, card-to-card transitions shown in the RUN state map.
+
+    BUILD_FAIL deliberately has no outgoing visual connector: the card itself
+    says that the player returns to BUILD, while the first RUN card represents
+    a separate successful-preflight entry.
+    """
+    if state_count != 6:
+        return ()
+    return ((1, 2), (3, 4), (4, 5))
+
+
+def journey_table_layout(row_count: int) -> tuple[float, float]:
+    """Fit the full journey table and its continuity callout above the footer."""
+    return table_with_callout_layout(row_count, header_height=30, callout_height=39, maximum_row_height=50)
+
+
+def content_table_layout(row_count: int) -> tuple[float, float]:
+    """Fit the first-session content table and its product-boundary callout."""
+    return table_with_callout_layout(row_count, header_height=29, callout_height=48, maximum_row_height=53)
+
+
+def table_with_callout_layout(
+    row_count: int,
+    *,
+    header_height: float,
+    callout_height: float,
+    maximum_row_height: float,
+) -> tuple[float, float]:
+    """Reserve footer clearance for any compact table plus its callout."""
+    if row_count < 1:
+        raise ValueError("table layout requires at least one row")
+    table_start_y = PAGE_H - 133 - header_height
+    callout_gap = 12
+    footer_clearance = 34
+    fitted_maximum_row_height = math.floor(
+        (table_start_y - callout_gap - callout_height - footer_clearance) / row_count
+    )
+    row_height = float(max(30, min(maximum_row_height, fitted_maximum_row_height)))
+    table_bottom_y = table_start_y - row_height * row_count
+    callout_y = table_bottom_y - callout_gap - callout_height
+    return row_height, callout_y
+
+
+def lifo_question_card_layout(header_y: float, question_count: int) -> tuple[tuple[float, float, float, float], ...]:
+    """Place LIFO questions in dedicated cards with enough copy space."""
+    if question_count < 1:
+        return ()
+    width, height = 150.0, 80.0
+    x = 654.0
+    first_y = header_y - 105
+    return tuple((x, first_y - index * 87, width, height) for index in range(question_count))
+
+
+def capstone_card_layout(header_y: float, step_count: int) -> tuple[tuple[float, float, float, float], ...]:
+    """Place the six VS_DEMO_01 decisions above the finish bar without clipped copy."""
+    if step_count < 1:
+        return ()
+    width, height = 190.0, 100.0
+    first_y = header_y - 125
+    return tuple(
+        (394.0 + (index % 2) * 202, first_y - (index // 2) * 112, width, height)
+        for index in range(step_count)
+    )
 
 
 def fit_cover(image: Path, x: float, y: float, width: float, height: float) -> tuple[float, float, float, float]:
@@ -490,9 +557,9 @@ class BlueprintRenderer:
         for heading, width in zip(page["headers"], widths):
             self.c.drawString(cursor + 6, y - 19, heading)
             cursor += width
+        row_h, callout_y = journey_table_layout(len(page["rows"]))
         row_y = y - header_h
         for row_index, row in enumerate(page["rows"]):
-            row_h = 50
             self.c.setFillColor(white if row_index % 2 == 0 else PAPER_2)
             self.c.rect(x, row_y - row_h, sum(widths), row_h, fill=1, stroke=0)
             cursor = x
@@ -504,10 +571,10 @@ class BlueprintRenderer:
             row_y -= row_h
         self.c.setFillColor(HexColor("#E7F0E9"))
         self.c.setStrokeColor(LIME)
-        self.c.roundRect(MARGIN, row_y - 60, PAGE_W - 2 * MARGIN, 39, 8, fill=1, stroke=1)
+        self.c.roundRect(MARGIN, callout_y, PAGE_W - 2 * MARGIN, 39, 8, fill=1, stroke=1)
         self.c.setFillColor(LIME)
         self.c.setFont("MalgunBold", 9.4)
-        self.c.drawCentredString(PAGE_W / 2, row_y - 45, "앞 단계에서 얻은 정보가 다음 판단을 바꾸지 않으면, 화면은 흐름이 아니라 목록이 된다.")
+        self.c.drawCentredString(PAGE_W / 2, callout_y + 14, "앞 단계에서 얻은 정보가 다음 판단을 바꾸지 않으면, 화면은 흐름이 아니라 목록이 된다.")
         self.footer()
 
     def draw_atlas(self, page: dict) -> None:
@@ -689,8 +756,20 @@ class BlueprintRenderer:
         self.c.setFillColor(INK)
         self.c.setFont("MalgunBold", 13)
         self.c.drawString(qx, y - 10, "계속 묻는 세 가지")
-        for index, question in enumerate(page["questions"]):
-            self.card(qx, y - 76 - index * 87, 150, 72, str(index + 1), question, [SKY, GOLD, CRIMSON][index], title_size=9, body_size=8.2)
+        for index, (question, (card_x, card_y, card_w, card_h)) in enumerate(
+            zip(page["questions"], lifo_question_card_layout(y, len(page["questions"])))
+        ):
+            accent = [SKY, GOLD, CRIMSON][index % 3]
+            self.c.setFillColor(white)
+            self.c.setStrokeColor(accent)
+            self.c.setLineWidth(1.15)
+            self.c.roundRect(card_x, card_y, card_w, card_h, 8, fill=1, stroke=1)
+            self.c.setFillColor(accent)
+            self.c.roundRect(card_x + 11, card_y + card_h - 24, 28, 13, 6, fill=1, stroke=0)
+            self.c.setFillColor(white)
+            self.c.setFont("MalgunBold", 6.6)
+            self.c.drawCentredString(card_x + 25, card_y + card_h - 20, str(index + 1))
+            self.draw_wrapped(question, card_x + 12, card_y + 43, card_w - 24, 10, MUTED, "Malgun", 7.5, 3)
         self.c.setFillColor(NAVY)
         self.c.roundRect(MARGIN, 55, PAGE_W - 2 * MARGIN, 41, 8, fill=1, stroke=0)
         self.c.setFillColor(white)
@@ -829,10 +908,21 @@ class BlueprintRenderer:
         self.c.setStrokeColor(GOLD)
         self.c.setLineWidth(1.2)
         self.c.roundRect(MARGIN, 126, 340, 255, 10, fill=0, stroke=1)
-        card_x = 402
-        for index, (number, title, body) in enumerate(page["steps"]):
-            row, col = divmod(index, 2)
-            self.card(card_x + col * 184, y - 78 - row * 102, 172, 86, f"{number} · {title}", body, [SKY, GOLD, CRIMSON, LIME, VIOLET, NAVY][index], title_size=10, body_size=8.2)
+        for index, ((number, title, body), (card_x, card_y, card_w, card_h)) in enumerate(
+            zip(page["steps"], capstone_card_layout(y, len(page["steps"])))
+        ):
+            accent = [SKY, GOLD, CRIMSON, LIME, VIOLET, NAVY][index % 6]
+            self.c.setFillColor(white)
+            self.c.setStrokeColor(accent)
+            self.c.setLineWidth(1.15)
+            self.c.roundRect(card_x, card_y, card_w, card_h, 8, fill=1, stroke=1)
+            self.c.setFillColor(accent)
+            self.c.roundRect(card_x + 12, card_y + card_h - 25, 46, 12, 6, fill=1, stroke=0)
+            self.c.setFillColor(white)
+            self.c.setFont("MalgunBold", 6.4)
+            self.c.drawCentredString(card_x + 35, card_y + card_h - 21, "핵심")
+            self.draw_wrapped(f"{number} · {title}", card_x + 13, card_y + 58, card_w - 26, 12, INK, "MalgunBold", 10, 1)
+            self.draw_wrapped(body, card_x + 13, card_y + 38, card_w - 26, 9, MUTED, "Malgun", 7.4, 3)
         self.c.setFillColor(NAVY)
         self.c.roundRect(MARGIN, 56, PAGE_W - 2 * MARGIN, 48, 8, fill=1, stroke=0)
         self.c.setFillColor(white)
@@ -881,9 +971,9 @@ class BlueprintRenderer:
         for heading, width in zip(headers, widths):
             self.c.drawString(cursor + 6, y - 18, heading)
             cursor += width
+        row_h, callout_y = content_table_layout(len(page["rows"]))
         row_y = y - 29
         for index, row in enumerate(page["rows"]):
-            row_h = 53
             self.c.setFillColor(white if index % 2 == 0 else PAPER_2)
             self.c.rect(MARGIN, row_y - row_h, sum(widths), row_h, fill=1, stroke=0)
             cursor = MARGIN
@@ -895,10 +985,10 @@ class BlueprintRenderer:
             row_y -= row_h
         self.c.setFillColor(HexColor("#F8E4E0"))
         self.c.setStrokeColor(CRIMSON)
-        self.c.roundRect(MARGIN, row_y - 62, PAGE_W - 2 * MARGIN, 48, 8, fill=1, stroke=1)
+        self.c.roundRect(MARGIN, callout_y, PAGE_W - 2 * MARGIN, 48, 8, fill=1, stroke=1)
         self.c.setFillColor(CRIMSON)
         self.c.setFont("MalgunBold", 8.8)
-        self.draw_wrapped(page["footer"], MARGIN + 14, row_y - 34, PAGE_W - 2 * MARGIN - 28, 11, CRIMSON, "MalgunBold", 8.8, 3)
+        self.draw_wrapped(page["footer"], MARGIN + 14, callout_y + 28, PAGE_W - 2 * MARGIN - 28, 11, CRIMSON, "MalgunBold", 8.8, 3)
         self.footer()
 
     def draw_visual(self, page: dict) -> None:
@@ -994,8 +1084,8 @@ class BlueprintRenderer:
             self.c.drawRightString(x + state_w - 10, state_y + 12, f"다음: {next_state}")
         self.c.setStrokeColor(NAVY)
         self.c.setLineWidth(1.2)
-        for index in (0, 1, 3, 4):
-            x, state_y = positions[index]
+        for origin_index, _destination_index in run_state_connector_pairs(len(positions)):
+            x, state_y = positions[origin_index]
             self.c.line(x + state_w, state_y + state_h / 2, x + state_w + 9, state_y + state_h / 2)
         self.c.setFillColor(NAVY)
         self.c.roundRect(MARGIN, 58, PAGE_W - 2 * MARGIN, 37, 8, fill=1, stroke=0)
