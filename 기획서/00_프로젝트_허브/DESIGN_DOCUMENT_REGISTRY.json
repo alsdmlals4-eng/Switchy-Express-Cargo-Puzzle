@@ -51,6 +51,14 @@
       "status": "CURRENT"
     },
     {
+      "id": "SX-HGB-001-R03-DESIGN",
+      "question": "2026-09-01 r03 human-blueprint 발행에서 어떤 소비처·자산·검증 경계를 사용했는가",
+      "source": "docs/superpowers/specs/2026-09-01-human-game-blueprint-r03-design.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "HISTORICAL"
+    },
+    {
       "id": "SX-ACTIVE-CONTEXT",
       "question": "현재 상태와 다음 정확한 작업은 무엇인가",
       "source": "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",

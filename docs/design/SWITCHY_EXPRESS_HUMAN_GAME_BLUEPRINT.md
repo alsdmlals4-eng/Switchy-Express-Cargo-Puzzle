@@ -1,9 +1,9 @@
 # Switchy Express · Human Game Blueprint Editorial Source
 
 > **Document ID:** `SX-HGB-001`
-> **Pair / revision:** `SX-HGB-001 · r02 · 2026-08-30`
+> **Pair / revision:** `SX-HGB-001 · r04 · 2026-09-01`
 > **Role:** 사람용 경험 검수 PDF를 위한 편집 원본이다. 게임 규칙·데이터·테스트의 정본은 아래 upstream owner가 계속 소유한다.
-> **Status:** `r02 문서 시각 후보 사용자 승인` — 이 문서는 새 게임 기능이나 런타임 구현 권한을 만들지 않는다.
+> **Status:** `r04 machine flow/owner/render validation complete; final content, copy, and visual review pending` — 이 문서는 새 게임 기능이나 런타임 구현 권한을 만들지 않는다.
 
 ## Purpose and upstream authority
 
@@ -12,33 +12,37 @@
 - 제품 기준선과 승인 규칙: `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`, `CURRENT_CONFIRMED_DECISIONS.md`
 - 현재 상태와 증거 경계: `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`, `DEVELOPMENT_GATES.md`
 - AI·구현 명세: `docs/design/PROJECT_AI_PRODUCTION_SPEC.md`
-- 시각 언어와 실제 자산 소비자: `기획서/40_표현/VISUAL_DIRECTION.md`, `art/product_assets/ed_hybrid_v1/runtime_visual_manifest.json`
-- 현행 기준 SHA: `origin/main@28619f4a9269d61cd1ddd7e7a1dded9907997584`
+- 시각 언어와 실제 자산 소비자: `기획서/40_표현/VISUAL_DIRECTION.md`, `TARGET_BUILD_SCREEN_SURFACE_AND_VISUAL_COVERAGE.md`, `art/product_assets/ed_hybrid_v2/manifest.json`
+- Route Book 02/주의 구간/폐기 화물: `docs/decisions/SX_DEC_067_WAYSIDE_HAZARDS_SALVAGE_AND_ROUTE_BOOK_02.md`, `SX_DEC_069_TRANSPARENT_WAYSIDE_AND_SPEED_TRANSITIONS.md`
+- 승인된 제목 정체성: `docs/decisions/SX_DEC_068_TITLE_SCREEN_MAIN_SHELL.md`, `SX-TITLE-WORDMARK-001`
+- 현행 기준 SHA: `origin/main@0bf5e2150d643210abf127e34880111ee986b29d`
 
 ## Editorial and visual boundary
 
 - `실제 런타임 자산`은 현재 프로젝트에서 실제 소비되는 지형·셸·토큰 이미지다.
 - `구현 기준선 도식`은 현재 맵과 규칙을 사람이 이해하도록 재배열한 문서 도형이다. 실제 화면 캡처나 사용성 증거가 아니다.
-- `SX-HGB-VIS-001~004`는 이번 사람용 블루프린트의 빈 화면을 채우기 위해 생성한 **문서 전용 시각 후보**다. PDF에서는 메인·BUILD·RUN·선로/역 언어를 읽게 하지만, 사용자 승인 전에는 런타임 자산·스프라이트시트·Godot 소비자가 아니다.
+- `SX-HGB-VIS-001~004`는 r02에서 사용자 승인된 **문서 전용 시각 후보**다. PDF에서는 메인·BUILD·RUN·선로/역 언어를 읽게 하지만, 런타임 자산·스프라이트시트·Godot 소비자가 아니다.
+- `SX-TITLE-WORDMARK-001`은 `TitleScreen/…/TitleLogo`의 승인된 실제 런타임 입력이며, r04에서는 문서 표지의 기존 자산 입력으로만 재사용한다. 픽셀을 재생성하거나 변경하지 않는다.
+- Route Book 02의 v02 노변·주의·폐기장 후보는 런타임에 연결되었지만 `USER_PIXEL_REVIEW_PENDING`이다. r04는 이 상태를 설명할 뿐, 승인·정본 승격·출시 증거로 바꾸지 않는다.
 - 시스템 플로우용 `SX-VIS-061-CORE-SYSTEMS-BOARD-EXPLORATION-002B`는 기존 사용자 승인 planning reference를 재사용한다. 이 역시 실제 런타임 캡처가 아니다.
-- Windows 물리 화면·오디오, Android, 첫 사용자 이해도와 Player Experience는 이 발행본 시점에도 별도 검수 전이다.
-- 기존 `exports/switchy-express-cargo-puzzle_MASTER_PRODUCTION_GDD_20260828.pdf`는 이전 기준의 파생 검수본으로 보존한다. 이 문서는 최신 SX-DEC-064까지 반영하는 새 human blueprint이다.
+- Windows 물리 화면·오디오, Android와 최종 사용자 검수는 이 발행본과 별도다. 다인 이해도·플레이 경험 연구는 현재 machine-primary 정책상 acceptance gate가 아니다.
+- 기존 `exports/switchy-express-cargo-puzzle_MASTER_PRODUCTION_GDD_20260828.pdf`와 r02/r03 PDF는 이전 기준의 파생 검수본으로 보존한다. r04는 SX-DEC-069 및 Candidate 010의 현재 증거 경계 위에서, 독립 화면·게임플레이 플로우맵과 공간 와이어프레임을 보강한 새 human blueprint이다.
 
 ## Publication contract
 
 ```yaml
 blueprint_pair_id: SX-HGB-001
-revision: r02
-source_main: 28619f4a9269d61cd1ddd7e7a1dded9907997584
-output_pdf: output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260830_r02.pdf
+revision: r04
+source_main: 0bf5e2150d643210abf127e34880111ee986b29d
+output_pdf: output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260901_r04.pdf
 publication_manifest: docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT_PUBLICATION_MANIFEST.json
 generator: tools/build_human_game_blueprint.py
-content_review: PASS
-flow_branch_review: PASS
-scene_continuity_review: PASS
-human_language_review: PASS
-visual_render_review: PASS · 20_PAGES_RENDERED · COVER/FLOW/ATLAS/BUILD/SWITCH/VISUAL_SPOT_CHECKED
-user_final_review: USER_APPROVED_DOCUMENT_VISUAL_R02
+content_review: PENDING_R04_FINAL_CONTENT_REVIEW
+flow_branch_review: MACHINE_R04_FLOW_VALIDATION_PASS
+scene_continuity_review: MACHINE_R04_OWNER_READBACK_PASS
+human_language_review: PENDING_R04_FINAL_COPY_REVIEW
+visual_render_review: MACHINE_R04_RENDER_INSPECTION_PASS
+user_final_review: AWAITING_R04_FINAL_CONTENT_COPY_AND_VISUAL_REVIEW
 implementation_authority: BLOCKED
 ```
 
@@ -47,17 +51,17 @@ implementation_authority: BLOCKED
 {
   "project": "Switchy Express: Cargo Puzzle",
   "pair_id": "SX-HGB-001",
-  "revision": "r02",
-  "date": "2026-08-30",
-  "source_main": "28619f4",
-  "user_final_review": "USER_APPROVED_DOCUMENT_VISUAL_R02",
+  "revision": "r04",
+  "date": "2026-09-01",
+  "source_main": "0bf5e2150d643210abf127e34880111ee986b29d",
+  "user_final_review": "AWAITING_R04_FINAL_CONTENT_COPY_AND_VISUAL_REVIEW",
   "pages": [
     {
       "kind": "cover",
-      "title": "Switchy Express\nCargo Puzzle",
+      "title": "Cargo Puzzle\nBlueprint",
       "subtitle": "선로를 놓아 화물의 만남 순서를 만들고,\n움직이는 열차 위에서 TOP을 원하는 역까지 데려가는\n유한형 미니어처 철도 퍼즐.",
       "verbs": ["관찰", "설계", "선택", "실행", "복기"],
-      "status": "사람용 블루프린트 · r02 문서 시각 후보 사용자 승인"
+      "status": "사람용 블루프린트 · r04 화면 흐름/와이어프레임 보정 · 기계 검증 완료 · 사용자 최종 검수 대기"
     },
     {
       "kind": "vision",
@@ -86,7 +90,7 @@ implementation_authority: BLOCKED
         ["Mini Motorways", "단순한 네트워크 표기와 점진 학습", "한 번에 한 규칙을 배우는 첫 세션", "무한 성장·매일 도전·도시 수요 압박은 제외"],
         ["Switchy Express", "행로 = 적재 순서", "TOP을 원하는 역의 인접 칸까지 가져가는 계획", "선로 설계·선택적 적재·직접 분기 실행이 한 계약"]
       ],
-      "note": "비교 근거: 각 제품의 공식 스토어·개발사 설명을 2026-08-30에 재확인. 기능·레벨·시각 표현을 복제하지 않는다."
+      "note": "비교 근거: 각 제품의 공식 스토어·개발사 설명을 2026-09-01에 재확인. 기능·레벨·시각 표현을 복제하지 않는다."
     },
     {
       "kind": "experience",
@@ -107,21 +111,55 @@ implementation_authority: BLOCKED
       "bottom": "핵심 감정 곡선: 기대 → 관찰 → 가설 → 긴장 → 결단 → 집중 → 납득 → 복기 → 재설계"
     },
     {
-      "kind": "flow",
-      "eyebrow": "OUTGAME FLOW",
-      "title": "어디서 시작해 어디로 돌아오는가",
-      "claim": "한 회차는 제목에서 시작해 설명과 설계를 거쳐 운행·결과로 닫히며, Retry와 Edit는 서로 다른 회복 선택이다.",
+      "kind": "screen_flow_map",
+      "eyebrow": "SCREEN NAVIGATION FLOW MAP",
+      "title": "화면은 어디서 왔고, 어떤 조건으로 어디로 가는가",
+      "claim": "화살표는 실제 진입·복귀·실패 경계다. 특히 사전검사 실패는 RUN으로 넘어가지 않고 BUILD 안에서 수정된다.",
       "nodes": [
-        ["1", "제목", "새 퍼즐 시작", "BRIGHT"],
-        ["2", "간단한 안내", "이번에 배울 판단 확인", "VIOLET"],
-        ["3", "BUILD", "선로를 설계", "GOLD"],
-        ["4", "RUN", "열차를 실행", "BLUE"],
-        ["5", "결과", "사실을 확인", "DARK"],
-        ["6", "Retry", "같은 선로를 다시 실행", "GREEN"],
-        ["7", "Edit", "선로를 바꿔 다시 설계", "GOLD"],
-        ["8", "제목", "회차를 마치고 돌아감", "DARK"]
+        ["TITLE", "제목", "첫 세션 시작 또는 복귀"],
+        ["BOOK", "Route Book", "고정 수제 stage 선택"],
+        ["BRIEF", "브리핑", "목표와 이번 판단 읽기"],
+        ["BUILD", "BUILD", "선로·화물 조우 순서 설계"],
+        ["RUN", "RUN", "TOP·Auto·시간·현재 행로 실행"],
+        ["RESULT", "결과", "성공/실패 사실과 회복 선택"]
       ],
-      "branches": ["성공 → 결과 → 다음 퍼즐 또는 제목", "실패 → 결과 → Retry(같은 배치) 또는 Edit(BUILD로 복귀)", "중단 → 제목"]
+      "routes": [
+        ["TITLE", "BOOK", "Stage Book"],
+        ["TITLE", "BRIEF", "첫 세션"],
+        ["BOOK", "BRIEF", "stage 선택"],
+        ["BRIEF", "BUILD", "Begin"],
+        ["BUILD", "RUN", "사전검사 통과"],
+        ["RUN", "RESULT", "성공/시간/ROUTE_END"],
+        ["RESULT", "RUN", "Retry: 같은 배치"],
+        ["RESULT", "BUILD", "Edit: 행로 수정"]
+      ],
+      "footer": "Retry는 같은 레이아웃을 새 운행으로 다시 실행하고, Edit는 BUILD로 돌아가 화물 조우 순서 자체를 바꾼다. Pause / Exit는 RUN 지속 또는 제목 복귀의 별도 확인 경로다."
+    },
+    {
+      "kind": "gameplay_flow_map",
+      "eyebrow": "GAMEPLAY DECISION FLOW MAP",
+      "title": "한 회차에서 판단은 어떤 순서로 이어지는가",
+      "claim": "이 지도는 화면 목록이 아니라 설계·검사·운행·회복의 의존 관계를 보여 준다. 색과 장식보다 선로와 TOP의 판단이 먼저다.",
+      "stages": [
+        ["OBSERVE", "보드 읽기", "화물·역·시작점·막힌 칸을 관찰"],
+        ["BUILD", "선로 배치", "만남 순서와 되돌아갈 길 설계"],
+        ["CHECK", "사전검사", "필수 화물·역 서비스 칸 도달성 확인"],
+        ["RUN", "계획 실행", "적재·보류·Auto·분기·주의 구간 판단"],
+        ["RESULT", "결과 복기", "성공 또는 사실 기반 실패를 읽고 다음 선택"]
+      ],
+      "branches": [
+        ["OBSERVE", "BUILD", "계획 시작"],
+        ["BUILD", "CHECK", "배치 완료"],
+        ["CHECK", "BUILD", "실패 → 수정"],
+        ["CHECK", "RUN", "통과 → 운행"],
+        ["RUN", "RESULT", "성공/시간/ROUTE_END"]
+      ],
+      "run_detail": [
+        ["화물", "화물 칸 직접 통과", "적재 → TOP 변경"],
+        ["역", "상·하·좌·우 인접 통과", "matching TOP 묶음 하역"],
+        ["노선", "분기·주의·폐기장", "선택·감속·정상 복귀"]
+      ],
+      "footer": "화물은 정확한 칸을 지나 적재한다. 역/폐기장은 건물 칸이 아닌 cardinal-adjacent 서비스 칸에서 matching TOP 묶음만 처리한다. 감속·회복은 renderer-local 표현이며 게임 규칙·저장·노선을 바꾸지 않는다."
     },
     {
       "kind": "journey_table",
@@ -130,11 +168,12 @@ implementation_authority: BLOCKED
       "claim": "앞의 흐름도는 화면 이름 목록이 아니라, 다음 화면에 남기는 정보와 판단을 보여 주는 지도다.",
       "headers": ["도착", "들어온 곳·목적", "보는 정보", "행동·판단", "다음 도착지"],
       "rows": [
-        ["제목", "실행·회차 종료\n시작 또는 복귀", "게임 약속·시작", "새 퍼즐을 시작할지 결정", "안내"],
-        ["안내", "새 레슨\n이번 질문 이해", "목표·새 규칙 하나", "무엇을 먼저 볼지 정함", "BUILD"],
-        ["BUILD", "안내 완료\n행로 설계", "격자·화물·역·건설 가능 칸", "선로와 화물 조우 순서 설계", "RUN"],
-        ["RUN", "유효한 설계\n계획 실행", "열차·TOP·Auto·분기 상태", "적재·Auto·분기를 선택", "결과 또는 계속"],
-        ["결과", "성공 또는 실패\n원인 확인", "완료·남은 화물·스택", "같은 시도/다른 설계/종료 선택", "Retry·Edit·제목"],
+        ["제목", "실행·회차 종료\n시작 또는 복귀", "wordmark·Start·Stage Book", "첫 세션 또는 선택형 책을 고름", "브리핑/Route Book"],
+        ["Route Book", "Stage Book\nbook/stage 선택", "이름·한 가지 판단", "고정 수제 스테이지를 고름", "브리핑"],
+        ["브리핑", "새 레슨/선택 stage\n목표 이해", "목표·한 규칙·Begin", "무엇을 먼저 볼지 정함", "BUILD"],
+        ["BUILD", "브리핑 완료\n행로 설계", "격자·화물·역·건설 가능 칸", "선로와 화물 조우 순서 설계", "사전검사/RUN"],
+        ["RUN", "유효한 설계\n계획 실행", "열차·TOP·Auto·분기·속도 상태", "적재·보류·Auto·분기를 선택", "결과 또는 계속"],
+        ["결과", "성공 또는 실패\n원인 확인", "완료·남은 화물·스택", "같은 시도/다른 설계/종료 선택", "Retry·Edit·제목·다음"],
         ["Retry", "같은 선로\n가설 재시험", "같은 배치의 새 운행", "입력·분기 판단을 바꿈", "RUN"],
         ["Edit", "다른 답 탐색\n다시 설계", "이전 선로와 보드", "조우 순서 자체를 바꿈", "BUILD"]
       ]
@@ -145,14 +184,14 @@ implementation_authority: BLOCKED
       "title": "경험의 뼈대를 이루는 장면은 무엇인가",
       "claim": "각 장면은 예쁜 화면이 아니라, 플레이어가 다른 종류의 판단을 하는 위치다.",
       "cards": [
-        ["01", "제목", "이번 퍼즐을 시작할지 결정", "title"],
-        ["02", "안내", "새 규칙 하나를 이해", "lesson"],
+        ["01", "제목", "첫 세션과 선택형 Route Book 중 다음 진입을 결정", "title"],
+        ["02", "Route Book", "수제 stage 하나와 그 판단을 선택", "lesson"],
         ["03", "BUILD", "만남 순서를 선로로 설계", "board"],
-        ["04", "RUN", "적재·Auto·분기를 실행", "board"],
-        ["05", "성공", "완성된 하역을 확인", "success"],
-        ["06", "실패", "사실을 읽고 다음 시도를 고름", "failure"]
+        ["04", "RUN", "적재·Auto·분기·속도 상태를 실행", "board"],
+        ["05", "성공", "완성된 하역과 다음 선택을 확인", "success"],
+        ["06", "결과", "실패 사실을 읽고 Retry·Edit·다음을 고름", "failure"]
       ],
-      "note": "제목·BUILD·RUN은 생성한 문서 전용 후보이고, 안내·결과는 기존 런타임 자산을 참조한다. 카드 조합과 설명은 사람용 문서 도식이며, 완성된 게임 화면이나 사용성 통과를 뜻하지 않는다."
+      "note": "제목 wordmark는 승인된 실제 런타임 입력이고, r02 생성 문서 후보는 문서 전용 참고다. 카드 조합과 설명은 사람용 문서 도식이며, 완성된 게임 화면이나 사용성 통과를 뜻하지 않는다."
     },
     {
       "kind": "scene_contract",
@@ -168,6 +207,65 @@ implementation_authority: BLOCKED
         ["실패", "미완료/ROUTE_END/시간", "남은 화물·스택", "Retry 또는 Edit", "RUN/BUILD"]
       ],
       "footer": "연속성: 설계한 만남 순서 → RUN의 TOP 판단 → 역 인접 하역 결과 → Retry의 입력 수정 또는 Edit의 행로 수정"
+    },
+    {
+      "kind": "shell_wireframe",
+      "eyebrow": "SPATIAL WIREFRAME · SHELL",
+      "title": "제목·Route Book·브리핑은 무엇을 먼저 보여 주는가",
+      "claim": "화면 이름과 버튼 목록을 나열하지 않고, 첫 시선·고정 정보·주 행동·보조 행동의 실제 영역 관계를 그린다.",
+      "screens": [
+        ["SX-SCR-001", "제목", "wordmark / 세계관", "첫 세션 또는 선택한 Route Book", "Stage Book · Controls · Quit"],
+        ["SX-SCR-RB", "Route Book", "선택한 stage의 한 가지 판단", "고정 stage 선택", "Back"],
+        ["SX-SCR-003", "브리핑", "목표", "BUILD 시작", "Objective · Rules"]
+      ]
+    },
+    {
+      "kind": "board_wireframe",
+      "eyebrow": "SPATIAL WIREFRAME · BOARD",
+      "title": "BUILD와 RUN은 같은 보드에서 다른 판단을 받는다",
+      "claim": "두 상태 모두 보드가 첫 시선이지만, BUILD는 배치·사전검사를, RUN은 TOP·현재 행로·분기 실행을 우선한다.",
+      "build": ["SX-SCR-004", "BUILD", "선로 도구", "보드 · buildable / blocked / cargo / station", "사전검사 / RUN"],
+      "run": ["SX-SCR-006", "RUN", "Manual / Auto", "보드 · 열차 / 현재 행로 / 주의 구간", "분기 실행"],
+      "footer": "보드는 장식이 아니라 판단 표면이다. BUILD 실패 피드백은 보드와 사전검사에 남고, RUN으로 넘어가지 않는다. RUN의 TOP·Auto·Timer·Route control은 보드를 가리지 않는 보조 정보다."
+    },
+    {
+      "kind": "result_wireframe",
+      "eyebrow": "SPATIAL WIREFRAME · RECOVERY",
+      "title": "결과 화면은 사실을 먼저, 회복 선택을 다음에 보여 준다",
+      "claim": "성공과 실패는 서로 다른 감정이지만, 둘 다 원인·남은 상태·다음 행동을 과장 없이 읽을 수 있어야 한다.",
+      "screen": ["SX-SCR-010/011", "결과", "성공/실패 사실", "Retry · 같은 배치", "Edit · BUILD로 복귀"],
+      "footer": "Retry는 같은 레이아웃의 새 운행으로 입력·분기 판단을 다시 시험한다. Edit는 보드와 이전 선로로 돌아가 조우 순서를 다시 설계한다. 이 구분은 결과 화면의 행동 배치로도 보인다."
+    },
+    {
+      "kind": "run_state",
+      "eyebrow": "RUN STATE MAP",
+      "title": "운행 중 무엇이 바뀌고 무엇은 바뀌지 않는가",
+      "claim": "속도 전환은 renderer-local 표현이고, 화물·노선·저장·게임 규칙의 쓰기 권한을 가지지 않는다.",
+      "states": [
+        ["BUILD_FAIL", "사전검사 실패", "필수 경로/서비스 누락", "이유와 문제 칸을 읽음", "BUILD"],
+        ["RUN_NORMAL", "정상 운행", "사전검사 통과", "TOP·Auto·시간·현재 행로", "분기/화물"],
+        ["ROUTE_CHOICE", "분기 선택", "점유 전 도달", "대안 방향과 잠금 가능성", "RUN_NORMAL"],
+        ["DECELERATE", "주의 진입", "주의 칸에서 출발", "0.55 속도·amber 제동", "주의 구간 운행"],
+        ["ACCELERATE", "정상 복귀", "정상 칸으로 출발", "cyan 회복·연속 주의 반복 없음", "RUN_NORMAL"],
+        ["RESULT", "결과", "성공·시간·ROUTE_END", "사실·남은 화물·다음 행동", "Retry/Edit/Title"]
+      ],
+      "footer": "Reduced motion에서는 감속·회복 모두 정적인 제한된 동등 표현을 사용한다. 폐기 화물은 cardinal-adjacent disposal yard에서 matching TOP 묶음으로만 내려간다."
+    },
+    {
+      "kind": "asset_readiness",
+      "eyebrow": "UI & ASSET READINESS",
+      "title": "필요한 이미지는 이미 소비처가 있는가",
+      "claim": "현재 슬롯을 먼저 재사용하고, 실제 빈 runtime slot이 증명될 때만 다음 후보 한 개를 만든다.",
+      "headers": ["표면", "실제 소비처", "상태", "r04 사용", "새 이미지 조치"],
+      "rows": [
+        ["제목 wordmark", "TitleScreen/…/TitleLogo", "USER_APPROVED_CANONICAL", "표지의 기존 입력", "재사용만"],
+        ["셸 분위기", "ProductShellArt", "EXISTING_RUNTIME", "제목·브리핑·결과 문맥", "새 비트맵 없음"],
+        ["보드 자산", "ProductBoardRenderer paths", "EXISTING_RUNTIME", "지형·선로·역·화물 계층", "재사용만"],
+        ["상태 UI", "Godot UI + procedural draw", "EXISTING_RUNTIME", "TOP·분기·서비스·사전검사", "새 비트맵 없음"],
+        ["Route Book 02 v02", "ProductBoardRenderer paths", "GENERATED_CANDIDATE · USER_PIXEL_REVIEW_PENDING", "감속·회복·폐기 문맥", "승격/재생성 금지"],
+        ["r02 문서 시안", "PDF only", "USER_APPROVED_DOCUMENT_VISUAL", "문서 언어 참고", "실제 빈 슬롯 검증 후 후보 1개"]
+      ],
+      "footer": "문서용 시안, 런타임 연결 후보, 승인된 제품 자산은 서로 다른 상태다. 이 PDF만으로 픽셀 승인·정본 등록·runtime proof·사람 검수가 되지 않는다."
     },
     {
       "kind": "lesson_curve",
@@ -300,26 +398,26 @@ implementation_authority: BLOCKED
       "title": "무엇을 한눈에 기억하게 하는가",
       "claim": "따뜻한 미니어처 철도 세계와 짙은 네이비 조작면의 대비가 ‘편안하지만 정확하게 읽어야 하는 퍼즐’이라는 성격을 만든다.",
       "north_star": ["따뜻한 풀·돌·목재·황동·네이비 기관차", "격자 입력은 사각형을 유지하고, 깊이는 자산 안에서만 표현", "중요 상태는 색만이 아니라 방향·모양·텍스트를 함께 사용", "라임은 유효·현재 행로, 보라색은 안내 집중, 진홍은 금지·위험", "소리는 적재·하역·분기·결과의 원인을 보조하지만 정보를 대체하지 않음"],
-      "boundary": "이 페이지는 새 선로·역 문서 후보와 기존 지형 V02 후보를 함께 보여 준다. 어떤 이미지도 이 PDF만으로 승인·런타임 통합·사람 사용성 통과가 되지 않으며, 실제 게임 텍스트는 이미지가 아닌 구조화된 Godot 텍스트로 남는다."
+      "boundary": "승인된 title wordmark와 기존 보드 언어를 문서 입력으로 재사용한다. Route Book 02 v02 cutout은 픽셀 검토 대기 후보이며, 감속 amber·회복 cyan은 renderer-local 표현이다. 어떤 이미지도 이 PDF만으로 승인·런타임 통합·사람 사용성 통과가 되지 않으며, 실제 게임 텍스트는 이미지가 아닌 구조화된 Godot 텍스트로 남는다."
     },
     {
       "kind": "review",
       "eyebrow": "USER REVIEW",
-      "title": "이번 블루프린트에서 무엇을 확인하면 되는가",
-      "claim": "이 검수는 새로운 기능을 추가하는 자리가 아니라, 지금의 게임 약속과 사람이 이해하는 흐름이 같은지 확인하는 자리다.",
+      "title": "r04 블루프린트에서 무엇을 확인하면 되는가",
+      "claim": "이 검수는 새로운 기능을 추가하는 자리가 아니라, 현재 Godot 화면·자산 상태와 사람이 읽는 흐름이 같은지 확인하는 자리다.",
       "questions": [
         "한 문장 약속이 ‘선로 설계 = 화물 TOP 설계’라는 재미를 정확히 말하는가?",
+        "제목·Stage Book·브리핑·BUILD·RUN·결과의 진입과 복귀가 실제 흐름과 같은가?",
         "화물 칸을 지나는 적재와 역의 옆 칸을 지나는 배송이 분명히 구분되는가?",
-        "LIFO와 선택적 적재가 단순 규칙이 아니라 반복 판단으로 읽히는가?",
-        "Auto와 분기가 플레이어 통제를 빼앗지 않고, 계획 실행을 돕는다고 느껴지는가?",
-        "결과·Retry·Edit이 실패를 다음 가설로 연결한다고 이해되는가?",
-        "따뜻한 미니어처 시각 언어가 보드의 정확한 판단을 가리지 않는가?"
+        "LIFO·선택적 적재·Auto·분기가 반복 판단으로 읽히는가?",
+        "주의 진입의 감속과 정상 복귀의 회복이 별도 표현이되 게임 규칙을 과장하지 않는가?",
+        "승인 자산, 런타임 연결 후보, 문서용 시안의 상태가 서로 섞이지 않는가?"
       ],
       "status_rows": [
-        ["내용·흐름·장면·문장·렌더 검수", "이 PDF 발행 뒤 내부 검수로 판정"],
-        ["사용자 문서 시각 승인", "승인 · r02 문서 후보 한정, 런타임 승격 별도"],
+        ["기계 흐름·장면·렌더 검수", "PASS · r04 exact PDF, owner readback, flow/branch, all-page render"],
+        ["사용자 문서 내용·문장·시각 승인", "r02 문서 후보 승인 보존 · r04 최종 확인 대기"],
         ["새 게임 구현 권한", "없음 · 이 문서는 파생 검수본"],
-        ["실제 플레이 검수", "별도 · Windows/오디오, Android, 첫 사용자 이해도" ]
+        ["실제 플레이 검수", "별도 · Windows/오디오, Android, 최종 사용자 확인" ]
       ],
       "close": "검수 후에는 ‘이 설명으로 충분함’, ‘수정할 페이지’, ‘다음에 실제 플레이에서 확인할 질문’을 남긴다."
     }
@@ -328,25 +426,54 @@ implementation_authority: BLOCKED
 ```
 <!-- BLUEPRINT_DATA:END -->
 
+## Publication validation record
+
+```yaml
+revision: r04
+machine_validation:
+  blueprint_renderer_tests: PASS · 7 tests
+  project_python_suite: PASS · 259 tests · 1 intentionally skipped
+  project_contract: PASS
+  pdf_structure: PASS · 26 pages · manifest SHA-256 match · title metadata match
+  rendered_visual_inspection: PASS · all 26 pages rasterized and inspected; page 05 re-inspected after its dedicated Edit return-lane correction
+adversarial_review_loops:
+  - consumer_and_provenance_boundary: PASS · existing runtime assets, approved planning references, and document-only candidates remain separately labelled
+  - scope_and_authority: PASS · no Godot scene, GDScript, map, runtime asset, Candidate 010, or Route Book 02 approval change
+  - flow_semantics: PASS · direct TITLE→BRIEF first-session lane is independent of TITLE→BOOK→BRIEF; invalid preflight remains BUILD; Retry and Edit end at distinct destinations
+  - readability_and_layout: PASS · navigation/gameplay maps and three spatial wireframes reserve independent labels, footer clearance, and non-overlapping action regions; Edit return uses its own lower lane
+  - artifact_integrity: PASS · deterministic PDF regenerated, manifest SHA-256 read back, all pages rasterized
+known_nonblocking_environment_note:
+  - validate_project_contract defers two pre-existing corrupt production-candidate PNG sources; their current runtime-integrated promoted assets remain validated and this r04 scope did not touch them
+evidence_ceiling:
+  - MACHINE_AND_RENDERED_DOCUMENT_EVIDENCE_ONLY
+  - final_user_review: AWAITING_R04_FINAL_CONTENT_COPY_AND_VISUAL_REVIEW
+  - physical_windows_audio_android_release: NOT_RUN_OR_SEPARATE
+```
+
 ## User final review record
 
 ```yaml
 blueprint_pair_id: SX-HGB-001
-revision: r02
-review_status: 사용자_승인_문서_시각_후보_R02
+revision: r04
+review_status: AWAITING_R04_FINAL_CONTENT_COPY_AND_VISUAL_REVIEW
 approved_scope:
   - SX-HGB-VIS-001_title_hero_document_visual
   - SX-HGB-VIS-002_build_board_document_visual
   - SX-HGB-VIS-003_run_switch_top_document_visual
   - SX-HGB-VIS-004_rail_station_language_document_visual
-  - r02_cover_flow_atlas_build_switch_visual_composition
+  - r02_document_visual_provenance_preserved
+  - SX-TITLE-WORDMARK-001_existing_approved_document_input
+  - r04_independent_flow_maps_spatial_wireframes_run_state_asset_readiness_editorial_scope
 excluded_scope:
   - new_gameplay_system
   - runtime_asset_promotion
   - runtime_scene_or_code_change
+  - candidate_010_evidence_reinterpretation
+  - v02_wayside_pixel_approval
   - physical_or_human_evidence_promotion
 requested_changes: []
 remaining_risks:
-  - Live physical and first-contact evidence remains separate from this document.
-approval_evidence: '2026-08-30 current user message: 승인할게'
+  - r04 PDF content, copy, and visual presentation require exact final user review.
+  - Live physical, device, audio, and release evidence remain separate from this document.
+approval_evidence: '2026-09-01 current user messages: 권장안대로 진행해 / 승인 / 권장안대로 진행해'
 ```

@@ -1,14 +1,14 @@
 {
   "manifest_id": "SX-HGB-001-PUBLICATION",
   "blueprint_pair_id": "SX-HGB-001",
-  "revision": "r02",
-  "source_main": "28619f4",
+  "revision": "r04",
+  "source_main": "0bf5e2150d643210abf127e34880111ee986b29d",
   "source": "docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT.md",
-  "source_sha256": "b06fa5c1c33a26517df1f70256b4e96a0150de8a9ca309982b57b6fbacb4851e",
+  "source_sha256": "10ab9f091d7e43b32b079c51a09f0182e67c2dccfd0661117a2df045ef5f0a05",
   "generator": "tools/build_human_game_blueprint.py",
-  "output_pdf": "output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260830_r02.pdf",
-  "output_sha256": "3144650259a194154e4f201090adba6351132d0456968e76bf2990c9582d810a",
-  "page_count": 20,
+  "output_pdf": "output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260901_r04.pdf",
+  "output_sha256": "b232c93a16ed4bfff9442eb542d25dbb25984b6cb3d7896344c157285e2e01ce",
+  "page_count": 26,
   "asset_inputs": {
     "terrain": {
       "path": "art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png",
@@ -23,6 +23,11 @@
     "title": {
       "path": "art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png",
       "sha256": "ce7fcd3ec380bc8b0840bcf28d56debd0d170bf8ca7681fee208cc8347f2d5dd",
+      "use": "existing_runtime_asset_as_human_blueprint_visual_input"
+    },
+    "title_wordmark": {
+      "path": "art/product_assets/ed_hybrid_v2/shells/shell_title_wordmark_switchy_express_candidate_v01.png",
+      "sha256": "4faaefca00416119bc0c30e0e45b8e8bf33fe27c72a7466d541ab6c6576244e8",
       "use": "existing_runtime_asset_as_human_blueprint_visual_input"
     },
     "lesson": {
@@ -92,6 +97,6 @@
     }
   },
   "visual_status": "existing_runtime_assets_plus_user_approved_planning_reference_plus_generated_document_candidates; no_live_runtime_capture",
-  "user_final_review": "USER_APPROVED_DOCUMENT_VISUAL_R02",
+  "user_final_review": "AWAITING_R04_FINAL_CONTENT_COPY_AND_VISUAL_REVIEW",
   "implementation_authority": "BLOCKED"
 }
