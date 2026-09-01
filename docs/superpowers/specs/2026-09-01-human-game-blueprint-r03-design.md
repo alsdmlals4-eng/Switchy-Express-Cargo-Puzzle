@@ -1,9 +1,9 @@
 # Switchy Express · Human Game Blueprint r03 Design
 
 **Design ID:** `SX-HGB-001-R03-DESIGN`  
-**Status:** `USER_APPROVED_SCOPE_AND_DESIGN · PUBLICATION_PLAN_READY`
+**Status:** `HISTORICAL_PUBLICATION_PLAN · R04_EDITORIAL_SOURCE_CURRENT`
 **Approved request:** 현재 작업순서에 따라 벤치마킹을 완료하고, 실제 화면·소비처에 맞는 블루프린트(와이어프레임·플로우 맵·UI/이미지 준비도)를 제작한다.  
-**Work mode:** `PLAN` — 이 문서는 r03 발행 전 설계 원본이며, 새 게임 규칙·Godot 장면·GDScript·런타임 이미지·Candidate 010 바이트를 변경하지 않는다.
+**Work mode:** `HISTORICAL_IMPLEMENTATION_PLAN` — 이 문서는 r03 발행 전 설계 원본이다. 현재 사람용 정본은 `docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT.md`의 r04 편집 원본이며, 새 게임 규칙·Godot 장면·GDScript·런타임 이미지·Candidate 010 바이트를 변경하지 않는다.
 
 ## 1. Goal and current boundary
 

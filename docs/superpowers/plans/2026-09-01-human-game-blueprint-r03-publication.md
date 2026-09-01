@@ -1,5 +1,7 @@
 # Human Game Blueprint r03 Publication Implementation Plan
 
+> **Historical status:** r03 publication implementation record. The current human-review owner is `docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT.md` at r04; preserve this plan as the provenance of the original r03 publishing work.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Publish `SX-HGB-001 r03` as an implementation-aware, human-review blueprint and verified derived PDF without changing any Godot product byte or creating speculative runtime art.

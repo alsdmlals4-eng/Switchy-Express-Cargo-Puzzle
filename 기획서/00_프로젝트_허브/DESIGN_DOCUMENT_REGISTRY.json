@@ -52,11 +52,11 @@
     },
     {
       "id": "SX-HGB-001-R03-DESIGN",
-      "question": "현재 Godot 화면·소비처·자산 상태를 보존하며 사람용 SX-HGB-001을 r03으로 어떻게 갱신하는가",
+      "question": "2026-09-01 r03 human-blueprint 발행에서 어떤 소비처·자산·검증 경계를 사용했는가",
       "source": "docs/superpowers/specs/2026-09-01-human-game-blueprint-r03-design.md",
       "format": "markdown",
       "publication_policy": "source_only",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "SX-ACTIVE-CONTEXT",
