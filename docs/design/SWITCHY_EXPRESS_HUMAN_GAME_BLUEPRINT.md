@@ -3,7 +3,7 @@
 > **Document ID:** `SX-HGB-001`
 > **Pair / revision:** `SX-HGB-001 · r04 · 2026-09-01`
 > **Role:** 사람용 경험 검수 PDF를 위한 편집 원본이다. 게임 규칙·데이터·테스트의 정본은 아래 upstream owner가 계속 소유한다.
-> **Status:** `r04 machine flow/owner/render validation complete; final content, copy, and visual review pending` — 이 문서는 새 게임 기능이나 런타임 구현 권한을 만들지 않는다.
+> **Status:** `r04 machine flow/owner/render validation and final document content, copy, and visual review complete` — 이 문서는 새 게임 기능이나 런타임 구현 권한을 만들지 않는다.
 
 ## Purpose and upstream authority
 
@@ -37,12 +37,13 @@ source_main: 0bf5e2150d643210abf127e34880111ee986b29d
 output_pdf: output/pdf/switchy-express-cargo-puzzle_HUMAN_GAME_BLUEPRINT_20260901_r04.pdf
 publication_manifest: docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT_PUBLICATION_MANIFEST.json
 generator: tools/build_human_game_blueprint.py
-content_review: PENDING_R04_FINAL_CONTENT_REVIEW
+content_review: USER_APPROVED_R04_FINAL_CONTENT_REVIEW
 flow_branch_review: MACHINE_R04_FLOW_VALIDATION_PASS
 scene_continuity_review: MACHINE_R04_OWNER_READBACK_PASS
-human_language_review: PENDING_R04_FINAL_COPY_REVIEW
+human_language_review: USER_APPROVED_R04_FINAL_COPY_REVIEW
 visual_render_review: MACHINE_R04_RENDER_INSPECTION_PASS
-user_final_review: AWAITING_R04_FINAL_CONTENT_COPY_AND_VISUAL_REVIEW
+user_visual_review: USER_APPROVED_R04_FINAL_VISUAL_REVIEW
+user_final_review: USER_APPROVED_R04_FINAL_CONTENT_COPY_AND_VISUAL_REVIEW
 implementation_authority: BLOCKED
 ```
 
@@ -54,14 +55,14 @@ implementation_authority: BLOCKED
   "revision": "r04",
   "date": "2026-09-01",
   "source_main": "0bf5e2150d643210abf127e34880111ee986b29d",
-  "user_final_review": "AWAITING_R04_FINAL_CONTENT_COPY_AND_VISUAL_REVIEW",
+  "user_final_review": "USER_APPROVED_R04_FINAL_CONTENT_COPY_AND_VISUAL_REVIEW",
   "pages": [
     {
       "kind": "cover",
       "title": "Cargo Puzzle\nBlueprint",
       "subtitle": "선로를 놓아 화물의 만남 순서를 만들고,\n움직이는 열차 위에서 TOP을 원하는 역까지 데려가는\n유한형 미니어처 철도 퍼즐.",
       "verbs": ["관찰", "설계", "선택", "실행", "복기"],
-      "status": "사람용 블루프린트 · r04 화면 흐름/와이어프레임 보정 · 기계 검증 완료 · 사용자 최종 검수 대기"
+      "status": "사람용 블루프린트 · r04 화면 흐름/와이어프레임 보정 · 기계 검증 완료 · 사용자 최종 문서 검수 승인"
     },
     {
       "kind": "vision",
@@ -415,7 +416,7 @@ implementation_authority: BLOCKED
       ],
       "status_rows": [
         ["기계 흐름·장면·렌더 검수", "PASS · r04 exact PDF, owner readback, flow/branch, all-page render"],
-        ["사용자 문서 내용·문장·시각 승인", "r02 문서 후보 승인 보존 · r04 최종 확인 대기"],
+        ["사용자 문서 내용·문장·시각 승인", "r02 문서 후보 승인 보존 · r04 최종 문서 검수 승인"],
         ["새 게임 구현 권한", "없음 · 이 문서는 파생 검수본"],
         ["실제 플레이 검수", "별도 · Windows/오디오, Android, 최종 사용자 확인" ]
       ],
@@ -445,8 +446,8 @@ adversarial_review_loops:
 known_nonblocking_environment_note:
   - validate_project_contract defers two pre-existing corrupt production-candidate PNG sources; their current runtime-integrated promoted assets remain validated and this r04 scope did not touch them
 evidence_ceiling:
-  - MACHINE_AND_RENDERED_DOCUMENT_EVIDENCE_ONLY
-  - final_user_review: AWAITING_R04_FINAL_CONTENT_COPY_AND_VISUAL_REVIEW
+  - MACHINE_AND_RENDERED_DOCUMENT_EVIDENCE_PLUS_FINAL_DOCUMENT_REVIEW
+  - final_user_review: USER_APPROVED_R04_FINAL_CONTENT_COPY_AND_VISUAL_REVIEW
   - physical_windows_audio_android_release: NOT_RUN_OR_SEPARATE
 ```
 
@@ -455,7 +456,8 @@ evidence_ceiling:
 ```yaml
 blueprint_pair_id: SX-HGB-001
 revision: r04
-review_status: AWAITING_R04_FINAL_CONTENT_COPY_AND_VISUAL_REVIEW
+review_status: USER_APPROVED_R04_FINAL_CONTENT_COPY_AND_VISUAL_REVIEW
+approved_on: 2026-09-02
 approved_scope:
   - SX-HGB-VIS-001_title_hero_document_visual
   - SX-HGB-VIS-002_build_board_document_visual
@@ -473,7 +475,6 @@ excluded_scope:
   - physical_or_human_evidence_promotion
 requested_changes: []
 remaining_risks:
-  - r04 PDF content, copy, and visual presentation require exact final user review.
   - Live physical, device, audio, and release evidence remain separate from this document.
-approval_evidence: '2026-09-01 current user messages: 권장안대로 진행해 / 승인 / 권장안대로 진행해'
+approval_evidence: '2026-09-02 current user message: 승인,병합 진행하고 구현작업도 진행해'
 ```
