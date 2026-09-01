@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: `2026-08-31 KST`
+Last updated: `2026-09-01 KST`
 
 ## Current authority
 
@@ -10,7 +10,7 @@ work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 base_latest_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 fresh_read_bootstrap: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 current_baseline: GMB-002 · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~067
+current_decisions: SX-DEC-027~069
 ```
 
 The user-approved SX-DEC-060 gameplay amendment changes the efficient next product gate. Pre-SX-DEC-060 Candidate 003 remains historical exact-byte evidence; it is no longer the build to spend the next human acceptance cycle on.
@@ -48,7 +48,12 @@ SX-DEC-067 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #263 · main@c0bb86e �
 → Route Book 02: six optional authored wayside/salvage stages, selected before the existing stage list
 → authored `CAUTION_TRACK` 0.55 departure segments; `WASTE_CRATE` only at cardinal-adjacent `DISPOSAL_YARD`
 → five modular board-decoration placements per new map and eight runtime-connected generated candidate assets
-→ Godot full local regression PASS · 120 cases / 14,053 assertions; PR #263 remote CI 7 GREEN and merged; no post-change package/physical/final-user candidate yet
+→ Godot full local regression PASS · 120 cases / 14,053 assertions; PR #263 remote CI 7 GREEN and merged; Candidate 007 became historical after later player-facing changes
+
+SX-DEC-068 + SX-DEC-069 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #271/#276
+→ title shell/wordmark canon, then transparent wayside cutouts and distinct speed-transition presentation
+→ `SX60-POC-ACCEPT-010` is the exact post-SX-DEC-069 machine-primary package; Candidate 006 through Candidate 009 remain historical
+→ final user review is optional only on unchanged Candidate 010; title wordmark pixel approval is complete and v02 wayside pixel review remains pending
 ```
 
 ## M0 · Product baseline
@@ -251,7 +256,7 @@ existing E+D assets / shell consumers
 → no bitmap, gameplay, map/data, first-session-copy, or audio delta
 ```
 
-GitHub Issue #235 and PR #237 implemented the contract in `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`, its spec/plan, and `SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`. SX-DEC-064 then changed player-facing active-route lighting. Candidates 002–005 are prior-byte evidence; Candidate 006 is the exact `main@9af5a8c` Route Book 01 machine-primary package record and became historical after SX-DEC-067. No post-SX-DEC-067 candidate exists until the exact package mint completes.
+GitHub Issue #235 and PR #237 implemented the contract in `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`, its spec/plan, and `SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`. SX-DEC-064 then changed player-facing active-route lighting. Candidates 002–005 are prior-byte evidence; Candidate 006 is the exact `main@9af5a8c` Route Book 01 machine-primary package record and became historical after SX-DEC-067. Later Candidate 007 through Candidate 009 are also historical; Candidate 010 now binds the exact post-SX-DEC-069 package.
 
 ## M6T · SX-DEC-063 terrain v02 asset promotion
 

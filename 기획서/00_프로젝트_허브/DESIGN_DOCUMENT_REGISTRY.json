@@ -19,6 +19,14 @@
       "status": "CURRENT"
     },
     {
+      "id": "SX-BASE-CURRENT-OPERATING-ADAPTATION-20260901",
+      "question": "2026-09-01 Base current fresh-read에서 어떤 실행 원칙을 Switchy에 적응했고 무엇을 보류했는가",
+      "source": "docs/operations/2026-09-01-switchy-base-operating-adaptation-audit.md",
+      "format": "markdown",
+      "publication_policy": "source_only",
+      "status": "HISTORICAL_AUDIT_RECEIPT"
+    },
+    {
       "id": "SX-AUD-045-WORK-INSTRUCTION-CANON",
       "question": "v4.5 r2 작업지시문 GitHub 정본 교체의 provenance와 검증 증거는 무엇인가",
       "source": "기획서/50_제작_검증/SX_AUD_045_V4_5_R2_WORK_INSTRUCTION_CANON.md",

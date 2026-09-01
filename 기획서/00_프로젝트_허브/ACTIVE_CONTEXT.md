@@ -369,9 +369,9 @@ SX-DEC-064 active-route-lighting is merged on main through Issue #248 / PR #249 
 ## Current next action
 
 ```text
-SX-DEC-068 title-shell product bytes merged at main@53e29f874bc70a0057c310d661dc45dbecc6cf13
+SX-DEC-069 merged main@79323ff0175b674c594d18dfd6d28a8e9951f5bd
 → Candidate 006 is immutable historical Route Book 01 evidence; Candidate 007 is immutable historical post-SX-DEC-067 evidence
-→ SX60-POC-ACCEPT-008 is historical pre-canonical-status evidence; SX60-POC-ACCEPT-009 is historical pre-SX-DEC-069 evidence; SX60-POC-ACCEPT-010 is the exact post-SX-DEC-069 machine package candidate and current selection
+→ SX60-POC-ACCEPT-008 is historical pre-canonical-status evidence; SX60-POC-ACCEPT-009 is historical pre-SX-DEC-069 evidence; SX60-POC-ACCEPT-010 is the exact current machine package candidate and current selection
 → no remaining machine-executable acceptance work; current next action is FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_010 when requested
 → preserve generated wayside images as RUNTIME_CONNECTED candidates; do not promote them to canonical assets or human evidence
 → preserve the user-approved title wordmark as its canon-registered, runtime-connected tracked product asset; do not infer physical, device, human, or release approval from that asset state
@@ -388,7 +388,7 @@ TDD_PLAN_RECORDED
 CODEX_HANDOFF_EXECUTED
 RUNTIME_MERGED_MAIN_VERIFIED_PR_188
 AUTOMATED_REGRESSION_PASS_111_CASES_13461_ASSERTIONS
-POST_SX_DEC_068_CANDIDATE_009_PREPARED_PACKAGE_VERIFIED · CURRENT_SELECTION_EXPLICIT · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED
+POST_SX_DEC_069_CANDIDATE_010_PREPARED_PACKAGE_VERIFIED · CURRENT_SELECTION_EXPLICIT · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
 SX60_POC_ACCEPT_001_HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE
 POST_060_DEVICE_NOT_RUN
 POST_060_HUMAN_NOT_RUN

@@ -174,6 +174,7 @@ sx_dec_060_new_bitmap_assets_required: 0
 | **SX-DEC-066** | **Curated Route Book 01 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #260 · Candidate 006 preserved as historical exact package evidence; final user review requires a current byte-specific candidate** |
 | **SX-DEC-067** | **Wayside Hazards, Salvage, and Route Book 02 · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #263 · exact main `c0bb86e` · Candidate 007 is historical after the later title-shell byte change** |
 | **SX-DEC-068** | **Main Title Shell and World Wordmark · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #271 · canonical-status source `1ac3099` · Candidate 009 historical after SX-DEC-069 · wordmark is runtime-connected, user-pixel-approved, and canon-registered** |
+| **SX-DEC-069** | **Transparent wayside cutouts and speed-transition presentation · USER_APPROVED · MERGED_MAIN_VERIFIED · PR #276 · exact Candidate 010 machine package · eight v02 runtime-connected pixels remain USER_PIXEL_REVIEW_PENDING** |
 
 ## SX-DEC-059 retained first-session contract
 

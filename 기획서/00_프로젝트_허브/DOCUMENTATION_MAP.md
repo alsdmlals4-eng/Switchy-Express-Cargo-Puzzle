@@ -34,10 +34,17 @@
 | 자산 권리·provenance를 어디에 기록하는가 | `../../../docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md` |
 | 출시 compliance evidence는 어디에 모으는가 | `../../../docs/GAME_RELEASE_COMPLIANCE_EVIDENCE_PACK.md` |
 | Base 기준은 무엇인가 | `../../../docs/BASE_RULES_VERSION.md` |
+| Current Base execution model은 Switchy에 어떻게 적응되는가 | `../../../PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md` |
 | 문서 책임·상태는 어디에 있는가 | `DESIGN_DOCUMENT_REGISTRY.json` |
 | Skill 라우팅은 어디에 있는가 | `../../../skills/SKILL_REGISTRY.json`, `../../../skills/PROJECT_BASE_ADAPTER.json` |
 | 프로젝트 전용 기획·검증 규칙은 무엇인가 | `../../../skills/switchy-express-design/SKILL.md` |
 | AI 모델·지시·Context 작업 흐름은 무엇인가 | `../../../docs/AI_WORKFLOW.md` |
+
+## Historical audit receipts
+
+| Receipt ID | 자료 | 상태 |
+|---|---|---|
+| SX-BASE-CURRENT-OPERATING-ADAPTATION-20260901 | `../../../docs/operations/2026-09-01-switchy-base-operating-adaptation-audit.md` | `HISTORICAL_AUDIT_RECEIPT · next task must fresh-read Base again` |
 
 ## Historical · Current Authority 아님
 

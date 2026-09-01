@@ -8,8 +8,8 @@
 
 ```yaml
 product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE · AMENDED_BY_SX_DEC_060
-current_decisions: SX-DEC-027~065
-current_product_decision: SX-DEC-063 · HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT + SX-DEC-064 · ACTIVE_ROUTE_LIGHTING + SX-DEC-065 · MACHINE_PRIMARY_FINAL_USER_REVIEW
+current_decisions: SX-DEC-027~069
+current_product_decision: SX-DEC-068 · TITLE_SCREEN_MAIN_SHELL_USER_APPROVED_CANON_REGISTERED + SX-DEC-069 · TRANSPARENT_WAYSIDE_AND_SPEED_TRANSITIONS_MERGED_MAIN_VERIFIED + SX60-POC-ACCEPT-010_MACHINE_PRIMARY_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN
 work_instruction: v4.8 · revision 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER
 work_instruction_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
 source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
@@ -25,8 +25,8 @@ sx_dec_060_user_rule: APPROVED
 sx_dec_060_design_tdd_handoff: PREPARED
 sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
 sx_dec_062_runtime_composition: MERGED_MAIN_VERIFIED · PR_237 · existing-asset board-first composition
-sx_dec_063_visual_direction: USER_APPROVED_DIRECTION · FIRST_TERRAIN_CANDIDATE_GENERATED_REVIEW_PENDING · RUNTIME_UNCHANGED
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · MACHINE_PRIMARY_ACCEPTANCE_READY · source main 9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 · final user review not run
+sx_dec_063_visual_direction: USER_APPROVED_DIRECTION · CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED · RUNTIME_CONSUMERS_CONNECTED
+post_sx_dec_060_candidate: SX60-POC-ACCEPT-010 · PREPARED_PACKAGE_VERIFIED · exact SX-DEC-069 source main 79323ff0175b674c594d18dfd6d28a8e9951f5bd · Candidate_006_to_009_historical · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
 sx60_poc_accept_001: HISTORICAL_SUPERSEDED_BY_PRODUCT_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
 pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY
 windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
@@ -135,9 +135,9 @@ candidate_003_product_textures: PASS · 73/73 · HISTORICAL
 candidate_003_physical_visual_recheck: NOT_RUN
 ```
 
-SX-DEC-060 이후 Candidate 003은 historical exact-byte evidence로 유지됩니다. SX-DEC-064까지 포함한 Candidate 004가 현재 exact package candidate이며, package/automation evidence만 갖고 물리·오디오·사람 검증은 별도입니다.
+SX-DEC-060 이후 Candidate 003부터 Candidate 009까지는 각각의 exact-byte historical evidence로 보존됩니다. 특히 `SX60-POC-ACCEPT-006 · PREPARED_PACKAGE_VERIFIED · HISTORICAL_SUPERSEDED_BY_SX_DEC_067_PLAYER_FACING_PRODUCT_BYTE_CHANGE`는 Route Book 01 source bytes만 증명하며 현재 후보가 아닙니다. `SX60-POC-ACCEPT-010`만이 SX-DEC-069 이후의 현재 machine-primary exact package candidate이며, package/automation evidence는 물리·오디오·사람 검증과 별개입니다.
 
-## Current Implementation Package
+## Foundational Implementation Package
 
 ```text
 docs/decisions/SX_DEC_060_CARDINAL_STATION_SERVICE_AND_REACHABLE_NETWORK.md
@@ -146,14 +146,14 @@ docs/superpowers/plans/2026-08-26-cardinal-station-service-and-reachable-network
 기획서/50_제작_검증/SX_DEC_060_CODEX_HANDOFF_PACKAGE.md
 ```
 
-Actual GDScript/Scene/Resource/map/runtime implementation is merged-main verified by PR #188; the package/human evidence gates remain separate.
+Actual GDScript/Scene/Resource/map/runtime foundation is merged-main verified by PR #188. Later player-facing bytes and the current package boundary are owned by `CURRENT_CONFIRMED_DECISIONS.md` and `ACTIVE_CONTEXT.md`; package/human evidence gates remain separate.
 
 ## Current Next Work
 
 ```text
-→ SX60-POC-ACCEPT-006 machine-primary package candidate is exact-main verified after Route Book 01
-→ preserve machine/human evidence boundary
-→ final user review only when the user requests it, without changing Candidate 006 bytes
+→ SX60-POC-ACCEPT-010 is the exact post-SX-DEC-069 machine-primary package candidate
+→ preserve Candidate 006 through Candidate 009 as historical exact-byte evidence and retain the machine/human evidence boundary
+→ FINAL_USER_REVIEW_ON_UNCHANGED_SX60_POC_ACCEPT_010 only when the user requests it; the title wordmark is approved while v02 wayside pixel review remains pending
 ```
 
 `SX-DEC-056A/057/058` implementation remains unauthorized/blocked. Draft PR #174 remains `READ_ONLY`. Current Notion structures are mapped to GitHub in `docs/migrations/2026-08-28-notion-current-workspace-migration.md`; historical Notion is not an active workspace.
