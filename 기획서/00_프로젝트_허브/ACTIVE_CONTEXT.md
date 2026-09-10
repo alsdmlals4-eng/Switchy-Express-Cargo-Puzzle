@@ -7,6 +7,12 @@ The replan spec now contains DP-01–DP-10, screen/input/focus contracts, exact 
 copy ownership, presentation defaults and future acceptance cases. No image/runtime work resumes.
 Important future fixes: exhaustive cargo labels and authoritative running remaining-cargo counts.
 
+Fun/originality continuation is prepared in the same spec: FUN-01–FUN-05, three experience
+alternatives, RB01–RB12 intent mapping, replay/difficulty guardrails and falsifiable machine-first
+checks. Primary recommendation is reverse-order cargo choreography, not new mechanics.
+Same-cell pickup-before-unload order is an existing rule to preserve. Stage copy is not proof
+that a particular solution is mandatory. Image/runtime/merge hold remains unchanged.
+
 Current next action is the planning-review amendment in `docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md`.
 Image production, additional runtime changes and PR #284 merge are ON_HOLD_BY_USER.
 The board-slate candidate alone has USER_APPROVED_PIXELS; registration/application remain held.

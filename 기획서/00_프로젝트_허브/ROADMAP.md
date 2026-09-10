@@ -6,6 +6,10 @@ Detailed rule/state/input/copy planning is prepared in the replan spec (DP-01–
 Production resumption remains held; future implementation must first close the cargo-label
 fallthrough and placeholder-count gaps and use the listed machine/runtime acceptance cases.
 
+Fun and distinctiveness review now maps FUN-01–FUN-05 to existing content intentions.
+Next planning follow-up, if continued: compare current authored witnesses and alternative
+action traces against those intentions without adding a solver or changing maps/time limits.
+
 1. Review Build / Run / Result information hierarchy and core decision loop.
 2. Specify editable wireframes, state/input/copy requirements and shared asset/motion contracts.
 3. Review geometry, feasibility, accessibility risks and evidence limits; resolve design findings.

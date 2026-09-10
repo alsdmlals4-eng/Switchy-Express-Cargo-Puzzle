@@ -336,6 +336,144 @@ Planning exit: detailed recommendations prepared within delegated scope. Product
 The remaining implementation gaps and visual checks above are explicit future work, not unfinished
 image production in this planning task. No new feature-spec readiness or production PASS is asserted.
 
+## Fun, distinctiveness and content refinement — delegated continuation
+
+Date: 2026-09-10. User explicitly requested continued research-backed planning including fun
+and originality. This section selects design recommendations within the retained rules.
+Image/code production and PR merge remain held. Fun and market distinctiveness are hypotheses,
+not MACHINE_VERIFIED facts, novelty certification or a promise of commercial success.
+
+### Additional comparison and evidence
+
+| Source | Observed evidence | Project decision |
+|---|---|---|
+| [Railbound official store](https://store.steampowered.com/app/1967510/Railbound/) | Railway connection puzzles with a relaxed main path and harder branches; train-inspired obstacles | ADAPT gentle presentation with distinct reasoning challenges; REJECT importing tunnels, barriers, extra trains or its content quantity |
+| [Cosmic Express official site](https://cosmicexpressgame.com/) | Train-route planning is already an explicit product premise | REJECT claiming railway route planning alone as our originality; ADAPT a concise, concrete player-action pitch |
+| [A Monster's Expedition official store](https://store.steampowered.com/app/1052990/A_Monsters_Expedition/) | A small interaction set is presented as having discoverable depth | ADAPT variation through consequences of known rules; REJECT open-world/island/lore systems |
+| [Railbound discussion](https://steamcommunity.com/app/1967510/discussions/0/4309452818500119284/) | A June 2024 participant reports trial-and-error fatigue; an August 2024 participant describes long hard-puzzle solving positively | TEST: distinguish meaningful reasoning from unreadable failure. Small self-selected historical sample, unknown build and no causal/frequency inference |
+
+A GDC session landing page was found but did not expose usable lecture content in this read;
+no lecture-specific claims are attributed to it. Prior official engine/accessibility and twelve-game
+comparison evidence remains separately identified above. No direct play or representative player study
+was performed. Price, review aggregates and advertised puzzle count are not quality targets.
+
+### Selected experience among three viable directions
+
+| Direction | Strength | Cost / risk | Disposition |
+|---|---|---|---|
+| Cozy connection craft | Easy to explain, low apparent interaction burden | Underuses LIFO and resembles existing railway puzzles | SUPPORT through presentation, not the main distinction |
+| Real-time switch mastery | Immediate agency and visible execution | Can become reflex pressure, especially with touch and small controls | SUPPORT with readable timing, no new speed escalation |
+| Reverse-order cargo choreography | Route, skip/revisit, TOP and switching affect the same delivery plan | Needs excellent stack and cause/effect readability | SELECT as primary experience |
+
+Working player-facing pitch: “선로뿐 아니라 실을 순서까지 설계하세요. 때로는 지나치는 것이 정답입니다.”
+This is a draft description of existing choices, not a title replacement or published marketing claim.
+Target hypothesis: players who enjoy compact authored logic problems and watching their own plan work.
+Promise quiet presentation with active decisions; do not advertise a timer-free experience.
+
+### Five concrete fun contracts
+
+| ID / intended moment | Existing action and consequence | Required feedback | Falsifier / refinement |
+|---|---|---|---|
+| FUN-01 “먼저 내리려면 나중에 실어야 하는구나” | Reverse encounter order so the desired item becomes TOP | Board pickup and exact TOP update agree | If the same delivery succeeds regardless of order in the chosen teaching example, do not claim that example teaches LIFO |
+| FUN-02 “지금 안 싣는 게 더 낫다” | Pass cargo without loading, deliver first, then revisit | Skipped cargo remains visible; Manual/Auto state is readable | If the selected witness never needs a meaningful load choice, choose a better existing example rather than add a forced rule |
+| FUN-03 “한 묶음이 착착 비워진다” | Matching contiguous TOP cargo unloads in sequence | Local unload, inventory progression and committed totals remain consistent | Large celebration cannot substitute for a visible group; no combo-score invention |
+| FUN-04 “계획해 둔 분기가 딱 맞는다” | Change route before occupation, then let the train execute it | Accepted path and occupied lock are distinct | If only last-frame reflex succeeds, flag timing/layout for later review rather than secretly slow the game |
+| FUN-05 “한 군데 바꾸니 전체가 풀린다” | Retry or edit a local choice without rebuilding everything | Same layout is preserved; failure reason remains factual | If replay is mostly identical waiting or the changed choice is invisible, flag replay friction; no rewind/fast-forward feature added here |
+
+Reward rhythm: local accepted action → understandable delivery group → completed authored route →
+the next existing stage. Do not add currencies, streak pressure, score multipliers, random rewards
+or new collection systems. Successful planning, not UI stimulation, is the intended reward.
+
+### Existing-stage coverage and design audit
+
+These are intended content roles from current localization/maps, not proof of mandatory solutions:
+
+| Stage family | Existing intention | Planning refinement | Evidence still needed |
+|---|---|---|---|
+| RB01 / RB02 | Cardinal service / reverse order | Separate “where delivery occurs” from “what can unload” | Witness and actual display show the intended distinction |
+| RB03 / RB04 | Return pickup / Auto window | Make the decision to skip or disable Auto intelligible without prescribing every move | Compare intended witness with a naive always-load trace |
+| RB05 / RB06 | Occupied switch / combined circuit | Readable switch decision before the occupied boundary; capstone combines known ideas | Valid/late switch traces and failure attribution |
+| RB07 / RB08 | Terrain readability / caution segment | Treat scenery as orientation and caution as a visible time cost, not surprise punishment | Route alternatives and timing evidence; no claim that caution is unavoidable |
+| RB09 / RB10 | Waste destination / delayed waste pickup | Waste should create a load-order/destination decision, not merely another colored delivery | Actual stack obstruction and disposal traces |
+| RB11 / RB12 | Waste-aware turnout / combined loop | Combine learned choices without increasing all pressure axes together | Event sequence, solvability, recovery and readability |
+
+Fresh map read confirms RB03 has two cargo types and broad buildable space, while RB10 substitutes
+waste alongside normal delivery and adds authored caution/decor. Their objective copy recommends
+an order but does not prove that all alternate routes are invalid. Preserve free-route solutions:
+do not turn a suggested strategy into an unannounced success condition.
+
+### Content design rules selected for future refinement
+
+1. Every reviewed puzzle gets one sentence naming its main decision, one plausible mistaken plan
+   and the specific existing rule that explains the mistake. “More tiles” is not a main decision.
+2. Compare three difficulty axes separately: reasoning dependency, live input timing, visual density.
+   Do not raise all three at once. Exact map/time changes remain outside this planning pass.
+3. Follow an insight-focused example with a varied application and then a combination.
+   This is a review lens for existing stages, not permission to reorder IDs/unlocks now.
+4. Give common errors understandable consequences: wrong TOP, unserved station, wrong branch,
+   missed cargo or route end. Explain observed facts, not “you should have used this optimal route”.
+5. Distinguish information from answers. Show current stack/service/lock state. Do not reveal an
+   unknown route solution or generate automatic puzzle hints during play.
+6. Longer play is not automatically more content. Repeated identical travel, compulsory waits,
+   extra decorations and cosmetic renaming do not count as a new puzzle idea.
+7. Optional replay comes from discovering a cleaner personal route using current cost/time facts,
+   not invented stars, leaderboard, personal-best persistence or mandatory perfect clears.
+8. Add no new trap type until an existing mechanic has a documented gap that cannot be solved
+   with layout, presentation or its current combination with another rule.
+
+### Edge case discovered in the actual loop
+
+`game/finite/delivery/finite_delivery_loop.gd:handle_cell_entered` processes pickup before
+station unload on the same cell-enter event. A cell can therefore change TOP before station matching.
+Preserve this existing order; do not explain it backwards or alter the engine during art planning.
+For early teaching examples, avoid relying on such simultaneous contact unless it has been
+explicitly introduced. In a later combination review, capture pickup → new TOP → matching test →
+unload as one causal sequence. Do not invent a new mechanic or add new maps to demonstrate it now.
+
+### Originality and SWOT judgment
+
+Railway construction, miniature art, colored delivery and cozy tone are genre ingredients,
+not sufficient originality claims. Our strongest candidate is their combination with unlimited
+LIFO, deliberate non-loading/revisit and persistent direct route control. Its distinctiveness
+must be visible through player decisions, not only explained in a design document.
+
+- Strength → opportunity: FUN-01/02 make the existing spatial and load-order relationship visible.
+- Weakness → opportunity: exhaustive cargo identity and accurate remaining counts are prerequisites
+  for recognizing the intended insight, not polish to defer until the end.
+- Strength → threat: predictable rules and recoverable Retry/Edit can support experimentation
+  without importing competitors' content systems.
+- Weakness → threat: clutter plus timing pressure can resemble confusing trial and error;
+  prioritize readable state, not additional traps, and never claim machine success proves enjoyment.
+
+World fit: the player acts as a dispatcher arranging a miniature delivery run. Board, manifest and
+local signals support that role. A management economy or action-combat layer would change it.
+Night-workshop materials remain a working direction, not authorization to adopt the rejected title.
+
+### Machine-first evaluation and next planning boundary
+
+Future test evidence must distinguish:
+
+- A witness completes the stage: solvability evidence only.
+- An alternate load/switch sequence changes the observed result: meaningful-rule interaction
+  evidence, not proof every solution requires that choice.
+- Naive strategy still succeeds: valid discovery, not necessarily a bug; never force a single
+  solution simply to make objective text sound correct.
+- Trace accounts for every pickup, TOP update, unload and outcome: causal consistency evidence.
+- Screen and reduced-motion captures preserve those facts: rendering/readability review evidence.
+- “I enjoyed it / understood it”: final user experience evidence only; no inferred human PASS.
+
+No new solver, analytics backend, five-person test, player recruitment or runtime harness is created.
+Reuse existing stage witnesses and delivery history in the later implementation verification.
+Current planning checks: every FUN contract has an action, visible consequence and falsifier;
+every stage recommendation preserves existing IDs and rule authority.
+
+Five self-review passes completed for this amendment: (1) protected core and held production;
+(2) source depth and limited historical player sample; (3) existing stage intent versus actual
+solution necessity; (4) same-cell pickup-before-unload causality and presentation dependencies;
+(5) novelty/UX evidence ceiling and no new progression/solver/deletion.
+Correction from review: changed “required skip” to “intended strategy” where free construction
+can permit alternatives. No new Base promotion; this is a project-specific design refinement.
+
 ## Original planning record — historical observations where superseded
 
 ## Current owner and evidence
