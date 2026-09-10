@@ -1,5 +1,12 @@
 # Active Context
 
+## 2026-09-10 current work overlay
+
+User authorized core-preserved replanning, new image candidates with existing art as reference, another research pass and proceeding with the recommendation. Current work is `RESEARCHED / SPECIFIED · CANDIDATE_PREPARATION`; new pixel approval, implementation and runtime verification remain distinct.
+Owner: `docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md` (research, SWOT, selected working direction, editable flow/wireframes, consumer and motion matrix).
+Next: review generated direction pixels, prepare joined rail master and representative action assets, apply conditional Aseprite candidate workflow, then register approved assets and implement against exact main. The older completion snapshots below describe Candidate010 work only, not completion of this replan. Candidate010 retains its own exact-byte evidence.
+Open PRs #281/#254/#174 remain separate read-only work. Base v9.4.3 compatibility is unchanged. Root import/UID changes are preserved; this work uses `codex/core-preserved-replan-20260910` from observed main `4cbdfc3`.
+
 ```yaml
 project_workspace: GITHUB_ONLY
 notion_active_use: RETIRED_NO_ACTIVE_USE · USER_APPROVED_2026-08-28

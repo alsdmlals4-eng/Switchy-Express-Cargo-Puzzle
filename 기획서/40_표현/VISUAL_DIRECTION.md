@@ -1,5 +1,10 @@
 # Visual Direction
 
+## 2026-09-10 production-direction overlay
+
+The user requested new art from renewed planning with the core retained; old imagery is reference material for this new production cycle. Working direction and consumer/state requirements are specified in `docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md`: night signal workshop, quiet readable board, cream TOP manifest, local causal motion and connected-master rail production. Generated pixels require final selection before canonical registration.
+The older visual locks below describe existing implementation and provenance; they do not prohibit the newly authorized candidate production. Their historical approval is preserved. New imagery is not yet runtime-verified.
+
 상태: `CURRENT_CANON · GMB-002 · SX-DEC-061/062/063/064/065 · SX-DEC-063_CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED_PR255_RUNTIME_CONSUMERS_CONNECTED · SX-DEC-064_MERGED_MAIN_PR249_CI7_GREEN_PROCEDURAL_RUNTIME_DELTA · SX60_POC_ACCEPT_005_MACHINE_PRIMARY_ACCEPTANCE_READY`
 
 ## SX-DEC-061 active visual lock · read this first

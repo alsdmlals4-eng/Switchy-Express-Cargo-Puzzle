@@ -1,5 +1,10 @@
 # Current Confirmed Decisions
 
+## 2026-09-10 user-directed replan
+
+Core preservation and research-led revision of existing elements are approved. The user instructed another research pass and continuation with the recommended night-signal-workshop direction. Existing images become references for new production while current runtime assets and historical approvals remain recoverable. New generated pixels are candidates until final selection.
+Detailed proposal and evidence: `docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md`. No new core rule, automatic canonical pixel promotion, Base repin or unrelated PR action is authorized by this record.
+
 Last updated: `2026-09-01 KST`
 
 ## SX-DEC-069 · Transparent Wayside Cutouts and Speed-Transition Presentation
