@@ -76,7 +76,10 @@ func apply_model(model: Dictionary) -> void:
 		int(_model.get("recommended_cost", 0)),
 	]
 	(get_node("TopStatus/TimeLabel") as Label).text = (
-		"남은 시간 %.1f초" % float(_model.get("time_remaining", 0.0))
+		"남은 시간 %.1f초 · 미배송 %d" % [
+			float(_model.get("time_remaining", 0.0)),
+			maxi(int(_model.get("remaining_map_cargo", 0)), 0) + maxi(int(_model.get("stack_size", 0)), 0),
+		]
 		if is_run or is_paused
 		else "노선을 설계하세요"
 	)
@@ -291,7 +294,16 @@ static func _stack_text(tokens: Array) -> String:
 	for value: Variant in tokens:
 		var token: Dictionary = value
 		var cargo_type: StringName = StringName(token.get("cargo_type", &""))
-		var label := "A · 별" if cargo_type == &"RED_STAR" else "B · 다이아"
+		var label := "알 수 없는 화물"
+		match cargo_type:
+			&"RED_STAR":
+				label = "A · 별"
+			&"BLUE_DIAMOND":
+				label = "B · 다이아"
+			&"YELLOW_TRIANGLE":
+				label = "C · 삼각"
+			&"WASTE_CRATE":
+				label = "폐기물 · 처리장"
 		if bool(token.get("top", false)):
 			label += "  ← TOP"
 		labels.append(label)

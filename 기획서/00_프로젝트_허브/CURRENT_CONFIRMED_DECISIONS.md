@@ -1,5 +1,45 @@
 # Current Confirmed Decisions
 
+> Latest continuation: user explicitly approved finishing remaining preparation and proceeding
+> with game implementation. The implementation hold below is superseded for this replan.
+> Preserve the finite core, selected board pixels, and current-task PR #284 ownership;
+> failed-alpha candidates are not approved runtime assets. Other PRs remain read-only.
+> Execute prepared read-model corrections first; do not mark incomplete asset families ready.
+
+## 2026-09-11 human blueprint preparation override
+
+The latest user authorizes detailed research/planning and necessary consumer-bound image
+candidate production for a human blueprint. This supersedes the September 10 image hold below.
+Runtime implementation and PR #284 merge remain held until final blueprint approval.
+The Ten Paces organized PDF is a structure reference only, not gameplay or asset authority.
+Editorial companion: `docs/design/SWITCHY_BLUEPRINT_REVIEW_20260911.md`.
+Current publication is INTERMEDIATE_REVIEW_NOT_IMPLEMENTATION_READY: candidate alpha,
+rail extraction/port validation, remaining screen/state families and exact handoff are incomplete.
+Board-slate remains selected; title-workshop remains not selected. No new pixel approval is implied.
+
+## 2026-09-10 latest selection and sequencing amendment
+
+Subsequent user instruction delegates detailed planning judgments to internet research,
+benchmarking and recommendations. DP-01–DP-10 in the existing replan spec are the selected
+planning recommendation within preserved core scope. Numeric defaults are recommendations,
+not measured optima. This is not permission to resume images, implementation or PR #284 merge.
+
+User selected only `evidence/design/night-workshop-surfaces-20260910/board-slate.png`
+(SHA-256 `694f69c32f457a9dea425716774d9bca4de2896c680c8defed47667d86e15365`).
+This is pixel selection, not approval of warm color modulation or a completed runtime change.
+`title-workshop.png` is NOT_SELECTED; no deletion is authorized by non-selection.
+Latest user instruction requires planning/review before further image work. Hold additional production and PR #284 merge; preserve prior implementation.
+Review owner: `docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md`, planning-first amendment.
+
+## SX-DEC-070 — Night Workshop first object family
+
+2026-09-10 user continuation approves the presented train, blue station and blue cargo family.
+Canonical manifest and existing-consumer implementation prepared; local machine verification PASS.
+Actual visual runtime review PASS at 1280x720 with programmatic RB01 witness; merged-main
+delivery remains pending. Terminal facing corrected with incoming direction. No rail replacement,
+other-color generation, core semantic change or release approval is implied.
+Owner: `docs/decisions/SX_DEC_070_NIGHT_WORKSHOP_FIRST_OBJECT_FAMILY.md`.
+
 ## 2026-09-10 user-directed replan
 
 Core preservation and research-led revision of existing elements are approved. The user instructed another research pass and continuation with the recommended night-signal-workshop direction. Existing images become references for new production while current runtime assets and historical approvals remain recoverable. New generated pixels are candidates until final selection.

@@ -1,6 +1,61 @@
 # Active Context
 
+> Latest continuation: user explicitly approved finishing remaining preparation and proceeding
+> with game implementation. The implementation hold below is superseded for this replan.
+> Preserve the finite core, selected board pixels, and current-task PR #284 ownership;
+> failed-alpha candidates are not approved runtime assets. Other PRs remain read-only.
+> Execute prepared read-model corrections first; do not mark incomplete asset families ready.
+
+## 2026-09-11 human blueprint preparation override
+
+The latest user authorizes detailed research/planning and necessary consumer-bound image
+candidate production for a human blueprint. This supersedes the September 10 image hold below.
+Runtime implementation and PR #284 merge remain held until final blueprint approval.
+The Ten Paces organized PDF is a structure reference only, not gameplay or asset authority.
+Editorial companion: `docs/design/SWITCHY_BLUEPRINT_REVIEW_20260911.md`.
+Current publication is INTERMEDIATE_REVIEW_NOT_IMPLEMENTATION_READY: candidate alpha,
+rail extraction/port validation, remaining screen/state families and exact handoff are incomplete.
+Board-slate remains selected; title-workshop remains not selected. No new pixel approval is implied.
+
+## Latest user instruction — planning and review first (2026-09-10)
+
+The user delegated detailed rules and planning to research-backed recommendations.
+The replan spec now contains DP-01–DP-10, screen/input/focus contracts, exact read-model gaps,
+copy ownership, presentation defaults and future acceptance cases. No image/runtime work resumes.
+Important future fixes: exhaustive cargo labels and authoritative running remaining-cargo counts.
+
+Fun/originality continuation is prepared in the same spec: FUN-01–FUN-05, three experience
+alternatives, RB01–RB12 intent mapping, replay/difficulty guardrails and falsifiable machine-first
+checks. Primary recommendation is reverse-order cargo choreography, not new mechanics.
+Same-cell pickup-before-unload order is an existing rule to preserve. Stage copy is not proof
+that a particular solution is mandatory. Image/runtime/merge hold remains unchanged.
+
+Current next action is the planning-review amendment in `docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md`.
+Image production, additional runtime changes and PR #284 merge are ON_HOLD_BY_USER.
+The board-slate candidate alone has USER_APPROVED_PIXELS; registration/application remain held.
+Title-workshop is USER_NOT_SELECTED and preserved as reference, not a production default.
+Earlier continuation/delivery instructions below describe prior work, not permission to resume production.
+
 ## 2026-09-10 current work overlay
+
+Latest continuation: SX-DEC-070 machine framebuffer and event-flow verified, including
+four pickup frames, pause, Retry and RB01 SUCCESS at 1280x720. Terminal train-facing defect
+corrected with RED→GREEN; full suite 121 cases / 14,156 assertions PASS.
+Explicit-session Godot AI 3.2.0 resolves the prior Hera CLI capability mismatch without an upgrade.
+Current delivery PR #284; runtime evidence and recovery owner is SX-DEC-070.
+Surface selection has since changed: board pixels only selected; title unselected; application held.
+The earlier blocker paragraph below is historical; it must not stop this continuation.
+
+Current increment: SX-DEC-070 approved three-object family, implemented on
+`codex/night-workshop-runtime-20260910` from merged PR #283 main
+`4038ff04420bb9b7e385654d09f63161c1e2036b`. Train, blue station and blue cargo
+now consume the new manifest; confirmed blue pickup has a bounded four-frame presentation.
+Full Godot regression: 121 cases / 14,152 assertions PASS. Runtime visual review NOT_RUN:
+installed Hera v1.0.0 lacks the skill's explicit game-PID targeting option.
+Next: resolve project-scoped runtime inspection, inspect actual board/pickup, then deliver
+the runtime PR normally. Rail tile adjacency remains NOT_VERIFIED; other colors unchanged.
+Owner: `docs/decisions/SX_DEC_070_NIGHT_WORKSHOP_FIRST_OBJECT_FAMILY.md`.
+The following candidate-preparation paragraph is historical pre-SX-DEC-070 state.
 
 Continuation: PR #282 merged as `6b96868d2de890a85b043aa52abcbabb9fc4fce0` after all four reported checks succeeded. User selected the second direction sheet's palette/material/manifest composition. Current asset preparation plan: `docs/superpowers/plans/2026-09-10-night-workshop-assets.md`. New rail, cargo-motion, train and blue-station pixels remain candidates; no current renderer paths have changed. Aseprite four-frame preparation is separate from Godot runtime integration.
 

@@ -69,7 +69,8 @@ def main():
     print(json.dumps({"status": "PASS", "scope": "candidate extraction/alpha/metadata only",
                       "frames": frames, "images": images, "hashes": hashes,
                       "rail_tiling": "NOT_VERIFIED", "godot_runtime": "NOT_RUN",
-                      "pixel_approval": "PENDING"}, indent=2))
+                      "pixel_approval": {"train_station_blue_cargo": "USER_APPROVED_SX_DEC_070",
+                                         "rail": "CANDIDATE"}}, indent=2))
 
 
 if __name__ == "__main__":

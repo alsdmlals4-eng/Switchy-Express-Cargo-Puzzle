@@ -315,6 +315,7 @@ func _on_delivery_event_created(event: Variant) -> void:
 	if event == null:
 		return
 	if bool(event.picked_up):
+		_renderer.play_cargo_pickup(event.cell, event.pickup_type)
 		if is_instance_valid(_semantic_events):
 			_semantic_events.play_event(&"cargo_pickup")
 		_audio.play_cue(&"pickup")

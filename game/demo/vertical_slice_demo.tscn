@@ -287,6 +287,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PauseOverlay" type="CenterContainer" parent="."]
+z_index = 20
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -325,6 +326,7 @@ layout_mode = 2
 text = "현재 플레이 종료"
 
 [node name="ExitConfirmOverlay" type="CenterContainer" parent="."]
+z_index = 20
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -365,6 +367,7 @@ layout_mode = 2
 text = "종료하고 타이틀로"
 
 [node name="ResultOverlay" type="CenterContainer" parent="."]
+z_index = 20
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

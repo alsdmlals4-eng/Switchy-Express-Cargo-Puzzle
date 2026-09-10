@@ -7,6 +7,7 @@ const AlphaScript := preload("res://tests/fixtures/finite/fp_core_solution_alpha
 
 
 func run() -> void:
+	_assert_delivery_counts_follow_domain()
 	var controller: RefCounted = ControllerScript.new()
 	assert_true(
 		controller.initialize("res://data/maps/fp_core_proof_01.json"),
@@ -55,6 +56,7 @@ func run() -> void:
 	assert_true(controller.model()["start_enabled"], "alpha layout must pass preflight")
 	controller.request_command(&"START")
 	assert_equal(controller.phase(), &"RUNNING", "manual-load projection proof must enter RUNNING")
+	assert_equal(controller.model()["remaining_map_cargo"], 4, "RUNNING must expose four authored ground cargo, not a placeholder zero")
 	var running_snapshot: Dictionary = controller.render_snapshot()
 	assert_equal(
 		running_snapshot.get("train_previous_cell", Vector2i(-1, -1)),
@@ -77,6 +79,7 @@ func run() -> void:
 		"existing input state clears manual hold on pause"
 	)
 	assert_false(controller.model()["manual_load_active"], "paused presenter model must project cleared manual hold")
+	assert_equal(controller.model()["remaining_map_cargo"], 4, "PAUSED must preserve the real ground cargo count")
 
 	var rotation_controller: RefCounted = ControllerScript.new()
 	assert_true(
@@ -104,3 +107,33 @@ func run() -> void:
 		1,
 		"placed piece must keep the active tool rotation"
 	)
+
+
+func _assert_delivery_counts_follow_domain() -> void:
+	var controller: RefCounted = ControllerScript.new()
+	assert_true(controller.initialize("res://data/maps/route_book/rb01_service_sidings.json"), "count lifecycle map loads")
+	var witness = load("res://tests/fixtures/route_book/route_book_witnesses.gd")
+	assert_true(controller.install_layout_for_test(witness.pieces(&"RB01_SERVICE_SIDINGS")), "count lifecycle uses authored route")
+	controller.request_command(&"START")
+	controller.request_command(&"AUTO_TOGGLE")
+	var saw_pickup := false
+	var saw_unload := false
+	for step in range(150):
+		controller.advance_time(0.05)
+		var session = controller.active_run_session_for_test()
+		var model: Dictionary = controller.model()
+		assert_equal(model.remaining_map_cargo, session.cargo_field.remaining_count(), "ground count follows actual field throughout run")
+		assert_equal(model.stack_size, session.cargo_stack.load_order().size(), "carried count follows domain, not animated stack")
+		var delivered := 0
+		for event: Variant in controller.delivery_history():
+			delivered += int(event.unload_count)
+		assert_equal(int(model.remaining_map_cargo) + int(model.stack_size) + delivered, 2, "pickup/unload conserve both authored cargo")
+		saw_pickup = saw_pickup or int(model.remaining_map_cargo) < 2
+		saw_unload = saw_unload or model.phase == &"UNLOADING"
+		if model.phase == &"SUCCESS":
+			break
+	assert_true(saw_pickup and saw_unload, "lifecycle must exercise actual pickup and unloading")
+	assert_equal(controller.phase(), &"SUCCESS", "count lifecycle reaches success")
+	controller.request_command(&"RETRY_SAME_LAYOUT")
+	assert_equal(controller.model().remaining_map_cargo, 2, "Retry restores authored ground cargo")
+	assert_equal(controller.model().stack_size, 0, "Retry clears carried cargo")

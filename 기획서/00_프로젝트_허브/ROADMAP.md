@@ -1,5 +1,43 @@
 # Roadmap
 
+> Latest continuation: user explicitly approved finishing remaining preparation and proceeding
+> with game implementation. The implementation hold below is superseded for this replan.
+> Preserve the finite core, selected board pixels, and current-task PR #284 ownership;
+> failed-alpha candidates are not approved runtime assets. Other PRs remain read-only.
+> Execute prepared read-model corrections first; do not mark incomplete asset families ready.
+
+## 2026-09-11 human blueprint preparation override
+
+The latest user authorizes detailed research/planning and necessary consumer-bound image
+candidate production for a human blueprint. This supersedes the September 10 image hold below.
+Runtime implementation and PR #284 merge remain held until final blueprint approval.
+The Ten Paces organized PDF is a structure reference only, not gameplay or asset authority.
+Editorial companion: `docs/design/SWITCHY_BLUEPRINT_REVIEW_20260911.md`.
+Current publication is INTERMEDIATE_REVIEW_NOT_IMPLEMENTATION_READY: candidate alpha,
+rail extraction/port validation, remaining screen/state families and exact handoff are incomplete.
+Board-slate remains selected; title-workshop remains not selected. No new pixel approval is implied.
+
+## Current sequencing override — planning review first
+
+Detailed rule/state/input/copy planning is prepared in the replan spec (DP-01–DP-10).
+Production resumption remains held; future implementation must first close the cargo-label
+fallthrough and placeholder-count gaps and use the listed machine/runtime acceptance cases.
+
+Fun and distinctiveness review now maps FUN-01–FUN-05 to existing content intentions.
+Next planning follow-up, if continued: compare current authored witnesses and alternative
+action traces against those intentions without adding a solver or changing maps/time limits.
+
+1. Review Build / Run / Result information hierarchy and core decision loop.
+2. Specify editable wireframes, state/input/copy requirements and shared asset/motion contracts.
+3. Review geometry, feasibility, accessibility risks and evidence limits; resolve design findings.
+4. Present the revised design for production resumption. New image work, runtime changes and PR #284 merge remain held meanwhile.
+Board pixels alone are selected; title candidate remains unselected. Earlier production steps below are deferred, not current next actions.
+
+Current first-object increment: SX-DEC-070 approved, registered and locally implemented;
+121-case machine regression and 1280x720 board/motion runtime review PASS. Remaining: protected
+PR delivery, new rail port/rotation/adjacency verification, then remaining object/state families.
+Historical roadmap milestones below are not claims that the full replan is complete.
+
 ## 2026-09-10 replan sequence
 
 Current replan owner: `docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md`.

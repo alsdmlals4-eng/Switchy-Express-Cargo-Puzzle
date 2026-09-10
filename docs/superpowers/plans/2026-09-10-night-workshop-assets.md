@@ -1,5 +1,20 @@
 # Night Workshop Asset Preparation Plan
 
+## 2026-09-11 human blueprint preparation override
+
+The latest user authorizes detailed research/planning and necessary consumer-bound image
+candidate production for a human blueprint. This supersedes the September 10 image hold below.
+Runtime implementation and PR #284 merge remain held until final blueprint approval.
+The Ten Paces organized PDF is a structure reference only, not gameplay or asset authority.
+Editorial companion: `docs/design/SWITCHY_BLUEPRINT_REVIEW_20260911.md`.
+Current publication is INTERMEDIATE_REVIEW_NOT_IMPLEMENTATION_READY: candidate alpha,
+rail extraction/port validation, remaining screen/state families and exact handoff are incomplete.
+Board-slate remains selected; title-workshop remains not selected. No new pixel approval is implied.
+
+> HOLD_BY_LATEST_USER_2026_09_10: do not execute image preparation or implementation steps.
+> Planning/review amendment in the existing replan spec is the current work. Board-slate pixels only
+> were selected; title-workshop was not selected. Preserve all prior work and keep PR #284 Draft.
+
 > For agentic workers: execute sequentially in the current isolated worktree. Follow `superpowers:executing-plans` for implementation; no additional agent required.
 
 **Goal:** produce reviewable connected-rail and cargo-action candidates from the approved visual direction, with editable Aseprite frames and reproducible metadata.
@@ -50,5 +65,10 @@ Produces: four individually timed transparent frames with constant cell size, ex
 - [x] Record generated source, editable source and export hashes; add `.gdignore` to keep candidate art out of engine imports.
 - [x] Verify frame metadata and alpha using read-only image analysis; run contract/diff checks before commit.
 - [x] Complete five self-review loops covering consumers/scope/clarity/provenance/import/evidence and correct validated findings.
-- [ ] Push a candidate-preparation PR, showing exactly what is ready and what still prevents runtime use.
-- [ ] After final pixel approval, integrate approved assets in the existing manifest/renderer, add relevant RED→GREEN tests, run Godot import/regression and exact-project runtime captures. The current task does not substitute a generated image for this runtime evidence.
+- [x] Candidate-preparation PR #283 merged at 4038ff04420bb9b7e385654d09f63161c1e2036b.
+- [x] Approved first three-object family: manifest/renderer, RED→GREEN tests and exact-project runtime captures complete. Four-frame pickup and RB01 SUCCESS recorded; no full-family or new rail completion implied.
+
+SX-DEC-070 continuation: approved three-object manifest, renderer and pickup timeline implemented;
+RED→GREEN full suite 121 cases / 14,152 assertions. Final checkbox stays open until actual
+object-board and pickup capture is reviewed. Explicit-PID CLI/addon mismatch is recorded in
+the decision owner; do not silently upgrade the provider or mark runtime PASS.
