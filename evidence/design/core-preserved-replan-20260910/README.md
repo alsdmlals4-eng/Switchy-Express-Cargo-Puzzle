@@ -1,6 +1,7 @@
 # Night workshop direction candidate r02
 
-State: GENERATED_CANDIDATE / VISUALLY_REVIEWED_WITH_LIMITATIONS / USER_PIXEL_SELECTION_PENDING / NOT_RUNTIME_PROOF.
+State: GENERATED_CANDIDATE / VISUALLY_REVIEWED_WITH_LIMITATIONS / USER_DIRECTION_SELECTED_2026_09_10 / NOT_RUNTIME_PROOF.
+User continuation approved the palette/material/manifest composition as the production direction. This does not approve the sheet's illustrative topology, copy or lower loading panel as runtime assets.
 Purpose: art-direction and UI hierarchy review for the existing ProductShellArt / ProductBoardRenderer / manifest consumers. This is a review artifact, not a directly installable board or sprite sheet.
 
 File: `night-workshop-direction-r02.png`.

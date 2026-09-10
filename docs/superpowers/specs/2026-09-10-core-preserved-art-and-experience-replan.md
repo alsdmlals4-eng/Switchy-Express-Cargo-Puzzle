@@ -1,7 +1,7 @@
 # Core-preserved art and experience replan
 
 Date: 2026-09-10 KST. Work mode: architectural planning and candidate preparation.
-Status: RESEARCHED / SPECIFIED; proposed pixels require final user selection.
+Status: RESEARCHED / SPECIFIED / USER_DIRECTION_SELECTED_2026_09_10; newly generated production candidates require final pixel selection.
 Authority: user requested core preservation, renewed research and proceeding with the recommendation. This authorizes the night-signal-workshop direction as a working design, not automatic approval of generated pixels.
 
 ## Current owner and evidence
