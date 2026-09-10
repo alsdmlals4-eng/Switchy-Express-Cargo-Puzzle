@@ -1,5 +1,10 @@
 # Switchy Express 공용 AI 작업 규칙
 
+> Current readback: approved bounded implementation is MERGED_MAIN_VERIFIED through PR #284.
+> Evidence owner: SX_DEC_070_NIGHT_WORKSHOP_FIRST_OBJECT_FAMILY.md, September 11 readback.
+> Next: remaining transparent objects/validated rails/UI-motion family and complete human PDF;
+> these remain incomplete and are not implied by the merged increment.
+>
 > Latest continuation: user explicitly approved finishing remaining preparation and proceeding
 > with game implementation. The implementation hold below is superseded for this replan.
 > Preserve the finite core, selected board pixels, and current-task PR #284 ownership;
