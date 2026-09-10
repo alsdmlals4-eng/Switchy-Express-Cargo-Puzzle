@@ -89,6 +89,20 @@ func run() -> void:
 		)
 
 	var running_model := _model(&"RUNNING")
+	var cargo_model := _model(&"RUNNING")
+	cargo_model["stack_tokens"] = [
+		{"cargo_type": &"RED_STAR"}, {"cargo_type": &"BLUE_DIAMOND"},
+		{"cargo_type": &"YELLOW_TRIANGLE"}, {"cargo_type": &"WASTE_CRATE", "top": true},
+	]
+	cargo_model["remaining_map_cargo"] = 3
+	cargo_model["stack_size"] = 4
+	hud.apply_model(cargo_model)
+	var cargo_text: String = hud.get_node("StackPanel/StackLayout/StackText").text
+	assert_true(cargo_text.contains("삼각"), "yellow cargo must not masquerade as blue diamond")
+	assert_true(cargo_text.contains("폐기물"), "waste TOP must identify its disposal destination family")
+	assert_equal(cargo_text.count("다이아"), 1, "only blue cargo may use the diamond label")
+	assert_true(cargo_text.ends_with("← TOP"), "last loaded waste keeps the TOP marker")
+	assert_true(hud.get_node("TopStatus/TimeLabel").text.contains("미배송 7"), "remaining ground plus carried cargo must be visible without animation double counting")
 	running_model["manual_load_active"] = true
 	hud.apply_model(running_model)
 	assert_equal(hud.get_node("TopStatus/PhaseLabel").text, "운행 중", "RUNNING phase uses Korean copy")

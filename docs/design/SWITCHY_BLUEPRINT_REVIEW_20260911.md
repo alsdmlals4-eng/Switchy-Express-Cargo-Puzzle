@@ -2,7 +2,9 @@
 
 문서 목적: 사용자가 게임 전체를 읽고 최종 승인할 수 있도록 한다. 최신 위임 기획과 실제 코드·맵에서 파생한다. 원본 규칙과 데이터의 책임은 기존 정본에 있다.
 예시 TEN_PACES_HUMAN_BLUEPRINT_20260910_ORGANIZED.pdf는 92쪽의 구성 참고다. 인물·무공·전투·수치·이미지는 전용하지 않는다.
-최신 승인: 2026-09-11 블루프린트와 실제 인게임용 이미지 후보 제작 허용. 게임 구현·병합은 최종 승인 이후다.
+최신 승인: 2026-09-11 사용자가 남은 준비와 게임 구현까지 진행하도록 승인했다. 아래 미채택 이미지의 픽셀 승인까지 자동 확장하지 않는다.
+구현 상태: 승인 청회색 보드, 네 화물 종류 문구, 실제 미배송 수량, 결과·정지 패널 표시 순서를 구현했다. 상세 증거는 SX-DEC-070의 2026-09-11 절과 연결된 실행 영수증을 따른다.
+PDF 상태: 기존 44쪽 PDF는 이전 중간 검토본의 정확한 바이트 기록이며 이 구현 이후 STALE이다. 전체 새 자산·화면·모션 준비 완료를 의미하지 않는다.
 기획 owner: docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md. 기존 PDF는 보존한다.
 
 ## 읽는 순서와 승인 범위
@@ -81,6 +83,13 @@ ST: 결정적 규칙과 복구로 실험을 지원한다. WT: 새 경제·무작
 |운행 제어|시간·경로·배송 결과|정지·성공·실패·새 시도|
 |표시 모델·화면|실제 상태와 사건|텍스트·이미지·모션 / 규칙 변경 안 함|
 레이어와 모션이 배송 수량·시간·결과의 주인이 되지 않는다.
+
+## 이번 구현의 연결 지도 · 읽기·수정·검증
+지상 화물 FixedCargoField.remaining_count → FiniteSliceSessionController → FiniteSlicePresenter.remaining_map_cargo → ProductHUD의 미배송 합계. 적재 수량은 cargo_stack.load_order의 길이이며 하역 애니메이션에 남아 있는 그림 수를 세지 않는다.
+ProductBoardRenderer.board_terrain → night_workshop_v1/board_slate.png → DemoPalette의 흰 tint·투명 veil. 원본 픽셀은 변경하지 않고 기존 따뜻한 덧칠만 제거했다.
+vertical_slice_demo.tscn의 결과·일시정지·종료 확인(z=20) → 게임 HUD(z=10)·사건 효과(z=8)보다 위에서 표시. 입력 잠금은 기존 DemoFlowController가 별도로 책임진다.
+수정할 곳: 수량 규칙은 domain, 문구는 ProductHUD, 자산 경로는 renderer와 manifest, 화면 순서는 shell scene. 같은 사실을 HUD에 재계산하는 로직으로 복제하지 않는다.
+검증할 곳: test_finite_slice_session_controller의 실제 적재·하역·재시도, test_product_hud의 네 종류, test_demo_responsive_layout의 패널 순서, night_workshop_live_qa의 실제 실행 캡처. 인간 검수·출시 통과는 별도다.
 
 ## 건설 규칙과 오류 안내
 현재 비용과 권장 기준을 표시한다. 권장 비용 초과로 출발을 막거나 실패시키지 않는다. BUILD 철거는 전액 환급이다.

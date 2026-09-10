@@ -75,6 +75,11 @@ func run() -> void:
 		assert_true(hud.size.x >= product.size.x - 1.0, "HUD must fill product width")
 		assert_true(hud.size.y >= product.size.y - 1.0, "HUD must fill product height")
 		assert_true(hud.z_index > board.z_index, "HUD must render above the board explicitly")
+		var semantic := product.get_node("SemanticEventOverlay") as Control
+		for overlay_name: String in ["PauseOverlay", "ExitConfirmOverlay", "ResultOverlay"]:
+			var modal := demo.get_node(overlay_name) as Control
+			assert_true(modal.z_index > hud.z_index, "%s must cover gameplay HUD" % overlay_name)
+			assert_true(modal.z_index > semantic.z_index, "%s must cover transient gameplay effects" % overlay_name)
 		assert_true(
 			(hud.get_node("BuildToolbar") as Control).is_visible_in_tree(),
 			"BUILD toolbar must be visible after entering BUILD"

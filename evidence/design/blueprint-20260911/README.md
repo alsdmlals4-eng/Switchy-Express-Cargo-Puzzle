@@ -1,7 +1,9 @@
 # Human blueprint preparation evidence — 2026-09-11
 
-Status: INTERMEDIATE_REVIEW_NOT_IMPLEMENTATION_READY. Do not request final implementation
-approval from this intermediate publication. Runtime and PR merge remain held.
+Status: HISTORICAL_INTERMEDIATE_PDF_STALE_AFTER_IMPLEMENTATION_CONTINUATION.
+The user subsequently authorized game implementation. The exact prior PDF/receipt remains
+historical; this is not a claim that the entire new asset family and blueprint are complete.
+The editable companion now records the bounded implementation and source-backed learning map.
 
 `publication.json` binds the Korean editorial companion, generated PDF, actual runtime/source
 images and existing map bytes. This receipt is not a runtime or human acceptance result.

@@ -2,11 +2,21 @@
   "schema_version": 1,
   "decision_id": "SX-DEC-070",
   "status": "USER_APPROVED_CANON_REGISTERED_IMPLEMENTED_MACHINE_VERIFIED",
-  "runtime_visual_review": "NOT_RUN",
+  "runtime_visual_review": "MACHINE_FRAMEBUFFER_VERIFIED_1280x720_PROGRAMMATIC_WITNESS",
+  "runtime_evidence": "evidence/runtime/blueprint-implementation-20260911/receipt.json",
   "source_receipt": "evidence/design/night-workshop-assets-20260910/README.md",
   "consumer": "game/demo/presentation/product_board_renderer.gd",
   "approval": "2026-09-10 user continuation after three-object final selection request",
   "assets": [
+    {
+      "key": "board_terrain",
+      "path": "board_slate.png",
+      "source": "evidence/design/night-workshop-surfaces-20260910/board-slate.png",
+      "sha256": "694f69c32f457a9dea425716774d9bca4de2896c680c8defed47667d86e15365",
+      "approval": "User selected board pixels only, then authorized implementation continuation",
+      "status": "USER_APPROVED_PIXELS_REGISTERED_IMPLEMENTED_MACHINE_FRAMEBUFFER_REVIEWED",
+      "presentation": "Unmodified pixels; neutral white tint, no historical warm veil"
+    },
     {
       "key": "train",
       "path": "train.png",

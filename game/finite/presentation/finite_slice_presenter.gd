@@ -62,7 +62,8 @@ func show_run(
 	load_order: Array[StringName],
 	auto_load_active: bool,
 	final_cost: int,
-	manual_load_active: bool = false
+	manual_load_active: bool = false,
+	remaining_map_cargo: int = 0
 ) -> void:
 	var phase: StringName = &"READY"
 	var elapsed := 0.0
@@ -102,7 +103,7 @@ func show_run(
 	_model["time_remaining"] = maxf(limit - elapsed, 0.0)
 	_model["stack_tokens"] = _tokens_for(displayed_stack)
 	_model["unload_visual_active"] = _unload_visual_active
-	_model["remaining_map_cargo"] = 0
+	_model["remaining_map_cargo"] = maxi(remaining_map_cargo, 0)
 	_model["stack_size"] = load_order.size()
 
 

@@ -1,5 +1,11 @@
 # Switchy Express 공용 AI 작업 규칙
 
+> Latest continuation: user explicitly approved finishing remaining preparation and proceeding
+> with game implementation. The implementation hold below is superseded for this replan.
+> Preserve the finite core, selected board pixels, and current-task PR #284 ownership;
+> failed-alpha candidates are not approved runtime assets. Other PRs remain read-only.
+> Execute prepared read-model corrections first; do not mark incomplete asset families ready.
+
 > Latest user override (2026-09-11): HUMAN_BLUEPRINT_PREPARATION. Research, detailed planning,
 > and consumer-bound image candidate production are authorized. Runtime implementation and
 > PR #284 merge remain held until final blueprint approval. The prior image hold is superseded.

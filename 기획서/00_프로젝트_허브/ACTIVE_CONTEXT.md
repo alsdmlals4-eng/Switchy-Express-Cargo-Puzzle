@@ -1,5 +1,11 @@
 # Active Context
 
+> Latest continuation: user explicitly approved finishing remaining preparation and proceeding
+> with game implementation. The implementation hold below is superseded for this replan.
+> Preserve the finite core, selected board pixels, and current-task PR #284 ownership;
+> failed-alpha candidates are not approved runtime assets. Other PRs remain read-only.
+> Execute prepared read-model corrections first; do not mark incomplete asset families ready.
+
 ## 2026-09-11 human blueprint preparation override
 
 The latest user authorizes detailed research/planning and necessary consumer-bound image

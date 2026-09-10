@@ -23,7 +23,7 @@ const SPEED_DECELERATION_COLOR := Color(1.0, 0.72, 0.18, 1.0)
 const SPEED_ACCELERATION_COLOR := Color(0.22, 0.92, 0.90, 1.0)
 
 const PRODUCT_VISUAL_ASSET_PATHS := {
-	"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
+	"board_terrain": "art/product_assets/night_workshop_v1/board_slate.png",
 	"decoration_forest_cluster": "art/product_assets/ed_hybrid_v2/board/board_decor_forest_cluster_v02.png",
 	"decoration_moss_boulder": "art/product_assets/ed_hybrid_v2/board/board_decor_moss_boulder_v02.png",
 	"decoration_timber_stack": "art/product_assets/ed_hybrid_v2/board/board_decor_timber_stack_v02.png",
@@ -973,15 +973,24 @@ static func _ghost_status_badge_rect(cell_rect: Rect2) -> Rect2:
 	return Rect2(cell_rect.end - badge_size - Vector2(margin, margin), badge_size)
 
 
+static func train_facing_direction(snapshot: Dictionary) -> Vector2:
+	var cell := snapshot_cell(snapshot.get("train_cell", NO_CELL))
+	var next_cell := snapshot_cell(snapshot.get("train_next_cell", NO_CELL))
+	var previous := snapshot_cell(snapshot.get("train_previous_cell", NO_CELL))
+	if cell != NO_CELL and next_cell != NO_CELL and next_cell != cell:
+		return Vector2(next_cell - cell).normalized()
+	if cell != NO_CELL and previous != NO_CELL and previous != cell:
+		return Vector2(cell - previous).normalized()
+	return Vector2.RIGHT
+
+
 func _draw_train(rect: Rect2, board_size: Vector2i) -> void:
 	var cell: Vector2i = snapshot_cell(_snapshot.get("train_cell", NO_CELL))
 	if cell == NO_CELL:
 		return
 	var cell_rect := _cell_rect(cell, rect, board_size).grow(-6.0)
 	var next_cell: Vector2i = snapshot_cell(_snapshot.get("train_next_cell", NO_CELL))
-	var direction := Vector2.RIGHT
-	if next_cell != NO_CELL:
-		direction = Vector2(next_cell - cell).normalized()
+	var direction := train_facing_direction(_snapshot)
 	var quarters := _rotation_quarters_for_direction(
 		Vector2i(roundi(direction.x), roundi(direction.y))
 	)

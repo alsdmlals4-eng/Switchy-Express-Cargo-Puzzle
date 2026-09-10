@@ -395,7 +395,8 @@ func _refresh_run_or_result() -> void:
 		_run_session.cargo_stack.load_order(),
 		_run_session.input_state.is_auto_load_enabled(),
 		final_cost,
-		_run_session.input_state.is_manual_load_active()
+		_run_session.input_state.is_manual_load_active(),
+		_run_session.cargo_field.remaining_count()
 	)
 	_publish_state()
 

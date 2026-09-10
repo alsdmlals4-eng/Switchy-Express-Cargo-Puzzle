@@ -9,6 +9,7 @@ on:
       - data/maps/**
       - art/product_assets/ed_hybrid_v1/**
       - art/product_assets/ed_hybrid_v2/**
+      - art/product_assets/night_workshop_v1/**
       - project.godot
       - export_presets.cfg
       - tools/validation/verify_exported_runtime_json.gd

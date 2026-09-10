@@ -32,6 +32,11 @@ func run() -> void:
 	animation.cancel()
 	assert_equal(animation.frame_index(), -1, "retry or exit cancellation removes the visual")
 	var renderer: Control = load("res://game/demo/presentation/product_board_renderer.gd").new()
+	assert_true(renderer.has_method("train_facing_direction"), "terminal train needs incoming direction instead of snapping right")
+	if renderer.has_method("train_facing_direction"):
+		assert_equal(renderer.train_facing_direction({"train_cell": Vector2i(7, 4), "train_previous_cell": Vector2i(7, 3)}), Vector2.DOWN, "terminal train retains southbound approach")
+		assert_equal(renderer.train_facing_direction({"train_cell": Vector2i(4, 3), "train_previous_cell": Vector2i(5, 3)}), Vector2.LEFT, "terminal train retains westbound approach")
+		assert_equal(renderer.train_facing_direction({"train_cell": Vector2i(4, 3), "train_previous_cell": Vector2i(3, 3), "train_next_cell": Vector2i(4, 4)}), Vector2.DOWN, "next segment controls facing during run")
 	var snapshot := {"phase": &"RUNNING", "board_size": Vector2i(5, 5)}
 	renderer.apply_snapshot(snapshot)
 	renderer.play_cargo_pickup(Vector2i(2, 3), &"BLUE_DIAMOND")

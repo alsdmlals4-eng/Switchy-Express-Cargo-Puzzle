@@ -301,7 +301,7 @@ func run() -> void:
 	assert_equal(secondary_cells, [Vector2i(5, 4)], "secondary requests preserve exact cell")
 
 	var expected_product_paths := {
-		"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png",
+		"board_terrain": "art/product_assets/night_workshop_v1/board_slate.png",
 		"decoration_forest_cluster": "art/product_assets/ed_hybrid_v2/board/board_decor_forest_cluster_v02.png",
 		"decoration_moss_boulder": "art/product_assets/ed_hybrid_v2/board/board_decor_moss_boulder_v02.png",
 		"decoration_timber_stack": "art/product_assets/ed_hybrid_v2/board/board_decor_timber_stack_v02.png",

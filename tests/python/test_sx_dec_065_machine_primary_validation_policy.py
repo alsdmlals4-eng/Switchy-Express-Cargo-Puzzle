@@ -125,7 +125,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         self.assertIn("SX60-POC-ACCEPT-010", start_here)
 
         for required_runtime_path in (
-            '"board_terrain": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png"',
+            '"board_terrain": "art/product_assets/night_workshop_v1/board_slate.png"',
             '"train": "art/product_assets/night_workshop_v1/train.png"',
             '"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v04.png"',
             '"rail_switch": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v04.png"',

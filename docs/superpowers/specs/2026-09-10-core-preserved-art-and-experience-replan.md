@@ -1,5 +1,10 @@
 # Core-preserved art and experience replan
 
+Current authority amendment 2026-09-11: user authorized finishing remaining preparation AND game
+implementation. Prior planning-only holds below are historical. Selected slate board only is
+registered and connected; unselected title and failed-alpha object family remain excluded.
+Current bounded execution evidence: SX_DEC_070_NIGHT_WORKSHOP_FIRST_OBJECT_FAMILY.md, September 11 section.
+
 Date: 2026-09-10 KST. Work mode: architectural planning and candidate preparation.
 Status: PLANNING_REVIEW_FIRST / PRODUCTION_HELD_BY_USER. Earlier design and production records below are historical where superseded by this amendment.
 Authority: user requested core preservation, renewed research and proceeding with the recommendation. This authorizes the night-signal-workshop direction as a working design, not automatic approval of generated pixels.
