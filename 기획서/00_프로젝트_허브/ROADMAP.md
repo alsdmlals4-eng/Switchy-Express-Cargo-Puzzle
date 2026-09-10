@@ -1,7 +1,19 @@
 # Roadmap
 
+## Current sequencing override — planning review first
+
+Detailed rule/state/input/copy planning is prepared in the replan spec (DP-01–DP-10).
+Production resumption remains held; future implementation must first close the cargo-label
+fallthrough and placeholder-count gaps and use the listed machine/runtime acceptance cases.
+
+1. Review Build / Run / Result information hierarchy and core decision loop.
+2. Specify editable wireframes, state/input/copy requirements and shared asset/motion contracts.
+3. Review geometry, feasibility, accessibility risks and evidence limits; resolve design findings.
+4. Present the revised design for production resumption. New image work, runtime changes and PR #284 merge remain held meanwhile.
+Board pixels alone are selected; title candidate remains unselected. Earlier production steps below are deferred, not current next actions.
+
 Current first-object increment: SX-DEC-070 approved, registered and locally implemented;
-121-case machine regression PASS. Remaining: targeted board/motion runtime review, protected
+121-case machine regression and 1280x720 board/motion runtime review PASS. Remaining: protected
 PR delivery, new rail port/rotation/adjacency verification, then remaining object/state families.
 Historical roadmap milestones below are not claims that the full replan is complete.
 

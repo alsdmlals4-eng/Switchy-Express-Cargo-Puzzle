@@ -1,10 +1,25 @@
 # Current Confirmed Decisions
 
+## 2026-09-10 latest selection and sequencing amendment
+
+Subsequent user instruction delegates detailed planning judgments to internet research,
+benchmarking and recommendations. DP-01–DP-10 in the existing replan spec are the selected
+planning recommendation within preserved core scope. Numeric defaults are recommendations,
+not measured optima. This is not permission to resume images, implementation or PR #284 merge.
+
+User selected only `evidence/design/night-workshop-surfaces-20260910/board-slate.png`
+(SHA-256 `694f69c32f457a9dea425716774d9bca4de2896c680c8defed47667d86e15365`).
+This is pixel selection, not approval of warm color modulation or a completed runtime change.
+`title-workshop.png` is NOT_SELECTED; no deletion is authorized by non-selection.
+Latest user instruction requires planning/review before further image work. Hold additional production and PR #284 merge; preserve prior implementation.
+Review owner: `docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md`, planning-first amendment.
+
 ## SX-DEC-070 — Night Workshop first object family
 
 2026-09-10 user continuation approves the presented train, blue station and blue cargo family.
 Canonical manifest and existing-consumer implementation prepared; local machine verification PASS.
-Actual visual runtime review and merged-main delivery remain pending. No rail replacement,
+Actual visual runtime review PASS at 1280x720 with programmatic RB01 witness; merged-main
+delivery remains pending. Terminal facing corrected with incoming direction. No rail replacement,
 other-color generation, core semantic change or release approval is implied.
 Owner: `docs/decisions/SX_DEC_070_NIGHT_WORKSHOP_FIRST_OBJECT_FAMILY.md`.
 

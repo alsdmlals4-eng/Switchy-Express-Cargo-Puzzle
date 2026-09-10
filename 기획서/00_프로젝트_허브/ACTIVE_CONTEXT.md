@@ -1,6 +1,27 @@
 # Active Context
 
+## Latest user instruction — planning and review first (2026-09-10)
+
+The user delegated detailed rules and planning to research-backed recommendations.
+The replan spec now contains DP-01–DP-10, screen/input/focus contracts, exact read-model gaps,
+copy ownership, presentation defaults and future acceptance cases. No image/runtime work resumes.
+Important future fixes: exhaustive cargo labels and authoritative running remaining-cargo counts.
+
+Current next action is the planning-review amendment in `docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md`.
+Image production, additional runtime changes and PR #284 merge are ON_HOLD_BY_USER.
+The board-slate candidate alone has USER_APPROVED_PIXELS; registration/application remain held.
+Title-workshop is USER_NOT_SELECTED and preserved as reference, not a production default.
+Earlier continuation/delivery instructions below describe prior work, not permission to resume production.
+
 ## 2026-09-10 current work overlay
+
+Latest continuation: SX-DEC-070 machine framebuffer and event-flow verified, including
+four pickup frames, pause, Retry and RB01 SUCCESS at 1280x720. Terminal train-facing defect
+corrected with RED→GREEN; full suite 121 cases / 14,156 assertions PASS.
+Explicit-session Godot AI 3.2.0 resolves the prior Hera CLI capability mismatch without an upgrade.
+Current delivery PR #284; runtime evidence and recovery owner is SX-DEC-070.
+Surface selection has since changed: board pixels only selected; title unselected; application held.
+The earlier blocker paragraph below is historical; it must not stop this continuation.
 
 Current increment: SX-DEC-070 approved three-object family, implemented on
 `codex/night-workshop-runtime-20260910` from merged PR #283 main
