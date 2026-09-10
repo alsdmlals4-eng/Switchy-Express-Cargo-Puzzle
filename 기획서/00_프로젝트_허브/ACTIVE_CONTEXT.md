@@ -2,6 +2,8 @@
 
 ## 2026-09-10 current work overlay
 
+Continuation: PR #282 merged as `6b96868d2de890a85b043aa52abcbabb9fc4fce0` after all four reported checks succeeded. User selected the second direction sheet's palette/material/manifest composition. Current asset preparation plan: `docs/superpowers/plans/2026-09-10-night-workshop-assets.md`. New rail, cargo-motion, train and blue-station pixels remain candidates; no current renderer paths have changed. Aseprite four-frame preparation is separate from Godot runtime integration.
+
 User authorized core-preserved replanning, new image candidates with existing art as reference, another research pass and proceeding with the recommendation. Current work is `RESEARCHED / SPECIFIED · CANDIDATE_PREPARATION`; new pixel approval, implementation and runtime verification remain distinct.
 Owner: `docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md` (research, SWOT, selected working direction, editable flow/wireframes, consumer and motion matrix).
 Next: review generated direction pixels, prepare joined rail master and representative action assets, apply conditional Aseprite candidate workflow, then register approved assets and implement against exact main. The older completion snapshots below describe Candidate010 work only, not completion of this replan. Candidate010 retains its own exact-byte evidence.
