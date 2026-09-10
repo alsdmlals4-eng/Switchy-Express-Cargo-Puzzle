@@ -1,5 +1,17 @@
 # Roadmap
 
+## 2026-09-10 replan sequence
+
+Current replan owner: `docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md`.
+
+1. Core/consumer recovery and second-pass research: prepared.
+2. SWOT, selected direction, editable flow/wireframes and asset/motion contracts: prepared.
+3. Direction candidate selection, joined rail master and representative action family: in progress.
+4. Approved pixel registration, existing-consumer implementation, machine/Godot runtime verification: pending.
+5. Remaining asset-family expansion and final user review: pending.
+
+Historical completion statements below are bounded to their prior work packages; the replan does not reopen core rules or absorb Route Book 03 Draft PR #281.
+
 Last updated: `2026-09-01 KST`
 
 ## Current authority
