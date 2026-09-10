@@ -11,6 +11,8 @@ const SemanticRuntimeStateScript := preload("res://game/demo/presentation/semant
 const FiniteTrackGraphScript := preload("res://game/finite/rail/finite_track_graph.gd")
 const TrackPieceScript := preload("res://game/finite/build/track_piece.gd")
 const NO_CELL := Vector2i(-1, -1)
+const CargoPickupAnimationScript := preload("res://game/demo/presentation/cargo_pickup_animation.gd")
+const CARGO_LIFT_TEXTURE := preload("res://art/product_assets/night_workshop_v1/cargo_lift.png")
 const GHOST_FILL_ALPHA := 0.08
 const GHOST_TRACK_ALPHA := 0.46
 const GHOST_SEMANTIC_BADGE_SCALE := 0.28
@@ -28,7 +30,7 @@ const PRODUCT_VISUAL_ASSET_PATHS := {
 	"decoration_waterway": "art/product_assets/ed_hybrid_v2/board/board_decor_waterway_v02.png",
 	"decoration_lantern_fence": "art/product_assets/ed_hybrid_v2/board/board_decor_lantern_fence_v02.png",
 	"caution_track": "art/product_assets/ed_hybrid_v2/board/board_caution_track_overlay_v02.png",
-	"train": "art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png",
+	"train": "art/product_assets/night_workshop_v1/train.png",
 	"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v04.png",
 	"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v04.png",
 	"rail_crossing": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v04.png",
@@ -36,11 +38,11 @@ const PRODUCT_VISUAL_ASSET_PATHS := {
 	"start_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png",
 	"route_end_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png",
 	"station_red": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
-	"station_blue": "art/product_assets/ed_hybrid_v2/core/core_station_blue_normal_v02.png",
+	"station_blue": "art/product_assets/night_workshop_v1/station_blue.png",
 	"station_yellow": "art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png",
 	"station_disposal": "art/product_assets/ed_hybrid_v2/core/core_disposal_yard_normal_v02.png",
 	"cargo_red": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png",
-	"cargo_blue": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_blue_normal_v02.png",
+	"cargo_blue": "art/product_assets/night_workshop_v1/cargo_blue.png",
 	"cargo_yellow": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png",
 	"cargo_waste": "art/product_assets/ed_hybrid_v2/core/core_cargo_waste_crate_normal_v02.png",
 }
@@ -53,6 +55,7 @@ var _speed_transition: Dictionary = {}
 var _speed_transition_remaining_seconds := 0.0
 var _speed_transition_duration_seconds := 0.0
 var _reduced_motion := false
+var _cargo_pickup := CargoPickupAnimationScript.new()
 
 
 func _init() -> void:
@@ -69,6 +72,8 @@ func apply_snapshot(snapshot: Dictionary) -> void:
 	var next_snapshot := snapshot.duplicate(true)
 	var transition := _speed_transition_descriptor(_snapshot, next_snapshot)
 	_snapshot = next_snapshot
+	if StringName(_snapshot.get("phase", &"BUILD")) not in [&"RUNNING", &"UNLOADING", &"PAUSED"]:
+		_cargo_pickup.cancel()
 	if not transition.is_empty():
 		_start_speed_transition(transition)
 	queue_redraw()
@@ -76,19 +81,30 @@ func apply_snapshot(snapshot: Dictionary) -> void:
 
 func set_reduced_motion(enabled: bool) -> void:
 	_reduced_motion = enabled
+	_cargo_pickup.reduced_motion = enabled
 	queue_redraw()
 
 
 func _process(delta: float) -> void:
-	if _speed_transition.is_empty():
+	if StringName(_snapshot.get("phase", &"BUILD")) == &"PAUSED":
+		return
+	_cargo_pickup.advance(delta)
+	if _speed_transition.is_empty() and _cargo_pickup.frame_index() < 0:
 		set_process(false)
+		queue_redraw()
 		return
 	_speed_transition_remaining_seconds = maxf(_speed_transition_remaining_seconds - maxf(delta, 0.0), 0.0)
 	if _speed_transition_remaining_seconds <= 0.0:
 		_speed_transition = {}
 		_speed_transition_duration_seconds = 0.0
-		set_process(false)
+	set_process(not _speed_transition.is_empty() or _cargo_pickup.frame_index() >= 0)
 	queue_redraw()
+
+
+func play_cargo_pickup(cell: Vector2i, cargo_type: StringName) -> void:
+	if _cargo_pickup.start(cell, cargo_type):
+		set_process(true)
+		queue_redraw()
 
 
 func snapshot_for_test() -> Dictionary:
@@ -281,6 +297,19 @@ func _draw() -> void:
 	_draw_state_overlays(rect, board_size)
 	_draw_speed_transition(rect, board_size)
 	_draw_train(rect, board_size)
+	_draw_cargo_pickup(rect, board_size)
+
+
+func _draw_cargo_pickup(rect: Rect2, board_size: Vector2i) -> void:
+	var frame := _cargo_pickup.frame_index()
+	if frame < 0:
+		return
+	var target := _marker_target_rect(false, _cell_rect(_cargo_pickup.cell, rect, board_size))
+	# The static crop is 384 px and the animation cell 448 px: preserve crate scale.
+	target = target.grow(target.size.x * (448.0 / 384.0 - 1.0) * 0.5)
+	# Match the neutral crate's center, then let the authored frame supply the lift.
+	target.position.y -= target.size.y * 62.0 / 448.0
+	draw_texture_rect_region(CARGO_LIFT_TEXTURE, target, Rect2(frame * 450, 0, 448, 448), Color(1, 1, 1, _cargo_pickup.opacity()))
 
 
 func _draw_board_terrain(rect: Rect2) -> void:

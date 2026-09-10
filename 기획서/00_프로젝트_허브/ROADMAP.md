@@ -1,5 +1,10 @@
 # Roadmap
 
+Current first-object increment: SX-DEC-070 approved, registered and locally implemented;
+121-case machine regression PASS. Remaining: targeted board/motion runtime review, protected
+PR delivery, new rail port/rotation/adjacency verification, then remaining object/state families.
+Historical roadmap milestones below are not claims that the full replan is complete.
+
 ## 2026-09-10 replan sequence
 
 Current replan owner: `docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md`.

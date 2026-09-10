@@ -1,4 +1,6 @@
 {
+  "consumer_override_manifest": "art/product_assets/night_workshop_v1/manifest.json",
+  "consumer_override_keys": ["train", "station_blue", "cargo_blue"],
   "artifact_role": "SX_DEC_063_APPROVED_PRODUCT_ASSET_MANIFEST",
   "asset_family": "SWITCHY_HYBRID_MINIATURE_DIORAMA",
   "status": "USER_DIRECTED_APPROVED_MASTER_DERIVATIVE_MERGED_MAIN_VERIFIED_PR_255_MAIN_2CF7BB5_CI_7_GREEN",

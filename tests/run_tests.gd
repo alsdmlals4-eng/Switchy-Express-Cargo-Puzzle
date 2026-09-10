@@ -1,6 +1,7 @@
 extends SceneTree
 
 const TEST_SCRIPTS: Array[Script] = [
+	preload("res://tests/demo/test_cargo_pickup_animation.gd"),
 	preload("res://tests/smoke/test_project_boot.gd"),
 	preload("res://tests/rail/test_rail_generator.gd"),
 	preload("res://tests/rail/test_switch_routing.gd"),

@@ -34,8 +34,8 @@ func run() -> void:
 			assert_true(paths.has(required), "POC board art mapping must contain %s" % required)
 			if paths.has(required):
 				assert_true(
-					str(paths[required]).begins_with("art/product_assets/ed_hybrid_v2/"),
-					"%s must use the approved Core Board v02 product assets" % required
+					str(paths[required]) == "art/product_assets/night_workshop_v1/%s.png" % required if required in ["train", "station_blue", "cargo_blue"] else str(paths[required]).begins_with("art/product_assets/ed_hybrid_v2/"),
+					"%s must use its approved product asset family" % required
 				)
 	assert_true(
 		renderer.has_method("loaded_product_visuals_for_test"),

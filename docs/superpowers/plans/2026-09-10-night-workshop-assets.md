@@ -50,5 +50,10 @@ Produces: four individually timed transparent frames with constant cell size, ex
 - [x] Record generated source, editable source and export hashes; add `.gdignore` to keep candidate art out of engine imports.
 - [x] Verify frame metadata and alpha using read-only image analysis; run contract/diff checks before commit.
 - [x] Complete five self-review loops covering consumers/scope/clarity/provenance/import/evidence and correct validated findings.
-- [ ] Push a candidate-preparation PR, showing exactly what is ready and what still prevents runtime use.
+- [x] Candidate-preparation PR #283 merged at 4038ff04420bb9b7e385654d09f63161c1e2036b.
 - [ ] After final pixel approval, integrate approved assets in the existing manifest/renderer, add relevant RED→GREEN tests, run Godot import/regression and exact-project runtime captures. The current task does not substitute a generated image for this runtime evidence.
+
+SX-DEC-070 continuation: approved three-object manifest, renderer and pickup timeline implemented;
+RED→GREEN full suite 121 cases / 14,152 assertions. Final checkbox stays open until actual
+object-board and pickup capture is reviewed. Explicit-PID CLI/addon mismatch is recorded in
+the decision owner; do not silently upgrade the provider or mark runtime PASS.

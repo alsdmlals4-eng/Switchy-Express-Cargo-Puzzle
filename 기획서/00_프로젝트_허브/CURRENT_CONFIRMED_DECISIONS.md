@@ -1,5 +1,13 @@
 # Current Confirmed Decisions
 
+## SX-DEC-070 — Night Workshop first object family
+
+2026-09-10 user continuation approves the presented train, blue station and blue cargo family.
+Canonical manifest and existing-consumer implementation prepared; local machine verification PASS.
+Actual visual runtime review and merged-main delivery remain pending. No rail replacement,
+other-color generation, core semantic change or release approval is implied.
+Owner: `docs/decisions/SX_DEC_070_NIGHT_WORKSHOP_FIRST_OBJECT_FAMILY.md`.
+
 ## 2026-09-10 user-directed replan
 
 Core preservation and research-led revision of existing elements are approved. The user instructed another research pass and continuation with the recommended night-signal-workshop direction. Existing images become references for new production while current runtime assets and historical approvals remain recoverable. New generated pixels are candidates until final selection.

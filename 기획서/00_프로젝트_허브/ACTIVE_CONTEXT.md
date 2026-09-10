@@ -2,6 +2,17 @@
 
 ## 2026-09-10 current work overlay
 
+Current increment: SX-DEC-070 approved three-object family, implemented on
+`codex/night-workshop-runtime-20260910` from merged PR #283 main
+`4038ff04420bb9b7e385654d09f63161c1e2036b`. Train, blue station and blue cargo
+now consume the new manifest; confirmed blue pickup has a bounded four-frame presentation.
+Full Godot regression: 121 cases / 14,152 assertions PASS. Runtime visual review NOT_RUN:
+installed Hera v1.0.0 lacks the skill's explicit game-PID targeting option.
+Next: resolve project-scoped runtime inspection, inspect actual board/pickup, then deliver
+the runtime PR normally. Rail tile adjacency remains NOT_VERIFIED; other colors unchanged.
+Owner: `docs/decisions/SX_DEC_070_NIGHT_WORKSHOP_FIRST_OBJECT_FAMILY.md`.
+The following candidate-preparation paragraph is historical pre-SX-DEC-070 state.
+
 Continuation: PR #282 merged as `6b96868d2de890a85b043aa52abcbabb9fc4fce0` after all four reported checks succeeded. User selected the second direction sheet's palette/material/manifest composition. Current asset preparation plan: `docs/superpowers/plans/2026-09-10-night-workshop-assets.md`. New rail, cargo-motion, train and blue-station pixels remain candidates; no current renderer paths have changed. Aseprite four-frame preparation is separate from Godot runtime integration.
 
 User authorized core-preserved replanning, new image candidates with existing art as reference, another research pass and proceeding with the recommendation. Current work is `RESEARCHED / SPECIFIED · CANDIDATE_PREPARATION`; new pixel approval, implementation and runtime verification remain distinct.
