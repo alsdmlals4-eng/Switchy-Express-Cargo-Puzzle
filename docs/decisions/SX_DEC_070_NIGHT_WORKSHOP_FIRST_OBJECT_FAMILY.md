@@ -29,6 +29,12 @@ New rail master is a candidate: exact ports, turnouts and rotation/adjacency are
 
 ## Remaining verification
 
+Draft delivery: PR #284. Full local Python suite: 269 PASS / 1 SKIPPED.
+The first remote export run exposed one remaining SX-DEC-065 literal old-train-path assertion;
+updated that exact approved consumer expectation and reran the full Python suite.
+Source-alpha candidate validator and 21 asset tests also PASS. Remote checks must be read
+against the latest PR head; the earlier export failure is not final delivery evidence.
+
 Godot editor PID 38656 was attached to the isolated task worktree and main scene launched.
 The installed Hera CLI v1.0.0 and local addon reject the skill's explicit game PID option.
 Do not silently fall back to another runtime or upgrade shared tooling inside this art increment.
