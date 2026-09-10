@@ -1,5 +1,16 @@
 # Switchy Express 공용 AI 작업 규칙
 
+> Latest user override (2026-09-11): HUMAN_BLUEPRINT_PREPARATION. Research, detailed planning,
+> and consumer-bound image candidate production are authorized. Runtime implementation and
+> PR #284 merge remain held until final blueprint approval. The prior image hold is superseded.
+> Board-slate pixels alone are selected; title-workshop is not selected. Existing work is preserved.
+
+> Current continuation overlay (2026-09-10): core-preserved Night Workshop replan and
+> SX-DEC-070 first-object-family implementation are owned by current Decisions/Active Context
+> and `docs/decisions/SX_DEC_070_NIGHT_WORKSHOP_FIRST_OBJECT_FAMILY.md`.
+> PR #284 is this task's continuation. Candidate010 statements below retain historical
+> exact-byte/package meaning; they do not validate the new renderer or pending surface candidates.
+
 > **2026-08-28 사용자 권위 변경 - GitHub-only project workspace:** Notion은 active read/write, 결정 입력, asset storage, destination readback, 완료 조건에서 제외한다. 기존 Notion page/attachment/readback은 삭제하지 않는 역사·감사 evidence다. 현재 정본, Decision, asset provenance, human-facing GDD와 검수 기록은 GitHub repository가 단일 owner다. 아래의 Notion 의무 문구가 이 선언과 충돌하면 이 선언이 우선한다.
 
 이 저장소는 `alsdmlals4-eng/Base` v9.4.3 project compatibility pin을 역사적으로 보존하면서, **사용자가 2026-08-26 제공한 v4.8 r5.4 Superset Final 작업 계약**과 최신 Base completed `main`을 현재 실행 방법론으로 사용하는 Godot 프로젝트다.

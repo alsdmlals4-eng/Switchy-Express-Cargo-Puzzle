@@ -1,0 +1,253 @@
+{
+  "status": "INTERMEDIATE_REVIEW_NOT_IMPLEMENTATION_READY",
+  "pdf": "output\\pdf\\SWITCHY_EXPRESS_HUMAN_BLUEPRINT_20260911_REVIEW.pdf",
+  "sha256": "527aea119df7f2f4e39895d07fb4b1d5fba6464087e98f87c95545d47b413740",
+  "page_count": 44,
+  "source": "docs\\design\\SWITCHY_BLUEPRINT_REVIEW_20260911.md",
+  "source_sha256": "13a8eb6cd29d65cda0804711971fb4723d82db52406b4f550794dfe9bcf8e742",
+  "assets_and_maps": {
+    "evidence/runtime/night-workshop-20260910/build.png": "e8bf3c10ddcde34bcc776ce49798762654ef5442924f193a037515ff796c7b7c",
+    "evidence/runtime/night-workshop-20260910/pickup-2.png": "da91b975e72790170d1b162b1de4106c92ea3babd1b5d40c2c8b07278af8fca5",
+    "evidence/runtime/night-workshop-20260910/result.png": "bbb80dd0c3fbdeec93c263bb276cbb8752e2749941300999d7c9a3e1f834537a",
+    "evidence/design/night-workshop-surfaces-20260910/board-preview.png": "85bf49580e738d5efea43fefa5e407ecfd802067e133180a30a7ab350807403f",
+    "art/product_assets/night_workshop_v1/train.png": "00f40947e63a183c223d3276c9ccbc14c33226df369727bbf228d5afe1b253f2",
+    "art/product_assets/night_workshop_v1/station_blue.png": "eceb082d07b94ee0f65afdfa71d8b24004ae80513df7b2f4e000f735e4657827",
+    "art/product_assets/night_workshop_v1/cargo_lift.png": "6d365fe9b8c6a1f03fd141aba753ce23817d6f34074af0651caac4c74db7f445",
+    "evidence/design/night-workshop-assets-20260910/rail-master.png": "93d46d7b72154a04f314c72151e19bc32d5a2aed20e3fe2bc7786a0c89951e84",
+    "evidence/design/blueprint-20260911/object-family.png": "14efa928eaa284e10435ea5e22271ba480eaef8665ed1d4e760e39291fa4f434",
+    "data/maps/route_book/rb01_service_sidings.json": "f12def5f15fc79fd6db6b0b2becac17a4a53e6f210932807be1773e653c74fdb",
+    "data/maps/route_book/rb02_reverse_order.json": "c7bb2da6a5acf7322b9b58fd412563ece64c754e83f81017c162716f6c4c5f74",
+    "data/maps/route_book/rb03_return_manifest.json": "a04dd910e5b358bc8b8bbbb87f3e0d7257a55a246dbc9b7b3be08f4f913790ad",
+    "data/maps/route_book/rb04_load_window.json": "0ef921136fc223f11091ff9195392738aef3ec62fae4573fbf92454895031888",
+    "data/maps/route_book/rb05_fork_lock.json": "7d6df9c63ebe71b0017ffc83d33dd83fb95a962f2d6e8fe2c16431d81ddfb68c",
+    "data/maps/route_book/rb06_port_circuit.json": "0f5297e598709f0670a6cf9c46a0148e6bd7e6c3905c0c482f0a41e5a005e284",
+    "data/maps/route_book/rb07_forest_relay.json": "ac8d4f96d328b7035462f778a0eb971ac243735ceaf67f6db63d9bed47a760ec",
+    "data/maps/route_book/rb08_caution_cut.json": "9ec47dafa0ff7a3704ecf89ea4913d0017bca39eff2fdc074975e3b623107496",
+    "data/maps/route_book/rb09_salvage_siding.json": "0847103b1fff8b64f9d42337aed00abdc68a072f50b458a8987671180f8eab22",
+    "data/maps/route_book/rb10_clean_break.json": "f09433b80e0b14597f651642a94fdc0fd78375a38f5bdb921bc60c69aa33de54",
+    "data/maps/route_book/rb11_turnout_under_load.json": "aa16b72ac4ca74bdb7b3c4daf3e16124a90b8c94346a1268b2b7126db415cfe2",
+    "data/maps/route_book/rb12_lantern_loop.json": "bc16cdc6c7b757a79cefab387e6f3f5e961935749f02ddeaa59dcfb98e73b6f1"
+  },
+  "pages": [
+    {
+      "page": 1,
+      "title": "화면 아틀라스 · 현재 구현과 다음 기준",
+      "kind": "실제 캡처 3장 + 승인 바탕 비교 1장 · 최종 목표 화면 아님"
+    },
+    {
+      "page": 2,
+      "title": "읽는 순서와 승인 범위",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 3,
+      "title": "핵심 경험 · 지나치는 것도 설계다",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 4,
+      "title": "다섯 가지 재미 · 행동과 결과",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 5,
+      "title": "SWOT · 강점을 어떻게 강화할 것인가",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 6,
+      "title": "SWOT · 약점과 개선 우선순위",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 7,
+      "title": "SWOT · 기회·위협과 대응",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 8,
+      "title": "조사·벤치마킹 · 채택과 배제",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 9,
+      "title": "전체 플로우맵",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 10,
+      "title": "시스템 관계 · 누가 무엇을 결정하는가",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 11,
+      "title": "건설 규칙과 오류 안내",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 12,
+      "title": "화물과 하역 · 정확한 순서",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 13,
+      "title": "역 · 선로 위가 아닌 옆에서",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 14,
+      "title": "운행·적재·분기 입력",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 15,
+      "title": "감속과 폐기물 · 추가가 아닌 기존 선택의 깊이",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 16,
+      "title": "화면 명세 · 메인·선택·브리핑",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 17,
+      "title": "화면 명세 · BUILD와 RUN",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 18,
+      "title": "결과와 복구 · 실패를 다음 판단으로",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 19,
+      "title": "자산 제작 계약 · 그림에서 실제 소비까지",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 20,
+      "title": "모션과 피드백 데이터",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 21,
+      "title": "데이터 표 · 맵과 표시 모델",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 22,
+      "title": "구현 순서 · 승인 후 작업 단위",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 23,
+      "title": "검수표 · 자동 검증과 최종 사용자 승인",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 24,
+      "title": "출처와 해석의 한계",
+      "kind": "기획 권장안 · 최종 승인 전"
+    },
+    {
+      "page": 25,
+      "title": "BUILD 공간 와이어프레임",
+      "kind": "text-native 정보 구조 · 실제 게임 화면 아님"
+    },
+    {
+      "page": 26,
+      "title": "RUN 공간 와이어프레임",
+      "kind": "text-native 정보 구조 · 실제 게임 화면 아님"
+    },
+    {
+      "page": 27,
+      "title": "열차 · 승인된 새 가족",
+      "kind": "실제 인게임 소비 예정 자산 · 후보/승인 상태는 캡션 참조"
+    },
+    {
+      "page": 28,
+      "title": "파랑 역 · 승인된 새 가족",
+      "kind": "실제 인게임 소비 예정 자산 · 후보/승인 상태는 캡션 참조"
+    },
+    {
+      "page": 29,
+      "title": "적재 모션 아틀라스",
+      "kind": "실제 인게임 소비 예정 자산 · 후보/승인 상태는 캡션 참조"
+    },
+    {
+      "page": 30,
+      "title": "선로 연결 마스터 · 준비 상태",
+      "kind": "실제 인게임 소비 예정 자산 · 후보/승인 상태는 캡션 참조"
+    },
+    {
+      "page": 31,
+      "title": "새 역·화물 가족 · 제작 검사 탈락",
+      "kind": "실제 인게임 소비 예정 자산 · 후보/승인 상태는 캡션 참조"
+    },
+    {
+      "page": 32,
+      "title": "스테이지 01 · 역 옆의 선로",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 33,
+      "title": "스테이지 02 · 역순 적재",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 34,
+      "title": "스테이지 03 · 되돌아오는 화물",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 35,
+      "title": "스테이지 04 · 자동 적재 창",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 36,
+      "title": "스테이지 05 · 잠긴 분기",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 37,
+      "title": "스테이지 06 · 항만 순환선",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 38,
+      "title": "스테이지 07 · 숲길 중계",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 39,
+      "title": "스테이지 08 · 감속 절개지",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 40,
+      "title": "스테이지 09 · 회수선",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 41,
+      "title": "스테이지 10 · 깨끗한 회차",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 42,
+      "title": "스테이지 11 · 적재 중 분기",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 43,
+      "title": "스테이지 12 · 등불 순환선",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 44,
+      "title": "제작 준비 잔여표 · 완료를 과장하지 않는다",
+      "kind": "검토본의 현재 경계 · 전체 구현 준비 완료 아님"
+    }
+  ]
+}

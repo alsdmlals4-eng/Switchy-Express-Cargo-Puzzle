@@ -1,5 +1,10 @@
 # Switchy Express · Human Game Blueprint Editorial Source
 
+> 2026-09-11 companion locator: `SWITCHY_BLUEPRINT_REVIEW_20260911.md` provides the
+> current core-preserved replan's human review view. It is intermediate and does not replace
+> this historical r04 source/PDF or approve runtime implementation. Current rules remain
+> owned by Decisions, the replan spec, and actual code/data.
+
 > **Document ID:** `SX-HGB-001`
 > **Pair / revision:** `SX-HGB-001 · r04 · 2026-09-01`
 > **Role:** 사람용 경험 검수 PDF를 위한 편집 원본이다. 게임 규칙·데이터·테스트의 정본은 아래 upstream owner가 계속 소유한다.

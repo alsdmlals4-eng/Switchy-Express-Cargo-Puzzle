@@ -1,5 +1,16 @@
 # Roadmap
 
+## 2026-09-11 human blueprint preparation override
+
+The latest user authorizes detailed research/planning and necessary consumer-bound image
+candidate production for a human blueprint. This supersedes the September 10 image hold below.
+Runtime implementation and PR #284 merge remain held until final blueprint approval.
+The Ten Paces organized PDF is a structure reference only, not gameplay or asset authority.
+Editorial companion: `docs/design/SWITCHY_BLUEPRINT_REVIEW_20260911.md`.
+Current publication is INTERMEDIATE_REVIEW_NOT_IMPLEMENTATION_READY: candidate alpha,
+rail extraction/port validation, remaining screen/state families and exact handoff are incomplete.
+Board-slate remains selected; title-workshop remains not selected. No new pixel approval is implied.
+
 ## Current sequencing override — planning review first
 
 Detailed rule/state/input/copy planning is prepared in the replan spec (DP-01–DP-10).
