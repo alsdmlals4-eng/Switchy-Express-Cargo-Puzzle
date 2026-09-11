@@ -43,7 +43,8 @@ No new gameplay/art design or new image generation occurred in this housekeeping
    completed scratch outcome lives in permanent evidence. Unique/unknown material stays put.
 4. Move integrity: exact path boundaries and no destination overwrite; per-file before/after
    SHA check. Independent controller readback verified all 2,123 destinations, source absence
-   and recovery-file existence. No deletion commands or secret material in the selected categories.
+   and filesystem recovery references where applicable; pytest recovery is regeneration, not
+   a filesystem reference. No deletion commands or secret material in the selected categories.
 5. Evidence ceiling: holding is not disk space reclaimed; user deletion is NOT_RUN.
    Candidate pixel approval is not runtime integration. No current runtime source changed.
 
