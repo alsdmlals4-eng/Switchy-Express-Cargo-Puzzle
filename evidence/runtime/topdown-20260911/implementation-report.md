@@ -162,14 +162,15 @@ tests/demo/test_product_board_renderer.gd
 tests/python/test_night_workshop_runtime_assets.py
 tests/python/test_sx_dec_063_core_board_asset_promotion.py
 tests/runtime/night_workshop_live_qa.gd
-.superpowers/sdd/2026-09-11-topdown-unification/task-1-report.md
+evidence/runtime/topdown-20260911/implementation-report.md
 ```
 
 ## Concerns and evidence ceiling
 
-- Controller-owned live screenshot/runtime review is still required to judge
-  perceived size, faint-alpha edge behavior, and the look of the motion at
-  real board scale. Automated Texture2D loading is not human visual approval.
+- At the Task 1 handoff, controller-owned live screenshot/runtime review was
+  still pending. It subsequently ran on source cab1b55; see the adjacent
+  review.md and receipt.json for real-board-scale evidence and its limits.
+  Automated Texture2D loading is not human visual approval.
 - This task implements only the approved blue representative pair. Other
   colors, disposal/waste, train/rails, decorations, and shell scenic art remain
   separate top-down-unification work.

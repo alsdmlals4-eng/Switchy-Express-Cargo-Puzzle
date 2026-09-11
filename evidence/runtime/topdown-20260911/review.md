@@ -36,6 +36,13 @@ Independent read-only reviewer found one Important coverage gap. Fix round1 prod
 Retry presentation bug reproduction and correction at cab1b55. Scoped re-review found all findings
 addressed, no new Critical/Important breakage. Final whole-branch/remote checks remain separate.
 
+Final independent read-only review of 4107517..a51e3f2 found no Critical/Important
+issues and approved this bounded increment for merge, subject to remote checks.
+Its minor historical-report locator/pending wording was corrected; no product
+bytes changed. Local main checkout has pre-existing deletion state and is not
+safe for forced synchronization. Aseprite staging cleanup was blocked by the
+host policy; duplicate staging files remain, while tracked sources are intact.
+
 ## Learning / retention
 
 Project lesson: static overhead texture movement preserves approved pixel identity; "same-view"
