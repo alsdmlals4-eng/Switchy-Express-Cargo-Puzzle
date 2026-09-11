@@ -8,6 +8,13 @@ Base source 0708eb5306c235ec1ce251d6329c7ebfa6f2620f; Base method observation
 2f93e872d9ed4fa18018ac759b01acd7d34e9b58, compatibility pin unchanged.
 Current branch codex/visual-completion-20260911. No changes to finite domain, maps or asset slots.
 
+Delivery owner: https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle/pull/286.
+Runtime head 0d8a7fef17044e8357c5875f0a84b5e61094b1b5: all five remote checks SUCCESS,
+including Windows demo export and runtime payload verification. Independent read-only review
+of 0708eb5..0d8a7fe found no confirmed Critical/Important/Minor defects; recommends normal merge
+with current required checks. Documentation-only closeout does not change game/tests/assets/PDF.
+Exact current PR head and merge/readback evidence are recorded on PR #286, not predicted here.
+
 - ProductHUD keeps every token in a scrollable RichTextLabel and exposes a fixed TOP contiguous
   group and authoritative total. Unload animation uses real remaining count, not stale tokens.
 - Delivery event cell is transformed by the actual renderer into a local semantic overlay anchor.
@@ -44,7 +51,8 @@ https://www.factorio.com/blog/post/fff-377
 
 New red-station generation from approved blue reference produced RGB 1254x1254, baked checkerboard;
 original exec-eb20aed6-c817-48de-b995-6b2d055019a9.png stays in the generation output store.
-User asked whether free local candidate-only background removal is allowed; answer pending.
+SHA-256: 6070ea5374902bb9c00edc1a7b9d804fd0da46c47588237cba0c2a4cd08a9099.
+User was asked whether free local candidate-only background removal is allowed; answer pending.
 No paid API, provider migration, shared Aseprite policy change or automatic pixel approval.
 
 Learning stays project-local: verify alpha bytes before slicing/import; preserve paused effects in
