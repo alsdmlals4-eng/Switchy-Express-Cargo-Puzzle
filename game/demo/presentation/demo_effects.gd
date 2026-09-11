@@ -10,66 +10,59 @@ const FAILURE_DURATION := 0.25
 const MAX_EFFECT_DURATION := 1.0
 
 var _active_tweens: Array[Tween] = []
+var _target_tweens: Dictionary = {}
+var _reduced_motion := false
+var _paused := false
 
 
 func play_build(_cell: Vector2i) -> void:
-	var target := _board_target()
-	if target == null:
-		return
-	var tween := _tracked_tween()
-	target.pivot_offset = target.size * 0.5
-	tween.tween_property(target, "scale", Vector2(1.012, 1.012), BUILD_DURATION * 0.5)
-	tween.tween_property(target, "scale", Vector2.ONE, BUILD_DURATION * 0.5)
+	_pulse("HUD/BuildToolbar", BUILD_DURATION)
 
 
 func play_remove(_cell: Vector2i) -> void:
-	var target := _board_target()
-	if target == null:
-		return
-	var tween := _tracked_tween()
-	tween.tween_property(target, "modulate", Color(1.0, 0.78, 0.72, 1.0), REMOVE_DURATION * 0.5)
-	tween.tween_property(target, "modulate", Color.WHITE, REMOVE_DURATION * 0.5)
+	_pulse("HUD/BuildToolbar", REMOVE_DURATION)
 
 
 func play_unload(count: int) -> void:
-	var target := _hud_target()
-	if target == null or count <= 0:
+	if count <= 0:
 		return
-	var duration := minf(
-		UNLOAD_BASE_DURATION + UNLOAD_STAGGER * float(maxi(count - 1, 0)),
-		MAX_EFFECT_DURATION
-	)
-	var tween := _tracked_tween()
-	tween.tween_property(target, "modulate", Color(1.0, 0.91, 0.58, 1.0), duration * 0.5)
-	tween.tween_property(target, "modulate", Color.WHITE, duration * 0.5)
+	var duration := minf(UNLOAD_BASE_DURATION + UNLOAD_STAGGER * float(count - 1), MAX_EFFECT_DURATION)
+	_pulse("HUD/StackPanel/StackLayout/TopSummary", duration)
 
 
 func play_success() -> void:
-	var target := _hud_target()
-	if target == null:
-		return
-	var tween := _tracked_tween()
-	target.pivot_offset = target.size * 0.5
-	tween.tween_property(target, "scale", Vector2(1.025, 1.025), SUCCESS_DURATION * 0.5)
-	tween.tween_property(target, "scale", Vector2.ONE, SUCCESS_DURATION * 0.5)
+	_pulse("HUD/TopStatus/PhaseLabel", SUCCESS_DURATION)
 
 
 func play_failure() -> void:
-	var target := _hud_target()
-	if target == null:
-		return
-	var tween := _tracked_tween()
-	tween.tween_property(target, "modulate", Color(1.0, 0.72, 0.72, 1.0), FAILURE_DURATION * 0.5)
-	tween.tween_property(target, "modulate", Color.WHITE, FAILURE_DURATION * 0.5)
+	_pulse("HUD/TopStatus/PhaseLabel", FAILURE_DURATION)
+
+
+func set_reduced_motion(enabled: bool) -> void:
+	_reduced_motion = enabled
+	if enabled:
+		cancel_all()
+
+
+func set_paused(paused: bool) -> void:
+	_paused = paused
+	for tween: Tween in _active_tweens:
+		if tween.is_valid():
+			if paused:
+				tween.pause()
+			else:
+				tween.play()
 
 
 func cancel_all() -> void:
+	for target: Control in _target_tweens:
+		if is_instance_valid(target):
+			target.modulate.a = 1.0
 	for tween: Tween in _active_tweens:
-		if tween != null and tween.is_valid():
+		if tween.is_valid():
 			tween.kill()
+	_target_tweens.clear()
 	_active_tweens.clear()
-	_reset_target(_board_target())
-	_reset_target(_hud_target())
 
 
 func maximum_effect_duration_for_test() -> float:
@@ -77,7 +70,6 @@ func maximum_effect_duration_for_test() -> float:
 
 
 func active_effect_count_for_test() -> int:
-	_prune_finished()
 	return _active_tweens.size()
 
 
@@ -85,31 +77,27 @@ func _exit_tree() -> void:
 	cancel_all()
 
 
-func _tracked_tween() -> Tween:
-	var tween := create_tween()
-	_active_tweens.append(tween)
-	tween.finished.connect(func() -> void: _active_tweens.erase(tween))
-	return tween
-
-
-func _prune_finished() -> void:
-	var remaining: Array[Tween] = []
-	for tween: Tween in _active_tweens:
-		if tween != null and tween.is_valid() and tween.is_running():
-			remaining.append(tween)
-	_active_tweens = remaining
-
-
-func _board_target() -> Control:
-	return get_parent().get_node_or_null("BoardRenderer") as Control if get_parent() != null else null
-
-
-func _hud_target() -> Control:
-	return get_parent().get_node_or_null("HUD") as Control if get_parent() != null else null
-
-
-static func _reset_target(target: Control) -> void:
+func _pulse(path: NodePath, duration: float) -> void:
+	if _reduced_motion or get_parent() == null:
+		return
+	var target := get_parent().get_node_or_null(path) as Control
 	if target == null:
 		return
-	target.scale = Vector2.ONE
-	target.modulate = Color.WHITE
+	# One bounded pulse per local target; never transform the board or recolor cargo.
+	if _target_tweens.has(target):
+		var previous: Tween = _target_tweens[target]
+		previous.kill()
+		_active_tweens.erase(previous)
+	target.modulate.a = 1.0
+	var tween := create_tween()
+	_active_tweens.append(tween)
+	_target_tweens[target] = tween
+	tween.tween_property(target, "modulate:a", 0.82, duration * 0.5)
+	tween.tween_property(target, "modulate:a", 1.0, duration * 0.5)
+	tween.finished.connect(func() -> void:
+		_active_tweens.erase(tween)
+		if _target_tweens.get(target) == tween:
+			_target_tweens.erase(target)
+	)
+	if _paused:
+		tween.pause()

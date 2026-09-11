@@ -1,6 +1,14 @@
 # Roadmap
 
-> Current readback: approved bounded implementation is MERGED_MAIN_VERIFIED through PR #284.
+> Latest continuation: local UI-feedback increment on codex/visual-completion-20260911.
+> TOP summary/scroll manifest, cell-local events and bounded pause/reduced-motion feedback
+> are implemented; Godot 121 cases / 14,497 assertions and Python 261 tests (1 skip) pass.
+> Human PDF is refreshed to 51 pages, still INTERMEDIATE_REVIEW_NOT_IMPLEMENTATION_READY.
+> New red-station output also failed genuine-alpha inspection. Local background-removal
+> permission is pending; no new candidate pixels were promoted. Rails/new object family remain open.
+> Remote delivery of this increment is pending; prior verified main is PR #285 / 0708eb5.
+>
+> Previous readback: approved bounded implementation is MERGED_MAIN_VERIFIED through PR #284.
 > Evidence owner: SX_DEC_070_NIGHT_WORKSHOP_FIRST_OBJECT_FAMILY.md, September 11 readback.
 > Next: remaining transparent objects/validated rails/UI-motion family and complete human PDF;
 > these remain incomplete and are not implied by the merged increment.

@@ -21,3 +21,8 @@ Existing official engine/UI and atlas research in the replan is reused for this 
 no new engine/library or gameplay algorithm is introduced. New asset production remains separately gated.
 Baseline: 121 cases / 14,156 assertions, zero failing cases before these tests.
 No new mechanics, maps, save migration, pricing, provider update or Base repin.
+
+September 11 next increment: TOP manifest + local feedback implemented and verified (121 / 14,497;
+Python 261 with 1 skip); 51-page derived PDF refreshed. See SX-DEC-070 continuation evidence.
+Whole visual completion remains blocked on genuine-alpha objects and validated new rail atlas.
+User choice pending for local candidate-only background removal; no implicit shared-tool change.

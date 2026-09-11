@@ -15,6 +15,8 @@ var _textures: Array[Texture2D] = []
 var _remaining: float = 0.0
 var _motion_active: bool = false
 var _event_history: Array[StringName] = []
+var _anchor := Vector2(-1, -1)
+var _paused := false
 
 
 func _init() -> void:
@@ -33,6 +35,7 @@ func set_reduced_motion(enabled: bool) -> void:
 
 
 func play_event(event: StringName) -> bool:
+	_anchor = Vector2(-1, -1)
 	if _catalog == null or not _catalog.is_ready():
 		cancel_all()
 		return false
@@ -59,7 +62,25 @@ func play_event(event: StringName) -> bool:
 	return true
 
 
+func play_event_at(event: StringName, global_center: Vector2) -> bool:
+	if not play_event(event):
+		return false
+	_anchor = get_global_transform().affine_inverse() * global_center
+	return true
+
+
+func event_center() -> Vector2:
+	if _anchor != Vector2(-1, -1):
+		return _anchor
+	return size * 0.5 if size != Vector2.ZERO else BASE_SIZE * 0.5
+
+
+func set_paused(paused: bool) -> void:
+	_paused = paused
+
+
 func cancel_all() -> void:
+	_anchor = Vector2(-1, -1)
 	_current_event = &""
 	_information_key = &""
 	_input_paths.clear()
@@ -112,6 +133,8 @@ func reduced_motion_for_test() -> bool:
 
 
 func _process(delta: float) -> void:
+	if _paused:
+		return
 	if _remaining <= 0.0:
 		cancel_all()
 		return
@@ -125,10 +148,8 @@ func _process(delta: float) -> void:
 func _draw() -> void:
 	if _textures.is_empty() or _remaining <= 0.0:
 		return
-	var center := size * 0.5
-	if center == Vector2.ZERO:
-		center = BASE_SIZE * 0.5
-	var draw_size := BASE_SIZE
+	var center := event_center()
+	var draw_size := BASE_SIZE if _anchor == Vector2(-1, -1) else Vector2(48, 48)
 	if not _reduced_motion:
 		var progress := 1.0 - clampf(_remaining / EVENT_DURATION, 0.0, 1.0)
 		var pulse := 1.0 + sin(progress * PI) * 0.12

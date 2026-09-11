@@ -2,6 +2,55 @@
 
 ## Current implementation continuation — 2026-09-11
 
+### UI-feedback continuation after PR #285
+
+Base source 0708eb5306c235ec1ce251d6329c7ebfa6f2620f; Base method observation
+2f93e872d9ed4fa18018ac759b01acd7d34e9b58, compatibility pin unchanged.
+Current branch codex/visual-completion-20260911. No changes to finite domain, maps or asset slots.
+
+- ProductHUD keeps every token in a scrollable RichTextLabel and exposes a fixed TOP contiguous
+  group and authoritative total. Unload animation uses real remaining count, not stale tokens.
+- Delivery event cell is transformed by the actual renderer into a local semantic overlay anchor.
+  Pause stops overlay time, Retry/Edit clear old effects. Existing event catalog textures reused.
+- DemoEffects no longer scales BoardRenderer/HUD or recolors the whole HUD. Bounded local opacity
+  pulse targets toolbar/TOP summary/phase label. One tween per target; Pause/resume and reduced mode.
+- Godot RED first: 2 failing HUD/anchor cases; then 1 failing whole-board scale/tint/reduced-mode
+  case. Final successful run: 121 cases, 14,497 assertions, zero failures. Python: 261 tests, 1 skip.
+- Explicit live session codex-core-preserved-replan-20260910@2922: RB01 witness, real framebuffer,
+  frames 0/1/2/3, paused frame retained, SUCCESS, same-layout Retry. Separate 64-token fixture
+  tests presentation only, not real domain inventory. See evidence/runtime/ui-feedback-20260911.
+- One inline eval compile failure was recovered by stopping/restarting only this project and using
+  tests/runtime/manifest_live_qa.gd. One concurrent regression process exited -1073741819 without
+  summary; no cause claimed. Serial rerun with complete regression.log passed. Do not erase anomaly.
+
+Five full-scope review passes, with additional emphasis in each:
+1. Authority/domain/consumer/visual/lifecycle/provenance sweep: finite core and map IDs unchanged;
+   failed-alpha red station remains external candidate. Other three PRs are untouched.
+2. Same sweep plus render/input geometry: global board/HUD transforms exposed by RED tests;
+   replaced with local bounded opacity. Coordinate anchor uses matching global transforms.
+3. Same sweep plus long-list/readability: fixed summary, scroll panel, actual total, unknown kinds;
+   extended text audit to include RichTextLabel. Actual 64-token render reviewed.
+4. Same sweep plus pause/retry/rapid events: replaced tweens cancel cleanly; paused tweens stay
+   tracked; reduced mode skips transients. Model/layout/result authority tests remain unchanged.
+5. Same sweep plus derived PDF/evidence: refreshed actual screenshots, 51-page render review,
+   corrected atlas caption; all assets/maps remain hash-bound. No human/release/whole-art PASS.
+
+Research comparison: ADAPT Godot AtlasTexture region/margin/filter clipping and Aseprite's explicit
+frame padding; ADOPT Factorio's geometry/connectivity review before rail art slicing. REJECT
+arbitrary crop of unaligned master and RGB checkerboard as alpha. Sources:
+https://docs.godotengine.org/en/4.7/classes/class_atlastexture.html
+https://www.aseprite.org/docs/sprite-sheet/
+https://www.factorio.com/blog/post/fff-377
+
+New red-station generation from approved blue reference produced RGB 1254x1254, baked checkerboard;
+original exec-eb20aed6-c817-48de-b995-6b2d055019a9.png stays in the generation output store.
+User asked whether free local candidate-only background removal is allowed; answer pending.
+No paid API, provider migration, shared Aseprite policy change or automatic pixel approval.
+
+Learning stays project-local: verify alpha bytes before slicing/import; preserve paused effects in
+tracking; use a reusable tab-indented live QA script rather than fragile multiline inline eval.
+No Base promotion: cross-project verification and current promotion contract are not satisfied.
+
 ### Protected delivery readback
 
 PR #284 MERGED through normal merge, checked head f50290d17f8e830d57827a3ae378560a664a0339.

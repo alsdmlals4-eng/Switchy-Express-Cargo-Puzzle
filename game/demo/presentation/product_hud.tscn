@@ -245,12 +245,21 @@ layout_mode = 2
 mouse_filter = 2
 script = ExtResource("2_semantic")
 
-[node name="StackText" type="Label" parent="StackPanel/StackLayout"]
+[node name="TopSummary" type="Label" parent="StackPanel/StackLayout"]
 layout_mode = 2
-size_flags_vertical = 3
 text = "비어 있음"
 horizontal_alignment = 1
-vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StackText" type="RichTextLabel" parent="StackPanel/StackLayout"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 20
+text = "비어 있음"
+scroll_active = true
+fit_content = false
 
 [node name="PausePanel" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(420, 170)

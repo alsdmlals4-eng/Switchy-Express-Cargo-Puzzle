@@ -47,6 +47,24 @@ func run() -> void:
 		assert_equal(problem_text.size_flags_horizontal, Control.SIZE_EXPAND_FILL, "preflight text owns remaining banner width")
 
 	var build_model := _model(&"BUILD")
+	var long_model := _model(&"RUNNING")
+	var long_tokens: Array = []
+	for index in range(64):
+		long_tokens.append({"cargo_type": &"RED_STAR" if index < 61 else &"BLUE_DIAMOND", "top": index == 63})
+	long_model["stack_tokens"] = long_tokens
+	long_model["stack_size"] = 64
+	hud.apply_model(long_model)
+	var manifest := hud.get_node("StackPanel/StackLayout/StackText")
+	assert_true(manifest is RichTextLabel, "unlimited manifest must scroll without enlarging the panel")
+	if manifest is RichTextLabel:
+		assert_true(manifest.scroll_active and not manifest.fit_content, "long manifest is bounded and scrollable")
+	assert_equal(manifest.text.count("← TOP"), 1, "long manifest retains exactly one TOP")
+	assert_true(manifest.text.contains("A · 별") and manifest.text.contains("B · 다이아"), "scrolling must not discard bottom cargo")
+	var summary := hud.get_node_or_null("StackPanel/StackLayout/TopSummary")
+	assert_not_null(summary, "TOP group must remain visible outside scroll area")
+	if summary != null:
+		assert_true(summary.text.contains("다이아 × 3"), "only contiguous TOP group belongs in summary")
+		assert_true(summary.text.contains("64"), "summary reports full uncapped count")
 	hud.apply_model(build_model)
 	assert_equal(hud.get_node("TopStatus/PhaseLabel").text, "건설 단계", "BUILD phase uses Korean copy")
 	assert_equal(hud.get_node("BuildToolbar/StartButton").text, "운행 시작  Space", "start button shows action and shortcut")
@@ -212,7 +230,7 @@ func _model(phase: StringName) -> Dictionary:
 
 func _collect_label_and_button_text(node: Node) -> String:
 	var result := ""
-	if node is Label:
+	if node is Label or node is RichTextLabel:
 		result += node.text + "\n"
 	elif node is Button:
 		result += node.text + "\n"
