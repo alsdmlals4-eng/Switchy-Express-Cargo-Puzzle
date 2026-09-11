@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "decision_id": "TOPDOWN-UNIFICATION-2026-09-11",
+  "status": "USER_APPROVED_CANON_REGISTERED_IMPLEMENTED",
+  "consumer": "game/demo/presentation/product_board_renderer.gd",
+  "approval": "2026-09-11 user approved both blue representative candidates and requested top-view unification",
+  "presentation": {
+    "camera": "STRICT_90_DEGREE_ORTHOGRAPHIC_NADIR",
+    "semantic_anchors": "UNCHANGED",
+    "cargo_marker_scale": 0.62,
+    "transparent_padding": "PRESERVED_IN_EXACT_SOURCE_BYTES; renderer retains the existing marker target and never enlarges cargo to compensate"
+  },
+  "assets": [
+    {
+      "key": "station_blue",
+      "path": "station_blue.png",
+      "source": "evidence/design/topdown-20260911/station-blue-candidate.png",
+      "sha256": "4837c23361147da72bae9f88c5c15372f57ef0fa8e804b48c0297bdb2cc50a6e",
+      "dimensions": [1254, 1254],
+      "mode": "RGBA",
+      "alpha_extrema": [0, 255],
+      "status": "USER_APPROVED_PIXELS_REGISTERED_IMPLEMENTED"
+    },
+    {
+      "key": "cargo_blue",
+      "path": "cargo_blue.png",
+      "source": "evidence/design/topdown-20260911/cargo-blue-candidate.png",
+      "sha256": "58ed699689e88f0f8f3cdd14cd20f28611ea235e049a5182bef087fd09df2360",
+      "dimensions": [1254, 1254],
+      "mode": "RGBA",
+      "alpha_extrema": [0, 255],
+      "status": "USER_APPROVED_PIXELS_REGISTERED_IMPLEMENTED"
+    }
+  ],
+  "boundaries": [
+    "Exact approved bytes copied without pixel edits",
+    "Blue pickup presentation uses the static top lid with position and opacity only",
+    "No domain timing, map coordinate, cargo scale, camera, or semantic anchor changes",
+    "Historical oblique lift asset remains preserved but has no active renderer consumer"
+  ]
+}

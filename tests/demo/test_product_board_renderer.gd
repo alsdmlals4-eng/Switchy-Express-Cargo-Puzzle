@@ -316,11 +316,11 @@ func run() -> void:
 		"start_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png",
 		"route_end_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png",
 		"station_red": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
-		"station_blue": "art/product_assets/night_workshop_v1/station_blue.png",
+		"station_blue": "art/product_assets/topdown_v1/station_blue.png",
 		"station_yellow": "art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png",
 		"station_disposal": "art/product_assets/ed_hybrid_v2/core/core_disposal_yard_normal_v02.png",
 		"cargo_red": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png",
-		"cargo_blue": "art/product_assets/night_workshop_v1/cargo_blue.png",
+		"cargo_blue": "art/product_assets/topdown_v1/cargo_blue.png",
 		"cargo_yellow": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png",
 		"cargo_waste": "art/product_assets/ed_hybrid_v2/core/core_cargo_waste_crate_normal_v02.png",
 	}

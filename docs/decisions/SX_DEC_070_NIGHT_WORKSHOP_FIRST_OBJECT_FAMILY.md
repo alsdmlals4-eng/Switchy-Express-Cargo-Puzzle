@@ -2,6 +2,23 @@
 
 ## Current implementation continuation — 2026-09-11
 
+### Strict top-down amendment after PR #286
+
+User "좋아 그렇게 통일해" approved the representative blue roof/lid and top-view unification.
+Blue exact bytes are registered under art/product_assets/topdown_v1/manifest.json; eleven new
+station/cargo/decoration candidates are still USER_DISPOSITION_PENDING. Candidate prompts, hashes,
+rejections and consumer mapping live in evidence/design/topdown-20260911/candidates.json.
+Core, map/service coordinates, cargo scale, selected slate board and title identity stay unchanged.
+Pickup uses the same approved overhead lid with 0.24-second position/opacity, no view tilt.
+Independent review exposed missing automated Resume/Retry coverage; real active Retry reproduced
+a presentation cancellation defect (RED), fixed at cab1b55. GDScript 121 cases / 14,505 assertions,
+zero failures; Python 262 tests / one existing skip; project contract PASS.
+Live Godot source cab1b55: RB01 build, four timeline samples, Pause/Resume, SUCCESS and same-layout
+Retry/Edit in evidence/runtime/topdown-20260911/. Programmatic UI/witness execution is not human play.
+The full-scene model candidates changed footprints and retained side-view props, so remain rejected.
+Whole-family visual completion, final user screen review, derived PDF and release stay separate.
+Current-task delivery PR #287 owns exact-head remote check/merge readback; no merge is predicted here.
+
 ### UI-feedback continuation after PR #285
 
 Base source 0708eb5306c235ec1ce251d6329c7ebfa6f2620f; Base method observation

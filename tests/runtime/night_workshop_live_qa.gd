@@ -24,26 +24,32 @@ static func run(tree: SceneTree, output_root: String = "res://evidence/runtime/n
 	slice.request_command(&"AUTO_TOGGLE")
 	var renderer := slice.get_node("BoardRenderer")
 	var steps := 0
-	while renderer._cargo_pickup.frame_index() < 0 and steps < 300:
+	while not renderer._cargo_pickup.is_active() and steps < 300:
 		slice.advance_time(0.01)
 		steps += 1
 	renderer.set_process(false)
-	assert(renderer._cargo_pickup.frame_index() == 0)
-	var frames: Array[int] = []
+	assert(renderer._cargo_pickup.is_active())
+	var samples: Array[Dictionary] = []
 	for index in range(4):
 		if index == 2:
 			slice.request_command(&"PAUSE")
+			var paused_offset: Vector2 = renderer._cargo_pickup.offset()
 			renderer._process(1.0)
-			assert(renderer._cargo_pickup.frame_index() == 2)
+			assert(renderer._cargo_pickup.offset() == paused_offset)
 			slice.request_command(&"RESUME")
 			renderer.set_process(false)
-		frames.append(renderer._cargo_pickup.frame_index())
+		samples.append({
+			"offset": renderer._cargo_pickup.offset(),
+			"opacity": renderer._cargo_pickup.opacity(),
+		})
 		renderer.queue_redraw()
 		await RenderingServer.frame_post_draw
 		assert(tree.root.get_texture().get_image().save_png(root + "pickup-%d.png" % index) == OK)
 		renderer._cargo_pickup.advance(0.061)
-	assert(frames == [0, 1, 2, 3])
-	assert(renderer._cargo_pickup.frame_index() == -1)
+	assert(samples[0].offset == Vector2.ZERO)
+	assert(samples[1].offset.y < 0.0 and samples[2].offset.y < 0.0 and samples[3].offset.y < 0.0)
+	assert(samples[0].opacity > samples[1].opacity and samples[1].opacity > samples[2].opacity and samples[2].opacity > samples[3].opacity)
+	assert(not renderer._cargo_pickup.is_active())
 	for index in range(2000):
 		slice.advance_time(0.01)
 		if slice.session_controller().phase() not in [&"RUNNING", &"UNLOADING"]:
@@ -51,7 +57,7 @@ static func run(tree: SceneTree, output_root: String = "res://evidence/runtime/n
 	await RenderingServer.frame_post_draw
 	assert(tree.root.get_texture().get_image().save_png(root + "result.png") == OK)
 	var result := {"mode": "live engine with programmatic UI signals and authored witness; manually stepped domain clock",
-		"pickup_steps": steps, "frames": frames, "phase": str(slice.session_controller().phase()),
+		"pickup_steps": steps, "samples": samples, "phase": str(slice.session_controller().phase()),
 		"viewport": str(tree.root.size), "model": slice.session_controller().model()}
 	assert(result.phase == "SUCCESS")
 	assert(result.model.remaining_map_cargo == 0)
@@ -60,7 +66,7 @@ static func run(tree: SceneTree, output_root: String = "res://evidence/runtime/n
 	shell.get_node("ResultOverlay/Panel/Content/Actions/RetryButton").pressed.emit()
 	await tree.process_frame
 	assert(slice.session_controller().current_layout_signature() == layout_signature)
-	assert(renderer._cargo_pickup.frame_index() == -1)
+	assert(not renderer._cargo_pickup.is_active())
 	slice.request_command(&"PAUSE")
 	slice.request_command(&"EDIT_LAYOUT")
 	result["pause_preserves_frame"] = true

@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "project": "switchy-express-cargo-puzzle",
+  "scope": "strict-topdown-20260911",
+  "method": "built-in image generation; exact copies; no local pixel editing or background removal",
+  "approval_boundary": "Only blue pair approved. Remaining eleven candidates are not canonical runtime assets.",
+  "assets": [
+    {
+      "file": "cargo-blue-candidate.png",
+      "sha256": "58ed699689e88f0f8f3cdd14cd20f28611ea235e049a5182bef087fd09df2360",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "id": "cargo-blue",
+      "consumer": "ProductBoardRenderer.PRODUCT_VISUAL_ASSET_PATHS.cargo_blue",
+      "status": "USER_APPROVED_REGISTERED_IMPLEMENTED",
+      "source_generation": "exec-5ac01286-b719-4077-9212-04ac770d1ece.png",
+      "prompt_locator": "README.md#generated-candidates"
+    },
+    {
+      "file": "cargo-red-candidate.png",
+      "sha256": "59e0502d87969aef2032a4f566a9163b828a15b165148faefb3a2768d941eefb",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "id": "cargo-red",
+      "consumer": "ProductBoardRenderer.PRODUCT_VISUAL_ASSET_PATHS.cargo_red",
+      "status": "REVIEWED_USER_DISPOSITION_PENDING",
+      "source_generation": "exec-1a74716b-6973-456a-b404-3d809b0f94bf.png",
+      "prompt": "Use case: stylized-concept. Asset type: isolated production 2D railway puzzle game sprite. Subject: single square RED cargo crate top lid, muted burgundy wood grain, four aged brass cornercaps and rivets, clear flat ivory FIVE-POINT STAR in center. Camera strict TRUE TOP-DOWN 90-DEGREE ORTHOGRAPHIC NADIR PLAN VIEW, perfectly vertical, only top surfaces visible. Edges aligned to image axes. No front or side walls, no facade, no door, no front gable, no isometric view, no perspective, no foreshortening, no rotated diamond silhouette. Restrained painted miniature cozy navy/ivory/aged brass workshop family, soft upper-left light, tiny short contact shadow only. Single object centered occupying 70 percent of square canvas. Outside object genuinely transparent RGBA with alpha zero, no checkerboard, no backdrop, no ground outside footprint, no text, no grid, no extra objects."
+    },
+    {
+      "file": "cargo-waste-candidate.png",
+      "sha256": "4b93f82d59e9b822ad6a9d12ffdc3bd98dae02893e557f4b4ab8dca26dd2c7ff",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "id": "cargo-waste",
+      "consumer": "ProductBoardRenderer.PRODUCT_VISUAL_ASSET_PATHS.cargo_waste",
+      "status": "REVIEWED_USER_DISPOSITION_PENDING",
+      "source_generation": "exec-59e47b75-d75e-45d9-b5f9-f47d86aa959d.png",
+      "prompt": "Use case: stylized-concept. New isolated game sprite: single perfectly square flat CHARCOAL wooden cargo crate LID, seen exactly straight down. Aged brass four L-shaped cornercaps, clear large ivory trash-bin pictogram PAINTED FLAT in center of lid, dark charcoal not blue. ONLY the top plane, 2D orthographic inventory sprite, no open interior, no side thickness, no bottom front wall. Camera is a strict vertical 90-degree orthographic nadir, absolutely no perspective. Restrained painted miniature workshop materials, ivory and aged brass, shared soft upper-left light. Centered,70% canvas with large clear margin. Actual transparent RGBA outside sprite alpha0. No checkerboard, no text, no ground patch or scenery. This must be a floor-plan-style top surface, never a three-quarter view."
+    },
+    {
+      "file": "cargo-yellow-candidate.png",
+      "sha256": "535a595289e4ef8558f9bf89c19ef30d72ea4cc128176e991ef8c2ce4aaa893c",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "id": "cargo-yellow",
+      "consumer": "ProductBoardRenderer.PRODUCT_VISUAL_ASSET_PATHS.cargo_yellow",
+      "status": "REVIEWED_USER_DISPOSITION_PENDING",
+      "source_generation": "exec-0a3adca5-cc48-4eb6-9523-447f7bd46d3d.png",
+      "prompt": "Use case: stylized-concept. Asset type: isolated production 2D railway puzzle game sprite. Subject: single square YELLOW cargo crate top lid, muted ochre wood grain, four aged brass cornercaps and rivets, clear flat ivory TRIANGLE with small ochre center. Camera strict TRUE TOP-DOWN 90-DEGREE ORTHOGRAPHIC NADIR PLAN VIEW, perfectly vertical, only top surfaces visible. Edges aligned to image axes. No front or side walls, no facade, no door, no front gable, no isometric view, no perspective, no foreshortening, no rotated diamond silhouette. Restrained painted miniature cozy navy/ivory/aged brass workshop family, soft upper-left light, tiny short contact shadow only. Single object centered occupying 70 percent of square canvas. Outside object genuinely transparent RGBA with alpha zero, no checkerboard, no backdrop, no ground outside footprint, no text, no grid, no extra objects."
+    },
+    {
+      "file": "decoration-boulder-candidate.png",
+      "sha256": "8892e974fea5edc6c0a24b437d9b6370c39c515c1874149394b248c92f575d02",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "id": "decoration-boulder",
+      "consumer": "ProductBoardRenderer.PRODUCT_VISUAL_ASSET_PATHS.decoration_moss_boulder",
+      "status": "REVIEWED_USER_DISPOSITION_PENDING",
+      "source_generation": "exec-1ac9c399-dbef-4176-a8eb-0d1437641b9e.png",
+      "prompt": "Use case: stylized-concept. Asset type: single isolated environment decoration sprite for top-down railway puzzle board. a tight cluster of three moss-covered rounded BOULDER TOPS seen exactly above, restrained blue-gray stone with olive moss patches, asymmetric natural rounded footprints, no rock front facade or tall cliff. STRICT 90-degree ORTHOGRAPHIC NADIR PLAN VIEW, vertical camera, every feature seen directly from above, no perspective or isometric angle, no horizon, no visible side walls. Restrained painted miniature navy/ivory/aged brass workshop visual family. Soft light from upper-left, very short contact shadows. Clean silhouette occupying 70 percent square canvas, no edge cropping. ACTUAL TRANSPARENT RGBA outside silhouette, alpha zero. No checkerboard, no background scenery, no text, no grid, no frame."
+    },
+    {
+      "file": "decoration-forest-candidate.png",
+      "sha256": "0c1ece705d7ef954dac024abe7f4b7bafdd882320ab116e0cd8b6aacb9785d14",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "id": "decoration-forest",
+      "consumer": "ProductBoardRenderer.PRODUCT_VISUAL_ASSET_PATHS.decoration_forest_cluster",
+      "status": "REVIEWED_USER_DISPOSITION_PENDING",
+      "source_generation": "exec-660a614a-dd8b-4590-8930-d402907daa1c.png",
+      "prompt": "Use case: stylized-concept. Asset type: single isolated environment decoration sprite for top-down railway puzzle board. a cluster of three evergreen TREE CROWNS seen from exactly above: circular radial rosettes of spruce needles around tiny central growing tips, muted deep teal and moss green. No trunks, no side silhouette, no triangular Christmas tree elevation. STRICT 90-degree ORTHOGRAPHIC NADIR PLAN VIEW, vertical camera, every feature seen directly from above, no perspective or isometric angle, no horizon, no visible side walls. Restrained painted miniature navy/ivory/aged brass workshop visual family. Soft light from upper-left, very short contact shadows. Clean silhouette occupying 70 percent square canvas, no edge cropping. ACTUAL TRANSPARENT RGBA outside silhouette, alpha zero. No checkerboard, no background scenery, no text, no grid, no frame."
+    },
+    {
+      "file": "decoration-lantern-fence-candidate.png",
+      "sha256": "359c71cca3c786ee2e4e2edcee97d42c017d2062c1cd597639ea5bea84f55c0d",
+      "dimensions": [
+        1916,
+        821
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "id": "decoration-lantern-fence",
+      "consumer": "ProductBoardRenderer.PRODUCT_VISUAL_ASSET_PATHS.decoration_lantern_fence",
+      "status": "REVIEWED_USER_DISPOSITION_PENDING",
+      "source_generation": "exec-015cd3f8-830e-4698-a72b-5cabf1c4edbf.png",
+      "prompt": "Use case: stylized-concept. New isolated game sprite: single thin horizontal dark navy timber rail with three small flat square brass post caps all seen straight down. At two end caps, flat circular brass lantern ROOFS seen straight down, tiny central finials viewed from above. Symmetric subtle small amber glow circles centered on each lamp roof. ONLY the top planes, NO lamp glass or visible light bulb or bright lamp front, no visible sides under postcaps, no upright posts or fence elevation, no slab thickness. Camera is a strict vertical 90-degree orthographic nadir, absolutely no perspective. Restrained painted miniature workshop materials, ivory and aged brass, shared soft upper-left light. Centered,70% canvas with large clear margin. Actual transparent RGBA outside sprite alpha0. No checkerboard, no text, no ground patch or scenery. This must be a floor-plan-style top surface, never a three-quarter view."
+    },
+    {
+      "file": "decoration-timber-candidate.png",
+      "sha256": "0399663ebd3b046c28ba3ab97ad98a26310daeb294fd29e15a8d0d39adb59be1",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "id": "decoration-timber",
+      "consumer": "ProductBoardRenderer.PRODUCT_VISUAL_ASSET_PATHS.decoration_timber_stack",
+      "status": "REVIEWED_USER_DISPOSITION_PENDING",
+      "source_generation": "exec-666a41e7-8096-46fa-b58a-9f1b119fc393.png",
+      "prompt": "Use case: stylized-concept. Asset type: single isolated environment decoration sprite for top-down railway puzzle board. a neat horizontal pile of TIMBER seen exactly above: parallel long wooden beams with amber grain, restrained dark steel binding straps over top, all beams horizontal, rectangular overall footprint. No stacked front cut-end wall, no side elevation. STRICT 90-degree ORTHOGRAPHIC NADIR PLAN VIEW, vertical camera, every feature seen directly from above, no perspective or isometric angle, no horizon, no visible side walls. Restrained painted miniature navy/ivory/aged brass workshop visual family. Soft light from upper-left, very short contact shadows. Clean silhouette occupying 70 percent square canvas, no edge cropping. ACTUAL TRANSPARENT RGBA outside silhouette, alpha zero. No checkerboard, no background scenery, no text, no grid, no frame."
+    },
+    {
+      "file": "decoration-waterway-candidate.png",
+      "sha256": "3384d0b1554ae81426380b2faed228c63395e81db5f6b6e9b12a6db672c2e07c",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "id": "decoration-waterway",
+      "consumer": "ProductBoardRenderer.PRODUCT_VISUAL_ASSET_PATHS.decoration_waterway",
+      "status": "REVIEWED_USER_DISPOSITION_PENDING",
+      "source_generation": "exec-5e05e55b-57cf-4c54-bc0e-b04f2b9f41a7.png",
+      "prompt": "Use case: stylized-concept. Asset type: single isolated environment decoration sprite for top-down railway puzzle board. a short shallow curved WATERWAY PATCH seen exactly above, muted blue-teal water with restrained small ripples, thin smooth gray pebbles and moss banks along its S-curved outline. Self-contained water and narrow bank only, outside transparent, no bridge no island scenery. STRICT 90-degree ORTHOGRAPHIC NADIR PLAN VIEW, vertical camera, every feature seen directly from above, no perspective or isometric angle, no horizon, no visible side walls. Restrained painted miniature navy/ivory/aged brass workshop visual family. Soft light from upper-left, very short contact shadows. Clean silhouette occupying 70 percent square canvas, no edge cropping. ACTUAL TRANSPARENT RGBA outside silhouette, alpha zero. No checkerboard, no background scenery, no text, no grid, no frame."
+    },
+    {
+      "file": "station-blue-candidate.png",
+      "sha256": "4837c23361147da72bae9f88c5c15372f57ef0fa8e804b48c0297bdb2cc50a6e",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "id": "station-blue",
+      "consumer": "ProductBoardRenderer.PRODUCT_VISUAL_ASSET_PATHS.station_blue",
+      "status": "USER_APPROVED_REGISTERED_IMPLEMENTED",
+      "source_generation": "exec-330a438c-7234-4876-800a-890753a73f88.png",
+      "prompt_locator": "README.md#generated-candidates"
+    },
+    {
+      "file": "station-disposal-candidate.png",
+      "sha256": "508490a7a541fb0378253fc7f6667517c6713bb809cb727510891cde90fb2a8a",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "id": "station-disposal",
+      "consumer": "ProductBoardRenderer.PRODUCT_VISUAL_ASSET_PATHS.station_disposal",
+      "status": "REVIEWED_USER_DISPOSITION_PENDING",
+      "source_generation": "exec-7be4ca24-c35d-4dfe-a474-cd22e482cc8f.png",
+      "prompt": "Use case: stylized-concept. Asset type: isolated production 2D railway puzzle game sprite. Subject: small square disposal railway service YARD PLAN. Charcoal paved square bounded by thin aged brass rails viewed exactly vertically above, square open-top sorting hopper inset upper half with few scraps visible from above. Flat ivory waste-bin glyph painted on lower pavement; short hazard ochre stripe at edge. No walls visible, no buildings, no standup signs, no rail track. Camera strict TRUE TOP-DOWN 90-DEGREE ORTHOGRAPHIC NADIR PLAN VIEW, perfectly vertical, only top surfaces visible. Edges aligned to image axes. No front or side walls, no facade, no door, no front gable, no isometric view, no perspective, no foreshortening, no rotated diamond silhouette. Restrained painted miniature cozy navy/ivory/aged brass workshop family, soft upper-left light, tiny short contact shadow only. Single object centered occupying 70 percent of square canvas. Outside object genuinely transparent RGBA with alpha zero, no checkerboard, no backdrop, no ground outside footprint, no text, no grid, no extra objects."
+    },
+    {
+      "file": "station-red-candidate.png",
+      "sha256": "c1390662537eb00c31ce0e1bae8ab4b51dda8691c940e89da9addba741017246",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "id": "station-red",
+      "consumer": "ProductBoardRenderer.PRODUCT_VISUAL_ASSET_PATHS.station_red",
+      "status": "REVIEWED_USER_DISPOSITION_PENDING",
+      "source_generation": "exec-fa91b0c7-beed-421c-8652-e9c401e759e8.png",
+      "prompt": "Use case: stylized-concept. Asset type: isolated production 2D railway puzzle game sprite. Subject: tiny RED railway workshop ROOF. Rectangular hipped muted burgundy slate tile roof, aged brass horizontal ridge across middle, cornercaps, one small square chimney ONLY its top opening upper-right. Large flat IVORY FIVE-POINT STAR painted on lower roof, not a standing sign. Roof footprint rectangular width 1.4 times height. Camera strict TRUE TOP-DOWN 90-DEGREE ORTHOGRAPHIC NADIR PLAN VIEW, perfectly vertical, only top surfaces visible. Edges aligned to image axes. No front or side walls, no facade, no door, no front gable, no isometric view, no perspective, no foreshortening, no rotated diamond silhouette. Restrained painted miniature cozy navy/ivory/aged brass workshop family, soft upper-left light, tiny short contact shadow only. Single object centered occupying 70 percent of square canvas. Outside object genuinely transparent RGBA with alpha zero, no checkerboard, no backdrop, no ground outside footprint, no text, no grid, no extra objects."
+    },
+    {
+      "file": "station-yellow-candidate.png",
+      "sha256": "d01c447427c31251871ff82c7f22c2999f51f46f5d32829b9d6cc3fb31ee5352",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "id": "station-yellow",
+      "consumer": "ProductBoardRenderer.PRODUCT_VISUAL_ASSET_PATHS.station_yellow",
+      "status": "REVIEWED_USER_DISPOSITION_PENDING",
+      "source_generation": "exec-fb0c135a-1f56-4f45-b5f2-95ad24a0ea61.png",
+      "prompt": "Use case: stylized-concept. Asset type: isolated production 2D railway puzzle game sprite. Subject: tiny YELLOW railway workshop ROOF. Rectangular hipped muted ochre slate tile roof, aged brass horizontal ridge across middle, cornercaps, one small square chimney ONLY its top opening upper-right. Large flat IVORY TRIANGLE with dark ochre center painted on lower roof, not a standing sign. Roof footprint rectangular width 1.4 times height. Camera strict TRUE TOP-DOWN 90-DEGREE ORTHOGRAPHIC NADIR PLAN VIEW, perfectly vertical, only top surfaces visible. Edges aligned to image axes. No front or side walls, no facade, no door, no front gable, no isometric view, no perspective, no foreshortening, no rotated diamond silhouette. Restrained painted miniature cozy navy/ivory/aged brass workshop family, soft upper-left light, tiny short contact shadow only. Single object centered occupying 70 percent of square canvas. Outside object genuinely transparent RGBA with alpha zero, no checkerboard, no backdrop, no ground outside footprint, no text, no grid, no extra objects."
+    }
+  ],
+  "rejected": [
+    {
+      "generation": "exec-c9fb028a-6bcd-401a-bcd8-a371fae5f664.png",
+      "reason": "Waste bin visible front rim; replaced by charcoal flat lid."
+    },
+    {
+      "generation": "exec-db7a00f5-a29a-4501-962d-956a35fa619e.png",
+      "reason": "Lantern front glass/post sides; replaced by overhead circular roof caps."
+    }
+  ],
+  "rejected_scene_generations": [
+  {
+    "id": "shell-title",
+    "source_generation": "exec-d05ff5aa-f6c6-427c-96ec-a2188c5c507c.png",
+    "prompt": "Use case: stylized-concept. Actual game UI background raster, wide landscape 16:9. main-menu background, quiet dark slate railway courtyard with an elegant gently branching overhead brass rail network concentrated across the middle; small navy brass locomotive seen by its roof and boiler top only; one blue slate station roof diamond near upper center; evergreen circular crowns and small boulder tops at outer corners. No text, no title lettering, no logos. Preserve open calm low-contrast LEFT quarter and RIGHT quarter for real UI panels. Scenic art only, not a playable map. STRICT TRUE TOP-DOWN vertical 90-degree ORTHOGRAPHIC NADIR PLAN VIEW. EVERY world object shows top surfaces ONLY: roofs instead of facades, lids not crate sides, circular tree crowns not upright trees, no visible buildings walls/windows/doors, no horizon, no perspective, no raised floating diorama edge, no front train cab. Ground is flat deep slate blue workshop paving, muted navy/ivory/aged brass materials, painterly miniature texture, restrained upper-left lighting and short shadows, legible silhouettes. Rails parallel consistent gauge and tangent curves. No identifiable existing game imitation. No lettering, no watermark, no UI boxes. This is opaque full-frame scenery, not a transparent sprite.",
+    "status": "REJECTED_FOR_RUNTIME",
+    "reason": "Visible side-view lamps/crates, altered station footprint or cargo-on-wagon imagery conflicts with approved topview shape/semantic family. Do not promote or use to teach rules."
+  },
+  {
+    "id": "shell-result-success",
+    "source_generation": "exec-23409417-501d-4400-b22e-5bb975a79534.png",
+    "prompt": "Use case: stylized-concept. Actual game UI background raster, wide landscape 16:9. success result illustration, a compact peaceful overhead depot yard with small navy locomotive parked on straight track across lower middle and three neatly delivered red star, blue diamond and yellow triangle crate TOP LIDS near corresponding roof footprints. Modest warm lantern pools. No text, no trophies, no fireworks. Sparse upper-middle to allow result UI. Scenic mood, not a playable map. STRICT TRUE TOP-DOWN vertical 90-degree ORTHOGRAPHIC NADIR PLAN VIEW. EVERY world object shows top surfaces ONLY: roofs instead of facades, lids not crate sides, circular tree crowns not upright trees, no visible buildings walls/windows/doors, no horizon, no perspective, no raised floating diorama edge, no front train cab. Ground is flat deep slate blue workshop paving, muted navy/ivory/aged brass materials, painterly miniature texture, restrained upper-left lighting and short shadows, legible silhouettes. Rails parallel consistent gauge and tangent curves. No identifiable existing game imitation. No lettering, no watermark, no UI boxes. This is opaque full-frame scenery, not a transparent sprite.",
+    "status": "REJECTED_FOR_RUNTIME",
+    "reason": "Visible side-view lamps/crates, altered station footprint or cargo-on-wagon imagery conflicts with approved topview shape/semantic family. Do not promote or use to teach rules."
+  },
+  {
+    "id": "shell-result-failure",
+    "source_generation": "exec-5a178687-0006-4158-add7-62237c0fc5d0.png",
+    "prompt": "Use case: stylized-concept. Actual game UI background raster, wide landscape 16:9. retry result illustration, a compact overhead depot yard with small navy locomotive stopped before a clear flat rail buffer near center, a few red star and blue diamond crate TOP LIDS still nearby, quiet amber caution lantern pool. No wreck, damage, smoke plume or catastrophe. Readable calm retry mood. No text. Scenic art, not a playable map. STRICT TRUE TOP-DOWN vertical 90-degree ORTHOGRAPHIC NADIR PLAN VIEW. EVERY world object shows top surfaces ONLY: roofs instead of facades, lids not crate sides, circular tree crowns not upright trees, no visible buildings walls/windows/doors, no horizon, no perspective, no raised floating diorama edge, no front train cab. Ground is flat deep slate blue workshop paving, muted navy/ivory/aged brass materials, painterly miniature texture, restrained upper-left lighting and short shadows, legible silhouettes. Rails parallel consistent gauge and tangent curves. No identifiable existing game imitation. No lettering, no watermark, no UI boxes. This is opaque full-frame scenery, not a transparent sprite.",
+    "status": "REJECTED_FOR_RUNTIME",
+    "reason": "Visible side-view lamps/crates, altered station footprint or cargo-on-wagon imagery conflicts with approved topview shape/semantic family. Do not promote or use to teach rules."
+  },
+  {
+    "id": "shell-lesson",
+    "source_generation": "exec-3f817a88-baa4-4da1-8162-a39ee1106e67.png",
+    "prompt": "Use case: stylized-concept. Actual game UI background raster, wide landscape 16:9. tutorial backdrop, sparse overhead workshop practice board with a short straight rail and one smoothly connected quarter-turn curve, small navy locomotive overhead on the straight, blue diamond cargo TOP LID lying on the rail ahead. Blue station ROOF footprint rests beside the curve without a track through it. No arrows or explanatory text, no grid numbers or UI. Scenic supporting art only, actual rules live in UI. STRICT TRUE TOP-DOWN vertical 90-degree ORTHOGRAPHIC NADIR PLAN VIEW. EVERY world object shows top surfaces ONLY: roofs instead of facades, lids not crate sides, circular tree crowns not upright trees, no visible buildings walls/windows/doors, no horizon, no perspective, no raised floating diorama edge, no front train cab. Ground is flat deep slate blue workshop paving, muted navy/ivory/aged brass materials, painterly miniature texture, restrained upper-left lighting and short shadows, legible silhouettes. Rails parallel consistent gauge and tangent curves. No identifiable existing game imitation. No lettering, no watermark, no UI boxes. This is opaque full-frame scenery, not a transparent sprite.",
+    "status": "REJECTED_FOR_RUNTIME",
+    "reason": "Visible side-view lamps/crates, altered station footprint or cargo-on-wagon imagery conflicts with approved topview shape/semantic family. Do not promote or use to teach rules."
+  },
+  {
+    "id": "shell-lesson-t2",
+    "source_generation": "exec-bd3b3f93-71f7-480d-aa17-28e01493e533.png",
+    "prompt": "Use case: stylized-concept. Actual game UI background raster, wide landscape 16:9. cargo-and-station tutorial backdrop, sparse overhead workshop practice board: short horizontal rail across lower third with a blue diamond cargo TOP LID directly on track and navy locomotive overhead to its left, blue slate station rectangular ROOF footprint above and BESIDE track, visibly not on track. No platform route passing through station, no arrows, no text, no baked tutorial labels. Scenic supporting art only. STRICT TRUE TOP-DOWN vertical 90-degree ORTHOGRAPHIC NADIR PLAN VIEW. EVERY world object shows top surfaces ONLY: roofs instead of facades, lids not crate sides, circular tree crowns not upright trees, no visible buildings walls/windows/doors, no horizon, no perspective, no raised floating diorama edge, no front train cab. Ground is flat deep slate blue workshop paving, muted navy/ivory/aged brass materials, painterly miniature texture, restrained upper-left lighting and short shadows, legible silhouettes. Rails parallel consistent gauge and tangent curves. No identifiable existing game imitation. No lettering, no watermark, no UI boxes. This is opaque full-frame scenery, not a transparent sprite.",
+    "status": "REJECTED_FOR_RUNTIME",
+    "reason": "Visible side-view lamps/crates, altered station footprint or cargo-on-wagon imagery conflicts with approved topview shape/semantic family. Do not promote or use to teach rules."
+  }
+],
+  "validation": {
+    "alpha": "RGBA and 0..255 checked for all13",
+    "view": "Top-plane geometry visually reviewed; no definitive pixel-level fringe/readability proof for unimplemented eleven",
+    "aseprite": {
+      "tool": "restricted aseprite-candidates get_sprite_info / get_pixel_color",
+      "files": [
+        "cargo-blue",
+        "station-blue"
+      ],
+      "size": [
+        1254,
+        1254
+      ],
+      "frames": 1,
+      "corner_rgba": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "purpose": "Static pixel-preserving import/alpha inspection; motion uses source texture position/opacity, not packed animation frames"
+    },
+    "runtime": "Blue pair product source cab1b55c25c9b90063cb4d4ef283087f513ea793 captured under evidence/runtime/topdown-20260911; other candidates not applied"
+  }
+}

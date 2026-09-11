@@ -1,6 +1,12 @@
 # Roadmap
 
-> Latest continuation: local UI-feedback increment on codex/visual-completion-20260911.
+> Current top-down unification: approved blue roof/lid implementation and overhead pickup motion;
+> retry cancellation correction is machine-tested. Current-task PR #287, baseline main 4107517.
+> Remaining: user disposition of eleven new object/decoration candidates, their integration,
+> corrected shell/lesson composition, whole-family live review and derived PDF refresh.
+> See ACTIVE_CONTEXT.md and evidence/design/topdown-20260911/README.md. Overall NOT_COMPLETE.
+>
+> Previous continuation: local UI-feedback increment on codex/visual-completion-20260911.
 > TOP summary/scroll manifest, cell-local events and bounded pause/reduced-motion feedback
 > are implemented; Godot 121 cases / 14,497 assertions and Python 261 tests (1 skip) pass.
 > Human PDF is refreshed to 51 pages, still INTERMEDIATE_REVIEW_NOT_IMPLEMENTATION_READY.

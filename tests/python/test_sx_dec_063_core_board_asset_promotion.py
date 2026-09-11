@@ -297,8 +297,11 @@ class SXDec063CoreBoardAssetPromotionTests(unittest.TestCase):
             self.assertEqual("VERIFIED_AUTOMATED_RUNTIME", manifest_entry["consumer_status"])
             self.assertEqual("VERIFIED", manifest_entry["runtime_connection_status"])
             # Approved object family and slate board replace live slots; historical bytes stay verified.
-            if slot in ("train", "station_blue", "cargo_blue"):
-                current_path = f"art/product_assets/night_workshop_v1/{slot}.png"
+            if slot == "train":
+                current_path = "art/product_assets/night_workshop_v1/train.png"
+                self.assertIn(f'"{slot}": "{current_path}"', renderer)
+            elif slot in ("station_blue", "cargo_blue"):
+                current_path = f"art/product_assets/topdown_v1/{slot}.png"
                 self.assertIn(f'"{slot}": "{current_path}"', renderer)
             elif slot == "board_terrain":
                 self.assertIn('"board_terrain": "art/product_assets/night_workshop_v1/board_slate.png"', renderer)

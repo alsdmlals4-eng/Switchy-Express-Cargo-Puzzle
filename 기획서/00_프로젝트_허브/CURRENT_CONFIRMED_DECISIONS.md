@@ -1,6 +1,16 @@
 # Current Confirmed Decisions
 
-> Latest continuation: local UI-feedback increment on codex/visual-completion-20260911.
+> Latest user correction: use strict 90-degree top-down for all world-object depictions.
+> Direction owner: September 10 core-preserved replan, latest top-view amendment.
+> Representative station/cargo candidates: evidence/design/topdown-20260911/README.md.
+> Latest user "좋아 그렇게 통일해" approves the shown blue roof/lid pixels and the full top-down direction.
+> Exact approved hashes and runtime consumers: art/product_assets/topdown_v1/manifest.json.
+> Other newly generated pixels retain separate disposition gates; no implied approval of all outputs.
+> Preserve finite core, slate board, existing overhead train/connected rails and title wordmark identity.
+> Use top-surface sprites without camera tilt; position/opacity-only pickup replaces oblique lift frames.
+> Completion/remaining implementation status belongs to ACTIVE_CONTEXT.md, not candidate generation success.
+>
+> Previous continuation: local UI-feedback increment on codex/visual-completion-20260911.
 > TOP summary/scroll manifest, cell-local events and bounded pause/reduced-motion feedback
 > are implemented; Godot 121 cases / 14,497 assertions and Python 261 tests (1 skip) pass.
 > Human PDF is refreshed to 51 pages, still INTERMEDIATE_REVIEW_NOT_IMPLEMENTATION_READY.

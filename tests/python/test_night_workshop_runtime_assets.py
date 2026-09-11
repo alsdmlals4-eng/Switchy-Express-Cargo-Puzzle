@@ -14,10 +14,12 @@ class NightWorkshopRuntimeAssets(unittest.TestCase):
         self.assertEqual({a["key"] for a in manifest["assets"]},
                          {"train", "station_blue", "cargo_blue", "cargo_lift", "board_terrain"})
         renderer = (ROOT / manifest["consumer"]).read_text(encoding="utf-8")
+        active_legacy_keys = {"train", "board_terrain"}
         for asset in manifest["assets"]:
             path = folder / asset["path"]
             self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), asset["sha256"])
-            self.assertIn("art/product_assets/night_workshop_v1/" + asset["path"], renderer)
+            if asset["key"] in active_legacy_keys:
+                self.assertIn("art/product_assets/night_workshop_v1/" + asset["path"], renderer)
         lift = next(a for a in manifest["assets"] if a["key"] == "cargo_lift")
         self.assertEqual((lift["frames"], lift["frame_size"], lift["frame_stride"],
                           lift["duration_ms"], lift["loop"]), (4, [448, 448], 450, 60, False))
@@ -31,3 +33,19 @@ class NightWorkshopRuntimeAssets(unittest.TestCase):
         palette = (ROOT / "game/demo/presentation/demo_palette.gd").read_text(encoding="utf-8")
         self.assertIn("BOARD_TERRAIN_TINT := Color.WHITE", palette)
         self.assertIn("BOARD_TERRAIN_VEIL := Color.TRANSPARENT", palette)
+
+    def test_topdown_blue_family_retires_oblique_lift_consumer(self):
+        folder = ROOT / "art/product_assets/topdown_v1"
+        manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual(manifest["status"], "USER_APPROVED_CANON_REGISTERED_IMPLEMENTED")
+        self.assertEqual({asset["key"] for asset in manifest["assets"]},
+                         {"station_blue", "cargo_blue"})
+        renderer = (ROOT / manifest["consumer"]).read_text(encoding="utf-8")
+        for asset in manifest["assets"]:
+            target = folder / asset["path"]
+            source = ROOT / asset["source"]
+            self.assertEqual(target.read_bytes(), source.read_bytes())
+            self.assertEqual(hashlib.sha256(target.read_bytes()).hexdigest(), asset["sha256"])
+            self.assertIn("art/product_assets/topdown_v1/" + asset["path"], renderer)
+        self.assertNotIn("CARGO_LIFT_TEXTURE", renderer)
+        self.assertNotIn("cargo_lift.png", renderer)

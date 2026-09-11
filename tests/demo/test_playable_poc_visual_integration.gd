@@ -37,7 +37,13 @@ func run() -> void:
 					assert_equal(str(paths[required]), "art/product_assets/night_workshop_v1/board_slate.png", "selected board pixels own the terrain slot")
 					continue
 				assert_true(
-					str(paths[required]) == "art/product_assets/night_workshop_v1/%s.png" % required if required in ["train", "station_blue", "cargo_blue"] else str(paths[required]).begins_with("art/product_assets/ed_hybrid_v2/"),
+					(
+						str(paths[required]) == "art/product_assets/night_workshop_v1/train.png"
+						if required == "train"
+						else str(paths[required]) == "art/product_assets/topdown_v1/%s.png" % required
+						if required in ["station_blue", "cargo_blue"]
+						else str(paths[required]).begins_with("art/product_assets/ed_hybrid_v2/")
+					),
 					"%s must use its approved product asset family" % required
 				)
 	assert_true(
