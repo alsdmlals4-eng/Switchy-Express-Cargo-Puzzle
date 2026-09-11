@@ -28,10 +28,14 @@ func run() -> void:
 	var t2_lesson_art := flow.get_node("BriefingScreen/Panel/Content/LessonArt")
 	assert_true(t2_lesson_art.has_method("asset_paths_for_test"), "T2 lesson art exposes its active asset path")
 	if t2_lesson_art.has_method("asset_paths_for_test"):
-		assert_equal(
-			t2_lesson_art.asset_paths_for_test(),
-			["art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v02.png"],
-			"T2 alone uses the cardinal-station-service HeroArt"
+		var t2_paths: Array = t2_lesson_art.asset_paths_for_test()
+		assert_true(
+			t2_paths.has("art/product_assets/topdown_v1/cargo_red.png"),
+			"T2 uses approved overhead cargo on the illustrated rail"
+		)
+		assert_true(
+			t2_paths.has("art/product_assets/topdown_v1/station_red.png"),
+			"T2 uses the matching off-track station in its cardinal-service illustration"
 		)
 
 	flow.begin_build()
