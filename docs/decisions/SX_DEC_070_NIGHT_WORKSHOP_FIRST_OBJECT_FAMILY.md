@@ -2,6 +2,17 @@
 
 ## Current implementation continuation — 2026-09-11
 
+### Protected delivery readback
+
+PR #284 MERGED through normal merge, checked head f50290d17f8e830d57827a3ae378560a664a0339.
+Merge commit 6fba0536b66ab9926f0db7a87bcd9de278711748; task checkout fast-forwarded to exact
+origin/main. Game/tests/art trees are identical to the verified PR head. Six remote checks
+SUCCESS: GUT, headless, project contract, thin adapter, platform/rights contract, Windows
+demo export including runtime payload verification. Those contract checks are not release approval.
+Unrelated local import metadata and other worktrees remain preserved, not declared clean.
+The game was restarted normally after QA (run token 7, helper live, no current-run errors).
+This closes only the scoped implementation above, not the complete new art/blueprint program.
+
 The user approved finishing preparation and game implementation; earlier holds below are historical.
 Bounded delta: selected slate board with neutral presentation; exhaustive red/blue/yellow/waste
 labels; real ground cargo forwarding and ground+carried undelivered count; modal shells above
