@@ -5,6 +5,8 @@
 `IMPLEMENTED_MACHINE_VERIFIED_ON_BRANCH` at base/starting HEAD
 `f236de79761eff2cde281f3c3ef4f4e31e456701`. No push, merge, live-editor
 operation, runtime capture, or human pixel review was performed by this task.
+Implementation commit: `af49284` before report-only commit metadata amendment;
+use the final amended commit reported by `git rev-parse HEAD` as authority.
 
 ## Authority and execution route
 
