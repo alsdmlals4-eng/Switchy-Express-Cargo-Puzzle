@@ -12,7 +12,6 @@ const FiniteTrackGraphScript := preload("res://game/finite/rail/finite_track_gra
 const TrackPieceScript := preload("res://game/finite/build/track_piece.gd")
 const NO_CELL := Vector2i(-1, -1)
 const CargoPickupAnimationScript := preload("res://game/demo/presentation/cargo_pickup_animation.gd")
-const CARGO_LIFT_TEXTURE := preload("res://art/product_assets/night_workshop_v1/cargo_lift.png")
 const GHOST_FILL_ALPHA := 0.08
 const GHOST_TRACK_ALPHA := 0.46
 const GHOST_SEMANTIC_BADGE_SCALE := 0.28
@@ -38,11 +37,11 @@ const PRODUCT_VISUAL_ASSET_PATHS := {
 	"start_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png",
 	"route_end_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png",
 	"station_red": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
-	"station_blue": "art/product_assets/night_workshop_v1/station_blue.png",
+	"station_blue": "art/product_assets/topdown_v1/station_blue.png",
 	"station_yellow": "art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png",
 	"station_disposal": "art/product_assets/ed_hybrid_v2/core/core_disposal_yard_normal_v02.png",
 	"cargo_red": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png",
-	"cargo_blue": "art/product_assets/night_workshop_v1/cargo_blue.png",
+	"cargo_blue": "art/product_assets/topdown_v1/cargo_blue.png",
 	"cargo_yellow": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png",
 	"cargo_waste": "art/product_assets/ed_hybrid_v2/core/core_cargo_waste_crate_normal_v02.png",
 }
@@ -89,7 +88,7 @@ func _process(delta: float) -> void:
 	if StringName(_snapshot.get("phase", &"BUILD")) == &"PAUSED":
 		return
 	_cargo_pickup.advance(delta)
-	if _speed_transition.is_empty() and _cargo_pickup.frame_index() < 0:
+	if _speed_transition.is_empty() and not _cargo_pickup.is_active():
 		set_process(false)
 		queue_redraw()
 		return
@@ -97,7 +96,7 @@ func _process(delta: float) -> void:
 	if _speed_transition_remaining_seconds <= 0.0:
 		_speed_transition = {}
 		_speed_transition_duration_seconds = 0.0
-	set_process(not _speed_transition.is_empty() or _cargo_pickup.frame_index() >= 0)
+	set_process(not _speed_transition.is_empty() or _cargo_pickup.is_active())
 	queue_redraw()
 
 
@@ -305,15 +304,16 @@ func _draw() -> void:
 
 
 func _draw_cargo_pickup(rect: Rect2, board_size: Vector2i) -> void:
-	var frame := _cargo_pickup.frame_index()
-	if frame < 0:
+	if not _cargo_pickup.is_active():
 		return
 	var target := _marker_target_rect(false, _cell_rect(_cargo_pickup.cell, rect, board_size))
-	# The static crop is 384 px and the animation cell 448 px: preserve crate scale.
-	target = target.grow(target.size.x * (448.0 / 384.0 - 1.0) * 0.5)
-	# Match the neutral crate's center, then let the authored frame supply the lift.
-	target.position.y -= target.size.y * 62.0 / 448.0
-	draw_texture_rect_region(CARGO_LIFT_TEXTURE, target, Rect2(frame * 450, 0, 448, 448), Color(1, 1, 1, _cargo_pickup.opacity()))
+	# Preserve the marker target (including source transparency) so pickup feedback never
+	# enlarges the approved lid beyond the existing CARGO_MARKER_SCALE contract.
+	var offset_ratio: Vector2 = _cargo_pickup.offset()
+	target.position += Vector2(target.size.x * offset_ratio.x, target.size.y * offset_ratio.y)
+	var texture := _product_textures.get("cargo_blue") as Texture2D
+	if texture != null:
+		draw_texture_rect(texture, target, false, Color(1, 1, 1, _cargo_pickup.opacity()))
 
 
 func _draw_board_terrain(rect: Rect2) -> void:
