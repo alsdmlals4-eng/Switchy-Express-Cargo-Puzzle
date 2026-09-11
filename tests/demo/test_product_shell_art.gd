@@ -3,7 +3,12 @@ extends "res://tests/test_case.gd"
 const ShellArtScript := preload("res://game/demo/presentation/product_shell_art.gd")
 
 const LARGE_SIZE := Vector2(1280.0, 720.0)
+const LESSON_CONSUMER_SIZE := Vector2(632.0, 150.0)
+const RESULT_CONSUMER_SIZE := Vector2(512.0, 145.0)
 const SMALL_SIZE := Vector2(320.0, 140.0)
+const MIN_MAJOR_CARGO_TARGET := 38.0
+const MIN_STATION_TARGET := 54.0
+const TITLE_LEFT_PANEL_ENVELOPE_RATIO := 0.25
 const LEGACY_HERO_FRAGMENT := "/shells/shell_"
 const REQUIRED_DECOR_KEYS: Array[String] = [
 	"decoration_forest_cluster",
@@ -32,7 +37,8 @@ func run() -> void:
 	)
 	_check_layout(title, LARGE_SIZE, "title large")
 	_check_layout(title, SMALL_SIZE, "title small")
-	_check_responsive_resize(title)
+	_check_responsive_resize(title, LARGE_SIZE, SMALL_SIZE, "title")
+	_check_title_cargo_clear_of_left_panel(title)
 	title.free()
 
 	var lesson := _make_art(tree, "LESSON", LARGE_SIZE)
@@ -41,7 +47,10 @@ func run() -> void:
 		_paths(lesson).has("art/product_assets/topdown_v1/cargo_blue.png"),
 		"ordinary lessons use approved overhead cargo"
 	)
-	_check_layout(lesson, LARGE_SIZE, "lesson large")
+	_check_layout(lesson, LESSON_CONSUMER_SIZE, "lesson actual consumer")
+	_check_layout(lesson, SMALL_SIZE, "lesson small")
+	_check_readability_minimums(lesson, LESSON_CONSUMER_SIZE, "lesson actual consumer")
+	_check_responsive_resize(lesson, LESSON_CONSUMER_SIZE, SMALL_SIZE, "lesson")
 	lesson.set_lesson_id(&"T2")
 	assert_true(
 		_paths(lesson).has("art/product_assets/topdown_v1/station_red.png"),
@@ -52,9 +61,11 @@ func run() -> void:
 		"T2 uses matching approved top-down cargo"
 	)
 	assert_false(_has_legacy_hero(_paths(lesson)), "T2 retires the oblique lesson hero")
-	_check_layout(lesson, LARGE_SIZE, "T2 large")
+	_check_layout(lesson, LESSON_CONSUMER_SIZE, "T2 actual consumer")
 	_check_layout(lesson, SMALL_SIZE, "T2 small")
-	_check_t2_cardinal_service(lesson, LARGE_SIZE)
+	_check_readability_minimums(lesson, LESSON_CONSUMER_SIZE, "T2 actual consumer")
+	_check_t2_cardinal_service(lesson, LESSON_CONSUMER_SIZE)
+	_check_responsive_resize(lesson, LESSON_CONSUMER_SIZE, SMALL_SIZE, "T2")
 	lesson.free()
 
 	var success := _make_art(tree, "RESULT", LARGE_SIZE)
@@ -65,7 +76,10 @@ func run() -> void:
 		success_paths.has("art/product_assets/topdown_v1/station_blue.png"),
 		"success result uses the blue delivered-family composition"
 	)
-	_check_layout(success, LARGE_SIZE, "result success large")
+	_check_layout(success, RESULT_CONSUMER_SIZE, "result success actual consumer")
+	_check_layout(success, SMALL_SIZE, "result success small")
+	_check_readability_minimums(success, RESULT_CONSUMER_SIZE, "result success actual consumer")
+	_check_responsive_resize(success, RESULT_CONSUMER_SIZE, SMALL_SIZE, "result success")
 
 	var failure_paths_before := success_paths.duplicate()
 	success.set_result_outcome(&"FAILURE")
@@ -76,7 +90,10 @@ func run() -> void:
 		failure_paths.has("art/product_assets/topdown_v1/station_disposal.png"),
 		"failure result uses a distinct approved disposal-family composition"
 	)
+	_check_layout(success, RESULT_CONSUMER_SIZE, "result failure actual consumer")
 	_check_layout(success, SMALL_SIZE, "result failure small")
+	_check_readability_minimums(success, RESULT_CONSUMER_SIZE, "result failure actual consumer")
+	_check_responsive_resize(success, RESULT_CONSUMER_SIZE, SMALL_SIZE, "result failure")
 	success.free()
 
 	_check_decor_family_consumption(tree)
@@ -189,17 +206,67 @@ func _check_t2_cardinal_service(lesson: Control, viewport_size: Vector2) -> void
 	assert_true(cargo.get_center() != station.get_center(), "T2 station is never drawn on the cargo/rail cell")
 
 
-func _check_responsive_resize(art: Control) -> void:
+func _check_responsive_resize(
+	art: Control,
+	normal_size: Vector2,
+	small_size: Vector2,
+	label: String
+) -> void:
 	if not art.has_method("composition_layout_for_test"):
 		return
-	var large: Array = art.composition_layout_for_test(LARGE_SIZE)
-	var small: Array = art.composition_layout_for_test(SMALL_SIZE)
-	assert_equal(small.size(), large.size(), "resize preserves the composition layer family")
-	if large.size() > 1 and small.size() > 1:
+	var resize_events: Array[int] = [0]
+	art.resized.connect(func() -> void: resize_events[0] += 1)
+	art.size = normal_size
+	var normal: Array = art.composition_layout_for_test(art.size)
+	art.size = small_size
+	var small: Array = art.composition_layout_for_test(art.size)
+	assert_equal(art.size, small_size, "%s Control accepts the responsive size" % label)
+	assert_greater_equal(resize_events[0], 1, "%s resize emits the Control resized notification" % label)
+	assert_equal(small.size(), normal.size(), "%s resize preserves the composition layer family" % label)
+	if normal.size() > 1 and small.size() > 1:
 		assert_true(
-			float((small[1] as Dictionary).get("grid_unit", 0.0)) < float((large[1] as Dictionary).get("grid_unit", 0.0)),
-			"resize recomputes a smaller shared grid unit"
+			float((small[1] as Dictionary).get("grid_unit", 0.0)) < float((normal[1] as Dictionary).get("grid_unit", 0.0)),
+			"%s resize recomputes a smaller shared grid unit" % label
 		)
+
+
+func _check_readability_minimums(art: Control, consumer_size: Vector2, label: String) -> void:
+	if not art.has_method("composition_layout_for_test"):
+		return
+	var cargo_target := Rect2()
+	var station_target := Rect2()
+	for value: Variant in art.composition_layout_for_test(consumer_size):
+		var layer: Dictionary = value
+		if str(layer.get("role", "")) == "CARGO_ON_RAIL":
+			cargo_target = layer.get("target_rect", Rect2())
+		elif str(layer.get("role", "")) == "STATION":
+			station_target = layer.get("target_rect", Rect2())
+	assert_true(cargo_target.has_area(), "%s includes a major cargo target" % label)
+	assert_true(station_target.has_area(), "%s includes a station target" % label)
+	assert_true(
+		minf(cargo_target.size.x, cargo_target.size.y) >= MIN_MAJOR_CARGO_TARGET,
+		"%s keeps major cargo at least 38 logical pixels" % label
+	)
+	assert_true(
+		minf(station_target.size.x, station_target.size.y) >= MIN_STATION_TARGET,
+		"%s keeps station target at least 54 logical pixels" % label
+	)
+
+
+func _check_title_cargo_clear_of_left_panel(title: Control) -> void:
+	if not title.has_method("composition_layout_for_test"):
+		return
+	var cargo_target := Rect2()
+	for value: Variant in title.composition_layout_for_test(LARGE_SIZE):
+		var layer: Dictionary = value
+		if str(layer.get("role", "")) == "CARGO_ON_RAIL":
+			cargo_target = layer.get("target_rect", Rect2())
+			break
+	assert_true(cargo_target.has_area(), "title includes a major cargo target")
+	assert_true(
+		cargo_target.position.x >= LARGE_SIZE.x * TITLE_LEFT_PANEL_ENVELOPE_RATIO,
+		"title cargo stays outside the known left-panel envelope"
+	)
 
 
 func _check_decor_family_consumption(tree: SceneTree) -> void:
