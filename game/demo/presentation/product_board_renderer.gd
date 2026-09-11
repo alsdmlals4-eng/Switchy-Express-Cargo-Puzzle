@@ -248,6 +248,10 @@ func request_primary_at(local: Vector2) -> void:
 		cell_primary_requested.emit(cell)
 
 
+func cell_center_global(cell: Vector2i) -> Vector2:
+	return get_global_transform() * _cell_rect(cell, _board_rect(), _board_size()).get_center()
+
+
 func request_secondary_at(local: Vector2) -> void:
 	var cell := board_cell_from_local(local, _board_size())
 	if cell != NO_CELL:

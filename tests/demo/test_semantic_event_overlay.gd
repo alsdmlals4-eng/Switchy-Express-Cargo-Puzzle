@@ -59,6 +59,17 @@ func run() -> void:
 		overlay.free()
 		return
 	tree.root.add_child(overlay)
+	assert_true(overlay.has_method("play_event_at"), "confirmed events need a world-local anchor")
+	assert_true(overlay.has_method("set_paused"), "semantic feedback must freeze with gameplay")
+	if overlay.has_method("play_event_at") and overlay.has_method("set_paused"):
+		overlay.play_event_at(&"cargo_unload", Vector2(123, 234))
+		assert_equal(overlay.event_center(), Vector2(123, 234), "event does not drift to screen center")
+		overlay.set_paused(true)
+		overlay._process(2.0)
+		assert_equal(overlay.current_event_for_test(), &"cargo_unload", "pause retains active event")
+		overlay.set_paused(false)
+		overlay._process(2.0)
+		assert_equal(overlay.current_event_for_test(), &"", "resume allows bounded event expiry")
 
 	assert_true(float(overlay.maximum_event_duration_for_test()) <= 1.0, "semantic event duration must remain at or below one second")
 	assert_equal(

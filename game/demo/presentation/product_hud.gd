@@ -95,8 +95,15 @@ func apply_model(model: Dictionary) -> void:
 	(get_node("RunToolbar/PauseButton") as Button).visible = not is_paused
 	(get_node("RunToolbar/ResumeButton") as Button).visible = is_paused
 
-	(get_node("StackPanel/StackLayout/StackText") as Label).text = _stack_text(
-		_model.get("stack_tokens", [])
+	var tokens: Array = _model.get("stack_tokens", [])
+	var manifest := get_node("StackPanel/StackLayout/StackText") as RichTextLabel
+	var stack_text := _stack_text(tokens)
+	if manifest.text != stack_text:
+		manifest.text = stack_text
+	(get_node("StackPanel/StackLayout/TopSummary") as Label).text = (
+		"하역 중 · 실제 적재 %d" % int(_model.get("stack_size", 0))
+		if bool(_model.get("unload_visual_active", false))
+		else _top_summary(tokens, int(_model.get("stack_size", tokens.size())))
 	)
 	(get_node("ProblemBanner/ProblemLayout/ProblemText") as Label).text = _problem_text(
 		StringName(_model.get("primary_reason", &""))
@@ -294,20 +301,32 @@ static func _stack_text(tokens: Array) -> String:
 	for value: Variant in tokens:
 		var token: Dictionary = value
 		var cargo_type: StringName = StringName(token.get("cargo_type", &""))
-		var label := "알 수 없는 화물"
-		match cargo_type:
-			&"RED_STAR":
-				label = "A · 별"
-			&"BLUE_DIAMOND":
-				label = "B · 다이아"
-			&"YELLOW_TRIANGLE":
-				label = "C · 삼각"
-			&"WASTE_CRATE":
-				label = "폐기물 · 처리장"
+		var label := _cargo_name(cargo_type)
 		if bool(token.get("top", false)):
 			label += "  ← TOP"
 		labels.append(label)
 	return "\n".join(labels)
+
+
+static func _top_summary(tokens: Array, total: int) -> String:
+	if tokens.is_empty():
+		return "비어 있음 · 전체 %d" % total
+	var top_type := StringName(tokens.back().get("cargo_type", &""))
+	var count := 0
+	for index in range(tokens.size() - 1, -1, -1):
+		if StringName(tokens[index].get("cargo_type", &"")) != top_type:
+			break
+		count += 1
+	return "TOP %s × %d\n전체 %d" % [_cargo_name(top_type), count, total]
+
+
+static func _cargo_name(cargo_type: StringName) -> String:
+	match cargo_type:
+		&"RED_STAR": return "A · 별"
+		&"BLUE_DIAMOND": return "B · 다이아"
+		&"YELLOW_TRIANGLE": return "C · 삼각"
+		&"WASTE_CRATE": return "폐기물 · 처리장"
+	return "알 수 없는 화물"
 
 
 static func _problem_text(code: StringName) -> String:

@@ -82,6 +82,8 @@ func set_reduced_motion(enabled: bool) -> void:
 		_renderer.set_reduced_motion(enabled)
 	if is_instance_valid(_semantic_events):
 		_semantic_events.set_reduced_motion(enabled)
+	if is_instance_valid(_effects):
+		_effects.set_reduced_motion(enabled)
 
 
 func set_stage_policy(policy: Variant) -> void:
@@ -239,6 +241,9 @@ func _dispatch_command(command: StringName, payload: Variant = null) -> void:
 		route_controls_before = _controller.render_snapshot().get("route_controls", []).duplicate(true)
 
 	_controller.request_command(command, payload)
+	if command in [&"START", &"RETRY_SAME_LAYOUT", &"EDIT_LAYOUT"]:
+		_semantic_events.cancel_all()
+		_effects.cancel_all()
 	var layout_changed: bool = _controller.current_layout_signature() != layout_before
 
 	match command:
@@ -268,6 +273,8 @@ func _apply_model(model: Dictionary) -> void:
 	var active_run: bool = phase == &"RUNNING" or phase == &"UNLOADING"
 	_audio.set_train_loop_active(active_run)
 	var paused: bool = phase == &"PAUSED"
+	_semantic_events.set_paused(paused)
+	_effects.set_paused(paused)
 	_audio.set_paused(paused)
 	if paused != _last_pause_state:
 		_last_pause_state = paused
@@ -317,11 +324,11 @@ func _on_delivery_event_created(event: Variant) -> void:
 	if bool(event.picked_up):
 		_renderer.play_cargo_pickup(event.cell, event.pickup_type)
 		if is_instance_valid(_semantic_events):
-			_semantic_events.play_event(&"cargo_pickup")
+			_semantic_events.play_event_at(&"cargo_pickup", _renderer.cell_center_global(event.cell))
 		_audio.play_cue(&"pickup")
 	if int(event.unload_count) > 0:
 		if is_instance_valid(_semantic_events):
-			_semantic_events.play_event(&"cargo_unload")
+			_semantic_events.play_event_at(&"cargo_unload", _renderer.cell_center_global(event.cell))
 		_effects.play_unload(int(event.unload_count))
 		_audio.play_cue(&"unload")
 

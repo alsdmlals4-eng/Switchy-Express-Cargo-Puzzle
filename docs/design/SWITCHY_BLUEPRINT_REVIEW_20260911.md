@@ -4,7 +4,7 @@
 예시 TEN_PACES_HUMAN_BLUEPRINT_20260910_ORGANIZED.pdf는 92쪽의 구성 참고다. 인물·무공·전투·수치·이미지는 전용하지 않는다.
 최신 승인: 2026-09-11 사용자가 남은 준비와 게임 구현까지 진행하도록 승인했다. 아래 미채택 이미지의 픽셀 승인까지 자동 확장하지 않는다.
 구현 상태: 승인 청회색 보드, 네 화물 종류 문구, 실제 미배송 수량, 결과·정지 패널 표시 순서를 구현했다. 상세 증거는 SX-DEC-070의 2026-09-11 절과 연결된 실행 영수증을 따른다.
-PDF 상태: 기존 44쪽 PDF는 이전 중간 검토본의 정확한 바이트 기록이며 이 구현 이후 STALE이다. 전체 새 자산·화면·모션 준비 완료를 의미하지 않는다.
+PDF 상태: 발행 영수증의 source SHA-256과 이 파일이 일치할 때만 최신 파생본이다. 전체 새 자산·화면·모션 준비 완료를 의미하지 않는다.
 기획 owner: docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md. 기존 PDF는 보존한다.
 
 ## 읽는 순서와 승인 범위
@@ -12,6 +12,13 @@ PDF 상태: 기존 44쪽 PDF는 이전 중간 검토본의 정확한 바이트 �
 ‘기존 구현’은 지금 코드에 있는 것, ‘권장 설계’는 승인 후 적용할 것, ‘자산 후보’는 새로 제작했지만 최종 승인 전인 이미지를 뜻한다.
 최종 승인 대상은 이 문서의 변경 권장안과 후보 자산이다. 생성 성공이나 PDF 수록만으로 실제 게임 적용·검증을 완료 처리하지 않는다.
 노선 규격과 필요한 상태 자산이 준비되지 않으면 전체 구현 준비 완료를 주장하지 않는다. 준비 부족은 마지막 표에 드러낸다.
+
+## 구현 연결지도 · TOP과 현장 피드백
+입력 → ProductFiniteSlice → SessionController의 실제 상태 → ProductHUD / BoardRenderer / SemanticEventOverlay → 화면. 연출은 도메인 규칙을 수정하지 않는다.
+전체 적재 토큰 → 스크롤 목록. 마지막 연속 동일 종류 → 고정 TOP 묶음 요약. 실제 stack_size → 전체 개수. 하역 애니메이션 중에는 지연 토큰을 새 TOP으로 단정하지 않고 실제 잔량을 표시한다.
+pickup / unload 이벤트의 cell → BoardRenderer.cell_center_global → SemanticEventOverlay.play_event_at → 해당 칸의 48px 효과. Pause는 시간 진행을 멈추며 Retry·Edit는 잔류 효과를 취소한다.
+DemoEffects는 보드·HUD 전체 확대와 색 변조를 하지 않는다. 도구막대·TOP 요약·상태 문구의 짧은 불투명도 변화만 사용한다. 같은 대상의 연출은 교체되며 모션 감소에서는 생략한다.
+수정 위치: product_hud.gd/.tscn은 표시, demo_effects.gd는 미세 피드백, product_finite_slice.gd는 실제 사건과 표시 연결. 검증: tests/demo의 대응 테스트와 evidence/runtime/ui-feedback-20260911.
 
 ## 핵심 경험 · 지나치는 것도 설계다
 플레이어는 선로뿐 아니라 만날 화물과 실을 순서를 설계한다. 마지막에 실은 화물이 먼저 내려가므로, 가장 가까운 화물을 지금 싣는 것이 항상 좋은 선택은 아니다.
