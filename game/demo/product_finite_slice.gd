@@ -242,6 +242,7 @@ func _dispatch_command(command: StringName, payload: Variant = null) -> void:
 
 	_controller.request_command(command, payload)
 	if command in [&"START", &"RETRY_SAME_LAYOUT", &"EDIT_LAYOUT"]:
+		_renderer.cancel_cargo_pickup_presentation()
 		_semantic_events.cancel_all()
 		_effects.cancel_all()
 	var layout_changed: bool = _controller.current_layout_signature() != layout_before

@@ -176,3 +176,46 @@ tests/runtime/night_workshop_live_qa.gd
 - Historical `cargo_lift.png` remains in `night_workshop_v1` as recoverable
   provenance; the regression prevents active renderer reintroduction.
 - No new reusable Base rule was identified (`NO_NEW_REUSE_LEARNING`).
+
+## Review fix round 1/5
+
+Reviewer finding: the normal suite entered `PAUSED` and then `BUILD` without
+proving a resumed pickup advances, and its cancellation assertion covered only
+renderer `BUILD` application rather than the actual `RETRY_SAME_LAYOUT`
+command path.
+
+RED-first test additions:
+
+- `test_cargo_pickup_animation.gd` now records offset/opacity, proves both are
+  frozen while paused, returns to `RUNNING`, and proves opacity progresses.
+- `test_vertical_slice_end_to_end.gd` starts a pending pickup presentation at
+  the result boundary, dispatches the actual `RETRY_SAME_LAYOUT` command, and
+  requires it to be inactive afterward.
+
+RED command/result:
+
+```text
+Godot 4.7.1 --headless --path . --script res://tests/run_tests.gd
+FAIL: res://tests/demo/test_vertical_slice_end_to_end.gd
+  - actual retry command cancels pending pickup presentation
+TEST SUMMARY: cases=121 failed=1 assertions=14505
+```
+
+Minimal implementation: added
+`ProductBoardRenderer.cancel_cargo_pickup_presentation()` and invoked it from
+the existing `ProductFiniteSlice` START/RETRY/EDIT recovery command group,
+beside the already-existing semantic/effect cancellation. It cancels only the
+pickup presentation and preserves an independently active speed transition.
+
+GREEN command/result:
+
+```text
+Godot 4.7.1 --headless --path . --script res://tests/run_tests.gd
+TEST SUMMARY: cases=121 failed=0 assertions=14505
+```
+
+Review disposition: `IMPORTANT_FIXED`. The actual retry path is now protected;
+pause/resume and cancellation are separate deterministic assertions in the
+normal suite. Added owned files for this fix:
+`game/demo/product_finite_slice.gd` and
+`tests/demo/test_vertical_slice_end_to_end.gd`.

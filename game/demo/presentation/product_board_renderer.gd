@@ -106,6 +106,12 @@ func play_cargo_pickup(cell: Vector2i, cargo_type: StringName) -> void:
 		queue_redraw()
 
 
+func cancel_cargo_pickup_presentation() -> void:
+	_cargo_pickup.cancel()
+	set_process(not _speed_transition.is_empty())
+	queue_redraw()
+
+
 func snapshot_for_test() -> Dictionary:
 	return _snapshot.duplicate(true)
 

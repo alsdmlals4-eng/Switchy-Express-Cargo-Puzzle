@@ -48,10 +48,14 @@ func run() -> void:
 	assert_equal(demo.state(), &"RESULT", "terminal signal opens result flow")
 
 	var first_attempt: String = product.active_attempt_identity_for_test()
+	var renderer := product.get_node("BoardRenderer")
+	renderer.play_cargo_pickup(Vector2i(2, 3), &"BLUE_DIAMOND")
+	assert_true(renderer._cargo_pickup.is_active(), "retry precondition has pending pickup presentation")
 	product.request_command_for_test(&"RETRY_SAME_LAYOUT")
 	assert_equal(controller.phase(), &"RUNNING", "retry starts a fresh attempt")
 	assert_equal(controller.current_layout_signature(), layout_signature, "retry preserves sealed layout")
 	assert_not_equal(product.active_attempt_identity_for_test(), first_attempt, "retry creates a fresh attempt identity")
+	assert_false(renderer._cargo_pickup.is_active(), "actual retry command cancels pending pickup presentation")
 
 	product.request_command_for_test(&"EDIT_LAYOUT")
 	assert_equal(controller.phase(), &"BUILD", "edit returns to BUILD")
