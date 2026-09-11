@@ -1,6 +1,13 @@
 # Current Confirmed Decisions
 
-> Latest continuation: local UI-feedback increment on codex/visual-completion-20260911.
+> Latest user correction: use strict 90-degree top-down for all world-object depictions.
+> Direction owner: September 10 core-preserved replan, latest top-view amendment.
+> Representative station/cargo candidates: evidence/design/topdown-20260911/README.md.
+> Actual RGBA verified; candidate pixels not yet approved, runtime replacement NOT_RUN.
+> Current-task branch codex/topdown-art-direction-20260911 is candidate review only.
+> Prior implementation baseline: PR #286 merged main 4107517; existing assets remain unchanged.
+>
+> Previous continuation: local UI-feedback increment on codex/visual-completion-20260911.
 > TOP summary/scroll manifest, cell-local events and bounded pause/reduced-motion feedback
 > are implemented; Godot 121 cases / 14,497 assertions and Python 261 tests (1 skip) pass.
 > Human PDF is refreshed to 51 pages, still INTERMEDIATE_REVIEW_NOT_IMPLEMENTATION_READY.
