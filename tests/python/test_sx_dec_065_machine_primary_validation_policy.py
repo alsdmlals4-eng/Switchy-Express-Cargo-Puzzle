@@ -129,7 +129,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
             '"train": "art/product_assets/night_workshop_v1/train.png"',
             '"rail_curve": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v04.png"',
             '"rail_switch": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v04.png"',
-            '"cargo_yellow": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png"',
+            '"cargo_yellow": "art/product_assets/topdown_v1/cargo_yellow.png"',
         ):
             self.assertIn(required_runtime_path, renderer)
 

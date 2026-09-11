@@ -300,7 +300,7 @@ class SXDec063CoreBoardAssetPromotionTests(unittest.TestCase):
             if slot == "train":
                 current_path = "art/product_assets/night_workshop_v1/train.png"
                 self.assertIn(f'"{slot}": "{current_path}"', renderer)
-            elif slot in ("station_blue", "cargo_blue"):
+            elif slot.startswith("station_") or slot.startswith("cargo_"):
                 current_path = f"art/product_assets/topdown_v1/{slot}.png"
                 self.assertIn(f'"{slot}": "{current_path}"', renderer)
             elif slot == "board_terrain":

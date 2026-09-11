@@ -41,7 +41,7 @@ func run() -> void:
 						str(paths[required]) == "art/product_assets/night_workshop_v1/train.png"
 						if required == "train"
 						else str(paths[required]) == "art/product_assets/topdown_v1/%s.png" % required
-						if required in ["station_blue", "cargo_blue"]
+						if required.begins_with("station_") or required.begins_with("cargo_")
 						else str(paths[required]).begins_with("art/product_assets/ed_hybrid_v2/")
 					),
 					"%s must use its approved product asset family" % required

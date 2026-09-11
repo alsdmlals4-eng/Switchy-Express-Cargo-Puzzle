@@ -120,7 +120,7 @@ def _rgba_alpha_statistics(path: Path) -> tuple[int, int, tuple[int, int, int, i
 
 
 class TransparentWaysideAssetTests(unittest.TestCase):
-    def test_v02_assets_are_transparent_candidates_with_exact_consumers(self) -> None:
+    def test_v02_assets_remain_preserved_after_topdown_consumers_replace_them(self) -> None:
         manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
         candidates = {entry["asset_id"]: entry for entry in manifest["generated_candidates"]}
         renderer = RENDERER_PATH.read_text(encoding="utf-8")
@@ -148,7 +148,12 @@ class TransparentWaysideAssetTests(unittest.TestCase):
                     f"game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[{slot}]",
                     candidate["runtime_consumer"],
                 )
-                self.assertIn(f'"{slot}": "{relative_path}"', renderer)
+                current_path = (
+                    relative_path
+                    if slot == "caution_track"
+                    else f"art/product_assets/topdown_v1/{slot}.png"
+                )
+                self.assertIn(f'"{slot}": "{current_path}"', renderer)
 
 
 if __name__ == "__main__":

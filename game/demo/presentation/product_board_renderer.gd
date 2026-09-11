@@ -23,11 +23,11 @@ const SPEED_ACCELERATION_COLOR := Color(0.22, 0.92, 0.90, 1.0)
 
 const PRODUCT_VISUAL_ASSET_PATHS := {
 	"board_terrain": "art/product_assets/night_workshop_v1/board_slate.png",
-	"decoration_forest_cluster": "art/product_assets/ed_hybrid_v2/board/board_decor_forest_cluster_v02.png",
-	"decoration_moss_boulder": "art/product_assets/ed_hybrid_v2/board/board_decor_moss_boulder_v02.png",
-	"decoration_timber_stack": "art/product_assets/ed_hybrid_v2/board/board_decor_timber_stack_v02.png",
-	"decoration_waterway": "art/product_assets/ed_hybrid_v2/board/board_decor_waterway_v02.png",
-	"decoration_lantern_fence": "art/product_assets/ed_hybrid_v2/board/board_decor_lantern_fence_v02.png",
+	"decoration_forest_cluster": "art/product_assets/topdown_v1/decoration_forest_cluster.png",
+	"decoration_moss_boulder": "art/product_assets/topdown_v1/decoration_moss_boulder.png",
+	"decoration_timber_stack": "art/product_assets/topdown_v1/decoration_timber_stack.png",
+	"decoration_waterway": "art/product_assets/topdown_v1/decoration_waterway.png",
+	"decoration_lantern_fence": "art/product_assets/topdown_v1/decoration_lantern_fence.png",
 	"caution_track": "art/product_assets/ed_hybrid_v2/board/board_caution_track_overlay_v02.png",
 	"train": "art/product_assets/night_workshop_v1/train.png",
 	"rail_straight": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v04.png",
@@ -36,14 +36,14 @@ const PRODUCT_VISUAL_ASSET_PATHS := {
 	"rail_switch": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v04.png",
 	"start_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png",
 	"route_end_marker": "art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png",
-	"station_red": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png",
+	"station_red": "art/product_assets/topdown_v1/station_red.png",
 	"station_blue": "art/product_assets/topdown_v1/station_blue.png",
-	"station_yellow": "art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png",
-	"station_disposal": "art/product_assets/ed_hybrid_v2/core/core_disposal_yard_normal_v02.png",
-	"cargo_red": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png",
+	"station_yellow": "art/product_assets/topdown_v1/station_yellow.png",
+	"station_disposal": "art/product_assets/topdown_v1/station_disposal.png",
+	"cargo_red": "art/product_assets/topdown_v1/cargo_red.png",
 	"cargo_blue": "art/product_assets/topdown_v1/cargo_blue.png",
-	"cargo_yellow": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png",
-	"cargo_waste": "art/product_assets/ed_hybrid_v2/core/core_cargo_waste_crate_normal_v02.png",
+	"cargo_yellow": "art/product_assets/topdown_v1/cargo_yellow.png",
+	"cargo_waste": "art/product_assets/topdown_v1/cargo_waste.png",
 }
 
 var _snapshot: Dictionary = {}
@@ -133,6 +133,18 @@ func loaded_product_visuals_for_test() -> Dictionary:
 	for key: Variant in PRODUCT_VISUAL_ASSET_PATHS.keys():
 		result[str(key)] = _product_textures.get(str(key)) is Texture2D
 	return result
+
+
+func cargo_pickup_presentation_for_test() -> Dictionary:
+	var asset_key := _cargo_pickup.texture_key()
+	return {
+		"active": _cargo_pickup.is_active(),
+		"asset_key": asset_key,
+		"texture_loaded": _product_textures.get(asset_key) is Texture2D,
+		"cell": _cargo_pickup.cell,
+		"offset": _cargo_pickup.offset(),
+		"opacity": _cargo_pickup.opacity(),
+	}
 
 
 func product_rail_seam_descriptor_for_test(geometry: StringName, rotation: int) -> Dictionary:
@@ -317,7 +329,7 @@ func _draw_cargo_pickup(rect: Rect2, board_size: Vector2i) -> void:
 	# enlarges the approved lid beyond the existing CARGO_MARKER_SCALE contract.
 	var offset_ratio: Vector2 = _cargo_pickup.offset()
 	target.position += Vector2(target.size.x * offset_ratio.x, target.size.y * offset_ratio.y)
-	var texture := _product_textures.get("cargo_blue") as Texture2D
+	var texture := _product_textures.get(_cargo_pickup.texture_key()) as Texture2D
 	if texture != null:
 		draw_texture_rect(texture, target, false, Color(1, 1, 1, _cargo_pickup.opacity()))
 
