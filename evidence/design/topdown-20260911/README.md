@@ -3,7 +3,9 @@
 User instruction: everything should be seen from a top view; mixed perspectives feel inconsistent.
 Source baseline: 4107517b9fc30eda1458e3bd5a85831482f353de. Core rules unchanged.
 Work mode: approved-contract continuation after user "좋아 그렇게 통일해".
-The exact representative blue pair is pixel-approved; other new pixels remain review candidates.
+The blue pair was approved first. On 2026-09-12 the user approved all eleven selected remaining
+object/decor candidates in candidates.json, including the closed waste lid and roof-only lantern.
+Those eleven are USER_APPROVED_IMPLEMENTATION_PENDING; rejected scenic outputs stay rejected.
 
 ## Common view contract
 
@@ -35,7 +37,7 @@ Both images generated with built-in image model; no local background-removal or 
 Both measured RGBA 1254x1254, alpha extrema 0..255. Visual view inspection: top faces only.
 Blue pair status: USER_APPROVED_CANON_REGISTERED_IMPLEMENTED; exact approved bytes preserved in
 art/product_assets/topdown_v1/. Runtime and regression receipts are separately recorded below.
-Other eleven sprites: REVIEWED_USER_DISPOSITION_PENDING. Metadata, prompts and exact hashes:
+Other eleven sprites: USER_APPROVED_IMPLEMENTATION_PENDING (2026-09-12). Metadata, prompts and exact hashes:
 candidates.json. No packed atlas is claimed; these are single-frame sources.
 
 | File | Source generation | SHA-256 |
@@ -69,7 +71,8 @@ New review candidates: red/yellow roof stations, disposal yard, red/yellow/waste
 moss boulders, timber, waterway and lantern fence. All eleven have real RGBA alpha 0..255.
 Waste and lantern initial outputs retained side faces and were replaced before selection.
 See candidates.json for exact selected bytes and rejected source identities.
-The eleven new candidates await the user's batch disposition; none is silently promoted.
+The eleven selected candidates received explicit batch approval on 2026-09-12.
+Their pixel approval does not imply runtime integration or final scene verification.
 
 Research reused prior top-view/rail comparison and fresh-read official Aseprite sprite-sheet and
 Godot CanvasItem documentation (https://docs.godotengine.org/en/stable/classes/class_canvasitem.html).
