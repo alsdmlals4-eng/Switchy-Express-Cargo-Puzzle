@@ -3,9 +3,14 @@
 > Latest user correction: use strict 90-degree top-down for all world-object depictions.
 > Direction owner: September 10 core-preserved replan, latest top-view amendment.
 > Representative station/cargo candidates: evidence/design/topdown-20260911/README.md.
-> Actual RGBA verified; candidate pixels not yet approved, runtime replacement NOT_RUN.
-> Current-task branch codex/topdown-art-direction-20260911 is candidate review only.
-> Prior implementation baseline: PR #286 merged main 4107517; existing assets remain unchanged.
+> User approved the exact representative blue roof/lid and directed family unification.
+> Blue pair is registered/implemented on codex/topdown-art-direction-20260911 (current-task PR #287).
+> Source cab1b55 fixes active-pickup cancellation through real Retry, in addition to top-view motion.
+> Eleven other station/cargo/decoration candidates: real RGBA, USER_DISPOSITION_PENDING; not runtime canon.
+> Full-scene generation retained side-view props/changed roof footprints: REJECTED_FOR_RUNTIME.
+> Current receipts: evidence/runtime/topdown-20260911/ and evidence/design/topdown-20260911/candidates.json.
+> Next: exact-head review/delivery, remaining-family disposition/integration and shell composition correction.
+> Prior implementation baseline: PR #286 main 4107517. Full-family top-down completion is NOT_COMPLETE.
 >
 > Previous continuation: local UI-feedback increment on codex/visual-completion-20260911.
 > TOP summary/scroll manifest, cell-local events and bounded pause/reduced-motion feedback

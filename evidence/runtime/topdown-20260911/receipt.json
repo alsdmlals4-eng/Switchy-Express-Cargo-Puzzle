@@ -1,0 +1,56 @@
+{
+  "mode": "live engine with programmatic UI signals and authored witness; manually stepped domain clock",
+  "model": {
+    "auto_enabled": false,
+    "auto_load_active": true,
+    "commit_time": 4.61999999999995,
+    "completion_time": 4.73999999999994,
+    "completion_visible": true,
+    "current_cost": 900,
+    "edit_visible": true,
+    "editing_enabled": false,
+    "elapsed_time": 4.72999999999994,
+    "final_cost": 900,
+    "load_enabled": false,
+    "manual_load_active": false,
+    "pause_visible": false,
+    "phase": "SUCCESS",
+    "primary_reason": "SUCCESS",
+    "problem_cells": [],
+    "recommended_cost": 4500,
+    "remaining_map_cargo": 0,
+    "resume_visible": false,
+    "retry_visible": true,
+    "stack_size": 0,
+    "stack_tokens": [],
+    "start_enabled": false,
+    "status_text": "Delivery complete",
+    "switch_enabled": false,
+    "time_limit": 90.0,
+    "time_remaining": 85.2700000000001,
+    "unload_visual_active": false
+  },
+  "pause_preserves_frame": true,
+  "phase": "SUCCESS",
+  "pickup_steps": 100,
+  "retry_preserves_layout_cancels_visual": true,
+  "samples": [
+    {
+      "offset": "(0.0, 0.0)",
+      "opacity": 1.0
+    },
+    {
+      "offset": "(0.0, -0.114608)",
+      "opacity": 0.745833333333333
+    },
+    {
+      "offset": "(0.0, -0.159945)",
+      "opacity": 0.491666666666667
+    },
+    {
+      "offset": "(0.0, -0.108608)",
+      "opacity": 0.2375
+    }
+  ],
+  "viewport": "(1280, 720)"
+}

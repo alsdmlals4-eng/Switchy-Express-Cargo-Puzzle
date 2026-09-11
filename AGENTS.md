@@ -1,5 +1,10 @@
 # Switchy Express 공용 AI 작업 규칙
 
+> Current continuation is strict top-down unification on current-task PR #287, after merged PR #286.
+> Latest approval and consumer ownership: CURRENT_CONFIRMED_DECISIONS.md and ACTIVE_CONTEXT.md
+> under 기획서/00_프로젝트_허브/. Only the blue roof/lid pair is pixel-approved; new family candidates
+> remain separately gated. Older PR #284/286 continuation pointers below are historical, not takeover authority.
+
 > Current readback: approved bounded implementation is MERGED_MAIN_VERIFIED through PR #284.
 > Evidence owner: SX_DEC_070_NIGHT_WORKSHOP_FIRST_OBJECT_FAMILY.md, September 11 readback.
 > Next: remaining transparent objects/validated rails/UI-motion family and complete human PDF;

@@ -5,9 +5,11 @@ Latest user visual amendment 2026-09-11: all world objects must use strict verti
 Keep core, selected slate board and title identity. Match top-surface IDs, common lighting and
 overhead motion; scenic main/result art follows the same view, plain UI text remains planar.
 Representative blue station/cargo candidates and complete consumer replacement inventory:
-evidence/design/topdown-20260911/README.md. Both candidates are real RGBA, not runtime-approved.
-This direction is user-requested; individual pixels, frame packing and full-family runtime remain
-unverified. The previous 51-page PDF is historical with respect to this new view correction.
+evidence/design/topdown-20260911/README.md. User subsequently approved the exact blue representative
+pair and directed unification; the pair is registered in art/product_assets/topdown_v1/manifest.json.
+Eleven new family candidates await disposition. Full-family runtime remains incomplete.
+Pickup uses that same overhead lid with position/opacity; no duplicate-frame atlas or view tilt.
+The previous 51-page PDF is historical with respect to this new view correction.
 
 Current authority amendment 2026-09-11: user authorized finishing remaining preparation AND game
 implementation. Prior planning-only holds below are historical. Selected slate board only is

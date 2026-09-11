@@ -3,9 +3,12 @@
 > Latest user correction: use strict 90-degree top-down for all world-object depictions.
 > Direction owner: September 10 core-preserved replan, latest top-view amendment.
 > Representative station/cargo candidates: evidence/design/topdown-20260911/README.md.
-> Actual RGBA verified; candidate pixels not yet approved, runtime replacement NOT_RUN.
-> Current-task branch codex/topdown-art-direction-20260911 is candidate review only.
-> Prior implementation baseline: PR #286 merged main 4107517; existing assets remain unchanged.
+> Latest user "좋아 그렇게 통일해" approves the shown blue roof/lid pixels and the full top-down direction.
+> Exact approved hashes and runtime consumers: art/product_assets/topdown_v1/manifest.json.
+> Other newly generated pixels retain separate disposition gates; no implied approval of all outputs.
+> Preserve finite core, slate board, existing overhead train/connected rails and title wordmark identity.
+> Use top-surface sprites without camera tilt; position/opacity-only pickup replaces oblique lift frames.
+> Completion/remaining implementation status belongs to ACTIVE_CONTEXT.md, not candidate generation success.
 >
 > Previous continuation: local UI-feedback increment on codex/visual-completion-20260911.
 > TOP summary/scroll manifest, cell-local events and bounded pause/reduced-motion feedback

@@ -5,8 +5,8 @@
 `IMPLEMENTED_MACHINE_VERIFIED_ON_BRANCH` at base/starting HEAD
 `f236de79761eff2cde281f3c3ef4f4e31e456701`. No push, merge, live-editor
 operation, runtime capture, or human pixel review was performed by this task.
-Implementation commit: `af49284` before report-only commit metadata amendment;
-use the final amended commit reported by `git rev-parse HEAD` as authority.
+Initial implementation commit: `af49284`; Retry cancellation correction: `cab1b55`.
+This report was relocated from temporary SDD scratch into the permanent runtime evidence owner.
 
 ## Authority and execution route
 
@@ -16,7 +16,7 @@ use the final amended commit reported by `git rev-parse HEAD` as authority.
   `maintaining-project-context-and-handoff`, `auditing-and-refining-ui-art`,
   `reviewing-and-validating-project-changes`, and
   `running-adversarial-review-and-refinement`; Superpowers TDD.
-- Exact task authority: `.superpowers/sdd/2026-09-11-topdown-unification/task-1-brief.md`.
+- Exact task authority: Task 1 of `docs/superpowers/plans/2026-09-11-topdown-unification.md`.
 - Existing project worktree remained dirty. Only files listed below were staged.
 
 ## Implemented result
