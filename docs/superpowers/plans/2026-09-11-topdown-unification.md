@@ -7,7 +7,8 @@ User approved representative blue roof and blue lid and instructed unification.
 
 - Strict vertical 90-degree orthographic world objects. No facade, side face or camera tilt in motion.
 - Preserve finite core, maps, selected slate board, title identity, coordinate and service semantics.
-- Only the exact two blue candidates are pixel-approved. Other generated images remain review candidates until disposition.
+- September 12 amendment: the exact eleven selected remaining object/decor candidates are now pixel-approved too.
+  Their integration is still pending; rejected scenic/superseded outputs are not approved.
 - Existing dirty/import/UID files and unrelated PRs are protected. Explicit-path staging only. No direct main push or bypass.
 - Real-alpha validation, tests and runtime evidence are separate from user pixel approval.
 

@@ -1,5 +1,14 @@
 # Active Context
 
+## 2026-09-12 current continuation
+
+PR287 merged at f2c8a8f8d257bd0636d44437cb282f53deed676b; six remote checks passed.
+The user approved all eleven selected remaining top-down objects/decorations; candidates.json
+owns the exact pixels. Their runtime integration, shell composition and PDF refresh remain open.
+Immediate requested work: consolidate only verified disposable files for user-performed deletion.
+Policy: AGENTS.md and CURRENT_CONFIRMED_DECISIONS.md; no direct deletion or worktree takeover.
+Older USER_DISPOSITION_PENDING wording below is historical after this approval.
+
 > Latest user correction: use strict 90-degree top-down for all world-object depictions.
 > Direction owner: September 10 core-preserved replan, latest top-view amendment.
 > Representative station/cargo candidates: evidence/design/topdown-20260911/README.md.

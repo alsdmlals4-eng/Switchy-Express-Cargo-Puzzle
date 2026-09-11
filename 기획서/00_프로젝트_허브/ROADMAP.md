@@ -1,8 +1,13 @@
 # Roadmap
 
+> 2026-09-12: all eleven selected remaining top-down object/decor images are USER_APPROVED.
+> PR287 blue integration is merged. Next product work: integrate approved eleven, compose
+> consistent shell/lesson views, verify actual scenes, then refresh derived Blueprint.
+> Current housekeeping: safe-file holding folder for user-only deletion; preserve unknown work.
+
 > Current top-down unification: approved blue roof/lid implementation and overhead pickup motion;
-> retry cancellation correction is machine-tested. Current-task PR #287, baseline main 4107517.
-> Remaining: user disposition of eleven new object/decoration candidates, their integration,
+> retry cancellation correction is machine-tested. PR #287 merged at main f2c8a8f.
+> Eleven selected object/decoration candidates are approved; remaining work is their integration,
 > corrected shell/lesson composition, whole-family live review and derived PDF refresh.
 > See ACTIVE_CONTEXT.md and evidence/design/topdown-20260911/README.md. Overall NOT_COMPLETE.
 >

@@ -1,6 +1,13 @@
 # Switchy Express 공용 AI 작업 규칙
 
-> Current continuation is strict top-down unification on current-task PR #287, after merged PR #286.
+> 2026-09-12: user approved all eleven selected remaining top-down object/decor candidates.
+> PR #287 is merged (f2c8a8f); blue pair implemented, remaining eleven implementation pending.
+> Cleanup: never directly delete task files. Verify unused/recoverable status, move only safe
+> files to a separate user-deletion holding folder, keep original-path/hash/reason records,
+> and give the user a link. Preserve active/unknown files and open-PR worktrees.
+> These current instructions supersede the historical pending/cleanup statements below.
+>
+> Previous continuation was strict top-down unification on PR #287, after merged PR #286.
 > Latest approval and consumer ownership: CURRENT_CONFIRMED_DECISIONS.md and ACTIVE_CONTEXT.md
 > under 기획서/00_프로젝트_허브/. Only the blue roof/lid pair is pixel-approved; new family candidates
 > remain separately gated. Older PR #284/286 continuation pointers below are historical, not takeover authority.

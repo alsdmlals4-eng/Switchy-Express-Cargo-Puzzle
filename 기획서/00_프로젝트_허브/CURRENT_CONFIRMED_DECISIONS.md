@@ -1,5 +1,18 @@
 # Current Confirmed Decisions
 
+## 2026-09-12 selected top-down family approval and user-only deletion
+
+User "승인" adopts the eleven selected station/cargo/decor images in
+evidence/design/topdown-20260911/candidates.json: red/yellow stations and cargo,
+disposal yard, closed waste lid, forest, boulder, timber, waterway, roof-only lantern fence.
+This excludes rejected scenic outputs and superseded open-waste/front-lantern versions.
+Approval is pixel selection, not implementation/runtime completion. Blue pair remains implemented.
+
+User now performs all final file deletion. The assistant inventories and moves verified
+unused/recoverable files into a separate holding folder, records source/destination/hash/reason,
+and provides a clickable link. No direct deletion; unknown/active files stay in place.
+This supersedes earlier direct-cleanup preferences. No branch or worktree is deleted by this task.
+
 > Latest user correction: use strict 90-degree top-down for all world-object depictions.
 > Direction owner: September 10 core-preserved replan, latest top-view amendment.
 > Representative station/cargo candidates: evidence/design/topdown-20260911/README.md.
