@@ -1,5 +1,10 @@
 # Roadmap
 
+> Current: PR293 actual-map previews merged853a635. The72-page Blueprint synchronization
+> binds actual context strings and current preview captures; five-pass source review completed.
+> Post-merge native full-run exit0xc0000005 remains unresolved; next implementation unit adds
+> precise diagnostic boundaries before any fix. No new engine/provider/core assumptions.
+
 > Current actual-map preview loop: PR292 briefs complete; selected-map preview implemented
 > with existing assets; tutorial illustration preserved. Evidence: evidence/runtime/stage-preview-20260913/README.md.
 > RB08 direct and detour both machine-succeed; tested detour costs more and takes longer.

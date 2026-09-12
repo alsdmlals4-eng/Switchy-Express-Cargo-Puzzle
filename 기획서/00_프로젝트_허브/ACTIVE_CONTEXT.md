@@ -1,5 +1,20 @@
 # Active Context
 
+## 2026-09-13 current Blueprint synchronization and native-exit investigation
+
+PR293 is merged at 853a635b42b97c1452af89d67502e1c634cd3229; preview product delta is on main.
+Post-merge full local invocation stage-preview-postmerge.log exited0xc0000005 without summary.
+Pre-merge full127/15701 and all5 remote checks passed; these do not resolve the native exit.
+Exact live Switchy run_token6/7 launched main without startup errors; preview632x360,
+RB08 Begin map parity checked, RB10/RB12 progress4/6 and6/6 captured after actual stage selection.
+Current documentation unit: docs/superpowers/plans/2026-09-13-blueprint-stage-preview.md.
+Derived72-page PDF adds actual previews, twelve source-bound planning prompts, RB08 measured
+comparison and corrects stale Undo wording. Publication fingerprint owns exact current bytes.
+Next safe implementation: instrument native-exit phase boundaries before proposing fixes;
+then remaining viewport and strategy evidence. Preserve core/assets/otherPRs/dirty settings.
+No user approval pause; no human/device/release completion claim.
+Previous current headings below are historical source-located work units.
+
 ## 2026-09-13 current actual-map preview loop
 
 PR292 is merged at 253a774ff57f03c1f0bbc4d84125720723486d12. Twelve briefs are complete.

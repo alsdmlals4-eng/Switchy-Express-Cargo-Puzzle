@@ -43,7 +43,7 @@ def start(title,kind='기획 방향·구현 진행 승인 / 미채택 이미지�
  c.setFillColor(colors.white);c.setFont('KRB',24);c.drawString(38,H-64,title)
  c.setFont('KR',10);c.drawString(38,H-87,kind)
  c.setFillColor(colors.HexColor('#647780'));c.setFont('KR',9)
- c.drawString(38,21,f'{page_no:02} · 2026.09.12 · 승인 자산 / 자동 검증 / 최종 사용자 검수를 구분')
+ c.drawString(38,21,f'{page_no:02} · 2026.09.13 · 승인 자산 / 자동 검증 / 최종 사용자 검수를 구분')
  records.append({'page':page_no,'title':title,'kind':kind})
  return H-127
 def para(txt,x,y,width=884,style=STYLE):
@@ -76,6 +76,9 @@ finish()
 
 # Actual title and long-list evidence retain their explicit maturity labels.
 for title,path,caption in [
+ ('RB08 브리핑 · 실제 감속 칸을 보고 판단','evidence/runtime/stage-preview-20260913/rb08.png','실제 선택 맵의 초기 상태. 화물·역·감속 칸을 표시하며 플레이어 선로나 테스트 해법은 공개하지 않는다. 시작하면 동일한 맵을 연다.'),
+ ('RB10 브리핑 · 재방문과 폐기물 계획','evidence/runtime/stage-preview-20260913/rb10-postmerge.png','실제 Godot 1280×720 창 캡처. 선택적 적재 질문과 해당 지형을 함께 보여준다. 화면은 판단을 돕고 행동 순서를 강제하지 않는다.'),
+ ('RB12 브리핑 · 복합 규칙의 공간 관계','evidence/runtime/stage-preview-20260913/rb12-postmerge.png','실제 맵 데이터와 기존 승인 renderer를 읽기 전용으로 재사용한다. 미리보기는 운행하지 않으며 정사각 칸의 비율을 유지한다.'),
  ('선로 편집 복구 · 전체 철거를 한 번에 취소','evidence/runtime/build-history-20260912/restored.png','현재 Godot에서 실제 마우스 입력으로 복원한 화면. Ctrl+Z / Ctrl+Y / Ctrl+Shift+Z도 같은 경로로 검사. 운행 중에는 사용하지 않는다.'),
  ('메인 화면 · 승인 탑뷰 자산으로 조립',RUNTIME+'title.png','실제 Godot 캡처. 승인된 바탕·열차·선로·오브젝트를 조립한다. 미채택 야간 공방 메인 배경은 사용하지 않는다.'),
  ('T2 브리핑 · 선로 옆의 역',RUNTIME+'lesson-t2.png','실제 T1 연결 검사를 통과한 뒤 열린 T2 화면. 설명 그림은 규칙 안내이며 해당 플레이어의 정답 노선을 뜻하지 않는다.'),
@@ -138,7 +141,7 @@ for title,rows in [
   ['화면 / 위치','입력과 표시','다음 상태'],
   ['메인 / 제목 영역','승인 로고·배경. UI 문구는 Control 텍스트','시작 또는 노선집'],
   ['노선집 / 스크롤 본문','책 선택 → 스테이지 카드. 잠금·선택·목표 구분','선택한 기존 map_id의 브리핑'],
-  ['브리핑 / 목표·핵심 규칙','화물 종류·서비스·핵심 판단 안내','시작 → 해당 맵 BUILD'],
+  ['브리핑 / 실제 맵·목표·핵심 판단','초기 화물·역·지형과 질문; 정답 노선 없음','시작 → 동일 맵 BUILD'],
   ['뒤로 / 고정 내비게이션','현재 상위 화면으로 복귀','해금·진행을 임의 변경하지 않음']]),
  ('정지 → 결과 → 재시도 · 화면 계약',[
   ['현재 상태','플레이어 입력','효과와 보존'],
@@ -159,7 +162,11 @@ for title,rows in [
 
 copy={}
 for file in ['route_book_01_v1.json','route_book_02_v1.json']:
- copy.update(json.loads((ROOT/'data/localization'/file).read_text(encoding='utf-8'))['strings'])
+ local_path=ROOT/'data/localization'/file
+ copy.update(json.loads(local_path.read_text(encoding='utf-8'))['strings'])
+ used[local_path.relative_to(ROOT).as_posix()]=digest(local_path)
+preview_receipt='evidence/runtime/stage-preview-20260913/README.md'
+used[preview_receipt]=digest(ROOT/preview_receipt)
 for p in sorted((ROOT/'data/maps/route_book').glob('rb*.json')):
  m=json.loads(p.read_text(encoding='utf-8'));n=int(p.stem[2:4]);prefix=f'SX_RB{n:02}'
  y=start(f'스테이지 {n:02} · '+copy[prefix+'_TITLE']['ko'],'기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님')
@@ -167,6 +174,15 @@ for p in sorted((ROOT/'data/maps/route_book').glob('rb*.json')):
  rows=[['데이터','현재 값'],['맵 ID',m['map_id']],['격자 / 제한 시간',f"{m['board_size']} / {m['time_limit_seconds']}초"],['시작 / 진입',str(m['start_cell'])+' / '+str(m['incoming_cell'])],['역', '; '.join(str(v['cell'])+' '+v['cargo_type'] for v in m['station_placements'])],['화물','; '.join(str(v['cell'])+' '+v['cargo_type'] for v in m['cargo_placements'])],['주의 칸 / 금지 칸',str(m.get('caution_track_cells',[]))+' / '+str(m.get('blocked_cells',[]))]]
  y=table(rows,y);para('검수: 실제 해법 성공 + 의도한 판단과 대안 행동의 차이. 새 수치·맵 변경 없음. 임의 최적해를 강제하지 않는다.',38,y,884,SMALL)
  used[str(p.relative_to(ROOT)).replace('\\','/')]=digest(p);finish()
+ y=start(f'스테이지 {n:02} · 출발 전 판단','실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님')
+ y=para(copy[prefix+'_TITLE']['ko'],38,y)
+ y=para(copy[prefix+'_CONTEXT']['ko'],38,y)
+ y=para('미리보기 → 화물과 역·지형 관계 확인 → 노선 건설 → 운행 → 결과에서 같은 노선 재시도 또는 수정.',38,y)
+ y=para('위 질문은 현재 게임과 같은 문구다. 규칙을 바꾸거나 특정 해법만 허용하는 추가 성공 조건이 아니다.',38,y)
+ if n==8:
+  y=table([['내부 비교 사례','건설비','자동 입력 시 경과 시간'],['주의 칸 직진','1,100','약 6.52초'],['선택 가능한 주의 칸 우회','1,300','약 7.11초']],y)
+  para('두 사례 모두 실제 기본 속도 2.0에서 배송 성공. 이 우회는 더 비싸고 느리므로 균형 잡힌 교환 관계라고 주장하지 않는다. 사람의 플레이 시간·최적해 증명은 아니다.',38,y,884,SMALL)
+ finish()
 
 y=start('검증 경계 · 승인과 실행을 구분한다','현재 탑뷰 통일 범위 / 전체 게임·출시 완료 선언 아님')
 y=table([['항목','현재 증거','분리되는 판단'],['핵심·상세 규칙·SWOT','기존 승인 방향·규칙 유지','새 코어 의미 변경 권한 없음'],['역·화물·장식 13개','픽셀 승인·정본 등록·실제 소비','조립된 화면의 최종 사용자 판단'],['선로·열차·바탕','승인된 기존 연결 자산 유지','미채택 마스터를 신규 타일로 취급하지 않음'],['적재·정지·복구','네 화물 종류·취소·모션 감소 검사','재미·가독성 자동 승인 아님'],['화면·데이터','현재 실행 캡처·기존 12개 맵','그림은 개별 시도 판정의 근거가 아님'],['출시·권리·실기기','이번 범위 외','별도 증거와 승인 필요']],y)

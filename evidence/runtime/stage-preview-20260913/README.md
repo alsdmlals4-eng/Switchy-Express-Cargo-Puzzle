@@ -42,3 +42,21 @@ improvement is justified. Fixture changes remain test-only and are not player re
 Delivery is owned by the current-task PR exact head/checks/merge/postmerge comment.
 Tracked receipt is deliberately pre-merge, not a self-referential final commit claim.
 No Base promotion, deletion, asset replacement or unrelated PR mutation.
+
+## Post-merge evidence correction / Blueprint readback
+
+PR293 merged853a635b42b97c1452af89d67502e1c634cd3229, all5 remote checks PASS.
+stage-preview-postmerge.log terminated0xc0000005 after first_session_end_to_end,
+without summary: POSTMERGE_FULL_NOT_PASS. Windows CrashDumps contains a28300 dump;
+earlier22556/5376/6672 dumps also exist. No native root cause established.
+Exact Switchy live restart run_token6/7: main scene, no startup errors.
+RB08 preview and Begin gameplay map match, zero player rails, preview632x360.
+
+During PDF visual review, older rb10.png/rb12.png captures showed stale progress2/6
+although map/title/context had changed. Preserve those as historical partial capture
+evidence; do not use them as whole-briefing proof. New rb10-postmerge.png and
+rb12-postmerge.png use actual stage selection, checked4/6 and6/6, and a completed
+draw frame before capture. No runtime change was needed for this capture correction.
+One diagnostic game-eval snippet failed to compile and temporarily paused the helper;
+restarted exact Switchy without autosave, then successful simple eval/capture.
+PDF uses corrected captures. Screenshot success is not physical/human approval.

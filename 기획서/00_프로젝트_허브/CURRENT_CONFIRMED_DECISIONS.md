@@ -1,5 +1,14 @@
 # Current Confirmed Decisions
 
+## 2026-09-13 derived Blueprint readback
+
+PR293 actual-map preview is merged853a635b42b97c1452af89d67502e1c634cd3229.
+Continuous delegated improvement includes publication synchronization, not new core or art approval.
+The existing Blueprint now derives twelve planning questions directly from current localization,
+includes selected-map screenshots and measured RB08 author-witness comparison.
+Native post-merge invocation failed without summary; pre-merge automated PASS is not a fix claim.
+Current source/evidence locator remains ACTIVE_CONTEXT.md and publication.json.
+
 ## 2026-09-13 continued implementation without routine reapproval
 
 Latest user explicitly repeats continuous benchmark -> concrete design -> implementation ->
