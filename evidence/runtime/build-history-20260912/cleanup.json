@@ -1,0 +1,45 @@
+{
+  "policy": "USER_DELETES_ONLY",
+  "files": [
+    {
+      "source": "C:\\Users\\user\\Documents\\GitHub\\Ninza\\Switchy-Express-Cargo-Puzzle\\.worktrees\\codex-core-preserved-replan-20260910\\evidence\\runtime\\build-history-20260912\\pdf-review\\page-10.png",
+      "name": "page-10.png",
+      "bytes": 80615,
+      "sha256": "90a62d8f4f3aa9676730e85c30404362fc13078bffa5ea9bf2369c9778ed4886",
+      "destination": "C:/Users/user/Desktop/Switchy_삭제대기_20260912/07_BUILD복구_PDF검수/page-10.png",
+      "reason": "Regenerable reviewed PDF raster, no runtime or publication consumer"
+    },
+    {
+      "source": "C:\\Users\\user\\Documents\\GitHub\\Ninza\\Switchy-Express-Cargo-Puzzle\\.worktrees\\codex-core-preserved-replan-20260910\\evidence\\runtime\\build-history-20260912\\pdf-review\\page-11.png",
+      "name": "page-11.png",
+      "bytes": 45272,
+      "sha256": "6ff6f0766f55447b557b5eb3cc55fdb315c915cc7fb9a888368325c2240c6e13",
+      "destination": "C:/Users/user/Desktop/Switchy_삭제대기_20260912/07_BUILD복구_PDF검수/page-11.png",
+      "reason": "Regenerable reviewed PDF raster, no runtime or publication consumer"
+    },
+    {
+      "source": "C:\\Users\\user\\Documents\\GitHub\\Ninza\\Switchy-Express-Cargo-Puzzle\\.worktrees\\codex-core-preserved-replan-20260910\\evidence\\runtime\\build-history-20260912\\pdf-review\\page-2.png",
+      "name": "page-2.png",
+      "bytes": 345815,
+      "sha256": "b08db6088f5850fc036a36006bc5d53725c029497ecadcdbe9822fa808a00e36",
+      "destination": "C:/Users/user/Desktop/Switchy_삭제대기_20260912/07_BUILD복구_PDF검수/page-2.png",
+      "reason": "Regenerable reviewed PDF raster, no runtime or publication consumer"
+    },
+    {
+      "source": "C:\\Users\\user\\Documents\\GitHub\\Ninza\\Switchy-Express-Cargo-Puzzle\\.worktrees\\codex-core-preserved-replan-20260910\\evidence\\runtime\\build-history-20260912\\pdf-review\\page-9-final.png",
+      "name": "page-9-final.png",
+      "bytes": 80609,
+      "sha256": "97f1d88591621dff2a934fe5a0a4b35f006cc4851c6717c525e247c5357881b7",
+      "destination": "C:/Users/user/Desktop/Switchy_삭제대기_20260912/07_BUILD복구_PDF검수/page-9-final.png",
+      "reason": "Regenerable reviewed PDF raster, no runtime or publication consumer"
+    },
+    {
+      "source": "C:\\Users\\user\\Documents\\GitHub\\Ninza\\Switchy-Express-Cargo-Puzzle\\.worktrees\\codex-core-preserved-replan-20260910\\evidence\\runtime\\build-history-20260912\\pdf-review\\page-9.png",
+      "name": "page-9.png",
+      "bytes": 23843,
+      "sha256": "611115a46c901951ace2e49412d0c3424b34371e8d3bbcb47589ac7f9699e8d8",
+      "destination": "C:/Users/user/Desktop/Switchy_삭제대기_20260912/07_BUILD복구_PDF검수/page-9.png",
+      "reason": "Regenerable reviewed PDF raster, no runtime or publication consumer"
+    }
+  ]
+}

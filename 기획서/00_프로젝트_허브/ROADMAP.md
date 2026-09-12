@@ -1,5 +1,11 @@
 # Roadmap
 
+> Current 2026-09-12: PR289 topdown family/shell/PDF implementation merged at 07a04d5.
+> Next scoped improvement selected under user delegation: BUILD history and atomic batch recovery.
+> Execute tests → actual Godot inputs/screens → five-pass correction → derived Blueprint → PR/checks/merge.
+> Single progress/evidence owner: evidence/runtime/build-history-20260912/contract.json.
+> Older “next integrate eleven” items below are completed history, not reopened work.
+
 > 2026-09-12: all eleven selected remaining top-down object/decor images are USER_APPROVED.
 > PR287 blue integration is merged. Next product work: integrate approved eleven, compose
 > consistent shell/lesson views, verify actual scenes, then refresh derived Blueprint.

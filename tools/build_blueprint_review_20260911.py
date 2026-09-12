@@ -76,6 +76,7 @@ finish()
 
 # Actual title and long-list evidence retain their explicit maturity labels.
 for title,path,caption in [
+ ('선로 편집 복구 · 전체 철거를 한 번에 취소','evidence/runtime/build-history-20260912/restored.png','현재 Godot에서 실제 마우스 입력으로 복원한 화면. Ctrl+Z / Ctrl+Y / Ctrl+Shift+Z도 같은 경로로 검사. 운행 중에는 사용하지 않는다.'),
  ('메인 화면 · 승인 탑뷰 자산으로 조립',RUNTIME+'title.png','실제 Godot 캡처. 승인된 바탕·열차·선로·오브젝트를 조립한다. 미채택 야간 공방 메인 배경은 사용하지 않는다.'),
  ('T2 브리핑 · 선로 옆의 역',RUNTIME+'lesson-t2.png','실제 T1 연결 검사를 통과한 뒤 열린 T2 화면. 설명 그림은 규칙 안내이며 해당 플레이어의 정답 노선을 뜻하지 않는다.'),
  ('실패 화면 · 같은 시점, 다른 상태',RUNTIME+'failure.png','실제 운행 실패 뒤의 결과 화면. 장식 구성과 실제 결과 판정은 별개이며 결과 문구가 현재 시도를 설명한다.'),
@@ -148,7 +149,7 @@ for title,rows in [
   ['결과 / 종료','상위 화면','결과 문구·원인과 종료 흐름 분리']]),
  ('실행 플로우맵 · 판정과 표시 책임',[
   ['입력','책임 처리','출력 / 다음 흐름'],
-  ['선로 배치·회전·제거','Controller / graph / preflight','BUILD 갱신 → 출발 가능 여부'],
+  ['선로 편집·실행 취소·다시 실행','BuildSession / Controller / preflight','전체 상태·비용 복원 → 출발 가능 여부'],
   ['출발','start-reachable 네트워크 검사','실패 이유 또는 RUN'],
   ['열차 이동·적재 입력','정확한 화물 칸 pickup → cardinal unload','실제 도메인 변경 → 표시 이벤트'],
   ['배송·시간·경로 끝','FiniteDeliveryLoop','SUCCESS / TIME_EXPIRED / ROUTE_END'],

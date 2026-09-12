@@ -1,0 +1,16 @@
+Godot Engine v4.7.1.stable.official.a13da4feb - https://godotengine.org
+
+SCRIPT ERROR: Parse Error: Too few arguments for "create()" call. Expected at least 4 but received 3.
+   at: GDScript::reload (res://tests/finite/integration/test_build_edit_history.gd:44)
+SCRIPT ERROR: Parse Error: Too few arguments for "create()" call. Expected at least 4 but received 3.
+   at: GDScript::reload (res://tests/finite/integration/test_build_edit_history.gd:59)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+   at: GDScript::reload (res://tests/run_tests.gd:0)
+ERROR: Failed to load script "res://tests/run_tests.gd" with error "Compilation failed".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+[godot_ai game_helper] registered mcp capture (debugger active=false, logger=true)
+SCRIPT ERROR: Invalid call. Nonexistent function 'new' in base 'GDScript'.
+   at: _run_all (res://tests/run_tests.gd:143)
+   GDScript backtrace (most recent call first):
+       [0] _run_all (res://tests/run_tests.gd:143)
+TEST WATCHDOG TIMEOUT after 10.0 seconds

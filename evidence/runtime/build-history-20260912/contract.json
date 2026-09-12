@@ -1,0 +1,40 @@
+{
+  "work_level": "L1",
+  "verified_product_source": "5ca785228b9e3204e43078169d98d56519d412c2",
+  "base_observed_main": "d830c0f6967678eed3c208ac6b24f9cd1b262ec3",
+  "adoption": "Keep v9.4.3 compatibility and current Godot provider; adapt current Base work receipt. Project five-pass review overrides Base two-pass default.",
+  "authorization": "2026-09-12 latest user delegates researched implementation and routine improvement decisions without another approval; preserve core and approved topdown assets.",
+  "benchmark_preflight_receipt": {
+    "state": "PASS",
+    "entries": [
+      {"source_and_evidence":"https://www.factorio.com/blog/post/fff-412 (2024-05-24; read 2026-09-12)","observed_pattern":"Undo/redo availability and feedback; restoration bugs include rotations/settings/connections.","project_fit_and_difference":"BUILD-only exact layout and cost restoration; no multiplayer history or RUN rewind. Include rotation because orientation is a primary puzzle edit.","disposition":"ADAPT"},
+      {"source_and_evidence":"https://afterburn.itch.io/railbound (read 2026-09-12)","observed_pattern":"Finite rail puzzles place, remove and reroute; optional harder branches.","project_fit_and_difference":"Protect experimentation in existing stages, not new stages, tunnels or collisions. This source does not prove in-game undo mechanics.","disposition":"ADAPT"},
+      {"source_and_evidence":"https://trainyard.ca/solutions/faq (read 2026-09-12)","observed_pattern":"Multiple player solutions; track count can compare solutions.","project_fit_and_difference":"Keep free layout and advisory cost; do not reveal solver routes or impose a new optimal-cost limit.","disposition":"ADAPT"},
+      {"source_and_evidence":"https://docs.godotengine.org/en/stable/classes/class_undoredo.html (read 2026-09-12)","observed_pattern":"Actions register do/undo methods and can cap history.","project_fit_and_difference":"Compare engine action history with domain snapshots and inverse commands. Use existing copied TrackLayout snapshots to avoid callbacks retaining RefCounted session cycles; bounded 128 actions is a technical default, not a measured UX optimum.","disposition":"ADAPT"}
+    ]
+  },
+  "context_configuration_hygiene": {
+    "scope":"BUILD history owners, existing worktree and open PR overlap",
+    "inventory":[
+      {"path":"game/finite/build/finite_build_session.gd","classification":"ACTIVE_OWNER","owner_or_provenance":"Finite build phase and sealed layout","references_and_consumers":"FiniteSliceSessionController and deterministic tests","removal_proposed":false},
+      {"path":"project.godot and pre-existing .import/.uid dirt","classification":"UNKNOWN_UNVERIFIED","owner_or_provenance":"Pre-existing user/editor changes","references_and_consumers":"Godot import and project settings","removal_proposed":false},
+      {"path":"PR 174, 254, 281","classification":"COMPATIBILITY","owner_or_provenance":"Other existing workstreams","references_and_consumers":"Read-only overlap inspection; no absorption","removal_proposed":false}
+    ]
+  },
+  "project_work_kanban": {
+    "goal_or_slice_issue_ref":"BUILD-HISTORY-20260912",
+    "source_main_sha":"07a04d58c9071fd687e5e2d223354d2d42112adf",
+    "work_item_refs":["BUILD-HISTORY-01"],
+    "active_work_item_ref":"BUILD-HISTORY-01",
+    "next_action":"Normal PR required checks and merge, then exact main readback; remote delivery status belongs to current task PR.",
+    "work_items":[{
+      "work_item_id":"BUILD-HISTORY-01","title":"Recover BUILD edits without changing delivery rules","status":"VERIFY_REVIEW",
+      "canon_owner":"docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md",
+      "actual_consumers":["game/finite/main/finite_slice_session_controller.gd","game/demo/presentation/product_hud.gd","game/demo/input/desktop_input_adapter.gd"],
+      "depends_on":[],"acceptance_criteria":["AC-01"],"required_evidence":["E2_TEST","E3_RUNTIME"],
+      "checklist":[{"id":"AC-01","text":"Exact placement/rotation/replace/remove/clear undo/redo, atomic batch replace, no-op/failed edit preservation, phase and tutorial guards, visible input availability, unchanged core regression","status":"PASS"}],
+      "verification":[{"level":"E2_TEST","status":"PASS","evidence":["evidence/runtime/build-history-20260912/final-godot.log"]},{"level":"E3_RUNTIME","status":"PASS","evidence":["evidence/runtime/build-history-20260912/receipt.json"]}],
+      "next_action":"Required remote checks, normal merge and exact main readback."
+    }]
+  }
+}
