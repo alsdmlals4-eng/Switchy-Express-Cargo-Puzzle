@@ -1,5 +1,11 @@
 # Roadmap
 
+> Actual-window preview QA:144 combinations and3 synthetic Begin checks PASS at
+> three accepted physical sizes; identical1920x1080 logical viewport is explicit.
+> Existing Windows CI artifact linked; no package execution/human/release claim.
+> Remaining: recurrence-based native diagnosis, existing protected/deferred content
+> decisions and final user/release gates; no arbitrary new feature is implied.
+
 > Native diagnosis: opt-in full-run and responsive phase traces implemented;
 > two traced and one default full run pass127/15701, native cause still unresolved.
 > Preserve failing invocation and collect the last boundary on recurrence.

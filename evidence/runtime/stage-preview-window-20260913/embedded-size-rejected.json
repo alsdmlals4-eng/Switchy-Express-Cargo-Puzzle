@@ -1,0 +1,30 @@
+{
+  "checked": 144,
+  "failures": [
+    "Window size not accepted: (960, 540) -> (1280, 720)",
+    "Window size not accepted: (1600, 900) -> (1280, 720)"
+  ],
+  "human_review": "NOT_RUN",
+  "release_review": "NOT_RUN",
+  "restored_locale": "ko",
+  "restored_size": "(1280, 720)",
+  "scope": "actual Windows game window, programmatic selection/post-draw capture, not human/device approval",
+  "status": "FAIL",
+  "window_sizes": [
+    {
+      "actual": "(1280, 720)",
+      "logical": "(1920.0, 1080.0)",
+      "requested": "(960, 540)"
+    },
+    {
+      "actual": "(1280, 720)",
+      "logical": "(1920.0, 1080.0)",
+      "requested": "(1280, 720)"
+    },
+    {
+      "actual": "(1280, 720)",
+      "logical": "(1920.0, 1080.0)",
+      "requested": "(1600, 900)"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "capture_sha256": {
+    "res://evidence/runtime/stage-preview-window-20260913/rb12-en-960.png": "6711443c3b7e5b4e1a33c53de50a7813a8703b59b7c9fab2b25be08d165506e9",
+    "res://evidence/runtime/stage-preview-window-20260913/rb12-ja-960.png": "1306bb3268555663fde48175db9994c1f685aefea820f72585d36c24b5438093",
+    "res://evidence/runtime/stage-preview-window-20260913/rb12-ko-960.png": "15de2db3efca92a638a606e218aa55fa129f541e01cded4eecc846859e45dd1e",
+    "res://evidence/runtime/stage-preview-window-20260913/rb12-zh-Hans-960.png": "f3ca3bef7d848a3f0faffc582e7e2862f32757a598be09b643b4e933c9f0a77c"
+  },
+  "checked": 144,
+  "engine": "4.7.1-stable (official)",
+  "failures": [],
+  "human_review": "NOT_RUN",
+  "pointer_begin_checks": 3,
+  "release_review": "NOT_RUN",
+  "restored_locale": "ko",
+  "restored_size": "(1280, 720)",
+  "scope": "actual Windows game window, programmatic selection/post-draw capture, not human/device approval",
+  "source_hash_policy": "SHA256_UTF8_TEXT_CRLF_TO_LF",
+  "source_hashes": {
+    "res://data/localization/route_book_01_v1.json": "99f0001b356238b3891379c919d2af85f17fb2ba85b8eea6fcc0e7ea3b65d4c7",
+    "res://data/localization/route_book_02_v1.json": "7ddc31c605c7289fb81975ff505e962233fc8065f5870543e10a51ab260b1910",
+    "res://data/maps/route_book/rb01_service_sidings.json": "67de0c5bcdb9332e80b5a7520f88eb61f14a4b13a256922aec1bb097d1c607fd",
+    "res://data/maps/route_book/rb02_reverse_order.json": "3751c2d3198614a5cdd9f395788bc6d0c410c052eb78457ed64d85bbeb0cbd04",
+    "res://data/maps/route_book/rb03_return_manifest.json": "92a0352b3ca242823c32b9de272eb6729a4535925dfa7993690e1f8437de3589",
+    "res://data/maps/route_book/rb04_load_window.json": "6b5fbe2b1665d0bbc0996298cd32a2461088b1378698c7966d69d3c40a795476",
+    "res://data/maps/route_book/rb05_fork_lock.json": "f7f201d231f9a31096f4caa4d2b77b2fb40772472272b76e649d95f0f7928e3e",
+    "res://data/maps/route_book/rb06_port_circuit.json": "895579b7c150727ba994d7aa3bd16f2f7d04b62901afeb69a2b577cc1de009ac",
+    "res://data/maps/route_book/rb07_forest_relay.json": "e1d3825a816f380f8fc4236967dc2545d2b44fe82e7878775276be343613bb4f",
+    "res://data/maps/route_book/rb08_caution_cut.json": "1e8a4c2580af32f0aa167a113fe8b7a3ae360af3bd9e15249076788fc8e9f3ed",
+    "res://data/maps/route_book/rb09_salvage_siding.json": "7e4d0d2d3af63b1e067525517b1e9b7d256edd30787170300b52381ec2e4c212",
+    "res://data/maps/route_book/rb10_clean_break.json": "4c4cffb0785e2cfc0b49d66bb29893bd55b9852fc8d50c2f17282859f1946bbb",
+    "res://data/maps/route_book/rb11_turnout_under_load.json": "e94eaabf66438f871f11177e2cac88d7037bc623b0da1ed9ef59964318533454",
+    "res://data/maps/route_book/rb12_lantern_loop.json": "3e70874a706f96b505be43da740be97fe2c10b33eac35c4470c2e9ba2277b791",
+    "res://data/route_book/route_book_01.json": "848e73ed2b13998ad56fd0052e87a636c918bac359e35c6eb15acd2a6421a75f",
+    "res://data/route_book/route_book_02.json": "5446c56fde8f4797d54680a99a2383feb9041ef027a8f09aab2bb604d498b839",
+    "res://game/demo/demo_flow_controller.gd": "3922a3dc6c2a86fc8fe391bce51d259de0a1ce9f07cf2dacdb3e81c97fa10905",
+    "res://game/demo/presentation/product_board_renderer.gd": "503c13eeaf9a7973eff295f08daaab18a0a0a78cdef44974d4d77254ede9814a",
+    "res://game/demo/presentation/stage_board_preview.gd": "8946ee03272d55e760c53dc2216935635cc1ad60225642038d6aad73300a4689",
+    "res://game/demo/vertical_slice_demo.tscn": "c4cbd2d8c2efe7493b956fdc05557545d7ad3396714f2625f8458d98dff8dc8d",
+    "res://game/first_session/first_session_copy.gd": "28ea888c45ff5e534016ff3655db01f1b8a25f26d24614e047dfe0fb5df6b78d",
+    "res://game/main/main.tscn": "5aeb7c24eb04648834863b6064fb2d89d58bab4752c49d452194aca2f915e046",
+    "res://game/route_book/route_book_catalog.gd": "b89078bd9c3c1b63adb0b9e8adc8a55c43e6019f54c025460114dfb2b7927d09",
+    "res://game/route_book/route_book_definition.gd": "bc7b520042773906f3072202c1ea4957216e8ea1cfb52a8dc64453cbe7400ac3",
+    "res://tests/runtime/build_history_live_qa.gd": "4d64ecc24026b30c8d01de3953714356d75aa3b8ddc79f857586093986f51bab",
+    "res://tests/runtime/stage_preview_live_qa.gd": "3ec3921b8e75016b53ee5d7dff7786b0a0f1a0405a49a8231bd1b64472ce7719",
+    "res://tests/runtime/stage_preview_window_runner.gd": "edf19481f18f7fa30308dbf6ca51df3ea768c67ef1adf282ac4b53ad0843299e"
+  },
+  "source_revision": "500cf5b6208b816a852cab9b984a1a9c93082df7",
+  "status": "PASS",
+  "window_sizes": [
+    {
+      "actual": "(960, 540)",
+      "logical": "(1920.0, 1080.0)",
+      "requested": "(960, 540)"
+    },
+    {
+      "actual": "(1280, 720)",
+      "logical": "(1920.0, 1080.0)",
+      "requested": "(1280, 720)"
+    },
+    {
+      "actual": "(1600, 900)",
+      "logical": "(1920.0, 1080.0)",
+      "requested": "(1600, 900)"
+    }
+  ]
+}
