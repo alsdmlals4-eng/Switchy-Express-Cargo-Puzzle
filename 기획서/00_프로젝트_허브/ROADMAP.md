@@ -1,5 +1,13 @@
 # Roadmap
 
+> Current 2026-09-13: PR290 BUILD history is merged, not pending. Follow the plan-first
+> BUILD guidance unit in docs/superpowers/plans/2026-09-13-build-guidance.md.
+> Remaining sequence: native-exit investigation / actionable preflight guidance delivery,
+> existing 12-stage content review, viewport/presentation completion, exact review package.
+> Native-exit root cause remains unresolved; do not transfer a serial PASS into a crash-fix claim.
+> Older next-action sections below are historical; current evidence is
+> evidence/runtime/build-guidance-20260913/README.md. Separate PRs remain read-only.
+
 > Current 2026-09-12: PR289 topdown family/shell/PDF implementation merged at 07a04d5.
 > Next scoped improvement selected under user delegation: BUILD history and atomic batch recovery.
 > Execute tests → actual Godot inputs/screens → five-pass correction → derived Blueprint → PR/checks/merge.

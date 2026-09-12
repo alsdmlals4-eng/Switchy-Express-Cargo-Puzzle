@@ -1,5 +1,14 @@
 # Current Confirmed Decisions
 
+## 2026-09-13 plan-first approved continuation
+
+User requires an implementation/correction plan before edits and approves the recommended
+construction/retry stabilization unit. Record goal, changed/preserved scope, sequence and
+acceptance before implementation. Routine technical work within the approved unit continues
+without repeated approval; core changes and final asset selection remain separate decisions.
+Current plan: docs/superpowers/plans/2026-09-13-build-guidance.md.
+Preserve finite core, approved topdown assets and user-only deletion. No Base repin or provider change.
+
 ## 2026-09-12 delegated improvement loop
 
 Latest user asks for Base fresh-read, benchmarking/practitioner research and implementation

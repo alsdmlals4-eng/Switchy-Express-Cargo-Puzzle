@@ -1,5 +1,17 @@
 # Active Context
 
+## 2026-09-13 current BUILD guidance unit
+
+PR290 merged at d01454a4f911e9c95314d3b002d6931b4a77c447; BUILD history is complete,
+not a new pending implementation. Current branch codex/build-guidance-20260913 follows
+docs/superpowers/plans/2026-09-13-build-guidance.md under user's plan-first continuation.
+Actual preflight error codes now have distinct repair copy; validator/core/assets unchanged.
+Evidence: evidence/runtime/build-guidance-20260913/README.md. Full Godot 125 cases /
+15,415 assertions / 0 failures, Python 273 passed / 1 skipped, operating contract PASS.
+Native intermittent baseline exit remains ROOT_CAUSE_UNRESOLVED, not fixed by copy changes.
+Local runtime and delivery state belong to the evidence owner/current-task PR; not inferred
+from this pre-merge snapshot. Preserve all pre-existing dirty work and PR174/254/281.
+
 ## 2026-09-12 BUILD recovery continuation (current)
 
 Source main: 07a04d58c9071fd687e5e2d223354d2d42112adf; PR289 is merged, not pending.
