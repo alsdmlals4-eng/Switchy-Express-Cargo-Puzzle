@@ -32,7 +32,7 @@
     "res://data/maps/route_book/rb12_lantern_loop.json": "3e70874a706f96b505be43da740be97fe2c10b33eac35c4470c2e9ba2277b791",
     "res://data/route_book/route_book_01.json": "848e73ed2b13998ad56fd0052e87a636c918bac359e35c6eb15acd2a6421a75f",
     "res://data/route_book/route_book_02.json": "5446c56fde8f4797d54680a99a2383feb9041ef027a8f09aab2bb604d498b839",
-    "res://game/demo/demo_flow_controller.gd": "3922a3dc6c2a86fc8fe391bce51d259de0a1ce9f07cf2dacdb3e81c97fa10905",
+    "res://game/demo/demo_flow_controller.gd": "e7e3187a77168c353c3c2d3aefa997950ca47b27508dc1131802d0847aeb9b6d",
     "res://game/demo/presentation/product_board_renderer.gd": "503c13eeaf9a7973eff295f08daaab18a0a0a78cdef44974d4d77254ede9814a",
     "res://game/demo/presentation/stage_board_preview.gd": "8946ee03272d55e760c53dc2216935635cc1ad60225642038d6aad73300a4689",
     "res://game/demo/vertical_slice_demo.tscn": "c4cbd2d8c2efe7493b956fdc05557545d7ad3396714f2625f8458d98dff8dc8d",
@@ -44,7 +44,7 @@
     "res://tests/runtime/stage_preview_live_qa.gd": "3ec3921b8e75016b53ee5d7dff7786b0a0f1a0405a49a8231bd1b64472ce7719",
     "res://tests/runtime/stage_preview_window_runner.gd": "edf19481f18f7fa30308dbf6ca51df3ea768c67ef1adf282ac4b53ad0843299e"
   },
-  "source_revision": "500cf5b6208b816a852cab9b984a1a9c93082df7",
+  "source_revision": "3530fbb94add7dc41a1c0a2c4485d4b5f1114f75",
   "status": "PASS",
   "window_sizes": [
     {

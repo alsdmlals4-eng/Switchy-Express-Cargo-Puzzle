@@ -76,6 +76,7 @@ finish()
 
 # Actual title and long-list evidence retain their explicit maturity labels.
 for title,path,caption in [
+ ('노선집 결과 · 실제 실패 원인과 남은 시간','evidence/runtime/route-result-20260913/ko.png','실제 RB08 무적재 운행: 노선 종료, 맵 화물 2개, 시간 108.7초 남음. 결과를 주입하지 않은 실제 실행. 본문은 스크롤하며 동일 노선 재시도와 수정이 가능하다.'),
  ('RB08 브리핑 · 실제 감속 칸을 보고 판단','evidence/runtime/stage-preview-20260913/rb08.png','실제 선택 맵의 초기 상태. 화물·역·감속 칸을 표시하며 플레이어 선로나 테스트 해법은 공개하지 않는다. 시작하면 동일한 맵을 연다.'),
  ('RB10 브리핑 · 재방문과 폐기물 계획','evidence/runtime/stage-preview-20260913/rb10-postmerge.png','실제 Godot 1280×720 창 캡처. 선택적 적재 질문과 해당 지형을 함께 보여준다. 화면은 판단을 돕고 행동 순서를 강제하지 않는다.'),
  ('RB12 브리핑 · 복합 규칙의 공간 관계','evidence/runtime/stage-preview-20260913/rb12-postmerge.png','실제 맵 데이터와 기존 승인 renderer를 읽기 전용으로 재사용한다. 미리보기는 운행하지 않으며 정사각 칸의 비율을 유지한다.'),
