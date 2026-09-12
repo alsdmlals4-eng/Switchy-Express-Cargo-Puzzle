@@ -60,6 +60,22 @@ static func _rb02() -> Array[Variant]:
 	]
 
 
+static func rb08_caution_detour() -> Array[Variant]:
+	var result: Array[Variant] = []
+	for piece: Variant in _rb02():
+		if piece.cell in [Vector2i(3, 3), Vector2i(4, 3), Vector2i(5, 3)]:
+			continue
+		result.append(piece)
+	result.append_array([
+		_piece(3, 3, &"CURVE", 3),
+		_piece(3, 2, &"CURVE", 1),
+		_piece(4, 2, &"STRAIGHT", 0),
+		_piece(5, 2, &"CURVE", 2),
+		_piece(5, 3, &"CURVE", 0),
+	])
+	return result
+
+
 static func _rb03() -> Array[Variant]:
 	return [
 		_piece(2, 4, &"STRAIGHT", 0),

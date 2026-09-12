@@ -687,6 +687,11 @@ func _apply_route_book_card() -> void:
 	var lesson_art := get_node_or_null("BriefingScreen/Panel/Content/LessonArt")
 	if lesson_art != null and lesson_art.has_method("set_lesson_id"):
 		lesson_art.set_lesson_id(_route_book_director.current_stage_id())
+	var preview := get_node_or_null("BriefingScreen/Panel/Content/MapPreview")
+	if preview != null:
+		var preview_ready: bool = preview.show_map(str(stage.get("map_path", "")))
+		if lesson_art != null:
+			lesson_art.visible = not preview_ready
 	if progress != null:
 		progress.text = _route_book_copy.format(
 			&"SX_RB_PROGRESS",
@@ -708,6 +713,8 @@ func _apply_route_book_card() -> void:
 
 
 func _apply_lesson_card() -> void:
+	_set_visible("BriefingScreen/Panel/Content/MapPreview", false)
+	_set_visible("BriefingScreen/Panel/Content/LessonArt", true)
 	if _first_session_director == null or _first_session_copy == null:
 		return
 	var lesson: Dictionary = _first_session_director.current_lesson()

@@ -1,5 +1,20 @@
 # Active Context
 
+## 2026-09-13 current actual-map preview loop
+
+PR292 is merged at 253a774ff57f03c1f0bbc4d84125720723486d12. Twelve briefs are complete.
+Current branch codex/stage-board-preview-20260913 replaces only Route Book generic art
+with selected-map read-only preview, reusing approved ProductBoardRenderer assets.
+Tutorial art remains; no map/core/save/image changes. Plan: docs/superpowers/plans/2026-09-13-stage-board-preview.md.
+Receipt/closeout: evidence/runtime/stage-preview-20260913/README.md and current-task PR.
+Final local runner 127 cases /15,701 assertions /0 failures; Python300/1skip; contract PASS.
+Actual 1280x720:48 stage/locale map identities/button bounds checked; RB08/RB10 pointer
+Begin uses the same map with zero player rails; tutorial art restores. Human/device/release NOT_RUN.
+RB08 two author witnesses succeed at product speed2.0: direct1100/6.51727s,
+detour1300/7.10818s. This comparison does not establish optimality or a balanced tradeoff.
+Native0xc0000005 recurred in one invocation, later serial full run passed; root cause unresolved.
+Preserve prior dirty imports/settings and separate PR174/254/281. Older current sections are history.
+
 ## 2026-09-13 current stage-thinking improvement loop
 
 PR291 BUILD guidance is merged at 913309def20aad70e6af416a2c158e24766d6989, not pending.

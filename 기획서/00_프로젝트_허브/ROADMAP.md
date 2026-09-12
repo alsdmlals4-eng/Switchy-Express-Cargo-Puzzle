@@ -1,5 +1,11 @@
 # Roadmap
 
+> Current actual-map preview loop: PR292 briefs complete; selected-map preview implemented
+> with existing assets; tutorial illustration preserved. Evidence: evidence/runtime/stage-preview-20260913/README.md.
+> RB08 direct and detour both machine-succeed; tested detour costs more and takes longer.
+> Next content review must improve real decisions, not claim balanced alternatives from mere feasibility.
+> Native intermittent exit remains unresolved; viewport/derived review package/release gates remain distinct.
+
 > Current stage-thinking loop, 2026-09-13: PR291 is merged. Twelve differentiated planning
 > briefs are implemented in four locales using existing context_key/Rules consumers.
 > Delivery evidence: evidence/runtime/stage-thinking-20260913/README.md.

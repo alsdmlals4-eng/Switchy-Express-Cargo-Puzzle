@@ -1,5 +1,22 @@
 # Core-preserved art and experience replan
 
+## 2026-09-13 actual-map preview and strategy audit
+
+Problem: all Route Book briefings used one generic LESSON composition even when describing
+specific stations, waste, terrain and caution. Existing map data/renderer are the canonical
+visual source. Selected solution: detached initial BUILD snapshot in a read-only briefing
+preview with square-cell fitting; no active ProductFiniteSlice, input or solution rails.
+Research/alternatives/implementation plan: ../plans/2026-09-13-stage-board-preview.md.
+Reuse approved topdown atlas via ProductBoardRenderer, not another generated screenshot atlas.
+360 logical pixels of preview height selected after250 made objects too small in actual capture.
+Machine geometry does not prove final readability; actual Korean1280 captures are in runtime receipt.
+SWOT response: strengthen spatial planning; remove generic-map mismatch; adapt purposeful
+compact presentation from Railbound; guard against witness/solution disclosure.
+Two RB08 authored paths are feasible, but sampled detour is more expensive and slower.
+Do not call caution avoidance inherently beneficial or declare uniqueness/optimality.
+Project learning: content comparisons must record runtime speed and measured state, not test
+helper defaults. No Base promotion without broader validated reuse.
+
 ## 2026-09-13 stage-thinking content amendment
 
 The user's loop explicitly includes planning/content development, not only bugfixes.
