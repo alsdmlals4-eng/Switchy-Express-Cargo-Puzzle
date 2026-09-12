@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://game/demo/demo_flow_controller.gd" id="1_flow"]
 [ext_resource type="Script" path="res://game/demo/presentation/product_shell_art.gd" id="2_shell_art"]
+[ext_resource type="Script" path="res://game/demo/presentation/stage_board_preview.gd" id="4_map_preview"]
 [ext_resource type="Texture2D" path="res://art/product_assets/ed_hybrid_v2/shells/shell_title_wordmark_switchy_express_candidate_v01.png" id="3_title_wordmark"]
 
 [node name="VerticalSliceDemo" type="Control"]
@@ -257,6 +258,13 @@ layout_mode = 2
 mouse_filter = 2
 script = ExtResource("2_shell_art")
 mode = "LESSON"
+
+[node name="MapPreview" type="Control" parent="BriefingScreen/Panel/Content"]
+visible = false
+custom_minimum_size = Vector2(0, 360)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("4_map_preview")
 
 [node name="Objective" type="Label" parent="BriefingScreen/Panel/Content"]
 custom_minimum_size = Vector2(560, 0)

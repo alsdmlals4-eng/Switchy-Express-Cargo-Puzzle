@@ -1,5 +1,14 @@
 # Current Confirmed Decisions
 
+## 2026-09-13 continued implementation without routine reapproval
+
+Latest user explicitly repeats continuous benchmark -> concrete design -> implementation ->
+verification/correction and asks not to pause for routine approval. Reuse this authorization
+for scoped remaining work; do not reinterpret it as core/asset-promotion/release bypass.
+Current amendment: actual selected-map briefing preview with existing approved renderer.
+Preview is initial authored state only, no solver/witness rails, no active RUN session or input.
+RB08 alternatives are internal author validation, not public hints or optimality evidence.
+
 ## 2026-09-13 benchmark-to-implementation loop clarification
 
 User defines the continuous improvement loop as similar-genre research -> concretize and

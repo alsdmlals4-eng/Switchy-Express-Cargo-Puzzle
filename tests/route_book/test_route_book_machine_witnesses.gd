@@ -110,8 +110,16 @@ func run() -> void:
 		"RB07 leaves the first normal cargo unresolved when its relay order is ignored",
 	)
 
-	var rb08 := _run_manual(fixture.pieces(&"RB08_CAUTION_CUT"), PATHS[&"RB08_CAUTION_CUT"])
+	var rb08 := _run_manual(fixture.pieces(&"RB08_CAUTION_CUT"), PATHS[&"RB08_CAUTION_CUT"], Callable(), 2.0)
 	assert_equal(rb08.get("phase"), &"SUCCESS", "RB08 caution-track witness succeeds")
+	var rb08_detour := _run_manual(fixture.rb08_caution_detour(), PATHS[&"RB08_CAUTION_CUT"], Callable(), 2.0)
+	assert_equal(rb08_detour.get("phase"), &"SUCCESS", "RB08 alternative caution detour also succeeds")
+	assert_true(rb08.get("visited_cells", []).has(Vector2i(4, 3)), "direct witness crosses optional caution")
+	assert_false(rb08_detour.get("visited_cells", []).has(Vector2i(4, 3)), "detour avoids optional caution")
+	assert_equal(rb08_detour.get("pickups"), [&"BLUE_DIAMOND", &"RED_STAR"], "detour preserves required cargo contact")
+	assert_equal(rb08_detour.get("unloads"), [&"RED_STAR", &"BLUE_DIAMOND"], "detour delivers both TOP groups")
+	print("RB08 STRATEGY at product speed 2.0: direct cost=%s elapsed=%s; detour cost=%s elapsed=%s; author witnesses only" % [
+		rb08.get("build_cost"), rb08.get("elapsed_seconds"), rb08_detour.get("build_cost"), rb08_detour.get("elapsed_seconds")])
 	assert_equal(
 		_run_manual(
 			fixture.pieces(&"RB08_CAUTION_CUT"),
@@ -291,8 +299,8 @@ func _run_rb06(
 	}
 
 
-func _run_manual(pieces: Array, path: String, driver: Callable = Callable()) -> Dictionary:
-	var session: Variant = _create_session(pieces, path)
+func _run_manual(pieces: Array, path: String, driver: Callable = Callable(), base_speed: float = 4.0) -> Dictionary:
+	var session: Variant = _create_session(pieces, path, base_speed)
 	if session == null:
 		return {}
 	var history: Array = []
@@ -310,8 +318,10 @@ func _run_manual(pieces: Array, path: String, driver: Callable = Callable()) -> 
 	var pickups: Array[StringName] = []
 	var unloads: Array[StringName] = []
 	var unload_cells: Array[Vector2i] = []
+	var visited_cells: Array[Vector2i] = []
 	var blue_events: Array = history.filter(func(event: Variant) -> bool: return event.cell == Vector2i(5, 4))
 	for event: Variant in history:
+		visited_cells.append(event.cell)
 		if event.picked_up:
 			pickups.append(event.pickup_type)
 		if event.unload_count > 0:
@@ -322,12 +332,15 @@ func _run_manual(pieces: Array, path: String, driver: Callable = Callable()) -> 
 		"pickups": pickups,
 		"unloads": unloads,
 		"unload_cells": unload_cells,
+		"visited_cells": visited_cells,
+		"elapsed_seconds": session.run_controller.run_state().elapsed_seconds(),
+		"build_cost": session.layout_snapshot().build_cost(),
 		"first_blue_skipped": blue_events.size() >= 2 and not blue_events[0].picked_up,
 		"blue_loaded_on_revisit": blue_events.size() >= 2 and blue_events[1].picked_up,
 	}
 
 
-func _create_session(pieces: Array, path: String) -> Variant:
+func _create_session(pieces: Array, path: String, base_speed: float = 4.0) -> Variant:
 	var definition: Variant = LoaderScript.load_from_path(path)
 	if definition == null:
 		return null
@@ -342,7 +355,7 @@ func _create_session(pieces: Array, path: String) -> Variant:
 		push_error("Route Book witness preflight failed: %s" % [preflight.primary_code if preflight != null else "NULL"])
 		return null
 	var factory: Variant = FactoryScript.new()
-	if not factory.configure(definition, build.sealed_snapshot(), 4.0):
+	if not factory.configure(definition, build.sealed_snapshot(), base_speed):
 		push_error("Route Book witness factory configuration failed")
 		return null
 	var attempt: Dictionary = factory.create_attempt(1)
