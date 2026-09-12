@@ -1,20 +1,38 @@
 class_name CargoPickupAnimation
 extends RefCounted
 
+const CargoTypeScript := preload("res://game/cargo/cargo_type.gd")
 const DURATION := 0.24
 const LIFT_HEIGHT_RATIO := 0.16
 
 var cell := Vector2i(-1, -1)
 var reduced_motion := false
 var _elapsed := DURATION
+var _cargo_type: StringName = &""
 
 
 func start(pickup_cell: Vector2i, cargo_type: StringName) -> bool:
-	if cargo_type != &"BLUE_DIAMOND" or pickup_cell.x < 0 or pickup_cell.y < 0:
+	if not CargoTypeScript.is_valid(cargo_type) or pickup_cell.x < 0 or pickup_cell.y < 0:
+		cancel()
 		return false
 	cell = pickup_cell
+	_cargo_type = cargo_type
 	_elapsed = 0.0
 	return true
+
+
+func texture_key() -> String:
+	match _cargo_type:
+		CargoTypeScript.RED_STAR:
+			return "cargo_red"
+		CargoTypeScript.BLUE_DIAMOND:
+			return "cargo_blue"
+		CargoTypeScript.YELLOW_TRIANGLE:
+			return "cargo_yellow"
+		CargoTypeScript.WASTE_CRATE:
+			return "cargo_waste"
+		_:
+			return ""
 
 
 func advance(delta: float) -> void:
@@ -42,3 +60,4 @@ func opacity() -> float:
 func cancel() -> void:
 	_elapsed = DURATION
 	cell = Vector2i(-1, -1)
+	_cargo_type = &""

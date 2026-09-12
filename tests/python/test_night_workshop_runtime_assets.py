@@ -34,18 +34,38 @@ class NightWorkshopRuntimeAssets(unittest.TestCase):
         self.assertIn("BOARD_TERRAIN_TINT := Color.WHITE", palette)
         self.assertIn("BOARD_TERRAIN_VEIL := Color.TRANSPARENT", palette)
 
-    def test_topdown_blue_family_retires_oblique_lift_consumer(self):
+    def test_approved_topdown_family_retires_oblique_lift_consumer(self):
         folder = ROOT / "art/product_assets/topdown_v1"
         manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
         self.assertEqual(manifest["status"], "USER_APPROVED_CANON_REGISTERED_IMPLEMENTED")
-        self.assertEqual({asset["key"] for asset in manifest["assets"]},
-                         {"station_blue", "cargo_blue"})
+        expected = {
+            "station_red": "station-red-candidate.png",
+            "station_blue": "station-blue-candidate.png",
+            "station_yellow": "station-yellow-candidate.png",
+            "station_disposal": "station-disposal-candidate.png",
+            "cargo_red": "cargo-red-candidate.png",
+            "cargo_blue": "cargo-blue-candidate.png",
+            "cargo_yellow": "cargo-yellow-candidate.png",
+            "cargo_waste": "cargo-waste-candidate.png",
+            "decoration_forest_cluster": "decoration-forest-candidate.png",
+            "decoration_moss_boulder": "decoration-boulder-candidate.png",
+            "decoration_timber_stack": "decoration-timber-candidate.png",
+            "decoration_waterway": "decoration-waterway-candidate.png",
+            "decoration_lantern_fence": "decoration-lantern-fence-candidate.png",
+        }
+        self.assertEqual({asset["key"] for asset in manifest["assets"]}, set(expected))
         renderer = (ROOT / manifest["consumer"]).read_text(encoding="utf-8")
         for asset in manifest["assets"]:
             target = folder / asset["path"]
             source = ROOT / asset["source"]
+            self.assertEqual(source.name, expected[asset["key"]])
             self.assertEqual(target.read_bytes(), source.read_bytes())
             self.assertEqual(hashlib.sha256(target.read_bytes()).hexdigest(), asset["sha256"])
+            self.assertEqual(asset["consumer_key"],
+                             "ProductBoardRenderer.PRODUCT_VISUAL_ASSET_PATHS." + asset["key"])
+            self.assertEqual(asset["approval_date"],
+                             "2026-09-11" if asset["key"] in {"station_blue", "cargo_blue"}
+                             else "2026-09-12")
             self.assertIn("art/product_assets/topdown_v1/" + asset["path"], renderer)
         self.assertNotIn("CARGO_LIFT_TEXTURE", renderer)
         self.assertNotIn("cargo_lift.png", renderer)

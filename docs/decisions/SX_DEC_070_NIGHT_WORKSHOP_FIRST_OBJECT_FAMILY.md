@@ -1,5 +1,19 @@
 # SX-DEC-070 — Night Workshop first object family
 
+## Approved full top-down family continuation — 2026-09-12
+
+User approved all thirteen selected top-view sprites and resumed implementation after PR288.
+Source b44536f registers/connects the remaining eleven exact PNGs and extends matching-lid
+pickup to all four authoritative cargo types. Core, maps, slate, joined v04 rails, overhead
+train, wordmark and cargo scale 0.62 remain unchanged. Manifest/candidate owners separate
+approved current pixels from rejected scenic outputs and superseded historical v02 pixels.
+
+ProductShellArt fef77fb replaces five oblique hero consumers with the same approved textures.
+Actual 1280x720 framebuffer review exposed undersized lesson/result compositions and title
+cargo hidden behind UI; compact per-mode layout correction 0bb8ce4 now passes the corresponding
+RED→GREEN regression and independent re-review. Final exact-source runtime/PDF/delivery readback belongs
+to ACTIVE_CONTEXT.md and evidence/runtime/topdown-family-20260912/. No final-user/release PASS.
+
 ## Current implementation continuation — 2026-09-11
 
 ### Strict top-down amendment after PR #286

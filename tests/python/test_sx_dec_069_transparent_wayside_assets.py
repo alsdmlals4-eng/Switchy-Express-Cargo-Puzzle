@@ -120,7 +120,7 @@ def _rgba_alpha_statistics(path: Path) -> tuple[int, int, tuple[int, int, int, i
 
 
 class TransparentWaysideAssetTests(unittest.TestCase):
-    def test_v02_assets_are_transparent_candidates_with_exact_consumers(self) -> None:
+    def test_v02_assets_remain_preserved_after_topdown_consumers_replace_them(self) -> None:
         manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
         candidates = {entry["asset_id"]: entry for entry in manifest["generated_candidates"]}
         renderer = RENDERER_PATH.read_text(encoding="utf-8")
@@ -142,13 +142,26 @@ class TransparentWaysideAssetTests(unittest.TestCase):
                 candidate = candidates[asset_id]
                 self.assertEqual(relative_path, candidate["path"])
                 self.assertEqual(hashlib.sha256(asset_path.read_bytes()).hexdigest(), candidate["sha256"])
-                self.assertEqual("GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON", candidate["visual_role"])
-                self.assertEqual("USER_REVIEW_PENDING", candidate["pixel_review_status"])
-                self.assertEqual(
-                    f"game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[{slot}]",
-                    candidate["runtime_consumer"],
+                consumer = f"game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[{slot}]"
+                if slot == "caution_track":
+                    self.assertEqual("GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON", candidate["visual_role"])
+                    self.assertEqual("USER_REVIEW_PENDING", candidate["pixel_review_status"])
+                    self.assertEqual(consumer, candidate["runtime_consumer"])
+                else:
+                    self.assertIsNone(candidate["runtime_consumer"], "superseded pixels have no current consumer")
+                    self.assertEqual(consumer, candidate["historical_runtime_consumer"])
+                    self.assertEqual("HISTORICAL_SUPERSEDED_RUNTIME_CANDIDATE_NOT_CANON", candidate["visual_role"])
+                    self.assertEqual("NOT_CURRENT", candidate["runtime_connection_status"])
+                    self.assertEqual("SUPERSEDED_WITHOUT_PIXEL_APPROVAL", candidate["pixel_review_status"])
+                    self.assertEqual("USER_REVIEW_PENDING", candidate["historical_pixel_review_status"])
+                    self.assertEqual(f"art/product_assets/topdown_v1/{slot}.png", candidate["superseded_by_path"])
+                    self.assertTrue((ROOT / candidate["superseded_by_path"]).is_file())
+                current_path = (
+                    relative_path
+                    if slot == "caution_track"
+                    else f"art/product_assets/topdown_v1/{slot}.png"
                 )
-                self.assertIn(f'"{slot}": "{relative_path}"', renderer)
+                self.assertIn(f'"{slot}": "{current_path}"', renderer)
 
 
 if __name__ == "__main__":

@@ -1,289 +1,321 @@
 {
-  "status": "INTERMEDIATE_REVIEW_NOT_IMPLEMENTATION_READY",
+  "status": "TOPDOWN_IMPLEMENTATION_REVIEW_FINAL_USER_REVIEW_SEPARATE",
   "pdf": "output\\pdf\\SWITCHY_EXPRESS_HUMAN_BLUEPRINT_20260911_REVIEW.pdf",
-  "sha256": "79c5c9d300acdf0b4113ef2937b8e71ea663d95a2d339e08a8c4e3b30539f2b1",
-  "page_count": 51,
+  "sha256": "93978663bd505b33b000b8978f9c3c431e23b895a17e9f82a51b265ad475273b",
+  "page_count": 54,
   "source": "docs\\design\\SWITCHY_BLUEPRINT_REVIEW_20260911.md",
-  "source_sha256": "88db0efaa817a07f9d4337303290bd9a8762d894f7809091f855d8176eb4f0c2",
+  "source_sha256": "3a558a0db22816c35bb92afdbea33c64f3c6dacf99e8f45376ad5404ee15297c",
+  "generator_sha256": "d7cb05a15bdb21dc3c31604e735ddda171abd32e762ab4e33e1cfa81e72bcfb3",
+  "runtime_receipt": "evidence/runtime/topdown-family-20260912/receipt.json",
+  "runtime_receipt_sha256": "7fffdd495a24841c330d0c6a915fddf34a4d6da4aae148fe882886f22b178adc",
   "assets_and_maps": {
-    "evidence/runtime/ui-feedback-20260911/build.png": "020655998fc5669e9580e75e2aa8eee84db7f84ecc351db2b8aea46386d6fb23",
-    "evidence/runtime/ui-feedback-20260911/pickup-2.png": "a73d90c7cb1882916a26349e3099c9ae12b2d2c99854205c11e0611855ea509d",
-    "evidence/runtime/ui-feedback-20260911/result.png": "4252fb8cbd9749cb0288636250ee2cc70a31fc47c2e2858090b601fcd05b3966",
+    "evidence/runtime/topdown-family-20260912/build.png": "b56c1bf7fdcd14d9c950b0c074ab5b7de970c79d15fe8bb5ceceea1802ff4262",
+    "evidence/runtime/topdown-family-20260912/pickup-2.png": "a5174a4574926039def9c78f2941c63c9f777ac716c6ada41d87d2732f8131c5",
+    "evidence/runtime/topdown-family-20260912/result.png": "cf430f04560dec2afa4ff35d2b69d965e99bb61f11d200caee04131afeac71f1",
+    "evidence/runtime/topdown-family-20260912/board-rb12.png": "0e55ce497ca2ee476a4b1a4bb560d0cac47f78173c91eb17b36522ad1cb367dd",
+    "evidence/runtime/topdown-family-20260912/title.png": "1cfad6ac480f3f1696c9e6c2a2e00a9bbb8b20f377e99e45ce1f659cf9004dc9",
+    "evidence/runtime/topdown-family-20260912/lesson-t2.png": "e206b14ea9ffc84c9ab41ca5cb25bd92e0cf7eb1c4c38262a8cb0fc55ccde172",
+    "evidence/runtime/topdown-family-20260912/failure.png": "2dcc8d694067c45554990ba66a07b38031326448959773868a7d7c7d1dc8110a",
     "evidence/runtime/ui-feedback-20260911/manifest-64.png": "524fa7464728f39b2d711afd9dc129bf1946824ed7522338ce7f830de18d4273",
-    "evidence/runtime/ui-feedback-20260911/title.png": "6a80b4ab6d6ebb25195c0999975dab811be745d67476550bcb9032716f9e7481",
     "art/product_assets/night_workshop_v1/train.png": "00f40947e63a183c223d3276c9ccbc14c33226df369727bbf228d5afe1b253f2",
-    "art/product_assets/night_workshop_v1/station_blue.png": "eceb082d07b94ee0f65afdfa71d8b24004ae80513df7b2f4e000f735e4657827",
-    "art/product_assets/night_workshop_v1/cargo_lift.png": "6d365fe9b8c6a1f03fd141aba753ce23817d6f34074af0651caac4c74db7f445",
-    "evidence/design/night-workshop-assets-20260910/rail-master.png": "93d46d7b72154a04f314c72151e19bc32d5a2aed20e3fe2bc7786a0c89951e84",
-    "evidence/design/blueprint-20260911/object-family.png": "14efa928eaa284e10435ea5e22271ba480eaef8665ed1d4e760e39291fa4f434",
-    "data/maps/route_book/rb01_service_sidings.json": "f12def5f15fc79fd6db6b0b2becac17a4a53e6f210932807be1773e653c74fdb",
-    "data/maps/route_book/rb02_reverse_order.json": "c7bb2da6a5acf7322b9b58fd412563ece64c754e83f81017c162716f6c4c5f74",
-    "data/maps/route_book/rb03_return_manifest.json": "a04dd910e5b358bc8b8bbbb87f3e0d7257a55a246dbc9b7b3be08f4f913790ad",
-    "data/maps/route_book/rb04_load_window.json": "0ef921136fc223f11091ff9195392738aef3ec62fae4573fbf92454895031888",
-    "data/maps/route_book/rb05_fork_lock.json": "7d6df9c63ebe71b0017ffc83d33dd83fb95a962f2d6e8fe2c16431d81ddfb68c",
-    "data/maps/route_book/rb06_port_circuit.json": "0f5297e598709f0670a6cf9c46a0148e6bd7e6c3905c0c482f0a41e5a005e284",
-    "data/maps/route_book/rb07_forest_relay.json": "ac8d4f96d328b7035462f778a0eb971ac243735ceaf67f6db63d9bed47a760ec",
-    "data/maps/route_book/rb08_caution_cut.json": "9ec47dafa0ff7a3704ecf89ea4913d0017bca39eff2fdc074975e3b623107496",
-    "data/maps/route_book/rb09_salvage_siding.json": "0847103b1fff8b64f9d42337aed00abdc68a072f50b458a8987671180f8eab22",
-    "data/maps/route_book/rb10_clean_break.json": "f09433b80e0b14597f651642a94fdc0fd78375a38f5bdb921bc60c69aa33de54",
-    "data/maps/route_book/rb11_turnout_under_load.json": "aa16b72ac4ca74bdb7b3c4daf3e16124a90b8c94346a1268b2b7126db415cfe2",
-    "data/maps/route_book/rb12_lantern_loop.json": "bc16cdc6c7b757a79cefab387e6f3f5e961935749f02ddeaa59dcfb98e73b6f1"
+    "art/product_assets/topdown_v1/manifest.json": "d671a56f3e93f7c53239872a2f9723f0e9ea47f26a80dc02062173ff7ba1c4ed",
+    "art/product_assets/topdown_v1/station_blue.png": "4837c23361147da72bae9f88c5c15372f57ef0fa8e804b48c0297bdb2cc50a6e",
+    "art/product_assets/topdown_v1/station_red.png": "c1390662537eb00c31ce0e1bae8ab4b51dda8691c940e89da9addba741017246",
+    "art/product_assets/topdown_v1/station_yellow.png": "d01c447427c31251871ff82c7f22c2999f51f46f5d32829b9d6cc3fb31ee5352",
+    "art/product_assets/topdown_v1/station_disposal.png": "508490a7a541fb0378253fc7f6667517c6713bb809cb727510891cde90fb2a8a",
+    "art/product_assets/topdown_v1/cargo_blue.png": "58ed699689e88f0f8f3cdd14cd20f28611ea235e049a5182bef087fd09df2360",
+    "art/product_assets/topdown_v1/cargo_red.png": "59e0502d87969aef2032a4f566a9163b828a15b165148faefb3a2768d941eefb",
+    "art/product_assets/topdown_v1/cargo_yellow.png": "535a595289e4ef8558f9bf89c19ef30d72ea4cc128176e991ef8c2ce4aaa893c",
+    "art/product_assets/topdown_v1/cargo_waste.png": "4b93f82d59e9b822ad6a9d12ffdc3bd98dae02893e557f4b4ab8dca26dd2c7ff",
+    "art/product_assets/topdown_v1/decoration_forest_cluster.png": "0c1ece705d7ef954dac024abe7f4b7bafdd882320ab116e0cd8b6aacb9785d14",
+    "art/product_assets/topdown_v1/decoration_moss_boulder.png": "8892e974fea5edc6c0a24b437d9b6370c39c515c1874149394b248c92f575d02",
+    "art/product_assets/topdown_v1/decoration_timber_stack.png": "0399663ebd3b046c28ba3ab97ad98a26310daeb294fd29e15a8d0d39adb59be1",
+    "art/product_assets/topdown_v1/decoration_waterway.png": "3384d0b1554ae81426380b2faed228c63395e81db5f6b6e9b12a6db672c2e07c",
+    "art/product_assets/topdown_v1/decoration_lantern_fence.png": "359c71cca3c786ee2e4e2edcee97d42c017d2062c1cd597639ea5bea84f55c0d",
+    "data/maps/route_book/rb01_service_sidings.json": "67de0c5bcdb9332e80b5a7520f88eb61f14a4b13a256922aec1bb097d1c607fd",
+    "data/maps/route_book/rb02_reverse_order.json": "3751c2d3198614a5cdd9f395788bc6d0c410c052eb78457ed64d85bbeb0cbd04",
+    "data/maps/route_book/rb03_return_manifest.json": "92a0352b3ca242823c32b9de272eb6729a4535925dfa7993690e1f8437de3589",
+    "data/maps/route_book/rb04_load_window.json": "6b5fbe2b1665d0bbc0996298cd32a2461088b1378698c7966d69d3c40a795476",
+    "data/maps/route_book/rb05_fork_lock.json": "f7f201d231f9a31096f4caa4d2b77b2fb40772472272b76e649d95f0f7928e3e",
+    "data/maps/route_book/rb06_port_circuit.json": "895579b7c150727ba994d7aa3bd16f2f7d04b62901afeb69a2b577cc1de009ac",
+    "data/maps/route_book/rb07_forest_relay.json": "e1d3825a816f380f8fc4236967dc2545d2b44fe82e7878775276be343613bb4f",
+    "data/maps/route_book/rb08_caution_cut.json": "1e8a4c2580af32f0aa167a113fe8b7a3ae360af3bd9e15249076788fc8e9f3ed",
+    "data/maps/route_book/rb09_salvage_siding.json": "7e4d0d2d3af63b1e067525517b1e9b7d256edd30787170300b52381ec2e4c212",
+    "data/maps/route_book/rb10_clean_break.json": "4c4cffb0785e2cfc0b49d66bb29893bd55b9852fc8d50c2f17282859f1946bbb",
+    "data/maps/route_book/rb11_turnout_under_load.json": "e94eaabf66438f871f11177e2cac88d7037bc623b0da1ed9ef59964318533454",
+    "data/maps/route_book/rb12_lantern_loop.json": "3e70874a706f96b505be43da740be97fe2c10b33eac35c4470c2e9ba2277b791"
   },
   "pages": [
     {
       "page": 1,
-      "title": "화면 아틀라스 · 현재 구현과 다음 기준",
-      "kind": "실제 운행 캡처 3장 + 긴 목록 표시 검사 1장 · 전체 새 자산 완성 화면 아님"
+      "title": "화면 아틀라스 · 탑뷰로 연결한 현재 구현",
+      "kind": "실제 Godot 화면 · 프로그램 입력과 기존 해법으로 검사 / 최종 사용자 검수 별도"
     },
     {
       "page": 2,
-      "title": "메인 화면 · 기존 승인 화면 유지",
+      "title": "메인 화면 · 승인 탑뷰 자산으로 조립",
       "kind": "현재 브랜치 실제 렌더 / 사용자 최종 검수 아님"
     },
     {
       "page": 3,
-      "title": "긴 적재 목록 · 실제 UI 표시 검사",
+      "title": "T2 브리핑 · 선로 옆의 역",
       "kind": "현재 브랜치 실제 렌더 / 사용자 최종 검수 아님"
     },
     {
       "page": 4,
+      "title": "실패 화면 · 같은 시점, 다른 상태",
+      "kind": "현재 브랜치 실제 렌더 / 사용자 최종 검수 아님"
+    },
+    {
+      "page": 5,
+      "title": "긴 적재 목록 · 이전 UI 표시 검사",
+      "kind": "이전 UI 표시 증거 / 새 자산 검증 아님"
+    },
+    {
+      "page": 6,
       "title": "읽는 순서와 승인 범위",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 5,
+      "page": 7,
       "title": "구현 연결지도 · TOP과 현장 피드백",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 6,
+      "page": 8,
       "title": "핵심 경험 · 지나치는 것도 설계다",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 7,
+      "page": 9,
       "title": "다섯 가지 재미 · 행동과 결과",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 8,
+      "page": 10,
       "title": "SWOT · 강점을 어떻게 강화할 것인가",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 9,
+      "page": 11,
       "title": "SWOT · 약점과 개선 우선순위",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 10,
+      "page": 12,
       "title": "SWOT · 기회·위협과 대응",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 11,
+      "page": 13,
       "title": "조사·벤치마킹 · 채택과 배제",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 12,
+      "page": 14,
       "title": "전체 플로우맵",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 13,
+      "page": 15,
       "title": "시스템 관계 · 누가 무엇을 결정하는가",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 14,
+      "page": 16,
       "title": "이번 구현의 연결 지도 · 읽기·수정·검증",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 15,
+      "page": 17,
       "title": "건설 규칙과 오류 안내",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 16,
+      "page": 18,
       "title": "화물과 하역 · 정확한 순서",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 17,
+      "page": 19,
       "title": "역 · 선로 위가 아닌 옆에서",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 18,
+      "page": 20,
       "title": "운행·적재·분기 입력",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 19,
+      "page": 21,
       "title": "감속과 폐기물 · 추가가 아닌 기존 선택의 깊이",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 20,
+      "page": 22,
       "title": "화면 명세 · 메인·선택·브리핑",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 21,
+      "page": 23,
       "title": "화면 명세 · BUILD와 RUN",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 22,
+      "page": 24,
       "title": "결과와 복구 · 실패를 다음 판단으로",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 23,
+      "page": 25,
       "title": "자산 제작 계약 · 그림에서 실제 소비까지",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 24,
+      "page": 26,
       "title": "모션과 피드백 데이터",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 25,
-      "title": "데이터 표 · 맵과 표시 모델",
-      "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
-    },
-    {
-      "page": 26,
-      "title": "구현 순서 · 승인 후 작업 단위",
-      "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
-    },
-    {
       "page": 27,
-      "title": "검수표 · 자동 검증과 최종 사용자 승인",
+      "title": "탑뷰 적재 · 종류와 정지·취소 계약",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
       "page": 28,
-      "title": "출처와 해석의 한계",
+      "title": "데이터 표 · 맵과 표시 모델",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
       "page": 29,
+      "title": "구현 순서 · 승인 후 작업 단위",
+      "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
+    },
+    {
+      "page": 30,
+      "title": "검수표 · 자동 검증과 최종 사용자 승인",
+      "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
+    },
+    {
+      "page": 31,
+      "title": "출처와 해석의 한계",
+      "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
+    },
+    {
+      "page": 32,
       "title": "BUILD 공간 와이어프레임",
       "kind": "text-native 정보 구조 · 실제 게임 화면 아님"
     },
     {
-      "page": 30,
+      "page": 33,
       "title": "RUN 공간 와이어프레임",
       "kind": "text-native 정보 구조 · 실제 게임 화면 아님"
     },
     {
-      "page": 31,
-      "title": "열차 · 승인된 새 가족",
-      "kind": "실제 인게임 소비 예정 자산 · 후보/승인 상태는 캡션 참조"
-    },
-    {
-      "page": 32,
-      "title": "파랑 역 · 승인된 새 가족",
-      "kind": "실제 인게임 소비 예정 자산 · 후보/승인 상태는 캡션 참조"
-    },
-    {
-      "page": 33,
-      "title": "적재 모션 아틀라스",
-      "kind": "실제 인게임 소비 예정 자산 · 후보/승인 상태는 캡션 참조"
-    },
-    {
       "page": 34,
-      "title": "선로 연결 마스터 · 준비 상태",
+      "title": "열차 · 승인된 탑뷰 기준",
       "kind": "실제 인게임 소비 예정 자산 · 후보/승인 상태는 캡션 참조"
     },
     {
       "page": 35,
-      "title": "새 역·화물 가족 · 제작 검사 탈락",
-      "kind": "실제 인게임 소비 예정 자산 · 후보/승인 상태는 캡션 참조"
+      "title": "자산 아틀라스 · 역 · 선로 옆 서비스 오브젝트",
+      "kind": "13개 승인 자산의 색인 / 개별 RGBA PNG / 패킹 시트·새 모션 프레임 아님"
     },
     {
       "page": 36,
+      "title": "자산 아틀라스 · 화물 · 정지와 적재가 같은 윗면",
+      "kind": "13개 승인 자산의 색인 / 개별 RGBA PNG / 패킹 시트·새 모션 프레임 아님"
+    },
+    {
+      "page": 37,
+      "title": "자산 아틀라스 · 장식 · 비상호작용 탑뷰 가족",
+      "kind": "13개 승인 자산의 색인 / 개별 RGBA PNG / 패킹 시트·새 모션 프레임 아님"
+    },
+    {
+      "page": 38,
+      "title": "자산 아틀라스 · 장식 · 비상호작용 탑뷰 가족",
+      "kind": "13개 승인 자산의 색인 / 개별 RGBA PNG / 패킹 시트·새 모션 프레임 아님"
+    },
+    {
+      "page": 39,
       "title": "메인 → 노선집 → 브리핑 · 화면 계약",
       "kind": "text-native 플로우·와이어프레임 보조표 / 기존 씬·consumer 기반"
     },
     {
-      "page": 37,
+      "page": 40,
       "title": "정지 → 결과 → 재시도 · 화면 계약",
       "kind": "text-native 플로우·와이어프레임 보조표 / 기존 씬·consumer 기반"
     },
     {
-      "page": 38,
+      "page": 41,
       "title": "실행 플로우맵 · 판정과 표시 책임",
       "kind": "text-native 플로우·와이어프레임 보조표 / 기존 씬·consumer 기반"
     },
     {
-      "page": 39,
+      "page": 42,
       "title": "스테이지 01 · 역 옆의 선로",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 40,
+      "page": 43,
       "title": "스테이지 02 · 역순 적재",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 41,
+      "page": 44,
       "title": "스테이지 03 · 되돌아오는 화물",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 42,
+      "page": 45,
       "title": "스테이지 04 · 자동 적재 창",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 43,
+      "page": 46,
       "title": "스테이지 05 · 잠긴 분기",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 44,
+      "page": 47,
       "title": "스테이지 06 · 항만 순환선",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 45,
+      "page": 48,
       "title": "스테이지 07 · 숲길 중계",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 46,
+      "page": 49,
       "title": "스테이지 08 · 감속 절개지",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 47,
+      "page": 50,
       "title": "스테이지 09 · 회수선",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 48,
+      "page": 51,
       "title": "스테이지 10 · 깨끗한 회차",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 49,
+      "page": 52,
       "title": "스테이지 11 · 적재 중 분기",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 50,
+      "page": 53,
       "title": "스테이지 12 · 등불 순환선",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 51,
-      "title": "제작 준비 잔여표 · 완료를 과장하지 않는다",
-      "kind": "검토본의 현재 경계 · 전체 구현 준비 완료 아님"
+      "page": 54,
+      "title": "검증 경계 · 승인과 실행을 구분한다",
+      "kind": "현재 탑뷰 통일 범위 / 전체 게임·출시 완료 선언 아님"
     }
-  ]
+  ],
+  "hash_policy": "SHA256_TEXT_MD_PY_JSON_CRLF_TO_LF_BINARY_RAW"
 }

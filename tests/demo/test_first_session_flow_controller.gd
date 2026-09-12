@@ -43,10 +43,14 @@ func run() -> void:
 	var lesson_art := first_session.get_node("BriefingScreen/Panel/Content/LessonArt")
 	assert_true(lesson_art.has_method("asset_paths_for_test"), "lesson art exposes its active asset path")
 	if lesson_art.has_method("asset_paths_for_test"):
-		assert_equal(
-			lesson_art.asset_paths_for_test(),
-			["art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v01.png"],
-			"T1 keeps the neutral lesson hero instead of showing the T2 station-service illustration"
+		var lesson_paths: Array = lesson_art.asset_paths_for_test()
+		assert_true(
+			lesson_paths.has("art/product_assets/topdown_v1/cargo_blue.png"),
+			"T1 uses approved top-down cargo in the neutral lesson composition"
+		)
+		assert_true(
+			lesson_paths.has("art/product_assets/topdown_v1/station_blue.png"),
+			"T1 keeps a neutral top-down station distinct from T2's cardinal-service composition"
 		)
 	assert_equal(
 		(first_session.get_node("BriefingScreen/Panel/Content/Title") as Label).text,
