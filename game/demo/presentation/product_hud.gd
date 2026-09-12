@@ -344,14 +344,26 @@ static func _cargo_name(cargo_type: StringName) -> String:
 
 static func _problem_text(code: StringName) -> String:
 	match code:
+		&"UNREACHABLE_CARGO":
+			return "화물까지 갈 수 없습니다\n표시된 화물 칸을 지나는 선로를 출발점과 연결하세요"
+		&"UNREACHABLE_STATION_SERVICE":
+			return "역 옆까지 갈 수 없습니다\n역의 상하좌우 한 칸에 연결하세요 · 역 위·대각선은 제외"
+		&"DANGLING_EDGE":
+			return "선로 끝이 맞물리지 않습니다\n표시된 선로를 회전하거나 이어 붙이세요"
+		&"PERMANENT_TRAP":
+			return "진행 방향이 막혀 있습니다\n표시된 칸에서 앞으로 나갈 선로를 연결하세요"
 		&"DISCONNECTED", &"UNREACHABLE", &"DISCONNECTED_REQUIRED_POINT":
 			return "연결되지 않은 역 또는 화물이 있습니다"
 		&"MISSING_START", &"START_DISCONNECTED", &"INVALID_START":
-			return "출발 선로를 연결해 주세요"
-		&"INVALID_TRACK", &"INVALID_CROSSING", &"INVALID_SWITCH_EXIT":
+			return "출발 선로가 연결되지 않았습니다\n출발점의 진입 방향에 맞춰 선로를 연결하세요"
+		&"INVALID_CROSSING":
+			return "교차 선로의 연결이 부족합니다\n표시된 교차 칸의 네 방향을 모두 연결하세요"
+		&"INVALID_SWITCH_EXIT":
+			return "분기 선로의 출구가 막혀 있습니다\n표시된 분기의 세 방향과 각 출구 다음 선로를 확인하세요"
+		&"INVALID_TRACK":
 			return "분기·교차 선로의 연결 방향을 확인해 주세요"
 		&"NOT_READY", &"EMPTY_LAYOUT":
-			return "모든 역과 화물을 연결해 주세요"
+			return "아직 배치한 선로가 없습니다\n선로 도구를 선택하고 출발점부터 연결하세요"
 		_:
 			return "노선을 확인해 주세요"
 
