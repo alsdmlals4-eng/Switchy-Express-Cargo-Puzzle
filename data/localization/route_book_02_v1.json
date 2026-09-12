@@ -2,6 +2,12 @@
   "schema_version": 1,
   "locales": ["ko", "en", "ja", "zh-Hans"],
   "strings": {
+    "SX_RB07_CONTEXT": {"ko":"막힌 지형과 역의 상하좌우 한 칸을 먼저 살펴보세요. 두 역에 배송할 나만의 노선을 만들어 보세요.","en":"Check blocked terrain and each station's four orthogonally adjacent cells. Find your own route serving both stations.","ja":"障害地形と駅の上下左右1マスを先に確認しましょう。二駅に届ける自分の経路を考えましょう。","zh-Hans":"先观察障碍地形与车站上下左右相邻的格子。为两座车站设计自己的配送路线。"},
+    "SX_RB08_CONTEXT": {"ko":"화물이 놓인 감속 칸은 지나야 합니다. 다른 감속 칸도 지날지 우회할지 비교해 보세요.","en":"You must reach the cargo on a caution cell. Compare crossing the other caution cell with going around it.","ja":"貨物のある減速マスは通る必要があります。もう一つの減速マスを通るか迂回するか比べましょう。","zh-Hans":"必须经过放有货物的减速格。比较穿过另一个减速格与绕行的选择。"},
+    "SX_RB09_CONTEXT": {"ko":"폐기물이 TOP이면 아래의 일반 화물을 내릴 수 없습니다. 처리장 방문 시점을 생각해 보세요.","en":"Waste on TOP blocks unloading of normal cargo below it. Consider when to visit the disposal yard.","ja":"廃棄物がTOPだと下の通常貨物は降ろせません。処理場を訪れるタイミングを考えましょう。","zh-Hans":"废弃物位于TOP时，下方的普通货物无法卸下。考虑何时前往处理场。"},
+    "SX_RB10_CONTEXT": {"ko":"지나칠 화물과 돌아와 실을 화물을 구분해 보세요. 폐기물도 TOP에 있어야 처리할 수 있습니다.","en":"Distinguish cargo to skip from cargo to collect on your return. Waste must also be on TOP to unload.","ja":"見送る貨物と戻って積む貨物を分けて考えましょう。廃棄物もTOPでなければ降ろせません。","zh-Hans":"区分暂时跳过与回程装载的货物。废弃物也必须位于TOP才能卸下。"},
+    "SX_RB11_CONTEXT": {"ko":"현재 TOP의 목적지를 확인하고 분기를 미리 고르세요. 감속 중에도 점유 잠금 규칙은 같습니다.","en":"Check TOP's destination and choose the branch early. Slowing down does not change the occupied lock.","ja":"TOPの目的地を確認し、早めに分岐を選びましょう。減速中も占有ロックは同じです。","zh-Hans":"确认TOP的目的地并提前选择分支。减速不会改变占用锁定规则。"},
+    "SX_RB12_CONTEXT": {"ko":"일반 화물과 폐기물의 배송 순서를 먼저 정해 보세요. 감속과 재방문까지 포함해 시간을 살펴보세요.","en":"Plan delivery order for normal cargo and waste first. Account for caution cells and return trips.","ja":"通常貨物と廃棄物の配送順を先に考えましょう。減速と再訪問も含めて時間を見ましょう。","zh-Hans":"先规划普通货物与废弃物的配送顺序。把减速和回程也纳入时间考虑。"},
     "SX_RB_STAGE_BOOK": {"ko": "스테이지 북", "en": "Stage Books", "ja": "ステージブック", "zh-Hans": "关卡手册"},
     "SX_RB_SELECT_STAGE": {"ko": "스테이지 선택", "en": "Select a Stage", "ja": "ステージを選ぶ", "zh-Hans": "选择关卡"},
     "SX_RB_SELECT_BOOK": {"ko": "스테이지 북 선택", "en": "Select a Stage Book", "ja": "ステージブックを選ぶ", "zh-Hans": "选择关卡手册"},

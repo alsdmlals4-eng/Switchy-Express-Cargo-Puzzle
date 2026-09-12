@@ -1,5 +1,20 @@
 # Active Context
 
+## 2026-09-13 current stage-thinking improvement loop
+
+PR291 BUILD guidance is merged at 913309def20aad70e6af416a2c158e24766d6989, not pending.
+Current unit: codex/stage-thinking-briefs-20260913; execution/closeout owner is
+evidence/runtime/stage-thinking-20260913/README.md and its current-task PR readback.
+Twelve authored planning briefs now connect actual map concepts to the existing briefing.
+No core, map, time budget, asset, save or provider change. Full Godot: 126 cases /
+15,669 assertions / 0 failures; full Python discovery: 300 passed / 1 skipped; contract PASS.
+Actual 1280x720 Korean briefing and pointer Begin -> RB09 map -> different briefing checked.
+Other physical viewports, human understanding and release NOT_RUN. Native intermittent
+exit remains unresolved. Preserve dirty user imports/settings and read-only PR174/254/281.
+Next improvement loop: measure existing map strategy variety and distinguish optional
+revisit/branch choices from mandatory rules, before proposing any map change.
+Older current/next sections below are historical snapshots, not current execution orders.
+
 ## 2026-09-13 current BUILD guidance unit
 
 PR290 merged at d01454a4f911e9c95314d3b002d6931b4a77c447; BUILD history is complete,
