@@ -5,7 +5,7 @@
 > consistent shell/lesson views, verify actual scenes, then refresh derived Blueprint.
 > Housekeeping handoff completed in PR288; preserve unknown work and user-only deletion policy.
 > Current continuation: approved family + top-down shells + 1280 live evidence + 54-page Blueprint locally verified.
-> Remaining delivery gate: final branch review → required remote checks → normal PR merge/readback.
+> Final branch review through 6027bb4: Ready to merge, no confirmed findings. Delivery/check/merge owner: PR #289.
 > Current evidence owner: evidence/runtime/topdown-family-20260912/review.md. Older incomplete statements below are history.
 
 > Current top-down unification: approved blue roof/lid implementation and overhead pickup motion;

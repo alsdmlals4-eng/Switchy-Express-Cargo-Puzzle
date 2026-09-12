@@ -14,7 +14,9 @@ Godot 122 cases / 15,281 assertions / 0 failures; final Python 273 passed / 1 sk
 Actual 1280x720 programmatic live run: success, failure, pause/resume, Retry/Edit and T2 checked.
 Human Blueprint refreshed to 54 pages with the exact approved 13-object atlas and live captures.
 Evidence owner: evidence/runtime/topdown-family-20260912/review.md.
-Current gate: final whole-branch review → required remote checks → normal merge/readback.
+Whole-branch review through 6027bb4: Ready to merge, no confirmed findings.
+Delivery owner: current-task PR #289; its exact head/check conclusions/merge commit own remote completion.
+No automatic takeover or forced synchronization of the pre-existing dirty local main worktree.
 Final user appearance, small physical viewport and release validation remain separate, NOT_RUN.
 Policy: AGENTS.md and CURRENT_CONFIRMED_DECISIONS.md; no direct deletion or worktree takeover.
 Older USER_DISPOSITION_PENDING wording below is historical after this approval.
