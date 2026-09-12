@@ -7,6 +7,8 @@ evidence/design/topdown-20260911/candidates.json: red/yellow stations and cargo,
 disposal yard, closed waste lid, forest, boulder, timber, waterway, roof-only lantern fence.
 This excludes rejected scenic outputs and superseded open-waste/front-lantern versions.
 Approval is pixel selection, not implementation/runtime completion. Blue pair remains implemented.
+Subsequent approved implementation and exact verification are recorded in ACTIVE_CONTEXT.md
+and evidence/runtime/topdown-family-20260912/review.md; they do not imply final user appearance approval.
 
 User now performs all final file deletion. The assistant inventories and moves verified
 unused/recoverable files into a separate holding folder, records source/destination/hash/reason,

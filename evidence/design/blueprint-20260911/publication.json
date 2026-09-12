@@ -5,7 +5,7 @@
   "page_count": 54,
   "source": "docs\\design\\SWITCHY_BLUEPRINT_REVIEW_20260911.md",
   "source_sha256": "3a558a0db22816c35bb92afdbea33c64f3c6dacf99e8f45376ad5404ee15297c",
-  "generator_sha256": "eac47c8c2adb3ccc26c070530ccb7c5bf9857359c21ee23b9cb7cbd43596f9df",
+  "generator_sha256": "d7cb05a15bdb21dc3c31604e735ddda171abd32e762ab4e33e1cfa81e72bcfb3",
   "runtime_receipt": "evidence/runtime/topdown-family-20260912/receipt.json",
   "runtime_receipt_sha256": "7fffdd495a24841c330d0c6a915fddf34a4d6da4aae148fe882886f22b178adc",
   "assets_and_maps": {
@@ -32,18 +32,18 @@
     "art/product_assets/topdown_v1/decoration_timber_stack.png": "0399663ebd3b046c28ba3ab97ad98a26310daeb294fd29e15a8d0d39adb59be1",
     "art/product_assets/topdown_v1/decoration_waterway.png": "3384d0b1554ae81426380b2faed228c63395e81db5f6b6e9b12a6db672c2e07c",
     "art/product_assets/topdown_v1/decoration_lantern_fence.png": "359c71cca3c786ee2e4e2edcee97d42c017d2062c1cd597639ea5bea84f55c0d",
-    "data/maps/route_book/rb01_service_sidings.json": "f12def5f15fc79fd6db6b0b2becac17a4a53e6f210932807be1773e653c74fdb",
-    "data/maps/route_book/rb02_reverse_order.json": "c7bb2da6a5acf7322b9b58fd412563ece64c754e83f81017c162716f6c4c5f74",
-    "data/maps/route_book/rb03_return_manifest.json": "a04dd910e5b358bc8b8bbbb87f3e0d7257a55a246dbc9b7b3be08f4f913790ad",
-    "data/maps/route_book/rb04_load_window.json": "0ef921136fc223f11091ff9195392738aef3ec62fae4573fbf92454895031888",
-    "data/maps/route_book/rb05_fork_lock.json": "7d6df9c63ebe71b0017ffc83d33dd83fb95a962f2d6e8fe2c16431d81ddfb68c",
-    "data/maps/route_book/rb06_port_circuit.json": "0f5297e598709f0670a6cf9c46a0148e6bd7e6c3905c0c482f0a41e5a005e284",
-    "data/maps/route_book/rb07_forest_relay.json": "ac8d4f96d328b7035462f778a0eb971ac243735ceaf67f6db63d9bed47a760ec",
-    "data/maps/route_book/rb08_caution_cut.json": "9ec47dafa0ff7a3704ecf89ea4913d0017bca39eff2fdc074975e3b623107496",
-    "data/maps/route_book/rb09_salvage_siding.json": "0847103b1fff8b64f9d42337aed00abdc68a072f50b458a8987671180f8eab22",
-    "data/maps/route_book/rb10_clean_break.json": "f09433b80e0b14597f651642a94fdc0fd78375a38f5bdb921bc60c69aa33de54",
-    "data/maps/route_book/rb11_turnout_under_load.json": "aa16b72ac4ca74bdb7b3c4daf3e16124a90b8c94346a1268b2b7126db415cfe2",
-    "data/maps/route_book/rb12_lantern_loop.json": "bc16cdc6c7b757a79cefab387e6f3f5e961935749f02ddeaa59dcfb98e73b6f1"
+    "data/maps/route_book/rb01_service_sidings.json": "67de0c5bcdb9332e80b5a7520f88eb61f14a4b13a256922aec1bb097d1c607fd",
+    "data/maps/route_book/rb02_reverse_order.json": "3751c2d3198614a5cdd9f395788bc6d0c410c052eb78457ed64d85bbeb0cbd04",
+    "data/maps/route_book/rb03_return_manifest.json": "92a0352b3ca242823c32b9de272eb6729a4535925dfa7993690e1f8437de3589",
+    "data/maps/route_book/rb04_load_window.json": "6b5fbe2b1665d0bbc0996298cd32a2461088b1378698c7966d69d3c40a795476",
+    "data/maps/route_book/rb05_fork_lock.json": "f7f201d231f9a31096f4caa4d2b77b2fb40772472272b76e649d95f0f7928e3e",
+    "data/maps/route_book/rb06_port_circuit.json": "895579b7c150727ba994d7aa3bd16f2f7d04b62901afeb69a2b577cc1de009ac",
+    "data/maps/route_book/rb07_forest_relay.json": "e1d3825a816f380f8fc4236967dc2545d2b44fe82e7878775276be343613bb4f",
+    "data/maps/route_book/rb08_caution_cut.json": "1e8a4c2580af32f0aa167a113fe8b7a3ae360af3bd9e15249076788fc8e9f3ed",
+    "data/maps/route_book/rb09_salvage_siding.json": "7e4d0d2d3af63b1e067525517b1e9b7d256edd30787170300b52381ec2e4c212",
+    "data/maps/route_book/rb10_clean_break.json": "4c4cffb0785e2cfc0b49d66bb29893bd55b9852fc8d50c2f17282859f1946bbb",
+    "data/maps/route_book/rb11_turnout_under_load.json": "e94eaabf66438f871f11177e2cac88d7037bc623b0da1ed9ef59964318533454",
+    "data/maps/route_book/rb12_lantern_loop.json": "3e70874a706f96b505be43da740be97fe2c10b33eac35c4470c2e9ba2277b791"
   },
   "pages": [
     {
@@ -316,5 +316,6 @@
       "title": "검증 경계 · 승인과 실행을 구분한다",
       "kind": "현재 탑뷰 통일 범위 / 전체 게임·출시 완료 선언 아님"
     }
-  ]
+  ],
+  "hash_policy": "SHA256_TEXT_MD_PY_JSON_CRLF_TO_LF_BINARY_RAW"
 }

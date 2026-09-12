@@ -10,7 +10,7 @@ Latest user "진행해": resume the approved eleven-object integration, matching
 top-down shell composition, live review and derived Blueprint refresh on
 codex/topdown-family-runtime-20260912. Plan: docs/superpowers/plans/2026-09-12-approved-topdown-family-runtime.md.
 Implementation b44536f / fef77fb / readability correction 0bb8ce4 is locally machine/live verified.
-Godot 122 cases / 15,281 assertions / 0 failures; Python 271 passed / 1 skipped.
+Godot 122 cases / 15,281 assertions / 0 failures; final Python 273 passed / 1 skipped.
 Actual 1280x720 programmatic live run: success, failure, pause/resume, Retry/Edit and T2 checked.
 Human Blueprint refreshed to 54 pages with the exact approved 13-object atlas and live captures.
 Evidence owner: evidence/runtime/topdown-family-20260912/review.md.

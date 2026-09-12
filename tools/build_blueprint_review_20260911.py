@@ -29,7 +29,11 @@ c.setTitle('Switchy Express 사람용 블루프린트 · 탑뷰 구현 검토본
 page_no=0
 records=[]
 used={}
-def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def digest(p):
+ data=p.read_bytes()
+ # Git may check text out as CRLF on Windows; binary asset identity stays exact.
+ if p.suffix in {'.md','.py','.json'}:data=data.replace(b'\r\n',b'\n')
+ return hashlib.sha256(data).hexdigest()
 def start(title,kind='기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도'):
  global page_no
  page_no+=1
@@ -169,5 +173,6 @@ para('검증 수치와 exact source는 연결된 실행 영수증을 따른다. 
 finish();c.save()
 runtime_receipt=ROOT/RUNTIME/'receipt.json'
 receipt={'status':'TOPDOWN_IMPLEMENTATION_REVIEW_FINAL_USER_REVIEW_SEPARATE','pdf':str(OUT.relative_to(ROOT)),'sha256':digest(OUT),'page_count':page_no,'source':str(SOURCE.relative_to(ROOT)),'source_sha256':digest(SOURCE),'generator_sha256':digest(Path(__file__)),'runtime_receipt':str(runtime_receipt.relative_to(ROOT)).replace('\\','/'),'runtime_receipt_sha256':digest(runtime_receipt),'assets_and_maps':used,'pages':records}
+receipt['hash_policy']='SHA256_TEXT_MD_PY_JSON_CRLF_TO_LF_BINARY_RAW'
 (EVIDENCE/'publication.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2),encoding='utf-8')
 print(json.dumps({'pdf':str(OUT),'pages':page_no,'sha256':receipt['sha256']}))
