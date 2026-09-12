@@ -34,6 +34,19 @@ func _run() -> void:
 		if not product.install_layout_for_test(Witness.pieces(&"RB08_CAUTION_CUT")):
 			failures.append("layout")
 		product.request_command_for_test(&"START")
+		product.advance_time(0.05)
+		await process_frame
+		await RenderingServer.frame_post_draw
+		var top := product.get_node("HUD/TopStatus")
+		var phase_label: Label = top.get_node("PhaseLabel")
+		var time_label: Label = top.get_node("TimeLabel")
+		var cost_label: Label = top.get_node("CostLabel")
+		if phase_label.text != copy.text(&"SX_HUD_RUNNING", locale): failures.append("running locale")
+		if time_label.get_global_rect().intersects(cost_label.get_global_rect()): failures.append("time/cost overlap")
+		for node: Control in [phase_label, time_label, cost_label, top.get_node("MenuButton")]:
+			if not root.get_visible_rect().encloses(node.get_global_rect()): failures.append("status outside viewport")
+		var run_path := OUT + locale + "-running.png"
+		if root.get_texture().get_image().save_png(run_path) != OK: failures.append("running capture")
 		for step: int in range(3000):
 			if shell.state() == &"RESULT": break
 			product.advance_time(0.05)
@@ -50,10 +63,11 @@ func _run() -> void:
 		var path := OUT + locale + ".png"
 		if root.get_texture().get_image().save_png(path) != OK: failures.append("capture")
 		samples.append({"locale":locale, "title":title,
+			"running_capture_sha256":FileAccess.get_sha256(run_path),
 			"body":content.get_node("BodyScroll/Body").text,
 			"capture_sha256":FileAccess.get_sha256(path)})
 	var hashes: Dictionary = {}
-	for path: String in ["res://game/demo/demo_flow_controller.gd", "res://data/localization/first_session_v1.json", "res://tests/runtime/route_result_window_runner.gd"]:
+	for path: String in ["res://game/demo/demo_flow_controller.gd", "res://game/demo/presentation/product_hud.gd", "res://data/localization/first_session_v1.json", "res://tests/runtime/route_result_window_runner.gd"]:
 		hashes[path] = FileAccess.get_file_as_string(path).replace("\r\n", "\n").sha256_text()
 	var receipt := {"status":"PASS" if failures.is_empty() else "FAIL", "failures":failures,
 		"scope":"actual Main, authored RB08 route, no pickup input, accelerated simulation; no injected summary",

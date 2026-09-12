@@ -15,6 +15,7 @@ def test_result_runtime_receipt():
     assert [sample["locale"] for sample in receipt["samples"]] == ["ko", "en", "ja", "zh-Hans"]
     for sample in receipt["samples"]:
         assert "108.7" in sample["body"]
+        assert hashlib.sha256((folder / (sample["locale"] + "-running.png")).read_bytes()).hexdigest() == sample["running_capture_sha256"]
         assert hashlib.sha256((folder / (sample["locale"] + ".png")).read_bytes()).hexdigest() == sample["capture_sha256"]
     for path, expected in receipt["source_sha256_lf"].items():
         data = (ROOT / path.removeprefix("res://")).read_bytes().replace(b"\r\n", b"\n")

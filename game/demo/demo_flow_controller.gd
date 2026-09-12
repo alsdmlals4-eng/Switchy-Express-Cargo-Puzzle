@@ -338,6 +338,7 @@ func _ensure_gameplay_instance(map_path: String = "res://data/maps/vs_demo_01.js
 	_gameplay = ProductScene.instantiate()
 	_gameplay.name = "ProductFiniteSlice"
 	_gameplay.map_path = map_path
+	_gameplay.get_node("HUD").locale = first_session_locale
 	if _route_book_active and _route_book_director != null:
 		_gameplay.set_stage_policy(
 			FirstSessionStagePolicyScript.create(_route_book_director.current_stage())

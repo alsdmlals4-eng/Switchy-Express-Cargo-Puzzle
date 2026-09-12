@@ -1,5 +1,8 @@
 # Actual-window preview matrix
 
+Latest HUD-status continuation reran144/3 against merge base dfbb3e4c28a2809e3ebf11d38b8e0f4dcb40996b
+plus recorded working-source hashes. Previous result-truth refresh below is historical.
+
 Current receipt refresh: result-truth unit reran144 combinations/3 Begin checks
 after the flow-controller correction. source_revision3530fbb94add7dc41a1c0a2c4485d4b5f1114f75
 is its merge base; source_hashes bind the actual working delta, not unchanged base

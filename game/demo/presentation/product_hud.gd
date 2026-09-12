@@ -20,8 +20,12 @@ signal menu_requested()
 
 const SemanticAssetCatalogScript := preload("res://game/demo/presentation/semantic_asset_catalog.gd")
 const SemanticRuntimeStateScript := preload("res://game/demo/presentation/semantic_runtime_state.gd")
+const CopyScript := preload("res://game/first_session/first_session_copy.gd")
 
 @export var use_internal_overlays: bool = true
+@export var locale: String = "ko"
+
+var _copy: RefCounted
 
 var _model: Dictionary = {}
 var _catalog: Variant
@@ -31,6 +35,8 @@ var _stage_features: Dictionary = {}
 
 
 func _ready() -> void:
+	_copy = CopyScript.new()
+	_copy.load_default()
 	_catalog = SemanticAssetCatalogScript.new()
 	_catalog.load_default()
 
@@ -82,18 +88,19 @@ func apply_model(model: Dictionary) -> void:
 	(get_node("PausePanel") as Control).visible = is_paused and use_internal_overlays
 	(get_node("ResultPanel") as Control).visible = is_result and use_internal_overlays
 
-	(get_node("TopStatus/PhaseLabel") as Label).text = _phase_text(phase)
-	(get_node("TopStatus/CostLabel") as Label).text = "현재 비용 %d  ·  권장 기준 %d" % [
-		int(_model.get("current_cost", 0)),
-		int(_model.get("recommended_cost", 0)),
-	]
+	(get_node("TopStatus/PhaseLabel") as Label).text = _copy.text(_phase_key(phase), locale)
+	(get_node("TopStatus/MenuButton") as Button).text = _copy.text(&"SX_HUD_MENU", locale)
+	(get_node("TopStatus/CostLabel") as Label).text = _copy.format(&"SX_HUD_COST", {
+		"current": int(_model.get("current_cost", 0)),
+		"reference": int(_model.get("recommended_cost", 0)),
+	}, locale)
 	(get_node("TopStatus/TimeLabel") as Label).text = (
-		"남은 시간 %.1f초 · 미배송 %d" % [
-			float(_model.get("time_remaining", 0.0)),
-			maxi(int(_model.get("remaining_map_cargo", 0)), 0) + maxi(int(_model.get("stack_size", 0)), 0),
-		]
+		_copy.format(&"SX_HUD_TIME", {
+			"time": "%.1f" % float(_model.get("time_remaining", 0.0)),
+			"count": maxi(int(_model.get("remaining_map_cargo", 0)), 0) + maxi(int(_model.get("stack_size", 0)), 0),
+		}, locale)
 		if is_run or is_paused
-		else "노선을 설계하세요"
+		else _copy.text(&"SX_HUD_DESIGN", locale)
 	)
 
 	var start_button := get_node("BuildToolbar/StartButton") as Button
@@ -281,24 +288,24 @@ static func _input_paths(record: Dictionary) -> Array[String]:
 	return result
 
 
-static func _phase_text(phase: StringName) -> String:
+static func _phase_key(phase: StringName) -> StringName:
 	match phase:
 		&"BUILD":
-			return "건설 단계"
+			return &"SX_HUD_BUILD"
 		&"READY":
-			return "출발 준비"
+			return &"SX_HUD_READY"
 		&"RUNNING":
-			return "운행 중"
+			return &"SX_HUD_RUNNING"
 		&"UNLOADING":
-			return "하역 중"
+			return &"SX_HUD_UNLOADING"
 		&"PAUSED":
-			return "일시정지"
+			return &"SX_HUD_PAUSED"
 		&"SUCCESS":
-			return "배송 완료"
+			return &"SX_RESULT_SUCCESS"
 		&"FAILURE":
-			return "배송 실패"
+			return &"SX_HUD_FAILURE"
 		_:
-			return "배송 준비"
+			return &"SX_HUD_PREPARING"
 
 
 static func _failure_body(failure_reason: StringName) -> String:
