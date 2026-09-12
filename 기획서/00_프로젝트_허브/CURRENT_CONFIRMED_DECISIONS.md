@@ -1,5 +1,12 @@
 # Current Confirmed Decisions
 
+## 2026-09-13 delegated HUD language continuity
+
+Current continued improvement request covers existing selected-locale propagation to
+HUD status/time/cost/Menu; existing ko/en/ja/zh-Hans only. Common Copy owner reused.
+No new locale preference system, game mechanics, art or release decision.
+Evidence: evidence/runtime/route-result-20260913/HUD_STATUS_READBACK.md.
+
 ## 2026-09-13 delegated result feedback correction
 
 Current user-authorized continuous loop includes correcting misleading failure

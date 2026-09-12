@@ -1,5 +1,17 @@
 # Active Context
 
+## 2026-09-13 HUD status locale continuation
+
+PR297 merged dfbb3e4c28a2809e3ebf11d38b8e0f4dcb40996b; all5 CI checks and postmerge128/15850 PASS.
+Current unit codex/hud-status-locales-20260913 connects shell locale before HUD ready.
+Top status/time/unresolved cargo/cost/Menu now use existing common four-locale Copy.
+No new language setting or domain mutation. Runtime current receipt refreshed at
+evidence/runtime/route-result-20260913; HUD_STATUS_READBACK.md owns scope/verification.
+Preview144/3 repeated. Human Blueprint source/captures updated together.
+Remaining optional presentation scope: toolbar/manifest/problem text localization;
+native root cause remains deferred with actual prior crash evidence, not fixed.
+No protected PR absorption, Base repin, art promotion or release claim.
+
 ## 2026-09-13 result-truth implementation loop
 
 PR296 actual-window matrix merged3530fbb94add7dc41a1c0a2c4485d4b5f1114f75; five CI checks PASS.

@@ -4,34 +4,39 @@
   "samples": [
     {
       "body": "맵에 남은 화물: 2\n열차에 실린 화물: 0\n경과 시간 6.3초\n남은 시간 108.7초\n건설비 1100\n하역 없음",
-      "capture_sha256": "3f68896225eb9578fe0edbdc871dee176b8a8b1638ecbab69197046551c17482",
+      "capture_sha256": "2e47ed6af4f70f37fa7ed85f89cc7ceaabd63f2fbd26e0f60a4298f7a8347dc1",
       "locale": "ko",
+      "running_capture_sha256": "0d41620feb8187fe220eb700d022ed0d9988bc06f522c96ac9ce9d5993773384",
       "title": "노선이 끝났습니다."
     },
     {
       "body": "Cargo left on map: 2\nCargo on train: 0\nElapsed time: 6.3s\nTime left: 108.7s\nBuild cost: 1100\nUnload groups: None",
-      "capture_sha256": "74d5a6ec7f9755f6fd84043ef9500f627cb4b9dbdf50c545f9ffcfc5cbf05d58",
+      "capture_sha256": "e6da34f3489501cf22fb72f0f7bdc91edb21bb388b08aabf5aab006c6a231f2f",
       "locale": "en",
+      "running_capture_sha256": "ee5b700dc64db18b4b8f3be12f3543bf75adbffbacc22ca1c5fb4d3585efce71",
       "title": "The route ended."
     },
     {
       "body": "マップに残った貨物: 2\n列車上の貨物: 0\n経過時間: 6.3秒\n残り時間: 108.7秒\n建設費: 1100\n荷下ろし: なし",
-      "capture_sha256": "92b3cceb220a3700ad61712ad1a463ba9c2072934df8cf12d3d48c4ff1422aba",
+      "capture_sha256": "04e8bf1b0bb3d38c1f34b12f78cdca89dfc7680d1fbf5acb8a27beb05ab51cef",
       "locale": "ja",
+      "running_capture_sha256": "30a8a04d3c039c5575c85bed2149dbdfb3e7eedb75bc9ce1216ffc7b0ac6844b",
       "title": "線路が途切れました。"
     },
     {
       "body": "地图剩余货物：2\n列车上的货物：0\n已用时间：6.3秒\n剩余时间：108.7秒\n建造费用：1100\n卸货组：无",
-      "capture_sha256": "4ed5f4df7da74c0be96b7844bfc7c8e00e302d886645ae4a37168c532776778d",
+      "capture_sha256": "764d465c7f8ee5dcc78568638ff5cb935abc59753e6476f5f2a60d6db8d827e8",
       "locale": "zh-Hans",
+      "running_capture_sha256": "d1d17144b49f45aa8b7e15dbd4708093bc0db6745f968dcc39c078781e38b0fc",
       "title": "路线已到尽头。"
     }
   ],
   "scope": "actual Main, authored RB08 route, no pickup input, accelerated simulation; no injected summary",
   "source_sha256_lf": {
-    "res://data/localization/first_session_v1.json": "e9c0028cad84b042396b28b631cf5f12887d0830b14ed12dac9bb7a739bc256d",
-    "res://game/demo/demo_flow_controller.gd": "e7e3187a77168c353c3c2d3aefa997950ca47b27508dc1131802d0847aeb9b6d",
-    "res://tests/runtime/route_result_window_runner.gd": "54dfb3e226d7601995fb8821b7984b1505b13e8e29cde6463a9f057e6b8abb43"
+    "res://data/localization/first_session_v1.json": "89fbf9448ea85379aa2f86e24376e872266f0922e52b78d7ef092e7a2c63e315",
+    "res://game/demo/demo_flow_controller.gd": "b37aa7eaf438827283c0ba90d158ebc9d6bf2b9ba60826444c1a34f47246be8c",
+    "res://game/demo/presentation/product_hud.gd": "30f45117572fc2a9e3dd50be283e61d7ab77910ec31a7d2c577e9cb3397c0429",
+    "res://tests/runtime/route_result_window_runner.gd": "4f9b3b10ff1424b0e6418cf67729a5571c43234bfa8990a4fcc55e6096991f1c"
   },
   "status": "PASS",
   "window": "(960, 540)"

@@ -1,5 +1,11 @@
 # Roadmap
 
+> HUD status continuation: existing four languages reach top status/time/cost/Menu.
+> Current runtime/source evidence: route-result-20260913/HUD_STATUS_READBACK.md.
+> Earlier74-page/count references below are historical; publication receipt is current.
+> Optional next localization scope: toolbars, manifest, problem text. Native investigation
+> remains independent and deferred; core/content/release approvals are not invented.
+
 > Current result-truth loop: actual ROUTE_END/TIME_EXPIRED/unknown projections,
 > four-locale metrics and recovery actions; actual no-pickup RB08 runtime verified.
 >74-page Blueprint updated. Prior72-page count below is historical.
