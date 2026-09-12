@@ -6,6 +6,8 @@ signal recommended_layout_requested()
 signal rotate_requested()
 signal remove_requested()
 signal clear_requested()
+signal undo_requested()
+signal redo_requested()
 signal start_requested()
 signal load_active_changed(active: bool)
 signal auto_toggle_requested()
@@ -41,6 +43,8 @@ func _ready() -> void:
 	_connect_button("BuildToolbar/RotateButton", func() -> void: rotate_requested.emit())
 	_connect_button("BuildToolbar/RemoveButton", func() -> void: remove_requested.emit())
 	_connect_button("BuildToolbar/ClearButton", func() -> void: clear_requested.emit())
+	_connect_button("BuildHistory/UndoButton", func() -> void: undo_requested.emit())
+	_connect_button("BuildHistory/RedoButton", func() -> void: redo_requested.emit())
 	_connect_button("BuildToolbar/StartButton", func() -> void: start_requested.emit())
 	_connect_button("RunToolbar/AutoButton", func() -> void: auto_toggle_requested.emit())
 	_connect_button("RunToolbar/PauseButton", func() -> void: pause_requested.emit())
@@ -64,6 +68,14 @@ func apply_model(model: Dictionary) -> void:
 	var is_result: bool = phase == &"SUCCESS" or phase == &"FAILURE"
 
 	(get_node("BuildToolbar") as Control).visible = is_build
+	(get_node("BuildHistory") as Control).visible = is_build
+	(get_node("BuildHistory/UndoButton") as Button).disabled = not is_build or not bool(_model.get("undo_enabled", false))
+	(get_node("BuildHistory/RedoButton") as Button).disabled = not is_build or not bool(_model.get("redo_enabled", false))
+	(get_node("BuildHistory/Status") as Label).text = (
+		"최근 편집 복구 가능" if bool(_model.get("undo_enabled", false))
+		else "취소한 편집 재적용 가능" if bool(_model.get("redo_enabled", false))
+		else "되돌릴 편집이 없습니다"
+	)
 	(get_node("RunToolbar") as Control).visible = is_run or is_paused
 	(get_node("StackPanel") as Control).visible = is_run or is_paused
 	(get_node("ProblemBanner") as Control).visible = is_build and not bool(_model.get("start_enabled", false))
@@ -160,6 +172,7 @@ func reset_stage_visibility() -> void:
 func _apply_stage_visibility_gate() -> void:
 	if not _stage_visibility_active:
 		return
+	(get_node("BuildHistory") as Control).visible = StringName(_model.get("phase", &"BUILD")) == &"BUILD" and _stage_features.has(&"BUILD_HISTORY")
 	_set_stage_visible("BuildToolbar/StraightButton", &"STRAIGHT")
 	_set_stage_visible("BuildToolbar/CurveButton", &"CURVE")
 	_set_stage_visible("BuildToolbar/SwitchButton", &"SWITCH")

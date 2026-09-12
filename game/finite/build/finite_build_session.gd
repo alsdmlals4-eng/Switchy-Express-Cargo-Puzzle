@@ -9,6 +9,7 @@ const PreflightValidatorScript := preload("res://game/finite/build/preflight_val
 const BUILD: StringName = &"BUILD"
 const RUN: StringName = &"RUN"
 const PHASE_LOCKED: StringName = &"PHASE_LOCKED"
+const HISTORY_LIMIT := 128
 
 var _definition: Variant
 var _layout: Variant
@@ -16,6 +17,8 @@ var _editor: Variant
 var _validator: Variant
 var _phase: StringName = BUILD
 var _sealed: Dictionary = {}
+var _undo: Array = []
+var _redo: Array = []
 
 
 func _init(definition: Variant = null) -> void:
@@ -44,31 +47,101 @@ func layout_snapshot() -> Variant:
 func place_piece(piece: Variant) -> Variant:
 	if _phase != BUILD:
 		return _phase_locked([])
-	return _editor.place_piece(piece)
+	var before: Variant = _layout.duplicate_layout()
+	return _record_edit(before, _editor.place_piece(piece))
 
 
 func rotate_piece(cell: Vector2i, delta_quarters: int) -> Variant:
 	if _phase != BUILD:
 		return _phase_locked([cell])
-	return _editor.rotate_piece(cell, delta_quarters)
+	var before: Variant = _layout.duplicate_layout()
+	return _record_edit(before, _editor.rotate_piece(cell, delta_quarters))
 
 
 func replace_piece(piece: Variant) -> Variant:
 	if _phase != BUILD:
 		return _phase_locked(_piece_cells(piece))
-	return _editor.replace_piece(piece)
+	var before: Variant = _layout.duplicate_layout()
+	return _record_edit(before, _editor.replace_piece(piece))
 
 
 func remove_piece(cell: Vector2i) -> Variant:
 	if _phase != BUILD:
 		return _phase_locked([cell])
-	return _editor.remove_piece(cell)
+	var before: Variant = _layout.duplicate_layout()
+	return _record_edit(before, _editor.remove_piece(cell))
 
 
 func clear_layout() -> Variant:
 	if _phase != BUILD:
 		return _phase_locked(_layout_cells())
-	return _editor.clear_layout()
+	var before: Variant = _layout.duplicate_layout()
+	return _record_edit(before, _editor.clear_layout())
+
+
+func can_undo() -> bool:
+	return _phase == BUILD and not _undo.is_empty()
+
+
+func can_redo() -> bool:
+	return _phase == BUILD and not _redo.is_empty()
+
+
+func undo_edit() -> Variant:
+	return _restore_history(_undo, _redo)
+
+
+func redo_edit() -> Variant:
+	return _restore_history(_redo, _undo)
+
+
+func reset_edit_history() -> void:
+	_undo.clear()
+	_redo.clear()
+
+
+func replace_layout(pieces: Array) -> Variant:
+	if _phase != BUILD:
+		return _phase_locked([])
+	var candidate: Variant = TrackLayoutScript.new()
+	var candidate_editor: Variant = TrackLayoutEditorScript.new(_definition, candidate)
+	for piece: Variant in pieces:
+		var result: Variant = candidate_editor.place_piece(piece)
+		if not result.success:
+			return TrackEditResultScript.new(false, result.code, result.message, result.affected_cells, current_cost(), current_cost())
+	var before: Variant = _layout.duplicate_layout()
+	var cells: Array[Vector2i] = _layout_cells()
+	_layout = candidate
+	_editor = candidate_editor
+	for cell: Vector2i in _layout_cells():
+		if not cells.has(cell):
+			cells.append(cell)
+	return _record_edit(before, TrackEditResultScript.new(true, &"PASS", "layout replaced", cells, before.build_cost(), current_cost()))
+
+
+func _record_edit(before: Variant, result: Variant) -> Variant:
+	if result.success and before.layout_signature() != _layout.layout_signature():
+		_undo.append(before)
+		if _undo.size() > HISTORY_LIMIT:
+			_undo.pop_front()
+		_redo.clear()
+	return result
+
+
+func _restore_history(source: Array, destination: Array) -> Variant:
+	if _phase != BUILD:
+		return _phase_locked([])
+	var cost := current_cost()
+	if source.is_empty():
+		return TrackEditResultScript.new(false, &"HISTORY_EMPTY", "no edit history", [], cost, cost)
+	var cells: Array[Vector2i] = _layout_cells()
+	destination.append(_layout.duplicate_layout())
+	_layout = source.pop_back().duplicate_layout()
+	_editor = TrackLayoutEditorScript.new(_definition, _layout)
+	for cell: Vector2i in _layout_cells():
+		if not cells.has(cell):
+			cells.append(cell)
+	return TrackEditResultScript.new(true, &"PASS", "layout restored", cells, cost, current_cost())
 
 
 func begin_run() -> Variant:

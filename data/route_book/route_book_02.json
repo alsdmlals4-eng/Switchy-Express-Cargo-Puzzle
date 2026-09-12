@@ -8,9 +8,9 @@
       "title_key": "SX_RB07_TITLE",
       "objective_key": "SX_RB07_OBJECTIVE",
       "context_key": "",
-      "visible_features": ["BOARD", "BOARD_DECORATION", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
+      "visible_features": ["BOARD", "BOARD_DECORATION", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "BUILD_HISTORY", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
       "allowed_build_tools": ["STRAIGHT", "CURVE", "SWITCH", "CROSSING"],
-      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "UNDO", "REDO", "START"],
       "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "BOARD_CELL", "SWITCH", "PAUSE", "RESUME"]
     },
     {
@@ -19,9 +19,9 @@
       "title_key": "SX_RB08_TITLE",
       "objective_key": "SX_RB08_OBJECTIVE",
       "context_key": "",
-      "visible_features": ["BOARD", "BOARD_DECORATION", "CAUTION_TRACK", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
+      "visible_features": ["BOARD", "BOARD_DECORATION", "CAUTION_TRACK", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "BUILD_HISTORY", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
       "allowed_build_tools": ["STRAIGHT", "CURVE", "SWITCH", "CROSSING"],
-      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "UNDO", "REDO", "START"],
       "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "BOARD_CELL", "SWITCH", "PAUSE", "RESUME"]
     },
     {
@@ -30,9 +30,9 @@
       "title_key": "SX_RB09_TITLE",
       "objective_key": "SX_RB09_OBJECTIVE",
       "context_key": "",
-      "visible_features": ["BOARD", "BOARD_DECORATION", "WASTE_CARGO", "DISPOSAL_YARD", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
+      "visible_features": ["BOARD", "BOARD_DECORATION", "WASTE_CARGO", "DISPOSAL_YARD", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "BUILD_HISTORY", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
       "allowed_build_tools": ["STRAIGHT", "CURVE", "SWITCH", "CROSSING"],
-      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "UNDO", "REDO", "START"],
       "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "BOARD_CELL", "SWITCH", "PAUSE", "RESUME"]
     },
     {
@@ -41,9 +41,9 @@
       "title_key": "SX_RB10_TITLE",
       "objective_key": "SX_RB10_OBJECTIVE",
       "context_key": "",
-      "visible_features": ["BOARD", "BOARD_DECORATION", "CAUTION_TRACK", "WASTE_CARGO", "DISPOSAL_YARD", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
+      "visible_features": ["BOARD", "BOARD_DECORATION", "CAUTION_TRACK", "WASTE_CARGO", "DISPOSAL_YARD", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "BUILD_HISTORY", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
       "allowed_build_tools": ["STRAIGHT", "CURVE", "SWITCH", "CROSSING"],
-      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "UNDO", "REDO", "START"],
       "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "BOARD_CELL", "SWITCH", "PAUSE", "RESUME"]
     },
     {
@@ -52,9 +52,9 @@
       "title_key": "SX_RB11_TITLE",
       "objective_key": "SX_RB11_OBJECTIVE",
       "context_key": "",
-      "visible_features": ["BOARD", "BOARD_DECORATION", "CAUTION_TRACK", "WASTE_CARGO", "DISPOSAL_YARD", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
+      "visible_features": ["BOARD", "BOARD_DECORATION", "CAUTION_TRACK", "WASTE_CARGO", "DISPOSAL_YARD", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "BUILD_HISTORY", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
       "allowed_build_tools": ["STRAIGHT", "CURVE", "SWITCH", "CROSSING"],
-      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "UNDO", "REDO", "START"],
       "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "BOARD_CELL", "SWITCH", "PAUSE", "RESUME"]
     },
     {
@@ -63,9 +63,9 @@
       "title_key": "SX_RB12_TITLE",
       "objective_key": "SX_RB12_OBJECTIVE",
       "context_key": "",
-      "visible_features": ["BOARD", "BOARD_DECORATION", "CAUTION_TRACK", "WASTE_CARGO", "DISPOSAL_YARD", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
+      "visible_features": ["BOARD", "BOARD_DECORATION", "CAUTION_TRACK", "WASTE_CARGO", "DISPOSAL_YARD", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "BUILD_HISTORY", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
       "allowed_build_tools": ["STRAIGHT", "CURVE", "SWITCH", "CROSSING"],
-      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "UNDO", "REDO", "START"],
       "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "BOARD_CELL", "SWITCH", "PAUSE", "RESUME"]
     }
   ]

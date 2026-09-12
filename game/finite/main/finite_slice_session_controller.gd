@@ -98,7 +98,10 @@ func phase() -> StringName:
 
 
 func model() -> Dictionary:
-	return _presenter.model()
+	var result: Dictionary = _presenter.model()
+	result["undo_enabled"] = phase() == &"BUILD" and _build_session != null and _build_session.can_undo()
+	result["redo_enabled"] = phase() == &"BUILD" and _build_session != null and _build_session.can_redo()
+	return result
 
 
 func render_snapshot() -> Dictionary:
@@ -149,19 +152,14 @@ func active_attempt_identity_for_test() -> String:
 	return _run_session.attempt_identity()
 
 
-func replace_layout(pieces: Array) -> bool:
+func replace_layout(pieces: Array, establish_baseline: bool = false) -> bool:
 	if phase() != &"BUILD" or _build_session == null:
 		return false
-	_build_session.clear_layout()
-	for piece: Variant in pieces:
-		var result: Variant = _build_session.place_piece(piece)
-		if result == null or not bool(result.success):
-			_build_session.clear_layout()
-			_selected_geometry = &""
-			_selected_rotation_quarters = 0
-			_selected_cell = NO_CELL
-			_refresh_build_state()
-			return false
+	var result: Variant = _build_session.replace_layout(pieces)
+	if result == null or not result.success:
+		return false
+	if establish_baseline:
+		_build_session.reset_edit_history()
 	_selected_geometry = &""
 	_selected_rotation_quarters = 0
 	_selected_cell = NO_CELL
@@ -193,6 +191,8 @@ func _dispatch_command(command: StringName, payload: Variant) -> void:
 			_handle_remove()
 		&"CLEAR":
 			_handle_clear()
+		&"UNDO", &"REDO":
+			_handle_history(command)
 		&"START":
 			_handle_start()
 		&"LOAD_ACTIVE":
@@ -296,6 +296,16 @@ func _handle_start() -> void:
 	_activate_run_session(result["session"])
 
 
+func _handle_history(command: StringName) -> void:
+	if phase() != &"BUILD" or _build_session == null:
+		return
+	var result: Variant = _build_session.undo_edit() if command == &"UNDO" else _build_session.redo_edit()
+	if not result.success:
+		return
+	_selected_cell = NO_CELL
+	_refresh_build_state()
+
+
 func _activate_run_session(session: Variant) -> void:
 	_run_session = session
 	_delivery_history.clear()
@@ -356,6 +366,7 @@ func _handle_edit_layout() -> void:
 	_build_session = BuildSessionScript.new(_definition)
 	for piece: Variant in preserved_layout.pieces():
 		_build_session.place_piece(piece)
+	_build_session.reset_edit_history()
 	_run_session = null
 	_run_factory = null
 	_selected_geometry = &""
@@ -417,7 +428,7 @@ func _on_delivery_event_created(event: Variant) -> void:
 
 
 func _publish_state() -> void:
-	var current_model: Dictionary = _presenter.model()
+	var current_model: Dictionary = model()
 	_render_snapshot = _build_render_snapshot(current_model)
 	model_changed.emit(current_model.duplicate(true))
 	render_snapshot_changed.emit(_render_snapshot.duplicate(true))

@@ -136,7 +136,7 @@ func install_layout_for_test(pieces: Array) -> bool:
 func apply_first_session_starter_layout(pieces: Array) -> bool:
 	if _stage_policy == null or pieces.is_empty():
 		return false
-	return _controller.replace_layout(pieces)
+	return _controller.replace_layout(pieces, true)
 
 
 func active_attempt_identity_for_test() -> String:
@@ -173,6 +173,8 @@ func _connect_hud() -> void:
 	_hud.rotate_requested.connect(func() -> void: _dispatch_command(&"ROTATE"))
 	_hud.remove_requested.connect(func() -> void: _dispatch_command(&"REMOVE"))
 	_hud.clear_requested.connect(func() -> void: _dispatch_command(&"CLEAR"))
+	_hud.undo_requested.connect(func() -> void: _dispatch_command(&"UNDO"))
+	_hud.redo_requested.connect(func() -> void: _dispatch_command(&"REDO"))
 	_hud.start_requested.connect(func() -> void: _dispatch_command(&"START"))
 	_hud.load_active_changed.connect(
 		func(active: bool) -> void: _dispatch_command(&"LOAD_ACTIVE", active)
@@ -248,6 +250,10 @@ func _dispatch_command(command: StringName, payload: Variant = null) -> void:
 	var layout_changed: bool = _controller.current_layout_signature() != layout_before
 
 	match command:
+		&"UNDO", &"REDO":
+			if layout_changed:
+				_effects.cancel_all()
+				_audio.play_cue(&"button")
 		&"BUILD_TOOL", &"ROTATE", &"CLEAR", &"START", &"AUTO_TOGGLE", &"PAUSE", &"RESUME", &"RETRY_SAME_LAYOUT", &"EDIT_LAYOUT":
 			_audio.play_cue(&"button")
 		&"BOARD_CELL":

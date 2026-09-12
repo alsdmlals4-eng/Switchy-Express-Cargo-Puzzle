@@ -78,6 +78,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event is InputEventKey and event.echo:
 		return
+	if event is InputEventKey:
+		var history: Dictionary = command_for_key_event(event, _phase)
+		if bool(history.get("accepted", false)):
+			command_requested.emit(history["command"], null)
+			get_viewport().set_input_as_handled()
+			return
 
 	for action: StringName in ACTIONS:
 		if not event.is_action(action):
@@ -97,6 +103,19 @@ static func _build_tool_result(
 ) -> Dictionary:
 	if pressed and phase == &"BUILD":
 		return _accepted(&"BUILD_TOOL", geometry)
+	return _rejected()
+
+
+func command_for_key_event(event: InputEventKey, phase: StringName) -> Dictionary:
+	if phase != &"BUILD" or not event.pressed or event.echo or event.alt_pressed:
+		return _rejected()
+	if not event.ctrl_pressed and not event.meta_pressed:
+		return _rejected()
+	var code := event.keycode if event.keycode != KEY_NONE else event.physical_keycode
+	if code == KEY_Z:
+		return _accepted(&"REDO" if event.shift_pressed else &"UNDO")
+	if code == KEY_Y and not event.shift_pressed:
+		return _accepted(&"REDO")
 	return _rejected()
 
 
