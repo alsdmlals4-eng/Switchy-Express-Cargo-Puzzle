@@ -3,7 +3,10 @@
 > 2026-09-12: all eleven selected remaining top-down object/decor images are USER_APPROVED.
 > PR287 blue integration is merged. Next product work: integrate approved eleven, compose
 > consistent shell/lesson views, verify actual scenes, then refresh derived Blueprint.
-> Current housekeeping: safe-file holding folder for user-only deletion; preserve unknown work.
+> Housekeeping handoff completed in PR288; preserve unknown work and user-only deletion policy.
+> Current continuation: approved family + top-down shells + 1280 live evidence + 54-page Blueprint locally verified.
+> Remaining delivery gate: final branch review → required remote checks → normal PR merge/readback.
+> Current evidence owner: evidence/runtime/topdown-family-20260912/review.md. Older incomplete statements below are history.
 
 > Current top-down unification: approved blue roof/lid implementation and overhead pickup motion;
 > retry cancellation correction is machine-tested. PR #287 merged at main f2c8a8f.

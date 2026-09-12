@@ -142,12 +142,20 @@ class TransparentWaysideAssetTests(unittest.TestCase):
                 candidate = candidates[asset_id]
                 self.assertEqual(relative_path, candidate["path"])
                 self.assertEqual(hashlib.sha256(asset_path.read_bytes()).hexdigest(), candidate["sha256"])
-                self.assertEqual("GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON", candidate["visual_role"])
-                self.assertEqual("USER_REVIEW_PENDING", candidate["pixel_review_status"])
-                self.assertEqual(
-                    f"game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[{slot}]",
-                    candidate["runtime_consumer"],
-                )
+                consumer = f"game/demo/presentation/product_board_renderer.gd::PRODUCT_VISUAL_ASSET_PATHS[{slot}]"
+                if slot == "caution_track":
+                    self.assertEqual("GENERATED_CANDIDATE_RUNTIME_CONNECTED_NOT_CANON", candidate["visual_role"])
+                    self.assertEqual("USER_REVIEW_PENDING", candidate["pixel_review_status"])
+                    self.assertEqual(consumer, candidate["runtime_consumer"])
+                else:
+                    self.assertIsNone(candidate["runtime_consumer"], "superseded pixels have no current consumer")
+                    self.assertEqual(consumer, candidate["historical_runtime_consumer"])
+                    self.assertEqual("HISTORICAL_SUPERSEDED_RUNTIME_CANDIDATE_NOT_CANON", candidate["visual_role"])
+                    self.assertEqual("NOT_CURRENT", candidate["runtime_connection_status"])
+                    self.assertEqual("SUPERSEDED_WITHOUT_PIXEL_APPROVAL", candidate["pixel_review_status"])
+                    self.assertEqual("USER_REVIEW_PENDING", candidate["historical_pixel_review_status"])
+                    self.assertEqual(f"art/product_assets/topdown_v1/{slot}.png", candidate["superseded_by_path"])
+                    self.assertTrue((ROOT / candidate["superseded_by_path"]).is_file())
                 current_path = (
                     relative_path
                     if slot == "caution_track"

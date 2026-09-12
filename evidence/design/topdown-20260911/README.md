@@ -5,7 +5,8 @@ Source baseline: 4107517b9fc30eda1458e3bd5a85831482f353de. Core rules unchanged.
 Work mode: approved-contract continuation after user "좋아 그렇게 통일해".
 The blue pair was approved first. On 2026-09-12 the user approved all eleven selected remaining
 object/decor candidates in candidates.json, including the closed waste lid and roof-only lantern.
-Those eleven are USER_APPROVED_IMPLEMENTATION_PENDING; rejected scenic outputs stay rejected.
+All thirteen are now USER_APPROVED_REGISTERED_IMPLEMENTED in source b44536f; rejected scenic
+outputs stay rejected. This registration does not itself prove live rendering or final-user review.
 
 ## Common view contract
 
@@ -37,7 +38,7 @@ Both images generated with built-in image model; no local background-removal or 
 Both measured RGBA 1254x1254, alpha extrema 0..255. Visual view inspection: top faces only.
 Blue pair status: USER_APPROVED_CANON_REGISTERED_IMPLEMENTED; exact approved bytes preserved in
 art/product_assets/topdown_v1/. Runtime and regression receipts are separately recorded below.
-Other eleven sprites: USER_APPROVED_IMPLEMENTATION_PENDING (2026-09-12). Metadata, prompts and exact hashes:
+Other eleven sprites: USER_APPROVED_REGISTERED_IMPLEMENTED (2026-09-12). Metadata, prompts and exact hashes:
 candidates.json. No packed atlas is claimed; these are single-frame sources.
 
 | File | Source generation | SHA-256 |
@@ -89,5 +90,24 @@ not human play testing. Exact captures are not proof of new unimplemented candid
 New overall scene illustrations are reviewed separately; mismatched station footprints/side-view
 props must not enter runtime. Selected slate board, overhead train and connected rail geometry remain.
 Current 51-page PDF predates this top-view instruction and is not full-family implementation proof.
-Next: finish independent review, obtain new-family disposition, integrate approved remainder,
-correct shell scenic/lesson assets, verify actual scale and refresh the derived human PDF.
+Next: integrate the already approved remainder, correct shell scenic/lesson assets,
+verify actual scale and refresh the derived human PDF. Do not repeat the completed pixel approval.
+
+## 2026-09-12 approved-family continuation research
+
+Fresh official CanvasItem and Control documentation was checked for this composition boundary:
+https://docs.godotengine.org/en/stable/classes/class_canvasitem.html
+https://docs.godotengine.org/en/stable/classes/class_control.html
+
+- ADOPT existing Texture2D drawing in the current Control; preserve source pixels, alpha and draw order.
+- ADAPT normalized, aspect-preserving placements to the available shell rectangle; clip decorative
+  overflow and keep mouse input ignored so image composition cannot intercept UI commands.
+- REJECT new scenic generation: already rejected scene candidates changed roof footprints or
+  retained side-view props. Approved texture composition avoids adding a second pixel authority.
+- ADAPT Aseprite selection: static source artwork needs no fabricated animation sheet. Existing
+  single-frame/alpha inspection remains source evidence; motion is position/opacity in Godot.
+
+The engine feasibility boundary is ProductShellArt's existing TITLE/LESSON/RESULT Control API,
+ProductBoardRenderer's thirteen texture slots and CargoPickupAnimation's presentation-only clock.
+No map, domain, progression or save-data migration is required. Verification and final-user
+appearance status will be recorded separately after actual execution.

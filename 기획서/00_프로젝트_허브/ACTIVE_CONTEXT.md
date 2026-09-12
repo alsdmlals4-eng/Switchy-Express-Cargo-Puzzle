@@ -4,8 +4,18 @@
 
 PR287 merged at f2c8a8f8d257bd0636d44437cb282f53deed676b; six remote checks passed.
 The user approved all eleven selected remaining top-down objects/decorations; candidates.json
-owns the exact pixels. Their runtime integration, shell composition and PDF refresh remain open.
-Immediate requested work: consolidate only verified disposable files for user-performed deletion.
+owns the exact pixels. Their runtime integration, shell composition and PDF refresh are locally verified.
+PR288 merged at 2de6bd6; verified disposable files were handed off for user-performed deletion.
+Latest user "진행해": resume the approved eleven-object integration, matching four-type pickup,
+top-down shell composition, live review and derived Blueprint refresh on
+codex/topdown-family-runtime-20260912. Plan: docs/superpowers/plans/2026-09-12-approved-topdown-family-runtime.md.
+Implementation b44536f / fef77fb / readability correction 0bb8ce4 is locally machine/live verified.
+Godot 122 cases / 15,281 assertions / 0 failures; Python 271 passed / 1 skipped.
+Actual 1280x720 programmatic live run: success, failure, pause/resume, Retry/Edit and T2 checked.
+Human Blueprint refreshed to 54 pages with the exact approved 13-object atlas and live captures.
+Evidence owner: evidence/runtime/topdown-family-20260912/review.md.
+Current gate: final whole-branch review → required remote checks → normal merge/readback.
+Final user appearance, small physical viewport and release validation remain separate, NOT_RUN.
 Policy: AGENTS.md and CURRENT_CONFIRMED_DECISIONS.md; no direct deletion or worktree takeover.
 Older USER_DISPOSITION_PENDING wording below is historical after this approval.
 

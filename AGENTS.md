@@ -1,7 +1,8 @@
 # Switchy Express 공용 AI 작업 규칙
 
 > 2026-09-12: user approved all eleven selected remaining top-down object/decor candidates.
-> PR #287 is merged (f2c8a8f); blue pair implemented, remaining eleven implementation pending.
+> PR #287 is merged (f2c8a8f); all thirteen are now locally integrated and machine/live verified.
+> Current top-down family delivery gate and exact evidence: ACTIVE_CONTEXT.md; final PR readback remains separate.
 > Cleanup: never directly delete task files. Verify unused/recoverable status, move only safe
 > files to a separate user-deletion holding folder, keep original-path/hash/reason records,
 > and give the user a link. Preserve active/unknown files and open-PR worktrees.
