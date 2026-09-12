@@ -2,6 +2,12 @@
   "schema_version": 1,
   "locales": ["ko", "en", "ja", "zh-Hans"],
   "strings": {
+    "SX_RB01_CONTEXT": {"ko":"배송 순서와 적재 순서를 함께 생각해 보세요. 화물은 그 칸, 역은 상하좌우 한 칸을 통과합니다.","en":"Compare delivery and loading order. Cross the cargo cell; pass one cell up, right, down, or left of the station.","ja":"配送順と積載順を考えましょう。貨物はそのマス、駅は上下左右1マスを通ります。","zh-Hans":"一起考虑配送与装载顺序。经过货物所在格，或车站上下左右相邻的一格。"},
+    "SX_RB02_CONTEXT": {"ko":"처음 방문할 역에서 내릴 화물은 무엇인가요? 마지막으로 실은 화물이 TOP이 됩니다.","en":"What will you unload at the first station you visit? The last cargo loaded becomes TOP.","ja":"最初に訪れる駅で何を降ろしますか？最後に積んだ貨物がTOPになります。","zh-Hans":"第一次到站时要卸下什么？最后装载的货物会成为TOP。"},
+    "SX_RB03_CONTEXT": {"ko":"지금 싣지 않은 화물을 다시 만날 수 있나요? 돌아올 경로와 그때의 TOP을 함께 생각해 보세요.","en":"Can you revisit cargo you skip now? Consider the return route and what will be on TOP then.","ja":"今は見送る貨物に戻れますか？戻る経路と、その時のTOPを一緒に考えましょう。","zh-Hans":"现在跳过的货物还能再次遇到吗？同时考虑回程路线和届时的TOP。"},
+    "SX_RB04_CONTEXT": {"ko":"같은 종류가 TOP에 연속되면 함께 내립니다. 다른 화물을 싣기 전 자동 적재 상태를 확인하세요.","en":"A matching contiguous TOP group unloads together. Check Auto Load before meeting a different cargo type.","ja":"同じ種類がTOPに連続するとまとめて降ろせます。別の貨物に会う前に自動積載を確認しましょう。","zh-Hans":"TOP上连续的同类货物会一起卸下。遇到不同货物前，检查自动装载状态。"},
+    "SX_RB05_CONTEXT": {"ko":"다음 목적지에 맞는 출구는 어느 쪽인가요? 분기 위에 열차가 있을 때는 바꿀 수 없습니다.","en":"Which exit leads toward your next destination? A switch cannot change while the train occupies it.","ja":"次の目的地に向かう出口はどちらですか？列車が乗っている分岐は切り替えられません。","zh-Hans":"哪个出口通向下一个目的地？列车占用道岔时无法切换。"},
+    "SX_RB06_CONTEXT": {"ko":"세 종류를 어떤 순서로 내릴까요? 배송 순서에서 거꾸로 적재와 분기 계획을 세워 보세요.","en":"In what order will you deliver the three types? Work backward to plan loading and switches.","ja":"三種類をどの順番で届けますか？配送順から逆に積載と分岐を考えましょう。","zh-Hans":"三种货物按什么顺序配送？从配送顺序反推装载与道岔计划。"},
     "SX_RB_STAGE_BOOK": {"ko": "스테이지 북 01", "en": "Stage Book 01", "ja": "ステージブック 01", "zh-Hans": "关卡手册 01"},
     "SX_RB_SELECT_STAGE": {"ko": "스테이지 선택", "en": "Select a Stage", "ja": "ステージを選ぶ", "zh-Hans": "选择关卡"},
     "SX_RB_BACK": {"ko": "타이틀로", "en": "Back to Title", "ja": "タイトルへ", "zh-Hans": "返回标题"},

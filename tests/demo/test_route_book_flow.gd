@@ -44,6 +44,9 @@ func run() -> void:
 		assert_true(demo.select_route_book_stage(&"RB09_SALVAGE_SIDING"), "known card selects Route Book stage")
 	assert_equal(demo.state(), &"BRIEFING", "selected Route Book stage reuses briefing")
 	assert_equal(demo.current_route_book_stage_id_for_test(), &"RB09_SALVAGE_SIDING", "selected stage identity remains exact")
+	var rules := demo.get_node("BriefingScreen/Panel/Content/Rules") as Label
+	var salvage_context := rules.text
+	assert_true(rules.visible and not salvage_context.is_empty(), "salvage planning context is visible")
 	demo.begin_build()
 	assert_equal(demo.state(), &"GAMEPLAY", "Route Book briefing begins gameplay")
 	var product: Control = demo.gameplay_instance()
@@ -71,6 +74,8 @@ func run() -> void:
 		assert_true(demo.open_next_route_book_stage(), "success selects the next fixed stage")
 	assert_equal(demo.state(), &"BRIEFING", "Next Stage returns to the reused briefing")
 	assert_equal(demo.current_route_book_stage_id_for_test(), &"RB10_CLEAN_BREAK", "Next Stage follows declared order")
+	assert_true(rules.visible and not rules.text.is_empty(), "Next Stage exposes planning context")
+	assert_false(rules.text == salvage_context, "Result to Next refreshes planning context")
 	demo.begin_build()
 	demo.show_result({"outcome": &"SUCCESS"})
 	if stage_book != null:

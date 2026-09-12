@@ -1,5 +1,21 @@
 # Core-preserved art and experience replan
 
+## 2026-09-13 stage-thinking content amendment
+
+The user's loop explicitly includes planning/content development, not only bugfixes.
+Research and exact twelve-stage design: ../plans/2026-09-13-stage-thinking-briefs.md.
+Existing empty context keys were the missing connection between authored stage concepts
+and the actual briefing. Reuse those keys and Rules label; avoid another hint system.
+SWOT action: strengthen free-route/LIFO planning (S), address generic stage orientation (W),
+adapt competitor own-solution discovery (O), and avoid copying their mechanics or revealing
+a solver route (T). Expected benefit is clearer planning focus, not proven player enjoyment.
+Review correction: cardinal service is explicit; RB08 separates required cargo on caution
+from optional extra caution traversal. Revisit/branch remain choices, not new win conditions.
+Implementation learning: prove content -> locale -> real screen -> next-state refresh,
+not merely key presence. Regression covers all 48 stage/locale selections, Next and empty clear.
+No Base promotion: this consumer/content fix is project-specific, cross-project utility unproven.
+Remaining design question: quantify alternate valid strategies before changing stage geometry.
+
 ## 2026-09-12 delegated BUILD recovery amendment
 
 Latest user authorizes researched improvements and implementation without routine reapproval.

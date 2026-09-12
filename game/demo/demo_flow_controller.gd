@@ -701,8 +701,8 @@ func _apply_route_book_card() -> void:
 	if objective != null:
 		objective.text = _route_book_copy.text(StringName(stage.get("objective_key", &"")), first_session_locale)
 	if rules != null:
-		rules.text = ""
-		rules.visible = false
+		rules.text = _route_book_copy.text(StringName(stage.get("context_key", &"")), first_session_locale)
+		rules.visible = not rules.text.is_empty()
 	if begin != null:
 		begin.text = _route_book_copy.text(&"SX_RB_BEGIN", first_session_locale)
 

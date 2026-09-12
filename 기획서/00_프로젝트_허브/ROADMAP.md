@@ -1,5 +1,13 @@
 # Roadmap
 
+> Current stage-thinking loop, 2026-09-13: PR291 is merged. Twelve differentiated planning
+> briefs are implemented in four locales using existing context_key/Rules consumers.
+> Delivery evidence: evidence/runtime/stage-thinking-20260913/README.md.
+> Next: map-specific strategy diversity audit (existing witnesses are not unique solutions),
+> native-exit diagnosis, remaining viewport/presentation proof, then updated exact review package.
+> Do not add mandatory revisit/switch use or change maps based only on their stage titles.
+> All older next-action snapshots below are historical. Whole game/release remains incomplete.
+
 > Current 2026-09-13: PR290 BUILD history is merged, not pending. Follow the plan-first
 > BUILD guidance unit in docs/superpowers/plans/2026-09-13-build-guidance.md.
 > Remaining sequence: native-exit investigation / actionable preflight guidance delivery,

@@ -1,5 +1,17 @@
 # Current Confirmed Decisions
 
+## 2026-09-13 benchmark-to-implementation loop clarification
+
+User defines the continuous improvement loop as similar-genre research -> concretize and
+connect our design -> plan before edits -> actual implementation -> machine/live review
+-> correction and reassessment of the next product gap. It is not limited to defect repair.
+Routine scoped technical and content improvements continue without repeated approval.
+Preserve finite core, approved overhead assets, user-only deletion, protected separate PRs,
+asset promotion gates and release boundaries. New core semantics remain user decisions.
+Current bounded application: twelve stage-thinking briefs, owned by
+docs/superpowers/plans/2026-09-13-stage-thinking-briefs.md.
+Research/implementation success does not prove fun, comprehension or final user approval.
+
 ## 2026-09-13 plan-first approved continuation
 
 User requires an implementation/correction plan before edits and approves the recommended
