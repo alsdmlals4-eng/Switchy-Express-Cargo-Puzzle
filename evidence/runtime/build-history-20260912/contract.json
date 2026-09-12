@@ -1,6 +1,7 @@
 {
   "work_level": "L1",
   "verified_product_source": "5ca785228b9e3204e43078169d98d56519d412c2",
+  "closeout_owner": "https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle/pull/290 (exact-head checks, merge and post-merge readback comment; this tracked receipt is the pre-merge snapshot)",
   "base_observed_main": "d830c0f6967678eed3c208ac6b24f9cd1b262ec3",
   "adoption": "Keep v9.4.3 compatibility and current Godot provider; adapt current Base work receipt. Project five-pass review overrides Base two-pass default.",
   "authorization": "2026-09-12 latest user delegates researched implementation and routine improvement decisions without another approval; preserve core and approved topdown assets.",
@@ -32,7 +33,7 @@
       "canon_owner":"docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md",
       "actual_consumers":["game/finite/main/finite_slice_session_controller.gd","game/demo/presentation/product_hud.gd","game/demo/input/desktop_input_adapter.gd"],
       "depends_on":[],"acceptance_criteria":["AC-01"],"required_evidence":["E2_TEST","E3_RUNTIME"],
-      "checklist":[{"id":"AC-01","text":"Exact placement/rotation/replace/remove/clear undo/redo, atomic batch replace, no-op/failed edit preservation, phase and tutorial guards, visible input availability, unchanged core regression","status":"PASS"}],
+      "checklist":[{"id":"AC-01","text":"Exact placement/rotation/replace/remove/clear undo/redo, atomic batch replace, no-op/failed edit preservation, phase and tutorial guards, visible input availability, unchanged core regression","status":"PASS","evidence":["evidence/runtime/build-history-20260912/final-godot.log","evidence/runtime/build-history-20260912/receipt.json"]}],
       "verification":[{"level":"E2_TEST","status":"PASS","evidence":["evidence/runtime/build-history-20260912/final-godot.log"]},{"level":"E3_RUNTIME","status":"PASS","evidence":["evidence/runtime/build-history-20260912/receipt.json"]}],
       "next_action":"Required remote checks, normal merge and exact main readback."
     }]

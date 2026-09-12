@@ -7,6 +7,8 @@ User delegates benchmark-led scoped improvements without routine reapproval. Cur
 BUILD-only Undo/Redo, atomic batch replacement, explicit editable-lesson policy and history UI.
 Execution owner: evidence/runtime/build-history-20260912/contract.json; detailed review/evidence
 in that directory. Design amendment: top section of the existing core-preserved replan spec.
+Delivery and post-merge closeout owner: PR290 (its current state/checks and exact-head readback comment).
+The tracked receipt is deliberately a pre-merge snapshot, not a self-referential final commit claim.
 Base completed main observed d830c0f6967678eed3c208ac6b24f9cd1b262ec3; compatibility v9.4.3
 and adopted Godot provider remain unchanged. Project five-pass review remains stricter than Base.
 Prior family implementation below is historical completed evidence. Open PR174/254/281 are read-only.
