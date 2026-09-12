@@ -1,10 +1,25 @@
 # Development Gates
 
-Last updated: `2026-09-01 KST`
+Last updated: `2026-09-13 KST`
 
 현재 실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 우선한다. 과거 commit/PR/run은 역사 evidence이며 current next action을 자동 정의하지 않는다.
 
-## 0. Current authority
+## 0. Current evidence routing
+
+Current product work follows ACTIVE_CONTEXT.md and the approved finite core.
+September12 thirteen-object topdown family and BUILD history are implemented;
+PR291 BUILD guidance, PR292 twelve localized thinking briefs, PR293 actual-map
+preview, PR294 source-bound72-page Blueprint, and PR295 test-only native trace
+observability are merged. Machine-primary policy remains; no five-person study.
+
+Current window QA locator: evidence/runtime/stage-preview-window-20260913/README.md.
+Actual3 Windows window sizes and144 selections are programmatic runtime evidence,
+not physical-device diversity or human readability approval. The older Candidate010
+only proves its exact earlier bytes; it is not the current topdown build.
+Latest CI artifact linkage and expiry belong to that QA receipt, not a reassigned
+Candidate010 approval. Native0xc0000005 root cause and final user/release gates remain open.
+
+## 0A. Historical September1 authority snapshot
 
 ```yaml
 current_work_instruction: v4.8 · 2026-08-26-r5.4-superset-final · SWITCHY_THIN_ADAPTER

@@ -1,5 +1,18 @@
 # Active Context
 
+## 2026-09-13 current actual-window preview QA
+
+PR295 diagnostics merged500cf5b6208b816a852cab9b984a1a9c93082df7, all5 remote checks PASS.
+Current unit codex/stage-preview-window-20260913: repeatable opt-in standalone Main QA.
+Embedded resize rejection is preserved as FAIL; actual standalone3 window sizes,
+4 locales,12 stages produce144 combinations plus3 synthetic Begin checks with0 findings.
+Receipt: evidence/runtime/stage-preview-window-20260913/receipt.json and README.md.
+Window/locale restoration and selected-source/QA/capture SHA bindings verified.
+Latest CI Windows export is linked without a duplicate207MB local download.
+Native crash root cause remains locally deferred; human final/release/art-promotion
+gates remain separate. No new core/system/image change follows from machine PASS.
+Keep continuous plan-first loop; do not invent arbitrary extra features to fill a queue.
+
 ## 2026-09-13 current native-exit observability loop
 
 PR294 Blueprint merged at ae79bdc64dfc2bb10ab68160b83eb06274911c7e; publication bindings

@@ -62,7 +62,10 @@ overhead motion; scenic main/result art follows the same view, plain UI text rem
 Representative blue station/cargo candidates and complete consumer replacement inventory:
 evidence/design/topdown-20260911/README.md. User subsequently approved the exact blue representative
 pair and directed unification; the pair is registered in art/product_assets/topdown_v1/manifest.json.
-Eleven new family candidates await disposition. Full-family runtime remains incomplete.
+The eleven additional candidates were pending at this historical September11 checkpoint.
+That hold is superseded by September12 user approval and the thirteen-asset registered
+family/runtime evidence in evidence/runtime/topdown-family-20260912/receipt.json.
+Do not re-open the completed family replacement as current unfinished work.
 Pickup uses that same overhead lid with position/opacity; no duplicate-frame atlas or view tilt.
 The previous 51-page PDF is historical with respect to this new view correction.
 
