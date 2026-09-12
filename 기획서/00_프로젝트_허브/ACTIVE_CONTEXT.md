@@ -1,5 +1,20 @@
 # Active Context
 
+## 2026-09-12 BUILD recovery continuation (current)
+
+Source main: 07a04d58c9071fd687e5e2d223354d2d42112adf; PR289 is merged, not pending.
+User delegates benchmark-led scoped improvements without routine reapproval. Current unit:
+BUILD-only Undo/Redo, atomic batch replacement, explicit editable-lesson policy and history UI.
+Execution owner: evidence/runtime/build-history-20260912/contract.json; detailed review/evidence
+in that directory. Design amendment: top section of the existing core-preserved replan spec.
+Delivery and post-merge closeout owner: PR290 (its current state/checks and exact-head readback comment).
+The tracked receipt is deliberately a pre-merge snapshot, not a self-referential final commit claim.
+Base completed main observed d830c0f6967678eed3c208ac6b24f9cd1b262ec3; compatibility v9.4.3
+and adopted Godot provider remain unchanged. Project five-pass review remains stricter than Base.
+Prior family implementation below is historical completed evidence. Open PR174/254/281 are read-only.
+Preserve pre-existing dirty project.godot/imports and local main worktree; no force synchronization.
+Final user appearance, physical-device and release gates remain separate. No new image or core rule.
+
 ## 2026-09-12 current continuation
 
 PR287 merged at f2c8a8f8d257bd0636d44437cb282f53deed676b; six remote checks passed.

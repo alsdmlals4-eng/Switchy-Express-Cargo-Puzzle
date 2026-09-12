@@ -1,5 +1,27 @@
 # Core-preserved art and experience replan
 
+## 2026-09-12 delegated BUILD recovery amendment
+
+Latest user authorizes researched improvements and implementation without routine reapproval.
+This bounded amendment supersedes the older `No ... Undo command assumed` baseline only for BUILD.
+Core deliveries, cost/full refund, map data meaning, RUN movement and topdown art are unchanged.
+Question: can layout experimentation recover mistakes without disclosing answers or rewinding RUN?
+
+- ADAPT Factorio FFF-412 (https://www.factorio.com/blog/post/fff-412): available-history feedback and complete restoration, including connections. Unlike Factorio, each puzzle-piece rotation belongs in history.
+- ADAPT Railbound (https://afterburn.itch.io/railbound): placing/removing/rerouting as finite puzzle iteration, not its tunnels, collision rules or artwork.
+- ADAPT Trainyard FAQ (https://trainyard.ca/solutions/faq): preserve multiple solutions, no solver reveal or new hard cost ceiling.
+- Technical comparison: copied layout history is selected over inverse per-edit commands (more operation-specific restoration failure paths) and Godot UndoRedo callbacks (valid engine facility, but unnecessary callback/lifetime coupling for this small RefCounted domain). Existing TrackLayout copy and editor validation remain owners. https://docs.godotengine.org/en/stable/classes/class_undoredo.html
+- Research checked 2026-09-12. Public product/developer statements are not player testing. A mixed Railbound Google Play review reports completed layouts remaining on revisit; developer replies that Clear Level removes rails. This is a discoverability example, not evidence of prevalence or causal benefit for Switchy.
+- SWOT action: SO preserve free route/LIFO experimentation; WO reduce manual reconstruction; ST preserve own cargo/service rules rather than copy competitor mechanics; WT phase-lock history and cap memory. Undo is usability support, not a new originality claim. Fun improvement remains a hypothesis until final user review.
+
+Contract: successful state-changing place/rotate/replace/remove/clear and batch replacement are atomic history entries. Failed/no-op edits retain redo. A changed edit after Undo replaces the redo branch. Restore geometry, initial switch exit and cost together; recompute preflight after restoration. Copy snapshots at domain boundaries. Keep at most 128 actions (bounded technical default, not UX optimum). No history persistence or save-schema change.
+
+FiniteBuildSession owns history and phase guards; controller dispatches UNDO/REDO and publishes availability; ProductHUD sends intent through existing signals; DesktopInputAdapter maps Ctrl+Z / Ctrl+Shift+Z / Ctrl+Y in BUILD. UI disabled/empty states explain availability. The history bar is separate from the crowded track toolbar. No new bitmap or animation needed.
+Editable lessons expose both commands via explicit content policy; fixed-layout lessons retain their current lock. Starter installation and return from RUN establish a fresh history baseline. Retry preserves sealed layout and never rewinds runtime. Recommended layout replacement is one undoable batch. Invalid batch preserves the previous layout, not a partially replaced board.
+
+Sequence: failing domain/integration/input/UI tests → implementation → five full-scope reviews/corrections → full regression and actual Godot state/visual witness → current owner/derived blueprint readback → normal PR/checks/merge. Execution evidence and progress belong only to `evidence/runtime/build-history-20260912/contract.json` and its evidence directory.
+Acceptance: exact inverse/redo state and cost, failed/no-op and branch boundaries, 128-action bound, locked RUN/fixed lesson, empty baseline after Edit, UI pointer/keyboard parity and no board interception. Rollback is a normal revert of this scoped commit set; no external storage/schema migration. Project-specific learning stays here; no Base promotion without cross-project evidence.
+
 Latest user visual amendment 2026-09-11: all world objects must use strict vertical top view.
 90-degree orthographic/nadir replaces prior mixed oblique station/cargo/decoration appearance.
 Keep core, selected slate board and title identity. Match top-surface IDs, common lighting and

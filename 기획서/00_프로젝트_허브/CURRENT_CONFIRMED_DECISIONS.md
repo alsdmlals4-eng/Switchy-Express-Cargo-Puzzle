@@ -1,5 +1,15 @@
 # Current Confirmed Decisions
 
+## 2026-09-12 delegated improvement loop
+
+Latest user asks for Base fresh-read, benchmarking/practitioner research and implementation
+without routine reapproval. Apply within the existing core and approved topdown direction.
+BUILD recovery is the selected scoped usability amendment; its single design owner is the
+2026-09-12 section of docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md.
+No RUN rewind, solver, scoring change, paid dependency, provider migration or Base repin.
+User-only final deletion policy below is unchanged. Execution status is owned by ACTIVE_CONTEXT
+and evidence/runtime/build-history-20260912/contract.json, not inferred from approval.
+
 ## 2026-09-12 selected top-down family approval and user-only deletion
 
 User "승인" adopts the eleven selected station/cargo/decor images in

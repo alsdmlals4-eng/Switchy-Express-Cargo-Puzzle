@@ -10,9 +10,9 @@
       "objective_key": "SX_T1_OBJECTIVE",
       "context_key": "",
       "share_runtime_with_next": true,
-      "visible_features": ["BOARD", "STRAIGHT", "CURVE", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT"],
+      "visible_features": ["BOARD", "STRAIGHT", "CURVE", "ROTATE", "REMOVE", "CLEAR", "BUILD_HISTORY", "PREFLIGHT"],
       "allowed_build_tools": ["STRAIGHT", "CURVE"],
-      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "UNDO", "REDO"],
       "allowed_run_commands": []
     },
     {
@@ -36,9 +36,9 @@
       "objective_key": "SX_T3_OBJECTIVE",
       "context_key": "SX_T3_TOP_RULE",
       "share_runtime_with_next": false,
-      "visible_features": ["BOARD", "STRAIGHT", "CURVE", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "STACK_TOP"],
+      "visible_features": ["BOARD", "STRAIGHT", "CURVE", "ROTATE", "REMOVE", "CLEAR", "BUILD_HISTORY", "PREFLIGHT", "LOAD", "STACK_TOP"],
       "allowed_build_tools": ["STRAIGHT", "CURVE"],
-      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "UNDO", "REDO", "START"],
       "allowed_run_commands": ["LOAD_ACTIVE", "PAUSE", "RESUME"]
     },
     {
@@ -77,9 +77,9 @@
       "objective_key": "SX_T6_OBJECTIVE",
       "context_key": "SX_T6_PRESET_CUE",
       "share_runtime_with_next": false,
-      "visible_features": ["BOARD", "STRAIGHT", "CURVE", "SWITCH", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE"],
+      "visible_features": ["BOARD", "STRAIGHT", "CURVE", "SWITCH", "ROTATE", "REMOVE", "CLEAR", "BUILD_HISTORY", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE"],
       "allowed_build_tools": ["STRAIGHT", "CURVE", "SWITCH"],
-      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "UNDO", "REDO", "START"],
       "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "BOARD_CELL", "SWITCH", "PAUSE", "RESUME"]
     },
     {
@@ -90,9 +90,9 @@
       "objective_key": "SX_CAPSTONE_OBJECTIVE",
       "context_key": "",
       "share_runtime_with_next": false,
-      "visible_features": ["BOARD", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
+      "visible_features": ["BOARD", "STRAIGHT", "CURVE", "SWITCH", "CROSSING", "ROTATE", "REMOVE", "CLEAR", "BUILD_HISTORY", "PREFLIGHT", "LOAD", "AUTO_LOAD", "STACK_TOP", "SWITCH_STATE", "TIME"],
       "allowed_build_tools": ["STRAIGHT", "CURVE", "SWITCH", "CROSSING"],
-      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "START"],
+      "allowed_build_commands": ["BUILD_TOOL", "BOARD_CELL", "CANCEL_SELECTION", "ROTATE", "REMOVE", "CLEAR", "UNDO", "REDO", "START"],
       "allowed_run_commands": ["LOAD_ACTIVE", "AUTO_TOGGLE", "BOARD_CELL", "SWITCH", "PAUSE", "RESUME"]
     }
   ]

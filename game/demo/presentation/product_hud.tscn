@@ -161,6 +161,41 @@ custom_minimum_size = Vector2(168, 52)
 layout_mode = 2
 text = "운행 시작  Space"
 
+[node name="BuildHistory" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -230.0
+offset_top = 164.0
+offset_right = -24.0
+offset_bottom = 354.0
+grow_horizontal = 0
+theme_override_constants/separation = 8
+mouse_filter = 1
+
+[node name="Heading" type="Label" parent="BuildHistory"]
+layout_mode = 2
+text = "선로 편집 복구"
+
+[node name="UndoButton" type="Button" parent="BuildHistory"]
+custom_minimum_size = Vector2(190, 48)
+layout_mode = 2
+text = "실행 취소  Ctrl+Z"
+tooltip_text = "최근 선로 편집과 건설비를 함께 되돌립니다. 운행 중에는 사용할 수 없습니다."
+disabled = true
+
+[node name="RedoButton" type="Button" parent="BuildHistory"]
+custom_minimum_size = Vector2(190, 48)
+layout_mode = 2
+text = "다시 실행  Ctrl+Y"
+tooltip_text = "취소한 편집을 다시 적용합니다. Ctrl+Shift+Z도 사용할 수 있습니다."
+disabled = true
+
+[node name="Status" type="Label" parent="BuildHistory"]
+layout_mode = 2
+text = "되돌릴 편집이 없습니다"
+autowrap_mode = 2
+
 [node name="RunToolbar" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 12

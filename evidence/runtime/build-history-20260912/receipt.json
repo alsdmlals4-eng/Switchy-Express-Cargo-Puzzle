@@ -1,0 +1,21 @@
+{
+  "checks": [
+    "mouse clear",
+    "mouse undo",
+    "Ctrl Y redo",
+    "Ctrl Z undo",
+    "Ctrl Shift Z redo",
+    "cost and layout restoration",
+    "panel outside board",
+    "RUN keyboard lock",
+    "Edit fresh baseline"
+  ],
+  "device_review": "NOT_RUN",
+  "human_review": "NOT_RUN",
+  "original_cost": 900,
+  "original_layout_signature": "565b311a6cc97804a75039352dc582b5c3cfbef5f9b465779eb845c3a5fbd346",
+  "scope": "actual running Godot main; synthetic mouse and keyboard events; no human play",
+  "stage": "RB01_SERVICE_SIDINGS",
+  "status": "PASS",
+  "viewport": "(1280, 720)"
+}
