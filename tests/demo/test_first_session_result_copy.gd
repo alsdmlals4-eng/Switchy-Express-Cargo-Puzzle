@@ -58,4 +58,11 @@ func run() -> void:
 		&"RUNNING",
 		"retry must create and start a fresh attempt with the same sealed layout",
 	)
+	retry_flow.return_to_title()
+	retry_flow.open_route_book()
+	assert_true(retry_flow.select_route_book(&"ROUTE_BOOK_02"), "open book after locked T2")
+	assert_true(retry_flow.select_route_book_stage(&"RB08_CAUTION_CUT"), "select route stage")
+	retry_flow.begin_build()
+	retry_flow.show_result(summary)
+	assert_true(edit.visible, "Route Book restores Edit after fixed-layout T2 hid it")
 	retry_main.free()

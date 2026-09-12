@@ -1,5 +1,16 @@
 # Current Confirmed Decisions
 
+## 2026-09-13 delegated result feedback correction
+
+Current user-authorized continuous loop includes correcting misleading failure
+feedback without changing finite core. Non-tutorial results read actual summary
+reason/counts/times and existing controller cost/history via common localization.
+Unknown reasons are generic, not assumed time expiry. Tutorial edit restrictions
+remain separate. This is implementation of existing rules, not a new gameplay decision.
+Evidence owner: evidence/runtime/route-result-20260913/README.md.
+Current derived Blueprint74 pages; runtime/machine evidence does not grant human,
+rights, engine-root-cause, or release approval.
+
 ## 2026-09-13 derived Blueprint readback
 
 PR293 actual-map preview is merged853a635b42b97c1452af89d67502e1c634cd3229.

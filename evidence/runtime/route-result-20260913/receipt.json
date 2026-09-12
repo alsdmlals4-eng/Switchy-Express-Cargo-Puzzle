@@ -1,0 +1,38 @@
+{
+  "failures": [],
+  "human_review": "NOT_RUN",
+  "samples": [
+    {
+      "body": "맵에 남은 화물: 2\n열차에 실린 화물: 0\n경과 시간 6.3초\n남은 시간 108.7초\n건설비 1100\n하역 없음",
+      "capture_sha256": "3f68896225eb9578fe0edbdc871dee176b8a8b1638ecbab69197046551c17482",
+      "locale": "ko",
+      "title": "노선이 끝났습니다."
+    },
+    {
+      "body": "Cargo left on map: 2\nCargo on train: 0\nElapsed time: 6.3s\nTime left: 108.7s\nBuild cost: 1100\nUnload groups: None",
+      "capture_sha256": "74d5a6ec7f9755f6fd84043ef9500f627cb4b9dbdf50c545f9ffcfc5cbf05d58",
+      "locale": "en",
+      "title": "The route ended."
+    },
+    {
+      "body": "マップに残った貨物: 2\n列車上の貨物: 0\n経過時間: 6.3秒\n残り時間: 108.7秒\n建設費: 1100\n荷下ろし: なし",
+      "capture_sha256": "92b3cceb220a3700ad61712ad1a463ba9c2072934df8cf12d3d48c4ff1422aba",
+      "locale": "ja",
+      "title": "線路が途切れました。"
+    },
+    {
+      "body": "地图剩余货物：2\n列车上的货物：0\n已用时间：6.3秒\n剩余时间：108.7秒\n建造费用：1100\n卸货组：无",
+      "capture_sha256": "4ed5f4df7da74c0be96b7844bfc7c8e00e302d886645ae4a37168c532776778d",
+      "locale": "zh-Hans",
+      "title": "路线已到尽头。"
+    }
+  ],
+  "scope": "actual Main, authored RB08 route, no pickup input, accelerated simulation; no injected summary",
+  "source_sha256_lf": {
+    "res://data/localization/first_session_v1.json": "e9c0028cad84b042396b28b631cf5f12887d0830b14ed12dac9bb7a739bc256d",
+    "res://game/demo/demo_flow_controller.gd": "e7e3187a77168c353c3c2d3aefa997950ca47b27508dc1131802d0847aeb9b6d",
+    "res://tests/runtime/route_result_window_runner.gd": "54dfb3e226d7601995fb8821b7984b1505b13e8e29cde6463a9f057e6b8abb43"
+  },
+  "status": "PASS",
+  "window": "(960, 540)"
+}

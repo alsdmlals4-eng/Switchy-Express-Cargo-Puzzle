@@ -1,5 +1,11 @@
 # Actual-window preview matrix
 
+Current receipt refresh: result-truth unit reran144 combinations/3 Begin checks
+after the flow-controller correction. source_revision3530fbb94add7dc41a1c0a2c4485d4b5f1114f75
+is its merge base; source_hashes bind the actual working delta, not unchanged base
+bytes. See ../route-result-20260913/README.md. The original execution/package
+paragraphs below are preserved historical evidence for PR296, not current product export.
+
 Plan: docs/superpowers/plans/2026-09-13-stage-preview-window-matrix.md.
 Product source500cf5b6208b816a852cab9b984a1a9c93082df7; no product changes in this unit.
 receipt.json binds exact QA scripts, current scene/controller/renderer,

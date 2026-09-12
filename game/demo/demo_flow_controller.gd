@@ -496,16 +496,48 @@ func _update_result_copy(summary: Variant) -> void:
 			if event != null and int(event.unload_count) > 0:
 				unload_groups.append(str(int(event.unload_count)))
 
-	title.text = "배송 완료" if success else "배송 실패"
-	body.text = "%s\n완료 시간 %.1f초\n남은 시간 %.1f초\n건설비 %d\n하역 %s" % [
-		"모든 화물을 제한 시간 안에 배송했습니다."
-		if success
-		else "제한 시간이 종료되었습니다. 노선과 화물 TOP을 다시 확인하세요.",
-		completion_time,
-		remaining_time,
-		final_cost,
-		" → ".join(unload_groups) if not unload_groups.is_empty() else "없음",
-	]
+	var copy: RefCounted = _first_session_copy
+	if copy == null:
+		copy = FirstSessionCopyScript.new()
+		if not copy.load_default():
+			title.text = "RESULT_COPY_UNAVAILABLE"
+			body.text = ""
+			return
+	var title_key: StringName = &"SX_RESULT_SUCCESS"
+	if not success:
+		match StringName(_summary_value(summary, &"failure_reason", &"")):
+			&"ROUTE_END": title_key = &"SX_RESULT_ROUTE_END"
+			&"TIME_EXPIRED": title_key = &"SX_RESULT_TIME_EXPIRED"
+			_: title_key = &"SX_RESULT_FAILURE"
+	title.text = copy.text(title_key, first_session_locale)
+	var lines: Array[String] = []
+	if success:
+		lines.append(copy.text(&"SX_RESULT_OTHER_SOLUTION", first_session_locale))
+	else:
+		lines.append(copy.format(&"SX_RESULT_MAP_CARGO", {
+			"count": maxi(int(_summary_value(summary, &"remaining_map_cargo", 0)), 0)
+		}, first_session_locale))
+		lines.append(copy.format(&"SX_RESULT_STACK_CARGO", {
+			"count": maxi(int(_summary_value(summary, &"stack_size", 0)), 0)
+		}, first_session_locale))
+	lines.append(copy.format(&"SX_RESULT_ELAPSED", {"value": "%.1f" % completion_time}, first_session_locale))
+	lines.append(copy.format(&"SX_RESULT_TIME_LEFT", {"value": "%.1f" % remaining_time}, first_session_locale))
+	lines.append(copy.format(&"SX_RESULT_BUILD_COST", {"value": final_cost}, first_session_locale))
+	lines.append(copy.format(&"SX_RESULT_UNLOAD_GROUPS", {
+		"value": " → ".join(unload_groups) if not unload_groups.is_empty()
+		else copy.text(&"SX_RESULT_NONE", first_session_locale)
+	}, first_session_locale))
+	body.text = "\n".join(lines)
+	var retry := get_node_or_null("ResultOverlay/Panel/Content/Actions/RetryButton") as Button
+	var edit := get_node_or_null("ResultOverlay/Panel/Content/Actions/EditButton") as Button
+	var title_button := get_node_or_null("ResultOverlay/Panel/Content/Actions/TitleButton") as Button
+	if title_button != null:
+		title_button.text = copy.text(&"SX_RESULT_TITLE", first_session_locale)
+	if retry != null:
+		retry.text = copy.text(&"SX_RESULT_RETRY", first_session_locale)
+	if edit != null:
+		edit.text = copy.text(&"SX_RESULT_EDIT", first_session_locale)
+		edit.visible = true
 
 
 func _update_route_book_result_actions(outcome: StringName) -> void:

@@ -1,5 +1,21 @@
 # Active Context
 
+## 2026-09-13 result-truth implementation loop
+
+PR296 actual-window matrix merged3530fbb94add7dc41a1c0a2c4485d4b5f1114f75; five CI checks PASS.
+Current branch codex/route-book-result-truth-20260913 corrects the non-tutorial
+result's false time-expiry text and localizes reason/metrics/Retry/Edit/Title in4 locales.
+Actual no-pickup RB08 at960x540 reaches ROUTE_END with108.7 seconds remaining,
+four captures/source bindings: evidence/runtime/route-result-20260913/receipt.json.
+Tutorial fixed-layout Edit lock remains; transition back to Route Book restores Edit.
+Preview144 combinations/3 pointer checks rerun on current source hashes.
+Blueprint now74 pages including actual result and rule explanation.
+Native0xc0000005 recurred before responsive `product attached`; the last marker is
+before definition load/instantiate/policy, not a proven crash line. Local crash dumps
+exist; matching debugger/symbol analysis has NOT_RUN. No native fix claimed.
+Next safe scope: background gameplay HUD locale coverage and diagnostic isolation;
+do not expand core or revive protected feature drafts. Human/release remain separate.
+
 ## 2026-09-13 current actual-window preview QA
 
 PR295 diagnostics merged500cf5b6208b816a852cab9b984a1a9c93082df7, all5 remote checks PASS.

@@ -1,5 +1,11 @@
 # Roadmap
 
+> Current result-truth loop: actual ROUTE_END/TIME_EXPIRED/unknown projections,
+> four-locale metrics and recovery actions; actual no-pickup RB08 runtime verified.
+>74-page Blueprint updated. Prior72-page count below is historical.
+> Remaining safe work: background gameplay HUD localization and native isolation.
+> No final human/release completion or arbitrary content expansion implied.
+
 > Actual-window preview QA:144 combinations and3 synthetic Begin checks PASS at
 > three accepted physical sizes; identical1920x1080 logical viewport is explicit.
 > Existing Windows CI artifact linked; no package execution/human/release claim.
