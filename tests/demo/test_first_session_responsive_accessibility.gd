@@ -16,6 +16,7 @@ const VIEWPORT_SIZES: Array[Vector2] = [
 
 
 func run() -> void:
+	_trace("product instantiate")
 	var definition: Variant = DefinitionScript.load_from_path(
 		"res://data/first_session/first_session_v1.json"
 	)
@@ -23,6 +24,7 @@ func run() -> void:
 	product.set_stage_policy(PolicyScript.create(definition.lesson(&"T4")))
 	var tree := Engine.get_main_loop() as SceneTree
 	tree.root.add_child(product)
+	_trace("product attached")
 	var hud := product.get_node("HUD")
 	assert_equal(
 		(hud.get_node("ProblemBanner") as PanelContainer).theme_type_variation,
@@ -48,6 +50,7 @@ func run() -> void:
 	)
 
 	product.set_stage_policy(PolicyScript.create(definition.lesson(&"T5")))
+	_trace("T5 policy applied")
 	hud.apply_model(running)
 	assert_true(hud.get_node("RunToolbar/AutoButton").visible, "Auto appears at T5")
 	assert_false(hud.get_node("TopStatus/TimeLabel").visible, "timer stays hidden before capstone")
@@ -61,6 +64,7 @@ func run() -> void:
 	product.set_stage_policy(PolicyScript.create(definition.lesson(&"CAPSTONE")))
 	assert_true(hud.get_node("TopStatus/TimeLabel").visible, "capstone exposes timer")
 	product.set_stage_policy(null)
+	_trace("policy removal applied")
 	assert_true(
 		hud.get_node("BuildToolbar/RecommendButton").visible,
 		"removing the tutorial policy must restore the standalone product HUD",
@@ -86,14 +90,17 @@ func run() -> void:
 	assert_equal(descriptor.get("shape"), &"STAR", "cargo identity includes non-color shape")
 	assert_false(str(descriptor.get("label", "")).is_empty(), "cargo identity includes text label")
 	product.free()
+	_trace("product freed")
 
 	_run_layout_and_result_action_matrix(definition, tree)
 
 
 func _run_layout_and_result_action_matrix(definition: Variant, tree: SceneTree) -> void:
 	for viewport_size: Vector2 in VIEWPORT_SIZES:
+		_trace("matrix %s instantiate" % viewport_size)
 		var main: Control = MainScene.instantiate()
 		tree.root.add_child(main)
+		_trace("matrix %s attached" % viewport_size)
 		main.set_anchors_preset(Control.PRESET_TOP_LEFT)
 		main.position = Vector2.ZERO
 		main.size = viewport_size
@@ -104,6 +111,7 @@ func _run_layout_and_result_action_matrix(definition: Variant, tree: SceneTree) 
 		assert_equal(flow.size, viewport_size, "shell accepts logical size %s" % viewport_size)
 		flow.start_demo()
 		flow.begin_build()
+		_trace("matrix %s began build" % viewport_size)
 		var matrix_product: Control = flow.gameplay_instance()
 		matrix_product.set_stage_policy(PolicyScript.create(definition.lesson(&"T4")))
 		var matrix_hud: Control = matrix_product.get_node("HUD")
@@ -112,6 +120,7 @@ func _run_layout_and_result_action_matrix(definition: Variant, tree: SceneTree) 
 		running["stack_tokens"] = [{"cargo_type": &"RED_STAR", "top": true}]
 		matrix_hud.apply_model(running)
 		_force_layout(main)
+		_trace("matrix %s gameplay layout complete" % viewport_size)
 
 		var root_rect := Rect2(Vector2.ZERO, viewport_size)
 		for path: NodePath in [
@@ -142,7 +151,9 @@ func _run_layout_and_result_action_matrix(definition: Variant, tree: SceneTree) 
 			&"FAILURE", 18.0, -1.0, 90.0, 2, 1, &"ROUTE_END"
 		)
 		flow.show_result(summary)
+		_trace("matrix %s result shown" % viewport_size)
 		_force_layout(main)
+		_trace("matrix %s result layout complete" % viewport_size)
 		var result_panel := flow.get_node("ResultOverlay/Panel") as Control
 		assert_true(
 			_rect_inside(root_rect, result_panel.get_global_rect()),
@@ -171,11 +182,19 @@ func _run_layout_and_result_action_matrix(definition: Variant, tree: SceneTree) 
 			)
 
 		retry.pressed.emit()
+		_trace("matrix %s retry complete" % viewport_size)
 		assert_equal(flow.state(), &"GAMEPLAY", "Retry works at %s" % viewport_size)
 		flow.show_result(summary)
 		edit.pressed.emit()
+		_trace("matrix %s edit complete" % viewport_size)
 		assert_equal(flow.state(), &"GAMEPLAY", "Edit works at %s" % viewport_size)
 		main.free()
+		_trace("matrix %s freed" % viewport_size)
+
+
+func _trace(phase: String) -> void:
+	if OS.get_environment("SWITCHY_TEST_TRACE") == "1":
+		print("TEST TRACE RESPONSIVE: %s" % phase)
 
 
 func _buttons(node: Node) -> Array[Button]:

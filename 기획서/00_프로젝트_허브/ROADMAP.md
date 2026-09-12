@@ -1,5 +1,10 @@
 # Roadmap
 
+> Native diagnosis: opt-in full-run and responsive phase traces implemented;
+> two traced and one default full run pass127/15701, native cause still unresolved.
+> Preserve failing invocation and collect the last boundary on recurrence.
+> Next independent safe work: actual-window/locale preview matrix and package linkage.
+
 > Current: PR293 actual-map previews merged853a635. The72-page Blueprint synchronization
 > binds actual context strings and current preview captures; five-pass source review completed.
 > Post-merge native full-run exit0xc0000005 remains unresolved; next implementation unit adds

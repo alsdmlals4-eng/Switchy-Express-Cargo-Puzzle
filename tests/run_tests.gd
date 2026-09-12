@@ -145,8 +145,12 @@ func _run_all() -> void:
 	var assertion_total: int = 0
 
 	for test_script: Script in TEST_SCRIPTS:
+		if OS.get_environment("SWITCHY_TEST_TRACE") == "1":
+			print("TEST TRACE BEGIN: %s" % test_script.resource_path)
 		var test_case: RefCounted = test_script.new()
 		test_case.run()
+		if OS.get_environment("SWITCHY_TEST_TRACE") == "1":
+			print("TEST TRACE END: %s" % test_script.resource_path)
 		assertion_total += test_case.assertion_count
 		if test_case.passed():
 			print("PASS: %s (%d assertions)" % [test_script.resource_path, test_case.assertion_count])

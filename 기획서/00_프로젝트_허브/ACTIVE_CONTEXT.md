@@ -1,5 +1,17 @@
 # Active Context
 
+## 2026-09-13 current native-exit observability loop
+
+PR294 Blueprint merged at ae79bdc64dfc2bb10ab68160b83eb06274911c7e; publication bindings
+rechecked on merged bytes. Current unit codex/native-exit-trace-20260913 adds opt-in
+test-only phase logs, with no assertion/order/runtime changes.
+Receipt: evidence/validation/native-exit-20260913/README.md. Two enabled full invocations
+and one default invocation pass127/15701;127 BEGIN/END pairs enabled and0 disabled.
+The prior0xc0000005 failure remains unresolved. Trace affects timing and is not a fix.
+Matching native debug evidence is not available; no speculative lifecycle/provider patch.
+Next safe task: reproducible actual-window/locale preview matrix and final package linkage.
+Continue delegated work without routine approval; preserve core/assets/otherPRs/user changes.
+
 ## 2026-09-13 current Blueprint synchronization and native-exit investigation
 
 PR293 is merged at 853a635b42b97c1452af89d67502e1c634cd3229; preview product delta is on main.
