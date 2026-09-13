@@ -1,0 +1,61 @@
+{
+	"assertions": 56,
+	"engine": "4.7.1-stable (official)",
+	"failures": [],
+	"human_audio_review": "NOT_RUN",
+	"samples": [
+		{
+			"cue": "button",
+			"frames": 12288,
+			"peak": 0.0277843475341797,
+			"still_playing": false
+		},
+		{
+			"cue": "build",
+			"frames": 24576,
+			"peak": 0.033201988786459,
+			"still_playing": false
+		},
+		{
+			"cue": "remove",
+			"frames": 24576,
+			"peak": 0.0308400597423315,
+			"still_playing": false
+		},
+		{
+			"cue": "switch",
+			"frames": 24576,
+			"peak": 0.0303706750273705,
+			"still_playing": false
+		},
+		{
+			"cue": "pickup",
+			"frames": 24576,
+			"peak": 0.0283312797546387,
+			"still_playing": false
+		},
+		{
+			"cue": "unload",
+			"frames": 22016,
+			"peak": 0.0338387526571751,
+			"still_playing": false
+		},
+		{
+			"cue": "success",
+			"frames": 20480,
+			"peak": 0.0393041223287582,
+			"still_playing": false
+		},
+		{
+			"cue": "failure",
+			"frames": 24576,
+			"peak": 0.0365882031619549,
+			"still_playing": false
+		}
+	],
+	"source_sha256_lf": {
+		"res://game/demo/audio/demo_audio_director.gd": "e3eff7fa805d1a88b05eb1a494e801980fb46c29f3ecec9f8f91f49a955dcd7a",
+		"res://tests/demo/test_demo_audio_director.gd": "035f69de03ac0f6d486a9d676e231f5b89b263d66243f0fd1a3c8af22c8e8646",
+		"res://tests/runtime/audio_cue_capture_runner.gd": "ee8d88ffd619f34bcf3fedd36d5066848201542f0cfb8d640c095841586ebd52"
+	}
+}

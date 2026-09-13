@@ -45,6 +45,7 @@ func run() -> void:
 		assert_true(stream is AudioStreamGenerator, "%s cue must be generated in engine" % cue)
 		audio.play_cue(cue)
 		assert_equal(audio.last_cue_for_test(), cue, "audio director records the requested cue")
+		assert_true(audio.get_node("OneShotPlayer").playing, "%s queued samples remain playing after generation" % cue)
 
 	audio.set_train_loop_active(true)
 	assert_true(audio.train_loop_active_for_test(), "train loop becomes active")
@@ -59,6 +60,7 @@ func run() -> void:
 	assert_equal(controller.current_summary(), summary_before, "audio cannot create a result")
 
 	audio.stop_all()
+	assert_false(audio.get_node("OneShotPlayer").playing, "stop_all genuinely stops queued one-shot playback")
 	assert_false(audio.train_loop_active_for_test(), "stop_all stops train loop")
 	assert_equal(audio.last_cue_for_test(), &"", "stop_all clears one-shot cue state")
 	assert_equal(controller.model(), model_before, "stopping audio cannot mutate domain state")

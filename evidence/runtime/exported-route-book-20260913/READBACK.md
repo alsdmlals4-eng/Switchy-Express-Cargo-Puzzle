@@ -61,6 +61,11 @@ The failed CI run remains visible; fresh exact-head export evidence is required.
 
 ## Cleanup and remaining work
 
+Final PR301 head57d31dc136123a47db7e717ce133bb65ff6d118e: five checks SUCCESS.
+Export run34729215777 reports ROUTE_BOOK_PACK_PROOF PASS books=2 stages=12
+build_entries=12 for both Windows and Android proof packs. Normal merge readback:
+main5128ac5e4dc073814a0b3acd9b2a456dcba886ad. Earlier pending statements are history.
+
 Five completed proof-only artifacts moved, not deleted, to
 C:/Users/user/Downloads/Switchy_User_Delete_Review/20260913-package-verification-extras.
 Its manifest retains original/holding paths, hashes, sizes and restoration instructions.

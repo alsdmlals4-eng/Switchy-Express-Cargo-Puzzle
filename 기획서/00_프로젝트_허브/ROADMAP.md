@@ -14,8 +14,14 @@ Current owner: ACTIVE_CONTEXT.md. Historical snapshots below do not reopen compl
    Focused same-process tutorial repetitions now reproduce it; diagnostic receipt owns evidence.
 4. Current exact executable: package startup, approved asset consumers, progression/save/ending audit.
    PR299 EXE startup and actual PCK2books/12BUILD entries verified; new permanent
-   verifier CI/readback pending. No all-stage gameplay or native reliability claim.
+   verifier PR301 merged5128ac5, Windows+Android proof CI PASS. No all-stage gameplay
+   or native reliability claim. Refresh package after audio product changes.
 5. Final user-review handoff. Human translation/UX/rights/public release remain separate.
+
+Existing audio feedback audit: queued eight cues were stopped immediately after
+generation; local drain fix129/16048 and live run11 PASS, exact CI/merge next.
+Tutorial success transition still releases its product-owned cue: fix lifecycle next.
+Dedicated audio output capture is not human listening or full downstream waveform proof.
 
 Audit correction: persistent save/unlock is excluded by SX-DEC-067, not unfinished work.
 Stage witnesses currently default4.0 versus product2.0 (RB08 already2.0); verify at

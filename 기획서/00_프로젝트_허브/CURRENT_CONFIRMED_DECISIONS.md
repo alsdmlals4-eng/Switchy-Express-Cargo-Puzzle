@@ -1,5 +1,12 @@
 # Current Confirmed Decisions
 
+## 2026-09-13 existing audio feedback repair
+
+Delegated completion authority includes fixing canceled existing procedural cues and
+their tutorial-transition consumer lifecycle. Preserve cue settings, volumes, pause
+policy, finite rules, assets and engine pin. Generated-bus output can be machine
+verified; perceptual approval and Windows native reliability remain separate.
+
 ## 2026-09-13 whole-game completion continuation
 
 User asks to continue until the whole game is complete. Reuse delegated plan-first
