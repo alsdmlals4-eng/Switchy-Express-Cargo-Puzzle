@@ -1,0 +1,17 @@
+Godot Engine v4.7.1.stable.official.a13da4feb - https://godotengine.org
+
+[godot_ai game_helper] registered mcp capture (debugger active=false, logger=true)
+RB08 STRATEGY at product speed 2.0: direct cost=1100 elapsed=7.74454545454544; detour cost=1300 elapsed=7.1081818181818; author witnesses only
+PRODUCT_SPEED_STAGE: {"base_speed":2.0,"phase":"SUCCESS","stage":"RB01"}
+PRODUCT_SPEED_STAGE: {"base_speed":2.0,"phase":"SUCCESS","stage":"RB02"}
+PRODUCT_SPEED_STAGE: {"base_speed":2.0,"phase":"SUCCESS","stage":"RB03"}
+PRODUCT_SPEED_STAGE: {"base_speed":2.0,"phase":"SUCCESS","stage":"RB04"}
+PRODUCT_SPEED_STAGE: {"base_speed":2.0,"phase":"SUCCESS","stage":"RB05"}
+PRODUCT_SPEED_STAGE: {"base_speed":2.0,"phase":"SUCCESS","stage":"RB06"}
+PRODUCT_SPEED_STAGE: {"base_speed":2.0,"phase":"SUCCESS","stage":"RB07"}
+PRODUCT_SPEED_STAGE: {"base_speed":2.0,"phase":"SUCCESS","stage":"RB08"}
+PRODUCT_SPEED_STAGE: {"base_speed":2.0,"phase":"SUCCESS","stage":"RB09"}
+PRODUCT_SPEED_STAGE: {"base_speed":2.0,"phase":"SUCCESS","stage":"RB10"}
+PRODUCT_SPEED_STAGE: {"base_speed":2.0,"phase":"SUCCESS","stage":"RB11"}
+PRODUCT_SPEED_STAGE: {"base_speed":2.0,"phase":"SUCCESS","stage":"RB12"}
+PRODUCT_SPEED_WITNESS: PASS assertions=131
