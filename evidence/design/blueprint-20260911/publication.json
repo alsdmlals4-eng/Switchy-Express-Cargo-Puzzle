@@ -5,7 +5,7 @@
   "page_count": 77,
   "source": "docs\\design\\SWITCHY_BLUEPRINT_REVIEW_20260911.md",
   "source_sha256": "fc24867f5586dd94611babcb394a7b8af7796cacb97021419b8ed283cada90ae",
-  "generator_sha256": "e2e67833e71c34eb8dd6f3aa016c760e20d371ed172f7915f1a241b9caeb3a09",
+  "generator_sha256": "7b2eacd25b26f1a76860eb050a5cc9d410422cac72b8c60697e88ac5a93abc96",
   "runtime_receipt": "evidence/runtime/topdown-family-20260912/receipt.json",
   "runtime_receipt_sha256": "7fffdd495a24841c330d0c6a915fddf34a4d6da4aae148fe882886f22b178adc",
   "assets_and_maps": {

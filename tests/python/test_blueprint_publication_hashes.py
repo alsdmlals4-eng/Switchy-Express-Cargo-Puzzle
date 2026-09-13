@@ -28,6 +28,15 @@ class BlueprintPublicationHashes(unittest.TestCase):
         receipt = json.loads((ROOT / 'evidence/design/blueprint-20260911/publication.json').read_text('utf-8'))
         self.assertEqual(receipt.get('hash_policy'), 'SHA256_TEXT_MD_PY_JSON_CRLF_TO_LF_BINARY_RAW')
 
+    def test_rb08_metrics_bind_all_witness_and_product_inputs(self):
+        receipt = json.loads((ROOT / 'evidence/runtime/rb08-tradeoff-20260914/green.json').read_text('utf-8'))
+        self.assertEqual(receipt['status'], 'PASS')
+        paths = receipt['source_sha256_lf']
+        self.assertIn('res://tests/fixtures/route_book/route_book_witnesses.gd', paths)
+        for resource, expected in paths.items():
+            data = (ROOT / resource.removeprefix('res://')).read_bytes().replace(b'\r\n', b'\n')
+            self.assertEqual(hashlib.sha256(data).hexdigest(), expected, resource)
+
     def test_all_published_input_fingerprints(self):
         receipt = json.loads((ROOT / 'evidence/design/blueprint-20260911/publication.json').read_text('utf-8'))
         paths = dict(receipt['assets_and_maps'])

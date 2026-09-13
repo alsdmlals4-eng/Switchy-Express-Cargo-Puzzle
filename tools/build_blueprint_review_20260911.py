@@ -174,9 +174,10 @@ used[preview_receipt]=digest(ROOT/preview_receipt)
 tradeoff_dir=ROOT/'evidence/runtime/rb08-tradeoff-20260914'
 tradeoff_receipt=json.loads((tradeoff_dir/'green.json').read_text(encoding='utf-8'))
 if tradeoff_receipt['status'] != 'PASS':raise ValueError('RB08 tradeoff evidence is not PASS')
-map_key='res://data/maps/route_book/rb08_caution_cut.json'
-if tradeoff_receipt['source_sha256_lf'][map_key] != digest(ROOT/map_key.removeprefix('res://')):
- raise ValueError('RB08 tradeoff receipt does not match current map')
+for resource,expected in tradeoff_receipt['source_sha256_lf'].items():
+ data=(ROOT/resource.removeprefix('res://')).read_bytes().replace(b'\r\n',b'\n')
+ if hashlib.sha256(data).hexdigest() != expected:
+  raise ValueError('RB08 tradeoff receipt does not match current input: '+resource)
 tradeoff_log=(tradeoff_dir/'green-witness.log').read_text(encoding='utf-8')
 tradeoff_match=re.search(r'direct cost=(\d+) elapsed=([\d.]+); detour cost=(\d+) elapsed=([\d.]+)',tradeoff_log)
 if not tradeoff_match:raise ValueError('RB08 actual run metrics missing')
