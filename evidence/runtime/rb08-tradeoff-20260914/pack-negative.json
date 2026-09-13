@@ -1,0 +1,40 @@
+{
+	"consumer": "EDITOR_MOUNTED_EXPORTED_PCK",
+	"engine": "4.7.1-stable (official)",
+	"failures": [
+		"RB01_SERVICE_SIDINGS expected SUCCESS got FAILURE",
+		"RB01_SERVICE_SIDINGS all cargo resolved"
+	],
+	"human_review": "NOT_RUN",
+	"native_reliability": "SEPARATE_DIAGNOSTIC_REQUIRED",
+	"negative_no_pickup": true,
+	"package_path": "C:/Users/user/Downloads/Switchy_Playable_20260914_RB08/SwitchyExpress.pck",
+	"package_sha256": "6faeca55d4224171086fa14ef0ac468f46875070a8d308511a8a2b700ac620b9",
+	"samples": [
+		{
+			"capture_sha256": "1529e54e096de953bafc387d64f5c400ed7e4e8f14328617054831ce1a461add",
+			"next_visible": false,
+			"outcome": "FAILURE",
+			"shell_state": "RESULT",
+			"stage": "RB01_SERVICE_SIDINGS"
+		}
+	],
+	"scope": "Actual Main/Product, authored fixtures, commands, accelerated0.05 steps, 960x540 ko; no injected terminal outcome.",
+	"source_sha256_lf": {
+		"C:/Users/user/Documents/GitHub/Ninza/Switchy-Express-Cargo-Puzzle/.worktrees/codex-core-preserved-replan-20260910/tests/fixtures/route_book/route_book_witnesses.gd": "1c14759ab3000713ee3e70be8ec2adc3651572b4ebf493d19e608891221eb821",
+		"C:/Users/user/Documents/GitHub/Ninza/Switchy-Express-Cargo-Puzzle/.worktrees/codex-core-preserved-replan-20260910/tests/runtime/route_book_completion_window_runner.gd": "ba2b396b99bcfa513a41984f363980f79f9b431b327e4b20ad24dc09f443da97",
+		"res://data/maps/route_book/rb01_service_sidings.json": "67de0c5bcdb9332e80b5a7520f88eb61f14a4b13a256922aec1bb097d1c607fd",
+		"res://data/maps/route_book/rb02_reverse_order.json": "3751c2d3198614a5cdd9f395788bc6d0c410c052eb78457ed64d85bbeb0cbd04",
+		"res://data/maps/route_book/rb03_return_manifest.json": "92a0352b3ca242823c32b9de272eb6729a4535925dfa7993690e1f8437de3589",
+		"res://data/maps/route_book/rb04_load_window.json": "6b5fbe2b1665d0bbc0996298cd32a2461088b1378698c7966d69d3c40a795476",
+		"res://data/maps/route_book/rb05_fork_lock.json": "f7f201d231f9a31096f4caa4d2b77b2fb40772472272b76e649d95f0f7928e3e",
+		"res://data/maps/route_book/rb06_port_circuit.json": "895579b7c150727ba994d7aa3bd16f2f7d04b62901afeb69a2b577cc1de009ac",
+		"res://data/maps/route_book/rb07_forest_relay.json": "e1d3825a816f380f8fc4236967dc2545d2b44fe82e7878775276be343613bb4f",
+		"res://data/maps/route_book/rb08_caution_cut.json": "11b26137ec4895476fd61a6913ae5050a6b06ec00a4dbec228a98f34d39577dd",
+		"res://data/maps/route_book/rb09_salvage_siding.json": "7e4d0d2d3af63b1e067525517b1e9b7d256edd30787170300b52381ec2e4c212",
+		"res://data/maps/route_book/rb10_clean_break.json": "4c4cffb0785e2cfc0b49d66bb29893bd55b9852fc8d50c2f17282859f1946bbb",
+		"res://data/maps/route_book/rb11_turnout_under_load.json": "e94eaabf66438f871f11177e2cac88d7037bc623b0da1ed9ef59964318533454",
+		"res://data/maps/route_book/rb12_lantern_loop.json": "3e70874a706f96b505be43da740be97fe2c10b33eac35c4470c2e9ba2277b791"
+	},
+	"status": "FAIL"
+}

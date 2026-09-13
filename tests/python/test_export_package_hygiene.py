@@ -18,6 +18,7 @@ class ExportPackageHygieneTests(unittest.TestCase):
         for export_filter in exclude_filters:
             excluded = set(export_filter.split(","))
             self.assertIn("output/**", excluded, "human-PDF render cache must not enter game PCKs")
+            self.assertIn("tmp/**", excluded, "temporary PDF renders must not enter game PCKs")
             self.assertIn("evidence/**", excluded, "internal machine-evidence records must not enter game PCKs")
 
 

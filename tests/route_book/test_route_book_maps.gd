@@ -78,14 +78,15 @@ const MAPS: Array[Dictionary] = [
 	{
 		"path": "res://data/maps/route_book/rb08_caution_cut.json",
 		"id": &"RB08_CAUTION_CUT",
+		"revision": 2,
 		"size": Vector2i(11, 7),
 		"start": Vector2i(1, 3),
 		"time": 115.0,
-		"blocked": [Vector2i(2, 1), Vector2i(4, 1), Vector2i(6, 5), Vector2i(8, 1), Vector2i(10, 5)],
-		"cargo": [[Vector2i(3, 3), &"BLUE_DIAMOND"], [Vector2i(5, 3), &"RED_STAR"]],
-		"stations": [[Vector2i(7, 1), &"RED_STAR"], [Vector2i(9, 5), &"BLUE_DIAMOND"]],
-		"caution": [Vector2i(3, 3), Vector2i(4, 3)],
-		"decorations": [[&"FOREST_CLUSTER", Vector2i(2, 1)], [&"MOSS_BOULDER", Vector2i(4, 1)], [&"TIMBER_STACK", Vector2i(6, 5)], [&"WATERWAY", Vector2i(8, 1)], [&"LANTERN_FENCE", Vector2i(10, 5)]],
+		"blocked": [Vector2i(2, 1), Vector2i(4, 1), Vector2i(6, 5), Vector2i(9, 1), Vector2i(10, 5)],
+		"cargo": [[Vector2i(3, 3), &"BLUE_DIAMOND"], [Vector2i(8, 3), &"RED_STAR"]],
+		"stations": [[Vector2i(8, 1), &"RED_STAR"], [Vector2i(9, 5), &"BLUE_DIAMOND"]],
+		"caution": [Vector2i(3, 3), Vector2i(4, 3), Vector2i(5, 3), Vector2i(6, 3), Vector2i(7, 3)],
+		"decorations": [[&"FOREST_CLUSTER", Vector2i(2, 1)], [&"MOSS_BOULDER", Vector2i(4, 1)], [&"TIMBER_STACK", Vector2i(6, 5)], [&"WATERWAY", Vector2i(9, 1)], [&"LANTERN_FENCE", Vector2i(10, 5)]],
 	},
 	{
 		"path": "res://data/maps/route_book/rb09_salvage_siding.json",
@@ -150,7 +151,7 @@ func run() -> void:
 			continue
 		assert_equal(definition.validation_errors(), [], "%s map schema is valid" % expected["id"])
 		assert_equal(definition.map_id, expected["id"], "%s id is exact" % expected["id"])
-		assert_equal(definition.map_revision, 1, "%s map revision is one" % expected["id"])
+		assert_equal(definition.map_revision, expected.get("revision", 1), "%s map revision matches authored contract" % expected["id"])
 		assert_equal(definition.board_size, expected["size"], "%s board size is exact" % expected["id"])
 		assert_equal(definition.start_cell, expected["start"], "%s start is exact" % expected["id"])
 		assert_equal(definition.incoming_cell, definition.start_cell + Vector2i.LEFT, "%s enters from the left" % expected["id"])

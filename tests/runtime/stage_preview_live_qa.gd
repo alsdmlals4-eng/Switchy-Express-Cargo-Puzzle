@@ -23,6 +23,7 @@ static func run(tree: SceneTree, source_revision: String = "") -> Dictionary:
 	var begin_checks := 0
 	var sources: Dictionary = {}
 	var captures: Dictionary = {}
+	var blueprint_captures: Dictionary = {}
 	for path: String in [
 		"res://game/main/main.tscn", "res://game/demo/vertical_slice_demo.tscn",
 		"res://game/demo/demo_flow_controller.gd", "res://game/demo/presentation/stage_board_preview.gd",
@@ -91,6 +92,12 @@ static func run(tree: SceneTree, source_revision: String = "") -> Dictionary:
 						else:
 							var capture_path := OUT + "rb12-" + locale + "-960.png"
 							captures[capture_path] = FileAccess.get_sha256(capture_path)
+					if tree.root.size == requested and requested == SIZES[1] and locale == "ko" and stage_id == &"RB08_CAUTION_CUT":
+						var blueprint_path := "res://evidence/runtime/stage-preview-20260913/rb08.png"
+						if tree.root.get_texture().get_image().save_png(blueprint_path) != OK:
+							failures.append(key + " blueprint capture failed")
+						else:
+							blueprint_captures[blueprint_path] = FileAccess.get_sha256(blueprint_path)
 					if locale == "ko" and book == &"ROUTE_BOOK_02" and number == 6:
 						await InputQA.click(tree, content.get_node("BeginButton"))
 						var product: Variant = shell.gameplay_instance()
@@ -108,10 +115,11 @@ static func run(tree: SceneTree, source_revision: String = "") -> Dictionary:
 	await tree.process_frame
 	if tree.root.size != original_size or shell.first_session_locale != original_locale:
 		failures.append("Original window/locale restoration did not read back")
-	var receipt := {"status": "PASS" if failures.is_empty() and checked == 144 and begin_checks == 3 else "FAIL",
+	var receipt := {"status": "PASS" if failures.is_empty() and checked == 144 and begin_checks == 3 and blueprint_captures.size() == 1 else "FAIL",
 		"source_revision": source_revision, "engine": Engine.get_version_info().get("string"),
 		"source_hash_policy": "SHA256_UTF8_TEXT_CRLF_TO_LF", "source_hashes": sources,
 		"capture_sha256": captures,
+		"blueprint_capture_sha256": blueprint_captures,
 		"scope": "actual Windows game window, programmatic selection/post-draw capture, not human/device approval",
 		"checked": checked, "pointer_begin_checks": begin_checks, "window_sizes": observed, "failures": failures,
 		"restored_size": str(tree.root.size), "restored_locale": shell.first_session_locale,

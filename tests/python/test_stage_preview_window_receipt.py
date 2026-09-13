@@ -39,3 +39,11 @@ def test_rejected_embedded_sizes_are_not_promoted_to_pass():
     assert failed["status"] == "FAIL"
     assert len(failed["failures"]) == 2
     assert any(entry["requested"] != entry["actual"] for entry in failed["window_sizes"])
+
+
+def test_rb08_blueprint_capture_is_bound_to_current_window_run():
+    receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
+    capture = "res://evidence/runtime/stage-preview-20260913/rb08.png"
+    expected = receipt.get("blueprint_capture_sha256", {}).get(capture)
+    assert expected, "RB08 revision 2 must be recaptured, not reuse the old map image"
+    assert hashlib.sha256((ROOT / capture.removeprefix("res://")).read_bytes()).hexdigest() == expected

@@ -21,7 +21,7 @@ func run() -> void:
 	assert_equal(snapshot.get("board_size"), Vector2i(11, 7), "preview preserves board dimensions")
 	assert_equal(snapshot.get("cargo_placements", []).size(), 2, "preview shows actual cargo")
 	assert_equal(snapshot.get("station_placements", []).size(), 2, "preview shows actual stations")
-	assert_equal(snapshot.get("caution_track_cells", []).size(), 2, "preview shows caution choice")
+	assert_equal(snapshot.get("caution_track_cells", []).size(), 5, "preview shows required cargo caution plus the four-cell optional cut")
 	assert_equal(snapshot.get("layout_pieces", []).size(), 0, "no solution rails are disclosed")
 	assert_true(demo.gameplay_instance() == null, "preview does not start gameplay")
 	assert_equal(board.mouse_filter, Control.MOUSE_FILTER_IGNORE, "preview ignores pointer input")

@@ -17,6 +17,7 @@ func _run() -> void:
 		quit(2)
 		return
 	var negative := OS.get_cmdline_user_args().has("no-pickup")
+	var rb08_detour := OS.get_cmdline_user_args().has("rb08-detour")
 	var pack_path := ""
 	var expected_hash := ""
 	for argument: String in OS.get_cmdline_user_args():
@@ -60,6 +61,8 @@ func _run() -> void:
 		quit(2)
 		return
 	var output_dir := "user://route-book-completion" + ("-pack" if not pack_path.is_empty() else "") + ("-negative/" if negative else "/")
+	if rb08_detour:
+		output_dir = output_dir.trim_suffix("/") + "-rb08-detour/"
 	if DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(output_dir)) != OK:
 		printerr("ROUTE_COMPLETION: FAIL output directory")
 		quit(2)
@@ -86,7 +89,8 @@ func _run() -> void:
 			break
 		product.set_process(false)
 		_check(StringName(product.session_controller().render_snapshot().get("map_id")) == stage_id, "actual map identity")
-		_check(product.install_layout_for_test(witness.pieces(stage_id)), "authored layout " + str(stage_id))
+		var layout: Array = witness.rb08_caution_detour() if rb08_detour and stage_id == &"RB08_CAUTION_CUT" else witness.pieces(stage_id)
+		_check(product.install_layout_for_test(layout), "authored layout " + str(stage_id))
 		product.request_command_for_test(&"START")
 		var controller: RefCounted = product.session_controller()
 		var runtime: Variant = controller.active_run_session_for_test()
@@ -136,7 +140,7 @@ func _run() -> void:
 	var receipt := {"status": "PASS" if failures.is_empty() else "FAIL", "failures": failures,
 		"consumer": "EDITOR_MOUNTED_EXPORTED_PCK" if not pack_path.is_empty() else "CHECKOUT_MAIN",
 		"package_sha256": pack_hash, "package_path": pack_path,
-		"samples": samples, "negative_no_pickup": negative, "engine": Engine.get_version_info().string,
+		"samples": samples, "negative_no_pickup": negative, "rb08_detour": rb08_detour, "engine": Engine.get_version_info().string,
 		"source_sha256_lf": hashes, "human_review": "NOT_RUN", "native_reliability": "SEPARATE_DIAGNOSTIC_REQUIRED",
 		"scope": "Actual Main/Product, authored fixtures, commands, accelerated0.05 steps, 960x540 ko; no injected terminal outcome."}
 	var output := FileAccess.open(output_dir + "receipt.json", FileAccess.WRITE)

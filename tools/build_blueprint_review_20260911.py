@@ -43,7 +43,7 @@ def start(title,kind='기획 방향·구현 진행 승인 / 미채택 이미지�
  c.setFillColor(colors.white);c.setFont('KRB',24);c.drawString(38,H-64,title)
  c.setFont('KR',10);c.drawString(38,H-87,kind)
  c.setFillColor(colors.HexColor('#647780'));c.setFont('KR',9)
- c.drawString(38,21,f'{page_no:02} · 2026.09.13 · 승인 자산 / 자동 검증 / 최종 사용자 검수를 구분')
+ c.drawString(38,21,f'{page_no:02} · 2026.09.14 · 승인 자산 / 자동 검증 / 최종 사용자 검수를 구분')
  records.append({'page':page_no,'title':title,'kind':kind})
  return H-127
 def para(txt,x,y,width=884,style=STYLE):
@@ -87,7 +87,8 @@ for title,path,caption in [
  ('T2 브리핑 · 선로 옆의 역',RUNTIME+'lesson-t2.png','실제 T1 연결 검사를 통과한 뒤 열린 T2 화면. 설명 그림은 규칙 안내이며 해당 플레이어의 정답 노선을 뜻하지 않는다.'),
  ('실패 화면 · 같은 시점, 다른 상태',RUNTIME+'failure.png','실제 운행 실패 뒤의 결과 화면. 장식 구성과 실제 결과 판정은 별개이며 결과 문구가 현재 시도를 설명한다.'),
  ('긴 적재 목록 · 이전 UI 표시 검사','evidence/runtime/ui-feedback-20260911/manifest-64.png','2026-09-11의 64개 표시 fixture. TOP 3개 고정 요약 + 전체 목록·스크롤. 현재 탑뷰 자산 또는 실제 64개 적재 운행의 증거는 아니다.')]:
- start(title,'이전 UI 표시 증거 / 새 자산 검증 아님' if 'manifest-64' in path else '현재 브랜치 실제 렌더 / 사용자 최종 검수 아님')
+ historical = 'manifest-64' in path or 'route-result-20260913' in path
+ start(title,'이전 UI 표시 증거 / RB08 새 배치 증거 아님' if historical else '실제 렌더 / 개별 출처 시점의 증거 / 사용자 최종 검수 아님')
  picture(path,38,125,884,380);para(caption,38,102,884,SMALL);finish()
 
 # Every section is authored in the editable Korean source.
@@ -170,12 +171,25 @@ for file in ['route_book_01_v1.json','route_book_02_v1.json']:
  used[local_path.relative_to(ROOT).as_posix()]=digest(local_path)
 preview_receipt='evidence/runtime/stage-preview-20260913/README.md'
 used[preview_receipt]=digest(ROOT/preview_receipt)
+tradeoff_dir=ROOT/'evidence/runtime/rb08-tradeoff-20260914'
+tradeoff_receipt=json.loads((tradeoff_dir/'green.json').read_text(encoding='utf-8'))
+if tradeoff_receipt['status'] != 'PASS':raise ValueError('RB08 tradeoff evidence is not PASS')
+for resource,expected in tradeoff_receipt['source_sha256_lf'].items():
+ data=(ROOT/resource.removeprefix('res://')).read_bytes().replace(b'\r\n',b'\n')
+ if hashlib.sha256(data).hexdigest() != expected:
+  raise ValueError('RB08 tradeoff receipt does not match current input: '+resource)
+tradeoff_log=(tradeoff_dir/'green-witness.log').read_text(encoding='utf-8')
+tradeoff_match=re.search(r'direct cost=(\d+) elapsed=([\d.]+); detour cost=(\d+) elapsed=([\d.]+)',tradeoff_log)
+if not tradeoff_match:raise ValueError('RB08 actual run metrics missing')
+direct_cost,direct_time,detour_cost,detour_time=map(float,tradeoff_match.groups())
+for path in [tradeoff_dir/'green.json',tradeoff_dir/'green-witness.log']:
+ used[path.relative_to(ROOT).as_posix()]=digest(path)
 for p in sorted((ROOT/'data/maps/route_book').glob('rb*.json')):
  m=json.loads(p.read_text(encoding='utf-8'));n=int(p.stem[2:4]);prefix=f'SX_RB{n:02}'
  y=start(f'스테이지 {n:02} · '+copy[prefix+'_TITLE']['ko'],'기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님')
  y=para(copy[prefix+'_OBJECTIVE']['ko'],38,y)
  rows=[['데이터','현재 값'],['맵 ID',m['map_id']],['격자 / 제한 시간',f"{m['board_size']} / {m['time_limit_seconds']}초"],['시작 / 진입',str(m['start_cell'])+' / '+str(m['incoming_cell'])],['역', '; '.join(str(v['cell'])+' '+v['cargo_type'] for v in m['station_placements'])],['화물','; '.join(str(v['cell'])+' '+v['cargo_type'] for v in m['cargo_placements'])],['주의 칸 / 금지 칸',str(m.get('caution_track_cells',[]))+' / '+str(m.get('blocked_cells',[]))]]
- y=table(rows,y);para('검수: 실제 해법 성공 + 의도한 판단과 대안 행동의 차이. 새 수치·맵 변경 없음. 임의 최적해를 강제하지 않는다.',38,y,884,SMALL)
+ y=table(rows,y);para('검수: 실제 해법 성공 + 의도한 판단과 대안 행동의 차이. RB08은 승인된 revision 2 배치, 나머지 맵은 유지. 임의 최적해를 강제하지 않는다.',38,y,884,SMALL)
  used[str(p.relative_to(ROOT)).replace('\\','/')]=digest(p);finish()
  y=start(f'스테이지 {n:02} · 출발 전 판단','실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님')
  y=para(copy[prefix+'_TITLE']['ko'],38,y)
@@ -183,8 +197,8 @@ for p in sorted((ROOT/'data/maps/route_book').glob('rb*.json')):
  y=para('미리보기 → 화물과 역·지형 관계 확인 → 노선 건설 → 운행 → 결과에서 같은 노선 재시도 또는 수정.',38,y)
  y=para('위 질문은 현재 게임과 같은 문구다. 규칙을 바꾸거나 특정 해법만 허용하는 추가 성공 조건이 아니다.',38,y)
  if n==8:
-  y=table([['내부 비교 사례','건설비','자동 입력 시 경과 시간'],['주의 칸 직진','1,100','약 6.52초'],['선택 가능한 주의 칸 우회','1,300','약 7.11초']],y)
-  para('두 사례 모두 실제 기본 속도 2.0에서 배송 성공. 이 우회는 더 비싸고 느리므로 균형 잡힌 교환 관계라고 주장하지 않는다. 사람의 플레이 시간·최적해 증명은 아니다.',38,y,884,SMALL)
+  y=table([['내부 비교 사례','건설비','자동 입력 시 경과 시간'],['주의 칸 직진',f'{direct_cost:,.0f}',f'약 {direct_time:.3f}초'],['선택 가능한 주의 칸 우회',f'{detour_cost:,.0f}',f'약 {detour_time:.3f}초']],y)
+  para(f'두 사례 모두 실제 기본 속도 2.0에서 배송 성공. 선로 2개를 더 쓰는 우회는 약 {direct_time-detour_time:.3f}초 빠르다. 이는 제작자 비교 사례이며 유일한 해법·최적해·사람의 플레이 시간·재미의 증명은 아니다.',38,y,884,SMALL)
  finish()
 
 y=start('검증 경계 · 승인과 실행을 구분한다','현재 탑뷰 통일 범위 / 전체 게임·출시 완료 선언 아님')

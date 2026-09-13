@@ -5,11 +5,17 @@
 Current user approval resumes the September14 specification at
 `docs/superpowers/specs/2026-09-14-remaining-work-design.md`.
 Order: M1 current-entry reconciliation → C1 RB08 map-only tradeoff → C2 six optional
-authored stages. M1 entry pointers corrected locally; C1/C2 implementation NOT_RUN.
-PR309 owns this approval/document continuation, not protected PR281.
+authored stages. M1 merged normally in PR309, main0c25766b5e7da109e786005f5bba792795ee8b22.
+C1 RB08 revision2 is implemented locally with129/16135 full regression PASS,
+12 actual-window SUCCESS and144 preview/3 pointer Begin checks PASS; Python310/1skip.
+Its new32b7d6f package passed12SUCCESS, RB08 detour SUCCESS and no-pickup rejection;
+native EXE120frame startup exit0. Independent source-binding finding corrected.
+Final local regression129/16135 PASS and Python311/1skip; exact PR310 CI/merge/readback pending.
+C2 implementation NOT_RUN. C1 evidence owner: evidence/runtime/rb08-tradeoff-20260914/README.md.
+PR309 owns approval/docs; PR310 owns C1 implementation, not protected PR281.
 C1 map-only permits its required witness/test/copy/preview/evidence companions;
 the RED cost/time assertion has been observed failing against the unchanged map.
-Product baseline remains PR305 bytes with PR308 exported-PCK completion evidence at
+Historical unchanged product baseline was PR305 bytes with PR308 exported-PCK completion evidence at
 `evidence/runtime/pack-completion-20260913/READBACK.md`.
 The existing PR305 package is valid only for its unchanged bytes; later map/content
 changes require new product/package verification. Final user/device/rights/release

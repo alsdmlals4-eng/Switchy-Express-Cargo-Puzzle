@@ -14,6 +14,8 @@ evidence/runtime/exported-route-book-20260913/*.log -text whitespace=-blank-at-e
 evidence/runtime/audio-cue-20260913/*.log -text whitespace=-blank-at-eof
 evidence/runtime/tutorial-audio-20260913/*.log -text whitespace=-blank-at-eof
 evidence/runtime/product-speed-20260913/*.log -text whitespace=-blank-at-eof
+# Windows raw engine receipts preserve CRLF, including the engine's final blank line.
+evidence/runtime/rb08-tradeoff-20260914/*.log -text whitespace=cr-at-eol,-blank-at-eof
 evidence/runtime/product-speed-20260913/completion/*.log -text whitespace=-blank-at-eof
 evidence/runtime/native-generator-lifetime-20260913/*.log -text whitespace=-blank-at-eof
 # CDB emits CRLF and padded stack arguments; retain this exact diagnostic output.
