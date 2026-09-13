@@ -1,5 +1,20 @@
 # Active Context
 
+## 2026-09-13 audio cue drain continuation
+
+PR301 merged5128ac5e4dc073814a0b3acd9b2a456dcba886ad; five exact CI checks PASS.
+Windows and Android proof packs each enter2books/12stages/12BUILD consumers.
+Current unit codex/audio-cue-drain-20260913 repairs immediate cancellation of queued
+procedural cues. RED8 failed assertions -> capture8cues/56assertions, full129/16048;
+Python308passed/1skipped. Actual editor run11 pickup playing immediately=true,
+later=false. Owner:evidence/runtime/audio-cue-20260913/READBACK.md.
+This is not perceptual approval or a native-crash fix. Tutorial advancement still
+releases its product-owned success cue: confirmed next implementation boundary.
+Frame-separated E2E probe still crashes before and after audio correction; NOT_FIXED.
+Next: exact audio CI/merge, tutorial transition cue ownership, product-speed12stage
+witnesses and native source-level diagnosis. Whole game remains NOT_COMPLETE.
+PR299 downloadable package predates this audio correction; refresh after delivery.
+
 ## 2026-09-13 exported Route Book consumer continuation
 
 PR300 merged37f1575352086219602bca63f4c6d708e8d89bb4, five CI green and exact readback.

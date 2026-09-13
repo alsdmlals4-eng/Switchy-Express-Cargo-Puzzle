@@ -60,6 +60,20 @@ jobs:
 
           exit "$status"
 
+      - name: Verify generated cue playback
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          timeout 30s ./Godot_v4.7.1-stable_linux.x86_64 \
+            --headless --path . \
+            --script res://tests/runtime/audio_cue_capture_runner.gd \
+            2>&1 | tee artifacts/audio-cue-capture.log
+          grep -F 'AUDIO_CUE_PROOF: PASS cues=8' artifacts/audio-cue-capture.log
+          if grep -E 'SCRIPT ERROR:|(^|[[:space:]])ERROR:' artifacts/audio-cue-capture.log; then
+            exit 1
+          fi
+
       - name: Run Switchy real-project live-editor Pilot
         run: |
           mkdir -p artifacts/godot-live-editor-ci

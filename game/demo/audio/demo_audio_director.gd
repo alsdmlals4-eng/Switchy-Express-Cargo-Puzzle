@@ -29,6 +29,7 @@ var _paused_mix: bool = false
 var _cue_phase: float = 0.0
 var _train_phase: float = 0.0
 var _cue_frames_remaining: int = 0
+var _cue_buffer_capacity: int = 0
 var _cue_frequency: float = 0.0
 var _cue_gain: float = 0.0
 var _train_frame_index: int = 0
@@ -50,6 +51,7 @@ func play_cue(cue: StringName) -> void:
 	_one_shot_player.volume_db = -80.0 if _paused_mix else -12.0
 	_one_shot_player.play()
 	_one_shot_playback = _one_shot_player.get_stream_playback()
+	_cue_buffer_capacity = int(_one_shot_playback.get_frames_available()) if _one_shot_playback != null else 0
 	_cue_phase = 0.0
 	_cue_frequency = float(settings["frequency"])
 	_cue_gain = float(settings["gain"])
@@ -94,6 +96,7 @@ func stop_all() -> void:
 	_last_cue = &""
 	_train_loop_active = false
 	_cue_frames_remaining = 0
+	_cue_buffer_capacity = 0
 
 
 func stream_for_cue_for_test(cue: StringName) -> AudioStreamGenerator:
@@ -141,9 +144,16 @@ func _ensure_players() -> void:
 
 
 func _fill_one_shot_buffer() -> void:
-	if _one_shot_playback == null or _cue_frames_remaining <= 0:
+	if _one_shot_playback == null:
 		return
 	var available: int = int(_one_shot_playback.get_frames_available())
+	if _cue_frames_remaining <= 0:
+		# Filling the buffer is not playback completion. Let the mixer consume it.
+		if _cue_buffer_capacity > 0 and available >= _cue_buffer_capacity:
+			_one_shot_player.stop()
+			_one_shot_playback = null
+			_cue_buffer_capacity = 0
+		return
 	var frames_to_push := mini(available, _cue_frames_remaining)
 	for index: int in range(frames_to_push):
 		var normalized_remaining := float(_cue_frames_remaining - index) / maxf(
@@ -155,9 +165,6 @@ func _fill_one_shot_buffer() -> void:
 		_one_shot_playback.push_frame(Vector2(sample, sample))
 		_cue_phase = fmod(_cue_phase + TAU_VALUE * _cue_frequency / MIX_RATE, TAU_VALUE)
 	_cue_frames_remaining -= frames_to_push
-	if _cue_frames_remaining <= 0:
-		_one_shot_player.stop()
-		_one_shot_playback = null
 
 
 func _fill_train_buffer() -> void:
