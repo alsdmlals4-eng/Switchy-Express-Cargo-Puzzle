@@ -13,3 +13,4 @@ evidence/runtime/native-exit-20260913/*.log -text
 evidence/runtime/exported-route-book-20260913/*.log -text whitespace=-blank-at-eof
 evidence/runtime/audio-cue-20260913/*.log -text whitespace=-blank-at-eof
 evidence/runtime/tutorial-audio-20260913/*.log -text whitespace=-blank-at-eof
+evidence/runtime/product-speed-20260913/*.log -text whitespace=-blank-at-eof

@@ -4,6 +4,10 @@ const LoaderScript := preload("res://game/finite/map/finite_map_loader.gd")
 const BuildSessionScript := preload("res://game/finite/build/finite_build_session.gd")
 const FactoryScript := preload("res://game/finite/run/finite_run_session_factory.gd")
 const FixtureScript := preload("res://tests/fixtures/route_book/route_book_witnesses.gd")
+const ProductScene := preload("res://game/demo/product_finite_slice.tscn")
+
+var _product_speed: float = 0.0
+var witness_results: Array[Dictionary] = []
 
 const PATHS := {
 	&"RB01_SERVICE_SIDINGS": "res://data/maps/route_book/rb01_service_sidings.json",
@@ -22,6 +26,10 @@ const PATHS := {
 
 
 func run() -> void:
+	var product: Control = ProductScene.instantiate()
+	_product_speed = product.base_speed
+	product.free()
+	assert_almost_equal(_product_speed, 2.0, 0.00001, "actual product scene preserves approved default speed")
 	var fixture: Script = FixtureScript
 
 	var rb01 := _run_manual(fixture.pieces(&"RB01_SERVICE_SIDINGS"), PATHS[&"RB01_SERVICE_SIDINGS"])
@@ -199,6 +207,11 @@ func run() -> void:
 		&"FAILURE",
 		"RB12 wrong turnout selection remains a factual failure",
 	)
+	var positive_results := [rb01, rb02, rb03, rb04, rb05, rb06, rb07, rb08, rb09, rb10, rb11, rb12]
+	witness_results.clear()
+	for index: int in range(positive_results.size()):
+		witness_results.append({"stage": "RB%02d" % (index + 1),
+			"phase": str(positive_results[index].get("phase", &"")), "base_speed": _product_speed})
 
 
 func _run_rb04(fixture: Script) -> Dictionary:
@@ -217,7 +230,7 @@ func _run_rb04(fixture: Script) -> Dictionary:
 		if event.picked_up and event.cell == Vector2i(6, 4) and not input_state.is_auto_load_enabled():
 			metrics["manual_blue_pickup"] = true
 	)
-	session.run_controller.start()
+	_start_at_product_speed(session)
 	for _step: int in range(4000):
 		if _terminal(session):
 			break
@@ -250,7 +263,7 @@ func _run_rb05(
 	if select_delivery_branch:
 		session.graph.select_switch_exit(switch_cell, Vector2i.RIGHT)
 	session.input_state.set_manual_load_active(true)
-	session.run_controller.start()
+	_start_at_product_speed(session)
 	var lock_rejected := false
 	for _step: int in range(4000):
 		if _terminal(session):
@@ -273,7 +286,7 @@ func _run_rb06(
 	var switch_cell := Vector2i(6, 5)
 	if select_delivery_branch:
 		session.graph.select_switch_exit(switch_cell, Vector2i.UP)
-	session.run_controller.start()
+	_start_at_product_speed(session)
 	var auto_transition := false
 	var lock_rejected := false
 	for _step: int in range(5000):
@@ -299,13 +312,13 @@ func _run_rb06(
 	}
 
 
-func _run_manual(pieces: Array, path: String, driver: Callable = Callable(), base_speed: float = 4.0) -> Dictionary:
+func _run_manual(pieces: Array, path: String, driver: Callable = Callable(), base_speed: float = 2.0) -> Dictionary:
 	var session: Variant = _create_session(pieces, path, base_speed)
 	if session == null:
 		return {}
 	var history: Array = []
 	session.delivery_loop.delivery_event_created.connect(func(event: Variant) -> void: history.append(event))
-	session.run_controller.start()
+	_start_at_product_speed(session)
 	for _step: int in range(4000):
 		if _terminal(session):
 			break
@@ -340,7 +353,7 @@ func _run_manual(pieces: Array, path: String, driver: Callable = Callable(), bas
 	}
 
 
-func _create_session(pieces: Array, path: String, base_speed: float = 4.0) -> Variant:
+func _create_session(pieces: Array, path: String, base_speed: float = 2.0) -> Variant:
 	var definition: Variant = LoaderScript.load_from_path(path)
 	if definition == null:
 		return null
@@ -360,6 +373,11 @@ func _create_session(pieces: Array, path: String, base_speed: float = 4.0) -> Va
 		return null
 	var attempt: Dictionary = factory.create_attempt(1)
 	return attempt.get("session") if bool(attempt.get("success", false)) else null
+
+
+func _start_at_product_speed(session: Variant) -> void:
+	assert_true(session.run_controller.start(), "witness starts a fresh attempt")
+	assert_almost_equal(session.train.speed, _product_speed, 0.00001, "started witness uses actual product speed")
 
 
 func _terminal(session: Variant) -> bool:

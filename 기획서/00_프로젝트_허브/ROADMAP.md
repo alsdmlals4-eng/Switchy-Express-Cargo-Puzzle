@@ -12,6 +12,7 @@ Current owner: ACTIVE_CONTEXT.md. Historical snapshots below do not reopen compl
    do not infer balanced alternatives from two successful witnesses or add mandatory rules.
 3. Native intermittent0xc0000005: reproduce/isolate original failure; no repeat-PASS-as-fix.
    Focused same-process tutorial repetitions now reproduce it; diagnostic receipt owns evidence.
+   Official full suite again crashes after E2E; exact-release symbol diagnostic underway.
 4. Current exact executable: package startup, approved asset consumers, progression/save/ending audit.
    PR299 EXE startup and actual PCK2books/12BUILD entries verified; new permanent
    verifier PR301 merged5128ac5, Windows+Android proof CI PASS. No all-stage gameplay
@@ -25,8 +26,9 @@ existing cue locally; post-destruction output verified, full129/16056. Exact del
 Dedicated audio output capture is not human listening or full downstream waveform proof.
 
 Audit correction: persistent save/unlock is excluded by SX-DEC-067, not unfinished work.
-Stage witnesses currently default4.0 versus product2.0 (RB08 already2.0); verify at
-the actual product default before claiming product-speed twelve-stage completion.
+Stage witnesses locally reconciled4.0→actual product2.0: all12 authored positives
+and existing negatives pass focused92assertions/129with output completeness guards.
+Full Windows suite still nativeUNVERIFIED, not a fully delivered completion claim.
 
 No arbitrary new feature, deferred056–058 system or protectedPR takeover follows from this queue.
 Current HUD evidence: evidence/runtime/route-result-20260913/HUD_COMPLETE_READBACK.md.

@@ -1,5 +1,21 @@
 # Active Context
 
+## 2026-09-13 product-speed witnesses and native diagnostic
+
+PR303 merged478530552884fdaa1534c85e8f37da8b376d2965; five exact checks PASS,
+normal merge and local/origin readback. Current branch codex/product-speed-witnesses-20260913.
+Actual ProductScene speed2.0 now checked after train START in all existing witness
+paths. Focused RED22 speed mismatches -> GREEN92 underlying assertions,129 with
+receipt completeness checks, all12 positive stagesSUCCESS. Existing negatives retained.
+Full official Windows regression again C0000005 after E2E: UNVERIFIED, not PASS.
+Python308/1skip PASS before final receipt-only guard additions. No product/map change.
+Owners:evidence/runtime/product-speed-20260913/READBACK.md and native-exit owner.
+Separate symbol diagnostic of exact Godot sourcea13da4feb is building locally with
+MSVC and symbols; this is not engine/provider replacement or official-byte proof.
+No antivirus/accessibility/security changes. Do not merge this pending unit as full
+Windows-verified until native investigation/verification is reconciled.
+Whole game NOT_COMPLETE; current playable PR303 package preparation in progress.
+
 ## 2026-09-13 tutorial transition audio continuation
 
 PR302 merged8b8cb04f0bd7db7049983d91cc5141c232275171; five exact checks PASS.
