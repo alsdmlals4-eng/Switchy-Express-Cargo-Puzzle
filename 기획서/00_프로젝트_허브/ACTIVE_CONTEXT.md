@@ -1,5 +1,33 @@
 # Active Context
 
+## Current handoff state — approved game ready for final user review
+
+Product content baseline: PR305/a6f6fb2dbdf02535c0a3312acb209cacbda1c3f8.
+Tool maintenance: PR306/e40b2ec6922e1d3f1f20b46392eb94f589997d2d merged normally,
+exact d6ad8f8 five required checks SUCCESS; local HEAD/origin readback matched.
+No game/data/art/project.godot delta between305 and306. Current executable remains
+Switchy_Playable_20260913_PR305, with its exact-source package readback in the Pilot owner.
+
+Approved finite implementation is ready for final user review: T1–T6/capstone, two books
+and12stages, build/history/route control/manual+Auto/unlimitedTOP delivery/caution/waste,
+four-locale HUD, actual result/retry/edit, approved overhead assets and audio correction.
+No approved product implementation item remains identified in this audit. Deferred
+056–058 systems, protected third-book PR, permanent save/unlock and public cutover are
+not silently added to this scope. No final human/rights/device/release PASS is claimed.
+
+Machine evidence:129cases/16133assertions; Python309passed1skipped; actual four-locale
+failure and12SUCCESS windows; actual Windows Editor Pilot exact CRLF restore and Linux CI.
+Original frame-only probe still has shutdown warning. A separate weak-source diagnostic
+observed220sources, one pending at final frame, zero after8additionalframes, exit0/no warning.
+This narrows the observation to pending release in that probe, not an all-defects guarantee.
+Linux Pilot's earlier unchanged-retry restore failure remains a recurrence-watch risk;
+if it recurs, collect root/history/filesystem snapshots rather than inventing a wait fix.
+
+Final handoff: executable folder,77-page Blueprint, current evidence and user-delete holding.
+17799diagnostic files plus8obsolete/proof files were moved with pre/post SHA manifests;
+no deletion. Existing216 unrelated tracked local modifications remain protected, not clean.
+This current entry supersedes pending-next-action language in historical entries below.
+
 ## 2026-09-13 final playable product / Pilot portability correction
 
 Product PR305 merged a6f6fb2, five required checks SUCCESS; local HEAD/origin readback.

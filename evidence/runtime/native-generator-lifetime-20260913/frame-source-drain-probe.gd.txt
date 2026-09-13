@@ -1,0 +1,47 @@
+extends SceneTree
+
+# Diagnostic distinction: pending source release vs permanent retained resources.
+# Does not change production code, silence warnings or substitute for full suite.
+const Case := preload("res://tests/demo/test_first_session_end_to_end.gd")
+var sources: Array[WeakRef] = []
+
+func _initialize() -> void:
+	node_added.connect(_observe_player)
+	call_deferred("_run")
+
+func _observe_player(node: Node) -> void:
+	if node is AudioStreamPlayer:
+		node.tree_exiting.connect(_capture_source.bind(node))
+
+func _capture_source(player: AudioStreamPlayer) -> void:
+	if player.stream is AudioStreamGenerator:
+		sources.append(weakref(player.stream))
+
+func _case() -> Dictionary:
+	var test: RefCounted = Case.new()
+	test.run()
+	return {"passed":test.passed(), "assertions":test.assertion_count}
+
+func _alive_count() -> int:
+	var count := 0
+	for source: WeakRef in sources:
+		if source.get_ref() != null: count += 1
+	return count
+
+func _run() -> void:
+	var failures := 0
+	var assertions := 0
+	for iteration: int in range(20):
+		var result := _case()
+		assertions += result.assertions
+		if not result.passed: failures += 1
+		await process_frame
+	var pending := _alive_count()
+	var frames := 0
+	while _alive_count() > 0 and frames < 120:
+		await process_frame
+		frames += 1
+	var remaining := _alive_count()
+	if remaining > 0 or sources.is_empty(): failures += 1
+	print("FRAME_SOURCE_DRAIN: cases=20 assertions=%d sources=%d pending=%d remaining=%d frames=%d failed=%d NOT_A_PRODUCTION_FIX" % [assertions,sources.size(),pending,remaining,frames,failures])
+	quit(1 if failures else 0)
