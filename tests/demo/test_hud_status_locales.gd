@@ -21,6 +21,8 @@ func run() -> void:
 		var hud: Control = demo.gameplay_instance().get_node("HUD")
 		assert_equal(hud.get_node("TopStatus/PhaseLabel").text, row[1], "shell locale reaches build status")
 		assert_equal(hud.get_node("TopStatus/MenuButton").text, row[3], "menu locale")
+		var design_instruction: String = hud.get_node("TopStatus/TimeLabel").text
+		assert_false(design_instruction.is_empty(), "build guidance exists")
 		hud.apply_model({"phase":&"RUNNING", "time_remaining":12.5,
 			"remaining_map_cargo":2, "stack_size":3, "current_cost":1100, "recommended_cost":4500})
 		assert_equal(hud.get_node("TopStatus/PhaseLabel").text, row[2], "running status locale")
@@ -37,6 +39,12 @@ func run() -> void:
 		for i: int in range(phase_ids.size()):
 			hud.apply_model({"phase":phase_ids[i]})
 			assert_equal(hud.get_node("TopStatus/PhaseLabel").text, phases[row[0]][i], "phase uses correct message")
+			if i >= 2:
+				assert_equal(hud.get_node("TopStatus/TimeLabel").text, "", "terminal or unknown phase cannot instruct building")
+			else:
+				assert_true(hud.get_node("TopStatus/TimeLabel").text.contains("0.0"), "active or paused timer remains factual")
+		hud.apply_model({"phase":&"BUILD"})
+		assert_equal(hud.get_node("TopStatus/TimeLabel").text, design_instruction, "edit restores design guidance")
 	demo.free()
 	_complete_hud()
 

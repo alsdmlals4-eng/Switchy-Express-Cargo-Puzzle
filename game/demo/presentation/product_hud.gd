@@ -101,7 +101,7 @@ func apply_model(model: Dictionary) -> void:
 			"count": maxi(int(_model.get("remaining_map_cargo", 0)), 0) + maxi(int(_model.get("stack_size", 0)), 0),
 		}, locale)
 		if is_run or is_paused
-		else _copy.text(&"SX_HUD_DESIGN", locale)
+		else _copy.text(&"SX_HUD_DESIGN", locale) if is_build else ""
 	)
 
 	var start_button := get_node("BuildToolbar/StartButton") as Button

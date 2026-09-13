@@ -61,6 +61,7 @@ func _run() -> void:
 		var outcome := str(summary.outcome) if summary != null else "MISSING"
 		_check(shell.state() == &"RESULT", str(stage_id) + " actual RESULT reached")
 		_check(outcome == "SUCCESS", str(stage_id) + " expected SUCCESS got " + outcome)
+		_check(product.get_node("HUD/TopStatus/TimeLabel").text.is_empty(), "terminal guidance blank")
 		if summary != null:
 			_check(summary.remaining_map_cargo == 0 and summary.stack_size == 0, str(stage_id) + " all cargo resolved")
 		var next: Button = shell.get_node("ResultOverlay/Panel/Content/RouteBookActions/NextStageButton")
@@ -77,6 +78,7 @@ func _run() -> void:
 		"res://tests/fixtures/route_book/route_book_witnesses.gd", "res://game/main/main.tscn",
 		"res://game/demo/demo_flow_controller.gd", "res://game/demo/product_finite_slice.gd",
 		"res://game/demo/audio/demo_audio_director.gd",
+		"res://game/demo/presentation/product_hud.gd",
 		"res://game/demo/product_finite_slice.tscn", "res://game/finite/main/finite_slice_session_controller.gd"]
 	paths.append_array(Stages.PATHS.values())
 	for path: String in paths:

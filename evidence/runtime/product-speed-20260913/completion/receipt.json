@@ -6,84 +6,84 @@
 	"negative_no_pickup": false,
 	"samples": [
 		{
-			"capture_sha256": "3153d4160fe9abb1bc5c6161e49863b040369f23ee6af738641958cf92521374",
+			"capture_sha256": "8142b07806c70d57e3f557150cdc475ff77351769dad2ed8413371ccd7bccb67",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB01_SERVICE_SIDINGS"
 		},
 		{
-			"capture_sha256": "b24ea2204276e0b4395b31aa4d67973e9b5572f7b4f84e1d67894a21bde44288",
+			"capture_sha256": "73b22fe935eeaea4efefec66a45da393a2aa60f0d112488855709ecb89bda61b",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB02_REVERSE_ORDER"
 		},
 		{
-			"capture_sha256": "408f14e43773b53b26616ddc0d3e023ad3c1c69684a7121696325350c540c627",
+			"capture_sha256": "9157d27b48f4aa9b689c94070d9fe642f02b6d7465d3978a77fad19f9446d40e",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB03_RETURN_MANIFEST"
 		},
 		{
-			"capture_sha256": "64cac995f110014cc156d9ef8f9cb6dc5fa0820906fdaa307fec3ded92da8851",
+			"capture_sha256": "355501f67a051d7f81cf7cccee27cacd0d7a4e093c924235fbe47523e6c6ecd1",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB04_LOAD_WINDOW"
 		},
 		{
-			"capture_sha256": "34c20c6e2b79e4a98f790e7aa8f273e5c900313bfe89b82c1ade6d1aeced7bce",
+			"capture_sha256": "58ce6fd2f56774bdf2536d013333f00b1b6722effc46d44c18704f910f9ed25b",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB05_FORK_LOCK"
 		},
 		{
-			"capture_sha256": "ad151dea0902d72deb00865bb2b75a24f44edae0356156c38c506ef817b2e6f3",
+			"capture_sha256": "e0cecaa99333c84529408e6e54128f0e07a62e63ec58007d9c94ec7b22600563",
 			"next_visible": false,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB06_PORT_CIRCUIT"
 		},
 		{
-			"capture_sha256": "b2a0dd441b65e28df862636e525908141a06c9380310f7bf7869be2f2a07afbf",
+			"capture_sha256": "2262363c1ec1f29dffaaac722151fb673e63d62ad7c2d75f99cdded2a10b6d7a",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB07_FOREST_RELAY"
 		},
 		{
-			"capture_sha256": "35c81bf96cdd0ab58060311e57e84a2167e0f2eff410ca58a97516e21e687828",
+			"capture_sha256": "9e7488c1512216e8fe6df5e3ce0411912b7c88590742940e00285eb5611cc0c6",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB08_CAUTION_CUT"
 		},
 		{
-			"capture_sha256": "aa55ac38833f829fece774c70571867db3f2dd99226e3c26e1e3a4fb6041538c",
+			"capture_sha256": "2da86a8bcc81091dc9fa24bb1a7c0e30b78c30b4ac7c591163e9a471ee8c977c",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB09_SALVAGE_SIDING"
 		},
 		{
-			"capture_sha256": "64b917544ee7524c324db97fa988156711c85080685d24cfb6c47ad9549b73a3",
+			"capture_sha256": "049d96d97f475e3e14554a9d37b4db77107abbe8b80ae092af3465b59d926d1e",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB10_CLEAN_BREAK"
 		},
 		{
-			"capture_sha256": "2b3e0c3c035ca2954c2303a249139fa05d2760853ea7ab1366a074e0a4bcdabd",
+			"capture_sha256": "247c23c55209aacd8eac0d49d6e973dde23a62ff6e5aa4b017687855d6506f98",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB11_TURNOUT_UNDER_LOAD"
 		},
 		{
-			"capture_sha256": "62b683c7d488b828e7e5190b6f8809c2521f6ffaa58adc0d4d83eac177bc3a06",
+			"capture_sha256": "5786c73d64fc5ce103ea1085f8225dd9215b0dd53b413481a32a61d687290352",
 			"next_visible": false,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
@@ -106,12 +106,13 @@
 		"res://data/maps/route_book/rb12_lantern_loop.json": "3e70874a706f96b505be43da740be97fe2c10b33eac35c4470c2e9ba2277b791",
 		"res://game/demo/audio/demo_audio_director.gd": "a3add4ab3e5a4f0e20c024eac086371e31a7e11f9020c67257761998c7c80578",
 		"res://game/demo/demo_flow_controller.gd": "2a5596676b9fef461894323c92b284ef660037b30a49b1ccf93eb2da0774407f",
+		"res://game/demo/presentation/product_hud.gd": "1d7f8e52a38f2fff665c883819cd4f3417859687caa59de092407ea490b1d8e0",
 		"res://game/demo/product_finite_slice.gd": "e087f7f0c15d5942a9f3426ab4acedecc54fc7fe5c515a6264299c5b05bb4336",
 		"res://game/demo/product_finite_slice.tscn": "6473a3c90da0381354b51087311111ac0b355423e2fb34909a4af21282a5ab7c",
 		"res://game/finite/main/finite_slice_session_controller.gd": "fdf3aad8d65c35d735a6712e2717c31fdca1b8e7f7e9b21c41fe38bc1f125357",
 		"res://game/main/main.tscn": "5aeb7c24eb04648834863b6064fb2d89d58bab4752c49d452194aca2f915e046",
 		"res://tests/fixtures/route_book/route_book_witnesses.gd": "b86e9a7da249801b9706a6fe3ab642565e85c9744cb8b69372378df97694e2a0",
-		"res://tests/runtime/route_book_completion_window_runner.gd": "bf2abe69d6f3589fe65d5c13b9bfc4ae705c33362845430b4ae8ff5d3d69db33"
+		"res://tests/runtime/route_book_completion_window_runner.gd": "4e60f0480012c238fa2cc8229352ec1140b22df06144792459d7b0a3c628fb2f"
 	},
 	"status": "PASS"
 }

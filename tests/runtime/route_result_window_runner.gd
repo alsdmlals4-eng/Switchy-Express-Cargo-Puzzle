@@ -68,6 +68,7 @@ func _run() -> void:
 		var result_body: String = content.get_node("BodyScroll/Body").text
 		if shell.state() != &"RESULT" or title != copy.text(&"SX_RESULT_ROUTE_END", locale):
 			failures.append(locale + " actual no-pickup result mismatch")
+		if not time_label.text.is_empty(): failures.append(locale + " result retains active guidance")
 		for name: String in ["RetryButton", "EditButton", "TitleButton"]:
 			var button: Button = content.get_node("Actions/" + name)
 			if not button.is_visible_in_tree() or not root.get_visible_rect().encloses(button.get_global_rect()):
