@@ -51,6 +51,14 @@ Independent read-only review found no blocking finding. Its watchdog caveat led 
 external60s timeout around CI proof-pack invocations; the in-engine30s timer alone
 cannot interrupt a synchronous native hang. No human, device, rights or release PASS.
 
+First exact PR301 export CI run34728976100 failed exit124 at its historical45s full
+suite limit, despite printing129/0/16039. Same-head headless job34728976064 passed
+under its existing180s limit; its separate pilot recorded full regression44.362705s.
+Export/Android full-suite limits now match that existing180s owner budget. No tests,
+error checks or nonzero handling were removed; proof-pack timeout remains60s.
+This corrects an obsolete time-budget mismatch, not the Windows native fault.
+The failed CI run remains visible; fresh exact-head export evidence is required.
+
 ## Cleanup and remaining work
 
 Five completed proof-only artifacts moved, not deleted, to

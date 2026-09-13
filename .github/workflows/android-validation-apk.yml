@@ -118,7 +118,7 @@ jobs:
             --path .
 
           set +e
-          output=$(timeout 45s "./${GODOT_BINARY}" \
+          output=$(timeout 180s "./${GODOT_BINARY}" \
             --headless \
             --path . \
             --script res://tests/run_tests.gd 2>&1)
