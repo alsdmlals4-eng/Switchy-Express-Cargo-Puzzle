@@ -1,5 +1,18 @@
 # Active Context
 
+## 2026-09-13 terminal HUD delivery continuation
+
+PR304 merged1ecf7d3, exact702a815 five CI checks SUCCESS, local origin/main readback.
+Generator lifetime repair and actual12stage completion are merged machine/window evidence.
+Current continuation: codex/terminal-hud-guidance-20260913 removes BUILD-only guidance
+from terminal/unknown HUD; no core, map, art or locale-key change. RED12 -> full129/16133
+GREEN exit0; four-locale actual failure and12actual SUCCESS captures refreshed.
+Owner:evidence/runtime/route-result-20260913/TERMINAL_GUIDANCE_READBACK.md.
+Next: exact CI/merge, final current executable package and recoverable cleanup.
+Frame diagnostic ObjectDB warning, final human and public release remain separate.
+Historical NOT_FIXED/pending304 entries below are superseded only for the identified
+generator-lifetime fault by the current native owner and this merged readback.
+
 ## 2026-09-13 source-backed native generator lifetime correction
 
 Draft304 continuation at fe3e28a plus current bounded audio delta. Native source stack

@@ -1,5 +1,14 @@
 # Roadmap
 
+## Current delivery delta — 2026-09-13
+
+PR304 native lifetime/product-speed/12stage window proof merged1ecf7d3, five CI PASS.
+Terminal HUD guidance correction locally129/16133 PASS, four-locale failure and12stage
+success recaptured. Next exact CI/merge/package, then recoverable diagnostic cleanup.
+Approved content remains T1–T6/capstone plus two books/twelve stages; persistent save,
+new mastery/daily/score systems and protected third-book PR are not unfinished approved
+implementation. Final user/release and separate frame-probe shutdown warning remain.
+
 ## Current whole-game completion queue — 2026-09-13
 
 User requests continuous implementation until the approved game is ready for final review.
