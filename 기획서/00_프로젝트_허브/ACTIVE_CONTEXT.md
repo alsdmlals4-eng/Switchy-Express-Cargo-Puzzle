@@ -1,5 +1,19 @@
 # Active Context
 
+## 2026-09-13 source-backed native generator lifetime correction
+
+Draft304 continuation at fe3e28a plus current bounded audio delta. Native source stack
+identified generator raw-pointer access on mixer worker after director/source destruction.
+Per-playback strong source reference repairs lifetime without engine/settings/core changes.
+RED2 source-lifetime failures -> GREEN sources2 retained-and-released,exit0/no warnings.
+Official E2E30/630 and pair30/7770 plus full129/16105 all exit0; eight-cue and actual
+T2->T3 capture63 PASS. Independent review closed. This supersedes NOT_FIXED below only
+for the reproduced generator-lifetime fault at these local bytes, not all native reliability.
+Owner:evidence/runtime/native-generator-lifetime-20260913/READBACK.md.
+Next: frame-separated proof, current source-bound window evidence, Python/CI, normal
+PR304 merge and updated playable package. PR303 package predates this lifetime repair.
+Whole game delivery remains open until exact merged/package readback and remaining audit.
+
 ## 2026-09-13 product-speed witnesses and native diagnostic
 
 PR303 merged478530552884fdaa1534c85e8f37da8b376d2965; five exact checks PASS,

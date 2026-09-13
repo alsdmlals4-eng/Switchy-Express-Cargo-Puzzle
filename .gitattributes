@@ -15,3 +15,6 @@ evidence/runtime/audio-cue-20260913/*.log -text whitespace=-blank-at-eof
 evidence/runtime/tutorial-audio-20260913/*.log -text whitespace=-blank-at-eof
 evidence/runtime/product-speed-20260913/*.log -text whitespace=-blank-at-eof
 evidence/runtime/product-speed-20260913/completion/*.log -text whitespace=-blank-at-eof
+evidence/runtime/native-generator-lifetime-20260913/*.log -text whitespace=-blank-at-eof
+# CDB emits CRLF and padded stack arguments; retain this exact diagnostic output.
+evidence/runtime/native-generator-lifetime-20260913/diagnostic-source-stack.log -text -whitespace

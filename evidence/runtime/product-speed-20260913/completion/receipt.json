@@ -2,88 +2,88 @@
 	"engine": "4.7.1-stable (official)",
 	"failures": [],
 	"human_review": "NOT_RUN",
-	"native_reliability": "NOT_FIXED",
+	"native_reliability": "SEPARATE_DIAGNOSTIC_REQUIRED",
 	"negative_no_pickup": false,
 	"samples": [
 		{
-			"capture_sha256": "53ee081d1775150d814c88c1f4a8dd89b6d8c59a0ad0fcf1d503c4dacb525893",
+			"capture_sha256": "3153d4160fe9abb1bc5c6161e49863b040369f23ee6af738641958cf92521374",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB01_SERVICE_SIDINGS"
 		},
 		{
-			"capture_sha256": "0edbaaddd45758476a3a56aaf51ba0abc18e9914cda58aa1a819f1d00b543103",
+			"capture_sha256": "b24ea2204276e0b4395b31aa4d67973e9b5572f7b4f84e1d67894a21bde44288",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB02_REVERSE_ORDER"
 		},
 		{
-			"capture_sha256": "2a6e3a707e360a9fda8c0353ffe2b3e8e1d566de6f3aca7562562cacba49396e",
+			"capture_sha256": "408f14e43773b53b26616ddc0d3e023ad3c1c69684a7121696325350c540c627",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB03_RETURN_MANIFEST"
 		},
 		{
-			"capture_sha256": "0a9ae911b0a211a9af896ce3553df7219c05fc46c02616c027c331414bb9490e",
+			"capture_sha256": "64cac995f110014cc156d9ef8f9cb6dc5fa0820906fdaa307fec3ded92da8851",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB04_LOAD_WINDOW"
 		},
 		{
-			"capture_sha256": "5b7be5882f8ce3716d01a337361a0efd36bb6b66ea9a1e809c0b660b935c9d8a",
+			"capture_sha256": "34c20c6e2b79e4a98f790e7aa8f273e5c900313bfe89b82c1ade6d1aeced7bce",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB05_FORK_LOCK"
 		},
 		{
-			"capture_sha256": "9419daca35e2e2643f309d7e5869c3ef546bca078143079272eeb103b478c1c9",
+			"capture_sha256": "ad151dea0902d72deb00865bb2b75a24f44edae0356156c38c506ef817b2e6f3",
 			"next_visible": false,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB06_PORT_CIRCUIT"
 		},
 		{
-			"capture_sha256": "eeca8256bb984bbb7c44297548918d1b077a90ee89d7376d126627995c379e10",
+			"capture_sha256": "b2a0dd441b65e28df862636e525908141a06c9380310f7bf7869be2f2a07afbf",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB07_FOREST_RELAY"
 		},
 		{
-			"capture_sha256": "d19b8fcee6b8769b850073d3f68f5431313d7db892f1a0832cebe8221b66470a",
+			"capture_sha256": "35c81bf96cdd0ab58060311e57e84a2167e0f2eff410ca58a97516e21e687828",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB08_CAUTION_CUT"
 		},
 		{
-			"capture_sha256": "109f235e1edafd4f5f889e9656d2f1b291de17735b8ead6fa5ffe787d34bc6b8",
+			"capture_sha256": "aa55ac38833f829fece774c70571867db3f2dd99226e3c26e1e3a4fb6041538c",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB09_SALVAGE_SIDING"
 		},
 		{
-			"capture_sha256": "54f8971aea44f74f6b25f9a0bf1cb06df237c9c0d8d27d4a9ad78a0ce8cad53d",
+			"capture_sha256": "64b917544ee7524c324db97fa988156711c85080685d24cfb6c47ad9549b73a3",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB10_CLEAN_BREAK"
 		},
 		{
-			"capture_sha256": "44099a7fe94f92d5f5506d403a255e87047d2c33aafff5ab4361efb558df5d47",
+			"capture_sha256": "2b3e0c3c035ca2954c2303a249139fa05d2760853ea7ab1366a074e0a4bcdabd",
 			"next_visible": true,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
 			"stage": "RB11_TURNOUT_UNDER_LOAD"
 		},
 		{
-			"capture_sha256": "d40576069581890960ea3b249e215974399aff17064b72a7bca10c62f3705830",
+			"capture_sha256": "62b683c7d488b828e7e5190b6f8809c2521f6ffaa58adc0d4d83eac177bc3a06",
 			"next_visible": false,
 			"outcome": "SUCCESS",
 			"shell_state": "RESULT",
@@ -104,13 +104,14 @@
 		"res://data/maps/route_book/rb10_clean_break.json": "4c4cffb0785e2cfc0b49d66bb29893bd55b9852fc8d50c2f17282859f1946bbb",
 		"res://data/maps/route_book/rb11_turnout_under_load.json": "e94eaabf66438f871f11177e2cac88d7037bc623b0da1ed9ef59964318533454",
 		"res://data/maps/route_book/rb12_lantern_loop.json": "3e70874a706f96b505be43da740be97fe2c10b33eac35c4470c2e9ba2277b791",
+		"res://game/demo/audio/demo_audio_director.gd": "a3add4ab3e5a4f0e20c024eac086371e31a7e11f9020c67257761998c7c80578",
 		"res://game/demo/demo_flow_controller.gd": "2a5596676b9fef461894323c92b284ef660037b30a49b1ccf93eb2da0774407f",
 		"res://game/demo/product_finite_slice.gd": "e087f7f0c15d5942a9f3426ab4acedecc54fc7fe5c515a6264299c5b05bb4336",
 		"res://game/demo/product_finite_slice.tscn": "6473a3c90da0381354b51087311111ac0b355423e2fb34909a4af21282a5ab7c",
 		"res://game/finite/main/finite_slice_session_controller.gd": "fdf3aad8d65c35d735a6712e2717c31fdca1b8e7f7e9b21c41fe38bc1f125357",
 		"res://game/main/main.tscn": "5aeb7c24eb04648834863b6064fb2d89d58bab4752c49d452194aca2f915e046",
 		"res://tests/fixtures/route_book/route_book_witnesses.gd": "b86e9a7da249801b9706a6fe3ab642565e85c9744cb8b69372378df97694e2a0",
-		"res://tests/runtime/route_book_completion_window_runner.gd": "daa1d91ea4e28c83232960aad921ff53602efa4bcbc16bdacaec042b301cdd26"
+		"res://tests/runtime/route_book_completion_window_runner.gd": "bf2abe69d6f3589fe65d5c13b9bfc4ae705c33362845430b4ae8ff5d3d69db33"
 	},
 	"status": "PASS"
 }

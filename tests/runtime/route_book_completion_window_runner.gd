@@ -76,13 +76,14 @@ func _run() -> void:
 	var paths: Array = ["res://tests/runtime/route_book_completion_window_runner.gd",
 		"res://tests/fixtures/route_book/route_book_witnesses.gd", "res://game/main/main.tscn",
 		"res://game/demo/demo_flow_controller.gd", "res://game/demo/product_finite_slice.gd",
+		"res://game/demo/audio/demo_audio_director.gd",
 		"res://game/demo/product_finite_slice.tscn", "res://game/finite/main/finite_slice_session_controller.gd"]
 	paths.append_array(Stages.PATHS.values())
 	for path: String in paths:
 		hashes[path] = FileAccess.get_file_as_string(path).replace("\r\n", "\n").sha256_text()
 	var receipt := {"status": "PASS" if failures.is_empty() else "FAIL", "failures": failures,
 		"samples": samples, "negative_no_pickup": negative, "engine": Engine.get_version_info().string,
-		"source_sha256_lf": hashes, "human_review": "NOT_RUN", "native_reliability": "NOT_FIXED",
+		"source_sha256_lf": hashes, "human_review": "NOT_RUN", "native_reliability": "SEPARATE_DIAGNOSTIC_REQUIRED",
 		"scope": "Actual Main/Product, authored fixtures, commands, accelerated0.05 steps, 960x540 ko; no injected terminal outcome."}
 	var output := FileAccess.open(output_dir + "receipt.json", FileAccess.WRITE)
 	if output == null:

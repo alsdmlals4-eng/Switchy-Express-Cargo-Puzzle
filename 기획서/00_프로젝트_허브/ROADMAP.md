@@ -12,7 +12,9 @@ Current owner: ACTIVE_CONTEXT.md. Historical snapshots below do not reopen compl
    do not infer balanced alternatives from two successful witnesses or add mandatory rules.
 3. Native intermittent0xc0000005: reproduce/isolate original failure; no repeat-PASS-as-fix.
    Focused same-process tutorial repetitions now reproduce it; diagnostic receipt owns evidence.
-   Official full suite again crashes after E2E; exact-release symbol diagnostic underway.
+   Exact-release symbol diagnostic found generator lifetime hole on audio mixing thread.
+   Local per-playback source retention:RED2->GREEN, official E2E30 and pair30, full
+   129/16105 exit0. Exact CI/merge/package refresh remains; no all-native-defects guarantee.
 4. Current exact executable: package startup, approved asset consumers, progression/save/ending audit.
    PR299 EXE startup and actual PCK2books/12BUILD entries verified; new permanent
    verifier PR301 merged5128ac5, Windows+Android proof CI PASS. No all-stage gameplay

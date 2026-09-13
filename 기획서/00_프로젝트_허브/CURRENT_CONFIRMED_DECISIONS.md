@@ -1,5 +1,16 @@
 # Current Confirmed Decisions
 
+## 2026-09-13 source-backed native audio lifetime repair
+
+Existing delegated completion/repair authority covers the identified generator source
+lifetime hole in the current audio consumer. Keep each source on its playback until
+the mixer releases playback; no audio design, finite rule, asset, engine/provider pin
+or security/accessibility setting change. This is a bounded implementation correction,
+not a new gameplay decision or permission inferred from a successful retry.
+Current exact evidence owner:evidence/runtime/native-generator-lifetime-20260913/READBACK.md.
+Historical native NOT_FIXED records describe their old bytes and remain preserved.
+Final human/rights/release approval and other native defects remain separate boundaries.
+
 ## 2026-09-13 existing audio feedback repair
 
 Delegated completion authority includes fixing canceled existing procedural cues and

@@ -3,7 +3,7 @@
 	"engine": "4.7.1-stable (official)",
 	"failures": [],
 	"human_review": "NOT_RUN",
-	"native_reliability": "NOT_FIXED",
+	"native_reliability": "SEPARATE_DIAGNOSTIC_REQUIRED",
 	"source_sha256_lf": {
 		"res://data/maps/route_book/rb01_service_sidings.json": "67de0c5bcdb9332e80b5a7520f88eb61f14a4b13a256922aec1bb097d1c607fd",
 		"res://data/maps/route_book/rb02_reverse_order.json": "3751c2d3198614a5cdd9f395788bc6d0c410c052eb78457ed64d85bbeb0cbd04",
@@ -22,7 +22,7 @@
 		"res://game/finite/run/finite_run_session_factory.gd": "002e167d99c1f6f4d9d92ba1763a90222a8b9bdd1040de68151df1ffc54427b6",
 		"res://tests/fixtures/route_book/route_book_witnesses.gd": "b86e9a7da249801b9706a6fe3ab642565e85c9744cb8b69372378df97694e2a0",
 		"res://tests/route_book/test_route_book_machine_witnesses.gd": "7aab93c5c7a0558c2423b2024e374eac12ba785f5516ee49a5d08fdb8b1d736e",
-		"res://tests/runtime/route_book_witness_runner.gd": "011ee55f2df0734746ce5d660a4cf3a2a206f6357bb4c37efb727423d381bebf"
+		"res://tests/runtime/route_book_witness_runner.gd": "a7a151d0f8fad8ae8714b246e9420674c75da068eca43472811f937b93bc8da6"
 	},
 	"stages": [
 		{

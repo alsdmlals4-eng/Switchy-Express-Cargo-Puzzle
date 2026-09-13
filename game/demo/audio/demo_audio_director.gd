@@ -51,6 +51,10 @@ func play_cue(cue: StringName) -> void:
 	_one_shot_player.volume_db = -80.0 if _paused_mix else -12.0
 	_one_shot_player.play()
 	_one_shot_playback = _one_shot_player.get_stream_playback()
+	# Godot4.7.1 generator playback stores a raw source pointer. The mixer can
+	# still fade a stopped playback after this node/stream is released.
+	if _one_shot_playback != null:
+		_one_shot_playback.set_meta(&"switchy_generator_source", stream)
 	_cue_buffer_capacity = int(_one_shot_playback.get_frames_available()) if _one_shot_playback != null else 0
 	_cue_phase = 0.0
 	_cue_frequency = float(settings["frequency"])
@@ -75,6 +79,8 @@ func set_train_loop_active(active: bool) -> void:
 	_train_player.volume_db = -80.0 if _paused_mix else -25.0
 	_train_player.play()
 	_train_playback = _train_player.get_stream_playback()
+	if _train_playback != null:
+		_train_playback.set_meta(&"switchy_generator_source", generator)
 	_fill_train_buffer()
 
 

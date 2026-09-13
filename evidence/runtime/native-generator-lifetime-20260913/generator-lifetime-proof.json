@@ -1,0 +1,12 @@
+{
+	"engine": "4.7.1-stable (official)",
+	"failures": [],
+	"human_audio_review": "NOT_RUN",
+	"scope": "generator survives director destruction while playback is held, then is released",
+	"source_sha256_lf": {
+		"res://game/demo/audio/demo_audio_director.gd": "a3add4ab3e5a4f0e20c024eac086371e31a7e11f9020c67257761998c7c80578",
+		"res://tests/runtime/audio_generator_lifetime_runner.gd": "f879769e215d571096ee8a488bf4b8905c8c5ad910a99fa09209dd6fdf0c6db2"
+	},
+	"sources": 2,
+	"status": "PASS"
+}

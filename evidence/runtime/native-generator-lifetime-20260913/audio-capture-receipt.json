@@ -1,0 +1,72 @@
+{
+	"assertions": 63,
+	"engine": "4.7.1-stable (official)",
+	"failures": [],
+	"flow_assertions": 20,
+	"human_audio_review": "NOT_RUN",
+	"samples": [
+		{
+			"cue": "button",
+			"frames": 16384,
+			"peak": 0.0277843475341797,
+			"still_playing": false
+		},
+		{
+			"cue": "build",
+			"frames": 24576,
+			"peak": 0.033201988786459,
+			"still_playing": false
+		},
+		{
+			"cue": "remove",
+			"frames": 24576,
+			"peak": 0.0308400597423315,
+			"still_playing": false
+		},
+		{
+			"cue": "switch",
+			"frames": 24576,
+			"peak": 0.0303706750273705,
+			"still_playing": false
+		},
+		{
+			"cue": "pickup",
+			"frames": 24576,
+			"peak": 0.0283312797546387,
+			"still_playing": false
+		},
+		{
+			"cue": "unload",
+			"frames": 20480,
+			"peak": 0.0338387526571751,
+			"still_playing": false
+		},
+		{
+			"cue": "success",
+			"frames": 24576,
+			"peak": 0.0393041223287582,
+			"still_playing": false
+		},
+		{
+			"cue": "failure",
+			"frames": 24576,
+			"peak": 0.0365882031619549,
+			"still_playing": false
+		}
+	],
+	"source_sha256_lf": {
+		"res://game/demo/audio/demo_audio_director.gd": "a3add4ab3e5a4f0e20c024eac086371e31a7e11f9020c67257761998c7c80578",
+		"res://game/demo/demo_flow_controller.gd": "2a5596676b9fef461894323c92b284ef660037b30a49b1ccf93eb2da0774407f",
+		"res://game/demo/product_finite_slice.gd": "e087f7f0c15d5942a9f3426ab4acedecc54fc7fe5c515a6264299c5b05bb4336",
+		"res://tests/demo/test_demo_audio_director.gd": "035f69de03ac0f6d486a9d676e231f5b89b263d66243f0fd1a3c8af22c8e8646",
+		"res://tests/demo/test_first_session_flow_controller.gd": "ed1d94b29082e4db5a387f9653385d2324e646483fe0615b0894f9da22633c34",
+		"res://tests/runtime/audio_cue_capture_runner.gd": "449d355054b31fb5b436ead060d5e2a3991037f20e9c9390bd2bcbf4720fdf58"
+	},
+	"tutorial_transition": {
+		"frames": 24576,
+		"lesson": "T3",
+		"old_product_freed": true,
+		"peak": 0.0393041223287582,
+		"playing": false
+	}
+}

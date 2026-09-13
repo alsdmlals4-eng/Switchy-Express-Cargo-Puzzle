@@ -34,7 +34,21 @@ Build:platform=windows target=editor arch=x86_64 debug_symbols=yes d3d12=no angl
 accesskit_sdk_path=<diagnostic>/dependencies/accesskit-c-0.21.2 -j4.
 MSVC/D3D12/ANGLE differences are diagnostic-only, not production engine changes;
 AccessKit remains enabled, OpenGL consumer preserved. No security exclusions/settings.
-Private dumps remain local. Build/stack results pending; do not claim native cause.
+Private dumps remain local. Diagnostic build completed exit0 in27m14.62s with clean
+upstream source. EXE164141568bytes SHA256:
+745661b7dad302afa90c1aceeb216868ee27ab3c7058b9ea2fb8ec5870a3e77d.
+PDB550211584bytes SHA256:8fabfe9bb37db1eb8bbf9a5bc90739a45c6467cf8cf926a3e636018a8b9b3887.
+Same E2E diagnostic crashed on iteration7, exitC0000005/no summary/no native stack.
+This reproduces under another compiler but does not yet identify the same cause.
+Microsoft signed cached SDK10.1.26100.7705 setup used layout-only Debuggers download,
+then x64 debugger MSI administrative extraction to the task folder, not installation.
+Initial forward-slash target extraction failed1619; native Windows paths succeeded0.
+CDB10.0.26100.7705 SHA256:67c3d1da6a3f2869fee12186d0c27ecb263fd9ed302b3d45d6ab10a32bf586a1.
+Live diagnostic applies only to its spawned test process, no global debugger registration,
+registry changes, private dump uploads, security exclusions or other-editor attachment.
+Sources:https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/debugger-download-tools
+and https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/cdb-command-line-options.
+Stack capture remains in progress; do not claim native cause or repair.
 
 ## Actual Main/Product completion evidence
 

@@ -29,7 +29,7 @@ func _run() -> void:
 	var receipt := {"status": "PASS" if test.passed() else "FAIL", "failures": test.failures,
 		"assertions": test.assertion_count, "stages": test.witness_results,
 		"engine": Engine.get_version_info().string, "source_sha256_lf": source_hashes,
-		"human_review": "NOT_RUN", "native_reliability": "NOT_FIXED"}
+		"human_review": "NOT_RUN", "native_reliability": "SEPARATE_DIAGNOSTIC_REQUIRED"}
 	var output := FileAccess.open("user://product-speed-witnesses.json", FileAccess.WRITE)
 	if output == null:
 		printerr("PRODUCT_SPEED_WITNESS: FAIL receipt unavailable")

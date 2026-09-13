@@ -32,3 +32,29 @@ uploading private memory dumps, or guessing the faulting method from a final log
    diagnostic artifacts to user-deletion holding with path/hash/restore manifest later.
 
 No whole-game completion, native repair or release claim is authorized by this plan.
+
+## Source-backed generator lifetime correction plan
+
+CDB with normal heap(-hd) caught worker-thread AV in AudioStreamGenerator::_get_target_rate
+line61, called by AudioStreamGeneratorPlayback::get_stream_sampling_rate line196,
+AudioStreamPlaybackResampled::mix -> AudioServer::_mix_step -> AudioDriverDummy.
+Exact source uses raw AudioStreamGenerator* in playback; stop schedules fade/deletion,
+so destroying/replacing the player's stream can outlive its generator in the mixer.
+Actual DemoAudioDirector creates train generators per restart and owns cue cache only
+for node lifetime. This identifies a concrete lifetime hole, not arbitrary UI teardown.
+
+1. RED: hold each actual playback, destroy the director, assert weak generator remains
+   valid while playback is still alive. Cover one-shot and train independently.
+2. ADOPT per-playback strong resource reference via Object metadata, set immediately
+   after obtaining playback while local stream still owns generator. No reference cycle:
+   generator does not own playback. Lifetime ends with playback, no global cache/leak.
+3. REJECT replacing engine, delaying scene destruction, muting audio, static permanent
+   caches or unrelated lifecycle refactoring. Same generated audio and gameplay.
+4. Run RED/GREEN, original official E2E/pair stress and full suite; actual cue capture
+   and window completion; source-bound evidence refresh. A retry alone is never repair.
+5. Five-pass and independent review of lifetime, race interval, cue parity, bounded
+   resource release and evidence. Native fix status requires exact official verification.
+
+Primary source:official tag a13da4feb servers/audio/effects/audio_stream_generator.cpp/.h,
+servers/audio/audio_server.cpp. Historical issue65155 concerns earlier buffer starvation;
+REJECT as proof of this same fault. Local source-level stack is the current evidence.
