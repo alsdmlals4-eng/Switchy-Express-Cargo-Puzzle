@@ -1,5 +1,12 @@
 # Roadmap
 
+## Package verification follow-through — 2026-09-13
+
+Closed the remaining evidence gap between checkout12SUCCESS and exported PCK12BUILD:
+unchanged PR305 PCK now twelve actual SUCCESS through the external Main/Product driver.
+Negative no-pickup rejects; no product scope expansion. Integration pending in current PR.
+Owner:evidence/runtime/pack-completion-20260913/READBACK.md; final-user/release gates unchanged.
+
 ## Current completion boundary — final user review
 
 Approved finite product implementation audit closed at PR305 game / PR306 tool maintenance.

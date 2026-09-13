@@ -1,0 +1,121 @@
+{
+	"consumer": "CHECKOUT_MAIN",
+	"engine": "4.7.1-stable (official)",
+	"failures": [],
+	"human_review": "NOT_RUN",
+	"native_reliability": "SEPARATE_DIAGNOSTIC_REQUIRED",
+	"negative_no_pickup": false,
+	"package_path": "",
+	"package_sha256": "",
+	"samples": [
+		{
+			"capture_sha256": "5574e47f57ca2e26860f71364383a96918a97c66f3ef3b775d22d23e15640546",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB01_SERVICE_SIDINGS"
+		},
+		{
+			"capture_sha256": "d10c12e052c40a1fb7ac85d5158324e7490244b54a44089e2e6b0ea188e7f457",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB02_REVERSE_ORDER"
+		},
+		{
+			"capture_sha256": "240928396b159129e6a8485734dad6c722d1b39a56d0c7872462bf9cee7060e2",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB03_RETURN_MANIFEST"
+		},
+		{
+			"capture_sha256": "d2488c3c57bc2826641800d4e6ef9014bc45fade11ef56f74d0ea3f6a6bade00",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB04_LOAD_WINDOW"
+		},
+		{
+			"capture_sha256": "e930bef0a8e0bd61f5d270b94796600840f02b4bf619a5d21074afec2b357b49",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB05_FORK_LOCK"
+		},
+		{
+			"capture_sha256": "fb61063afdecbcc1c05e99e1bda28a67586123d9b0d5513332e7b26b58028464",
+			"next_visible": false,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB06_PORT_CIRCUIT"
+		},
+		{
+			"capture_sha256": "8e3a262a9ecd6c2dadd91869ab9cbb4420dd3c1ba6f00d8c047e99755d3e96b3",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB07_FOREST_RELAY"
+		},
+		{
+			"capture_sha256": "47fff32191c8d42dae1e29fc2716f0b93fd7b07469e1cbdebc459214c1b2902c",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB08_CAUTION_CUT"
+		},
+		{
+			"capture_sha256": "cea7b7b7f146b7295f5f5b682d20e97fecd16f0412d611ed0a655251b7e0d307",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB09_SALVAGE_SIDING"
+		},
+		{
+			"capture_sha256": "6b86f6c93f5f03569a1720eb28bfbfe6bc2ec374c4b8050ebdd43adefefd061b",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB10_CLEAN_BREAK"
+		},
+		{
+			"capture_sha256": "d113086346a4b08bd7063ce86581c67277e0b100b977d2490f40eb74ed84df8d",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB11_TURNOUT_UNDER_LOAD"
+		},
+		{
+			"capture_sha256": "a93090367f6c8aed3ca9526504aab70b042903f8d68e7365c8b367374ad25476",
+			"next_visible": false,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB12_LANTERN_LOOP"
+		}
+	],
+	"scope": "Actual Main/Product, authored fixtures, commands, accelerated0.05 steps, 960x540 ko; no injected terminal outcome.",
+	"source_sha256_lf": {
+		"res://data/maps/route_book/rb01_service_sidings.json": "67de0c5bcdb9332e80b5a7520f88eb61f14a4b13a256922aec1bb097d1c607fd",
+		"res://data/maps/route_book/rb02_reverse_order.json": "3751c2d3198614a5cdd9f395788bc6d0c410c052eb78457ed64d85bbeb0cbd04",
+		"res://data/maps/route_book/rb03_return_manifest.json": "92a0352b3ca242823c32b9de272eb6729a4535925dfa7993690e1f8437de3589",
+		"res://data/maps/route_book/rb04_load_window.json": "6b5fbe2b1665d0bbc0996298cd32a2461088b1378698c7966d69d3c40a795476",
+		"res://data/maps/route_book/rb05_fork_lock.json": "f7f201d231f9a31096f4caa4d2b77b2fb40772472272b76e649d95f0f7928e3e",
+		"res://data/maps/route_book/rb06_port_circuit.json": "895579b7c150727ba994d7aa3bd16f2f7d04b62901afeb69a2b577cc1de009ac",
+		"res://data/maps/route_book/rb07_forest_relay.json": "e1d3825a816f380f8fc4236967dc2545d2b44fe82e7878775276be343613bb4f",
+		"res://data/maps/route_book/rb08_caution_cut.json": "1e8a4c2580af32f0aa167a113fe8b7a3ae360af3bd9e15249076788fc8e9f3ed",
+		"res://data/maps/route_book/rb09_salvage_siding.json": "7e4d0d2d3af63b1e067525517b1e9b7d256edd30787170300b52381ec2e4c212",
+		"res://data/maps/route_book/rb10_clean_break.json": "4c4cffb0785e2cfc0b49d66bb29893bd55b9852fc8d50c2f17282859f1946bbb",
+		"res://data/maps/route_book/rb11_turnout_under_load.json": "e94eaabf66438f871f11177e2cac88d7037bc623b0da1ed9ef59964318533454",
+		"res://data/maps/route_book/rb12_lantern_loop.json": "3e70874a706f96b505be43da740be97fe2c10b33eac35c4470c2e9ba2277b791",
+		"res://game/demo/audio/demo_audio_director.gd": "a3add4ab3e5a4f0e20c024eac086371e31a7e11f9020c67257761998c7c80578",
+		"res://game/demo/demo_flow_controller.gd": "2a5596676b9fef461894323c92b284ef660037b30a49b1ccf93eb2da0774407f",
+		"res://game/demo/presentation/product_hud.gd": "1d7f8e52a38f2fff665c883819cd4f3417859687caa59de092407ea490b1d8e0",
+		"res://game/demo/product_finite_slice.gd": "e087f7f0c15d5942a9f3426ab4acedecc54fc7fe5c515a6264299c5b05bb4336",
+		"res://game/demo/product_finite_slice.tscn": "6473a3c90da0381354b51087311111ac0b355423e2fb34909a4af21282a5ab7c",
+		"res://game/finite/main/finite_slice_session_controller.gd": "fdf3aad8d65c35d735a6712e2717c31fdca1b8e7f7e9b21c41fe38bc1f125357",
+		"res://game/main/main.tscn": "5aeb7c24eb04648834863b6064fb2d89d58bab4752c49d452194aca2f915e046",
+		"res://tests/fixtures/route_book/route_book_witnesses.gd": "b86e9a7da249801b9706a6fe3ab642565e85c9744cb8b69372378df97694e2a0",
+		"res://tests/runtime/route_book_completion_window_runner.gd": "ba2b396b99bcfa513a41984f363980f79f9b431b327e4b20ad24dc09f443da97"
+	},
+	"status": "PASS"
+}

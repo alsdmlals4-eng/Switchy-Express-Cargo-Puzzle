@@ -2,8 +2,8 @@ extends SceneTree
 
 # Actual Main/Product integration proof, not human-paced play or native repair.
 const Main := preload("res://game/main/main.tscn")
-const Witness := preload("res://tests/fixtures/route_book/route_book_witnesses.gd")
-const Stages := preload("res://tests/route_book/test_route_book_machine_witnesses.gd")
+const Catalog := preload("res://game/route_book/route_book_catalog.gd")
+const Definition := preload("res://game/route_book/route_book_definition.gd")
 var failures: Array[String] = []
 
 
@@ -12,8 +12,54 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	if DisplayServer.get_name() == "headless":
+		printerr("ROUTE_COMPLETION: FAIL window renderer required")
+		quit(2)
+		return
 	var negative := OS.get_cmdline_user_args().has("no-pickup")
-	var output_dir := "user://route-book-completion-negative/" if negative else "user://route-book-completion/"
+	var pack_path := ""
+	var expected_hash := ""
+	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("pack-sha256="):
+			expected_hash = argument.trim_prefix("pack-sha256=")
+		elif argument.begins_with("pack-path="):
+			pack_path = argument.trim_prefix("pack-path=")
+	# Godot consumes --main-pack before exposing script arguments; the caller binds
+	# this absolute identity to its launch command. No resource overlays are used.
+	var pack_hash := FileAccess.get_sha256(pack_path) if not pack_path.is_empty() else ""
+	var checkout_fixture := FileAccess.file_exists("res://tests/fixtures/route_book/route_book_witnesses.gd")
+	if checkout_fixture != pack_path.is_empty():
+		printerr("ROUTE_COMPLETION: FAIL checkout/pack consumer mismatch")
+		quit(2)
+		return
+	if (not pack_path.is_empty() and (pack_hash.length() != 64 or pack_hash != expected_hash)) \
+			or (pack_path.is_empty() and not expected_hash.is_empty()):
+		printerr("ROUTE_COMPLETION: FAIL package identity path=%s actual=%s expected=%s" % [pack_path, pack_hash, expected_hash])
+		quit(2)
+		return
+	# Only the authored input fixture comes from beside this external test script.
+	# All product scenes/scripts/maps resolve through res:// in the mounted pack.
+	var runner_path: String = get_script().resource_path
+	var witness_path := runner_path.get_base_dir().get_base_dir().path_join("fixtures/route_book/route_book_witnesses.gd")
+	var witness: Script = load(witness_path)
+	if witness == null:
+		printerr("ROUTE_COMPLETION: FAIL authored fixture unavailable")
+		quit(2)
+		return
+	var stage_paths: Dictionary = {}
+	for book_id: StringName in Catalog.book_ids():
+		var book: Variant = Definition.load_from_path(Catalog.definition_path(book_id))
+		if book == null:
+			printerr("ROUTE_COMPLETION: FAIL book definition")
+			quit(2)
+			return
+		for stage_id: StringName in book.stage_ids():
+			stage_paths[stage_id] = book.stage(stage_id).get("map_path", "")
+	if stage_paths.size() != 12:
+		printerr("ROUTE_COMPLETION: FAIL expected twelve stages")
+		quit(2)
+		return
+	var output_dir := "user://route-book-completion" + ("-pack" if not pack_path.is_empty() else "") + ("-negative/" if negative else "/")
 	if DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(output_dir)) != OK:
 		printerr("ROUTE_COMPLETION: FAIL output directory")
 		quit(2)
@@ -25,7 +71,7 @@ func _run() -> void:
 	await process_frame
 	var shell: Control = main.get_node("VerticalSliceDemo")
 	var samples: Array[Dictionary] = []
-	var stage_ids: Array = Stages.PATHS.keys()
+	var stage_ids: Array = stage_paths.keys()
 	for index: int in range(1 if negative else 12):
 		var stage_id := StringName(stage_ids[index])
 		shell.return_to_title()
@@ -40,7 +86,7 @@ func _run() -> void:
 			break
 		product.set_process(false)
 		_check(StringName(product.session_controller().render_snapshot().get("map_id")) == stage_id, "actual map identity")
-		_check(product.install_layout_for_test(Witness.pieces(stage_id)), "authored layout " + str(stage_id))
+		_check(product.install_layout_for_test(witness.pieces(stage_id)), "authored layout " + str(stage_id))
 		product.request_command_for_test(&"START")
 		var controller: RefCounted = product.session_controller()
 		var runtime: Variant = controller.active_run_session_for_test()
@@ -74,16 +120,22 @@ func _run() -> void:
 		print("ROUTE_COMPLETION_STAGE: " + JSON.stringify(sample))
 	_check(samples.size() == (1 if negative else 12), "complete expected stage count")
 	var hashes: Dictionary = {}
-	var paths: Array = ["res://tests/runtime/route_book_completion_window_runner.gd",
-		"res://tests/fixtures/route_book/route_book_witnesses.gd", "res://game/main/main.tscn",
+	var paths: Array = [runner_path, witness_path]
+	if pack_path.is_empty():
+		paths.append_array(["res://game/main/main.tscn",
 		"res://game/demo/demo_flow_controller.gd", "res://game/demo/product_finite_slice.gd",
 		"res://game/demo/audio/demo_audio_director.gd",
 		"res://game/demo/presentation/product_hud.gd",
-		"res://game/demo/product_finite_slice.tscn", "res://game/finite/main/finite_slice_session_controller.gd"]
-	paths.append_array(Stages.PATHS.values())
+		"res://game/demo/product_finite_slice.tscn", "res://game/finite/main/finite_slice_session_controller.gd"])
+	paths.append_array(stage_paths.values())
 	for path: String in paths:
+		_check(FileAccess.file_exists(path), "readable evidence source " + path)
 		hashes[path] = FileAccess.get_file_as_string(path).replace("\r\n", "\n").sha256_text()
+	if not pack_path.is_empty():
+		_check(FileAccess.get_sha256(pack_path) == pack_hash, "package unchanged after run")
 	var receipt := {"status": "PASS" if failures.is_empty() else "FAIL", "failures": failures,
+		"consumer": "EDITOR_MOUNTED_EXPORTED_PCK" if not pack_path.is_empty() else "CHECKOUT_MAIN",
+		"package_sha256": pack_hash, "package_path": pack_path,
 		"samples": samples, "negative_no_pickup": negative, "engine": Engine.get_version_info().string,
 		"source_sha256_lf": hashes, "human_review": "NOT_RUN", "native_reliability": "SEPARATE_DIAGNOSTIC_REQUIRED",
 		"scope": "Actual Main/Product, authored fixtures, commands, accelerated0.05 steps, 960x540 ko; no injected terminal outcome."}
