@@ -60,6 +60,20 @@ jobs:
 
           exit "$status"
 
+      - name: Verify generator resource lifetime
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          timeout 30s ./Godot_v4.7.1-stable_linux.x86_64 \
+            --headless --path . \
+            --script res://tests/runtime/audio_generator_lifetime_runner.gd \
+            2>&1 | tee artifacts/generator-lifetime.log
+          grep -F 'GENERATOR_LIFETIME: PASS sources=2' artifacts/generator-lifetime.log
+          if grep -E 'SCRIPT ERROR:|(^|[[:space:]])ERROR:|WARNING:' artifacts/generator-lifetime.log; then
+            exit 1
+          fi
+
       - name: Verify generated cue playback
         shell: bash
         run: |

@@ -1,0 +1,146 @@
+Opened log file 'C:/Users/user/Downloads/Switchy_Native_Diagnostics_20260913/cdb-native-hd-e2e.log'
+
+************* Preparing the environment for Debugger Extensions Gallery repositories **************
+   ExtensionRepository : Implicit
+   UseExperimentalFeatureForNugetShare : true
+   AllowNugetExeUpdate : true
+   NonInteractiveNuget : true
+   AllowNugetMSCredentialProviderInstall : true
+   AllowParallelInitializationOfLocalRepositories : true
+
+   EnableRedirectToV8JsProvider : false
+
+   -- Configuring repositories
+      ----> Repository : LocalInstalled, Enabled: true
+      ----> Repository : UserExtensions, Enabled: true
+
+>>>>>>>>>>>>> Preparing the environment for Debugger Extensions Gallery repositories completed, duration 0.000 seconds
+
+************* Waiting for Debugger Extensions Gallery to Initialize **************
+
+>>>>>>>>>>>>> Waiting for Debugger Extensions Gallery to Initialize completed, duration 0.016 seconds
+   ----> Repository : UserExtensions, Enabled: true, Packages count: 0
+   ----> Repository : LocalInstalled, Enabled: true, Packages count: 30
+
+Microsoft (R) Windows Debugger Version 10.0.26100.7705 AMD64
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+CommandLine: C:/Users/user/Downloads/Switchy_Native_Diagnostics_20260913/godot-4.7.1/bin/godot.windows.editor.x86_64.exe --headless --path . --script res://tests/runtime/native_exit_isolation_runner.gd --log-file user://native-cdb-hd-e2e.log -- end_to_end 20
+NatVis script successfully loaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\atlmfc.natvis'
+NatVis script successfully loaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\ObjectiveC.natvis'
+NatVis script successfully loaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\concurrency.natvis'
+NatVis script successfully loaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\cpp_rest.natvis'
+NatVis script successfully loaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\stl.natvis'
+NatVis script successfully loaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\Windows.Data.Json.natvis'
+NatVis script successfully loaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\Windows.Devices.Geolocation.natvis'
+NatVis script successfully loaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\Windows.Devices.Sensors.natvis'
+NatVis script successfully loaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\Windows.Media.natvis'
+NatVis script successfully loaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\windows.natvis'
+NatVis script successfully loaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\winrt.natvis'
+
+************* Path validation summary **************
+Response                         Time (ms)     Location
+OK                                             C:/Users/user/Downloads/Switchy_Native_Diagnostics_20260913/godot-4.7.1/bin
+Symbol search path is: C:/Users/user/Downloads/Switchy_Native_Diagnostics_20260913/godot-4.7.1/bin
+Executable search path is: 
+
++------------------------------------------------------------------------+
+| This target supports Hardware-enforced Stack Protection. A HW based    |
+| "Shadow Stack" may be available to assist in debugging and analysis.   |
+| See aka.ms/userhsp for more info.                                      |
+|                                                                        |
+| dps @ssp                                                               |
+|                                                                        |
++------------------------------------------------------------------------+
+
+ModLoad: 00007ff6`3b820000 00007ff6`45727000   godot.windows.editor.x86_64.exe
+ModLoad: 00007ffc`80e60000 00007ffc`810c7000   ntdll.dll
+ModLoad: 00007ffc`7f750000 00007ffc`7f81b000   C:\WINDOWS\System32\KERNEL32.DLL
+ModLoad: 00007ffc`7e390000 00007ffc`7e792000   C:\WINDOWS\System32\KERNELBASE.dll
+ModLoad: 00007ffc`7ec30000 00007ffc`7edca000   C:\WINDOWS\System32\ole32.dll
+ModLoad: 00007ffc`7e2e0000 00007ffc`7e383000   C:\WINDOWS\System32\msvcp_win.dll
+ModLoad: 00007ffc`71e30000 00007ffc`71e66000   C:\WINDOWS\SYSTEM32\WINMM.dll
+ModLoad: 00007ffc`7ea20000 00007ffc`7eb6c000   C:\WINDOWS\System32\ucrtbase.dll
+ModLoad: 0000020a`13440000 0000020a`1358c000   C:\WINDOWS\System32\ucrtbase.dll
+ModLoad: 00007ffc`7ee00000 00007ffc`7ee2b000   C:\WINDOWS\System32\GDI32.dll
+ModLoad: 00007ffc`7e060000 00007ffc`7e087000   C:\WINDOWS\System32\win32u.dll
+ModLoad: 00007ffc`7e7a0000 00007ffc`7e8c9000   C:\WINDOWS\System32\gdi32full.dll
+ModLoad: 00007ffc`80250000 00007ffc`8041f000   C:\WINDOWS\System32\USER32.dll
+ModLoad: 00007ffc`7fec0000 00007ffc`80245000   C:\WINDOWS\System32\combase.dll
+ModLoad: 00007ffc`7f820000 00007ffc`7f938000   C:\WINDOWS\System32\RPCRT4.dll
+ModLoad: 00007ffc`7f360000 00007ffc`7f439000   C:\WINDOWS\System32\OLEAUT32.dll
+ModLoad: 00007ffc`7ee40000 00007ffc`7eea6000   C:\WINDOWS\System32\SHLWAPI.dll
+ModLoad: 00007ffc`7f9d0000 00007ffc`7facb000   C:\WINDOWS\System32\shcore.dll
+ModLoad: 00007ffc`80430000 00007ffc`80bc8000   C:\WINDOWS\System32\SHELL32.dll
+ModLoad: 00007ffc`7f440000 00007ffc`7f4fc000   C:\WINDOWS\System32\ADVAPI32.dll
+ModLoad: 00007ffc`7eb80000 00007ffc`7ec29000   C:\WINDOWS\System32\msvcrt.dll
+ModLoad: 00007ffc`7f510000 00007ffc`7f5b9000   C:\WINDOWS\System32\sechost.dll
+ModLoad: 00007ffc`7fb80000 00007ffc`7fbb1000   C:\WINDOWS\System32\IMM32.dll
+ModLoad: 00007ffc`7e150000 00007ffc`7e2ce000   C:\WINDOWS\System32\CRYPT32.dll
+ModLoad: 00007ffc`80c90000 00007ffc`80d10000   C:\WINDOWS\System32\WS2_32.dll
+ModLoad: 00007ffc`7df50000 00007ffc`7df7a000   C:\WINDOWS\SYSTEM32\bcrypt.dll
+ModLoad: 00007ffc`78bd0000 00007ffc`78bdb000   C:\WINDOWS\SYSTEM32\AVRT.dll
+ModLoad: 00007ffc`7b3d0000 00007ffc`7b3ff000   C:\WINDOWS\SYSTEM32\dwmapi.dll
+ModLoad: 00007ffc`79910000 00007ffc`79b7a000   C:\WINDOWS\SYSTEM32\DWrite.dll
+ModLoad: 00007ffc`7c360000 00007ffc`7c36f000   C:\WINDOWS\SYSTEM32\HID.DLL
+ModLoad: 00007ffc`68290000 00007ffc`684dc000   C:\WINDOWS\SYSTEM32\dbghelp.dll
+ModLoad: 00007ffc`7c6b0000 00007ffc`7c6e3000   C:\WINDOWS\SYSTEM32\IPHLPAPI.DLL
+ModLoad: 00007ffc`56f20000 00007ffc`56f2a000   C:\WINDOWS\SYSTEM32\WSOCK32.dll
+ModLoad: 00007ffc`51030000 00007ffc`51450000   C:\WINDOWS\SYSTEM32\uiautomationcore.dll
+(5b98.3c10): Break instruction exception - code 80000003 (first chance)
+ntdll!RtlGetReturnAddressHijackTarget+0x749:
+00007ffc`80f82239 cc              int     3
+0:000> sxe -c ".ecxr; kP; q" av
+0:000> g
+ModLoad: 00007ffc`7e960000 00007ffc`7ea0c000   C:\WINDOWS\System32\bcryptPrimitives.dll
+ModLoad: 00007ffc`5cf40000 00007ffc`5cf8b000   C:\WINDOWS\SYSTEM32\dinput8.dll
+ModLoad: 00007ffc`5c290000 00007ffc`5c473000   C:\WINDOWS\SYSTEM32\inputhost.dll
+ModLoad: 00007ffc`7aab0000 00007ffc`7abdb000   C:\WINDOWS\SYSTEM32\CoreMessaging.dll
+ModLoad: 00007ffc`7ccf0000 00007ffc`7cd0b000   C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+ModLoad: 00007ffc`7d5e0000 00007ffc`7d5ec000   C:\WINDOWS\SYSTEM32\CRYPTBASE.DLL
+ModLoad: 00007ffc`7b100000 00007ffc`7b1a8000   C:\WINDOWS\system32\uxtheme.dll
+ModLoad: 00007ffc`7d640000 00007ffc`7d653000   C:\WINDOWS\SYSTEM32\MSASN1.dll
+(5b98.8944): Access violation - code c0000005 (first chance)
+Unable to get exception context, HRESULT 0x8000FFFF
+*** WARNING: Unable to verify checksum for godot.windows.editor.x86_64.exe
+Child-SP          RetAddr               Call Site
+(Inline Function) --------`--------     godot_windows_editor_x86_64!AudioStreamGenerator::_get_target_rate(void) [C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\godot-4.7.1\servers\audio\effects\audio_stream_generator.cpp @ 61]
+00000017`433ff870 00007ff6`4035f847     godot_windows_editor_x86_64!AudioStreamGeneratorPlayback::get_stream_sampling_rate(void)+0xb [C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\godot-4.7.1\servers\audio\effects\audio_stream_generator.cpp @ 196]
+00000017`433ff8a0 00007ff6`3fd1d02b     godot_windows_editor_x86_64!AudioStreamPlaybackResampled::mix(
+			struct AudioFrame * p_buffer = 0x0000020a`166c50a8, 
+			float p_rate_scale = <Value unavailable error>, 
+			int p_frames = 0n512)+0x67 [C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\godot-4.7.1\servers\audio\audio_stream.cpp @ 188]
+00000017`433ff960 00007ff6`3fd173e2     godot_windows_editor_x86_64!AudioServer::_mix_step(void)+0x80b [C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\godot-4.7.1\servers\audio\audio_server.cpp @ 422]
+00000017`433ffc20 00007ff6`3fd223c6     godot_windows_editor_x86_64!AudioServer::_driver_process(
+			int p_frames = 0n4096, 
+			int * p_buffer = 0x0000020a`166bce70)+0x152 [C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\godot-4.7.1\servers\audio\audio_server.cpp @ 289]
+00000017`433ffd10 00007ff6`4004dee5     godot_windows_editor_x86_64!AudioDriver::audio_server_process(
+			int p_frames = 0n4096, 
+			int * p_buffer = 0x0000020a`166bce70, 
+			bool p_update_mix_time = false)+0x56 [C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\godot-4.7.1\servers\audio\audio_server.cpp @ 80]
+00000017`433ffd40 00007ff6`4094f812     godot_windows_editor_x86_64!AudioDriverDummy::thread_func(
+			void * p_udata = 0x00007ff6`4517e8a8)+0xa5 [C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\godot-4.7.1\servers\audio\audio_driver_dummy.cpp @ 68]
+00000017`433ffd70 00007ff6`4094f6ae     godot_windows_editor_x86_64!Thread::callback(
+			unsigned int64 p_caller_id = 0x20, 
+			struct Thread::Settings * p_settings = 0x0000020a`163dfbd0, 
+			<function> * p_callback = 0x00007ff6`4004de40, 
+			void * p_userdata = 0x00007ff6`4517e8a8)+0x92 [C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\godot-4.7.1\core\os\thread.cpp @ 66]
+(Inline Function) --------`--------     godot_windows_editor_x86_64!std::invoke(void)+0x18 [C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\type_traits @ 1680]
+00000017`433ffda0 00007ff6`4141cb7f     godot_windows_editor_x86_64!std::thread::_Invoke<std::tuple<void (
+			void * _RawVals = 0x0000020a`163dfbc0)+0x1e [C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\thread @ 61]
+00000017`433ffdd0 00007ffc`7f77cd87     godot_windows_editor_x86_64!thread_start<unsigned int (
+			void * parameter = 0x0000020a`163dff50)+0x4f [minkernel\crts\ucrt\src\appcrt\startup\thread.cpp @ 97]
+00000017`433ffe00 00007ffc`80f0caec     KERNEL32!BaseThreadInitThunk+0x17
+00000017`433ffe30 00000000`00000000     ntdll!RtlUserThreadStart+0x2c
+quit:
+NatVis script unloaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\atlmfc.natvis'
+NatVis script unloaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\ObjectiveC.natvis'
+NatVis script unloaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\concurrency.natvis'
+NatVis script unloaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\cpp_rest.natvis'
+NatVis script unloaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\stl.natvis'
+NatVis script unloaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\Windows.Data.Json.natvis'
+NatVis script unloaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\Windows.Devices.Geolocation.natvis'
+NatVis script unloaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\Windows.Devices.Sensors.natvis'
+NatVis script unloaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\Windows.Media.natvis'
+NatVis script unloaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\windows.natvis'
+NatVis script unloaded from 'C:\Users\user\Downloads\Switchy_Native_Diagnostics_20260913\debugger-extracted\Windows Kits\10\Debuggers\x64\Visualizers\winrt.natvis'

@@ -1,5 +1,42 @@
 # Active Context
 
+## 2026-09-13 source-backed native generator lifetime correction
+
+Draft304 continuation at fe3e28a plus current bounded audio delta. Native source stack
+identified generator raw-pointer access on mixer worker after director/source destruction.
+Per-playback strong source reference repairs lifetime without engine/settings/core changes.
+RED2 source-lifetime failures -> GREEN sources2 retained-and-released,exit0/no warnings.
+Official E2E30/630 and pair30/7770 plus full129/16105 all exit0; eight-cue and actual
+T2->T3 capture63 PASS. Independent review closed. This supersedes NOT_FIXED below only
+for the reproduced generator-lifetime fault at these local bytes, not all native reliability.
+Owner:evidence/runtime/native-generator-lifetime-20260913/READBACK.md.
+Next: frame-separated proof, current source-bound window evidence, Python/CI, normal
+PR304 merge and updated playable package. PR303 package predates this lifetime repair.
+Whole game delivery remains open until exact merged/package readback and remaining audit.
+
+## 2026-09-13 product-speed witnesses and native diagnostic
+
+PR303 merged478530552884fdaa1534c85e8f37da8b376d2965; five exact checks PASS,
+normal merge and local/origin readback. Current branch codex/product-speed-witnesses-20260913.
+Actual ProductScene speed2.0 now checked after train START in all existing witness
+paths. Focused RED22 speed mismatches -> GREEN92 underlying assertions,129 with
+receipt completeness checks, all12 positive stagesSUCCESS. Existing negatives retained.
+Actual Main/Product window completion now separately verified for all12 stages at
+960x540 ko with authored fixtures and real commands, no injected result. Owner:
+evidence/runtime/product-speed-20260913/completion/receipt.json. Human-paced play
+and native reliability remain separate; positive window exit0 does not repair the crash.
+Full official Windows regression again C0000005 after E2E: UNVERIFIED, not PASS.
+Python308/1skip PASS before final receipt-only guard additions. No product/map change.
+Owners:evidence/runtime/product-speed-20260913/READBACK.md and native-exit owner.
+Separate symbol diagnostic of exact Godot sourcea13da4feb is building locally with
+MSVC and symbols; this is not engine/provider replacement or official-byte proof.
+No antivirus/accessibility/security changes. Do not merge this pending unit as full
+Windows-verified until native investigation/verification is reconciled.
+Whole game NOT_COMPLETE; current playable PR303 package startup and mounted-pack
+consumers verified. Package/cleanup readback is in the tutorial-audio evidence owner.
+Draft PR304 contains product-speed witnesses; four draft checks green do not resolve
+the local Windows native failure or authorize a Windows-reliability claim.
+
 ## 2026-09-13 tutorial transition audio continuation
 
 PR302 merged8b8cb04f0bd7db7049983d91cc5141c232275171; five exact checks PASS.
