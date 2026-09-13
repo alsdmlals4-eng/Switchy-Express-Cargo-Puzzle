@@ -48,8 +48,24 @@ did not finish; interrupted exact owned processes, NOT clean exit. CDB q after t
 returns0 but is a captured crash, never PASS. No private memory dump uploaded or global
 debugger/security/registry changes. Tools remain task-local until verified cleanup/handoff.
 
-Current source-backed repair is locally verified for the reproduced generator lifetime fault,
-not a guarantee against every possible native defect. Exact CI/merge/package refresh remains.
+Current source-backed repair was merged via PR304 after exact five CI checks. PR305
+subsequently delivered the terminal HUD correction and verified package; PR306 changes
+only Pilot tooling. This remains no guarantee against every possible native defect.
 Final full Python308passed/1skipped,exit0 with GODOT_BINARY configured; skipped live-editor
 Pilot uses its separate GODOT_BIN setting. Correct editor run13 above is independent
 live evidence, not an assertion that the skipped Python test ran. Project contract PASS.
+
+## Frame-only shutdown diagnostic refinement
+
+The unchanged original frame probe20/420 still exits0 with two ObjectDB warnings.
+Full verbose stdout identifies exactly AudioStreamGeneratorPlayback and AudioStreamGenerator,
+both reference count1, including metadata/switchy_generator_source. No stack/scene leak
+identity is inferred from that observation. Original warning is not relabeled PASS.
+
+Separate test-only frame-source-drain-probe.gd.txt records weak references to generator
+sources as real AudioStreamPlayers exit the tree over the same20E2E cases. After the last
+normal frame:220observations,1sourcepending; then waits only while a weak source remains,
+bounded120frames. Result:0remaining after8frames,20/420,exit0 and no warnings.
+frame-source-drain.log preserves the summary. No product/source retention code was changed.
+This supports pending mixer release in this bounded diagnostic, not a fix to every shutdown
+path or permission to hide warnings. Existing lifetime runner independently proves release.

@@ -1,5 +1,11 @@
 # Canonical admission / exact restoration — local Windows proof
 
+Final readback: PR306 merged normally as e40b2ec6922e1d3f1f20b46392eb94f589997d2d;
+all five required checks SUCCESS at d6ad8f8365aaa5dfc158d778a975fed46f029875.
+Local active checkout HEAD matched origin/main. Product paths game/data/art/project.godot
+have no change from PR305, so its exact-source verified executable remains the product handoff.
+Existing216 tracked local import/settings modifications were preserved, not called clean.
+
 RED actual official Windows Pilot rejected CRLF source with TARGET_SCENE_CONTRACT_MISMATCH.
 Snapshot7506bytes raw7b24444f1031f3eb9f323a60a5222d4fbf1088502567b228754e432328727e24;
 LF7222bytes matches pinnedc5f69f957b462a916d424f4487bfc6025901b9254a5425623619952562623f62.

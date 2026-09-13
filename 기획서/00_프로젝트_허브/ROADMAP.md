@@ -1,5 +1,17 @@
 # Roadmap
 
+## Current completion boundary — final user review
+
+Approved finite product implementation audit closed at PR305 game / PR306 tool maintenance.
+No new product implementation is queued by this audit; final user inspection and public
+release remain separate. Current exact product package is PR305, unchanged by306 tools.
+Machine129/16133, Python309/1skip, all12actualSUCCESS,4localeactualfailure and package
+consumer readback complete. Current Active Context and Pilot/native readbacks own details.
+Non-blocking recurrence-watch: Linux temporary-editor restore transient; frame-only probe
+pending audio release (220weak sources -> zero,8extraframes in separate diagnostic).
+User may delete hashed holding folders; no automatic deletion or Base promotion was done.
+Historical implementation queues below must not override this current completion boundary.
+
 ## Final-review product status — 2026-09-13
 
 Approved finite implementation delivered at PR305/a6f6fb2: T1–T6/capstone, two books12
