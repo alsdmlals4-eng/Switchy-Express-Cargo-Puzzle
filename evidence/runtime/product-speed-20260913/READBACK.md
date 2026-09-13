@@ -35,3 +35,21 @@ accesskit_sdk_path=<diagnostic>/dependencies/accesskit-c-0.21.2 -j4.
 MSVC/D3D12/ANGLE differences are diagnostic-only, not production engine changes;
 AccessKit remains enabled, OpenGL consumer preserved. No security exclusions/settings.
 Private dumps remain local. Build/stack results pending; do not claim native cause.
+
+## Actual Main/Product completion evidence
+
+completion/receipt.json and12result PNGs bind the separate window runner to actual
+Main/Product sources and all12maps. Official4.7.1 window,960x540,ko, accelerated0.05
+steps with frame yields. Existing authored fixture placement and real LOAD_ACTIVE,
+AUTO_TOGGLE,BOARD_CELL commands; no graph mutation or injected terminal summary.
+All12 actual RESULT/SUCCESS, zero map/stack cargo and correct per-book Next visibility.
+completion/window.log:12stage markers, final PASS, observed process exit0, no script/
+runtime errors or warnings. Captures vary with animated frame timing, not pixel locks.
+Negative no-pickup RB01:actual FAILURE, two expected positive-assertion failures,
+exit1; ObjectDB1warning retained in completion/negative.log, not clean shutdown proof.
+Independent read-only review found no important defect; five-pass scope/consumer/
+art/provenance/false-PASS review closed. No production code was changed by this proof.
+Not human-paced play, button-to-button Next traversal, native reliability or final UX.
+The existing official Windows full-suite crash remains UNVERIFIED/NOT_FIXED.
+Fresh full Python suite with GODOT_BINARY configured:308passed/1skipped,exit0 before
+this window-only test addition; skipped live-editor Pilot requires its separate setting.

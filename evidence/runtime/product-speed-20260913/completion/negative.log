@@ -1,0 +1,8 @@
+Godot Engine v4.7.1.stable.official.a13da4feb - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 572.16 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3050
+
+[godot_ai game_helper] registered mcp capture (debugger active=false, logger=true)
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"9a87f919e37128aa289adfc9cd5c1fc301ef1cd7d64aca6ebc96f1df03cc9b92","next_visible":false,"outcome":"FAILURE","shell_state":"RESULT","stage":"RB01_SERVICE_SIDINGS"}
+ROUTE_COMPLETION_FAILURE: RB01_SERVICE_SIDINGS expected SUCCESS got FAILURE
+ROUTE_COMPLETION_FAILURE: RB01_SERVICE_SIDINGS all cargo resolved
+ROUTE_COMPLETION: FAIL stages=1

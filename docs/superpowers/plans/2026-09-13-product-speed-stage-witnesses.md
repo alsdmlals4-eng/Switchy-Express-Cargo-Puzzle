@@ -22,3 +22,18 @@ Plan (inline, delegated continuation):
 Five-pass before correction: actual product consumer; no domain expansion; no new
 visual material; current fixtures preserve provenance; mismatch must fail rather than
 silently scaling timeouts. Native crash and final user review remain separate gates.
+
+## Actual shell completion coverage follow-through
+
+The deterministic factory witnesses cannot prove Main/Product result transitions.
+Add a test-only window runner using the existing authored layouts and manual/Auto/
+switch commands, actual Product.advance_time at2.0, no injected result or graph mutation.
+Run all12 through Main->book->stage->BUILD->RUN->RESULT; assert SUCCESS, empty map/stack,
+correct next-stage availability at each book ending. Capture only actual result screens.
+Drive accelerated0.05 simulation steps with frame yields; this is not human-paced play.
+Negative control disables pickup on RB01 and must fail the same positive assertions.
+This catches broken command/terminal wiring which factory-only tests would miss.
+No production change is authorized merely because the new test driver is wrong.
+Five-pass: actual shell; fixed approved stages; existing art only; fixture provenance;
+strict12complete outcomes plus external exit/error checks. Native gate remains separate.
+External research NOT_MATERIAL: coverage of existing consumers, no new product design.

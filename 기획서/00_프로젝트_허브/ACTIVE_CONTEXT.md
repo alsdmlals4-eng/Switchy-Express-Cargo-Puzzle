@@ -7,6 +7,10 @@ normal merge and local/origin readback. Current branch codex/product-speed-witne
 Actual ProductScene speed2.0 now checked after train START in all existing witness
 paths. Focused RED22 speed mismatches -> GREEN92 underlying assertions,129 with
 receipt completeness checks, all12 positive stagesSUCCESS. Existing negatives retained.
+Actual Main/Product window completion now separately verified for all12 stages at
+960x540 ko with authored fixtures and real commands, no injected result. Owner:
+evidence/runtime/product-speed-20260913/completion/receipt.json. Human-paced play
+and native reliability remain separate; positive window exit0 does not repair the crash.
 Full official Windows regression again C0000005 after E2E: UNVERIFIED, not PASS.
 Python308/1skip PASS before final receipt-only guard additions. No product/map change.
 Owners:evidence/runtime/product-speed-20260913/READBACK.md and native-exit owner.
