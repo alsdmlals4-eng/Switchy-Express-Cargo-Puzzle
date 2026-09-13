@@ -13,10 +13,14 @@ const BATCH_SIZE := 64
 
 var _manifest: Dictionary = {}
 var _original_scene_sha256 := ""
+var _original_scene_bytes := PackedByteArray()
 var _pilot_started_usec := 0
 
 
 func _enter_tree() -> void:
+    _original_scene_bytes = FileAccess.get_file_as_bytes(
+        ProjectSettings.globalize_path(TARGET_SCENE)
+    )
     super._enter_tree()
     call_deferred("_run_pilot")
 
@@ -34,12 +38,22 @@ func _run_pilot() -> void:
 
     _manifest = _load_json("res://GODOT_LIVE_EDITOR_CAPABILITY_MANIFEST.json")
     var baseline := _load_json(BASELINE_PATH)
-    _original_scene_sha256 = str(
+    var expected_canonical_sha256 := str(
         baseline.get("target_scene", {}).get("raw_sha256", "")
     )
-    if _original_scene_sha256.length() != 64:
+    if (
+        expected_canonical_sha256.length() != 64
+        or _original_scene_bytes.is_empty()
+        or _original_scene_bytes.get_string_from_utf8().replace("\r\n", "\n").sha256_text() != expected_canonical_sha256
+    ):
         _finish(_failure_payload("SOURCE_BASELINE_MISMATCH"))
         return
+    # Admission matches Python's canonical text policy; restore identity remains
+    # the exact pre-activation bytes, including checkout line endings.
+    var snapshot_hash := HashingContext.new()
+    snapshot_hash.start(HashingContext.HASH_SHA256)
+    snapshot_hash.update(_original_scene_bytes)
+    _original_scene_sha256 = snapshot_hash.finish().hex_encode()
 
     EditorInterface.open_scene_from_path(TARGET_SCENE)
     await get_tree().process_frame

@@ -1,15 +1,7 @@
 @tool
 extends "plugin.gd"
 
-var _original_scene_bytes := PackedByteArray()
 var _restore_codes: Array[String] = []
-
-
-func _enter_tree() -> void:
-    _original_scene_bytes = FileAccess.get_file_as_bytes(
-        ProjectSettings.globalize_path(TARGET_SCENE)
-    )
-    super._enter_tree()
 
 
 func _restore_original_scene() -> Dictionary:

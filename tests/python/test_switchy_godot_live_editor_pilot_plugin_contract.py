@@ -98,7 +98,7 @@ class SwitchyGodotLiveEditorPilotPluginContractTests(unittest.TestCase):
             EXACT_RESTORE_GD.is_file(),
             f"missing {EXACT_RESTORE_GD.relative_to(ROOT)}",
         )
-        source = EXACT_RESTORE_GD.read_text(encoding="utf-8")
+        source = EXACT_RESTORE_GD.read_text(encoding="utf-8") + PLUGIN_GD.read_text(encoding="utf-8")
         for marker in (
             "var _original_scene_bytes := PackedByteArray()",
             "FileAccess.get_file_as_bytes",
@@ -112,6 +112,14 @@ class SwitchyGodotLiveEditorPilotPluginContractTests(unittest.TestCase):
                 self.assertIn(marker, source)
         self.assertNotIn("FileAccess.open(arguments", source)
         self.assertNotIn("FileAccess.open(envelope", source)
+
+    def test_canonical_admission_is_separate_from_raw_restoration(self) -> None:
+        source = PLUGIN_GD.read_text(encoding="utf-8")
+        self.assertIn('var expected_canonical_sha256', source)
+        self.assertIn('_original_scene_bytes.get_string_from_utf8().replace("\\r\\n", "\\n").sha256_text()', source)
+        self.assertIn('snapshot_hash.update(_original_scene_bytes)', source)
+        self.assertIn('_original_scene_sha256 = snapshot_hash.finish().hex_encode()', source)
+        self.assertIn('_evidence.sha256_file(TARGET_SCENE) != _original_scene_sha256', source)
 
     def test_plugin_waits_for_stable_editor_state_and_reports_batch_failures(self) -> None:
         self.assertTrue(
