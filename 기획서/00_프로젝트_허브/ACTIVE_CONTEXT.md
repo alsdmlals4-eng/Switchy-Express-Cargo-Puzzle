@@ -1,5 +1,18 @@
 # Active Context
 
+## 2026-09-13 exported Route Book consumer continuation
+
+PR300 merged37f1575352086219602bca63f4c6d708e8d89bb4, five CI green and exact readback.
+Current unit codex/export-routebook-proof-20260913 extends existing package verifier:
+two books/12 stages/four-locale copy data and12 actual defaultko BUILD entries.
+Actual downloaded PR299 PCK passes the external current verifier; actual EXE startup
+headless+window exit0. This is NOT12-stage gameplay completion or native-crash repair.
+Owner:evidence/runtime/exported-route-book-20260913/READBACK.md.
+Negative corrupt-book overlay fails closed; fullPython308/1skip and129/16039 observed.
+No export-filter fix was necessary: CI files already include book JSON.
+Next: new exact pack CI/readback, production-speed witness coverage, native isolation.
+Proof-only extras moved to user deletion holding folder; EXE/PCK preserved.
+
 ## 2026-09-13 merged HUD / native exit isolation
 
 PR299 merged main97ea477b80e4be4002f5ba5d2fbbfbab12685b83; five remote checks PASS.

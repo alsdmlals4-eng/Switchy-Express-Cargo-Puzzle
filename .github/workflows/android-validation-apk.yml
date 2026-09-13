@@ -165,7 +165,7 @@ jobs:
             --export-pack "Android Validation" \
             builds/android-validation-runtime-json-proof.pck
           test -s builds/android-validation-runtime-json-proof.pck
-          "./${GODOT_BINARY}" \
+          timeout 60s "./${GODOT_BINARY}" \
             --headless \
             --main-pack builds/android-validation-runtime-json-proof.pck \
             --script res://tools/validation/verify_exported_runtime_json.gd \
