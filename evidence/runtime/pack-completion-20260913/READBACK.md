@@ -98,3 +98,8 @@ No new approved product implementation gap identified by this bounded check.
 Rollback: revert only this test-driver/evidence delta through a normal PR; package unchanged.
 Current required runtime captures are retained; incidental logs already reside in the
 user-delete holding folder, with no automatic deletion or unknown worktree cleanup.
+
+Normal integration and post-merge readback owner:
+[PR308](https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle/pull/308).
+Only that PR's exact-head required checks and merged/main readback establish integration;
+the local runtime records above do not independently claim a merge.

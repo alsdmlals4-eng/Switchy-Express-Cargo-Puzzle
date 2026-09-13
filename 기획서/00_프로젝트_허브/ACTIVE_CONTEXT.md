@@ -6,7 +6,7 @@ Unchanged PR305 exported PCK now has actual editor-mounted twelve-stage SUCCESS 
 not only its earlier12BUILD entry check. External authored-input runner uses packaged Main,
 maps and product code; no resource overlays or product changes. No-pickup correctly fails.
 Package hash/consumer/headless guards and checkout12SUCCESS regression verified.
-Owner:evidence/runtime/pack-completion-20260913/READBACK.md. Normal PR/main integration pending.
+Owner:evidence/runtime/pack-completion-20260913/READBACK.md. PR308 owns exact CI/merge/readback.
 This is test-tool/evidence improvement; final human, template-EXE full play and release remain
 separate. Existing final-review product scope, protected PRs and deletion policy unchanged.
 
