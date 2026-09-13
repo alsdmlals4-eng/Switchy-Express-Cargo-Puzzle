@@ -185,7 +185,9 @@ func run() -> void:
 	assert_equal(hud.get_node("ResultPanel/ResultLayout/ResultTitle").text, "배송 완료", "success uses Korean copy")
 	assert_true(hud.get_node("ResultPanel").visible, "standalone HUD success panel remains available")
 
-	hud.apply_model(_model(&"FAILURE"))
+	var timeout_model := _model(&"FAILURE")
+	timeout_model["primary_reason"] = &"TIME_EXPIRED"
+	hud.apply_model(timeout_model)
 	assert_equal(hud.get_node("ResultPanel/ResultLayout/ResultTitle").text, "배송 실패", "failure uses Korean copy")
 	assert_true(hud.get_node("ResultPanel/ResultLayout/ResultBody").text.contains("제한 시간"), "failure explains time expiry")
 

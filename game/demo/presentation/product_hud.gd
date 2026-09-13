@@ -37,6 +37,7 @@ var _stage_features: Dictionary = {}
 func _ready() -> void:
 	_copy = CopyScript.new()
 	_copy.load_default()
+	_apply_static_copy()
 	_catalog = SemanticAssetCatalogScript.new()
 	_catalog.load_default()
 
@@ -78,9 +79,9 @@ func apply_model(model: Dictionary) -> void:
 	(get_node("BuildHistory/UndoButton") as Button).disabled = not is_build or not bool(_model.get("undo_enabled", false))
 	(get_node("BuildHistory/RedoButton") as Button).disabled = not is_build or not bool(_model.get("redo_enabled", false))
 	(get_node("BuildHistory/Status") as Label).text = (
-		"최근 편집 복구 가능" if bool(_model.get("undo_enabled", false))
-		else "취소한 편집 재적용 가능" if bool(_model.get("redo_enabled", false))
-		else "되돌릴 편집이 없습니다"
+		_copy.text(&"SX_HUD_HISTORY_UNDO", locale) if bool(_model.get("undo_enabled", false))
+		else _copy.text(&"SX_HUD_HISTORY_REDO", locale) if bool(_model.get("redo_enabled", false))
+		else _copy.text(&"SX_HUD_HISTORY_EMPTY", locale)
 	)
 	(get_node("RunToolbar") as Control).visible = is_run or is_paused
 	(get_node("StackPanel") as Control).visible = is_run or is_paused
@@ -107,9 +108,9 @@ func apply_model(model: Dictionary) -> void:
 	start_button.disabled = not bool(_model.get("start_enabled", false))
 	var auto_button := get_node("RunToolbar/AutoButton") as Button
 	auto_button.text = (
-		"자동 적재 켬  A"
+		_copy.text(&"SX_HUD_AUTO_ON", locale)
 		if bool(_model.get("auto_load_active", false))
-		else "자동 적재 끔  A"
+		else _copy.text(&"SX_HUD_AUTO_OFF", locale)
 	)
 	(get_node("RunToolbar/PauseButton") as Button).visible = not is_paused
 	(get_node("RunToolbar/ResumeButton") as Button).visible = is_paused
@@ -120,7 +121,7 @@ func apply_model(model: Dictionary) -> void:
 	if manifest.text != stack_text:
 		manifest.text = stack_text
 	(get_node("StackPanel/StackLayout/TopSummary") as Label).text = (
-		"하역 중 · 실제 적재 %d" % int(_model.get("stack_size", 0))
+		_copy.format(&"SX_HUD_STACK_UNLOADING", {"total":int(_model.get("stack_size", 0))}, locale)
 		if bool(_model.get("unload_visual_active", false))
 		else _top_summary(tokens, int(_model.get("stack_size", tokens.size())))
 	)
@@ -130,10 +131,10 @@ func apply_model(model: Dictionary) -> void:
 
 	if is_result:
 		var success: bool = phase == &"SUCCESS"
-		var failure_reason: StringName = StringName(_model.get("primary_reason", &"TIME_EXPIRED"))
-		(get_node("ResultPanel/ResultLayout/ResultTitle") as Label).text = "배송 완료" if success else "배송 실패"
+		var failure_reason: StringName = StringName(_model.get("primary_reason", &""))
+		(get_node("ResultPanel/ResultLayout/ResultTitle") as Label).text = _copy.text(&"SX_RESULT_SUCCESS" if success else &"SX_HUD_FAILURE", locale)
 		(get_node("ResultPanel/ResultLayout/ResultBody") as Label).text = (
-			"모든 화물을 제한 시간 안에 배송했습니다.\n최종 건설비 %d" % int(_model.get("final_cost", 0))
+			_copy.format(&"SX_HUD_SUCCESS_BODY", {"cost":int(_model.get("final_cost", 0))}, locale)
 			if success
 			else _failure_body(failure_reason)
 		)
@@ -308,15 +309,17 @@ static func _phase_key(phase: StringName) -> StringName:
 			return &"SX_HUD_PREPARING"
 
 
-static func _failure_body(failure_reason: StringName) -> String:
+func _failure_body(failure_reason: StringName) -> String:
 	if failure_reason == &"ROUTE_END":
-		return "더 진행할 수 있는 연결 선로가 없습니다.\n분기 방향과 종착 노선을 다시 확인하세요."
-	return "제한 시간이 종료되었습니다.\n화물 TOP과 역 방문 순서를 다시 확인하세요."
+		return _copy.text(&"SX_HUD_FAIL_ROUTE", locale)
+	if failure_reason == &"TIME_EXPIRED":
+		return _copy.text(&"SX_HUD_FAIL_TIME", locale)
+	return _copy.text(&"SX_HUD_FAIL_UNKNOWN", locale)
 
 
-static func _stack_text(tokens: Array) -> String:
+func _stack_text(tokens: Array) -> String:
 	if tokens.is_empty():
-		return "비어 있음"
+		return _copy.text(&"SX_HUD_STACK_EMPTY", locale)
 	var labels: Array[String] = []
 	for value: Variant in tokens:
 		var token: Dictionary = value
@@ -328,51 +331,83 @@ static func _stack_text(tokens: Array) -> String:
 	return "\n".join(labels)
 
 
-static func _top_summary(tokens: Array, total: int) -> String:
+func _top_summary(tokens: Array, total: int) -> String:
 	if tokens.is_empty():
-		return "비어 있음 · 전체 %d" % total
+		return _copy.format(&"SX_HUD_STACK_EMPTY_TOTAL", {"total":total}, locale)
 	var top_type := StringName(tokens.back().get("cargo_type", &""))
 	var count := 0
 	for index in range(tokens.size() - 1, -1, -1):
 		if StringName(tokens[index].get("cargo_type", &"")) != top_type:
 			break
 		count += 1
-	return "TOP %s × %d\n전체 %d" % [_cargo_name(top_type), count, total]
+	return _copy.format(&"SX_HUD_STACK_TOP", {"cargo":_cargo_name(top_type), "count":count, "total":total}, locale)
 
 
-static func _cargo_name(cargo_type: StringName) -> String:
+func _cargo_name(cargo_type: StringName) -> String:
 	match cargo_type:
-		&"RED_STAR": return "A · 별"
-		&"BLUE_DIAMOND": return "B · 다이아"
-		&"YELLOW_TRIANGLE": return "C · 삼각"
-		&"WASTE_CRATE": return "폐기물 · 처리장"
-	return "알 수 없는 화물"
+		&"RED_STAR": return _copy.text(&"SX_HUD_CARGO_RED", locale)
+		&"BLUE_DIAMOND": return _copy.text(&"SX_HUD_CARGO_BLUE", locale)
+		&"YELLOW_TRIANGLE": return _copy.text(&"SX_HUD_CARGO_YELLOW", locale)
+		&"WASTE_CRATE": return _copy.text(&"SX_HUD_CARGO_WASTE", locale)
+	return _copy.text(&"SX_HUD_CARGO_UNKNOWN", locale)
 
 
-static func _problem_text(code: StringName) -> String:
+func _problem_text(code: StringName) -> String:
 	match code:
 		&"UNREACHABLE_CARGO":
-			return "화물까지 갈 수 없습니다\n표시된 화물 칸을 지나는 선로를 출발점과 연결하세요"
+			return _copy.text(&"SX_HUD_PROBLEM_CARGO", locale)
 		&"UNREACHABLE_STATION_SERVICE":
-			return "역 옆까지 갈 수 없습니다\n역의 상하좌우 한 칸에 연결하세요 · 역 위·대각선은 제외"
+			return _copy.text(&"SX_HUD_PROBLEM_STATION", locale)
 		&"DANGLING_EDGE":
-			return "선로 끝이 맞물리지 않습니다\n표시된 선로를 회전하거나 이어 붙이세요"
+			return _copy.text(&"SX_HUD_PROBLEM_EDGE", locale)
 		&"PERMANENT_TRAP":
-			return "진행 방향이 막혀 있습니다\n표시된 칸에서 앞으로 나갈 선로를 연결하세요"
+			return _copy.text(&"SX_HUD_PROBLEM_TRAP", locale)
 		&"DISCONNECTED", &"UNREACHABLE", &"DISCONNECTED_REQUIRED_POINT":
-			return "연결되지 않은 역 또는 화물이 있습니다"
+			return _copy.text(&"SX_HUD_PROBLEM_DISCONNECTED", locale)
 		&"MISSING_START", &"START_DISCONNECTED", &"INVALID_START":
-			return "출발 선로가 연결되지 않았습니다\n출발점의 진입 방향에 맞춰 선로를 연결하세요"
+			return _copy.text(&"SX_HUD_PROBLEM_START", locale)
 		&"INVALID_CROSSING":
-			return "교차 선로의 연결이 부족합니다\n표시된 교차 칸의 네 방향을 모두 연결하세요"
+			return _copy.text(&"SX_HUD_PROBLEM_CROSSING", locale)
 		&"INVALID_SWITCH_EXIT":
-			return "분기 선로의 출구가 막혀 있습니다\n표시된 분기의 세 방향과 각 출구 다음 선로를 확인하세요"
+			return _copy.text(&"SX_HUD_PROBLEM_SWITCH", locale)
 		&"INVALID_TRACK":
-			return "분기·교차 선로의 연결 방향을 확인해 주세요"
+			return _copy.text(&"SX_HUD_PROBLEM_TRACK", locale)
 		&"NOT_READY", &"EMPTY_LAYOUT":
-			return "아직 배치한 선로가 없습니다\n선로 도구를 선택하고 출발점부터 연결하세요"
+			return _copy.text(&"SX_HUD_PROBLEM_EMPTY", locale)
 		_:
-			return "노선을 확인해 주세요"
+			return _copy.text(&"SX_HUD_PROBLEM_UNKNOWN", locale)
+
+
+
+
+func _apply_static_copy() -> void:
+	var labels := {
+		"BuildToolbar/StraightButton": &"SX_HUD_STRAIGHT",
+		"BuildToolbar/CurveButton": &"SX_HUD_CURVE",
+		"BuildToolbar/SwitchButton": &"SX_HUD_SWITCH",
+		"BuildToolbar/CrossingButton": &"SX_HUD_CROSSING",
+		"BuildToolbar/RecommendButton": &"SX_HUD_RECOMMEND",
+		"BuildToolbar/RotateButton": &"SX_HUD_ROTATE",
+		"BuildToolbar/RemoveButton": &"SX_HUD_REMOVE",
+		"BuildToolbar/ClearButton": &"SX_HUD_CLEAR",
+		"BuildToolbar/StartButton": &"SX_HUD_START",
+		"BuildHistory/Heading": &"SX_HUD_HISTORY",
+		"BuildHistory/UndoButton": &"SX_HUD_UNDO",
+		"BuildHistory/RedoButton": &"SX_HUD_REDO",
+		"RunToolbar/LoadButton": &"SX_HUD_LOAD",
+		"RunToolbar/PauseButton": &"SX_HUD_PAUSE",
+		"RunToolbar/ResumeButton": &"SX_HUD_RESUME",
+		"StackPanel/StackLayout/StackTitle": &"SX_HUD_STACK_TITLE",
+		"PausePanel/PauseLayout/PauseTitle": &"SX_HUD_PAUSED",
+		"PausePanel/PauseLayout/PauseBody": &"SX_HUD_PAUSE_BODY",
+		"ResultPanel/ResultLayout/RetryButton": &"SX_RESULT_RETRY",
+		"ResultPanel/ResultLayout/EditButton": &"SX_RESULT_EDIT",
+		"ResultPanel/ResultLayout/TitleButton": &"SX_RESULT_TITLE",
+	}
+	for path: String in labels:
+		get_node(path).text = _copy.text(labels[path], locale)
+	get_node("BuildHistory/UndoButton").tooltip_text = _copy.text(&"SX_HUD_UNDO_HINT", locale)
+	get_node("BuildHistory/RedoButton").tooltip_text = _copy.text(&"SX_HUD_REDO_HINT", locale)
 
 
 func _connect_button(path: NodePath, callback: Callable) -> void:

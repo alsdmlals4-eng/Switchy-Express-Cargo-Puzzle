@@ -1,5 +1,20 @@
 # Active Context
 
+## 2026-09-13 gameplay HUD completion loop
+
+Parent PR298 merged main9fd5b8e68e803a38a40c6013314e0e67ac45ce62, fetched equal.
+User requests whole-game completion through continuous implementation/correction.
+Current unit: codex/hud-complete-locales-20260913. Existing4locale HUD toolbar/history,
+load modes, manifest, repair guidance and internal overlays now share common Copy.
+Unknown internal failure no longer invents timeout. Runtime found notice/history overlap;
+notice width corrected inside board boundary, RED4 overlaps -> GREEN0.
+Current receipt: evidence/runtime/route-result-20260913/receipt.json;
+HUD_COMPLETE_READBACK.md records exact scope/review/evidence. Whole game NOT_COMPLETE.
+Next queue: actual twelve-stage decision diversity; native crash isolation; current package,
+approved-consumer/progression/save/ending audit. Final human/rights/release separate.
+Preserve finite core, approved assets, user-only deletion, PR174/254/281 and216 dirty files.
+Older current headings below are historical units; PR298 is no longer pending.
+
 ## 2026-09-13 HUD status locale continuation
 
 PR297 merged dfbb3e4c28a2809e3ebf11d38b8e0f4dcb40996b; all5 CI checks and postmerge128/15850 PASS.
