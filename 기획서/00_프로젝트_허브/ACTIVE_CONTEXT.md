@@ -1,5 +1,19 @@
 # Active Context
 
+## 2026-09-13 tutorial transition audio continuation
+
+PR302 merged8b8cb04f0bd7db7049983d91cc5141c232275171; five exact checks PASS.
+Current unit codex/tutorial-transition-audio-20260913 preserves success audio in
+the existing shell when T2–T6 releases gameplay. No delay or gameplay changes.
+RED2 assertions -> actual T2/T3 post-product-free audio63assertions PASS; full
+Godot129/16056 exit0. Actual live editor run12 oldcue=false/shellcue=true/T3,
+later shellcue=false; returned to title. Independent capture-order finding corrected.
+Current owner:evidence/runtime/tutorial-audio-20260913/READBACK.md.
+HUD four-locale and144 stage-preview window checks regenerated after source change;
+preview revision is parent8b8cb04 plus exact source hashes, not a claim of clean bytes.
+Exact Python/publication and CI/merge remain current unit gates. Whole game NOT_COMPLETE.
+Next: product-speed12-stage witnesses, native diagnosis, updated playable package.
+
 ## 2026-09-13 audio cue drain continuation
 
 PR301 merged5128ac5e4dc073814a0b3acd9b2a456dcba886ad; five exact CI checks PASS.

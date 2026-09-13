@@ -12,3 +12,4 @@ evidence/runtime/native-exit-20260913/*.log -text
 # Preserve engine-emitted trailing blank lines without hiding other whitespace errors.
 evidence/runtime/exported-route-book-20260913/*.log -text whitespace=-blank-at-eof
 evidence/runtime/audio-cue-20260913/*.log -text whitespace=-blank-at-eof
+evidence/runtime/tutorial-audio-20260913/*.log -text whitespace=-blank-at-eof

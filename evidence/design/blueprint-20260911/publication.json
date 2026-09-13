@@ -1,7 +1,7 @@
 {
   "status": "TOPDOWN_IMPLEMENTATION_REVIEW_FINAL_USER_REVIEW_SEPARATE",
   "pdf": "output\\pdf\\SWITCHY_EXPRESS_HUMAN_BLUEPRINT_20260911_REVIEW.pdf",
-  "sha256": "e0a47f64edfd7506846b39db330695b466feb87ec8534575bcc7d4910f15b57e",
+  "sha256": "c2365ffcfe176b4ff53d999f6ba90d57bb49e9e4b717669c8e746e5ddd932c55",
   "page_count": 77,
   "source": "docs\\design\\SWITCHY_BLUEPRINT_REVIEW_20260911.md",
   "source_sha256": "cb76a98b46e78e375b9374bee1207fecf6697d03a3ecc77082e9b13e909a1cee",
@@ -15,7 +15,7 @@
     "evidence/runtime/topdown-family-20260912/board-rb12.png": "0e55ce497ca2ee476a4b1a4bb560d0cac47f78173c91eb17b36522ad1cb367dd",
     "evidence/runtime/route-result-20260913/en-running.png": "1be31ddcb5c314864237509460a286c0671c854565a42ca74ae8f5dd6b53a9ba",
     "evidence/runtime/route-result-20260913/en-build.png": "9adb4855f467a0d7245b489ee14e5c2b0b7a3eae29c6fa2a1ec53fdaeb83a7d5",
-    "evidence/runtime/route-result-20260913/ko.png": "00a1311bb75cb14ba2ff1d58bb410371ab5d1b93c2f5e518e043bd1218bde347",
+    "evidence/runtime/route-result-20260913/ko.png": "b6a6c79c4764c17fa41838c952010aff0d3456b1391a0d02062875f3ade4bfe4",
     "evidence/runtime/stage-preview-20260913/rb08.png": "a2a3b21ad031a95f9aed4e26ba4018e61c8eca1ff5d7bba16843e97e9a129550",
     "evidence/runtime/stage-preview-20260913/rb10-postmerge.png": "4fab792548ffea3a29b27f6d70a7c064efa20f75267ae9a7d2b52f6c84ba9363",
     "evidence/runtime/stage-preview-20260913/rb12-postmerge.png": "a2f5727d8123e7e1e781f9a593a51abd7f1eed4df50bcff6e09101e74ad7c3e5",

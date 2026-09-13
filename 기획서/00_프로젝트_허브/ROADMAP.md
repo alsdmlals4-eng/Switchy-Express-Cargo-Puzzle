@@ -20,7 +20,8 @@ Current owner: ACTIVE_CONTEXT.md. Historical snapshots below do not reopen compl
 
 Existing audio feedback audit: queued eight cues were stopped immediately after
 generation; local drain fix129/16048 and live run11 PASS, exact CI/merge next.
-Tutorial success transition still releases its product-owned cue: fix lifecycle next.
+PR302 merged8b8cb04/fiveCIgreen. Tutorial success transition now uses shell-owned
+existing cue locally; post-destruction output verified, full129/16056. Exact delivery next.
 Dedicated audio output capture is not human listening or full downstream waveform proof.
 
 Audit correction: persistent save/unlock is excluded by SX-DEC-067, not unfinished work.

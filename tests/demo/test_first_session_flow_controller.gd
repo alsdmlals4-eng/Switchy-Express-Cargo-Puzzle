@@ -2,6 +2,7 @@ extends "res://tests/test_case.gd"
 
 const DEMO_PATH := "res://game/demo/vertical_slice_demo.tscn"
 const MAIN_PATH := "res://game/main/main.tscn"
+const T12 := preload("res://tests/fixtures/first_session/tut_01_02_solution.gd")
 
 
 func run() -> void:
@@ -57,4 +58,25 @@ func run() -> void:
 		"선로 연결",
 		"first lesson card renders T1 title"
 	)
+	assert_true(first_session.get_node_or_null("TransitionAudio") == null, "T1 briefing has no success cue")
+	first_session.begin_build()
+	var product: Control = first_session.gameplay_instance()
+	assert_true(product.install_layout_for_test(T12.pieces()), "actual T1 solution advances to T2")
+	first_session.begin_build()
+	product.request_command_for_test(&"START")
+	product.request_command_for_test(&"LOAD_ACTIVE", true)
+	for _step: int in range(1000):
+		if first_session.gameplay_instance() != product:
+			break
+		product.advance_time(1.0 / 30.0)
+	assert_equal(first_session.current_lesson_id_for_test(), &"T3", "real T2 success advances without delay")
+	var transition_audio := first_session.get_node_or_null("TransitionAudio")
+	assert_not_null(transition_audio, "tutorial success has a shell-owned audio consumer")
+	if transition_audio != null:
+		assert_equal(transition_audio.last_cue_for_test(), &"success", "transition reuses success cue")
+		assert_true(transition_audio.get_node("OneShotPlayer").playing, "success survives product replacement")
+	assert_false(product.get_node("DemoAudioDirector/OneShotPlayer").playing, "retiring product does not double transition cue")
+	first_session.return_to_title()
+	if transition_audio != null:
+		assert_false(transition_audio.get_node("OneShotPlayer").playing, "title return stops transition audio")
 	main.free()
