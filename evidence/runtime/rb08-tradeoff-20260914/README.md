@@ -56,3 +56,46 @@ Final human, physical device, rights and release: NOT_RUN / separate gates.
 No Base promotion: this is project-specific geometry/content evidence. Reusable
 lesson is enforced locally: map/copy changes invalidate screenshot/PDF hashes,
 so recapture/regenerate rather than weaken freshness checks.
+
+## Final review and changed-byte package
+
+Independent five-pass review found a real future-staleness gap: checking only the map
+would allow old timing after a fixture/runner edit. Builder now validates every
+receipt-bound input and Python independently checks them. Re-review32b7d6f: no
+remaining scoped blocker. PDF remains byte-identical after this guard-only correction.
+
+Actual first export unexpectedly included old untracked tmp/pdfs render resources.
+Preserved that rejected trial under Downloads/Switchy_삭제대기_20260914_C1;
+added tmp/** to both runtime presets after an export-hygiene RED. No tmp consumer
+in current game/data/art. Re-export log no longer contains res://tmp/ resources.
+CI34785746459 then correctly rejected the old exact-string GDScript export contract;
+updated that companion expectation to the strengthened exclusion, not a weaker filter.
+Earlier310pass Python evidence preceded the final freshness test; latest311pass/1skip.
+Optional Pilot GODOT_BIN check remains SKIPPED_NOT_CONFIGURED (different from GODOT_BINARY).
+
+Re-export source32b7d6fef8a5c32acf805306f9036005b7def32d, Windows Demo:
+Downloads/Switchy_Playable_20260914_RB08/SwitchyExpress.exe + .pck.
+EXE102982144bytes SHA2561cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244.
+PCK54881028bytes SHA2566faeca55d4224171086fa14ef0ac468f46875070a8d308511a8a2b700ac620b9.
+Subsequent changes are tests/evidence/docs only, not packaged game/data/art/settings.
+
+- package-payload.log: mounted PCK JSON31,books2,stages12,BUILD entries12, exit0.
+- pack-positive.json/package-completion.log:12 actual SUCCESS, exit0.
+- pack-negative.json/package-negative.log: no-pickup RB01 FAILURE, expected exit1.
+- pack-detour.json/package-detour.log: same package, RB08 authored detour and other11
+  SUCCESS, exit0. Test-only optional driver flag; shipping resources not overlaid.
+- native-startup.log: native template EXE120frames, exit0, no startup error.
+- pack-rb08-result.png / pack-rb08-detour-result.png inspected: connected routes,
+  actual SUCCESS UI and costs1100/1300, completion7.7/7.1. Other stage PNGs remain
+  in separate user://completion output; only task-relevant RB08 pair is promoted here.
+
+External completion runner uses --main-pack and pack-path with the same exact absolute
+PCK path and OS-read hash; receipt alone does not authenticate the mounted bytes.
+New rb08-detour flag uses the existing authored fixture, not a solver or outcome injection.
+Initial direct/negative receipts predate that test-only flag; their own runner hashes
+retain that distinction. Latest detour receipt binds the updated runner. Human/release
+remain NOT_RUN. V1 native input capability unavailable through current native-disabled
+computer tools; no shipping test hooks installed. No D1/D2 recurrence requiring repair.
+
+Normal integration owner: https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle/pull/310
+Exact final CI and merge/postmerge are recorded on that PR, not inferred from local runs.

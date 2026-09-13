@@ -12,7 +12,8 @@ approval: CURRENT_CONFIRMED_DECISIONS, September14.
   PR281 remains read-only; no duplicate SX-DEC-070 assignment.
 - V1 capability investigation; D1/D2 recurrence-only; R1 release-dependent; U1 final user.
 C1 revision2 implemented:129/16135 PASS,12actualSUCCESS,144preview/3Begin PASS;
-new package/independent review/merge readback pending. C2 remains NOT_RUN.
+new package12SUCCESS plus RB08 detour verified; independent finding corrected.
+PR310 final exact CI/merge readback pending. C2 remains NOT_RUN.
 Dated completion
 statements below describe the earlier approved twelve-stage scope, not this new delta.
 

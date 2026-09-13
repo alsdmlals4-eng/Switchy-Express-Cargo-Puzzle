@@ -8,9 +8,11 @@ Order: M1 current-entry reconciliation → C1 RB08 map-only tradeoff → C2 six 
 authored stages. M1 merged normally in PR309, main0c25766b5e7da109e786005f5bba792795ee8b22.
 C1 RB08 revision2 is implemented locally with129/16135 full regression PASS,
 12 actual-window SUCCESS and144 preview/3 pointer Begin checks PASS; Python310/1skip.
-Its new package, independent final review and merge/readback are not yet complete.
+Its new32b7d6f package passed12SUCCESS, RB08 detour SUCCESS and no-pickup rejection;
+native EXE120frame startup exit0. Independent source-binding finding corrected.
+Final local regression129/16135 PASS and Python311/1skip; exact PR310 CI/merge/readback pending.
 C2 implementation NOT_RUN. C1 evidence owner: evidence/runtime/rb08-tradeoff-20260914/README.md.
-PR309 owns the approval/document continuation, not protected PR281.
+PR309 owns approval/docs; PR310 owns C1 implementation, not protected PR281.
 C1 map-only permits its required witness/test/copy/preview/evidence companions;
 the RED cost/time assertion has been observed failing against the unchanged map.
 Historical unchanged product baseline was PR305 bytes with PR308 exported-PCK completion evidence at

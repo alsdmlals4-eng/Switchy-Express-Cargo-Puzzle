@@ -1,0 +1,16 @@
+Godot Engine v4.7.1.stable.official.a13da4feb - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 572.16 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3050
+
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"01fe33bea4de0aa2f1807a51b5b3b8e7c9378d3dcafccbbdd33750f3e801c18d","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB01_SERVICE_SIDINGS"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"f3b24afa4a570b81d14c7ccace2d964170e6d4f8ea60cee9da3a9c2479e3c0a6","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB02_REVERSE_ORDER"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"0d9db9a9e8c0c6d3108339fd3bf5a7005648318ce95a18b2c7c449a5b4dbbdb1","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB03_RETURN_MANIFEST"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"2ca84f64e2e55f3389b4071ef10f83e5ac96bb8abf0f376305e409d8ad3faf46","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB04_LOAD_WINDOW"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"ca64a4190349ef58419ebf1cb2b988b9d50d382381af9c288e3b140e131927e6","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB05_FORK_LOCK"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"7854e9c075a74b85aa78ca819215ac331edd60b2c092419c51904b3b78403dbe","next_visible":false,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB06_PORT_CIRCUIT"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"620742ac072084c5769b2ff17549041e94bad5efc326a87402f403389b6710b2","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB07_FOREST_RELAY"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"9bb74020034dbfd45d9ae8136c560ff7e991c546d067a6810dc8e4efa0be44d6","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB08_CAUTION_CUT"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"feb71ae06483c078fb49351cc0d8f9a1990abde4dec66b80931c027457231879","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB09_SALVAGE_SIDING"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"ba9c74ea26d00bc4fc5b4a6943fd514d4366659f1e526c87267982a0befc9948","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB10_CLEAN_BREAK"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"9eb76667ce8ebac1014596931e24215ef04272570f81ac3b4e000e44d3c7a725","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB11_TURNOUT_UNDER_LOAD"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"2294130272ffb87e383f9bac64518a5c2ef8fe1b157f3f321ac3c094d8f51d11","next_visible":false,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB12_LANTERN_LOOP"}
+ROUTE_COMPLETION: PASS stages=12
