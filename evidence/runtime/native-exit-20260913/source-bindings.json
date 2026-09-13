@@ -1,0 +1,17 @@
+{
+  "product_commit": "97ea477b80e4be4002f5ba5d2fbbfbab12685b83",
+  "original_e2e_git_blob": "5726d29926c5746d01bfa18be6030343a11a68ae",
+  "status": "NOT_FIXED",
+  "logs_sha256": {
+    "hud-complete-postmerge.log": "ca5435fe6475633ae6e3cc022df72c47d6ddfc9e02d6b71693d813c5c979d3c9",
+    "native-e2e-isolated.log": "34e7ad88c3cb6a548f9d0cfbc8508534d08a2f0c527260db4e2442e6cb88db40",
+    "native-e2e-phase.log": "97ba343bd5a59968143651d1c6d91ab6a2d951cf9168fffe1c02150f47c0c20a",
+    "native-pair-isolated.log": "d53e7654f5a8205535576fd10d8dd34d2711fc6e1d78639e20fb5abb37195d61",
+    "native-responsive-isolated.log": "4b045483666976805858fc6af985f0f2243415ba8b6d5a68cfe7d6929e8e5963",
+    "native-trace-20260913.log": "2265c484e58d2ea2940f89d7d7f79e7bd74267dcfc8006474f804985d1503652"
+  },
+  "instrumented_sources_sha256_lf": {
+    "tests/runtime/native_exit_isolation_runner.gd": "e3ff4c2e1f82f9df6144d196aa7381f47919189e121c356fbfd8b9a0bf4fbb12",
+    "tests/demo/test_first_session_end_to_end.gd": "ef07bcc6b7cf20f3b8462df1274fc3fdfe6e3c68229349c6006092f38355e5b0"
+  }
+}

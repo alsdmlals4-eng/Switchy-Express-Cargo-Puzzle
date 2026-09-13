@@ -1,5 +1,23 @@
 # Active Context
 
+## 2026-09-13 merged HUD / native exit isolation
+
+PR299 merged main97ea477b80e4be4002f5ba5d2fbbfbab12685b83; five remote checks PASS.
+Active linked checkout switched to codex/game-completion-audit-20260913 at identical
+origin/main after squash merge (old branch cannot fast-forward; no reset/rebase used).
+Existing216 tracked dirty imports/settings and unrelated untracked files preserved.
+Postmerge full Windows test run terminated C0000005: full-run UNVERIFIED, not PASS.
+Unmodified-source trace rerun129/16039 exit0 does NOT resolve the crash.
+Diagnostic-only isolation now reproduces it with tutorial end-to-end repetitions.
+Owner: evidence/runtime/native-exit-20260913/READBACK.md; no product fix yet.
+Godot editor exact project/main.tscn restarted without autosave, live run10 TITLE/ko.
+Current whole-game status: NOT_COMPLETE. Continue native lifecycle diagnosis and
+exact package verification; never replace acceptance with a successful retry.
+Content audit:12 authored stages exist. Existing witness defaults are4.0 except
+RB08 explicit2.0; production default2.0. Product-speed coverage needs reconciliation.
+Save/unlock persistence is explicitly excluded by SX-DEC-067, not a missing feature;
+do not invent Continue or reopen deferred Route Book03/scoring/progression families.
+
 ## 2026-09-13 gameplay HUD completion loop
 
 Parent PR298 merged main9fd5b8e68e803a38a40c6013314e0e67ac45ce62, fetched equal.

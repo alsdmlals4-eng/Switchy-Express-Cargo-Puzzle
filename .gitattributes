@@ -6,3 +6,6 @@
 # are recorded separately; never feed their internal streams to text whitespace checks.
 exports/*.pdf -diff
 output/pdf/*.pdf -diff
+
+# Native crash receipts bind original log bytes across Windows/Linux checkouts.
+evidence/runtime/native-exit-20260913/*.log -text

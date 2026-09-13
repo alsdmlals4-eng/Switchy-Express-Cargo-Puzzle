@@ -12,9 +12,12 @@ const T6_SWITCH := Vector2i(3, 3)
 
 
 func run() -> void:
+	_trace("main instantiate begin")
 	var tree := Engine.get_main_loop() as SceneTree
 	var main: Control = MainScene.instantiate()
+	_trace("main instantiate end")
 	tree.root.add_child(main)
+	_trace("main attached")
 	var flow := main.get_node("VerticalSliceDemo")
 	assert_equal(flow.current_lesson_id_for_test(), &"T1", "F5 product boots T1")
 	flow.start_demo()
@@ -40,6 +43,7 @@ func run() -> void:
 
 	flow.begin_build()
 	_run_static_load(flow.gameplay_instance())
+	_trace("T2 completed")
 	assert_equal(flow.current_lesson_id_for_test(), &"T3", "T2 success advances T3")
 	assert_true(flow.gameplay_instance() == null, "T3 receives a fresh gameplay instance")
 
@@ -48,16 +52,19 @@ func run() -> void:
 	var t3_product: Control = flow.gameplay_instance()
 	assert_true(t3_product.install_layout_for_test(T3.pieces()), "T3 proof layout installs")
 	_run_static_load(t3_product)
+	_trace("T3 completed")
 	assert_equal(flow.current_lesson_id_for_test(), &"T4", "T3 success advances T4")
 
 	flow.begin_build()
 	assert_equal(_map_id(flow), &"TUT_04_SELECTIVE_LOAD", "T4 loads selective map")
 	_run_selective(flow.gameplay_instance())
+	_trace("T4 completed")
 	assert_equal(flow.current_lesson_id_for_test(), &"T5", "T4 success advances T5")
 
 	flow.begin_build()
 	assert_equal(_map_id(flow), &"TUT_05_AUTO_LOAD", "T5 loads auto map")
 	_run_auto(flow.gameplay_instance())
+	_trace("T5 completed")
 	assert_equal(flow.current_lesson_id_for_test(), &"T6", "T5 success advances T6")
 
 	flow.begin_build()
@@ -68,11 +75,18 @@ func run() -> void:
 	t6_product.request_command_for_test(&"BOARD_CELL", T6_SWITCH)
 	t6_product.request_command_for_test(&"LOAD_ACTIVE", true)
 	_advance_until_replaced(flow, t6_product)
+	_trace("T6 completed")
 	assert_equal(flow.current_lesson_id_for_test(), &"CAPSTONE", "T6 success advances capstone")
 
 	flow.begin_build()
 	assert_equal(_map_id(flow), &"VS_DEMO_01", "capstone reuses VS_DEMO_01")
 	main.free()
+	_trace("main freed")
+
+
+func _trace(phase: String) -> void:
+	if OS.get_environment("SWITCHY_TEST_TRACE") == "1":
+		print("TEST TRACE FIRST SESSION: %s" % phase)
 
 
 func _run_static_load(product: Control) -> void:

@@ -1,0 +1,114 @@
+Godot Engine v4.7.1.stable.official.a13da4feb - https://godotengine.org
+
+[godot_ai game_helper] registered mcp capture (debugger active=false, logger=true)
+ISOLATION BEGIN iteration=1 case=end_to_end
+TEST TRACE FIRST SESSION: main instantiate begin
+TEST TRACE FIRST SESSION: main instantiate end
+TEST TRACE FIRST SESSION: main attached
+TEST TRACE FIRST SESSION: T2 completed
+TEST TRACE FIRST SESSION: T3 completed
+TEST TRACE FIRST SESSION: T4 completed
+TEST TRACE FIRST SESSION: T5 completed
+TEST TRACE FIRST SESSION: T6 completed
+TEST TRACE FIRST SESSION: main freed
+ISOLATION END iteration=1 case=end_to_end failed=false assertions=21
+ISOLATION BEGIN iteration=2 case=end_to_end
+TEST TRACE FIRST SESSION: main instantiate begin
+TEST TRACE FIRST SESSION: main instantiate end
+TEST TRACE FIRST SESSION: main attached
+TEST TRACE FIRST SESSION: T2 completed
+TEST TRACE FIRST SESSION: T3 completed
+TEST TRACE FIRST SESSION: T4 completed
+TEST TRACE FIRST SESSION: T5 completed
+TEST TRACE FIRST SESSION: T6 completed
+TEST TRACE FIRST SESSION: main freed
+ISOLATION END iteration=2 case=end_to_end failed=false assertions=21
+ISOLATION BEGIN iteration=3 case=end_to_end
+TEST TRACE FIRST SESSION: main instantiate begin
+TEST TRACE FIRST SESSION: main instantiate end
+TEST TRACE FIRST SESSION: main attached
+TEST TRACE FIRST SESSION: T2 completed
+TEST TRACE FIRST SESSION: T3 completed
+TEST TRACE FIRST SESSION: T4 completed
+TEST TRACE FIRST SESSION: T5 completed
+TEST TRACE FIRST SESSION: T6 completed
+TEST TRACE FIRST SESSION: main freed
+ISOLATION END iteration=3 case=end_to_end failed=false assertions=21
+ISOLATION BEGIN iteration=4 case=end_to_end
+TEST TRACE FIRST SESSION: main instantiate begin
+TEST TRACE FIRST SESSION: main instantiate end
+TEST TRACE FIRST SESSION: main attached
+TEST TRACE FIRST SESSION: T2 completed
+TEST TRACE FIRST SESSION: T3 completed
+TEST TRACE FIRST SESSION: T4 completed
+TEST TRACE FIRST SESSION: T5 completed
+TEST TRACE FIRST SESSION: T6 completed
+TEST TRACE FIRST SESSION: main freed
+ISOLATION END iteration=4 case=end_to_end failed=false assertions=21
+ISOLATION BEGIN iteration=5 case=end_to_end
+TEST TRACE FIRST SESSION: main instantiate begin
+TEST TRACE FIRST SESSION: main instantiate end
+TEST TRACE FIRST SESSION: main attached
+TEST TRACE FIRST SESSION: T2 completed
+TEST TRACE FIRST SESSION: T3 completed
+TEST TRACE FIRST SESSION: T4 completed
+TEST TRACE FIRST SESSION: T5 completed
+TEST TRACE FIRST SESSION: T6 completed
+TEST TRACE FIRST SESSION: main freed
+ISOLATION END iteration=5 case=end_to_end failed=false assertions=21
+ISOLATION BEGIN iteration=6 case=end_to_end
+TEST TRACE FIRST SESSION: main instantiate begin
+TEST TRACE FIRST SESSION: main instantiate end
+TEST TRACE FIRST SESSION: main attached
+TEST TRACE FIRST SESSION: T2 completed
+TEST TRACE FIRST SESSION: T3 completed
+TEST TRACE FIRST SESSION: T4 completed
+TEST TRACE FIRST SESSION: T5 completed
+TEST TRACE FIRST SESSION: T6 completed
+TEST TRACE FIRST SESSION: main freed
+ISOLATION END iteration=6 case=end_to_end failed=false assertions=21
+ISOLATION BEGIN iteration=7 case=end_to_end
+TEST TRACE FIRST SESSION: main instantiate begin
+TEST TRACE FIRST SESSION: main instantiate end
+TEST TRACE FIRST SESSION: main attached
+TEST TRACE FIRST SESSION: T2 completed
+TEST TRACE FIRST SESSION: T3 completed
+TEST TRACE FIRST SESSION: T4 completed
+TEST TRACE FIRST SESSION: T5 completed
+TEST TRACE FIRST SESSION: T6 completed
+TEST TRACE FIRST SESSION: main freed
+ISOLATION END iteration=7 case=end_to_end failed=false assertions=21
+ISOLATION BEGIN iteration=8 case=end_to_end
+TEST TRACE FIRST SESSION: main instantiate begin
+TEST TRACE FIRST SESSION: main instantiate end
+TEST TRACE FIRST SESSION: main attached
+TEST TRACE FIRST SESSION: T2 completed
+TEST TRACE FIRST SESSION: T3 completed
+TEST TRACE FIRST SESSION: T4 completed
+TEST TRACE FIRST SESSION: T5 completed
+TEST TRACE FIRST SESSION: T6 completed
+TEST TRACE FIRST SESSION: main freed
+ISOLATION END iteration=8 case=end_to_end failed=false assertions=21
+ISOLATION BEGIN iteration=9 case=end_to_end
+TEST TRACE FIRST SESSION: main instantiate begin
+TEST TRACE FIRST SESSION: main instantiate end
+TEST TRACE FIRST SESSION: main attached
+TEST TRACE FIRST SESSION: T2 completed
+TEST TRACE FIRST SESSION: T3 completed
+TEST TRACE FIRST SESSION: T4 completed
+TEST TRACE FIRST SESSION: T5 completed
+TEST TRACE FIRST SESSION: T6 completed
+TEST TRACE FIRST SESSION: main freed
+ISOLATION END iteration=9 case=end_to_end failed=false assertions=21
+ISOLATION BEGIN iteration=10 case=end_to_end
+TEST TRACE FIRST SESSION: main instantiate begin
+TEST TRACE FIRST SESSION: main instantiate end
+TEST TRACE FIRST SESSION: main attached
+TEST TRACE FIRST SESSION: T2 completed
+TEST TRACE FIRST SESSION: T3 completed
+TEST TRACE FIRST SESSION: T4 completed
+TEST TRACE FIRST SESSION: T5 completed
+TEST TRACE FIRST SESSION: T6 completed
+TEST TRACE FIRST SESSION: main freed
+ISOLATION END iteration=10 case=end_to_end failed=false assertions=21
+ISOLATION SUMMARY iterations=10 cases=10 failed=0 assertions=210 NOT_A_FIX
