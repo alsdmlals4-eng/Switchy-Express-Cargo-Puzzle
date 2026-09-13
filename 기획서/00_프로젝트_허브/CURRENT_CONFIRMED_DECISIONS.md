@@ -9,6 +9,12 @@ notice/history overlap and unknown internal failure wording. No new language set
 core rule, art promotion, save migration, protected PR or public-release authorization.
 Implementation/evidence state remains in ACTIVE_CONTEXT.md, not inferred from this approval.
 
+Continuation includes read-only native fault investigation and bounded test instrumentation.
+No native fix, engine upgrade, accessibility disablement or provider change is approved
+by a successful diagnostic retry. Native-exit receipt preserves failures separately.
+SX-DEC-067's exclusion of persistent save/unlock remains unchanged; completion audit
+must not treat that excluded family as mandatory missing work.
+
 ## 2026-09-13 delegated HUD language continuity
 
 Current continued improvement request covers existing selected-locale propagation to

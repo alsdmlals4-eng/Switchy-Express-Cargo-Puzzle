@@ -6,12 +6,18 @@ User requests continuous implementation until the approved game is ready for fin
 Current owner: ACTIVE_CONTEXT.md. Historical snapshots below do not reopen completed work.
 
 1. Gameplay HUD four-locale controls/history/manifest/repair/internal overlays: implemented,
-   local129/16039 PASS and actual960x540 four-locale checks. PR delivery/readback pending.
+   local129/16039 PASS and actual960x540 four-locale checks. PR299 merged97ea477/five CI PASS.
+   Postmerge native crash reproduced; subsequent trace129/16039 PASS is not a fix.
 2. Twelve-stage decision diversity: examine actual authored paths/optional choices;
    do not infer balanced alternatives from two successful witnesses or add mandatory rules.
 3. Native intermittent0xc0000005: reproduce/isolate original failure; no repeat-PASS-as-fix.
+   Focused same-process tutorial repetitions now reproduce it; diagnostic receipt owns evidence.
 4. Current exact executable: package startup, approved asset consumers, progression/save/ending audit.
 5. Final user-review handoff. Human translation/UX/rights/public release remain separate.
+
+Audit correction: persistent save/unlock is excluded by SX-DEC-067, not unfinished work.
+Stage witnesses currently default4.0 versus product2.0 (RB08 already2.0); verify at
+the actual product default before claiming product-speed twelve-stage completion.
 
 No arbitrary new feature, deferred056–058 system or protectedPR takeover follows from this queue.
 Current HUD evidence: evidence/runtime/route-result-20260913/HUD_COMPLETE_READBACK.md.

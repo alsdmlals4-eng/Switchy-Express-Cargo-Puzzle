@@ -42,7 +42,9 @@ Produces: same visible controls/signals, localized labels, unchanged model and u
 - [x] Refresh existing source-bound receipts affected by catalog/HUD bytes; do not re-label old captures.
 - [x] Five full-scope review passes: semantic+consumer, scope, layout/readability, provenance, failure/evidence.
 - [x] Update Active Context/roadmap/decisions and human Blueprint with actual evidence.
-- [ ] Selective commit, branch push, exact-head CI, normal merge, main readback and postmerge tests.
+- [x] Selective commit, branch push, exact-head CI, normal merge, main readback and postmerge tests.
+  PR299 merged97ea477/five CI green. First postmerge native run crashed; subsequent
+  trace129/16039 passed. Native reliability remains unresolved, not a fix claim.
 
 ## Overall completion queue (not a game-complete claim)
 
