@@ -1,0 +1,114 @@
+{
+	"consumer": "EDITOR_MOUNTED_EXPORTED_PCK",
+	"engine": "4.7.1-stable (official)",
+	"failures": [],
+	"human_review": "NOT_RUN",
+	"native_reliability": "SEPARATE_DIAGNOSTIC_REQUIRED",
+	"negative_no_pickup": false,
+	"package_path": "C:/Users/user/Downloads/Switchy_Playable_20260913_PR305/SwitchyExpressVerticalSlice.pck",
+	"package_sha256": "3bd6993fba9dc52d27ea310fee9e2e7140832cf1a848cb1b36babc7220fb25cd",
+	"samples": [
+		{
+			"capture_sha256": "0a59cb3065d929585a790a76d7a1dc0c91653f92cb200b1961b238c7db910ef6",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB01_SERVICE_SIDINGS"
+		},
+		{
+			"capture_sha256": "109c19d08c8d3deac8cf15b450e5d94899299c6c813782eb6b00744b6ed1ecbf",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB02_REVERSE_ORDER"
+		},
+		{
+			"capture_sha256": "15185efa59c37cec0886779b9d59968ee7f96cf40df1482c376d484f3c67dcfa",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB03_RETURN_MANIFEST"
+		},
+		{
+			"capture_sha256": "f11865652131e89e1b5b718d7b484c1a125dcca29723115e060340d482192905",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB04_LOAD_WINDOW"
+		},
+		{
+			"capture_sha256": "ca64a4190349ef58419ebf1cb2b988b9d50d382381af9c288e3b140e131927e6",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB05_FORK_LOCK"
+		},
+		{
+			"capture_sha256": "fe34bbc7a7161afa810b92d48e394de0049735a0db3ccf748e044f044483ff44",
+			"next_visible": false,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB06_PORT_CIRCUIT"
+		},
+		{
+			"capture_sha256": "3db8855729505fef3b35df06a5bfdf1d874865879aa3bb2e99250b807fc328c7",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB07_FOREST_RELAY"
+		},
+		{
+			"capture_sha256": "8cab48d279c305742c9b500daf1753f8f81d910ae58d3ae4194c0a56f11d5ad0",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB08_CAUTION_CUT"
+		},
+		{
+			"capture_sha256": "26bd77af2adc74d893d4cd5337921c5887418a48ced9ce3228b2d7d6f97e1544",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB09_SALVAGE_SIDING"
+		},
+		{
+			"capture_sha256": "d540970f2ce6cdca6970db524af1b1c437efa28067b1e285d0cc76ce14551a5a",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB10_CLEAN_BREAK"
+		},
+		{
+			"capture_sha256": "d32e5fe65cbb3addb0d2b1f96220d29a61c4aab393b42e451e88b118ebe7d567",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB11_TURNOUT_UNDER_LOAD"
+		},
+		{
+			"capture_sha256": "2578a2ce9d9fe3a1f590454c1f06afd2751cbb1406cce391076cc395fcc74ab7",
+			"next_visible": false,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB12_LANTERN_LOOP"
+		}
+	],
+	"scope": "Actual Main/Product, authored fixtures, commands, accelerated0.05 steps, 960x540 ko; no injected terminal outcome.",
+	"source_sha256_lf": {
+		"C:/Users/user/Documents/GitHub/Ninza/Switchy-Express-Cargo-Puzzle/.worktrees/codex-core-preserved-replan-20260910/tests/fixtures/route_book/route_book_witnesses.gd": "b86e9a7da249801b9706a6fe3ab642565e85c9744cb8b69372378df97694e2a0",
+		"C:/Users/user/Documents/GitHub/Ninza/Switchy-Express-Cargo-Puzzle/.worktrees/codex-core-preserved-replan-20260910/tests/runtime/route_book_completion_window_runner.gd": "ba2b396b99bcfa513a41984f363980f79f9b431b327e4b20ad24dc09f443da97",
+		"res://data/maps/route_book/rb01_service_sidings.json": "67de0c5bcdb9332e80b5a7520f88eb61f14a4b13a256922aec1bb097d1c607fd",
+		"res://data/maps/route_book/rb02_reverse_order.json": "3751c2d3198614a5cdd9f395788bc6d0c410c052eb78457ed64d85bbeb0cbd04",
+		"res://data/maps/route_book/rb03_return_manifest.json": "92a0352b3ca242823c32b9de272eb6729a4535925dfa7993690e1f8437de3589",
+		"res://data/maps/route_book/rb04_load_window.json": "6b5fbe2b1665d0bbc0996298cd32a2461088b1378698c7966d69d3c40a795476",
+		"res://data/maps/route_book/rb05_fork_lock.json": "f7f201d231f9a31096f4caa4d2b77b2fb40772472272b76e649d95f0f7928e3e",
+		"res://data/maps/route_book/rb06_port_circuit.json": "895579b7c150727ba994d7aa3bd16f2f7d04b62901afeb69a2b577cc1de009ac",
+		"res://data/maps/route_book/rb07_forest_relay.json": "e1d3825a816f380f8fc4236967dc2545d2b44fe82e7878775276be343613bb4f",
+		"res://data/maps/route_book/rb08_caution_cut.json": "1e8a4c2580af32f0aa167a113fe8b7a3ae360af3bd9e15249076788fc8e9f3ed",
+		"res://data/maps/route_book/rb09_salvage_siding.json": "7e4d0d2d3af63b1e067525517b1e9b7d256edd30787170300b52381ec2e4c212",
+		"res://data/maps/route_book/rb10_clean_break.json": "4c4cffb0785e2cfc0b49d66bb29893bd55b9852fc8d50c2f17282859f1946bbb",
+		"res://data/maps/route_book/rb11_turnout_under_load.json": "e94eaabf66438f871f11177e2cac88d7037bc623b0da1ed9ef59964318533454",
+		"res://data/maps/route_book/rb12_lantern_loop.json": "3e70874a706f96b505be43da740be97fe2c10b33eac35c4470c2e9ba2277b791"
+	},
+	"status": "PASS"
+}

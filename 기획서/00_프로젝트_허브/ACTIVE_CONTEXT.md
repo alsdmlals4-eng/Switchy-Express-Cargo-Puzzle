@@ -1,5 +1,15 @@
 # Active Context
 
+## 2026-09-13 package completion verification continuation
+
+Unchanged PR305 exported PCK now has actual editor-mounted twelve-stage SUCCESS evidence,
+not only its earlier12BUILD entry check. External authored-input runner uses packaged Main,
+maps and product code; no resource overlays or product changes. No-pickup correctly fails.
+Package hash/consumer/headless guards and checkout12SUCCESS regression verified.
+Owner:evidence/runtime/pack-completion-20260913/READBACK.md. PR308 owns exact CI/merge/readback.
+This is test-tool/evidence improvement; final human, template-EXE full play and release remain
+separate. Existing final-review product scope, protected PRs and deletion policy unchanged.
+
 ## Current handoff state — approved game ready for final user review
 
 Product content baseline: PR305/a6f6fb2dbdf02535c0a3312acb209cacbda1c3f8.
