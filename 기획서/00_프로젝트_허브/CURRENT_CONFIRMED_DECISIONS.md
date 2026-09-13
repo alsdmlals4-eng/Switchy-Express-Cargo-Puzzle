@@ -1,5 +1,14 @@
 # Current Confirmed Decisions
 
+## 2026-09-13 whole-game completion continuation
+
+User asks to continue until the whole game is complete. Reuse delegated plan-first
+research/implementation/correction authority for existing core and approved content.
+This unit completes gameplay HUD language continuity (four existing locales), fixes
+notice/history overlap and unknown internal failure wording. No new language setting,
+core rule, art promotion, save migration, protected PR or public-release authorization.
+Implementation/evidence state remains in ACTIVE_CONTEXT.md, not inferred from this approval.
+
 ## 2026-09-13 delegated HUD language continuity
 
 Current continued improvement request covers existing selected-locale propagation to

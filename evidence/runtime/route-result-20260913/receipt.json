@@ -4,39 +4,48 @@
   "samples": [
     {
       "body": "맵에 남은 화물: 2\n열차에 실린 화물: 0\n경과 시간 6.3초\n남은 시간 108.7초\n건설비 1100\n하역 없음",
-      "capture_sha256": "2e47ed6af4f70f37fa7ed85f89cc7ceaabd63f2fbd26e0f60a4298f7a8347dc1",
+      "build_capture_sha256": "29045406cf5b0bf70df3dc46c0471c09d6cf2b67733720d068b300f35abc48f9",
+      "capture_sha256": "00a1311bb75cb14ba2ff1d58bb410371ab5d1b93c2f5e518e043bd1218bde347",
       "locale": "ko",
+      "manifest_stress_sha256": "32d71dc04ac032aaee3c743b06b35fb6beb94d0b021b2525a8cce4703606162f",
       "running_capture_sha256": "0d41620feb8187fe220eb700d022ed0d9988bc06f522c96ac9ce9d5993773384",
       "title": "노선이 끝났습니다."
     },
     {
       "body": "Cargo left on map: 2\nCargo on train: 0\nElapsed time: 6.3s\nTime left: 108.7s\nBuild cost: 1100\nUnload groups: None",
-      "capture_sha256": "e6da34f3489501cf22fb72f0f7bdc91edb21bb388b08aabf5aab006c6a231f2f",
+      "build_capture_sha256": "9adb4855f467a0d7245b489ee14e5c2b0b7a3eae29c6fa2a1ec53fdaeb83a7d5",
+      "capture_sha256": "743ea0f00ab06d599a0ba9cacd68360a6af468fa6b570b7bd221c1144eb3794f",
       "locale": "en",
-      "running_capture_sha256": "ee5b700dc64db18b4b8f3be12f3543bf75adbffbacc22ca1c5fb4d3585efce71",
+      "manifest_stress_sha256": "fcc90473714ee94366fe3e4faa22ae4cb5215feb7941dc2d02cb10d41858408d",
+      "running_capture_sha256": "1be31ddcb5c314864237509460a286c0671c854565a42ca74ae8f5dd6b53a9ba",
       "title": "The route ended."
     },
     {
       "body": "マップに残った貨物: 2\n列車上の貨物: 0\n経過時間: 6.3秒\n残り時間: 108.7秒\n建設費: 1100\n荷下ろし: なし",
-      "capture_sha256": "04e8bf1b0bb3d38c1f34b12f78cdca89dfc7680d1fbf5acb8a27beb05ab51cef",
+      "build_capture_sha256": "5a5ad04b958cdd06cfe626455572989fd0ac643ddac0feff579c14c71401b4ee",
+      "capture_sha256": "7f7bcbc779e86237a518553ff2edbf3f0deadcb09a57b5a8d91ac67a51f3f598",
       "locale": "ja",
-      "running_capture_sha256": "30a8a04d3c039c5575c85bed2149dbdfb3e7eedb75bc9ce1216ffc7b0ac6844b",
+      "manifest_stress_sha256": "5722efe9be6e7de16f5f6e55ad95f5078db1a80d8d75df9be189cebfb981e123",
+      "running_capture_sha256": "b27691597caf07fd2ccd51ec3394e30f8961cc2a95b46e746aa8ef6ec91d5c2e",
       "title": "線路が途切れました。"
     },
     {
       "body": "地图剩余货物：2\n列车上的货物：0\n已用时间：6.3秒\n剩余时间：108.7秒\n建造费用：1100\n卸货组：无",
-      "capture_sha256": "764d465c7f8ee5dcc78568638ff5cb935abc59753e6476f5f2a60d6db8d827e8",
+      "build_capture_sha256": "a6d4c6cbe04581b9483d48f4a21faff9353e3b7fd6ee00ff00ba2d880492ce08",
+      "capture_sha256": "8f3fcecd350e4c54210def4d4152d8b104e376d0765e5c58a9908344c02c16a5",
       "locale": "zh-Hans",
-      "running_capture_sha256": "d1d17144b49f45aa8b7e15dbd4708093bc0db6745f968dcc39c078781e38b0fc",
+      "manifest_stress_sha256": "25905f9d8473312e524239b151ea7832fc01d8991b6cae1adff7d6cc2969b850",
+      "running_capture_sha256": "43850394b97218bff4c246a7271f0807d9ba74d9fd68b5dea4ec3686246996b7",
       "title": "路线已到尽头。"
     }
   ],
-  "scope": "actual Main, authored RB08 route, no pickup input, accelerated simulation; no injected summary",
+  "scope": "actual Main, authored RB08 route, no pickup input, accelerated simulation; no injected result summary. Separate64-cargo HUD projection stress is NOT an authored gameplay run.",
   "source_sha256_lf": {
-    "res://data/localization/first_session_v1.json": "89fbf9448ea85379aa2f86e24376e872266f0922e52b78d7ef092e7a2c63e315",
+    "res://data/localization/first_session_v1.json": "b1a3c3f07aa3cf7a3f6e7d05a44e4242681b06b20e1ee619d9134fd306fc6946",
     "res://game/demo/demo_flow_controller.gd": "b37aa7eaf438827283c0ba90d158ebc9d6bf2b9ba60826444c1a34f47246be8c",
-    "res://game/demo/presentation/product_hud.gd": "30f45117572fc2a9e3dd50be283e61d7ab77910ec31a7d2c577e9cb3397c0429",
-    "res://tests/runtime/route_result_window_runner.gd": "4f9b3b10ff1424b0e6418cf67729a5571c43234bfa8990a4fcc55e6096991f1c"
+    "res://game/demo/presentation/product_hud.gd": "2787552e89692f2b8e2bdaa840128b6d442bc6dd9486c5eecab37f9b6c06d4fd",
+    "res://game/demo/presentation/product_hud.tscn": "77b08eff643eecc5021baa5750d258560ec3ee4e581e322130790da686de97b9",
+    "res://tests/runtime/route_result_window_runner.gd": "4da6500e73987288aa2dbf8c3b6ebccfc3e353963cb4f6d8849c48595c2ad7b9"
   },
   "status": "PASS",
   "window": "(960, 540)"

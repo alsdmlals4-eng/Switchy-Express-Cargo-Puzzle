@@ -1,10 +1,20 @@
 # Roadmap
 
-> HUD status continuation: existing four languages reach top status/time/cost/Menu.
-> Current runtime/source evidence: route-result-20260913/HUD_STATUS_READBACK.md.
-> Earlier74-page/count references below are historical; publication receipt is current.
-> Optional next localization scope: toolbars, manifest, problem text. Native investigation
-> remains independent and deferred; core/content/release approvals are not invented.
+## Current whole-game completion queue — 2026-09-13
+
+User requests continuous implementation until the approved game is ready for final review.
+Current owner: ACTIVE_CONTEXT.md. Historical snapshots below do not reopen completed work.
+
+1. Gameplay HUD four-locale controls/history/manifest/repair/internal overlays: implemented,
+   local129/16039 PASS and actual960x540 four-locale checks. PR delivery/readback pending.
+2. Twelve-stage decision diversity: examine actual authored paths/optional choices;
+   do not infer balanced alternatives from two successful witnesses or add mandatory rules.
+3. Native intermittent0xc0000005: reproduce/isolate original failure; no repeat-PASS-as-fix.
+4. Current exact executable: package startup, approved asset consumers, progression/save/ending audit.
+5. Final user-review handoff. Human translation/UX/rights/public release remain separate.
+
+No arbitrary new feature, deferred056–058 system or protectedPR takeover follows from this queue.
+Current HUD evidence: evidence/runtime/route-result-20260913/HUD_COMPLETE_READBACK.md.
 
 > Current result-truth loop: actual ROUTE_END/TIME_EXPIRED/unknown projections,
 > four-locale metrics and recovery actions; actual no-pickup RB08 runtime verified.

@@ -38,3 +38,64 @@ func run() -> void:
 			hud.apply_model({"phase":phase_ids[i]})
 			assert_equal(hud.get_node("TopStatus/PhaseLabel").text, phases[row[0]][i], "phase uses correct message")
 	demo.free()
+	_complete_hud()
+
+
+func _complete_hud() -> void:
+	var names := {"ko":["직선", "자동 적재 켬", "별", "다이아", "삼각", "폐기물", "비어 있음"],
+		"en":["Straight", "Auto ON", "Star", "Diamond", "Triangle", "Waste", "Empty"],
+		"ja":["直線", "自動積載 ON", "星", "ダイヤ", "三角", "廃棄物", "空"],
+		"zh-Hans":["直线", "自动装载 开", "星", "菱形", "三角", "废物", "空"]}
+	for language: String in names:
+		var hud: Control = preload("res://game/demo/presentation/product_hud.tscn").instantiate()
+		hud.locale = language
+		(Engine.get_main_loop() as SceneTree).root.add_child(hud)
+		assert_true(hud.get_node("BuildToolbar/StraightButton").text.contains(names[language][0]), "localized tool")
+		var empty_history: String = hud.get_node("BuildHistory/Status").text
+		hud.apply_model({"phase": &"BUILD", "undo_enabled":true})
+		assert_false(hud.get_node("BuildHistory/Status").text == empty_history, "undo availability has distinct feedback")
+		assert_false(hud.get_node("BuildHistory/UndoButton").disabled, "translation preserves undo availability")
+		var undo_history: String = hud.get_node("BuildHistory/Status").text
+		hud.apply_model({"phase":&"BUILD", "redo_enabled":true})
+		assert_true(hud.get_node("BuildHistory/UndoButton").disabled and not hud.get_node("BuildHistory/RedoButton").disabled, "redo-only state")
+		assert_true(hud.get_node("BuildHistory/Status").text != undo_history and hud.get_node("BuildHistory/Status").text != empty_history, "redo feedback distinct")
+		var tokens: Array = []
+		var types := [&"RED_STAR", &"BLUE_DIAMOND", &"YELLOW_TRIANGLE", &"WASTE_CRATE"]
+		for i: int in range(64):
+			tokens.append({"cargo_type":types[i % 4], "top": i == 63})
+		var model := {"phase":&"RUNNING", "auto_load_active":true, "stack_tokens":tokens, "stack_size":64}
+		hud.apply_model(model)
+		assert_equal(hud.model_for_test(), model, "locale formatting cannot mutate model")
+		assert_true(hud.get_node("RunToolbar/AutoButton").text.contains(names[language][1]), "auto state selected language")
+		var auto_on: String = hud.get_node("RunToolbar/AutoButton").text
+		var manifest: RichTextLabel = hud.get_node("StackPanel/StackLayout/StackText")
+		assert_equal(manifest.text.split("\n").size(), 64, "all64 cargo rows retained")
+		assert_true(manifest.scroll_active, "unbounded cargo list remains scrollable")
+		for i: int in range(4):
+			assert_true(manifest.text.split("\n")[i].contains(names[language][i + 2]), "cargo type retains language and load order")
+		assert_true(manifest.text.split("\n")[63].contains("TOP"), "last loaded remains TOP")
+		var summary: String = hud.get_node("StackPanel/StackLayout/TopSummary").text
+		assert_true(summary.contains(names[language][5]) and summary.contains("× 1") and summary.contains("64"), "TOP group is contiguous not total type count")
+		hud.apply_model({"phase":&"RUNNING", "stack_tokens":[], "stack_size":0})
+		assert_true(manifest.text.contains(names[language][6]), "empty manifest localized")
+		assert_not_equal(hud.get_node("RunToolbar/AutoButton").text, auto_on, "Auto OFF distinct from ON")
+		hud.apply_model({"phase":&"UNLOADING", "stack_tokens":tokens, "stack_size":3, "unload_visual_active":true})
+		assert_true(hud.get_node("StackPanel/StackLayout/TopSummary").text.contains("3"), "unload uses actual count")
+		assert_false(hud.get_node("StackPanel/StackLayout/TopSummary").text.contains("64"), "unload does not count departing visual tokens")
+		for reason: StringName in [&"UNREACHABLE_CARGO", &"UNREACHABLE_STATION_SERVICE", &"DANGLING_EDGE", &"PERMANENT_TRAP", &"MISSING_START", &"INVALID_CROSSING", &"INVALID_SWITCH_EXIT", &"EMPTY_LAYOUT", &"UNKNOWN"]:
+			hud.apply_model({"phase":&"BUILD", "primary_reason":reason})
+			var problem: String = hud.get_node("ProblemBanner/ProblemLayout/ProblemText").text
+			assert_false(problem.is_empty(), "every repair reason nonempty")
+			if language == "en":
+				assert_false(problem.contains("선로") or problem.contains("주세요") or problem.contains("없습니다"), "English repair cannot fall back to Korean")
+		hud.apply_model({"phase":&"FAILURE", "primary_reason":&"UNKNOWN"})
+		var body: String = hud.get_node("ResultPanel/ResultLayout/ResultBody").text
+		assert_false(body.contains("제한 시간이 종료") or body.contains("Time expired"), "unknown failure must not invent timeout")
+		hud.apply_model({"phase":&"FAILURE", "primary_reason":&"TIME_EXPIRED"})
+		var time_body: String = hud.get_node("ResultPanel/ResultLayout/ResultBody").text
+		assert_not_equal(time_body, body, "known timeout distinct from unknown")
+		hud.apply_model({"phase":&"FAILURE", "primary_reason":&"ROUTE_END"})
+		assert_not_equal(hud.get_node("ResultPanel/ResultLayout/ResultBody").text, time_body, "route end is not timeout")
+		hud.apply_model({"phase":&"SUCCESS", "final_cost":1234})
+		assert_true(hud.get_node("ResultPanel/ResultLayout/ResultBody").text.contains("1234"), "success uses actual final cost")
+		hud.free()

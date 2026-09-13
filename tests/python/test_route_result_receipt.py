@@ -14,6 +14,8 @@ def test_result_runtime_receipt():
     assert receipt["window"] == "(960, 540)"
     assert [sample["locale"] for sample in receipt["samples"]] == ["ko", "en", "ja", "zh-Hans"]
     for sample in receipt["samples"]:
+        assert hashlib.sha256((folder / (sample["locale"] + "-build.png")).read_bytes()).hexdigest() == sample["build_capture_sha256"]
+        assert hashlib.sha256((folder / (sample["locale"] + "-manifest-stress.png")).read_bytes()).hexdigest() == sample["manifest_stress_sha256"]
         assert "108.7" in sample["body"]
         assert hashlib.sha256((folder / (sample["locale"] + "-running.png")).read_bytes()).hexdigest() == sample["running_capture_sha256"]
         assert hashlib.sha256((folder / (sample["locale"] + ".png")).read_bytes()).hexdigest() == sample["capture_sha256"]
