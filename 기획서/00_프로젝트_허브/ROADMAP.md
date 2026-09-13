@@ -4,14 +4,15 @@
 
 Owner: `docs/superpowers/specs/2026-09-14-remaining-work-design.md`;
 approval: CURRENT_CONFIRMED_DECISIONS, September14.
-- M1: repair current entry pointers and preserve historical evidence (local correction).
+- M1: current entry pointers repaired; PR309 merged0c25766, historical evidence preserved.
 - C1: author and machine-verify RB08's cheaper/slower versus dearer/faster paths,
   without global rule changes; then verify actual runtime and changed package.
 - C2: author six optional maps and witnesses against current main, integrate book03
   and four locales, verify eighteen actual completions and negative paths.
   PR281 remains read-only; no duplicate SX-DEC-070 assignment.
 - V1 capability investigation; D1/D2 recurrence-only; R1 release-dependent; U1 final user.
-C1/C2 product implementation NOT_RUN; M1 documents corrected and C1 RED observed.
+C1 revision2 implemented:129/16135 PASS,12actualSUCCESS,144preview/3Begin PASS;
+new package/independent review/merge readback pending. C2 remains NOT_RUN.
 Dated completion
 statements below describe the earlier approved twelve-stage scope, not this new delta.
 

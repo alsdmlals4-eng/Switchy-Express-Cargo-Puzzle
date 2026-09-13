@@ -20,7 +20,7 @@ static func pieces(stage_id: StringName) -> Array[Variant]:
 		&"RB07_FOREST_RELAY", &"RB09_SALVAGE_SIDING":
 			return _rb01()
 		&"RB08_CAUTION_CUT":
-			return _rb02()
+			return _rb08()
 		&"RB10_CLEAN_BREAK":
 			return _rb03()
 		&"RB11_TURNOUT_UNDER_LOAD":
@@ -60,20 +60,38 @@ static func _rb02() -> Array[Variant]:
 	]
 
 
+static func _rb08() -> Array[Variant]:
+	return [
+		_piece(2, 3, &"STRAIGHT", 0),
+		_piece(3, 3, &"STRAIGHT", 0),
+		_piece(4, 3, &"STRAIGHT", 0),
+		_piece(5, 3, &"STRAIGHT", 0),
+		_piece(6, 3, &"STRAIGHT", 0),
+		_piece(7, 3, &"STRAIGHT", 0),
+		_piece(8, 3, &"CURVE", 3),
+		_piece(8, 2, &"CURVE", 1),
+		_piece(9, 2, &"CURVE", 2),
+		_piece(9, 3, &"STRAIGHT", 1),
+		_piece(9, 4, &"STRAIGHT", 1),
+	]
+
+
 static func rb08_caution_detour() -> Array[Variant]:
-	var result: Array[Variant] = []
-	for piece: Variant in _rb02():
-		if piece.cell in [Vector2i(3, 3), Vector2i(4, 3), Vector2i(5, 3)]:
-			continue
-		result.append(piece)
-	result.append_array([
-		_piece(3, 3, &"CURVE", 3),
-		_piece(3, 2, &"CURVE", 1),
-		_piece(4, 2, &"STRAIGHT", 0),
-		_piece(5, 2, &"CURVE", 2),
-		_piece(5, 3, &"CURVE", 0),
-	])
-	return result
+	return [
+		_piece(2, 3, &"STRAIGHT", 0),
+		_piece(3, 3, &"CURVE", 2),
+		_piece(3, 4, &"CURVE", 0),
+		_piece(4, 4, &"STRAIGHT", 0),
+		_piece(5, 4, &"STRAIGHT", 0),
+		_piece(6, 4, &"STRAIGHT", 0),
+		_piece(7, 4, &"STRAIGHT", 0),
+		_piece(8, 4, &"CURVE", 3),
+		_piece(8, 3, &"STRAIGHT", 1),
+		_piece(8, 2, &"CURVE", 1),
+		_piece(9, 2, &"CURVE", 2),
+		_piece(9, 3, &"STRAIGHT", 1),
+		_piece(9, 4, &"STRAIGHT", 1),
+	]
 
 
 static func _rb03() -> Array[Variant]:

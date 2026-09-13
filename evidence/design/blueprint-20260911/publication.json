@@ -1,11 +1,11 @@
 {
   "status": "TOPDOWN_IMPLEMENTATION_REVIEW_FINAL_USER_REVIEW_SEPARATE",
   "pdf": "output\\pdf\\SWITCHY_EXPRESS_HUMAN_BLUEPRINT_20260911_REVIEW.pdf",
-  "sha256": "478a1d14655c8f62cdc84f8e339a32d385484ae54b03e574476af420cb6475e4",
+  "sha256": "dfc2994a50166a08581f557dbecc492420f98480dd919d714fcfc54e9af00976",
   "page_count": 77,
   "source": "docs\\design\\SWITCHY_BLUEPRINT_REVIEW_20260911.md",
-  "source_sha256": "cb76a98b46e78e375b9374bee1207fecf6697d03a3ecc77082e9b13e909a1cee",
-  "generator_sha256": "7e7f1278df293db4d9a7ee5bd04ff91bf474f0a21d2fc5210393fd4bbfd5acd5",
+  "source_sha256": "fc24867f5586dd94611babcb394a7b8af7796cacb97021419b8ed283cada90ae",
+  "generator_sha256": "e2e67833e71c34eb8dd6f3aa016c760e20d371ed172f7915f1a241b9caeb3a09",
   "runtime_receipt": "evidence/runtime/topdown-family-20260912/receipt.json",
   "runtime_receipt_sha256": "7fffdd495a24841c330d0c6a915fddf34a4d6da4aae148fe882886f22b178adc",
   "assets_and_maps": {
@@ -16,7 +16,7 @@
     "evidence/runtime/route-result-20260913/en-running.png": "1be31ddcb5c314864237509460a286c0671c854565a42ca74ae8f5dd6b53a9ba",
     "evidence/runtime/route-result-20260913/en-build.png": "9adb4855f467a0d7245b489ee14e5c2b0b7a3eae29c6fa2a1ec53fdaeb83a7d5",
     "evidence/runtime/route-result-20260913/ko.png": "3d69a13b36826fa81042a741680b6818fec136ca5afcd5bac83fb1751abf8a33",
-    "evidence/runtime/stage-preview-20260913/rb08.png": "a2a3b21ad031a95f9aed4e26ba4018e61c8eca1ff5d7bba16843e97e9a129550",
+    "evidence/runtime/stage-preview-20260913/rb08.png": "513d2853063e7ccd1a63c177003ec6dffe885c885892a7ff4a67af63c16d3f69",
     "evidence/runtime/stage-preview-20260913/rb10-postmerge.png": "4fab792548ffea3a29b27f6d70a7c064efa20f75267ae9a7d2b52f6c84ba9363",
     "evidence/runtime/stage-preview-20260913/rb12-postmerge.png": "a2f5727d8123e7e1e781f9a593a51abd7f1eed4df50bcff6e09101e74ad7c3e5",
     "evidence/runtime/build-history-20260912/restored.png": "c5ca128a872bf8b3646709dd46ab840f520c1cda5c361826c155368250a7934f",
@@ -40,8 +40,10 @@
     "art/product_assets/topdown_v1/decoration_waterway.png": "3384d0b1554ae81426380b2faed228c63395e81db5f6b6e9b12a6db672c2e07c",
     "art/product_assets/topdown_v1/decoration_lantern_fence.png": "359c71cca3c786ee2e4e2edcee97d42c017d2062c1cd597639ea5bea84f55c0d",
     "data/localization/route_book_01_v1.json": "99f0001b356238b3891379c919d2af85f17fb2ba85b8eea6fcc0e7ea3b65d4c7",
-    "data/localization/route_book_02_v1.json": "7ddc31c605c7289fb81975ff505e962233fc8065f5870543e10a51ab260b1910",
-    "evidence/runtime/stage-preview-20260913/README.md": "5b566bd5eff07fa9811a7cc5158c12c789307526631783e1df19c511fe470d2c",
+    "data/localization/route_book_02_v1.json": "0e437bd1423136c38d41d76e22bf3d61fca38b57218acbf507a459e07a7b3e29",
+    "evidence/runtime/stage-preview-20260913/README.md": "7c56f9a1a81aeeeb2c5c16c4cb1971282f03e1905e74d8e49a553b1323237f9d",
+    "evidence/runtime/rb08-tradeoff-20260914/green.json": "ea4764a2e8798662a73f67c59477072b06c89c84d45884396ba658141869c121",
+    "evidence/runtime/rb08-tradeoff-20260914/green-witness.log": "dcd15c801cfa62c0b38d04975d57db815c368be8b1f9cf2851b0ca1ddda12f1d",
     "data/maps/route_book/rb01_service_sidings.json": "67de0c5bcdb9332e80b5a7520f88eb61f14a4b13a256922aec1bb097d1c607fd",
     "data/maps/route_book/rb02_reverse_order.json": "3751c2d3198614a5cdd9f395788bc6d0c410c052eb78457ed64d85bbeb0cbd04",
     "data/maps/route_book/rb03_return_manifest.json": "92a0352b3ca242823c32b9de272eb6729a4535925dfa7993690e1f8437de3589",
@@ -49,7 +51,7 @@
     "data/maps/route_book/rb05_fork_lock.json": "f7f201d231f9a31096f4caa4d2b77b2fb40772472272b76e649d95f0f7928e3e",
     "data/maps/route_book/rb06_port_circuit.json": "895579b7c150727ba994d7aa3bd16f2f7d04b62901afeb69a2b577cc1de009ac",
     "data/maps/route_book/rb07_forest_relay.json": "e1d3825a816f380f8fc4236967dc2545d2b44fe82e7878775276be343613bb4f",
-    "data/maps/route_book/rb08_caution_cut.json": "1e8a4c2580af32f0aa167a113fe8b7a3ae360af3bd9e15249076788fc8e9f3ed",
+    "data/maps/route_book/rb08_caution_cut.json": "11b26137ec4895476fd61a6913ae5050a6b06ec00a4dbec228a98f34d39577dd",
     "data/maps/route_book/rb09_salvage_siding.json": "7e4d0d2d3af63b1e067525517b1e9b7d256edd30787170300b52381ec2e4c212",
     "data/maps/route_book/rb10_clean_break.json": "4c4cffb0785e2cfc0b49d66bb29893bd55b9852fc8d50c2f17282859f1946bbb",
     "data/maps/route_book/rb11_turnout_under_load.json": "e94eaabf66438f871f11177e2cac88d7037bc623b0da1ed9ef59964318533454",
@@ -64,57 +66,57 @@
     {
       "page": 2,
       "title": "운행 HUD · 선택 언어와 실제 수치",
-      "kind": "현재 브랜치 실제 렌더 / 사용자 최종 검수 아님"
+      "kind": "이전 UI 표시 증거 / RB08 새 배치 증거 아님"
     },
     {
       "page": 3,
       "title": "건설 HUD · 도구와 문제 해결",
-      "kind": "현재 브랜치 실제 렌더 / 사용자 최종 검수 아님"
+      "kind": "이전 UI 표시 증거 / RB08 새 배치 증거 아님"
     },
     {
       "page": 4,
       "title": "노선집 결과 · 실제 실패 원인과 남은 시간",
-      "kind": "현재 브랜치 실제 렌더 / 사용자 최종 검수 아님"
+      "kind": "이전 UI 표시 증거 / RB08 새 배치 증거 아님"
     },
     {
       "page": 5,
       "title": "RB08 브리핑 · 실제 감속 칸을 보고 판단",
-      "kind": "현재 브랜치 실제 렌더 / 사용자 최종 검수 아님"
+      "kind": "실제 렌더 / 개별 출처 시점의 증거 / 사용자 최종 검수 아님"
     },
     {
       "page": 6,
       "title": "RB10 브리핑 · 재방문과 폐기물 계획",
-      "kind": "현재 브랜치 실제 렌더 / 사용자 최종 검수 아님"
+      "kind": "실제 렌더 / 개별 출처 시점의 증거 / 사용자 최종 검수 아님"
     },
     {
       "page": 7,
       "title": "RB12 브리핑 · 복합 규칙의 공간 관계",
-      "kind": "현재 브랜치 실제 렌더 / 사용자 최종 검수 아님"
+      "kind": "실제 렌더 / 개별 출처 시점의 증거 / 사용자 최종 검수 아님"
     },
     {
       "page": 8,
       "title": "선로 편집 복구 · 전체 철거를 한 번에 취소",
-      "kind": "현재 브랜치 실제 렌더 / 사용자 최종 검수 아님"
+      "kind": "실제 렌더 / 개별 출처 시점의 증거 / 사용자 최종 검수 아님"
     },
     {
       "page": 9,
       "title": "메인 화면 · 승인 탑뷰 자산으로 조립",
-      "kind": "현재 브랜치 실제 렌더 / 사용자 최종 검수 아님"
+      "kind": "실제 렌더 / 개별 출처 시점의 증거 / 사용자 최종 검수 아님"
     },
     {
       "page": 10,
       "title": "T2 브리핑 · 선로 옆의 역",
-      "kind": "현재 브랜치 실제 렌더 / 사용자 최종 검수 아님"
+      "kind": "실제 렌더 / 개별 출처 시점의 증거 / 사용자 최종 검수 아님"
     },
     {
       "page": 11,
       "title": "실패 화면 · 같은 시점, 다른 상태",
-      "kind": "현재 브랜치 실제 렌더 / 사용자 최종 검수 아님"
+      "kind": "실제 렌더 / 개별 출처 시점의 증거 / 사용자 최종 검수 아님"
     },
     {
       "page": 12,
       "title": "긴 적재 목록 · 이전 UI 표시 검사",
-      "kind": "이전 UI 표시 증거 / 새 자산 검증 아님"
+      "kind": "이전 UI 표시 증거 / RB08 새 배치 증거 아님"
     },
     {
       "page": 13,

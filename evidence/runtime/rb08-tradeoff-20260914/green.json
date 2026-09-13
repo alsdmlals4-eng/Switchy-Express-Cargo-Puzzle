@@ -1,0 +1,90 @@
+{
+	"assertions": 131,
+	"engine": "4.7.1-stable (official)",
+	"failures": [],
+	"human_review": "NOT_RUN",
+	"native_reliability": "SEPARATE_DIAGNOSTIC_REQUIRED",
+	"source_sha256_lf": {
+		"res://data/maps/route_book/rb01_service_sidings.json": "67de0c5bcdb9332e80b5a7520f88eb61f14a4b13a256922aec1bb097d1c607fd",
+		"res://data/maps/route_book/rb02_reverse_order.json": "3751c2d3198614a5cdd9f395788bc6d0c410c052eb78457ed64d85bbeb0cbd04",
+		"res://data/maps/route_book/rb03_return_manifest.json": "92a0352b3ca242823c32b9de272eb6729a4535925dfa7993690e1f8437de3589",
+		"res://data/maps/route_book/rb04_load_window.json": "6b5fbe2b1665d0bbc0996298cd32a2461088b1378698c7966d69d3c40a795476",
+		"res://data/maps/route_book/rb05_fork_lock.json": "f7f201d231f9a31096f4caa4d2b77b2fb40772472272b76e649d95f0f7928e3e",
+		"res://data/maps/route_book/rb06_port_circuit.json": "895579b7c150727ba994d7aa3bd16f2f7d04b62901afeb69a2b577cc1de009ac",
+		"res://data/maps/route_book/rb07_forest_relay.json": "e1d3825a816f380f8fc4236967dc2545d2b44fe82e7878775276be343613bb4f",
+		"res://data/maps/route_book/rb08_caution_cut.json": "11b26137ec4895476fd61a6913ae5050a6b06ec00a4dbec228a98f34d39577dd",
+		"res://data/maps/route_book/rb09_salvage_siding.json": "7e4d0d2d3af63b1e067525517b1e9b7d256edd30787170300b52381ec2e4c212",
+		"res://data/maps/route_book/rb10_clean_break.json": "4c4cffb0785e2cfc0b49d66bb29893bd55b9852fc8d50c2f17282859f1946bbb",
+		"res://data/maps/route_book/rb11_turnout_under_load.json": "e94eaabf66438f871f11177e2cac88d7037bc623b0da1ed9ef59964318533454",
+		"res://data/maps/route_book/rb12_lantern_loop.json": "3e70874a706f96b505be43da740be97fe2c10b33eac35c4470c2e9ba2277b791",
+		"res://game/demo/product_finite_slice.gd": "e087f7f0c15d5942a9f3426ab4acedecc54fc7fe5c515a6264299c5b05bb4336",
+		"res://game/demo/product_finite_slice.tscn": "6473a3c90da0381354b51087311111ac0b355423e2fb34909a4af21282a5ab7c",
+		"res://game/finite/run/finite_run_session_factory.gd": "002e167d99c1f6f4d9d92ba1763a90222a8b9bdd1040de68151df1ffc54427b6",
+		"res://tests/fixtures/route_book/route_book_witnesses.gd": "1c14759ab3000713ee3e70be8ec2adc3651572b4ebf493d19e608891221eb821",
+		"res://tests/route_book/test_route_book_machine_witnesses.gd": "3114a7b30cd51f705f211259172518657320573a59c133c8142078720859e468",
+		"res://tests/runtime/route_book_witness_runner.gd": "a7a151d0f8fad8ae8714b246e9420674c75da068eca43472811f937b93bc8da6"
+	},
+	"stages": [
+		{
+			"base_speed": 2.0,
+			"phase": "SUCCESS",
+			"stage": "RB01"
+		},
+		{
+			"base_speed": 2.0,
+			"phase": "SUCCESS",
+			"stage": "RB02"
+		},
+		{
+			"base_speed": 2.0,
+			"phase": "SUCCESS",
+			"stage": "RB03"
+		},
+		{
+			"base_speed": 2.0,
+			"phase": "SUCCESS",
+			"stage": "RB04"
+		},
+		{
+			"base_speed": 2.0,
+			"phase": "SUCCESS",
+			"stage": "RB05"
+		},
+		{
+			"base_speed": 2.0,
+			"phase": "SUCCESS",
+			"stage": "RB06"
+		},
+		{
+			"base_speed": 2.0,
+			"phase": "SUCCESS",
+			"stage": "RB07"
+		},
+		{
+			"base_speed": 2.0,
+			"phase": "SUCCESS",
+			"stage": "RB08"
+		},
+		{
+			"base_speed": 2.0,
+			"phase": "SUCCESS",
+			"stage": "RB09"
+		},
+		{
+			"base_speed": 2.0,
+			"phase": "SUCCESS",
+			"stage": "RB10"
+		},
+		{
+			"base_speed": 2.0,
+			"phase": "SUCCESS",
+			"stage": "RB11"
+		},
+		{
+			"base_speed": 2.0,
+			"phase": "SUCCESS",
+			"stage": "RB12"
+		}
+	],
+	"status": "PASS"
+}

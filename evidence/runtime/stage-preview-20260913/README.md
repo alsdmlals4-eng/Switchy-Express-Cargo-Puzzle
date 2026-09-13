@@ -1,5 +1,18 @@
 # Actual stage preview iteration
 
+## Current RB08 capture - 2026-09-14 C1
+
+rb08.png now shows approved revision2, recaptured by stage_preview_live_qa.gd
+at1280x720/ko after actual selection and post-draw. The current window receipt
+binds map/copy/runner and PNG hashes. Five caution cells, revised red cargo/station,
+2/6 progress and cost/time planning prompt are visible; no witness rails disclosed.
+Comparison now is direct1100/7.74454545454544s versus detour1300/7.1081818181818s;
+both SUCCESS at product speed2.0. See ../rb08-tradeoff-20260914/green-witness.log.
+The older strategy experiment and crash observations below are historical, not
+current-map timing or a new native reliability conclusion. Human/release NOT_RUN.
+
+## Historical original preview work
+
 Source main 253a774ff57f03c1f0bbc4d84125720723486d12. Plan: docs/superpowers/plans/2026-09-13-stage-board-preview.md.
 RED:127 cases/15,670 assertions/1 failed (missing preview), exit1.
 Initial GREEN:127 cases/15,686 assertions/0 failed, exit0.

@@ -122,6 +122,8 @@ func run() -> void:
 	assert_equal(rb08.get("phase"), &"SUCCESS", "RB08 caution-track witness succeeds")
 	var rb08_detour := _run_manual(fixture.rb08_caution_detour(), PATHS[&"RB08_CAUTION_CUT"], Callable(), 2.0)
 	assert_equal(rb08_detour.get("phase"), &"SUCCESS", "RB08 alternative caution detour also succeeds")
+	assert_true(int(rb08.get("build_cost", 0)) < int(rb08_detour.get("build_cost", 0)), "RB08 direct path costs less than detour")
+	assert_true(float(rb08.get("elapsed_seconds", 0.0)) >= float(rb08_detour.get("elapsed_seconds", 0.0)) + 0.25, "RB08 paid detour saves at least 0.25 seconds at product speed")
 	assert_true(rb08.get("visited_cells", []).has(Vector2i(4, 3)), "direct witness crosses optional caution")
 	assert_false(rb08_detour.get("visited_cells", []).has(Vector2i(4, 3)), "detour avoids optional caution")
 	assert_equal(rb08_detour.get("pickups"), [&"BLUE_DIAMOND", &"RED_STAR"], "detour preserves required cargo contact")

@@ -1,5 +1,12 @@
 # Actual-window preview matrix
 
+2026-09-14 C1 refresh: 144 states / 3 pointer Begin checks / exit0, at PR309 merge
+base 0c25766b5e7da109e786005f5bba792795ee8b22 plus receipt-bound working hashes.
+RB08 revision2 is recaptured at1280x720/ko after actual stage selection and draw.
+`blueprint_capture_sha256` additionally binds ../stage-preview-20260913/rb08.png.
+The capture-binding test first failed because that field was absent, then passed
+after the actual capture implementation/run. Earlier receipts below are history.
+
 Latest HUD-status continuation reran144/3 against merge base dfbb3e4c28a2809e3ebf11d38b8e0f4dcb40996b
 plus recorded working-source hashes. Previous result-truth refresh below is historical.
 
