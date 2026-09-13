@@ -39,4 +39,29 @@ No retry PASS is presented as native repair. Whole-game completion remains open.
 
 Learning: check lifetime of generated feedback, not cue-name bookkeeping; discard
 pre-boundary samples when proving surviving output. Project-specific evidence only,
-no unreviewed Base promotion. Exact CI/merge and current playable package follow.
+no unreviewed Base promotion.
+
+## Merged delivery and replacement playable package
+
+PR303 merged478530552884fdaa1534c85e8f37da8b376d2965 through normal protected flow,
+five exact checks PASS. CI34730405830 artifact sourcec0390def1414917ccfea248592ecda02a6da1ee3
+tree9979a6f4b63dcaad1c4088b16beee307241a9688 equals merged-main tree.
+Current local package:C:/Users/user/Downloads/Switchy_Playable_20260913_PR303.
+
+- EXE102982144bytes SHA256:1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244.
+- PCK57885728bytes SHA256:e5b9ad1b57080bb21681fd54249ef9a465114cb6692a659e9062ff478a9f805b.
+- README explains controls and unfinished native/human/release gates. Only these three
+  files remain in the playable folder; proof-only extras are not game dependencies.
+- Actual EXE headless and window startup120frames each: supervised process exit0.
+  User-data logs:pr303-package-headless-final.log and pr303-package-window.log.
+  Window renderer OpenGL3.3/NVIDIA RTX3050. Early unsupervised GUI invocation did not
+  supply reliable exit evidence; only the later waited process results count.
+- Official editor console mounted the actual PCK with the existing external verifier:
+  pr303-package-consumer.log, exit0,2books/12stages/12actual BUILD entries,31JSON PASS.
+  This is not12-stage gameplay completion, human visual approval or crash repair.
+
+Cleanup holding:C:/Users/user/Downloads/Switchy_User_Delete_Review/20260913-pr303-package-cleanup.
+Eight files moved with pre/post SHA verification:three superseded PR299 playable files
+and five PR303 proof extras. manifest.json records exact original/holding paths, hashes,
+sizes and non-overwriting restore instructions. User deletes manually; nothing deleted.
+Active diagnostic build, unknown project files and open-PR worktrees remain untouched.

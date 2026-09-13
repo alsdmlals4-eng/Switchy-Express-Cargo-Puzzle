@@ -14,7 +14,10 @@ Separate symbol diagnostic of exact Godot sourcea13da4feb is building locally wi
 MSVC and symbols; this is not engine/provider replacement or official-byte proof.
 No antivirus/accessibility/security changes. Do not merge this pending unit as full
 Windows-verified until native investigation/verification is reconciled.
-Whole game NOT_COMPLETE; current playable PR303 package preparation in progress.
+Whole game NOT_COMPLETE; current playable PR303 package startup and mounted-pack
+consumers verified. Package/cleanup readback is in the tutorial-audio evidence owner.
+Draft PR304 contains product-speed witnesses; four draft checks green do not resolve
+the local Windows native failure or authorize a Windows-reliability claim.
 
 ## 2026-09-13 tutorial transition audio continuation
 

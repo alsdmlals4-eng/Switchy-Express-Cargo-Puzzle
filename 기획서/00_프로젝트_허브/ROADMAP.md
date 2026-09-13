@@ -16,7 +16,8 @@ Current owner: ACTIVE_CONTEXT.md. Historical snapshots below do not reopen compl
 4. Current exact executable: package startup, approved asset consumers, progression/save/ending audit.
    PR299 EXE startup and actual PCK2books/12BUILD entries verified; new permanent
    verifier PR301 merged5128ac5, Windows+Android proof CI PASS. No all-stage gameplay
-   or native reliability claim. Refresh package after audio product changes.
+   or native reliability claim. PR303 replacement package now verified for headless/window
+   startup and mounted PCK2books/12BUILD consumers; native reliability remains open.
 5. Final user-review handoff. Human translation/UX/rights/public release remain separate.
 
 Existing audio feedback audit: queued eight cues were stopped immediately after
