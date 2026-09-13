@@ -13,6 +13,8 @@ Current owner: ACTIVE_CONTEXT.md. Historical snapshots below do not reopen compl
 3. Native intermittent0xc0000005: reproduce/isolate original failure; no repeat-PASS-as-fix.
    Focused same-process tutorial repetitions now reproduce it; diagnostic receipt owns evidence.
 4. Current exact executable: package startup, approved asset consumers, progression/save/ending audit.
+   PR299 EXE startup and actual PCK2books/12BUILD entries verified; new permanent
+   verifier CI/readback pending. No all-stage gameplay or native reliability claim.
 5. Final user-review handoff. Human translation/UX/rights/public release remain separate.
 
 Audit correction: persistent save/unlock is excluded by SX-DEC-067, not unfinished work.

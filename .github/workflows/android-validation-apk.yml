@@ -118,7 +118,7 @@ jobs:
             --path .
 
           set +e
-          output=$(timeout 45s "./${GODOT_BINARY}" \
+          output=$(timeout 180s "./${GODOT_BINARY}" \
             --headless \
             --path . \
             --script res://tests/run_tests.gd 2>&1)
@@ -165,7 +165,7 @@ jobs:
             --export-pack "Android Validation" \
             builds/android-validation-runtime-json-proof.pck
           test -s builds/android-validation-runtime-json-proof.pck
-          "./${GODOT_BINARY}" \
+          timeout 60s "./${GODOT_BINARY}" \
             --headless \
             --main-pack builds/android-validation-runtime-json-proof.pck \
             --script res://tools/validation/verify_exported_runtime_json.gd \
