@@ -1,5 +1,20 @@
 # Roadmap
 
+## Approved September14 improvement sequence
+
+Owner: `docs/superpowers/specs/2026-09-14-remaining-work-design.md`;
+approval: CURRENT_CONFIRMED_DECISIONS, September14.
+- M1: repair current entry pointers and preserve historical evidence (local correction).
+- C1: author and machine-verify RB08's cheaper/slower versus dearer/faster paths,
+  without global rule changes; then verify actual runtime and changed package.
+- C2: author six optional maps and witnesses against current main, integrate book03
+  and four locales, verify eighteen actual completions and negative paths.
+  PR281 remains read-only; no duplicate SX-DEC-070 assignment.
+- V1 capability investigation; D1/D2 recurrence-only; R1 release-dependent; U1 final user.
+C1/C2 product implementation NOT_RUN; M1 documents corrected and C1 RED observed.
+Dated completion
+statements below describe the earlier approved twelve-stage scope, not this new delta.
+
 ## Package verification follow-through — 2026-09-13
 
 Closed the remaining evidence gap between checkout12SUCCESS and exported PCK12BUILD:

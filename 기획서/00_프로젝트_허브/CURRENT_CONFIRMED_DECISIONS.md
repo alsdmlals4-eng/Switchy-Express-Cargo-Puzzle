@@ -1,5 +1,24 @@
 # Current Confirmed Decisions
 
+## 2026-09-14 approved remaining-work recommendation
+
+User: "좋아 권장안대로 작업진행해", following the September14 remaining-work review.
+Approve M1 current-entry reconciliation, C1 RB08 map-only cost/time tradeoff preparation
+and implementation, then C2 six authored optional Route Book03 stages and integration
+under the existing finite rules and approved assets. Specification:
+`docs/superpowers/specs/2026-09-14-remaining-work-design.md`.
+Numeric acceptance defaults may be refined through authored-map evidence; no global
+speed/cost/core change. C1 map-only means the gameplay delta is local to RB08;
+companion witness/tests, four-locale copy, preview expectations and evidence are required.
+New book coordinates, positive/negative witnesses and four-locale
+copy must be prepared and verified before claiming implementation readiness.
+PR309 is the current-task continuation. This approval does not authorize takeover of
+PR281 or reuse of its conflicting SX-DEC-070 number; PR174/254/281 remain read-only.
+V1 is a capability investigation, D1/D2 run only on recurrence, R1 remains release-scoped,
+and U1 remains final-user review. No public release, new image promotion, save/unlock,
+engine/provider repin, direct deletion or five-person study is authorized.
+Progress and verification belong to ACTIVE_CONTEXT; approval alone is not completion.
+
 ## 2026-09-13 source-backed native audio lifetime repair
 
 Existing delegated completion/repair authority covers the identified generator source
