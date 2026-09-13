@@ -183,11 +183,11 @@ Title의 기본 Start는 여전히 T1이다. 신규 책은 선택형이며 잠�
 | 책 탐색 | `game/route_book/route_book_catalog.gd` | `book_ids()`, `definition_path(book_id)`, `copy_path(book_id)`, `display_key(book_id)` 유지. 세 번째 등록만 추가 |
 | 데이터 검증 | `game/route_book/route_book_definition.gd` | schema1 및 `STAGE_IDS_BY_BOOK`의 엄격한 6개 목록 확장. 알 수 없는 ID/path, 중복/누락/순서 오류는 거부 |
 | 책 데이터 | 새 `data/route_book/route_book_03.json` | 기존 책 schema 사용. `RECOMMENDED_LAYOUT` 금지 유지 |
-| 공용 선택 문구 | 새 `data/localization/route_book_selector_v1.json` | 현재 02가 소유한 공용 selector key만 이전. 기존 번역값 보존, 일반적인 현지화 시스템 리팩터링 금지 |
-| 새 책 문구 | 새 `data/localization/route_book_03_v1.json` | 4언어 제목/목표/목록 문구. 키 누락 시 기존 검증 경계에서 fail-closed |
+| 공용 선택 문구 | 새 `data/localization/route_book_selector_v1.json` | selector consumer의 공용 키 owner. 기존 번역값 보존; 책01/02 중복은 non-owner 호환 자료로 유지. 일반 현지화 리팩터링 금지 |
+| 새 책 문구 | 새 `data/localization/route_book_03_v1.json` | 4언어 stage title/objective/context 및 PROGRESS/BEGIN/NEXT_STAGE. 공용 목록 키는 selector 소유. 키 누락 시 fail-closed |
 | 화면 연결 | `game/demo/demo_flow_controller.gd` | `_route_book_selector_copy`의 02 파일 의존만 공용 파일로 교체. catalog 기반 3책 목록 연결 |
 | 맵 | 위 표의 6개 새 JSON | 기존 `FiniteMapDefinition`/Loader와 runtime을 재사용. 신규 필드/새 엔진 규칙 없음 |
-| 해법과 증거 | `tests/fixtures/route_book/route_book_witnesses.gd`, `tests/route_book/` | 신규 6개 양성 및 6개 이상 구체적 음성 해법 |
+| 해법과 증거 | 새 `tests/fixtures/route_book/route_book_03_witnesses.gd`, `tests/route_book/test_route_book_03_witnesses.gd` | 기존12개 fixture와 분리한 신규6개 양성 및6개 이상 구체적 음성 해법 |
 | 실제 완료/패키지 | `tests/runtime/route_book_completion_window_runner.gd` | 현재 12개 고정 기대치를 승인된 18개 정확 ID 집합으로 확장. 단순 catalog 자기비교로 누락을 통과시키지 않음 |
 
 기존 `route_book_director.gd`는 우선 재사용한다. 추가 파일을 만들기 전에 최신 main에 이미 생겼는지 확인한다. 테스트 fixture는 출하 자산으로 포함하지 않는다. export된 JSON/자산 소비 검사는 `tests/python/test_exported_route_book_consumer.py`와 기존 패키지 실행 경로를 확장한다.
