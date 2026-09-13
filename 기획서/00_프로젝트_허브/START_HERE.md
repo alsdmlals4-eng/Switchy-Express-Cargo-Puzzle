@@ -1,10 +1,25 @@
 # Switchy Express 프로젝트 허브
 
-Last updated: `2026-09-01 KST`
+Last updated: `2026-09-14 KST`
 
 이 문서는 현재 제품 기준선과 **다음 실행 지점**을 빠르게 찾는 허브다. 실행 전에는 항상 fresh Base completed `main`, current Skill Registry/generated map, fresh project `main`, Open/Draft PR, current GitHub owners와 actual runtime evidence를 다시 읽는다. Notion의 current structure는 GitHub에 이관됐고 historical audit-only다.
 
-## Current State
+## Current execution entry
+
+Read [approved decisions](CURRENT_CONFIRMED_DECISIONS.md), then
+[current progress and evidence](ACTIVE_CONTEXT.md) and [work order](ROADMAP.md).
+Current approved continuation is M1 → C1 → C2 in
+[the September14 specification](../../docs/superpowers/specs/2026-09-14-remaining-work-design.md).
+Core rules and approved overhead assets remain unchanged. C1/C2 are newly approved
+work, not already delivered content.
+
+The pre-change playable package is `Downloads/Switchy_Playable_20260913_PR305`.
+Its exported-PCK twelve-stage completion evidence is
+[the PR308 readback](../../evidence/runtime/pack-completion-20260913/READBACK.md).
+Template-EXE full play, final human inspection, device/rights/release remain separate.
+Candidate010 and the table below are historical exact-byte evidence, not this package.
+
+## Historical September1 state
 
 | 항목 | 현재 값 |
 |---|---|
@@ -173,7 +188,7 @@ docs/superpowers/specs/2026-08-28-sx-dec-063-hybrid-miniature-diorama-production
 
 The user selected Hybrid Miniature-Diorama Alignment: the rectangular grid and input mapping stay, while only actual consumers receive versioned candidate art. The approved terrain, nine non-rail v2 assets, and four v04 rail crops are now connected to the existing `ProductBoardRenderer` fourteen-slot map by PR #255. This bounded implementation protects T2 `shell_lesson_hero_v02.png`, Issue #227, gameplay/data/audio, and the exact Candidate 005 package evidence. The separate planning-board binary remains `NOT_RUNTIME_PROOF`.
 
-## Current next action
+## Historical September1 next action (not the current execution queue)
 
 ```text
 SX-DEC-063 core-board terrain v02, nine non-rail v02 assets, and four v04 rails are connected to the live fourteen-slot renderer map

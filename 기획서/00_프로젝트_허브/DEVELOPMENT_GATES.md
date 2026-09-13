@@ -1,10 +1,23 @@
 # Development Gates
 
-Last updated: `2026-09-13 KST`
+Last updated: `2026-09-14 KST`
 
 현재 실행 상태는 `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md`가 우선한다. 과거 commit/PR/run은 역사 evidence이며 current next action을 자동 정의하지 않는다.
 
 ## 0. Current evidence routing
+
+Current approved September14 delta: M1 → C1 → C2, owned by Decisions/Active Context
+and `docs/superpowers/specs/2026-09-14-remaining-work-design.md`.
+C1/C2 product implementation and changed-byte package evidence remain NOT_RUN.
+Pre-change product baseline is PR305, tool maintenance PR306, and exported-PCK actual
+twelve-stage completion PR308 (`evidence/runtime/pack-completion-20260913/READBACK.md`).
+The identified native generator source lifetime cause was repaired by PR304;
+`evidence/runtime/native-generator-lifetime-20260913/READBACK.md` bounds that result.
+Other shutdown warnings and Pilot's unchanged-retry transient remain recurrence-watch
+risks, not proof the original cause is still unfixed or that all native faults are fixed.
+Template-EXE full play, final user inspection, device/rights/release are separate gates.
+
+## 0H. Historical September13 pre-PR304 routing
 
 Current product work follows ACTIVE_CONTEXT.md and the approved finite core.
 September12 thirteen-object topdown family and BUILD history are implemented;

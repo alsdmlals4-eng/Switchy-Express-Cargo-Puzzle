@@ -1,6 +1,8 @@
 # Switchy Express — 남은 작업과 설계·구현 명세 검토안
 
-> 2026-09-14 · `PROPOSED_REVIEW_DOCUMENT` · 게임 구현 변경 없음.
+> 2026-09-14 · `USER_APPROVED_EXECUTION_SCOPE` · 아래 최초 조사 시점의 구현 상태는 역사 기록.
+> 사용자 후속 승인: “좋아 권장안대로 작업진행해”. M1 → C1 → C2를 실행한다.
+> 승인 기록은 CURRENT_CONFIRMED_DECISIONS, 진행·증거는 ACTIVE_CONTEXT가 소유한다.
 > 이 문서는 남은 작업을 평가하고 후속 작업의 경계와 인수 조건을 준비한다. 승인된 제품 규칙, 현재 Roadmap, 기존 PR의 소유권을 대체하지 않는다. 특히 신규 스테이지의 좌표·해법 제작 전에는 완전한 제작 인계서로 사용하지 않는다.
 
 ## 1. 기준과 결론
@@ -82,6 +84,37 @@ V1: 짧은 가능성 조사 뒤 유효한 검증 방식만 채택
 **인수 조건:** 현재 진입 링크가 실재하고 현재 패키지·실행 증거의 범위가 일치한다. 과거 native 원인 수정과 별도 미해결 진단을 구분한다. `python tools/validate_project_contract.py`와 `git diff --check` 통과. 게임/data/art/engine pin 변경 0. 회귀 시 문서 변경만 되돌린다.
 
 ## 5. C1 — RB08 비용–시간 트레이드오프
+
+### 승인 후 제작 인계 — 2026-09-14
+
+`CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF`: 승인 기록과 이 명세의 GitHub
+merged main readback 뒤 아래 map/test/copy 변경을 실행한다.
+원래 조사 결과와 제약은 아래에 보존한다.
+
+- map_revision 2; board 11×7, start [1,3], incoming [0,3], 115초, buildable [1,1]…[9,5] 유지.
+- BLUE [3,3] 유지, RED 화물 [8,3], RED 역 [8,1], BLUE 역 [9,5].
+- caution [[3,3],[4,3],[5,3],[6,3],[7,3]]: 화물 접촉 1칸 + 선택 우회 가능한 4칸.
+- 기존 blocked/decor [8,1]은 역과 충돌하므로 [9,1]로 함께 이동. 나머지 유지.
+- 직행: start → [2,3] → [3,3] → [4,3] → [5,3] → [6,3] → [7,3] → [8,3]
+  → [8,2] → [9,2] → [9,3] → [9,4].
+- 우회: start → [2,3] → [3,3] → [3,4] → [4,4] → [5,4] → [6,4] → [7,4]
+  → [8,4] → [8,3] → [8,2] → [9,2] → [9,3] → [9,4].
+- 두 경로는 BLUE→RED 적재, RED→BLUE 하역. 직행 11조각/1100, 우회 13조각/1300 예상.
+  비용·시간 예상은 actual runner 결과로 판정하며 최적해를 주장하지 않는다.
+- fixture는 RB08 전용으로 분리하여 기존 RB02를 바꾸지 않는다. 화면 미리보기의 caution
+  2칸 기대를 5칸으로 교정하고 네 언어의 단수 '다른 감속 칸'을 구간 표현으로 바꾼다.
+- 실행 순서: 비용·시간 RED 확인 → map/fixture/copy/preview-test 변경 → 기존
+  `tests/runtime/route_book_witness_runner.gd` GREEN → 전체 `tests/run_tests.gd`
+  → 실제 창과 changed-byte export 검증 → 독립 검토/CI/merge/readback.
+- 현재 RED 실행: 기존 map에서 12개 SUCCESS는 유지되지만 우회 0.25초 절약 조건 실패,
+  runner exit1. 이 결과는 해당 개선이 아직 없음을 검증하며 제품 크래시가 아니다.
+
+사전 전체 범위 검토: (1) 역 footprint와 장식 충돌은 위 [9,1] 이동으로 교정;
+(2) 공통 화물을 피하지 않는 두 경로, 전역 수치 유지 확인;
+(3) RB02 fixture 공유 변경 위험은 RB08 전용 분리로 교정;
+(4) 미리보기/4언어 단수 표현까지 변경 범위 포함;
+(5) 기존 패키지 증거 승계 금지, 새 바이트의 실제 실행과 내보내기 요구.
+이는 사전 설계 검토이며 구현 후 다섯 전체 회귀 검토를 대체하지 않는다.
 
 ### 경험·규칙
 

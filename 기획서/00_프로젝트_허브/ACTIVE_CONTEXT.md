@@ -1,5 +1,18 @@
 # Active Context
 
+## 2026-09-14 approved remaining-work execution
+
+Current user approval resumes the September14 specification at
+`docs/superpowers/specs/2026-09-14-remaining-work-design.md`.
+Order: M1 current-entry reconciliation → C1 RB08 map-only tradeoff → C2 six optional
+authored stages. M1 entry pointers corrected locally; C1/C2 implementation NOT_RUN.
+PR309 owns this approval/document continuation, not protected PR281.
+Product baseline remains PR305 bytes with PR308 exported-PCK completion evidence at
+`evidence/runtime/pack-completion-20260913/READBACK.md`.
+The existing PR305 package is valid only for its unchanged bytes; later map/content
+changes require new product/package verification. Final user/device/rights/release
+remain separate. All older completion/next-action entries below are dated history.
+
 ## 2026-09-13 package completion verification continuation
 
 Unchanged PR305 exported PCK now has actual editor-mounted twelve-stage SUCCESS evidence,

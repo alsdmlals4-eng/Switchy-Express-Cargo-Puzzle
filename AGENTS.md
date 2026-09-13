@@ -1,5 +1,12 @@
 # Switchy Express 공용 AI 작업 규칙
 
+> Current continuation (2026-09-14): user approved the remaining-work recommendation
+> in `docs/superpowers/specs/2026-09-14-remaining-work-design.md`.
+> Execute M1 → C1 → C2 with finite core and approved top-down assets preserved.
+> Current approval, progress and exact evidence belong to Decisions / Active Context.
+> PR #309 is this task's continuation; unrelated PR #174/#254/#281 remain read-only.
+> Historical candidate and pending-state statements below are not current delivery gates.
+
 > 2026-09-12: user approved all eleven selected remaining top-down object/decor candidates.
 > PR #287 is merged (f2c8a8f); all thirteen are now locally integrated and machine/live verified.
 > Current top-down family delivery gate and exact evidence: ACTIVE_CONTEXT.md; final PR readback remains separate.
@@ -351,7 +358,8 @@ For platform/rating/store/ads/IAP/rights/provenance/reference-independence work,
 - `docs/PLATFORM_RELEASE_AND_ASSET_RIGHTS_PROFILE.md`
 - `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`
 - `docs/GAME_RELEASE_COMPLIANCE_EVIDENCE_PACK.md`
-- `기획서/50_제작_검증/PLATFORM_RELEASE_AND_ASSET_RIGHTS_PLAN.md`
+- Release planning and outstanding gates are owned by the three existing documents above;
+  do not create a duplicate plan to satisfy the historical missing plan-file reference.
 
 No SX-DEC-060 design/implementation/package result implies store/legal/release PASS.
 
