@@ -13,7 +13,9 @@ approval: CURRENT_CONFIRMED_DECISIONS, September14.
 - V1 capability investigation; D1/D2 recurrence-only; R1 release-dependent; U1 final user.
 C1 revision2 implemented:129/16135 PASS,12actualSUCCESS,144preview/3Begin PASS;
 new package12SUCCESS plus RB08 detour verified; independent finding corrected.
-PR310 final exact CI/merge readback pending. C2 remains NOT_RUN.
+PR310 merged5beedd1; five final checks PASS, local main readback matched.
+C2 detailed coordinates/positive-negative traces and implementation plan prepared;
+runtime remains NOT_RUN until each pair and full18-stage integration are executed.
 Dated completion
 statements below describe the earlier approved twelve-stage scope, not this new delta.
 

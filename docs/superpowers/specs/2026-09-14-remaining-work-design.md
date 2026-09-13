@@ -141,6 +141,14 @@ merged main readback 뒤 아래 map/test/copy 변경을 실행한다.
 
 ## 6. C2 — Route Book 03, 6개 수작업 퍼즐
 
+상세 좌표·양성/음성 입력 인계는 `2026-09-14-route-book-03-authored-content.md`,
+실행 순서는 `../plans/2026-09-14-route-book-03-authored-content.md`가 소유한다.
+사전 검토로 공용 문구 owner를 명확히 했다: selector가 STAGE_BOOK/SELECT_BOOK/
+SELECT_STAGE/BACK 및 책 표시명을 읽고, 각 책은 PROGRESS/BEGIN/NEXT_STAGE와
+stage title/objective/context만 소유한다. 책01/02의 미소비 selector 중복은
+non-owner 호환 자료로 보존하고 새 책03에는 복제하지 않는다. 아래의 초기
+'이전' 표현보다 이 consumer 기반 상세 계약이 우선한다. C2는 아직 구현 검증 전이다.
+
 ### 선행 정합성 게이트
 
 기존 Draft [PR #281](https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle/pull/281), head `abf0550cf28c3cb320e26067e11106693d5bdc1d`는 READ_ONLY다. 그 초안의 `SX-DEC-070`은 현재 main의 다른 결정에 사용되고, 자산·검증 기준도 오래됐다. **그 PR을 수정/병합/흡수하지 않는다.** 이번 별도 콘텐츠 승인은 Decisions의 September14 기록으로 추적한다. 보호 PR의 ID를 재사용하지 않고 현재 main에서 범위·참조·증거를 준비한다.

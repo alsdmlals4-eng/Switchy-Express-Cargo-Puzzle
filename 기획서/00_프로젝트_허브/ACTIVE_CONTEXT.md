@@ -10,8 +10,16 @@ C1 RB08 revision2 is implemented locally with129/16135 full regression PASS,
 12 actual-window SUCCESS and144 preview/3 pointer Begin checks PASS; Python310/1skip.
 Its new32b7d6f package passed12SUCCESS, RB08 detour SUCCESS and no-pickup rejection;
 native EXE120frame startup exit0. Independent source-binding finding corrected.
-Final local regression129/16135 PASS and Python311/1skip; exact PR310 CI/merge/readback pending.
-C2 implementation NOT_RUN. C1 evidence owner: evidence/runtime/rb08-tradeoff-20260914/README.md.
+Final local regression129/16135 PASS and Python311/1skip. PR310 merged normally:
+main5beedd1d2d547000e69b0721b4d47eea7bcdba34; exact fe309525 five checks SUCCESS.
+Contract workflow's completed-run/in-progress-check mismatch resolved by ordinary rerun;
+no bypass. Local HEAD/origin/main matched after main-based branch switch; old dirty
+worktree/import changes preserved. C1 evidence owner: evidence/runtime/rb08-tradeoff-20260914/README.md.
+C2 implementation NOT_RUN; detailed authored coordinate/positive-negative contract:
+docs/superpowers/specs/2026-09-14-route-book-03-authored-content.md, with companion plan.
+Independent pre-implementation review corrected selector ownership and exact RB18 SWITCH
+lock target. Next safe action: merged detailed-spec readback, then six map/witness pairs
+one at a time before third-book exposure. Existing approved C2 scope needs no new approval.
 PR309 owns approval/docs; PR310 owns C1 implementation, not protected PR281.
 C1 map-only permits its required witness/test/copy/preview/evidence companions;
 the RED cost/time assertion has been observed failing against the unchanged map.
