@@ -18,3 +18,4 @@ evidence/runtime/product-speed-20260913/completion/*.log -text whitespace=-blank
 evidence/runtime/native-generator-lifetime-20260913/*.log -text whitespace=-blank-at-eof
 # CDB emits CRLF and padded stack arguments; retain this exact diagnostic output.
 evidence/runtime/native-generator-lifetime-20260913/diagnostic-source-stack.log -text -whitespace
+evidence/runtime/native-generator-lifetime-20260913/frame-source-drain.log -text whitespace=cr-at-eol
