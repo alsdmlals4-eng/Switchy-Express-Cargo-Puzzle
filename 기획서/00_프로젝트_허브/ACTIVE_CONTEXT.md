@@ -1,5 +1,22 @@
 # Active Context
 
+## 2026-09-13 final playable product / Pilot portability correction
+
+Product PR305 merged a6f6fb2, five required checks SUCCESS; local HEAD/origin readback.
+Current Windows package Switchy_Playable_20260913_PR305 matches merged tree, supervised
+EXE headless/window exit0 and mounted PCK2books/12BUILD/31JSON PASS. Full129/16133,
+four-locale failure and12actual SUCCESS windows verified. Final user/release separate.
+Approved game implementation audit is ready for user review, not arbitrary new feature scope.
+
+Current bounded maintenance codex/pilot-byte-contract-20260913: Windows temporary Editor
+Pilot canonical/raw hash mismatch repaired locally; exact7506-byte CRLF source restored,
+all64batch/adversarial checks and protected346files PASS, product regression129/16133.
+Owner:evidence/runtime/pilot-byte-contract-20260913/READBACK.md.
+Next: full Python, exact CI/merge/readback of tool-only delta. Existing PR305 package is
+the current product artifact; tool-only changes do not imply different gameplay evidence.
+Linux transient Pilot restore failure is separate and not fixed by its passing retry.
+All diagnostic/obsolete package material moved recoverably for user deletion, no deletion.
+
 ## 2026-09-13 terminal HUD delivery continuation
 
 PR304 merged1ecf7d3, exact702a815 five CI checks SUCCESS, local origin/main readback.

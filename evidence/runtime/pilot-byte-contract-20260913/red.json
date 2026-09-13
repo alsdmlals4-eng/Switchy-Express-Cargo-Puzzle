@@ -1,0 +1,35 @@
+{
+  "status": "FAIL",
+  "code": "RUNTIME_RESULT_INVALID",
+  "detail": "status=FAIL|scene_inspect_pass=false|dirty_rename_pass=false|dirty_undo_pass=false|saved_rename_pass=false|saved_undo_restore_pass=false|stale_state_block_pass=false|request_hash_block_pass=false|expired_approval_block_pass=false|approval_binding_block_pass=false|result_hash_pass=false|queue_capacity_pass=false|batch_64_pass=false|temporary_scene_byte_restore_pass=false|stale_code=None|request_hash_code=None|expired_approval_code=None|approval_binding_code=None|batch_64_completed=None|ledger_states=None|original_scene_sha256=invalid|restored_scene_sha256=invalid|saved_scene_sha256=invalid",
+  "production_adapter_ready": false,
+  "diagnostics": {
+    "editor_runtime": {
+      "approval_binding_block_pass": false,
+      "batch_64_pass": false,
+      "batch_failure_codes": [],
+      "batch_observation_revision": "",
+      "code": "TARGET_SCENE_CONTRACT_MISMATCH",
+      "dirty_rename_pass": false,
+      "dirty_undo_pass": false,
+      "elapsed_usec": 56782,
+      "expired_approval_block_pass": false,
+      "final_restore_code": "NOT_RUN",
+      "network_listener_enabled": false,
+      "original_scene_byte_count": 7506,
+      "production_adapter_ready": false,
+      "queue_capacity_pass": false,
+      "request_hash_block_pass": false,
+      "restore_code": "NOT_RUN",
+      "result_hash_pass": false,
+      "saved_rename_pass": false,
+      "saved_undo_restore_pass": false,
+      "scene_inspect_pass": false,
+      "stable_observation_pass": false,
+      "stale_state_block_pass": false,
+      "status": "FAIL",
+      "temporary_scene_byte_restore_pass": false
+    },
+    "headless_thumbnail_error_count": 0
+  }
+}

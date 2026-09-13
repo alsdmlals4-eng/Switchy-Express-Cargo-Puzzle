@@ -1,5 +1,15 @@
 # Roadmap
 
+## Final-review product status — 2026-09-13
+
+Approved finite implementation delivered at PR305/a6f6fb2: T1–T6/capstone, two books12
+stages, actual12success, localized HUD/result/recovery, audio lifetime and transition fixes.
+Current package startup and mounted consumers verified; user review/public release separate.
+Remaining automated maintenance: Windows Editor Pilot canonical/raw hash correction,
+locally complete with exact restore and full regression; CI/merge next. Linux transient
+restore observation and frame diagnostic warning are retained risks, not silently PASS.
+Cleanup holding manifests complete; user alone deletes. Owner:pilot-byte-contract readback.
+
 ## Current delivery delta — 2026-09-13
 
 PR304 native lifetime/product-speed/12stage window proof merged1ecf7d3, five CI PASS.
