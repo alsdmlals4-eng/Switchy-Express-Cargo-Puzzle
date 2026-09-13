@@ -7,6 +7,8 @@ Current user approval resumes the September14 specification at
 Order: M1 current-entry reconciliation → C1 RB08 map-only tradeoff → C2 six optional
 authored stages. M1 entry pointers corrected locally; C1/C2 implementation NOT_RUN.
 PR309 owns this approval/document continuation, not protected PR281.
+C1 map-only permits its required witness/test/copy/preview/evidence companions;
+the RED cost/time assertion has been observed failing against the unchanged map.
 Product baseline remains PR305 bytes with PR308 exported-PCK completion evidence at
 `evidence/runtime/pack-completion-20260913/READBACK.md`.
 The existing PR305 package is valid only for its unchanged bytes; later map/content

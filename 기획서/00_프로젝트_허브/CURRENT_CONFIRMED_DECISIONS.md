@@ -8,7 +8,9 @@ and implementation, then C2 six authored optional Route Book03 stages and integr
 under the existing finite rules and approved assets. Specification:
 `docs/superpowers/specs/2026-09-14-remaining-work-design.md`.
 Numeric acceptance defaults may be refined through authored-map evidence; no global
-speed/cost/core change. New book coordinates, positive/negative witnesses and four-locale
+speed/cost/core change. C1 map-only means the gameplay delta is local to RB08;
+companion witness/tests, four-locale copy, preview expectations and evidence are required.
+New book coordinates, positive/negative witnesses and four-locale
 copy must be prepared and verified before claiming implementation readiness.
 PR309 is the current-task continuation. This approval does not authorize takeover of
 PR281 or reuse of its conflicting SX-DEC-070 number; PR174/254/281 remain read-only.

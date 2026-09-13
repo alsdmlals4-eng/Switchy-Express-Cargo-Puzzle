@@ -11,7 +11,8 @@ approval: CURRENT_CONFIRMED_DECISIONS, September14.
   and four locales, verify eighteen actual completions and negative paths.
   PR281 remains read-only; no duplicate SX-DEC-070 assignment.
 - V1 capability investigation; D1/D2 recurrence-only; R1 release-dependent; U1 final user.
-Implementation has not begun at this documentation checkpoint. Dated completion
+C1/C2 product implementation NOT_RUN; M1 documents corrected and C1 RED observed.
+Dated completion
 statements below describe the earlier approved twelve-stage scope, not this new delta.
 
 ## Package verification follow-through — 2026-09-13

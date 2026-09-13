@@ -3,14 +3,14 @@
 > 2026-09-14 · `USER_APPROVED_EXECUTION_SCOPE` · 아래 최초 조사 시점의 구현 상태는 역사 기록.
 > 사용자 후속 승인: “좋아 권장안대로 작업진행해”. M1 → C1 → C2를 실행한다.
 > 승인 기록은 CURRENT_CONFIRMED_DECISIONS, 진행·증거는 ACTIVE_CONTEXT가 소유한다.
-> 이 문서는 남은 작업을 평가하고 후속 작업의 경계와 인수 조건을 준비한다. 승인된 제품 규칙, 현재 Roadmap, 기존 PR의 소유권을 대체하지 않는다. 특히 신규 스테이지의 좌표·해법 제작 전에는 완전한 제작 인계서로 사용하지 않는다.
+> 이 문서는 승인된 후속 작업의 경계와 인수 조건을 소유한다. 현재 Roadmap과 기존 PR의 소유권을 대체하지 않는다. 신규 스테이지의 좌표·해법 제작 전에는 그 부분을 완전한 제작 인계서로 사용하지 않는다.
 
 ## 1. 기준과 결론
 
 - 프로젝트 확인 기준: `349825132f90e5363ff7fc702bb699432ba5c5fa` (PR #308 merged main).
 - Base 관찰 기준: `d830c0f6967678eed3c208ac6b24f9cd1b262ec3`. 프로젝트 compatibility `v9.4.3` 유지. 최신 Base를 이유로 pin/provider를 바꾸지 않는다.
 - 현재 실행 권위: `AGENTS.md` → v4.8 Switchy adapter → `CURRENT_CONFIRMED_DECISIONS.md` / `ACTIVE_CONTEXT.md` → 분야 원본과 실제 consumer.
-- 요청 해석: **남은 작업의 설계·구현 명세 준비**. 제품 구현, 신규 이미지 제작, 공개 출시, 기존 열린 PR 변경은 이번 문서 작성에 포함하지 않는다.
+- 최초 요청은 명세 준비였고 후속 승인은 M1→C1→C2 실행이다. 신규 이미지 제작·공개 출시·관련 없는 열린 PR 변경은 포함하지 않는다.
 - 결론: 승인된 기본 게임 범위에서 새로 확인된 미구현 필수 기능은 없다. 아래 목록은 **확인된 운영 정리**, **권장 콘텐츠 개선**, **조건부 진단**, **출시·최종 검수**를 구분한다. 개선 가능성을 기존 구현 미완료로 부풀리지 않는다.
 
 현재 제품은 T1–T6 → VS_DEMO_01, 선택형 Route Book 01/02의 12개 스테이지, BUILD/RUN/Result/Retry/Edit 흐름을 갖는다. 현재 패키지 `Downloads/Switchy_Playable_20260913_PR305`와 이후 PR #308 증거를 읽었으며, 이번 조사에서 게임 검증을 재실행한 것은 아니다.
@@ -27,7 +27,7 @@
 | --- | --- | --- | --- | --- |
 | M1 | 현재 진입 문서·증거 경계 정리 | 확인된 정리 / 수정 명세 준비 | 정확한 현재 위치와 역사 구분 | 문서 정리 작업으로 실행 |
 | C1 | RB08 비용–시간 선택 개선 | 권장 콘텐츠 변경 / 제약·인수 명세 준비 | 서로 우열이 갈리는 두 유효 해법 | 맵 변경 채택 후 좌표·해법 제작 및 검증 |
-| C2 | Route Book 03의 6개 퍼즐 | 확장 제안 / L1 설계 + 구현 경계 준비 | 추가 6맵, 4언어, 18스테이지 검증 | 기존 초안 충돌 해소 및 콘텐츠 범위 확정 |
+| C2 | Route Book 03의 6개 퍼즐 | 확장 승인 / L1 설계 + 구현 경계 준비 | 추가 6맵, 4언어, 18스테이지 검증 | 보호 초안과 분리하여 좌표·해법 구체화 |
 | V1 | 배포 EXE 검증 공백 평가 | 검증 개선 / 기술 조사 명세 준비 | 실제 EXE 입력 검증 가능성 판정 | 현재 도구로 조작 가능성 먼저 확인 |
 | D1 | native 오디오 종료 진단 | 조건부 / 재현 계약 준비 | 재현 증거 또는 제한된 비재현 결과 | 크래시/잔존 경고가 재발할 때 |
 | D2 | Pilot 복원 간헐 실패 진단 | 조건부 / 관측 명세 준비 | 최초 실패 원인과 복원 검증 | 동일 실패가 재발할 때 |
@@ -79,7 +79,7 @@ V1: 짧은 가능성 조사 뒤 유효한 검증 방식만 채택
 
 **수정 범위:** 위 진입점과 `AGENTS.md`의 해당 참조만 최신 책임 원본으로 연결한다. 플랫폼 내용은 `docs/PLATFORM_RELEASE_AND_ASSET_RIGHTS_PROFILE.md`, 권리는 `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`, 증거는 `docs/GAME_RELEASE_COMPLIANCE_EVIDENCE_PACK.md`가 소유한다. 파일 존재를 맞추려고 새 빈 계획서를 만들지 않는다. 과거 날짜·실패·패키지 기록은 역사로 남긴다.
 
-**실행 계약:** 최신 main을 다시 확인 → tracked tree에서 경로 확인 → 현재/역사 문구만 수정 → Active Context와 Roadmap의 다음 안전 작업 포인터 정합성 확인. 채택되지 않은 C1/C2를 승인 완료로 추가하지 않는다.
+**실행 계약:** 최신 main을 다시 확인 → tracked tree에서 경로 확인 → 현재/역사 문구만 수정 → Active Context와 Roadmap의 다음 안전 작업 포인터 정합성 확인. 승인된 C1/C2를 구현 완료로 표시하지 않는다.
 
 **인수 조건:** 현재 진입 링크가 실재하고 현재 패키지·실행 증거의 범위가 일치한다. 과거 native 원인 수정과 별도 미해결 진단을 구분한다. `python tools/validate_project_contract.py`와 `git diff --check` 통과. 게임/data/art/engine pin 변경 0. 회귀 시 문서 변경만 되돌린다.
 
@@ -143,7 +143,7 @@ merged main readback 뒤 아래 map/test/copy 변경을 실행한다.
 
 ### 선행 정합성 게이트
 
-기존 Draft [PR #281](https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle/pull/281), head `abf0550cf28c3cb320e26067e11106693d5bdc1d`는 READ_ONLY다. 그 초안의 `SX-DEC-070`은 현재 main의 다른 결정에 사용되고, 자산·검증 기준도 오래됐다. **그 PR을 수정/병합/흡수하지 않는다.** 명시적인 PR 작업 권한 또는 별도 승인 콘텐츠 작업이 생기면 현재 Decision 원본에서 미사용 ID를 확인하고 범위·참조·증거를 정리한다. 이 문서에서 새로운 Decision 번호를 예약하지 않는다.
+기존 Draft [PR #281](https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle/pull/281), head `abf0550cf28c3cb320e26067e11106693d5bdc1d`는 READ_ONLY다. 그 초안의 `SX-DEC-070`은 현재 main의 다른 결정에 사용되고, 자산·검증 기준도 오래됐다. **그 PR을 수정/병합/흡수하지 않는다.** 이번 별도 콘텐츠 승인은 Decisions의 September14 기록으로 추적한다. 보호 PR의 ID를 재사용하지 않고 현재 main에서 범위·참조·증거를 준비한다.
 
 ### 플레이 흐름과 경계
 
@@ -183,6 +183,15 @@ Title의 기본 Start는 여전히 T1이다. 신규 책은 선택형이며 잠�
 | 실제 완료/패키지 | `tests/runtime/route_book_completion_window_runner.gd` | 현재 12개 고정 기대치를 승인된 18개 정확 ID 집합으로 확장. 단순 catalog 자기비교로 누락을 통과시키지 않음 |
 
 기존 `route_book_director.gd`는 우선 재사용한다. 추가 파일을 만들기 전에 최신 main에 이미 생겼는지 확인한다. 테스트 fixture는 출하 자산으로 포함하지 않는다. export된 JSON/자산 소비 검사는 `tests/python/test_exported_route_book_consumer.py`와 기존 패키지 실행 경로를 확장한다.
+
+필수 copy 소비 계약: 각 신규 stage에 `context_key`를 등록하고 여섯 context 문자열을
+4언어로 제공한다. 책03 copy에는 `SX_RB_PROGRESS`, `SX_RB_BEGIN`,
+`SX_RB_NEXT_STAGE` 등 기존 Director/Briefing/Result가 사용하는 공통 동작 키를
+현재 consumer 기준으로 모두 제공한다. 공용 selector copy는 catalog display_key가
+요청하는 RB01/RB02/RB03 label 및 목록/뒤로 키를 모두 소유한다.
+완료 runner의 index 기반 book 선택을 정확한 stage→book 매핑으로 바꾸고,
+RB13–RB18 각각의 실제 입력 driver와 음성 경로를 추가한다. 숫자 12→18만 바꾸거나
+RB13+를 기존 Book02에 넣는 방식은 실패다.
 
 ### 제작·검증 순서와 인수 조건
 
@@ -263,6 +272,6 @@ Windows byte contract 수정 후 별도 Linux 일시 실패는 변경 없는 재
 
 이 문서는 파일·코드·증거를 읽고 작성한 검토안이다. 프로젝트 계약 검사를 실행했지만 제품 테스트와 native 실행은 이번 작성에서 수행하지 않았다. 기존 증거 수치 129 cases / 16133 assertions, Python 309 passed / 1 skipped, exported PCK 12 SUCCESS는 **기존 readback 기록**이며 새 실행 결과가 아니다.
 
-열린 PR #174/#254/#281은 변경하지 않는다. 이전 dirty import/settings 작업을 보존한다. 이 문서의 저장/게시가 main 병합, C1/C2 승인, 게임 구현, Human/Device/Rights/Release PASS를 뜻하지 않는다.
+열린 PR #174/#254/#281은 변경하지 않는다. 이전 dirty import/settings 작업을 보존한다. C1/C2 실행 승인은 후속 사용자 지시와 Decisions에 기록됐다. 문서의 저장/게시만으로 main 병합, 게임 구현, Human/Device/Rights/Release PASS가 되는 것은 아니다.
 
 남은 상세 설계 산출물은 C1의 실제 변경 좌표·두 해법, C2의 6개 실제 맵·입력 해법·음성 해법·번역 데이터, V1의 입력 도구 가능성, R1의 계정/기기/실제 권리 coverage다. 이 값들을 만들어 확인하기 전에는 해당 항목을 ‘최종 구현 명세 완료’로 표시하지 않는다. 우선 다음 구현 단위는 M1이며, 다음 제품 설계 단위는 C1이다.
