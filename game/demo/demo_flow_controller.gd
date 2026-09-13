@@ -26,6 +26,7 @@ const TITLE_QUIT_BUTTON_PATH := NodePath(
 )
 
 const ProductScene := preload("res://game/demo/product_finite_slice.tscn")
+const AudioDirectorScript := preload("res://game/demo/audio/demo_audio_director.gd")
 const ThemeFactory := preload("res://game/demo/presentation/demo_theme_factory.gd")
 const FirstSessionDefinitionScript := preload(
 	"res://game/first_session/first_session_definition.gd"
@@ -63,6 +64,7 @@ var _route_book_copy: Variant = null
 var _route_book_selector_copy: Variant = null
 var _route_book_id: StringName = &""
 var _route_book_active: bool = false
+var _transition_audio: Node = null
 
 
 func _ready() -> void:
@@ -252,6 +254,8 @@ func show_result(summary: Variant) -> void:
 
 
 func return_to_title() -> void:
+	if is_instance_valid(_transition_audio):
+		_transition_audio.stop_all()
 	_last_result = null
 	_release_gameplay_instance()
 	_route_book_active = false
@@ -382,6 +386,14 @@ func _on_product_terminal_reached(summary: Variant) -> void:
 		var transition: Dictionary = _first_session_director.observe_terminal(summary)
 		if bool(transition.get("changed", false)):
 			_last_result = summary
+			# The product is released this frame; its cue must not own the transition.
+			if is_instance_valid(_gameplay):
+				_gameplay.stop_audio_for_transition()
+			if not is_instance_valid(_transition_audio):
+				_transition_audio = AudioDirectorScript.new()
+				_transition_audio.name = "TransitionAudio"
+				add_child(_transition_audio)
+			_transition_audio.play_cue(&"success")
 			_release_gameplay_instance()
 			_apply_lesson_card()
 			_transition_to(BRIEFING)

@@ -70,6 +70,7 @@ jobs:
             --script res://tests/runtime/audio_cue_capture_runner.gd \
             2>&1 | tee artifacts/audio-cue-capture.log
           grep -F 'AUDIO_CUE_PROOF: PASS cues=8' artifacts/audio-cue-capture.log
+          grep -F 'TUTORIAL_AUDIO_PROOF: PASS' artifacts/audio-cue-capture.log
           if grep -E 'SCRIPT ERROR:|(^|[[:space:]])ERROR:' artifacts/audio-cue-capture.log; then
             exit 1
           fi

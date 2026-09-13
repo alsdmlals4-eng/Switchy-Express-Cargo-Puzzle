@@ -1,0 +1,42 @@
+# Tutorial success audio lifecycle
+
+Parent main8b8cb04f0bd7db7049983d91cc5141c232275171 (PR302, five CI green).
+Plan/research/five-pass: docs/superpowers/plans/2026-09-13-tutorial-transition-audio.md.
+Existing T2–T6 success cue now belongs to persistent shell while retiring product
+audio stops first. No scene delay, global singleton, art, new sound, mix or core change.
+T1/failure/capstone and Route Book results preserve their existing paths.
+
+## Verified evidence and corrections
+
+- Initial test draft called nonexistent advance_for_test: SCRIPT ERROR, NOT_RED/PASS.
+  Corrected to actual advance_time before product implementation.
+- tutorial-audio-red-corrected.log:2 actual assertions failed, exit1; leak warning
+  retained, not a clean pass. Missing shell cue and retiring product duplicate detected.
+- tutorial-audio-capture-final.log and receipt.json:8 cues plus actual T2→T3,
+  63 assertions PASS/exit0. Old product freed=true, shell still active, capture cleared
+  AFTER destruction, surviving output peak0.02446315, eventual stopped=false playing.
+  Receipt exact LF source hashes bind implemented code, tests and engine.
+- tutorial-audio-regression.log:129cases/0failed/16056assertions, exit0.
+- Actual correct live editor26468/main.tscn/run12: T3, retiring product cue=false,
+  shell cue=true immediately; later false, then return_to_title. No other editor touched.
+- Changed shell hashes invalidated two existing visual receipts. Actual four-locale
+  HUD/result and144 preview checks rerun, exit0. Preview parent revision plus exact
+  source hashes represent working delta; NOT clean parent-byte proof.
+- Refreshed result PNG changes required Blueprint publication regeneration; do not
+  edit expected hashes without rerunning consumers/publication.
+- Final full Python308passed/1skipped, exit0 after runtime/publication refresh.
+  PDF77pages, no empty/out-of-bounds text, changed page4 and page13 rendered/inspected.
+  Publication SHA c2365ffcfe176b4ff53d999f6ba90d57bb49e9e4b717669c8e746e5ddd932c55.
+
+Independent review found capture before product destruction could falsely pass. Fixed
+by clearing capture only after destruction+active checks; exact rerun measures tail.
+Independent final readback closed P2, no additional important finding.
+
+Machine capture does not prove all5 tutorial transitions directly, full downstream
+audio waveform, human listening/UX or release. Shared branch is covered structurally;
+T2→T3 is the actual measured consumer. Native C0000005 remains NOT_FIXED.
+No retry PASS is presented as native repair. Whole-game completion remains open.
+
+Learning: check lifetime of generated feedback, not cue-name bookkeeping; discard
+pre-boundary samples when proving surviving output. Project-specific evidence only,
+no unreviewed Base promotion. Exact CI/merge and current playable package follow.

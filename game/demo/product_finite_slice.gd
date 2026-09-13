@@ -340,6 +340,10 @@ func _on_delivery_event_created(event: Variant) -> void:
 		_audio.play_cue(&"unload")
 
 
+func stop_audio_for_transition() -> void:
+	_audio.stop_all()
+
+
 func _on_terminal_reached(summary: Variant) -> void:
 	var outcome: StringName = StringName(summary.outcome) if summary != null else &"FAILURE"
 	var failure_reason: StringName = StringName(summary.failure_reason) if summary != null else &"TIME_EXPIRED"
