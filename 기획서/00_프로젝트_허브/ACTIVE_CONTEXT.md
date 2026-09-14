@@ -15,8 +15,9 @@ Six optional authored maps RB13–RB18 are now locally implemented; book03/share
 and four locales use existing consumers, assets and finite rules. Full131/17040 PASS;
 Python311/1skip (optional local Pilot environment); actual18SUCCESS, six exact negative
 paths, six fresh same-layout Retry/Edit paths, preview216states/9Begin PASS.
-Owner: evidence/runtime/route-book-03-20260914/README.md. Changed-byte package and new
-implementation PR/readback are next, not yet PASS. C1 package remains unchanged.
+Owner: evidence/runtime/route-book-03-20260914/README.md. Changed-byte package is now
+verified at the latest checkpoint above; PR312 CI/merge readback remains pending.
+C1 package remains unchanged.
 Blueprint is now90pages and rendered; monthly9page evidence v1.0 is a separate immutable
 internal source-bound snapshot in the user September evidence folder. Its C2 status is
 local verification, not later package/merge evidence. Prompt screenshots/account/billing

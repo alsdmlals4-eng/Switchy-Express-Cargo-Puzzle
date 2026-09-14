@@ -5,8 +5,9 @@
 M1/PR309 and C1/PR310 merged. C2 detailed design/PR311 merged; six optional maps,
 third-book selector and four-locale copy locally implemented. Full131/17040 and
 Python311/1skip; actual18SUCCESS, six negative and six Retry/Edit paths;216preview/9Begin.
-Next: exact-source export, packaged18-stage/negative checks, independent review, normal
-CI/merge/readback. No new mechanics or protected PR281 adoption. Monthly evidence v1.0
+Exact-source export, packaged18-stage/negative/Retry/Edit checks and native startup now
+pass. Next: final review corrections and normal PR312 CI/merge/readback.
+No new mechanics or protected PR281 adoption. Monthly evidence v1.0
 published as a separate internal snapshot; original prompt/account/billing gaps remain.
 V1 native input capability, recurrence-only D1/D2, final user U1 and external release R1
 are separate from approved M1/C1/C2 implementation completion.

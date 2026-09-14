@@ -60,9 +60,11 @@ receipt owner is ../stage-preview-window-20260913/receipt.json; date in folder i
 locator, not automatic capture-date proof. Retry/Edit final receipt and package readback
 are appended after verified execution; no pending check is PASS.
 
-## Evidence ceiling / integration pending
+## Original pre-package checkpoint (superseded by final checkpoint above)
 
-Current checkout/domain/window evidence is not merged-main, packaged18-stage or native
-template-EXE full-play proof. C1's prior12-stage package remains unchanged and separately valid.
+At this earlier checkpoint, checkout/domain/window evidence was not merged-main,
+packaged18-stage or native template-EXE full-play proof. Packaged18-stage evidence is now
+complete as recorded above; normal merge and native full play remain separate.
+C1's prior12-stage package remains unchanged and separately valid.
 Final user, physical device, rights and release remain separate. No user study requirement.
 Source-linked monthly evidence PDF derives from these records; no billing/legal validity claim.
