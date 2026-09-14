@@ -10,9 +10,13 @@ Target: Downloads/Switchy_Playable_20260914_RouteBook03/SwitchyExpress.pck.
 SHA256 f43eeebbedc1cab88e4ae9d5e2a4cab4cc20201c0134589019b9548fa9477c6b.
 645/645 entries integrity-verified; MD5 is PCK payload integrity, not legal provenance.
 `inventory.json` is exact generated command output, SHA256
-7ad14bd2dba4dabab086a1c16d5befdec31b8e219367b81bf62dfa1753f4bfc7.
+69cc808c509e373e1aa37fe53314aa270f85c180a4339c9a01411a4526c3f67d.
+Independent privacy review removed the host/account path from published metadata by
+rerunning from the package directory with relative input SwitchyExpress.pck. Entry
+metadata and package bytes are unchanged. Earlier absolute-path output is superseded.
 
-Reproduce with `python tools/verify_godot_pck_integrity.py <exact.pck> --include-entries`.
+Reproduce from the package directory using the tool's absolute path, relative input
+`SwitchyExpress.pck`, and `--include-entries`; publish relative input names only.
 PCK paths omit res://; an initial res:// prefix query yielded zero and was rejected as
 a namespace mismatch, not proof of absence. Correct prefix counts: addons/hera_agent_godot
 89 (44gdc/44remap/1font import), addons/gut0, addons/godot_ai0, evidence0;
