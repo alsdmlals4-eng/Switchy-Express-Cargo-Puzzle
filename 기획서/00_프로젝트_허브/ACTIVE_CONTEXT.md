@@ -1,5 +1,23 @@
 # Active Context
 
+## 2026-09-14 D2 merged; local package inventory preparation
+
+D2 instrumentation merged normally in PR313/main a82798d0e348fdbfd4e159534b37030a37d95164.
+Exact final head6f2d1798 had all5 checks SUCCESS and independent five-pass closure.
+Windows/Linux full undo traces are preserved; original intermittent cause remains
+NOT_ROOT_CAUSED, not a repaired flake. Product/package unchanged,216 dirty entries preserved.
+
+Current bounded preparation: docs/superpowers/plans/2026-09-14-shipping-inventory.md.
+Existing PCK verifier gains opt-in per-entry metadata, not a replacement parser.
+Actual unchanged C2 package645/645 integrity PASS; topdown13 source hashes match.
+Developer Hera resources and a Cormorant font are also packaged. No blind exclusion:
+current autoload and imported dependencies require an export-specific plan first.
+Rights owner: docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md; partial inventory evidence:
+evidence/release/shipping-inventory-20260914/README.md. No legal/release PASS.
+RED2/6 then focused10PASS; full Python315PASS/1optional Pilot skip.
+No product, image, provider, engine, Base pin, deletion or public-submission changes.
+Earlier pending D2/C2 sections below are historical; PR312/313 readbacks own integration.
+
 ## D2 recurrence diagnosis continuation
 
 User continues without separate reports. M1/C1/C2 merged PR312/main5309829b; exact six

@@ -55,7 +55,9 @@ def _hash_region(handle: BinaryIO, offset: int, size: int) -> str:
     return digest.hexdigest()
 
 
-def inspect_pck(path: str | os.PathLike[str], prefixes: Iterable[str] = ()) -> dict:
+def inspect_pck(
+    path: str | os.PathLike[str], prefixes: Iterable[str] = (), *, include_entries: bool = False
+) -> dict:
     pck_path = Path(path)
     file_size = pck_path.stat().st_size
     if file_size < 40:
@@ -68,6 +70,7 @@ def inspect_pck(path: str | os.PathLike[str], prefixes: Iterable[str] = ()) -> d
     mismatch_count = 0
     bounds_error_count = 0
     verified_count = 0
+    inventory = []
 
     with pck_path.open("rb") as handle:
         if _read_exact(handle, 4, "magic") != MAGIC:
@@ -159,15 +162,25 @@ def inspect_pck(path: str | os.PathLike[str], prefixes: Iterable[str] = ()) -> d
             )
         trailing_unverified_bytes = file_size - directory_end
 
-        for _entry_path, actual_offset, payload_size, expected_md5, bounds_ok in entries:
+        for entry_path, actual_offset, payload_size, expected_md5, bounds_ok in entries:
+            record = {
+                "path": entry_path,
+                "size_bytes": payload_size,
+                "expected_md5": expected_md5,
+                "integrity_status": "BOUNDS_ERROR",
+            }
+            if include_entries:
+                inventory.append(record)
             if not bounds_ok:
                 bounds_error_count += 1
                 continue
             actual_md5 = _hash_region(handle, actual_offset, payload_size)
             if actual_md5 != expected_md5:
                 mismatch_count += 1
+                record["integrity_status"] = "MD5_MISMATCH"
             else:
                 verified_count += 1
+                record["integrity_status"] = "VERIFIED"
 
     integrity_pass = (
         mismatch_count == 0
@@ -176,7 +189,7 @@ def inspect_pck(path: str | os.PathLike[str], prefixes: Iterable[str] = ()) -> d
         and trailing_unverified_bytes == 0
     )
 
-    return {
+    summary = {
         "path": str(pck_path),
         "file_size_bytes": file_size,
         "pack_format_version": pack_version,
@@ -200,6 +213,9 @@ def inspect_pck(path: str | os.PathLike[str], prefixes: Iterable[str] = ()) -> d
         },
         "integrity_pass": integrity_pass,
     }
+    if include_entries:
+        summary["entries"] = inventory
+    return summary
 
 
 def main() -> int:
@@ -207,6 +223,10 @@ def main() -> int:
         description="Fail-closed integrity verifier for standalone Godot V3/V4 PCK files."
     )
     parser.add_argument("pck", type=Path)
+    parser.add_argument(
+        "--include-entries", action="store_true",
+        help="Include ordered per-entry path, size, expected MD5 and verification status; no extraction.",
+    )
     parser.add_argument(
         "--prefix",
         action="append",
@@ -221,7 +241,7 @@ def main() -> int:
     args = parser.parse_args()
 
     try:
-        summary = inspect_pck(args.pck, prefixes=args.prefix)
+        summary = inspect_pck(args.pck, prefixes=args.prefix, include_entries=args.include_entries)
     except (OSError, PckFormatError) as exc:
         print(json.dumps({"integrity_pass": False, "error": str(exc)}, ensure_ascii=False))
         return 2

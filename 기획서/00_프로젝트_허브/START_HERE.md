@@ -11,8 +11,10 @@ Read [approved decisions](CURRENT_CONFIRMED_DECISIONS.md), then
 Current approved continuation is M1 → C1 → C2 in
 [the September14 specification](../../docs/superpowers/specs/2026-09-14-remaining-work-design.md).
 Core rules and approved overhead assets remain unchanged. M1/C1/C2 are delivered through
-PR312/main5309829b, with eighteen optional stages. Current continuation is D2 recurring
-editor undo diagnosis; see Active Context and the September14 Pilot recurrence plan.
+PR312/main5309829b, with eighteen optional stages. D2 diagnostics are merged in
+PR313/main a82798d0; original intermittent cause remains unconfirmed. Current bounded
+preparation is the unchanged package's file/rights coverage inventory, not release execution;
+see Active Context and docs/superpowers/plans/2026-09-14-shipping-inventory.md.
 
 Current playable package is `Downloads/Switchy_Playable_20260914_RouteBook03`;
 its exact evidence owner is `evidence/runtime/route-book-03-20260914/README.md`.

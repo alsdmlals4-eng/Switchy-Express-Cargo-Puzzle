@@ -1,5 +1,25 @@
 # Switchy Express Asset Rights and Provenance Record
 
+## 2026-09-14 current-package coverage checkpoint
+
+This partial local inventory supersedes historical active-consumer claims below, not
+their provenance. It is not legal clearance or Android/Google Play submission readiness.
+Evidence: `evidence/release/shipping-inventory-20260914/README.md` and `inventory.json`.
+Exact unchanged C2 PCK f43eeebbedc1cab88e4ae9d5e2a4cab4cc20201c0134589019b9548fa9477c6b:
+645 verified entries. Entry count is not an asset-rights coverage percentage.
+
+| Family | Current source / consumer | Evidence and unresolved scope |
+| --- | --- | --- |
+| 13 top-down objects/decor | art/product_assets/topdown_v1/manifest.json; ProductBoardRenderer.PRODUCT_VISUAL_ASSET_PATHS | All13 source hashes match; evidence/design/topdown-20260911/README.md and candidates.json own generation/approval. Generation-time terms, account/input-rights review and release clearance are not established by pixel approval. |
+| Slate board and train | art/product_assets/night_workshop_v1/manifest.json; ProductBoardRenderer | evidence/design/night-workshop-assets-20260910/README.md owns source/post-processing. Five source-family imports are packaged, although current renderer uses only part of the family; no automatic deletion of historical assets. |
+| Hera plugin | addons/hera_agent_godot/LICENSE; project.godot HeraGameInspector autoload | 89 source-family package entries. MIT notice exists in repository; packaged notice delivery not established. Existing editor-only process guard is not proof of zero exported initialization/input behavior. Removing its files alone would leave an autoload reference; preserve pending export-only design/testing. |
+| Cormorant font | addons/hera_agent_godot/assets/fonts/cormorant-italic.woff2.import | Descriptor and24609byte imported font payload are packaged. Font-specific license/origin/notice coverage is UNVERIFIED; do not assume plugin license grants font rights. |
+| Remaining textures, engine/font fallback, code and audio | Existing manifests, runtime consumers and historical records below | Whole-package asset-by-asset mapping and notices remain INCOMPLETE. No conclusion that every asset lacks rights, or that the package is legally cleared. |
+
+R1 remains release-scoped. Next safe preparation is source/import/notice coverage;
+public submission, credentials, signing, device acceptance and final release are separate.
+No source files, approved pixels, plugin/provider settings or PCK bytes changed here.
+
 > 자산별 복사본을 작성한다. 빈 Template은 실제 권리 증거가 아니다.
 
 ```yaml
