@@ -1,5 +1,16 @@
 # Roadmap
 
+## September14 current integrated checkpoint
+
+M1/C1/C2 delivered through PR312/main5309829b. D2 diagnostic instrumentation delivered
+through PR313/main a82798d0, with final5 checks and independent review closed; original
+intermittent undo cause remains NOT_ROOT_CAUSED. Earlier pending rows below are history.
+Current safe preparation is read-only shipping inventory via the existing PCK verifier:
+docs/superpowers/plans/2026-09-14-shipping-inventory.md and the asset-rights owner.
+Product and exact C2 playable package remain unchanged. No new approved core/content
+implementation gap was identified. Full rights/import mapping, native full play, final
+user inspection and platform release are separate, not implied by this tooling work.
+
 ## September14 C2 current implementation checkpoint
 
 Final independent five-pass review closed at ffb4bceb. M1/C1/C2 implementation/package
