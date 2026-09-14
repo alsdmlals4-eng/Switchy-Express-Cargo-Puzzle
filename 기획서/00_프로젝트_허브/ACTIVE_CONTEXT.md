@@ -2,6 +2,12 @@
 
 ### Latest package checkpoint
 
+Final five-pass independent review closed at ffb4bceb, including13 exact monthly source
+snapshots and9 domain inputs. Current normal integration/readback locator is PR312;
+its exact-head checks/merge receipt owns integration status, not older pending prose below.
+M1/C1/C2 approved implementation and package checks are complete; final user, native
+full-play, device/rights/release and recurrence-only maintenance remain separate.
+
 C2 c9e6a6dd exact export now mounted3books/18BUILD/18SUCCESS, six negative paths and
 six fresh same-layout Retry/Edit PASS. Native EXE startup120frames exit0 (not full native
 play). Full131/17040 and Python311/1optionalPilotSkip reconfirmed. New Windows folder:

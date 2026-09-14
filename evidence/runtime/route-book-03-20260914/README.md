@@ -1,5 +1,16 @@
 # C2 Route Book03 - current execution evidence
 
+## Independent final review closure / integration locator
+
+Five-pass independent review resumed and closed at ffb4bceb. No remaining scoped
+finding after package-state reconciliation and explicit immutable v1.0 snapshot locator.
+Reviewer independently recomputed13 raw snapshot hashes and9 normalized domain input
+hashes (zero mismatches), both package receipts'21 source hashes, PCK/PDF SHA and
+delivered/registered publication byte parity. Earlier usage-limit interruption below is
+retained history, not current review status. Normal exact-head CI/merge/postmerge readback
+is owned by https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle/pull/312.
+Do not infer integration success before that readback. Product/export bytes remain c9e6a6dd.
+
 ## Final local/package checkpoint
 
 Exact export source c9e6a6ddd0bd06b43cde8dedde6f86ec3845db94, Windows Demo.
