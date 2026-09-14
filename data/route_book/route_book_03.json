@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "book_id": "ROUTE_BOOK_03",
+  "stages": [
+    {
+      "stage_id": "RB13_FOUR_SIDES",
+      "map_path": "res://data/maps/route_book/rb13_four_sides.json",
+      "title_key": "SX_RB13_TITLE",
+      "objective_key": "SX_RB13_OBJECTIVE",
+      "context_key": "SX_RB13_CONTEXT",
+      "visible_features": [
+        "BOARD",
+        "BOARD_DECORATION",
+        "STRAIGHT",
+        "CURVE",
+        "SWITCH",
+        "CROSSING",
+        "ROTATE",
+        "REMOVE",
+        "CLEAR",
+        "BUILD_HISTORY",
+        "PREFLIGHT",
+        "LOAD",
+        "AUTO_LOAD",
+        "STACK_TOP",
+        "SWITCH_STATE",
+        "TIME"
+      ],
+      "allowed_build_tools": [
+        "STRAIGHT",
+        "CURVE",
+        "SWITCH",
+        "CROSSING"
+      ],
+      "allowed_build_commands": [
+        "BUILD_TOOL",
+        "BOARD_CELL",
+        "CANCEL_SELECTION",
+        "ROTATE",
+        "REMOVE",
+        "CLEAR",
+        "UNDO",
+        "REDO",
+        "START"
+      ],
+      "allowed_run_commands": [
+        "LOAD_ACTIVE",
+        "AUTO_TOGGLE",
+        "BOARD_CELL",
+        "SWITCH",
+        "PAUSE",
+        "RESUME"
+      ]
+    },
+    {
+      "stage_id": "RB14_MANIFEST_MIRROR",
+      "map_path": "res://data/maps/route_book/rb14_manifest_mirror.json",
+      "title_key": "SX_RB14_TITLE",
+      "objective_key": "SX_RB14_OBJECTIVE",
+      "context_key": "SX_RB14_CONTEXT",
+      "visible_features": [
+        "BOARD",
+        "BOARD_DECORATION",
+        "STRAIGHT",
+        "CURVE",
+        "SWITCH",
+        "CROSSING",
+        "ROTATE",
+        "REMOVE",
+        "CLEAR",
+        "BUILD_HISTORY",
+        "PREFLIGHT",
+        "LOAD",
+        "AUTO_LOAD",
+        "STACK_TOP",
+        "SWITCH_STATE",
+        "TIME"
+      ],
+      "allowed_build_tools": [
+        "STRAIGHT",
+        "CURVE",
+        "SWITCH",
+        "CROSSING"
+      ],
+      "allowed_build_commands": [
+        "BUILD_TOOL",
+        "BOARD_CELL",
+        "CANCEL_SELECTION",
+        "ROTATE",
+        "REMOVE",
+        "CLEAR",
+        "UNDO",
+        "REDO",
+        "START"
+      ],
+      "allowed_run_commands": [
+        "LOAD_ACTIVE",
+        "AUTO_TOGGLE",
+        "BOARD_CELL",
+        "SWITCH",
+        "PAUSE",
+        "RESUME"
+      ]
+    },
+    {
+      "stage_id": "RB15_MANUAL_GAP",
+      "map_path": "res://data/maps/route_book/rb15_manual_gap.json",
+      "title_key": "SX_RB15_TITLE",
+      "objective_key": "SX_RB15_OBJECTIVE",
+      "context_key": "SX_RB15_CONTEXT",
+      "visible_features": [
+        "BOARD",
+        "BOARD_DECORATION",
+        "STRAIGHT",
+        "CURVE",
+        "SWITCH",
+        "CROSSING",
+        "ROTATE",
+        "REMOVE",
+        "CLEAR",
+        "BUILD_HISTORY",
+        "PREFLIGHT",
+        "LOAD",
+        "AUTO_LOAD",
+        "STACK_TOP",
+        "SWITCH_STATE",
+        "TIME"
+      ],
+      "allowed_build_tools": [
+        "STRAIGHT",
+        "CURVE",
+        "SWITCH",
+        "CROSSING"
+      ],
+      "allowed_build_commands": [
+        "BUILD_TOOL",
+        "BOARD_CELL",
+        "CANCEL_SELECTION",
+        "ROTATE",
+        "REMOVE",
+        "CLEAR",
+        "UNDO",
+        "REDO",
+        "START"
+      ],
+      "allowed_run_commands": [
+        "LOAD_ACTIVE",
+        "AUTO_TOGGLE",
+        "BOARD_CELL",
+        "SWITCH",
+        "PAUSE",
+        "RESUME"
+      ]
+    },
+    {
+      "stage_id": "RB16_CAUTION_LEDGER",
+      "map_path": "res://data/maps/route_book/rb16_caution_ledger.json",
+      "title_key": "SX_RB16_TITLE",
+      "objective_key": "SX_RB16_OBJECTIVE",
+      "context_key": "SX_RB16_CONTEXT",
+      "visible_features": [
+        "BOARD",
+        "BOARD_DECORATION",
+        "STRAIGHT",
+        "CURVE",
+        "SWITCH",
+        "CROSSING",
+        "ROTATE",
+        "REMOVE",
+        "CLEAR",
+        "BUILD_HISTORY",
+        "PREFLIGHT",
+        "LOAD",
+        "AUTO_LOAD",
+        "STACK_TOP",
+        "SWITCH_STATE",
+        "TIME",
+        "CAUTION_TRACK"
+      ],
+      "allowed_build_tools": [
+        "STRAIGHT",
+        "CURVE",
+        "SWITCH",
+        "CROSSING"
+      ],
+      "allowed_build_commands": [
+        "BUILD_TOOL",
+        "BOARD_CELL",
+        "CANCEL_SELECTION",
+        "ROTATE",
+        "REMOVE",
+        "CLEAR",
+        "UNDO",
+        "REDO",
+        "START"
+      ],
+      "allowed_run_commands": [
+        "LOAD_ACTIVE",
+        "AUTO_TOGGLE",
+        "BOARD_CELL",
+        "SWITCH",
+        "PAUSE",
+        "RESUME"
+      ]
+    },
+    {
+      "stage_id": "RB17_CLEARANCE_YARD",
+      "map_path": "res://data/maps/route_book/rb17_clearance_yard.json",
+      "title_key": "SX_RB17_TITLE",
+      "objective_key": "SX_RB17_OBJECTIVE",
+      "context_key": "SX_RB17_CONTEXT",
+      "visible_features": [
+        "BOARD",
+        "BOARD_DECORATION",
+        "STRAIGHT",
+        "CURVE",
+        "SWITCH",
+        "CROSSING",
+        "ROTATE",
+        "REMOVE",
+        "CLEAR",
+        "BUILD_HISTORY",
+        "PREFLIGHT",
+        "LOAD",
+        "AUTO_LOAD",
+        "STACK_TOP",
+        "SWITCH_STATE",
+        "TIME",
+        "WASTE_CARGO",
+        "DISPOSAL_YARD"
+      ],
+      "allowed_build_tools": [
+        "STRAIGHT",
+        "CURVE",
+        "SWITCH",
+        "CROSSING"
+      ],
+      "allowed_build_commands": [
+        "BUILD_TOOL",
+        "BOARD_CELL",
+        "CANCEL_SELECTION",
+        "ROTATE",
+        "REMOVE",
+        "CLEAR",
+        "UNDO",
+        "REDO",
+        "START"
+      ],
+      "allowed_run_commands": [
+        "LOAD_ACTIVE",
+        "AUTO_TOGGLE",
+        "BOARD_CELL",
+        "SWITCH",
+        "PAUSE",
+        "RESUME"
+      ]
+    },
+    {
+      "stage_id": "RB18_SWITCHBOARD_NIGHT",
+      "map_path": "res://data/maps/route_book/rb18_switchboard_night.json",
+      "title_key": "SX_RB18_TITLE",
+      "objective_key": "SX_RB18_OBJECTIVE",
+      "context_key": "SX_RB18_CONTEXT",
+      "visible_features": [
+        "BOARD",
+        "BOARD_DECORATION",
+        "STRAIGHT",
+        "CURVE",
+        "SWITCH",
+        "CROSSING",
+        "ROTATE",
+        "REMOVE",
+        "CLEAR",
+        "BUILD_HISTORY",
+        "PREFLIGHT",
+        "LOAD",
+        "AUTO_LOAD",
+        "STACK_TOP",
+        "SWITCH_STATE",
+        "TIME",
+        "CAUTION_TRACK",
+        "WASTE_CARGO",
+        "DISPOSAL_YARD"
+      ],
+      "allowed_build_tools": [
+        "STRAIGHT",
+        "CURVE",
+        "SWITCH",
+        "CROSSING"
+      ],
+      "allowed_build_commands": [
+        "BUILD_TOOL",
+        "BOARD_CELL",
+        "CANCEL_SELECTION",
+        "ROTATE",
+        "REMOVE",
+        "CLEAR",
+        "UNDO",
+        "REDO",
+        "START"
+      ],
+      "allowed_run_commands": [
+        "LOAD_ACTIVE",
+        "AUTO_TOGGLE",
+        "BOARD_CELL",
+        "SWITCH",
+        "PAUSE",
+        "RESUME"
+      ]
+    }
+  ]
+}

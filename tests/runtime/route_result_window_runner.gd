@@ -106,7 +106,7 @@ func _run() -> void:
 			"body":result_body,
 			"capture_sha256":FileAccess.get_sha256(path)})
 	var hashes: Dictionary = {}
-	for path: String in ["res://game/demo/demo_flow_controller.gd", "res://game/demo/presentation/product_hud.gd", "res://game/demo/presentation/product_hud.tscn", "res://data/localization/first_session_v1.json", "res://tests/runtime/route_result_window_runner.gd"]:
+	for path: String in ["res://game/demo/demo_flow_controller.gd", "res://game/demo/presentation/product_hud.gd", "res://game/demo/presentation/product_hud.tscn", "res://data/localization/first_session_v1.json", "res://tests/runtime/route_result_window_runner.gd", "res://data/maps/route_book/rb08_caution_cut.json", "res://tests/fixtures/route_book/route_book_witnesses.gd"]:
 		hashes[path] = FileAccess.get_file_as_string(path).replace("\r\n", "\n").sha256_text()
 	var receipt := {"status":"PASS" if failures.is_empty() else "FAIL", "failures":failures,
 		"scope":"actual Main, authored RB08 route, no pickup input, accelerated simulation; no injected result summary. Separate64-cargo HUD projection stress is NOT an authored gameplay run.",

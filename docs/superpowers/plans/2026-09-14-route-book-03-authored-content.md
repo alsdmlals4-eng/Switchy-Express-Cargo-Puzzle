@@ -1,5 +1,11 @@
 # Route Book 03 Implementation Plan
 
+Execution checkpoint September14: Tasks1–3 implementation/local verification executed.
+Six separate missing-map REDs and637 focused assertions; full131/17040; actual18SUCCESS,
+six negative paths and six same-layout Retry/Edit checks;216preview/9Begin. Package and
+integration closure still pending; exact receipts are in evidence/runtime/route-book-03-20260914.
+Checklist below retains the original ordered instructions, not a second status owner.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement task-by-task. Execute inline; independent review remains read-only.
 
 **Goal:** Add six distinct optional authored puzzles, with actual18-stage completion and changed-byte package evidence.

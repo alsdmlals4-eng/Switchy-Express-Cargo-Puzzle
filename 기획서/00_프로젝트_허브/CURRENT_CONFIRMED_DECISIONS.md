@@ -1,5 +1,20 @@
 # Current Confirmed Decisions
 
+## 2026-09-14 chroma-key and monthly evidence-report instruction
+
+Continue approved research -> specification -> implementation -> verification loops
+without intermediate approval for bounded work. Existing core/product/release boundaries remain.
+Future necessary generated images: chroma-key background -> background removal -> alpha,
+edge-spill, dimensions and consumer QA; source and transparent derivative preserved.
+No new image is needed for Route Book03; existing approved topdown assets stay unchanged.
+Add a project-named monthly AI work-log/evidence PDF in the user's September evidence folder,
+separate from the blueprint. The PDF derives from real records, separating work date,
+record-writing date, capture date and publication date. Unknown prompt/account/billing
+evidence remains explicitly missing; no backdating or invented screen evidence.
+The pasted agreement/email analysis is user-provided reference, not a verified original
+in this task. No email reply, agreement signature, submission or funding eligibility claim.
+Operational owner: docs/reporting/AI_WORKLOG_EVIDENCE_POLICY.md.
+
 ## 2026-09-14 approved remaining-work recommendation
 
 User: "좋아 권장안대로 작업진행해", following the September14 remaining-work review.

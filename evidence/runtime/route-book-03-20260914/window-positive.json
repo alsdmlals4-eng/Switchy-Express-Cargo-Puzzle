@@ -1,0 +1,184 @@
+{
+	"book03_negative": false,
+	"consumer": "CHECKOUT_MAIN",
+	"engine": "4.7.1-stable (official)",
+	"failures": [],
+	"human_review": "NOT_RUN",
+	"native_reliability": "SEPARATE_DIAGNOSTIC_REQUIRED",
+	"negative_no_pickup": false,
+	"package_path": "",
+	"package_sha256": "",
+	"rb08_detour": false,
+	"samples": [
+		{
+			"capture_sha256": "b432fcdf3858f608a11efaf602128d0a45364f57f433fa9be82fb6ec0d71a8e3",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB01_SERVICE_SIDINGS"
+		},
+		{
+			"capture_sha256": "70a8f6f8652a1fc58b851b3dade61e63a715bca70a06d948723406f1fb412412",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB02_REVERSE_ORDER"
+		},
+		{
+			"capture_sha256": "1925bc608a180eb4cfd33ce9c41a39fe32d3fe33c1f72c5f771397c58a404b7d",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB03_RETURN_MANIFEST"
+		},
+		{
+			"capture_sha256": "f40a9d6dc7b2b5838f45d65f5ffbecfb851d7cc40e91a681e69d685fbb7b7f90",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB04_LOAD_WINDOW"
+		},
+		{
+			"capture_sha256": "989feab5417a24bfaaa471dd6f86ce4239a38c459ace224c28d38fcfff8716e3",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB05_FORK_LOCK"
+		},
+		{
+			"capture_sha256": "1ca4d00dc0bc5b9b6a369f0845c226a987e42a14ebd78abd1a20ea509d39c30e",
+			"next_visible": false,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB06_PORT_CIRCUIT"
+		},
+		{
+			"capture_sha256": "0cc235ac3cb5ef220d1e90ef76fecd10a93f818fbf8a6aa24e8ed2982a97a9de",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB07_FOREST_RELAY"
+		},
+		{
+			"capture_sha256": "3e56e435f09f3b1473621b9b519195b058e449e79d790801a1b3754ff3194512",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB08_CAUTION_CUT"
+		},
+		{
+			"capture_sha256": "0fa1d1086c70f3d78cee34458bb21a89513981f8dcc4dddf99c075741af8c808",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB09_SALVAGE_SIDING"
+		},
+		{
+			"capture_sha256": "d438545bb1b928f7c4257fec3ce7a1c5afd949e3f5ec345a7c3be6a6db0ae566",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB10_CLEAN_BREAK"
+		},
+		{
+			"capture_sha256": "b281b7e3fbe0a0f465212d7e0f1491202cff75cd8f63beb320fb3c3bd073bb81",
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB11_TURNOUT_UNDER_LOAD"
+		},
+		{
+			"capture_sha256": "b97308af2314db8ad8eeb09879a1529a1735dda52154b993e6b84f2ca9995f2e",
+			"next_visible": false,
+			"outcome": "SUCCESS",
+			"shell_state": "RESULT",
+			"stage": "RB12_LANTERN_LOOP"
+		},
+		{
+			"capture_sha256": "ff6edafcd6c869f91a8b9546e7071f3c5f4b59c0184aef984697c4501967750a",
+			"edit_same_layout": true,
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"retry_fresh_same_layout": true,
+			"shell_state": "RESULT",
+			"stage": "RB13_FOUR_SIDES"
+		},
+		{
+			"capture_sha256": "61e1497feab244fed3510b36765c88459a65e1a8057bc6a2fc74ad26fe2ef40f",
+			"edit_same_layout": true,
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"retry_fresh_same_layout": true,
+			"shell_state": "RESULT",
+			"stage": "RB14_MANIFEST_MIRROR"
+		},
+		{
+			"capture_sha256": "9776a38c6a04599ba5cfccb259bc55954e08e3857bda6096ae097e1aecc45df0",
+			"edit_same_layout": true,
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"retry_fresh_same_layout": true,
+			"shell_state": "RESULT",
+			"stage": "RB15_MANUAL_GAP"
+		},
+		{
+			"capture_sha256": "d3ee3825d04c27f1da9f4f2adf5693998fc5611185b5c56a67ce6b5e235b80f6",
+			"edit_same_layout": true,
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"retry_fresh_same_layout": true,
+			"shell_state": "RESULT",
+			"stage": "RB16_CAUTION_LEDGER"
+		},
+		{
+			"capture_sha256": "78aeca2efe894ac52bb11c6e2ced5d1f24865a2b42061276e284bececf21444c",
+			"edit_same_layout": true,
+			"next_visible": true,
+			"outcome": "SUCCESS",
+			"retry_fresh_same_layout": true,
+			"shell_state": "RESULT",
+			"stage": "RB17_CLEARANCE_YARD"
+		},
+		{
+			"capture_sha256": "19d7fb191700a98180d69cb94bb9d2b7525401d5acae99d7a710a0bb5f06c6c5",
+			"edit_same_layout": true,
+			"next_visible": false,
+			"outcome": "SUCCESS",
+			"retry_fresh_same_layout": true,
+			"shell_state": "RESULT",
+			"stage": "RB18_SWITCHBOARD_NIGHT"
+		}
+	],
+	"scope": "Actual Main/Product, authored fixtures, commands, accelerated0.05 steps, 960x540 ko; no injected terminal outcome.",
+	"source_sha256_lf": {
+		"res://data/maps/route_book/rb01_service_sidings.json": "67de0c5bcdb9332e80b5a7520f88eb61f14a4b13a256922aec1bb097d1c607fd",
+		"res://data/maps/route_book/rb02_reverse_order.json": "3751c2d3198614a5cdd9f395788bc6d0c410c052eb78457ed64d85bbeb0cbd04",
+		"res://data/maps/route_book/rb03_return_manifest.json": "92a0352b3ca242823c32b9de272eb6729a4535925dfa7993690e1f8437de3589",
+		"res://data/maps/route_book/rb04_load_window.json": "6b5fbe2b1665d0bbc0996298cd32a2461088b1378698c7966d69d3c40a795476",
+		"res://data/maps/route_book/rb05_fork_lock.json": "f7f201d231f9a31096f4caa4d2b77b2fb40772472272b76e649d95f0f7928e3e",
+		"res://data/maps/route_book/rb06_port_circuit.json": "895579b7c150727ba994d7aa3bd16f2f7d04b62901afeb69a2b577cc1de009ac",
+		"res://data/maps/route_book/rb07_forest_relay.json": "e1d3825a816f380f8fc4236967dc2545d2b44fe82e7878775276be343613bb4f",
+		"res://data/maps/route_book/rb08_caution_cut.json": "11b26137ec4895476fd61a6913ae5050a6b06ec00a4dbec228a98f34d39577dd",
+		"res://data/maps/route_book/rb09_salvage_siding.json": "7e4d0d2d3af63b1e067525517b1e9b7d256edd30787170300b52381ec2e4c212",
+		"res://data/maps/route_book/rb10_clean_break.json": "4c4cffb0785e2cfc0b49d66bb29893bd55b9852fc8d50c2f17282859f1946bbb",
+		"res://data/maps/route_book/rb11_turnout_under_load.json": "e94eaabf66438f871f11177e2cac88d7037bc623b0da1ed9ef59964318533454",
+		"res://data/maps/route_book/rb12_lantern_loop.json": "3e70874a706f96b505be43da740be97fe2c10b33eac35c4470c2e9ba2277b791",
+		"res://data/maps/route_book/rb13_four_sides.json": "09b046e6b4634ba2dc701509c3bbc963c6ae679559f04d1b25af834da68eb495",
+		"res://data/maps/route_book/rb14_manifest_mirror.json": "d0cfa43a7d86d23a04ae84969eeeaccec9fcf62188ee7da17e41e90c71d9f7f0",
+		"res://data/maps/route_book/rb15_manual_gap.json": "6a055e3cdd91bb5a7793a96f74293883c8f398efd9aa2aa984ca28e69769b59f",
+		"res://data/maps/route_book/rb16_caution_ledger.json": "3fb373309bc7aabcd6efe1bce4bf1b0e1cec2d4cf38a28c9a69069e761921eaa",
+		"res://data/maps/route_book/rb17_clearance_yard.json": "1a9bb5f8c09e645f1b485a23eb8774382895fe97fb90b4b4ec29969f516834df",
+		"res://data/maps/route_book/rb18_switchboard_night.json": "c5bae74ec66dba984d65b35288e9fab998d90f068ab17b20cb661f667fd24728",
+		"res://game/demo/audio/demo_audio_director.gd": "a3add4ab3e5a4f0e20c024eac086371e31a7e11f9020c67257761998c7c80578",
+		"res://game/demo/demo_flow_controller.gd": "96915796c29a81fc51c570f641fc5ca796a5ad47fd26513e2830f2e0ea294ca1",
+		"res://game/demo/presentation/product_hud.gd": "1d7f8e52a38f2fff665c883819cd4f3417859687caa59de092407ea490b1d8e0",
+		"res://game/demo/product_finite_slice.gd": "e087f7f0c15d5942a9f3426ab4acedecc54fc7fe5c515a6264299c5b05bb4336",
+		"res://game/demo/product_finite_slice.tscn": "6473a3c90da0381354b51087311111ac0b355423e2fb34909a4af21282a5ab7c",
+		"res://game/finite/main/finite_slice_session_controller.gd": "fdf3aad8d65c35d735a6712e2717c31fdca1b8e7f7e9b21c41fe38bc1f125357",
+		"res://game/main/main.tscn": "5aeb7c24eb04648834863b6064fb2d89d58bab4752c49d452194aca2f915e046",
+		"res://tests/fixtures/route_book/route_book_03_witnesses.gd": "3396148b101d26119764219d7655d11961282ac1982f36353ea32d5bbf9f98dd",
+		"res://tests/fixtures/route_book/route_book_witnesses.gd": "1c14759ab3000713ee3e70be8ec2adc3651572b4ebf493d19e608891221eb821",
+		"res://tests/runtime/route_book_completion_window_runner.gd": "ef6adbee156a634ab54ebe612ca56fafe3e0f0f9c7f5df88b48d92043b7a37fb"
+	},
+	"status": "PASS"
+}

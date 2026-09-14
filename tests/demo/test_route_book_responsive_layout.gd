@@ -24,7 +24,7 @@ func run() -> void:
 		assert_true(_rect_inside(root_rect, panel.get_global_rect()), "Route Book panel fits %s" % viewport_size)
 		assert_true(_rect_inside(root_rect, back.get_global_rect()), "Route Book back button fits %s" % viewport_size)
 		assert_true(back.size.x >= 48.0 and back.size.y >= 48.0, "Route Book back button remains reachable at %s" % viewport_size)
-		assert_equal(list.get_child_count(), 2, "Route Book keeps both book cards at %s" % viewport_size)
+		assert_equal(list.get_child_count(), 3, "Route Book keeps three book cards at %s" % viewport_size)
 		for card: Node in list.get_children():
 			var button := card as Button
 			assert_not_null(button, "Route Book card is a button at %s" % viewport_size)

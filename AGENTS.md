@@ -1,5 +1,16 @@
 # Switchy Express 공용 AI 작업 규칙
 
+> 2026-09-14 additional user instruction: future raster generation uses a chroma-key
+> background followed by background removal and alpha/edge QA. Choose a key color
+> absent from the subject; preserve generated source and derived transparent PNG,
+> provenance and actual consumer. Do not regenerate already approved art without need.
+> Image generation/editing still uses the image model and project image authority.
+> Monthly AI work-log/evidence PDF is separate from the blueprint and is a derived,
+> source-bound report, not new planning canon or proof of expense eligibility.
+> Owner: docs/reporting/AI_WORKLOG_EVIDENCE_POLICY.md. User destination:
+> C:/Users/user/Documents/증빙서류/9월 증빙서류. No fabricated dates/screenshots,
+> inferred account identity, billing data, agreement verification or submission.
+
 > Current continuation (2026-09-14): user approved the remaining-work recommendation
 > in `docs/superpowers/specs/2026-09-14-remaining-work-design.md`.
 > Execute M1 → C1 → C2 with finite core and approved top-down assets preserved.

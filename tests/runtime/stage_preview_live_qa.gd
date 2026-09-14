@@ -30,6 +30,7 @@ static func run(tree: SceneTree, source_revision: String = "") -> Dictionary:
 		"res://game/demo/presentation/product_board_renderer.gd",
 		"res://game/route_book/route_book_catalog.gd", "res://game/route_book/route_book_definition.gd",
 		"res://game/first_session/first_session_copy.gd",
+		"res://data/localization/route_book_selector_v1.json",
 		"res://tests/runtime/stage_preview_live_qa.gd", "res://tests/runtime/stage_preview_window_runner.gd",
 		"res://tests/runtime/build_history_live_qa.gd"]:
 		sources[path] = _text_hash(path)
@@ -85,12 +86,12 @@ static func run(tree: SceneTree, source_revision: String = "") -> Dictionary:
 					for control: Control in [content.get_parent(), content.get_node("BeginButton")]:
 						if not tree.root.get_visible_rect().encloses(control.get_global_rect()):
 							failures.append(key + " panel/Begin outside viewport")
-					if tree.root.size == requested and requested == SIZES[0] and book == &"ROUTE_BOOK_02" and number == 6:
-						var error := tree.root.get_texture().get_image().save_png(OUT + "rb12-" + locale + "-960.png")
+					if tree.root.size == requested and requested == SIZES[0] and book in [&"ROUTE_BOOK_02", &"ROUTE_BOOK_03"] and number == 6:
+						var capture_path := OUT + ("rb12-" if book == &"ROUTE_BOOK_02" else "rb18-") + locale + "-960.png"
+						var error := tree.root.get_texture().get_image().save_png(capture_path)
 						if error != OK:
 							failures.append(key + " capture failed")
 						else:
-							var capture_path := OUT + "rb12-" + locale + "-960.png"
 							captures[capture_path] = FileAccess.get_sha256(capture_path)
 					if tree.root.size == requested and requested == SIZES[1] and locale == "ko" and stage_id == &"RB08_CAUTION_CUT":
 						var blueprint_path := "res://evidence/runtime/stage-preview-20260913/rb08.png"
@@ -98,7 +99,7 @@ static func run(tree: SceneTree, source_revision: String = "") -> Dictionary:
 							failures.append(key + " blueprint capture failed")
 						else:
 							blueprint_captures[blueprint_path] = FileAccess.get_sha256(blueprint_path)
-					if locale == "ko" and book == &"ROUTE_BOOK_02" and number == 6:
+					if locale == "ko" and number == 6:
 						await InputQA.click(tree, content.get_node("BeginButton"))
 						var product: Variant = shell.gameplay_instance()
 						if product == null:
@@ -115,7 +116,7 @@ static func run(tree: SceneTree, source_revision: String = "") -> Dictionary:
 	await tree.process_frame
 	if tree.root.size != original_size or shell.first_session_locale != original_locale:
 		failures.append("Original window/locale restoration did not read back")
-	var receipt := {"status": "PASS" if failures.is_empty() and checked == 144 and begin_checks == 3 and blueprint_captures.size() == 1 else "FAIL",
+	var receipt := {"status": "PASS" if failures.is_empty() and checked == 216 and begin_checks == 9 and captures.size() == 8 and blueprint_captures.size() == 1 else "FAIL",
 		"source_revision": source_revision, "engine": Engine.get_version_info().get("string"),
 		"source_hash_policy": "SHA256_UTF8_TEXT_CRLF_TO_LF", "source_hashes": sources,
 		"capture_sha256": captures,

@@ -1,0 +1,86 @@
+{
+	"book03_negative": true,
+	"consumer": "CHECKOUT_MAIN",
+	"engine": "4.7.1-stable (official)",
+	"failures": [],
+	"human_review": "NOT_RUN",
+	"native_reliability": "SEPARATE_DIAGNOSTIC_REQUIRED",
+	"negative_no_pickup": false,
+	"package_path": "",
+	"package_sha256": "",
+	"rb08_detour": false,
+	"samples": [
+		{
+			"outcome": "PREFLIGHT_REJECTED",
+			"shell_state": "GAMEPLAY",
+			"stage": "RB13_FOUR_SIDES"
+		},
+		{
+			"capture_sha256": "899b01869e0899eac120e9947201a4c5b946501f0479d46e36d7f11a643e7133",
+			"next_visible": false,
+			"outcome": "FAILURE",
+			"shell_state": "RESULT",
+			"stage": "RB14_MANIFEST_MIRROR"
+		},
+		{
+			"capture_sha256": "882bc118e61be723c324787806c7697cbc1fe40a63330004e7b336092eed7632",
+			"next_visible": false,
+			"outcome": "FAILURE",
+			"shell_state": "RESULT",
+			"stage": "RB15_MANUAL_GAP"
+		},
+		{
+			"capture_sha256": "4e614beb35a7b8e2945d9d73dca84f8ebc65d6864f708c84571fd35db9a8df68",
+			"next_visible": false,
+			"outcome": "FAILURE",
+			"shell_state": "RESULT",
+			"stage": "RB16_CAUTION_LEDGER"
+		},
+		{
+			"capture_sha256": "7ce0d7e3d7ef3b2339b34470d2d2f07e255d09cec7a310b5c525ce670456c377",
+			"next_visible": false,
+			"outcome": "FAILURE",
+			"shell_state": "RESULT",
+			"stage": "RB17_CLEARANCE_YARD"
+		},
+		{
+			"capture_sha256": "1c51e43d3fd7872438f9792948dfb84ab39b75ea72c1caa05d5bbd8d8caf5011",
+			"next_visible": false,
+			"outcome": "FAILURE",
+			"shell_state": "RESULT",
+			"stage": "RB18_SWITCHBOARD_NIGHT"
+		}
+	],
+	"scope": "Actual Main/Product, authored fixtures, commands, accelerated0.05 steps, 960x540 ko; no injected terminal outcome.",
+	"source_sha256_lf": {
+		"res://data/maps/route_book/rb01_service_sidings.json": "67de0c5bcdb9332e80b5a7520f88eb61f14a4b13a256922aec1bb097d1c607fd",
+		"res://data/maps/route_book/rb02_reverse_order.json": "3751c2d3198614a5cdd9f395788bc6d0c410c052eb78457ed64d85bbeb0cbd04",
+		"res://data/maps/route_book/rb03_return_manifest.json": "92a0352b3ca242823c32b9de272eb6729a4535925dfa7993690e1f8437de3589",
+		"res://data/maps/route_book/rb04_load_window.json": "6b5fbe2b1665d0bbc0996298cd32a2461088b1378698c7966d69d3c40a795476",
+		"res://data/maps/route_book/rb05_fork_lock.json": "f7f201d231f9a31096f4caa4d2b77b2fb40772472272b76e649d95f0f7928e3e",
+		"res://data/maps/route_book/rb06_port_circuit.json": "895579b7c150727ba994d7aa3bd16f2f7d04b62901afeb69a2b577cc1de009ac",
+		"res://data/maps/route_book/rb07_forest_relay.json": "e1d3825a816f380f8fc4236967dc2545d2b44fe82e7878775276be343613bb4f",
+		"res://data/maps/route_book/rb08_caution_cut.json": "11b26137ec4895476fd61a6913ae5050a6b06ec00a4dbec228a98f34d39577dd",
+		"res://data/maps/route_book/rb09_salvage_siding.json": "7e4d0d2d3af63b1e067525517b1e9b7d256edd30787170300b52381ec2e4c212",
+		"res://data/maps/route_book/rb10_clean_break.json": "4c4cffb0785e2cfc0b49d66bb29893bd55b9852fc8d50c2f17282859f1946bbb",
+		"res://data/maps/route_book/rb11_turnout_under_load.json": "e94eaabf66438f871f11177e2cac88d7037bc623b0da1ed9ef59964318533454",
+		"res://data/maps/route_book/rb12_lantern_loop.json": "3e70874a706f96b505be43da740be97fe2c10b33eac35c4470c2e9ba2277b791",
+		"res://data/maps/route_book/rb13_four_sides.json": "09b046e6b4634ba2dc701509c3bbc963c6ae679559f04d1b25af834da68eb495",
+		"res://data/maps/route_book/rb14_manifest_mirror.json": "d0cfa43a7d86d23a04ae84969eeeaccec9fcf62188ee7da17e41e90c71d9f7f0",
+		"res://data/maps/route_book/rb15_manual_gap.json": "6a055e3cdd91bb5a7793a96f74293883c8f398efd9aa2aa984ca28e69769b59f",
+		"res://data/maps/route_book/rb16_caution_ledger.json": "3fb373309bc7aabcd6efe1bce4bf1b0e1cec2d4cf38a28c9a69069e761921eaa",
+		"res://data/maps/route_book/rb17_clearance_yard.json": "1a9bb5f8c09e645f1b485a23eb8774382895fe97fb90b4b4ec29969f516834df",
+		"res://data/maps/route_book/rb18_switchboard_night.json": "c5bae74ec66dba984d65b35288e9fab998d90f068ab17b20cb661f667fd24728",
+		"res://game/demo/audio/demo_audio_director.gd": "a3add4ab3e5a4f0e20c024eac086371e31a7e11f9020c67257761998c7c80578",
+		"res://game/demo/demo_flow_controller.gd": "96915796c29a81fc51c570f641fc5ca796a5ad47fd26513e2830f2e0ea294ca1",
+		"res://game/demo/presentation/product_hud.gd": "1d7f8e52a38f2fff665c883819cd4f3417859687caa59de092407ea490b1d8e0",
+		"res://game/demo/product_finite_slice.gd": "e087f7f0c15d5942a9f3426ab4acedecc54fc7fe5c515a6264299c5b05bb4336",
+		"res://game/demo/product_finite_slice.tscn": "6473a3c90da0381354b51087311111ac0b355423e2fb34909a4af21282a5ab7c",
+		"res://game/finite/main/finite_slice_session_controller.gd": "fdf3aad8d65c35d735a6712e2717c31fdca1b8e7f7e9b21c41fe38bc1f125357",
+		"res://game/main/main.tscn": "5aeb7c24eb04648834863b6064fb2d89d58bab4752c49d452194aca2f915e046",
+		"res://tests/fixtures/route_book/route_book_03_witnesses.gd": "3396148b101d26119764219d7655d11961282ac1982f36353ea32d5bbf9f98dd",
+		"res://tests/fixtures/route_book/route_book_witnesses.gd": "1c14759ab3000713ee3e70be8ec2adc3651572b4ebf493d19e608891221eb821",
+		"res://tests/runtime/route_book_completion_window_runner.gd": "ef6adbee156a634ab54ebe612ca56fafe3e0f0f9c7f5df88b48d92043b7a37fb"
+	},
+	"status": "PASS"
+}

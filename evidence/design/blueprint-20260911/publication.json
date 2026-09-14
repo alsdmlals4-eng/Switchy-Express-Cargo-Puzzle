@@ -1,11 +1,11 @@
 {
   "status": "TOPDOWN_IMPLEMENTATION_REVIEW_FINAL_USER_REVIEW_SEPARATE",
   "pdf": "output\\pdf\\SWITCHY_EXPRESS_HUMAN_BLUEPRINT_20260911_REVIEW.pdf",
-  "sha256": "dfc2994a50166a08581f557dbecc492420f98480dd919d714fcfc54e9af00976",
-  "page_count": 77,
+  "sha256": "326a1fc57c6a30ab6210718ec99845e90805215851828c49449078f5ddd83da0",
+  "page_count": 90,
   "source": "docs\\design\\SWITCHY_BLUEPRINT_REVIEW_20260911.md",
-  "source_sha256": "fc24867f5586dd94611babcb394a7b8af7796cacb97021419b8ed283cada90ae",
-  "generator_sha256": "7b2eacd25b26f1a76860eb050a5cc9d410422cac72b8c60697e88ac5a93abc96",
+  "source_sha256": "0d8aead9383972a69c2a45d97fcc110c2b1248ca1cd6b14417e4a68cfecff82a",
+  "generator_sha256": "355d4637bb2cde27d9f7e4855a60eac346bd65c033802f1ca0e32e2433ac6b94",
   "runtime_receipt": "evidence/runtime/topdown-family-20260912/receipt.json",
   "runtime_receipt_sha256": "7fffdd495a24841c330d0c6a915fddf34a4d6da4aae148fe882886f22b178adc",
   "assets_and_maps": {
@@ -13,9 +13,10 @@
     "evidence/runtime/topdown-family-20260912/pickup-2.png": "a5174a4574926039def9c78f2941c63c9f777ac716c6ada41d87d2732f8131c5",
     "evidence/runtime/topdown-family-20260912/result.png": "cf430f04560dec2afa4ff35d2b69d965e99bb61f11d200caee04131afeac71f1",
     "evidence/runtime/topdown-family-20260912/board-rb12.png": "0e55ce497ca2ee476a4b1a4bb560d0cac47f78173c91eb17b36522ad1cb367dd",
-    "evidence/runtime/route-result-20260913/en-running.png": "1be31ddcb5c314864237509460a286c0671c854565a42ca74ae8f5dd6b53a9ba",
-    "evidence/runtime/route-result-20260913/en-build.png": "9adb4855f467a0d7245b489ee14e5c2b0b7a3eae29c6fa2a1ec53fdaeb83a7d5",
-    "evidence/runtime/route-result-20260913/ko.png": "3d69a13b36826fa81042a741680b6818fec136ca5afcd5bac83fb1751abf8a33",
+    "evidence/runtime/route-result-20260913/en-running.png": "a0d382287e8df38c405912dc4f48bea48ff41ea00f2cf9563d306d67c3a51fb0",
+    "evidence/runtime/route-result-20260913/en-build.png": "3eea9f7601165be15a2000300b5848f5d2870b65d82e365afa6398f59474bcc7",
+    "evidence/runtime/route-result-20260913/ko.png": "f1c66ef43ecb12ab7e55c9ddf75645ef1cb2f0337c671bbfa0601b93de45146b",
+    "evidence/runtime/stage-preview-window-20260913/rb18-ko-960.png": "55a678bbbae8a6dc60f6118011b596c3930b1eddc6f81fc326b73da9e6eff7e4",
     "evidence/runtime/stage-preview-20260913/rb08.png": "513d2853063e7ccd1a63c177003ec6dffe885c885892a7ff4a67af63c16d3f69",
     "evidence/runtime/stage-preview-20260913/rb10-postmerge.png": "4fab792548ffea3a29b27f6d70a7c064efa20f75267ae9a7d2b52f6c84ba9363",
     "evidence/runtime/stage-preview-20260913/rb12-postmerge.png": "a2f5727d8123e7e1e781f9a593a51abd7f1eed4df50bcff6e09101e74ad7c3e5",
@@ -41,6 +42,7 @@
     "art/product_assets/topdown_v1/decoration_lantern_fence.png": "359c71cca3c786ee2e4e2edcee97d42c017d2062c1cd597639ea5bea84f55c0d",
     "data/localization/route_book_01_v1.json": "99f0001b356238b3891379c919d2af85f17fb2ba85b8eea6fcc0e7ea3b65d4c7",
     "data/localization/route_book_02_v1.json": "0e437bd1423136c38d41d76e22bf3d61fca38b57218acbf507a459e07a7b3e29",
+    "data/localization/route_book_03_v1.json": "405320e0d599769063e9ca7cec0bcadf49d8ad55f5f4d3212e82807b183b46c5",
     "evidence/runtime/stage-preview-20260913/README.md": "7c56f9a1a81aeeeb2c5c16c4cb1971282f03e1905e74d8e49a553b1323237f9d",
     "evidence/runtime/rb08-tradeoff-20260914/green.json": "ea4764a2e8798662a73f67c59477072b06c89c84d45884396ba658141869c121",
     "evidence/runtime/rb08-tradeoff-20260914/green-witness.log": "dcd15c801cfa62c0b38d04975d57db815c368be8b1f9cf2851b0ca1ddda12f1d",
@@ -55,7 +57,13 @@
     "data/maps/route_book/rb09_salvage_siding.json": "7e4d0d2d3af63b1e067525517b1e9b7d256edd30787170300b52381ec2e4c212",
     "data/maps/route_book/rb10_clean_break.json": "4c4cffb0785e2cfc0b49d66bb29893bd55b9852fc8d50c2f17282859f1946bbb",
     "data/maps/route_book/rb11_turnout_under_load.json": "e94eaabf66438f871f11177e2cac88d7037bc623b0da1ed9ef59964318533454",
-    "data/maps/route_book/rb12_lantern_loop.json": "3e70874a706f96b505be43da740be97fe2c10b33eac35c4470c2e9ba2277b791"
+    "data/maps/route_book/rb12_lantern_loop.json": "3e70874a706f96b505be43da740be97fe2c10b33eac35c4470c2e9ba2277b791",
+    "data/maps/route_book/rb13_four_sides.json": "09b046e6b4634ba2dc701509c3bbc963c6ae679559f04d1b25af834da68eb495",
+    "data/maps/route_book/rb14_manifest_mirror.json": "d0cfa43a7d86d23a04ae84969eeeaccec9fcf62188ee7da17e41e90c71d9f7f0",
+    "data/maps/route_book/rb15_manual_gap.json": "6a055e3cdd91bb5a7793a96f74293883c8f398efd9aa2aa984ca28e69769b59f",
+    "data/maps/route_book/rb16_caution_ledger.json": "3fb373309bc7aabcd6efe1bce4bf1b0e1cec2d4cf38a28c9a69069e761921eaa",
+    "data/maps/route_book/rb17_clearance_yard.json": "1a9bb5f8c09e645f1b485a23eb8774382895fe97fb90b4b4ec29969f516834df",
+    "data/maps/route_book/rb18_switchboard_night.json": "c5bae74ec66dba984d65b35288e9fab998d90f068ab17b20cb661f667fd24728"
   },
   "pages": [
     {
@@ -80,222 +88,222 @@
     },
     {
       "page": 5,
-      "title": "RB08 브리핑 · 실제 감속 칸을 보고 판단",
+      "title": "RB18 · 신규 야간 배차판",
       "kind": "실제 렌더 / 개별 출처 시점의 증거 / 사용자 최종 검수 아님"
     },
     {
       "page": 6,
-      "title": "RB10 브리핑 · 재방문과 폐기물 계획",
+      "title": "RB08 브리핑 · 실제 감속 칸을 보고 판단",
       "kind": "실제 렌더 / 개별 출처 시점의 증거 / 사용자 최종 검수 아님"
     },
     {
       "page": 7,
-      "title": "RB12 브리핑 · 복합 규칙의 공간 관계",
+      "title": "RB10 브리핑 · 재방문과 폐기물 계획",
       "kind": "실제 렌더 / 개별 출처 시점의 증거 / 사용자 최종 검수 아님"
     },
     {
       "page": 8,
-      "title": "선로 편집 복구 · 전체 철거를 한 번에 취소",
+      "title": "RB12 브리핑 · 복합 규칙의 공간 관계",
       "kind": "실제 렌더 / 개별 출처 시점의 증거 / 사용자 최종 검수 아님"
     },
     {
       "page": 9,
-      "title": "메인 화면 · 승인 탑뷰 자산으로 조립",
+      "title": "선로 편집 복구 · 전체 철거를 한 번에 취소",
       "kind": "실제 렌더 / 개별 출처 시점의 증거 / 사용자 최종 검수 아님"
     },
     {
       "page": 10,
-      "title": "T2 브리핑 · 선로 옆의 역",
+      "title": "메인 화면 · 승인 탑뷰 자산으로 조립",
       "kind": "실제 렌더 / 개별 출처 시점의 증거 / 사용자 최종 검수 아님"
     },
     {
       "page": 11,
-      "title": "실패 화면 · 같은 시점, 다른 상태",
+      "title": "T2 브리핑 · 선로 옆의 역",
       "kind": "실제 렌더 / 개별 출처 시점의 증거 / 사용자 최종 검수 아님"
     },
     {
       "page": 12,
+      "title": "실패 화면 · 같은 시점, 다른 상태",
+      "kind": "실제 렌더 / 개별 출처 시점의 증거 / 사용자 최종 검수 아님"
+    },
+    {
+      "page": 13,
       "title": "긴 적재 목록 · 이전 UI 표시 검사",
       "kind": "이전 UI 표시 증거 / RB08 새 배치 증거 아님"
     },
     {
-      "page": 13,
+      "page": 14,
       "title": "게임 중 상태 표시 · 언어와 수치의 일관성",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 14,
+      "page": 15,
       "title": "결과 화면 · 실제 실패 원인과 복구",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 15,
+      "page": 16,
       "title": "읽는 순서와 승인 범위",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 16,
+      "page": 17,
       "title": "구현 연결지도 · TOP과 현장 피드백",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 17,
+      "page": 18,
       "title": "선로 편집 복구 · 실행 취소와 다시 실행",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 18,
+      "page": 19,
       "title": "핵심 경험 · 지나치는 것도 설계다",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 19,
+      "page": 20,
       "title": "개선 루프 · 질문을 실제 공간과 연결한다",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 20,
+      "page": 21,
       "title": "다섯 가지 재미 · 행동과 결과",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 21,
+      "page": 22,
       "title": "SWOT · 강점을 어떻게 강화할 것인가",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 22,
+      "page": 23,
       "title": "SWOT · 약점과 개선 우선순위",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 23,
+      "page": 24,
       "title": "SWOT · 기회·위협과 대응",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 24,
+      "page": 25,
       "title": "조사·벤치마킹 · 채택과 배제",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 25,
+      "page": 26,
       "title": "전체 플로우맵",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 26,
+      "page": 27,
       "title": "시스템 관계 · 누가 무엇을 결정하는가",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 27,
+      "page": 28,
       "title": "이번 구현의 연결 지도 · 읽기·수정·검증",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 28,
+      "page": 29,
       "title": "건설 규칙과 오류 안내",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 29,
+      "page": 30,
       "title": "화물과 하역 · 정확한 순서",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 30,
+      "page": 31,
       "title": "역 · 선로 위가 아닌 옆에서",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 31,
+      "page": 32,
       "title": "운행·적재·분기 입력",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 32,
+      "page": 33,
       "title": "감속과 폐기물 · 추가가 아닌 기존 선택의 깊이",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 33,
+      "page": 34,
       "title": "화면 명세 · 메인·선택·브리핑",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 34,
+      "page": 35,
       "title": "화면 명세 · BUILD와 RUN",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 35,
+      "page": 36,
       "title": "결과와 복구 · 실패를 다음 판단으로",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 36,
+      "page": 37,
       "title": "자산 제작 계약 · 그림에서 실제 소비까지",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 37,
+      "page": 38,
       "title": "모션과 피드백 데이터",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 38,
+      "page": 39,
       "title": "탑뷰 적재 · 종류와 정지·취소 계약",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 39,
+      "page": 40,
       "title": "데이터 표 · 맵과 표시 모델",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 40,
+      "page": 41,
       "title": "구현 순서 · 승인 후 작업 단위",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 41,
+      "page": 42,
       "title": "검수표 · 자동 검증과 최종 사용자 승인",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 42,
+      "page": 43,
       "title": "출처와 해석의 한계",
       "kind": "기획 방향·구현 진행 승인 / 미채택 이미지와 최종 사용자 검수 별도"
     },
     {
-      "page": 43,
+      "page": 44,
       "title": "BUILD 공간 와이어프레임",
       "kind": "text-native 정보 구조 · 실제 게임 화면 아님"
     },
     {
-      "page": 44,
+      "page": 45,
       "title": "RUN 공간 와이어프레임",
       "kind": "text-native 정보 구조 · 실제 게임 화면 아님"
     },
     {
-      "page": 45,
+      "page": 46,
       "title": "열차 · 승인된 탑뷰 기준",
       "kind": "실제 인게임 소비 예정 자산 · 후보/승인 상태는 캡션 참조"
     },
     {
-      "page": 46,
+      "page": 47,
       "title": "자산 아틀라스 · 역 · 선로 옆 서비스 오브젝트",
       "kind": "13개 승인 자산의 색인 / 개별 RGBA PNG / 패킹 시트·새 모션 프레임 아님"
     },
     {
-      "page": 47,
-      "title": "자산 아틀라스 · 화물 · 정지와 적재가 같은 윗면",
-      "kind": "13개 승인 자산의 색인 / 개별 RGBA PNG / 패킹 시트·새 모션 프레임 아님"
-    },
-    {
       "page": 48,
-      "title": "자산 아틀라스 · 장식 · 비상호작용 탑뷰 가족",
+      "title": "자산 아틀라스 · 화물 · 정지와 적재가 같은 윗면",
       "kind": "13개 승인 자산의 색인 / 개별 RGBA PNG / 패킹 시트·새 모션 프레임 아님"
     },
     {
@@ -305,141 +313,206 @@
     },
     {
       "page": 50,
+      "title": "자산 아틀라스 · 장식 · 비상호작용 탑뷰 가족",
+      "kind": "13개 승인 자산의 색인 / 개별 RGBA PNG / 패킹 시트·새 모션 프레임 아님"
+    },
+    {
+      "page": 51,
       "title": "메인 → 노선집 → 브리핑 · 화면 계약",
       "kind": "text-native 플로우·와이어프레임 보조표 / 기존 씬·consumer 기반"
     },
     {
-      "page": 51,
+      "page": 52,
       "title": "정지 → 결과 → 재시도 · 화면 계약",
       "kind": "text-native 플로우·와이어프레임 보조표 / 기존 씬·consumer 기반"
     },
     {
-      "page": 52,
+      "page": 53,
       "title": "실행 플로우맵 · 판정과 표시 책임",
       "kind": "text-native 플로우·와이어프레임 보조표 / 기존 씬·consumer 기반"
     },
     {
-      "page": 53,
+      "page": 54,
       "title": "스테이지 01 · 역 옆의 선로",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 54,
+      "page": 55,
       "title": "스테이지 01 · 출발 전 판단",
       "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
     },
     {
-      "page": 55,
+      "page": 56,
       "title": "스테이지 02 · 역순 적재",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 56,
+      "page": 57,
       "title": "스테이지 02 · 출발 전 판단",
       "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
     },
     {
-      "page": 57,
+      "page": 58,
       "title": "스테이지 03 · 되돌아오는 화물",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 58,
+      "page": 59,
       "title": "스테이지 03 · 출발 전 판단",
       "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
     },
     {
-      "page": 59,
+      "page": 60,
       "title": "스테이지 04 · 자동 적재 창",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 60,
+      "page": 61,
       "title": "스테이지 04 · 출발 전 판단",
       "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
     },
     {
-      "page": 61,
+      "page": 62,
       "title": "스테이지 05 · 잠긴 분기",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 62,
+      "page": 63,
       "title": "스테이지 05 · 출발 전 판단",
       "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
     },
     {
-      "page": 63,
+      "page": 64,
       "title": "스테이지 06 · 항만 순환선",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 64,
+      "page": 65,
       "title": "스테이지 06 · 출발 전 판단",
       "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
     },
     {
-      "page": 65,
+      "page": 66,
       "title": "스테이지 07 · 숲길 중계",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 66,
+      "page": 67,
       "title": "스테이지 07 · 출발 전 판단",
       "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
     },
     {
-      "page": 67,
+      "page": 68,
       "title": "스테이지 08 · 감속 절개지",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 68,
+      "page": 69,
       "title": "스테이지 08 · 출발 전 판단",
       "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
     },
     {
-      "page": 69,
+      "page": 70,
       "title": "스테이지 09 · 회수선",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 70,
+      "page": 71,
       "title": "스테이지 09 · 출발 전 판단",
       "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
     },
     {
-      "page": 71,
+      "page": 72,
       "title": "스테이지 10 · 깨끗한 회차",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 72,
+      "page": 73,
       "title": "스테이지 10 · 출발 전 판단",
       "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
     },
     {
-      "page": 73,
+      "page": 74,
       "title": "스테이지 11 · 적재 중 분기",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 74,
+      "page": 75,
       "title": "스테이지 11 · 출발 전 판단",
       "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
     },
     {
-      "page": 75,
+      "page": 76,
       "title": "스테이지 12 · 등불 순환선",
       "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
     },
     {
-      "page": 76,
+      "page": 77,
       "title": "스테이지 12 · 출발 전 판단",
       "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
     },
     {
-      "page": 77,
+      "page": 78,
+      "title": "스테이지 13 · 사방의 역",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 79,
+      "title": "스테이지 13 · 출발 전 판단",
+      "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
+    },
+    {
+      "page": 80,
+      "title": "스테이지 14 · 적재 거울",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 81,
+      "title": "스테이지 14 · 출발 전 판단",
+      "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
+    },
+    {
+      "page": 82,
+      "title": "스테이지 15 · 수동 적재 틈",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 83,
+      "title": "스테이지 15 · 출발 전 판단",
+      "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
+    },
+    {
+      "page": 84,
+      "title": "스테이지 16 · 주의 운행 장부",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 85,
+      "title": "스테이지 16 · 출발 전 판단",
+      "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
+    },
+    {
+      "page": 86,
+      "title": "스테이지 17 · 정리 작업장",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 87,
+      "title": "스테이지 17 · 출발 전 판단",
+      "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
+    },
+    {
+      "page": 88,
+      "title": "스테이지 18 · 야간 배차판",
+      "kind": "기존 실제 맵 데이터 · 전략 설명은 유일한 해법의 증명이 아님"
+    },
+    {
+      "page": 89,
+      "title": "스테이지 18 · 출발 전 판단",
+      "kind": "실제 게임의 한국어 브리핑 문구 / 정답·최적해 안내가 아님"
+    },
+    {
+      "page": 90,
       "title": "검증 경계 · 승인과 실행을 구분한다",
       "kind": "현재 탑뷰 통일 범위 / 전체 게임·출시 완료 선언 아님"
     }

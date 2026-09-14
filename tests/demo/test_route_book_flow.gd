@@ -24,7 +24,7 @@ func run() -> void:
 	var stage_list := demo.get_node_or_null("RouteBookScreen/Panel/Content/StageScroll/StageList") as VBoxContainer
 	assert_not_null(stage_list, "Route Book has a dedicated selection list")
 	if stage_list != null:
-		assert_equal(stage_list.get_child_count(), 2, "both authored Route Books are directly selectable")
+		assert_equal(stage_list.get_child_count(), 3, "three authored Route Books are directly selectable")
 	assert_false(demo.select_route_book(&"UNKNOWN"), "unknown Route Book is rejected")
 	var route_book_02_card := stage_list.get_node_or_null("ROUTE_BOOK_02Card") as Button if stage_list != null else null
 	assert_not_null(route_book_02_card, "Wayside Route Book has a concrete selection card")
@@ -81,4 +81,14 @@ func run() -> void:
 	if stage_book != null:
 		stage_book.pressed.emit()
 	assert_equal(demo.state(), &"ROUTE_BOOK", "Stage Book returns to direct selection")
+	assert_true(demo.select_route_book(&"ROUTE_BOOK_03"), "new authored book selectable")
+	assert_equal(stage_list.get_child_count(), 6, "six book03 stage cards")
+	assert_true(demo.select_route_book_stage(&"RB18_SWITCHBOARD_NIGHT"), "new last stage selectable")
+	assert_false(rules.text == salvage_context, "book03 does not retain book02 context")
+	demo.begin_build()
+	assert_equal(demo.gameplay_instance().session_controller().render_snapshot().get("map_id"), &"RB18_SWITCHBOARD_NIGHT", "book03 actual product identity")
+	demo.show_result({"outcome": &"SUCCESS"})
+	assert_false(next.visible, "RB18 has no next-stage action")
+	demo.return_to_title()
+	assert_equal(demo.state(), &"TITLE", "new book returns to title")
 	demo.free()

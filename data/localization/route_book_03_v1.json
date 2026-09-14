@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "locales": [
+    "ko",
+    "en",
+    "ja",
+    "zh-Hans"
+  ],
+  "strings": {
+    "SX_RB_BEGIN": {
+      "ko": "건설 시작",
+      "en": "Begin Building",
+      "ja": "建設を始める",
+      "zh-Hans": "开始建设"
+    },
+    "SX_RB_NEXT_STAGE": {
+      "ko": "다음 스테이지",
+      "en": "Next Stage",
+      "ja": "次のステージ",
+      "zh-Hans": "下一关"
+    },
+    "SX_RB_PROGRESS": {
+      "ko": "스테이지 북 03 · {current} / {total}",
+      "en": "Stage Book 03 · {current} / {total}",
+      "ja": "ステージブック 03 · {current} / {total}",
+      "zh-Hans": "关卡手册 03 · {current} / {total}"
+    },
+    "SX_RB13_TITLE": {
+      "ko": "사방의 역",
+      "en": "Four Sides",
+      "ja": "四方の駅",
+      "zh-Hans": "四面车站"
+    },
+    "SX_RB13_OBJECTIVE": {
+      "ko": "두 화물을 각 역의 상하좌우 인접 칸에서 배송하세요.",
+      "en": "Deliver both cargo items beside their stations.",
+      "ja": "二つの貨物を各駅のとなりで届けましょう。",
+      "zh-Hans": "在对应车站旁送达两件货物。"
+    },
+    "SX_RB13_CONTEXT": {
+      "ko": "역의 대각선은 배송 칸이 아닙니다. 접근할 면과 TOP 순서를 함께 생각하세요.",
+      "en": "Diagonal cells do not serve stations. Consider the approach face and TOP order.",
+      "ja": "駅の斜めでは配送できません。接する面とTOPの順番を考えましょう。",
+      "zh-Hans": "对角格不能配送。结合接近方向与TOP顺序规划路线。"
+    },
+    "SX_RB14_TITLE": {
+      "ko": "적재 거울",
+      "en": "Manifest Mirror",
+      "ja": "積荷の鏡",
+      "zh-Hans": "货单之镜"
+    },
+    "SX_RB14_OBJECTIVE": {
+      "ko": "화물 세 개를 두 역으로 배송하세요.",
+      "en": "Deliver three cargo items to two stations.",
+      "ja": "三つの貨物を二駅へ届けましょう。",
+      "zh-Hans": "将三件货物送往两座车站。"
+    },
+    "SX_RB14_CONTEXT": {
+      "ko": "같은 종류의 연속 TOP는 함께 내려집니다. 노선을 바꾸면 적재 순서도 바뀝니다.",
+      "en": "A matching contiguous TOP group unloads together. Changing the route changes loading order.",
+      "ja": "同じ種類がTOPに連続すると一緒に降ります。経路を変えると積載順も変わります。",
+      "zh-Hans": "TOP上连续同类货物会一起卸下。改变路线也会改变装载顺序。"
+    },
+    "SX_RB15_TITLE": {
+      "ko": "수동 적재 틈",
+      "en": "Manual Gap",
+      "ja": "手動積載の間",
+      "zh-Hans": "手动装载间隙"
+    },
+    "SX_RB15_OBJECTIVE": {
+      "ko": "적재 여부를 선택하며 두 화물을 모두 배송하세요.",
+      "en": "Choose when to load and deliver both items.",
+      "ja": "積むタイミングを選び、二つの貨物を届けましょう。",
+      "zh-Hans": "选择装载时机，送达两件货物。"
+    },
+    "SX_RB15_CONTEXT": {
+      "ko": "지나치고 돌아와 실을 수도 있습니다. 재방문할 때의 TOP와 역 방문 순서를 비교하세요.",
+      "en": "You may skip cargo and return. Compare TOP on return with station visit order.",
+      "ja": "見送って戻ってから積むこともできます。再訪時のTOPと駅の訪問順を比べましょう。",
+      "zh-Hans": "可以跳过货物并在回程装载。比较回程时的TOP与车站访问顺序。"
+    },
+    "SX_RB16_TITLE": {
+      "ko": "주의 운행 장부",
+      "en": "Caution Ledger",
+      "ja": "注意運行の帳簿",
+      "zh-Hans": "谨慎行车账"
+    },
+    "SX_RB16_OBJECTIVE": {
+      "ko": "감속 구간과 분기를 연결해 두 화물을 배송하세요.",
+      "en": "Connect caution cells and a turnout to deliver both items.",
+      "ja": "減速区間と分岐をつなぎ、二つの貨物を届けましょう。",
+      "zh-Hans": "连接减速区与道岔，送达两件货物。"
+    },
+    "SX_RB16_CONTEXT": {
+      "ko": "감속 중에도 점유 잠금은 같습니다. 열차가 분기를 밟기 전에 방향을 정하세요.",
+      "en": "Slowing down does not change the occupied lock. Set the branch before the train arrives.",
+      "ja": "減速中も占有ロックは同じです。列車が乗る前に分岐方向を決めましょう。",
+      "zh-Hans": "减速不会改变占用锁定。在列车占用前确定道岔方向。"
+    },
+    "SX_RB17_TITLE": {
+      "ko": "정리 작업장",
+      "en": "Clearance Yard",
+      "ja": "片付け作業場",
+      "zh-Hans": "清理作业场"
+    },
+    "SX_RB17_OBJECTIVE": {
+      "ko": "일반 화물 하나와 폐기 상자 두 개를 정리하세요.",
+      "en": "Deliver one normal item and dispose of two waste crates.",
+      "ja": "通常貨物一つと廃棄箱二つを届けましょう。",
+      "zh-Hans": "送达一件普通货物并处理两个废弃箱。"
+    },
+    "SX_RB17_CONTEXT": {
+      "ko": "처리장도 TOP만 비웁니다. 일반 역과 처리장의 방문 순서에 맞춰 적재를 계획하세요.",
+      "en": "The yard also clears only TOP. Match loading order to station and yard visits.",
+      "ja": "処理場もTOPしか降ろせません。駅と処理場の訪問順に合わせて積載を考えましょう。",
+      "zh-Hans": "处理场也只能卸下TOP货物。按车站与处理场访问顺序规划装载。"
+    },
+    "SX_RB18_TITLE": {
+      "ko": "야간 배차판",
+      "en": "Switchboard Night",
+      "ja": "夜の配車盤",
+      "zh-Hans": "夜间调度盘"
+    },
+    "SX_RB18_OBJECTIVE": {
+      "ko": "자동·수동 적재와 분기를 조합해 모든 화물을 정리하세요.",
+      "en": "Combine Auto, manual loading and a turnout to clear all cargo.",
+      "ja": "自動・手動積載と分岐を組み合わせ、すべての貨物を届けましょう。",
+      "zh-Hans": "结合自动与手动装载及道岔，处理全部货物。"
+    },
+    "SX_RB18_CONTEXT": {
+      "ko": "Auto가 안전한 구간과 지나칠 화물을 나누어 생각하세요. TOP, 재방문, 감속, 점유 잠금이 함께 작용합니다.",
+      "en": "Separate safe Auto stretches from cargo to skip. TOP, revisits, caution and the occupied lock work together.",
+      "ja": "自動で安全な区間と見送る貨物を分けましょう。TOP、再訪、減速、占有ロックが重なります。",
+      "zh-Hans": "区分可安全自动装载的路段与需要跳过的货物。TOP、回程、减速与占用锁定会共同作用。"
+    }
+  }
+}

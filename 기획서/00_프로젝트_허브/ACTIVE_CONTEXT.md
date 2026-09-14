@@ -1,5 +1,21 @@
 # Active Context
 
+## 2026-09-14 C2 implementation and monthly evidence continuation
+
+Detailed C2 spec merged normally in PR311, main f9a53bfdb5ae165b4112f4c89be360cf382c4ee9.
+Six optional authored maps RB13–RB18 are now locally implemented; book03/shared selector
+and four locales use existing consumers, assets and finite rules. Full131/17040 PASS;
+Python311/1skip (optional local Pilot environment); actual18SUCCESS, six exact negative
+paths, six fresh same-layout Retry/Edit paths, preview216states/9Begin PASS.
+Owner: evidence/runtime/route-book-03-20260914/README.md. Changed-byte package and new
+implementation PR/readback are next, not yet PASS. C1 package remains unchanged.
+Blueprint is now90pages and rendered; monthly9page evidence v1.0 is a separate immutable
+internal source-bound snapshot in the user September evidence folder. Its C2 status is
+local verification, not later package/merge evidence. Prompt screenshots/account/billing
+remain uncollected; no agreement verification or submission claimed.
+Future generated images use chroma key, removal and alpha/edge QA per latest user rule.
+No new image was needed here. Older entries below are historical snapshots.
+
 ## 2026-09-14 approved remaining-work execution
 
 Current user approval resumes the September14 specification at

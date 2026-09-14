@@ -6,8 +6,8 @@ const CatalogScript := preload("res://game/route_book/route_book_catalog.gd")
 func run() -> void:
 	assert_equal(
 		CatalogScript.book_ids(),
-		[&"ROUTE_BOOK_01", &"ROUTE_BOOK_02"],
-		"the catalog exposes the two authored optional Route Books in order",
+		[&"ROUTE_BOOK_01", &"ROUTE_BOOK_02", &"ROUTE_BOOK_03"],
+		"the catalog exposes three authored optional Route Books in order",
 	)
 	assert_equal(
 		CatalogScript.definition_path(&"ROUTE_BOOK_01"),
@@ -26,3 +26,5 @@ func run() -> void:
 	)
 	assert_equal(CatalogScript.display_key(&"ROUTE_BOOK_02"), &"SX_RB02_STAGE_BOOK", "book label key is exact")
 	assert_equal(CatalogScript.definition_path(&"UNKNOWN"), "", "unknown book has no definition path")
+	assert_equal(CatalogScript.copy_path(&"ROUTE_BOOK_03"), "res://data/localization/route_book_03_v1.json", "book03 copy is exact")
+	assert_equal(CatalogScript.display_key(&"ROUTE_BOOK_03"), &"SX_RB03_STAGE_BOOK", "book03 label is exact")

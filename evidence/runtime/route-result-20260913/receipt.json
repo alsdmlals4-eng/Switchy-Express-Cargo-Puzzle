@@ -3,49 +3,51 @@
   "human_review": "NOT_RUN",
   "samples": [
     {
-      "body": "맵에 남은 화물: 2\n열차에 실린 화물: 0\n경과 시간 6.3초\n남은 시간 108.7초\n건설비 1100\n하역 없음",
-      "build_capture_sha256": "29045406cf5b0bf70df3dc46c0471c09d6cf2b67733720d068b300f35abc48f9",
-      "capture_sha256": "3d69a13b36826fa81042a741680b6818fec136ca5afcd5bac83fb1751abf8a33",
+      "body": "맵에 남은 화물: 2\n열차에 실린 화물: 0\n경과 시간 7.5초\n남은 시간 107.5초\n건설비 1100\n하역 없음",
+      "build_capture_sha256": "dc0f4c57698376b0439422f572a2c5b5037aa2f697fe3f11dc8fd30e627d8b3d",
+      "capture_sha256": "f1c66ef43ecb12ab7e55c9ddf75645ef1cb2f0337c671bbfa0601b93de45146b",
       "locale": "ko",
       "manifest_stress_sha256": "32d71dc04ac032aaee3c743b06b35fb6beb94d0b021b2525a8cce4703606162f",
-      "running_capture_sha256": "0d41620feb8187fe220eb700d022ed0d9988bc06f522c96ac9ce9d5993773384",
+      "running_capture_sha256": "e0180a715fda24cf279c84aef5552092c6efa96fefff7d66decdc87937b14c27",
       "title": "노선이 끝났습니다."
     },
     {
-      "body": "Cargo left on map: 2\nCargo on train: 0\nElapsed time: 6.3s\nTime left: 108.7s\nBuild cost: 1100\nUnload groups: None",
-      "build_capture_sha256": "9adb4855f467a0d7245b489ee14e5c2b0b7a3eae29c6fa2a1ec53fdaeb83a7d5",
-      "capture_sha256": "1f30c2f05a98727f2c92519dd0d0658682713581cd3b0559505d310a943fae38",
+      "body": "Cargo left on map: 2\nCargo on train: 0\nElapsed time: 7.5s\nTime left: 107.5s\nBuild cost: 1100\nUnload groups: None",
+      "build_capture_sha256": "3eea9f7601165be15a2000300b5848f5d2870b65d82e365afa6398f59474bcc7",
+      "capture_sha256": "3222ad65d52c5e0ee550d4867cc48745ea395f812dd32717156bb8c392e84985",
       "locale": "en",
       "manifest_stress_sha256": "fcc90473714ee94366fe3e4faa22ae4cb5215feb7941dc2d02cb10d41858408d",
-      "running_capture_sha256": "1be31ddcb5c314864237509460a286c0671c854565a42ca74ae8f5dd6b53a9ba",
+      "running_capture_sha256": "a0d382287e8df38c405912dc4f48bea48ff41ea00f2cf9563d306d67c3a51fb0",
       "title": "The route ended."
     },
     {
-      "body": "マップに残った貨物: 2\n列車上の貨物: 0\n経過時間: 6.3秒\n残り時間: 108.7秒\n建設費: 1100\n荷下ろし: なし",
-      "build_capture_sha256": "5a5ad04b958cdd06cfe626455572989fd0ac643ddac0feff579c14c71401b4ee",
-      "capture_sha256": "527653bad84b02ed5417816047c54fdc2d8a03dce2bf4a76dd3a3cf5e21cea4f",
+      "body": "マップに残った貨物: 2\n列車上の貨物: 0\n経過時間: 7.5秒\n残り時間: 107.5秒\n建設費: 1100\n荷下ろし: なし",
+      "build_capture_sha256": "bb611b6daf85e30313e69585c1640159c67a6591b02e88c35eb2ec047690adce",
+      "capture_sha256": "529ec376c2ca0d8b944e9901f45d97adf1e566484a9feb6b0343a00e6c295055",
       "locale": "ja",
       "manifest_stress_sha256": "5722efe9be6e7de16f5f6e55ad95f5078db1a80d8d75df9be189cebfb981e123",
-      "running_capture_sha256": "b27691597caf07fd2ccd51ec3394e30f8961cc2a95b46e746aa8ef6ec91d5c2e",
+      "running_capture_sha256": "aeedc9727c408e299a50e877853320d6917a578d378fecba49210e5561baf721",
       "title": "線路が途切れました。"
     },
     {
-      "body": "地图剩余货物：2\n列车上的货物：0\n已用时间：6.3秒\n剩余时间：108.7秒\n建造费用：1100\n卸货组：无",
-      "build_capture_sha256": "a6d4c6cbe04581b9483d48f4a21faff9353e3b7fd6ee00ff00ba2d880492ce08",
-      "capture_sha256": "9aa6bf8c8ecfa899d99472ddabbf1469fefac33301568060c03184024b0324a2",
+      "body": "地图剩余货物：2\n列车上的货物：0\n已用时间：7.5秒\n剩余时间：107.5秒\n建造费用：1100\n卸货组：无",
+      "build_capture_sha256": "13233fbe37eecfb8662b162ad6c1e5b4384ddae202adbc03758cc7e9a32a0037",
+      "capture_sha256": "960220af448baf88f0881e872e3e711f1342adaa16bb91bd464e91c237057ec5",
       "locale": "zh-Hans",
       "manifest_stress_sha256": "25905f9d8473312e524239b151ea7832fc01d8991b6cae1adff7d6cc2969b850",
-      "running_capture_sha256": "43850394b97218bff4c246a7271f0807d9ba74d9fd68b5dea4ec3686246996b7",
+      "running_capture_sha256": "c37fad99d5616184d29d6ad7e8fdba80890ce2de66409acf20a10f06a4265065",
       "title": "路线已到尽头。"
     }
   ],
   "scope": "actual Main, authored RB08 route, no pickup input, accelerated simulation; no injected result summary. Separate64-cargo HUD projection stress is NOT an authored gameplay run.",
   "source_sha256_lf": {
     "res://data/localization/first_session_v1.json": "b1a3c3f07aa3cf7a3f6e7d05a44e4242681b06b20e1ee619d9134fd306fc6946",
-    "res://game/demo/demo_flow_controller.gd": "2a5596676b9fef461894323c92b284ef660037b30a49b1ccf93eb2da0774407f",
+    "res://data/maps/route_book/rb08_caution_cut.json": "11b26137ec4895476fd61a6913ae5050a6b06ec00a4dbec228a98f34d39577dd",
+    "res://game/demo/demo_flow_controller.gd": "96915796c29a81fc51c570f641fc5ca796a5ad47fd26513e2830f2e0ea294ca1",
     "res://game/demo/presentation/product_hud.gd": "1d7f8e52a38f2fff665c883819cd4f3417859687caa59de092407ea490b1d8e0",
     "res://game/demo/presentation/product_hud.tscn": "77b08eff643eecc5021baa5750d258560ec3ee4e581e322130790da686de97b9",
-    "res://tests/runtime/route_result_window_runner.gd": "420ffe248287c9f08eafb41ab162ccfcbc8bc52c1d71710945fdf460d48e1bce"
+    "res://tests/fixtures/route_book/route_book_witnesses.gd": "1c14759ab3000713ee3e70be8ec2adc3651572b4ebf493d19e608891221eb821",
+    "res://tests/runtime/route_result_window_runner.gd": "cea45bcd23697a8252f1d15ecb2b9d860aef22d785939b424ab00b50e74d4406"
   },
   "status": "PASS",
   "window": "(960, 540)"

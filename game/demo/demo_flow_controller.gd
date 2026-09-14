@@ -655,7 +655,7 @@ func _setup_first_session() -> void:
 
 func _setup_route_book() -> void:
 	_route_book_selector_copy = FirstSessionCopyScript.new()
-	if not _route_book_selector_copy.load_from_path("res://data/localization/route_book_02_v1.json"):
+	if not _route_book_selector_copy.load_from_path("res://data/localization/route_book_selector_v1.json"):
 		_route_book_selector_copy = null
 		return
 	var button := get_node_or_null(TITLE_STAGE_BOOK_BUTTON_PATH) as Button

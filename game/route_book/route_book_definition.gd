@@ -23,6 +23,10 @@ const ROUTE_BOOK_02_IDS: Array[StringName] = [
 const STAGE_IDS_BY_BOOK: Dictionary = {
 	BOOK_ID: REQUIRED_IDS,
 	&"ROUTE_BOOK_02": ROUTE_BOOK_02_IDS,
+	&"ROUTE_BOOK_03": [
+		&"RB13_FOUR_SIDES", &"RB14_MANIFEST_MIRROR", &"RB15_MANUAL_GAP",
+		&"RB16_CAUTION_LEDGER", &"RB17_CLEARANCE_YARD", &"RB18_SWITCHBOARD_NIGHT",
+	],
 }
 const ARRAY_FIELDS: Array[StringName] = [
 	&"visible_features",
@@ -74,6 +78,11 @@ static func create(data: Dictionary) -> Variant:
 			return null
 		if not str(stage.get("map_path", "")).begins_with("res://data/maps/route_book/"):
 			return null
+		if requested_book_id == &"ROUTE_BOOK_03":
+			if str(stage.get("map_path", "")) != "res://data/maps/route_book/" + str(stage_id).to_lower() + ".json":
+				return null
+			if not _has_required_text(stage, &"context_key"):
+				return null
 		if not _has_required_text(stage, &"title_key") or not _has_required_text(stage, &"objective_key"):
 			return null
 		for field: StringName in ARRAY_FIELDS:

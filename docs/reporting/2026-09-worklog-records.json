@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "project": "Switchy Express: Cargo Puzzle",
+  "month": "2026-09",
+  "version": "1.0",
+  "coverage": "9월 GitHub main 변경일 색인 + 9월 14일 확인 작업 상세. 전체 AI 사용/월간 비용의 완전한 제출 증빙이 아님.",
+  "record_type": "사후 정리 및 현재 작업 기록",
+  "prompt_transcription": [
+    "남은 작업과 해당 작업들의 구현,설계 명세를 준비해줘.",
+    "작업재개,그리고 앞으로 이미지 생성시 크로마키 배경으로 만든 후 배경제거해.",
+    "앞으로는 지원서류에 증빙서류 제출해야해서 C:\\Users\\user\\Documents\\증빙서류\\9월 증빙서류 에 해당 프로젝트 이름으로 PDF를 추가로 만들거야."
+  ],
+  "prompt_evidence": "현재 대화에서 제공한 요청의 발췌 전사. 원본 화면 미수집; 전사 작성일이 원본 입력 시점을 인증하지 않음.",
+  "ai_service": "OpenAI Codex - 현재 작업 도구에서 확인. 과거 각 commit의 AI 서비스·모델·계정은 별도 원본 미대조.",
+  "account": "청구 계정·계정별 활용 연결 미확인",
+  "billing": "프로젝트별 결제 증빙·지원 인정 범위 미연결. 금액 집계 0건; 비용이 0원이라는 의미 아님.",
+  "agreement": "사용자 제공 메일·협약서 해설만 참고. 이 작업에서 원문 메일/협약서/신청서 대조·회신·서명·제출을 수행하지 않음.",
+  "records": [
+    {
+      "id": "SX-20260914-M1",
+      "title": "남은 작업과 실행 명세 정리",
+      "work_date": "2026-09-14 - 변경 기록에 연결된 날짜; 전체 AI 수행 시간 미확인",
+      "before": "기존 완료 상태와 새 요청의 콘텐츠 확장 범위를 분리할 필요가 있었음.",
+      "change": "M1 문서 정합성, C1 RB08 비용·시간 교환, C2 선택형 6퍼즐, V1 도구 가능성, D1/D2 재발 진단, R1 출시/U1 최종 검수로 분리.",
+      "status": "설계·명세 main 병합. 문서 작성이 제품·출시 완료는 아님.",
+      "source": "docs/superpowers/specs/2026-09-14-remaining-work-design.md",
+      "pr": 309,
+      "commit": "0c25766b5e7da109e786005f5bba792795ee8b22"
+    },
+    {
+      "id": "SX-20260914-C1",
+      "title": "RB08 비용·시간 선택 개선",
+      "work_date": "2026-09-14 - Git/실행 기록 연결; 로그에 없는 세부 작업 시작 시각 미확인",
+      "before": "기존 작성 해법 비교에서 더 비싼 우회가 오히려 느려 비용·시간 선택이 성립하지 않았음.",
+      "change": "RB08 맵 revision2와 해법·4언어 문구·실제 미리보기·블루프린트·내보내기 위생을 함께 교정. 전역 속도·비용·코어 유지.",
+      "status": "main 병합. 단축 경로 비용1100/7.7445초, 우회1300/7.1082초. 두 작성 해법 모두 성공; 모든 해법의 최적성·재미는 미검증.",
+      "source": "evidence/runtime/rb08-tradeoff-20260914/README.md",
+      "pr": 310,
+      "commit": "5beedd1d2d547000e69b0721b4d47eea7bcdba34"
+    },
+    {
+      "id": "SX-20260914-C2",
+      "title": "선택형 스테이지 북03 설계와 구현",
+      "work_date": "2026-09-14 - 현재 실행에서 확인",
+      "before": "선택형 스테이지12개. 새6개는 목록·맵·문구·해법이 없었음.",
+      "change": "RB13-18 좌표/성공·실패 해법/4언어/목록 연결. 기존 finite 규칙과 탑뷰 자산 재사용, 신규 bitmap0.",
+      "status": "상세 설계 PR311 main 병합. 제품은 발행 시점 로컬 구현·기계 검증·18개 실제 창 SUCCESS 및 신규 음성6개 확인. 새 제품 PR/배포본 검증은 후속 기록 대상.",
+      "source": "evidence/runtime/route-book-03-20260914/README.md",
+      "pr": 311,
+      "commit": "f9a53bfdb5ae165b4112f4c89be360cf382c4ee9"
+    }
+  ],
+  "images": [
+    {
+      "path": "evidence/runtime/stage-preview-20260913/rb08.png",
+      "caption": "실제 RB08 미리보기. 현재 캡처 receipt에 hash 연결. 폴더의 20260913은 캡처 날짜 증명이 아님.",
+      "capture_date": "정확 캡처 시각 원본 미기재; 현재 작업에서 재캡처 확인"
+    },
+    {
+      "path": "evidence/runtime/stage-preview-window-20260913/rb18-ko-960.png",
+      "caption": "실제 RB18 미리보기. 960x540 창, 해법 선로를 노출하지 않는 읽기 전용 맵.",
+      "capture_date": "2026-09-14 현재 작업에서 캡처; 세부 시각은 별도 timestamp 없음"
+    }
+  ],
+  "sources": [
+    "docs/reporting/AI_WORKLOG_EVIDENCE_POLICY.md",
+    "docs/superpowers/specs/2026-09-14-remaining-work-design.md",
+    "docs/superpowers/specs/2026-09-14-route-book-03-authored-content.md",
+    "docs/superpowers/plans/2026-09-14-route-book-03-authored-content.md",
+    "evidence/runtime/rb08-tradeoff-20260914/README.md",
+    "evidence/runtime/rb08-tradeoff-20260914/green.json",
+    "evidence/runtime/route-book-03-20260914/README.md",
+    "evidence/runtime/route-book-03-20260914/domain-green.json",
+    "evidence/runtime/route-book-03-20260914/book03-integration-green-attempt2.log",
+    "evidence/runtime/stage-preview-window-20260913/receipt.json"
+  ]
+}

@@ -14,6 +14,12 @@ const BOOKS: Array[Dictionary] = [
 		"copy_path": "res://data/localization/route_book_02_v1.json",
 		"display_key": &"SX_RB02_STAGE_BOOK",
 	},
+	{
+		"book_id": &"ROUTE_BOOK_03",
+		"definition_path": "res://data/route_book/route_book_03.json",
+		"copy_path": "res://data/localization/route_book_03_v1.json",
+		"display_key": &"SX_RB03_STAGE_BOOK",
+	},
 ]
 
 
