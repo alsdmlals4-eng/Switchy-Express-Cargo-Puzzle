@@ -1,5 +1,13 @@
 # Active Context
 
+### Latest package checkpoint
+
+C2 c9e6a6dd exact export now mounted3books/18BUILD/18SUCCESS, six negative paths and
+six fresh same-layout Retry/Edit PASS. Native EXE startup120frames exit0 (not full native
+play). Full131/17040 and Python311/1optionalPilotSkip reconfirmed. New Windows folder:
+C:/Users/user/Downloads/Switchy_Playable_20260914_RouteBook03. Package SHA/source and
+review limits: evidence/runtime/route-book-03-20260914/README.md. Normal CI/merge next.
+
 ## 2026-09-14 C2 implementation and monthly evidence continuation
 
 Detailed C2 spec merged normally in PR311, main f9a53bfdb5ae165b4112f4c89be360cf382c4ee9.

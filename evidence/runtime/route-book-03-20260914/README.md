@@ -1,5 +1,30 @@
 # C2 Route Book03 - current execution evidence
 
+## Final local/package checkpoint
+
+Exact export source c9e6a6ddd0bd06b43cde8dedde6f86ec3845db94, Windows Demo.
+Package folder: C:/Users/user/Downloads/Switchy_Playable_20260914_RouteBook03.
+EXE SHA256 1cb23cec5f4de7fa6c884cd61af3b5b3df52b7d0f82638aa36b241a1cfdc3244.
+PCK SHA256 f43eeebbedc1cab88e4ae9d5e2a4cab4cc20201c0134589019b9548fa9477c6b.
+Mounted JSON33 / books3 / stages18 / BUILD18 passed. Actual mounted-PCK18SUCCESS,
+new-six Retry/Edit and six negative cases passed (pack-positive/negative.json).
+Native template EXE120frame startup exit0; not template-EXE full play evidence.
+Latest full131cases/17040assertions/0failed and Python311passed1optionalPilotSkip.
+All new preview locales inspected; blueprint90pages and monthly9pages rendered/inspected.
+
+Initial package completion launch from checkout was rejected by consumer-mismatch guard;
+reran from the standalone package directory with the same PCK SHA/path. No guard weakening
+or resource overlay. Export log contains no tmp/tests resource payload. C1 bytes untouched.
+
+Five-pass review coverage: (1) map/consumer identity and exact ordered book IDs;
+(2) negative TOP/waste/switch/service semantics strengthened after independent findings;
+(3) four-locale three-size layout and actual result/recovery paths;
+(4) existing approved art only, report dates/source identity/privacy/billing gaps;
+(5) export/pack identity, stale-receipt guards and separate acceptance ceilings.
+Earlier independent core re-review closed its findings. Extended final independent review
+was interrupted by service usage limit, so that extra review is NOT_COMPLETED, not PASS.
+Normal PR/CI and merged-main readback remain separately pending at this checkpoint.
+
 Approved scope: September14 Decisions and merged detailed spec PR311,
 main f9a53bfdb5ae165b4112f4c89be360cf382c4ee9. Product implementation is a new branch;
 PR174/254/281 untouched. Six new maps use existing finite rules and approved topdown assets.
