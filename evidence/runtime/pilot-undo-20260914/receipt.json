@@ -1,0 +1,20 @@
+{
+  "recorded_at_utc": "2026-09-14T14:10:24.0095665Z",
+  "source_sha256_lf": {
+    "tools/godot-live-editor-pilot/SOURCE_BASELINE.json": "20be03db16cbdcb5434039ecba632af12d2b53c284ccf57412b3776975c14780",
+    "tests/python/test_switchy_godot_live_editor_pilot_runtime.py": "6ee107be731bf723f0975412e466b9f3dad7fca0c04ede9f87111c59d621e6b4",
+    "tools/godot-live-editor-pilot/pilot_plugin/plugin.gd": "6bb5e9d82b105aee9d121221bfa05e336fa8debe11810faee054844fe059b00d",
+    "tools/godot-live-editor-pilot/BASE_SOURCE.json": "4fa48a5c6df419593c0d6eee85adda87d17041dc1d734a20802d791892539b9b",
+    "tools/run_switchy_godot_live_editor_pilot.py": "0b2fe10379cb46b7f301c4eec88fea4474946022594327d46eb0f32e5b11f0e1"
+  },
+  "source_base_commit": "5309829b719d4922b23f1571888c72cbc0362043",
+  "platform": "Windows x64 / headless editor",
+  "state": "PASS / ORIGINAL_INTERMITTENT_UNDO_CAUSE_NOT_ESTABLISHED",
+  "attempt_id": "D2-WINDOWS-STABLE-SOURCE-REPORT",
+  "source_identity_note": "Base commit plus exact local delta hashes; runner source_commit is historical scene compatibility baseline, not this task revision.",
+  "runner_report_sha256": "91b9672f5e9d0d7183d01e12b4c735c4a8037ff48274ac1852a67c77ab5ef939",
+  "earlier_inner_report_sha256": "ca6601aef1dd3fd19dbcac3640a2b54e5ecdf792bc205ce08e6d388ff3016aa5",
+  "earlier_inner_report_scope": "Earlier editor PASS but outer SOURCE_INTEGRITY_FAILURE during concurrent hub edit; not full-run PASS.",
+  "legacy_windows_runtime_note": "Runner's fixed limitations.windows_runtime=NOT_RUN is not a host OS detector; this companion proves Windows headless editor only. Native window/physical input remain NOT_RUN.",
+  "capture_date_note": "recorded_at_utc is report collection time, not inferred work start"
+}

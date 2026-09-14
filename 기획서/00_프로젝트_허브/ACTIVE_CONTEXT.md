@@ -1,5 +1,18 @@
 # Active Context
 
+## D2 recurrence diagnosis continuation
+
+User continues without separate reports. M1/C1/C2 merged PR312/main5309829b; exact six
+remote checks passed after one unchanged-head Pilot retry. First dirty-undo failure
+remains evidence, not a repaired defect. Current plan:
+docs/superpowers/plans/2026-09-14-pilot-undo-recurrence.md.
+Add bounded read-only before/immediate/next-frame undo history and scene diagnostics;
+preserve original one-undo/one-frame behavior, vendor and acceptance. Actual missing
+diagnostics RED observed in Windows Pilot; full-schema actual Windows runtime test PASS,
+durable runner131/17040 and protected346file integrity PASS. Evidence/platform/hash owner:
+evidence/runtime/pilot-undo-20260914/README.md. Remote Linux comparison/CI/readback next.
+Product/art/package unchanged. Other projects' running editors are not Switchy evidence.
+
 ### Latest package checkpoint
 
 Final five-pass independent review closed at ffb4bceb, including13 exact monthly source

@@ -15,6 +15,7 @@ var _manifest: Dictionary = {}
 var _original_scene_sha256 := ""
 var _original_scene_bytes := PackedByteArray()
 var _pilot_started_usec := 0
+var _undo_diagnostics: Array[Dictionary] = []
 
 
 func _enter_tree() -> void:
@@ -313,6 +314,7 @@ func _run_pilot() -> void:
         "scene_inspect_pass": scene_inspect_pass,
         "dirty_rename_pass": dirty_rename_pass,
         "dirty_undo_pass": dirty_undo_pass,
+        "undo_diagnostics": _undo_diagnostics.duplicate(true),
         "saved_rename_pass": saved_rename_pass,
         "saved_undo_restore_pass": saved_undo_restore_pass,
         "stale_state_block_pass": stale_state_block_pass,
@@ -343,6 +345,8 @@ func _run_pilot() -> void:
 
 
 func _undo_to_original() -> bool:
+    _undo_diagnostics.clear()
+    _undo_diagnostics.append(_undo_snapshot("before"))
     var root := EditorInterface.get_edited_scene_root()
     if root == null:
         return false
@@ -350,9 +354,43 @@ func _undo_to_original() -> bool:
     var history := get_undo_redo().get_history_undo_redo(history_id)
     if history == null or not history.has_undo():
         return false
-    history.undo()
+    var undone := history.undo()
+    var immediate := _undo_snapshot("immediate_after")
+    immediate["undo_return"] = undone
+    _undo_diagnostics.append(immediate)
     await get_tree().process_frame
+    _undo_diagnostics.append(_undo_snapshot("next_frame"))
     return _target_is_original() and _scene_bytes_are_original()
+
+
+func _undo_snapshot(phase: String) -> Dictionary:
+    # Read-only, bounded observations around the original one-undo/one-frame path.
+    var root := EditorInterface.get_edited_scene_root()
+    var result := {
+        "phase": phase,
+        "observed_usec": Time.get_ticks_usec(),
+        "root_instance_id": 0 if root == null else root.get_instance_id(),
+        "scene_path": "" if root == null else str(root.scene_file_path),
+        "scene_sha256": _evidence.sha256_file(TARGET_SCENE),
+        "filesystem_scanning": EditorInterface.get_resource_filesystem().is_scanning(),
+        "unsaved": EditorInterface.get_unsaved_scenes().has(TARGET_SCENE),
+    }
+    if root == null or str(root.scene_file_path) != TARGET_SCENE:
+        return result
+    result["original_target_present"] = root.get_node_or_null(TARGET_NODE) != null
+    result["dirty_target_present"] = root.get_node_or_null(NodePath("Board/%s" % DIRTY_NAME)) != null
+    var history_id := get_undo_redo().get_object_history_id(root)
+    result["history_id"] = history_id
+    var history := get_undo_redo().get_history_undo_redo(history_id)
+    result["history_available"] = history != null
+    if history != null:
+        result["has_undo"] = history.has_undo()
+        result["has_redo"] = history.has_redo()
+        result["history_version"] = history.get_version()
+        result["action_index"] = history.get_current_action()
+        result["history_count"] = history.get_history_count()
+        result["action_name"] = history.get_current_action_name() if history.get_current_action() >= 0 else ""
+    return result
 
 
 func _restore_original_scene() -> Dictionary:
