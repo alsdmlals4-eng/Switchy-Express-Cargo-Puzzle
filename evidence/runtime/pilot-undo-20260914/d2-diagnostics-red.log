@@ -1,0 +1,54 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+__ SwitchyGodotLiveEditorPilotRuntimeTests.test_actual_switchy_editor_pilot ___
+
+self = <test_switchy_godot_live_editor_pilot_runtime.SwitchyGodotLiveEditorPilotRuntimeTests testMethod=test_actual_switchy_editor_pilot>
+
+    @unittest.skipUnless(
+        os.environ.get("GODOT_BIN"),
+        "SKIPPED_NOT_CONFIGURED: set GODOT_BIN to exact Godot 4.7.1 executable",
+    )
+    def test_actual_switchy_editor_pilot(self) -> None:
+        self.assertTrue(RUNNER.is_file(), f"missing {RUNNER.relative_to(ROOT)}")
+        with tempfile.TemporaryDirectory() as temporary:
+            report = Path(temporary) / "report.json"
+            completed = subprocess.run(
+                [
+                    sys.executable,
+                    str(RUNNER),
+                    "--godot",
+                    os.environ["GODOT_BIN"],
+                    "--report",
+                    str(report),
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+                timeout=300,
+                check=False,
+            )
+            self.assertEqual(
+                0,
+                completed.returncode,
+                f"stdout:\n{completed.stdout}\nstderr:\n{completed.stderr}",
+            )
+            self.assertTrue(report.is_file(), "actual Pilot report missing")
+            payload = json.loads(report.read_text(encoding="utf-8"))
+            self.assertEqual("PASS", payload.get("status"), payload)
+            runtime = payload.get("editor_runtime", {})
+            snapshots = runtime.get("undo_diagnostics", [])
+>           self.assertEqual(["before", "immediate_after", "next_frame"],
+                             [item.get("phase") for item in snapshots])
+E           AssertionError: Lists differ: ['before', 'immediate_after', 'next_frame'] != []
+E           
+E           First list contains 3 additional elements.
+E           First extra element 0:
+E           'before'
+E           
+E           - ['before', 'immediate_after', 'next_frame']
+E           + []
+
+tests\python\test_switchy_godot_live_editor_pilot_runtime.py:94: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/python/test_switchy_godot_live_editor_pilot_runtime.py::SwitchyGodotLiveEditorPilotRuntimeTests::test_actual_switchy_editor_pilot
+1 failed, 1 deselected in 121.76s (0:02:01)

@@ -90,6 +90,40 @@ class SwitchyGodotLiveEditorPilotRuntimeTests(unittest.TestCase):
             payload = json.loads(report.read_text(encoding="utf-8"))
             self.assertEqual("PASS", payload.get("status"), payload)
             runtime = payload.get("editor_runtime", {})
+            snapshots = runtime.get("undo_diagnostics", [])
+            self.assertEqual(["before", "immediate_after", "next_frame"],
+                             [item.get("phase") for item in snapshots])
+            before, immediate, after = snapshots
+            for snapshot in snapshots:
+                for key in ("root_instance_id", "history_id", "history_version",
+                            "action_index", "history_count", "observed_usec"):
+                    self.assertIs(type(snapshot[key]), int, key)
+                for key in ("original_target_present", "dirty_target_present",
+                            "filesystem_scanning", "unsaved", "history_available",
+                            "has_undo", "has_redo"):
+                    self.assertIs(type(snapshot[key]), bool, key)
+                self.assertIsInstance(snapshot["action_name"], str)
+                self.assertEqual("res://game/finite/presentation/finite_slice_view.tscn",
+                                 snapshot["scene_path"])
+                self.assertRegex(snapshot["scene_sha256"], r"^[0-9a-f]{64}$")
+                self.assertEqual(runtime["original_scene_sha256"], snapshot["scene_sha256"])
+                self.assertEqual(before["root_instance_id"], snapshot["root_instance_id"])
+                self.assertEqual(before["history_id"], snapshot["history_id"])
+                self.assertTrue(snapshot["history_available"])
+            self.assertTrue(before["dirty_target_present"])
+            self.assertFalse(before["original_target_present"])
+            self.assertTrue(before["has_undo"])
+            self.assertIs(type(immediate["undo_return"]), bool)
+            self.assertTrue(immediate["undo_return"])
+            self.assertTrue(immediate["original_target_present"])
+            self.assertFalse(immediate["dirty_target_present"])
+            self.assertTrue(after["original_target_present"])
+            self.assertFalse(after["dirty_target_present"])
+            self.assertEqual(before["scene_sha256"], after["scene_sha256"])
+            self.assertEqual(before["root_instance_id"], after["root_instance_id"])
+            self.assertEqual(before["history_id"], after["history_id"])
+            self.assertLessEqual(before["observed_usec"], immediate["observed_usec"])
+            self.assertLessEqual(immediate["observed_usec"], after["observed_usec"])
             for flag in REQUIRED_RUNTIME_FLAGS:
                 with self.subTest(flag=flag):
                     self.assertTrue(runtime.get(flag), payload)
