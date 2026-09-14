@@ -1,0 +1,3904 @@
+{
+  "bounds_error_count": 0,
+  "directory_end": 54920848,
+  "directory_offset": 54855312,
+  "engine_version": "4.7.1",
+  "entries": [
+    {
+      "expected_md5": "7cf68431dce1452b672445842a1ae79a",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/exported/133200997/export-11c2c479712b4cae7cad342f37ba71c7-finite_slice_view.scn",
+      "size_bytes": 5909
+    },
+    {
+      "expected_md5": "b7897759a0cab32531215e7647b9b38b",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/exported/133200997/export-2c4519489e82af2e418e1af967193363-main.scn",
+      "size_bytes": 1061
+    },
+    {
+      "expected_md5": "d88b069469ea5a4c0e7d005e1faf8f7f",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/exported/133200997/export-43e899c9519fa04c17dfeeb547c97851-finite_validation_mode_selector.scn",
+      "size_bytes": 2238
+    },
+    {
+      "expected_md5": "01e93035477f2fea85fa98276fb8dc16",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/exported/133200997/export-7d5ba432427f5771616e7b3e59c13ac1-finite_validation_launcher.scn",
+      "size_bytes": 1621
+    },
+    {
+      "expected_md5": "565cd255831559845b234a2b5e016c69",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/exported/133200997/export-7dbf6fcdecf4e79cb976b0da37713d3f-product_finite_slice.scn",
+      "size_bytes": 2370
+    },
+    {
+      "expected_md5": "b8e9249b4d671f1a685d73b84a772be0",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/exported/133200997/export-aa7a33ce97f722d055bf119947c7d21b-product_hud.scn",
+      "size_bytes": 8076
+    },
+    {
+      "expected_md5": "da7b454800b3e86e0df679232ac2a282",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/exported/133200997/export-b155b46758253e5615c7366cc977bea7-vertical_slice_demo.scn",
+      "size_bytes": 9284
+    },
+    {
+      "expected_md5": "854305e22843d6a0b11e65eb688dc2e2",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/exported/133200997/export-c1c94a561b279962c2fd8b72da301b36-finite_build_test.scn",
+      "size_bytes": 1217
+    },
+    {
+      "expected_md5": "a83d32067dbf7fa3182573af00636fc1",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/exported/133200997/export-cf11a9e96d60c160c9b318d46fdeeff6-finite_slice.scn",
+      "size_bytes": 1041
+    },
+    {
+      "expected_md5": "f69561f4dff59988aec8077a60ee64a3",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/global_script_class_cache.cfg",
+      "size_bytes": 18296
+    },
+    {
+      "expected_md5": "f7af92e49729e2fafbccd5b1244d7d9f",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/board_caution_track_overlay_v01.png-7263483ab93d357e90e3f37db0ef240c.ctex",
+      "size_bytes": 2004538
+    },
+    {
+      "expected_md5": "2a02bba4adce98bb9ef5f574bfc06694",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/board_caution_track_overlay_v02.png-b8e9c907e51e92241a11994afe7e1146.ctex",
+      "size_bytes": 1287190
+    },
+    {
+      "expected_md5": "163e4ce92f7ba6d6e2f3169400965110",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/board_decor_forest_cluster_v01.png-9588256a3bd441fb0aeb98ddf9b0a06f.ctex",
+      "size_bytes": 1116850
+    },
+    {
+      "expected_md5": "156f8a3221d3c92e28944c6391523f44",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/board_decor_forest_cluster_v02.png-7247a649047c10e184b61af4ca964ae1.ctex",
+      "size_bytes": 1281568
+    },
+    {
+      "expected_md5": "d75342effd6965b4baa414df201d4f21",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/board_decor_lantern_fence_v01.png-77d83a7255ed94e4360391851dd6ab87.ctex",
+      "size_bytes": 1011642
+    },
+    {
+      "expected_md5": "b152a91302aa64ae02a9a624fd2d2607",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/board_decor_lantern_fence_v02.png-fb7fd1667699fdbf0d2d57e7d84adcff.ctex",
+      "size_bytes": 874708
+    },
+    {
+      "expected_md5": "7e4cfa5c373e653b547dabe7cb7a310e",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/board_decor_moss_boulder_v01.png-1ae10034579c298804345ca1ddd4212d.ctex",
+      "size_bytes": 1362084
+    },
+    {
+      "expected_md5": "842fd2d53331b4028d57725d10164614",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/board_decor_moss_boulder_v02.png-fbb358df1bab62b0d7609ab7da236a66.ctex",
+      "size_bytes": 1387896
+    },
+    {
+      "expected_md5": "d1d6c46d9df78cd8b4687663aeee08d9",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/board_decor_timber_stack_v01.png-a4bdbe01dc6478ebb387f61d4de5d8f9.ctex",
+      "size_bytes": 964572
+    },
+    {
+      "expected_md5": "9a806a580cafb9d9f053905b4b7a0e77",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/board_decor_timber_stack_v02.png-b21eee5ba951317cda1eb7adec2c9fa8.ctex",
+      "size_bytes": 1192606
+    },
+    {
+      "expected_md5": "70ec37122a710310b2adf08712f4d406",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/board_decor_waterway_v01.png-a301d27ae0aca1f510c5830cfada6547.ctex",
+      "size_bytes": 1380268
+    },
+    {
+      "expected_md5": "268a515a55786efb9da37bb7ada5a813",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/board_decor_waterway_v02.png-c3c6c807c6db739d7627cfe6a3c5d3fc.ctex",
+      "size_bytes": 1407446
+    },
+    {
+      "expected_md5": "34d6f8ed159e95440a24dcbabcdf2204",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/board_slate.png-a72e585c50eb8ae58d5fd0d6ed806009.ctex",
+      "size_bytes": 2049972
+    },
+    {
+      "expected_md5": "2d7b80f6f509086a0e3d19e45cb13dad",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/board_terrain_playfield_v01.png-73e8d7d47c5e9f7661fbabb18525d898.ctex",
+      "size_bytes": 1860392
+    },
+    {
+      "expected_md5": "23c99f38e8e6a7311a8ef3f0dc4ab204",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/board_terrain_playfield_v02.png-31fda4deaedcce6c2489fe0c2d5cc5f9.ctex",
+      "size_bytes": 1920384
+    },
+    {
+      "expected_md5": "8eaa692cf02bf6e3a4ca40e3aea52506",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/build_cost_hud_baseline_v01.png-019b4bc9b5b5396d717db5064ff028e9.ctex",
+      "size_bytes": 284
+    },
+    {
+      "expected_md5": "8c0a65a7ffa40d07c1b970357de1d397",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/build_ghost_route_visible_v01.png-771dc23b761945b57d157c294d34808a.ctex",
+      "size_bytes": 216
+    },
+    {
+      "expected_md5": "c2973fe49f7a5d946d11ed55c66e3d4b",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/build_placement_invalid_overlay_v01.png-f68a5181e144d089ae7ac71b666b1fa8.ctex",
+      "size_bytes": 406
+    },
+    {
+      "expected_md5": "ae128fa8e9b7ab27c15d59b6742a25e1",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/build_placement_replacement_preview_overlay_v01.png-4d2c2bbbf20e4309d5e3ed50622c2e7b.ctex",
+      "size_bytes": 368
+    },
+    {
+      "expected_md5": "aa1eda0e1101c13660ce71f06a1d115b",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/build_placement_rotate_preview_overlay_v01.png-d2115369b5e216791ef38da6392dbd15.ctex",
+      "size_bytes": 476
+    },
+    {
+      "expected_md5": "3697b9c40f63ba0471f10093da9bc409",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/build_placement_valid_overlay_v01.png-d4f342a5d8f0330b2d21abf69731523b.ctex",
+      "size_bytes": 452
+    },
+    {
+      "expected_md5": "034e27c6fa37b7575c4c894f10ad0064",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/build_port_marker_left_v01.png-3a78d9f94d1aebeea5a86da5f152c7bf.ctex",
+      "size_bytes": 304
+    },
+    {
+      "expected_md5": "62f354c4a1738d4d63cadf9412b1edff",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/build_preflight_focused_location_marker_v01.png-e420239186d358d045681a6fedefa87f.ctex",
+      "size_bytes": 492
+    },
+    {
+      "expected_md5": "b3b5b6d67aefd4a77a60bd16e8099200",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/build_preflight_multi_issue_marker_v01.png-745b0c897f3a0fcfd6e548fbceffd052.ctex",
+      "size_bytes": 314
+    },
+    {
+      "expected_md5": "9251a176595a032c6a11016010b426b6",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/build_preflight_primary_issue_marker_v01.png-50b613d9056eb09c7ba8b8d0c9446e67.ctex",
+      "size_bytes": 264
+    },
+    {
+      "expected_md5": "f40032b0d97b6187b1586f36da8993a1",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/build_preflight_shell_v01.png-fbc7bfa757724b47a905658a79abbbbe.ctex",
+      "size_bytes": 284
+    },
+    {
+      "expected_md5": "ce23b324b3d6714f1420a4e38e4764ac",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/build_track_curve_valid_ghost_v01.png-91cae6e475b300c778f73819a37a8a00.ctex",
+      "size_bytes": 456
+    },
+    {
+      "expected_md5": "dc7c4b2d4094164cc86c1823f6677678",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/build_track_straight_invalid_ghost_v01.png-edb7ae88c63c556c4c7dfad166696c5b.ctex",
+      "size_bytes": 304
+    },
+    {
+      "expected_md5": "acbab811043c268694fe5a737b08eb31",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/build_track_straight_valid_ghost_v01.png-5a20b4114fdd95c5af164be8bf71af29.ctex",
+      "size_bytes": 344
+    },
+    {
+      "expected_md5": "4c925a5b56be6a0075c4d1789db4beec",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/cargo_blue.png-aa50ee84e9d1038583774434a251195b.ctex",
+      "size_bytes": 136522
+    },
+    {
+      "expected_md5": "0a7a3daba46b914895612ba8942cadbc",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/cargo_blue.png-c92d997d7cc04f3241bc1884fae26908.ctex",
+      "size_bytes": 1284206
+    },
+    {
+      "expected_md5": "de9f8ae62860dd0b77217c22e640df89",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/cargo_lift.png-e45da5672367365f3db3a51ff1b55d51.ctex",
+      "size_bytes": 541742
+    },
+    {
+      "expected_md5": "ed2e85b134394b086edcdbdc17278452",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/cargo_red.png-8f980896c9e892cc5d9e392f00520e39.ctex",
+      "size_bytes": 1476342
+    },
+    {
+      "expected_md5": "f060ad9c8d06366792d99fba38428047",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/cargo_waste.png-24255b2a2ac0b8853382c79c33e8a148.ctex",
+      "size_bytes": 1161992
+    },
+    {
+      "expected_md5": "122318df19b7f4b098d83998390e940a",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/cargo_yellow.png-4e3c689490f84c8ea8c58aa1d2580f1c.ctex",
+      "size_bytes": 1580884
+    },
+    {
+      "expected_md5": "572f9ac43265a3b28ba47c7334c30407",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_cargo_star_blue_normal_v01.png-18589d005270b5b1fcd5efdfa5c36e7f.ctex",
+      "size_bytes": 380
+    },
+    {
+      "expected_md5": "08d09a921f48b516eccadabce89ca2c6",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_cargo_star_blue_normal_v02.png-fd12ffe2d92f36b02a25933cd2a94ba1.ctex",
+      "size_bytes": 5384
+    },
+    {
+      "expected_md5": "fb10f38ef1d6d6e33ed80b0f93f05dab",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_cargo_star_red_normal_v01.png-c7283dcf793e253f848b31bbab8a0c19.ctex",
+      "size_bytes": 384
+    },
+    {
+      "expected_md5": "c652c6a5cbeb7d4c13dbbbd1dcfa1497",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_cargo_star_red_normal_v02.png-24f14f15468de7417ecac71b7be37958.ctex",
+      "size_bytes": 5736
+    },
+    {
+      "expected_md5": "8b352c3874c4c9e8f82eca3554642ba0",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_cargo_star_yellow_normal_v01.png-714bbec796800472d920273c4cc506ff.ctex",
+      "size_bytes": 384
+    },
+    {
+      "expected_md5": "f6f0b16d17b6900951866f27393ec6bc",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_cargo_star_yellow_normal_v02.png-01d92c65e65b542adbf7a664ab06688d.ctex",
+      "size_bytes": 6214
+    },
+    {
+      "expected_md5": "6ec18a4ea34c0c68037a920e7b0eb57d",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_cargo_waste_crate_normal_v01.png-40551342050f94f3299df90a3133727d.ctex",
+      "size_bytes": 720444
+    },
+    {
+      "expected_md5": "499dc86dd6996d61c058dcb7838f3063",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_cargo_waste_crate_normal_v02.png-03b8289eecb0228fca4f98d5ef598a6f.ctex",
+      "size_bytes": 1232936
+    },
+    {
+      "expected_md5": "de42fcb22abac217d2f32223355a615a",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_disposal_yard_normal_v01.png-afe0552d3c8cd1b51274996da8588247.ctex",
+      "size_bytes": 1950498
+    },
+    {
+      "expected_md5": "cc2db52e28697e14c2a3f4084914b452",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_disposal_yard_normal_v02.png-94d91c5537cb09bb1901cf847537730c.ctex",
+      "size_bytes": 1548972
+    },
+    {
+      "expected_md5": "06120ede7ad14ab3bb24542d2f6fe622",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_marker_route_end_normal_v01.png-a1ffefe86bb22f97eb02e557bd7ac4ff.ctex",
+      "size_bytes": 424
+    },
+    {
+      "expected_md5": "acdd26f3ce65ff78117fd19ddfd92046",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_marker_route_end_normal_v02.png-5409675b3fdcc259a99427ea277c4137.ctex",
+      "size_bytes": 4418
+    },
+    {
+      "expected_md5": "86bff3a4d15d5fb79d8e2a582d5712db",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_marker_start_normal_v01.png-2143f6eb8177a2af0019ee4bef9206b8.ctex",
+      "size_bytes": 434
+    },
+    {
+      "expected_md5": "700a0eb398a256385fec37626ff8d885",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_marker_start_normal_v02.png-ba8c1564cf02a6478b8c3db874c65a0c.ctex",
+      "size_bytes": 4552
+    },
+    {
+      "expected_md5": "14c6140e3d1b4dfb1dd5b744221a92fa",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_rail_crossing_normal_v01.png-115c5d8be2fa23208664c1824b9e3c00.ctex",
+      "size_bytes": 474
+    },
+    {
+      "expected_md5": "c2fa2eba160d38cc17a2c19c24663c01",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_rail_crossing_normal_v02.png-8cbe3373f9dfcbcc88aa896d58699a9b.ctex",
+      "size_bytes": 5584
+    },
+    {
+      "expected_md5": "e8b9fc264dc7fd37c7adf9dfb1d59899",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_rail_crossing_normal_v03.png-471aee0bfe636ae1639c45492eeecbc1.ctex",
+      "size_bytes": 7984
+    },
+    {
+      "expected_md5": "83a7f8fd7fbec14273369476159177f8",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_rail_crossing_normal_v04.png-a8c3609ab3a89ac3616a30d20acae855.ctex",
+      "size_bytes": 8216
+    },
+    {
+      "expected_md5": "79cc7249a99ab4831e91986c81c6903e",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_rail_curve_normal_v01.png-0c4048c44be0b26b023c067a2b39e03f.ctex",
+      "size_bytes": 404
+    },
+    {
+      "expected_md5": "82bd9fdc36a5cc0b5d257e8bd581c698",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_rail_curve_normal_v02.png-e90d2db0b26b28b5072075ecb34464b3.ctex",
+      "size_bytes": 2546
+    },
+    {
+      "expected_md5": "d87d5864f501f6c531da797f694d529e",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_rail_curve_normal_v03.png-8a7c29376f105753cd2f4e6c6d876c3b.ctex",
+      "size_bytes": 5546
+    },
+    {
+      "expected_md5": "532483431db4495819c8364dcc04df8a",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_rail_curve_normal_v04.png-e9a13f91756430e98daf211b69ebb87e.ctex",
+      "size_bytes": 5136
+    },
+    {
+      "expected_md5": "07d1b0048684f78bec4a8855f36f2020",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_rail_straight_normal_v01.png-24cb3af5c2246bc96d926d922e2ca613.ctex",
+      "size_bytes": 310
+    },
+    {
+      "expected_md5": "8cf98b9bf92bb28d480faa5e139f91b5",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_rail_straight_normal_v02.png-d7a65f266f317c91bc444fd88cb0dd4a.ctex",
+      "size_bytes": 3070
+    },
+    {
+      "expected_md5": "757b852f36e0b76bfaf88ba0e3167610",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_rail_straight_normal_v03.png-f8326a022cc98ad122fb73893206f624.ctex",
+      "size_bytes": 4856
+    },
+    {
+      "expected_md5": "f14a326b7187a001a2c954e6a5d3718b",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_rail_straight_normal_v04.png-23c194b9c70e7545a3c136255f9b96cc.ctex",
+      "size_bytes": 5330
+    },
+    {
+      "expected_md5": "522dee5a5f19bbf0b893bc5cb25bfcd1",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_rail_switch_three_way_normal_v01.png-bf0bb547532c603db30a16e659b87dda.ctex",
+      "size_bytes": 2290
+    },
+    {
+      "expected_md5": "0a94902cfd58687b53ef819e8fb7eeb3",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_rail_switch_three_way_normal_v02.png-e4fe9bbccc6c993029e93dac48e2e9f8.ctex",
+      "size_bytes": 5796
+    },
+    {
+      "expected_md5": "e39b8891a5da67e97656e53c971cce92",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_rail_switch_three_way_normal_v03.png-adebefc0f1aeb0a9cb57a534b4ecee8a.ctex",
+      "size_bytes": 6106
+    },
+    {
+      "expected_md5": "295757ea210635782a0a07b8dfe20b3c",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_rail_switch_three_way_normal_v04.png-80793491ff048bfeff6ea0e0ed36021b.ctex",
+      "size_bytes": 7070
+    },
+    {
+      "expected_md5": "d331136c59d1ff61f9e0dac67a6e42fc",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_station_blue_normal_v01.png-3f29671033e37c95914ecbe022811abe.ctex",
+      "size_bytes": 386
+    },
+    {
+      "expected_md5": "35ddb7c949abd073d68782474a61aabb",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_station_blue_normal_v02.png-4d82baeca03541889eacd0c1ce8ca534.ctex",
+      "size_bytes": 6960
+    },
+    {
+      "expected_md5": "6f9b73f887c137bc633da45dbf2f6482",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_station_red_normal_v01.png-fa30b72f527a2360d9255b68d6c09e95.ctex",
+      "size_bytes": 1748
+    },
+    {
+      "expected_md5": "d8093f3d3e470ab92e3ac94faa2ce14d",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_station_red_normal_v02.png-479f31380d60a69a516009cc3de476df.ctex",
+      "size_bytes": 8322
+    },
+    {
+      "expected_md5": "8b0f770f89a96dc0d8d9d90f1a994212",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_station_yellow_normal_v01.png-60925af39d95ed2bfaedcdc0c8e931a1.ctex",
+      "size_bytes": 1788
+    },
+    {
+      "expected_md5": "ecbd008f428d34db799afb0e7d4e44b3",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_station_yellow_normal_v02.png-b2c2aa7b3856d60836dc2b55c16e678c.ctex",
+      "size_bytes": 7616
+    },
+    {
+      "expected_md5": "a8239209af260cb5dca5831f5ec4db96",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_train_locomotive_blue_normal_v01.png-a3bb6c7ab2b3dd6838818ffb044680d6.ctex",
+      "size_bytes": 992
+    },
+    {
+      "expected_md5": "d264b0fda719596393fcb04163049570",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_train_locomotive_blue_normal_v02.png-ca0d2fd1149ffa8e9d1ecde2b3f7d76d.ctex",
+      "size_bytes": 11688
+    },
+    {
+      "expected_md5": "727096b6165252d236305b3724226d9d",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_wagon_cargo_blue_normal_v02.png-009222dbd6b523e168348a7c35b1a30d.ctex",
+      "size_bytes": 9390
+    },
+    {
+      "expected_md5": "540db191d6250f7214799d17286810aa",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_wagon_cargo_red_normal_v02.png-3de0f94aa28da9130491c68c3eb79435.ctex",
+      "size_bytes": 8466
+    },
+    {
+      "expected_md5": "a2d8c641d752c55082843eb8ac7862eb",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/core_wagon_cargo_yellow_normal_v02.png-02b44ec084acca8da06f8547917a913b.ctex",
+      "size_bytes": 8648
+    },
+    {
+      "expected_md5": "dab16db1f0e3f30532d6157aeeb6fc1d",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/cormorant-italic.woff2-c29b5822a2390ab750e4c8bab7341247.fontdata",
+      "size_bytes": 24609
+    },
+    {
+      "expected_md5": "5dec9cf6adcf79d929a7b0b6c76aa73a",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/decoration_forest_cluster.png-61aacfc9b1b0fde84efa013390bdead6.ctex",
+      "size_bytes": 1477022
+    },
+    {
+      "expected_md5": "4f404443dcabc7a75eb9919c53bf9272",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/decoration_lantern_fence.png-d1560a8e13a26cdfbd825704eb5b247b.ctex",
+      "size_bytes": 297102
+    },
+    {
+      "expected_md5": "50f3a71b96f1f0b9ac84d12e09d811e4",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/decoration_moss_boulder.png-cf6ed21e6f801bce1c97f57fc93de3ef.ctex",
+      "size_bytes": 1304536
+    },
+    {
+      "expected_md5": "3e95dcb59efe90bc505f5af9bc715cfb",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/decoration_timber_stack.png-2a7f61a84625c48c5d5b99471116614b.ctex",
+      "size_bytes": 957444
+    },
+    {
+      "expected_md5": "ab0f063993ddb560e491f4a78ebd1cc8",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/decoration_waterway.png-a0fab3fd2cd46a37d377b90afa8fda64.ctex",
+      "size_bytes": 913244
+    },
+    {
+      "expected_md5": "b16e4312f9b3d1f9545ede2a84162846",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/meta_progress_states_v01.png-cab8e650d365a510f6781df28fb31055.ctex",
+      "size_bytes": 1352
+    },
+    {
+      "expected_md5": "5bed1f8ca19d2b3e8f7d04029ed33af8",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_combo_feedback_static_v01.png-b70093657be0ecf1a724bbef5147182a.ctex",
+      "size_bytes": 1852
+    },
+    {
+      "expected_md5": "4b4ba73dbeb56f324244de18e2d7168a",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_load_mode_auto_marker_v01.png-4860977adc5cdc8522ca399d30e92b34.ctex",
+      "size_bytes": 344
+    },
+    {
+      "expected_md5": "ad58c796a32b743c9d4c06dfbb35a23e",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_load_mode_disabled_overlay_v01.png-b3cceb7b28b904c79f5448de933ad409.ctex",
+      "size_bytes": 320
+    },
+    {
+      "expected_md5": "eb5082ccb41bfc2fad6befc9598a991d",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_load_mode_held_marker_v01.png-1a84a33a6c19b817b1752927d72c5436.ctex",
+      "size_bytes": 242
+    },
+    {
+      "expected_md5": "9d3efe4c61568cbc051168cd390c476e",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_load_mode_input_received_v01.png-4c8a1b84ee337864f508183711eb2531.ctex",
+      "size_bytes": 404
+    },
+    {
+      "expected_md5": "702d327c1fad971859256a6b2ae223ce",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_load_mode_manual_marker_v01.png-0a404d13772f88c4e10f130d727697c8.ctex",
+      "size_bytes": 230
+    },
+    {
+      "expected_md5": "16b739206062d870bcf212bca15b8a8d",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_load_mode_off_marker_v01.png-28afaecd914dee8318cf32cde3530da0.ctex",
+      "size_bytes": 346
+    },
+    {
+      "expected_md5": "548cd894aa97db5a039ac2ea162ad82c",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_load_mode_on_marker_v01.png-007689f091d2e089e981efcb9115b95f.ctex",
+      "size_bytes": 282
+    },
+    {
+      "expected_md5": "282a7b65c9a0fa19fc50782ec9172729",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_load_mode_shell_v01.png-a3fe6d208599412ae9ebe8ec6fcd19bc.ctex",
+      "size_bytes": 228
+    },
+    {
+      "expected_md5": "e9a4b4f229ffd30eb8077c1a8b4cc20f",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_stack_16plus_v01.png-bf5eba00a69c2a27f6f5d74181022412.ctex",
+      "size_bytes": 288
+    },
+    {
+      "expected_md5": "bc2934296383f953ff5fc5d113529e8f",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_stack_32plus_v01.png-4c927004d520cd0c24d2394a20c1518c.ctex",
+      "size_bytes": 282
+    },
+    {
+      "expected_md5": "3b8ec6d885922e8766a7183832e26f5c",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_stack_8plus_v01.png-4a8a9dbc16208981e96188d84e0025ec.ctex",
+      "size_bytes": 290
+    },
+    {
+      "expected_md5": "69c7ee280f8d383e8b174e8de985a37d",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_stack_compact_v01.png-48a448ec06d305d87e443d5c949e717f.ctex",
+      "size_bytes": 252
+    },
+    {
+      "expected_md5": "678b05fb710bb61fe224496a311a5427",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_stack_empty_v01.png-f2005f2c026b0d2df5a99c472f396362.ctex",
+      "size_bytes": 262
+    },
+    {
+      "expected_md5": "7e1d0b50ce05039927edc7405ff4c1d2",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_stack_paused_v01.png-f83cdc12b086d7deb4e69201d866a8b6.ctex",
+      "size_bytes": 290
+    },
+    {
+      "expected_md5": "e27a9162cb02c23310a16e007c9eda3a",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_stack_top_highlight_v01.png-e13f56aa61c9d34f2d46c39eb93f81ad.ctex",
+      "size_bytes": 418
+    },
+    {
+      "expected_md5": "c7dd049bffb354340aa6ddff2c1d6f83",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_stack_unload_group_v01.png-d95fef5a0a1c2e9a974d3d12f8c797af.ctex",
+      "size_bytes": 272
+    },
+    {
+      "expected_md5": "7be566d3f581f56ea0a7fd7902caef82",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_stack_unloading_v01.png-efe1e51dd01ffa9bf80795124cee1e27.ctex",
+      "size_bytes": 346
+    },
+    {
+      "expected_md5": "0f6a0a19ec382c7f31e862f78af6c53a",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_switch_arrow_left_selected_v01.png-d74722953af1b87a555849b929d359e4.ctex",
+      "size_bytes": 660
+    },
+    {
+      "expected_md5": "c85e98847472335082d518131a15d21c",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_switch_locked_v01.png-88490575255102c15f449f886526e77b.ctex",
+      "size_bytes": 560
+    },
+    {
+      "expected_md5": "790cfaebe8442e51e10239ddc53852c2",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_switch_state_inactive_overlay_v01.png-07243e7d05e82cbec7df0a27ea88737f.ctex",
+      "size_bytes": 326
+    },
+    {
+      "expected_md5": "a02cbf7a531e2739d86730a7aede7001",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_switch_state_occupied_locked_overlay_v01.png-a9f9c563dddbd4db4cb0a660f94ebd3c.ctex",
+      "size_bytes": 384
+    },
+    {
+      "expected_md5": "031fd07ff1aa9c4fcc7b0b64671b75a2",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_switch_state_selected_overlay_v01.png-b6ca84bb4eaa8b78b76b7fefe922fd49.ctex",
+      "size_bytes": 266
+    },
+    {
+      "expected_md5": "c809553d237adb08c8a03cb687389788",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_switch_state_unselected_overlay_v01.png-b159e0f4ee93827d81f608f4635ed15f.ctex",
+      "size_bytes": 324
+    },
+    {
+      "expected_md5": "696cdd7115fbb64cac3b722db3c1f496",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_train_cargo_strip_plus_badge_v01.png-49546bd334431ff73c4cebdce78446e5.ctex",
+      "size_bytes": 190
+    },
+    {
+      "expected_md5": "125df62df216b58680594d21434813f9",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_train_cargo_strip_shell_v01.png-281b476c1ef9e34e86ef87de919f8a2a.ctex",
+      "size_bytes": 272
+    },
+    {
+      "expected_md5": "5f3aba05b6e17f121b17a13d79e58a18",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/run_train_cargo_strip_unload_transition_v01.png-91043627233b9487ea8588e9964aded5.ctex",
+      "size_bytes": 306
+    },
+    {
+      "expected_md5": "816ca2384f6818949e2cc022699c0485",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/shell_lesson_hero_v01.png-a250efa739484d8bfe8137ec47b7ddc9.ctex",
+      "size_bytes": 1901616
+    },
+    {
+      "expected_md5": "4c48ee2f94e58de0aaa2ce91c35369bd",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/shell_lesson_hero_v02.png-c94d92ec48aa7b4c11e7a95ef93cd54e.ctex",
+      "size_bytes": 1984312
+    },
+    {
+      "expected_md5": "f1bc5df2971fd40b2d44b9384ed4841c",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/shell_result_failure_candidate_v01.png-8ecc1daae74bb940c0776c0957982f2c.ctex",
+      "size_bytes": 1332
+    },
+    {
+      "expected_md5": "a7c032b6688595a8c8e12c3405adf2b9",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/shell_result_failure_v02.png-0af9a4504d147706981d9f89c9da0296.ctex",
+      "size_bytes": 1563476
+    },
+    {
+      "expected_md5": "745a5ce045626126e090c8fa029711ec",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/shell_result_success_candidate_v01.png-388e80118194db67108bd2d80290f5af.ctex",
+      "size_bytes": 998
+    },
+    {
+      "expected_md5": "ccd2ccf8eafcd3a85f34ebda4a1c7575",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/shell_result_success_v02.png-bd17d3fd0744fd62afe9d4438bf19672.ctex",
+      "size_bytes": 1753300
+    },
+    {
+      "expected_md5": "6866eb5110eb2c5a57dd95f472761734",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/shell_title_hero_v01.png-def9917efaae8d84f03f59b5ae65ebcf.ctex",
+      "size_bytes": 1453266
+    },
+    {
+      "expected_md5": "129447279298befe0ba2deb837bd6583",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/shell_title_wordmark_switchy_express_candidate_v01.png-dddbc61b1e6352d16a761c11fed67b5e.ctex",
+      "size_bytes": 1496028
+    },
+    {
+      "expected_md5": "bbc7a5624bcdbfd82c20b9ca457b577e",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/station_blue.png-6fb7300d729e31da6db1f2fe43cde103.ctex",
+      "size_bytes": 1226218
+    },
+    {
+      "expected_md5": "b25c8e93f3c1511ad3e3587f056a8ee0",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/station_blue.png-8935cad3ce293dc9b72d3e9aa772d7b7.ctex",
+      "size_bytes": 751834
+    },
+    {
+      "expected_md5": "59352f12819bf62955da1b59bf1c5715",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/station_disposal.png-ab2ca0d37e038daad2dead94bf6e3f44.ctex",
+      "size_bytes": 1146646
+    },
+    {
+      "expected_md5": "8271d97fc1cfc10662433f1d192a5f8f",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/station_red.png-f31d99dc2b0538476caacbcfc21dbfd8.ctex",
+      "size_bytes": 1071682
+    },
+    {
+      "expected_md5": "0121fa0641ceba87cf0aee264c057fc3",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/station_yellow.png-fa89ccd97a2f16ec07deaa16a4736c8e.ctex",
+      "size_bytes": 1186502
+    },
+    {
+      "expected_md5": "d92fa17c453848432630ec59bdeac6ce",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/train.png-21a303faa2a4169400d4deaf6629c965.ctex",
+      "size_bytes": 495608
+    },
+    {
+      "expected_md5": "c1ec2fe604957750a1613270cbb7fa96",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/ui_button_frame_square_blue_disabled_v01.png-c0ab0995f52ba3a9912b9ff6f6a25be5.ctex",
+      "size_bytes": 382
+    },
+    {
+      "expected_md5": "6b08f9f3c9b272afd076c0222b163a96",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/ui_button_frame_square_blue_focus_v01.png-01923fe8cf9eb7d02f80632908f892f7.ctex",
+      "size_bytes": 352
+    },
+    {
+      "expected_md5": "d7caf15edb88dff8f1a06d0e3644a6b1",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/ui_button_frame_square_blue_hover_v01.png-d8436fe7690579553c641b91e942583d.ctex",
+      "size_bytes": 312
+    },
+    {
+      "expected_md5": "fac62604c04c1e9a641388db829ee6e5",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/ui_button_frame_square_blue_locked_v01.png-a1ccb2455b90c60d710f5f5d1c722994.ctex",
+      "size_bytes": 392
+    },
+    {
+      "expected_md5": "ad1afcbf928e55a1e90ec570ec798dee",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/ui_button_frame_square_blue_normal_v01.png-562aaa689c2929dc2fa8d72b07b91fd3.ctex",
+      "size_bytes": 462
+    },
+    {
+      "expected_md5": "2ca7769ba900b5ee023d6769eb78b2bd",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/ui_button_frame_square_blue_pressed_v01.png-c3f7dbf9180d97fb7d91e651ad245768.ctex",
+      "size_bytes": 354
+    },
+    {
+      "expected_md5": "05750d2570fc1e104b72c553c762c500",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/ui_button_frame_square_blue_selected_v01.png-9c7ff293933acf99153de913294c140f.ctex",
+      "size_bytes": 408
+    },
+    {
+      "expected_md5": "4d78b910326f98694017395f39c3ca84",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/vfx_cargo_pickup_feedback_v01.png-fd5638dbbe6b68638588c1fed763bca4.ctex",
+      "size_bytes": 524
+    },
+    {
+      "expected_md5": "9bf2804b6d70b9817f291e1c37388ffe",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/vfx_cargo_unload_feedback_v01.png-7e90e804491c9265b1645f285d3757ec.ctex",
+      "size_bytes": 514
+    },
+    {
+      "expected_md5": "06732bc382cf2e956c60776c62e6a014",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/vfx_failure_feedback_v01.png-a92ddc9ec66e5d83444b68d18d8f222c.ctex",
+      "size_bytes": 336
+    },
+    {
+      "expected_md5": "ae2849a78530c817054025332ff29ef0",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/vfx_route_end_feedback_v01.png-d0ed7e43375b7e790d4fd68798a501c7.ctex",
+      "size_bytes": 438
+    },
+    {
+      "expected_md5": "d833b0753e6f7f3fce06c22299ee97c4",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/vfx_success_feedback_v01.png-1d2b4f1cc8e4218659cd7821d8f64538.ctex",
+      "size_bytes": 454
+    },
+    {
+      "expected_md5": "916e7ab32e21854df6d6ff9d40d7e7fe",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/imported/vfx_time_expired_feedback_v01.png-124e8cbb6631408a3e4061291c1d8deb.ctex",
+      "size_bytes": 528
+    },
+    {
+      "expected_md5": "caf8017516f349f126e18f7f4d768b56",
+      "integrity_status": "VERIFIED",
+      "path": ".godot/uid_cache.bin",
+      "size_bytes": 20334
+    },
+    {
+      "expected_md5": "3f32899ad6b13487423f14f2c91e97c1",
+      "integrity_status": "VERIFIED",
+      "path": ".gutconfig.json",
+      "size_bytes": 307
+    },
+    {
+      "expected_md5": "46fd51442505c3ade64ac2233339f478",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/assets/fonts/cormorant-italic.woff2.import",
+      "size_bytes": 175
+    },
+    {
+      "expected_md5": "700ec084ddd5da8d7fcd7950e54889c7",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/core/game_feel_guide.gd.remap",
+      "size_bytes": 71
+    },
+    {
+      "expected_md5": "f5ba0d4a2da8923f460a0afa3a62d429",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/core/game_feel_guide.gdc",
+      "size_bytes": 1448
+    },
+    {
+      "expected_md5": "24aa2645c3eb86374029d8e82140b0c6",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/core/hera_settings.gd.remap",
+      "size_bytes": 69
+    },
+    {
+      "expected_md5": "b893140e3c3ca7caf2bcf8ec1275342d",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/core/hera_settings.gdc",
+      "size_bytes": 900
+    },
+    {
+      "expected_md5": "84b1b2b4a9eeeb6d5527b56f8b4670a0",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/core/main_screen_panel.gd.remap",
+      "size_bytes": 73
+    },
+    {
+      "expected_md5": "b418d5a018c02075073824d375967ea6",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/core/main_screen_panel.gdc",
+      "size_bytes": 8484
+    },
+    {
+      "expected_md5": "7c11f927d8507b1f337915e475fe051f",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/core/tool_registry.gd.remap",
+      "size_bytes": 69
+    },
+    {
+      "expected_md5": "563936f4964a00bc6cf0a95d45de4502",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/core/tool_registry.gdc",
+      "size_bytes": 468
+    },
+    {
+      "expected_md5": "72e4d098a4abb9a4d3cf655433a16fe7",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/core/tool_response.gd.remap",
+      "size_bytes": 69
+    },
+    {
+      "expected_md5": "f5d5b84c63000fdd57e7791330920945",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/core/tool_response.gdc",
+      "size_bytes": 349
+    },
+    {
+      "expected_md5": "2c30bf7292b5837d17c84f543e18216a",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/hera_agent_plugin.gd.remap",
+      "size_bytes": 68
+    },
+    {
+      "expected_md5": "5c7d97308971981afd1b9ebc3941508a",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/hera_agent_plugin.gdc",
+      "size_bytes": 6460
+    },
+    {
+      "expected_md5": "616c3651c4ae711556fd80ec6f0c3348",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/runtime/game_assertions.gd.remap",
+      "size_bytes": 74
+    },
+    {
+      "expected_md5": "3c791c13da12273124fc8035ed4f4004",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/runtime/game_assertions.gdc",
+      "size_bytes": 1585
+    },
+    {
+      "expected_md5": "d9d3468b42b58d9fee9fc185be0b8395",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/runtime/game_image_analyzer.gd.remap",
+      "size_bytes": 78
+    },
+    {
+      "expected_md5": "d83ce83442288ee361c114b816ad77cf",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/runtime/game_image_analyzer.gdc",
+      "size_bytes": 3459
+    },
+    {
+      "expected_md5": "1a3c1219229dc30312f4fb2e41d2ee53",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/runtime/game_inspector.gd.remap",
+      "size_bytes": 73
+    },
+    {
+      "expected_md5": "15a025a1906ed7064ab5f135337018f4",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/runtime/game_inspector.gdc",
+      "size_bytes": 17400
+    },
+    {
+      "expected_md5": "b19edeade356cac1c423ed21c8549ef7",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/runtime/game_tree_inspector.gd.remap",
+      "size_bytes": 78
+    },
+    {
+      "expected_md5": "26309e6a3240ef829d3b910aef8792d6",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/runtime/game_tree_inspector.gdc",
+      "size_bytes": 831
+    },
+    {
+      "expected_md5": "49126b3c98d9351a3875038401d2c6a3",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/runtime/game_ui_inspector.gd.remap",
+      "size_bytes": 76
+    },
+    {
+      "expected_md5": "d03138110b33c7a83e63ca4a950c3f73",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/runtime/game_ui_inspector.gdc",
+      "size_bytes": 5761
+    },
+    {
+      "expected_md5": "74360dee901ba6e809f18809361353f0",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/runtime/game_value_codec.gd.remap",
+      "size_bytes": 75
+    },
+    {
+      "expected_md5": "fbe47c4982481b24bbf8a1723a99fd79",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/runtime/game_value_codec.gdc",
+      "size_bytes": 7176
+    },
+    {
+      "expected_md5": "e9d16ede5ed42d24c9ab2e90b2bef3d9",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/runtime/game_viewport_actions.gd.remap",
+      "size_bytes": 80
+    },
+    {
+      "expected_md5": "9d90363cb53f99bf34781067977d60f9",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/runtime/game_viewport_actions.gdc",
+      "size_bytes": 8216
+    },
+    {
+      "expected_md5": "77d548640b2c58ea56bf9ffa121a4143",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/server/heartbeat.gd.remap",
+      "size_bytes": 67
+    },
+    {
+      "expected_md5": "ca2dd6a963561e80a2092e043748f2f1",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/server/heartbeat.gdc",
+      "size_bytes": 2106
+    },
+    {
+      "expected_md5": "85685a886c5120cfb9ba0724bc6ee298",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/server/http_server.gd.remap",
+      "size_bytes": 69
+    },
+    {
+      "expected_md5": "7b3668bcc243761784e38e6dc4f7f88a",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/server/http_server.gdc",
+      "size_bytes": 5616
+    },
+    {
+      "expected_md5": "b0ecaa55e36f594fd8e9c322b467cb38",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/server/work_queue.gd.remap",
+      "size_bytes": 68
+    },
+    {
+      "expected_md5": "cf4ba882ee0b34175b340c943f597212",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/server/work_queue.gdc",
+      "size_bytes": 313
+    },
+    {
+      "expected_md5": "b5e63d2cac21f18502ad81f642a8755f",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/batch_tool.gd.remap",
+      "size_bytes": 67
+    },
+    {
+      "expected_md5": "05d3cb433c66d0a5ee90c275241affb8",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/batch_tool.gdc",
+      "size_bytes": 1743
+    },
+    {
+      "expected_md5": "418b250f67ccef68018e7c1173a8230f",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/classdb_tool.gd.remap",
+      "size_bytes": 69
+    },
+    {
+      "expected_md5": "63772cc7c06a8ed9058f1dbb203443f8",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/classdb_tool.gdc",
+      "size_bytes": 4977
+    },
+    {
+      "expected_md5": "4e040d1815c6f703fee2c93ee7844763",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/diagnostics_tool.gd.remap",
+      "size_bytes": 73
+    },
+    {
+      "expected_md5": "d96522953a60e486fe0f71174bbafb32",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/diagnostics_tool.gdc",
+      "size_bytes": 1970
+    },
+    {
+      "expected_md5": "e5d55925bf243a155741811ad7c06796",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/editor_tool.gd.remap",
+      "size_bytes": 68
+    },
+    {
+      "expected_md5": "b686235cb103eb140e61125d7013d9d2",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/editor_tool.gdc",
+      "size_bytes": 3439
+    },
+    {
+      "expected_md5": "017dd08dea5609bd68f2602bad931c1b",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/eval_tool.gd.remap",
+      "size_bytes": 66
+    },
+    {
+      "expected_md5": "c12e827aee0f6b79a4fe567ce0b36615",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/eval_tool.gdc",
+      "size_bytes": 1475
+    },
+    {
+      "expected_md5": "fb4f684f83105fe5e716a8324ecb7019",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/game_feel_tool.gd.remap",
+      "size_bytes": 71
+    },
+    {
+      "expected_md5": "f288bee5f7ee8ea9fc258569054a8068",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/game_feel_tool.gdc",
+      "size_bytes": 4000
+    },
+    {
+      "expected_md5": "6a213df2d0488d2c3956ee25692be27d",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/game_tool.gd.remap",
+      "size_bytes": 66
+    },
+    {
+      "expected_md5": "3e394c5296bd9586a41defd0be308862",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/game_tool.gdc",
+      "size_bytes": 5461
+    },
+    {
+      "expected_md5": "915666542ad30ca5dc45f44291fc16ec",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/guidance_tool.gd.remap",
+      "size_bytes": 70
+    },
+    {
+      "expected_md5": "9e26d923d203af5aafb868fb2e77b970",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/guidance_tool.gdc",
+      "size_bytes": 4683
+    },
+    {
+      "expected_md5": "098a86f09d3a269194cf9799d56eb114",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/mesh_library_exporter.gd.remap",
+      "size_bytes": 78
+    },
+    {
+      "expected_md5": "f92271a86b4a3ad81b7f28e577c8ecfc",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/mesh_library_exporter.gdc",
+      "size_bytes": 2944
+    },
+    {
+      "expected_md5": "f3ff2eed3e49749b151b2843c4b505dd",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/node_scene_instancer.gd.remap",
+      "size_bytes": 77
+    },
+    {
+      "expected_md5": "a3ddf149acaa14533032e243c2431b89",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/node_scene_instancer.gdc",
+      "size_bytes": 2218
+    },
+    {
+      "expected_md5": "7d9378370f841e7184bd66a113db55b4",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/node_tool.gd.remap",
+      "size_bytes": 66
+    },
+    {
+      "expected_md5": "2ab76586b9365055f6c86a6d225769ed",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/node_tool.gdc",
+      "size_bytes": 9251
+    },
+    {
+      "expected_md5": "defa83e4ff66c7c4c554ad603da44ba4",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/node_value_codec.gd.remap",
+      "size_bytes": 73
+    },
+    {
+      "expected_md5": "6494bf9e2151d477f63d9f0f0a9e4e14",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/node_value_codec.gdc",
+      "size_bytes": 4006
+    },
+    {
+      "expected_md5": "4df5066d6d62bea3148d7ecd9bb39b7b",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/output_tool.gd.remap",
+      "size_bytes": 68
+    },
+    {
+      "expected_md5": "42b9ac350ef7676e7bb612bb34de34d5",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/output_tool.gdc",
+      "size_bytes": 1895
+    },
+    {
+      "expected_md5": "55976e1e3c1dfae75ba1b31ebc99337f",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/project_path_safety.gd.remap",
+      "size_bytes": 76
+    },
+    {
+      "expected_md5": "81dd97269636f7d56456f7ebe5c40134",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/project_path_safety.gdc",
+      "size_bytes": 458
+    },
+    {
+      "expected_md5": "2377c7bb605f00d3fd3d011f156f88e7",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/project_tool.gd.remap",
+      "size_bytes": 69
+    },
+    {
+      "expected_md5": "b2cfa431f60a1db9ddcf7da920584a3c",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/project_tool.gdc",
+      "size_bytes": 6492
+    },
+    {
+      "expected_md5": "15d284d9ac601ae62eba3baa510e71b7",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/resource_lister.gd.remap",
+      "size_bytes": 72
+    },
+    {
+      "expected_md5": "01a9237b1ad0b5c2363e08f3a413e3c1",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/resource_lister.gdc",
+      "size_bytes": 2659
+    },
+    {
+      "expected_md5": "6d3d7d311e720408d9e01055fbff52fb",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/resource_tool.gd.remap",
+      "size_bytes": 70
+    },
+    {
+      "expected_md5": "35b72bd126ab2fa788bc00e20d3fbcac",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/resource_tool.gdc",
+      "size_bytes": 7747
+    },
+    {
+      "expected_md5": "437de44bd7ece1249a90e9e336913b54",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/resource_value_codec.gd.remap",
+      "size_bytes": 77
+    },
+    {
+      "expected_md5": "fa37633410b2b55a3f4b6439602ce4d4",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/resource_value_codec.gdc",
+      "size_bytes": 4425
+    },
+    {
+      "expected_md5": "f66165e860f2baa63cad3d5e46a6cb58",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/run_tool.gd.remap",
+      "size_bytes": 65
+    },
+    {
+      "expected_md5": "27d348316a06da234b3c04c6708b2951",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/run_tool.gdc",
+      "size_bytes": 1183
+    },
+    {
+      "expected_md5": "faf4c96e3176db7f450c3fe6b2078acd",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/scene_tool.gd.remap",
+      "size_bytes": 67
+    },
+    {
+      "expected_md5": "fffd382333d6b698e0e642e85b0fae06",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/scene_tool.gdc",
+      "size_bytes": 5781
+    },
+    {
+      "expected_md5": "0ef6ac3d36aad5423321dcb53adb7a8a",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/screenshot_tool.gd.remap",
+      "size_bytes": 72
+    },
+    {
+      "expected_md5": "5645de290170831adceee65816cf134b",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/screenshot_tool.gdc",
+      "size_bytes": 2842
+    },
+    {
+      "expected_md5": "6efd8fc7ea7192ce3d211418d4866230",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/script_dependency_diagnostics.gd.remap",
+      "size_bytes": 86
+    },
+    {
+      "expected_md5": "4260b968a81311c791443d1f848910f8",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/script_dependency_diagnostics.gdc",
+      "size_bytes": 1765
+    },
+    {
+      "expected_md5": "f9649de20199c09e1d50f2bb226aafb0",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/script_inspector.gd.remap",
+      "size_bytes": 73
+    },
+    {
+      "expected_md5": "59e044a4c35592d08ca4dfd6ef32ab32",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/script_inspector.gdc",
+      "size_bytes": 2276
+    },
+    {
+      "expected_md5": "326692d03540b5bb55bbedea8be20668",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/script_template.gd.remap",
+      "size_bytes": 72
+    },
+    {
+      "expected_md5": "59300559d9442661cd4ea38dfc79c9d0",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/script_template.gdc",
+      "size_bytes": 3408
+    },
+    {
+      "expected_md5": "945f5167819cc19a713f2d7216eb732b",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/script_tool.gd.remap",
+      "size_bytes": 68
+    },
+    {
+      "expected_md5": "8717717fc0b6d6e154fd4c6250ff4a45",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/script_tool.gdc",
+      "size_bytes": 5211
+    },
+    {
+      "expected_md5": "8ea491c19f6149f4dbca1e084296dfe3",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/signal_tool.gd.remap",
+      "size_bytes": 68
+    },
+    {
+      "expected_md5": "3909143c857256a429ad2931401a9cf7",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/signal_tool.gdc",
+      "size_bytes": 3629
+    },
+    {
+      "expected_md5": "d13bc0bee79c82f342219c2c3d242a5f",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/status_tool.gd.remap",
+      "size_bytes": 68
+    },
+    {
+      "expected_md5": "aabba093a32a2b927f259ffba10b0667",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/status_tool.gdc",
+      "size_bytes": 1086
+    },
+    {
+      "expected_md5": "0a8cfe94ef55b8f5f0eda2e98a43c30f",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/theme_tool.gd.remap",
+      "size_bytes": 67
+    },
+    {
+      "expected_md5": "aa07757f4c55ac125a794b019d5a2a3e",
+      "integrity_status": "VERIFIED",
+      "path": "addons/hera_agent_godot/tools/theme_tool.gdc",
+      "size_bytes": 3788
+    },
+    {
+      "expected_md5": "44cf9668f7da01f430bc3166addac92c",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/board/board_terrain_playfield_v01.png.import",
+      "size_bytes": 216
+    },
+    {
+      "expected_md5": "9a26ae86657a0a24a6e1a730c56c03f8",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/build/build_cost_hud_baseline_v01.png.import",
+      "size_bytes": 215
+    },
+    {
+      "expected_md5": "957dcfff8f740023e5c187caac150609",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/build/build_ghost_route_visible_v01.png.import",
+      "size_bytes": 218
+    },
+    {
+      "expected_md5": "1934b7880cafab808bc007d885afb7e9",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/build/build_placement_invalid_overlay_v01.png.import",
+      "size_bytes": 224
+    },
+    {
+      "expected_md5": "384599a5b88045fdb23c83eb2b34a96d",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/build/build_placement_replacement_preview_overlay_v01.png.import",
+      "size_bytes": 236
+    },
+    {
+      "expected_md5": "c8944dc8f7fdb493ee90458e1d6de6b1",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/build/build_placement_rotate_preview_overlay_v01.png.import",
+      "size_bytes": 231
+    },
+    {
+      "expected_md5": "427c8f4aa7c854dab1e4f5fa383ab247",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/build/build_placement_valid_overlay_v01.png.import",
+      "size_bytes": 222
+    },
+    {
+      "expected_md5": "b6720ff701461c262c6d89e26231b6c8",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/build/build_port_marker_left_v01.png.import",
+      "size_bytes": 215
+    },
+    {
+      "expected_md5": "978dbc2cf3dc29ac5fb2413e91b1c8ef",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/build/build_preflight_focused_location_marker_v01.png.import",
+      "size_bytes": 232
+    },
+    {
+      "expected_md5": "e5352ddf9cb2352d3a848fe6c1ba3944",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/build/build_preflight_multi_issue_marker_v01.png.import",
+      "size_bytes": 227
+    },
+    {
+      "expected_md5": "378d8dd35266b1a19e78e619acf62021",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/build/build_preflight_primary_issue_marker_v01.png.import",
+      "size_bytes": 229
+    },
+    {
+      "expected_md5": "5faeaf8e91442bcd9dfeccbd21fdbc9e",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/build/build_preflight_shell_v01.png.import",
+      "size_bytes": 214
+    },
+    {
+      "expected_md5": "b99357ffb32c1dd2adf5f35fd2c5fc50",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/build/build_track_curve_valid_ghost_v01.png.import",
+      "size_bytes": 222
+    },
+    {
+      "expected_md5": "187c61138d120e5166846df2104e34fc",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/build/build_track_straight_invalid_ghost_v01.png.import",
+      "size_bytes": 227
+    },
+    {
+      "expected_md5": "ea47bc01bef6cad56f578f6591977181",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/build/build_track_straight_valid_ghost_v01.png.import",
+      "size_bytes": 225
+    },
+    {
+      "expected_md5": "c6433644c225a4259f4f2b837b909caa",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/core/core_cargo_star_blue_normal_v01.png.import",
+      "size_bytes": 220
+    },
+    {
+      "expected_md5": "0c24cd712613b199514c2b069a376a8a",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/core/core_cargo_star_red_normal_v01.png.import",
+      "size_bytes": 219
+    },
+    {
+      "expected_md5": "975ff881f6956ad4681cdd7e7c1fa87c",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/core/core_cargo_star_yellow_normal_v01.png.import",
+      "size_bytes": 222
+    },
+    {
+      "expected_md5": "bfdd1b325672f88bcaf2abc64f9f3b9c",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/core/core_marker_route_end_normal_v01.png.import",
+      "size_bytes": 221
+    },
+    {
+      "expected_md5": "2bd667e67e69671e6fa9e1076e90a0c1",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/core/core_marker_start_normal_v01.png.import",
+      "size_bytes": 216
+    },
+    {
+      "expected_md5": "25c74de9cdcfcf57a77059a6d208551f",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/core/core_rail_crossing_normal_v01.png.import",
+      "size_bytes": 218
+    },
+    {
+      "expected_md5": "4696f8131fbcea834c05902806a07322",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/core/core_rail_curve_normal_v01.png.import",
+      "size_bytes": 215
+    },
+    {
+      "expected_md5": "2e32b524446d226630e09e2de2471c57",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/core/core_rail_straight_normal_v01.png.import",
+      "size_bytes": 217
+    },
+    {
+      "expected_md5": "c123531928a3960035fa7e5a0bd61a37",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/core/core_rail_switch_three_way_normal_v01.png.import",
+      "size_bytes": 226
+    },
+    {
+      "expected_md5": "fe993a74c15da271f26607971a8d17af",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/core/core_station_blue_normal_v01.png.import",
+      "size_bytes": 217
+    },
+    {
+      "expected_md5": "76788519832fb401b7c5e274a8fbf52c",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/core/core_station_red_normal_v01.png.import",
+      "size_bytes": 215
+    },
+    {
+      "expected_md5": "c1114a3c8115b03d25184c3c94516e0f",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/core/core_station_yellow_normal_v01.png.import",
+      "size_bytes": 219
+    },
+    {
+      "expected_md5": "775fd25082469a46ea49696ae29f226d",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/core/core_train_locomotive_blue_normal_v01.png.import",
+      "size_bytes": 226
+    },
+    {
+      "expected_md5": "fabd243a4db91d2f35bde0c94d5774d0",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/core/core_wagon_cargo_blue_normal_v02.png.import",
+      "size_bytes": 220
+    },
+    {
+      "expected_md5": "b2a73884f580edd872868880ef5c65e3",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/core/core_wagon_cargo_red_normal_v02.png.import",
+      "size_bytes": 220
+    },
+    {
+      "expected_md5": "0c504e95b693d240a0612155202ee74a",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/core/core_wagon_cargo_yellow_normal_v02.png.import",
+      "size_bytes": 222
+    },
+    {
+      "expected_md5": "f4f5acb3620795b0e973593eb357a35f",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/manifest.json",
+      "size_bytes": 22227
+    },
+    {
+      "expected_md5": "6b0a0f3f2bca6345e5de257e6e16c3de",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/meta/meta_progress_states_v01.png.import",
+      "size_bytes": 213
+    },
+    {
+      "expected_md5": "f562b1f185bc096c3fe6b70b6392b23e",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_combo_feedback_static_v01.png.import",
+      "size_bytes": 217
+    },
+    {
+      "expected_md5": "ffa7fefe29a02e03e13ad630340af3ff",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_load_mode_auto_marker_v01.png.import",
+      "size_bytes": 218
+    },
+    {
+      "expected_md5": "4cb0e682d28d735d6388272d3fa1ca14",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_load_mode_disabled_overlay_v01.png.import",
+      "size_bytes": 223
+    },
+    {
+      "expected_md5": "3cac77224337a9b495c17aa7dcfaa92f",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_load_mode_held_marker_v01.png.import",
+      "size_bytes": 217
+    },
+    {
+      "expected_md5": "8520d9c991c88d4347bd15e0f5facfa2",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_load_mode_input_received_v01.png.import",
+      "size_bytes": 221
+    },
+    {
+      "expected_md5": "61bff1e4eeb0a4a490ba226d13789148",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_load_mode_manual_marker_v01.png.import",
+      "size_bytes": 220
+    },
+    {
+      "expected_md5": "257e3f51cb96f5b64967f38422add9af",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_load_mode_off_marker_v01.png.import",
+      "size_bytes": 217
+    },
+    {
+      "expected_md5": "1356e4569307d9f0072e09bc6a9bf8dc",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_load_mode_on_marker_v01.png.import",
+      "size_bytes": 216
+    },
+    {
+      "expected_md5": "53e791719675e1e9de7cb327f759c444",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_load_mode_shell_v01.png.import",
+      "size_bytes": 212
+    },
+    {
+      "expected_md5": "ea69e1c6cb1d38808e107d33e4649c0d",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_stack_16plus_v01.png.import",
+      "size_bytes": 208
+    },
+    {
+      "expected_md5": "21212dddaa3061901d02cd6072264ff2",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_stack_32plus_v01.png.import",
+      "size_bytes": 208
+    },
+    {
+      "expected_md5": "44a226b53aed8db18d3107fc02878010",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_stack_8plus_v01.png.import",
+      "size_bytes": 208
+    },
+    {
+      "expected_md5": "6b85aacba213099c2702e970bf084585",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_stack_compact_v01.png.import",
+      "size_bytes": 210
+    },
+    {
+      "expected_md5": "0996719375771bc55131f71c64fc20c0",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_stack_empty_v01.png.import",
+      "size_bytes": 208
+    },
+    {
+      "expected_md5": "887a015003c2fbb5f75be9315110123e",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_stack_paused_v01.png.import",
+      "size_bytes": 208
+    },
+    {
+      "expected_md5": "496b33e4ac362a65bcb90bea4f812308",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_stack_top_highlight_v01.png.import",
+      "size_bytes": 216
+    },
+    {
+      "expected_md5": "cc21bf4b772e0002ae54e8d07c85613d",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_stack_unload_group_v01.png.import",
+      "size_bytes": 215
+    },
+    {
+      "expected_md5": "67411989aa8026ba939fd65613317268",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_stack_unloading_v01.png.import",
+      "size_bytes": 212
+    },
+    {
+      "expected_md5": "30392d5e2aad030cf628ae7fc5637732",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_switch_arrow_left_selected_v01.png.import",
+      "size_bytes": 223
+    },
+    {
+      "expected_md5": "f67b2244513423014caecba9437189b6",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_switch_locked_v01.png.import",
+      "size_bytes": 210
+    },
+    {
+      "expected_md5": "d67908a3737ec36cb7c0cf1e4dc80374",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_switch_state_inactive_overlay_v01.png.import",
+      "size_bytes": 226
+    },
+    {
+      "expected_md5": "3375c23e96907eec7f73238452313d73",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_switch_state_occupied_locked_overlay_v01.png.import",
+      "size_bytes": 233
+    },
+    {
+      "expected_md5": "e22338bfc78de5057eed133594527f90",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_switch_state_selected_overlay_v01.png.import",
+      "size_bytes": 226
+    },
+    {
+      "expected_md5": "fc8f1c0ec5b6fa88034945a9a67b55d5",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_switch_state_unselected_overlay_v01.png.import",
+      "size_bytes": 228
+    },
+    {
+      "expected_md5": "2674a59ba4828a676ad807d5cd8290f6",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_train_cargo_strip_plus_badge_v01.png.import",
+      "size_bytes": 225
+    },
+    {
+      "expected_md5": "9ee998da2c2ecbee54ec7ce300c81963",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_train_cargo_strip_shell_v01.png.import",
+      "size_bytes": 220
+    },
+    {
+      "expected_md5": "2c2cdc4e79085147fb1123c7387d1475",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/run/run_train_cargo_strip_unload_transition_v01.png.import",
+      "size_bytes": 231
+    },
+    {
+      "expected_md5": "a35c358c4dab1fc59f442c3510ca821e",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/runtime_visual_manifest.json",
+      "size_bytes": 5781
+    },
+    {
+      "expected_md5": "12052d6b904f06b35e00ba30a09c9961",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054.json",
+      "size_bytes": 15216
+    },
+    {
+      "expected_md5": "13ec000437eaa0867cc758820a6869e0",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054_build_2b.json",
+      "size_bytes": 12853
+    },
+    {
+      "expected_md5": "cd09c462543cbca7d823059496007255",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/semantic_manifest_sx_dec_054_vfx_2c.json",
+      "size_bytes": 10368
+    },
+    {
+      "expected_md5": "6bde2ce5048d38d60483a82b77ffec45",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v01.png.import",
+      "size_bytes": 209
+    },
+    {
+      "expected_md5": "1dd41ce1146f8b78ef17c2de53a6f0ad",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/shells/shell_lesson_hero_v02.png.import",
+      "size_bytes": 208
+    },
+    {
+      "expected_md5": "64f1825242eb6fea403ef97158599ce0",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/shells/shell_result_failure_candidate_v01.png.import",
+      "size_bytes": 223
+    },
+    {
+      "expected_md5": "476ca8dd79a611d6b25e98d9caaf7e54",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/shells/shell_result_failure_v02.png.import",
+      "size_bytes": 212
+    },
+    {
+      "expected_md5": "dc5a1b3e21a3392ff423da62f6283f77",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/shells/shell_result_success_candidate_v01.png.import",
+      "size_bytes": 223
+    },
+    {
+      "expected_md5": "246a90263db0ce17886c03bcb45e0ceb",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/shells/shell_result_success_v02.png.import",
+      "size_bytes": 213
+    },
+    {
+      "expected_md5": "bc27f7547ae2ee7a5a7365572a5a0e1c",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/shells/shell_title_hero_manifest.json",
+      "size_bytes": 1490
+    },
+    {
+      "expected_md5": "240debd2f8aa3cc0089642a55bd328fa",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/shells/shell_title_hero_v01.png.import",
+      "size_bytes": 209
+    },
+    {
+      "expected_md5": "2801df1f5f6c4729ddeda3fa3ed24341",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/ui/ui_button_frame_square_blue_disabled_v01.png.import",
+      "size_bytes": 229
+    },
+    {
+      "expected_md5": "a78211cca47e758db1575aa20786f8bc",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/ui/ui_button_frame_square_blue_focus_v01.png.import",
+      "size_bytes": 225
+    },
+    {
+      "expected_md5": "778fecfef42fdb5a968db2b032e517bc",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/ui/ui_button_frame_square_blue_hover_v01.png.import",
+      "size_bytes": 226
+    },
+    {
+      "expected_md5": "0c1adb62d19ff70be6c9be18871e8a80",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/ui/ui_button_frame_square_blue_locked_v01.png.import",
+      "size_bytes": 227
+    },
+    {
+      "expected_md5": "5019aabccc74d895baa03204b7229a92",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/ui/ui_button_frame_square_blue_normal_v01.png.import",
+      "size_bytes": 227
+    },
+    {
+      "expected_md5": "7628ddf69392553bbf1e9ef4aac20531",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/ui/ui_button_frame_square_blue_pressed_v01.png.import",
+      "size_bytes": 228
+    },
+    {
+      "expected_md5": "ea105138ba57cf061d1682cdd296919b",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/ui/ui_button_frame_square_blue_selected_v01.png.import",
+      "size_bytes": 229
+    },
+    {
+      "expected_md5": "1ab0b84ec4c06f0614f30af5a4e64e13",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/vfx/vfx_cargo_pickup_feedback_v01.png.import",
+      "size_bytes": 218
+    },
+    {
+      "expected_md5": "04344e73cd35e4dbc45403fcfc209d6b",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/vfx/vfx_cargo_unload_feedback_v01.png.import",
+      "size_bytes": 218
+    },
+    {
+      "expected_md5": "8e1f1c93e8cbeea0baa6817c447e1377",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/vfx/vfx_failure_feedback_v01.png.import",
+      "size_bytes": 213
+    },
+    {
+      "expected_md5": "7eebfc2ab896b4f14026f04402aaee5b",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/vfx/vfx_route_end_feedback_v01.png.import",
+      "size_bytes": 215
+    },
+    {
+      "expected_md5": "22ba56758e511aa872422db20667f0b7",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/vfx/vfx_success_feedback_v01.png.import",
+      "size_bytes": 212
+    },
+    {
+      "expected_md5": "69092d813738aa0d7669eb34804fe06a",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v1/vfx/vfx_time_expired_feedback_v01.png.import",
+      "size_bytes": 218
+    },
+    {
+      "expected_md5": "a511e8592c2cb69841d39969e47621bd",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_caution_track_overlay_v01.png.import",
+      "size_bytes": 219
+    },
+    {
+      "expected_md5": "82d62766ce34a2e68ffef56976431fdb",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_caution_track_overlay_v02.png.import",
+      "size_bytes": 220
+    },
+    {
+      "expected_md5": "fd5785e65b21fe85f2ea73bbfa8daeb7",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_decor_forest_cluster_v01.png.import",
+      "size_bytes": 219
+    },
+    {
+      "expected_md5": "dbbcd7b714058036e6933bf6dbab181e",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_decor_forest_cluster_v02.png.import",
+      "size_bytes": 219
+    },
+    {
+      "expected_md5": "72b0443389a12bddae5222c31acfc9d8",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_decor_lantern_fence_v01.png.import",
+      "size_bytes": 217
+    },
+    {
+      "expected_md5": "f130dbd8e87c9af5170fd557ad731cb1",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_decor_lantern_fence_v02.png.import",
+      "size_bytes": 218
+    },
+    {
+      "expected_md5": "dc58be7ea0e84fc53c5d506be1a47e6f",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_decor_moss_boulder_v01.png.import",
+      "size_bytes": 216
+    },
+    {
+      "expected_md5": "96f685afdf72e0ea12e5b33f58a658da",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_decor_moss_boulder_v02.png.import",
+      "size_bytes": 217
+    },
+    {
+      "expected_md5": "982035455c7da52713b4c010a351dde7",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_decor_timber_stack_v01.png.import",
+      "size_bytes": 217
+    },
+    {
+      "expected_md5": "b2852e5dd769fff4a046ae77fae6684c",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_decor_timber_stack_v02.png.import",
+      "size_bytes": 217
+    },
+    {
+      "expected_md5": "b10cc7991e54f66aa459039fc47629ad",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_decor_waterway_v01.png.import",
+      "size_bytes": 213
+    },
+    {
+      "expected_md5": "972779a8330ba49d372f39d4ce435d0a",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_decor_waterway_v02.png.import",
+      "size_bytes": 213
+    },
+    {
+      "expected_md5": "7d4fb863c6cac1088c3426e9103e8016",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/board/board_terrain_playfield_v02.png.import",
+      "size_bytes": 216
+    },
+    {
+      "expected_md5": "e946abd42a7b9b1e4484cbbf9f75d736",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_blue_normal_v02.png.import",
+      "size_bytes": 220
+    },
+    {
+      "expected_md5": "c3c4da60b2ccffea898df640caaec15c",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_red_normal_v02.png.import",
+      "size_bytes": 219
+    },
+    {
+      "expected_md5": "f3fdb596f75565fedddaccd37aca867b",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_cargo_star_yellow_normal_v02.png.import",
+      "size_bytes": 222
+    },
+    {
+      "expected_md5": "6b7e57eca089fb6c719c0bca0a6c8218",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_cargo_waste_crate_normal_v01.png.import",
+      "size_bytes": 221
+    },
+    {
+      "expected_md5": "13cdcb299a48777f3730b01c7551a990",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_cargo_waste_crate_normal_v02.png.import",
+      "size_bytes": 222
+    },
+    {
+      "expected_md5": "63b0e344a4d1e99f2650c6e1b83b54dd",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_disposal_yard_normal_v01.png.import",
+      "size_bytes": 218
+    },
+    {
+      "expected_md5": "4c90bf8d757682d84dce5d9d96674e5f",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_disposal_yard_normal_v02.png.import",
+      "size_bytes": 218
+    },
+    {
+      "expected_md5": "190139f939a72e2647c9a5c498157389",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_marker_route_end_normal_v02.png.import",
+      "size_bytes": 220
+    },
+    {
+      "expected_md5": "a092c30ced4f50aa7a4fa2a38a991263",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_marker_start_normal_v02.png.import",
+      "size_bytes": 217
+    },
+    {
+      "expected_md5": "8a5f91220ea37c4a1864b39849ae9e0b",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v02.png.import",
+      "size_bytes": 218
+    },
+    {
+      "expected_md5": "9f3b48c6faf5ba63aa8cfe86d4aa119b",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v03.png.import",
+      "size_bytes": 217
+    },
+    {
+      "expected_md5": "cb6282e540534ff2cd4c627bf2cdc0d8",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_crossing_normal_v04.png.import",
+      "size_bytes": 217
+    },
+    {
+      "expected_md5": "8f50e6f1dc8996debae7641b4380d65e",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v02.png.import",
+      "size_bytes": 215
+    },
+    {
+      "expected_md5": "26e7d51e25583e2b2a95d711f159193c",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v03.png.import",
+      "size_bytes": 214
+    },
+    {
+      "expected_md5": "a6d7e255f5fc1823de6ada97f139491c",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_curve_normal_v04.png.import",
+      "size_bytes": 215
+    },
+    {
+      "expected_md5": "3741ef62927c928dc6b947a3173256f1",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v02.png.import",
+      "size_bytes": 218
+    },
+    {
+      "expected_md5": "2f7b7a6830c6bdc93557ab982a260f45",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v03.png.import",
+      "size_bytes": 218
+    },
+    {
+      "expected_md5": "256988ef9bc6fb2188dddce76ad673c3",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_straight_normal_v04.png.import",
+      "size_bytes": 217
+    },
+    {
+      "expected_md5": "e1b817af9843c598fc409e604a42874c",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v02.png.import",
+      "size_bytes": 226
+    },
+    {
+      "expected_md5": "bdc164f21fbd44129d9a11881cb86fd7",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v03.png.import",
+      "size_bytes": 226
+    },
+    {
+      "expected_md5": "ae00bbe914f7e3332d711ea6e859b764",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_rail_switch_three_way_normal_v04.png.import",
+      "size_bytes": 226
+    },
+    {
+      "expected_md5": "bc306479e8ad5502229dce9abde0a604",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_station_blue_normal_v02.png.import",
+      "size_bytes": 216
+    },
+    {
+      "expected_md5": "51ccde79f13dc43ecba43800c5d5a2f2",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_station_red_normal_v02.png.import",
+      "size_bytes": 216
+    },
+    {
+      "expected_md5": "2ae188330a2c8ab3bcffdac9a604eca4",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_station_yellow_normal_v02.png.import",
+      "size_bytes": 219
+    },
+    {
+      "expected_md5": "c86246cf6574bc025445dc0bf354be39",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/core/core_train_locomotive_blue_normal_v02.png.import",
+      "size_bytes": 226
+    },
+    {
+      "expected_md5": "8d61e78331e622bf522349d385f6a0ac",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/manifest.json",
+      "size_bytes": 27790
+    },
+    {
+      "expected_md5": "e98e8bfdd0984038df45fad6b11a1a60",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/ed_hybrid_v2/shells/shell_title_wordmark_switchy_express_candidate_v01.png.import",
+      "size_bytes": 238
+    },
+    {
+      "expected_md5": "3d08f08c46453d93df02cf182b8c4576",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/night_workshop_v1/board_slate.png.import",
+      "size_bytes": 200
+    },
+    {
+      "expected_md5": "6df14d3b9a5d2f7c1d5e9144f35d6d36",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/night_workshop_v1/cargo_blue.png.import",
+      "size_bytes": 198
+    },
+    {
+      "expected_md5": "0dd01b45aa2ef94ac01243130176591b",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/night_workshop_v1/cargo_lift.png.import",
+      "size_bytes": 199
+    },
+    {
+      "expected_md5": "d36d32ffd62d4756dd590e401cbd24cd",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/night_workshop_v1/manifest.json",
+      "size_bytes": 2397
+    },
+    {
+      "expected_md5": "4d2c566e0b54f3b652945437d07f303b",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/night_workshop_v1/station_blue.png.import",
+      "size_bytes": 201
+    },
+    {
+      "expected_md5": "a0890655fbc51803fd4fc90e88b0fe93",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/night_workshop_v1/train.png.import",
+      "size_bytes": 194
+    },
+    {
+      "expected_md5": "f28749f6e32a00267d91982c1c42f378",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/topdown_v1/cargo_blue.png.import",
+      "size_bytes": 199
+    },
+    {
+      "expected_md5": "0c05de04cc9e734ee0c79405e6801203",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/topdown_v1/cargo_red.png.import",
+      "size_bytes": 198
+    },
+    {
+      "expected_md5": "7ac0d7e10acfc6067f5e1f72f702b86b",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/topdown_v1/cargo_waste.png.import",
+      "size_bytes": 200
+    },
+    {
+      "expected_md5": "5c4ff6da551900438279f1c3a54003bf",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/topdown_v1/cargo_yellow.png.import",
+      "size_bytes": 200
+    },
+    {
+      "expected_md5": "10f249f6b2f7be46407ab604c4b554c8",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/topdown_v1/decoration_forest_cluster.png.import",
+      "size_bytes": 214
+    },
+    {
+      "expected_md5": "0f4e20fcac2fd75fb7b3af1f938de4ad",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/topdown_v1/decoration_lantern_fence.png.import",
+      "size_bytes": 213
+    },
+    {
+      "expected_md5": "b98ec13895a7a264de529fe0512fc338",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/topdown_v1/decoration_moss_boulder.png.import",
+      "size_bytes": 212
+    },
+    {
+      "expected_md5": "abd0cf094f974ab61352e1346ee32320",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/topdown_v1/decoration_timber_stack.png.import",
+      "size_bytes": 212
+    },
+    {
+      "expected_md5": "f29933809aa0dabc0fe9a9d2dade3513",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/topdown_v1/decoration_waterway.png.import",
+      "size_bytes": 207
+    },
+    {
+      "expected_md5": "7e04a93cb4fa3ebb714f7f8cf1ada262",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/topdown_v1/manifest.json",
+      "size_bytes": 7841
+    },
+    {
+      "expected_md5": "3b650222a71fc7d6b06b8769e6559256",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/topdown_v1/station_blue.png.import",
+      "size_bytes": 200
+    },
+    {
+      "expected_md5": "f9944b72b19902a0589fc6cc361b6f6a",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/topdown_v1/station_disposal.png.import",
+      "size_bytes": 205
+    },
+    {
+      "expected_md5": "49a891ac0afb6863ed799f2bc706cee5",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/topdown_v1/station_red.png.import",
+      "size_bytes": 200
+    },
+    {
+      "expected_md5": "43e73496ccab448cb08165ebcfe0b077",
+      "integrity_status": "VERIFIED",
+      "path": "art/product_assets/topdown_v1/station_yellow.png.import",
+      "size_bytes": 202
+    },
+    {
+      "expected_md5": "132222fa8f88e888c1758e5947693c37",
+      "integrity_status": "VERIFIED",
+      "path": "data/first_session/first_session_v1.json",
+      "size_bytes": 4690
+    },
+    {
+      "expected_md5": "0d37dbffcefacd762b35fe9791bc26f0",
+      "integrity_status": "VERIFIED",
+      "path": "data/localization/first_session_v1.json",
+      "size_bytes": 21015
+    },
+    {
+      "expected_md5": "e79754f6384792502eaa3a1e5699b9c2",
+      "integrity_status": "VERIFIED",
+      "path": "data/localization/route_book_01_v1.json",
+      "size_bytes": 7296
+    },
+    {
+      "expected_md5": "5bd83065ad785b0b130b53ba28b41340",
+      "integrity_status": "VERIFIED",
+      "path": "data/localization/route_book_02_v1.json",
+      "size_bytes": 8183
+    },
+    {
+      "expected_md5": "de34733c4a776a5f04bcafbed9d15886",
+      "integrity_status": "VERIFIED",
+      "path": "data/localization/route_book_03_v1.json",
+      "size_bytes": 6593
+    },
+    {
+      "expected_md5": "588f0d104edc63186517fafe10a037a0",
+      "integrity_status": "VERIFIED",
+      "path": "data/localization/route_book_selector_v1.json",
+      "size_bytes": 1505
+    },
+    {
+      "expected_md5": "f85e24e4605e5cbe4d33da8e6622d0af",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/fp_core_proof_01.json",
+      "size_bytes": 1149
+    },
+    {
+      "expected_md5": "d483cb310f2fe0ec819d22cb6cc434df",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/map_catalog_vs03.json",
+      "size_bytes": 905
+    },
+    {
+      "expected_md5": "a839773dead0957450da613b7857a130",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb01_service_sidings.json",
+      "size_bytes": 685
+    },
+    {
+      "expected_md5": "9107078f69036000257617b1b5eae741",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb02_reverse_order.json",
+      "size_bytes": 686
+    },
+    {
+      "expected_md5": "3ef23da412d461dc1fb54124ff018652",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb03_return_manifest.json",
+      "size_bytes": 688
+    },
+    {
+      "expected_md5": "30100705937e758f8febabc82a998bfc",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb04_load_window.json",
+      "size_bytes": 733
+    },
+    {
+      "expected_md5": "42890629b4cd1dfcdd1e26436fc37666",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb05_fork_lock.json",
+      "size_bytes": 684
+    },
+    {
+      "expected_md5": "0bc156ada9aeae826d5236f0f1d16798",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb06_port_circuit.json",
+      "size_bytes": 831
+    },
+    {
+      "expected_md5": "510b53f3d961ca59a38b8caab14656dc",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb07_forest_relay.json",
+      "size_bytes": 985
+    },
+    {
+      "expected_md5": "eb756d4a2790d00532d3de87c24514db",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb08_caution_cut.json",
+      "size_bytes": 1050
+    },
+    {
+      "expected_md5": "3e4ccbb1c4b673d1aae6019733c41dae",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb09_salvage_siding.json",
+      "size_bytes": 1023
+    },
+    {
+      "expected_md5": "e6c6c6e824ed22ac7aa0625918652caf",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb10_clean_break.json",
+      "size_bytes": 1060
+    },
+    {
+      "expected_md5": "52b12af1144b9db348cee170f818c918",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb11_turnout_under_load.json",
+      "size_bytes": 1071
+    },
+    {
+      "expected_md5": "ebe70f4da745d0508113bbf85798df38",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb12_lantern_loop.json",
+      "size_bytes": 1177
+    },
+    {
+      "expected_md5": "6292e231093099a4da57d50448fb78e6",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb13_four_sides.json",
+      "size_bytes": 797
+    },
+    {
+      "expected_md5": "59c71e565944d9cbf28f637a1a708126",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb14_manifest_mirror.json",
+      "size_bytes": 1300
+    },
+    {
+      "expected_md5": "aeadde7cd94e169ce302876893926da0",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb15_manual_gap.json",
+      "size_bytes": 1202
+    },
+    {
+      "expected_md5": "7db8198258a55d55db33f3d590babb23",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb16_caution_ledger.json",
+      "size_bytes": 1330
+    },
+    {
+      "expected_md5": "e277c3edd71f1cb69a5aa3352dff6e5f",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb17_clearance_yard.json",
+      "size_bytes": 1346
+    },
+    {
+      "expected_md5": "c67268e132cfdc7e2d6fb87eb62cf49d",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/route_book/rb18_switchboard_night.json",
+      "size_bytes": 1899
+    },
+    {
+      "expected_md5": "19feec0b81544b10068611654545dd49",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/tutorial/tut_01_02.json",
+      "size_bytes": 548
+    },
+    {
+      "expected_md5": "d9e4c6776ab4bf135677f998b9e5ab34",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/tutorial/tut_03_lifo.json",
+      "size_bytes": 676
+    },
+    {
+      "expected_md5": "1d655f5b52524811eb495f699112ec55",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/tutorial/tut_04_selective_load.json",
+      "size_bytes": 687
+    },
+    {
+      "expected_md5": "cafcb545951281269845cd9fcb7d0ac3",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/tutorial/tut_05_auto_load.json",
+      "size_bytes": 731
+    },
+    {
+      "expected_md5": "dce1cd88d8573d1d3f6ebc6fe868b95d",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/tutorial/tut_06_switch.json",
+      "size_bytes": 552
+    },
+    {
+      "expected_md5": "7e86fbddf87d57e9264e912a147db2ee",
+      "integrity_status": "VERIFIED",
+      "path": "data/maps/vs_demo_01.json",
+      "size_bytes": 838
+    },
+    {
+      "expected_md5": "1bc6087b5fef9426204ed89c597af901",
+      "integrity_status": "VERIFIED",
+      "path": "data/route_book/route_book_01.json",
+      "size_bytes": 4652
+    },
+    {
+      "expected_md5": "85276d1ac87734eb36818fd501c351e3",
+      "integrity_status": "VERIFIED",
+      "path": "data/route_book/route_book_02.json",
+      "size_bytes": 4974
+    },
+    {
+      "expected_md5": "7ca8f820561917ce6ff259991566a581",
+      "integrity_status": "VERIFIED",
+      "path": "data/route_book/route_book_03.json",
+      "size_bytes": 6752
+    },
+    {
+      "expected_md5": "c87b4a9c58898598fd1ab7f3718d6f92",
+      "integrity_status": "VERIFIED",
+      "path": "docs/PROJECT_OPERATING_HEALTH.json",
+      "size_bytes": 1278
+    },
+    {
+      "expected_md5": "75463546a1b29742fc678d6d8ce6919f",
+      "integrity_status": "VERIFIED",
+      "path": "docs/design/SWITCHY_EXPRESS_HUMAN_GAME_BLUEPRINT_PUBLICATION_MANIFEST.json",
+      "size_bytes": 5620
+    },
+    {
+      "expected_md5": "b91e3e172a124ff4356b5940b80a58e9",
+      "integrity_status": "VERIFIED",
+      "path": "docs/operations/PROJECT_PROTECTED_CHANGE_APPROVAL.json",
+      "size_bytes": 7636
+    },
+    {
+      "expected_md5": "96ca0ed8ec829aea5bdcccd365bd65b2",
+      "integrity_status": "VERIFIED",
+      "path": "docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json",
+      "size_bytes": 14918
+    },
+    {
+      "expected_md5": "e37184e9bd5e566db21cb290e04f069f",
+      "integrity_status": "VERIFIED",
+      "path": "docs/operations/SWITCHY_SHEET_AUTHORITY_EVIDENCE_2026-08-06.json",
+      "size_bytes": 813
+    },
+    {
+      "expected_md5": "3a57f9b4ed33d0a6db51fdc92a2972d3",
+      "integrity_status": "VERIFIED",
+      "path": "docs/reporting/2026-09-worklog-publication-v1.0.json",
+      "size_bytes": 10502
+    },
+    {
+      "expected_md5": "0c00fc30ddc30724dbfe43024d602b2b",
+      "integrity_status": "VERIFIED",
+      "path": "docs/reporting/2026-09-worklog-records.json",
+      "size_bytes": 5155
+    },
+    {
+      "expected_md5": "05a08a265efd3ab835f054a444dc0c14",
+      "integrity_status": "VERIFIED",
+      "path": "docs/tooling/local_godot_tooling_state.json",
+      "size_bytes": 2268
+    },
+    {
+      "expected_md5": "109c8181d44794402d7f57e7a691feb2",
+      "integrity_status": "VERIFIED",
+      "path": "docs/work-instructions/v4.5_r2/SOURCE_IDENTITY.json",
+      "size_bytes": 905
+    },
+    {
+      "expected_md5": "fdb0f792d44484375479c045af2b24ef",
+      "integrity_status": "VERIFIED",
+      "path": "game/cargo/cargo_spawner.gd.remap",
+      "size_bytes": 51
+    },
+    {
+      "expected_md5": "aad178c25c296b52305ff8b134b930e6",
+      "integrity_status": "VERIFIED",
+      "path": "game/cargo/cargo_spawner.gdc",
+      "size_bytes": 4252
+    },
+    {
+      "expected_md5": "2367963b8767343a9d60c897cfa89a21",
+      "integrity_status": "VERIFIED",
+      "path": "game/cargo/cargo_stack.gd.remap",
+      "size_bytes": 49
+    },
+    {
+      "expected_md5": "1305fc02f80cadec586220d1415a2b23",
+      "integrity_status": "VERIFIED",
+      "path": "game/cargo/cargo_stack.gdc",
+      "size_bytes": 1336
+    },
+    {
+      "expected_md5": "b10f8c0c486c735532d3fcc44adc20af",
+      "integrity_status": "VERIFIED",
+      "path": "game/cargo/cargo_type.gd.remap",
+      "size_bytes": 48
+    },
+    {
+      "expected_md5": "98c868852cf2942e7ca92e6ca0b66944",
+      "integrity_status": "VERIFIED",
+      "path": "game/cargo/cargo_type.gdc",
+      "size_bytes": 937
+    },
+    {
+      "expected_md5": "4c7d0521830a28db2cbb84b27e815815",
+      "integrity_status": "VERIFIED",
+      "path": "game/delivery/delivery_loop.gd.remap",
+      "size_bytes": 54
+    },
+    {
+      "expected_md5": "faa6268090021ec8830f037da5631ad9",
+      "integrity_status": "VERIFIED",
+      "path": "game/delivery/delivery_loop.gdc",
+      "size_bytes": 3347
+    },
+    {
+      "expected_md5": "ad53dfa8b26407647e65a319e8b05d4a",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/audio/demo_audio_director.gd.remap",
+      "size_bytes": 62
+    },
+    {
+      "expected_md5": "b9df242e27cedb325fc56bb7635f9274",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/audio/demo_audio_director.gdc",
+      "size_bytes": 4449
+    },
+    {
+      "expected_md5": "8a32e14b332ef8694d86f3f1b465e5fc",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/demo_flow_controller.gd.remap",
+      "size_bytes": 57
+    },
+    {
+      "expected_md5": "72b3597a66c929a2a0ad2e1d91944614",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/demo_flow_controller.gdc",
+      "size_bytes": 19783
+    },
+    {
+      "expected_md5": "986c76751c47631cbd832205f6919e32",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/input/desktop_input_adapter.gd.remap",
+      "size_bytes": 64
+    },
+    {
+      "expected_md5": "94c06b50287ab3e7c13c2954fb1b0d3d",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/input/desktop_input_adapter.gdc",
+      "size_bytes": 2981
+    },
+    {
+      "expected_md5": "80d78a99e9f8fe630283bbab1d4f5cc0",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/cargo_pickup_animation.gd.remap",
+      "size_bytes": 72
+    },
+    {
+      "expected_md5": "f4c40c3330154d6a87c6c5af9ead1602",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/cargo_pickup_animation.gdc",
+      "size_bytes": 1505
+    },
+    {
+      "expected_md5": "67a6fa44545c688a921e0d09383c4e62",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/demo_effects.gd.remap",
+      "size_bytes": 62
+    },
+    {
+      "expected_md5": "98676a6f93c32c253683241592781a05",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/demo_effects.gdc",
+      "size_bytes": 2359
+    },
+    {
+      "expected_md5": "17a3c62b4fcdd161eaa399f66a6616a0",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/demo_palette.gd.remap",
+      "size_bytes": 62
+    },
+    {
+      "expected_md5": "08b537643aed22beedefed2620bfda08",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/demo_palette.gdc",
+      "size_bytes": 1891
+    },
+    {
+      "expected_md5": "42c3989a7eb924b52f06790b40efa061",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/demo_theme_factory.gd.remap",
+      "size_bytes": 68
+    },
+    {
+      "expected_md5": "09d464135c170778d75a947ac4db2738",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/demo_theme_factory.gdc",
+      "size_bytes": 2473
+    },
+    {
+      "expected_md5": "050b195715055d549e15c704d75518aa",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/product_board_renderer.gd.remap",
+      "size_bytes": 72
+    },
+    {
+      "expected_md5": "a34d3617bcd02dfe0e5f55ad0d6923de",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/product_board_renderer.gdc",
+      "size_bytes": 37538
+    },
+    {
+      "expected_md5": "1a834a6ccc7eb4d47b190dac6f794cc4",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/product_hud.gd.remap",
+      "size_bytes": 61
+    },
+    {
+      "expected_md5": "e67842c337480de41b7bc8232535b2b0",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/product_hud.gdc",
+      "size_bytes": 12510
+    },
+    {
+      "expected_md5": "0022f57f169ccad9ff5f990cc5804a25",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/product_hud.tscn.remap",
+      "size_bytes": 104
+    },
+    {
+      "expected_md5": "f3d18e009c48b82b9f42b27273945898",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/product_shell_art.gd.remap",
+      "size_bytes": 67
+    },
+    {
+      "expected_md5": "d132d2b9959f43e47919f37c48ca9bfe",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/product_shell_art.gdc",
+      "size_bytes": 8372
+    },
+    {
+      "expected_md5": "7c0eaabb3323e07af1dd83c6c2d2e536",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/route_control_overlay.gd.remap",
+      "size_bytes": 71
+    },
+    {
+      "expected_md5": "4ecf7cc3e995acc3574aff493ddf6191",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/route_control_overlay.gdc",
+      "size_bytes": 8778
+    },
+    {
+      "expected_md5": "9c950c6e91795199a9770fb20b2667c3",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/semantic_asset_catalog.gd.remap",
+      "size_bytes": 72
+    },
+    {
+      "expected_md5": "2046dbe76e78c330859bec495d78b5e1",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/semantic_asset_catalog.gdc",
+      "size_bytes": 4955
+    },
+    {
+      "expected_md5": "97059db20b22dc407b73fd9beb617a5e",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/semantic_event_overlay.gd.remap",
+      "size_bytes": 72
+    },
+    {
+      "expected_md5": "91be78e51976c34842987cf13aaec1b8",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/semantic_event_overlay.gdc",
+      "size_bytes": 3778
+    },
+    {
+      "expected_md5": "1fcbf108b8237a5e38555f3411ecaacb",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/semantic_runtime_state.gd.remap",
+      "size_bytes": 72
+    },
+    {
+      "expected_md5": "c16b0dc478e6bc3431e97fb1f0d36a05",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/semantic_runtime_state.gdc",
+      "size_bytes": 2929
+    },
+    {
+      "expected_md5": "08da4a19b9e2befa5cf84675f552e8f5",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/semantic_texture_stack.gd.remap",
+      "size_bytes": 72
+    },
+    {
+      "expected_md5": "30a1608ebc9e57df7abee6bad116d5d6",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/semantic_texture_stack.gdc",
+      "size_bytes": 1014
+    },
+    {
+      "expected_md5": "d4d5e59a583c4295063f0d738d4e72fb",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/stage_board_preview.gd.remap",
+      "size_bytes": 69
+    },
+    {
+      "expected_md5": "f0725c18d81349cd33ed177020a27df2",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/presentation/stage_board_preview.gdc",
+      "size_bytes": 1611
+    },
+    {
+      "expected_md5": "b146be44408fc8bda6c8f63bf0863cf2",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/product_finite_slice.gd.remap",
+      "size_bytes": 57
+    },
+    {
+      "expected_md5": "9b322edab95189db135630d394aeac32",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/product_finite_slice.gdc",
+      "size_bytes": 9656
+    },
+    {
+      "expected_md5": "5caeb6566f70076e326e858224486f34",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/product_finite_slice.tscn.remap",
+      "size_bytes": 113
+    },
+    {
+      "expected_md5": "6dfb2c26f13ddcd69d18d48120d0034d",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/recommended_layout_provider.gd.remap",
+      "size_bytes": 64
+    },
+    {
+      "expected_md5": "58819fb62d73cff6f0dd69f69de27bc0",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/recommended_layout_provider.gdc",
+      "size_bytes": 2622
+    },
+    {
+      "expected_md5": "9e362ab62f465716010db89f89efcc43",
+      "integrity_status": "VERIFIED",
+      "path": "game/demo/vertical_slice_demo.tscn.remap",
+      "size_bytes": 112
+    },
+    {
+      "expected_md5": "c4698b71465e42b100cff4b24ec27319",
+      "integrity_status": "VERIFIED",
+      "path": "game/difficulty/difficulty_director.gd.remap",
+      "size_bytes": 62
+    },
+    {
+      "expected_md5": "e6c8400ba190dfd0926f811b657d0517",
+      "integrity_status": "VERIFIED",
+      "path": "game/difficulty/difficulty_director.gdc",
+      "size_bytes": 2783
+    },
+    {
+      "expected_md5": "27ffdb79d7d7a1c4c4213ef3159eb1ff",
+      "integrity_status": "VERIFIED",
+      "path": "game/difficulty/difficulty_event.gd.remap",
+      "size_bytes": 59
+    },
+    {
+      "expected_md5": "11b69f6dcfc087bc383ee4590f9355fd",
+      "integrity_status": "VERIFIED",
+      "path": "game/difficulty/difficulty_event.gdc",
+      "size_bytes": 815
+    },
+    {
+      "expected_md5": "51a2ad6b5d757d26364954df607e00ff",
+      "integrity_status": "VERIFIED",
+      "path": "game/difficulty/difficulty_forecast.gd.remap",
+      "size_bytes": 62
+    },
+    {
+      "expected_md5": "8d9a3677fbaac4c9e0fe4dfc849381b1",
+      "integrity_status": "VERIFIED",
+      "path": "game/difficulty/difficulty_forecast.gdc",
+      "size_bytes": 1073
+    },
+    {
+      "expected_md5": "9369eb7e78775245486bb4577bbd7e9b",
+      "integrity_status": "VERIFIED",
+      "path": "game/difficulty/difficulty_pressure_snapshot.gd.remap",
+      "size_bytes": 71
+    },
+    {
+      "expected_md5": "35d52cfa97efd07403d84a42001deafc",
+      "integrity_status": "VERIFIED",
+      "path": "game/difficulty/difficulty_pressure_snapshot.gdc",
+      "size_bytes": 927
+    },
+    {
+      "expected_md5": "65ae7566fe08a2e07a2873ee72717a4f",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/build/finite_build_session.gd.remap",
+      "size_bytes": 65
+    },
+    {
+      "expected_md5": "af21304e1fc9486a2f4275d25e19ebe6",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/build/finite_build_session.gdc",
+      "size_bytes": 4333
+    },
+    {
+      "expected_md5": "a28aef0953ab48178c6a99edc5b1429d",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/build/preflight_result.gd.remap",
+      "size_bytes": 61
+    },
+    {
+      "expected_md5": "b89f476347bb62ed724021c705fbf635",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/build/preflight_result.gdc",
+      "size_bytes": 665
+    },
+    {
+      "expected_md5": "a8a86247500a2423b2051781f226abbf",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/build/preflight_validator.gd.remap",
+      "size_bytes": 64
+    },
+    {
+      "expected_md5": "39754f6780e68549cd27e091c7a6d389",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/build/preflight_validator.gdc",
+      "size_bytes": 7456
+    },
+    {
+      "expected_md5": "38748a7acdea8bea138997135550c484",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/build/track_edit_result.gd.remap",
+      "size_bytes": 62
+    },
+    {
+      "expected_md5": "f7e29f5f4c0bec673c189fbd72ed7732",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/build/track_edit_result.gdc",
+      "size_bytes": 723
+    },
+    {
+      "expected_md5": "27a7ccc78ed7a0d6ed79d19a1a8350a1",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/build/track_layout.gd.remap",
+      "size_bytes": 57
+    },
+    {
+      "expected_md5": "cd59fa9a5a18a1133f5c4d6658872053",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/build/track_layout.gdc",
+      "size_bytes": 2217
+    },
+    {
+      "expected_md5": "61df455977ff7d447c95fa21b8d97172",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/build/track_layout_editor.gd.remap",
+      "size_bytes": 64
+    },
+    {
+      "expected_md5": "b69a821d137fa05f21ce1599e0c09127",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/build/track_layout_editor.gdc",
+      "size_bytes": 4386
+    },
+    {
+      "expected_md5": "a7566200b066df50c5f98a61b91bcc4c",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/build/track_piece.gd.remap",
+      "size_bytes": 56
+    },
+    {
+      "expected_md5": "c5bf47aaa10e474291f75abfbd46c876",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/build/track_piece.gdc",
+      "size_bytes": 2342
+    },
+    {
+      "expected_md5": "906a6e364e26390ac0d91d395d922219",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/cargo/fixed_cargo_field.gd.remap",
+      "size_bytes": 62
+    },
+    {
+      "expected_md5": "81b204a5db061adbdfba7a927b89ed2d",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/cargo/fixed_cargo_field.gdc",
+      "size_bytes": 2319
+    },
+    {
+      "expected_md5": "192c5cdc2c4a799b64318adf90099302",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/cargo/unlimited_cargo_stack.gd.remap",
+      "size_bytes": 66
+    },
+    {
+      "expected_md5": "b7e86ad612ee341ce41a28a8d16418af",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/cargo/unlimited_cargo_stack.gdc",
+      "size_bytes": 1001
+    },
+    {
+      "expected_md5": "b5d194ba5d01e944e6c7695f98dfb85a",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/delivery/finite_delivery_event.gd.remap",
+      "size_bytes": 69
+    },
+    {
+      "expected_md5": "9e8a114c8a7145e2b074879676cd06fe",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/delivery/finite_delivery_event.gdc",
+      "size_bytes": 1664
+    },
+    {
+      "expected_md5": "2b0fee80c95d874bfacb65351b030592",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/delivery/finite_delivery_loop.gd.remap",
+      "size_bytes": 68
+    },
+    {
+      "expected_md5": "6f157b197894cd0adc7c6c26b6232735",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/delivery/finite_delivery_loop.gdc",
+      "size_bytes": 2476
+    },
+    {
+      "expected_md5": "6b569fe95d8c01b6c4072b578a6c0a4b",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/input/finite_gameplay_input_state.gd.remap",
+      "size_bytes": 72
+    },
+    {
+      "expected_md5": "9ad66a6b5b4e7b4e4ebeea29eb6a8d27",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/input/finite_gameplay_input_state.gdc",
+      "size_bytes": 759
+    },
+    {
+      "expected_md5": "50952840371b4d80a3ded032d9f52e81",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/main/finite_slice.gd.remap",
+      "size_bytes": 56
+    },
+    {
+      "expected_md5": "28341276e6f55e3183f74a3715461d3e",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/main/finite_slice.gdc",
+      "size_bytes": 2763
+    },
+    {
+      "expected_md5": "2d5ceea0195dfe635ae23538882125f5",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/main/finite_slice.tscn.remap",
+      "size_bytes": 105
+    },
+    {
+      "expected_md5": "f914bdebbd39a2d483ef0f3a9c8c2b5a",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/main/finite_slice_session_controller.gd.remap",
+      "size_bytes": 75
+    },
+    {
+      "expected_md5": "134adfab5c7436c1416069a8dc9327da",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/main/finite_slice_session_controller.gdc",
+      "size_bytes": 13300
+    },
+    {
+      "expected_md5": "b8b9b94077d32665930d2af0c148e7a4",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/map/finite_map_definition.gd.remap",
+      "size_bytes": 64
+    },
+    {
+      "expected_md5": "2c4f78c2ac94ed57051c6800e4e5ce83",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/map/finite_map_definition.gdc",
+      "size_bytes": 12292
+    },
+    {
+      "expected_md5": "b22dd1b8ff422f60447a42944cce21b5",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/map/finite_map_loader.gd.remap",
+      "size_bytes": 60
+    },
+    {
+      "expected_md5": "0b757e959f608f24bde2cbfb5b92d33b",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/map/finite_map_loader.gdc",
+      "size_bytes": 2996
+    },
+    {
+      "expected_md5": "662564b800abe0e9e507645a02a16ea5",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/presentation/finite_slice_presenter.gd.remap",
+      "size_bytes": 74
+    },
+    {
+      "expected_md5": "552de8ccb3378634b52eed74ff2864e6",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/presentation/finite_slice_presenter.gdc",
+      "size_bytes": 6365
+    },
+    {
+      "expected_md5": "3dc3baa01f451053848e80ef7af127a5",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/presentation/finite_slice_view.gd.remap",
+      "size_bytes": 69
+    },
+    {
+      "expected_md5": "d926614c141300ca7d1ef6c1c74b7c4d",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/presentation/finite_slice_view.gdc",
+      "size_bytes": 7125
+    },
+    {
+      "expected_md5": "722931bb395727697018d9769931c592",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/presentation/finite_slice_view.tscn.remap",
+      "size_bytes": 110
+    },
+    {
+      "expected_md5": "e3641e5e416399d4b016fdb8f73e69a7",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/rail/finite_track_crossing.gd.remap",
+      "size_bytes": 65
+    },
+    {
+      "expected_md5": "8eee3eb0de449a32d754bf33be8008d8",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/rail/finite_track_crossing.gdc",
+      "size_bytes": 892
+    },
+    {
+      "expected_md5": "312fafe0d8299fe0b6329998c6d8ef5e",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/rail/finite_track_graph.gd.remap",
+      "size_bytes": 62
+    },
+    {
+      "expected_md5": "a4701658f6170df222ae16394f278a8d",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/rail/finite_track_graph.gdc",
+      "size_bytes": 5532
+    },
+    {
+      "expected_md5": "cac689489edae10b9592d0545362b3de",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/rail/finite_track_graph_builder.gd.remap",
+      "size_bytes": 70
+    },
+    {
+      "expected_md5": "7530122a805d820968c2bd9717dfaaa6",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/rail/finite_track_graph_builder.gdc",
+      "size_bytes": 2202
+    },
+    {
+      "expected_md5": "ac3b00ad2d9bcf19ad5a981b6aed2b3b",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/rail/finite_track_switch.gd.remap",
+      "size_bytes": 63
+    },
+    {
+      "expected_md5": "d92f42667bb0df817041e575a3305af6",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/rail/finite_track_switch.gdc",
+      "size_bytes": 1884
+    },
+    {
+      "expected_md5": "71ee03a535c512a64d95f3274ff56853",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/run/finite_run_controller.gd.remap",
+      "size_bytes": 64
+    },
+    {
+      "expected_md5": "8aa9ac07069c6b32df162cbd44f2aade",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/run/finite_run_controller.gdc",
+      "size_bytes": 6570
+    },
+    {
+      "expected_md5": "878bc17894b7c6719e845b47db58f7f8",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/run/finite_run_session.gd.remap",
+      "size_bytes": 61
+    },
+    {
+      "expected_md5": "e7f4b131200567011290a77ca4fd0326",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/run/finite_run_session.gdc",
+      "size_bytes": 1961
+    },
+    {
+      "expected_md5": "51a2517126f02526c5fc97053bb6f758",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/run/finite_run_session_factory.gd.remap",
+      "size_bytes": 69
+    },
+    {
+      "expected_md5": "6ec36903c0870e730a89f63662298dc7",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/run/finite_run_session_factory.gdc",
+      "size_bytes": 5498
+    },
+    {
+      "expected_md5": "2379a099be9a2707f7b9d1f40d1ad517",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/run/finite_run_state.gd.remap",
+      "size_bytes": 59
+    },
+    {
+      "expected_md5": "6cc73a961a6d1760ec03b398697a815e",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/run/finite_run_state.gdc",
+      "size_bytes": 1829
+    },
+    {
+      "expected_md5": "da7cb6e07dd65c3a0d943b9c81d76a17",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/run/finite_run_summary.gd.remap",
+      "size_bytes": 61
+    },
+    {
+      "expected_md5": "11c54a2555ec70524739bbe55c06848c",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/run/finite_run_summary.gdc",
+      "size_bytes": 1365
+    },
+    {
+      "expected_md5": "85abcb49c4dec51078320adf5617e522",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/run/finite_solution_identity.gd.remap",
+      "size_bytes": 67
+    },
+    {
+      "expected_md5": "c3a1dc21d9ef83ce05dd97b215aafddc",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/run/finite_solution_identity.gdc",
+      "size_bytes": 1910
+    },
+    {
+      "expected_md5": "07cf6d7704dc90c04bbb66131367b983",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/run/unload_sequence.gd.remap",
+      "size_bytes": 58
+    },
+    {
+      "expected_md5": "2ad109f5d7042326ecd7129f03f87775",
+      "integrity_status": "VERIFIED",
+      "path": "game/finite/run/unload_sequence.gdc",
+      "size_bytes": 1700
+    },
+    {
+      "expected_md5": "ff744793bdbbcf084e9de7130fda1fe2",
+      "integrity_status": "VERIFIED",
+      "path": "game/first_session/first_session_copy.gd.remap",
+      "size_bytes": 64
+    },
+    {
+      "expected_md5": "2e813a01a07d5c274ac6a8a2f2128d2a",
+      "integrity_status": "VERIFIED",
+      "path": "game/first_session/first_session_copy.gdc",
+      "size_bytes": 2163
+    },
+    {
+      "expected_md5": "1349ad1e4d3b446c41744b2c7e326c82",
+      "integrity_status": "VERIFIED",
+      "path": "game/first_session/first_session_definition.gd.remap",
+      "size_bytes": 70
+    },
+    {
+      "expected_md5": "3495ee24df26a9ba2c82f8c045aa063a",
+      "integrity_status": "VERIFIED",
+      "path": "game/first_session/first_session_definition.gdc",
+      "size_bytes": 1958
+    },
+    {
+      "expected_md5": "d95aac33f7786d5185cbdc8eb2292f94",
+      "integrity_status": "VERIFIED",
+      "path": "game/first_session/first_session_director.gd.remap",
+      "size_bytes": 68
+    },
+    {
+      "expected_md5": "28727c1c5246bcaf53555873b63d494f",
+      "integrity_status": "VERIFIED",
+      "path": "game/first_session/first_session_director.gdc",
+      "size_bytes": 2347
+    },
+    {
+      "expected_md5": "72d4d5b380a2d99867eae5830d2f80e0",
+      "integrity_status": "VERIFIED",
+      "path": "game/first_session/first_session_stage_policy.gd.remap",
+      "size_bytes": 72
+    },
+    {
+      "expected_md5": "be6a7ba91e2f3a6638d2f842eb48472d",
+      "integrity_status": "VERIFIED",
+      "path": "game/first_session/first_session_stage_policy.gdc",
+      "size_bytes": 1900
+    },
+    {
+      "expected_md5": "ba6febf3e7f4a84780b46cb735e917eb",
+      "integrity_status": "VERIFIED",
+      "path": "game/first_session/first_session_starter_layouts.gd.remap",
+      "size_bytes": 75
+    },
+    {
+      "expected_md5": "7e7add2872b241208ee9ac33135aa001",
+      "integrity_status": "VERIFIED",
+      "path": "game/first_session/first_session_starter_layouts.gdc",
+      "size_bytes": 931
+    },
+    {
+      "expected_md5": "c9beea741119bd83ff6e18e8ed37904d",
+      "integrity_status": "VERIFIED",
+      "path": "game/input/gameplay_input_state.gd.remap",
+      "size_bytes": 58
+    },
+    {
+      "expected_md5": "d057f9e13e96c95d3d0552cdcfcb7bd8",
+      "integrity_status": "VERIFIED",
+      "path": "game/input/gameplay_input_state.gdc",
+      "size_bytes": 450
+    },
+    {
+      "expected_md5": "09ea927c729344b2e6a11ef2157ce131",
+      "integrity_status": "VERIFIED",
+      "path": "game/main/main.gd.remap",
+      "size_bytes": 41
+    },
+    {
+      "expected_md5": "0fbdea13ab7567808acd2ced84bfaf22",
+      "integrity_status": "VERIFIED",
+      "path": "game/main/main.gdc",
+      "size_bytes": 77
+    },
+    {
+      "expected_md5": "d2f916d79353107c8da010ebf388fb7e",
+      "integrity_status": "VERIFIED",
+      "path": "game/main/main.tscn.remap",
+      "size_bytes": 97
+    },
+    {
+      "expected_md5": "2f61858314818413a1df5f671431f17d",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_build_pipeline.gd.remap",
+      "size_bytes": 54
+    },
+    {
+      "expected_md5": "c99c505e03d1a839d69738f462471eae",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_build_pipeline.gdc",
+      "size_bytes": 4227
+    },
+    {
+      "expected_md5": "e01d96fc4370686558393e67742a4e89",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_build_result.gd.remap",
+      "size_bytes": 52
+    },
+    {
+      "expected_md5": "80bd06edfa196a152fd2c59a1b18d386",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_build_result.gdc",
+      "size_bytes": 973
+    },
+    {
+      "expected_md5": "ad01a767b3068bbbb143fdb03dc3a7f2",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_catalog.gd.remap",
+      "size_bytes": 47
+    },
+    {
+      "expected_md5": "0f43ba5c6367c7fcb9c5bca6ffff7496",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_catalog.gdc",
+      "size_bytes": 3130
+    },
+    {
+      "expected_md5": "52360b2c4890f200398b34c9bc40e32d",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_definition.gd.remap",
+      "size_bytes": 50
+    },
+    {
+      "expected_md5": "31d78ba4233a04c991e0d811aa80feca",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_definition.gdc",
+      "size_bytes": 3075
+    },
+    {
+      "expected_md5": "ee8f8a4999efc36ef05a0d95e8cd9aab",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_discovery_state.gd.remap",
+      "size_bytes": 55
+    },
+    {
+      "expected_md5": "644e09403da47f284cb8b467dec07fdb",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_discovery_state.gdc",
+      "size_bytes": 2620
+    },
+    {
+      "expected_md5": "4419fee28c1aaeb00d7c0751aafeda46",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_selection_receipt.gd.remap",
+      "size_bytes": 57
+    },
+    {
+      "expected_md5": "36a5df34705661efe09f0de23647ab2a",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_selection_receipt.gdc",
+      "size_bytes": 1300
+    },
+    {
+      "expected_md5": "8cab348b95ed08ea8be13be4a09c90ca",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_selection_request.gd.remap",
+      "size_bytes": 57
+    },
+    {
+      "expected_md5": "88b1bbe750468576dcefa86631421649",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_selection_request.gdc",
+      "size_bytes": 1744
+    },
+    {
+      "expected_md5": "2602614f5e99a80585a728fbc20e5380",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_selection_result.gd.remap",
+      "size_bytes": 56
+    },
+    {
+      "expected_md5": "3ee347c9ddc798f47ac8066d7919bad4",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_selection_result.gdc",
+      "size_bytes": 765
+    },
+    {
+      "expected_md5": "3e5f2069786409126cebe31525ff0843",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_selection_service.gd.remap",
+      "size_bytes": 57
+    },
+    {
+      "expected_md5": "a2605ebd67edb6a488a9a01607df1d18",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_selection_service.gdc",
+      "size_bytes": 4330
+    },
+    {
+      "expected_md5": "5730b9ec16736c16b0d5b45f64803625",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_shuffle_bag.gd.remap",
+      "size_bytes": 51
+    },
+    {
+      "expected_md5": "13dfb28fa96036d3758a0381b5a4f505",
+      "integrity_status": "VERIFIED",
+      "path": "game/map/map_shuffle_bag.gdc",
+      "size_bytes": 1265
+    },
+    {
+      "expected_md5": "7e7e5a9e639c42652c3e412384f74df4",
+      "integrity_status": "VERIFIED",
+      "path": "game/rail/rail_cell.gd.remap",
+      "size_bytes": 46
+    },
+    {
+      "expected_md5": "91cd63e60f983b8f4c907352e2b2d2e7",
+      "integrity_status": "VERIFIED",
+      "path": "game/rail/rail_cell.gdc",
+      "size_bytes": 451
+    },
+    {
+      "expected_md5": "03aadec5ceb6bba60052814fc7426c9d",
+      "integrity_status": "VERIFIED",
+      "path": "game/rail/rail_generator.gd.remap",
+      "size_bytes": 51
+    },
+    {
+      "expected_md5": "de9f5cced8cdb976c73a48f559556d1c",
+      "integrity_status": "VERIFIED",
+      "path": "game/rail/rail_generator.gdc",
+      "size_bytes": 2251
+    },
+    {
+      "expected_md5": "69f55972e4a0c50210f0aa0fad83910d",
+      "integrity_status": "VERIFIED",
+      "path": "game/rail/rail_graph.gd.remap",
+      "size_bytes": 47
+    },
+    {
+      "expected_md5": "f960888bbaf0544573afc1671956239e",
+      "integrity_status": "VERIFIED",
+      "path": "game/rail/rail_graph.gdc",
+      "size_bytes": 6520
+    },
+    {
+      "expected_md5": "40343481ed70775b586cad67fb9cff22",
+      "integrity_status": "VERIFIED",
+      "path": "game/rail/rail_switch.gd.remap",
+      "size_bytes": 48
+    },
+    {
+      "expected_md5": "2caa71948d9375dd10e84181ca606763",
+      "integrity_status": "VERIFIED",
+      "path": "game/rail/rail_switch.gdc",
+      "size_bytes": 1687
+    },
+    {
+      "expected_md5": "b7eb5182a82814a19f78969614a01084",
+      "integrity_status": "VERIFIED",
+      "path": "game/route_book/route_book_catalog.gd.remap",
+      "size_bytes": 61
+    },
+    {
+      "expected_md5": "2a60c8c017425b05f4262545fea32160",
+      "integrity_status": "VERIFIED",
+      "path": "game/route_book/route_book_catalog.gdc",
+      "size_bytes": 1166
+    },
+    {
+      "expected_md5": "c4b4cc1f9ce5f7f17fed22e9cecc9e46",
+      "integrity_status": "VERIFIED",
+      "path": "game/route_book/route_book_definition.gd.remap",
+      "size_bytes": 64
+    },
+    {
+      "expected_md5": "b4b8b3bcea708e04dc34fe6b2b2887e3",
+      "integrity_status": "VERIFIED",
+      "path": "game/route_book/route_book_definition.gdc",
+      "size_bytes": 3309
+    },
+    {
+      "expected_md5": "0a59e9b8909ef59ce765e98fd9090fe4",
+      "integrity_status": "VERIFIED",
+      "path": "game/route_book/route_book_director.gd.remap",
+      "size_bytes": 62
+    },
+    {
+      "expected_md5": "745c5f0a976fe447e1d45b64600813ed",
+      "integrity_status": "VERIFIED",
+      "path": "game/route_book/route_book_director.gdc",
+      "size_bytes": 1398
+    },
+    {
+      "expected_md5": "b57d6f8e7f69d29bf9f2b4ad423a026f",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_balance.gd.remap",
+      "size_bytes": 47
+    },
+    {
+      "expected_md5": "c0ec9f4a525105de07ab0efdf01c9b47",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_balance.gdc",
+      "size_bytes": 2939
+    },
+    {
+      "expected_md5": "3509aa12b25de694f07ad05a0af63294",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_controller.gd.remap",
+      "size_bytes": 50
+    },
+    {
+      "expected_md5": "03e73e179d014cea56c3ee104601706d",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_controller.gdc",
+      "size_bytes": 5378
+    },
+    {
+      "expected_md5": "a01ed49c38d37e7e24654162fa04513b",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_id_factory.gd.remap",
+      "size_bytes": 50
+    },
+    {
+      "expected_md5": "9bbf12fedaf516e544a46f84da64879a",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_id_factory.gdc",
+      "size_bytes": 875
+    },
+    {
+      "expected_md5": "c40e104ee71782bc0e3a5dca7c3e377b",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_identity.gd.remap",
+      "size_bytes": 48
+    },
+    {
+      "expected_md5": "38bb1c6c561bf3c5e4199148a3c1246b",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_identity.gdc",
+      "size_bytes": 1311
+    },
+    {
+      "expected_md5": "b697b2d04edf254602ae5ef49068bf81",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_metrics_accumulator.gd.remap",
+      "size_bytes": 59
+    },
+    {
+      "expected_md5": "b74fe3c9871c6392081e4af50ff4a7c2",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_metrics_accumulator.gdc",
+      "size_bytes": 1367
+    },
+    {
+      "expected_md5": "a91fb2d6ceeb7efe40e44467c94fb418",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_session.gd.remap",
+      "size_bytes": 47
+    },
+    {
+      "expected_md5": "5910891b4139bf7fbf165c84a24a12a8",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_session.gdc",
+      "size_bytes": 1597
+    },
+    {
+      "expected_md5": "14debc94f35624b550dde9283bfecd26",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_session_factory.gd.remap",
+      "size_bytes": 55
+    },
+    {
+      "expected_md5": "594a9ab0bd2b38fe3094829e1a68d67c",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_session_factory.gdc",
+      "size_bytes": 3811
+    },
+    {
+      "expected_md5": "b7ba9b17dcd3050db8222c23eeaba3c4",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_session_start_service.gd.remap",
+      "size_bytes": 61
+    },
+    {
+      "expected_md5": "265f599ee2e28d36256aeec2876c09ff",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_session_start_service.gdc",
+      "size_bytes": 1671
+    },
+    {
+      "expected_md5": "b49b900d5f834d4df031190fd238aeca",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_state.gd.remap",
+      "size_bytes": 45
+    },
+    {
+      "expected_md5": "85864b51ddf78ccc553a38071ecd8004",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_state.gdc",
+      "size_bytes": 2484
+    },
+    {
+      "expected_md5": "6e2e35fe33f2c10c623112210045282a",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_summary.gd.remap",
+      "size_bytes": 47
+    },
+    {
+      "expected_md5": "0767696f4523e7288a4aa8301a3f6037",
+      "integrity_status": "VERIFIED",
+      "path": "game/run/run_summary.gdc",
+      "size_bytes": 1350
+    },
+    {
+      "expected_md5": "585d19c21eb88c05e561b107498973ff",
+      "integrity_status": "VERIFIED",
+      "path": "game/station/station.gd.remap",
+      "size_bytes": 47
+    },
+    {
+      "expected_md5": "7cba1ea10b34ffee7c5fc4497187677d",
+      "integrity_status": "VERIFIED",
+      "path": "game/station/station.gdc",
+      "size_bytes": 1336
+    },
+    {
+      "expected_md5": "dd88a5afda0eff04c5cc5e5f140f635f",
+      "integrity_status": "VERIFIED",
+      "path": "game/station/station_placer.gd.remap",
+      "size_bytes": 54
+    },
+    {
+      "expected_md5": "b13728e5959e3a2574702021faeeb986",
+      "integrity_status": "VERIFIED",
+      "path": "game/station/station_placer.gdc",
+      "size_bytes": 2756
+    },
+    {
+      "expected_md5": "624522362b9b244e3749b8730cbddf7a",
+      "integrity_status": "VERIFIED",
+      "path": "game/train/compact_wagon_token_state.gd.remap",
+      "size_bytes": 63
+    },
+    {
+      "expected_md5": "b2bcddae839d63c82198c7edd89b55e6",
+      "integrity_status": "VERIFIED",
+      "path": "game/train/compact_wagon_token_state.gdc",
+      "size_bytes": 992
+    },
+    {
+      "expected_md5": "186bc11f9664d9db580cf58de9135347",
+      "integrity_status": "VERIFIED",
+      "path": "game/train/train_controller.gd.remap",
+      "size_bytes": 54
+    },
+    {
+      "expected_md5": "fca0cbc4e704d42317c77d10bf6be814",
+      "integrity_status": "VERIFIED",
+      "path": "game/train/train_controller.gdc",
+      "size_bytes": 4738
+    },
+    {
+      "expected_md5": "05bce97174406e4c470c0c89b3db48ba",
+      "integrity_status": "VERIFIED",
+      "path": "game/train/train_footprint.gd.remap",
+      "size_bytes": 53
+    },
+    {
+      "expected_md5": "1959a7f502bad890403267f9299a424e",
+      "integrity_status": "VERIFIED",
+      "path": "game/train/train_footprint.gdc",
+      "size_bytes": 1947
+    },
+    {
+      "expected_md5": "559ac8473f80e5853baa362aed904788",
+      "integrity_status": "VERIFIED",
+      "path": "game/train/train_state.gd.remap",
+      "size_bytes": 49
+    },
+    {
+      "expected_md5": "573129a53cdbbbd612d11ec471acfd8e",
+      "integrity_status": "VERIFIED",
+      "path": "game/train/train_state.gdc",
+      "size_bytes": 1776
+    },
+    {
+      "expected_md5": "a08a26f8ddbf741e76ded2ba33592efd",
+      "integrity_status": "VERIFIED",
+      "path": "game/train/wagon_view.gd.remap",
+      "size_bytes": 48
+    },
+    {
+      "expected_md5": "c0402185c7d3f288fde43dbc8881cb10",
+      "integrity_status": "VERIFIED",
+      "path": "game/train/wagon_view.gdc",
+      "size_bytes": 309
+    },
+    {
+      "expected_md5": "7b683e7a5b4cb91706a9aec40158846c",
+      "integrity_status": "VERIFIED",
+      "path": "project.binary",
+      "size_bytes": 6046
+    },
+    {
+      "expected_md5": "71ff6dee2d90bd2205ff6c03babed1d4",
+      "integrity_status": "VERIFIED",
+      "path": "scenes/finite/finite_build_test.tscn.remap",
+      "size_bytes": 110
+    },
+    {
+      "expected_md5": "70b283109ac577f2844d077e1f7d630b",
+      "integrity_status": "VERIFIED",
+      "path": "skills/PROJECT_BASE_ADAPTER.json",
+      "size_bytes": 8262
+    },
+    {
+      "expected_md5": "a70b2b83ea17d8919ed6f54ff8623827",
+      "integrity_status": "VERIFIED",
+      "path": "skills/PROJECT_SKILL_SNAPSHOT.json",
+      "size_bytes": 7364
+    },
+    {
+      "expected_md5": "92bed68e4ab8fe05d8af788b7d3f0360",
+      "integrity_status": "VERIFIED",
+      "path": "skills/SKILL_REGISTRY.json",
+      "size_bytes": 3654
+    },
+    {
+      "expected_md5": "c0c348e09475b272e1b418034866910d",
+      "integrity_status": "VERIFIED",
+      "path": "tools/derive_sx_dec_063_master_rail_v04.gd.remap",
+      "size_bytes": 66
+    },
+    {
+      "expected_md5": "66a90a49da89a5ef292a657a589097e7",
+      "integrity_status": "VERIFIED",
+      "path": "tools/derive_sx_dec_063_master_rail_v04.gdc",
+      "size_bytes": 1843
+    },
+    {
+      "expected_md5": "e5a0bd2afb2d124991745018b59dc269",
+      "integrity_status": "VERIFIED",
+      "path": "tools/prepare_sx_dec_063_core_board_asset.gd.remap",
+      "size_bytes": 68
+    },
+    {
+      "expected_md5": "3317903a91989d425b73f1224320442d",
+      "integrity_status": "VERIFIED",
+      "path": "tools/prepare_sx_dec_063_core_board_asset.gdc",
+      "size_bytes": 1793
+    },
+    {
+      "expected_md5": "19b7d9a38688bbd176f182c1bc04fc4f",
+      "integrity_status": "VERIFIED",
+      "path": "tools/validation/finite/finite_validation_launcher.gd.remap",
+      "size_bytes": 77
+    },
+    {
+      "expected_md5": "0377ebc981660ea75259089ba9983453",
+      "integrity_status": "VERIFIED",
+      "path": "tools/validation/finite/finite_validation_launcher.gdc",
+      "size_bytes": 4378
+    },
+    {
+      "expected_md5": "d8b425c0eca540104e22585d06566cf2",
+      "integrity_status": "VERIFIED",
+      "path": "tools/validation/finite/finite_validation_launcher.tscn.remap",
+      "size_bytes": 119
+    },
+    {
+      "expected_md5": "cb52c65f8917c7dfa1467817dde24dc0",
+      "integrity_status": "VERIFIED",
+      "path": "tools/validation/finite/finite_validation_mode_selector.gd.remap",
+      "size_bytes": 82
+    },
+    {
+      "expected_md5": "f8b8a231a6b516bcb0dd6f3010a7efe2",
+      "integrity_status": "VERIFIED",
+      "path": "tools/validation/finite/finite_validation_mode_selector.gdc",
+      "size_bytes": 1140
+    },
+    {
+      "expected_md5": "8f0d0739d6089d98f90f64c65895b693",
+      "integrity_status": "VERIFIED",
+      "path": "tools/validation/finite/finite_validation_mode_selector.tscn.remap",
+      "size_bytes": 124
+    },
+    {
+      "expected_md5": "b8891ae0ebd35c8e710539ddd4b1bb2b",
+      "integrity_status": "VERIFIED",
+      "path": "tools/validation/finite/validation_run_state_fixture.gd.remap",
+      "size_bytes": 79
+    },
+    {
+      "expected_md5": "6dfcea5d6ea9956541924afed53f5f69",
+      "integrity_status": "VERIFIED",
+      "path": "tools/validation/finite/validation_run_state_fixture.gdc",
+      "size_bytes": 327
+    },
+    {
+      "expected_md5": "47a9f71be0aba526ea2278da828a5781",
+      "integrity_status": "VERIFIED",
+      "path": "tools/validation/verify_exported_runtime_json.gd.remap",
+      "size_bytes": 72
+    },
+    {
+      "expected_md5": "4a84ee010d738b653b0a64657f2978e7",
+      "integrity_status": "VERIFIED",
+      "path": "tools/validation/verify_exported_runtime_json.gdc",
+      "size_bytes": 4778
+    },
+    {
+      "expected_md5": "ac3c9c6e1629005f02db60aae128f9be",
+      "integrity_status": "VERIFIED",
+      "path": "기획서/00_프로젝트_허브/DESIGN_DOCUMENT_REGISTRY.json",
+      "size_bytes": 13924
+    }
+  ],
+  "extension_counts": {
+    ".bin": 1,
+    ".binary": 1,
+    ".cfg": 1,
+    ".ctex": 136,
+    ".fontdata": 1,
+    ".gdc": 146,
+    ".import": 137,
+    ".json": 58,
+    ".remap": 155,
+    ".scn": 9
+  },
+  "file_base": 112,
+  "file_count": 645,
+  "file_size_bytes": 54920848,
+  "integrity_pass": true,
+  "md5_mismatch_count": 0,
+  "nonzero_entry_flags_count": 0,
+  "pack_flags": 2,
+  "pack_format_version": 4,
+  "path": "SwitchyExpress.pck",
+  "prefix_counts": {},
+  "prefix_extension_counts": {},
+  "relative_filebase": true,
+  "trailing_unverified_bytes": 0,
+  "verified_entry_count": 645
+}

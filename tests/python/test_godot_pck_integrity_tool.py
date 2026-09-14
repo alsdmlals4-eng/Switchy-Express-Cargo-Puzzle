@@ -2,7 +2,10 @@ from __future__ import annotations
 
 import hashlib
 import importlib.util
+import json
 import struct
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -64,6 +67,60 @@ def _build_test_pck(
 
 
 class GodotPckIntegrityToolTests(unittest.TestCase):
+    def test_optional_inventory_preserves_pack_order_sizes_and_verified_status(self) -> None:
+        tool = _load_tool()
+        with tempfile.TemporaryDirectory() as tmp:
+            pck = Path(tmp) / "inventory.pck"
+            files = {"art/example.png.import": b"hello", "data/map.json": b"{}"}
+            _build_test_pck(pck, files)
+            self.assertNotIn("entries", tool.inspect_pck(pck))
+            summary = tool.inspect_pck(pck, include_entries=True)
+        self.assertEqual([entry["path"] for entry in summary["entries"]], list(files))
+        for entry, payload in zip(summary["entries"], files.values()):
+            self.assertEqual(entry["size_bytes"], len(payload))
+            self.assertEqual(entry["expected_md5"], hashlib.md5(payload).hexdigest())
+            self.assertEqual(entry["integrity_status"], "VERIFIED")
+
+    def test_inventory_does_not_mark_tampered_payload_verified(self) -> None:
+        tool = _load_tool()
+        with tempfile.TemporaryDirectory() as tmp:
+            pck = Path(tmp) / "tampered.pck"
+            _build_test_pck(pck, {"data/example.json": b"abcdef"})
+            raw = bytearray(pck.read_bytes())
+            raw[112] ^= 1
+            pck.write_bytes(raw)
+            summary = tool.inspect_pck(pck, include_entries=True)
+        self.assertFalse(summary["integrity_pass"])
+        self.assertEqual(summary["entries"][0]["integrity_status"], "MD5_MISMATCH")
+
+    def test_inventory_reports_out_of_bounds_entry_without_hashing_it(self) -> None:
+        tool = _load_tool()
+        with tempfile.TemporaryDirectory() as tmp:
+            pck = Path(tmp) / "bounds.pck"
+            _build_test_pck(pck, {"x": b"abc"})
+            raw = bytearray(pck.read_bytes())
+            # Directory: count, path length, padded 'x', then relative offset.
+            struct.pack_into("<Q", raw, 115 + 4 + 4 + 4, 999999)
+            pck.write_bytes(raw)
+            summary = tool.inspect_pck(pck, include_entries=True)
+        self.assertFalse(summary["integrity_pass"])
+        self.assertEqual(summary["bounds_error_count"], 1)
+        self.assertEqual(summary["entries"][0]["integrity_status"], "BOUNDS_ERROR")
+
+    def test_cli_inventory_option_preserves_summary_and_writes_same_json(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            pck = Path(tmp) / "cli.pck"
+            output = Path(tmp) / "inventory.json"
+            _build_test_pck(pck, {"data/a.json": b"{}"})
+            result = subprocess.run(
+                [sys.executable, str(TOOL), str(pck), "--include-entries", "--json-out", str(output)],
+                capture_output=True, text=True, check=False,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            summary = json.loads(result.stdout)
+            self.assertEqual(summary, json.loads(output.read_text(encoding="utf-8")))
+            self.assertEqual(summary["entries"][0]["path"], "data/a.json")
+
     def test_valid_v4_relative_filebase_pack_verifies_all_entries(self) -> None:
         tool = _load_tool()
         with tempfile.TemporaryDirectory() as tmp:

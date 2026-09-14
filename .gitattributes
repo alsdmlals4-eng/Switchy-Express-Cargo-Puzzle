@@ -20,6 +20,7 @@ evidence/runtime/route-book-03-20260914/*.log -text whitespace=cr-at-eol,-blank-
 # Raw pytest diagnostics include padded assertion lines; preserve their exact bytes.
 evidence/runtime/pilot-undo-20260914/*.log -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 evidence/runtime/pilot-undo-20260914/linux-runner.json -text
+evidence/release/shipping-inventory-20260914/inventory.json -text whitespace=cr-at-eol
 evidence/runtime/product-speed-20260913/completion/*.log -text whitespace=-blank-at-eof
 evidence/runtime/native-generator-lifetime-20260913/*.log -text whitespace=-blank-at-eof
 # CDB emits CRLF and padded stack arguments; retain this exact diagnostic output.
