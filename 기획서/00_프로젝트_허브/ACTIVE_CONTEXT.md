@@ -1,5 +1,36 @@
 # Active Context
 
+### Latest package checkpoint
+
+Final five-pass independent review closed at ffb4bceb, including13 exact monthly source
+snapshots and9 domain inputs. Current normal integration/readback locator is PR312;
+its exact-head checks/merge receipt owns integration status, not older pending prose below.
+M1/C1/C2 approved implementation and package checks are complete; final user, native
+full-play, device/rights/release and recurrence-only maintenance remain separate.
+
+C2 c9e6a6dd exact export now mounted3books/18BUILD/18SUCCESS, six negative paths and
+six fresh same-layout Retry/Edit PASS. Native EXE startup120frames exit0 (not full native
+play). Full131/17040 and Python311/1optionalPilotSkip reconfirmed. New Windows folder:
+C:/Users/user/Downloads/Switchy_Playable_20260914_RouteBook03. Package SHA/source and
+review limits: evidence/runtime/route-book-03-20260914/README.md. Normal CI/merge next.
+
+## 2026-09-14 C2 implementation and monthly evidence continuation
+
+Detailed C2 spec merged normally in PR311, main f9a53bfdb5ae165b4112f4c89be360cf382c4ee9.
+Six optional authored maps RB13–RB18 are now locally implemented; book03/shared selector
+and four locales use existing consumers, assets and finite rules. Full131/17040 PASS;
+Python311/1skip (optional local Pilot environment); actual18SUCCESS, six exact negative
+paths, six fresh same-layout Retry/Edit paths, preview216states/9Begin PASS.
+Owner: evidence/runtime/route-book-03-20260914/README.md. Changed-byte package is now
+verified at the latest checkpoint above; PR312 CI/merge readback remains pending.
+C1 package remains unchanged.
+Blueprint is now90pages and rendered; monthly9page evidence v1.0 is a separate immutable
+internal source-bound snapshot in the user September evidence folder. Its C2 status is
+local verification, not later package/merge evidence. Prompt screenshots/account/billing
+remain uncollected; no agreement verification or submission claimed.
+Future generated images use chroma key, removal and alpha/edge QA per latest user rule.
+No new image was needed here. Older entries below are historical snapshots.
+
 ## 2026-09-14 approved remaining-work execution
 
 Current user approval resumes the September14 specification at

@@ -1,6 +1,9 @@
 # Route Book 03 - authored coordinates and execution contract
 
-Status: SPECIFIED; machine feasibility must be proven one map at a time before exposure.
+Status: IMPLEMENTED / MACHINE_VERIFIED / checkout RUNTIME_VERIFIED on September14.
+Each of six positive/negative map pairs passed before third-book exposure. Current
+evidence owner: evidence/runtime/route-book-03-20260914/README.md. Package and merged
+implementation readback remain separate; no final USER_APPROVED/release claim.
 Authority: September14 user-approved C2 in `2026-09-14-remaining-work-design.md` and
 CURRENT_CONFIRMED_DECISIONS. This is the detailed realization of that approved scope,
 not PR281 adoption and not a new SX-DEC-070. Base compatibility v9.4.3 unchanged.

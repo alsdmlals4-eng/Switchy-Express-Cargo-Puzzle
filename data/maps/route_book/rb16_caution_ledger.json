@@ -1,0 +1,105 @@
+{
+  "definition_schema_version": 3,
+  "map_revision": 1,
+  "ruleset_version": "fp_core_v2",
+  "marker_tracks_player_built": true,
+  "allow_open_terminals_after_required": true,
+  "map_id": "RB16_CAUTION_LEDGER",
+  "board_size": [
+    12,
+    9
+  ],
+  "start_cell": [
+    1,
+    5
+  ],
+  "time_limit_seconds": 145,
+  "blocked_cells": [
+    [
+      4,
+      2
+    ],
+    [
+      5,
+      7
+    ]
+  ],
+  "caution_track_cells": [
+    [
+      3,
+      5
+    ],
+    [
+      7,
+      4
+    ],
+    [
+      8,
+      4
+    ]
+  ],
+  "board_decorations": [
+    {
+      "kind": "MOSS_BOULDER",
+      "cell": [
+        4,
+        2
+      ]
+    },
+    {
+      "kind": "TIMBER_STACK",
+      "cell": [
+        5,
+        7
+      ]
+    }
+  ],
+  "station_placements": [
+    {
+      "cell": [
+        8,
+        2
+      ],
+      "cargo_type": "RED_STAR"
+    },
+    {
+      "cell": [
+        10,
+        7
+      ],
+      "cargo_type": "BLUE_DIAMOND"
+    }
+  ],
+  "cargo_placements": [
+    {
+      "cell": [
+        3,
+        5
+      ],
+      "cargo_type": "BLUE_DIAMOND"
+    },
+    {
+      "cell": [
+        5,
+        5
+      ],
+      "cargo_type": "RED_STAR"
+    }
+  ],
+  "incoming_cell": [
+    0,
+    5
+  ],
+  "buildable_rects": [
+    {
+      "minimum": [
+        1,
+        1
+      ],
+      "maximum": [
+        10,
+        7
+      ]
+    }
+  ]
+}

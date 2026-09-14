@@ -10,8 +10,8 @@ RECEIPT = ROOT / "evidence/runtime/stage-preview-window-20260913/receipt.json"
 def test_matrix_reports_actual_sizes_and_pointer_checks():
     receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
     assert receipt["status"] == "PASS"
-    assert receipt["checked"] == 144
-    assert receipt["pointer_begin_checks"] == 3
+    assert receipt["checked"] == 216
+    assert receipt["pointer_begin_checks"] == 9
     assert receipt["failures"] == []
     assert [entry["actual"] for entry in receipt["window_sizes"]] == [
         "(960, 540)", "(1280, 720)", "(1600, 900)"
@@ -26,7 +26,8 @@ def test_current_preview_input_and_capture_hashes():
     receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
     assert receipt["source_hash_policy"] == "SHA256_UTF8_TEXT_CRLF_TO_LF"
     assert len(receipt["source_hashes"]) >= 27
-    assert len(receipt["capture_sha256"]) == 4
+    assert len(receipt["capture_sha256"]) == 8
+    assert "res://data/localization/route_book_selector_v1.json" in receipt["source_hashes"]
     for resource, expected in receipt["source_hashes"].items():
         data = (ROOT / resource.removeprefix("res://")).read_bytes().replace(b"\r\n", b"\n")
         assert hashlib.sha256(data).hexdigest() == expected, resource

@@ -1,0 +1,210 @@
+{
+  "project": "Switchy Express: Cargo Puzzle",
+  "month": "2026-09",
+  "version": "1.0",
+  "issued_at_utc": "2026-09-14T13:20:36+00:00",
+  "record_written_at_utc": "2026-09-14T13:20:36+00:00",
+  "source_main": "f9a53bfdb5ae165b4112f4c89be360cf382c4ee9",
+  "source_file_sha256": {
+    "docs\\reporting\\2026-09-worklog-records.json": "7d3948d7403a14a221b9f412102d81cc0c3db45b94d44737d7930859cb7119ef",
+    "docs/reporting/AI_WORKLOG_EVIDENCE_POLICY.md": "af7cccfb5b2b1b030c034b958165300879a02f5034dfa93b485b519dbe840149",
+    "docs/superpowers/specs/2026-09-14-remaining-work-design.md": "828f3a9791a80630882191362f945eaedc03d6acde1125cf8489a282cbc7465e",
+    "docs/superpowers/specs/2026-09-14-route-book-03-authored-content.md": "989f44ab3d1455b65b09d8b4d607f1fcf28c5077b3a55554b626437d519b7541",
+    "docs/superpowers/plans/2026-09-14-route-book-03-authored-content.md": "2645d23102ba5768dcaed247103f68dd288cb37333e34e67e75e23f70acab7ad",
+    "evidence/runtime/rb08-tradeoff-20260914/README.md": "2e5e7bcb777fb8e0c72924ff1486c128f2597d128de6b54b09b7a904409a0310",
+    "evidence/runtime/rb08-tradeoff-20260914/green.json": "ea4764a2e8798662a73f67c59477072b06c89c84d45884396ba658141869c121",
+    "evidence/runtime/route-book-03-20260914/README.md": "f5a7972e233eba39fd42174460c334ca782cbd3ca123068dc2e7970879a228e5",
+    "evidence/runtime/route-book-03-20260914/domain-green.json": "2abb019a35bb409c00ff69b28c586b85a583beef51ee94261ae96a92bb086cf9",
+    "evidence/runtime/route-book-03-20260914/book03-integration-green-attempt2.log": "d80358904fce059ab7056eec6d3980b8eeae16ca8bbb14505838d4d881cf232a",
+    "evidence/runtime/stage-preview-window-20260913/receipt.json": "9084512d88d5bb532945925c9a66e14bf05f0fb6cbf49e2e05f53f416d0a527d",
+    "evidence/runtime/stage-preview-20260913/rb08.png": "513d2853063e7ccd1a63c177003ec6dffe885c885892a7ff4a67af63c16d3f69",
+    "evidence/runtime/stage-preview-window-20260913/rb18-ko-960.png": "55a678bbbae8a6dc60f6118011b596c3930b1eddc6f81fc326b73da9e6eff7e4"
+  },
+  "git_first_parent_records": [
+    {
+      "commit": "f9a53bfdb5ae165b4112f4c89be360cf382c4ee9",
+      "committer_time": "2026-09-14T07:34:18+09:00",
+      "subject": "docs: author Route Book 03 coordinate and witness handoff (#311)"
+    },
+    {
+      "commit": "5beedd1d2d547000e69b0721b4d47eea7bcdba34",
+      "committer_time": "2026-09-14T07:19:33+09:00",
+      "subject": "feat: RB08 cost-time route choice with source-bound blueprint (#310)"
+    },
+    {
+      "commit": "0c25766b5e7da109e786005f5bba792795ee8b22",
+      "committer_time": "2026-09-14T06:49:02+09:00",
+      "subject": "docs: 남은 작업과 설계·구현 명세 검토안 (#309)"
+    },
+    {
+      "commit": "349825132f90e5363ff7fc702bb699432ba5c5fa",
+      "committer_time": "2026-09-13T19:24:40+09:00",
+      "subject": "Merge pull request #308 from alsdmlals4-eng/codex/pack-completion-proof-20260913"
+    },
+    {
+      "commit": "9525f734fe18d16368712af30262c7460941575f",
+      "committer_time": "2026-09-13T11:55:18+09:00",
+      "subject": "Merge pull request #307 from alsdmlals4-eng/codex/final-review-readback-20260913"
+    },
+    {
+      "commit": "e40b2ec6922e1d3f1f20b46392eb94f589997d2d",
+      "committer_time": "2026-09-13T11:48:35+09:00",
+      "subject": "Merge pull request #306 from alsdmlals4-eng/codex/pilot-byte-contract-20260913"
+    },
+    {
+      "commit": "a6f6fb2dbdf02535c0a3312acb209cacbda1c3f8",
+      "committer_time": "2026-09-13T11:39:19+09:00",
+      "subject": "Merge pull request #305 from alsdmlals4-eng/codex/terminal-hud-guidance-20260913"
+    },
+    {
+      "commit": "1ecf7d34e1bf70ef313aeb8208553049beb384c8",
+      "committer_time": "2026-09-13T11:26:09+09:00",
+      "subject": "Merge pull request #304 from alsdmlals4-eng/codex/product-speed-witnesses-20260913"
+    },
+    {
+      "commit": "478530552884fdaa1534c85e8f37da8b376d2965",
+      "committer_time": "2026-09-13T10:27:16+09:00",
+      "subject": "fix: preserve tutorial success audio across product replacement (#303)"
+    },
+    {
+      "commit": "8b8cb04f0bd7db7049983d91cc5141c232275171",
+      "committer_time": "2026-09-13T10:16:52+09:00",
+      "subject": "fix: let generated audio cues drain before stopping (#302)"
+    },
+    {
+      "commit": "5128ac5e4dc073814a0b3acd9b2a456dcba886ad",
+      "committer_time": "2026-09-13T09:59:23+09:00",
+      "subject": "Verify both exported Route Books through real BUILD consumers (#301)"
+    },
+    {
+      "commit": "37f1575352086219602bca63f4c6d708e8d89bb4",
+      "committer_time": "2026-09-13T09:36:56+09:00",
+      "subject": "test: isolate intermittent native exit without masking failures (#300)"
+    },
+    {
+      "commit": "97ea477b80e4be4002f5ba5d2fbbfbab12685b83",
+      "committer_time": "2026-09-13T09:22:05+09:00",
+      "subject": "fix: complete gameplay HUD language continuity (#299)"
+    },
+    {
+      "commit": "9fd5b8e68e803a38a40c6013314e0e67ac45ce62",
+      "committer_time": "2026-09-13T08:58:05+09:00",
+      "subject": "Merge pull request #298 from alsdmlals4-eng/codex/hud-status-locales-20260913"
+    },
+    {
+      "commit": "dfbb3e4c28a2809e3ebf11d38b8e0f4dcb40996b",
+      "committer_time": "2026-09-13T02:00:10+09:00",
+      "subject": "Merge pull request #297 from alsdmlals4-eng/codex/route-book-result-truth-20260913"
+    },
+    {
+      "commit": "3530fbb94add7dc41a1c0a2c4485d4b5f1114f75",
+      "committer_time": "2026-09-13T01:46:34+09:00",
+      "subject": "Merge pull request #296 from alsdmlals4-eng/codex/stage-preview-window-20260913"
+    },
+    {
+      "commit": "500cf5b6208b816a852cab9b984a1a9c93082df7",
+      "committer_time": "2026-09-13T01:31:29+09:00",
+      "subject": "Merge pull request #295 from alsdmlals4-eng/codex/native-exit-trace-20260913"
+    },
+    {
+      "commit": "ae79bdc64dfc2bb10ab68160b83eb06274911c7e",
+      "committer_time": "2026-09-13T01:24:29+09:00",
+      "subject": "Merge pull request #294 from alsdmlals4-eng/codex/blueprint-stage-preview-20260913"
+    },
+    {
+      "commit": "853a635b42b97c1452af89d67502e1c634cd3229",
+      "committer_time": "2026-09-13T01:11:31+09:00",
+      "subject": "Merge pull request #293 from alsdmlals4-eng/codex/stage-board-preview-20260913"
+    },
+    {
+      "commit": "253a774ff57f03c1f0bbc4d84125720723486d12",
+      "committer_time": "2026-09-13T00:48:32+09:00",
+      "subject": "Merge pull request #292 from alsdmlals4-eng/codex/stage-thinking-briefs-20260913"
+    },
+    {
+      "commit": "913309def20aad70e6af416a2c158e24766d6989",
+      "committer_time": "2026-09-13T00:27:42+09:00",
+      "subject": "Merge pull request #291 from alsdmlals4-eng/codex/build-guidance-20260913"
+    },
+    {
+      "commit": "d01454a4f911e9c95314d3b002d6931b4a77c447",
+      "committer_time": "2026-09-12T10:14:55+09:00",
+      "subject": "Merge pull request #290 from alsdmlals4-eng/codex/build-edit-history-20260912"
+    },
+    {
+      "commit": "07a04d58c9071fd687e5e2d223354d2d42112adf",
+      "committer_time": "2026-09-12T09:43:28+09:00",
+      "subject": "Merge pull request #289 from alsdmlals4-eng/codex/topdown-family-runtime-20260912"
+    },
+    {
+      "commit": "2de6bd6d70335134e5b97f02ed12e35b35239634",
+      "committer_time": "2026-09-12T06:14:19+09:00",
+      "subject": "Merge pull request #288 from alsdmlals4-eng/codex/topdown-approval-cleanup-20260912"
+    },
+    {
+      "commit": "f2c8a8f8d257bd0636d44437cb282f53deed676b",
+      "committer_time": "2026-09-11T20:53:49+09:00",
+      "subject": "Merge pull request #287 from alsdmlals4-eng/codex/topdown-art-direction-20260911"
+    },
+    {
+      "commit": "4107517b9fc30eda1458e3bd5a85831482f353de",
+      "committer_time": "2026-09-11T09:35:58+09:00",
+      "subject": "Merge pull request #286 from alsdmlals4-eng/codex/visual-completion-20260911"
+    },
+    {
+      "commit": "0708eb5306c235ec1ce251d6329c7ebfa6f2620f",
+      "committer_time": "2026-09-11T09:00:54+09:00",
+      "subject": "Merge pull request #285 from alsdmlals4-eng/codex/blueprint-implementation-readback-20260911"
+    },
+    {
+      "commit": "6fba0536b66ab9926f0db7a87bcd9de278711748",
+      "committer_time": "2026-09-11T08:56:57+09:00",
+      "subject": "Merge pull request #284 from alsdmlals4-eng/codex/night-workshop-runtime-20260910"
+    },
+    {
+      "commit": "4038ff04420bb9b7e385654d09f63161c1e2036b",
+      "committer_time": "2026-09-10T22:48:46+09:00",
+      "subject": "art: prepare night workshop candidates with Aseprite frame evidence (#283)"
+    },
+    {
+      "commit": "6b96868d2de890a85b043aa52abcbabb9fc4fce0",
+      "committer_time": "2026-09-10T22:31:11+09:00",
+      "subject": "docs: prepare core-preserved replan and art direction candidate (#282)"
+    },
+    {
+      "commit": "4cbdfc30cf448da8c7fe379b717a9766defe8784",
+      "committer_time": "2026-09-05T06:28:35+09:00",
+      "subject": "d"
+    },
+    {
+      "commit": "c62c95e3583da374e4fd492b52cca1068dd5d54b",
+      "committer_time": "2026-09-02T08:56:22+09:00",
+      "subject": "Merge pull request #280 from alsdmlals4-eng/codex/hgb-r04-final-approval-readback-20260902"
+    },
+    {
+      "commit": "059a162fe5974bfbc418157da4b533831852d5f0",
+      "committer_time": "2026-09-02T08:46:12+09:00",
+      "subject": "Merge pull request #279 from alsdmlals4-eng/codex/blueprint-r03-20260901"
+    },
+    {
+      "commit": "0bf5e2150d643210abf127e34880111ee986b29d",
+      "committer_time": "2026-09-01T20:52:57+09:00",
+      "subject": "docs: adapt current Base operating contract"
+    },
+    {
+      "commit": "8dc0b9c05fa3a200612329c466062ce29cda8c3b",
+      "committer_time": "2026-09-01T02:17:53+09:00",
+      "subject": "chore: verify sx-dec-069 package candidate (#277)"
+    },
+    {
+      "commit": "79323ff0175b674c594d18dfd6d28a8e9951f5bd",
+      "committer_time": "2026-09-01T01:34:32+09:00",
+      "subject": "feat: add transparent wayside speed feedback (#276)"
+    }
+  ],
+  "scope": "9월 GitHub main 변경일 색인 + 9월 14일 확인 작업 상세. 전체 AI 사용/월간 비용의 완전한 제출 증빙이 아님.",
+  "pdf_sha256": "35de3ac23871196f11adbd29603c4e0e8dc56ac2c2a2fe671f17533ed16f577d",
+  "pdf_filename": "Switchy_Express_Cargo_Puzzle_2026-09_AI활용_작업일지_증빙집_v1.0.pdf",
+  "legal_or_financial_acceptance": "NOT_VERIFIED",
+  "prompt_original_screenshot": "NOT_COLLECTED"
+}

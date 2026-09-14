@@ -30,7 +30,7 @@ def test_package_verifier_enters_all_current_route_book_stages(imported_godot):
     )
     output = result.stdout + result.stderr
     assert result.returncode == 0, output
-    assert "ROUTE_BOOK_PACK_PROOF: PASS books=2 stages=12 build_entries=12" in output
+    assert "ROUTE_BOOK_PACK_PROOF: PASS books=3 stages=18 build_entries=18" in output
     assert "SCRIPT ERROR:" not in output and "ERROR:" not in output, output
 
 

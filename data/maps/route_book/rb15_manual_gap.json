@@ -1,0 +1,91 @@
+{
+  "definition_schema_version": 3,
+  "map_revision": 1,
+  "ruleset_version": "fp_core_v2",
+  "marker_tracks_player_built": true,
+  "allow_open_terminals_after_required": true,
+  "map_id": "RB15_MANUAL_GAP",
+  "board_size": [
+    12,
+    9
+  ],
+  "start_cell": [
+    1,
+    4
+  ],
+  "time_limit_seconds": 150,
+  "blocked_cells": [
+    [
+      3,
+      2
+    ],
+    [
+      4,
+      7
+    ]
+  ],
+  "board_decorations": [
+    {
+      "kind": "FOREST_CLUSTER",
+      "cell": [
+        3,
+        2
+      ]
+    },
+    {
+      "kind": "WATERWAY",
+      "cell": [
+        4,
+        7
+      ]
+    }
+  ],
+  "station_placements": [
+    {
+      "cell": [
+        9,
+        2
+      ],
+      "cargo_type": "RED_STAR"
+    },
+    {
+      "cell": [
+        8,
+        7
+      ],
+      "cargo_type": "BLUE_DIAMOND"
+    }
+  ],
+  "cargo_placements": [
+    {
+      "cell": [
+        5,
+        4
+      ],
+      "cargo_type": "RED_STAR"
+    },
+    {
+      "cell": [
+        6,
+        4
+      ],
+      "cargo_type": "BLUE_DIAMOND"
+    }
+  ],
+  "incoming_cell": [
+    0,
+    4
+  ],
+  "buildable_rects": [
+    {
+      "minimum": [
+        1,
+        1
+      ],
+      "maximum": [
+        10,
+        7
+      ]
+    }
+  ]
+}

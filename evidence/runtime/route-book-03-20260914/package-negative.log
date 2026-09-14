@@ -1,0 +1,9 @@
+Godot Engine v4.7.1.stable.official.a13da4feb - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 572.16 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3050
+
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"f88cc55d593f7ab03103ef897fa782dcb77049fc2c111ca5869aea74ede0d7de","next_visible":false,"outcome":"FAILURE","shell_state":"RESULT","stage":"RB14_MANIFEST_MIRROR"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"5ebe42538e4c9203ddc36d66a4baf2795690a63219bf6b9879ec5edd59c6b586","next_visible":false,"outcome":"FAILURE","shell_state":"RESULT","stage":"RB15_MANUAL_GAP"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"6fb28d49f0ec3cab101c136da1c4b05dd98f4e51f8a4aaf089825efd67ab9b64","next_visible":false,"outcome":"FAILURE","shell_state":"RESULT","stage":"RB16_CAUTION_LEDGER"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"106e89837b21ee2b4357eabde9db459480b94d30523a217b46eb2791c8e7af77","next_visible":false,"outcome":"FAILURE","shell_state":"RESULT","stage":"RB17_CLEARANCE_YARD"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"1fc9fa1746421d3869a326073e07723c4ecb6774571d26564215f093b439fbd8","next_visible":false,"outcome":"FAILURE","shell_state":"RESULT","stage":"RB18_SWITCHBOARD_NIGHT"}
+ROUTE_COMPLETION: PASS stages=6

@@ -78,7 +78,8 @@ finish()
 for title,path,caption in [
  ('운행 HUD · 선택 언어와 실제 수치','evidence/runtime/route-result-20260913/en-running.png','실제 RB08 운행: 상태·남은 시간·미배송 수량·비용·적재 도구·화물 목록까지 선택 언어로 연결한다. 도메인 상태와 버튼 입력은 유지한다.'),
  ('건설 HUD · 도구와 문제 해결','evidence/runtime/route-result-20260913/en-build.png','실제 RB08 건설 화면. 선로 도구와 복구 상태를 영어로 표시하며 출발 불가 안내판은 복구 제목과 겹치지 않는다. 코어·맵·비용 규칙은 유지한다.'),
- ('노선집 결과 · 실제 실패 원인과 남은 시간','evidence/runtime/route-result-20260913/ko.png','실제 RB08 무적재 운행: 노선 종료, 맵 화물 2개, 시간 108.7초 남음. 결과를 주입하지 않은 실제 실행. 본문은 스크롤하며 동일 노선 재시도와 수정이 가능하다.'),
+ ('노선집 결과 · 실제 실패 원인과 남은 시간','evidence/runtime/route-result-20260913/ko.png','실제 RB08 revision2 무적재 운행: 노선 종료, 맵 화물 2개, 시간 107.5초 남음. 결과를 주입하지 않은 실제 실행. 본문은 스크롤하며 동일 노선 재시도와 수정이 가능하다.'),
+ ('RB18 · 신규 야간 배차판','evidence/runtime/stage-preview-window-20260913/rb18-ko-960.png','새 스테이지 북03의 여섯 번째 문제. 기존 TOP·Auto·감속·분기·폐기 규칙을 조합한다. 실제 선택 맵 미리보기이며 정답 선로는 표시하지 않는다.'),
  ('RB08 브리핑 · 실제 감속 칸을 보고 판단','evidence/runtime/stage-preview-20260913/rb08.png','실제 선택 맵의 초기 상태. 화물·역·감속 칸을 표시하며 플레이어 선로나 테스트 해법은 공개하지 않는다. 시작하면 동일한 맵을 연다.'),
  ('RB10 브리핑 · 재방문과 폐기물 계획','evidence/runtime/stage-preview-20260913/rb10-postmerge.png','실제 Godot 1280×720 창 캡처. 선택적 적재 질문과 해당 지형을 함께 보여준다. 화면은 판단을 돕고 행동 순서를 강제하지 않는다.'),
  ('RB12 브리핑 · 복합 규칙의 공간 관계','evidence/runtime/stage-preview-20260913/rb12-postmerge.png','실제 맵 데이터와 기존 승인 renderer를 읽기 전용으로 재사용한다. 미리보기는 운행하지 않으며 정사각 칸의 비율을 유지한다.'),
@@ -165,7 +166,7 @@ for title,rows in [
  table(rows,y);finish()
 
 copy={}
-for file in ['route_book_01_v1.json','route_book_02_v1.json']:
+for file in ['route_book_01_v1.json','route_book_02_v1.json','route_book_03_v1.json']:
  local_path=ROOT/'data/localization'/file
  copy.update(json.loads(local_path.read_text(encoding='utf-8'))['strings'])
  used[local_path.relative_to(ROOT).as_posix()]=digest(local_path)
@@ -202,7 +203,7 @@ for p in sorted((ROOT/'data/maps/route_book').glob('rb*.json')):
  finish()
 
 y=start('검증 경계 · 승인과 실행을 구분한다','현재 탑뷰 통일 범위 / 전체 게임·출시 완료 선언 아님')
-y=table([['항목','현재 증거','분리되는 판단'],['핵심·상세 규칙·SWOT','기존 승인 방향·규칙 유지','새 코어 의미 변경 권한 없음'],['역·화물·장식 13개','픽셀 승인·정본 등록·실제 소비','조립된 화면의 최종 사용자 판단'],['선로·열차·바탕','승인된 기존 연결 자산 유지','미채택 마스터를 신규 타일로 취급하지 않음'],['적재·정지·복구','네 화물 종류·취소·모션 감소 검사','재미·가독성 자동 승인 아님'],['화면·데이터','현재 실행 캡처·기존 12개 맵','그림은 개별 시도 판정의 근거가 아님'],['출시·권리·실기기','이번 범위 외','별도 증거와 승인 필요']],y)
+y=table([['항목','현재 증거','분리되는 판단'],['핵심·상세 규칙·SWOT','기존 승인 방향·규칙 유지','새 코어 의미 변경 권한 없음'],['역·화물·장식 13개','픽셀 승인·정본 등록·실제 소비','조립된 화면의 최종 사용자 판단'],['선로·열차·바탕','승인된 기존 연결 자산 유지','미채택 마스터를 신규 타일로 취급하지 않음'],['적재·정지·복구','네 화물 종류·취소·모션 감소 검사','재미·가독성 자동 승인 아님'],['화면·데이터','현재 실행 캡처·선택형 18개 맵','패키지·병합은 Active Context 별도'],['출시·권리·실기기','이번 범위 외','별도 증거와 승인 필요']],y)
 para('검증 수치와 exact source는 연결된 실행 영수증을 따른다. 최종 사용자 검수와 출시 승인을 PDF 생성 성공으로 대체하지 않는다.',38,y)
 finish();c.save()
 runtime_receipt=ROOT/RUNTIME/'receipt.json'

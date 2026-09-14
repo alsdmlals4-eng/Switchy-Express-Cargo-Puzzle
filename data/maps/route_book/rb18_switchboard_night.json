@@ -1,0 +1,149 @@
+{
+  "definition_schema_version": 3,
+  "map_revision": 1,
+  "ruleset_version": "fp_core_v2",
+  "marker_tracks_player_built": true,
+  "allow_open_terminals_after_required": true,
+  "map_id": "RB18_SWITCHBOARD_NIGHT",
+  "board_size": [
+    15,
+    11
+  ],
+  "start_cell": [
+    1,
+    5
+  ],
+  "time_limit_seconds": 190,
+  "blocked_cells": [
+    [
+      3,
+      2
+    ],
+    [
+      5,
+      8
+    ],
+    [
+      12,
+      9
+    ],
+    [
+      2,
+      8
+    ]
+  ],
+  "caution_track_cells": [
+    [
+      3,
+      5
+    ],
+    [
+      6,
+      4
+    ],
+    [
+      9,
+      6
+    ]
+  ],
+  "board_decorations": [
+    {
+      "kind": "FOREST_CLUSTER",
+      "cell": [
+        3,
+        2
+      ]
+    },
+    {
+      "kind": "MOSS_BOULDER",
+      "cell": [
+        5,
+        8
+      ]
+    },
+    {
+      "kind": "TIMBER_STACK",
+      "cell": [
+        12,
+        9
+      ]
+    },
+    {
+      "kind": "LANTERN_FENCE",
+      "cell": [
+        2,
+        8
+      ]
+    }
+  ],
+  "station_placements": [
+    {
+      "cell": [
+        10,
+        2
+      ],
+      "cargo_type": "RED_STAR"
+    },
+    {
+      "cell": [
+        13,
+        6
+      ],
+      "cargo_type": "BLUE_DIAMOND"
+    },
+    {
+      "cell": [
+        10,
+        8
+      ],
+      "cargo_type": "WASTE_CRATE",
+      "destination_kind": "DISPOSAL_YARD"
+    }
+  ],
+  "cargo_placements": [
+    {
+      "cell": [
+        3,
+        5
+      ],
+      "cargo_type": "WASTE_CRATE"
+    },
+    {
+      "cell": [
+        4,
+        5
+      ],
+      "cargo_type": "WASTE_CRATE"
+    },
+    {
+      "cell": [
+        7,
+        4
+      ],
+      "cargo_type": "RED_STAR"
+    },
+    {
+      "cell": [
+        8,
+        4
+      ],
+      "cargo_type": "BLUE_DIAMOND"
+    }
+  ],
+  "incoming_cell": [
+    0,
+    5
+  ],
+  "buildable_rects": [
+    {
+      "minimum": [
+        1,
+        1
+      ],
+      "maximum": [
+        13,
+        9
+      ]
+    }
+  ]
+}

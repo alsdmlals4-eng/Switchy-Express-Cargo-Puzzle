@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "locales": [
+    "ko",
+    "en",
+    "ja",
+    "zh-Hans"
+  ],
+  "strings": {
+    "SX_RB_STAGE_BOOK": {
+      "ko": "스테이지 북",
+      "en": "Stage Books",
+      "ja": "ステージブック",
+      "zh-Hans": "关卡手册"
+    },
+    "SX_RB_SELECT_BOOK": {
+      "ko": "스테이지 북 선택",
+      "en": "Select a Stage Book",
+      "ja": "ステージブックを選ぶ",
+      "zh-Hans": "选择关卡手册"
+    },
+    "SX_RB_SELECT_STAGE": {
+      "ko": "스테이지 선택",
+      "en": "Select a Stage",
+      "ja": "ステージを選ぶ",
+      "zh-Hans": "选择关卡"
+    },
+    "SX_RB_BACK": {
+      "ko": "타이틀로",
+      "en": "Back to Title",
+      "ja": "タイトルへ",
+      "zh-Hans": "返回标题"
+    },
+    "SX_RB01_STAGE_BOOK": {
+      "ko": "스테이지 북 01 · 기본 노선",
+      "en": "Stage Book 01 · Core Routes",
+      "ja": "ステージブック 01・基本路線",
+      "zh-Hans": "关卡手册 01 · 基础路线"
+    },
+    "SX_RB02_STAGE_BOOK": {
+      "ko": "스테이지 북 02 · 길가의 난관",
+      "en": "Stage Book 02 · Wayside Challenges",
+      "ja": "ステージブック 02・沿線の難所",
+      "zh-Hans": "关卡手册 02 · 沿线挑战"
+    },
+    "SX_RB03_STAGE_BOOK": {
+      "ko": "스테이지 북 03 · 야간 배차",
+      "en": "Stage Book 03 · Night Dispatch",
+      "ja": "ステージブック 03・夜間配車",
+      "zh-Hans": "关卡手册 03 · 夜间调度"
+    }
+  }
+}

@@ -2,6 +2,7 @@ extends "res://tests/test_case.gd"
 
 const Demo := preload("res://game/demo/vertical_slice_demo.tscn")
 const Definition := preload("res://game/route_book/route_book_definition.gd")
+const Catalog := preload("res://game/route_book/route_book_catalog.gd")
 
 func run() -> void:
 	var demo: Variant = Demo.instantiate()
@@ -10,11 +11,11 @@ func run() -> void:
 	for locale: String in ["ko", "en", "ja", "zh-Hans"]:
 		demo.first_session_locale = locale
 		var seen: Dictionary = {}
-		for book: StringName in [&"ROUTE_BOOK_01", &"ROUTE_BOOK_02"]:
+		for book: StringName in [&"ROUTE_BOOK_01", &"ROUTE_BOOK_02", &"ROUTE_BOOK_03"]:
 			demo.return_to_title()
 			demo.open_route_book()
 			assert_true(demo.select_route_book(book), "book selectable")
-			var definition: Variant = Definition.load_from_path("res://data/route_book/route_book_%02d.json" % (1 if book == &"ROUTE_BOOK_01" else 2))
+			var definition: Variant = Definition.load_from_path(Catalog.definition_path(book))
 			for stage: StringName in definition.stage_ids():
 				demo.return_to_title()
 				demo.open_route_book()

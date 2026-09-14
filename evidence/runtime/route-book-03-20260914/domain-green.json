@@ -1,0 +1,354 @@
+{
+	"assertions": 637,
+	"ceiling": "DOMAIN_AUTOMATION_ONLY_NOT_WINDOW_NOT_PACKAGE_NOT_HUMAN",
+	"engine": "4.7.1-stable (official)",
+	"failures": [],
+	"recorded_at_utc": "2026-09-14T13:08:37",
+	"results": [
+		{
+			"negative": {
+				"code": "UNREACHABLE_STATION_SERVICE",
+				"phase": "PREFLIGHT_REJECTED"
+			},
+			"positive": {
+				"auto_transition": false,
+				"elapsed_seconds": 5.73999999999999,
+				"failure_reason": "",
+				"groups": [
+					1,
+					1
+				],
+				"last_cell": "(8, 5)",
+				"lock_rejected": false,
+				"phase": "SUCCESS",
+				"pickups": [
+					"BLUE_DIAMOND",
+					"RED_STAR"
+				],
+				"remaining_map_cargo": 0,
+				"remaining_stack": [],
+				"revisit_pickups": [],
+				"selected_unchanged": false,
+				"stack_size": 0,
+				"unloads": [
+					"RED_STAR",
+					"BLUE_DIAMOND"
+				]
+			},
+			"stage": "RB13_FOUR_SIDES"
+		},
+		{
+			"negative": {
+				"auto_transition": false,
+				"elapsed_seconds": 7.23999999999998,
+				"failure_reason": "ROUTE_END",
+				"groups": [
+					1,
+					1
+				],
+				"last_cell": "(9, 6)",
+				"lock_rejected": false,
+				"phase": "FAILURE",
+				"pickups": [
+					"RED_STAR",
+					"BLUE_DIAMOND",
+					"RED_STAR"
+				],
+				"remaining_map_cargo": 0,
+				"remaining_stack": [
+					"RED_STAR"
+				],
+				"revisit_pickups": [
+					false
+				],
+				"selected_unchanged": false,
+				"stack_size": 1,
+				"unloads": [
+					"RED_STAR",
+					"BLUE_DIAMOND"
+				]
+			},
+			"positive": {
+				"auto_transition": false,
+				"elapsed_seconds": 9.27999999999999,
+				"failure_reason": "",
+				"groups": [
+					2,
+					1
+				],
+				"last_cell": "(9, 6)",
+				"lock_rejected": false,
+				"phase": "SUCCESS",
+				"pickups": [
+					"BLUE_DIAMOND",
+					"RED_STAR",
+					"RED_STAR"
+				],
+				"remaining_map_cargo": 0,
+				"remaining_stack": [],
+				"revisit_pickups": [
+					false
+				],
+				"selected_unchanged": false,
+				"stack_size": 0,
+				"unloads": [
+					"RED_STAR",
+					"RED_STAR",
+					"BLUE_DIAMOND"
+				]
+			},
+			"stage": "RB14_MANIFEST_MIRROR"
+		},
+		{
+			"negative": {
+				"auto_transition": false,
+				"elapsed_seconds": 11.67,
+				"failure_reason": "ROUTE_END",
+				"groups": [
+					1
+				],
+				"last_cell": "(8, 6)",
+				"lock_rejected": false,
+				"phase": "FAILURE",
+				"pickups": [
+					"RED_STAR",
+					"BLUE_DIAMOND"
+				],
+				"remaining_map_cargo": 0,
+				"remaining_stack": [
+					"RED_STAR"
+				],
+				"revisit_pickups": [
+					true,
+					false
+				],
+				"selected_unchanged": false,
+				"stack_size": 1,
+				"unloads": [
+					"BLUE_DIAMOND"
+				]
+			},
+			"positive": {
+				"auto_transition": false,
+				"elapsed_seconds": 11.74,
+				"failure_reason": "",
+				"groups": [
+					1,
+					1
+				],
+				"last_cell": "(8, 6)",
+				"lock_rejected": false,
+				"phase": "SUCCESS",
+				"pickups": [
+					"BLUE_DIAMOND",
+					"RED_STAR"
+				],
+				"remaining_map_cargo": 0,
+				"remaining_stack": [],
+				"revisit_pickups": [
+					false,
+					true
+				],
+				"selected_unchanged": false,
+				"stack_size": 0,
+				"unloads": [
+					"RED_STAR",
+					"BLUE_DIAMOND"
+				]
+			},
+			"stage": "RB15_MANUAL_GAP"
+		},
+		{
+			"negative": {
+				"auto_transition": false,
+				"elapsed_seconds": 4.36818181818181,
+				"failure_reason": "ROUTE_END",
+				"groups": [],
+				"last_cell": "(9, 5)",
+				"lock_rejected": true,
+				"phase": "FAILURE",
+				"pickups": [
+					"BLUE_DIAMOND",
+					"RED_STAR"
+				],
+				"remaining_map_cargo": 0,
+				"remaining_stack": [
+					"BLUE_DIAMOND",
+					"RED_STAR"
+				],
+				"revisit_pickups": [],
+				"selected_unchanged": true,
+				"stack_size": 2,
+				"unloads": []
+			},
+			"positive": {
+				"auto_transition": false,
+				"elapsed_seconds": 8.42636363636362,
+				"failure_reason": "",
+				"groups": [
+					1,
+					1
+				],
+				"last_cell": "(10, 6)",
+				"lock_rejected": true,
+				"phase": "SUCCESS",
+				"pickups": [
+					"BLUE_DIAMOND",
+					"RED_STAR"
+				],
+				"remaining_map_cargo": 0,
+				"remaining_stack": [],
+				"revisit_pickups": [
+					false
+				],
+				"selected_unchanged": true,
+				"stack_size": 0,
+				"unloads": [
+					"RED_STAR",
+					"BLUE_DIAMOND"
+				]
+			},
+			"stage": "RB16_CAUTION_LEDGER"
+		},
+		{
+			"negative": {
+				"auto_transition": false,
+				"elapsed_seconds": 14.7100000000001,
+				"failure_reason": "ROUTE_END",
+				"groups": [
+					2
+				],
+				"last_cell": "(9, 6)",
+				"lock_rejected": false,
+				"phase": "FAILURE",
+				"pickups": [
+					"RED_STAR",
+					"WASTE_CRATE",
+					"WASTE_CRATE"
+				],
+				"remaining_map_cargo": 0,
+				"remaining_stack": [
+					"RED_STAR"
+				],
+				"revisit_pickups": [
+					false
+				],
+				"selected_unchanged": false,
+				"stack_size": 1,
+				"unloads": [
+					"WASTE_CRATE",
+					"WASTE_CRATE"
+				]
+			},
+			"positive": {
+				"auto_transition": false,
+				"elapsed_seconds": 6.77999999999999,
+				"failure_reason": "",
+				"groups": [
+					1,
+					2
+				],
+				"last_cell": "(9, 6)",
+				"lock_rejected": false,
+				"phase": "SUCCESS",
+				"pickups": [
+					"WASTE_CRATE",
+					"WASTE_CRATE",
+					"RED_STAR"
+				],
+				"remaining_map_cargo": 0,
+				"remaining_stack": [],
+				"revisit_pickups": [],
+				"selected_unchanged": false,
+				"stack_size": 0,
+				"unloads": [
+					"RED_STAR",
+					"WASTE_CRATE",
+					"WASTE_CRATE"
+				]
+			},
+			"stage": "RB17_CLEARANCE_YARD"
+		},
+		{
+			"negative": {
+				"auto_transition": false,
+				"elapsed_seconds": 15.8063636363637,
+				"failure_reason": "ROUTE_END",
+				"groups": [
+					1
+				],
+				"last_cell": "(10, 7)",
+				"lock_rejected": true,
+				"phase": "FAILURE",
+				"pickups": [
+					"WASTE_CRATE",
+					"WASTE_CRATE",
+					"RED_STAR",
+					"BLUE_DIAMOND"
+				],
+				"remaining_map_cargo": 0,
+				"remaining_stack": [
+					"WASTE_CRATE",
+					"WASTE_CRATE",
+					"RED_STAR"
+				],
+				"revisit_pickups": [
+					true,
+					false
+				],
+				"selected_unchanged": true,
+				"stack_size": 3,
+				"unloads": [
+					"BLUE_DIAMOND"
+				]
+			},
+			"positive": {
+				"auto_transition": true,
+				"elapsed_seconds": 16.0863636363637,
+				"failure_reason": "",
+				"groups": [
+					1,
+					1,
+					2
+				],
+				"last_cell": "(10, 7)",
+				"lock_rejected": true,
+				"phase": "SUCCESS",
+				"pickups": [
+					"WASTE_CRATE",
+					"WASTE_CRATE",
+					"BLUE_DIAMOND",
+					"RED_STAR"
+				],
+				"remaining_map_cargo": 0,
+				"remaining_stack": [],
+				"revisit_pickups": [
+					false,
+					true
+				],
+				"selected_unchanged": true,
+				"stack_size": 0,
+				"unloads": [
+					"RED_STAR",
+					"BLUE_DIAMOND",
+					"WASTE_CRATE",
+					"WASTE_CRATE"
+				]
+			},
+			"stage": "RB18_SWITCHBOARD_NIGHT"
+		}
+	],
+	"selected_stage": "",
+	"source_sha256_lf": {
+		"res://data/maps/route_book/rb13_four_sides.json": "09b046e6b4634ba2dc701509c3bbc963c6ae679559f04d1b25af834da68eb495",
+		"res://data/maps/route_book/rb14_manifest_mirror.json": "d0cfa43a7d86d23a04ae84969eeeaccec9fcf62188ee7da17e41e90c71d9f7f0",
+		"res://data/maps/route_book/rb15_manual_gap.json": "6a055e3cdd91bb5a7793a96f74293883c8f398efd9aa2aa984ca28e69769b59f",
+		"res://data/maps/route_book/rb16_caution_ledger.json": "3fb373309bc7aabcd6efe1bce4bf1b0e1cec2d4cf38a28c9a69069e761921eaa",
+		"res://data/maps/route_book/rb17_clearance_yard.json": "1a9bb5f8c09e645f1b485a23eb8774382895fe97fb90b4b4ec29969f516834df",
+		"res://data/maps/route_book/rb18_switchboard_night.json": "c5bae74ec66dba984d65b35288e9fab998d90f068ab17b20cb661f667fd24728",
+		"res://tests/fixtures/route_book/route_book_03_witnesses.gd": "3396148b101d26119764219d7655d11961282ac1982f36353ea32d5bbf9f98dd",
+		"res://tests/route_book/test_route_book_03_witnesses.gd": "b09ebce17b9738b640c52d1ae292c0fe5e6d3f38da8d213cb2b58a34e27ae007",
+		"res://tests/runtime/route_book_03_witness_runner.gd": "d1e3122de0f49a590884daa2f1a1d21fb324cf63cfc9d26ac54278f49bf2d8f8"
+	},
+	"status": "PASS"
+}
