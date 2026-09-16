@@ -5,8 +5,11 @@ from collections import Counter
 from datetime import datetime, timezone
 import hashlib
 import json
+from io import BytesIO
+import os
 from pathlib import Path
 import subprocess
+import tempfile
 from xml.sax.saxutils import escape
 
 from reportlab.lib import colors
@@ -16,6 +19,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, Image
 from PIL import Image as PILImage
+from pypdf import PdfReader, PdfWriter
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "docs/reporting/2026-09-worklog-records.json"
@@ -24,6 +28,97 @@ REPO_URL = "https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle"
 
 def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def append_daily(output: Path, summaries: list, hashes: dict, main: str):
+    """Append only unseen dated summaries; preserve original pages and publication metadata."""
+    sidecar = output.with_suffix('.sources.json')
+    original_pdf = output.read_bytes()
+    original_meta = sidecar.read_bytes()
+    meta = json.loads(original_meta)
+    previous_hash = hashlib.sha256(original_pdf).hexdigest()
+    if meta['pdf_sha256'] != previous_hash:
+        raise ValueError('Existing PDF hash differs from its source receipt')
+    applied = dict(meta.get('applied_daily_summaries', {}))
+    pending = []
+    seen = set()
+    for row in summaries:
+        identifier = row['id']
+        if identifier in seen:
+            raise ValueError('Duplicate daily summary ID')
+        seen.add(identifier)
+        datetime.strptime(row['date'], '%Y-%m-%d')
+        if not row['date'].startswith(meta['month'] + '-'):
+            raise ValueError('Daily summary month differs from publication')
+        digest = hashlib.sha256(json.dumps(row, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+        if identifier in applied and applied[identifier] != digest:
+            raise ValueError('Use a new correction ID rather than replacing an existing summary')
+        if identifier not in applied:
+            pending.append(row)
+            applied[identifier] = digest
+    if not pending:
+        return {'status': 'UNCHANGED', 'pdf_sha256': previous_hash}
+    pending.sort(key=lambda row: (row['date'], row['id']))
+    korean_font = Path('C:/Windows/Fonts/malgun.ttf')
+    font = 'Helvetica'
+    if korean_font.is_file():
+        pdfmetrics.registerFont(TTFont('WorkKRAppend', str(korean_font)))
+        font = 'WorkKRAppend'
+    elif any(not json.dumps(row, ensure_ascii=False).isascii() for row in pending):
+        raise ValueError('Korean font unavailable; refusing unreadable publication')
+    body = ParagraphStyle('daily', fontName=font, fontSize=10, leading=17, wordWrap='CJK', spaceAfter=12)
+    title = ParagraphStyle('daily-title', parent=body, fontSize=18, leading=27)
+    flow = []
+    issued = datetime.now(timezone.utc).isoformat(timespec='seconds')
+    for index, row in enumerate(pending):
+        if index:
+            flow.append(PageBreak())
+        for value, style in [(row['date'] + ' / ' + row['id'], title),
+                             (row['summary'], body), (row['evidence'], body),
+                             (row['limits'], body),
+                             ('Recorded / appended (UTC): ' + issued, body)]:
+            flow.append(Paragraph(escape(value), style))
+    addition = BytesIO()
+    original = PdfReader(BytesIO(original_pdf))
+    def footer(c, doc):
+        c.setFont(font, 8)
+        c.drawString(40, 24, 'Switchy Express | Monthly AI work log | Dated additions')
+        c.drawRightString(A4[0] - 40, 24, str(len(original.pages) + doc.page))
+    SimpleDocTemplate(addition, pagesize=A4, leftMargin=40, rightMargin=40,
+                      topMargin=42, bottomMargin=44).build(flow, onFirstPage=footer, onLaterPages=footer)
+    writer = PdfWriter()
+    writer.append(original)
+    writer.append(PdfReader(addition))
+    combined = BytesIO(); writer.write(combined)
+    pdf_bytes = combined.getvalue()
+    if len(PdfReader(BytesIO(pdf_bytes)).pages) <= len(original.pages):
+        raise ValueError('No daily pages produced')
+    meta['pdf_sha256'] = hashlib.sha256(pdf_bytes).hexdigest()
+    meta['updated_at_utc'] = issued
+    meta['applied_daily_summaries'] = applied
+    meta.setdefault('updates', []).append({
+        'appended_at_utc': issued, 'record_ids': [row['id'] for row in pending],
+        'previous_pdf_sha256': previous_hash, 'pdf_sha256': meta['pdf_sha256'],
+        'source_main': main, 'source_file_sha256': hashes,
+        'original_page_count': len(original.pages), 'page_count': len(PdfReader(BytesIO(pdf_bytes)).pages),
+    })
+    # Stage both complete files before replacing either. Restore the pair on handled failure.
+    staged = []
+    try:
+        for path, content in [(output, pdf_bytes), (sidecar, (json.dumps(meta, ensure_ascii=False, indent=2) + '\n').encode())]:
+            with tempfile.NamedTemporaryFile(dir=path.parent, delete=False, suffix='.tmp') as handle:
+                handle.write(content)
+                staged.append(Path(handle.name))
+        os.replace(staged[0], output)
+        os.replace(staged[1], sidecar)
+    except Exception:
+        output.write_bytes(original_pdf)
+        sidecar.write_bytes(original_meta)
+        raise
+    finally:
+        for path in staged:
+            path.unlink(missing_ok=True)
+    return {'status': 'APPENDED', 'pdf_sha256': meta['pdf_sha256'], 'records': len(pending)}
 
 
 def collect():
@@ -49,7 +144,9 @@ def collect():
 
 def build(output: Path):
     if output.exists() or output.with_suffix(".sources.json").exists():
-        raise FileExistsError("Published evidence is immutable; choose a new version.")
+        data, main, commits, hashes = collect()
+        print(json.dumps(append_daily(output, data.get('daily_summaries', []), hashes, main)))
+        return
     data, main, commits, hashes = collect()
     issued = datetime.now(timezone.utc).isoformat(timespec="seconds")
     pdfmetrics.registerFont(TTFont("WorkKR", "C:/Windows/Fonts/malgun.ttf"))
@@ -126,7 +223,7 @@ def build(output: Path):
              p("사용 AI별 찾아보기", sub),p(data["ai_service"]),p(data["account"]),p(data["billing"]),PageBreak()]
     section("08 / 원본 대조와 보완 목록")
     flow += [p("동봉 .sources.json은 아래 파일들의 SHA-256, Git 기록 원문 목록, 발행 시각, PDF SHA-256을 포함합니다. 해시는 동일 바이트 대조 수단이며 작업일 공증은 아닙니다."),
-             p("원본의 책임은 저장소에 있고, 이 PDF는 발행 시점의 읽기용 파생본입니다. 변경이 생기면 새 버전과 변경 이유를 남깁니다.")]
+             p("원본의 책임은 저장소에 있고, 이 PDF는 읽기용 파생본입니다. 같은 월에는 기존 파일에 날짜별 요약을 추가하고 기존 sources.json에 변경 이유와 해시를 누적합니다.")]
     table([["원본 파일","SHA-256 앞 16자"]]+[[path,value[:16]] for path,value in hashes.items()], [395,120])
     flow += [p("제출 전 필요한 보완", sub),
              p("실제 원본 프롬프트 화면/원본 세션, 계정별 AI 활용 연결, 프로젝트별 결제 증빙과 중복 없는 참조, 담당자 지정 정산 양식, 협약·지원 기간·크레딧 인정·AI 고지 방식 확인."),

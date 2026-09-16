@@ -1,5 +1,10 @@
 # Switchy Express 공용 AI 작업 규칙
 
+> 2026-09-16 user correction: keep the existing monthly work-log PDF and append date-based
+> summaries. Do not routinely create new report files/versions. Existing record JSON and
+> sources.json own cumulative entries/update history; preserve past pages and source evidence.
+> Details: docs/reporting/AI_WORKLOG_EVIDENCE_POLICY.md. Finish and sync this bounded task.
+
 > 2026-09-14 additional user instruction: future raster generation uses a chroma-key
 > background followed by background removal and alpha/edge QA. Choose a key color
 > absent from the subject; preserve generated source and derived transparent PNG,

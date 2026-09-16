@@ -5,6 +5,22 @@
   "version": "1.0",
   "coverage": "9월 GitHub main 변경일 색인 + 9월 14일 확인 작업 상세. 전체 AI 사용/월간 비용의 완전한 제출 증빙이 아님.",
   "record_type": "사후 정리 및 현재 작업 기록",
+  "daily_summaries": [
+    {
+      "id": "SX-20260914-CLOSE",
+      "date": "2026-09-14",
+      "summary": "9월 14일 작업 마무리 요약 (9월 16일 사후 정리). 기존 본문 C2의 로컬 검증 이후, 스테이지 북03의 여섯 퍼즐과 4언어 연결을 병합했다. 선택형 스테이지는 총18개이며 내보낸 PCK에서18개 성공, 신규6개 실패 경로 및6개 Retry/Edit 경로를 검증했다. 이어 편집기 Undo 간헐 실패를 조사할 수 있도록 동작 전·직후·다음 프레임 기록을 추가했다. 마지막으로 배포 PCK645개 항목의 목록과 무결성 검사 기능을 보강했다.",
+      "evidence": "GitHub PR312 / main5309829b (2026-09-14 22:54 KST), PR313 / main a82798d0 (23:21 KST), PR314 / main88e58278 (23:33 KST). 원본: evidence/runtime/route-book-03-20260914/README.md, evidence/runtime/pilot-undo-20260914/README.md, evidence/release/shipping-inventory-20260914/README.md. C2 전체 회귀131건/17040검사; 최종 도구 작업 Python315통과/선택환경1건미실행. 최초 실패와 후속 성공은 별도 보존했다.",
+      "limits": "Undo의 간헐 실패 원인은 확정하지 않았다. 패키지 목록·해시는 자산 권리 승인이나 출시 승인이 아니다. native EXE는 시작 확인까지이며 전체 플레이·최종 사용자·실기기·권리·출시 검수는 별도다. 이 날짜는 PR/실행 기록에 근거한 작업일이며 요약 작성일·PDF 갱신일과 다르다. 기존9페이지의 발행 당시 상태를 이 추가 요약이 보완한다."
+    },
+    {
+      "id": "SX-20260916-CUMULATIVE",
+      "date": "2026-09-16",
+      "summary": "9월 16일 작업일지 운영 교정. 사용자 요청에 따라 새 버전·새 날짜별 PDF를 계속 만드는 방식을 중단하고, 기존 월간 PDF 한 개에 날짜별 요약을 누적하도록 변경했다. 기존 페이지와 초판 근거는 유지하며, 같은 작업 ID를 다시 실행해도 중복 추가하지 않고 과거 내용을 변경할 때는 명시적인 정정 ID를 요구한다.",
+      "evidence": "사용자 요청 전사: 작업일지는 계속 새로 만들지 말고 기존 것에 추가로 작성하며 날짜별로 요약하고 GitHub 동기화까지 진행. 기존 원본 docs/reporting/2026-09-worklog-records.json과 tools/build_monthly_ai_worklog.py를 갱신했다. tests/python/test_monthly_ai_worklog_append.py에서 기존 페이지 보존·재실행 무변경·해시 불일치 거부·과거 요약 변경 거부를 검사한다. 이번 누적분의 정확한 원본 main, 파일 해시와 PDF 갱신 시각은 기존 sources.json의 updates에 기록된다.",
+      "limits": "게임 코드·맵·승인 이미지·실행 파일은 변경하지 않았다. 9월15일 작업은 확인된 기록 없이 만들지 않았다. 이 작업일지는 제출 완료·결제 인정·계정별 원본 프롬프트 제출을 뜻하지 않는다. PDF 첫9페이지의 초판 표기·당시 미완료 문구는 역사 기록이며, 후속 날짜별 요약과 함께 읽는다."
+    }
+  ],
   "prompt_transcription": [
     "남은 작업과 해당 작업들의 구현,설계 명세를 준비해줘.",
     "작업재개,그리고 앞으로 이미지 생성시 크로마키 배경으로 만든 후 배경제거해.",
@@ -63,6 +79,10 @@
     }
   ],
   "sources": [
+    "tools/build_monthly_ai_worklog.py",
+    "tests/python/test_monthly_ai_worklog_append.py",
+    "evidence/runtime/pilot-undo-20260914/README.md",
+    "evidence/release/shipping-inventory-20260914/README.md",
     "docs/reporting/AI_WORKLOG_EVIDENCE_POLICY.md",
     "docs/superpowers/specs/2026-09-14-remaining-work-design.md",
     "docs/superpowers/specs/2026-09-14-route-book-03-authored-content.md",

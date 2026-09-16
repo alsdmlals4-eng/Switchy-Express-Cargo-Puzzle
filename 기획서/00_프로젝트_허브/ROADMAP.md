@@ -1,5 +1,12 @@
 # Roadmap
 
+## September16 bounded wrap-up
+
+User requests one existing monthly work log with date-based additions and GitHub sync.
+Follow docs/reporting/AI_WORKLOG_EVIDENCE_POLICY.md; no new gameplay or release work.
+PR314 inventory preparation is merged at88e58278. This closure preserves the existing
+playable package; rights/native full-play/final-user/release remain separate.
+
 ## September14 current integrated checkpoint
 
 M1/C1/C2 delivered through PR312/main5309829b. D2 diagnostic instrumentation delivered
