@@ -1,10 +1,15 @@
 # Switchy Express 프로젝트 허브
 
-Last updated: `2026-09-14 KST`
+Last updated: `2026-09-16 KST`
 
 이 문서는 현재 제품 기준선과 **다음 실행 지점**을 빠르게 찾는 허브다. 실행 전에는 항상 fresh Base completed `main`, current Skill Registry/generated map, fresh project `main`, Open/Draft PR, current GitHub owners와 actual runtime evidence를 다시 읽는다. Notion의 current structure는 GitHub에 이관됐고 historical audit-only다.
 
 ## Current execution entry
+
+September16 user wrap-up: update the existing monthly work log with dated summaries,
+then normal GitHub synchronization. No new report/version per update and no product
+scope expansion. Reporting owner: docs/reporting/AI_WORKLOG_EVIDENCE_POLICY.md.
+PR314 shipping inventory preparation is merged at88e58278; earlier continuation below is history.
 
 Read [approved decisions](CURRENT_CONFIRMED_DECISIONS.md), then
 [current progress and evidence](ACTIVE_CONTEXT.md) and [work order](ROADMAP.md).

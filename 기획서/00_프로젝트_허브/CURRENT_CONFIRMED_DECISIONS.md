@@ -1,5 +1,14 @@
 # Current Confirmed Decisions
 
+## 2026-09-16 cumulative work-log instruction
+
+User: "작업일지는 계속 새로만들지말고 기존거에 추가로 작성하는거야. 날짜별로 요약해서 일단 작업 마무리하고 깃허브 동기화까지 진행해."
+Keep one existing monthly PDF and append dated summaries; no routine new report/version.
+Preserve original pages/evidence and record update time, added IDs and hashes in its existing
+sidecar. Supersedes the September14 policy requiring a new version for each supplement.
+Owner: docs/reporting/AI_WORKLOG_EVIDENCE_POLICY.md; source: existing2026-09-worklog-records.json.
+Finish this reporting correction and normal GitHub synchronization; no product/release expansion.
+
 ## 2026-09-14 chroma-key and monthly evidence-report instruction
 
 Continue approved research -> specification -> implementation -> verification loops

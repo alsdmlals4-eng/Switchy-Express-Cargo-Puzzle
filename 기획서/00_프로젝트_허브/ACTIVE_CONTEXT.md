@@ -1,5 +1,21 @@
 # Active Context
 
+## 2026-09-16 requested wrap-up: one cumulative monthly work log
+
+User asks to finish and synchronize, not expand implementation scope. PR314 was merged
+at88e58278; existing game/package and release boundaries stay unchanged.
+Update existing worklog records/policy/builder to append dated summaries to the same
+monthly PDF and sources.json, never routine v1.1/v1.2 copies. Existing9pages preserved;
+September14 closing summary and September16 policy update are the two new entries.
+Preview11pages rendered/inspected; original9 rendered PNGs byte-identical; second run
+UNCHANGED. RED3 missing-method cases -> GREEN; additional pair-restore/month/duplicate
+checks give5 focused PASS. Full Python320PASS/1optional Pilot skip. Exact-head integration
+is owned by this task PR and postmerge readback, not inferred from local tests.
+PDF publication occurs from merged source; original PDF recovery copy stays inside the
+existing original-evidence folder, not a new active report. Publication timestamps and
+source hashes live in the existing sidecar updates. No invented September15 work.
+Owner/plan: docs/reporting/AI_WORKLOG_EVIDENCE_POLICY.md. Existing216dirty entries preserved.
+
 ## 2026-09-14 D2 merged; local package inventory preparation
 
 D2 instrumentation merged normally in PR313/main a82798d0e348fdbfd4e159534b37030a37d95164.
