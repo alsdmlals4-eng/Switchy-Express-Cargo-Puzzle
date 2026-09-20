@@ -146,3 +146,22 @@ not a blocker for this independent operating-method update.
 - Task-only exported validator support and rendering intermediates are in
   C:/Users/user/Downloads/Switchy_삭제대기_20260920_rules for user-managed deletion.
   Existing worktrees, source history, approved assets and monthly originals were not deleted.
+
+### Targeted remote-check corrections (same review budget)
+
+At PR316 head129ca1da, the Windows launcher contract failed because immutable historical archive003
+(artifact9515705015) expired2026-09-07; archive010 (9766817524) expired2026-09-14.
+Live API metadata confirmed both; prior historical PASS records and pointers were not rewritten.
+The added availability check allows NOT_RUN_EXPIRED_HISTORICAL only for those exact retired
+candidate/artifact/workflow-source/digest combinations. API/404/type/identity/digest errors and
+unknown candidate expiry remain fatal. Available archives still run original exact-byte launchers.
+Parse and both ContractCheck steps remain mandatory; metadata classification is never package PASS.
+Independent targeted review accepted this scope and implementation; 8 classifier tests PASS.
+Full Python after this correction: 330 passed / the same3 environment-dependent skips.
+
+The same remote head's Godot live-editor Pilot also reported saved Undo/restore failure
+(run35478112406, RUNTIME_RESULT_INVALID / RESTORE_TARGET_MISMATCH).
+This matches the separately recorded intermittent Pilot class, not a reproduced gameplay regression;
+cause remains unconfirmed. No plugin/engine/product patch or test weakening was made.
+Initial failure and subsequent exact-head results stay in PR316. A later successful rerun does not
+prove this intermittent defect fixed. Required-check success is still required for merge.

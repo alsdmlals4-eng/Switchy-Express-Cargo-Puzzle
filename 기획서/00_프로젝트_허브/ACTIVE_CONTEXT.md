@@ -15,7 +15,7 @@ Blender: no executable/connector found in checked locations during the read-only
 connection and operation NOT_RUN. No plugin installed or global setting changed.
 Independent rules work continues; an actual Blender executable/connection is needed for that separate check.
 
-Local method implementation verified: 322 Python PASS / 3 environment-dependent NOT_RUN;
+Local method implementation verified: 330 Python PASS / 3 environment-dependent NOT_RUN;
 local and exact approved compatibility checks PASS. Two whole-scope independent reviews completed;
 both first-pass P2s corrected, second-pass no new P0/P1/P2.
 Delivery state and exact remote/main evidence are owned by
@@ -23,6 +23,10 @@ https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle/pull/316.
 Read that PR's current merge/check status before claiming synchronized main; no fixed task SHA is
 a permanent authority. Next product work uses CORE_GAMEPLAY's SX-FUN-01~03 and Playtest Plan;
 this operating-method update does not create another gameplay approval or new current package.
+Historical archives003/010 are expired: remote byte revalidation NOT_RUN_EXPIRED_HISTORICAL,
+not package PASS; exact availability classification and unchanged launcher contracts remain checked.
+Remote live-editor Pilot Undo/restore failed once in this task; root cause remains unconfirmed.
+See PR316 for exact-head rerun/integration evidence; no plugin/engine correction is claimed.
 
 ## 2026-09-16 requested wrap-up: one cumulative monthly work log
 
