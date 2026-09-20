@@ -116,8 +116,10 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
 
     def test_user_approval_manifest_scopes_current_paths_without_erasing_candidate_history(self) -> None:
         approval = self._json(PROTECTED_APPROVAL)
-        self.assertIn("SX-DEC-060", approval["decision_ids"])
-        self.assertIn("SX-DEC-062", approval["decision_ids"])
+        self.assertEqual(
+            ["USER-APPROVAL-2026-09-20-LEAN-RULES-AND-FUN-VERIFICATION"],
+            approval["decision_ids"],
+        )
         candidate_history = (
             "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_02.md",
             "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_02.md",

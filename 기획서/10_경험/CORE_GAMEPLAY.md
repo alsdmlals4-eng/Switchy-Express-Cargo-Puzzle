@@ -31,7 +31,7 @@
 |---|---|---|
 | SX-FUN-01 / 이 문서 “플레이어 약속”, “적재·LIFO” / AMPLIFY | 화물 조우 순서를 바꾸어 원하는 TOP 하역을 만들면 내가 계획을 풀었다는 성취가 생긴다. 반례: 규칙은 이해했지만 선택 없이 정해진 선로만 복사하거나, TOP 표시를 읽지 못해 우연히 성공한다. | `game/finite/cargo/unlimited_cargo_stack.gd` + `game/finite/delivery/finite_delivery_loop.gd` → `tests/finite/integration/test_lifo_revisit_proof.gd`, `tests/finite/cargo/test_unlimited_cargo_stack.gd` |
 | SX-FUN-02 / “운행 조작”, “핵심 재미 Guardrails” / AMPLIFY | 내가 고른 분기를 열차가 따라가며 계획 실행의 주도권이 생긴다. 반례: 잠금·선택 방향이 모호하거나 짧은 반응속도 시험/반복 pause가 판단을 대체한다. | `game/finite/rail/finite_track_switch.gd` + `game/demo/presentation/route_control_overlay.gd` → `tests/finite/rail/test_interactive_route_controls.gd`, `tests/gut/integration/test_route_control_state_contract.gd` |
-| SX-FUN-03 / “성공·실패·재도전” / SUPPORT | 실패 이유를 다음 설계 가설로 바꾸고 같은 배치 재실행과 편집을 구분하면 반복이 학습으로 이어진다. 반례: 왜 실패했는지 모르거나 결과 화면·반복 연출이 다음 시도를 방해한다. | `game/finite/run/finite_run_session_factory.gd` + `game/demo/product_finite_slice.gd` → `tests/finite/integration/test_solution_identity_retry.gd` |
+| SX-FUN-03 / “성공·실패·재도전” / SUPPORT | 실패 이유를 다음 설계 가설로 바꾸고 같은 배치 재실행과 편집을 구분하면 반복이 학습으로 이어진다. 반례: 왜 실패했는지 모르거나 결과 화면·반복 연출이 다음 시도를 방해한다. | `game/finite/run/finite_run_session_factory.gd` + `game/finite/main/finite_slice_session_controller.gd` + `game/demo/product_finite_slice.gd` → identity: `tests/finite/integration/test_solution_identity_retry.gd`; fresh state: `tests/finite/integration/test_failed_run_preserves_layout.gd`; Edit: `tests/demo/test_vertical_slice_end_to_end.gd` |
 
 대표 구간은 각각 T3/T4의 TOP·재방문, T6의 분기, capstone의 Result/Retry/Edit다.
 반복 피로는 같은 구간 재시도와 선택 Route Book 구간을 구분해 관찰한다.

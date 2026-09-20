@@ -67,10 +67,10 @@ class SxDec059ImplementationCanonicalFreshnessTests(unittest.TestCase):
         )
 
     def test_superseded_pr154_is_retained_only_as_history(self) -> None:
-        text = CURRENT_DECISIONS.read_text(encoding="utf-8")
+        text = (ROOT / "기획서/50_제작_검증/SX_AUD_067_POST_SX_DEC_059_CANON_FRESHNESS_CLOSURE.md").read_text(encoding="utf-8")
         self.assertIn("PR #154", text)
         self.assertIn("CLOSED_UNMERGED", text)
-        self.assertIn("HISTORICAL", text)
+        self.assertIn("SUPERSEDED_BY_SX_DEC_059", text)
 
     def test_historical_playtest_delta_preserves_executed_059_boundary(self) -> None:
         text = PLAYTEST_DELTA.read_text(encoding="utf-8")

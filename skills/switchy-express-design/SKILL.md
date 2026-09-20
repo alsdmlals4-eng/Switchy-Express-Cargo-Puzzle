@@ -7,7 +7,9 @@ description: Use for Switchy Express finite cargo-puzzle rules, stage/UI/asset d
 
 ## Start with current authority
 
-Follow repository `AGENTS.md` and the project workflow router. Read current Decisions/Active Context,
+Follow repository `AGENTS.md` and `.agents/skills/base-project-router/SKILL.md`.
+Reuse completed startup checks; do not re-enter the frozen generated compatibility workflow-router.
+Read current Decisions/Active Context,
 the relevant domain owner and actual consumer before applying a shared method.
 The v4.8 project adapter selects current execution methods; Base v9.4.3 remains compatibility evidence.
 Do not keep a package/candidate number or a second approval/review budget in this skill.
