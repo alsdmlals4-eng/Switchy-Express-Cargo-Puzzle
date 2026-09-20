@@ -12,6 +12,9 @@ var _composition_index: Dictionary = {}
 var _vfx_index: Dictionary = {}
 var _base_path_index: Dictionary = {}
 var _base_slice_index: Dictionary = {}
+# Draw commands retain texture RIDs, not temporary arrays returned to _draw().
+# Keep the actual resources alive for this catalog's lifetime (never globally).
+var _textures: Dictionary[String, Texture2D] = {}
 
 
 func load_default() -> bool:
@@ -87,9 +90,12 @@ func textures_for(record: Dictionary) -> Array[Texture2D]:
 
 
 func _load_texture(resource_path: String) -> Texture2D:
+	if _textures.has(resource_path):
+		return _textures[resource_path]
 	if ResourceLoader.exists(resource_path):
 		var resource := load(resource_path)
 		if resource is Texture2D:
+			_textures[resource_path] = resource
 			return resource
 
 	# Clean headless runners can see tracked PNG source bytes before Godot has
@@ -104,10 +110,13 @@ func _load_texture(resource_path: String) -> Texture2D:
 	var error := image.load_png_from_buffer(bytes)
 	if error != OK or image.is_empty():
 		return null
-	return ImageTexture.create_from_image(image)
+	var texture := ImageTexture.create_from_image(image)
+	_textures[resource_path] = texture
+	return texture
 
 
 func _reset() -> void:
+	_textures.clear()
 	_ready = false
 	_errors.clear()
 	_composition_index.clear()

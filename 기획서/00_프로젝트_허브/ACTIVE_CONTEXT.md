@@ -1,5 +1,32 @@
 # Active Context
 
+## 2026-09-20 · representative experience/runtime review
+
+User approved the next bounded product-review batch. Execution ledger:
+`docs/superpowers/plans/2026-09-20-fun-runtime-review.md`.
+Product baseline at review start: main8208010b; Base23ecad5a observed, not repinned.
+Rules/assets/engine/plugins are unchanged. One discovered presentation bug is corrected:
+SemanticAssetCatalog retains draw textures for its lifetime so direction/lock icons no longer
+become blank white rectangles. This source delta requires a new export; the September14 EXE
+does not include the fix. Ownership-reset tests and actual rendered RED/GREEN prove the correction.
+Rule regression: baseline131 cases /17,040 assertions, post-fix131 /17,064, both zero failures. Formal GUT21/152
+passed after creating its missing local report directory; the first JUnit export error is retained.
+Live Switchy editor38376 / game14648 was identified independently of other projects.
+Hera physical-key input progressed T1 through T6 to capstone; TOP, selective loading and occupied
+switch rejection were observed. Eighteen authored Route Book runtime witnesses succeeded;
+their six book03 Retry/Edit checks are diagnostic machine evidence, not native/human play.
+Native RouteBook03 EXE hashes were rechecked, but external input was detected in its window;
+that window's unrelated progress is not our acceptance evidence and is left untouched.
+Human fun/final asset approval, device and release gates remain separate/NOT_RUN.
+Capstone actual input:150s no-load timeout -> Retry with new attempt/empty stack/Auto OFF ->
+Auto ON success -> Edit preserved the exact51-piece layout. These pre-fix input results are
+separate from the post-fix renderer regression. Final integration/export state and next action are in the ledger;
+the older method-only and September14 entries below are dated evidence, not new approvals.
+Current integration owner: https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle/pull/317.
+Read its exact head/check/merge status before claiming main. The merged-source local delivery target is
+`C:/Users/user/Downloads/Switchy_Playable_20260920_SemanticFix`; its delivery.json, when present,
+records source commit, EXE/PCK hashes and package proof separately from native input/human approval.
+
 ## 2026-09-20 · approved lean-method and fun-verification update
 
 Current scope: simplify AGENTS/skills and repair routing/validation; additionally bind Base #885

@@ -1,0 +1,35 @@
+{
+	"engine": "4.7.1-stable (official)",
+	"failures": [
+		"unoccupied direction target is blank/white: 1.0",
+		"unoccupied direction target is blank/white: 0.96908442330559",
+		"occupied direction target is blank/white: 1.0",
+		"occupied direction target is blank/white: 0.94054696789536",
+		"occupied direction target is blank/white: 0.96908442330559"
+	],
+	"human": "NOT_RUN",
+	"samples": [
+		{
+			"path": "res://build/fun-qa-20260920/semantic-21412/unoccupied.png",
+			"sha256": "a9dd7ef63cdd3b9ad9a19a225158f1396e81b643d1d5c660d3deeaca2bfdc657",
+			"state": "unoccupied",
+			"white_ratios": [
+				1.0,
+				0.0190249702734839,
+				0.969084423305589
+			]
+		},
+		{
+			"path": "res://build/fun-qa-20260920/semantic-21412/occupied.png",
+			"sha256": "ede5e82d45d7338d6e8fb4ae734add604ecb149b8c223ee7f964794efe6bc1d4",
+			"state": "occupied",
+			"white_ratios": [
+				1.0,
+				0.940546967895363,
+				0.969084423305589
+			]
+		}
+	],
+	"scope": "actual ProductFiniteSlice T6; authored fixture/commands/stepped clock; not native or human input",
+	"status": "FAIL"
+}

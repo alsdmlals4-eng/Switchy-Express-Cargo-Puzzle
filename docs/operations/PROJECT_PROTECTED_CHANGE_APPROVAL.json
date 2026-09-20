@@ -4,9 +4,11 @@
   "status": "APPROVED",
   "protected_base_commit": "383b323658e9669345722367a1f17e4cc9d170bb",
   "decision_ids": [
-    "USER-APPROVAL-2026-09-20-LEAN-RULES-AND-FUN-VERIFICATION"
+    "USER-APPROVAL-2026-09-20-LEAN-RULES-AND-FUN-VERIFICATION",
+    "USER-APPROVAL-2026-09-20-REPRESENTATIVE-RUNTIME-REVIEW"
   ],
   "approved_paths": [
+    "game/demo/presentation/semantic_asset_catalog.gd",
     "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
     "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
     "기획서/00_프로젝트_허브/ROADMAP.md",
@@ -15,7 +17,7 @@
     "기획서/40_표현/VISUAL_DIRECTION.md",
     "기획서/50_제작_검증/PLAYTEST_PLAN.md"
   ],
-  "approval_source": "USER_EXPLICIT_승인할게_AND_재미검증기준도_같이_추가해줘_CURRENT_THREAD",
+  "approval_source": "USER_EXPLICIT_승인할게_AND_재미검증기준도_같이_추가해줘_THEN_작업진행해_CURRENT_THREAD",
   "approval_time": "2026-09-20T00:00:00+09:00",
-  "scope_summary": "Approval date only; precise approval clock not recorded. Project-local AGENTS/skills simplification, current-authority routing and tests, selected Base #883/#885 methods and fun-to-consumer evidence links in existing owners, normal required-check PR merge/main readback. Preserve Base v9.4.3 compatibility, game/engine/save/assets, other PRs and worktrees, installed plugins/global settings. Blender read-only capability check only; no executable found, operation NOT_RUN. No new game implementation/human fun/release approval. Prior approval manifest remains in Git history."
+  "scope_summary": "Approval date only; precise approval clock not recorded. Retains previously approved lean-method/Base883/885 owner deltas against the same protected baseline. Follow-up approval covers representative SX-FUN runtime review, demonstrated presentation/flow defect correction, evidence and cumulative work-log update, normal required-check merge/main readback and testable delivery. One demonstrated correction retains semantic textures for draw lifetime; no rules, approved assets, engine, save, plugins or global settings change. Other PRs/worktrees protected. Native input interrupted by outside input, not PASS. No human fun/device/release approval; Blender remains separate. Prior manifests remain in Git history."
 }

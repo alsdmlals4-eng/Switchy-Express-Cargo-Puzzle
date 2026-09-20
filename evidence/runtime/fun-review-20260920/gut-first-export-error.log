@@ -1,0 +1,76 @@
+Godot Engine v4.7.1.stable.official.a13da4feb - https://godotengine.org
+
+[godot_ai game_helper] registered mcp capture (debugger active=false, logger=true)
+---  GUT  ---
+[1m[INFO]:  [0musing [C:/Users/user/AppData/Roaming/Godot/app_userdata/Switchy Express- Cargo Puzzle] for temporary output.
+Godot version:  4.7.1
+GUT version:  9.7.1
+[4m
+
+res://tests/gut/unit/test_finite_run_outcome_ordering.gd
+[0m* test_final_delivery_at_exact_limit_has_success_priority
+* test_final_delivery_after_limit_resolves_failure
+* test_dead_end_without_delivery_fails_route_end_after_cell_contact
+* test_non_final_unload_completes_before_route_end_failure
+* test_final_delivery_at_dead_end_still_finishes_success
+* test_timeout_uses_time_expired_reason
+[1m6/6 passed.
+[0m[4m
+
+res://tests/gut/unit/test_finite_switch_reciprocity.gd
+[0m* test_approach_traffic_follows_selected_exit
+* test_each_connected_port_is_available_in_stable_cardinal_order
+* test_cycle_visits_all_three_ports_and_returns_to_initial_selection
+* test_direct_selection_accepts_connected_port_and_allows_u_turn
+* test_direct_selection_rejects_non_connected_port
+[1m5/5 passed.
+[0m[4m
+
+res://tests/gut/integration/test_cargo_pickup_marker_visibility.gd
+[0m* test_pickup_hides_marker_and_retry_restores_authored_markers
+[1m1/1 passed.
+[0m[4m
+
+res://tests/gut/integration/test_one_sided_station_parity.gd
+[0m* test_red_star_one_sided_station_finishes_successfully
+* test_blue_diamond_one_sided_station_finishes_successfully
+[1m2/2 passed.
+[0m[4m
+
+res://tests/gut/integration/test_route_control_overlay_selection.gd
+[0m* test_running_switch_exposes_three_direction_targets
+* test_running_pointer_enqueues_cycle_intent_without_mutating_route_state
+* test_locked_and_inactive_phases_reject_pointer_intent
+[1m3/3 passed.
+[0m[4m
+
+res://tests/gut/integration/test_route_control_state_contract.gd
+[0m* test_occupied_route_control_rejects_input_and_reports_lock
+* test_route_control_states_round_trip_through_overlay_snapshot
+[1m2/2 passed.
+[0m[4m
+
+res://tests/gut/integration/test_sx_dec_059_first_session.gd
+[0m* test_product_entry_enables_the_first_session_sequence
+* test_first_session_definition_preserves_shared_t1_t2_and_capstone_map
+[1m2/2 passed.
+[0m
+
+
+
+[33m==============================================
+[0m[33m= Run Summary
+[0m[33m==============================================
+[0m
+Totals
+------
+Scripts               7
+Tests                21
+Passing Tests        21
+Asserts             152
+Time              1.948s
+
+
+[32m---- All tests passed! ----
+[0m
+[31m[GUT ERROR]:  [0mError:  7.  Could not create export file res://test-results/gut/junit.xml

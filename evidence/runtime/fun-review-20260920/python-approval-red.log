@@ -1,0 +1,12 @@
+.........................................................ss............. [ 21%]
+........................................................................ [ 43%]
+........................................................................ [ 64%]
+s......................F.....................................F.......... [ 86%]
+.............................................                            [100%]
+================================== FAILURES ===================================
+C:\Users\user\AppData\Local\Programs\Python\Python313\Lib\unittest\case.py:732: AssertionError: Lists differ: ['USE[49 chars]TION'] != ['USE[49 chars]TION', 'USER-APPROVAL-2026-09-20-REPRESENTATIV[13 chars]IEW']
+C:\Users\user\AppData\Local\Programs\Python\Python313\Lib\unittest\case.py:732: AssertionError: Lists differ: ['USE[49 chars]TION'] != ['USE[49 chars]TION', 'USER-APPROVAL-2026-09-20-REPRESENTATIV[13 chars]IEW']
+=========================== short test summary info ===========================
+FAILED tests/python/test_sx_dec_060_candidate_002_evidence.py::SXDec060Candidate002EvidenceTests::test_user_approval_manifest_scopes_current_paths_without_erasing_candidate_history
+FAILED tests/python/test_sx_dec_065_machine_primary_validation_policy.py::SXDec065MachinePrimaryValidationPolicyTests::test_registry_map_and_protected_approval_track_the_new_owner
+2 failed, 328 passed, 3 skipped in 14.46s
