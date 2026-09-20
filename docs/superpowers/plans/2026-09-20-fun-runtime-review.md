@@ -38,7 +38,7 @@ Baseline: project main8208010b96c1bdb79b751cfe8c5e866152ca83dc; observed Base ma
 
 ### 4. Integration and durable evidence
 
-- [ ] Review actual captures and state assertions, run focused/full tests; two whole-scope review passes share one budget, with independent whole-branch review.
+- [x] Review actual captures and state assertions, run focused/full tests; two whole-scope review passes share one budget, with independent whole-branch review.
 - [x] Update existing Playtest Plan/Active Context/Decisions and existing cumulative monthly records with verified scope; no new fun report/server/skill.
 - [ ] Exact approved protected manifest/checks, normal PR merge, main readback, append existing PDF without duplicate prior entries.
 - [x] Gracefully stop only task-owned editor/game processes and verify source delta/remaining process identity.
@@ -154,6 +154,17 @@ Project.godot/import metadata had EOL-only rewrites, normalized in the index wit
 `C:/Users/user/Downloads/Switchy_삭제대기_20260920_runtime`; manifest.json records original path,
 holding path, SHA256, reason and non-overwrite restore procedure. Other worktrees/processes untouched.
 
-Next: final independent review, normal required-check merge/main readback, new user-testable export
+Independent final pass2 reviewed the whole b4b13b2e delta against8208010b plus the delivery-link
+additions, actual consumer/captures/hashes/approval/tests; no P0/P1/P2 findings. Shared two-pass
+budget is complete. Exact local contract and whitespace checks passed in that independent review.
+
+Next: normal required-check merge/main readback, new user-testable export
 and canonical monthly append. Current PR/check/merge state is the GitHub authority; remaining native
 input needs an exclusively available window. No human/device/release PASS follows from this batch.
+
+Integration owner: https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle/pull/317.
+Postmerge deliverable target:`C:/Users/user/Downloads/Switchy_Playable_20260920_SemanticFix`.
+Read its delivery.json for actual merged source, package hashes and machine proof; a planned path is
+not proof that export has already run. Canonical monthly PDF uses its existing sources.json append
+receipt. Those derived receipts are not alternate gameplay authority. Latest PR/main and receipt
+readback supersede this pre-merge queue; do not repeat completed work from unchecked queue items.

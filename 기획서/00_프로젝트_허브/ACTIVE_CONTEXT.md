@@ -22,6 +22,10 @@ Capstone actual input:150s no-load timeout -> Retry with new attempt/empty stack
 Auto ON success -> Edit preserved the exact51-piece layout. These pre-fix input results are
 separate from the post-fix renderer regression. Final integration/export state and next action are in the ledger;
 the older method-only and September14 entries below are dated evidence, not new approvals.
+Current integration owner: https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle/pull/317.
+Read its exact head/check/merge status before claiming main. The merged-source local delivery target is
+`C:/Users/user/Downloads/Switchy_Playable_20260920_SemanticFix`; its delivery.json, when present,
+records source commit, EXE/PCK hashes and package proof separately from native input/human approval.
 
 ## 2026-09-20 · approved lean-method and fun-verification update
 
