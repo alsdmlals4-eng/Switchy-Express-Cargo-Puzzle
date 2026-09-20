@@ -124,3 +124,25 @@ or executable in checked installed-app/common program/Steam/user locations. An u
 was not claimed inspected. Result: NOT_FOUND_IN_CHECKED_LOCATIONS; connection/operation NOT_RUN.
 No install/plugin/global setting change. A verified executable/connector is the next dependency,
 not a blocker for this independent operating-method update.
+
+### Executed local verification and review closeout
+
+- Full Python regression at fdf9d70d: 322 passed, 3 skipped. Two exported-consumer tests require
+  GODOT_BINARY; one optional live-editor Pilot test requires GODOT_BIN. These are NOT_RUN locally.
+- Local route checker and adopted compatibility checker with exact protected approval and generated
+  output comparison: PASS. Generator outputs were written only after approved validation succeeded;
+  no validation error was suppressed. Release/registry pins and generated router bytes unchanged.
+- Whole review1 (303d570c plus generated deltas): no P0/P1; two P2s corrected. Domain skill now names
+  the active router/reuses startup; SX-FUN-03 separates identity, fresh-state and actual Edit tests.
+- Whole review2 (fdf9d70d): no new P0/P1/P2; independent local29 tests PASS and exact seven protected
+  paths matched the approval manifest. These exhaust the shared whole-scope two-pass budget.
+- Targeted source readback corrected a missing Base method path to
+  docs/knowledge/game-development/AI_INSTRUCTION_AND_CONTEXT_DESIGN_METHOD.md. PR template no
+  longer asks for retired Sheet sync. Monthly summary adds verified source paths to the existing report.
+- Product path comparison game/art/assets/data/project.godot/export_presets.cfg: zero changes.
+- Delivery state authority: https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle/pull/316
+  (exact-head checks, normal merge and post-merge readback are recorded there, not inferred here).
+  Monthly PDF is appended from merged main to its existing path and existing sources.json update log.
+- Task-only exported validator support and rendering intermediates are in
+  C:/Users/user/Downloads/Switchy_삭제대기_20260920_rules for user-managed deletion.
+  Existing worktrees, source history, approved assets and monthly originals were not deleted.
