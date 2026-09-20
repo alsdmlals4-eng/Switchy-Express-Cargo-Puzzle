@@ -1,0 +1,29 @@
+{
+	"engine": "4.7.1-stable (official)",
+	"failures": [],
+	"human": "NOT_RUN",
+	"samples": [
+		{
+			"path": "res://build/semantic-texture-qa/21180/unoccupied.png",
+			"sha256": "24809397bd2c839681c870e0e27a92a5b53b8cb532554dc9c1316054f6f3d7d5",
+			"state": "unoccupied",
+			"white_ratios": [
+				0.0,
+				0.0,
+				0.0
+			]
+		},
+		{
+			"path": "res://build/semantic-texture-qa/21180/occupied.png",
+			"sha256": "b7f367a52f2d588c50ca8f89a8d976f42735b6d22c5e9f0fb4c6c5440a486e25",
+			"state": "occupied",
+			"white_ratios": [
+				0.0,
+				0.0,
+				0.0
+			]
+		}
+	],
+	"scope": "actual ProductFiniteSlice T6; authored fixture/commands/stepped clock; not native or human input",
+	"status": "PASS"
+}

@@ -7,6 +7,13 @@
   "record_type": "사후 정리 및 현재 작업 기록",
   "daily_summaries": [
     {
+      "id": "SX-20260920-RUNTIME-FEEDBACK",
+      "date": "2026-09-20",
+      "summary": "승인된 다음 작업으로 실제 Godot에서 T1-T6와 종합 배송을 입력·화면으로 검수했다. TOP 표시, 선택 적재, 점유 분기 잠금, 실패 후 새 시도와 노선 보존을 확인했다. 화면에서 분기 아이콘이 흰 사각형으로 보이는 문제를 발견하여 이미지 참조가 그리기 함수 종료 뒤 사라지는 원인을 재현했고, 기존 이미지 목록이 자산을 유지하도록 최소 수정했다. 코어 규칙·18개 선택 스테이지·승인 이미지·엔진·플러그인은 유지했다.",
+      "evidence": "사용자 요청 전사: 작업진행해. 원본 요청 화면 미수집. 기존 실행 계획 docs/superpowers/plans/2026-09-20-fun-runtime-review.md와 evidence/runtime/fun-review-20260920의 실제 캡처·로그·수명 RED/GREEN·렌더 RED/GREEN에 연결한다. 18개 작성 해법의 실제 렌더 구동과 북03의6개 Retry/Edit는 기계 검증이며, 입력 검수와 구분했다. 화면·기록 작성일은2026-09-20 KST. 최종 원본 main과 PDF 갱신 시각·해시는 기존 sources.json updates를 따른다.",
+      "limits": "HUMAN/FUN_PASS·최종 사용자·실기기·출시는 NOT_RUN이다. 9월14일 배포 EXE 창은 외부 입력 감지 후 조작을 중단했으므로 native 입력 경로는 미확정이며, 다른 입력으로 진행된 화면은 자신의 검증으로 계산하지 않았다. 과거 배포본에는 이번 이미지 수명 수정이 들어 있지 않다. 새 빌드와 병합 상태는 실행 계획의 연결을 확인한다. 문서는 제출·비용 인정·계정별 프롬프트 원본 수집 완료를 뜻하지 않는다."
+    },
+    {
       "id": "SX-20260920-LEAN-FUN",
       "date": "2026-09-20",
       "summary": "사용자 승인에 따라 프로젝트 AGENTS·설계 스킬·작업 어댑터를 경량화했다. 프로젝트 정본 우선 읽기, 필요한 참조 선택, 같은 승인·검증 재사용, 전체 검토 2회 공유, 현재 도구로 직접 실행, 사용자 직접 삭제 원칙을 연결했다. 추가 요청으로 Base #885 재미 검증 방법을 화물 순서 역산·분기 실행·실패 후 재설계의 가설과 반례, 코드·테스트·최종 사용자 질문에 구체화했다.",
@@ -86,6 +93,11 @@
     }
   ],
   "sources": [
+    "docs/superpowers/plans/2026-09-20-fun-runtime-review.md",
+    "game/demo/presentation/semantic_asset_catalog.gd",
+    "tests/demo/test_semantic_asset_catalog.gd",
+    "tests/runtime/semantic_texture_window_runner.gd",
+    "evidence/runtime/fun-review-20260920/semantic-green.json",
     "docs/operations/2026-09-01-switchy-base-operating-adaptation-audit.md",
     "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md",
     "AGENTS.md",

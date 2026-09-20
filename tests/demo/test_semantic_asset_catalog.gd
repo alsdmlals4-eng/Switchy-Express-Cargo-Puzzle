@@ -18,6 +18,7 @@ func run() -> void:
 	assert_true(catalog.load_default(), "default semantic manifests must load")
 	assert_true(catalog.is_ready(), "catalog must report ready after successful load")
 	assert_equal(catalog.errors(), [], "successful catalog load must have no errors")
+	_assert_draw_texture_lifetime(catalog)
 
 	var compact: Dictionary = catalog.composition(&"stack_hud", &"compact")
 	assert_equal(
@@ -96,3 +97,28 @@ func run() -> void:
 		{},
 		"unknown VFX event must fail closed without substitution"
 	)
+
+
+func _assert_draw_texture_lifetime(catalog: RefCounted) -> void:
+	# CanvasItem draw commands keep a RID, not the caller's temporary Texture2D array.
+	for state: StringName in [&"selected", &"unselected", &"occupied_locked", &"inactive"]:
+		var record: Dictionary = catalog.composition(&"switch_direction", state)
+		var first := _draw_scope(catalog, record)
+		assert_true(_texture_alive(first.get("weak")), "%s texture survives the local draw scope" % state)
+		var second := _draw_scope(catalog, record)
+		assert_equal(second.get("id"), first.get("id"), "%s repeated draw reuses the texture" % state)
+		assert_true(catalog.load_default(), "catalog reset reloads manifests")
+		assert_false(_texture_alive(first.get("weak")), "%s reset releases the catalog's texture ownership" % state)
+
+
+func _draw_scope(catalog: RefCounted, record: Dictionary) -> Dictionary:
+	var textures: Array = catalog.textures_for(record)
+	assert_equal(textures.size(), 1, "direction composition has one actual texture")
+	if textures.size() != 1:
+		return {}
+	# Return no strong reference, just as _draw exits after submitting texture RIDs.
+	return {"weak": weakref(textures[0]), "id": textures[0].get_instance_id()}
+
+
+static func _texture_alive(reference: Variant) -> bool:
+	return reference is WeakRef and reference.get_ref() != null

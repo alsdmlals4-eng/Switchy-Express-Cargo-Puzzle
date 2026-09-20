@@ -212,12 +212,18 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         # The current manifest authorizes only this PR's exact protected paths.
         # Historical gameplay approval stays in Decisions, not a forever-growing manifest.
         self.assertEqual(
-            ["USER-APPROVAL-2026-09-20-LEAN-RULES-AND-FUN-VERIFICATION"],
+            [
+                "USER-APPROVAL-2026-09-20-LEAN-RULES-AND-FUN-VERIFICATION",
+                "USER-APPROVAL-2026-09-20-REPRESENTATIVE-RUNTIME-REVIEW",
+            ],
             approval["decision_ids"],
         )
         self.assertIn("기획서/50_제작_검증/PLAYTEST_PLAN.md", approval["approved_paths"])
         self.assertNotIn(entry["source"], approval["approved_paths"])
-        self.assertTrue(all(path.startswith("기획서/") for path in approval["approved_paths"]))
+        self.assertEqual(
+            ["game/demo/presentation/semantic_asset_catalog.gd"],
+            [path for path in approval["approved_paths"] if not path.startswith("기획서/")],
+        )
         for number in range(6, 11):
             relative = f"기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_{number:02d}.md"
             self.assertTrue((ROOT / relative).is_file())

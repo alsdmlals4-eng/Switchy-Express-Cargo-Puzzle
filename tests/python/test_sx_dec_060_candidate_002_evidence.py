@@ -117,7 +117,10 @@ class SXDec060Candidate002EvidenceTests(unittest.TestCase):
     def test_user_approval_manifest_scopes_current_paths_without_erasing_candidate_history(self) -> None:
         approval = self._json(PROTECTED_APPROVAL)
         self.assertEqual(
-            ["USER-APPROVAL-2026-09-20-LEAN-RULES-AND-FUN-VERIFICATION"],
+            [
+                "USER-APPROVAL-2026-09-20-LEAN-RULES-AND-FUN-VERIFICATION",
+                "USER-APPROVAL-2026-09-20-REPRESENTATIVE-RUNTIME-REVIEW",
+            ],
             approval["decision_ids"],
         )
         candidate_history = (

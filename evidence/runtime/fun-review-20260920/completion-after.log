@@ -1,0 +1,23 @@
+Godot Engine v4.7.1.stable.official.a13da4feb - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 572.16 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3050
+
+[godot_ai game_helper] registered mcp capture (debugger active=false, logger=true)
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"f9714308b5432721e18befefac10e16e914166e1aedab44aafced2429a5bd165","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB01_SERVICE_SIDINGS"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"0cd7091ef134b0f590699f9caf15261c4f6333285604ac203b27d3cb90de36dd","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB02_REVERSE_ORDER"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"31c31547c2be049f34e501bda462da312521ab4818c99b6971488c8e708267c1","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB03_RETURN_MANIFEST"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"f11865652131e89e1b5b718d7b484c1a125dcca29723115e060340d482192905","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB04_LOAD_WINDOW"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"7a6f8ce0d53b5626b10cca55714e18fae59c9f6afaba2a143aa3b0eceda2ba2d","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB05_FORK_LOCK"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"531e2479bc581335f105078072bf051e0c0616aa5d4e8c9d2e385533cdf5ab8c","next_visible":false,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB06_PORT_CIRCUIT"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"e1048905e4e79158ec93db9f0cc3472cf9daf28a1299255236f260476de6ae66","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB07_FOREST_RELAY"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"d7a86d2c526d2de97e465d4b1f2fb2ed9cdec53a284f765a7529c769e3757f66","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB08_CAUTION_CUT"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"f138e97009c7b790d6a11b61a8213b2b52eee1eef570a7c9736ae72140fbc20e","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB09_SALVAGE_SIDING"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"077cb6b59cb2e33ba7c9e79c6be83c63541ea5c99407b6e9d82a73b133a40e8e","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB10_CLEAN_BREAK"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"1c269bee5490bf924519496b5494a00e2e082ccbbe97f07d038345f09cd775c6","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB11_TURNOUT_UNDER_LOAD"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"b63a8e4729592b44fea6063598d4535e1c1ddab032a0a783fb13bc77be7b652d","next_visible":false,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB12_LANTERN_LOOP"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"3bdd0de348277b1b62376d425c0aefdb27e02c9c6e010880b8413c271c4716d8","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB13_FOUR_SIDES"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"50b28ddcc413920ac86c161eb4d9fa8f7b9d0696f53affd0fa4ef6b31eb96147","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB14_MANIFEST_MIRROR"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"db91779a32346295e2cc3ea01e3858d6b400e289b061bcea69ddd02a509da6e4","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB15_MANUAL_GAP"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"174837f30196b3373b9ced593930a131dde6cadcb3cb94c46b21df23c231be31","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB16_CAUTION_LEDGER"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"efe1a35268522bea48cb439a874101b6e5439a83aded6f9a307229db161ad617","next_visible":true,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB17_CLEARANCE_YARD"}
+ROUTE_COMPLETION_STAGE: {"capture_sha256":"a5b6c281d7a5066a4e887f052b44e4f8a446b41fc034603497fb5ec41909a964","next_visible":false,"outcome":"SUCCESS","shell_state":"RESULT","stage":"RB18_SWITCHBOARD_NIGHT"}
+ROUTE_COMPLETION: PASS stages=18

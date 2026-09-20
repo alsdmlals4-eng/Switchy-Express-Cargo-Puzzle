@@ -1,5 +1,14 @@
 # Current Confirmed Decisions
 
+## 2026-09-20 representative runtime review approval
+
+User approved the proposed next batch with “작업진행해”: exercise SX-FUN-01/02/03,
+correct only demonstrated presentation/flow defects, and check native EXE input capability.
+This is not a new gameplay/art/release decision. Existing finite semantics, eighteen optional
+stages, engine/plugins, save boundary and approved assets remain protected.
+Scope, actual evidence layers and incomplete checks:
+`docs/superpowers/plans/2026-09-20-fun-runtime-review.md`.
+
 ## 2026-09-20 operating-method simplification and fun-verification adoption
 
 User approved the proposed project-local rules/skills correction (“승인할게”), then

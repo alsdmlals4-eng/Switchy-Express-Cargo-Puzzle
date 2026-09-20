@@ -34,7 +34,18 @@ FIVE_PERSON_COMPREHENSION_NOT_REQUIRED / PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED.
 같은 승인·consumer·대표 구간의 유효 근거는 REUSED_EVIDENCE, 변경 영향만 재검증한다.
 별도 재미 보고서·감독 스킬·분석 서버는 만들지 않는다.
 
-이 방법의 문서/경로 검증은 이번 작업 대상이지만 **새 게임 실행과 사람 재미 검증은 NOT_RUN**이다.
+위 방법을 연결한 운영규칙 작업 자체는 문서 검증이었다. 아래 후속 실행 증거와 합산하지 않는다.
+
+### 2026-09-20 후속 대표 구간 검증
+
+승인된 실행 계획/결과는 `docs/superpowers/plans/2026-09-20-fun-runtime-review.md`,
+원본 캡처·상태·로그는 `evidence/runtime/fun-review-20260920/`에 연결한다.
+Hera의 실제 게임 입력, 작성된 해법/가속 시간으로 구동한 기계 검사, 배포 EXE 입력을 구분한다.
+T3의 TOP 표시, T4의 모두 적재 실패/선택 적재 성공, T6 점유 중 분기 불변을 실행으로 대조했다.
+신규 기능·비트맵 없이 검증하며, 실제로 확인된 결함만 교정한다. HUMAN/FUN_PASS는 NOT_RUN이다.
+실행에서 발견한 분기 표식의 흰 사각형은 SemanticAssetCatalog의 이미지 수명 문제였다.
+승인 이미지/규칙을 유지한 참조 보관 수정과 수명 검사, 동일 ProductFiniteSlice의 화면 RED/GREEN을 연결했다.
+배포 EXE는 창 식별 이후 외부 입력 감지로 조작을 중단했으므로 입력 완료 PASS가 아니다.
 
 ## Historical September1 validation record
 
