@@ -40,22 +40,12 @@ class SxDec059ImplementationCanonicalFreshnessTests(unittest.TestCase):
             for stale in stale_tokens:
                 self.assertNotIn(stale, text, f"{path} still contains stale token: {stale}")
 
-    def test_pr158_merge_is_retained_as_pre_060_runtime_history(self) -> None:
-        adapter = ADAPTER.read_text(encoding="utf-8")
-        for required in (
-            "pre_sx_dec_060_implementation_execution_state: MERGED_MAIN_VERIFIED",
-            "pre_sx_dec_060_implementation_merge_pr: 158",
-            f"pre_sx_dec_060_implementation_merge_main: {IMPLEMENTATION_MERGE_MAIN}",
-            "pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003",
-            "HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY",
-            "sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7",
-            "post_sx_dec_060_candidate: SX60-POC-ACCEPT-010 · PREPARED_PACKAGE_VERIFIED · Candidate_009_historical",
-        ):
-            self.assertIn(required, adapter)
+    def test_pr158_merge_is_retained_in_history_owners(self) -> None:
         for path in (ACTIVE_CONTEXT, CURRENT_DECISIONS):
             text = path.read_text(encoding="utf-8")
-            self.assertIn(IMPLEMENTATION_MERGE_MAIN, text, f"{path} lost PR #158 merge identity")
-            self.assertIn("PRE_SX_DEC_060", text, f"{path} lost historical scope label")
+            self.assertIn(IMPLEMENTATION_MERGE_MAIN, text)
+            self.assertIn("PRE_SX_DEC_060", text)
+        self.assertIn("Active Context", ADAPTER.read_text(encoding="utf-8"))
 
     def test_current_next_action_is_new_post_060_candidate_not_old_candidate_validation(self) -> None:
         adapter = ADAPTER.read_text(encoding="utf-8")
@@ -77,10 +67,10 @@ class SxDec059ImplementationCanonicalFreshnessTests(unittest.TestCase):
         )
 
     def test_superseded_pr154_is_retained_only_as_history(self) -> None:
-        text = ADAPTER.read_text(encoding="utf-8")
+        text = (ROOT / "기획서/50_제작_검증/SX_AUD_067_POST_SX_DEC_059_CANON_FRESHNESS_CLOSURE.md").read_text(encoding="utf-8")
         self.assertIn("PR #154", text)
         self.assertIn("CLOSED_UNMERGED", text)
-        self.assertIn("HISTORICAL", text)
+        self.assertIn("SUPERSEDED_BY_SX_DEC_059", text)
 
     def test_historical_playtest_delta_preserves_executed_059_boundary(self) -> None:
         text = PLAYTEST_DELTA.read_text(encoding="utf-8")

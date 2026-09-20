@@ -16,9 +16,9 @@
 
 ## Adversarial review
 
-## Documentation and Sheet sync
+## Documentation and authority
 
 - [ ] Current decisions updated
 - [ ] Active Context updated
-- [ ] Google Sheets sync status checked
+- [ ] GitHub current owners and related PR overlap checked; Notion/Google Sheets remain retired
 - [ ] No generated concept image presented as runtime evidence

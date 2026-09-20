@@ -1,5 +1,18 @@
 # Current Confirmed Decisions
 
+## 2026-09-20 operating-method simplification and fun-verification adoption
+
+User approved the proposed project-local rules/skills correction (“승인할게”), then
+explicitly added Base #885 fun-verification criteria. Apply the current v4.8 adapter:
+project-first selective read; shared two-pass whole-contract review budget; capability-based
+execution; valid approval/evidence reuse; scoped blockers; user-managed final deletion.
+Adopt fun/presentation lifecycle in existing Core Gameplay, Visual Direction and Playtest Plan,
+not a new skill, universal fun score, report or five-person study.
+Base v9.4.3 compatibility lock, game rules, engine/save compatibility and approved topdown
+assets remain unchanged. No installed plugin/global setting changes or mutation of other PRs.
+Normal required-check PR merge/main readback is authorized for this bounded scope.
+This is method adoption, not new gameplay implementation, human fun PASS or release approval.
+
 ## 2026-09-16 cumulative work-log instruction
 
 User: "작업일지는 계속 새로만들지말고 기존거에 추가로 작성하는거야. 날짜별로 요약해서 일단 작업 마무리하고 깃허브 동기화까지 진행해."

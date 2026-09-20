@@ -19,6 +19,7 @@ REQUIRED = [
     "docs/BASE_RULES_VERSION.md",
     "skills/PROJECT_BASE_ADAPTER.json",
     "skills/SKILL_REGISTRY.json",
+    "skills/PROJECT_SKILL_SNAPSHOT.json",
     "기획서/00_프로젝트_허브/START_HERE.md",
     "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
     "기획서/10_경험/CORE_GAMEPLAY.md",
@@ -45,6 +46,38 @@ def main() -> int:
     expected = adapter["skill_registry"]["project"]["sha256"]
     if actual != expected:
         raise SystemExit(f"project skill registry hash mismatch: {actual} != {expected}")
+
+    # Local integrity only. Base source/locks/protected approval are checked by
+    # check_approved_project_operating_contract.py in the compatibility workflow.
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    local_skills = {
+        entry["id"]: entry for entry in registry["skills"]
+        if entry["owner"] == "project" and entry["status"] == "ACTIVE"
+    }
+    for skill_id, entry in local_skills.items():
+        target = (ROOT / entry["path"]).resolve()
+        if not target.is_relative_to(ROOT.resolve()) or not target.is_file():
+            raise SystemExit(f"missing or external project skill: {skill_id}")
+    snapshot = json.loads(
+        (ROOT / "skills/PROJECT_SKILL_SNAPSHOT.json").read_text(encoding="utf-8")
+    )
+    if snapshot["source_registry"]["sha256"] != sha256(ROOT / "skills/PROJECT_BASE_ADAPTER.json"):
+        raise SystemExit("snapshot adapter hash mismatch")
+    if snapshot["project_registry"] != adapter["skill_registry"]["project"]:
+        raise SystemExit("snapshot project registry mismatch")
+    if snapshot["base_registry"] != adapter["skill_registry"]["base"]:
+        raise SystemExit("snapshot Base registry mismatch")
+    for route in adapter["routing"]["project_routes"]:
+        if route["status"] != "ACTIVE":
+            continue
+        effective = snapshot["effective_routes"].get(route["route_id"], {})
+        if (
+            route["skill_id"] not in local_skills
+            or effective.get("skill_id") != route["skill_id"]
+            or effective.get("source") != "PROJECT_LOCAL"
+            or effective.get("status") != "ACTIVE"
+        ):
+            raise SystemExit(f"invalid project route: {route['route_id']}")
 
     base_release = adapter["base_release"]
     if base_release["version"] != BASE_VERSION:

@@ -1,10 +1,19 @@
 # Switchy Express 프로젝트 허브
 
-Last updated: `2026-09-16 KST`
+Last updated: `2026-09-20 KST`
 
-이 문서는 현재 제품 기준선과 **다음 실행 지점**을 빠르게 찾는 허브다. 실행 전에는 항상 fresh Base completed `main`, current Skill Registry/generated map, fresh project `main`, Open/Draft PR, current GitHub owners와 actual runtime evidence를 다시 읽는다. Notion의 current structure는 GitHub에 이관됐고 historical audit-only다.
+이 문서는 책임 원본을 찾는 허브다. 읽기 순서는 [AGENTS](../../AGENTS.md)의 project-first current-authority order 하나만 따른다.
+현재 결정·Active Context·채택 adapter·최신 main·실제 consumer·관련 PR을 먼저 확인하고 필요한 Base 최신 절만 선택한다.
+Notion과 Google Sheets는 historical audit-only다.
 
 ## Current execution entry
+
+2026-09-20: 지침 경량화와 Base #885 재미 검증 연결 승인.
+적용 방법/관찰 Base 기준은 [project adapter](../../PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md),
+현재 결과는 [Active Context](ACTIVE_CONTEXT.md)가 소유한다. 제품·자산·엔진·저장은 변경하지 않는다.
+재미 가설/consumer 연결은 [CORE_GAMEPLAY](../10_경험/CORE_GAMEPLAY.md#재미-검증-연결),
+최종 사용자 질문과 증거 경계는 [PLAYTEST_PLAN](../50_제작_검증/PLAYTEST_PLAN.md)을 따른다.
+아래 September16 및 이전 항목은 해당 시점 기록이다.
 
 September16 user wrap-up: update the existing monthly work log with dated summaries,
 then normal GitHub synchronization. No new report/version per update and no product

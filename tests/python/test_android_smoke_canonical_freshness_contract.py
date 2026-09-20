@@ -121,26 +121,14 @@ class TestAndroidSmokeCanonicalFreshness(unittest.TestCase):
         self.assertIn("ANDROID_DEVICE_SMOKE_RUNBOOK.md", doc_map)
         self.assertIn("ANDROID_DEVICE_SMOKE_EVIDENCE_TEMPLATE.md", doc_map)
 
-    def test_project_skill_current_authority_is_finite_and_post_060(self) -> None:
+    def test_project_skill_routes_to_finite_domain_and_separate_device_evidence(self) -> None:
         skill = read("skills/switchy-express-design/SKILL.md")
-        current = section(skill, "## Current Product Authority", "## SX-DEC-060 station / preflight contract")
-        for token in (
-            "unlimited LIFO",
-            "persistent branch",
-            "finite-time completion",
-            "ANDROID DEVICE POST-060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE",
-            "SX-DEC-060",
-            "SX60-POC-ACCEPT-010 · PREPARED_PACKAGE_VERIFIED",
-        ):
-            self.assertIn(token, current)
-        for stale in (
-            "fuel zero",
-            "player BOOST",
-            "capacity-eight",
-            "cargo slowdown",
-            "SX59-POC-ACCEPT-003\n→ same exact Candidate 003",
-        ):
-            self.assertNotIn(stale, current)
+        for token in ("unlimited LIFO/TOP", "persistent branch/occupied lock",
+                      "SX-DEC-060", "PLAYTEST_PLAN.md",
+                      "missing human/device/rights/release evidence separately"):
+            self.assertIn(token, skill)
+        self.assertNotIn("SX60-POC-ACCEPT-010", skill)
+        self.assertIn("FINITE_DELIVERY_PUZZLE_BASELINE.md", skill)
 
     def test_runbook_and_template_are_same_hash_and_fail_closed(self) -> None:
         runbook = read("기획서/50_제작_검증/ANDROID_DEVICE_SMOKE_RUNBOOK.md")

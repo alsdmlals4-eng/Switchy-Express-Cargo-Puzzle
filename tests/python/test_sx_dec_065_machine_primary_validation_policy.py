@@ -70,7 +70,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         gates = read("기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md")
         roadmap = read("기획서/00_프로젝트_허브/ROADMAP.md")
 
-        self.assertIn("current_decision_span: SX-DEC-027~069", adapter)
+        self.assertIn("Active Context", adapter)
         self.assertNotIn("current_decision_span: SX-DEC-027~064", adapter)
         self.assertIn(
             "SX60-POC-ACCEPT-010 is the exact post-change package and current machine-primary candidate",
@@ -86,6 +86,8 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
 
     def test_current_owners_describe_connected_core_board_v02_v04_and_post_sx_dec_069_candidate_state(self) -> None:
         agents = read("AGENTS.md")
+        self.assertIn("CURRENT_CONFIRMED_DECISIONS.md", agents)
+        self.assertIn("ACTIVE_CONTEXT.md", agents)
         decision = read("docs/decisions/SX_DEC_068_TITLE_SCREEN_MAIN_SHELL.md")
         baseline = read("기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md")
         roadmap = read("기획서/00_프로젝트_허브/ROADMAP.md")
@@ -97,13 +99,8 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         start_here = read("기획서/00_프로젝트_허브/START_HERE.md")
         renderer = read("game/demo/presentation/product_board_renderer.gd")
 
-        self.assertIn("SX60-POC-ACCEPT-010", agents)
-        self.assertIn("79323ff0175b674c594d18dfd6d28a8e9951f5bd", agents)
         self.assertIn("SX60-POC-ACCEPT-010", decision)
         self.assertIn("79323ff0175b674c594d18dfd6d28a8e9951f5bd", decision)
-        self.assertIn("current_decision_span: SX-DEC-027~069", agents)
-        self.assertIn("SX-DEC-068", agents)
-        self.assertIn("CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED", agents)
         self.assertIn("CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED", baseline)
         self.assertIn("CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED", roadmap)
         self.assertIn("CORE_BOARD_V02_V04_RUNTIME_CONNECTED", production_spec)
@@ -212,39 +209,20 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         self.assertIn("SX-DEC-065", read("기획서/00_프로젝트_허브/DOCUMENTATION_MAP.md"))
 
         approval = json.loads(read("docs/operations/PROJECT_PROTECTED_CHANGE_APPROVAL.json"))
-        self.assertIn("SX-DEC-065", approval["decision_ids"])
-        self.assertIn("SX-DEC-067", approval["decision_ids"])
-        self.assertIn("SX-DEC-068", approval["decision_ids"])
-        self.assertNotIn(
-            "docs/decisions/SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW_VALIDATION_POLICY.md",
-            approval["approved_paths"],
-        )
-        self.assertIn("SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW", approval["approval_source"])
-        self.assertIn("SX-DEC-065", approval["scope_summary"])
-
-        self.assertIn(
-            "USER-APPROVAL-2026-08-30-SX60-POC-ACCEPT-005-MACHINE-VALIDATION",
+        # The current manifest authorizes only this PR's exact protected paths.
+        # Historical gameplay approval stays in Decisions, not a forever-growing manifest.
+        self.assertEqual(
+            ["USER-APPROVAL-2026-09-20-LEAN-RULES-AND-FUN-VERIFICATION"],
             approval["decision_ids"],
         )
-        for protected_current_candidate_owner in (
-            "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_06.md",
-            "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_06.md",
-            "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_07.md",
-            "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_07.md",
-            "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_08.md",
-            "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_08.md",
-            "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_09.md",
-            "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_09.md",
-            "기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_10.md",
-            "기획서/50_제작_검증/SX_DEC_060_POC_DEVELOPER_SELF_RUN_RECORD_10.md",
-        ):
-            self.assertIn(protected_current_candidate_owner, approval["approved_paths"])
-        for non_protected_evidence_owner in (
-            "evidence/acceptance/post_sx_dec_060_candidate.json",
-            "evidence/acceptance/sx60_poc_accept_005_artifact.json",
-            "evidence/acceptance/sx60_poc_accept_005_pck_deep_audit.json",
-        ):
-            self.assertNotIn(non_protected_evidence_owner, approval["approved_paths"])
+        self.assertIn("기획서/50_제작_검증/PLAYTEST_PLAN.md", approval["approved_paths"])
+        self.assertNotIn(entry["source"], approval["approved_paths"])
+        self.assertTrue(all(path.startswith("기획서/") for path in approval["approved_paths"]))
+        for number in range(6, 11):
+            relative = f"기획서/50_제작_검증/SX_DEC_060_POC_ACCEPTANCE_CANDIDATE_{number:02d}.md"
+            self.assertTrue((ROOT / relative).is_file())
+            self.assertNotIn(relative, approval["approved_paths"])
+
 
 
 if __name__ == "__main__":

@@ -25,61 +25,29 @@ CURRENT_OWNER_DOCS = (
 )
 
 
-REQUIRED_DURABLE_MARKERS = {
-    "startup reconciliation checklist":
-        "startup_checklist: CORE_FUN_SYSTEM_SWOT_REMAINING_WORK_ORDER_CHECK",
-    "bounded fallback route":
-        "bounded_fallback_route: REQUIRED_ON_DELAY_OR_BLOCKER",
-    "delegated routine approval":
-        "delegated_routine_approval: APPROVED_BY_DEFAULT_UNLESS_DANGEROUS_CHANGE",
-    "GPT then Codex then deferred human QA":
-        "workflow_order: GPT_NON_CODING_PREPARATION → CODEX_SINGLE_IMPLEMENTATION_WINDOW → HUMAN_QA_DEFERRED",
-    "machine runtime validation":
-        "machine_runtime_validation: GODOT_HERA_GUT_REQUIRED; HUMAN_QA_DEFERRED",
-    "candidate freshness invalidation":
-        "candidate_freshness_invalidation: PLAYER_FACING_BYTES_CHANGE → INVALIDATE_EXACT_CANDIDATE",
-    "zero remaining work completion gate": "completion_gate: REQUIRED_WORK_REMAINING: 0",
-    "workspace artifact hygiene": "## 8A. Workspace artifact hygiene · 2026-08-31 user directive",
-}
 
 
 class ExecutionContractFreshnessTests(unittest.TestCase):
-    def test_current_work_instruction_contains_durable_execution_contract_markers(self) -> None:
-        self.assertTrue(WORK_INSTRUCTION.is_file(), "current v4.8 work instruction is missing")
+    def test_current_execution_route_has_one_owner_and_no_forced_phase_repetition(self) -> None:
         instruction = WORK_INSTRUCTION.read_text(encoding="utf-8")
-        missing = {
-            name: marker
-            for name, marker in REQUIRED_DURABLE_MARKERS.items()
-            if marker not in instruction
-        }
-        self.assertFalse(
-            missing,
-            "work instruction is missing required durable markers: "
-            + ", ".join(f"{name}={marker!r}" for name, marker in missing.items()),
-        )
+        self.assertIn("UNIFIED_WORK_EXECUTION_CAPABILITY_BASED", instruction)
+        self.assertIn("TWO_SHARED_REVIEWS", instruction)
+        for retired in ("MINIMUM_FIVE", "GPT_NON_CODING_PREPARATION",
+                        "remove completed temporary worktree"):
+            self.assertNotIn(retired, instruction)
+        self.assertIn("현재 작업 결과/다음 행동은 Active Context", instruction)
 
-    def test_current_work_instruction_preserves_execution_boundaries(self) -> None:
+    def test_current_execution_boundaries_are_routed_not_duplicated(self) -> None:
         instruction = WORK_INSTRUCTION.read_text(encoding="utf-8")
-        required_clauses = {
-            "human QA remains deferred": "Human QA는 현재 보류한다.",
-            "machine evidence cannot become human evidence": "machine observation은 human/player PASS가 아니다.",
-            "fallback cannot reduce verification": "Fallback은 security, rights, exactness, or validation strength를 낮추는 우회가 될 수 없다.",
-            "tooling-only changes do not invalidate": "tooling-only, test-only, documentation-only 변경은 candidate를 무효화하지 않는다.",
-            "current candidate conflict must be reconciled": "CONTEXT_DRIFT_RECHECK_REQUIRED",
-            "generated images require a runtime consumer": "verified runtime consumer",
-            "generated images have GitHub-only preservation": "tracked project-local GitHub path",
-            "historical candidate state is explicit": "HISTORICAL_SUPERSEDED_BY_PLAYER_FACING_BYTE_CHANGE",
-        }
-        missing = {
-            name: clause
-            for name, clause in required_clauses.items()
-            if clause not in instruction
-        }
-        self.assertFalse(
-            missing,
-            "work instruction is missing required execution boundaries: "
-            + ", ".join(f"{name}={clause!r}" for name, clause in missing.items()),
-        )
+        agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+        for relative in ("기획서/50_제작_검증/PLAYTEST_PLAN.md",
+                         "docs/reporting/AI_WORKLOG_EVIDENCE_POLICY.md"):
+            self.assertIn(relative, instruction)
+            self.assertTrue((ROOT / relative).is_file())
+        self.assertIn("최종 삭제는 사용자", instruction)
+        self.assertIn("실행하지 않은 항목은", agents)
+        self.assertIn("실제 consumer", agents)
+        self.assertIn("승인된 구현", instruction)
 
     def test_active_context_keeps_the_user_workspace_hygiene_rule(self) -> None:
         active = ACTIVE_CONTEXT.read_text(encoding="utf-8")

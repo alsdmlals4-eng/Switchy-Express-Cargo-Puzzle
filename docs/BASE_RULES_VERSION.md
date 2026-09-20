@@ -1,5 +1,9 @@
 # Project Base Rules Version
 
+Current execution methods are selected by the project's v4.8 adapter (2026-09-20 adoption of
+Base #883 and #885). The release table below remains HISTORICAL_COMPATIBILITY, not the
+current-method ceiling. Fresh-read remote main per AGENTS; do not automatically repin this table.
+
 | Field | Value |
 |---|---|
 | Base repository | `alsdmlals4-eng/Base` |

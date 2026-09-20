@@ -1,5 +1,29 @@
 # Visual Direction
 
+## 경험과 표현 연결
+
+2026-09-20 Base #885 선택 채택. 현재 승인 탑뷰 자산과 상태군은
+Decisions/Active Context 및 실제 manifest가 소유한다. 아래 옛 방향·후보 상태는 당시 기록이다.
+이 절은 새 자산/수치/스타일 승인이 아니며 SX-FUN-01~03의 표시 계약만 연결한다.
+
+| 요구사항 | 표시할 정보·상태 / 보호할 판단 | 실제 표시 consumer / 실패·복귀 검사 |
+|---|---|---|
+| SX-FUN-01 | 현재 TOP과 연속 같은 종류, 적재 접수와 실제 하역 결과를 구분한다. 화물 직접 접촉과 역 cardinal 서비스 영역을 혼동시키지 않는다. 숨은 최적 적재 순서를 새로 알려주지 않는다. | `game/demo/presentation/product_board_renderer.gd`와 `game/demo/product_finite_slice.gd`가 delivery/snapshot을 표시한다. 적재/하역 직후, 빈 스택, 종류 불일치, Retry 뒤 표시를 domain과 대조한다. |
+| SX-FUN-02 | 선택 분기·가능한 출구·점유 잠금은 서로 다르다. 접수 효과를 전환 성공으로 오인시키지 않고, 열차·연결 선로와 주요 위험 표식을 가리지 않는다. | `game/demo/presentation/route_control_overlay.gd`의 descriptor/selected exit와 실제 switch 상태를 대조한다. 연타·잠금·해제·pause·Retry 뒤 표시 복귀를 확인한다. |
+| SX-FUN-03 | 실패 이유와 Retry Same Layout/Edit Layout의 차이를 남기며 반복 축하/오류 효과로 다음 입력을 지연시키지 않는다. | `game/demo/product_finite_slice.gd`의 현재 flow를 따라 Result→Retry/Edit 확인. 이전 시도의 모션·선택·사운드가 다음 시도로 새지 않는지 확인한다. |
+
+효과의 수치·duration·상태 우선순위는 변경 시 현재 renderer/constants/domain owner를 정확히 인용한다.
+이번 채택에서는 값을 바꾸지 않는다. 조절할 값이 미정이면 HYPOTHESIS와 확인 장면을 남긴다.
+감속/정상속도 복귀는 renderer의 `_speed_transition_descriptor`와 실제 speed snapshot을 연결하며,
+표현 코드가 속도·적재·배송·비용을 재계산하지 않는다.
+동시 효과·작은 표시 크기·한국어 긴 문구·현재 지원 해상도/입력·기존 감소 모션/음소거 조건을
+실제 설정 owner와 확인한다. 없는 접근성 기능을 구현된 것으로 적지 않는다.
+
+신규 자산은 실제 슬롯·크기·pivot·상태군·크로마키 제거/alpha·provenance를 연결한다.
+기존 승인 자산 재사용 우선이며 후보/사용자 승인/정본 등록/런타임 검증을 구분한다.
+안 보임, 보이지만 오해함, 이해했지만 피로함, 중단/복귀 결함을 나누어 최소 교정한다.
+검증 증거와 사람 질문은 PLAYTEST_PLAN으로 연결하며 링크 검사만으로 가독성·재미 PASS를 만들지 않는다.
+
 ## 2026-09-10 production-direction overlay
 
 The user requested new art from renewed planning with the core retained; old imagery is reference material for this new production cycle. Working direction and consumer/state requirements are specified in `docs/superpowers/specs/2026-09-10-core-preserved-art-and-experience-replan.md`: night signal workshop, quiet readable board, cream TOP manifest, local causal motion and connected-master rail production. Generated pixels require final selection before canonical registration.

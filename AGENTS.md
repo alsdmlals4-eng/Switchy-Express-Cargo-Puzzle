@@ -1,451 +1,74 @@
-# Switchy Express 공용 AI 작업 규칙
-
-> 2026-09-16 user correction: keep the existing monthly work-log PDF and append date-based
-> summaries. Do not routinely create new report files/versions. Existing record JSON and
-> sources.json own cumulative entries/update history; preserve past pages and source evidence.
-> Details: docs/reporting/AI_WORKLOG_EVIDENCE_POLICY.md. Finish and sync this bounded task.
-
-> 2026-09-14 additional user instruction: future raster generation uses a chroma-key
-> background followed by background removal and alpha/edge QA. Choose a key color
-> absent from the subject; preserve generated source and derived transparent PNG,
-> provenance and actual consumer. Do not regenerate already approved art without need.
-> Image generation/editing still uses the image model and project image authority.
-> Monthly AI work-log/evidence PDF is separate from the blueprint and is a derived,
-> source-bound report, not new planning canon or proof of expense eligibility.
-> Owner: docs/reporting/AI_WORKLOG_EVIDENCE_POLICY.md. User destination:
-> C:/Users/user/Documents/증빙서류/9월 증빙서류. No fabricated dates/screenshots,
-> inferred account identity, billing data, agreement verification or submission.
-
-> Current continuation (2026-09-14): user approved the remaining-work recommendation
-> in `docs/superpowers/specs/2026-09-14-remaining-work-design.md`.
-> Execute M1 → C1 → C2 with finite core and approved top-down assets preserved.
-> Current approval, progress and exact evidence belong to Decisions / Active Context.
-> PR #309 is this task's continuation; unrelated PR #174/#254/#281 remain read-only.
-> Historical candidate and pending-state statements below are not current delivery gates.
-
-> 2026-09-12: user approved all eleven selected remaining top-down object/decor candidates.
-> PR #287 is merged (f2c8a8f); all thirteen are now locally integrated and machine/live verified.
-> Current top-down family delivery gate and exact evidence: ACTIVE_CONTEXT.md; final PR readback remains separate.
-> Cleanup: never directly delete task files. Verify unused/recoverable status, move only safe
-> files to a separate user-deletion holding folder, keep original-path/hash/reason records,
-> and give the user a link. Preserve active/unknown files and open-PR worktrees.
-> These current instructions supersede the historical pending/cleanup statements below.
->
-> Previous continuation was strict top-down unification on PR #287, after merged PR #286.
-> Latest approval and consumer ownership: CURRENT_CONFIRMED_DECISIONS.md and ACTIVE_CONTEXT.md
-> under 기획서/00_프로젝트_허브/. Only the blue roof/lid pair is pixel-approved; new family candidates
-> remain separately gated. Older PR #284/286 continuation pointers below are historical, not takeover authority.
-
-> Current readback: approved bounded implementation is MERGED_MAIN_VERIFIED through PR #284.
-> Evidence owner: SX_DEC_070_NIGHT_WORKSHOP_FIRST_OBJECT_FAMILY.md, September 11 readback.
-> Next: remaining transparent objects/validated rails/UI-motion family and complete human PDF;
-> these remain incomplete and are not implied by the merged increment.
->
-> Latest continuation: user explicitly approved finishing remaining preparation and proceeding
-> with game implementation. The implementation hold below is superseded for this replan.
-> Preserve the finite core, selected board pixels, and current-task PR #284 ownership;
-> failed-alpha candidates are not approved runtime assets. Other PRs remain read-only.
-> Execute prepared read-model corrections first; do not mark incomplete asset families ready.
-
-> Latest user override (2026-09-11): HUMAN_BLUEPRINT_PREPARATION. Research, detailed planning,
-> and consumer-bound image candidate production are authorized. Runtime implementation and
-> PR #284 merge remain held until final blueprint approval. The prior image hold is superseded.
-> Board-slate pixels alone are selected; title-workshop is not selected. Existing work is preserved.
-
-> Current continuation overlay (2026-09-10): core-preserved Night Workshop replan and
-> SX-DEC-070 first-object-family implementation are owned by current Decisions/Active Context
-> and `docs/decisions/SX_DEC_070_NIGHT_WORKSHOP_FIRST_OBJECT_FAMILY.md`.
-> PR #284 is this task's continuation. Candidate010 statements below retain historical
-> exact-byte/package meaning; they do not validate the new renderer or pending surface candidates.
-
-> **2026-08-28 사용자 권위 변경 - GitHub-only project workspace:** Notion은 active read/write, 결정 입력, asset storage, destination readback, 완료 조건에서 제외한다. 기존 Notion page/attachment/readback은 삭제하지 않는 역사·감사 evidence다. 현재 정본, Decision, asset provenance, human-facing GDD와 검수 기록은 GitHub repository가 단일 owner다. 아래의 Notion 의무 문구가 이 선언과 충돌하면 이 선언이 우선한다.
-
-이 저장소는 `alsdmlals4-eng/Base` v9.4.3 project compatibility pin을 역사적으로 보존하면서, **사용자가 2026-08-26 제공한 v4.8 r5.4 Superset Final 작업 계약**과 최신 Base completed `main`을 현재 실행 방법론으로 사용하는 Godot 프로젝트다.
-
-현재 Base의 실행 모델은 매 material task에서 fresh-read하여 `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`의 Switchy-specific control plane으로만 적용한다. 최신 Base `main` 관찰값은 release pin·Skill Registry 교체·Godot provider migration 권한이 아니며, 이 프로젝트의 `v9.4.3` compatibility evidence와 제품 경계를 자동 변경하지 않는다.
-
-## 1. 권위 순서
-
-1. 사용자의 최신 지시와 승인
-2. 현재 환경 system/developer/security 제약
-3. 이 `AGENTS.md`
-4. `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`
-5. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
-6. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
-7. 등록된 분야 책임 원본
-8. 실제 code/data/Scene/Resource/assets/tests/runtime evidence
-9. 프로젝트가 채택한 compatibility lock/adapter
-10. Base remote latest completed `main`
-11. 외부 사례·과거 대화·추정
-
-프로젝트 문서와 실제 runtime/code가 충돌하면 숨기지 않는다. 실행하지 않은 test/build/render/physical/human 검증은 PASS라고 쓰지 않는다.
-
-### 작업 목표
-
-모든 프로젝트 작업은 **가장 효율적이고 장기적으로 유지되는 출시 수준에 가까운 버티컬 슬라이스**를 목표로 한다. 빠른 답이나 국소 패치보다 현재 코드·모든 PR·GitHub 정본을 먼저 읽고, 공식 자료·동종 제품 벤치마킹·현업 구현 사례를 비교한 뒤 최적의 구조를 선택한다. 시간과 토큰보다 결과 품질, 증거, 회귀 방지, 장기 유지비를 우선한다.
-
-구현·병합 작업은 다음을 기본 완료 조건으로 삼는다.
-
-```text
-fresh authority recovery
-→ benchmark / industry comparison
-→ RED-first implementation
-→ exact automated/package evidence
-→ minimum five-pass adversarial review
-→ corrections and full regression
-→ GitHub merge
-→ GitHub post-merge readback
-```
-
-### 2026-08-28 사용자 지정 사전검증 루프
-
-모든 의미 있는 기획·asset·runtime·운영 변경은 후보를 채택하거나 구현하기 전에 다음 순서를 실제 evidence로 완료한다.
-
-```text
-fresh current owner + actual consumer readback
-→ current official / primary-source internet research (or NOT_MATERIAL with reason)
-→ implementation feasibility check in the actual engine/consumer boundary
-→ minimum five full-scope adversarial review loops
-→ correct every validated in-scope finding
-→ RED→GREEN / regression / evidence-ceiling readback
-```
-
-- 외부 조사 결과는 프로젝트 정본을 덮지 않으며, 현재 결정에 material한 사실만 공식·1차 출처로 기록한다.
-- 구현 가능성은 실제 Node/Scene/Resource/asset path와 supported viewport/import/runtime path를 확인한다. 단순 이미지 미리보기·문서 읽기는 runtime proof가 아니다.
-- 적대적 검토는 기능/소비처 오인, 범위 확장, visual/readability drift, 권리·provenance, import/runtime failure, evidence inflation을 최소한 각각 한 번 공격한다.
-- 다섯 loop 뒤에도 blocking finding이 있으면 해당 범위는 `BLOCKED_UNVERIFIED`로 남기고 우회 PASS를 주장하지 않는다.
-
-## 2. 매 작업 시작 fresh-read
-
-```text
-Base latest completed main
-→ Base root AGENTS.md
-→ Base current Skill Registry + generated active map
-→ Project main/latest commit
-→ all Open/Draft PR
-→ this AGENTS.md
-→ v4.8 Switchy adapter
-→ CURRENT_CONFIRMED_DECISIONS
-→ ACTIVE_CONTEXT
-→ exact owner docs
-→ actual code/data/Scene/Resource/assets/tests
-```
-
-새 채팅은 과거 대화를 필수 입력으로 사용하지 않는다. Project GitHub에서 current identity / goal / quality-stage / protected scope / next safe action / evidence ceiling을 재구성한다. historical Notion은 explicit audit/migration request가 없는 한 읽거나 쓰지 않는다.
-
-### 로컬·원격 정본 동기화 — 사용자 지시 2026-08-31
-
-각 작업 단위는 로컬과 GitHub 정본의 차이를 남기지 않는 다음 순서를 따른다.
-
-```text
-start: git fetch --prune → exact origin/main + local status readback → clean safe fast-forward pull only
-work: isolated change + machine verification → push branch → PR/required checks → normal merge
-close: git fetch --prune → fast-forward pull main → exact origin/main == local HEAD + working-tree status readback
-```
-
-- dirty user worktree, pre-existing untracked content, open/draft PR, protected branch, or unresolved source drift에는 강제 pull/push/merge를 하지 않는다. exact blocker를 기록하고 안전한 다음 행동만 한다.
-- `pull`은 fast-forward-only로만 수행한다. direct `main` push, force push, admin/ruleset bypass는 금지다.
-- 산출물·evidence가 포함된 작업도 GitHub merged main readback 전에는 current로 주장하지 않는다.
-
-`GOOGLE_SHEETS: RETIRED_NO_ACTIVE_USE`
-
-사용자 2026-08-25 지시에 따라 기존 Google Sheet는 **일반 작업에서 읽기·쓰기·동기화·결정 입력 대상으로 사용하지 않는다.** 과거 Sheet ID·URL·sync 기록은 역사/감사 provenance가 필요한 경우에만 legacy migration evidence에서 확인하며, active workspace나 기본 탐색면으로 되살리지 않는다. Figma, external HTML, Tool Hub, QA Evidence Studio도 기본/필수 프로젝트 경로가 아니다.
-
-## 3. 현재 작업지시문 / 엔진
-
-```yaml
-work_instruction_canon: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md
-contract_version: 4.8
-revision: 2026-08-26-r5.4-superset-final
-source_role: USER_PROVIDED_V4_8_R5_4_SUPERSET_FINAL_CONTRACT
-source_r5_4_sha256: fdf238c202cfac6d3a824aae49b8ac525fba023e31bba7df6ece64a2790365a0
-adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
-engine: Godot 4.7.1-stable
-language: GDScript
-project_base_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
-base_remote_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
-fresh_read_bootstrap_policy: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
-skill_coverage_policy: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT
-gpt_local_codex_orchestration_policy: RETIRED
-current_validation_locator: 기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md
-current_product_decision: SX-DEC-068 · TITLE_SCREEN_MAIN_SHELL_USER_APPROVED_CANON_REGISTERED + SX-DEC-069 · TRANSPARENT_WAYSIDE_AND_SPEED_TRANSITIONS_MERGED_MAIN_VERIFIED + SX60_POC_ACCEPT_010_MACHINE_PRIMARY_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN
-pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003 · HISTORICAL_EXACT_BYTES_ONLY
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-010 · PREPARED_PACKAGE_VERIFIED · exact SX-DEC-069 source 79323ff0175b674c594d18dfd6d28a8e9951f5bd · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
-```
-
-v4.7 Switchy adapter, v4.5 r2 bundle, v4.8 r2 provenance와 2026-08-24 r4 전환 자료는 역사·rollback/provenance evidence로 보존하며 current work-instruction authority가 아니다. r5.4의 fresh-read/Skill coverage/복구/Godot 상세는 thin adapter와 최신 Base owner를 progressive-load한다.
-
-## 4. 현재 제품 기준선 — GMB-002 · SX-DEC-060 amendment
-
-Stable finite identity:
-
-- handcrafted finite delivery puzzle
-- free rail build + cost / full refund
-- automatic train movement
-- manual load default + auto-load toggle
-- unlimited LIFO stack
-- contiguous matching TOP group unload
-- direct route-control/switch interaction with occupied lock
-- time failure / all-delivered success / `ROUTE_END`
-- same-layout fresh-runtime Retry + Edit layout
-- color + shape + text redundant information
-- cosmetic-only progression boundary
-
-Current SX-DEC-060 amendment:
-
-```text
-station service = abs(train_x - station_x) + abs(train_y - station_y) == 1
-→ UP / RIGHT / DOWN / LEFT exactly one tile
-→ diagonal excluded
-→ station footprint itself excluded
-
-cargo pickup = existing exact-cell Manual / Auto contact
-
-preflight = start-reachable RUN component
-→ every required cargo reachable
-→ every required station has >=1 reachable cardinal service cell
-→ irrelevant disconnected rail island does not block RUN
-```
-
-Technical implementation default:
-
-```yaml
-FiniteMapDefinition_target: schema_v3
-station_role: OFF_TRACK_SERVICE_OBJECT
-station_cell_player_track: FORBIDDEN
-station_service_overlap: FAIL_CLOSED
-renderer: EXISTING_STATION_PNG + PROCEDURAL_SERVICE_INDICATOR
-new_bitmap_assets: 0
-```
-
-다음 historical family는 current product로 되살리지 않는다.
-
-```text
-endless survival
-fuel drain/recovery/fuel-zero
-player BOOST
-cargo capacity 8
-cargo-count slowdown
-pickup respawn
-switch auto-reset
-```
-
-추가 코어 의미 변경은 `USER_DECISION_REQUIRED`다.
-
-## 5. 현재 Decision / 기획 상태
-
-```yaml
-current_decision_span: SX-DEC-027~069
-sx_dec_055_runtime_semantic: MERGED_MAIN_VERIFIED · PR_151
-sx_dec_056a: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
-sx_dec_056b: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
-sx_dec_057: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
-sx_dec_057_fast_cheap: BLOCKED_BY_STAGE8_TRACK_ATTRIBUTE_RUNTIME
-sx_dec_058: DELTA_DOR_PASS_PLANNING · IMPLEMENTATION_NOT_AUTHORIZED
-sx_dec_059: MERGED_MAIN_VERIFIED · PRE_SX_DEC_060_RUNTIME
-sx_dec_059_build: PR_158 · main_162e8a0a5e8ddc8472e74a6152e87dc12008e34c
-sx_dec_059_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-066
-sx_dec_060: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
-sx_dec_060_runtime: MERGED_MAIN_VERIFIED · schema_v3/cardinal_service/reachable_preflight
-sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS
-sx_dec_060_ci: PASS · 7_REQUIRED_CHECKS
-sx_dec_060_review: FIVE_PASS_AND_INDEPENDENT_REVIEW_CLOSED · SX-AUD-071
-sx_dec_060_notion_readback: PASS
-sx_dec_060_post_change_candidate: SX60-POC-ACCEPT-010 · PREPARED_PACKAGE_VERIFIED · exact SX-DEC-069 source 79323ff0175b674c594d18dfd6d28a8e9951f5bd · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
-sx_dec_061: APPROVED · BOARD_FIRST_COZY_NEO_ARCADE · DOCUMENTATION_ONLY · RUNTIME_UNCHANGED
-sx_dec_062: MERGED_MAIN_VERIFIED · PR_237 · main_8bce715b5045afebfb04d38108d2e3f7353e1b10 · EXISTING_ASSET_BOARD_FIRST_COMPOSITION
-sx_dec_063: CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED · PR_255 · main_2cf7bb5595a297955c75e6b4108bc1be6fe9428c · PRODUCT_BOARD_RENDERER_V2_CONSUMERS_CONNECTED · CI_7_GREEN
-sx_dec_064: MERGED_MAIN_VERIFIED · PR_249 · main_2b98c0b070f2d8670b6432ac769a130bdd83bc39 · CI_7_GREEN · PROCEDURAL_RUNTIME_DELTA
-sx_dec_065: USER_APPROVED · MACHINE_PRIMARY_FINAL_USER_REVIEW · FIVE_PERSON_COMPREHENSION_NOT_REQUIRED · PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED · FINAL_USER_REVIEW_NOT_RUN
-sx_dec_066: USER_APPROVED · MERGED_MAIN_VERIFIED · Candidate_006_historical_after_SX_DEC_067
-sx_dec_067: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_263 · main_c0bb86efa5bad6050217ca67dd6aa9eba155dc75 · Candidate_007_historical_after_SX_DEC_068
-sx_dec_068: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_271 · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · SX60_POC_ACCEPT_009_HISTORICAL_AFTER_SX_DEC_069
-sx_dec_069: USER_APPROVED · MERGED_MAIN_VERIFIED · PR_276 · main_79323ff0175b674c594d18dfd6d28a8e9951f5bd · REMOTE_CI_7_GREEN · SX60_POC_ACCEPT_010_PREPARED_PACKAGE_VERIFIED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
-```
-
-Current first-session shape remains:
-
-```text
-T1 Track Connection
-→ T2 Cargo direct-contact + Station cardinal-adjacent delivery
-→ T3 LIFO/TOP reverse planning
-→ T4 selective non-load + revisit
-→ T5 Auto ON safe / OFF decision
-→ T6 switch execution
-→ VS_DEMO_01 Capstone
-→ Result / Retry / Edit
-```
-
-No new tutorial stage is authorized by SX-DEC-060.
-
-## 6. SX-DEC-060 implementation boundary
-
-### Reuse/adapt current owners
-
-- `FiniteMapDefinition` / `FiniteMapLoader`
-- `FiniteTrackGraphBuilder`
-- `Station`
-- `FiniteDeliveryLoop`
-- `PreflightValidator`
-- `FiniteRunSessionFactory`
-- current `ProductFiniteSlice`
-- existing HUD/Board/RouteControl/SemanticEvent/DemoEffects/Audio
-- existing 73 semantic product PNGs
-- `FirstSessionDefinition/Director/StagePolicy/Copy`
-- existing T1→T6→capstone structure
-
-### Current implementation package
-
-```text
-docs/decisions/SX_DEC_060_CARDINAL_STATION_SERVICE_AND_REACHABLE_NETWORK.md
-docs/superpowers/specs/2026-08-26-cardinal-station-service-and-reachable-network-design.md
-docs/superpowers/plans/2026-08-26-cardinal-station-service-and-reachable-network.md
-기획서/50_제작_검증/SX_DEC_060_CODEX_HANDOFF_PACKAGE.md
-```
-
-Actual GDScript/Scene/Resource/map/runtime implementation must use `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF` after merged GitHub canon readback.
-
-### Prohibited expansion
-
-- SX-DEC-056A Route Probe/PB/Fingerprint/observation implementation
-- SX-DEC-056B score/max-combo
-- SX-DEC-057 Yard Lab/Mastery
-- SX-DEC-058 Daily/Weekly generator/pipeline
-- arbitrary station radius, diagonal service, per-station service shape
-- multi-station priority invention
-- new solver/optimal route reveal
-- Base repin
-- new generated image without a concrete game consumer
-
-## 7. Consumer-first image rule
-
-Production image work is allowed only when a real game consumer exists.
-
-```yaml
-automatic_consumer_image_policy: USER_APPROVED_2026_08_26
-approved_image_storage: PROJECT_LOCAL_GITHUB_TRACKED
-visual_continuity: existing E+D Hybrid / Neo-Arcade visual language
-```
-
-When a verified runtime node/key/path has a genuinely missing bitmap slot, generate only the required image without a per-image approval request. Preserve a user-approved final image in a tracked project-local asset path, record provenance and SHA-256 in GitHub, and use the existing E+D Hybrid / Neo-Arcade visual language. A concrete consumer remains mandatory. A generated candidate remains `NOT_RUNTIME_PROOF` until the user decides to promote it.
-
-Current `ProductBoardRenderer` already consumes station texture paths for red/blue/yellow stations, so SX-DEC-060 must:
-
-```text
-reuse existing station PNGs
-→ use procedural cardinal service indication first
-→ add zero new bitmap assets in the approved implementation
-```
-
-Explanation sheets, full-screen concept mockups, or images with no runtime node/key/path consumer are not production assets.
-
-## 8. 별도 PR 보호
-
-PR #154 is `CLOSED_UNMERGED · SUPERSEDED_BY_SX_DEC_059`. PR #155/#156 are `CLOSED_UNMERGED · HISTORICAL_ACCIDENT`.
-
-Draft PR #174 is a pre-existing r4 workstream and remains:
-
-```text
-PRE_EXISTING_DRAFT · READ_ONLY
-```
-
-Do not modify, rebase, merge, close, or absorb it without separate explicit authorization.
-
-## 9. Tooling authority
-
-```yaml
-godot: 4.7.1-stable
-gut: 9.7.1
-project_godot_ai_plugin_cfg: 3.2.0
-project_3_2_0_project_tree: 66a9df59a92f0029efcd35c22fea355c93e8fe49
-project_3_2_0_external_upstream_parity: UNVERIFIED
-```
-
-`docs/tooling/local_godot_tooling_state.json` is evidence owner. Fresh local authoring must re-check repo/project identity, dirty/diverged state, exact tool pins, and runtime session before mutation.
-
-Persistent Godot authoring follows the current adopted authoring authority. GUT is deterministic test authority; live QA/observability does not own acceptance source delta.
-
-`GPT_LOCAL_CODEX_ORCHESTRATION_RETIRED`: GPT does not launch local Codex through PowerShell. New Godot product implementation switches to the Codex handoff route; Codex independently fresh-reads Project GitHub.
-
-## 10. Platform / Release / Asset Rights routing
-
-For platform/rating/store/ads/IAP/rights/provenance/reference-independence work, read the current registered owners:
-
-- `docs/PLATFORM_RELEASE_AND_ASSET_RIGHTS_PROFILE.md`
-- `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`
-- `docs/GAME_RELEASE_COMPLIANCE_EVIDENCE_PACK.md`
-- Release planning and outstanding gates are owned by the three existing documents above;
-  do not create a duplicate plan to satisfy the historical missing plan-file reference.
-
-No SX-DEC-060 design/implementation/package result implies store/legal/release PASS.
-
-## 11. Evidence ceiling
-
-```text
-FINITE CORE PRE-SX-DEC-060 AUTOMATED: PASS · HISTORICAL_EXACT_SEMANTICS
-SX-DEC-055 RUNTIME SEMANTIC: MERGED_MAIN_VERIFIED
-SX-DEC-059 IMPLEMENTATION: MERGED_MAIN_VERIFIED · PRE_SX_DEC_060
-CANDIDATE 003 PACKAGE/PCK/TEXTURE POINTER: PASS · HISTORICAL_PRE_SX_DEC_060
-CANDIDATE 003 PHYSICAL VISUAL RECHECK: NOT_RUN
-SX-DEC-060 USER RULE: APPROVED
-SX-DEC-060 DESIGN/TDD/HANDOFF: PREPARED
-SX-DEC-060 RUNTIME: MERGED_MAIN_VERIFIED · PR #188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
-SX-DEC-060 AUTOMATED REGRESSION: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
-SX-DEC-060 FIVE-PASS REVIEW: CLOSED · SX-AUD-071
-SX-DEC-060 NOTION READBACK: PASS
-POST-060 CANDIDATE 004: HISTORICAL_PRE_V04_PRODUCT_BYTES · PREPARED_PACKAGE_VERIFIED
-POST-060 CANDIDATE 006 PACKAGE/PCK/RUNTIME-JSON POINTER: HISTORICAL_PRE_SX_DEC_067_PRODUCT_BYTES
-POST-SX-DEC-069 PACKAGE CANDIDATE: SX60-POC-ACCEPT-010 · PREPARED_PACKAGE_VERIFIED · exact transparent-wayside/speed-transition source 79323ff0175b674c594d18dfd6d28a8e9951f5bd · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED · V02_WAYSIDE_USER_PIXEL_REVIEW_PENDING
-WINDOWS PHYSICAL POST-060: FINAL_USER_REVIEW_ONLY · NOT_RUN
-AUDIO PERCEPTUAL POST-060: FINAL_USER_REVIEW_ONLY · NOT_RUN
-ANDROID DEVICE POST-060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
-FIVE-PERSON POST-060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
-PLAYER EXPERIENCE POST-060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
-PRODUCTION CUTOVER: BLOCKED_DEFERRED
-```
-
-Automated/export/package/self-run does not imply HUMAN/PLAYER EXPERIENCE PASS. Pre-change Candidate 003 evidence does not transfer to post-060 bytes.
-
-## 12. Current Codex / Build Gate
-
-Current next gate:
-
-```text
-SX-DEC-069 merged transparent wayside/speed-transition player-facing bytes after Candidate 009
-→ SX60-POC-ACCEPT-009 is historical pre-SX-DEC-069 package evidence; SX60-POC-ACCEPT-010 exact package is machine-primary verified
-→ final user review only when requested on unchanged Candidate 010; title-wordmark pixel approval is complete, while v02 wayside pixel review and physical/release gates remain separate
-→ platform / rights / production-cutover gates remain separate
-```
-
-Physical Windows/Android and human comprehension remain separate gates.
-
-## 13. GitHub-only project workspace
-
-- GitHub: structured canon / code / data / Scene / Resource / assets / tests / runtime evidence / human-facing GDD.
-- Notion: `RETIRED_NO_ACTIVE_USE`; historical page/attachment/readback only, no new read/write/sync/destination requirement.
-- Google Sheets: `RETIRED_NO_ACTIVE_USE` except legacy provenance/migration evidence.
-- Every approved Decision is recorded in required GitHub owners.
-- If historical Notion conflicts with GitHub runtime truth, preserve it as history and correct GitHub canon; do not reactivate a Notion sync path.
-
-## 14. 현재 핵심 정본
-
-- `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md`
-- `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`
-- `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`
-- `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`
-- `기획서/00_프로젝트_허브/ROADMAP.md`
-- `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`
-- `docs/decisions/SX_DEC_060_CARDINAL_STATION_SERVICE_AND_REACHABLE_NETWORK.md`
-- `docs/superpowers/specs/2026-08-26-cardinal-station-service-and-reachable-network-design.md`
-- `docs/superpowers/plans/2026-08-26-cardinal-station-service-and-reachable-network.md`
-- `기획서/50_제작_검증/SX_DEC_060_CODEX_HANDOFF_PACKAGE.md`
-- `docs/decisions/SX_DEC_062_BOARD_FIRST_RUNTIME_COMPOSITION.md`
-- `docs/superpowers/specs/2026-08-28-board-first-runtime-composition-design.md`
-- `docs/superpowers/plans/2026-08-28-board-first-runtime-composition.md`
-- `기획서/50_제작_검증/SX_DEC_062_CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF.md`
-- `docs/decisions/SX_DEC_063_HYBRID_MINIATURE_DIORAMA_VISUAL_PRODUCTION_ALIGNMENT.md`
-- `docs/design/PROJECT_AI_PRODUCTION_SPEC.md`
-- current first-session content/UI/localization owners
-- current platform/release/asset-rights owners
-
-Historical v4.7/r2/r4 reconciliation docs, SX-DEC-059 implementation plans/audits, and Candidate 003 records remain history/rollback/provenance evidence. Current execution locator is `ACTIVE_CONTEXT.md`.
+# Switchy Express · AI 작업 시작점
+
+한국어 1인 개발 프로젝트다. 결과부터 설명하고 역할·작동 방식·직접 확인 방법을 알려준다.
+이 문서는 상시 안전 경계와 읽기 경로만 소유한다. 게임 규칙·진행 상태·패키지 번호를 복제하지 않는다.
+
+## 권위와 current-authority read order
+
+System/developer/security 제약 → 최신 사용자 지시·승인 → 이 문서 → 프로젝트 adapter
+→ 현재 Decisions / Active Context → 등록된 분야 정본과 실제 consumer·검증 증거
+→ 채택 compatibility 계약 → 선택한 최신 Base 방법 → 외부 사례·과거 기록 순서다.
+문서와 구현이 다르면 둘 중 하나를 조용히 정답으로 만들지 말고 승인·실제 파일·증거로 책임 원본을 판정한다.
+
+1. 현재 checkout의 이 문서, 로컬 변경과 원격 최신 main, 관련 Open/Draft PR·작업 중첩을 확인한다.
+2. [현재 결정](기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md),
+   [Active Context](기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md),
+   [프로젝트 adapter](PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md)를 읽는다.
+3. [START_HERE](기획서/00_프로젝트_허브/START_HERE.md)에서 이번 작업의 책임 원본만 골라 실제 코드·씬·데이터·자산·테스트 사용처를 확인한다.
+4. `python tools/validate_project_contract.py`로 로컬 계약 연결을 검사하고
+   [.agents/skills/base-project-router/SKILL.md](.agents/skills/base-project-router/SKILL.md)로 필요한 스킬만 선택한다.
+   sibling workflow-router는 잠긴 generator의 호환 산출물이지 현재 실행 진입점이 아니다.
+5. Base 원격 최신 completed main을 확인하고 Base AGENTS·START_HERE와 **이번 작업에 해당하는 절만** 읽는다.
+   채택 계약과 drift를 구분한다. 최신 Base 관찰 SHA는 영구 기준·release repin·전역 변경 권한이 아니다.
+
+과거 채팅·메모리·PDF·고정 SHA·오래된 phase/PR 번호를 현재 실행 권한으로 추정하지 않는다.
+GitHub repository가 단일 정본이다. `GOOGLE_SHEETS: RETIRED_NO_ACTIVE_USE`; Notion도 `RETIRED_NO_ACTIVE_USE`;
+역사 감사 요청이 없으면 읽기·쓰기·동기화를 재개하지 않는다.
+
+## 계획·승인·실행
+
+- 새 변경 전 의도·현재 상태·바꿀 것/보호할 것·구현 방향·완료/검증 기준을 짧게 정리하고 승인받는다.
+- 같은 승인 범위에서는 재질문·재계획 없이 구현, 필요한 자산 연결, 검증·교정·정본 갱신, 정상 PR 병합·main 재확인까지 진행한다.
+- `UNIFIED_WORK_EXECUTION`: 현재 실행면의 실제 capability로 작업한다. GDScript/Scene 수정이라는 이유만으로 다른 AI/세션에 강제 이관하지 않는다. 실제 도구·권한이 없을 때만 필요한 인계 범위를 남긴다.
+- 기존 코드·승인 자산·유효한 조사/검증을 먼저 재사용한다. 중요한 새 판단에만 공식/1차 조사와 실무 비교를 추가한다. 매 작업 3개 대안·전면 SWOT·전체 스킬 읽기는 의무가 아니다.
+- 같은 승인 계약의 **전체 적대 검토 예산은 2회로 공유**한다. 단계/파일/도구마다 초기화하지 않는다. 이후 지적은 영향 범위 교정·회귀로 닫고, 필요한 독립 검토는 작성자 자기 검토로 대체하지 않는다.
+- 새 방향·코어 의미·주요 UX/아트 방향·범위·추가 비용·보안·파괴적 변경은 별도 승인이다.
+- 자료/도구가 없으면 그 의존 작업만 미검증으로 남긴다. 독립적이고 승인된 작업은 계속한다. 실패한 검사를 PASS로 우회하지 않는다.
+
+## 보호할 제품·환경
+
+- 유한 화물 퍼즐의 의미는 [FINITE_DELIVERY_PUZZLE_BASELINE](기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md)과 최신 결정이 소유한다.
+  SX-DEC-060 cardinal-adjacent station service, exact-cell pickup, LIFO/TOP, free build/refund, occupied switch lock, Retry/Edit를 임의로 바꾸지 않는다.
+- 엔진·플러그인 pin, 저장 호환성, 승인 탑뷰 자산과 현재 아트 방향은 보호한다.
+  `project.godot` 및 [local tooling state](docs/tooling/local_godot_tooling_state.json)를 실제 편집기/실행 프로젝트와 대조한다.
+- 설치 플러그인·전역 설정·외부 서비스를 임의로 변경하지 않는다.
+- 기존 dirty/untracked 파일·다른 작업 폴더와 PR을 보호한다. 현재 PR 목록을 다시 확인한다.
+  알려진 별도 작업 #174/#254/#281은 별도 승인 없이 수정·흡수·병합·종료하지 않는다.
+- 역사적 endless/fuel/BOOST/capacity 8/respawn/auto-reset 및 보류된 score·solver·generator 방향을 자동 부활시키지 않는다.
+
+## 검증·이미지·기록
+
+- `DOC / MACHINE / RUNTIME / HUMAN / USER_APPROVAL / MERGE / RELEASE`는 별개다.
+  실행하지 않은 항목은 `NOT_RUN`; 자동 테스트나 AI 검토를 사람의 재미/가독성 PASS로 바꾸지 않는다.
+- 머신 검증이 기본이며 5인 이해도·플레이 경험 연구는 의무가 아니다. 사용자 검수는 최종 검수용이다.
+  사람 증거가 없다는 이유만으로 승인된 구현을 순환 차단하지 않는다.
+- 재미·표현 변경은 [CORE_GAMEPLAY의 재미 검증 연결](기획서/10_경험/CORE_GAMEPLAY.md#재미-검증-연결)과
+  [PLAYTEST_PLAN](기획서/50_제작_검증/PLAYTEST_PLAN.md)을 조건부로 따른다. 보편적 재미 점수나 새 보고서/분석 서버를 만들지 않는다.
+- 이미지 제작 전 실제 consumer·규격·기존 승인 자산을 확인한다. 실제 이미지 도구를 사용하며 신규 생성은 크로마키 배경 후 배경제거한다.
+  후보·승인·정본 등록·런타임 연결·화면 검증을 구분한다. 탑뷰 일관성과 provenance/alpha QA를 보호한다.
+- 작업 기록은 기존 정본·Active Context에 짧게 연결한다. 월간 일지는 [AI_WORKLOG_EVIDENCE_POLICY](docs/reporting/AI_WORKLOG_EVIDENCE_POLICY.md)에 따라 **기존 파일에 날짜별 요약을 누적**한다.
+  작업일·기록일·캡처일·발행일과 확인 범위를 구분한다.
+- 파일을 직접 삭제하지 않는다. 사용처·폐기 근거·소유권·복구 가능성을 확인한 것만 사용자 삭제대기 폴더로 이동하고 원래 경로/해시/이유와 링크를 제공한다. 최종 삭제는 사용자다. 모르는 파일·열린 PR worktree는 보존한다.
+
+## Git과 완료
+
+시작은 fetch와 상태 확인, clean checkout만 fast-forward한다. 작업은 격리 branch → 검사 → push/PR
+→ 필수 검사와 승인 조건 → 정상 merge → fresh main과 원격 일치 확인 순서다.
+direct main push, force push, admin/ruleset bypass는 금지다.
+미완료·차단·증거 한계를 남기며 문서-only 작업을 게임/출시 완료로 보고하지 않는다.
+
+조건부 권리·출시 owner:
+[프로필](docs/PLATFORM_RELEASE_AND_ASSET_RIGHTS_PROFILE.md),
+[자산 provenance](docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md),
+[출시 증거](docs/GAME_RELEASE_COMPLIANCE_EVIDENCE_PACK.md).
+Base 적용/호환 기준과 이후 읽기 경로는 프로젝트 adapter가 소유한다.

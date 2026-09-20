@@ -1,5 +1,16 @@
 # Roadmap
 
+## September20 approved operating-method work
+
+Current bounded work: approved lean AGENTS/skill routing and Base #885 fun/consumer criteria.
+Order: current authority comparison → local routing RED/GREEN → existing owner bindings →
+two shared whole-scope reviews/targeted corrections → exact checks → normal PR/main readback →
+append today's summary to the existing monthly PDF.
+Completion evidence and actual pending items: ACTIVE_CONTEXT and the v4.8 adapter's existing audit.
+No new core/content/assets/engine/save/plugin/global-setting change. Blender operation remains
+NOT_RUN until an executable/connector is available; do not block independent approved work.
+Earlier dated roadmaps below are history, not a new authorization or a repeated review budget.
+
 ## September16 bounded wrap-up
 
 User requests one existing monthly work log with date-based additions and GitHub sync.

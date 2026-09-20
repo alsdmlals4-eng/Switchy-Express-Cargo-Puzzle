@@ -28,10 +28,10 @@ class BaseOperatingAdaptationTests(unittest.TestCase):
         adapter = read(ADAPTER)
         self.assertIn("base_current_execution_model: FRESH_READ_ONLY_NO_REPIN", adapter)
         self.assertIn(
-            "FRESH_READ → CLASSIFY → PLAN → BUILD_OR_HANDOFF → VERIFY → FIVE_ADVERSARIAL_LOOPS",
+            "REUSE_VALID_EVIDENCE_THEN_TARGETED_RESEARCH_CONSUMER_CHECK_TWO_SHARED_REVIEWS",
             adapter,
         )
-        self.assertIn("project_base_compatibility_pin: v9.4.3", adapter)
+        self.assertIn("Base v9.4.3", adapter)
         self.assertIn("current_base_provider_change: DEFERRED_UNVERIFIED", adapter)
 
     def test_current_locators_select_sx_dec_069_and_candidate_010(self) -> None:

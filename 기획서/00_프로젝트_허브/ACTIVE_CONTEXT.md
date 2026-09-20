@@ -1,5 +1,33 @@
 # Active Context
 
+## 2026-09-20 · approved lean-method and fun-verification update
+
+Current scope: simplify AGENTS/skills and repair routing/validation; additionally bind Base #885
+fun/presentation criteria to existing project owners. Latest observed Base main:
+23ecad5a3084f97c4e5d1e39a9a6d70d1eeb37ef (includes #883); this is observation, not release repin.
+Current read path: AGENTS → Decisions/this context → v4.8 adapter → relevant owner/consumer
+and related PR → selected current Base references. Rules-only changes do not alter the playable package.
+Implementation/verification receipt: docs/operations/2026-09-01-switchy-base-operating-adaptation-audit.md,
+2026-09-20 section. Approval reuse and two shared whole-scope review passes apply across this task.
+Human fun/final inspection, new game execution, device and release evidence are NOT_RUN for this update.
+Existing September14 RouteBook03 package identity remains below; Candidate010 is historical.
+Blender: no executable/connector found in checked locations during the read-only audit;
+connection and operation NOT_RUN. No plugin installed or global setting changed.
+Independent rules work continues; an actual Blender executable/connection is needed for that separate check.
+
+Local method implementation verified: 330 Python PASS / 3 environment-dependent NOT_RUN;
+local and exact approved compatibility checks PASS. Two whole-scope independent reviews completed;
+both first-pass P2s corrected, second-pass no new P0/P1/P2.
+Delivery state and exact remote/main evidence are owned by
+https://github.com/alsdmlals4-eng/Switchy-Express-Cargo-Puzzle/pull/316.
+Read that PR's current merge/check status before claiming synchronized main; no fixed task SHA is
+a permanent authority. Next product work uses CORE_GAMEPLAY's SX-FUN-01~03 and Playtest Plan;
+this operating-method update does not create another gameplay approval or new current package.
+Historical archives003/010 are expired: remote byte revalidation NOT_RUN_EXPIRED_HISTORICAL,
+not package PASS; exact availability classification and unchanged launcher contracts remain checked.
+Remote live-editor Pilot Undo/restore failed once in this task; root cause remains unconfirmed.
+See PR316 for exact-head rerun/integration evidence; no plugin/engine correction is claimed.
+
 ## 2026-09-16 requested wrap-up: one cumulative monthly work log
 
 User asks to finish and synchronize, not expand implementation scope. PR314 was merged

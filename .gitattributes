@@ -1,6 +1,12 @@
 /skills/PROJECT_BASE_ADAPTER.json text eol=lf
 /skills/PROJECT_SKILL_SNAPSHOT.json text eol=lf
 /skills/SKILL_REGISTRY.json text eol=lf
+/docs/PROJECT_OPERATING_HEALTH.json text eol=lf
+/docs/PROJECT_OPERATING_DASHBOARD.html text eol=lf
+/.agents/skills/switchy-express-cargo-puzzle-workflow-router/SKILL.md text eol=lf
+/docs/BASE_RULES_VERSION.md text eol=lf
+/docs/operations/SWITCHY_ADAPTER_MIGRATION_STATE_2026-08-06.json text eol=lf
+/docs/operations/SWITCHY_SHEET_AUTHORITY_EVIDENCE_2026-08-06.json text eol=lf
 
 # Generated PDF deliverables are binary artifacts.  Their render/metadata checks
 # are recorded separately; never feed their internal streams to text whitespace checks.
