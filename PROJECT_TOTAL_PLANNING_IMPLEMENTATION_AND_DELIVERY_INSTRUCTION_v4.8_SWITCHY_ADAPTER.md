@@ -20,14 +20,14 @@ google_sheets_policy: RETIRED_NO_ACTIVE_USE
 fresh_read_bootstrap_policy: PROJECT_GITHUB_ONLY_RECONSTRUCTION_REQUIRED
 past_conversation_dependency_policy: NOT_REQUIRED_FOR_NEW_CHAT_RESUME
 context_drift_policy: RECHECK_BEFORE_MUTATION
-skill_coverage_policy: CURRENT_REGISTRY_FULL_INVENTORY_TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT
+skill_coverage_policy: TRIGGERED_PROGRESSIVE_LOAD_WITH_EXECUTION_RECEIPT
 gpt_local_codex_orchestration_policy: RETIRED
-codex_execution_policy: INDEPENDENT_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF_ONLY
+codex_execution_policy: UNIFIED_WORK_EXECUTION_CAPABILITY_BASED
 powershell_policy: LOCAL_GODOT_OR_VALIDATION_ONLY_NOT_CODEX_LAUNCHER
-fresh_shell_bootstrap_policy: LOCATION_THEN_GIT_FETCH_SAFE_FF_PULL_THEN_UPDATE_THEN_EDITOR
-update_freshness_policy: CHECK_OFFICIAL_UPSTREAM_BEFORE_LOCAL_BUILD_AND_RUNTIME
-mandatory_preimplementation_evidence_loop: OFFICIAL_RESEARCH_THEN_ACTUAL_CONSUMER_FEASIBILITY_THEN_FIVE_PASS_ADVERSARIAL_REVIEW
-safe_auto_update_policy: REVIEW_CANARY_ROLLBACK_THEN_AUTO_APPLY_AND_EXACT_PIN
+fresh_shell_bootstrap_policy: PROJECT_FIRST_CURRENT_AUTHORITY_READ
+update_freshness_policy: CHECK_MATERIAL_TOOL_DRIFT_WITHOUT_AUTO_UPDATE
+mandatory_preimplementation_evidence_loop: REUSE_VALID_EVIDENCE_THEN_TARGETED_RESEARCH_CONSUMER_CHECK_TWO_SHARED_REVIEWS
+safe_auto_update_policy: NO_PLUGIN_GLOBAL_OR_ENGINE_CHANGE_WITHOUT_SEPARATE_APPROVAL
 shared_godot_runtime_policy: SHARED_APPROVED_EXACT_PIN_DEFAULT_NO_PER_PROJECT_DUPLICATE_BINARY
 shared_godot_ai_port_policy: FIXED_DEFAULT_PORTS_WITH_EXACT_SESSION_ROUTING
 slice_delivery_policy: PLAYABLE_MEANINGFUL_SLICE_INCREMENTAL_DELIVERY
@@ -35,354 +35,97 @@ requirement_traceability_policy: REQUIREMENT_TO_OWNER_IMPLEMENTATION_EVIDENCE_CO
 current_base_provider_change: DEFERRED_UNVERIFIED
 ---
 
-# Switchy Express · v4.8 r5.4 project thin adapter
-
-이 문서는 사용자가 2026-08-26 제공한 v4.8 revision `r5.4-superset-final` 계약을 Switchy Express에 연결하는 **프로젝트 전용 얇은 adapter**다. Base의 Work Mode·Skill·CI·검증·Godot 운영 playbook을 다시 복사하지 않는다. 2026-08-28 사용자 결정에 따라 active project workspace는 GitHub repository only이며, 매 작업 시작 시 최신 Base completed `main`, current Skill Registry/generated map, Project GitHub와 실제 상태를 다시 읽는다. Historical Notion은 삭제하지 않지만 active read/write/sync가 아니다.
-
-`source_r5_4_sha256`은 이번 사용자 제공 계약 파일의 exact identity다. `historical_r4_revision`과 `historical_r2_sha256`은 각각 이전 r4/r2 계약 provenance이며 current authority가 아니다.
-
-## 1. Project Profile
-
-```yaml
-project_name: Switchy Express: Cargo Puzzle
-project_key: SWITCHY_EXPRESS
-project_repository: alsdmlals4-eng/Switchy-Express-Cargo-Puzzle
-project_default_branch: main
-project_workspace: GITHUB_REPOSITORY_ONLY_PROJECT_WORKSPACE
-historical_notion_policy: AUDIT_ONLY · NO_ACTIVE_READ_WRITE_SYNC
-engine: Godot 4.7.1-stable
-language: GDScript
-project_base_compatibility_pin: v9.4.3
-project_base_pin_role: HISTORICAL_COMPATIBILITY_AND_PROJECT_ADOPTION_EVIDENCE
-base_current_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
-product_baseline: GMB-002 · FINITE_DELIVERY_PUZZLE_BASELINE
-current_decision_span: SX-DEC-027~069
-```
-
-`Base v9.4.3` pin은 과거 project compatibility evidence일 뿐 current Base 실행 방법론 pin이 아니다.
-
-## 1A. Current Base execution adaptation
-
-Switchy reads the latest completed Base `main` at each material task start, but does not convert that observation into a new release pin, copied shared policy body, or Godot-provider migration.  The current Base supplies the execution method; this adapter owns only Switchy's deliberate deviations and project boundaries.
-
-```yaml
-base_current_execution_model: FRESH_READ_ONLY_NO_REPIN
-base_current_observation_role: TASK_SCOPED_AUDIT_INPUT_NOT_RELEASE_LOCK
-project_base_compatibility_pin: v9.4.3 · HISTORICAL_COMPATIBILITY
-current_base_provider_change: DEFERRED_UNVERIFIED
-base_release_or_registry_repin: USER_DECISION_AND_COMPATIBILITY_EVIDENCE_REQUIRED
-base_promotion_from_single_project_observation: DEFERRED
-```
-
-`DEFERRED_UNVERIFIED` is not a failure claim about Base. It records that Switchy's current Godot provider/toolchain has not completed an exact compatibility, canary, rollback, and user-approved adoption path. Until that path exists, the project retains its current tooling authority and reads the relevant current Base owner only when a task actually needs it.
-
-## 2. Authority / domain split
-
-```text
-사용자의 최신 명시 지시
-→ project AGENTS / Active Context / Current Decisions
-→ 실제 code/data/Scene/Resource/assets/tests/runtime
-→ 이 project adapter
-→ latest Base completed main
-→ 외부 근거
-```
-
-- **GitHub repository**: 사람용 기획서·Flow·Visual·핵심 시스템 설명과 structured canon, code, data, Scene/Resource, tracked assets, tests, CI, runtime truth의 단일 current owner.
-- **Historical Notion**: 삭제하지 않는 audit/provenance evidence. active decision, fresh-read, image storage, sync 또는 completion source가 아니다.
-- **Google Sheets**: `GOOGLE_SHEETS: RETIRED_NO_ACTIVE_USE`. 일반 작업에서 읽기·쓰기·동기화·결정 입력·기본 탐색에 사용하지 않는다. 과거 ID/URL/sync 기록이 필요한 감사·provenance만 legacy migration evidence에서 확인한다.
-
-새 채팅은 과거 대화를 필수 입력으로 사용하지 않고 exact Project GitHub에서 `project identity → current goal → current quality/stage → protected scope → next safe action → evidence ceiling`을 재구성한다. GitHub owner와 actual runtime evidence가 충돌하면 `CONTEXT_DRIFT_RECHECK_REQUIRED`로 mutation 전에 되돌린다.
-
-## 3. Protected product baseline
-
-현재 제품은 `GMB-002` finite delivery cargo puzzle이다.
-
-```text
-선로 건설로 화물 조우 순서 설계
-→ manual/auto 적재 선택
-→ unlimited LIFO stack 형성
-→ 운행 중 persistent switch/branch 실행
-→ TOP 연속 동일 화물 하역
-→ 제한 시간/ROUTE_END 결과
-→ same-layout fresh-runtime Retry 또는 Edit
-```
-
-보호 규칙:
-
-- endless survival / fuel / BOOST / capacity-8 / cargo slowdown / pickup respawn / switch auto-reset을 current 제품으로 되살리지 않는다.
-- UI/presentation은 gameplay outcome, score, save, identity authority를 소유하지 않는다.
-- 이미지 생성은 verified runtime consumer가 있고 기존 E+D Hybrid / Neo-Arcade visual language를 지킬 때만 자동으로 시작할 수 있으며, 결과는 tracked project-local GitHub path와 SHA-256 provenance에 보존·readback한다.
-- physical/human/player evidence가 없으면 automated/package evidence를 해당 PASS로 올리지 않는다.
-- r5.4 authority adoption은 새로운 gameplay/UX/economy/content authorization이 아니다.
-
-## 2A. Mandatory startup reconciliation and execution loop
-
-모든 meaningful task는 mutation 전에 아래 checklist를 실제 GitHub/runtime evidence로 채운다. 과거 대화·추정·이미지 reference만으로 항목을 PASS 처리하지 않는다.
-
-```yaml
-startup_checklist: CORE_FUN_SYSTEM_SWOT_REMAINING_WORK_ORDER_CHECK
-required_readback:
-  - player_promise_and_core_fun
-  - core_systems_and_protected_product_meaning
-  - task_relevant_swot_risks
-  - exact_main_candidate_and_open_pr_state
-  - ready_deferred_and_high_risk_remaining_work
-  - work_order_and_evidence_ceiling
-```
-
-핵심 재미·핵심 시스템·SWOT·남은 작업·작업 순서가 GitHub current owner와 실제 runtime evidence 사이에서 충돌하면 `CONTEXT_DRIFT_RECHECK_REQUIRED`로 기록하고 해당 충돌을 교정한 뒤에만 다음 mutation을 한다.
-
-```yaml
-workflow_order: GPT_NON_CODING_PREPARATION → CODEX_SINGLE_IMPLEMENTATION_WINDOW → HUMAN_QA_DEFERRED
-machine_runtime_validation: GODOT_HERA_GUT_REQUIRED; HUMAN_QA_DEFERRED
-```
-
-- GPT 단계는 current slice의 기획·검수·consumer-backed 이미지·사운드 specification·UI/VFX/data/copy·GitHub production input을 먼저 완결한다.
-- 실제 GDScript/Scene/Resource/map/runtime 구현은 준비된 입력을 하나의 bounded Codex window에서 수행한다. 작은 finding마다 GPT/Codex를 왕복하지 않는다.
-- Human QA는 현재 보류한다. 다만 GPT/Codex는 Godot를 실제 실행하고 Hera, GUT, headless/runtime state, representative screenshots를 사용해 화면·상태·consumer를 확인한다. 이 machine observation은 human/player PASS가 아니다.
-
-## 2B. Delegated routine action and delay recovery
-
-```yaml
-delegated_routine_approval: APPROVED_BY_DEFAULT_UNLESS_DANGEROUS_CHANGE
-bounded_fallback_route: REQUIRED_ON_DELAY_OR_BLOCKER
-```
-
-현재 slice 안의 reversible 기술 선택, 국소 bug fix, test/consumer/reference 교정, bounded asset production, GitHub 정본 교정, exact-head CI가 GREEN인 current-task PR merge는 반복 승인 없이 진행한다.
-
-다음은 `HIGH_RISK_DEFERRED`로 분리하며 실행하지 않는다: irreversible data loss, security/permission expansion, new paid cost, legal/rights uncertainty, public release/publication, force/direct-main/admin bypass, broad engine/save migration, core identity/narrative/art-direction replacement.
-
-지연·실패는 한 경로를 무한 반복하지 않는다.
-
-```text
-state readback
-→ root-cause classification
-→ bounded safe retry
-→ approved fallback A
-→ approved fallback B
-→ evidence-equivalent local/manual route
-→ local defer only for the blocked task
-→ continue independent ready work
-```
-
-Fallback은 security, rights, exactness, or validation strength를 낮추는 우회가 될 수 없다.
-
-## 2B-1. User-mandated research, feasibility, and adversarial loop
-
-`2026-08-28` 사용자 지시에 따라 meaningful change에는 현재 공식/1차 internet research, 실제 consumer/import/runtime feasibility check, 그리고 최소 다섯 번의 full-scope adversarial loop를 항상 적용한다. 외부 자료가 현재 결정에 material하지 않으면 조사 생략이 아니라 `NOT_MATERIAL`과 이유를 기록한다. Asset은 source byte·dimension·alpha/import setting·actual Node path·target viewport 합성까지, runtime change는 exact test/runtime path·rollback까지 대조한다. 이 절차는 사람/Player Experience proof를 자동으로 만들지 않는다.
-
-## 2C. Exact candidate freshness and completion boundary
-
-```yaml
-candidate_freshness_invalidation: PLAYER_FACING_BYTES_CHANGE → INVALIDATE_EXACT_CANDIDATE
-completion_gate: REQUIRED_WORK_REMAINING: 0
-```
-
-candidate가 pin한 exact source 이후 player-facing GDScript, Scene, Resource, map, localization, runtime consumer asset/path, renderer/HUD/route/switch presentation, export/package configuration 중 하나라도 바뀌면 그 candidate는 current acceptance evidence가 아니다. 기존 candidate의 hash/package/provenance는 지우지 않고 `HISTORICAL_SUPERSEDED_BY_PLAYER_FACING_BYTE_CHANGE`로 보존한다.
-
-tooling-only, test-only, documentation-only 변경은 candidate를 무효화하지 않는다. candidate pointer, current GitHub owner, actual runtime evidence 중 candidate ID/source/status/next action이 하나라도 다르면 새 candidate 생성이나 physical gate 승격 전에 `CONTEXT_DRIFT_RECHECK_REQUIRED` reconciliation을 완료한다.
-
-종료 전 ready/deferred/high-risk queue를 재계산한다. `REQUIRED_WORK_REMAINING: 0`이 되기 전에는 자동화 가능한 current-slice work를 중단하지 않는다. `0`은 machine-executable work의 종료 조건일 뿐 physical/human/player evidence를 PASS로 승격하지 않는다.
-
-## 2D. Base-current adapted control plane
-
-For L1+ work, Switchy follows the current Base control plane as a sequence of observable repository states. The work type selects the implementation owner: canonical and contract work is noncoding repository work; GDScript, Scene, Resource, map, and runtime changes require an exact `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF`.
-
-```text
-FRESH_READ → CLASSIFY → PLAN → BUILD_OR_HANDOFF → VERIFY → FIVE_ADVERSARIAL_LOOPS
-→ PR_EXACT_HEAD → NORMAL_MERGE → MAIN_READBACK → REMAINING_WORK_RECALCULATION
-```
-
-```yaml
-l1_plus_preflight:
-  execution_surface: LOCAL_WORKTREE
-  base_completed_main: FRESH_READ_REQUIRED
-  project_main_and_open_prs: FRESH_READ_REQUIRED
-  authority_and_actual_consumer: FRESH_READ_REQUIRED
-  alternatives: MINIMUM_THREE_WITH_ADOPT_ADAPT_REJECT
-  external_research_without_material_external_fact: NOT_MATERIAL_WITH_REASON
-  workstream_rule: OPEN_PR_READ_ONLY_BY_DEFAULT
-  write_parent: LATEST_COMPLETED_MAIN_ONLY
-verification:
-  red_green_regression: REQUIRED_FOR_CHANGED_MACHINE_CONTRACT
-  adversarial_loops: MINIMUM_FIVE_FOR_L1_PLUS
-  evidence_ceiling: PRESERVE_REAL_LEVELS
-closure:
-  merge: NORMAL_REPOSITORY_GATE_ONLY
-  postmerge_main_readback: REQUIRED
-  remaining_work_recalculation: REQUIRED
-  completion_meaning: APPROVED_SCOPE_ONLY
-```
-
-`REMAINING_WORK_RECALCULATION` closes only the approved task contract. It does not make an optional final-user review, an unrun physical/device/audio gate, an unreviewed generated image, or production cutover complete. Conversely, a separately deferred product gate does not prevent a documentation-only operating-contract task from reaching a clean review exit.
-
-## 3A. SX-DEC-060 current amendment
-
-- Station delivery is exactly one cardinal tile from the station: UP, RIGHT, DOWN, or LEFT.
-- Diagonal cells and the station footprint itself never trigger delivery.
-- Cargo stays an exact-cell Manual / Auto contact; unlimited LIFO and contiguous matching TOP-group delivery stay unchanged.
-- Preflight validates the start-reachable RUN component, including required cargo and at least one cardinal service cell per required station.
-- An irrelevant disconnected rail island is allowed; reachable malformed rail remains fail-closed.
-- The implementation target is FiniteMapDefinition schema v3 with off-track, player-non-buildable station cells.
-- Existing station PNG consumers plus a procedural service indicator are the default; new bitmap assets: 0.
-- SX-DEC-060 runtime and automated regression are merged-main verified by PR #188 (`740b4b9312fa27289fd62baab8dda54c68ead3a7`); package, physical, device, and human evidence remain NOT_RUN.
-
-## 4. Current implementation / evidence ceiling
-
-현재 post-060 validation locator의 세부 exact state는 `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`와 `evidence/acceptance/post_sx_dec_060_candidate.json`이 소유한다. `evidence/acceptance/current_poc_candidate.json`은 Candidate 003의 pre-060 historical exact-byte pointer일 뿐 current acceptance locator가 아니다.
-
-```yaml
-pre_sx_dec_060_implementation_execution_state: MERGED_MAIN_VERIFIED
-pre_sx_dec_060_implementation_merge_pr: 158
-pre_sx_dec_060_implementation_merge_main: 162e8a0a5e8ddc8472e74a6152e87dc12008e34c
-pre_sx_dec_060_implementation_notion_readback: PASS
-pre_sx_dec_060_candidate: SX59-POC-ACCEPT-003
-pre_sx_dec_060_candidate_role: HISTORICAL_PRE_CHANGE_EVIDENCE_ONLY
-pre_sx_dec_060_candidate_003_package_integrity: PASS
-pre_sx_dec_060_candidate_003_pck_integrity: PASS · 472_OF_472
-pre_sx_dec_060_candidate_003_product_texture_packaging: PASS · 73_OF_73
-pre_sx_dec_060_candidate_003_powershell_51_live_download: PASS
-pre_sx_dec_060_candidate_003_physical_visual_recheck: NOT_RUN
-sx_dec_060_user_rule: APPROVED
-sx_dec_060_design_tdd_handoff: PREPARED
-sx_dec_060_runtime: MERGED_MAIN_VERIFIED · PR_188 · main_740b4b9312fa27289fd62baab8dda54c68ead3a7
-sx_dec_060_automated_regression: PASS · 111_CASES_13461_ASSERTIONS · CI_7_GREEN
-sx_dec_060_five_pass_review: CLOSED · SX-AUD-071
-sx_dec_060_notion_readback: PASS
-post_sx_dec_060_candidate: SX60-POC-ACCEPT-010 · PREPARED_PACKAGE_VERIFIED · Candidate_009_historical_after_SX_DEC_069
-post_sx_dec_060_candidate_minimum_product_source_main: 79323ff0175b674c594d18dfd6d28a8e9951f5bd
-sx60_poc_accept_001: HISTORICAL_SUPERSEDED_BY_PLAYER_FACING_BYTE_CHANGE · PLAYER_FACING_RUNTIME_ROUTE_READABILITY_CHANGE
-sx60_poc_accept_003: SX60-POC-ACCEPT-003 · HISTORICAL_SUPERSEDED_BY_SX_DEC_064_PRODUCT_BYTE_CHANGE · PLAYER_FACING_SX_DEC_064_ACTIVE_ROUTE_LIGHTING_CHANGE
-windows_physical_post_060: FINAL_USER_REVIEW_ONLY · NOT_RUN
-android_device_post_060: NOT_REQUIRED_FOR_MACHINE_PRIMARY_ACCEPTANCE · NOT_RUN
-five_person_post_060: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
-player_experience: NOT_REQUIRED_BY_USER_VALIDATION_POLICY
-final_user_review: FINAL_USER_REVIEW · NOT_RUN · EXACT_CANDIDATE_REQUIRED
-production_cutover: BLOCKED_DEFERRED
-```
-
-Candidate 002의 Windows startup PASS는 역사적 physical evidence지만 P1 visual defect 때문에 acceptance 승격이 금지됐다. Candidate 003 package integrity와 남은 physical visual recheck도 pre-SX-DEC-060 exact bytes의 역사 evidence이며 post-060 acceptance를 증명하지 않는다.
-
-현재 post-060 implementation route:
-
-```text
-SX60-POC-ACCEPT-006 package verification remains historical on exact main 9af5a8c46d29ea6781f9ee06008d7c7d2cde1877 after Route Book 01
-→ SX-DEC-067 changed player-facing bytes at main c0bb86efa5bad6050217ca67dd6aa9eba155dc75; SX-DEC-068 then changed the title-shell bytes at main 53e29f874bc70a0057c310d661dc45dbecc6cf13; SX-DEC-069 then changed transparent wayside/speed-transition bytes at main 79323ff0175b674c594d18dfd6d28a8e9951f5bd
-→ SX60-POC-ACCEPT-007 through Candidate 009 are historical; SX60-POC-ACCEPT-010 now binds the exact machine package and final user review remains NOT_RUN
-→ five-person comprehension and player-experience study are not required gates under SX-DEC-065
-→ final user review is optional, only when requested, and must inspect unchanged Candidate 010; the title-wordmark pixel disposition is USER_APPROVED · CANON_REGISTERED while the eight v02 wayside assets remain USER_PIXEL_REVIEW_PENDING
-→ product decision
-```
-
-## 5. r5.4 execution / toolchain overlay
-
-Godot authoring·runtime이 실제 acceptance에 필요한 작업에서만 최신 Base의 Godot/fresh-shell owner를 progressive-load한다.
-
-```text
-fresh shell
-→ exact repository/project LOCATION verification
-→ git fetch/prune
-→ clean + safe fast-forward reconciliation only
-→ official upstream update check
-→ reviewed safe auto-update only when compatibility + rollback + canary PASS
-→ exact pin readback
-→ exact Godot Editor/project/session identity
-→ authoring/test/runtime
-→ readback
-```
-
-모든 작업 단위의 close는 GitHub PR/normal merge 뒤 `git fetch --prune → git pull --ff-only → local HEAD == origin/main + status readback`으로 끝낸다. 시작도 같은 fetch/readback/clean fast-forward 규칙을 따른다. dirty user content, open/draft PR, protected branch, 또는 drift에는 강제 동기화를 하지 않으며 blocker를 남긴다. direct `main` push와 force push는 금지다.
-
-프로젝트별 동일 Godot binary나 전용 포트를 기본적으로 증식시키지 않는다. compatible host에서는 shared approved exact Godot/Godot-AI pin과 provider default fixed ports를 사용하고, project isolation은 exact path/editor/session identity로 보장한다. 충돌·breaking migration·추가 비용·권한 확대가 있으면 자동 update하지 않는다.
-
-`GPT_LOCAL_CODEX_ORCHESTRATION_RETIRED`: 사용자 PowerShell이나 GPT one-shot launcher로 local Codex를 띄우는 경로는 사용하지 않는다. 실제 Godot 제품 구현이 새로 필요할 때만 `CODEX_GODOT_PRODUCT_IMPLEMENTATION_HANDOFF`로 전환하고 Codex가 Project GitHub를 독립 fresh-read한 뒤 자신의 구현환경에서 구현/test/runtime evidence를 만든다.
-
-이 섹션은 Base의 상세 Godot 운영 계약을 복제하지 않는다. 실제 실행 시 current Base owner와 프로젝트 `docs/tooling/local_godot_tooling_state.json`을 다시 읽는다.
-
-## 6. Deferred package authorization boundary
-
-```text
-SX-DEC-056A: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
-SX-DEC-056B: BLOCKED_BY_AUTHORITATIVE_SCORE_COMBO_RUNTIME
-SX-DEC-057: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
-SX-DEC-058: PLANNING_READY · IMPLEMENTATION_NOT_AUTHORIZED
-```
-
-v4.8 r5.4 adoption은 위 package의 구현 권한을 추가하지 않는다. 056A Route Probe/PB/Fingerprint, 056B score/max-combo, 057 Yard Labs/Mastery, 058 challenge generator/pipeline은 별도 승인/의존성 Gate를 유지한다.
-
-## 7. Current owner read order
-
-1. latest Base completed `main` + Base root `AGENTS.md`.
-2. Base `skills/SKILL_REGISTRY.json` + `docs/generated/BASE_ACTIVE_SKILLS.md` trigger coverage.
-3. project `AGENTS.md`.
-4. `기획서/00_프로젝트_허브/START_HERE.md`.
-5. `기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md`.
-6. `기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md`.
-7. `기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md`.
-8. `evidence/acceptance/post_sx_dec_060_candidate.json` when post-060 acceptance identity matters.
-9. `기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md`.
-10. current Goal의 exact owner documents.
-11. actual code/data/Scene/Resource/assets/tests/runtime evidence.
-12. `evidence/acceptance/current_poc_candidate.json` only when Candidate 003 pre-060 provenance is needed.
-13. historical v4.7/r2/r4 adapter/handoff/audit or Notion records only when provenance or rollback evidence is needed.
-
-Google Sheet는 이 current owner read order에 포함하지 않는다.
-
-## 8. Current task safety / PR boundary
-
-- pre-existing/unrelated Open/Draft/Ready PR: `READ_ONLY`.
-- 사용자가 현재 작업으로 연속 승인한 하나의 current-task PR만 exact-head 검증 뒤 merge 가능.
-- force push/direct-main/ruleset bypass 금지.
-- product runtime scope를 바꾸는 finding은 authority/planning package에 흡수하지 않는다.
-
-Historical concurrency closure:
-
-- PR #154 `feat: pilot reusable grid and semantic UI modules` = **CLOSED_UNMERGED · SUPERSEDED_BY_SX_DEC_059**; do not reopen or absorb `game/reuse/*` without a new approved need and fresh evidence.
-- PR #155/#156 = `CLOSED_UNMERGED · HISTORICAL_ACCIDENT`.
-- PR #174 = pre-existing r4 Draft workstream; `READ_ONLY` for this r5.4 reconciliation.
-
-## 8A. Workspace artifact hygiene · 2026-08-31 user directive
-
-Keep only material that has a current consumer or a declared evidence/rollback role. This rule supplements the GitHub-only authority model; it never treats history, current tracked assets, or a protected worktree as disposable by age alone.
-
-```text
-exact target + consumer/reference readback
-→ branch/PR/dirty-state/active-process audit
-→ remove completed temporary worktree + generated cache + task logs
-→ delete its merged local branch
-→ post-removal Git/worktree readback
-```
-
-- Create Godot-only temporary worktrees as direct children of the configured Windows temporary root with a short name; remove them after machine evidence is read back. This avoids shader-cache paths exceeding Windows limits.
-- Never use a broad cleanup against the user root, a dirty or unmerged worktree, any open/draft PR worktree, tracked product assets, or declared historical rollback/provenance evidence.
-- When a cleanup command is blocked or ends partially, preserve the residual, record its exact path/reason/size, and repair only after re-verifying the target. Do not claim reclaimed storage that remains on disk.
-
-## 9. Verification invariants / Implementation Reality Gate
-
-현재 계약/정본 수정은 RED → expected failure → minimal GREEN → related regression으로 검증한다.
-
-```text
-file exists / capability discovered
-≠ consumer aligned
-≠ execution PASS
-≠ durable readback
-≠ physical/human/player PASS
-```
-
-완료 전에:
-
-```text
-exact current-task head
-→ repository actual relevant checks
-→ minimum five full adversarial loops
-→ unresolved blocking finding 0
-→ merge gate
-→ new main readback
-→ GitHub commit/remote readback
-```
-
-을 확인한다. `REQUIRED_WORK_REMAINING: 0`은 completion candidate일 뿐 physical/human/player evidence를 대신하지 않는다.
-
-## 10. Historical adapter boundary
-
-`PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7_SWITCHY_ADAPTER.md`, 과거 v4.8 r2 provenance, 2026-08-24 r4 reconciliation plan/spec/audit는 삭제하지 않는다. history/rollback evidence이며 **current work-instruction authority가 아니다**.
+# Switchy Express · current project execution adapter
+
+## 책임·적용 기준
+
+`GOOGLE_SHEETS: RETIRED_NO_ACTIVE_USE`; Notion도 active read/write/sync가 아니다.
+현재 진입은 `.agents/skills/base-project-router/SKILL.md`이며 sibling generated workflow-router는
+호환 산출물로만 보존한다. 그 오래된 blanket stop/pinned-method 문구보다 AGENTS와 이 adapter가 우선한다.
+
+2026-09-20 사용자가 지침 경량화 적용안에 “승인할게”로 승인했고, 같은 작업에 Base #885 재미 검증 기준 연결을 추가했다.
+이 문서는 프로젝트 차이와 채택 경로만 소유한다. Base 본문이나 게임 규칙/패키지 상태를 다시 복제하지 않는다.
+위 v4.8 revision과 r5.4 원본 해시는 계약의 출처이며 2026-09-20 사용자 승인에 따른 아래 실행 방법이 우선한다.
+
+- Base latest completed main observed: `23ecad5a3084f97c4e5d1e39a9a6d70d1eeb37ef` (2026-09-20).
+- PR #883 지침 경량화 merge `ebfc6c807a0d1582a2df27c518ef60398bf8486c`는 위 main의 ancestor.
+- PR #885 재미→표현→consumer→증거 연결을 **선택 채택**한다. 이 관찰은 다음 작업의 영구 SHA가 아니다.
+- `skills/PROJECT_BASE_ADAPTER.json`의 Base v9.4.3 release/registry lock은 **HISTORICAL_COMPATIBILITY**로 유지한다.
+  generated snapshot은 호환 라우팅 뷰이지 현재 실행 상태 정본이 아니다.
+- `docs/BASE_RULES_VERSION.md`와 fixed CI validator snapshot은 schema/호환 재현 기준이다.
+  최신 Base 방법 fresh-read와 CI compatibility 검증을 혼동하지 않는다.
+- provider migration: `DEFERRED_UNVERIFIED`. 엔진·플러그인·저장 schema·승인 자산 변경 없음.
+
+## 작업 경로와 선택 읽기
+
+`AGENTS.md → 현재 Decisions / Active Context → 이 adapter → 해당 owner + actual consumer + 관련 PR
+→ 로컬 계약 검사 → 선택한 Base current method/skill/reference`.
+
+로컬 검사: `python tools/validate_project_contract.py`.
+이 검사는 프로젝트 파일·registry hash·local skill·snapshot 연결만 확인한다.
+Base 원본의 lock/approved protected diff 검증은 `.github/workflows/validate-project-base-adapter.yml`의
+`check_approved_project_operating_contract.py`가 담당한다.
+검사 실패의 원인/영향을 기록하고 해당 의존 경로를 멈춘다. 승인된 계약 교정 자체와 독립 작업까지 금지하지 않는다.
+
+| 이번 작업 | 프로젝트 owner | 필요한 Base owner (Base repository 기준) |
+|---|---|---|
+| 계획·승인·작업 구조 | 이 adapter; Decisions; Active Context | `skills/managing-project-intake-and-work-contract/SKILL.md`; `skills/managing-game-project-operating-system/SKILL.md` |
+| 지침·스킬 간소화 | AGENTS; project routing/registry | `docs/AI_INSTRUCTION_AND_CONTEXT_DESIGN_METHOD.md`; `skills/simplifying-skill-bodies/SKILL.md` |
+| 코어·재미 가설 | `기획서/10_경험/CORE_GAMEPLAY.md#재미-검증-연결`; baseline; 해당 시스템 | `skills/analyzing-and-refining-game-concepts/references/concept-evidence-and-gates.md#fun-verification-lifecycle` |
+| 효과·비주얼·UI | `기획서/40_표현/VISUAL_DIRECTION.md`; 실제 UI/spec owner | `docs/knowledge/game-development/EXPERIENCE_TO_PRESENTATION_GUIDE.md`; `skills/auditing-and-refining-ui-art/references/project-adapter-contract.md` §§10–11 |
+| 검증·최종 검수 | `기획서/50_제작_검증/PLAYTEST_PLAN.md`; actual tests/evidence | selected review/validation skill only |
+| 이미지 제작 | `docs/design/PROJECT_AI_PRODUCTION_SPEC.md`; 현재 asset manifest/consumer | 해당 image/Aseprite 선택 지침만 |
+| 월간 일지 | `docs/reporting/AI_WORKLOG_EVIDENCE_POLICY.md` | 실제 PDF 출력 시 PDF skill |
+| 동기화·병합 | 현재 PR·working tree·checks | `skills/synchronizing-local-and-github-state/SKILL.md` |
+
+Base 파일은 `https://github.com/alsdmlals4-eng/Base/blob/main/<path>` 또는 fetch한 `origin/main:<path>`에서 확인한다.
+관찰 SHA와 채택 절을 기록하되 자동 repin하지 않는다. 원격 미접속은 `UNVERIFIED`;
+유효한 채택 계약 안의 독립 작업을 계속하며 없는 내용을 추정하지 않는다.
+전체 inventory를 읽었다는 형식적 영수증 대신 실제 선택 스킬/참조와 재사용 근거만 남긴다.
+
+## 승인·실행·검토 계약
+
+- 승인된 계획의 safe continuation: 조사 → 명세 → 코드/자산 연결 → 검증 → 교정 → 정본 → 허용 PR merge/main readback.
+- `UNIFIED_WORK_EXECUTION`: 도구·권한을 가진 현재 실행자가 수행한다. Codex handoff는 실제 capability 경계에만 사용한다.
+- 기존 승인·조사·정확한 consumer/환경의 검증은 `REUSED_EVIDENCE`. 중요한 새로운 선택만 대안·벤치마킹·SWOT를 구체화한다.
+- 전체 적대 검토 **2회**는 같은 승인 계보 전체에서 공유한다. 후속 수정은 발견 영향 범위만 검사한다.
+  독립 검토·필수 CI·병합 후 파일/증거 readback은 생략하지 않되 또 다른 전체 2회 예산으로 초기화하지 않는다.
+- 코드 동작 교정은 재현/RED → 수정 → GREEN/회귀. 문서 경로 검사는 링크만, 스킬은 실제 시나리오 선택도 확인한다.
+- 새 방향·의미·주요 UX·비용·보안·파괴적 작업만 추가 승인. 실패/자료 부족은 의존 작업에만 `BLOCKED_UNVERIFIED` 또는 `NOT_RUN`.
+- 완료는 승인 범위의 미해결 항목과 근거를 재확인한 상태다. 무한 기능 추가나 사람/출시 PASS를 뜻하지 않는다.
+
+## 재미·표현 검증의 프로젝트 적용
+
+Base #885는 방법만 채택한다. 이 퍼즐의 경험 owner는 CORE_GAMEPLAY, 실제 결과 owner는 PLAYTEST_PLAN과 runtime evidence다.
+신규/의미 있는 플레이어-facing 변경은 같은 requirement에 **경험 가설·반례 → 규칙/상태/선택·피드백
+→ 실제 코드/씬/데이터/자산 consumer → 기계/실행/최종 사용자 관찰 → 교정 판단**을 연결한다.
+작은 변경은 기존 기록 1단락, 큰 기능만 기존 상세 spec을 쓴다. 순수 내부 도구는 이유 있는 `NOT_APPLICABLE`.
+
+- 역산 계획·LIFO/TOP·분기 실행·재설계가 핵심이며 자동 solver/최적해 공개는 승인되지 않았다.
+- 표시는 domain 결과를 읽는다. 효과에서 적재·배송·비용·저장 상태를 재계산하지 않는다.
+- 실제 상태/시점/입력/실패·취소·복귀/가림/반복을 명세한다. 필수 값은 기존 확정 원본을 가리키고 없는 값은 `HYPOTHESIS / PLANNED`.
+- 기계 검증과 실제 재미는 별개다. `NO_UNIVERSAL_FUN_SCORE`; AI 자체 평가는 HUMAN 증거가 아니다.
+- 5인 이해도·플레이 경험 연구는 `NOT_REQUIRED_BY_USER_VALIDATION_POLICY`; 최종 사용자 검수 때 경험 질문을 함께 확인한다.
+  미실시 사람 증거는 `NOT_RUN`, 승인된 구현은 계속한다. Base 문서 채택만으로 `FUN_PASS`를 만들지 않는다.
+- 못 봄/오해/규칙·선택 문제/표현 부족/반복 피로/환경 결함을 나누고 `KEEP / CHANGE / DEFER / RETEST`를 기존 Decision에 남긴다.
+
+## 보존·증거·종료
+
+실제 제품·현재 package/evidence는 Active Context를 따라 확인한다. Candidate003/010 등의 과거 exact bytes는
+historical evidence이며 현재 빌드 번호를 이 adapter/skill에 고정하지 않는다.
+유한 코어·SX-DEC-060 cardinal service·기존 승인 topdown 자산·18-stage 현재 콘텐츠와 저장 호환성을 보호한다.
+보류된 SX-DEC-056~058 계획을 이번 운영 개선 승인으로 구현하지 않는다.
+
+기능/MACHINE, 실제 Godot/RUNTIME, 최종 HUMAN, 자산 승인, merge, release를 분리한다.
+기계 검사에 필요한 Godot는 설치·tooling owner의 실제 실행 경로와 버전을 확인하며 없는 Linux 파일명을 복사하지 않는다.
+Godot 실행 미실시를 PASS로 보고하지 않는다.
+
+월간 PDF는 기존 기록에 날짜 요약을 누적한다. 삭제 후보는 근거·원경로·hash를 갖춘 사용자 삭제대기 폴더에만 정리한다.
+최종 삭제는 사용자이며 이 작업에서는 제품 파일·기존 worktree·플러그인·전역 설정을 삭제/변경하지 않는다.
+Git 동기화는 AGENTS의 정상 PR 경로를 따른다. #174/#254/#281은 별도 권한 없는 보호 작업이다.
+
+## 적용 증거와 다음 읽기
+
+현재 작업 결과/다음 행동은 Active Context, 세부 교정·검토 증거는
+`docs/operations/2026-09-01-switchy-base-operating-adaptation-audit.md`의 2026-09-20 기록을 따른다.
+새 대화에서는 AGENTS부터 재시작하며 과거 SHA·채팅·월간 PDF를 현재 실행 권한으로 삼지 않는다.

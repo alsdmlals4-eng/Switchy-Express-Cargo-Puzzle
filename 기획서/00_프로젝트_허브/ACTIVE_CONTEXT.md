@@ -1,5 +1,20 @@
 # Active Context
 
+## 2026-09-20 · approved lean-method and fun-verification update
+
+Current scope: simplify AGENTS/skills and repair routing/validation; additionally bind Base #885
+fun/presentation criteria to existing project owners. Latest observed Base main:
+23ecad5a3084f97c4e5d1e39a9a6d70d1eeb37ef (includes #883); this is observation, not release repin.
+Current read path: AGENTS → Decisions/this context → v4.8 adapter → relevant owner/consumer
+and related PR → selected current Base references. Rules-only changes do not alter the playable package.
+Implementation/verification receipt: docs/operations/2026-09-01-switchy-base-operating-adaptation-audit.md,
+2026-09-20 section. Approval reuse and two shared whole-scope review passes apply across this task.
+Human fun/final inspection, new game execution, device and release evidence are NOT_RUN for this update.
+Existing September14 RouteBook03 package identity remains below; Candidate010 is historical.
+Blender: no executable/connector found in checked locations during the read-only audit;
+connection and operation NOT_RUN. No plugin installed or global setting changed.
+Independent rules work continues; an actual Blender executable/connection is needed for that separate check.
+
 ## 2026-09-16 requested wrap-up: one cumulative monthly work log
 
 User asks to finish and synchronize, not expand implementation scope. PR314 was merged

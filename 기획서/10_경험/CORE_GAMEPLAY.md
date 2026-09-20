@@ -20,6 +20,32 @@
 
 모든 선로 조각을 하나의 전역 connected network로 만드는 것은 목표가 아니다. **start-reachable RUN network가 필요한 화물 조우와 station service를 만족하는지**가 중요하다.
 
+## 재미 검증 연결
+
+2026-09-20 Base #885 방법을 이 프로젝트에 선택 채택한다. 이 절은 위 “플레이어 약속”을
+검증 가능한 가설로 연결하며 코어·수치·보상 규칙을 변경하지 않는다.
+대상은 선로를 설계하고 화물 순서를 역산하는 유한 퍼즐 플레이어다.
+아래 가설은 `HYPOTHESIS / HUMAN_NOT_RUN`; 기존 기계 증거는 정확한 revision/환경이 유효한 부분만 재사용한다.
+
+| 경험 ID / 원본 | 가설·선택과 반례 | 실제 consumer → 기존 검증 위치 |
+|---|---|---|
+| SX-FUN-01 / 이 문서 “플레이어 약속”, “적재·LIFO” / AMPLIFY | 화물 조우 순서를 바꾸어 원하는 TOP 하역을 만들면 내가 계획을 풀었다는 성취가 생긴다. 반례: 규칙은 이해했지만 선택 없이 정해진 선로만 복사하거나, TOP 표시를 읽지 못해 우연히 성공한다. | `game/finite/cargo/unlimited_cargo_stack.gd` + `game/finite/delivery/finite_delivery_loop.gd` → `tests/finite/integration/test_lifo_revisit_proof.gd`, `tests/finite/cargo/test_unlimited_cargo_stack.gd` |
+| SX-FUN-02 / “운행 조작”, “핵심 재미 Guardrails” / AMPLIFY | 내가 고른 분기를 열차가 따라가며 계획 실행의 주도권이 생긴다. 반례: 잠금·선택 방향이 모호하거나 짧은 반응속도 시험/반복 pause가 판단을 대체한다. | `game/finite/rail/finite_track_switch.gd` + `game/demo/presentation/route_control_overlay.gd` → `tests/finite/rail/test_interactive_route_controls.gd`, `tests/gut/integration/test_route_control_state_contract.gd` |
+| SX-FUN-03 / “성공·실패·재도전” / SUPPORT | 실패 이유를 다음 설계 가설로 바꾸고 같은 배치 재실행과 편집을 구분하면 반복이 학습으로 이어진다. 반례: 왜 실패했는지 모르거나 결과 화면·반복 연출이 다음 시도를 방해한다. | `game/finite/run/finite_run_session_factory.gd` + `game/demo/product_finite_slice.gd` → `tests/finite/integration/test_solution_identity_retry.gd` |
+
+대표 구간은 각각 T3/T4의 TOP·재방문, T6의 분기, capstone의 Result/Retry/Edit다.
+반복 피로는 같은 구간 재시도와 선택 Route Book 구간을 구분해 관찰한다.
+기계 검사는 상태·규칙·재현성을 확인할 뿐 주도권·성취·흥미를 증명하지 않는다.
+새 빌드에서는 해당 consumer를 호출하는 실제 화면/입력 경로와 위 테스트의 assertion을
+같은 requirement로 양방향 대조한다. 경로 존재만으로 구현 연결 완료를 주장하지 않는다.
+
+작은 변경은 기존 Decision/작업 기록에 경험 ID → 목적 → 상태/정보/피드백 → consumer →
+반례/검증 → KEEP/CHANGE/DEFER/RETEST만 짧게 남긴다.
+효과·아트·UI 명세는 [VISUAL_DIRECTION](../40_표현/VISUAL_DIRECTION.md#경험과-표현-연결),
+기계/실행/최종 사용자 질문은 [PLAYTEST_PLAN](../50_제작_검증/PLAYTEST_PLAN.md#현재-재미-검증-방법)을 따른다.
+순수 내부 수정은 이유 있는 NOT_APPLICABLE, 유효 근거는 REUSED_EVIDENCE로 처리한다.
+정답 노출·자동 solver·코어 의미 교정은 별도 승인 없이 추가하지 않는다.
+
 ## 핵심 루프
 
 ```text

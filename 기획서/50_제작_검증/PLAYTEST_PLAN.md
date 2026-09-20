@@ -1,5 +1,43 @@
 # Playtest Plan
 
+## 현재 재미 검증 방법
+
+2026-09-20 사용자 승인에 따라 Base #885를 선택 채택한다.
+이 절이 현재 검증 방법이며 아래 Candidate008/009/010 및 phase 상태는
+HISTORICAL_EXACT_BYTES_ONLY다. **현재 빌드/진행 상태는 ACTIVE_CONTEXT와 연결된 package evidence owner**에서
+확인한다. 옛 번호를 최종 검수 대상으로 고정하지 않는다.
+SX-DEC-065의 MACHINE_PRIMARY_FINAL_USER_REVIEW 정책은 유지한다.
+FIVE_PERSON_COMPREHENSION_NOT_REQUIRED / PLAYER_EXPERIENCE_STUDY_NOT_REQUIRED.
+
+| 검증층 | 실행/기록 기준 | 판정 한계 |
+|---|---|---|
+| DOC | CORE_GAMEPLAY “재미 검증 연결”의 SX-FUN ID → 시스템/표현 owner → 실제 consumer → 테스트/증거를 역방향도 대조 | 연결 확인이지 재미·실행 PASS가 아님 |
+| MACHINE | 관련 GDScript/Python 검사로 TOP 연속 하역, switch occupied lock, Retry fresh state 등 반례를 검증. 빌드 SHA·입력·설정·결과 기록 | 규칙·회귀 증거, 감정 증거 아님 |
+| RUNTIME | 같은 빌드의 T3/T4, T6, capstone Result/Retry/Edit에서 실제 상태·표시·연타·중단·복귀 대조. 현재 지원 입력/해상도와 필요한 설정만 검사 | 화면/동작 증거, 사람의 이해/성취를 추정하지 않음 |
+| HUMAN / 최종 사용자 | 사용자가 최종 검수할 때 아래 질문·관찰을 기록. 고정 인원·반복 횟수·재도전율 합격선 없음 | 미실시 NOT_RUN; 승인된 구현 전체를 차단하지 않음 |
+
+최종 사용자 질문/반증:
+
+- SX-FUN-01: 무엇을 먼저 싣고 어느 역을 재방문할지 예측한 이유는 무엇인가?
+  관찰은 실제 적재 선택·TOP 상태·결과와 대조한다. 설명 후 성공과 자력 이해를 구분한다.
+  정답 복사/우연 성공/읽기 불가, “이해했지만 재미없다”도 반증 후보로 남긴다.
+- SX-FUN-02: 고른 분기가 언제 적용되고 지금 왜 잠겼는지 설명할 수 있는가?
+  원하는 선택과 실제 경로·입력 재시도/pause를 대조한다. 잠금 오해와 반응속도 부담을 구분한다.
+- SX-FUN-03: 실패 뒤 같은 배치를 다시 실행할지, 무엇을 고칠지 말할 수 있는가?
+  재시도 횟수만으로 만족을 추정하지 않고 반복 연출·콘텐츠 피로도 함께 묻는다.
+
+검사 전에 바꿀 개발 결정과 대표 구간, 기대 결과·반례·중단 조건을 같은 기존 작업 기록에 적는다.
+예: 상태/화면 불일치는 실행 결함으로 중단·교정, 이해/주도권/흥미의 불일치는 가설 반박 또는
+추가 확인으로 남긴다. 결론은 KEEP/CHANGE/DEFER/RETEST; 사람 결과를 기계 PASS와 합산하지 않는다.
+관찰 행동·사용자 설명·로그가 다르면 대안 원인과 개입/힌트를 기록한다.
+첫 노출과 반복 피로를 구분하며 짧은 구간으로 전체 게임의 재미·출시를 인증하지 않는다.
+같은 승인·consumer·대표 구간의 유효 근거는 REUSED_EVIDENCE, 변경 영향만 재검증한다.
+별도 재미 보고서·감독 스킬·분석 서버는 만들지 않는다.
+
+이 방법의 문서/경로 검증은 이번 작업 대상이지만 **새 게임 실행과 사람 재미 검증은 NOT_RUN**이다.
+
+## Historical September1 validation record
+
 ```yaml
 status: CURRENT_CANON · SX_DEC_065_MACHINE_PRIMARY_FINAL_USER_REVIEW · SX60_POC_ACCEPT_009_PREPARED_PACKAGE_VERIFIED · FINAL_USER_REVIEW_NOT_RUN · TITLE_WORDMARK_USER_PIXEL_APPROVED_CANON_REGISTERED
 product_authority: GMB-002 · SX-DEC-027~068 · SX-DEC-060_CARDINAL_SERVICE_AMENDMENT · SX-DEC-062_COMPOSITION_CONTRACT · SX-DEC-064_ACTIVE_ROUTE_LIGHTING · SX-DEC-065_MACHINE_PRIMARY_VALIDATION · SX-DEC-068_TITLE_SHELL_WORDMARK_CANDIDATE

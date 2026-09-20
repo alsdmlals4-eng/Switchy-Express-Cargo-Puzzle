@@ -86,8 +86,8 @@ class Candidate003PostmergeCanonTests(unittest.TestCase):
         self.assertNotIn("SX59-POC-ACCEPT-003", launcher)
         self.assertIn("POST_SX_DEC_060_CANDIDATE_CONTRACT", launcher)
         adapter = ADAPTER.read_text(encoding="utf-8")
-        self.assertIn("evidence/acceptance/post_sx_dec_060_candidate.json", adapter)
-        self.assertIn("only when Candidate 003 pre-060 provenance is needed", adapter)
+        self.assertIn("Active Context", adapter)
+        self.assertIn("historical evidence", adapter)
         self.assertNotIn(
             "current_poc_candidate.json` when acceptance identity matters",
             adapter,

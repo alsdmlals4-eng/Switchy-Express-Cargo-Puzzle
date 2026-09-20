@@ -198,10 +198,8 @@ class CandidatePointerBoundaryTests(unittest.TestCase):
             self.assertIn("SX60-POC-ACCEPT-006", text, relative)
             self.assertIn("NOT_RUN", text, relative)
 
-    def test_current_machine_primary_surfaces_route_only_candidate_010_after_sx_dec_069(self) -> None:
+    def test_historical_hubs_preserve_post_069_evidence_without_005_006_promotion(self) -> None:
         current_surfaces = (
-            "AGENTS.md",
-            "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md",
             "기획서/00_프로젝트_허브/ACTIVE_CONTEXT.md",
             "기획서/00_프로젝트_허브/CURRENT_CONFIRMED_DECISIONS.md",
             "기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md",

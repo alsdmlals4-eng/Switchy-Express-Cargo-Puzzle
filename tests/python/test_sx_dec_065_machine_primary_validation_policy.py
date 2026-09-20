@@ -70,7 +70,7 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         gates = read("기획서/00_프로젝트_허브/DEVELOPMENT_GATES.md")
         roadmap = read("기획서/00_프로젝트_허브/ROADMAP.md")
 
-        self.assertIn("current_decision_span: SX-DEC-027~069", adapter)
+        self.assertIn("Active Context", adapter)
         self.assertNotIn("current_decision_span: SX-DEC-027~064", adapter)
         self.assertIn(
             "SX60-POC-ACCEPT-010 is the exact post-change package and current machine-primary candidate",
@@ -86,6 +86,8 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
 
     def test_current_owners_describe_connected_core_board_v02_v04_and_post_sx_dec_069_candidate_state(self) -> None:
         agents = read("AGENTS.md")
+        self.assertIn("CURRENT_CONFIRMED_DECISIONS.md", agents)
+        self.assertIn("ACTIVE_CONTEXT.md", agents)
         decision = read("docs/decisions/SX_DEC_068_TITLE_SCREEN_MAIN_SHELL.md")
         baseline = read("기획서/00_프로젝트_허브/FINITE_DELIVERY_PUZZLE_BASELINE.md")
         roadmap = read("기획서/00_프로젝트_허브/ROADMAP.md")
@@ -97,13 +99,8 @@ class SXDec065MachinePrimaryValidationPolicyTests(unittest.TestCase):
         start_here = read("기획서/00_프로젝트_허브/START_HERE.md")
         renderer = read("game/demo/presentation/product_board_renderer.gd")
 
-        self.assertIn("SX60-POC-ACCEPT-010", agents)
-        self.assertIn("79323ff0175b674c594d18dfd6d28a8e9951f5bd", agents)
         self.assertIn("SX60-POC-ACCEPT-010", decision)
         self.assertIn("79323ff0175b674c594d18dfd6d28a8e9951f5bd", decision)
-        self.assertIn("current_decision_span: SX-DEC-027~069", agents)
-        self.assertIn("SX-DEC-068", agents)
-        self.assertIn("CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED", agents)
         self.assertIn("CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED", baseline)
         self.assertIn("CORE_BOARD_V02_V04_MERGED_MAIN_VERIFIED", roadmap)
         self.assertIn("CORE_BOARD_V02_V04_RUNTIME_CONNECTED", production_spec)

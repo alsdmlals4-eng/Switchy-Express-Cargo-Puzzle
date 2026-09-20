@@ -1,13 +1,23 @@
 ---
 name: base-project-router
-description: Thin repository router for Base v9.4 and Switchy Express project-local skills.
+description: Use at Switchy Express repository entry to find its current authority and single workflow router.
 ---
 
 # Base Project Router
 
-1. Read `AGENTS.md`.
-2. Read `기획서/00_프로젝트_허브/START_HERE.md`.
-3. Read `skills/PROJECT_BASE_ADAPTER.json`.
-4. Select project-local routes before Base shared routes.
-5. Never copy the shared Base Skill body into this repository.
-6. Report the Work Mode, selected Skill and Skill Mode, evidence, and unverified items.
+Follow AGENTS' project-first current-authority read order, then run
+`python tools/validate_project_contract.py` from the project root.
+It checks local files, registry/snapshot hashes and local route targets, not remote Base or runtime.
+On failure stop the affected route and identify the dependency. Approved contract repair and
+independent verified work may continue; do not bypass a failed check.
+
+Read `skills/PROJECT_BASE_ADAPTER.json` and `skills/PROJECT_SKILL_SNAPSHOT.json`.
+Select only matching `effective_routes`; local routes take precedence. Load the selected
+Registry path. Current Base methods are selected by the v4.8 adapter without compatibility repin.
+Product work routes to `skills/switchy-express-design/SKILL.md`; unrelated administration does not.
+
+The sibling `switchy-express-cargo-puzzle-workflow-router` is a frozen generated compatibility
+artifact, not the current execution entry. Its old blanket-stop/pinned-Base wording does not
+override AGENTS or this approved route. Do not edit that generated output by hand.
+The compatibility workflow independently verifies Base locks and exact protected approvals.
+Record only selected skills and reused evidence; do not add another approval/review budget.
