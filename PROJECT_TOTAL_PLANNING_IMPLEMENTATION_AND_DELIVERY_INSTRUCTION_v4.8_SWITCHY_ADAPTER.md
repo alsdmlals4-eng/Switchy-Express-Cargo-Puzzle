@@ -70,7 +70,7 @@ Base 원본의 lock/approved protected diff 검증은 `.github/workflows/validat
 | 이번 작업 | 프로젝트 owner | 필요한 Base owner (Base repository 기준) |
 |---|---|---|
 | 계획·승인·작업 구조 | 이 adapter; Decisions; Active Context | `skills/managing-project-intake-and-work-contract/SKILL.md`; `skills/managing-game-project-operating-system/SKILL.md` |
-| 지침·스킬 간소화 | AGENTS; project routing/registry | `docs/AI_INSTRUCTION_AND_CONTEXT_DESIGN_METHOD.md`; `skills/simplifying-skill-bodies/SKILL.md` |
+| 지침·스킬 간소화 | AGENTS; project routing/registry | `docs/knowledge/game-development/AI_INSTRUCTION_AND_CONTEXT_DESIGN_METHOD.md`; `skills/simplifying-skill-bodies/SKILL.md` |
 | 코어·재미 가설 | `기획서/10_경험/CORE_GAMEPLAY.md#재미-검증-연결`; baseline; 해당 시스템 | `skills/analyzing-and-refining-game-concepts/references/concept-evidence-and-gates.md#fun-verification-lifecycle` |
 | 효과·비주얼·UI | `기획서/40_표현/VISUAL_DIRECTION.md`; 실제 UI/spec owner | `docs/knowledge/game-development/EXPERIENCE_TO_PRESENTATION_GUIDE.md`; `skills/auditing-and-refining-ui-art/references/project-adapter-contract.md` §§10–11 |
 | 검증·최종 검수 | `기획서/50_제작_검증/PLAYTEST_PLAN.md`; actual tests/evidence | selected review/validation skill only |

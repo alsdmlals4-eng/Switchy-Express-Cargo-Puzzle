@@ -86,6 +86,12 @@
     }
   ],
   "sources": [
+    "docs/operations/2026-09-01-switchy-base-operating-adaptation-audit.md",
+    "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8_SWITCHY_ADAPTER.md",
+    "AGENTS.md",
+    "기획서/10_경험/CORE_GAMEPLAY.md",
+    "기획서/40_표현/VISUAL_DIRECTION.md",
+    "기획서/50_제작_검증/PLAYTEST_PLAN.md",
     "tools/build_monthly_ai_worklog.py",
     "tests/python/test_monthly_ai_worklog_append.py",
     "evidence/runtime/pilot-undo-20260914/README.md",
